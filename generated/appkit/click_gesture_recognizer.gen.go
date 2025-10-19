@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ClickGestureRecognizer] class.
-var clickGestureRecognizerClass = _ClickGestureRecognizerClass{objc.GetClass("NSClickGestureRecognizer")}
+var (
+	clickGestureRecognizerClass     _ClickGestureRecognizerClass
+	clickGestureRecognizerClassOnce sync.Once
+)
+
+func getClickGestureRecognizerClass() _ClickGestureRecognizerClass {
+	clickGestureRecognizerClassOnce.Do(func() {
+		clickGestureRecognizerClass = _ClickGestureRecognizerClass{objc.GetClass("NSClickGestureRecognizer")}
+	})
+	return clickGestureRecognizerClass
+}
 
 type _ClickGestureRecognizerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ ClickGestureRecognizer) Autorelease() ClickGestureRecognizer {
 
 // NewClickGestureRecognizer creates a new ClickGestureRecognizer instance.
 func NewClickGestureRecognizer() ClickGestureRecognizer {
-	return clickGestureRecognizerClass.New()
+	return getClickGestureRecognizerClass().New()
 }
 
 

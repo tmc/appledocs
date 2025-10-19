@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ColorList] class.
-var colorListClass = _ColorListClass{objc.GetClass("NSColorList")}
+var (
+	colorListClass     _ColorListClass
+	colorListClassOnce sync.Once
+)
+
+func getColorListClass() _ColorListClass {
+	colorListClassOnce.Do(func() {
+		colorListClass = _ColorListClass{objc.GetClass("NSColorList")}
+	})
+	return colorListClass
+}
 
 type _ColorListClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ ColorList) Autorelease() ColorList {
 
 // NewColorList creates a new ColorList instance.
 func NewColorList() ColorList {
-	return colorListClass.New()
+	return getColorListClass().New()
 }
 
 

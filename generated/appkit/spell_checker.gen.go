@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SpellChecker] class.
-var spellCheckerClass = _SpellCheckerClass{objc.GetClass("NSSpellChecker")}
+var (
+	spellCheckerClass     _SpellCheckerClass
+	spellCheckerClassOnce sync.Once
+)
+
+func getSpellCheckerClass() _SpellCheckerClass {
+	spellCheckerClassOnce.Do(func() {
+		spellCheckerClass = _SpellCheckerClass{objc.GetClass("NSSpellChecker")}
+	})
+	return spellCheckerClass
+}
 
 type _SpellCheckerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SpellChecker) Autorelease() SpellChecker {
 
 // NewSpellChecker creates a new SpellChecker instance.
 func NewSpellChecker() SpellChecker {
-	return spellCheckerClass.New()
+	return getSpellCheckerClass().New()
 }
 
 

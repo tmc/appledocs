@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScrubberImageItemView] class.
-var scrubberImageItemViewClass = _ScrubberImageItemViewClass{objc.GetClass("NSScrubberImageItemView")}
+var (
+	scrubberImageItemViewClass     _ScrubberImageItemViewClass
+	scrubberImageItemViewClassOnce sync.Once
+)
+
+func getScrubberImageItemViewClass() _ScrubberImageItemViewClass {
+	scrubberImageItemViewClassOnce.Do(func() {
+		scrubberImageItemViewClass = _ScrubberImageItemViewClass{objc.GetClass("NSScrubberImageItemView")}
+	})
+	return scrubberImageItemViewClass
+}
 
 type _ScrubberImageItemViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ ScrubberImageItemView) Autorelease() ScrubberImageItemView {
 
 // NewScrubberImageItemView creates a new ScrubberImageItemView instance.
 func NewScrubberImageItemView() ScrubberImageItemView {
-	return scrubberImageItemViewClass.New()
+	return getScrubberImageItemViewClass().New()
 }
 
 

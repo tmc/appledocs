@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [WritingToolsCoordinatorContext] class.
-var writingToolsCoordinatorContextClass = _WritingToolsCoordinatorContextClass{objc.GetClass("NSWritingToolsCoordinatorContext")}
+var (
+	writingToolsCoordinatorContextClass     _WritingToolsCoordinatorContextClass
+	writingToolsCoordinatorContextClassOnce sync.Once
+)
+
+func getWritingToolsCoordinatorContextClass() _WritingToolsCoordinatorContextClass {
+	writingToolsCoordinatorContextClassOnce.Do(func() {
+		writingToolsCoordinatorContextClass = _WritingToolsCoordinatorContextClass{objc.GetClass("NSWritingToolsCoordinatorContext")}
+	})
+	return writingToolsCoordinatorContextClass
+}
 
 type _WritingToolsCoordinatorContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (w_ WritingToolsCoordinatorContext) Autorelease() WritingToolsCoordinatorCo
 
 // NewWritingToolsCoordinatorContext creates a new WritingToolsCoordinatorContext instance.
 func NewWritingToolsCoordinatorContext() WritingToolsCoordinatorContext {
-	return writingToolsCoordinatorContextClass.New()
+	return getWritingToolsCoordinatorContextClass().New()
 }
 
 

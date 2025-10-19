@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DraggingItem] class.
-var draggingItemClass = _DraggingItemClass{objc.GetClass("NSDraggingItem")}
+var (
+	draggingItemClass     _DraggingItemClass
+	draggingItemClassOnce sync.Once
+)
+
+func getDraggingItemClass() _DraggingItemClass {
+	draggingItemClassOnce.Do(func() {
+		draggingItemClass = _DraggingItemClass{objc.GetClass("NSDraggingItem")}
+	})
+	return draggingItemClass
+}
 
 type _DraggingItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (d_ DraggingItem) Autorelease() DraggingItem {
 
 // NewDraggingItem creates a new DraggingItem instance.
 func NewDraggingItem() DraggingItem {
-	return draggingItemClass.New()
+	return getDraggingItemClass().New()
 }
 
 

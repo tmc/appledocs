@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ComboButton] class.
-var comboButtonClass = _ComboButtonClass{objc.GetClass("NSComboButton")}
+var (
+	comboButtonClass     _ComboButtonClass
+	comboButtonClassOnce sync.Once
+)
+
+func getComboButtonClass() _ComboButtonClass {
+	comboButtonClassOnce.Do(func() {
+		comboButtonClass = _ComboButtonClass{objc.GetClass("NSComboButton")}
+	})
+	return comboButtonClass
+}
 
 type _ComboButtonClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ ComboButton) Autorelease() ComboButton {
 
 // NewComboButton creates a new ComboButton instance.
 func NewComboButton() ComboButton {
-	return comboButtonClass.New()
+	return getComboButtonClass().New()
 }
 
 

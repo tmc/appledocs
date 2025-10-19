@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LayoutYAxisAnchor] class.
-var layoutYAxisAnchorClass = _LayoutYAxisAnchorClass{objc.GetClass("NSLayoutYAxisAnchor")}
+var (
+	layoutYAxisAnchorClass     _LayoutYAxisAnchorClass
+	layoutYAxisAnchorClassOnce sync.Once
+)
+
+func getLayoutYAxisAnchorClass() _LayoutYAxisAnchorClass {
+	layoutYAxisAnchorClassOnce.Do(func() {
+		layoutYAxisAnchorClass = _LayoutYAxisAnchorClass{objc.GetClass("NSLayoutYAxisAnchor")}
+	})
+	return layoutYAxisAnchorClass
+}
 
 type _LayoutYAxisAnchorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (l_ LayoutYAxisAnchor) Autorelease() LayoutYAxisAnchor {
 
 // NewLayoutYAxisAnchor creates a new LayoutYAxisAnchor instance.
 func NewLayoutYAxisAnchor() LayoutYAxisAnchor {
-	return layoutYAxisAnchorClass.New()
+	return getLayoutYAxisAnchorClass().New()
 }
 
 

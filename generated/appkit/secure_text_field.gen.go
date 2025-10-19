@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SecureTextField] class.
-var secureTextFieldClass = _SecureTextFieldClass{objc.GetClass("NSSecureTextField")}
+var (
+	secureTextFieldClass     _SecureTextFieldClass
+	secureTextFieldClassOnce sync.Once
+)
+
+func getSecureTextFieldClass() _SecureTextFieldClass {
+	secureTextFieldClassOnce.Do(func() {
+		secureTextFieldClass = _SecureTextFieldClass{objc.GetClass("NSSecureTextField")}
+	})
+	return secureTextFieldClass
+}
 
 type _SecureTextFieldClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SecureTextField) Autorelease() SecureTextField {
 
 // NewSecureTextField creates a new SecureTextField instance.
 func NewSecureTextField() SecureTextField {
-	return secureTextFieldClass.New()
+	return getSecureTextFieldClass().New()
 }
 
 

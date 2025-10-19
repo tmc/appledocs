@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FontAssetRequest] class.
-var fontAssetRequestClass = _FontAssetRequestClass{objc.GetClass("NSFontAssetRequest")}
+var (
+	fontAssetRequestClass     _FontAssetRequestClass
+	fontAssetRequestClassOnce sync.Once
+)
+
+func getFontAssetRequestClass() _FontAssetRequestClass {
+	fontAssetRequestClassOnce.Do(func() {
+		fontAssetRequestClass = _FontAssetRequestClass{objc.GetClass("NSFontAssetRequest")}
+	})
+	return fontAssetRequestClass
+}
 
 type _FontAssetRequestClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (f_ FontAssetRequest) Autorelease() FontAssetRequest {
 
 // NewFontAssetRequest creates a new FontAssetRequest instance.
 func NewFontAssetRequest() FontAssetRequest {
-	return fontAssetRequestClass.New()
+	return getFontAssetRequestClass().New()
 }
 
 

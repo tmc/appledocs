@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [LayoutAnchor] class.
-var layoutAnchorClass = _LayoutAnchorClass{objc.GetClass("NSLayoutAnchor")}
+var (
+	layoutAnchorClass     _LayoutAnchorClass
+	layoutAnchorClassOnce sync.Once
+)
+
+func getLayoutAnchorClass() _LayoutAnchorClass {
+	layoutAnchorClassOnce.Do(func() {
+		layoutAnchorClass = _LayoutAnchorClass{objc.GetClass("NSLayoutAnchor")}
+	})
+	return layoutAnchorClass
+}
 
 type _LayoutAnchorClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (l_ LayoutAnchor) Autorelease() LayoutAnchor {
 
 // NewLayoutAnchor creates a new LayoutAnchor instance.
 func NewLayoutAnchor() LayoutAnchor {
-	return layoutAnchorClass.New()
+	return getLayoutAnchorClass().New()
 }
 
 

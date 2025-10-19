@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AccessibilityCustomRotor] class.
-var accessibilityCustomRotorClass = _AccessibilityCustomRotorClass{objc.GetClass("NSAccessibilityCustomRotor")}
+var (
+	accessibilityCustomRotorClass     _AccessibilityCustomRotorClass
+	accessibilityCustomRotorClassOnce sync.Once
+)
+
+func getAccessibilityCustomRotorClass() _AccessibilityCustomRotorClass {
+	accessibilityCustomRotorClassOnce.Do(func() {
+		accessibilityCustomRotorClass = _AccessibilityCustomRotorClass{objc.GetClass("NSAccessibilityCustomRotor")}
+	})
+	return accessibilityCustomRotorClass
+}
 
 type _AccessibilityCustomRotorClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ AccessibilityCustomRotor) Autorelease() AccessibilityCustomRotor {
 
 // NewAccessibilityCustomRotor creates a new AccessibilityCustomRotor instance.
 func NewAccessibilityCustomRotor() AccessibilityCustomRotor {
-	return accessibilityCustomRotorClass.New()
+	return getAccessibilityCustomRotorClass().New()
 }
 
 

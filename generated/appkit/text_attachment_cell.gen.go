@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextAttachmentCell] class.
-var textAttachmentCellClass = _TextAttachmentCellClass{objc.GetClass("NSTextAttachmentCell")}
+var (
+	textAttachmentCellClass     _TextAttachmentCellClass
+	textAttachmentCellClassOnce sync.Once
+)
+
+func getTextAttachmentCellClass() _TextAttachmentCellClass {
+	textAttachmentCellClassOnce.Do(func() {
+		textAttachmentCellClass = _TextAttachmentCellClass{objc.GetClass("NSTextAttachmentCell")}
+	})
+	return textAttachmentCellClass
+}
 
 type _TextAttachmentCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextAttachmentCell) Autorelease() TextAttachmentCell {
 
 // NewTextAttachmentCell creates a new TextAttachmentCell instance.
 func NewTextAttachmentCell() TextAttachmentCell {
-	return textAttachmentCellClass.New()
+	return getTextAttachmentCellClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TableView] class.
-var tableViewClass = _TableViewClass{objc.GetClass("NSTableView")}
+var (
+	tableViewClass     _TableViewClass
+	tableViewClassOnce sync.Once
+)
+
+func getTableViewClass() _TableViewClass {
+	tableViewClassOnce.Do(func() {
+		tableViewClass = _TableViewClass{objc.GetClass("NSTableView")}
+	})
+	return tableViewClass
+}
 
 type _TableViewClass struct {
 	class objc.Class
@@ -65,7 +76,7 @@ func (t_ TableView) Autorelease() TableView {
 
 // NewTableView creates a new TableView instance.
 func NewTableView() TableView {
-	return tableViewClass.New()
+	return getTableViewClass().New()
 }
 
 

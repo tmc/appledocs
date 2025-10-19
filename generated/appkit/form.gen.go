@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Form] class.
-var formClass = _FormClass{objc.GetClass("NSForm")}
+var (
+	formClass     _FormClass
+	formClassOnce sync.Once
+)
+
+func getFormClass() _FormClass {
+	formClassOnce.Do(func() {
+		formClass = _FormClass{objc.GetClass("NSForm")}
+	})
+	return formClass
+}
 
 type _FormClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (f_ Form) Autorelease() Form {
 
 // NewForm creates a new Form instance.
 func NewForm() Form {
-	return formClass.New()
+	return getFormClass().New()
 }
 
 

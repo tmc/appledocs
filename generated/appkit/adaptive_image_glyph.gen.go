@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AdaptiveImageGlyph] class.
-var adaptiveImageGlyphClass = _AdaptiveImageGlyphClass{objc.GetClass("NSAdaptiveImageGlyph")}
+var (
+	adaptiveImageGlyphClass     _AdaptiveImageGlyphClass
+	adaptiveImageGlyphClassOnce sync.Once
+)
+
+func getAdaptiveImageGlyphClass() _AdaptiveImageGlyphClass {
+	adaptiveImageGlyphClassOnce.Do(func() {
+		adaptiveImageGlyphClass = _AdaptiveImageGlyphClass{objc.GetClass("NSAdaptiveImageGlyph")}
+	})
+	return adaptiveImageGlyphClass
+}
 
 type _AdaptiveImageGlyphClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ AdaptiveImageGlyph) Autorelease() AdaptiveImageGlyph {
 
 // NewAdaptiveImageGlyph creates a new AdaptiveImageGlyph instance.
 func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
-	return adaptiveImageGlyphClass.New()
+	return getAdaptiveImageGlyphClass().New()
 }
 
 

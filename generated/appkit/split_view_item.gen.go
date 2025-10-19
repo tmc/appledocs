@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SplitViewItem] class.
-var splitViewItemClass = _SplitViewItemClass{objc.GetClass("NSSplitViewItem")}
+var (
+	splitViewItemClass     _SplitViewItemClass
+	splitViewItemClassOnce sync.Once
+)
+
+func getSplitViewItemClass() _SplitViewItemClass {
+	splitViewItemClassOnce.Do(func() {
+		splitViewItemClass = _SplitViewItemClass{objc.GetClass("NSSplitViewItem")}
+	})
+	return splitViewItemClass
+}
 
 type _SplitViewItemClass struct {
 	class objc.Class
@@ -62,14 +73,14 @@ func (s_ SplitViewItem) Autorelease() SplitViewItem {
 
 // NewSplitViewItem creates a new SplitViewItem instance.
 func NewSplitViewItem() SplitViewItem {
-	return splitViewItemClass.New()
+	return getSplitViewItemClass().New()
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(inspectorWithViewController:)
 func NewSplitViewItemInspectorWithViewController(viewController unsafe.Pointer) SplitViewItem {
-	rv := objc.Send[SplitViewItem](objc.ID(splitViewItemClass.class), objc.Sel("inspectorWithViewController:"), viewController)
+	rv := objc.Send[SplitViewItem](objc.ID(getSplitViewItemClass().class), objc.Sel("inspectorWithViewController:"), viewController)
 	rv.Autorelease()
 	return rv
 }

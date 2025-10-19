@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PopoverTouchBarItem] class.
-var popoverTouchBarItemClass = _PopoverTouchBarItemClass{objc.GetClass("NSPopoverTouchBarItem")}
+var (
+	popoverTouchBarItemClass     _PopoverTouchBarItemClass
+	popoverTouchBarItemClassOnce sync.Once
+)
+
+func getPopoverTouchBarItemClass() _PopoverTouchBarItemClass {
+	popoverTouchBarItemClassOnce.Do(func() {
+		popoverTouchBarItemClass = _PopoverTouchBarItemClass{objc.GetClass("NSPopoverTouchBarItem")}
+	})
+	return popoverTouchBarItemClass
+}
 
 type _PopoverTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PopoverTouchBarItem) Autorelease() PopoverTouchBarItem {
 
 // NewPopoverTouchBarItem creates a new PopoverTouchBarItem instance.
 func NewPopoverTouchBarItem() PopoverTouchBarItem {
-	return popoverTouchBarItemClass.New()
+	return getPopoverTouchBarItemClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Sound] class.
-var soundClass = _SoundClass{objc.GetClass("NSSound")}
+var (
+	soundClass     _SoundClass
+	soundClassOnce sync.Once
+)
+
+func getSoundClass() _SoundClass {
+	soundClassOnce.Do(func() {
+		soundClass = _SoundClass{objc.GetClass("NSSound")}
+	})
+	return soundClass
+}
 
 type _SoundClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ Sound) Autorelease() Sound {
 
 // NewSound creates a new Sound instance.
 func NewSound() Sound {
-	return soundClass.New()
+	return getSoundClass().New()
 }
 
 

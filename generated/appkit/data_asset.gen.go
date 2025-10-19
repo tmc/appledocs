@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DataAsset] class.
-var dataAssetClass = _DataAssetClass{objc.GetClass("NSDataAsset")}
+var (
+	dataAssetClass     _DataAssetClass
+	dataAssetClassOnce sync.Once
+)
+
+func getDataAssetClass() _DataAssetClass {
+	dataAssetClassOnce.Do(func() {
+		dataAssetClass = _DataAssetClass{objc.GetClass("NSDataAsset")}
+	})
+	return dataAssetClass
+}
 
 type _DataAssetClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (d_ DataAsset) Autorelease() DataAsset {
 
 // NewDataAsset creates a new DataAsset instance.
 func NewDataAsset() DataAsset {
-	return dataAssetClass.New()
+	return getDataAssetClass().New()
 }
 
 

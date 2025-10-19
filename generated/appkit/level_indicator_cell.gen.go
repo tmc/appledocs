@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LevelIndicatorCell] class.
-var levelIndicatorCellClass = _LevelIndicatorCellClass{objc.GetClass("NSLevelIndicatorCell")}
+var (
+	levelIndicatorCellClass     _LevelIndicatorCellClass
+	levelIndicatorCellClassOnce sync.Once
+)
+
+func getLevelIndicatorCellClass() _LevelIndicatorCellClass {
+	levelIndicatorCellClassOnce.Do(func() {
+		levelIndicatorCellClass = _LevelIndicatorCellClass{objc.GetClass("NSLevelIndicatorCell")}
+	})
+	return levelIndicatorCellClass
+}
 
 type _LevelIndicatorCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (l_ LevelIndicatorCell) Autorelease() LevelIndicatorCell {
 
 // NewLevelIndicatorCell creates a new LevelIndicatorCell instance.
 func NewLevelIndicatorCell() LevelIndicatorCell {
-	return levelIndicatorCellClass.New()
+	return getLevelIndicatorCellClass().New()
 }
 
 

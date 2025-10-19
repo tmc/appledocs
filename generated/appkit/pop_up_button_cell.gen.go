@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PopUpButtonCell] class.
-var popUpButtonCellClass = _PopUpButtonCellClass{objc.GetClass("NSPopUpButtonCell")}
+var (
+	popUpButtonCellClass     _PopUpButtonCellClass
+	popUpButtonCellClassOnce sync.Once
+)
+
+func getPopUpButtonCellClass() _PopUpButtonCellClass {
+	popUpButtonCellClassOnce.Do(func() {
+		popUpButtonCellClass = _PopUpButtonCellClass{objc.GetClass("NSPopUpButtonCell")}
+	})
+	return popUpButtonCellClass
+}
 
 type _PopUpButtonCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PopUpButtonCell) Autorelease() PopUpButtonCell {
 
 // NewPopUpButtonCell creates a new PopUpButtonCell instance.
 func NewPopUpButtonCell() PopUpButtonCell {
-	return popUpButtonCellClass.New()
+	return getPopUpButtonCellClass().New()
 }
 
 

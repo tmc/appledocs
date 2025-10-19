@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Screen] class.
-var screenClass = _ScreenClass{objc.GetClass("NSScreen")}
+var (
+	screenClass     _ScreenClass
+	screenClassOnce sync.Once
+)
+
+func getScreenClass() _ScreenClass {
+	screenClassOnce.Do(func() {
+		screenClass = _ScreenClass{objc.GetClass("NSScreen")}
+	})
+	return screenClass
+}
 
 type _ScreenClass struct {
 	class objc.Class
@@ -64,7 +75,7 @@ func (s_ Screen) Autorelease() Screen {
 
 // NewScreen creates a new Screen instance.
 func NewScreen() Screen {
-	return screenClass.New()
+	return getScreenClass().New()
 }
 
 

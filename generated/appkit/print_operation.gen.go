@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PrintOperation] class.
-var printOperationClass = _PrintOperationClass{objc.GetClass("NSPrintOperation")}
+var (
+	printOperationClass     _PrintOperationClass
+	printOperationClassOnce sync.Once
+)
+
+func getPrintOperationClass() _PrintOperationClass {
+	printOperationClassOnce.Do(func() {
+		printOperationClass = _PrintOperationClass{objc.GetClass("NSPrintOperation")}
+	})
+	return printOperationClass
+}
 
 type _PrintOperationClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PrintOperation) Autorelease() PrintOperation {
 
 // NewPrintOperation creates a new PrintOperation instance.
 func NewPrintOperation() PrintOperation {
-	return printOperationClass.New()
+	return getPrintOperationClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BackgroundExtensionView] class.
-var backgroundExtensionViewClass = _BackgroundExtensionViewClass{objc.GetClass("NSBackgroundExtensionView")}
+var (
+	backgroundExtensionViewClass     _BackgroundExtensionViewClass
+	backgroundExtensionViewClassOnce sync.Once
+)
+
+func getBackgroundExtensionViewClass() _BackgroundExtensionViewClass {
+	backgroundExtensionViewClassOnce.Do(func() {
+		backgroundExtensionViewClass = _BackgroundExtensionViewClass{objc.GetClass("NSBackgroundExtensionView")}
+	})
+	return backgroundExtensionViewClass
+}
 
 type _BackgroundExtensionViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (b_ BackgroundExtensionView) Autorelease() BackgroundExtensionView {
 
 // NewBackgroundExtensionView creates a new BackgroundExtensionView instance.
 func NewBackgroundExtensionView() BackgroundExtensionView {
-	return backgroundExtensionViewClass.New()
+	return getBackgroundExtensionViewClass().New()
 }
 
 

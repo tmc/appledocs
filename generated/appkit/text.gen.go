@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Text] class.
-var textClass = _TextClass{objc.GetClass("NSText")}
+var (
+	textClass     _TextClass
+	textClassOnce sync.Once
+)
+
+func getTextClass() _TextClass {
+	textClassOnce.Do(func() {
+		textClass = _TextClass{objc.GetClass("NSText")}
+	})
+	return textClass
+}
 
 type _TextClass struct {
 	class objc.Class
@@ -94,23 +105,23 @@ func (t_ Text) Autorelease() Text {
 
 // NewText creates a new Text instance.
 func NewText() Text {
-	return textClass.New()
+	return getTextClass().New()
 }
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
-func NewTextWithFrame(frameRect unsafe.Pointer) Text {
-	instance := textClass.Alloc()
-	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
+func NewTextWithCoder(coder unsafe.Pointer) Text {
+	instance := getTextClass().Alloc()
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
-func NewTextWithCoder(coder unsafe.Pointer) Text {
-	instance := textClass.Alloc()
-	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
+func NewTextWithFrame(frameRect unsafe.Pointer) Text {
+	instance := getTextClass().Alloc()
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv
 }

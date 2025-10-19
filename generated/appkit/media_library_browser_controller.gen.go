@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MediaLibraryBrowserController] class.
-var mediaLibraryBrowserControllerClass = _MediaLibraryBrowserControllerClass{objc.GetClass("NSMediaLibraryBrowserController")}
+var (
+	mediaLibraryBrowserControllerClass     _MediaLibraryBrowserControllerClass
+	mediaLibraryBrowserControllerClassOnce sync.Once
+)
+
+func getMediaLibraryBrowserControllerClass() _MediaLibraryBrowserControllerClass {
+	mediaLibraryBrowserControllerClassOnce.Do(func() {
+		mediaLibraryBrowserControllerClass = _MediaLibraryBrowserControllerClass{objc.GetClass("NSMediaLibraryBrowserController")}
+	})
+	return mediaLibraryBrowserControllerClass
+}
 
 type _MediaLibraryBrowserControllerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (m_ MediaLibraryBrowserController) Autorelease() MediaLibraryBrowserControl
 
 // NewMediaLibraryBrowserController creates a new MediaLibraryBrowserController instance.
 func NewMediaLibraryBrowserController() MediaLibraryBrowserController {
-	return mediaLibraryBrowserControllerClass.New()
+	return getMediaLibraryBrowserControllerClass().New()
 }
 
 

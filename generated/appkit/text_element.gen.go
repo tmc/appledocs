@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextElement] class.
-var textElementClass = _TextElementClass{objc.GetClass("NSTextElement")}
+var (
+	textElementClass     _TextElementClass
+	textElementClassOnce sync.Once
+)
+
+func getTextElementClass() _TextElementClass {
+	textElementClassOnce.Do(func() {
+		textElementClass = _TextElementClass{objc.GetClass("NSTextElement")}
+	})
+	return textElementClass
+}
 
 type _TextElementClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextElement) Autorelease() TextElement {
 
 // NewTextElement creates a new TextElement instance.
 func NewTextElement() TextElement {
-	return textElementClass.New()
+	return getTextElementClass().New()
 }
 
 

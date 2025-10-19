@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserInterfaceCompressionOptions] class.
-var userInterfaceCompressionOptionsClass = _UserInterfaceCompressionOptionsClass{objc.GetClass("NSUserInterfaceCompressionOptions")}
+var (
+	userInterfaceCompressionOptionsClass     _UserInterfaceCompressionOptionsClass
+	userInterfaceCompressionOptionsClassOnce sync.Once
+)
+
+func getUserInterfaceCompressionOptionsClass() _UserInterfaceCompressionOptionsClass {
+	userInterfaceCompressionOptionsClassOnce.Do(func() {
+		userInterfaceCompressionOptionsClass = _UserInterfaceCompressionOptionsClass{objc.GetClass("NSUserInterfaceCompressionOptions")}
+	})
+	return userInterfaceCompressionOptionsClass
+}
 
 type _UserInterfaceCompressionOptionsClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (u_ UserInterfaceCompressionOptions) Autorelease() UserInterfaceCompression
 
 // NewUserInterfaceCompressionOptions creates a new UserInterfaceCompressionOptions instance.
 func NewUserInterfaceCompressionOptions() UserInterfaceCompressionOptions {
-	return userInterfaceCompressionOptionsClass.New()
+	return getUserInterfaceCompressionOptionsClass().New()
 }
 
 

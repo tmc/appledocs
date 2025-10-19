@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ColorSampler] class.
-var colorSamplerClass = _ColorSamplerClass{objc.GetClass("NSColorSampler")}
+var (
+	colorSamplerClass     _ColorSamplerClass
+	colorSamplerClassOnce sync.Once
+)
+
+func getColorSamplerClass() _ColorSamplerClass {
+	colorSamplerClassOnce.Do(func() {
+		colorSamplerClass = _ColorSamplerClass{objc.GetClass("NSColorSampler")}
+	})
+	return colorSamplerClass
+}
 
 type _ColorSamplerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ ColorSampler) Autorelease() ColorSampler {
 
 // NewColorSampler creates a new ColorSampler instance.
 func NewColorSampler() ColorSampler {
-	return colorSamplerClass.New()
+	return getColorSamplerClass().New()
 }
 
 

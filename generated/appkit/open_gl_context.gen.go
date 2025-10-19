@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OpenGLContext] class.
-var openGLContextClass = _OpenGLContextClass{objc.GetClass("NSOpenGLContext")}
+var (
+	openGLContextClass     _OpenGLContextClass
+	openGLContextClassOnce sync.Once
+)
+
+func getOpenGLContextClass() _OpenGLContextClass {
+	openGLContextClassOnce.Do(func() {
+		openGLContextClass = _OpenGLContextClass{objc.GetClass("NSOpenGLContext")}
+	})
+	return openGLContextClass
+}
 
 type _OpenGLContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (o_ OpenGLContext) Autorelease() OpenGLContext {
 
 // NewOpenGLContext creates a new OpenGLContext instance.
 func NewOpenGLContext() OpenGLContext {
-	return openGLContextClass.New()
+	return getOpenGLContextClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextField] class.
-var textFieldClass = _TextFieldClass{objc.GetClass("NSTextField")}
+var (
+	textFieldClass     _TextFieldClass
+	textFieldClassOnce sync.Once
+)
+
+func getTextFieldClass() _TextFieldClass {
+	textFieldClassOnce.Do(func() {
+		textFieldClass = _TextFieldClass{objc.GetClass("NSTextField")}
+	})
+	return textFieldClass
+}
 
 type _TextFieldClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextField) Autorelease() TextField {
 
 // NewTextField creates a new TextField instance.
 func NewTextField() TextField {
-	return textFieldClass.New()
+	return getTextFieldClass().New()
 }
 
 

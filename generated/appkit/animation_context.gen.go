@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AnimationContext] class.
-var animationContextClass = _AnimationContextClass{objc.GetClass("NSAnimationContext")}
+var (
+	animationContextClass     _AnimationContextClass
+	animationContextClassOnce sync.Once
+)
+
+func getAnimationContextClass() _AnimationContextClass {
+	animationContextClassOnce.Do(func() {
+		animationContextClass = _AnimationContextClass{objc.GetClass("NSAnimationContext")}
+	})
+	return animationContextClass
+}
 
 type _AnimationContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ AnimationContext) Autorelease() AnimationContext {
 
 // NewAnimationContext creates a new AnimationContext instance.
 func NewAnimationContext() AnimationContext {
-	return animationContextClass.New()
+	return getAnimationContextClass().New()
 }
 
 

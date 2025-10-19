@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Image] class.
-var imageClass = _ImageClass{objc.GetClass("NSImage")}
+var (
+	imageClass     _ImageClass
+	imageClassOnce sync.Once
+)
+
+func getImageClass() _ImageClass {
+	imageClassOnce.Do(func() {
+		imageClass = _ImageClass{objc.GetClass("NSImage")}
+	})
+	return imageClass
+}
 
 type _ImageClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (i_ Image) Autorelease() Image {
 
 // NewImage creates a new Image instance.
 func NewImage() Image {
-	return imageClass.New()
+	return getImageClass().New()
 }
 
 

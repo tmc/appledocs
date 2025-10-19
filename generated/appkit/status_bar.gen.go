@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [StatusBar] class.
-var statusBarClass = _StatusBarClass{objc.GetClass("NSStatusBar")}
+var (
+	statusBarClass     _StatusBarClass
+	statusBarClassOnce sync.Once
+)
+
+func getStatusBarClass() _StatusBarClass {
+	statusBarClassOnce.Do(func() {
+		statusBarClass = _StatusBarClass{objc.GetClass("NSStatusBar")}
+	})
+	return statusBarClass
+}
 
 type _StatusBarClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ StatusBar) Autorelease() StatusBar {
 
 // NewStatusBar creates a new StatusBar instance.
 func NewStatusBar() StatusBar {
-	return statusBarClass.New()
+	return getStatusBarClass().New()
 }
 
 

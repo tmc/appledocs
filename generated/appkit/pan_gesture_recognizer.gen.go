@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PanGestureRecognizer] class.
-var panGestureRecognizerClass = _PanGestureRecognizerClass{objc.GetClass("NSPanGestureRecognizer")}
+var (
+	panGestureRecognizerClass     _PanGestureRecognizerClass
+	panGestureRecognizerClassOnce sync.Once
+)
+
+func getPanGestureRecognizerClass() _PanGestureRecognizerClass {
+	panGestureRecognizerClassOnce.Do(func() {
+		panGestureRecognizerClass = _PanGestureRecognizerClass{objc.GetClass("NSPanGestureRecognizer")}
+	})
+	return panGestureRecognizerClass
+}
 
 type _PanGestureRecognizerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PanGestureRecognizer) Autorelease() PanGestureRecognizer {
 
 // NewPanGestureRecognizer creates a new PanGestureRecognizer instance.
 func NewPanGestureRecognizer() PanGestureRecognizer {
-	return panGestureRecognizerClass.New()
+	return getPanGestureRecognizerClass().New()
 }
 
 

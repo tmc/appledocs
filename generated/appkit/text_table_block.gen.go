@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextTableBlock] class.
-var textTableBlockClass = _TextTableBlockClass{objc.GetClass("NSTextTableBlock")}
+var (
+	textTableBlockClass     _TextTableBlockClass
+	textTableBlockClassOnce sync.Once
+)
+
+func getTextTableBlockClass() _TextTableBlockClass {
+	textTableBlockClassOnce.Do(func() {
+		textTableBlockClass = _TextTableBlockClass{objc.GetClass("NSTextTableBlock")}
+	})
+	return textTableBlockClass
+}
 
 type _TextTableBlockClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextTableBlock) Autorelease() TextTableBlock {
 
 // NewTextTableBlock creates a new TextTableBlock instance.
 func NewTextTableBlock() TextTableBlock {
-	return textTableBlockClass.New()
+	return getTextTableBlockClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextBlock] class.
-var textBlockClass = _TextBlockClass{objc.GetClass("NSTextBlock")}
+var (
+	textBlockClass     _TextBlockClass
+	textBlockClassOnce sync.Once
+)
+
+func getTextBlockClass() _TextBlockClass {
+	textBlockClassOnce.Do(func() {
+		textBlockClass = _TextBlockClass{objc.GetClass("NSTextBlock")}
+	})
+	return textBlockClass
+}
 
 type _TextBlockClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextBlock) Autorelease() TextBlock {
 
 // NewTextBlock creates a new TextBlock instance.
 func NewTextBlock() TextBlock {
-	return textBlockClass.New()
+	return getTextBlockClass().New()
 }
 
 

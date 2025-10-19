@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [BindingSelectionMarker] class.
-var bindingSelectionMarkerClass = _BindingSelectionMarkerClass{objc.GetClass("NSBindingSelectionMarker")}
+var (
+	bindingSelectionMarkerClass     _BindingSelectionMarkerClass
+	bindingSelectionMarkerClassOnce sync.Once
+)
+
+func getBindingSelectionMarkerClass() _BindingSelectionMarkerClass {
+	bindingSelectionMarkerClassOnce.Do(func() {
+		bindingSelectionMarkerClass = _BindingSelectionMarkerClass{objc.GetClass("NSBindingSelectionMarker")}
+	})
+	return bindingSelectionMarkerClass
+}
 
 type _BindingSelectionMarkerClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (b_ BindingSelectionMarker) Autorelease() BindingSelectionMarker {
 
 // NewBindingSelectionMarker creates a new BindingSelectionMarker instance.
 func NewBindingSelectionMarker() BindingSelectionMarker {
-	return bindingSelectionMarkerClass.New()
+	return getBindingSelectionMarkerClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OpenGLLayer] class.
-var openGLLayerClass = _OpenGLLayerClass{objc.GetClass("NSOpenGLLayer")}
+var (
+	openGLLayerClass     _OpenGLLayerClass
+	openGLLayerClassOnce sync.Once
+)
+
+func getOpenGLLayerClass() _OpenGLLayerClass {
+	openGLLayerClassOnce.Do(func() {
+		openGLLayerClass = _OpenGLLayerClass{objc.GetClass("NSOpenGLLayer")}
+	})
+	return openGLLayerClass
+}
 
 type _OpenGLLayerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (o_ OpenGLLayer) Autorelease() OpenGLLayer {
 
 // NewOpenGLLayer creates a new OpenGLLayer instance.
 func NewOpenGLLayer() OpenGLLayer {
-	return openGLLayerClass.New()
+	return getOpenGLLayerClass().New()
 }
 
 

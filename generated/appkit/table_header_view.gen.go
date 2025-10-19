@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TableHeaderView] class.
-var tableHeaderViewClass = _TableHeaderViewClass{objc.GetClass("NSTableHeaderView")}
+var (
+	tableHeaderViewClass     _TableHeaderViewClass
+	tableHeaderViewClassOnce sync.Once
+)
+
+func getTableHeaderViewClass() _TableHeaderViewClass {
+	tableHeaderViewClassOnce.Do(func() {
+		tableHeaderViewClass = _TableHeaderViewClass{objc.GetClass("NSTableHeaderView")}
+	})
+	return tableHeaderViewClass
+}
 
 type _TableHeaderViewClass struct {
 	class objc.Class
@@ -65,7 +76,7 @@ func (t_ TableHeaderView) Autorelease() TableHeaderView {
 
 // NewTableHeaderView creates a new TableHeaderView instance.
 func NewTableHeaderView() TableHeaderView {
-	return tableHeaderViewClass.New()
+	return getTableHeaderViewClass().New()
 }
 
 

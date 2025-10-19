@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SplitViewItemAccessoryViewController] class.
-var splitViewItemAccessoryViewControllerClass = _SplitViewItemAccessoryViewControllerClass{objc.GetClass("NSSplitViewItemAccessoryViewController")}
+var (
+	splitViewItemAccessoryViewControllerClass     _SplitViewItemAccessoryViewControllerClass
+	splitViewItemAccessoryViewControllerClassOnce sync.Once
+)
+
+func getSplitViewItemAccessoryViewControllerClass() _SplitViewItemAccessoryViewControllerClass {
+	splitViewItemAccessoryViewControllerClassOnce.Do(func() {
+		splitViewItemAccessoryViewControllerClass = _SplitViewItemAccessoryViewControllerClass{objc.GetClass("NSSplitViewItemAccessoryViewController")}
+	})
+	return splitViewItemAccessoryViewControllerClass
+}
 
 type _SplitViewItemAccessoryViewControllerClass struct {
 	class objc.Class
@@ -60,7 +71,7 @@ func (s_ SplitViewItemAccessoryViewController) Autorelease() SplitViewItemAccess
 
 // NewSplitViewItemAccessoryViewController creates a new SplitViewItemAccessoryViewController instance.
 func NewSplitViewItemAccessoryViewController() SplitViewItemAccessoryViewController {
-	return splitViewItemAccessoryViewControllerClass.New()
+	return getSplitViewItemAccessoryViewControllerClass().New()
 }
 
 

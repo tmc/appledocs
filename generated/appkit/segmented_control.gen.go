@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SegmentedControl] class.
-var segmentedControlClass = _SegmentedControlClass{objc.GetClass("NSSegmentedControl")}
+var (
+	segmentedControlClass     _SegmentedControlClass
+	segmentedControlClassOnce sync.Once
+)
+
+func getSegmentedControlClass() _SegmentedControlClass {
+	segmentedControlClassOnce.Do(func() {
+		segmentedControlClass = _SegmentedControlClass{objc.GetClass("NSSegmentedControl")}
+	})
+	return segmentedControlClass
+}
 
 type _SegmentedControlClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SegmentedControl) Autorelease() SegmentedControl {
 
 // NewSegmentedControl creates a new SegmentedControl instance.
 func NewSegmentedControl() SegmentedControl {
-	return segmentedControlClass.New()
+	return getSegmentedControlClass().New()
 }
 
 

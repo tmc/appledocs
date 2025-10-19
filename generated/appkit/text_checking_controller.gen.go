@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextCheckingController] class.
-var textCheckingControllerClass = _TextCheckingControllerClass{objc.GetClass("NSTextCheckingController")}
+var (
+	textCheckingControllerClass     _TextCheckingControllerClass
+	textCheckingControllerClassOnce sync.Once
+)
+
+func getTextCheckingControllerClass() _TextCheckingControllerClass {
+	textCheckingControllerClassOnce.Do(func() {
+		textCheckingControllerClass = _TextCheckingControllerClass{objc.GetClass("NSTextCheckingController")}
+	})
+	return textCheckingControllerClass
+}
 
 type _TextCheckingControllerClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (t_ TextCheckingController) Autorelease() TextCheckingController {
 
 // NewTextCheckingController creates a new TextCheckingController instance.
 func NewTextCheckingController() TextCheckingController {
-	return textCheckingControllerClass.New()
+	return getTextCheckingControllerClass().New()
 }
 
 

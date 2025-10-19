@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Scrubber] class.
-var scrubberClass = _ScrubberClass{objc.GetClass("NSScrubber")}
+var (
+	scrubberClass     _ScrubberClass
+	scrubberClassOnce sync.Once
+)
+
+func getScrubberClass() _ScrubberClass {
+	scrubberClassOnce.Do(func() {
+		scrubberClass = _ScrubberClass{objc.GetClass("NSScrubber")}
+	})
+	return scrubberClass
+}
 
 type _ScrubberClass struct {
 	class objc.Class
@@ -74,7 +85,7 @@ func (s_ Scrubber) Autorelease() Scrubber {
 
 // NewScrubber creates a new Scrubber instance.
 func NewScrubber() Scrubber {
-	return scrubberClass.New()
+	return getScrubberClass().New()
 }
 
 
@@ -83,7 +94,7 @@ func NewScrubber() Scrubber {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
 func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
-	instance := scrubberClass.Alloc()
+	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
@@ -93,7 +104,7 @@ func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
 func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
-	instance := scrubberClass.Alloc()
+	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv

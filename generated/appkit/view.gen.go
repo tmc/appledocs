@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [View] class.
-var viewClass = _ViewClass{objc.GetClass("NSView")}
+var (
+	viewClass     _ViewClass
+	viewClassOnce sync.Once
+)
+
+func getViewClass() _ViewClass {
+	viewClassOnce.Do(func() {
+		viewClass = _ViewClass{objc.GetClass("NSView")}
+	})
+	return viewClass
+}
 
 type _ViewClass struct {
 	class objc.Class
@@ -245,7 +256,7 @@ func (v_ View) Autorelease() View {
 
 // NewView creates a new View instance.
 func NewView() View {
-	return viewClass.New()
+	return getViewClass().New()
 }
 
 
@@ -254,7 +265,7 @@ func NewView() View {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
 func NewViewWithCoder(coder unsafe.Pointer) View {
-	instance := viewClass.Alloc()
+	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
@@ -264,7 +275,7 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(frame:)
 func NewViewWithFrame(frameRect unsafe.Pointer) View {
-	instance := viewClass.Alloc()
+	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv

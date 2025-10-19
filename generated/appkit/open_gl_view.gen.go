@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OpenGLView] class.
-var openGLViewClass = _OpenGLViewClass{objc.GetClass("NSOpenGLView")}
+var (
+	openGLViewClass     _OpenGLViewClass
+	openGLViewClassOnce sync.Once
+)
+
+func getOpenGLViewClass() _OpenGLViewClass {
+	openGLViewClassOnce.Do(func() {
+		openGLViewClass = _OpenGLViewClass{objc.GetClass("NSOpenGLView")}
+	})
+	return openGLViewClass
+}
 
 type _OpenGLViewClass struct {
 	class objc.Class
@@ -67,7 +78,7 @@ func (o_ OpenGLView) Autorelease() OpenGLView {
 
 // NewOpenGLView creates a new OpenGLView instance.
 func NewOpenGLView() OpenGLView {
-	return openGLViewClass.New()
+	return getOpenGLViewClass().New()
 }
 
 
@@ -76,7 +87,7 @@ func NewOpenGLView() OpenGLView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
 func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.Pointer) OpenGLView {
-	instance := openGLViewClass.Alloc()
+	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()
 	return rv

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ATSTypesetter] class.
-var aTSTypesetterClass = _ATSTypesetterClass{objc.GetClass("NSATSTypesetter")}
+var (
+	aTSTypesetterClass     _ATSTypesetterClass
+	aTSTypesetterClassOnce sync.Once
+)
+
+func getATSTypesetterClass() _ATSTypesetterClass {
+	aTSTypesetterClassOnce.Do(func() {
+		aTSTypesetterClass = _ATSTypesetterClass{objc.GetClass("NSATSTypesetter")}
+	})
+	return aTSTypesetterClass
+}
 
 type _ATSTypesetterClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (a_ ATSTypesetter) Autorelease() ATSTypesetter {
 
 // NewATSTypesetter creates a new ATSTypesetter instance.
 func NewATSTypesetter() ATSTypesetter {
-	return aTSTypesetterClass.New()
+	return getATSTypesetterClass().New()
 }
 
 

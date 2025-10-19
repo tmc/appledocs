@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CollectionView] class.
-var collectionViewClass = _CollectionViewClass{objc.GetClass("NSCollectionView")}
+var (
+	collectionViewClass     _CollectionViewClass
+	collectionViewClassOnce sync.Once
+)
+
+func getCollectionViewClass() _CollectionViewClass {
+	collectionViewClassOnce.Do(func() {
+		collectionViewClass = _CollectionViewClass{objc.GetClass("NSCollectionView")}
+	})
+	return collectionViewClass
+}
 
 type _CollectionViewClass struct {
 	class objc.Class
@@ -103,7 +114,7 @@ func (c_ CollectionView) Autorelease() CollectionView {
 
 // NewCollectionView creates a new CollectionView instance.
 func NewCollectionView() CollectionView {
-	return collectionViewClass.New()
+	return getCollectionViewClass().New()
 }
 
 

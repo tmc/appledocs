@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TableHeaderCell] class.
-var tableHeaderCellClass = _TableHeaderCellClass{objc.GetClass("NSTableHeaderCell")}
+var (
+	tableHeaderCellClass     _TableHeaderCellClass
+	tableHeaderCellClassOnce sync.Once
+)
+
+func getTableHeaderCellClass() _TableHeaderCellClass {
+	tableHeaderCellClassOnce.Do(func() {
+		tableHeaderCellClass = _TableHeaderCellClass{objc.GetClass("NSTableHeaderCell")}
+	})
+	return tableHeaderCellClass
+}
 
 type _TableHeaderCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TableHeaderCell) Autorelease() TableHeaderCell {
 
 // NewTableHeaderCell creates a new TableHeaderCell instance.
 func NewTableHeaderCell() TableHeaderCell {
-	return tableHeaderCellClass.New()
+	return getTableHeaderCellClass().New()
 }
 
 

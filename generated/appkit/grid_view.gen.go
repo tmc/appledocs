@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [GridView] class.
-var gridViewClass = _GridViewClass{objc.GetClass("NSGridView")}
+var (
+	gridViewClass     _GridViewClass
+	gridViewClassOnce sync.Once
+)
+
+func getGridViewClass() _GridViewClass {
+	gridViewClassOnce.Do(func() {
+		gridViewClass = _GridViewClass{objc.GetClass("NSGridView")}
+	})
+	return gridViewClass
+}
 
 type _GridViewClass struct {
 	class objc.Class
@@ -78,16 +89,26 @@ func (g_ GridView) Autorelease() GridView {
 
 // NewGridView creates a new GridView instance.
 func NewGridView() GridView {
-	return gridViewClass.New()
+	return getGridViewClass().New()
 }
 
 
+// Creates a newly allocated grid view object from the coder. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
+func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
+	instance := getGridViewClass().Alloc()
+	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
 // Creates a newly allocated grid view object with the specified frame rectangle. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(frame:)
 func NewGridViewWithFrame(frameRect unsafe.Pointer) GridView {
-	instance := gridViewClass.Alloc()
+	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv
@@ -97,7 +118,7 @@ func NewGridViewWithFrame(frameRect unsafe.Pointer) GridView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(numberOfColumns:rows:)
 func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView {
-	rv := objc.Send[GridView](objc.ID(gridViewClass.class), objc.Sel("gridViewWithNumberOfColumns:rows:"), columnCount, rowCount)
+	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithNumberOfColumns:rows:"), columnCount, rowCount)
 	rv.Autorelease()
 	return rv
 }
@@ -106,17 +127,7 @@ func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
 func NewGridViewWithViews(rows unsafe.Pointer) GridView {
-	rv := objc.Send[GridView](objc.ID(gridViewClass.class), objc.Sel("gridViewWithViews:"), rows)
-	rv.Autorelease()
-	return rv
-}
-// Creates a newly allocated grid view object from the coder. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
-	instance := gridViewClass.Alloc()
-	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	rv.Autorelease()
 	return rv
 }

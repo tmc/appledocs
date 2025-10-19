@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserDefaultsController] class.
-var userDefaultsControllerClass = _UserDefaultsControllerClass{objc.GetClass("NSUserDefaultsController")}
+var (
+	userDefaultsControllerClass     _UserDefaultsControllerClass
+	userDefaultsControllerClassOnce sync.Once
+)
+
+func getUserDefaultsControllerClass() _UserDefaultsControllerClass {
+	userDefaultsControllerClassOnce.Do(func() {
+		userDefaultsControllerClass = _UserDefaultsControllerClass{objc.GetClass("NSUserDefaultsController")}
+	})
+	return userDefaultsControllerClass
+}
 
 type _UserDefaultsControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (u_ UserDefaultsController) Autorelease() UserDefaultsController {
 
 // NewUserDefaultsController creates a new UserDefaultsController instance.
 func NewUserDefaultsController() UserDefaultsController {
-	return userDefaultsControllerClass.New()
+	return getUserDefaultsControllerClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OutlineView] class.
-var outlineViewClass = _OutlineViewClass{objc.GetClass("NSOutlineView")}
+var (
+	outlineViewClass     _OutlineViewClass
+	outlineViewClassOnce sync.Once
+)
+
+func getOutlineViewClass() _OutlineViewClass {
+	outlineViewClassOnce.Do(func() {
+		outlineViewClass = _OutlineViewClass{objc.GetClass("NSOutlineView")}
+	})
+	return outlineViewClass
+}
 
 type _OutlineViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (o_ OutlineView) Autorelease() OutlineView {
 
 // NewOutlineView creates a new OutlineView instance.
 func NewOutlineView() OutlineView {
-	return outlineViewClass.New()
+	return getOutlineViewClass().New()
 }
 
 

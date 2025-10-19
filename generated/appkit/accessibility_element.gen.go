@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AccessibilityElement] class.
-var accessibilityElementClass = _AccessibilityElementClass{objc.GetClass("NSAccessibilityElement")}
+var (
+	accessibilityElementClass     _AccessibilityElementClass
+	accessibilityElementClassOnce sync.Once
+)
+
+func getAccessibilityElementClass() _AccessibilityElementClass {
+	accessibilityElementClassOnce.Do(func() {
+		accessibilityElementClass = _AccessibilityElementClass{objc.GetClass("NSAccessibilityElement")}
+	})
+	return accessibilityElementClass
+}
 
 type _AccessibilityElementClass struct {
 	class objc.Class
@@ -64,7 +75,7 @@ func (a_ AccessibilityElement) Autorelease() AccessibilityElement {
 
 // NewAccessibilityElement creates a new AccessibilityElement instance.
 func NewAccessibilityElement() AccessibilityElement {
-	return accessibilityElementClass.New()
+	return getAccessibilityElementClass().New()
 }
 
 

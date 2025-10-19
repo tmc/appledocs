@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DraggingImageComponent] class.
-var draggingImageComponentClass = _DraggingImageComponentClass{objc.GetClass("NSDraggingImageComponent")}
+var (
+	draggingImageComponentClass     _DraggingImageComponentClass
+	draggingImageComponentClassOnce sync.Once
+)
+
+func getDraggingImageComponentClass() _DraggingImageComponentClass {
+	draggingImageComponentClassOnce.Do(func() {
+		draggingImageComponentClass = _DraggingImageComponentClass{objc.GetClass("NSDraggingImageComponent")}
+	})
+	return draggingImageComponentClass
+}
 
 type _DraggingImageComponentClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (d_ DraggingImageComponent) Autorelease() DraggingImageComponent {
 
 // NewDraggingImageComponent creates a new DraggingImageComponent instance.
 func NewDraggingImageComponent() DraggingImageComponent {
-	return draggingImageComponentClass.New()
+	return getDraggingImageComponentClass().New()
 }
 
 

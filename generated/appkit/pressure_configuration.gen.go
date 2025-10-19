@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PressureConfiguration] class.
-var pressureConfigurationClass = _PressureConfigurationClass{objc.GetClass("NSPressureConfiguration")}
+var (
+	pressureConfigurationClass     _PressureConfigurationClass
+	pressureConfigurationClassOnce sync.Once
+)
+
+func getPressureConfigurationClass() _PressureConfigurationClass {
+	pressureConfigurationClassOnce.Do(func() {
+		pressureConfigurationClass = _PressureConfigurationClass{objc.GetClass("NSPressureConfiguration")}
+	})
+	return pressureConfigurationClass
+}
 
 type _PressureConfigurationClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PressureConfiguration) Autorelease() PressureConfiguration {
 
 // NewPressureConfiguration creates a new PressureConfiguration instance.
 func NewPressureConfiguration() PressureConfiguration {
-	return pressureConfigurationClass.New()
+	return getPressureConfigurationClass().New()
 }
 
 

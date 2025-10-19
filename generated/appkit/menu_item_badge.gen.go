@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MenuItemBadge] class.
-var menuItemBadgeClass = _MenuItemBadgeClass{objc.GetClass("NSMenuItemBadge")}
+var (
+	menuItemBadgeClass     _MenuItemBadgeClass
+	menuItemBadgeClassOnce sync.Once
+)
+
+func getMenuItemBadgeClass() _MenuItemBadgeClass {
+	menuItemBadgeClassOnce.Do(func() {
+		menuItemBadgeClass = _MenuItemBadgeClass{objc.GetClass("NSMenuItemBadge")}
+	})
+	return menuItemBadgeClass
+}
 
 type _MenuItemBadgeClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (m_ MenuItemBadge) Autorelease() MenuItemBadge {
 
 // NewMenuItemBadge creates a new MenuItemBadge instance.
 func NewMenuItemBadge() MenuItemBadge {
-	return menuItemBadgeClass.New()
+	return getMenuItemBadgeClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Responder] class.
-var responderClass = _ResponderClass{objc.GetClass("NSResponder")}
+var (
+	responderClass     _ResponderClass
+	responderClassOnce sync.Once
+)
+
+func getResponderClass() _ResponderClass {
+	responderClassOnce.Do(func() {
+		responderClass = _ResponderClass{objc.GetClass("NSResponder")}
+	})
+	return responderClass
+}
 
 type _ResponderClass struct {
 	class objc.Class
@@ -125,7 +136,7 @@ func (r_ Responder) Autorelease() Responder {
 
 // NewResponder creates a new Responder instance.
 func NewResponder() Responder {
-	return responderClass.New()
+	return getResponderClass().New()
 }
 
 
@@ -134,7 +145,7 @@ func NewResponder() Responder {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/init(coder:)
 func NewResponderWithCoder(coder unsafe.Pointer) Responder {
-	instance := responderClass.Alloc()
+	instance := getResponderClass().Alloc()
 	rv := objc.Send[Responder](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv

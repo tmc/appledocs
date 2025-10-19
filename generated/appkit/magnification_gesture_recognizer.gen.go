@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MagnificationGestureRecognizer] class.
-var magnificationGestureRecognizerClass = _MagnificationGestureRecognizerClass{objc.GetClass("NSMagnificationGestureRecognizer")}
+var (
+	magnificationGestureRecognizerClass     _MagnificationGestureRecognizerClass
+	magnificationGestureRecognizerClassOnce sync.Once
+)
+
+func getMagnificationGestureRecognizerClass() _MagnificationGestureRecognizerClass {
+	magnificationGestureRecognizerClassOnce.Do(func() {
+		magnificationGestureRecognizerClass = _MagnificationGestureRecognizerClass{objc.GetClass("NSMagnificationGestureRecognizer")}
+	})
+	return magnificationGestureRecognizerClass
+}
 
 type _MagnificationGestureRecognizerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (m_ MagnificationGestureRecognizer) Autorelease() MagnificationGestureRecog
 
 // NewMagnificationGestureRecognizer creates a new MagnificationGestureRecognizer instance.
 func NewMagnificationGestureRecognizer() MagnificationGestureRecognizer {
-	return magnificationGestureRecognizerClass.New()
+	return getMagnificationGestureRecognizerClass().New()
 }
 
 

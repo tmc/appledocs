@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextAlternatives] class.
-var textAlternativesClass = _TextAlternativesClass{objc.GetClass("NSTextAlternatives")}
+var (
+	textAlternativesClass     _TextAlternativesClass
+	textAlternativesClassOnce sync.Once
+)
+
+func getTextAlternativesClass() _TextAlternativesClass {
+	textAlternativesClassOnce.Do(func() {
+		textAlternativesClass = _TextAlternativesClass{objc.GetClass("NSTextAlternatives")}
+	})
+	return textAlternativesClass
+}
 
 type _TextAlternativesClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextAlternatives) Autorelease() TextAlternatives {
 
 // NewTextAlternatives creates a new TextAlternatives instance.
 func NewTextAlternatives() TextAlternatives {
-	return textAlternativesClass.New()
+	return getTextAlternativesClass().New()
 }
 
 

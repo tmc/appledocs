@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PrintPanel] class.
-var printPanelClass = _PrintPanelClass{objc.GetClass("NSPrintPanel")}
+var (
+	printPanelClass     _PrintPanelClass
+	printPanelClassOnce sync.Once
+)
+
+func getPrintPanelClass() _PrintPanelClass {
+	printPanelClassOnce.Do(func() {
+		printPanelClass = _PrintPanelClass{objc.GetClass("NSPrintPanel")}
+	})
+	return printPanelClass
+}
 
 type _PrintPanelClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PrintPanel) Autorelease() PrintPanel {
 
 // NewPrintPanel creates a new PrintPanel instance.
 func NewPrintPanel() PrintPanel {
-	return printPanelClass.New()
+	return getPrintPanelClass().New()
 }
 
 

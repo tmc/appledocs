@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LayoutDimension] class.
-var layoutDimensionClass = _LayoutDimensionClass{objc.GetClass("NSLayoutDimension")}
+var (
+	layoutDimensionClass     _LayoutDimensionClass
+	layoutDimensionClassOnce sync.Once
+)
+
+func getLayoutDimensionClass() _LayoutDimensionClass {
+	layoutDimensionClassOnce.Do(func() {
+		layoutDimensionClass = _LayoutDimensionClass{objc.GetClass("NSLayoutDimension")}
+	})
+	return layoutDimensionClass
+}
 
 type _LayoutDimensionClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (l_ LayoutDimension) Autorelease() LayoutDimension {
 
 // NewLayoutDimension creates a new LayoutDimension instance.
 func NewLayoutDimension() LayoutDimension {
-	return layoutDimensionClass.New()
+	return getLayoutDimensionClass().New()
 }
 
 

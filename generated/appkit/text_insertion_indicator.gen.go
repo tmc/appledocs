@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextInsertionIndicator] class.
-var textInsertionIndicatorClass = _TextInsertionIndicatorClass{objc.GetClass("NSTextInsertionIndicator")}
+var (
+	textInsertionIndicatorClass     _TextInsertionIndicatorClass
+	textInsertionIndicatorClassOnce sync.Once
+)
+
+func getTextInsertionIndicatorClass() _TextInsertionIndicatorClass {
+	textInsertionIndicatorClassOnce.Do(func() {
+		textInsertionIndicatorClass = _TextInsertionIndicatorClass{objc.GetClass("NSTextInsertionIndicator")}
+	})
+	return textInsertionIndicatorClass
+}
 
 type _TextInsertionIndicatorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextInsertionIndicator) Autorelease() TextInsertionIndicator {
 
 // NewTextInsertionIndicator creates a new TextInsertionIndicator instance.
 func NewTextInsertionIndicator() TextInsertionIndicator {
-	return textInsertionIndicatorClass.New()
+	return getTextInsertionIndicatorClass().New()
 }
 
 

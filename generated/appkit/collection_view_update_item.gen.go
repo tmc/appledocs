@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [CollectionViewUpdateItem] class.
-var collectionViewUpdateItemClass = _CollectionViewUpdateItemClass{objc.GetClass("NSCollectionViewUpdateItem")}
+var (
+	collectionViewUpdateItemClass     _CollectionViewUpdateItemClass
+	collectionViewUpdateItemClassOnce sync.Once
+)
+
+func getCollectionViewUpdateItemClass() _CollectionViewUpdateItemClass {
+	collectionViewUpdateItemClassOnce.Do(func() {
+		collectionViewUpdateItemClass = _CollectionViewUpdateItemClass{objc.GetClass("NSCollectionViewUpdateItem")}
+	})
+	return collectionViewUpdateItemClass
+}
 
 type _CollectionViewUpdateItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ CollectionViewUpdateItem) Autorelease() CollectionViewUpdateItem {
 
 // NewCollectionViewUpdateItem creates a new CollectionViewUpdateItem instance.
 func NewCollectionViewUpdateItem() CollectionViewUpdateItem {
-	return collectionViewUpdateItemClass.New()
+	return getCollectionViewUpdateItemClass().New()
 }
 
 

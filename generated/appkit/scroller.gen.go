@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Scroller] class.
-var scrollerClass = _ScrollerClass{objc.GetClass("NSScroller")}
+var (
+	scrollerClass     _ScrollerClass
+	scrollerClassOnce sync.Once
+)
+
+func getScrollerClass() _ScrollerClass {
+	scrollerClassOnce.Do(func() {
+		scrollerClass = _ScrollerClass{objc.GetClass("NSScroller")}
+	})
+	return scrollerClass
+}
 
 type _ScrollerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ Scroller) Autorelease() Scroller {
 
 // NewScroller creates a new Scroller instance.
 func NewScroller() Scroller {
-	return scrollerClass.New()
+	return getScrollerClass().New()
 }
 
 

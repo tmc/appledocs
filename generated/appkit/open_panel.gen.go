@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OpenPanel] class.
-var openPanelClass = _OpenPanelClass{objc.GetClass("NSOpenPanel")}
+var (
+	openPanelClass     _OpenPanelClass
+	openPanelClassOnce sync.Once
+)
+
+func getOpenPanelClass() _OpenPanelClass {
+	openPanelClassOnce.Do(func() {
+		openPanelClass = _OpenPanelClass{objc.GetClass("NSOpenPanel")}
+	})
+	return openPanelClass
+}
 
 type _OpenPanelClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (o_ OpenPanel) Autorelease() OpenPanel {
 
 // NewOpenPanel creates a new OpenPanel instance.
 func NewOpenPanel() OpenPanel {
-	return openPanelClass.New()
+	return getOpenPanelClass().New()
 }
 
 

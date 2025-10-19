@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextLayoutFragment] class.
-var textLayoutFragmentClass = _TextLayoutFragmentClass{objc.GetClass("NSTextLayoutFragment")}
+var (
+	textLayoutFragmentClass     _TextLayoutFragmentClass
+	textLayoutFragmentClassOnce sync.Once
+)
+
+func getTextLayoutFragmentClass() _TextLayoutFragmentClass {
+	textLayoutFragmentClassOnce.Do(func() {
+		textLayoutFragmentClass = _TextLayoutFragmentClass{objc.GetClass("NSTextLayoutFragment")}
+	})
+	return textLayoutFragmentClass
+}
 
 type _TextLayoutFragmentClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextLayoutFragment) Autorelease() TextLayoutFragment {
 
 // NewTextLayoutFragment creates a new TextLayoutFragment instance.
 func NewTextLayoutFragment() TextLayoutFragment {
-	return textLayoutFragmentClass.New()
+	return getTextLayoutFragmentClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScrubberLayoutAttributes] class.
-var scrubberLayoutAttributesClass = _ScrubberLayoutAttributesClass{objc.GetClass("NSScrubberLayoutAttributes")}
+var (
+	scrubberLayoutAttributesClass     _ScrubberLayoutAttributesClass
+	scrubberLayoutAttributesClassOnce sync.Once
+)
+
+func getScrubberLayoutAttributesClass() _ScrubberLayoutAttributesClass {
+	scrubberLayoutAttributesClassOnce.Do(func() {
+		scrubberLayoutAttributesClass = _ScrubberLayoutAttributesClass{objc.GetClass("NSScrubberLayoutAttributes")}
+	})
+	return scrubberLayoutAttributesClass
+}
 
 type _ScrubberLayoutAttributesClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ ScrubberLayoutAttributes) Autorelease() ScrubberLayoutAttributes {
 
 // NewScrubberLayoutAttributes creates a new ScrubberLayoutAttributes instance.
 func NewScrubberLayoutAttributes() ScrubberLayoutAttributes {
-	return scrubberLayoutAttributesClass.New()
+	return getScrubberLayoutAttributesClass().New()
 }
 
 

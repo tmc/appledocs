@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Cell] class.
-var cellClass = _CellClass{objc.GetClass("NSCell")}
+var (
+	cellClass     _CellClass
+	cellClassOnce sync.Once
+)
+
+func getCellClass() _CellClass {
+	cellClassOnce.Do(func() {
+		cellClass = _CellClass{objc.GetClass("NSCell")}
+	})
+	return cellClass
+}
 
 type _CellClass struct {
 	class objc.Class
@@ -109,16 +120,24 @@ func (c_ Cell) Autorelease() Cell {
 
 // NewCell creates a new Cell instance.
 func NewCell() Cell {
-	return cellClass.New()
+	return getCellClass().New()
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
+func NewCellWithCoder(coder unsafe.Pointer) Cell {
+	instance := getCellClass().Alloc()
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
 // Returns an object initialized with the specified image and set to have the cell’s default menu. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(imageCell:)
 func NewCellImageCell(image unsafe.Pointer) Cell {
-	instance := cellClass.Alloc()
+	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initImageCell:"), image)
 	rv.Autorelease()
 	return rv
@@ -128,16 +147,8 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
 func NewCellTextCell(string string) Cell {
-	instance := cellClass.Alloc()
+	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string))
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder unsafe.Pointer) Cell {
-	instance := cellClass.Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextTable] class.
-var textTableClass = _TextTableClass{objc.GetClass("NSTextTable")}
+var (
+	textTableClass     _TextTableClass
+	textTableClassOnce sync.Once
+)
+
+func getTextTableClass() _TextTableClass {
+	textTableClassOnce.Do(func() {
+		textTableClass = _TextTableClass{objc.GetClass("NSTextTable")}
+	})
+	return textTableClass
+}
 
 type _TextTableClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextTable) Autorelease() TextTable {
 
 // NewTextTable creates a new TextTable instance.
 func NewTextTable() TextTable {
-	return textTableClass.New()
+	return getTextTableClass().New()
 }
 
 

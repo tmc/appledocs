@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextListElement] class.
-var textListElementClass = _TextListElementClass{objc.GetClass("NSTextListElement")}
+var (
+	textListElementClass     _TextListElementClass
+	textListElementClassOnce sync.Once
+)
+
+func getTextListElementClass() _TextListElementClass {
+	textListElementClassOnce.Do(func() {
+		textListElementClass = _TextListElementClass{objc.GetClass("NSTextListElement")}
+	})
+	return textListElementClass
+}
 
 type _TextListElementClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextListElement) Autorelease() TextListElement {
 
 // NewTextListElement creates a new TextListElement instance.
 func NewTextListElement() TextListElement {
-	return textListElementClass.New()
+	return getTextListElementClass().New()
 }
 
 

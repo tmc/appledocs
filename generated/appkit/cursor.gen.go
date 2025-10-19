@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Cursor] class.
-var cursorClass = _CursorClass{objc.GetClass("NSCursor")}
+var (
+	cursorClass     _CursorClass
+	cursorClassOnce sync.Once
+)
+
+func getCursorClass() _CursorClass {
+	cursorClassOnce.Do(func() {
+		cursorClass = _CursorClass{objc.GetClass("NSCursor")}
+	})
+	return cursorClass
+}
 
 type _CursorClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ Cursor) Autorelease() Cursor {
 
 // NewCursor creates a new Cursor instance.
 func NewCursor() Cursor {
-	return cursorClass.New()
+	return getCursorClass().New()
 }
 
 

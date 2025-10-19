@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PDFInfo] class.
-var pDFInfoClass = _PDFInfoClass{objc.GetClass("NSPDFInfo")}
+var (
+	pDFInfoClass     _PDFInfoClass
+	pDFInfoClassOnce sync.Once
+)
+
+func getPDFInfoClass() _PDFInfoClass {
+	pDFInfoClassOnce.Do(func() {
+		pDFInfoClass = _PDFInfoClass{objc.GetClass("NSPDFInfo")}
+	})
+	return pDFInfoClass
+}
 
 type _PDFInfoClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PDFInfo) Autorelease() PDFInfo {
 
 // NewPDFInfo creates a new PDFInfo instance.
 func NewPDFInfo() PDFInfo {
-	return pDFInfoClass.New()
+	return getPDFInfoClass().New()
 }
 
 

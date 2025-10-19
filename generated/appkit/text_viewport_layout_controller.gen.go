@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextViewportLayoutController] class.
-var textViewportLayoutControllerClass = _TextViewportLayoutControllerClass{objc.GetClass("NSTextViewportLayoutController")}
+var (
+	textViewportLayoutControllerClass     _TextViewportLayoutControllerClass
+	textViewportLayoutControllerClassOnce sync.Once
+)
+
+func getTextViewportLayoutControllerClass() _TextViewportLayoutControllerClass {
+	textViewportLayoutControllerClassOnce.Do(func() {
+		textViewportLayoutControllerClass = _TextViewportLayoutControllerClass{objc.GetClass("NSTextViewportLayoutController")}
+	})
+	return textViewportLayoutControllerClass
+}
 
 type _TextViewportLayoutControllerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextViewportLayoutController) Autorelease() TextViewportLayoutControlle
 
 // NewTextViewportLayoutController creates a new TextViewportLayoutController instance.
 func NewTextViewportLayoutController() TextViewportLayoutController {
-	return textViewportLayoutControllerClass.New()
+	return getTextViewportLayoutControllerClass().New()
 }
 
 

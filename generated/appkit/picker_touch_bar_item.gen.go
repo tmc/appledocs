@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PickerTouchBarItem] class.
-var pickerTouchBarItemClass = _PickerTouchBarItemClass{objc.GetClass("NSPickerTouchBarItem")}
+var (
+	pickerTouchBarItemClass     _PickerTouchBarItemClass
+	pickerTouchBarItemClassOnce sync.Once
+)
+
+func getPickerTouchBarItemClass() _PickerTouchBarItemClass {
+	pickerTouchBarItemClassOnce.Do(func() {
+		pickerTouchBarItemClass = _PickerTouchBarItemClass{objc.GetClass("NSPickerTouchBarItem")}
+	})
+	return pickerTouchBarItemClass
+}
 
 type _PickerTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PickerTouchBarItem) Autorelease() PickerTouchBarItem {
 
 // NewPickerTouchBarItem creates a new PickerTouchBarItem instance.
 func NewPickerTouchBarItem() PickerTouchBarItem {
-	return pickerTouchBarItemClass.New()
+	return getPickerTouchBarItemClass().New()
 }
 
 

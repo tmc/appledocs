@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ClipView] class.
-var clipViewClass = _ClipViewClass{objc.GetClass("NSClipView")}
+var (
+	clipViewClass     _ClipViewClass
+	clipViewClassOnce sync.Once
+)
+
+func getClipViewClass() _ClipViewClass {
+	clipViewClassOnce.Do(func() {
+		clipViewClass = _ClipViewClass{objc.GetClass("NSClipView")}
+	})
+	return clipViewClass
+}
 
 type _ClipViewClass struct {
 	class objc.Class
@@ -69,7 +80,7 @@ func (c_ ClipView) Autorelease() ClipView {
 
 // NewClipView creates a new ClipView instance.
 func NewClipView() ClipView {
-	return clipViewClass.New()
+	return getClipViewClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Event] class.
-var eventClass = _EventClass{objc.GetClass("NSEvent")}
+var (
+	eventClass     _EventClass
+	eventClassOnce sync.Once
+)
+
+func getEventClass() _EventClass {
+	eventClassOnce.Do(func() {
+		eventClass = _EventClass{objc.GetClass("NSEvent")}
+	})
+	return eventClass
+}
 
 type _EventClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (e_ Event) Autorelease() Event {
 
 // NewEvent creates a new Event instance.
 func NewEvent() Event {
-	return eventClass.New()
+	return getEventClass().New()
 }
 
 

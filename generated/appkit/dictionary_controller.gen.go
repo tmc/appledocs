@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DictionaryController] class.
-var dictionaryControllerClass = _DictionaryControllerClass{objc.GetClass("NSDictionaryController")}
+var (
+	dictionaryControllerClass     _DictionaryControllerClass
+	dictionaryControllerClassOnce sync.Once
+)
+
+func getDictionaryControllerClass() _DictionaryControllerClass {
+	dictionaryControllerClassOnce.Do(func() {
+		dictionaryControllerClass = _DictionaryControllerClass{objc.GetClass("NSDictionaryController")}
+	})
+	return dictionaryControllerClass
+}
 
 type _DictionaryControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (d_ DictionaryController) Autorelease() DictionaryController {
 
 // NewDictionaryController creates a new DictionaryController instance.
 func NewDictionaryController() DictionaryController {
-	return dictionaryControllerClass.New()
+	return getDictionaryControllerClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PreviewRepresentingActivityItem] class.
-var previewRepresentingActivityItemClass = _PreviewRepresentingActivityItemClass{objc.GetClass("NSPreviewRepresentingActivityItem")}
+var (
+	previewRepresentingActivityItemClass     _PreviewRepresentingActivityItemClass
+	previewRepresentingActivityItemClassOnce sync.Once
+)
+
+func getPreviewRepresentingActivityItemClass() _PreviewRepresentingActivityItemClass {
+	previewRepresentingActivityItemClassOnce.Do(func() {
+		previewRepresentingActivityItemClass = _PreviewRepresentingActivityItemClass{objc.GetClass("NSPreviewRepresentingActivityItem")}
+	})
+	return previewRepresentingActivityItemClass
+}
 
 type _PreviewRepresentingActivityItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PreviewRepresentingActivityItem) Autorelease() PreviewRepresentingActiv
 
 // NewPreviewRepresentingActivityItem creates a new PreviewRepresentingActivityItem instance.
 func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
-	return previewRepresentingActivityItemClass.New()
+	return getPreviewRepresentingActivityItemClass().New()
 }
 
 

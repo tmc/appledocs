@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Printer] class.
-var printerClass = _PrinterClass{objc.GetClass("NSPrinter")}
+var (
+	printerClass     _PrinterClass
+	printerClassOnce sync.Once
+)
+
+func getPrinterClass() _PrinterClass {
+	printerClassOnce.Do(func() {
+		printerClass = _PrinterClass{objc.GetClass("NSPrinter")}
+	})
+	return printerClass
+}
 
 type _PrinterClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ Printer) Autorelease() Printer {
 
 // NewPrinter creates a new Printer instance.
 func NewPrinter() Printer {
-	return printerClass.New()
+	return getPrinterClass().New()
 }
 
 

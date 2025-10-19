@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LevelIndicator] class.
-var levelIndicatorClass = _LevelIndicatorClass{objc.GetClass("NSLevelIndicator")}
+var (
+	levelIndicatorClass     _LevelIndicatorClass
+	levelIndicatorClassOnce sync.Once
+)
+
+func getLevelIndicatorClass() _LevelIndicatorClass {
+	levelIndicatorClassOnce.Do(func() {
+		levelIndicatorClass = _LevelIndicatorClass{objc.GetClass("NSLevelIndicator")}
+	})
+	return levelIndicatorClass
+}
 
 type _LevelIndicatorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (l_ LevelIndicator) Autorelease() LevelIndicator {
 
 // NewLevelIndicator creates a new LevelIndicator instance.
 func NewLevelIndicator() LevelIndicator {
-	return levelIndicatorClass.New()
+	return getLevelIndicatorClass().New()
 }
 
 

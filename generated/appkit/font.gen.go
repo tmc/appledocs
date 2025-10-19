@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Font] class.
-var fontClass = _FontClass{objc.GetClass("NSFont")}
+var (
+	fontClass     _FontClass
+	fontClassOnce sync.Once
+)
+
+func getFontClass() _FontClass {
+	fontClassOnce.Do(func() {
+		fontClass = _FontClass{objc.GetClass("NSFont")}
+	})
+	return fontClass
+}
 
 type _FontClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (f_ Font) Autorelease() Font {
 
 // NewFont creates a new Font instance.
 func NewFont() Font {
-	return fontClass.New()
+	return getFontClass().New()
 }
 
 

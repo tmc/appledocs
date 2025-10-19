@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [VisualEffectView] class.
-var visualEffectViewClass = _VisualEffectViewClass{objc.GetClass("NSVisualEffectView")}
+var (
+	visualEffectViewClass     _VisualEffectViewClass
+	visualEffectViewClassOnce sync.Once
+)
+
+func getVisualEffectViewClass() _VisualEffectViewClass {
+	visualEffectViewClassOnce.Do(func() {
+		visualEffectViewClass = _VisualEffectViewClass{objc.GetClass("NSVisualEffectView")}
+	})
+	return visualEffectViewClass
+}
 
 type _VisualEffectViewClass struct {
 	class objc.Class
@@ -65,7 +76,7 @@ func (v_ VisualEffectView) Autorelease() VisualEffectView {
 
 // NewVisualEffectView creates a new VisualEffectView instance.
 func NewVisualEffectView() VisualEffectView {
-	return visualEffectViewClass.New()
+	return getVisualEffectViewClass().New()
 }
 
 

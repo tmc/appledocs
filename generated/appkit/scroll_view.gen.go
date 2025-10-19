@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScrollView] class.
-var scrollViewClass = _ScrollViewClass{objc.GetClass("NSScrollView")}
+var (
+	scrollViewClass     _ScrollViewClass
+	scrollViewClassOnce sync.Once
+)
+
+func getScrollViewClass() _ScrollViewClass {
+	scrollViewClassOnce.Do(func() {
+		scrollViewClass = _ScrollViewClass{objc.GetClass("NSScrollView")}
+	})
+	return scrollViewClass
+}
 
 type _ScrollViewClass struct {
 	class objc.Class
@@ -70,14 +81,14 @@ func (s_ ScrollView) Autorelease() ScrollView {
 
 // NewScrollView creates a new ScrollView instance.
 func NewScrollView() ScrollView {
-	return scrollViewClass.New()
+	return getScrollViewClass().New()
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
 func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
-	instance := scrollViewClass.Alloc()
+	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
@@ -85,7 +96,7 @@ func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(frame:)
 func NewScrollViewWithFrame(frameRect unsafe.Pointer) ScrollView {
-	instance := scrollViewClass.Alloc()
+	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv

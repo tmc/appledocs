@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ParagraphStyle] class.
-var paragraphStyleClass = _ParagraphStyleClass{objc.GetClass("NSParagraphStyle")}
+var (
+	paragraphStyleClass     _ParagraphStyleClass
+	paragraphStyleClassOnce sync.Once
+)
+
+func getParagraphStyleClass() _ParagraphStyleClass {
+	paragraphStyleClassOnce.Do(func() {
+		paragraphStyleClass = _ParagraphStyleClass{objc.GetClass("NSParagraphStyle")}
+	})
+	return paragraphStyleClass
+}
 
 type _ParagraphStyleClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ ParagraphStyle) Autorelease() ParagraphStyle {
 
 // NewParagraphStyle creates a new ParagraphStyle instance.
 func NewParagraphStyle() ParagraphStyle {
-	return paragraphStyleClass.New()
+	return getParagraphStyleClass().New()
 }
 
 

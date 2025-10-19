@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NibControlConnector] class.
-var nibControlConnectorClass = _NibControlConnectorClass{objc.GetClass("NSNibControlConnector")}
+var (
+	nibControlConnectorClass     _NibControlConnectorClass
+	nibControlConnectorClassOnce sync.Once
+)
+
+func getNibControlConnectorClass() _NibControlConnectorClass {
+	nibControlConnectorClassOnce.Do(func() {
+		nibControlConnectorClass = _NibControlConnectorClass{objc.GetClass("NSNibControlConnector")}
+	})
+	return nibControlConnectorClass
+}
 
 type _NibControlConnectorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (n_ NibControlConnector) Autorelease() NibControlConnector {
 
 // NewNibControlConnector creates a new NibControlConnector instance.
 func NewNibControlConnector() NibControlConnector {
-	return nibControlConnectorClass.New()
+	return getNibControlConnectorClass().New()
 }
 
 

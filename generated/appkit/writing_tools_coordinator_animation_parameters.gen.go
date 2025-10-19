@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [WritingToolsCoordinatorAnimationParameters] class.
-var writingToolsCoordinatorAnimationParametersClass = _WritingToolsCoordinatorAnimationParametersClass{objc.GetClass("NSWritingToolsCoordinatorAnimationParameters")}
+var (
+	writingToolsCoordinatorAnimationParametersClass     _WritingToolsCoordinatorAnimationParametersClass
+	writingToolsCoordinatorAnimationParametersClassOnce sync.Once
+)
+
+func getWritingToolsCoordinatorAnimationParametersClass() _WritingToolsCoordinatorAnimationParametersClass {
+	writingToolsCoordinatorAnimationParametersClassOnce.Do(func() {
+		writingToolsCoordinatorAnimationParametersClass = _WritingToolsCoordinatorAnimationParametersClass{objc.GetClass("NSWritingToolsCoordinatorAnimationParameters")}
+	})
+	return writingToolsCoordinatorAnimationParametersClass
+}
 
 type _WritingToolsCoordinatorAnimationParametersClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (w_ WritingToolsCoordinatorAnimationParameters) Autorelease() WritingToolsC
 
 // NewWritingToolsCoordinatorAnimationParameters creates a new WritingToolsCoordinatorAnimationParameters instance.
 func NewWritingToolsCoordinatorAnimationParameters() WritingToolsCoordinatorAnimationParameters {
-	return writingToolsCoordinatorAnimationParametersClass.New()
+	return getWritingToolsCoordinatorAnimationParametersClass().New()
 }
 
 

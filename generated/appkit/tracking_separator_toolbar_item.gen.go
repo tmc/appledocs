@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TrackingSeparatorToolbarItem] class.
-var trackingSeparatorToolbarItemClass = _TrackingSeparatorToolbarItemClass{objc.GetClass("NSTrackingSeparatorToolbarItem")}
+var (
+	trackingSeparatorToolbarItemClass     _TrackingSeparatorToolbarItemClass
+	trackingSeparatorToolbarItemClassOnce sync.Once
+)
+
+func getTrackingSeparatorToolbarItemClass() _TrackingSeparatorToolbarItemClass {
+	trackingSeparatorToolbarItemClassOnce.Do(func() {
+		trackingSeparatorToolbarItemClass = _TrackingSeparatorToolbarItemClass{objc.GetClass("NSTrackingSeparatorToolbarItem")}
+	})
+	return trackingSeparatorToolbarItemClass
+}
 
 type _TrackingSeparatorToolbarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TrackingSeparatorToolbarItem) Autorelease() TrackingSeparatorToolbarIte
 
 // NewTrackingSeparatorToolbarItem creates a new TrackingSeparatorToolbarItem instance.
 func NewTrackingSeparatorToolbarItem() TrackingSeparatorToolbarItem {
-	return trackingSeparatorToolbarItemClass.New()
+	return getTrackingSeparatorToolbarItemClass().New()
 }
 
 

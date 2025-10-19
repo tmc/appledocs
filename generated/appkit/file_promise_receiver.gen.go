@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FilePromiseReceiver] class.
-var filePromiseReceiverClass = _FilePromiseReceiverClass{objc.GetClass("NSFilePromiseReceiver")}
+var (
+	filePromiseReceiverClass     _FilePromiseReceiverClass
+	filePromiseReceiverClassOnce sync.Once
+)
+
+func getFilePromiseReceiverClass() _FilePromiseReceiverClass {
+	filePromiseReceiverClassOnce.Do(func() {
+		filePromiseReceiverClass = _FilePromiseReceiverClass{objc.GetClass("NSFilePromiseReceiver")}
+	})
+	return filePromiseReceiverClass
+}
 
 type _FilePromiseReceiverClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (f_ FilePromiseReceiver) Autorelease() FilePromiseReceiver {
 
 // NewFilePromiseReceiver creates a new FilePromiseReceiver instance.
 func NewFilePromiseReceiver() FilePromiseReceiver {
-	return filePromiseReceiverClass.New()
+	return getFilePromiseReceiverClass().New()
 }
 
 

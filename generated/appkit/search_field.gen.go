@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SearchField] class.
-var searchFieldClass = _SearchFieldClass{objc.GetClass("NSSearchField")}
+var (
+	searchFieldClass     _SearchFieldClass
+	searchFieldClassOnce sync.Once
+)
+
+func getSearchFieldClass() _SearchFieldClass {
+	searchFieldClassOnce.Do(func() {
+		searchFieldClass = _SearchFieldClass{objc.GetClass("NSSearchField")}
+	})
+	return searchFieldClass
+}
 
 type _SearchFieldClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SearchField) Autorelease() SearchField {
 
 // NewSearchField creates a new SearchField instance.
 func NewSearchField() SearchField {
-	return searchFieldClass.New()
+	return getSearchFieldClass().New()
 }
 
 

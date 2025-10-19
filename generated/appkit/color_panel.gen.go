@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ColorPanel] class.
-var colorPanelClass = _ColorPanelClass{objc.GetClass("NSColorPanel")}
+var (
+	colorPanelClass     _ColorPanelClass
+	colorPanelClassOnce sync.Once
+)
+
+func getColorPanelClass() _ColorPanelClass {
+	colorPanelClassOnce.Do(func() {
+		colorPanelClass = _ColorPanelClass{objc.GetClass("NSColorPanel")}
+	})
+	return colorPanelClass
+}
 
 type _ColorPanelClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ ColorPanel) Autorelease() ColorPanel {
 
 // NewColorPanel creates a new ColorPanel instance.
 func NewColorPanel() ColorPanel {
-	return colorPanelClass.New()
+	return getColorPanelClass().New()
 }
 
 

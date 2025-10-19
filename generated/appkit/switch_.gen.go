@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Switch_] class.
-var switch_Class = _Switch_Class{objc.GetClass("NSSwitch")}
+var (
+	switch_Class     _Switch_Class
+	switch_ClassOnce sync.Once
+)
+
+func getSwitch_Class() _Switch_Class {
+	switch_ClassOnce.Do(func() {
+		switch_Class = _Switch_Class{objc.GetClass("NSSwitch")}
+	})
+	return switch_Class
+}
 
 type _Switch_Class struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ Switch_) Autorelease() Switch_ {
 
 // NewSwitch_ creates a new Switch_ instance.
 func NewSwitch_() Switch_ {
-	return switch_Class.New()
+	return getSwitch_Class().New()
 }
 
 

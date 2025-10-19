@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CachedImageRep] class.
-var cachedImageRepClass = _CachedImageRepClass{objc.GetClass("NSCachedImageRep")}
+var (
+	cachedImageRepClass     _CachedImageRepClass
+	cachedImageRepClassOnce sync.Once
+)
+
+func getCachedImageRepClass() _CachedImageRepClass {
+	cachedImageRepClassOnce.Do(func() {
+		cachedImageRepClass = _CachedImageRepClass{objc.GetClass("NSCachedImageRep")}
+	})
+	return cachedImageRepClass
+}
 
 type _CachedImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ CachedImageRep) Autorelease() CachedImageRep {
 
 // NewCachedImageRep creates a new CachedImageRep instance.
 func NewCachedImageRep() CachedImageRep {
-	return cachedImageRepClass.New()
+	return getCachedImageRepClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SegmentedCell] class.
-var segmentedCellClass = _SegmentedCellClass{objc.GetClass("NSSegmentedCell")}
+var (
+	segmentedCellClass     _SegmentedCellClass
+	segmentedCellClassOnce sync.Once
+)
+
+func getSegmentedCellClass() _SegmentedCellClass {
+	segmentedCellClassOnce.Do(func() {
+		segmentedCellClass = _SegmentedCellClass{objc.GetClass("NSSegmentedCell")}
+	})
+	return segmentedCellClass
+}
 
 type _SegmentedCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SegmentedCell) Autorelease() SegmentedCell {
 
 // NewSegmentedCell creates a new SegmentedCell instance.
 func NewSegmentedCell() SegmentedCell {
-	return segmentedCellClass.New()
+	return getSegmentedCellClass().New()
 }
 
 

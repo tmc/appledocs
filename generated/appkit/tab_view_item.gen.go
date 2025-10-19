@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TabViewItem] class.
-var tabViewItemClass = _TabViewItemClass{objc.GetClass("NSTabViewItem")}
+var (
+	tabViewItemClass     _TabViewItemClass
+	tabViewItemClassOnce sync.Once
+)
+
+func getTabViewItemClass() _TabViewItemClass {
+	tabViewItemClassOnce.Do(func() {
+		tabViewItemClass = _TabViewItemClass{objc.GetClass("NSTabViewItem")}
+	})
+	return tabViewItemClass
+}
 
 type _TabViewItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TabViewItem) Autorelease() TabViewItem {
 
 // NewTabViewItem creates a new TabViewItem instance.
 func NewTabViewItem() TabViewItem {
-	return tabViewItemClass.New()
+	return getTabViewItemClass().New()
 }
 
 

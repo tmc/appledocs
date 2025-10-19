@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Storyboard] class.
-var storyboardClass = _StoryboardClass{objc.GetClass("NSStoryboard")}
+var (
+	storyboardClass     _StoryboardClass
+	storyboardClassOnce sync.Once
+)
+
+func getStoryboardClass() _StoryboardClass {
+	storyboardClassOnce.Do(func() {
+		storyboardClass = _StoryboardClass{objc.GetClass("NSStoryboard")}
+	})
+	return storyboardClass
+}
 
 type _StoryboardClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ Storyboard) Autorelease() Storyboard {
 
 // NewStoryboard creates a new Storyboard instance.
 func NewStoryboard() Storyboard {
-	return storyboardClass.New()
+	return getStoryboardClass().New()
 }
 
 

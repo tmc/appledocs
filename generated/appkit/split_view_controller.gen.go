@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SplitViewController] class.
-var splitViewControllerClass = _SplitViewControllerClass{objc.GetClass("NSSplitViewController")}
+var (
+	splitViewControllerClass     _SplitViewControllerClass
+	splitViewControllerClassOnce sync.Once
+)
+
+func getSplitViewControllerClass() _SplitViewControllerClass {
+	splitViewControllerClassOnce.Do(func() {
+		splitViewControllerClass = _SplitViewControllerClass{objc.GetClass("NSSplitViewController")}
+	})
+	return splitViewControllerClass
+}
 
 type _SplitViewControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SplitViewController) Autorelease() SplitViewController {
 
 // NewSplitViewController creates a new SplitViewController instance.
 func NewSplitViewController() SplitViewController {
-	return splitViewControllerClass.New()
+	return getSplitViewControllerClass().New()
 }
 
 

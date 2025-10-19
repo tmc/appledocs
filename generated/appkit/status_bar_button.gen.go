@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [StatusBarButton] class.
-var statusBarButtonClass = _StatusBarButtonClass{objc.GetClass("NSStatusBarButton")}
+var (
+	statusBarButtonClass     _StatusBarButtonClass
+	statusBarButtonClassOnce sync.Once
+)
+
+func getStatusBarButtonClass() _StatusBarButtonClass {
+	statusBarButtonClassOnce.Do(func() {
+		statusBarButtonClass = _StatusBarButtonClass{objc.GetClass("NSStatusBarButton")}
+	})
+	return statusBarButtonClass
+}
 
 type _StatusBarButtonClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ StatusBarButton) Autorelease() StatusBarButton {
 
 // NewStatusBarButton creates a new StatusBarButton instance.
 func NewStatusBarButton() StatusBarButton {
-	return statusBarButtonClass.New()
+	return getStatusBarButtonClass().New()
 }
 
 

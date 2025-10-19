@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextInputContext] class.
-var textInputContextClass = _TextInputContextClass{objc.GetClass("NSTextInputContext")}
+var (
+	textInputContextClass     _TextInputContextClass
+	textInputContextClassOnce sync.Once
+)
+
+func getTextInputContextClass() _TextInputContextClass {
+	textInputContextClassOnce.Do(func() {
+		textInputContextClass = _TextInputContextClass{objc.GetClass("NSTextInputContext")}
+	})
+	return textInputContextClass
+}
 
 type _TextInputContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextInputContext) Autorelease() TextInputContext {
 
 // NewTextInputContext creates a new TextInputContext instance.
 func NewTextInputContext() TextInputContext {
-	return textInputContextClass.New()
+	return getTextInputContextClass().New()
 }
 
 

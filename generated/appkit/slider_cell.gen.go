@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SliderCell] class.
-var sliderCellClass = _SliderCellClass{objc.GetClass("NSSliderCell")}
+var (
+	sliderCellClass     _SliderCellClass
+	sliderCellClassOnce sync.Once
+)
+
+func getSliderCellClass() _SliderCellClass {
+	sliderCellClassOnce.Do(func() {
+		sliderCellClass = _SliderCellClass{objc.GetClass("NSSliderCell")}
+	})
+	return sliderCellClass
+}
 
 type _SliderCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SliderCell) Autorelease() SliderCell {
 
 // NewSliderCell creates a new SliderCell instance.
 func NewSliderCell() SliderCell {
-	return sliderCellClass.New()
+	return getSliderCellClass().New()
 }
 
 

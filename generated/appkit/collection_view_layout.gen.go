@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [CollectionViewLayout] class.
-var collectionViewLayoutClass = _CollectionViewLayoutClass{objc.GetClass("NSCollectionViewLayout")}
+var (
+	collectionViewLayoutClass     _CollectionViewLayoutClass
+	collectionViewLayoutClassOnce sync.Once
+)
+
+func getCollectionViewLayoutClass() _CollectionViewLayoutClass {
+	collectionViewLayoutClassOnce.Do(func() {
+		collectionViewLayoutClass = _CollectionViewLayoutClass{objc.GetClass("NSCollectionViewLayout")}
+	})
+	return collectionViewLayoutClass
+}
 
 type _CollectionViewLayoutClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ CollectionViewLayout) Autorelease() CollectionViewLayout {
 
 // NewCollectionViewLayout creates a new CollectionViewLayout instance.
 func NewCollectionViewLayout() CollectionViewLayout {
-	return collectionViewLayoutClass.New()
+	return getCollectionViewLayoutClass().New()
 }
 
 

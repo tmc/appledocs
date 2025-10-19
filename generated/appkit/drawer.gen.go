@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Drawer] class.
-var drawerClass = _DrawerClass{objc.GetClass("NSDrawer")}
+var (
+	drawerClass     _DrawerClass
+	drawerClassOnce sync.Once
+)
+
+func getDrawerClass() _DrawerClass {
+	drawerClassOnce.Do(func() {
+		drawerClass = _DrawerClass{objc.GetClass("NSDrawer")}
+	})
+	return drawerClass
+}
 
 type _DrawerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (d_ Drawer) Autorelease() Drawer {
 
 // NewDrawer creates a new Drawer instance.
 func NewDrawer() Drawer {
-	return drawerClass.New()
+	return getDrawerClass().New()
 }
 
 

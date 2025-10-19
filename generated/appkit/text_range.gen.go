@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextRange] class.
-var textRangeClass = _TextRangeClass{objc.GetClass("NSTextRange")}
+var (
+	textRangeClass     _TextRangeClass
+	textRangeClassOnce sync.Once
+)
+
+func getTextRangeClass() _TextRangeClass {
+	textRangeClassOnce.Do(func() {
+		textRangeClass = _TextRangeClass{objc.GetClass("NSTextRange")}
+	})
+	return textRangeClass
+}
 
 type _TextRangeClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextRange) Autorelease() TextRange {
 
 // NewTextRange creates a new TextRange instance.
 func NewTextRange() TextRange {
-	return textRangeClass.New()
+	return getTextRangeClass().New()
 }
 
 

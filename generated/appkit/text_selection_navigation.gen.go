@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextSelectionNavigation] class.
-var textSelectionNavigationClass = _TextSelectionNavigationClass{objc.GetClass("NSTextSelectionNavigation")}
+var (
+	textSelectionNavigationClass     _TextSelectionNavigationClass
+	textSelectionNavigationClassOnce sync.Once
+)
+
+func getTextSelectionNavigationClass() _TextSelectionNavigationClass {
+	textSelectionNavigationClassOnce.Do(func() {
+		textSelectionNavigationClass = _TextSelectionNavigationClass{objc.GetClass("NSTextSelectionNavigation")}
+	})
+	return textSelectionNavigationClass
+}
 
 type _TextSelectionNavigationClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextSelectionNavigation) Autorelease() TextSelectionNavigation {
 
 // NewTextSelectionNavigation creates a new TextSelectionNavigation instance.
 func NewTextSelectionNavigation() TextSelectionNavigation {
-	return textSelectionNavigationClass.New()
+	return getTextSelectionNavigationClass().New()
 }
 
 

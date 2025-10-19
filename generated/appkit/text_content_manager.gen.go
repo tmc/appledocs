@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextContentManager] class.
-var textContentManagerClass = _TextContentManagerClass{objc.GetClass("NSTextContentManager")}
+var (
+	textContentManagerClass     _TextContentManagerClass
+	textContentManagerClassOnce sync.Once
+)
+
+func getTextContentManagerClass() _TextContentManagerClass {
+	textContentManagerClassOnce.Do(func() {
+		textContentManagerClass = _TextContentManagerClass{objc.GetClass("NSTextContentManager")}
+	})
+	return textContentManagerClass
+}
 
 type _TextContentManagerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextContentManager) Autorelease() TextContentManager {
 
 // NewTextContentManager creates a new TextContentManager instance.
 func NewTextContentManager() TextContentManager {
-	return textContentManagerClass.New()
+	return getTextContentManagerClass().New()
 }
 
 

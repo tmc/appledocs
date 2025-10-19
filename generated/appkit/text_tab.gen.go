@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextTab] class.
-var textTabClass = _TextTabClass{objc.GetClass("NSTextTab")}
+var (
+	textTabClass     _TextTabClass
+	textTabClassOnce sync.Once
+)
+
+func getTextTabClass() _TextTabClass {
+	textTabClassOnce.Do(func() {
+		textTabClass = _TextTabClass{objc.GetClass("NSTextTab")}
+	})
+	return textTabClass
+}
 
 type _TextTabClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextTab) Autorelease() TextTab {
 
 // NewTextTab creates a new TextTab instance.
 func NewTextTab() TextTab {
-	return textTabClass.New()
+	return getTextTabClass().New()
 }
 
 

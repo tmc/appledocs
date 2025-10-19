@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AccessibilityCustomAction] class.
-var accessibilityCustomActionClass = _AccessibilityCustomActionClass{objc.GetClass("NSAccessibilityCustomAction")}
+var (
+	accessibilityCustomActionClass     _AccessibilityCustomActionClass
+	accessibilityCustomActionClassOnce sync.Once
+)
+
+func getAccessibilityCustomActionClass() _AccessibilityCustomActionClass {
+	accessibilityCustomActionClassOnce.Do(func() {
+		accessibilityCustomActionClass = _AccessibilityCustomActionClass{objc.GetClass("NSAccessibilityCustomAction")}
+	})
+	return accessibilityCustomActionClass
+}
 
 type _AccessibilityCustomActionClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ AccessibilityCustomAction) Autorelease() AccessibilityCustomAction {
 
 // NewAccessibilityCustomAction creates a new AccessibilityCustomAction instance.
 func NewAccessibilityCustomAction() AccessibilityCustomAction {
-	return accessibilityCustomActionClass.New()
+	return getAccessibilityCustomActionClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RulerView] class.
-var rulerViewClass = _RulerViewClass{objc.GetClass("NSRulerView")}
+var (
+	rulerViewClass     _RulerViewClass
+	rulerViewClassOnce sync.Once
+)
+
+func getRulerViewClass() _RulerViewClass {
+	rulerViewClassOnce.Do(func() {
+		rulerViewClass = _RulerViewClass{objc.GetClass("NSRulerView")}
+	})
+	return rulerViewClass
+}
 
 type _RulerViewClass struct {
 	class objc.Class
@@ -70,14 +81,14 @@ func (r_ RulerView) Autorelease() RulerView {
 
 // NewRulerView creates a new RulerView instance.
 func NewRulerView() RulerView {
-	return rulerViewClass.New()
+	return getRulerViewClass().New()
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
 func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
-	instance := rulerViewClass.Alloc()
+	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
@@ -87,7 +98,7 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
 func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
-	instance := rulerViewClass.Alloc()
+	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
 	rv.Autorelease()
 	return rv

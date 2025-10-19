@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ImageSymbolConfiguration] class.
-var imageSymbolConfigurationClass = _ImageSymbolConfigurationClass{objc.GetClass("NSImageSymbolConfiguration")}
+var (
+	imageSymbolConfigurationClass     _ImageSymbolConfigurationClass
+	imageSymbolConfigurationClassOnce sync.Once
+)
+
+func getImageSymbolConfigurationClass() _ImageSymbolConfigurationClass {
+	imageSymbolConfigurationClassOnce.Do(func() {
+		imageSymbolConfigurationClass = _ImageSymbolConfigurationClass{objc.GetClass("NSImageSymbolConfiguration")}
+	})
+	return imageSymbolConfigurationClass
+}
 
 type _ImageSymbolConfigurationClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (i_ ImageSymbolConfiguration) Autorelease() ImageSymbolConfiguration {
 
 // NewImageSymbolConfiguration creates a new ImageSymbolConfiguration instance.
 func NewImageSymbolConfiguration() ImageSymbolConfiguration {
-	return imageSymbolConfigurationClass.New()
+	return getImageSymbolConfigurationClass().New()
 }
 
 

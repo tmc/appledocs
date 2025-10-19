@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [GridCell] class.
-var gridCellClass = _GridCellClass{objc.GetClass("NSGridCell")}
+var (
+	gridCellClass     _GridCellClass
+	gridCellClassOnce sync.Once
+)
+
+func getGridCellClass() _GridCellClass {
+	gridCellClassOnce.Do(func() {
+		gridCellClass = _GridCellClass{objc.GetClass("NSGridCell")}
+	})
+	return gridCellClass
+}
 
 type _GridCellClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (g_ GridCell) Autorelease() GridCell {
 
 // NewGridCell creates a new GridCell instance.
 func NewGridCell() GridCell {
-	return gridCellClass.New()
+	return getGridCellClass().New()
 }
 
 

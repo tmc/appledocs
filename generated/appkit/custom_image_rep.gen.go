@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CustomImageRep] class.
-var customImageRepClass = _CustomImageRepClass{objc.GetClass("NSCustomImageRep")}
+var (
+	customImageRepClass     _CustomImageRepClass
+	customImageRepClassOnce sync.Once
+)
+
+func getCustomImageRepClass() _CustomImageRepClass {
+	customImageRepClassOnce.Do(func() {
+		customImageRepClass = _CustomImageRepClass{objc.GetClass("NSCustomImageRep")}
+	})
+	return customImageRepClass
+}
 
 type _CustomImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ CustomImageRep) Autorelease() CustomImageRep {
 
 // NewCustomImageRep creates a new CustomImageRep instance.
 func NewCustomImageRep() CustomImageRep {
-	return customImageRepClass.New()
+	return getCustomImageRepClass().New()
 }
 
 

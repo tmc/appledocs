@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextPreview] class.
-var textPreviewClass = _TextPreviewClass{objc.GetClass("NSTextPreview")}
+var (
+	textPreviewClass     _TextPreviewClass
+	textPreviewClassOnce sync.Once
+)
+
+func getTextPreviewClass() _TextPreviewClass {
+	textPreviewClassOnce.Do(func() {
+		textPreviewClass = _TextPreviewClass{objc.GetClass("NSTextPreview")}
+	})
+	return textPreviewClass
+}
 
 type _TextPreviewClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextPreview) Autorelease() TextPreview {
 
 // NewTextPreview creates a new TextPreview instance.
 func NewTextPreview() TextPreview {
-	return textPreviewClass.New()
+	return getTextPreviewClass().New()
 }
 
 

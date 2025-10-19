@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Shadow] class.
-var shadowClass = _ShadowClass{objc.GetClass("NSShadow")}
+var (
+	shadowClass     _ShadowClass
+	shadowClassOnce sync.Once
+)
+
+func getShadowClass() _ShadowClass {
+	shadowClassOnce.Do(func() {
+		shadowClass = _ShadowClass{objc.GetClass("NSShadow")}
+	})
+	return shadowClass
+}
 
 type _ShadowClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ Shadow) Autorelease() Shadow {
 
 // NewShadow creates a new Shadow instance.
 func NewShadow() Shadow {
-	return shadowClass.New()
+	return getShadowClass().New()
 }
 
 

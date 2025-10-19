@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Toolbar] class.
-var toolbarClass = _ToolbarClass{objc.GetClass("NSToolbar")}
+var (
+	toolbarClass     _ToolbarClass
+	toolbarClassOnce sync.Once
+)
+
+func getToolbarClass() _ToolbarClass {
+	toolbarClassOnce.Do(func() {
+		toolbarClass = _ToolbarClass{objc.GetClass("NSToolbar")}
+	})
+	return toolbarClass
+}
 
 type _ToolbarClass struct {
 	class objc.Class
@@ -68,7 +79,7 @@ func (t_ Toolbar) Autorelease() Toolbar {
 
 // NewToolbar creates a new Toolbar instance.
 func NewToolbar() Toolbar {
-	return toolbarClass.New()
+	return getToolbarClass().New()
 }
 
 
@@ -77,7 +88,7 @@ func NewToolbar() Toolbar {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/init(identifier:)
 func NewToolbarWithIdentifier(identifier unsafe.Pointer) Toolbar {
-	instance := toolbarClass.Alloc()
+	instance := getToolbarClass().Alloc()
 	rv := objc.Send[Toolbar](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv

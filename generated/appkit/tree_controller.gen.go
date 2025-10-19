@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TreeController] class.
-var treeControllerClass = _TreeControllerClass{objc.GetClass("NSTreeController")}
+var (
+	treeControllerClass     _TreeControllerClass
+	treeControllerClassOnce sync.Once
+)
+
+func getTreeControllerClass() _TreeControllerClass {
+	treeControllerClassOnce.Do(func() {
+		treeControllerClass = _TreeControllerClass{objc.GetClass("NSTreeController")}
+	})
+	return treeControllerClass
+}
 
 type _TreeControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TreeController) Autorelease() TreeController {
 
 // NewTreeController creates a new TreeController instance.
 func NewTreeController() TreeController {
-	return treeControllerClass.New()
+	return getTreeControllerClass().New()
 }
 
 

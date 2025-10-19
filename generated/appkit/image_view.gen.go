@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ImageView] class.
-var imageViewClass = _ImageViewClass{objc.GetClass("NSImageView")}
+var (
+	imageViewClass     _ImageViewClass
+	imageViewClassOnce sync.Once
+)
+
+func getImageViewClass() _ImageViewClass {
+	imageViewClassOnce.Do(func() {
+		imageViewClass = _ImageViewClass{objc.GetClass("NSImageView")}
+	})
+	return imageViewClass
+}
 
 type _ImageViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (i_ ImageView) Autorelease() ImageView {
 
 // NewImageView creates a new ImageView instance.
 func NewImageView() ImageView {
-	return imageViewClass.New()
+	return getImageViewClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ViewAnimation] class.
-var viewAnimationClass = _ViewAnimationClass{objc.GetClass("NSViewAnimation")}
+var (
+	viewAnimationClass     _ViewAnimationClass
+	viewAnimationClassOnce sync.Once
+)
+
+func getViewAnimationClass() _ViewAnimationClass {
+	viewAnimationClassOnce.Do(func() {
+		viewAnimationClass = _ViewAnimationClass{objc.GetClass("NSViewAnimation")}
+	})
+	return viewAnimationClass
+}
 
 type _ViewAnimationClass struct {
 	class objc.Class
@@ -64,7 +75,7 @@ func (v_ ViewAnimation) Autorelease() ViewAnimation {
 
 // NewViewAnimation creates a new ViewAnimation instance.
 func NewViewAnimation() ViewAnimation {
-	return viewAnimationClass.New()
+	return getViewAnimationClass().New()
 }
 
 

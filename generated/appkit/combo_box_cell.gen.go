@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ComboBoxCell] class.
-var comboBoxCellClass = _ComboBoxCellClass{objc.GetClass("NSComboBoxCell")}
+var (
+	comboBoxCellClass     _ComboBoxCellClass
+	comboBoxCellClassOnce sync.Once
+)
+
+func getComboBoxCellClass() _ComboBoxCellClass {
+	comboBoxCellClassOnce.Do(func() {
+		comboBoxCellClass = _ComboBoxCellClass{objc.GetClass("NSComboBoxCell")}
+	})
+	return comboBoxCellClass
+}
 
 type _ComboBoxCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ ComboBoxCell) Autorelease() ComboBoxCell {
 
 // NewComboBoxCell creates a new ComboBoxCell instance.
 func NewComboBoxCell() ComboBoxCell {
-	return comboBoxCellClass.New()
+	return getComboBoxCellClass().New()
 }
 
 

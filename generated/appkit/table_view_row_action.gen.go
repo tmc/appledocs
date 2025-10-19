@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TableViewRowAction] class.
-var tableViewRowActionClass = _TableViewRowActionClass{objc.GetClass("NSTableViewRowAction")}
+var (
+	tableViewRowActionClass     _TableViewRowActionClass
+	tableViewRowActionClassOnce sync.Once
+)
+
+func getTableViewRowActionClass() _TableViewRowActionClass {
+	tableViewRowActionClassOnce.Do(func() {
+		tableViewRowActionClass = _TableViewRowActionClass{objc.GetClass("NSTableViewRowAction")}
+	})
+	return tableViewRowActionClass
+}
 
 type _TableViewRowActionClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TableViewRowAction) Autorelease() TableViewRowAction {
 
 // NewTableViewRowAction creates a new TableViewRowAction instance.
 func NewTableViewRowAction() TableViewRowAction {
-	return tableViewRowActionClass.New()
+	return getTableViewRowActionClass().New()
 }
 
 

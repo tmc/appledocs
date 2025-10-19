@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PathCell] class.
-var pathCellClass = _PathCellClass{objc.GetClass("NSPathCell")}
+var (
+	pathCellClass     _PathCellClass
+	pathCellClassOnce sync.Once
+)
+
+func getPathCellClass() _PathCellClass {
+	pathCellClassOnce.Do(func() {
+		pathCellClass = _PathCellClass{objc.GetClass("NSPathCell")}
+	})
+	return pathCellClass
+}
 
 type _PathCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PathCell) Autorelease() PathCell {
 
 // NewPathCell creates a new PathCell instance.
 func NewPathCell() PathCell {
-	return pathCellClass.New()
+	return getPathCellClass().New()
 }
 
 

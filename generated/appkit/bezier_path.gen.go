@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [BezierPath] class.
-var bezierPathClass = _BezierPathClass{objc.GetClass("NSBezierPath")}
+var (
+	bezierPathClass     _BezierPathClass
+	bezierPathClassOnce sync.Once
+)
+
+func getBezierPathClass() _BezierPathClass {
+	bezierPathClassOnce.Do(func() {
+		bezierPathClass = _BezierPathClass{objc.GetClass("NSBezierPath")}
+	})
+	return bezierPathClass
+}
 
 type _BezierPathClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (b_ BezierPath) Autorelease() BezierPath {
 
 // NewBezierPath creates a new BezierPath instance.
 func NewBezierPath() BezierPath {
-	return bezierPathClass.New()
+	return getBezierPathClass().New()
 }
 
 

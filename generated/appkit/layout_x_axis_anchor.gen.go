@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LayoutXAxisAnchor] class.
-var layoutXAxisAnchorClass = _LayoutXAxisAnchorClass{objc.GetClass("NSLayoutXAxisAnchor")}
+var (
+	layoutXAxisAnchorClass     _LayoutXAxisAnchorClass
+	layoutXAxisAnchorClassOnce sync.Once
+)
+
+func getLayoutXAxisAnchorClass() _LayoutXAxisAnchorClass {
+	layoutXAxisAnchorClassOnce.Do(func() {
+		layoutXAxisAnchorClass = _LayoutXAxisAnchorClass{objc.GetClass("NSLayoutXAxisAnchor")}
+	})
+	return layoutXAxisAnchorClass
+}
 
 type _LayoutXAxisAnchorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (l_ LayoutXAxisAnchor) Autorelease() LayoutXAxisAnchor {
 
 // NewLayoutXAxisAnchor creates a new LayoutXAxisAnchor instance.
 func NewLayoutXAxisAnchor() LayoutXAxisAnchor {
-	return layoutXAxisAnchorClass.New()
+	return getLayoutXAxisAnchorClass().New()
 }
 
 

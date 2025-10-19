@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DictionaryControllerKeyValuePair] class.
-var dictionaryControllerKeyValuePairClass = _DictionaryControllerKeyValuePairClass{objc.GetClass("NSDictionaryControllerKeyValuePair")}
+var (
+	dictionaryControllerKeyValuePairClass     _DictionaryControllerKeyValuePairClass
+	dictionaryControllerKeyValuePairClassOnce sync.Once
+)
+
+func getDictionaryControllerKeyValuePairClass() _DictionaryControllerKeyValuePairClass {
+	dictionaryControllerKeyValuePairClassOnce.Do(func() {
+		dictionaryControllerKeyValuePairClass = _DictionaryControllerKeyValuePairClass{objc.GetClass("NSDictionaryControllerKeyValuePair")}
+	})
+	return dictionaryControllerKeyValuePairClass
+}
 
 type _DictionaryControllerKeyValuePairClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (d_ DictionaryControllerKeyValuePair) Autorelease() DictionaryControllerKey
 
 // NewDictionaryControllerKeyValuePair creates a new DictionaryControllerKeyValuePair instance.
 func NewDictionaryControllerKeyValuePair() DictionaryControllerKeyValuePair {
-	return dictionaryControllerKeyValuePairClass.New()
+	return getDictionaryControllerKeyValuePairClass().New()
 }
 
 

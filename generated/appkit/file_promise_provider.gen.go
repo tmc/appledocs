@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FilePromiseProvider] class.
-var filePromiseProviderClass = _FilePromiseProviderClass{objc.GetClass("NSFilePromiseProvider")}
+var (
+	filePromiseProviderClass     _FilePromiseProviderClass
+	filePromiseProviderClassOnce sync.Once
+)
+
+func getFilePromiseProviderClass() _FilePromiseProviderClass {
+	filePromiseProviderClassOnce.Do(func() {
+		filePromiseProviderClass = _FilePromiseProviderClass{objc.GetClass("NSFilePromiseProvider")}
+	})
+	return filePromiseProviderClass
+}
 
 type _FilePromiseProviderClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (f_ FilePromiseProvider) Autorelease() FilePromiseProvider {
 
 // NewFilePromiseProvider creates a new FilePromiseProvider instance.
 func NewFilePromiseProvider() FilePromiseProvider {
-	return filePromiseProviderClass.New()
+	return getFilePromiseProviderClass().New()
 }
 
 

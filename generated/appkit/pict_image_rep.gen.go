@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PICTImageRep] class.
-var pICTImageRepClass = _PICTImageRepClass{objc.GetClass("NSPICTImageRep")}
+var (
+	pICTImageRepClass     _PICTImageRepClass
+	pICTImageRepClassOnce sync.Once
+)
+
+func getPICTImageRepClass() _PICTImageRepClass {
+	pICTImageRepClassOnce.Do(func() {
+		pICTImageRepClass = _PICTImageRepClass{objc.GetClass("NSPICTImageRep")}
+	})
+	return pICTImageRepClass
+}
 
 type _PICTImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PICTImageRep) Autorelease() PICTImageRep {
 
 // NewPICTImageRep creates a new PICTImageRep instance.
 func NewPICTImageRep() PICTImageRep {
-	return pICTImageRepClass.New()
+	return getPICTImageRepClass().New()
 }
 
 

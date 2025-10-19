@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [CollectionViewLayoutInvalidationContext] class.
-var collectionViewLayoutInvalidationContextClass = _CollectionViewLayoutInvalidationContextClass{objc.GetClass("NSCollectionViewLayoutInvalidationContext")}
+var (
+	collectionViewLayoutInvalidationContextClass     _CollectionViewLayoutInvalidationContextClass
+	collectionViewLayoutInvalidationContextClassOnce sync.Once
+)
+
+func getCollectionViewLayoutInvalidationContextClass() _CollectionViewLayoutInvalidationContextClass {
+	collectionViewLayoutInvalidationContextClassOnce.Do(func() {
+		collectionViewLayoutInvalidationContextClass = _CollectionViewLayoutInvalidationContextClass{objc.GetClass("NSCollectionViewLayoutInvalidationContext")}
+	})
+	return collectionViewLayoutInvalidationContextClass
+}
 
 type _CollectionViewLayoutInvalidationContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ CollectionViewLayoutInvalidationContext) Autorelease() CollectionViewLa
 
 // NewCollectionViewLayoutInvalidationContext creates a new CollectionViewLayoutInvalidationContext instance.
 func NewCollectionViewLayoutInvalidationContext() CollectionViewLayoutInvalidationContext {
-	return collectionViewLayoutInvalidationContextClass.New()
+	return getCollectionViewLayoutInvalidationContextClass().New()
 }
 
 

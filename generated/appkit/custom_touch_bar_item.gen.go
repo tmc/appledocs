@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CustomTouchBarItem] class.
-var customTouchBarItemClass = _CustomTouchBarItemClass{objc.GetClass("NSCustomTouchBarItem")}
+var (
+	customTouchBarItemClass     _CustomTouchBarItemClass
+	customTouchBarItemClassOnce sync.Once
+)
+
+func getCustomTouchBarItemClass() _CustomTouchBarItemClass {
+	customTouchBarItemClassOnce.Do(func() {
+		customTouchBarItemClass = _CustomTouchBarItemClass{objc.GetClass("NSCustomTouchBarItem")}
+	})
+	return customTouchBarItemClass
+}
 
 type _CustomTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ CustomTouchBarItem) Autorelease() CustomTouchBarItem {
 
 // NewCustomTouchBarItem creates a new CustomTouchBarItem instance.
 func NewCustomTouchBarItem() CustomTouchBarItem {
-	return customTouchBarItemClass.New()
+	return getCustomTouchBarItemClass().New()
 }
 
 

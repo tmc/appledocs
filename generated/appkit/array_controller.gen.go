@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ArrayController] class.
-var arrayControllerClass = _ArrayControllerClass{objc.GetClass("NSArrayController")}
+var (
+	arrayControllerClass     _ArrayControllerClass
+	arrayControllerClassOnce sync.Once
+)
+
+func getArrayControllerClass() _ArrayControllerClass {
+	arrayControllerClassOnce.Do(func() {
+		arrayControllerClass = _ArrayControllerClass{objc.GetClass("NSArrayController")}
+	})
+	return arrayControllerClass
+}
 
 type _ArrayControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (a_ ArrayController) Autorelease() ArrayController {
 
 // NewArrayController creates a new ArrayController instance.
 func NewArrayController() ArrayController {
-	return arrayControllerClass.New()
+	return getArrayControllerClass().New()
 }
 
 

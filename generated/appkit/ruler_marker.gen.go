@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RulerMarker] class.
-var rulerMarkerClass = _RulerMarkerClass{objc.GetClass("NSRulerMarker")}
+var (
+	rulerMarkerClass     _RulerMarkerClass
+	rulerMarkerClassOnce sync.Once
+)
+
+func getRulerMarkerClass() _RulerMarkerClass {
+	rulerMarkerClassOnce.Do(func() {
+		rulerMarkerClass = _RulerMarkerClass{objc.GetClass("NSRulerMarker")}
+	})
+	return rulerMarkerClass
+}
 
 type _RulerMarkerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (r_ RulerMarker) Autorelease() RulerMarker {
 
 // NewRulerMarker creates a new RulerMarker instance.
 func NewRulerMarker() RulerMarker {
-	return rulerMarkerClass.New()
+	return getRulerMarkerClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Application] class.
-var applicationClass = _ApplicationClass{objc.GetClass("NSApplication")}
+var (
+	applicationClass     _ApplicationClass
+	applicationClassOnce sync.Once
+)
+
+func getApplicationClass() _ApplicationClass {
+	applicationClassOnce.Do(func() {
+		applicationClass = _ApplicationClass{objc.GetClass("NSApplication")}
+	})
+	return applicationClass
+}
 
 type _ApplicationClass struct {
 	class objc.Class
@@ -78,7 +89,7 @@ func (a_ Application) Autorelease() Application {
 
 // NewApplication creates a new Application instance.
 func NewApplication() Application {
-	return applicationClass.New()
+	return getApplicationClass().New()
 }
 
 

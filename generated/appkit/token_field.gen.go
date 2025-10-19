@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TokenField] class.
-var tokenFieldClass = _TokenFieldClass{objc.GetClass("NSTokenField")}
+var (
+	tokenFieldClass     _TokenFieldClass
+	tokenFieldClassOnce sync.Once
+)
+
+func getTokenFieldClass() _TokenFieldClass {
+	tokenFieldClassOnce.Do(func() {
+		tokenFieldClass = _TokenFieldClass{objc.GetClass("NSTokenField")}
+	})
+	return tokenFieldClass
+}
 
 type _TokenFieldClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TokenField) Autorelease() TokenField {
 
 // NewTokenField creates a new TokenField instance.
 func NewTokenField() TokenField {
-	return tokenFieldClass.New()
+	return getTokenFieldClass().New()
 }
 
 

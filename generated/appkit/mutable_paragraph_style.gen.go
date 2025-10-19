@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableParagraphStyle] class.
-var mutableParagraphStyleClass = _MutableParagraphStyleClass{objc.GetClass("NSMutableParagraphStyle")}
+var (
+	mutableParagraphStyleClass     _MutableParagraphStyleClass
+	mutableParagraphStyleClassOnce sync.Once
+)
+
+func getMutableParagraphStyleClass() _MutableParagraphStyleClass {
+	mutableParagraphStyleClassOnce.Do(func() {
+		mutableParagraphStyleClass = _MutableParagraphStyleClass{objc.GetClass("NSMutableParagraphStyle")}
+	})
+	return mutableParagraphStyleClass
+}
 
 type _MutableParagraphStyleClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (m_ MutableParagraphStyle) Autorelease() MutableParagraphStyle {
 
 // NewMutableParagraphStyle creates a new MutableParagraphStyle instance.
 func NewMutableParagraphStyle() MutableParagraphStyle {
-	return mutableParagraphStyleClass.New()
+	return getMutableParagraphStyleClass().New()
 }
 
 

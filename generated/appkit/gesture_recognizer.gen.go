@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [GestureRecognizer] class.
-var gestureRecognizerClass = _GestureRecognizerClass{objc.GetClass("NSGestureRecognizer")}
+var (
+	gestureRecognizerClass     _GestureRecognizerClass
+	gestureRecognizerClassOnce sync.Once
+)
+
+func getGestureRecognizerClass() _GestureRecognizerClass {
+	gestureRecognizerClassOnce.Do(func() {
+		gestureRecognizerClass = _GestureRecognizerClass{objc.GetClass("NSGestureRecognizer")}
+	})
+	return gestureRecognizerClass
+}
 
 type _GestureRecognizerClass struct {
 	class objc.Class
@@ -67,7 +78,7 @@ func (g_ GestureRecognizer) Autorelease() GestureRecognizer {
 
 // NewGestureRecognizer creates a new GestureRecognizer instance.
 func NewGestureRecognizer() GestureRecognizer {
-	return gestureRecognizerClass.New()
+	return getGestureRecognizerClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [HelpManager] class.
-var helpManagerClass = _HelpManagerClass{objc.GetClass("NSHelpManager")}
+var (
+	helpManagerClass     _HelpManagerClass
+	helpManagerClassOnce sync.Once
+)
+
+func getHelpManagerClass() _HelpManagerClass {
+	helpManagerClassOnce.Do(func() {
+		helpManagerClass = _HelpManagerClass{objc.GetClass("NSHelpManager")}
+	})
+	return helpManagerClass
+}
 
 type _HelpManagerClass struct {
 	class objc.Class
@@ -69,7 +80,7 @@ func (h_ HelpManager) Autorelease() HelpManager {
 
 // NewHelpManager creates a new HelpManager instance.
 func NewHelpManager() HelpManager {
-	return helpManagerClass.New()
+	return getHelpManagerClass().New()
 }
 
 

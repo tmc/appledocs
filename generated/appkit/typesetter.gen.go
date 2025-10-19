@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Typesetter] class.
-var typesetterClass = _TypesetterClass{objc.GetClass("NSTypesetter")}
+var (
+	typesetterClass     _TypesetterClass
+	typesetterClassOnce sync.Once
+)
+
+func getTypesetterClass() _TypesetterClass {
+	typesetterClassOnce.Do(func() {
+		typesetterClass = _TypesetterClass{objc.GetClass("NSTypesetter")}
+	})
+	return typesetterClass
+}
 
 type _TypesetterClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ Typesetter) Autorelease() Typesetter {
 
 // NewTypesetter creates a new Typesetter instance.
 func NewTypesetter() Typesetter {
-	return typesetterClass.New()
+	return getTypesetterClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [GraphicsContext] class.
-var graphicsContextClass = _GraphicsContextClass{objc.GetClass("NSGraphicsContext")}
+var (
+	graphicsContextClass     _GraphicsContextClass
+	graphicsContextClassOnce sync.Once
+)
+
+func getGraphicsContextClass() _GraphicsContextClass {
+	graphicsContextClassOnce.Do(func() {
+		graphicsContextClass = _GraphicsContextClass{objc.GetClass("NSGraphicsContext")}
+	})
+	return graphicsContextClass
+}
 
 type _GraphicsContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (g_ GraphicsContext) Autorelease() GraphicsContext {
 
 // NewGraphicsContext creates a new GraphicsContext instance.
 func NewGraphicsContext() GraphicsContext {
-	return graphicsContextClass.New()
+	return getGraphicsContextClass().New()
 }
 
 

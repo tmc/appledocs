@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [GlyphGenerator] class.
-var glyphGeneratorClass = _GlyphGeneratorClass{objc.GetClass("NSGlyphGenerator")}
+var (
+	glyphGeneratorClass     _GlyphGeneratorClass
+	glyphGeneratorClassOnce sync.Once
+)
+
+func getGlyphGeneratorClass() _GlyphGeneratorClass {
+	glyphGeneratorClassOnce.Do(func() {
+		glyphGeneratorClass = _GlyphGeneratorClass{objc.GetClass("NSGlyphGenerator")}
+	})
+	return glyphGeneratorClass
+}
 
 type _GlyphGeneratorClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (g_ GlyphGenerator) Autorelease() GlyphGenerator {
 
 // NewGlyphGenerator creates a new GlyphGenerator instance.
 func NewGlyphGenerator() GlyphGenerator {
-	return glyphGeneratorClass.New()
+	return getGlyphGeneratorClass().New()
 }
 
 

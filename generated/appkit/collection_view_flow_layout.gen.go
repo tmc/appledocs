@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CollectionViewFlowLayout] class.
-var collectionViewFlowLayoutClass = _CollectionViewFlowLayoutClass{objc.GetClass("NSCollectionViewFlowLayout")}
+var (
+	collectionViewFlowLayoutClass     _CollectionViewFlowLayoutClass
+	collectionViewFlowLayoutClassOnce sync.Once
+)
+
+func getCollectionViewFlowLayoutClass() _CollectionViewFlowLayoutClass {
+	collectionViewFlowLayoutClassOnce.Do(func() {
+		collectionViewFlowLayoutClass = _CollectionViewFlowLayoutClass{objc.GetClass("NSCollectionViewFlowLayout")}
+	})
+	return collectionViewFlowLayoutClass
+}
 
 type _CollectionViewFlowLayoutClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ CollectionViewFlowLayout) Autorelease() CollectionViewFlowLayout {
 
 // NewCollectionViewFlowLayout creates a new CollectionViewFlowLayout instance.
 func NewCollectionViewFlowLayout() CollectionViewFlowLayout {
-	return collectionViewFlowLayoutClass.New()
+	return getCollectionViewFlowLayoutClass().New()
 }
 
 

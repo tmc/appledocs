@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Pasteboard] class.
-var pasteboardClass = _PasteboardClass{objc.GetClass("NSPasteboard")}
+var (
+	pasteboardClass     _PasteboardClass
+	pasteboardClassOnce sync.Once
+)
+
+func getPasteboardClass() _PasteboardClass {
+	pasteboardClassOnce.Do(func() {
+		pasteboardClass = _PasteboardClass{objc.GetClass("NSPasteboard")}
+	})
+	return pasteboardClass
+}
 
 type _PasteboardClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ Pasteboard) Autorelease() Pasteboard {
 
 // NewPasteboard creates a new Pasteboard instance.
 func NewPasteboard() Pasteboard {
-	return pasteboardClass.New()
+	return getPasteboardClass().New()
 }
 
 

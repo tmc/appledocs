@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [GroupTouchBarItem] class.
-var groupTouchBarItemClass = _GroupTouchBarItemClass{objc.GetClass("NSGroupTouchBarItem")}
+var (
+	groupTouchBarItemClass     _GroupTouchBarItemClass
+	groupTouchBarItemClassOnce sync.Once
+)
+
+func getGroupTouchBarItemClass() _GroupTouchBarItemClass {
+	groupTouchBarItemClassOnce.Do(func() {
+		groupTouchBarItemClass = _GroupTouchBarItemClass{objc.GetClass("NSGroupTouchBarItem")}
+	})
+	return groupTouchBarItemClass
+}
 
 type _GroupTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (g_ GroupTouchBarItem) Autorelease() GroupTouchBarItem {
 
 // NewGroupTouchBarItem creates a new GroupTouchBarItem instance.
 func NewGroupTouchBarItem() GroupTouchBarItem {
-	return groupTouchBarItemClass.New()
+	return getGroupTouchBarItemClass().New()
 }
 
 

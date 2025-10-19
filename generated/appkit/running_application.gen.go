@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RunningApplication] class.
-var runningApplicationClass = _RunningApplicationClass{objc.GetClass("NSRunningApplication")}
+var (
+	runningApplicationClass     _RunningApplicationClass
+	runningApplicationClassOnce sync.Once
+)
+
+func getRunningApplicationClass() _RunningApplicationClass {
+	runningApplicationClassOnce.Do(func() {
+		runningApplicationClass = _RunningApplicationClass{objc.GetClass("NSRunningApplication")}
+	})
+	return runningApplicationClass
+}
 
 type _RunningApplicationClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (r_ RunningApplication) Autorelease() RunningApplication {
 
 // NewRunningApplication creates a new RunningApplication instance.
 func NewRunningApplication() RunningApplication {
-	return runningApplicationClass.New()
+	return getRunningApplicationClass().New()
 }
 
 

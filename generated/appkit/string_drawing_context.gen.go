@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [StringDrawingContext] class.
-var stringDrawingContextClass = _StringDrawingContextClass{objc.GetClass("NSStringDrawingContext")}
+var (
+	stringDrawingContextClass     _StringDrawingContextClass
+	stringDrawingContextClassOnce sync.Once
+)
+
+func getStringDrawingContextClass() _StringDrawingContextClass {
+	stringDrawingContextClassOnce.Do(func() {
+		stringDrawingContextClass = _StringDrawingContextClass{objc.GetClass("NSStringDrawingContext")}
+	})
+	return stringDrawingContextClass
+}
 
 type _StringDrawingContextClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ StringDrawingContext) Autorelease() StringDrawingContext {
 
 // NewStringDrawingContext creates a new StringDrawingContext instance.
 func NewStringDrawingContext() StringDrawingContext {
-	return stringDrawingContextClass.New()
+	return getStringDrawingContextClass().New()
 }
 
 

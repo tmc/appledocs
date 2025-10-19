@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [StepperTouchBarItem] class.
-var stepperTouchBarItemClass = _StepperTouchBarItemClass{objc.GetClass("NSStepperTouchBarItem")}
+var (
+	stepperTouchBarItemClass     _StepperTouchBarItemClass
+	stepperTouchBarItemClassOnce sync.Once
+)
+
+func getStepperTouchBarItemClass() _StepperTouchBarItemClass {
+	stepperTouchBarItemClassOnce.Do(func() {
+		stepperTouchBarItemClass = _StepperTouchBarItemClass{objc.GetClass("NSStepperTouchBarItem")}
+	})
+	return stepperTouchBarItemClass
+}
 
 type _StepperTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ StepperTouchBarItem) Autorelease() StepperTouchBarItem {
 
 // NewStepperTouchBarItem creates a new StepperTouchBarItem instance.
 func NewStepperTouchBarItem() StepperTouchBarItem {
-	return stepperTouchBarItemClass.New()
+	return getStepperTouchBarItemClass().New()
 }
 
 

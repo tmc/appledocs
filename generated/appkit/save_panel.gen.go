@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SavePanel] class.
-var savePanelClass = _SavePanelClass{objc.GetClass("NSSavePanel")}
+var (
+	savePanelClass     _SavePanelClass
+	savePanelClassOnce sync.Once
+)
+
+func getSavePanelClass() _SavePanelClass {
+	savePanelClassOnce.Do(func() {
+		savePanelClass = _SavePanelClass{objc.GetClass("NSSavePanel")}
+	})
+	return savePanelClass
+}
 
 type _SavePanelClass struct {
 	class objc.Class
@@ -69,7 +80,7 @@ func (s_ SavePanel) Autorelease() SavePanel {
 
 // NewSavePanel creates a new SavePanel instance.
 func NewSavePanel() SavePanel {
-	return savePanelClass.New()
+	return getSavePanelClass().New()
 }
 
 

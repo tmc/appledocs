@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FontManager] class.
-var fontManagerClass = _FontManagerClass{objc.GetClass("NSFontManager")}
+var (
+	fontManagerClass     _FontManagerClass
+	fontManagerClassOnce sync.Once
+)
+
+func getFontManagerClass() _FontManagerClass {
+	fontManagerClassOnce.Do(func() {
+		fontManagerClass = _FontManagerClass{objc.GetClass("NSFontManager")}
+	})
+	return fontManagerClass
+}
 
 type _FontManagerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (f_ FontManager) Autorelease() FontManager {
 
 // NewFontManager creates a new FontManager instance.
 func NewFontManager() FontManager {
-	return fontManagerClass.New()
+	return getFontManagerClass().New()
 }
 
 

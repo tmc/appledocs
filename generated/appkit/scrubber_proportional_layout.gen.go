@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScrubberProportionalLayout] class.
-var scrubberProportionalLayoutClass = _ScrubberProportionalLayoutClass{objc.GetClass("NSScrubberProportionalLayout")}
+var (
+	scrubberProportionalLayoutClass     _ScrubberProportionalLayoutClass
+	scrubberProportionalLayoutClassOnce sync.Once
+)
+
+func getScrubberProportionalLayoutClass() _ScrubberProportionalLayoutClass {
+	scrubberProportionalLayoutClassOnce.Do(func() {
+		scrubberProportionalLayoutClass = _ScrubberProportionalLayoutClass{objc.GetClass("NSScrubberProportionalLayout")}
+	})
+	return scrubberProportionalLayoutClass
+}
 
 type _ScrubberProportionalLayoutClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ ScrubberProportionalLayout) Autorelease() ScrubberProportionalLayout {
 
 // NewScrubberProportionalLayout creates a new ScrubberProportionalLayout instance.
 func NewScrubberProportionalLayout() ScrubberProportionalLayout {
-	return scrubberProportionalLayoutClass.New()
+	return getScrubberProportionalLayoutClass().New()
 }
 
 

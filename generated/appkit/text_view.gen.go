@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextView] class.
-var textViewClass = _TextViewClass{objc.GetClass("NSTextView")}
+var (
+	textViewClass     _TextViewClass
+	textViewClassOnce sync.Once
+)
+
+func getTextViewClass() _TextViewClass {
+	textViewClassOnce.Do(func() {
+		textViewClass = _TextViewClass{objc.GetClass("NSTextView")}
+	})
+	return textViewClass
+}
 
 type _TextViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextView) Autorelease() TextView {
 
 // NewTextView creates a new TextView instance.
 func NewTextView() TextView {
-	return textViewClass.New()
+	return getTextViewClass().New()
 }
 
 

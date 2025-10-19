@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentDocument] class.
-var persistentDocumentClass = _PersistentDocumentClass{objc.GetClass("NSPersistentDocument")}
+var (
+	persistentDocumentClass     _PersistentDocumentClass
+	persistentDocumentClassOnce sync.Once
+)
+
+func getPersistentDocumentClass() _PersistentDocumentClass {
+	persistentDocumentClassOnce.Do(func() {
+		persistentDocumentClass = _PersistentDocumentClass{objc.GetClass("NSPersistentDocument")}
+	})
+	return persistentDocumentClass
+}
 
 type _PersistentDocumentClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PersistentDocument) Autorelease() PersistentDocument {
 
 // NewPersistentDocument creates a new PersistentDocument instance.
 func NewPersistentDocument() PersistentDocument {
-	return persistentDocumentClass.New()
+	return getPersistentDocumentClass().New()
 }
 
 

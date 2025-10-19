@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [InputManager] class.
-var inputManagerClass = _InputManagerClass{objc.GetClass("NSInputManager")}
+var (
+	inputManagerClass     _InputManagerClass
+	inputManagerClassOnce sync.Once
+)
+
+func getInputManagerClass() _InputManagerClass {
+	inputManagerClassOnce.Do(func() {
+		inputManagerClass = _InputManagerClass{objc.GetClass("NSInputManager")}
+	})
+	return inputManagerClass
+}
 
 type _InputManagerClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (i_ InputManager) Autorelease() InputManager {
 
 // NewInputManager creates a new InputManager instance.
 func NewInputManager() InputManager {
-	return inputManagerClass.New()
+	return getInputManagerClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [InputServer] class.
-var inputServerClass = _InputServerClass{objc.GetClass("NSInputServer")}
+var (
+	inputServerClass     _InputServerClass
+	inputServerClassOnce sync.Once
+)
+
+func getInputServerClass() _InputServerClass {
+	inputServerClassOnce.Do(func() {
+		inputServerClass = _InputServerClass{objc.GetClass("NSInputServer")}
+	})
+	return inputServerClass
+}
 
 type _InputServerClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (i_ InputServer) Autorelease() InputServer {
 
 // NewInputServer creates a new InputServer instance.
 func NewInputServer() InputServer {
-	return inputServerClass.New()
+	return getInputServerClass().New()
 }
 
 

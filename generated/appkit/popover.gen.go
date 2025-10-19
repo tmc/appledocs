@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Popover] class.
-var popoverClass = _PopoverClass{objc.GetClass("NSPopover")}
+var (
+	popoverClass     _PopoverClass
+	popoverClassOnce sync.Once
+)
+
+func getPopoverClass() _PopoverClass {
+	popoverClassOnce.Do(func() {
+		popoverClass = _PopoverClass{objc.GetClass("NSPopover")}
+	})
+	return popoverClass
+}
 
 type _PopoverClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ Popover) Autorelease() Popover {
 
 // NewPopover creates a new Popover instance.
 func NewPopover() Popover {
-	return popoverClass.New()
+	return getPopoverClass().New()
 }
 
 

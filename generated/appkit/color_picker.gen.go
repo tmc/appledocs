@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ColorPicker] class.
-var colorPickerClass = _ColorPickerClass{objc.GetClass("NSColorPicker")}
+var (
+	colorPickerClass     _ColorPickerClass
+	colorPickerClassOnce sync.Once
+)
+
+func getColorPickerClass() _ColorPickerClass {
+	colorPickerClassOnce.Do(func() {
+		colorPickerClass = _ColorPickerClass{objc.GetClass("NSColorPicker")}
+	})
+	return colorPickerClass
+}
 
 type _ColorPickerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ ColorPicker) Autorelease() ColorPicker {
 
 // NewColorPicker creates a new ColorPicker instance.
 func NewColorPicker() ColorPicker {
-	return colorPickerClass.New()
+	return getColorPickerClass().New()
 }
 
 

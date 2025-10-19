@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextContainer] class.
-var textContainerClass = _TextContainerClass{objc.GetClass("NSTextContainer")}
+var (
+	textContainerClass     _TextContainerClass
+	textContainerClassOnce sync.Once
+)
+
+func getTextContainerClass() _TextContainerClass {
+	textContainerClassOnce.Do(func() {
+		textContainerClass = _TextContainerClass{objc.GetClass("NSTextContainer")}
+	})
+	return textContainerClass
+}
 
 type _TextContainerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextContainer) Autorelease() TextContainer {
 
 // NewTextContainer creates a new TextContainer instance.
 func NewTextContainer() TextContainer {
-	return textContainerClass.New()
+	return getTextContainerClass().New()
 }
 
 

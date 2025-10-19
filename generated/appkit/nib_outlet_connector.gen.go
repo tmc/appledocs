@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NibOutletConnector] class.
-var nibOutletConnectorClass = _NibOutletConnectorClass{objc.GetClass("NSNibOutletConnector")}
+var (
+	nibOutletConnectorClass     _NibOutletConnectorClass
+	nibOutletConnectorClassOnce sync.Once
+)
+
+func getNibOutletConnectorClass() _NibOutletConnectorClass {
+	nibOutletConnectorClassOnce.Do(func() {
+		nibOutletConnectorClass = _NibOutletConnectorClass{objc.GetClass("NSNibOutletConnector")}
+	})
+	return nibOutletConnectorClass
+}
 
 type _NibOutletConnectorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (n_ NibOutletConnector) Autorelease() NibOutletConnector {
 
 // NewNibOutletConnector creates a new NibOutletConnector instance.
 func NewNibOutletConnector() NibOutletConnector {
-	return nibOutletConnectorClass.New()
+	return getNibOutletConnectorClass().New()
 }
 
 

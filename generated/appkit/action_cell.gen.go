@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ActionCell] class.
-var actionCellClass = _ActionCellClass{objc.GetClass("NSActionCell")}
+var (
+	actionCellClass     _ActionCellClass
+	actionCellClassOnce sync.Once
+)
+
+func getActionCellClass() _ActionCellClass {
+	actionCellClassOnce.Do(func() {
+		actionCellClass = _ActionCellClass{objc.GetClass("NSActionCell")}
+	})
+	return actionCellClass
+}
 
 type _ActionCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (a_ ActionCell) Autorelease() ActionCell {
 
 // NewActionCell creates a new ActionCell instance.
 func NewActionCell() ActionCell {
-	return actionCellClass.New()
+	return getActionCellClass().New()
 }
 
 

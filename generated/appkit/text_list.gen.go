@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextList] class.
-var textListClass = _TextListClass{objc.GetClass("NSTextList")}
+var (
+	textListClass     _TextListClass
+	textListClassOnce sync.Once
+)
+
+func getTextListClass() _TextListClass {
+	textListClassOnce.Do(func() {
+		textListClass = _TextListClass{objc.GetClass("NSTextList")}
+	})
+	return textListClass
+}
 
 type _TextListClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextList) Autorelease() TextList {
 
 // NewTextList creates a new TextList instance.
 func NewTextList() TextList {
-	return textListClass.New()
+	return getTextListClass().New()
 }
 
 

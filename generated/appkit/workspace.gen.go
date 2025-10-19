@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Workspace] class.
-var workspaceClass = _WorkspaceClass{objc.GetClass("NSWorkspace")}
+var (
+	workspaceClass     _WorkspaceClass
+	workspaceClassOnce sync.Once
+)
+
+func getWorkspaceClass() _WorkspaceClass {
+	workspaceClassOnce.Do(func() {
+		workspaceClass = _WorkspaceClass{objc.GetClass("NSWorkspace")}
+	})
+	return workspaceClass
+}
 
 type _WorkspaceClass struct {
 	class objc.Class
@@ -65,7 +76,7 @@ func (w_ Workspace) Autorelease() Workspace {
 
 // NewWorkspace creates a new Workspace instance.
 func NewWorkspace() Workspace {
-	return workspaceClass.New()
+	return getWorkspaceClass().New()
 }
 
 

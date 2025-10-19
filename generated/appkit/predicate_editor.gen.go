@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PredicateEditor] class.
-var predicateEditorClass = _PredicateEditorClass{objc.GetClass("NSPredicateEditor")}
+var (
+	predicateEditorClass     _PredicateEditorClass
+	predicateEditorClassOnce sync.Once
+)
+
+func getPredicateEditorClass() _PredicateEditorClass {
+	predicateEditorClassOnce.Do(func() {
+		predicateEditorClass = _PredicateEditorClass{objc.GetClass("NSPredicateEditor")}
+	})
+	return predicateEditorClass
+}
 
 type _PredicateEditorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PredicateEditor) Autorelease() PredicateEditor {
 
 // NewPredicateEditor creates a new PredicateEditor instance.
 func NewPredicateEditor() PredicateEditor {
-	return predicateEditorClass.New()
+	return getPredicateEditorClass().New()
 }
 
 

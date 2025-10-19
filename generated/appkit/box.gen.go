@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Box] class.
-var boxClass = _BoxClass{objc.GetClass("NSBox")}
+var (
+	boxClass     _BoxClass
+	boxClassOnce sync.Once
+)
+
+func getBoxClass() _BoxClass {
+	boxClassOnce.Do(func() {
+		boxClass = _BoxClass{objc.GetClass("NSBox")}
+	})
+	return boxClass
+}
 
 type _BoxClass struct {
 	class objc.Class
@@ -66,7 +77,7 @@ func (b_ Box) Autorelease() Box {
 
 // NewBox creates a new Box instance.
 func NewBox() Box {
-	return boxClass.New()
+	return getBoxClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [StepperCell] class.
-var stepperCellClass = _StepperCellClass{objc.GetClass("NSStepperCell")}
+var (
+	stepperCellClass     _StepperCellClass
+	stepperCellClassOnce sync.Once
+)
+
+func getStepperCellClass() _StepperCellClass {
+	stepperCellClassOnce.Do(func() {
+		stepperCellClass = _StepperCellClass{objc.GetClass("NSStepperCell")}
+	})
+	return stepperCellClass
+}
 
 type _StepperCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ StepperCell) Autorelease() StepperCell {
 
 // NewStepperCell creates a new StepperCell instance.
 func NewStepperCell() StepperCell {
-	return stepperCellClass.New()
+	return getStepperCellClass().New()
 }
 
 

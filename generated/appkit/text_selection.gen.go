@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextSelection] class.
-var textSelectionClass = _TextSelectionClass{objc.GetClass("NSTextSelection")}
+var (
+	textSelectionClass     _TextSelectionClass
+	textSelectionClassOnce sync.Once
+)
+
+func getTextSelectionClass() _TextSelectionClass {
+	textSelectionClassOnce.Do(func() {
+		textSelectionClass = _TextSelectionClass{objc.GetClass("NSTextSelection")}
+	})
+	return textSelectionClass
+}
 
 type _TextSelectionClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextSelection) Autorelease() TextSelection {
 
 // NewTextSelection creates a new TextSelection instance.
 func NewTextSelection() TextSelection {
-	return textSelectionClass.New()
+	return getTextSelectionClass().New()
 }
 
 

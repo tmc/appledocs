@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Matrix] class.
-var matrixClass = _MatrixClass{objc.GetClass("NSMatrix")}
+var (
+	matrixClass     _MatrixClass
+	matrixClassOnce sync.Once
+)
+
+func getMatrixClass() _MatrixClass {
+	matrixClassOnce.Do(func() {
+		matrixClass = _MatrixClass{objc.GetClass("NSMatrix")}
+	})
+	return matrixClass
+}
 
 type _MatrixClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (m_ Matrix) Autorelease() Matrix {
 
 // NewMatrix creates a new Matrix instance.
 func NewMatrix() Matrix {
-	return matrixClass.New()
+	return getMatrixClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PDFImageRep] class.
-var pDFImageRepClass = _PDFImageRepClass{objc.GetClass("NSPDFImageRep")}
+var (
+	pDFImageRepClass     _PDFImageRepClass
+	pDFImageRepClassOnce sync.Once
+)
+
+func getPDFImageRepClass() _PDFImageRepClass {
+	pDFImageRepClassOnce.Do(func() {
+		pDFImageRepClass = _PDFImageRepClass{objc.GetClass("NSPDFImageRep")}
+	})
+	return pDFImageRepClass
+}
 
 type _PDFImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PDFImageRep) Autorelease() PDFImageRep {
 
 // NewPDFImageRep creates a new PDFImageRep instance.
 func NewPDFImageRep() PDFImageRep {
-	return pDFImageRepClass.New()
+	return getPDFImageRepClass().New()
 }
 
 

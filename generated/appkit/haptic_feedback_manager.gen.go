@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [HapticFeedbackManager] class.
-var hapticFeedbackManagerClass = _HapticFeedbackManagerClass{objc.GetClass("NSHapticFeedbackManager")}
+var (
+	hapticFeedbackManagerClass     _HapticFeedbackManagerClass
+	hapticFeedbackManagerClassOnce sync.Once
+)
+
+func getHapticFeedbackManagerClass() _HapticFeedbackManagerClass {
+	hapticFeedbackManagerClassOnce.Do(func() {
+		hapticFeedbackManagerClass = _HapticFeedbackManagerClass{objc.GetClass("NSHapticFeedbackManager")}
+	})
+	return hapticFeedbackManagerClass
+}
 
 type _HapticFeedbackManagerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (h_ HapticFeedbackManager) Autorelease() HapticFeedbackManager {
 
 // NewHapticFeedbackManager creates a new HapticFeedbackManager instance.
 func NewHapticFeedbackManager() HapticFeedbackManager {
-	return hapticFeedbackManagerClass.New()
+	return getHapticFeedbackManagerClass().New()
 }
 
 

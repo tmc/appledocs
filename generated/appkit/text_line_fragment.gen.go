@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextLineFragment] class.
-var textLineFragmentClass = _TextLineFragmentClass{objc.GetClass("NSTextLineFragment")}
+var (
+	textLineFragmentClass     _TextLineFragmentClass
+	textLineFragmentClassOnce sync.Once
+)
+
+func getTextLineFragmentClass() _TextLineFragmentClass {
+	textLineFragmentClassOnce.Do(func() {
+		textLineFragmentClass = _TextLineFragmentClass{objc.GetClass("NSTextLineFragment")}
+	})
+	return textLineFragmentClass
+}
 
 type _TextLineFragmentClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextLineFragment) Autorelease() TextLineFragment {
 
 // NewTextLineFragment creates a new TextLineFragment instance.
 func NewTextLineFragment() TextLineFragment {
-	return textLineFragmentClass.New()
+	return getTextLineFragmentClass().New()
 }
 
 

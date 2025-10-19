@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PrintInfo] class.
-var printInfoClass = _PrintInfoClass{objc.GetClass("NSPrintInfo")}
+var (
+	printInfoClass     _PrintInfoClass
+	printInfoClassOnce sync.Once
+)
+
+func getPrintInfoClass() _PrintInfoClass {
+	printInfoClassOnce.Do(func() {
+		printInfoClass = _PrintInfoClass{objc.GetClass("NSPrintInfo")}
+	})
+	return printInfoClass
+}
 
 type _PrintInfoClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PrintInfo) Autorelease() PrintInfo {
 
 // NewPrintInfo creates a new PrintInfo instance.
 func NewPrintInfo() PrintInfo {
-	return printInfoClass.New()
+	return getPrintInfoClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ButtonCell] class.
-var buttonCellClass = _ButtonCellClass{objc.GetClass("NSButtonCell")}
+var (
+	buttonCellClass     _ButtonCellClass
+	buttonCellClassOnce sync.Once
+)
+
+func getButtonCellClass() _ButtonCellClass {
+	buttonCellClassOnce.Do(func() {
+		buttonCellClass = _ButtonCellClass{objc.GetClass("NSButtonCell")}
+	})
+	return buttonCellClass
+}
 
 type _ButtonCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (b_ ButtonCell) Autorelease() ButtonCell {
 
 // NewButtonCell creates a new ButtonCell instance.
 func NewButtonCell() ButtonCell {
-	return buttonCellClass.New()
+	return getButtonCellClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [WindowController] class.
-var windowControllerClass = _WindowControllerClass{objc.GetClass("NSWindowController")}
+var (
+	windowControllerClass     _WindowControllerClass
+	windowControllerClassOnce sync.Once
+)
+
+func getWindowControllerClass() _WindowControllerClass {
+	windowControllerClassOnce.Do(func() {
+		windowControllerClass = _WindowControllerClass{objc.GetClass("NSWindowController")}
+	})
+	return windowControllerClass
+}
 
 type _WindowControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (w_ WindowController) Autorelease() WindowController {
 
 // NewWindowController creates a new WindowController instance.
 func NewWindowController() WindowController {
-	return windowControllerClass.New()
+	return getWindowControllerClass().New()
 }
 
 

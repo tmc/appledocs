@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ColorSpace] class.
-var colorSpaceClass = _ColorSpaceClass{objc.GetClass("NSColorSpace")}
+var (
+	colorSpaceClass     _ColorSpaceClass
+	colorSpaceClassOnce sync.Once
+)
+
+func getColorSpaceClass() _ColorSpaceClass {
+	colorSpaceClassOnce.Do(func() {
+		colorSpaceClass = _ColorSpaceClass{objc.GetClass("NSColorSpace")}
+	})
+	return colorSpaceClass
+}
 
 type _ColorSpaceClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ ColorSpace) Autorelease() ColorSpace {
 
 // NewColorSpace creates a new ColorSpace instance.
 func NewColorSpace() ColorSpace {
-	return colorSpaceClass.New()
+	return getColorSpaceClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextAttachment] class.
-var textAttachmentClass = _TextAttachmentClass{objc.GetClass("NSTextAttachment")}
+var (
+	textAttachmentClass     _TextAttachmentClass
+	textAttachmentClassOnce sync.Once
+)
+
+func getTextAttachmentClass() _TextAttachmentClass {
+	textAttachmentClassOnce.Do(func() {
+		textAttachmentClass = _TextAttachmentClass{objc.GetClass("NSTextAttachment")}
+	})
+	return textAttachmentClass
+}
 
 type _TextAttachmentClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextAttachment) Autorelease() TextAttachment {
 
 // NewTextAttachment creates a new TextAttachment instance.
 func NewTextAttachment() TextAttachment {
-	return textAttachmentClass.New()
+	return getTextAttachmentClass().New()
 }
 
 

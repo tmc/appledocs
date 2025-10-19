@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BitmapImageRep] class.
-var bitmapImageRepClass = _BitmapImageRepClass{objc.GetClass("NSBitmapImageRep")}
+var (
+	bitmapImageRepClass     _BitmapImageRepClass
+	bitmapImageRepClassOnce sync.Once
+)
+
+func getBitmapImageRepClass() _BitmapImageRepClass {
+	bitmapImageRepClassOnce.Do(func() {
+		bitmapImageRepClass = _BitmapImageRepClass{objc.GetClass("NSBitmapImageRep")}
+	})
+	return bitmapImageRepClass
+}
 
 type _BitmapImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (b_ BitmapImageRep) Autorelease() BitmapImageRep {
 
 // NewBitmapImageRep creates a new BitmapImageRep instance.
 func NewBitmapImageRep() BitmapImageRep {
-	return bitmapImageRepClass.New()
+	return getBitmapImageRepClass().New()
 }
 
 

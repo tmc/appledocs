@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ViewLayoutRegion] class.
-var viewLayoutRegionClass = _ViewLayoutRegionClass{objc.GetClass("NSViewLayoutRegion")}
+var (
+	viewLayoutRegionClass     _ViewLayoutRegionClass
+	viewLayoutRegionClassOnce sync.Once
+)
+
+func getViewLayoutRegionClass() _ViewLayoutRegionClass {
+	viewLayoutRegionClassOnce.Do(func() {
+		viewLayoutRegionClass = _ViewLayoutRegionClass{objc.GetClass("NSViewLayoutRegion")}
+	})
+	return viewLayoutRegionClass
+}
 
 type _ViewLayoutRegionClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (v_ ViewLayoutRegion) Autorelease() ViewLayoutRegion {
 
 // NewViewLayoutRegion creates a new ViewLayoutRegion instance.
 func NewViewLayoutRegion() ViewLayoutRegion {
-	return viewLayoutRegionClass.New()
+	return getViewLayoutRegionClass().New()
 }
 
 

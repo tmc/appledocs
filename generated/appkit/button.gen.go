@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Button] class.
-var buttonClass = _ButtonClass{objc.GetClass("NSButton")}
+var (
+	buttonClass     _ButtonClass
+	buttonClassOnce sync.Once
+)
+
+func getButtonClass() _ButtonClass {
+	buttonClassOnce.Do(func() {
+		buttonClass = _ButtonClass{objc.GetClass("NSButton")}
+	})
+	return buttonClass
+}
 
 type _ButtonClass struct {
 	class objc.Class
@@ -65,7 +76,7 @@ func (b_ Button) Autorelease() Button {
 
 // NewButton creates a new Button instance.
 func NewButton() Button {
-	return buttonClass.New()
+	return getButtonClass().New()
 }
 
 
@@ -74,7 +85,7 @@ func NewButton() Button {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
 func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	rv := objc.Send[Button](objc.ID(buttonClass.class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
+	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	rv.Autorelease()
 	return rv
 }
@@ -83,7 +94,7 @@ func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) Button {
-	rv := objc.Send[Button](objc.ID(buttonClass.class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
+	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	rv.Autorelease()
 	return rv
 }
@@ -92,7 +103,7 @@ func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, tar
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
 func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	rv := objc.Send[Button](objc.ID(buttonClass.class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
+	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	rv.Autorelease()
 	return rv
 }

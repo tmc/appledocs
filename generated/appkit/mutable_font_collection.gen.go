@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableFontCollection] class.
-var mutableFontCollectionClass = _MutableFontCollectionClass{objc.GetClass("NSMutableFontCollection")}
+var (
+	mutableFontCollectionClass     _MutableFontCollectionClass
+	mutableFontCollectionClassOnce sync.Once
+)
+
+func getMutableFontCollectionClass() _MutableFontCollectionClass {
+	mutableFontCollectionClassOnce.Do(func() {
+		mutableFontCollectionClass = _MutableFontCollectionClass{objc.GetClass("NSMutableFontCollection")}
+	})
+	return mutableFontCollectionClass
+}
 
 type _MutableFontCollectionClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (m_ MutableFontCollection) Autorelease() MutableFontCollection {
 
 // NewMutableFontCollection creates a new MutableFontCollection instance.
 func NewMutableFontCollection() MutableFontCollection {
-	return mutableFontCollectionClass.New()
+	return getMutableFontCollectionClass().New()
 }
 
 

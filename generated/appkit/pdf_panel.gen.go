@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PDFPanel] class.
-var pDFPanelClass = _PDFPanelClass{objc.GetClass("NSPDFPanel")}
+var (
+	pDFPanelClass     _PDFPanelClass
+	pDFPanelClassOnce sync.Once
+)
+
+func getPDFPanelClass() _PDFPanelClass {
+	pDFPanelClassOnce.Do(func() {
+		pDFPanelClass = _PDFPanelClass{objc.GetClass("NSPDFPanel")}
+	})
+	return pDFPanelClass
+}
 
 type _PDFPanelClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PDFPanel) Autorelease() PDFPanel {
 
 // NewPDFPanel creates a new PDFPanel instance.
 func NewPDFPanel() PDFPanel {
-	return pDFPanelClass.New()
+	return getPDFPanelClass().New()
 }
 
 

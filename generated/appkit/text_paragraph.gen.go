@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextParagraph] class.
-var textParagraphClass = _TextParagraphClass{objc.GetClass("NSTextParagraph")}
+var (
+	textParagraphClass     _TextParagraphClass
+	textParagraphClassOnce sync.Once
+)
+
+func getTextParagraphClass() _TextParagraphClass {
+	textParagraphClassOnce.Do(func() {
+		textParagraphClass = _TextParagraphClass{objc.GetClass("NSTextParagraph")}
+	})
+	return textParagraphClass
+}
 
 type _TextParagraphClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TextParagraph) Autorelease() TextParagraph {
 
 // NewTextParagraph creates a new TextParagraph instance.
 func NewTextParagraph() TextParagraph {
-	return textParagraphClass.New()
+	return getTextParagraphClass().New()
 }
 
 

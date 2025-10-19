@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [StackView] class.
-var stackViewClass = _StackViewClass{objc.GetClass("NSStackView")}
+var (
+	stackViewClass     _StackViewClass
+	stackViewClassOnce sync.Once
+)
+
+func getStackViewClass() _StackViewClass {
+	stackViewClassOnce.Do(func() {
+		stackViewClass = _StackViewClass{objc.GetClass("NSStackView")}
+	})
+	return stackViewClass
+}
 
 type _StackViewClass struct {
 	class objc.Class
@@ -79,7 +90,7 @@ func (s_ StackView) Autorelease() StackView {
 
 // NewStackView creates a new StackView instance.
 func NewStackView() StackView {
-	return stackViewClass.New()
+	return getStackViewClass().New()
 }
 
 
@@ -88,7 +99,7 @@ func NewStackView() StackView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/init(views:)
 func NewStackViewWithViews(views unsafe.Pointer) StackView {
-	rv := objc.Send[StackView](objc.ID(stackViewClass.class), objc.Sel("stackViewWithViews:"), views)
+	rv := objc.Send[StackView](objc.ID(getStackViewClass().class), objc.Sel("stackViewWithViews:"), views)
 	rv.Autorelease()
 	return rv
 }

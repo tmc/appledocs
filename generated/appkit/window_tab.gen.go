@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [WindowTab] class.
-var windowTabClass = _WindowTabClass{objc.GetClass("NSWindowTab")}
+var (
+	windowTabClass     _WindowTabClass
+	windowTabClassOnce sync.Once
+)
+
+func getWindowTabClass() _WindowTabClass {
+	windowTabClassOnce.Do(func() {
+		windowTabClass = _WindowTabClass{objc.GetClass("NSWindowTab")}
+	})
+	return windowTabClass
+}
 
 type _WindowTabClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (w_ WindowTab) Autorelease() WindowTab {
 
 // NewWindowTab creates a new WindowTab instance.
 func NewWindowTab() WindowTab {
-	return windowTabClass.New()
+	return getWindowTabClass().New()
 }
 
 

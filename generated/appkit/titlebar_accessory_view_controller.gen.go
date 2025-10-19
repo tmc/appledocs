@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TitlebarAccessoryViewController] class.
-var titlebarAccessoryViewControllerClass = _TitlebarAccessoryViewControllerClass{objc.GetClass("NSTitlebarAccessoryViewController")}
+var (
+	titlebarAccessoryViewControllerClass     _TitlebarAccessoryViewControllerClass
+	titlebarAccessoryViewControllerClassOnce sync.Once
+)
+
+func getTitlebarAccessoryViewControllerClass() _TitlebarAccessoryViewControllerClass {
+	titlebarAccessoryViewControllerClassOnce.Do(func() {
+		titlebarAccessoryViewControllerClass = _TitlebarAccessoryViewControllerClass{objc.GetClass("NSTitlebarAccessoryViewController")}
+	})
+	return titlebarAccessoryViewControllerClass
+}
 
 type _TitlebarAccessoryViewControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TitlebarAccessoryViewController) Autorelease() TitlebarAccessoryViewCon
 
 // NewTitlebarAccessoryViewController creates a new TitlebarAccessoryViewController instance.
 func NewTitlebarAccessoryViewController() TitlebarAccessoryViewController {
-	return titlebarAccessoryViewControllerClass.New()
+	return getTitlebarAccessoryViewControllerClass().New()
 }
 
 

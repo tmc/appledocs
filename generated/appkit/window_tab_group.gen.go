@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [WindowTabGroup] class.
-var windowTabGroupClass = _WindowTabGroupClass{objc.GetClass("NSWindowTabGroup")}
+var (
+	windowTabGroupClass     _WindowTabGroupClass
+	windowTabGroupClassOnce sync.Once
+)
+
+func getWindowTabGroupClass() _WindowTabGroupClass {
+	windowTabGroupClassOnce.Do(func() {
+		windowTabGroupClass = _WindowTabGroupClass{objc.GetClass("NSWindowTabGroup")}
+	})
+	return windowTabGroupClass
+}
 
 type _WindowTabGroupClass struct {
 	class objc.Class
@@ -65,7 +76,7 @@ func (w_ WindowTabGroup) Autorelease() WindowTabGroup {
 
 // NewWindowTabGroup creates a new WindowTabGroup instance.
 func NewWindowTabGroup() WindowTabGroup {
-	return windowTabGroupClass.New()
+	return getWindowTabGroupClass().New()
 }
 
 

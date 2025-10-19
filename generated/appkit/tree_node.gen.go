@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TreeNode] class.
-var treeNodeClass = _TreeNodeClass{objc.GetClass("NSTreeNode")}
+var (
+	treeNodeClass     _TreeNodeClass
+	treeNodeClassOnce sync.Once
+)
+
+func getTreeNodeClass() _TreeNodeClass {
+	treeNodeClassOnce.Do(func() {
+		treeNodeClass = _TreeNodeClass{objc.GetClass("NSTreeNode")}
+	})
+	return treeNodeClass
+}
 
 type _TreeNodeClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TreeNode) Autorelease() TreeNode {
 
 // NewTreeNode creates a new TreeNode instance.
 func NewTreeNode() TreeNode {
-	return treeNodeClass.New()
+	return getTreeNodeClass().New()
 }
 
 

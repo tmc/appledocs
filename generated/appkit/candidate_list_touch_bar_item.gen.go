@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CandidateListTouchBarItem] class.
-var candidateListTouchBarItemClass = _CandidateListTouchBarItemClass{objc.GetClass("NSCandidateListTouchBarItem")}
+var (
+	candidateListTouchBarItemClass     _CandidateListTouchBarItemClass
+	candidateListTouchBarItemClassOnce sync.Once
+)
+
+func getCandidateListTouchBarItemClass() _CandidateListTouchBarItemClass {
+	candidateListTouchBarItemClassOnce.Do(func() {
+		candidateListTouchBarItemClass = _CandidateListTouchBarItemClass{objc.GetClass("NSCandidateListTouchBarItem")}
+	})
+	return candidateListTouchBarItemClass
+}
 
 type _CandidateListTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ CandidateListTouchBarItem) Autorelease() CandidateListTouchBarItem {
 
 // NewCandidateListTouchBarItem creates a new CandidateListTouchBarItem instance.
 func NewCandidateListTouchBarItem() CandidateListTouchBarItem {
-	return candidateListTouchBarItemClass.New()
+	return getCandidateListTouchBarItemClass().New()
 }
 
 

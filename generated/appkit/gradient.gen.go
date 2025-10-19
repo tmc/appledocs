@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Gradient] class.
-var gradientClass = _GradientClass{objc.GetClass("NSGradient")}
+var (
+	gradientClass     _GradientClass
+	gradientClassOnce sync.Once
+)
+
+func getGradientClass() _GradientClass {
+	gradientClassOnce.Do(func() {
+		gradientClass = _GradientClass{objc.GetClass("NSGradient")}
+	})
+	return gradientClass
+}
 
 type _GradientClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (g_ Gradient) Autorelease() Gradient {
 
 // NewGradient creates a new Gradient instance.
 func NewGradient() Gradient {
-	return gradientClass.New()
+	return getGradientClass().New()
 }
 
 

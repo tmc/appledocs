@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ViewController] class.
-var viewControllerClass = _ViewControllerClass{objc.GetClass("NSViewController")}
+var (
+	viewControllerClass     _ViewControllerClass
+	viewControllerClassOnce sync.Once
+)
+
+func getViewControllerClass() _ViewControllerClass {
+	viewControllerClassOnce.Do(func() {
+		viewControllerClass = _ViewControllerClass{objc.GetClass("NSViewController")}
+	})
+	return viewControllerClass
+}
 
 type _ViewControllerClass struct {
 	class objc.Class
@@ -71,7 +82,7 @@ func (v_ ViewController) Autorelease() ViewController {
 
 // NewViewController creates a new ViewController instance.
 func NewViewController() ViewController {
-	return viewControllerClass.New()
+	return getViewControllerClass().New()
 }
 
 
@@ -80,7 +91,7 @@ func NewViewController() ViewController {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
 func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOrNil unsafe.Pointer) ViewController {
-	instance := viewControllerClass.Alloc()
+	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
 	rv.Autorelease()
 	return rv

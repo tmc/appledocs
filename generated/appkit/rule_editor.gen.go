@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RuleEditor] class.
-var ruleEditorClass = _RuleEditorClass{objc.GetClass("NSRuleEditor")}
+var (
+	ruleEditorClass     _RuleEditorClass
+	ruleEditorClassOnce sync.Once
+)
+
+func getRuleEditorClass() _RuleEditorClass {
+	ruleEditorClassOnce.Do(func() {
+		ruleEditorClass = _RuleEditorClass{objc.GetClass("NSRuleEditor")}
+	})
+	return ruleEditorClass
+}
 
 type _RuleEditorClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (r_ RuleEditor) Autorelease() RuleEditor {
 
 // NewRuleEditor creates a new RuleEditor instance.
 func NewRuleEditor() RuleEditor {
-	return ruleEditorClass.New()
+	return getRuleEditorClass().New()
 }
 
 

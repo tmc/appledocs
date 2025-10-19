@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [StatusItem] class.
-var statusItemClass = _StatusItemClass{objc.GetClass("NSStatusItem")}
+var (
+	statusItemClass     _StatusItemClass
+	statusItemClassOnce sync.Once
+)
+
+func getStatusItemClass() _StatusItemClass {
+	statusItemClassOnce.Do(func() {
+		statusItemClass = _StatusItemClass{objc.GetClass("NSStatusItem")}
+	})
+	return statusItemClass
+}
 
 type _StatusItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ StatusItem) Autorelease() StatusItem {
 
 // NewStatusItem creates a new StatusItem instance.
 func NewStatusItem() StatusItem {
-	return statusItemClass.New()
+	return getStatusItemClass().New()
 }
 
 

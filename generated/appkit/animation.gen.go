@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Animation] class.
-var animationClass = _AnimationClass{objc.GetClass("NSAnimation")}
+var (
+	animationClass     _AnimationClass
+	animationClassOnce sync.Once
+)
+
+func getAnimationClass() _AnimationClass {
+	animationClassOnce.Do(func() {
+		animationClass = _AnimationClass{objc.GetClass("NSAnimation")}
+	})
+	return animationClass
+}
 
 type _AnimationClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ Animation) Autorelease() Animation {
 
 // NewAnimation creates a new Animation instance.
 func NewAnimation() Animation {
-	return animationClass.New()
+	return getAnimationClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [GlyphInfo] class.
-var glyphInfoClass = _GlyphInfoClass{objc.GetClass("NSGlyphInfo")}
+var (
+	glyphInfoClass     _GlyphInfoClass
+	glyphInfoClassOnce sync.Once
+)
+
+func getGlyphInfoClass() _GlyphInfoClass {
+	glyphInfoClassOnce.Do(func() {
+		glyphInfoClass = _GlyphInfoClass{objc.GetClass("NSGlyphInfo")}
+	})
+	return glyphInfoClass
+}
 
 type _GlyphInfoClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (g_ GlyphInfo) Autorelease() GlyphInfo {
 
 // NewGlyphInfo creates a new GlyphInfo instance.
 func NewGlyphInfo() GlyphInfo {
-	return glyphInfoClass.New()
+	return getGlyphInfoClass().New()
 }
 
 

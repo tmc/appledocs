@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TableRowView] class.
-var tableRowViewClass = _TableRowViewClass{objc.GetClass("NSTableRowView")}
+var (
+	tableRowViewClass     _TableRowViewClass
+	tableRowViewClassOnce sync.Once
+)
+
+func getTableRowViewClass() _TableRowViewClass {
+	tableRowViewClassOnce.Do(func() {
+		tableRowViewClass = _TableRowViewClass{objc.GetClass("NSTableRowView")}
+	})
+	return tableRowViewClass
+}
 
 type _TableRowViewClass struct {
 	class objc.Class
@@ -68,7 +79,7 @@ func (t_ TableRowView) Autorelease() TableRowView {
 
 // NewTableRowView creates a new TableRowView instance.
 func NewTableRowView() TableRowView {
-	return tableRowViewClass.New()
+	return getTableRowViewClass().New()
 }
 
 

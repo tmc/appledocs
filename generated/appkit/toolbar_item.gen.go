@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ToolbarItem] class.
-var toolbarItemClass = _ToolbarItemClass{objc.GetClass("NSToolbarItem")}
+var (
+	toolbarItemClass     _ToolbarItemClass
+	toolbarItemClassOnce sync.Once
+)
+
+func getToolbarItemClass() _ToolbarItemClass {
+	toolbarItemClassOnce.Do(func() {
+		toolbarItemClass = _ToolbarItemClass{objc.GetClass("NSToolbarItem")}
+	})
+	return toolbarItemClass
+}
 
 type _ToolbarItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ ToolbarItem) Autorelease() ToolbarItem {
 
 // NewToolbarItem creates a new ToolbarItem instance.
 func NewToolbarItem() ToolbarItem {
-	return toolbarItemClass.New()
+	return getToolbarItemClass().New()
 }
 
 

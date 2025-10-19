@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CIImageRep] class.
-var cIImageRepClass = _CIImageRepClass{objc.GetClass("NSCIImageRep")}
+var (
+	cIImageRepClass     _CIImageRepClass
+	cIImageRepClassOnce sync.Once
+)
+
+func getCIImageRepClass() _CIImageRepClass {
+	cIImageRepClassOnce.Do(func() {
+		cIImageRepClass = _CIImageRepClass{objc.GetClass("NSCIImageRep")}
+	})
+	return cIImageRepClass
+}
 
 type _CIImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (i_ CIImageRep) Autorelease() CIImageRep {
 
 // NewCIImageRep creates a new CIImageRep instance.
 func NewCIImageRep() CIImageRep {
-	return cIImageRepClass.New()
+	return getCIImageRepClass().New()
 }
 
 

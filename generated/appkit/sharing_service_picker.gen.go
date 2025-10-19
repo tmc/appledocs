@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SharingServicePicker] class.
-var sharingServicePickerClass = _SharingServicePickerClass{objc.GetClass("NSSharingServicePicker")}
+var (
+	sharingServicePickerClass     _SharingServicePickerClass
+	sharingServicePickerClassOnce sync.Once
+)
+
+func getSharingServicePickerClass() _SharingServicePickerClass {
+	sharingServicePickerClassOnce.Do(func() {
+		sharingServicePickerClass = _SharingServicePickerClass{objc.GetClass("NSSharingServicePicker")}
+	})
+	return sharingServicePickerClass
+}
 
 type _SharingServicePickerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SharingServicePicker) Autorelease() SharingServicePicker {
 
 // NewSharingServicePicker creates a new SharingServicePicker instance.
 func NewSharingServicePicker() SharingServicePicker {
-	return sharingServicePickerClass.New()
+	return getSharingServicePickerClass().New()
 }
 
 

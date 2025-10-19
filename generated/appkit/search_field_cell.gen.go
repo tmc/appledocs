@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SearchFieldCell] class.
-var searchFieldCellClass = _SearchFieldCellClass{objc.GetClass("NSSearchFieldCell")}
+var (
+	searchFieldCellClass     _SearchFieldCellClass
+	searchFieldCellClassOnce sync.Once
+)
+
+func getSearchFieldCellClass() _SearchFieldCellClass {
+	searchFieldCellClassOnce.Do(func() {
+		searchFieldCellClass = _SearchFieldCellClass{objc.GetClass("NSSearchFieldCell")}
+	})
+	return searchFieldCellClass
+}
 
 type _SearchFieldCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SearchFieldCell) Autorelease() SearchFieldCell {
 
 // NewSearchFieldCell creates a new SearchFieldCell instance.
 func NewSearchFieldCell() SearchFieldCell {
-	return searchFieldCellClass.New()
+	return getSearchFieldCellClass().New()
 }
 
 

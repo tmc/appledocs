@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ColorPickerTouchBarItem] class.
-var colorPickerTouchBarItemClass = _ColorPickerTouchBarItemClass{objc.GetClass("NSColorPickerTouchBarItem")}
+var (
+	colorPickerTouchBarItemClass     _ColorPickerTouchBarItemClass
+	colorPickerTouchBarItemClassOnce sync.Once
+)
+
+func getColorPickerTouchBarItemClass() _ColorPickerTouchBarItemClass {
+	colorPickerTouchBarItemClassOnce.Do(func() {
+		colorPickerTouchBarItemClass = _ColorPickerTouchBarItemClass{objc.GetClass("NSColorPickerTouchBarItem")}
+	})
+	return colorPickerTouchBarItemClass
+}
 
 type _ColorPickerTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ ColorPickerTouchBarItem) Autorelease() ColorPickerTouchBarItem {
 
 // NewColorPickerTouchBarItem creates a new ColorPickerTouchBarItem instance.
 func NewColorPickerTouchBarItem() ColorPickerTouchBarItem {
-	return colorPickerTouchBarItemClass.New()
+	return getColorPickerTouchBarItemClass().New()
 }
 
 

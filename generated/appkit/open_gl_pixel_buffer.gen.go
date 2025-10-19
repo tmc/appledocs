@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OpenGLPixelBuffer] class.
-var openGLPixelBufferClass = _OpenGLPixelBufferClass{objc.GetClass("NSOpenGLPixelBuffer")}
+var (
+	openGLPixelBufferClass     _OpenGLPixelBufferClass
+	openGLPixelBufferClassOnce sync.Once
+)
+
+func getOpenGLPixelBufferClass() _OpenGLPixelBufferClass {
+	openGLPixelBufferClassOnce.Do(func() {
+		openGLPixelBufferClass = _OpenGLPixelBufferClass{objc.GetClass("NSOpenGLPixelBuffer")}
+	})
+	return openGLPixelBufferClass
+}
 
 type _OpenGLPixelBufferClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (o_ OpenGLPixelBuffer) Autorelease() OpenGLPixelBuffer {
 
 // NewOpenGLPixelBuffer creates a new OpenGLPixelBuffer instance.
 func NewOpenGLPixelBuffer() OpenGLPixelBuffer {
-	return openGLPixelBufferClass.New()
+	return getOpenGLPixelBufferClass().New()
 }
 
 

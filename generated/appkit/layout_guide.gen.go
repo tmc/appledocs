@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [LayoutGuide] class.
-var layoutGuideClass = _LayoutGuideClass{objc.GetClass("NSLayoutGuide")}
+var (
+	layoutGuideClass     _LayoutGuideClass
+	layoutGuideClassOnce sync.Once
+)
+
+func getLayoutGuideClass() _LayoutGuideClass {
+	layoutGuideClassOnce.Do(func() {
+		layoutGuideClass = _LayoutGuideClass{objc.GetClass("NSLayoutGuide")}
+	})
+	return layoutGuideClass
+}
 
 type _LayoutGuideClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (l_ LayoutGuide) Autorelease() LayoutGuide {
 
 // NewLayoutGuide creates a new LayoutGuide instance.
 func NewLayoutGuide() LayoutGuide {
-	return layoutGuideClass.New()
+	return getLayoutGuideClass().New()
 }
 
 

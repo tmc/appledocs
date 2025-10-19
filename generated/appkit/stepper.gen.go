@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Stepper] class.
-var stepperClass = _StepperClass{objc.GetClass("NSStepper")}
+var (
+	stepperClass     _StepperClass
+	stepperClassOnce sync.Once
+)
+
+func getStepperClass() _StepperClass {
+	stepperClassOnce.Do(func() {
+		stepperClass = _StepperClass{objc.GetClass("NSStepper")}
+	})
+	return stepperClass
+}
 
 type _StepperClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ Stepper) Autorelease() Stepper {
 
 // NewStepper creates a new Stepper instance.
 func NewStepper() Stepper {
-	return stepperClass.New()
+	return getStepperClass().New()
 }
 
 

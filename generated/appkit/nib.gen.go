@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Nib] class.
-var nibClass = _NibClass{objc.GetClass("NSNib")}
+var (
+	nibClass     _NibClass
+	nibClassOnce sync.Once
+)
+
+func getNibClass() _NibClass {
+	nibClassOnce.Do(func() {
+		nibClass = _NibClass{objc.GetClass("NSNib")}
+	})
+	return nibClass
+}
 
 type _NibClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (n_ Nib) Autorelease() Nib {
 
 // NewNib creates a new Nib instance.
 func NewNib() Nib {
-	return nibClass.New()
+	return getNibClass().New()
 }
 
 

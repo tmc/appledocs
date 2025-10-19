@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DraggingSession] class.
-var draggingSessionClass = _DraggingSessionClass{objc.GetClass("NSDraggingSession")}
+var (
+	draggingSessionClass     _DraggingSessionClass
+	draggingSessionClassOnce sync.Once
+)
+
+func getDraggingSessionClass() _DraggingSessionClass {
+	draggingSessionClassOnce.Do(func() {
+		draggingSessionClass = _DraggingSessionClass{objc.GetClass("NSDraggingSession")}
+	})
+	return draggingSessionClass
+}
 
 type _DraggingSessionClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (d_ DraggingSession) Autorelease() DraggingSession {
 
 // NewDraggingSession creates a new DraggingSession instance.
 func NewDraggingSession() DraggingSession {
-	return draggingSessionClass.New()
+	return getDraggingSessionClass().New()
 }
 
 

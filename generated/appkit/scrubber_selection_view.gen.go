@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScrubberSelectionView] class.
-var scrubberSelectionViewClass = _ScrubberSelectionViewClass{objc.GetClass("NSScrubberSelectionView")}
+var (
+	scrubberSelectionViewClass     _ScrubberSelectionViewClass
+	scrubberSelectionViewClassOnce sync.Once
+)
+
+func getScrubberSelectionViewClass() _ScrubberSelectionViewClass {
+	scrubberSelectionViewClassOnce.Do(func() {
+		scrubberSelectionViewClass = _ScrubberSelectionViewClass{objc.GetClass("NSScrubberSelectionView")}
+	})
+	return scrubberSelectionViewClass
+}
 
 type _ScrubberSelectionViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ ScrubberSelectionView) Autorelease() ScrubberSelectionView {
 
 // NewScrubberSelectionView creates a new ScrubberSelectionView instance.
 func NewScrubberSelectionView() ScrubberSelectionView {
-	return scrubberSelectionViewClass.New()
+	return getScrubberSelectionViewClass().New()
 }
 
 

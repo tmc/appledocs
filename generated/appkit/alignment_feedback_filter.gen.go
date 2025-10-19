@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AlignmentFeedbackFilter] class.
-var alignmentFeedbackFilterClass = _AlignmentFeedbackFilterClass{objc.GetClass("NSAlignmentFeedbackFilter")}
+var (
+	alignmentFeedbackFilterClass     _AlignmentFeedbackFilterClass
+	alignmentFeedbackFilterClassOnce sync.Once
+)
+
+func getAlignmentFeedbackFilterClass() _AlignmentFeedbackFilterClass {
+	alignmentFeedbackFilterClassOnce.Do(func() {
+		alignmentFeedbackFilterClass = _AlignmentFeedbackFilterClass{objc.GetClass("NSAlignmentFeedbackFilter")}
+	})
+	return alignmentFeedbackFilterClass
+}
 
 type _AlignmentFeedbackFilterClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ AlignmentFeedbackFilter) Autorelease() AlignmentFeedbackFilter {
 
 // NewAlignmentFeedbackFilter creates a new AlignmentFeedbackFilter instance.
 func NewAlignmentFeedbackFilter() AlignmentFeedbackFilter {
-	return alignmentFeedbackFilterClass.New()
+	return getAlignmentFeedbackFilterClass().New()
 }
 
 

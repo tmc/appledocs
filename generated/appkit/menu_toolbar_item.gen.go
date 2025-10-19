@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MenuToolbarItem] class.
-var menuToolbarItemClass = _MenuToolbarItemClass{objc.GetClass("NSMenuToolbarItem")}
+var (
+	menuToolbarItemClass     _MenuToolbarItemClass
+	menuToolbarItemClassOnce sync.Once
+)
+
+func getMenuToolbarItemClass() _MenuToolbarItemClass {
+	menuToolbarItemClassOnce.Do(func() {
+		menuToolbarItemClass = _MenuToolbarItemClass{objc.GetClass("NSMenuToolbarItem")}
+	})
+	return menuToolbarItemClass
+}
 
 type _MenuToolbarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (m_ MenuToolbarItem) Autorelease() MenuToolbarItem {
 
 // NewMenuToolbarItem creates a new MenuToolbarItem instance.
 func NewMenuToolbarItem() MenuToolbarItem {
-	return menuToolbarItemClass.New()
+	return getMenuToolbarItemClass().New()
 }
 
 

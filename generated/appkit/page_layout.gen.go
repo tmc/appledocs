@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PageLayout] class.
-var pageLayoutClass = _PageLayoutClass{objc.GetClass("NSPageLayout")}
+var (
+	pageLayoutClass     _PageLayoutClass
+	pageLayoutClassOnce sync.Once
+)
+
+func getPageLayoutClass() _PageLayoutClass {
+	pageLayoutClassOnce.Do(func() {
+		pageLayoutClass = _PageLayoutClass{objc.GetClass("NSPageLayout")}
+	})
+	return pageLayoutClass
+}
 
 type _PageLayoutClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (p_ PageLayout) Autorelease() PageLayout {
 
 // NewPageLayout creates a new PageLayout instance.
 func NewPageLayout() PageLayout {
-	return pageLayoutClass.New()
+	return getPageLayoutClass().New()
 }
 
 

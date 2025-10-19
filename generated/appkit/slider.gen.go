@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Slider] class.
-var sliderClass = _SliderClass{objc.GetClass("NSSlider")}
+var (
+	sliderClass     _SliderClass
+	sliderClassOnce sync.Once
+)
+
+func getSliderClass() _SliderClass {
+	sliderClassOnce.Do(func() {
+		sliderClass = _SliderClass{objc.GetClass("NSSlider")}
+	})
+	return sliderClass
+}
 
 type _SliderClass struct {
 	class objc.Class
@@ -64,7 +75,7 @@ func (s_ Slider) Autorelease() Slider {
 
 // NewSlider creates a new Slider instance.
 func NewSlider() Slider {
-	return sliderClass.New()
+	return getSliderClass().New()
 }
 
 

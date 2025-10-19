@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TableColumn] class.
-var tableColumnClass = _TableColumnClass{objc.GetClass("NSTableColumn")}
+var (
+	tableColumnClass     _TableColumnClass
+	tableColumnClassOnce sync.Once
+)
+
+func getTableColumnClass() _TableColumnClass {
+	tableColumnClassOnce.Do(func() {
+		tableColumnClass = _TableColumnClass{objc.GetClass("NSTableColumn")}
+	})
+	return tableColumnClass
+}
 
 type _TableColumnClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TableColumn) Autorelease() TableColumn {
 
 // NewTableColumn creates a new TableColumn instance.
 func NewTableColumn() TableColumn {
-	return tableColumnClass.New()
+	return getTableColumnClass().New()
 }
 
 

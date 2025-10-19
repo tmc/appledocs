@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SpeechSynthesizer] class.
-var speechSynthesizerClass = _SpeechSynthesizerClass{objc.GetClass("NSSpeechSynthesizer")}
+var (
+	speechSynthesizerClass     _SpeechSynthesizerClass
+	speechSynthesizerClassOnce sync.Once
+)
+
+func getSpeechSynthesizerClass() _SpeechSynthesizerClass {
+	speechSynthesizerClassOnce.Do(func() {
+		speechSynthesizerClass = _SpeechSynthesizerClass{objc.GetClass("NSSpeechSynthesizer")}
+	})
+	return speechSynthesizerClass
+}
 
 type _SpeechSynthesizerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ SpeechSynthesizer) Autorelease() SpeechSynthesizer {
 
 // NewSpeechSynthesizer creates a new SpeechSynthesizer instance.
 func NewSpeechSynthesizer() SpeechSynthesizer {
-	return speechSynthesizerClass.New()
+	return getSpeechSynthesizerClass().New()
 }
 
 

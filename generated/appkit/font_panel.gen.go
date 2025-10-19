@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FontPanel] class.
-var fontPanelClass = _FontPanelClass{objc.GetClass("NSFontPanel")}
+var (
+	fontPanelClass     _FontPanelClass
+	fontPanelClassOnce sync.Once
+)
+
+func getFontPanelClass() _FontPanelClass {
+	fontPanelClassOnce.Do(func() {
+		fontPanelClass = _FontPanelClass{objc.GetClass("NSFontPanel")}
+	})
+	return fontPanelClass
+}
 
 type _FontPanelClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (f_ FontPanel) Autorelease() FontPanel {
 
 // NewFontPanel creates a new FontPanel instance.
 func NewFontPanel() FontPanel {
-	return fontPanelClass.New()
+	return getFontPanelClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [LayoutConstraint] class.
-var layoutConstraintClass = _LayoutConstraintClass{objc.GetClass("NSLayoutConstraint")}
+var (
+	layoutConstraintClass     _LayoutConstraintClass
+	layoutConstraintClassOnce sync.Once
+)
+
+func getLayoutConstraintClass() _LayoutConstraintClass {
+	layoutConstraintClassOnce.Do(func() {
+		layoutConstraintClass = _LayoutConstraintClass{objc.GetClass("NSLayoutConstraint")}
+	})
+	return layoutConstraintClass
+}
 
 type _LayoutConstraintClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (l_ LayoutConstraint) Autorelease() LayoutConstraint {
 
 // NewLayoutConstraint creates a new LayoutConstraint instance.
 func NewLayoutConstraint() LayoutConstraint {
-	return layoutConstraintClass.New()
+	return getLayoutConstraintClass().New()
 }
 
 

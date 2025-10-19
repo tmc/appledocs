@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TabViewController] class.
-var tabViewControllerClass = _TabViewControllerClass{objc.GetClass("NSTabViewController")}
+var (
+	tabViewControllerClass     _TabViewControllerClass
+	tabViewControllerClassOnce sync.Once
+)
+
+func getTabViewControllerClass() _TabViewControllerClass {
+	tabViewControllerClassOnce.Do(func() {
+		tabViewControllerClass = _TabViewControllerClass{objc.GetClass("NSTabViewController")}
+	})
+	return tabViewControllerClass
+}
 
 type _TabViewControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TabViewController) Autorelease() TabViewController {
 
 // NewTabViewController creates a new TabViewController instance.
 func NewTabViewController() TabViewController {
-	return tabViewControllerClass.New()
+	return getTabViewControllerClass().New()
 }
 
 

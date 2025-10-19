@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FontDescriptor] class.
-var fontDescriptorClass = _FontDescriptorClass{objc.GetClass("NSFontDescriptor")}
+var (
+	fontDescriptorClass     _FontDescriptorClass
+	fontDescriptorClassOnce sync.Once
+)
+
+func getFontDescriptorClass() _FontDescriptorClass {
+	fontDescriptorClassOnce.Do(func() {
+		fontDescriptorClass = _FontDescriptorClass{objc.GetClass("NSFontDescriptor")}
+	})
+	return fontDescriptorClass
+}
 
 type _FontDescriptorClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (f_ FontDescriptor) Autorelease() FontDescriptor {
 
 // NewFontDescriptor creates a new FontDescriptor instance.
 func NewFontDescriptor() FontDescriptor {
-	return fontDescriptorClass.New()
+	return getFontDescriptorClass().New()
 }
 
 

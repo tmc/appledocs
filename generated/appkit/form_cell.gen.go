@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FormCell] class.
-var formCellClass = _FormCellClass{objc.GetClass("NSFormCell")}
+var (
+	formCellClass     _FormCellClass
+	formCellClassOnce sync.Once
+)
+
+func getFormCellClass() _FormCellClass {
+	formCellClassOnce.Do(func() {
+		formCellClass = _FormCellClass{objc.GetClass("NSFormCell")}
+	})
+	return formCellClass
+}
 
 type _FormCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (f_ FormCell) Autorelease() FormCell {
 
 // NewFormCell creates a new FormCell instance.
 func NewFormCell() FormCell {
-	return formCellClass.New()
+	return getFormCellClass().New()
 }
 
 

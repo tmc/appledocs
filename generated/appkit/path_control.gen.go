@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PathControl] class.
-var pathControlClass = _PathControlClass{objc.GetClass("NSPathControl")}
+var (
+	pathControlClass     _PathControlClass
+	pathControlClassOnce sync.Once
+)
+
+func getPathControlClass() _PathControlClass {
+	pathControlClassOnce.Do(func() {
+		pathControlClass = _PathControlClass{objc.GetClass("NSPathControl")}
+	})
+	return pathControlClass
+}
 
 type _PathControlClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PathControl) Autorelease() PathControl {
 
 // NewPathControl creates a new PathControl instance.
 func NewPathControl() PathControl {
-	return pathControlClass.New()
+	return getPathControlClass().New()
 }
 
 

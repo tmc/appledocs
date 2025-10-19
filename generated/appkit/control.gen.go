@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Control] class.
-var controlClass = _ControlClass{objc.GetClass("NSControl")}
+var (
+	controlClass     _ControlClass
+	controlClassOnce sync.Once
+)
+
+func getControlClass() _ControlClass {
+	controlClassOnce.Do(func() {
+		controlClass = _ControlClass{objc.GetClass("NSControl")}
+	})
+	return controlClass
+}
 
 type _ControlClass struct {
 	class objc.Class
@@ -84,7 +95,7 @@ func (c_ Control) Autorelease() Control {
 
 // NewControl creates a new Control instance.
 func NewControl() Control {
-	return controlClass.New()
+	return getControlClass().New()
 }
 
 
@@ -93,7 +104,7 @@ func NewControl() Control {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
 func NewControlWithCoder(coder unsafe.Pointer) Control {
-	instance := controlClass.Alloc()
+	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
@@ -103,7 +114,7 @@ func NewControlWithCoder(coder unsafe.Pointer) Control {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
 func NewControlWithFrame(frameRect unsafe.Pointer) Control {
-	instance := controlClass.Alloc()
+	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv

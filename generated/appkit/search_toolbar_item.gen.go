@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SearchToolbarItem] class.
-var searchToolbarItemClass = _SearchToolbarItemClass{objc.GetClass("NSSearchToolbarItem")}
+var (
+	searchToolbarItemClass     _SearchToolbarItemClass
+	searchToolbarItemClassOnce sync.Once
+)
+
+func getSearchToolbarItemClass() _SearchToolbarItemClass {
+	searchToolbarItemClassOnce.Do(func() {
+		searchToolbarItemClass = _SearchToolbarItemClass{objc.GetClass("NSSearchToolbarItem")}
+	})
+	return searchToolbarItemClass
+}
 
 type _SearchToolbarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SearchToolbarItem) Autorelease() SearchToolbarItem {
 
 // NewSearchToolbarItem creates a new SearchToolbarItem instance.
 func NewSearchToolbarItem() SearchToolbarItem {
-	return searchToolbarItemClass.New()
+	return getSearchToolbarItemClass().New()
 }
 
 

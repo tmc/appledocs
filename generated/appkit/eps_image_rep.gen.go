@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [EPSImageRep] class.
-var ePSImageRepClass = _EPSImageRepClass{objc.GetClass("NSEPSImageRep")}
+var (
+	ePSImageRepClass     _EPSImageRepClass
+	ePSImageRepClassOnce sync.Once
+)
+
+func getEPSImageRepClass() _EPSImageRepClass {
+	ePSImageRepClassOnce.Do(func() {
+		ePSImageRepClass = _EPSImageRepClass{objc.GetClass("NSEPSImageRep")}
+	})
+	return ePSImageRepClass
+}
 
 type _EPSImageRepClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (e_ EPSImageRep) Autorelease() EPSImageRep {
 
 // NewEPSImageRep creates a new EPSImageRep instance.
 func NewEPSImageRep() EPSImageRep {
-	return ePSImageRepClass.New()
+	return getEPSImageRepClass().New()
 }
 
 

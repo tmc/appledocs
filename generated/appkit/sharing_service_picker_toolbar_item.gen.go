@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SharingServicePickerToolbarItem] class.
-var sharingServicePickerToolbarItemClass = _SharingServicePickerToolbarItemClass{objc.GetClass("NSSharingServicePickerToolbarItem")}
+var (
+	sharingServicePickerToolbarItemClass     _SharingServicePickerToolbarItemClass
+	sharingServicePickerToolbarItemClassOnce sync.Once
+)
+
+func getSharingServicePickerToolbarItemClass() _SharingServicePickerToolbarItemClass {
+	sharingServicePickerToolbarItemClassOnce.Do(func() {
+		sharingServicePickerToolbarItemClass = _SharingServicePickerToolbarItemClass{objc.GetClass("NSSharingServicePickerToolbarItem")}
+	})
+	return sharingServicePickerToolbarItemClass
+}
 
 type _SharingServicePickerToolbarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SharingServicePickerToolbarItem) Autorelease() SharingServicePickerTool
 
 // NewSharingServicePickerToolbarItem creates a new SharingServicePickerToolbarItem instance.
 func NewSharingServicePickerToolbarItem() SharingServicePickerToolbarItem {
-	return sharingServicePickerToolbarItemClass.New()
+	return getSharingServicePickerToolbarItemClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextAttachmentViewProvider] class.
-var textAttachmentViewProviderClass = _TextAttachmentViewProviderClass{objc.GetClass("NSTextAttachmentViewProvider")}
+var (
+	textAttachmentViewProviderClass     _TextAttachmentViewProviderClass
+	textAttachmentViewProviderClassOnce sync.Once
+)
+
+func getTextAttachmentViewProviderClass() _TextAttachmentViewProviderClass {
+	textAttachmentViewProviderClassOnce.Do(func() {
+		textAttachmentViewProviderClass = _TextAttachmentViewProviderClass{objc.GetClass("NSTextAttachmentViewProvider")}
+	})
+	return textAttachmentViewProviderClass
+}
 
 type _TextAttachmentViewProviderClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextAttachmentViewProvider) Autorelease() TextAttachmentViewProvider {
 
 // NewTextAttachmentViewProvider creates a new TextAttachmentViewProvider instance.
 func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
-	return textAttachmentViewProviderClass.New()
+	return getTextAttachmentViewProviderClass().New()
 }
 
 

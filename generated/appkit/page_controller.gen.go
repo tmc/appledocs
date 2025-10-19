@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PageController] class.
-var pageControllerClass = _PageControllerClass{objc.GetClass("NSPageController")}
+var (
+	pageControllerClass     _PageControllerClass
+	pageControllerClassOnce sync.Once
+)
+
+func getPageControllerClass() _PageControllerClass {
+	pageControllerClassOnce.Do(func() {
+		pageControllerClass = _PageControllerClass{objc.GetClass("NSPageController")}
+	})
+	return pageControllerClass
+}
 
 type _PageControllerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PageController) Autorelease() PageController {
 
 // NewPageController creates a new PageController instance.
 func NewPageController() PageController {
-	return pageControllerClass.New()
+	return getPageControllerClass().New()
 }
 
 

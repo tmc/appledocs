@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Controller] class.
-var controllerClass = _ControllerClass{objc.GetClass("NSController")}
+var (
+	controllerClass     _ControllerClass
+	controllerClassOnce sync.Once
+)
+
+func getControllerClass() _ControllerClass {
+	controllerClassOnce.Do(func() {
+		controllerClass = _ControllerClass{objc.GetClass("NSController")}
+	})
+	return controllerClass
+}
 
 type _ControllerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (c_ Controller) Autorelease() Controller {
 
 // NewController creates a new Controller instance.
 func NewController() Controller {
-	return controllerClass.New()
+	return getControllerClass().New()
 }
 
 

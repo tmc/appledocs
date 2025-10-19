@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Appearance] class.
-var appearanceClass = _AppearanceClass{objc.GetClass("NSAppearance")}
+var (
+	appearanceClass     _AppearanceClass
+	appearanceClassOnce sync.Once
+)
+
+func getAppearanceClass() _AppearanceClass {
+	appearanceClassOnce.Do(func() {
+		appearanceClass = _AppearanceClass{objc.GetClass("NSAppearance")}
+	})
+	return appearanceClass
+}
 
 type _AppearanceClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (a_ Appearance) Autorelease() Appearance {
 
 // NewAppearance creates a new Appearance instance.
 func NewAppearance() Appearance {
-	return appearanceClass.New()
+	return getAppearanceClass().New()
 }
 
 

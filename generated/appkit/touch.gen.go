@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Touch] class.
-var touchClass = _TouchClass{objc.GetClass("NSTouch")}
+var (
+	touchClass     _TouchClass
+	touchClassOnce sync.Once
+)
+
+func getTouchClass() _TouchClass {
+	touchClassOnce.Do(func() {
+		touchClass = _TouchClass{objc.GetClass("NSTouch")}
+	})
+	return touchClass
+}
 
 type _TouchClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ Touch) Autorelease() Touch {
 
 // NewTouch creates a new Touch instance.
 func NewTouch() Touch {
-	return touchClass.New()
+	return getTouchClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TrackingArea] class.
-var trackingAreaClass = _TrackingAreaClass{objc.GetClass("NSTrackingArea")}
+var (
+	trackingAreaClass     _TrackingAreaClass
+	trackingAreaClassOnce sync.Once
+)
+
+func getTrackingAreaClass() _TrackingAreaClass {
+	trackingAreaClassOnce.Do(func() {
+		trackingAreaClass = _TrackingAreaClass{objc.GetClass("NSTrackingArea")}
+	})
+	return trackingAreaClass
+}
 
 type _TrackingAreaClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TrackingArea) Autorelease() TrackingArea {
 
 // NewTrackingArea creates a new TrackingArea instance.
 func NewTrackingArea() TrackingArea {
-	return trackingAreaClass.New()
+	return getTrackingAreaClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DockTile] class.
-var dockTileClass = _DockTileClass{objc.GetClass("NSDockTile")}
+var (
+	dockTileClass     _DockTileClass
+	dockTileClassOnce sync.Once
+)
+
+func getDockTileClass() _DockTileClass {
+	dockTileClassOnce.Do(func() {
+		dockTileClass = _DockTileClass{objc.GetClass("NSDockTile")}
+	})
+	return dockTileClass
+}
 
 type _DockTileClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (d_ DockTile) Autorelease() DockTile {
 
 // NewDockTile creates a new DockTile instance.
 func NewDockTile() DockTile {
-	return dockTileClass.New()
+	return getDockTileClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SharingServicePickerTouchBarItem] class.
-var sharingServicePickerTouchBarItemClass = _SharingServicePickerTouchBarItemClass{objc.GetClass("NSSharingServicePickerTouchBarItem")}
+var (
+	sharingServicePickerTouchBarItemClass     _SharingServicePickerTouchBarItemClass
+	sharingServicePickerTouchBarItemClassOnce sync.Once
+)
+
+func getSharingServicePickerTouchBarItemClass() _SharingServicePickerTouchBarItemClass {
+	sharingServicePickerTouchBarItemClassOnce.Do(func() {
+		sharingServicePickerTouchBarItemClass = _SharingServicePickerTouchBarItemClass{objc.GetClass("NSSharingServicePickerTouchBarItem")}
+	})
+	return sharingServicePickerTouchBarItemClass
+}
 
 type _SharingServicePickerTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SharingServicePickerTouchBarItem) Autorelease() SharingServicePickerTou
 
 // NewSharingServicePickerTouchBarItem creates a new SharingServicePickerTouchBarItem instance.
 func NewSharingServicePickerTouchBarItem() SharingServicePickerTouchBarItem {
-	return sharingServicePickerTouchBarItemClass.New()
+	return getSharingServicePickerTouchBarItemClass().New()
 }
 
 

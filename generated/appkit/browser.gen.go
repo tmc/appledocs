@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Browser] class.
-var browserClass = _BrowserClass{objc.GetClass("NSBrowser")}
+var (
+	browserClass     _BrowserClass
+	browserClassOnce sync.Once
+)
+
+func getBrowserClass() _BrowserClass {
+	browserClassOnce.Do(func() {
+		browserClass = _BrowserClass{objc.GetClass("NSBrowser")}
+	})
+	return browserClass
+}
 
 type _BrowserClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (b_ Browser) Autorelease() Browser {
 
 // NewBrowser creates a new Browser instance.
 func NewBrowser() Browser {
-	return browserClass.New()
+	return getBrowserClass().New()
 }
 
 

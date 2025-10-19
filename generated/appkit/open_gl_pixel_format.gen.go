@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OpenGLPixelFormat] class.
-var openGLPixelFormatClass = _OpenGLPixelFormatClass{objc.GetClass("NSOpenGLPixelFormat")}
+var (
+	openGLPixelFormatClass     _OpenGLPixelFormatClass
+	openGLPixelFormatClassOnce sync.Once
+)
+
+func getOpenGLPixelFormatClass() _OpenGLPixelFormatClass {
+	openGLPixelFormatClassOnce.Do(func() {
+		openGLPixelFormatClass = _OpenGLPixelFormatClass{objc.GetClass("NSOpenGLPixelFormat")}
+	})
+	return openGLPixelFormatClass
+}
 
 type _OpenGLPixelFormatClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (o_ OpenGLPixelFormat) Autorelease() OpenGLPixelFormat {
 
 // NewOpenGLPixelFormat creates a new OpenGLPixelFormat instance.
 func NewOpenGLPixelFormat() OpenGLPixelFormat {
-	return openGLPixelFormatClass.New()
+	return getOpenGLPixelFormatClass().New()
 }
 
 

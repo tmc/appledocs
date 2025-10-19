@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Document] class.
-var documentClass = _DocumentClass{objc.GetClass("NSDocument")}
+var (
+	documentClass     _DocumentClass
+	documentClassOnce sync.Once
+)
+
+func getDocumentClass() _DocumentClass {
+	documentClassOnce.Do(func() {
+		documentClass = _DocumentClass{objc.GetClass("NSDocument")}
+	})
+	return documentClass
+}
 
 type _DocumentClass struct {
 	class objc.Class
@@ -64,7 +75,7 @@ func (d_ Document) Autorelease() Document {
 
 // NewDocument creates a new Document instance.
 func NewDocument() Document {
-	return documentClass.New()
+	return getDocumentClass().New()
 }
 
 

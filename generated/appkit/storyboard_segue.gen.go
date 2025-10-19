@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [StoryboardSegue] class.
-var storyboardSegueClass = _StoryboardSegueClass{objc.GetClass("NSStoryboardSegue")}
+var (
+	storyboardSegueClass     _StoryboardSegueClass
+	storyboardSegueClassOnce sync.Once
+)
+
+func getStoryboardSegueClass() _StoryboardSegueClass {
+	storyboardSegueClassOnce.Do(func() {
+		storyboardSegueClass = _StoryboardSegueClass{objc.GetClass("NSStoryboardSegue")}
+	})
+	return storyboardSegueClass
+}
 
 type _StoryboardSegueClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ StoryboardSegue) Autorelease() StoryboardSegue {
 
 // NewStoryboardSegue creates a new StoryboardSegue instance.
 func NewStoryboardSegue() StoryboardSegue {
-	return storyboardSegueClass.New()
+	return getStoryboardSegueClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextStorage] class.
-var textStorageClass = _TextStorageClass{objc.GetClass("NSTextStorage")}
+var (
+	textStorageClass     _TextStorageClass
+	textStorageClassOnce sync.Once
+)
+
+func getTextStorageClass() _TextStorageClass {
+	textStorageClassOnce.Do(func() {
+		textStorageClass = _TextStorageClass{objc.GetClass("NSTextStorage")}
+	})
+	return textStorageClass
+}
 
 type _TextStorageClass struct {
 	class objc.Class
@@ -64,7 +75,7 @@ func (t_ TextStorage) Autorelease() TextStorage {
 
 // NewTextStorage creates a new TextStorage instance.
 func NewTextStorage() TextStorage {
-	return textStorageClass.New()
+	return getTextStorageClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SpeechRecognizer] class.
-var speechRecognizerClass = _SpeechRecognizerClass{objc.GetClass("NSSpeechRecognizer")}
+var (
+	speechRecognizerClass     _SpeechRecognizerClass
+	speechRecognizerClassOnce sync.Once
+)
+
+func getSpeechRecognizerClass() _SpeechRecognizerClass {
+	speechRecognizerClassOnce.Do(func() {
+		speechRecognizerClass = _SpeechRecognizerClass{objc.GetClass("NSSpeechRecognizer")}
+	})
+	return speechRecognizerClass
+}
 
 type _SpeechRecognizerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ SpeechRecognizer) Autorelease() SpeechRecognizer {
 
 // NewSpeechRecognizer creates a new SpeechRecognizer instance.
 func NewSpeechRecognizer() SpeechRecognizer {
-	return speechRecognizerClass.New()
+	return getSpeechRecognizerClass().New()
 }
 
 

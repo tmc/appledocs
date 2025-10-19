@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ProgressIndicator] class.
-var progressIndicatorClass = _ProgressIndicatorClass{objc.GetClass("NSProgressIndicator")}
+var (
+	progressIndicatorClass     _ProgressIndicatorClass
+	progressIndicatorClassOnce sync.Once
+)
+
+func getProgressIndicatorClass() _ProgressIndicatorClass {
+	progressIndicatorClassOnce.Do(func() {
+		progressIndicatorClass = _ProgressIndicatorClass{objc.GetClass("NSProgressIndicator")}
+	})
+	return progressIndicatorClass
+}
 
 type _ProgressIndicatorClass struct {
 	class objc.Class
@@ -70,7 +81,7 @@ func (p_ ProgressIndicator) Autorelease() ProgressIndicator {
 
 // NewProgressIndicator creates a new ProgressIndicator instance.
 func NewProgressIndicator() ProgressIndicator {
-	return progressIndicatorClass.New()
+	return getProgressIndicatorClass().New()
 }
 
 

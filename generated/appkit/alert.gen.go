@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Alert] class.
-var alertClass = _AlertClass{objc.GetClass("NSAlert")}
+var (
+	alertClass     _AlertClass
+	alertClassOnce sync.Once
+)
+
+func getAlertClass() _AlertClass {
+	alertClassOnce.Do(func() {
+		alertClass = _AlertClass{objc.GetClass("NSAlert")}
+	})
+	return alertClass
+}
 
 type _AlertClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (a_ Alert) Autorelease() Alert {
 
 // NewAlert creates a new Alert instance.
 func NewAlert() Alert {
-	return alertClass.New()
+	return getAlertClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TouchBar] class.
-var touchBarClass = _TouchBarClass{objc.GetClass("NSTouchBar")}
+var (
+	touchBarClass     _TouchBarClass
+	touchBarClassOnce sync.Once
+)
+
+func getTouchBarClass() _TouchBarClass {
+	touchBarClassOnce.Do(func() {
+		touchBarClass = _TouchBarClass{objc.GetClass("NSTouchBar")}
+	})
+	return touchBarClass
+}
 
 type _TouchBarClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (t_ TouchBar) Autorelease() TouchBar {
 
 // NewTouchBar creates a new TouchBar instance.
 func NewTouchBar() TouchBar {
-	return touchBarClass.New()
+	return getTouchBarClass().New()
 }
 
 
@@ -72,7 +83,7 @@ func NewTouchBar() TouchBar {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
 func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
-	instance := touchBarClass.Alloc()
+	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv

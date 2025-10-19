@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [LayoutManager] class.
-var layoutManagerClass = _LayoutManagerClass{objc.GetClass("NSLayoutManager")}
+var (
+	layoutManagerClass     _LayoutManagerClass
+	layoutManagerClassOnce sync.Once
+)
+
+func getLayoutManagerClass() _LayoutManagerClass {
+	layoutManagerClassOnce.Do(func() {
+		layoutManagerClass = _LayoutManagerClass{objc.GetClass("NSLayoutManager")}
+	})
+	return layoutManagerClass
+}
 
 type _LayoutManagerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (l_ LayoutManager) Autorelease() LayoutManager {
 
 // NewLayoutManager creates a new LayoutManager instance.
 func NewLayoutManager() LayoutManager {
-	return layoutManagerClass.New()
+	return getLayoutManagerClass().New()
 }
 
 

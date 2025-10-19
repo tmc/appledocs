@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextLayoutManager] class.
-var textLayoutManagerClass = _TextLayoutManagerClass{objc.GetClass("NSTextLayoutManager")}
+var (
+	textLayoutManagerClass     _TextLayoutManagerClass
+	textLayoutManagerClassOnce sync.Once
+)
+
+func getTextLayoutManagerClass() _TextLayoutManagerClass {
+	textLayoutManagerClassOnce.Do(func() {
+		textLayoutManagerClass = _TextLayoutManagerClass{objc.GetClass("NSTextLayoutManager")}
+	})
+	return textLayoutManagerClass
+}
 
 type _TextLayoutManagerClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (t_ TextLayoutManager) Autorelease() TextLayoutManager {
 
 // NewTextLayoutManager creates a new TextLayoutManager instance.
 func NewTextLayoutManager() TextLayoutManager {
-	return textLayoutManagerClass.New()
+	return getTextLayoutManagerClass().New()
 }
 
 

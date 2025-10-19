@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MenuItem] class.
-var menuItemClass = _MenuItemClass{objc.GetClass("NSMenuItem")}
+var (
+	menuItemClass     _MenuItemClass
+	menuItemClassOnce sync.Once
+)
+
+func getMenuItemClass() _MenuItemClass {
+	menuItemClassOnce.Do(func() {
+		menuItemClass = _MenuItemClass{objc.GetClass("NSMenuItem")}
+	})
+	return menuItemClass
+}
 
 type _MenuItemClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (m_ MenuItem) Autorelease() MenuItem {
 
 // NewMenuItem creates a new MenuItem instance.
 func NewMenuItem() MenuItem {
-	return menuItemClass.New()
+	return getMenuItemClass().New()
 }
 
 

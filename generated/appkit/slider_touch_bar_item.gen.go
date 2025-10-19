@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SliderTouchBarItem] class.
-var sliderTouchBarItemClass = _SliderTouchBarItemClass{objc.GetClass("NSSliderTouchBarItem")}
+var (
+	sliderTouchBarItemClass     _SliderTouchBarItemClass
+	sliderTouchBarItemClassOnce sync.Once
+)
+
+func getSliderTouchBarItemClass() _SliderTouchBarItemClass {
+	sliderTouchBarItemClassOnce.Do(func() {
+		sliderTouchBarItemClass = _SliderTouchBarItemClass{objc.GetClass("NSSliderTouchBarItem")}
+	})
+	return sliderTouchBarItemClass
+}
 
 type _SliderTouchBarItemClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (s_ SliderTouchBarItem) Autorelease() SliderTouchBarItem {
 
 // NewSliderTouchBarItem creates a new SliderTouchBarItem instance.
 func NewSliderTouchBarItem() SliderTouchBarItem {
-	return sliderTouchBarItemClass.New()
+	return getSliderTouchBarItemClass().New()
 }
 
 

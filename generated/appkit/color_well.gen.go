@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ColorWell] class.
-var colorWellClass = _ColorWellClass{objc.GetClass("NSColorWell")}
+var (
+	colorWellClass     _ColorWellClass
+	colorWellClassOnce sync.Once
+)
+
+func getColorWellClass() _ColorWellClass {
+	colorWellClassOnce.Do(func() {
+		colorWellClass = _ColorWellClass{objc.GetClass("NSColorWell")}
+	})
+	return colorWellClass
+}
 
 type _ColorWellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (c_ ColorWell) Autorelease() ColorWell {
 
 // NewColorWell creates a new ColorWell instance.
 func NewColorWell() ColorWell {
-	return colorWellClass.New()
+	return getColorWellClass().New()
 }
 
 

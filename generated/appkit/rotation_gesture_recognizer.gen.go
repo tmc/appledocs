@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RotationGestureRecognizer] class.
-var rotationGestureRecognizerClass = _RotationGestureRecognizerClass{objc.GetClass("NSRotationGestureRecognizer")}
+var (
+	rotationGestureRecognizerClass     _RotationGestureRecognizerClass
+	rotationGestureRecognizerClassOnce sync.Once
+)
+
+func getRotationGestureRecognizerClass() _RotationGestureRecognizerClass {
+	rotationGestureRecognizerClassOnce.Do(func() {
+		rotationGestureRecognizerClass = _RotationGestureRecognizerClass{objc.GetClass("NSRotationGestureRecognizer")}
+	})
+	return rotationGestureRecognizerClass
+}
 
 type _RotationGestureRecognizerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (r_ RotationGestureRecognizer) Autorelease() RotationGestureRecognizer {
 
 // NewRotationGestureRecognizer creates a new RotationGestureRecognizer instance.
 func NewRotationGestureRecognizer() RotationGestureRecognizer {
-	return rotationGestureRecognizerClass.New()
+	return getRotationGestureRecognizerClass().New()
 }
 
 

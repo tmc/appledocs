@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScrubberSelectionStyle] class.
-var scrubberSelectionStyleClass = _ScrubberSelectionStyleClass{objc.GetClass("NSScrubberSelectionStyle")}
+var (
+	scrubberSelectionStyleClass     _ScrubberSelectionStyleClass
+	scrubberSelectionStyleClassOnce sync.Once
+)
+
+func getScrubberSelectionStyleClass() _ScrubberSelectionStyleClass {
+	scrubberSelectionStyleClassOnce.Do(func() {
+		scrubberSelectionStyleClass = _ScrubberSelectionStyleClass{objc.GetClass("NSScrubberSelectionStyle")}
+	})
+	return scrubberSelectionStyleClass
+}
 
 type _ScrubberSelectionStyleClass struct {
 	class objc.Class
@@ -62,7 +73,7 @@ func (s_ ScrubberSelectionStyle) Autorelease() ScrubberSelectionStyle {
 
 // NewScrubberSelectionStyle creates a new ScrubberSelectionStyle instance.
 func NewScrubberSelectionStyle() ScrubberSelectionStyle {
-	return scrubberSelectionStyleClass.New()
+	return getScrubberSelectionStyleClass().New()
 }
 
 

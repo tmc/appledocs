@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PressGestureRecognizer] class.
-var pressGestureRecognizerClass = _PressGestureRecognizerClass{objc.GetClass("NSPressGestureRecognizer")}
+var (
+	pressGestureRecognizerClass     _PressGestureRecognizerClass
+	pressGestureRecognizerClassOnce sync.Once
+)
+
+func getPressGestureRecognizerClass() _PressGestureRecognizerClass {
+	pressGestureRecognizerClassOnce.Do(func() {
+		pressGestureRecognizerClass = _PressGestureRecognizerClass{objc.GetClass("NSPressGestureRecognizer")}
+	})
+	return pressGestureRecognizerClass
+}
 
 type _PressGestureRecognizerClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (p_ PressGestureRecognizer) Autorelease() PressGestureRecognizer {
 
 // NewPressGestureRecognizer creates a new PressGestureRecognizer instance.
 func NewPressGestureRecognizer() PressGestureRecognizer {
-	return pressGestureRecognizerClass.New()
+	return getPressGestureRecognizerClass().New()
 }
 
 

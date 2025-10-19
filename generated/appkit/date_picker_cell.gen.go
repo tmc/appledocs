@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DatePickerCell] class.
-var datePickerCellClass = _DatePickerCellClass{objc.GetClass("NSDatePickerCell")}
+var (
+	datePickerCellClass     _DatePickerCellClass
+	datePickerCellClassOnce sync.Once
+)
+
+func getDatePickerCellClass() _DatePickerCellClass {
+	datePickerCellClassOnce.Do(func() {
+		datePickerCellClass = _DatePickerCellClass{objc.GetClass("NSDatePickerCell")}
+	})
+	return datePickerCellClass
+}
 
 type _DatePickerCellClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (d_ DatePickerCell) Autorelease() DatePickerCell {
 
 // NewDatePickerCell creates a new DatePickerCell instance.
 func NewDatePickerCell() DatePickerCell {
-	return datePickerCellClass.New()
+	return getDatePickerCellClass().New()
 }
 
 

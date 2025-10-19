@@ -3,13 +3,24 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [GlassEffectContainerView] class.
-var glassEffectContainerViewClass = _GlassEffectContainerViewClass{objc.GetClass("NSGlassEffectContainerView")}
+var (
+	glassEffectContainerViewClass     _GlassEffectContainerViewClass
+	glassEffectContainerViewClassOnce sync.Once
+)
+
+func getGlassEffectContainerViewClass() _GlassEffectContainerViewClass {
+	glassEffectContainerViewClassOnce.Do(func() {
+		glassEffectContainerViewClass = _GlassEffectContainerViewClass{objc.GetClass("NSGlassEffectContainerView")}
+	})
+	return glassEffectContainerViewClass
+}
 
 type _GlassEffectContainerViewClass struct {
 	class objc.Class
@@ -63,7 +74,7 @@ func (g_ GlassEffectContainerView) Autorelease() GlassEffectContainerView {
 
 // NewGlassEffectContainerView creates a new GlassEffectContainerView instance.
 func NewGlassEffectContainerView() GlassEffectContainerView {
-	return glassEffectContainerViewClass.New()
+	return getGlassEffectContainerViewClass().New()
 }
 
 

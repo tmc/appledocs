@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Movie] class.
-var movieClass = _MovieClass{objc.GetClass("NSMovie")}
+var (
+	movieClass     _MovieClass
+	movieClassOnce sync.Once
+)
+
+func getMovieClass() _MovieClass {
+	movieClassOnce.Do(func() {
+		movieClass = _MovieClass{objc.GetClass("NSMovie")}
+	})
+	return movieClass
+}
 
 type _MovieClass struct {
 	class objc.Class
@@ -59,7 +70,7 @@ func (m_ Movie) Autorelease() Movie {
 
 // NewMovie creates a new Movie instance.
 func NewMovie() Movie {
-	return movieClass.New()
+	return getMovieClass().New()
 }
 
 
