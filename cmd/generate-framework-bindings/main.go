@@ -606,54 +606,51 @@ func extractExternalIDFromFragments(fragments []appledocs.Fragment, title string
 	return ""
 }
 
-func main() {
-	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for")
-	inputDir := flag.String("input", "", "Input directory with JSON files (defaults to ~/.appledocs/cache/developer.apple.com/tutorials/data/documentation)")
-	outputDir := flag.String("output", "generated", "Output directory for generated bindings")
-	filterRegexp := flag.String("filter", "", "Only generate symbols matching this regexp (e.g., '^CGRect' or '^NS(Window|View)')")
-	txtarOutput := flag.Bool("txtar", false, "Output as txtar format to stdout instead of files")
-	variant := flag.String("variant", "", "Comma-separated template variants (e.g., 'darwinkit' or 'base,ref-methods'). Later variants override earlier ones.")
-	withRefMethods := flag.Bool("with-ref-methods", false, "Generate struct-wrapped Ref types with methods (enables method-style API)")
-	generateTests := flag.Bool("generate-tests", false, "Generate test files for the bindings")
-	generateExamples := flag.Bool("generate-examples", false, "Generate example code demonstrating API usage")
-	generateObjcRuntime := flag.Bool("generate-objc-runtime", false, "Generate only the objc runtime package (framework-independent)")
-	verboseFlag := flag.Bool("v", false, "Enable verbose output")
-	flag.Parse()
-
-	verbose = *verboseFlag
-
-	// Handle objc runtime generation
-	if *generateObjcRuntime {
-		objcDir := filepath.Join(*outputDir, "objc")
-		if err := generateObjcRuntimePackage(objcDir); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: failed to generate objc runtime: %v\n", err)
-			os.Exit(1)
-		}
-		fmt.Printf("Generated objc runtime package in %s\n", objcDir)
-		return
-	}
-
-	// Default to cache directory if not specified
-	if *inputDir == "" {
-		homeDir, err := os.UserHomeDir()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error: failed to get home directory: %v\n", err)
-			os.Exit(1)
-		}
-		*inputDir = filepath.Join(homeDir, ".appledocs/cache/developer.apple.com/tutorials/data/documentation")
-	}
-
-	if verbose {
-		fmt.Fprintf(os.Stderr, "Generating bindings for %s\n", *framework)
-		fmt.Fprintf(os.Stderr, "Input: %s\n", *inputDir)
-		fmt.Fprintf(os.Stderr, "Output: %s\n", *outputDir)
-	}
-
-	// Open the appledocs filesystem
-	fsys, err := appledocs.Open(*inputDir)
+// discoverFrameworks discovers all frameworks in the input directory that match the given pattern.
+// The pattern can be a literal framework name or a regexp pattern.
+func discoverFrameworks(inputDir, pattern string) ([]string, error) {
+	// Try to compile the pattern as a regexp
+	re, err := regexp.Compile(pattern)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: failed to open appledocs filesystem: %v\n", err)
-		os.Exit(1)
+		// If it's not a valid regexp, treat it as a literal framework name
+		return []string{pattern}, nil
+	}
+
+	// List all .json files in the input directory
+	entries, err := os.ReadDir(inputDir)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read input directory: %w", err)
+	}
+
+	var frameworks []string
+	for _, entry := range entries {
+		if entry.IsDir() {
+			continue
+		}
+		name := entry.Name()
+		// Framework JSON files are named like "Foundation.json" or "AppKit.json"
+		if !strings.HasSuffix(name, ".json") {
+			continue
+		}
+		// Extract framework name (remove .json extension)
+		frameworkName := strings.TrimSuffix(name, ".json")
+
+		// Check if it matches the regexp
+		if re.MatchString(frameworkName) {
+			frameworks = append(frameworks, frameworkName)
+		}
+	}
+
+	sort.Strings(frameworks)
+	return frameworks, nil
+}
+
+// generateFramework generates bindings for a single framework.
+func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples bool) error {
+	// Open the appledocs filesystem
+	fsys, err := appledocs.Open(inputDir)
+	if err != nil {
+		return fmt.Errorf("failed to open appledocs filesystem: %w", err)
 	}
 
 	// Parse all symbols in the framework using the appledocs iterator
@@ -665,13 +662,13 @@ func main() {
 	parseErrors := 0
 
 	// First, extract synthetic documents from API collection pages
-	syntheticDocs := extractSymbolsFromAPICollections(fsys, *framework, verbose)
+	syntheticDocs := extractSymbolsFromAPICollections(fsys, framework, verbose)
 
 	// Keep track of properties separately so we can attach them to classes later
 	classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
 
 	// Process regular symbols
-	for path, doc := range appledocs.Symbols(fsys, *framework) {
+	for path, doc := range appledocs.Symbols(fsys, framework) {
 		processedFiles++
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
 		if err == nil {
@@ -754,7 +751,7 @@ func main() {
 		classMethodsMap := make(map[string][]*occ2go.ParsedMethod)
 
 		methodCount := 0
-		for _, doc := range appledocs.Symbols(fsys, *framework) {
+		for _, doc := range appledocs.Symbols(fsys, framework) {
 			externalID := doc.Metadata.ExternalID
 
 			// Check for methods: c:objc(cs)ClassName(im)methodName or c:objc(cs)ClassName(cm)methodName
@@ -791,9 +788,8 @@ func main() {
 	}
 
 	// Fail if no symbols were found and no filter was applied
-	if len(functions) == 0 && len(classes) == 0 && len(protocols) == 0 && *filterRegexp == "" && processedFiles == 0 {
-		fmt.Fprintf(os.Stderr, "Error: no symbols found for framework %s\n", *framework)
-		os.Exit(1)
+	if len(functions) == 0 && len(classes) == 0 && len(protocols) == 0 && filterRegexp == "" && processedFiles == 0 {
+		return fmt.Errorf("no symbols found for framework %s", framework)
 	}
 
 	// Deduplicate functions by name (keep first occurrence)
@@ -813,11 +809,10 @@ func main() {
 	}
 
 	// Apply regexp filter if specified
-	if *filterRegexp != "" {
-		re, err := regexp.Compile(*filterRegexp)
+	if filterRegexp != "" {
+		re, err := regexp.Compile(filterRegexp)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error: invalid filter regexp: %v\n", err)
-			os.Exit(1)
+			return fmt.Errorf("invalid filter regexp: %w", err)
 		}
 
 		filteredFunctions := make([]*occ2go.ParsedFunction, 0)
@@ -843,7 +838,7 @@ func main() {
 
 		if verbose {
 			fmt.Fprintf(os.Stderr, "Filter '%s' matched: %d/%d functions, %d/%d classes, %d/%d protocols\n",
-				*filterRegexp,
+				filterRegexp,
 				len(filteredFunctions), len(functions),
 				len(filteredClasses), len(classes),
 				len(filteredProtocols), len(protocols))
@@ -855,27 +850,94 @@ func main() {
 	}
 
 	// Create output directory
-	packageName := strings.ToLower(*framework)
-	outDir := filepath.Join(*outputDir, packageName)
-	if !*txtarOutput {
+	packageName := strings.ToLower(framework)
+	outDir := filepath.Join(outputDir, packageName)
+	if !txtarOutput {
 		if err := os.MkdirAll(outDir, 0755); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: failed to create output directory: %v\n", err)
-			os.Exit(1)
+			return fmt.Errorf("failed to create output directory: %w", err)
 		}
 	}
 
 	// Generate bindings
-	if *txtarOutput {
-		if err := generateTxtar(os.Stdout, *framework, packageName, *inputDir, functions, classes, protocols, *withRefMethods, *generateTests, *generateExamples, *variant); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: failed to generate bindings: %v\n", err)
-			os.Exit(1)
+	if txtarOutput {
+		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, withRefMethods, generateTests, generateExamples, variant); err != nil {
+			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 	} else {
-		if err := generateFiles(outDir, *framework, packageName, *inputDir, functions, classes, protocols, *withRefMethods, *generateTests, *generateExamples, *variant); err != nil {
-			fmt.Fprintf(os.Stderr, "Error: failed to generate bindings: %v\n", err)
+		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, withRefMethods, generateTests, generateExamples, variant); err != nil {
+			return fmt.Errorf("failed to generate bindings: %w", err)
+		}
+		fmt.Printf("Generated %s bindings in %s\n", framework, outDir)
+	}
+
+	return nil
+}
+
+func main() {
+	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for (supports regexp patterns like 'Core.*' or '^(AppKit|Foundation)$')")
+	inputDir := flag.String("input", "", "Input directory with JSON files (defaults to ~/.appledocs/cache/developer.apple.com/tutorials/data/documentation)")
+	outputDir := flag.String("output", "generated", "Output directory for generated bindings")
+	filterRegexp := flag.String("filter", "", "Only generate symbols matching this regexp (e.g., '^CGRect' or '^NS(Window|View)')")
+	txtarOutput := flag.Bool("txtar", false, "Output as txtar format to stdout instead of files")
+	variant := flag.String("variant", "", "Comma-separated template variants (e.g., 'darwinkit' or 'base,ref-methods'). Later variants override earlier ones.")
+	withRefMethods := flag.Bool("with-ref-methods", false, "Generate struct-wrapped Ref types with methods (enables method-style API)")
+	generateTests := flag.Bool("generate-tests", false, "Generate test files for the bindings")
+	generateExamples := flag.Bool("generate-examples", false, "Generate example code demonstrating API usage")
+	generateObjcRuntime := flag.Bool("generate-objc-runtime", false, "Generate only the objc runtime package (framework-independent)")
+	verboseFlag := flag.Bool("v", false, "Enable verbose output")
+	flag.Parse()
+
+	verbose = *verboseFlag
+
+	// Handle objc runtime generation
+	if *generateObjcRuntime {
+		objcDir := filepath.Join(*outputDir, "objc")
+		if err := generateObjcRuntimePackage(objcDir); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to generate objc runtime: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("Generated %s bindings in %s\n", *framework, outDir)
+		fmt.Printf("Generated objc runtime package in %s\n", objcDir)
+		return
+	}
+
+	// Default to cache directory if not specified
+	if *inputDir == "" {
+		homeDir, err := os.UserHomeDir()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to get home directory: %v\n", err)
+			os.Exit(1)
+		}
+		*inputDir = filepath.Join(homeDir, ".appledocs/cache/developer.apple.com/tutorials/data/documentation")
+	}
+
+	// Discover available frameworks by looking for .json files in the input directory
+	frameworks, err := discoverFrameworks(*inputDir, *framework)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: failed to discover frameworks: %v\n", err)
+		os.Exit(1)
+	}
+
+	if len(frameworks) == 0 {
+		fmt.Fprintf(os.Stderr, "Error: no frameworks found matching pattern '%s'\n", *framework)
+		os.Exit(1)
+	}
+
+	if verbose {
+		if len(frameworks) == 1 {
+			fmt.Fprintf(os.Stderr, "Generating bindings for %s\n", frameworks[0])
+		} else {
+			fmt.Fprintf(os.Stderr, "Generating bindings for %d frameworks matching '%s': %v\n", len(frameworks), *framework, frameworks)
+		}
+		fmt.Fprintf(os.Stderr, "Input: %s\n", *inputDir)
+		fmt.Fprintf(os.Stderr, "Output: %s\n", *outputDir)
+	}
+
+	// Generate bindings for each matching framework
+	for _, fw := range frameworks {
+		if err := generateFramework(fw, *inputDir, *outputDir, *filterRegexp, *txtarOutput, *variant, *withRefMethods, *generateTests, *generateExamples); err != nil {
+			fmt.Fprintf(os.Stderr, "Error generating %s: %v\n", fw, err)
+			os.Exit(1)
+		}
 	}
 }
 

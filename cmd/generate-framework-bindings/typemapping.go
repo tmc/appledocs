@@ -18,31 +18,40 @@ type TypeMapping struct {
 
 // typeRegistry contains all known Objective-C to Go type mappings
 var typeRegistry = []TypeMapping{
-	// Geometry types - returned as opaque pointers from Objective-C
-	// They are actually passed by value when used as parameters, but returned as pointers
-	{ObjCType: "NSRect", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "CGRect", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "NSSize", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "CGSize", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "NSPoint", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "NSRange", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	// ==== Geometry types - Foundation framework ====
+	// Foundation has its own geometry types that should be properly typed
+	{ObjCType: "NSRect", GoType: "Rect", Framework: "Foundation"},
+	{ObjCType: "NSSize", GoType: "Size", Framework: "Foundation"},
+	{ObjCType: "NSPoint", GoType: "Point", Framework: "Foundation"},
+	{ObjCType: "NSRange", GoType: "Range", Framework: "Foundation"},
+	// CG geometry types in Foundation - cross-reference to CoreGraphics
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "Foundation"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "Foundation"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "Foundation"},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "Foundation"},
 
-	// Geometry types for AppKit - import from CoreGraphics package
-	// These are returned by value from Objective-C methods and properties
+	// ==== Geometry types - AppKit framework ====
+	// AppKit uses CoreGraphics types - import from CoreGraphics package
 	{ObjCType: "NSRect", GoType: "coregraphics.CGRect", Framework: "AppKit"},
 	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "AppKit"},
 	{ObjCType: "NSSize", GoType: "coregraphics.CGSize", Framework: "AppKit"},
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "AppKit"},
 	{ObjCType: "NSPoint", GoType: "coregraphics.CGPoint", Framework: "AppKit"},
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "AppKit"},
-	{ObjCType: "NSRange", GoType: "coregraphics.CGPoint", Framework: "AppKit"},  // NSRange maps to CGPoint for compatibility
+	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "AppKit"},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "AppKit"},
 
-	// Geometry types for CoreImage - also as unsafe.Pointer (no coregraphics imports)
-	{ObjCType: "CGRect", GoType: "unsafe.Pointer", Framework: "CoreImage"},
-	{ObjCType: "CGSize", GoType: "unsafe.Pointer", Framework: "CoreImage"},
-	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "CoreImage"},
-	{ObjCType: "CGAffineTransform", GoType: "unsafe.Pointer", Framework: "CoreImage"},
+	// ==== Geometry types - CoreImage framework ====
+	// CoreImage uses CoreGraphics geometry types
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "CoreImage"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "CoreImage"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreImage"},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreImage"},
+
+	// ==== Geometry types - ScreenCaptureKit framework ====
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "ScreenCaptureKit"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "ScreenCaptureKit"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "ScreenCaptureKit"},
 
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
@@ -58,12 +67,32 @@ var typeRegistry = []TypeMapping{
 	// Foundation date/time types for AppKit - as float64 (no darwinkit imports)
 	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: "AppKit"},
 
-	// CoreGraphics types
+	// ==== CoreGraphics types ====
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
-	{ObjCType: "CGEventRef", GoType: "unsafe.Pointer", Framework: "AppKit"},
-	{ObjCType: "CGEventRef", GoType: "unsafe.Pointer", Framework: "CoreGraphics"},
-	// Note: CGAffineTransform is now handled by occ2go.MapCTypeToGo and resolveType
-	// Removed incorrect mapping that was stripping the "CG" prefix
+
+	// ==== Event types ====
+	// CGEventRef - proper wrapper type instead of unsafe.Pointer
+	{ObjCType: "CGEventRef", GoType: "EventRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventRef", GoType: "coregraphics.EventRef", Framework: "AppKit"},
+	{ObjCType: "CGEventRef", GoType: "coregraphics.EventRef", Framework: "Foundation"},
+
+	// ==== Block/Closure types ====
+	// Completion handlers and callbacks - map to proper function types
+	// Generic completion handler: void (^)(NSError *)
+	{ObjCType: "void (^)(NSError *)", GoType: "func(error objc.ID)", Framework: ""},
+	{ObjCType: "void (^)(NSError * _Nullable)", GoType: "func(error objc.ID)", Framework: ""},
+	// Generic completion handler with no parameters
+	{ObjCType: "void (^)(void)", GoType: "func()", Framework: ""},
+	// BOOL completion handler: void (^)(BOOL)
+	{ObjCType: "void (^)(BOOL)", GoType: "func(success bool)", Framework: ""},
+
+	// ==== Generic collection element types ====
+	// NSArray element type - use objc.ID for element access
+	{ObjCType: "id", GoType: "objc.ID", Framework: ""},
+	{ObjCType: "id _Nullable", GoType: "objc.ID", Framework: ""},
+	{ObjCType: "NSArray *", GoType: "objc.ID", Framework: ""},  // Will be wrapped with typed accessors
+	{ObjCType: "NSDictionary *", GoType: "objc.ID", Framework: ""},  // Will be wrapped with typed accessors
+	{ObjCType: "NSSet *", GoType: "objc.ID", Framework: ""},
 
 	// Foundation edge enum - unqualified within Foundation
 	{ObjCType: "NSRectEdge", GoType: "RectEdge", Framework: "Foundation"},
