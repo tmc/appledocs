@@ -399,14 +399,50 @@ func recordScreen(display objc.ID, duration time.Duration) error {
 		frameCount: &frameCount,
 	}
 
-	// For now, we'll create the stream but note that we need a proper delegate
-	// The delegate needs to conform to SCStreamOutput protocol
-	fmt.Println("⚠️  Note: Full SCStream recording requires implementing SCStreamOutput delegate")
-	fmt.Println("   This is a simplified demonstration of the API setup")
+	// Full SCStream recording requires implementing SCStreamOutput delegate
+	//
+	// The challenge: SCStreamOutput is an Objective-C *protocol* that needs:
+	// 1. A custom Objective-C class that implements the protocol
+	// 2. The method: stream:didOutputSampleBuffer:ofType:
+	// 3. Runtime class creation using objc_allocateClassPair, class_addMethod, etc.
+	//
+	// This is beyond what objc.NewBlock() can handle - blocks are for completion handlers,
+	// not for protocol conformance.
+	//
+	// See examples/sc_stream_record.m for a working Objective-C implementation that:
+	// - Creates a delegate class implementing <SCStreamOutput>
+	// - Receives CMSampleBuffer objects at ~40-50 FPS
+	// - Extracts CVPixelBuffer from sample buffers
+	// - Converts to CGImage using CIContext
+	// - Saves frames as PNG files
+	//
+	// To implement this in Go, we would need:
+	// 1. objc.AllocateClassPair() to create a new Objective-C class
+	// 2. objc.Class_AddProtocol() to add SCStreamOutput protocol
+	// 3. objc.Class_AddMethod() to add the delegate method
+	// 4. A way to bridge Go callbacks to Objective-C IMP (method implementation)
+	//
+	// This requires lower-level runtime manipulation that purego doesn't yet support.
+	// See: https://github.com/ebitengine/purego/issues
+
+	fmt.Println("⚠️  Note: Full SCStream recording requires SCStreamOutput delegate implementation")
+	fmt.Println("   This requires Objective-C protocol conformance via runtime class creation")
+	fmt.Println("   Current purego/objc doesn't support this pattern yet")
+	fmt.Println()
+	fmt.Println("📚 Reference implementations:")
+	fmt.Println("   - examples/sc_stream_record.m (working Objective-C)")
+	fmt.Println("   - Receives frames at ~40-50 FPS")
+	fmt.Println("   - Saves every 30th frame as PNG")
+	fmt.Println()
+	fmt.Println("🔧 API setup demonstrated:")
+	fmt.Printf("   - SCStreamConfiguration: %dx%d, BGRA, queue depth 5\n", width, height)
+	fmt.Println("   - SCContentFilter: full display capture")
+	fmt.Println("   - Ready for delegate attachment")
 	fmt.Println()
 
-	// Simulate recording duration
-	fmt.Printf("⏺  Recording for %v", duration)
+	// Simulate what would happen
+	fmt.Printf("⏺  Simulating recording for %v\n", duration)
+	fmt.Println("   (No actual frames captured - delegate not implemented)")
 	ticker := time.NewTicker(500 * time.Millisecond)
 	defer ticker.Stop()
 
@@ -417,12 +453,13 @@ func recordScreen(display objc.ID, duration time.Duration) error {
 	}
 	fmt.Println()
 
-	fmt.Printf("📊 Frame processing would happen here via SCStreamOutput delegate\n")
-	fmt.Printf("   - Received frames: %d (simulated)\n", frameCount)
+	fmt.Printf("\n📊 With a working delegate, you would receive:\n")
+	fmt.Printf("   - Frames: ~%d (at 40 FPS for %v)\n", int(duration.Seconds()*40), duration)
 	fmt.Printf("   - Resolution: %dx%d\n", width, height)
-	fmt.Printf("   - Pixel format: BGRA\n")
+	fmt.Printf("   - Format: BGRA CVPixelBuffer in CMSampleBuffer\n")
+	fmt.Printf("   - Output: PNG frames, H.264 video, etc.\n")
 
-	_ = streamOutput // TODO: Implement proper delegate setup
+	_ = streamOutput
 
 	return nil
 }
