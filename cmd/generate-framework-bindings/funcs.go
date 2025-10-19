@@ -8,6 +8,10 @@ import (
 	"github.com/tmc/appledocs/occ2go"
 )
 
+// currentFrameworkClasses holds the set of class names (after prefix stripping) defined in the current framework
+// This is used to detect cross-framework type references
+var currentFrameworkClasses = make(map[string]bool)
+
 // templateFuncs is the FuncMap available to all templates
 var templateFuncs = template.FuncMap{
 	// String utilities
@@ -442,19 +446,31 @@ func classToVarName(className string) string {
 	return strings.ToLower(name[:1]) + name[1:] + "Class"
 }
 
-// stripObjCPrefix removes common Objective-C prefixes and invalid identifier characters from a class name
+// stripObjCPrefix removes Objective-C prefixes algorithmically and invalid identifier characters from a class name
 func stripObjCPrefix(className string) string {
 	// First strip colons and other invalid identifier characters
 	className = strings.ReplaceAll(className, ":", "")
 
-	prefixes := []string{"NS", "CG", "CF", "CA", "CI", "CL", "CM", "CV", "CT"}
-	for _, prefix := range prefixes {
-		if strings.HasPrefix(className, prefix) {
-			// Make sure the next character is uppercase (to avoid stripping "NS" from "NSone" for example)
-			if len(className) > len(prefix) {
-				nextChar := className[len(prefix)]
+	// Algorithmic prefix stripping: remove 2-4 uppercase letters at start if followed by uppercase
+	// This matches Apple's naming convention: NSWindow, SCDisplay, UIView, etc.
+	// Try from longest to shortest prefix length for correctness
+	for prefixLen := 4; prefixLen >= 2; prefixLen-- {
+		if len(className) > prefixLen {
+			prefix := className[:prefixLen]
+			// Check if prefix is all uppercase
+			allUpper := true
+			for _, c := range prefix {
+				if c < 'A' || c > 'Z' {
+					allUpper = false
+					break
+				}
+			}
+
+			if allUpper {
+				// Check if next character is uppercase (start of actual name)
+				nextChar := className[prefixLen]
 				if nextChar >= 'A' && nextChar <= 'Z' {
-					name := className[len(prefix):]
+					name := className[prefixLen:]
 					// Check if result is a Go keyword and escape it
 					if isGoKeyword(strings.ToLower(name)) {
 						return name + "_"
@@ -752,9 +768,46 @@ func disambiguateMethodName(method *occ2go.ParsedMethod) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-	// Handle Objective-C generic types (e.g., NSArray<NSString *>)
-	// These cannot be directly represented in Go, so map to unsafe.Pointer
+	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)
 	if strings.Contains(objcType, "<") {
+		// Extract NSArray element type: NSArray<ElementType *> -> []ElementType
+		if strings.HasPrefix(objcType, "NSArray<") && strings.HasSuffix(objcType, ">") {
+			// Extract element type between < and >
+			start := strings.Index(objcType, "<") + 1
+			end := strings.LastIndex(objcType, ">")
+			if start > 0 && end > start {
+				elementType := strings.TrimSpace(objcType[start:end])
+				// Remove trailing * from pointer types
+				elementType = strings.TrimSpace(strings.TrimSuffix(elementType, "*"))
+
+				// Special case: NSString -> string
+				if elementType == "NSString" {
+					return "[]string"
+				}
+
+				// Strip common Apple prefixes from element types
+				// This ensures NSArray<SCDisplay *> -> []Display, NSArray<NSButton *> -> []Button
+				strippedType := stripObjCPrefix(elementType)
+				if strippedType != elementType {
+					// Prefix was stripped - check if this type exists in current framework
+					if currentFrameworkClasses[strippedType] {
+						// Type is defined in current framework, safe to use
+						return "[]" + strippedType
+					}
+					// Cross-framework reference - fall back to unsafe.Pointer for array elements
+					return "[]unsafe.Pointer"
+				}
+
+				// For other types, try to map them
+				goElementType := mapObjCTypeToGo(elementType, framework)
+				if goElementType == "unsafe.Pointer" {
+					// If mapping failed, use the element type directly
+					return "[]" + elementType
+				}
+				return "[]" + goElementType
+			}
+		}
+		// For other generic types (NSDictionary, etc.), fall back to unsafe.Pointer
 		return "unsafe.Pointer"
 	}
 
@@ -1805,6 +1858,12 @@ func resolveType(framework, typeName string) string {
 	// If this is a known Foundation type and we're not in Foundation, qualify it
 	if foundationTypes[typeName] {
 		return "foundation." + typeName
+	}
+
+	// Check if the type exists in the current framework
+	// If not, it's a cross-framework reference we don't know about - use unsafe.Pointer
+	if !currentFrameworkClasses[typeName] {
+		return "unsafe.Pointer"
 	}
 
 	// Default: assume it's in the current framework

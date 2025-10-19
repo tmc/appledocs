@@ -667,6 +667,9 @@ func main() {
 	// First, extract synthetic documents from API collection pages
 	syntheticDocs := extractSymbolsFromAPICollections(fsys, *framework, verbose)
 
+	// Keep track of properties separately so we can attach them to classes later
+	classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
+
 	// Process regular symbols
 	for path, doc := range appledocs.Symbols(fsys, *framework) {
 		processedFiles++
@@ -680,6 +683,25 @@ func main() {
 			}
 			if proto != nil {
 				protocols = append(protocols, proto)
+			}
+		} else if strings.Contains(err.Error(), "property (use ParseProperty)") {
+			// This is a property file, parse it as a property
+			property, propErr := occ2go.ParseProperty(doc)
+			if propErr != nil {
+				parseErrors++
+				if verbose {
+					fmt.Fprintf(os.Stderr, "Warning: failed to parse property %s: %v\n", path, propErr)
+				}
+			} else if property != nil {
+				// Extract class name from external ID
+				externalID := doc.Metadata.ExternalID
+				if strings.Contains(externalID, "(py)") || strings.Contains(externalID, "(cpy)") {
+					parts := strings.Split(externalID, "(")
+					if len(parts) >= 2 {
+						className := strings.TrimPrefix(parts[1], "cs)")
+						classPropertiesMap[className] = append(classPropertiesMap[className], property)
+					}
+				}
 			}
 		} else {
 			parseErrors++
@@ -716,13 +738,22 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols\n", len(functions), len(classes), len(protocols))
 	}
 
-	// Second pass: collect methods and properties for each class
+	// Populate currentFrameworkClasses map for cross-framework type detection
+	// This helps resolve whether a type like "Number" or "AccessibilityCustomAction"
+	// exists in the current framework or is from another framework
+	currentFrameworkClasses = make(map[string]bool)
+	for _, cls := range classes {
+		// Store both the original name and the stripped name
+		strippedName := stripObjCPrefix(cls.Name)
+		currentFrameworkClasses[strippedName] = true
+	}
+
+	// Second pass: collect methods for each class
+	// (Properties are already collected in the first pass)
 	if len(classes) > 0 {
 		classMethodsMap := make(map[string][]*occ2go.ParsedMethod)
-		classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
 
 		methodCount := 0
-		propertyCount := 0
 		for _, doc := range appledocs.Symbols(fsys, *framework) {
 			externalID := doc.Metadata.ExternalID
 
@@ -740,37 +771,17 @@ func main() {
 					}
 				}
 			}
-
-			// Check for properties: c:objc(cs)ClassName(py)propertyName
-			if strings.Contains(externalID, "(py)") {
-				property, err := occ2go.ParseProperty(doc)
-				if err != nil && verbose {
-					if strings.Contains(externalID, "NSWindow") {
-						fmt.Fprintf(os.Stderr, "Failed to parse property %s: %v\n", externalID, err)
-					}
-				}
-				if err == nil && property != nil {
-					// Extract class name from external ID
-					parts := strings.Split(externalID, "(")
-					if len(parts) >= 2 {
-						className := strings.TrimPrefix(parts[1], "cs)")
-						classPropertiesMap[className] = append(classPropertiesMap[className], property)
-						propertyCount++
-						if verbose && className == "NSWindow" {
-							fmt.Fprintf(os.Stderr, "Parsed property for NSWindow: %s (type: %s)\n", property.Name, property.Type)
-						}
-					}
-				}
-			}
 		}
 
 		// Attach methods and properties to classes
+		propertyCount := 0
 		for i := range classes {
 			if methods, ok := classMethodsMap[classes[i].Name]; ok {
 				classes[i].Methods = methods
 			}
 			if properties, ok := classPropertiesMap[classes[i].Name]; ok {
 				classes[i].Properties = properties
+				propertyCount += len(properties)
 			}
 		}
 
