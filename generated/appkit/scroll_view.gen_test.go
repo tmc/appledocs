@@ -6,21 +6,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+// Suppress unused import errors
+var _ = appkit.NewScrollView
 
-// ExampleNewScrollViewWithCoder demonstrates how to create a ScrollView instance using NewScrollViewWithCoder.
-func ExampleNewScrollViewWithCoder() {
-	_ = appkit.NewScrollViewWithCoder(
-		nil, // coder unsafe.Pointer
-	)
-	// Output:
-}
 
-// ExampleNewScrollViewWithFrame demonstrates how to create a ScrollView instance using NewScrollViewWithFrame.
-func ExampleNewScrollViewWithFrame() {
-	_ = appkit.NewScrollViewWithFrame(
-		nil, // frameRect unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

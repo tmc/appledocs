@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+// Suppress unused import errors
+var _ = foundation.NewNetServiceBrowser
+
 
 // ExampleNewNetServiceBrowser demonstrates how to create a NetServiceBrowser instance.
 // Initializes an allocated   object.

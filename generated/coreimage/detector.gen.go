@@ -1,0 +1,97 @@
+// Code generated from Apple documentation for CoreImage. DO NOT EDIT.
+
+package coreimage
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [Detector] class.
+var detectorClass = _DetectorClass{objc.GetClass("CIDetector")}
+
+type _DetectorClass struct {
+	class objc.Class
+}
+
+// An image processor that identifies notable features, such as faces and barcodes, in a still image or video. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector
+
+type Detector struct {
+	objectivec.Object
+}
+
+// DetectorFrom constructs a [Detector] from an unsafe.Pointer.
+//
+// An image processor that identifies notable features, such as faces and barcodes, in a still image or video.
+func DetectorFrom(ptr unsafe.Pointer) Detector {
+	return Detector{objectivec.Object{objc.ID(ptr)}}
+}
+// Alloc allocates a new instance without initialization.
+func (dc _DetectorClass) Alloc() Detector {
+	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DetectorClass) New() Detector {
+	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ Detector) Init() Detector {
+	rv := objc.Send[Detector](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ Detector) Autorelease() Detector {
+	rv := objc.Send[Detector](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDetector creates a new Detector instance.
+func NewDetector() Detector {
+	return detectorClass.New()
+}
+// Creates and returns a configured detector. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
+func NewDetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) Detector {
+	rv := objc.Send[Detector](objc.ID(detectorClass.class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates and returns a configured detector. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
+func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
+	return rv
+}
+// Searches for features in an image. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:)
+func (d_ Detector) FeaturesInImage(image unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("featuresInImage:"), image)
+	return rv
+}
+// Searches for features in an image based on the specified image orientation. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:options:)
+func (d_ Detector) FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("featuresInImage:options:"), image, options)
+	return rv
+}
+

@@ -67,15 +67,6 @@ func (b_ Button) Autorelease() Button {
 func NewButton() Button {
 	return buttonClass.New()
 }
-// Creates a standard push button with the title you specify. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	rv := objc.Send[Button](objc.ID(buttonClass.class), objc.Sel("buttonWithTitle:target:action:"), title, target, action)
-	rv.Autorelease()
-	return rv
-}
 // Creates a standard checkbox with the title you specify. [Full Topic]
 
 //
@@ -91,6 +82,15 @@ func NewCheckboxWithTitleTargetAction(title string, target objc.ID, action objc.
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(buttonClass.class), objc.Sel("buttonWithTitle:image:target:action:"), title, image, target, action)
+	rv.Autorelease()
+	return rv
+}
+// Creates a standard push button with the title you specify. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
+func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	rv := objc.Send[Button](objc.ID(buttonClass.class), objc.Sel("buttonWithTitle:target:action:"), title, target, action)
 	rv.Autorelease()
 	return rv
 }

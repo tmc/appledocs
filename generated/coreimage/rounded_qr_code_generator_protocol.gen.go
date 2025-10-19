@@ -1,0 +1,16 @@
+// Code generated from Apple documentation for CoreImage. DO NOT EDIT.
+
+package coreimage
+
+import "github.com/ebitengine/purego/objc"
+
+// RoundedQRCodeGeneratorProtocol is the CIRoundedQRCodeGenerator protocol.
+//
+// Use this protocol when registering custom classes that conform to CIRoundedQRCodeGenerator.
+var RoundedQRCodeGeneratorProtocol *objc.Protocol
+
+func init() {
+	RoundedQRCodeGeneratorProtocol = objc.GetProtocol("CIRoundedQRCodeGenerator")
+}
+
+

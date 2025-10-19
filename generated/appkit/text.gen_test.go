@@ -6,21 +6,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+// Suppress unused import errors
+var _ = appkit.NewText
 
-// ExampleNewTextWithCoder demonstrates how to create a Text instance using NewTextWithCoder.
-func ExampleNewTextWithCoder() {
-	_ = appkit.NewTextWithCoder(
-		nil, // coder unsafe.Pointer
-	)
-	// Output:
-}
 
-// ExampleNewTextWithFrame demonstrates how to create a Text instance using NewTextWithFrame.
-func ExampleNewTextWithFrame() {
-	_ = appkit.NewTextWithFrame(
-		nil, // frameRect unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

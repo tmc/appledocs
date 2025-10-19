@@ -6,15 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+// Suppress unused import errors
+var _ = appkit.NewOpenGLView
 
-// ExampleNewOpenGLViewWithFramePixelFormat demonstrates how to create a OpenGLView instance using NewOpenGLViewWithFramePixelFormat.
-// Returns an   object initialized with the specified frame rectangle and pixel format.
-func ExampleNewOpenGLViewWithFramePixelFormat() {
-	_ = appkit.NewOpenGLViewWithFramePixelFormat(
-		nil, // frameRect unsafe.Pointer
-		nil, // format unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

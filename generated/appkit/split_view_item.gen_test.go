@@ -6,13 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+// Suppress unused import errors
+var _ = appkit.NewSplitViewItem
 
-// ExampleNewInspectorWithViewController demonstrates how to create a SplitViewItem instance using NewInspectorWithViewController.
-func ExampleNewInspectorWithViewController() {
-	_ = appkit.NewInspectorWithViewController(
-		nil, // viewController unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

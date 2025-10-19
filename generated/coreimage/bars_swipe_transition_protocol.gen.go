@@ -1,0 +1,16 @@
+// Code generated from Apple documentation for CoreImage. DO NOT EDIT.
+
+package coreimage
+
+import "github.com/ebitengine/purego/objc"
+
+// BarsSwipeTransitionProtocol is the CIBarsSwipeTransition protocol.
+//
+// Use this protocol when registering custom classes that conform to CIBarsSwipeTransition.
+var BarsSwipeTransitionProtocol *objc.Protocol
+
+func init() {
+	BarsSwipeTransitionProtocol = objc.GetProtocol("CIBarsSwipeTransition")
+}
+
+

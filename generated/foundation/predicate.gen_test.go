@@ -6,26 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+// Suppress unused import errors
+var _ = foundation.NewPredicate
 
-// ExampleNewPredicateWithFormatArgumentArray demonstrates how to create a Predicate instance using NewPredicateWithFormatArgumentArray.
-// Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
-func ExampleNewPredicateWithFormatArgumentArray() {
-	_ = foundation.NewPredicateWithFormatArgumentArray(
-		"predicateFormat", // predicateFormat string
-		nil, // arguments unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewPredicateWithFormatArguments demonstrates how to create a Predicate instance using NewPredicateWithFormatArguments.
-// Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
-func ExampleNewPredicateWithFormatArguments() {
-	_ = foundation.NewPredicateWithFormatArguments(
-		"predicateFormat", // predicateFormat string
-		nil, // argList unsafe.Pointer
-	)
-	// Output:
-}
 
 // ExampleNewPredicateFromMetadataQueryString demonstrates how to create a Predicate instance using NewPredicateFromMetadataQueryString.
 // Creates a predicate with a metadata query string.
@@ -45,13 +28,7 @@ func ExampleNewPredicateWithValue() {
 	// Output:
 }
 
-// ExampleNewPredicateWithBlock demonstrates how to create a Predicate instance using NewPredicateWithBlock.
-// Creates a predicate that evaluates using a specified block object and bindings dictionary.
-func ExampleNewPredicateWithBlock() {
-	_ = foundation.NewPredicateWithBlock(
-		nil, // block unsafe.Pointer
-	)
-	// Output:
-}
+
+
 
 

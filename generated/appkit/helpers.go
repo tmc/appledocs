@@ -99,6 +99,11 @@ func RunApp(setup func(app Application)) {
 
 // Window convenience methods
 
+// BackingStoreType constants for window backing store.
+const (
+	BackingStoreBuffered BackingStoreType = 2 // Modern buffered backing store (use this)
+)
+
 // NewWindowWithFrame creates a window with the specified frame rectangle and style.
 // This is a convenience wrapper that avoids exposing unsafe.Pointer.
 func NewWindowWithFrame(x, y, width, height float64, styleMask WindowStyleMask) Window {
@@ -116,7 +121,7 @@ func NewWindowWithFrame(x, y, width, height float64, styleMask WindowStyleMask) 
 	return NewWindowWithContentRectStyleMaskBackingDefer(
 		unsafe.Pointer(&rect),
 		styleMask,
-		2, // Buffered
+		BackingStoreBuffered,
 		false,
 	)
 }

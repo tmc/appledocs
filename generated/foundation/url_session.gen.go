@@ -92,21 +92,21 @@ func (u_ URLSession) Autorelease() URLSession {
 func NewURLSession() URLSession {
 	return uRLSessionClass.New()
 }
-// Creates a session with the specified session configuration. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
-func NewSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
-	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:"), configuration)
-	rv.Autorelease()
-	return rv
-}
 // Creates a session with the specified session configuration, delegate, and operation queue. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
 func NewSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Pointer, delegate unsafe.Pointer, queue unsafe.Pointer) URLSession {
 	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
+	rv.Autorelease()
+	return rv
+}
+// Creates a session with the specified session configuration. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
+func NewSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
+	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
 }

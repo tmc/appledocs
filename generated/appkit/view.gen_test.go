@@ -6,23 +6,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+// Suppress unused import errors
+var _ = appkit.NewView
 
-// ExampleNewViewWithCoder demonstrates how to create a View instance using NewViewWithCoder.
-// Initializes a view using from data in the specified coder object.
-func ExampleNewViewWithCoder() {
-	_ = appkit.NewViewWithCoder(
-		nil, // coder unsafe.Pointer
-	)
-	// Output:
-}
 
-// ExampleNewViewWithFrame demonstrates how to create a View instance using NewViewWithFrame.
-// Initializes and returns a newly allocated   object with a specified frame rectangle.
-func ExampleNewViewWithFrame() {
-	_ = appkit.NewViewWithFrame(
-		nil, // frameRect unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

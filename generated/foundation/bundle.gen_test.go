@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+// Suppress unused import errors
+var _ = foundation.NewBundle
+
 
 // ExampleNewBundleForClass demonstrates how to create a Bundle instance using NewBundleForClass.
 // Returns the   object with which the specified class is associated.

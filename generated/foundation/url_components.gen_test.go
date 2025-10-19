@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+// Suppress unused import errors
+var _ = foundation.NewURLComponents
+
 
 // ExampleNewURLComponents demonstrates how to create a URLComponents instance.
 // Creates a URL components object with all components left undefined.
