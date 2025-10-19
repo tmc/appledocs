@@ -72,7 +72,7 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
 func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {
 	instance := persistentCloudKitContainerOptionsClass.Alloc()
-	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), containerIdentifier)
+	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
 	rv.Autorelease()
 	return rv
 }

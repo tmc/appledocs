@@ -93,13 +93,13 @@ func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setOption(_:forKey:)
 func (p_ PersistentStoreDescription) SetOptionForKey(option unsafe.Pointer, key string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOption:forKey:"), option, key)
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOption:forKey:"), option, objc.String(key))
 }
 // Allows you to set pragmas for the SQLite store. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setValue(_:forPragmaNamed:)
 func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value unsafe.Pointer, name string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, name)
+	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, objc.String(name))
 }
 

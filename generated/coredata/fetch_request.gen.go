@@ -74,7 +74,7 @@ func NewFetchRequest() FetchRequest {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
 func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 	instance := fetchRequestClass.Alloc()
-	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), entityName)
+	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv
 }
@@ -85,7 +85,7 @@ func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchRequestWithEntityName:
 func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), entityName)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
 // Executes the fetch request against the managed object context that is associated with the current queue. [Full Topic]

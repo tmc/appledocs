@@ -109,7 +109,7 @@ func (u_ UndoManager) RemoveAllActions() {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionName(_:)-8lzip
 func (u_ UndoManager) SetActionName(actionName string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setActionName:"), actionName)
+	objc.Send[objc.ID](u_.ID, objc.Sel("setActionName:"), objc.String(actionName))
 }
 // Sets a user info value for an undo or redo action. [Full Topic]
 
@@ -138,7 +138,7 @@ func (u_ UndoManager) UndoActionUserInfoValueForKey(key unsafe.Pointer) objc.ID 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoMenuTitle(forUndoActionName:)
 func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), actionName)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }
 // Performs the undo operations in the last undo group (whether top-level or nested), recording the operations on the redo stack as a single group. [Full Topic]

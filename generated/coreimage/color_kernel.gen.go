@@ -6,7 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ColorKernel] class.
@@ -74,7 +73,7 @@ func NewColorKernel() ColorKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
 func NewColorKernelWithString(string string) ColorKernel {
-	rv := objc.Send[ColorKernel](objc.ID(colorKernelClass.class), objc.Sel("kernelWithString:"), string)
+	rv := objc.Send[ColorKernel](objc.ID(colorKernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
 	rv.Autorelease()
 	return rv
 }
@@ -85,7 +84,7 @@ func NewColorKernelWithString(string string) ColorKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
 func (cc _ColorKernelClass) KernelWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), string)
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 // Creates a new image using the kernel and specified arguments. [Full Topic]

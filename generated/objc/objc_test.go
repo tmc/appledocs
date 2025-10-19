@@ -59,3 +59,26 @@ func BenchmarkRegisterNameMultipleSelectors(b *testing.B) {
 		_ = purego.RegisterName(selectors[i%len(selectors)])
 	}
 }
+
+// TestString tests the String helper function
+func TestString(t *testing.T) {
+	// Test that String conversion works without crashing
+	str := String("Hello, World!")
+	if str == 0 {
+		t.Error("Expected non-zero NSString ID")
+	}
+
+	// Test empty string
+	emptyStr := String("")
+	if emptyStr == 0 {
+		t.Error("Expected non-zero NSString ID for empty string")
+	}
+}
+
+// BenchmarkString benchmarks the String conversion function
+func BenchmarkString(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = String("benchmark string")
+	}
+}

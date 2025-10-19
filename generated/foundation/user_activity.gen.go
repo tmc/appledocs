@@ -77,7 +77,7 @@ func NewUserActivity() UserActivity {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
 func NewUserActivityWithActivityType(activityType string) UserActivity {
 	instance := userActivityClass.Alloc()
-	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), activityType)
+	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), objc.String(activityType))
 	rv.Autorelease()
 	return rv
 }

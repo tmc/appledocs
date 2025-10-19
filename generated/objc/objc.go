@@ -47,3 +47,22 @@ func GetClass(name string) Class {
 	return purego.GetClass(name)
 }
 
+var (
+	nsStringClass     Class
+	selStringWithUTF8 SEL
+	initOnce          sync.Once
+)
+
+func initStringHelpers() {
+	nsStringClass = GetClass("NSString")
+	selStringWithUTF8 = Sel("stringWithUTF8String:")
+}
+
+// String converts a Go string to an NSString object.
+// This must be called before passing Go strings to Objective-C methods that expect NSString*.
+// The returned ID is autoreleased.
+func String(s string) ID {
+	initOnce.Do(initStringHelpers)
+	return Send[ID](ID(nsStringClass), selStringWithUTF8, s)
+}
+

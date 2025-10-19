@@ -75,7 +75,7 @@ func NewUserDefaults() UserDefaults {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/init(suiteName:)
 func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 	instance := userDefaultsClass.Alloc()
-	rv := objc.Send[UserDefaults](instance.ID, objc.Sel("initWithSuiteName:"), suitename)
+	rv := objc.Send[UserDefaults](instance.ID, objc.Sel("initWithSuiteName:"), objc.String(suitename))
 	rv.Autorelease()
 	return rv
 }
@@ -86,21 +86,21 @@ func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
 func (u_ UserDefaults) SetURLForKey(url unsafe.Pointer, defaultName string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, defaultName)
+	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, objc.String(defaultName))
 }
 // Sets the value of the specified default key. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-8ab6d
 func (u_ UserDefaults) SetObjectForKey(value objc.ID, defaultName string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, defaultName)
+	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, objc.String(defaultName))
 }
 // Returns the string associated with the specified key. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
 func (u_ UserDefaults) StringForKey(defaultName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("stringForKey:"), defaultName)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
 }
 

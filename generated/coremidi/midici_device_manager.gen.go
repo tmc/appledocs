@@ -16,6 +16,11 @@ type _MIDICIDeviceManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MIDICIDeviceManager] class.
+type IMIDICIDeviceManager interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager
 
@@ -27,6 +32,36 @@ type MIDICIDeviceManager struct {
 func MIDICIDeviceManagerFrom(ptr unsafe.Pointer) MIDICIDeviceManager {
 	return MIDICIDeviceManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MIDICIDeviceManagerClass) Alloc() MIDICIDeviceManager {
+	rv := objc.Send[MIDICIDeviceManager](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MIDICIDeviceManagerClass) New() MIDICIDeviceManager {
+	rv := objc.Send[MIDICIDeviceManager](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MIDICIDeviceManager) Init() MIDICIDeviceManager {
+	rv := objc.Send[MIDICIDeviceManager](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MIDICIDeviceManager) Autorelease() MIDICIDeviceManager {
+	rv := objc.Send[MIDICIDeviceManager](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMIDICIDeviceManager creates a new MIDICIDeviceManager instance.
+func NewMIDICIDeviceManager() MIDICIDeviceManager {
+	return mIDICIDeviceManagerClass.New()
+}
+
 
 
 

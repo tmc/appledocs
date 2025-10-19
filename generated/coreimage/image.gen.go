@@ -36,12 +36,11 @@ type IImage interface {
 	DrawAtPointFromRectOperationFraction(point unsafe.Pointer, fromRect unsafe.Pointer, op unsafe.Pointer, delta float64)
 	DrawInRectFromRectOperationFraction(rect unsafe.Pointer, fromRect unsafe.Pointer, op unsafe.Pointer, delta float64)
 	ImageByInsertingIntermediate() unsafe.Pointer
-	ImageByInsertingIntermediate(cache bool) unsafe.Pointer
 	ImageByInsertingTiledIntermediate() unsafe.Pointer
 	ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer
 	ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer
-	ImageTransformForCGOrientation(orientation unsafe.Pointer) coregraphics.CGAffineTransform
-	ImageTransformForOrientation(orientation int) coregraphics.CGAffineTransform
+	ImageTransformForCGOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	ImageTransformForOrientation(orientation int) unsafe.Pointer
 	ImageByApplyingCGOrientation(orientation unsafe.Pointer) unsafe.Pointer
 	ImageByApplyingOrientation(orientation int) unsafe.Pointer
 	ImageByPremultiplyingAlpha() unsafe.Pointer
@@ -52,8 +51,8 @@ type IImage interface {
 	ImageBySettingContentAverageLightLevel(average float32) unsafe.Pointer
 	ImageBySettingContentHeadroom(headroom float32) unsafe.Pointer
 	ImageBySettingProperties(properties unsafe.Pointer) unsafe.Pointer
-	ImageByApplyingTransform(matrix coregraphics.CGAffineTransform) unsafe.Pointer
-	ImageByApplyingTransformHighQualityDownsample(matrix coregraphics.CGAffineTransform, highQualityDownsample bool) unsafe.Pointer
+	ImageByApplyingTransform(matrix unsafe.Pointer) unsafe.Pointer
+	ImageByApplyingTransformHighQualityDownsample(matrix unsafe.Pointer, highQualityDownsample bool) unsafe.Pointer
 	ImageByUnpremultiplyingAlpha() unsafe.Pointer
 }
 
@@ -102,16 +101,6 @@ func NewImage() Image {
 }
 
 
-// Initializes an image of infinite extent whose entire content is the specified color. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(color:)
-func NewImageWithColor(color unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithColor:"), color)
-	rv.Autorelease()
-	return rv
-}
 // Initializes an image object from the contents of a Core Video image buffer. [Full Topic]
 
 //
@@ -122,13 +111,51 @@ func NewImageWithCVImageBuffer(imageBuffer unsafe.Pointer) Image {
 	rv.Autorelease()
 	return rv
 }
-// Initializes an image object with data supplied by an OpenGL texture. [Full Topic]
+// Initializes, using the specified format and options, an image with the contents of a specific data plane in an IOSurface. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(texture:size:flipped:options:)
-func NewImageWithTextureSizeFlippedOptions(name unsafe.Pointer, size unsafe.Pointer, flipped bool, options unsafe.Pointer) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:plane:format:options:)
+func NewImageWithIOSurfacePlaneFormatOptions(surface unsafe.Pointer, plane uintptr, format unsafe.Pointer, options unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithTexture:size:flipped:options:"), name, size, flipped, options)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:plane:format:options:"), surface, plane, format, options)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:)
+func NewImageWithDepthData(data unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:"), data)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object with the specified UIKit image object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(image:)
+func NewImageWithImage(image unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImage:"), image)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image with the contents of an IOSurface. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:)
+func NewImageWithIOSurface(surface unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:"), surface)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object with data supplied by a Metal texture. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(mtlTexture:options:)
+func NewImageWithMTLTextureOptions(texture unsafe.Pointer, options unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithMTLTexture:options:"), texture, options)
 	rv.Autorelease()
 	return rv
 }
@@ -142,13 +169,13 @@ func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data unsafe.Pointer, 
 	rv.Autorelease()
 	return rv
 }
-// Initializes an image object with a Quartz 2D image. [Full Topic]
+// Initializes an image object with a Quartz 2D image, using the specified options. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImage:)
-func NewImageWithCGImage(image coregraphics.CGImageRef) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImage:options:)
+func NewImageWithCGImageOptions(image coregraphics.CGImageRef, options unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:"), image)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:options:"), image, options)
 	rv.Autorelease()
 	return rv
 }
@@ -162,6 +189,60 @@ func NewImageWithCGLayerOptions(layer coregraphics.CGLayerRef, options unsafe.Po
 	rv.Autorelease()
 	return rv
 }
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:options:)
+func NewImageWithPortaitEffectsMatteOptions(matte unsafe.Pointer, options unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:options:"), matte, options)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:options:)
+func NewImageWithSemanticSegmentationMatteOptions(matte unsafe.Pointer, options unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:options:"), matte, options)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object with the supplied image data. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(data:)
+func NewImageWithData(data unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object with the supplied image data, using the specified options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(data:options:)
+func NewImageWithDataOptions(data unsafe.Pointer, options unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:options:"), data, options)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:)
+func NewImageWithPortaitEffectsMatte(matte unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:"), matte)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object with a Quartz 2D image. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImage:)
+func NewImageWithCGImage(image coregraphics.CGImageRef) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:"), image)
+	rv.Autorelease()
+	return rv
+}
 // Initializes an image object from the contents of a Core Video image buffer, using the specified options. [Full Topic]
 
 //
@@ -172,31 +253,19 @@ func NewImageWithCVImageBufferOptions(imageBuffer unsafe.Pointer, options unsafe
 	rv.Autorelease()
 	return rv
 }
-// Initializes an image object from the contents of a Core Video pixel buffer. [Full Topic]
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cvPixelBuffer:)
-func NewImageWithCVPixelBuffer(pixelBuffer unsafe.Pointer) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:options:)
+func NewImageWithDepthDataOptions(data unsafe.Pointer, options unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCVPixelBuffer:"), pixelBuffer)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object based on pixels from an image provider object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(imageProvider:size:_:format:colorSpace:options:)
-func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objc.ID, width uintptr, height uintptr, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImageProvider:size::format:colorSpace:options:"), provider, width, height, format, colorSpace, options)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:options:"), data, options)
 	rv.Autorelease()
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:)
-func NewImageWithSemanticSegmentationMatte(matte unsafe.Pointer) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImageSource:index:options:)
+func NewImageWithCGImageSourceIndexOptions(source unsafe.Pointer, index uintptr, dict unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:"), matte)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImageSource:index:options:"), source, index, dict)
 	rv.Autorelease()
 	return rv
 }
@@ -220,13 +289,23 @@ func NewImageWithContentsOfURLOptions(url unsafe.Pointer, options unsafe.Pointer
 	rv.Autorelease()
 	return rv
 }
-// Initializes an image object with data supplied by an OpenGL texture. [Full Topic]
+// Initializes an image object based on pixels from an image provider object. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(texture:size:flipped:colorSpace:)
-func NewImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size unsafe.Pointer, flipped bool, colorSpace coregraphics.CGColorSpaceRef) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(imageProvider:size:_:format:colorSpace:options:)
+func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objc.ID, width uintptr, height uintptr, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithTexture:size:flipped:colorSpace:"), name, size, flipped, colorSpace)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImageProvider:size::format:colorSpace:options:"), provider, width, height, format, colorSpace, options)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object with the specified bitmap image representation. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(bitmapImageRep:)
+func NewImageWithBitmapImageRep(bitmapImageRep unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapImageRep:"), bitmapImageRep)
 	rv.Autorelease()
 	return rv
 }
@@ -240,6 +319,26 @@ func NewImageWithCGLayer(layer coregraphics.CGLayerRef) Image {
 	rv.Autorelease()
 	return rv
 }
+// Initializes an image of infinite extent whose entire content is the specified color. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(color:)
+func NewImageWithColor(color unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithColor:"), color)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image object from the contents of a Core Video pixel buffer. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cvPixelBuffer:)
+func NewImageWithCVPixelBuffer(pixelBuffer unsafe.Pointer) Image {
+	instance := imageClass.Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCVPixelBuffer:"), pixelBuffer)
+	rv.Autorelease()
+	return rv
+}
 // Initializes an image object from the contents of a Core Video pixel buffer using the specified options. [Full Topic]
 
 //
@@ -250,32 +349,6 @@ func NewImageWithCVPixelBufferOptions(pixelBuffer unsafe.Pointer, options unsafe
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:)
-func NewImageWithDepthData(data unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:"), data)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:options:)
-func NewImageWithDepthDataOptions(data unsafe.Pointer, options unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:options:"), data, options)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object with the supplied image data. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(data:)
-func NewImageWithData(data unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
-	rv.Autorelease()
-	return rv
-}
 // Initializes an image object with the specified UIKit image object, using the specified options. [Full Topic]
 
 //
@@ -283,64 +356,6 @@ func NewImageWithData(data unsafe.Pointer) Image {
 func NewImageWithImageOptions(image unsafe.Pointer, options unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImage:options:"), image, options)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object with data supplied by a Metal texture. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(mtlTexture:options:)
-func NewImageWithMTLTextureOptions(texture unsafe.Pointer, options unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithMTLTexture:options:"), texture, options)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object with the supplied image data, using the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(data:options:)
-func NewImageWithDataOptions(data unsafe.Pointer, options unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:options:"), data, options)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object with the specified UIKit image object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(image:)
-func NewImageWithImage(image unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImage:"), image)
-	rv.Autorelease()
-	return rv
-}
-// Initializes, using the specified format and options, an image with the contents of a specific data plane in an IOSurface. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:plane:format:options:)
-func NewImageWithIOSurfacePlaneFormatOptions(surface unsafe.Pointer, plane uintptr, format unsafe.Pointer, options unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:plane:format:options:"), surface, plane, format, options)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:)
-func NewImageWithPortaitEffectsMatte(matte unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:"), matte)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object with the specified bitmap image representation. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(bitmapImageRep:)
-func NewImageWithBitmapImageRep(bitmapImageRep unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapImageRep:"), bitmapImageRep)
 	rv.Autorelease()
 	return rv
 }
@@ -355,46 +370,30 @@ func NewImageWithIOSurfaceOptions(surface unsafe.Pointer, options unsafe.Pointer
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:options:)
-func NewImageWithPortaitEffectsMatteOptions(matte unsafe.Pointer, options unsafe.Pointer) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:)
+func NewImageWithSemanticSegmentationMatte(matte unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:options:"), matte, options)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:"), matte)
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:options:)
-func NewImageWithSemanticSegmentationMatteOptions(matte unsafe.Pointer, options unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:options:"), matte, options)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image object with a Quartz 2D image, using the specified options. [Full Topic]
+// Initializes an image object with data supplied by an OpenGL texture. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImage:options:)
-func NewImageWithCGImageOptions(image coregraphics.CGImageRef, options unsafe.Pointer) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(texture:size:flipped:colorSpace:)
+func NewImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size unsafe.Pointer, flipped bool, colorSpace coregraphics.CGColorSpaceRef) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:options:"), image, options)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithTexture:size:flipped:colorSpace:"), name, size, flipped, colorSpace)
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImageSource:index:options:)
-func NewImageWithCGImageSourceIndexOptions(source unsafe.Pointer, index uintptr, dict unsafe.Pointer) Image {
-	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImageSource:index:options:"), source, index, dict)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an image with the contents of an IOSurface. [Full Topic]
+// Initializes an image object with data supplied by an OpenGL texture. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:)
-func NewImageWithIOSurface(surface unsafe.Pointer) Image {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(texture:size:flipped:options:)
+func NewImageWithTextureSizeFlippedOptions(name unsafe.Pointer, size unsafe.Pointer, flipped bool, options unsafe.Pointer) Image {
 	instance := imageClass.Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:"), surface)
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithTexture:size:flipped:options:"), name, size, flipped, options)
 	rv.Autorelease()
 	return rv
 }
@@ -615,7 +614,7 @@ func (ic _ImageClass) ImageWithTextureSizeFlippedOptions(name unsafe.Pointer, si
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingFilter(_:)
 func (i_ Image) ImageByApplyingFilter(filterName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByApplyingFilter:"), filterName)
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByApplyingFilter:"), objc.String(filterName))
 	return rv
 }
 // Returns a new image created by applying a filter to the original image with the specified name and parameters. [Full Topic]
@@ -623,7 +622,7 @@ func (i_ Image) ImageByApplyingFilter(filterName string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingFilter(_:parameters:)
 func (i_ Image) ImageByApplyingFilterWithInputParameters(filterName string, params unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByApplyingFilter:withInputParameters:"), filterName, params)
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByApplyingFilter:withInputParameters:"), objc.String(filterName), params)
 	return rv
 }
 // Create an image that applies a gain map Core Image image to the received Core Image image. [Full Topic]
@@ -732,14 +731,6 @@ func (i_ Image) ImageByInsertingIntermediate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByInsertingIntermediate"))
 	return rv
 }
-// Create an image that inserts a intermediate that is cacheable. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/insertingIntermediate(cache:)
-func (i_ Image) ImageByInsertingIntermediate(cache bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByInsertingIntermediate:"), cache)
-	return rv
-}
 // Create an image that inserts a intermediate that is cached in tiles [Full Topic]
 
 //
@@ -768,16 +759,16 @@ func (i_ Image) ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace coregrap
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/orientationTransform(for:)
-func (i_ Image) ImageTransformForCGOrientation(orientation unsafe.Pointer) coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](i_.ID, objc.Sel("imageTransformForCGOrientation:"), orientation)
+func (i_ Image) ImageTransformForCGOrientation(orientation unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageTransformForCGOrientation:"), orientation)
 	return rv
 }
 // Returns the transformation needed to reorient the image to the specified orientation. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/orientationTransform(forExifOrientation:)
-func (i_ Image) ImageTransformForOrientation(orientation int) coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](i_.ID, objc.Sel("imageTransformForOrientation:"), orientation)
+func (i_ Image) ImageTransformForOrientation(orientation int) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageTransformForOrientation:"), orientation)
 	return rv
 }
 // Transforms the original image by a given orientation. [Full Topic]
@@ -864,13 +855,13 @@ func (i_ Image) ImageBySettingProperties(properties unsafe.Pointer) unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/transformed(by:)
-func (i_ Image) ImageByApplyingTransform(matrix coregraphics.CGAffineTransform) unsafe.Pointer {
+func (i_ Image) ImageByApplyingTransform(matrix unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByApplyingTransform:"), matrix)
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/transformed(by:highQualityDownsample:)
-func (i_ Image) ImageByApplyingTransformHighQualityDownsample(matrix coregraphics.CGAffineTransform, highQualityDownsample bool) unsafe.Pointer {
+func (i_ Image) ImageByApplyingTransformHighQualityDownsample(matrix unsafe.Pointer, highQualityDownsample bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageByApplyingTransform:highQualityDownsample:"), matrix, highQualityDownsample)
 	return rv
 }

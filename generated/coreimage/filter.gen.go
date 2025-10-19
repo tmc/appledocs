@@ -7,7 +7,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Filter] class.
@@ -71,15 +70,6 @@ func NewFilter() Filter {
 }
 
 
-// Creates a object for a specific kind of filter and initializes the input values. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
-	rv.Autorelease()
-	return rv
-}
 // Creates a filter from a Core Video pixel buffer. [Full Topic]
 
 //
@@ -112,7 +102,16 @@ func NewFilterWithImageURLOptions(url unsafe.Pointer, options unsafe.Pointer) Fi
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
 func NewFilterWithName(name string) Filter {
-	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:"), name)
+	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:"), objc.String(name))
+	rv.Autorelease()
+	return rv
+}
+// Creates a object for a specific kind of filter and initializes the input values. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
+func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	rv.Autorelease()
 	return rv
 }
@@ -905,7 +904,7 @@ func (fc _FilterClass) FilterNamesInCategories(categories unsafe.Pointer) unsafe
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterNames(inCategory:)
 func (fc _FilterClass) FilterNamesInCategory(category string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterNamesInCategory:"), category)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterNamesInCategory:"), objc.String(category))
 	return rv
 }
 // Creates a object for a specific kind of filter and initializes the input values with a -terminated list of arguments. [Full Topic]
@@ -913,7 +912,7 @@ func (fc _FilterClass) FilterNamesInCategory(category string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterWithName:keysAndValues:
 func (fc _FilterClass) FilterWithNameKeysAndValues(name string, key0 objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), name, key0)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), objc.String(name), key0)
 	return rv
 }
 // Creates a flash of light to transition between two images. [Full Topic]
@@ -1121,7 +1120,7 @@ func (fc _FilterClass) FilterWithImageURLOptions(url unsafe.Pointer, options uns
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
 func (fc _FilterClass) FilterWithName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithName:"), name)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithName:"), objc.String(name))
 	return rv
 }
 // Creates a object for a specific kind of filter and initializes the input values. [Full Topic]
@@ -1129,7 +1128,7 @@ func (fc _FilterClass) FilterWithName(name string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
 func (fc _FilterClass) FilterWithNameWithInputParameters(name string, params unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
 }
 // Applies the k-means algorithm to find the most common colors in an image. [Full Topic]
@@ -1273,7 +1272,7 @@ func (fc _FilterClass) LinearToSRGBToneCurveFilter() unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedDescription(forFilterName:)
 func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedDescriptionForFilterName:"), filterName)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedDescriptionForFilterName:"), objc.String(filterName))
 	return rv
 }
 // Returns the localized name for the specified filter category. [Full Topic]
@@ -1281,7 +1280,7 @@ func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName string) unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedName(forCategory:)
 func (fc _FilterClass) LocalizedNameForCategory(category string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedNameForCategory:"), category)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedNameForCategory:"), objc.String(category))
 	return rv
 }
 // Returns the localized name for the specified filter name. [Full Topic]
@@ -1289,7 +1288,7 @@ func (fc _FilterClass) LocalizedNameForCategory(category string) unsafe.Pointer 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedName(forFilterName:)
 func (fc _FilterClass) LocalizedNameForFilterName(filterName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedNameForFilterName:"), filterName)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedNameForFilterName:"), objc.String(filterName))
 	return rv
 }
 // Returns the location of the localized reference documentation that describes the filter. [Full Topic]
@@ -1297,7 +1296,7 @@ func (fc _FilterClass) LocalizedNameForFilterName(filterName string) unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedReferenceDocumentation(forFilterName:)
 func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), filterName)
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), objc.String(filterName))
 	return rv
 }
 // Blends color from two images by calculating the color, hue, and saturation. [Full Topic]
@@ -1719,7 +1718,7 @@ func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/registerName(_:constructor:classAttributes:)
 func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name string, anObject unsafe.Pointer, attributes unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), name, anObject, attributes)
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), objc.String(name), anObject, attributes)
 }
 // Simulates a ripple in a pond to transiton from one image to another. [Full Topic]
 

@@ -90,7 +90,7 @@ func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
 func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
 	instance := xPCConnectionClass.Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), name, options)
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
 	rv.Autorelease()
 	return rv
 }
@@ -100,7 +100,7 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
 func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 	instance := xPCConnectionClass.Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), serviceName)
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
 	rv.Autorelease()
 	return rv
 }
@@ -155,7 +155,7 @@ func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/setCodeSigningRequirement(_:)
 func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), requirement)
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), objc.String(requirement))
 }
 // Suspends the connection. [Full Topic]
 

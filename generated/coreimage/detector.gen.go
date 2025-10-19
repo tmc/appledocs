@@ -73,7 +73,7 @@ func NewDetector() Detector {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
 func NewDetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) Detector {
-	rv := objc.Send[Detector](objc.ID(detectorClass.class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
+	rv := objc.Send[Detector](objc.ID(detectorClass.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	rv.Autorelease()
 	return rv
 }
@@ -84,7 +84,7 @@ func NewDetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, optio
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
 func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
 // Searches for features in an image. [Full Topic]

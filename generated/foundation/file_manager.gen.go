@@ -158,7 +158,7 @@ func (fc _FileManagerClass) FileManagerWithAuthorization(authorization unsafe.Po
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfFileSystem(forPath:)
 func (f_ FileManager) AttributesOfFileSystemForPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfFileSystemForPath:error:"), path, error)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfFileSystemForPath:error:"), objc.String(path), error)
 	return rv
 }
 // Returns the attributes of the item at a given path. [Full Topic]
@@ -166,7 +166,7 @@ func (f_ FileManager) AttributesOfFileSystemForPathError(path string, error unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfItem(atPath:)
 func (f_ FileManager) AttributesOfItemAtPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfItemAtPath:error:"), path, error)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfItemAtPath:error:"), objc.String(path), error)
 	return rv
 }
 // Changes the path of the current working directory to the specified path. [Full Topic]
@@ -174,7 +174,7 @@ func (f_ FileManager) AttributesOfItemAtPathError(path string, error unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/changeCurrentDirectoryPath(_:)
 func (f_ FileManager) ChangeCurrentDirectoryPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("changeCurrentDirectoryPath:"), path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("changeCurrentDirectoryPath:"), objc.String(path))
 	return rv
 }
 // Changes the attributes of a given file or directory. [Full Topic]
@@ -182,7 +182,7 @@ func (f_ FileManager) ChangeCurrentDirectoryPath(path string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/changeFileAttributes(_:atPath:)
 func (f_ FileManager) ChangeFileAttributesAtPath(attributes unsafe.Pointer, path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("changeFileAttributes:atPath:"), attributes, path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("changeFileAttributes:atPath:"), attributes, objc.String(path))
 	return rv
 }
 // Returns an array of strings representing the user-visible components of a given path. [Full Topic]
@@ -190,7 +190,7 @@ func (f_ FileManager) ChangeFileAttributesAtPath(attributes unsafe.Pointer, path
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/componentsToDisplay(forPath:)
 func (f_ FileManager) ComponentsToDisplayForPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("componentsToDisplayForPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("componentsToDisplayForPath:"), objc.String(path))
 	return rv
 }
 // Returns the container directory associated with the specified security application group identifier. [Full Topic]
@@ -198,7 +198,7 @@ func (f_ FileManager) ComponentsToDisplayForPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/containerURL(forSecurityApplicationGroupIdentifier:)
 func (f_ FileManager) ContainerURLForSecurityApplicationGroupIdentifier(groupIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("containerURLForSecurityApplicationGroupIdentifier:"), groupIdentifier)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("containerURLForSecurityApplicationGroupIdentifier:"), objc.String(groupIdentifier))
 	return rv
 }
 // Returns the contents of the file at the specified path. [Full Topic]
@@ -206,7 +206,7 @@ func (f_ FileManager) ContainerURLForSecurityApplicationGroupIdentifier(groupIde
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/contents(atPath:)
 func (f_ FileManager) ContentsAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contentsAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contentsAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a Boolean value that indicates whether the files or directories in specified paths have the same contents. [Full Topic]
@@ -214,7 +214,7 @@ func (f_ FileManager) ContentsAtPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/contentsEqual(atPath:andPath:)
 func (f_ FileManager) ContentsEqualAtPathAndPath(path1 string, path2 string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("contentsEqualAtPath:andPath:"), path1, path2)
+	rv := objc.Send[bool](f_.ID, objc.Sel("contentsEqualAtPath:andPath:"), objc.String(path1), objc.String(path2))
 	return rv
 }
 // Performs a shallow search of the specified directory and returns URLs for the contained items. [Full Topic]
@@ -230,7 +230,7 @@ func (f_ FileManager) ContentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsE
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/contentsOfDirectory(atPath:)
 func (f_ FileManager) ContentsOfDirectoryAtPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contentsOfDirectoryAtPath:error:"), path, error)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contentsOfDirectoryAtPath:error:"), objc.String(path), error)
 	return rv
 }
 // Copies the file at the specified URL to a new location synchronously. [Full Topic]
@@ -246,7 +246,7 @@ func (f_ FileManager) CopyItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/copyItem(atPath:toPath:)
 func (f_ FileManager) CopyItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("copyItemAtPath:toPath:error:"), srcPath, dstPath, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("copyItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error)
 	return rv
 }
 // Creates a directory with the given attributes at the specified URL. [Full Topic]
@@ -262,7 +262,7 @@ func (f_ FileManager) CreateDirectoryAtURLWithIntermediateDirectoriesAttributesE
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createDirectory(atPath:attributes:)
 func (f_ FileManager) CreateDirectoryAtPathAttributes(path string, attributes unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:attributes:"), path, attributes)
+	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:attributes:"), objc.String(path), attributes)
 	return rv
 }
 // Creates a directory with given attributes at the specified path. [Full Topic]
@@ -270,7 +270,7 @@ func (f_ FileManager) CreateDirectoryAtPathAttributes(path string, attributes un
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createDirectory(atPath:withIntermediateDirectories:attributes:)
 func (f_ FileManager) CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), path, createIntermediates, attributes, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), objc.String(path), createIntermediates, attributes, error)
 	return rv
 }
 // Creates a file with the specified content and attributes at the given location. [Full Topic]
@@ -278,7 +278,7 @@ func (f_ FileManager) CreateDirectoryAtPathWithIntermediateDirectoriesAttributes
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createFile(atPath:contents:attributes:)
 func (f_ FileManager) CreateFileAtPathContentsAttributes(path string, data unsafe.Pointer, attr unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createFileAtPath:contents:attributes:"), path, data, attr)
+	rv := objc.Send[bool](f_.ID, objc.Sel("createFileAtPath:contents:attributes:"), objc.String(path), data, attr)
 	return rv
 }
 // Creates a symbolic link at the specified URL that points to an item at the given URL. [Full Topic]
@@ -294,7 +294,7 @@ func (f_ FileManager) CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createSymbolicLink(atPath:pathContent:)
 func (f_ FileManager) CreateSymbolicLinkAtPathPathContent(path string, otherpath string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:pathContent:"), path, otherpath)
+	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:pathContent:"), objc.String(path), objc.String(otherpath))
 	return rv
 }
 // Creates a symbolic link that points to the specified destination. [Full Topic]
@@ -302,7 +302,7 @@ func (f_ FileManager) CreateSymbolicLinkAtPathPathContent(path string, otherpath
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createSymbolicLink(atPath:withDestinationPath:)
 func (f_ FileManager) CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:withDestinationPath:error:"), path, destPath, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:withDestinationPath:error:"), objc.String(path), objc.String(destPath), error)
 	return rv
 }
 // Returns the path of the item pointed to by a symbolic link. [Full Topic]
@@ -310,7 +310,7 @@ func (f_ FileManager) CreateSymbolicLinkAtPathWithDestinationPathError(path stri
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/destinationOfSymbolicLink(atPath:)
 func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), path, error)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), objc.String(path), error)
 	return rv
 }
 // Returns the directories and files (including symbolic links) contained in a given directory. [Full Topic]
@@ -318,7 +318,7 @@ func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error un
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/directoryContents(atPath:)
 func (f_ FileManager) DirectoryContentsAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("directoryContentsAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("directoryContentsAtPath:"), objc.String(path))
 	return rv
 }
 // Returns the display name of the file or directory at a specified path. [Full Topic]
@@ -326,7 +326,7 @@ func (f_ FileManager) DirectoryContentsAtPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/displayName(atPath:)
 func (f_ FileManager) DisplayNameAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("displayNameAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("displayNameAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a directory enumerator object that can be used to perform a deep enumeration of the directory at the specified path. [Full Topic]
@@ -334,7 +334,7 @@ func (f_ FileManager) DisplayNameAtPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/enumerator(atPath:)
 func (f_ FileManager) EnumeratorAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("enumeratorAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("enumeratorAtPath:"), objc.String(path))
 	return rv
 }
 // Removes the local copy of the specified item that’s stored in iCloud. [Full Topic]
@@ -357,7 +357,7 @@ func (f_ FileManager) FetchLatestRemoteVersionOfItemAtURLCompletionHandler(url u
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileAttributes(atPath:traverseLink:)
 func (f_ FileManager) FileAttributesAtPathTraverseLink(path string, yorn bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileAttributesAtPath:traverseLink:"), path, yorn)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileAttributesAtPath:traverseLink:"), objc.String(path), yorn)
 	return rv
 }
 // Returns a Boolean value that indicates whether a file or directory exists at a specified path. [Full Topic]
@@ -365,7 +365,7 @@ func (f_ FileManager) FileAttributesAtPathTraverseLink(path string, yorn bool) u
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileExists(atPath:)
 func (f_ FileManager) FileExistsAtPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("fileExistsAtPath:"), path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("fileExistsAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a Boolean value that indicates whether a file or directory exists at a specified path. [Full Topic]
@@ -373,7 +373,7 @@ func (f_ FileManager) FileExistsAtPath(path string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileExists(atPath:isDirectory:)
 func (f_ FileManager) FileExistsAtPathIsDirectory(path string, isDirectory unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("fileExistsAtPath:isDirectory:"), path, isDirectory)
+	rv := objc.Send[bool](f_.ID, objc.Sel("fileExistsAtPath:isDirectory:"), objc.String(path), isDirectory)
 	return rv
 }
 // Returns a dictionary that describes the attributes of the mounted file system on which a given path resides. [Full Topic]
@@ -381,7 +381,7 @@ func (f_ FileManager) FileExistsAtPathIsDirectory(path string, isDirectory unsaf
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileSystemAttributes(atPath:)
 func (f_ FileManager) FileSystemAttributesAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileSystemAttributesAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileSystemAttributesAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a C-string representation of a given path that properly encodes Unicode strings for use by the file system. [Full Topic]
@@ -389,7 +389,7 @@ func (f_ FileManager) FileSystemAttributesAtPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileSystemRepresentation(withPath:)
 func (f_ FileManager) FileSystemRepresentationWithPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileSystemRepresentationWithPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileSystemRepresentationWithPath:"), objc.String(path))
 	return rv
 }
 // Returns the services provided by the File Provider extension that manages the item at the given URL. [Full Topic]
@@ -420,7 +420,7 @@ func (f_ FileManager) GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelatio
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/homeDirectory(forUser:)
 func (f_ FileManager) HomeDirectoryForUser(userName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("homeDirectoryForUser:"), userName)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("homeDirectoryForUser:"), objc.String(userName))
 	return rv
 }
 // Returns a Boolean value that indicates whether the invoking object appears able to delete a specified file. [Full Topic]
@@ -428,7 +428,7 @@ func (f_ FileManager) HomeDirectoryForUser(userName string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/isDeletableFile(atPath:)
 func (f_ FileManager) IsDeletableFileAtPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isDeletableFileAtPath:"), path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("isDeletableFileAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a Boolean value that indicates whether the operating system appears able to execute a specified file. [Full Topic]
@@ -436,7 +436,7 @@ func (f_ FileManager) IsDeletableFileAtPath(path string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/isExecutableFile(atPath:)
 func (f_ FileManager) IsExecutableFileAtPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isExecutableFileAtPath:"), path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("isExecutableFileAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a Boolean value that indicates whether the invoking object appears able to read a specified file. [Full Topic]
@@ -444,7 +444,7 @@ func (f_ FileManager) IsExecutableFileAtPath(path string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/isReadableFile(atPath:)
 func (f_ FileManager) IsReadableFileAtPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isReadableFileAtPath:"), path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("isReadableFileAtPath:"), objc.String(path))
 	return rv
 }
 // Returns a Boolean indicating whether the item is targeted for storage in iCloud. [Full Topic]
@@ -460,7 +460,7 @@ func (f_ FileManager) IsUbiquitousItemAtURL(url unsafe.Pointer) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/isWritableFile(atPath:)
 func (f_ FileManager) IsWritableFileAtPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isWritableFileAtPath:"), path)
+	rv := objc.Send[bool](f_.ID, objc.Sel("isWritableFileAtPath:"), objc.String(path))
 	return rv
 }
 // Creates a hard link between the items at the specified URLs. [Full Topic]
@@ -476,7 +476,7 @@ func (f_ FileManager) LinkItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/linkItem(atPath:toPath:)
 func (f_ FileManager) LinkItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("linkItemAtPath:toPath:error:"), srcPath, dstPath, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("linkItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error)
 	return rv
 }
 // Returns an array of URLs that identify the mounted volumes available on the device. [Full Topic]
@@ -500,7 +500,7 @@ func (f_ FileManager) MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/moveItem(atPath:toPath:)
 func (f_ FileManager) MoveItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtPath:toPath:error:"), srcPath, dstPath, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error)
 	return rv
 }
 // Returns the path of the directory or file that a symbolic link at a given path refers to. [Full Topic]
@@ -508,7 +508,7 @@ func (f_ FileManager) MoveItemAtPathToPathError(srcPath string, dstPath string, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/pathContentOfSymbolicLink(atPath:)
 func (f_ FileManager) PathContentOfSymbolicLinkAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("pathContentOfSymbolicLinkAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("pathContentOfSymbolicLinkAtPath:"), objc.String(path))
 	return rv
 }
 // Asynchronously pauses sync of an item at the given URL. [Full Topic]
@@ -531,7 +531,7 @@ func (f_ FileManager) RemoveItemAtURLError(URL unsafe.Pointer, error unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/removeItem(atPath:)
 func (f_ FileManager) RemoveItemAtPathError(path string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("removeItemAtPath:error:"), path, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("removeItemAtPath:error:"), objc.String(path), error)
 	return rv
 }
 // Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs. [Full Topic]
@@ -539,7 +539,7 @@ func (f_ FileManager) RemoveItemAtPathError(path string, error unsafe.Pointer) b
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/replaceItem(at:withItemAt:backupItemName:options:resultingItemURL:)
 func (f_ FileManager) ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL unsafe.Pointer, newItemURL unsafe.Pointer, backupItemName string, options unsafe.Pointer, resultingURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:"), originalItemURL, newItemURL, backupItemName, options, resultingURL, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:"), originalItemURL, newItemURL, objc.String(backupItemName), options, resultingURL, error)
 	return rv
 }
 // Asynchronously resumes the sync on a paused item using the given resume behavior. [Full Topic]
@@ -554,7 +554,7 @@ func (f_ FileManager) ResumeSyncForUbiquitousItemAtURLWithBehaviorCompletionHand
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/setAttributes(_:ofItemAtPath:)
 func (f_ FileManager) SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("setAttributes:ofItemAtPath:error:"), attributes, path, error)
+	rv := objc.Send[bool](f_.ID, objc.Sel("setAttributes:ofItemAtPath:error:"), attributes, objc.String(path), error)
 	return rv
 }
 // Indicates whether the item at the specified URL should be stored in iCloud. [Full Topic]
@@ -586,7 +586,7 @@ func (f_ FileManager) StringWithFileSystemRepresentationLength(str unsafe.Pointe
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/subpaths(atPath:)
 func (f_ FileManager) SubpathsAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("subpathsAtPath:"), path)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("subpathsAtPath:"), objc.String(path))
 	return rv
 }
 // Performs a deep enumeration of the specified directory and returns the paths of all of the contained subdirectories. [Full Topic]
@@ -594,7 +594,7 @@ func (f_ FileManager) SubpathsAtPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/subpathsOfDirectory(atPath:)
 func (f_ FileManager) SubpathsOfDirectoryAtPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("subpathsOfDirectoryAtPath:error:"), path, error)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("subpathsOfDirectoryAtPath:error:"), objc.String(path), error)
 	return rv
 }
 // Moves an item to the trash. [Full Topic]
@@ -640,7 +640,7 @@ func (f_ FileManager) URLForPublishingUbiquitousItemAtURLExpirationDateError(url
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/url(forUbiquityContainerIdentifier:)
 func (f_ FileManager) URLForUbiquityContainerIdentifier(containerIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForUbiquityContainerIdentifier:"), containerIdentifier)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForUbiquityContainerIdentifier:"), objc.String(containerIdentifier))
 	return rv
 }
 // Returns an array of URLs for the specified common directory in the requested domains. [Full Topic]
@@ -656,7 +656,7 @@ func (f_ FileManager) URLsForDirectoryInDomains(directory unsafe.Pointer, domain
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/copyPath:toPath:handler:
 func (f_ FileManager) CopyPathToPathHandler(src string, dest string, handler objc.ID) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("copyPath:toPath:handler:"), src, dest, handler)
+	rv := objc.Send[bool](f_.ID, objc.Sel("copyPath:toPath:handler:"), objc.String(src), objc.String(dest), handler)
 	return rv
 }
 // Returns a directory enumerator object that can be used to perform a deep enumeration of the directory at the specified URL. [Full Topic]
@@ -672,7 +672,7 @@ func (f_ FileManager) EnumeratorAtURLIncludingPropertiesForKeysOptionsErrorHandl
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/linkPath:toPath:handler:
 func (f_ FileManager) LinkPathToPathHandler(src string, dest string, handler objc.ID) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("linkPath:toPath:handler:"), src, dest, handler)
+	rv := objc.Send[bool](f_.ID, objc.Sel("linkPath:toPath:handler:"), objc.String(src), objc.String(dest), handler)
 	return rv
 }
 // Moves the directory or file specified by a given path to a different location in the file system identified by another path. [Full Topic]
@@ -680,7 +680,7 @@ func (f_ FileManager) LinkPathToPathHandler(src string, dest string, handler obj
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/movePath:toPath:handler:
 func (f_ FileManager) MovePathToPathHandler(src string, dest string, handler objc.ID) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("movePath:toPath:handler:"), src, dest, handler)
+	rv := objc.Send[bool](f_.ID, objc.Sel("movePath:toPath:handler:"), objc.String(src), objc.String(dest), handler)
 	return rv
 }
 // Deletes the file, link, or directory (including, recursively, all subdirectories, files, and links in the directory) identified by a given path. [Full Topic]
@@ -688,7 +688,7 @@ func (f_ FileManager) MovePathToPathHandler(src string, dest string, handler obj
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/removeFileAtPath:handler:
 func (f_ FileManager) RemoveFileAtPathHandler(path string, handler objc.ID) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("removeFileAtPath:handler:"), path, handler)
+	rv := objc.Send[bool](f_.ID, objc.Sel("removeFileAtPath:handler:"), objc.String(path), handler)
 	return rv
 }
 

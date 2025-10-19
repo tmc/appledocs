@@ -73,7 +73,7 @@ func NewSortDescriptor() SortDescriptor {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
 func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescriptor {
 	instance := sortDescriptorClass.Alloc()
-	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:"), key, ascending)
+	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:"), objc.String(key), ascending)
 	rv.Autorelease()
 	return rv
 }
@@ -84,7 +84,7 @@ func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescripto
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
 func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmptr unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), key, ascending, cmptr)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), objc.String(key), ascending, cmptr)
 	return rv
 }
 // Returns a comparison result value that indicates the sort order of two objects. [Full Topic]

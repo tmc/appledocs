@@ -73,7 +73,7 @@ func NewKeyedArchiver() KeyedArchiver {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
 func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key string) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, key)
+	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
 }
 
 

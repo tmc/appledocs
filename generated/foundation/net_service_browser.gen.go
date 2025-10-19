@@ -107,7 +107,7 @@ func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForServices(ofType:inDomain:)
 func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ string, domainString string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), type_, domainString)
+	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), objc.String(type_), objc.String(domainString))
 }
 // Halts a currently running search or resolution. [Full Topic]
 

@@ -170,11 +170,13 @@ func NewString() String {
 }
 
 
+// Returns an object initialized using the characters in a given C array, interpreted according to a given encoding. [Full Topic]
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
-func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len uint, deallocator unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:encoding:)-20f9h
+func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len, deallocator)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:encoding:"), nullTerminatedCString, encoding)
 	rv.Autorelease()
 	return rv
 }
@@ -188,16 +190,6 @@ func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
 	rv.Autorelease()
 	return rv
 }
-// Returns an object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
-func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), path, enc, error)
-	rv.Autorelease()
-	return rv
-}
 // Returns an object initialized by converting given data into UTF-16 code units using a given encoding. [Full Topic]
 
 //
@@ -208,119 +200,13 @@ func NewStringWithDataEncoding(data unsafe.Pointer, encoding unsafe.Pointer) Str
 	rv.Autorelease()
 	return rv
 }
-// Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units. [Full Topic]
+// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
-func NewStringWithCharactersLength(characters unsafe.Pointer, length uint) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:
+func NewStringWithFormat(format string) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
-	rv.Autorelease()
-	return rv
-}
-// Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:freeWhenDone:)
-func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unsafe.Pointer, length uint, freeBuffer bool) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:freeWhenDone:"), characters, length, freeBuffer)
-	rv.Autorelease()
-	return rv
-}
-// Initializes the receiver, a newly allocated object, by reading data from the file named by . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:)
-func NewStringWithContentsOfFile(path string) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
-	rv.Autorelease()
-	return rv
-}
-// Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:)
-func NewStringWithCString(bytes unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:"), bytes)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized using the characters in a given C array, interpreted according to a given encoding. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:encoding:)-20f9h
-func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:encoding:"), nullTerminatedCString, encoding)
-	rv.Autorelease()
-	return rv
-}
-// Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CStringNoCopy:length:freeWhenDone:)
-func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, freeBuffer bool) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCStringNoCopy:length:freeWhenDone:"), bytes, length, freeBuffer)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
-func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len, encoding, deallocator)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
-func NewStringWithCoder(coder unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted without any localization. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:arguments:)
-func NewStringWithFormatArguments(format string, argList unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), format, argList)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale information. This method is meant to be called from within a variadic function, where the argument list will be available. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:locale:arguments:)
-func NewStringWithFormatLocaleArguments(format string, locale objc.ID, argList unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:arguments:"), format, locale, argList)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:locale:
-func NewStringWithFormatLocale(format string, locale objc.ID) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), format, locale)
-	rv.Autorelease()
-	return rv
-}
-// Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
-func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len, encoding)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:"), objc.String(format))
 	rv.Autorelease()
 	return rv
 }
@@ -330,45 +216,7 @@ func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len uint, encoding u
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:encoding:)
 func NewStringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), path, enc, error)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by copying the characters from another given string. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(string:)-210xa
-func NewStringWithString(aString string) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithString:"), aString)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:
-func NewStringWithFormat(format string) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:"), format)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format string, validFormatSpecifiers string, argList unsafe.Pointer, error unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), format, validFormatSpecifiers, argList, error)
-	rv.Autorelease()
-	return rv
-}
-// Returns an initialized object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
-func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, freeBuffer bool) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len, encoding, freeBuffer)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), objc.String(path), enc, error)
 	rv.Autorelease()
 	return rv
 }
@@ -392,11 +240,23 @@ func NewStringWithContentsOfURLUsedEncodingError(url unsafe.Pointer, enc unsafe.
 	rv.Autorelease()
 	return rv
 }
+// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted without any localization. [Full Topic]
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format string, validFormatSpecifiers string, locale objc.ID, error unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:arguments:)
+func NewStringWithFormatArguments(format string, argList unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), objc.String(format), argList)
+	rv.Autorelease()
+	return rv
+}
+// Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:)
+func NewStringWithCString(bytes unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:"), bytes)
 	rv.Autorelease()
 	return rv
 }
@@ -410,11 +270,105 @@ func NewStringWithCStringLength(bytes unsafe.Pointer, length uint) String {
 	rv.Autorelease()
 	return rv
 }
+// Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding. [Full Topic]
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, validFormatSpecifiers string, error unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
+func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len, encoding)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale information. This method is meant to be called from within a variadic function, where the argument list will be available. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:locale:arguments:)
+func NewStringWithFormatLocaleArguments(format string, locale objc.ID, argList unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:arguments:"), objc.String(format), locale, argList)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
+func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len uint, deallocator unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len, deallocator)
+	rv.Autorelease()
+	return rv
+}
+// Initializes the receiver, a newly allocated object, by reading data from the file named by . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:)
+func NewStringWithContentsOfFile(path string) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by copying the characters from another given string. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(string:)-210xa
+func NewStringWithString(aString string) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithString:"), objc.String(aString))
+	rv.Autorelease()
+	return rv
+}
+// Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CStringNoCopy:length:freeWhenDone:)
+func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, freeBuffer bool) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCStringNoCopy:length:freeWhenDone:"), bytes, length, freeBuffer)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:locale:
+func NewStringWithFormatLocale(format string, locale objc.ID) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), objc.String(format), locale)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
+func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len, encoding, deallocator)
+	rv.Autorelease()
+	return rv
+}
+// Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
+func NewStringWithCharactersLength(characters unsafe.Pointer, length uint) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
+func NewStringWithCoder(coder unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format string, validFormatSpecifiers string, argList unsafe.Pointer, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), objc.String(format), objc.String(validFormatSpecifiers), argList, error)
 	rv.Autorelease()
 	return rv
 }
@@ -422,7 +376,45 @@ func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, valid
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
 func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format string, validFormatSpecifiers string, locale objc.ID, argList unsafe.Pointer, error unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), objc.String(format), objc.String(validFormatSpecifiers), locale, argList, error)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, validFormatSpecifiers string, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), objc.String(format), objc.String(validFormatSpecifiers), error)
+	rv.Autorelease()
+	return rv
+}
+// Returns an initialized object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
+func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, freeBuffer bool) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len, encoding, freeBuffer)
+	rv.Autorelease()
+	return rv
+}
+// Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:freeWhenDone:)
+func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unsafe.Pointer, length uint, freeBuffer bool) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:freeWhenDone:"), characters, length, freeBuffer)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
+func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), objc.String(path), enc, error)
 	rv.Autorelease()
 	return rv
 }
@@ -436,24 +428,32 @@ func NewStringWithContentsOfURL(url unsafe.Pointer) String {
 	rv.Autorelease()
 	return rv
 }
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format string, validFormatSpecifiers string, locale objc.ID, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), objc.String(format), objc.String(validFormatSpecifiers), locale, error)
+	rv.Autorelease()
+	return rv
+}
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormat(format string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:"), format)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:"), objc.String(format))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:fromTable:
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTable(format string, table string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:"), format, table)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:"), objc.String(format), objc.String(table))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:fromTable:arguments:
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTableArguments(format string, table string, arguments unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:arguments:"), format, table, arguments)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:arguments:"), objc.String(format), objc.String(table), arguments)
 	return rv
 }
 // Returns a string containing the bytes in a given C array, interpreted according to a given encoding. [Full Topic]
@@ -501,13 +501,13 @@ func (sc _StringClass) LocalizedNameOfStringEncoding(encoding unsafe.Pointer) un
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStringWithFormat:
 func (sc _StringClass) LocalizedStringWithFormat(format string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithFormat:"), format)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithFormat:"), objc.String(format))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStringWithValidatedFormat:validFormatSpecifiers:error:
 func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersError(format string, validFormatSpecifiers string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithValidatedFormat:validFormatSpecifiers:error:"), objc.String(format), objc.String(validFormatSpecifiers), error)
 	return rv
 }
 // Returns a localized string intended for display in a notification alert. [Full Topic]
@@ -515,7 +515,7 @@ func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersEr
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedUserNotificationString(forKey:arguments:)
 func (sc _StringClass) LocalizedUserNotificationStringForKeyArguments(key string, arguments unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedUserNotificationStringForKey:arguments:"), key, arguments)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedUserNotificationStringForKey:arguments:"), objc.String(key), arguments)
 	return rv
 }
 // Returns a string built from the strings in a given array by concatenating them with a path separator between each pair. [Full Topic]
@@ -563,7 +563,7 @@ func (sc _StringClass) StringWithContentsOfURL(url unsafe.Pointer) objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string(withContentsOfFile:)
 func (sc _StringClass) StringWithContentsOfFile(path string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:"), path)
+	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:"), objc.String(path))
 	return rv
 }
 // Returns the string encoding for the given data as detected by attempting to create a string according to the specified encoding options. [Full Topic]
@@ -571,7 +571,7 @@ func (sc _StringClass) StringWithContentsOfFile(path string) objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringEncoding(for:encodingOptions:convertedString:usedLossyConversion:)
 func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data unsafe.Pointer, opts unsafe.Pointer, string string, usedLossyConversion unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, string, usedLossyConversion)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, objc.String(string), usedLossyConversion)
 	return rv
 }
 // Returns a string containing a given number of characters taken from a given C array of UTF-16 code units. [Full Topic]
@@ -587,7 +587,7 @@ func (sc _StringClass) StringWithCharactersLength(characters unsafe.Pointer, len
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:encoding:error:
 func (sc _StringClass) StringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), path, enc, error)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), objc.String(path), enc, error)
 	return rv
 }
 // Returns a string created by reading data from the file at a given path and returns by reference the encoding used to interpret the file. [Full Topic]
@@ -595,7 +595,7 @@ func (sc _StringClass) StringWithContentsOfFileEncodingError(path string, enc un
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:usedEncoding:error:
 func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), path, enc, error)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), objc.String(path), enc, error)
 	return rv
 }
 // Returns a string created by using a given format string as a template into which the remaining argument values are substituted. [Full Topic]
@@ -603,7 +603,7 @@ func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path string, en
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithFormat:
 func (sc _StringClass) StringWithFormat(format string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithFormat:"), format)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithFormat:"), objc.String(format))
 	return rv
 }
 // Returns a string created by copying the characters from another given string. [Full Topic]
@@ -611,13 +611,13 @@ func (sc _StringClass) StringWithFormat(format string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithString:
 func (sc _StringClass) StringWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithString:"), string)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithString:"), objc.String(string))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithValidatedFormat:validFormatSpecifiers:error:
 func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(format string, validFormatSpecifiers string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithValidatedFormat:validFormatSpecifiers:error:"), objc.String(format), objc.String(validFormatSpecifiers), error)
 	return rv
 }
 // Returns a new string made from the receiver by replacing all characters not in the specified set with percent-encoded characters. [Full Topic]
@@ -641,7 +641,7 @@ func (s_ String) StringByAddingPercentEscapesUsingEncoding(enc unsafe.Pointer) u
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appending(_:)
 func (s_ String) StringByAppendingString(aString string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingString:"), aString)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingString:"), objc.String(aString))
 	return rv
 }
 // Returns a new string made by appending to the receiver a given string. [Full Topic]
@@ -649,13 +649,13 @@ func (s_ String) StringByAppendingString(aString string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:)
 func (s_ String) StringByAppendingPathComponent(str string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingPathComponent:"), str)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingPathComponent:"), objc.String(str))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
 func (s_ String) StringByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), partialName, contentType)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
 // Returns a new string made by appending to the receiver an extension separator followed by a given extension. [Full Topic]
@@ -663,7 +663,7 @@ func (s_ String) StringByAppendingPathComponentConformingToType(partialName stri
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(_:)
 func (s_ String) StringByAppendingPathExtension(str string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingPathExtension:"), str)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingPathExtension:"), objc.String(str))
 	return rv
 }
 //
@@ -741,7 +741,7 @@ func (s_ String) CapitalizedStringWithLocale(locale unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/caseInsensitiveCompare(_:)
 func (s_ String) CaseInsensitiveCompare(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("caseInsensitiveCompare:"), string)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("caseInsensitiveCompare:"), objc.String(string))
 	return rv
 }
 // Returns the character at a given UTF-16 code unit index. [Full Topic]
@@ -757,7 +757,7 @@ func (s_ String) CharacterAtIndex(index uint) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/commonPrefix(with:options:)
 func (s_ String) CommonPrefixWithStringOptions(str string, mask unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("commonPrefixWithString:options:"), str, mask)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("commonPrefixWithString:options:"), objc.String(str), mask)
 	return rv
 }
 // Returns the result of invoking with no options and the receiver’s full extent as the range. [Full Topic]
@@ -765,7 +765,7 @@ func (s_ String) CommonPrefixWithStringOptions(str string, mask unsafe.Pointer) 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:)
 func (s_ String) Compare(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:"), string)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:"), objc.String(string))
 	return rv
 }
 // Compares the string with the specified string using the given options. [Full Topic]
@@ -773,7 +773,7 @@ func (s_ String) Compare(string string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:)
 func (s_ String) CompareOptions(string string, mask unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:options:"), string, mask)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:options:"), objc.String(string), mask)
 	return rv
 }
 // Returns the result of invoking with a locale. [Full Topic]
@@ -781,7 +781,7 @@ func (s_ String) CompareOptions(string string, mask unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:)
 func (s_ String) CompareOptionsRange(string string, mask unsafe.Pointer, rangeOfReceiverToCompare unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:options:range:"), string, mask, rangeOfReceiverToCompare)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:options:range:"), objc.String(string), mask, rangeOfReceiverToCompare)
 	return rv
 }
 // Compares the string using the specified options and returns the lexical ordering for the range. [Full Topic]
@@ -789,7 +789,7 @@ func (s_ String) CompareOptionsRange(string string, mask unsafe.Pointer, rangeOf
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:locale:)
 func (s_ String) CompareOptionsRangeLocale(string string, mask unsafe.Pointer, rangeOfReceiverToCompare unsafe.Pointer, locale objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:options:range:locale:"), string, mask, rangeOfReceiverToCompare, locale)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compare:options:range:locale:"), objc.String(string), mask, rangeOfReceiverToCompare, locale)
 	return rv
 }
 // Interprets the receiver as a path in the file system and attempts to perform filename completion, returning a numeric value that indicates whether a match was possible, and by reference the longest path that matches the receiver. [Full Topic]
@@ -797,7 +797,7 @@ func (s_ String) CompareOptionsRangeLocale(string string, mask unsafe.Pointer, r
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/completePath(into:caseSensitive:matchesInto:filterTypes:)
 func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName string, flag bool, outputArray unsafe.Pointer, filterTypes unsafe.Pointer) uint {
-	rv := objc.Send[uint](s_.ID, objc.Sel("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), outputName, flag, outputArray, filterTypes)
+	rv := objc.Send[uint](s_.ID, objc.Sel("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), objc.String(outputName), flag, outputArray, filterTypes)
 	return rv
 }
 // Returns an array containing substrings from the receiver that have been divided by a given separator. [Full Topic]
@@ -805,7 +805,7 @@ func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/components(separatedBy:)-238fy
 func (s_ String) ComponentsSeparatedByString(separator string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("componentsSeparatedByString:"), separator)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("componentsSeparatedByString:"), objc.String(separator))
 	return rv
 }
 // Returns an array containing substrings from the receiver that have been divided by characters in a given set. [Full Topic]
@@ -821,7 +821,7 @@ func (s_ String) ComponentsSeparatedByCharactersInSet(separator unsafe.Pointer) 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/contains(_:)
 func (s_ String) ContainsString(str string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("containsString:"), str)
+	rv := objc.Send[bool](s_.ID, objc.Sel("containsString:"), objc.String(str))
 	return rv
 }
 // Returns an object containing a representation of the receiver encoded using a given encoding. [Full Topic]
@@ -1031,7 +1031,7 @@ func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr unsafe.Pointer
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hasPrefix(_:)
 func (s_ String) HasPrefix(str string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasPrefix:"), str)
+	rv := objc.Send[bool](s_.ID, objc.Sel("hasPrefix:"), objc.String(str))
 	return rv
 }
 // Returns a Boolean value that indicates whether a given string matches the ending characters of the receiver. [Full Topic]
@@ -1039,7 +1039,7 @@ func (s_ String) HasPrefix(str string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hasSuffix(_:)
 func (s_ String) HasSuffix(str string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), str)
+	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), objc.String(str))
 	return rv
 }
 // Returns a Boolean value that indicates whether a given string is equal to the receiver using a literal Unicode-based comparison. [Full Topic]
@@ -1047,7 +1047,7 @@ func (s_ String) HasSuffix(str string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/isEqual(to:)
 func (s_ String) IsEqualToString(aString string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToString:"), aString)
+	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToString:"), objc.String(aString))
 	return rv
 }
 // Returns the number of bytes required to store the receiver in a given encoding. [Full Topic]
@@ -1079,7 +1079,7 @@ func (s_ String) LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCaseInsensitiveCompare(_:)
 func (s_ String) LocalizedCaseInsensitiveCompare(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedCaseInsensitiveCompare:"), string)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedCaseInsensitiveCompare:"), objc.String(string))
 	return rv
 }
 // Returns a Boolean value indicating whether the string contains a given string by performing a case-insensitive, locale-aware search. [Full Topic]
@@ -1087,7 +1087,7 @@ func (s_ String) LocalizedCaseInsensitiveCompare(string string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCaseInsensitiveContains(_:)
 func (s_ String) LocalizedCaseInsensitiveContainsString(str string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("localizedCaseInsensitiveContainsString:"), str)
+	rv := objc.Send[bool](s_.ID, objc.Sel("localizedCaseInsensitiveContainsString:"), objc.String(str))
 	return rv
 }
 // Compares the string and a given string using a localized comparison. [Full Topic]
@@ -1095,7 +1095,7 @@ func (s_ String) LocalizedCaseInsensitiveContainsString(str string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCompare(_:)
 func (s_ String) LocalizedCompare(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedCompare:"), string)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedCompare:"), objc.String(string))
 	return rv
 }
 // Compares strings as sorted by the Finder. [Full Topic]
@@ -1103,7 +1103,7 @@ func (s_ String) LocalizedCompare(string string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardCompare(_:)
 func (s_ String) LocalizedStandardCompare(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedStandardCompare:"), string)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedStandardCompare:"), objc.String(string))
 	return rv
 }
 // Returns a Boolean value indicating whether the string contains a given string by performing a case and diacritic insensitive, locale-aware search. [Full Topic]
@@ -1111,7 +1111,7 @@ func (s_ String) LocalizedStandardCompare(string string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardContains(_:)
 func (s_ String) LocalizedStandardContainsString(str string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("localizedStandardContainsString:"), str)
+	rv := objc.Send[bool](s_.ID, objc.Sel("localizedStandardContainsString:"), objc.String(str))
 	return rv
 }
 // Finds and returns the range of the first occurrence of a given string within the string by performing a case and diacritic insensitive, locale-aware search. [Full Topic]
@@ -1119,7 +1119,7 @@ func (s_ String) LocalizedStandardContainsString(str string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardRange(of:)
 func (s_ String) LocalizedStandardRangeOfString(str string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedStandardRangeOfString:"), str)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedStandardRangeOfString:"), objc.String(str))
 	return rv
 }
 // Returns a representation of the receiver as a C string in the default C-string encoding, possibly losing information in converting to that encoding. [Full Topic]
@@ -1151,7 +1151,7 @@ func (s_ String) MaximumLengthOfBytesUsingEncoding(enc unsafe.Pointer) uint {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/padding(toLength:withPad:startingAt:)
 func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString string, padIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByPaddingToLength:withString:startingAtIndex:"), newLength, padString, padIndex)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByPaddingToLength:withString:startingAtIndex:"), newLength, objc.String(padString), padIndex)
 	return rv
 }
 // Returns the range of characters representing the paragraph or paragraphs containing a given range. [Full Topic]
@@ -1183,7 +1183,7 @@ func (s_ String) PropertyListFromStringsFileFormat() unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:)
 func (s_ String) RangeOfString(searchString string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:"), searchString)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:"), objc.String(searchString))
 	return rv
 }
 // Finds and returns the range of the first occurrence of a given string within the string, subject to given options. [Full Topic]
@@ -1191,7 +1191,7 @@ func (s_ String) RangeOfString(searchString string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:)
 func (s_ String) RangeOfStringOptions(searchString string, mask unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:options:"), searchString, mask)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:options:"), objc.String(searchString), mask)
 	return rv
 }
 // Finds and returns the range of the first occurrence of a given string, within the given range of the string, subject to given options. [Full Topic]
@@ -1199,7 +1199,7 @@ func (s_ String) RangeOfStringOptions(searchString string, mask unsafe.Pointer) 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:)
 func (s_ String) RangeOfStringOptionsRange(searchString string, mask unsafe.Pointer, rangeOfReceiverToSearch unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:options:range:"), searchString, mask, rangeOfReceiverToSearch)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:options:range:"), objc.String(searchString), mask, rangeOfReceiverToSearch)
 	return rv
 }
 // Finds and returns the range of the first occurrence of a given string within a given range of the string, subject to given options, using the specified locale, if any. [Full Topic]
@@ -1207,7 +1207,7 @@ func (s_ String) RangeOfStringOptionsRange(searchString string, mask unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:locale:)
 func (s_ String) RangeOfStringOptionsRangeLocale(searchString string, mask unsafe.Pointer, rangeOfReceiverToSearch unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), searchString, mask, rangeOfReceiverToSearch, locale)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), objc.String(searchString), mask, rangeOfReceiverToSearch, locale)
 	return rv
 }
 // Finds and returns the range in the string of the first character from a given character set. [Full Topic]
@@ -1255,7 +1255,7 @@ func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ unsafe.Pointer
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingCharacters(in:with:)
 func (s_ String) StringByReplacingCharactersInRangeWithString(range_ unsafe.Pointer, replacement string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, replacement)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, objc.String(replacement))
 	return rv
 }
 // Returns a new string in which all occurrences of a target string in the receiver are replaced by another given string. [Full Topic]
@@ -1263,7 +1263,7 @@ func (s_ String) StringByReplacingCharactersInRangeWithString(range_ unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:)
 func (s_ String) StringByReplacingOccurrencesOfStringWithString(target string, replacement string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:"), target, replacement)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:"), objc.String(target), objc.String(replacement))
 	return rv
 }
 // Returns a new string in which all occurrences of a target string in a specified range of the receiver are replaced by another given string. [Full Topic]
@@ -1271,7 +1271,7 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithString(target string, r
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:options:range:)
 func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options unsafe.Pointer, searchRange unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), objc.String(target), objc.String(replacement), options, searchRange)
 	return rv
 }
 // Returns a new string made by replacing in the receiver all percent escapes with the matching characters as determined by a given encoding. [Full Topic]
@@ -1341,7 +1341,7 @@ func (s_ String) Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringByAppendingFormat:
 func (s_ String) StringByAppendingFormat(format string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingFormat:"), format)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stringByAppendingFormat:"), objc.String(format))
 	return rv
 }
 // Returns an array of strings made by separately appending to the receiver each string in a given array. [Full Topic]
@@ -1421,7 +1421,7 @@ func (s_ String) WriteToURLAtomicallyEncodingError(url unsafe.Pointer, useAuxili
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:)
 func (s_ String) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
+	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 // Writes the contents of the receiver to a file at a given path using a given encoding. [Full Topic]
@@ -1429,7 +1429,7 @@ func (s_ String) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:encoding:)
 func (s_ String) WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), path, useAuxiliaryFile, enc, error)
+	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), objc.String(path), useAuxiliaryFile, enc, error)
 	return rv
 }
 

@@ -71,7 +71,7 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/value(forKey:)
 func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 

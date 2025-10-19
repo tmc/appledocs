@@ -54,6 +54,7 @@ var templateFuncs = template.FuncMap{
 	"mapObjCTypeToGo":          mapObjCTypeToGo,
 	"formatMethodParams":       formatMethodParams,
 	"formatMethodParamNames":   formatMethodParamNames,
+	"formatMethodParamNamesWithFramework": formatMethodParamNamesWithFramework,
 	"isConstructor":            isConstructor,
 	"stripNSPrefix":            stripNSPrefix,
 	"needsFoundationImport":    needsFoundationImport,
@@ -831,6 +832,12 @@ func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
 // formatMethodParamNames formats method parameter names for calling.
 // Returns: "title, target, action"
 func formatMethodParamNames(method *occ2go.ParsedMethod) string {
+	return formatMethodParamNamesWithFramework(method, "")
+}
+
+// formatMethodParamNamesWithFramework formats method parameter names for objc.Send calls.
+// If framework is provided, it will wrap string parameters with objc.String().
+func formatMethodParamNamesWithFramework(method *occ2go.ParsedMethod, framework string) string {
 	if len(method.Parameters) == 0 {
 		return ""
 	}
@@ -844,6 +851,15 @@ func formatMethodParamNames(method *occ2go.ParsedMethod) string {
 		if isGoKeyword(paramName) {
 			paramName += "_"
 		}
+
+		// Wrap string parameters with objc.String() to convert Go strings to NSString*
+		if framework != "" {
+			goType := mapObjCTypeToGo(p.Type, framework)
+			if goType == "string" {
+				paramName = "objc.String(" + paramName + ")"
+			}
+		}
+
 		parts[i] = paramName
 	}
 	return strings.Join(parts, ", ")

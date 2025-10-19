@@ -436,7 +436,7 @@ func New{{$structName}}() {{$structName}} {
 {{- range prepareInitMethodsWithClassName $className .Methods}}
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
-{{- $paramNames := formatMethodParamNames .}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}} [Full Topic]
@@ -463,7 +463,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{end -}}
 {{- range prepareClassMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
-{{- $paramNames := formatMethodParamNames .}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 
 {{- if .Abstract}}
@@ -486,7 +486,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 
 {{- range prepareInstanceMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
-{{- $paramNames := formatMethodParamNames .}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 
@@ -706,7 +706,7 @@ func New{{$structName}}() {{$structName}} {
 {{- range prepareInitMethodsWithClassName $className .Methods}}
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
-{{- $paramNames := formatMethodParamNames .}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}} [Full Topic]
@@ -733,7 +733,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{end -}}
 {{- range prepareClassMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
-{{- $paramNames := formatMethodParamNames .}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 
 {{- if .Abstract}}
@@ -756,7 +756,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 
 {{- range prepareInstanceMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
-{{- $paramNames := formatMethodParamNames .}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 
@@ -1033,6 +1033,12 @@ type (
 	Class = purego.Class
 )
 
+// IObject is the root interface for all Objective-C objects.
+// It provides access to the underlying objc.ID.
+type IObject interface {
+	GetID() ID
+}
+
 var (
 	selCache sync.Map // map[string]purego.SEL
 )
@@ -1056,6 +1062,25 @@ func Send[T any](id ID, sel SEL, args ...any) T {
 // GetClass returns the class with the given name.
 func GetClass(name string) Class {
 	return purego.GetClass(name)
+}
+
+var (
+	nsStringClass     Class
+	selStringWithUTF8 SEL
+	initOnce          sync.Once
+)
+
+func initStringHelpers() {
+	nsStringClass = GetClass("NSString")
+	selStringWithUTF8 = Sel("stringWithUTF8String:")
+}
+
+// String converts a Go string to an NSString object.
+// This must be called before passing Go strings to Objective-C methods that expect NSString*.
+// The returned ID is autoreleased.
+func String(s string) ID {
+	initOnce.Do(initStringHelpers)
+	return Send[ID](ID(nsStringClass), selStringWithUTF8, s)
 }
 
 -- objc/objc_test.go --
@@ -1118,5 +1143,28 @@ func BenchmarkRegisterNameMultipleSelectors(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		_ = purego.RegisterName(selectors[i%len(selectors)])
+	}
+}
+
+// TestString tests the String helper function
+func TestString(t *testing.T) {
+	// Test that String conversion works without crashing
+	str := String("Hello, World!")
+	if str == 0 {
+		t.Error("Expected non-zero NSString ID")
+	}
+
+	// Test empty string
+	emptyStr := String("")
+	if emptyStr == 0 {
+		t.Error("Expected non-zero NSString ID for empty string")
+	}
+}
+
+// BenchmarkString benchmarks the String conversion function
+func BenchmarkString(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = String("benchmark string")
 	}
 }

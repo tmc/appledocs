@@ -75,7 +75,7 @@ func NewBlendKernel() BlendKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
 func NewBlendKernelWithString(string string) BlendKernel {
-	rv := objc.Send[BlendKernel](objc.ID(blendKernelClass.class), objc.Sel("kernelWithString:"), string)
+	rv := objc.Send[BlendKernel](objc.ID(blendKernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
 	rv.Autorelease()
 	return rv
 }
@@ -86,7 +86,7 @@ func NewBlendKernelWithString(string string) BlendKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
 func (bc _BlendKernelClass) KernelWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), string)
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 // Creates a new image using the blend kernel and specified foreground and background images. [Full Topic]

@@ -91,7 +91,7 @@ func (bc _BundleClass) BundleForClass(aClass objc.Class) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/object(forInfoDictionaryKey:)
 func (b_ Bundle) ObjectForInfoDictionaryKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](b_.ID, objc.Sel("objectForInfoDictionaryKey:"), key)
+	rv := objc.Send[objc.ID](b_.ID, objc.Sel("objectForInfoDictionaryKey:"), objc.String(key))
 	return rv
 }
 

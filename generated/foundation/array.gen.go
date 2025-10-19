@@ -118,26 +118,6 @@ func NewArray() Array {
 }
 
 
-// Initializes a newly allocated array by placing in it the objects in the argument list. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
-func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array by placing in it the objects contained in a given array. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
-func NewArrayWithArray(array unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a newly allocated array using as the source of data objects for the array. [Full Topic]
 
 //
@@ -153,6 +133,16 @@ func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
 func NewArrayWithCoder(coder unsafe.Pointer) Array {
 	instance := arrayClass.Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array with the contents of the file specified by a given path. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
+func NewArrayWithContentsOfFile(path string) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -193,13 +183,23 @@ func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a newly allocated array with the contents of the file specified by a given path. [Full Topic]
+// Initializes a newly allocated array by placing in it the objects contained in a given array. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
-func NewArrayWithContentsOfFile(path string) Array {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
+func NewArrayWithArray(array unsafe.Pointer) Array {
 	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array by placing in it the objects in the argument list. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
+func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
 }
@@ -226,7 +226,7 @@ func (ac _ArrayClass) ArrayWithArray(array unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfFile:
 func (ac _ArrayClass) ArrayWithContentsOfFile(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), path)
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), objc.String(path))
 	return rv
 }
 //
@@ -272,14 +272,14 @@ func (ac _ArrayClass) ArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) un
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:forKeyPath:options:context:)
 func (a_ Array) AddObserverForKeyPathOptionsContext(observer unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 // Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:toObjectsAt:forKeyPath:options:context:)
 func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer unsafe.Pointer, indexes unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, keyPath, options, context)
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, objc.String(keyPath), options, context)
 }
 // Returns a new array that is a copy of the receiving array with a given object added to the end. [Full Topic]
 
@@ -310,7 +310,7 @@ func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/componentsJoined(by:)
 func (a_ Array) ComponentsJoinedByString(separator string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("componentsJoinedByString:"), separator)
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("componentsJoinedByString:"), objc.String(separator))
 	return rv
 }
 // Returns a Boolean value that indicates whether a given object is present in the array. [Full Topic]
@@ -559,28 +559,28 @@ func (a_ Array) PathsMatchingExtensions(filterTypes unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:)
 func (a_ Array) RemoveObserverForKeyPath(observer unsafe.Pointer, keyPath string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
 }
 // Raises an exception. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:context:)
 func (a_ Array) RemoveObserverForKeyPathContext(observer unsafe.Pointer, keyPath string, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 // Removes from all key value observer notifications associated with the specified relative to the array’s objects at . [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:)
 func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer unsafe.Pointer, indexes unsafe.Pointer, keyPath string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, keyPath)
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, objc.String(keyPath))
 }
 // Raises an exception. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:context:)
 func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer unsafe.Pointer, indexes unsafe.Pointer, keyPath string, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, keyPath, context)
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, objc.String(keyPath), context)
 }
 // Returns an enumerator object that lets you access each object in the array, in reverse order. [Full Topic]
 
@@ -595,7 +595,7 @@ func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/setValue(_:forKey:)
 func (a_ Array) SetValueForKey(value objc.ID, key string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, key)
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
 // Returns a new array that lists this array’s elements in a random order. [Full Topic]
 
@@ -682,7 +682,7 @@ func (a_ Array) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/value(forKey:)
 func (a_ Array) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 //
@@ -704,7 +704,7 @@ func (a_ Array) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(toFile:atomically:)
 func (a_ Array) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
+	rv := objc.Send[bool](a_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 

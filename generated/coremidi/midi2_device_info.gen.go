@@ -16,6 +16,11 @@ type _MIDI2DeviceInfoClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MIDI2DeviceInfo] class.
+type IMIDI2DeviceInfo interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo
 
@@ -56,6 +61,8 @@ func (m_ MIDI2DeviceInfo) Autorelease() MIDI2DeviceInfo {
 func NewMIDI2DeviceInfo() MIDI2DeviceInfo {
 	return mIDI2DeviceInfoClass.New()
 }
+
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/init(manufacturerID:family:modelNumber:revisionLevel:)
 func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family unsafe.Pointer, modelNumber unsafe.Pointer, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {

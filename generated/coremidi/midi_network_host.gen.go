@@ -16,6 +16,11 @@ type _MIDINetworkHostClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MIDINetworkHost] class.
+type IMIDINetworkHost interface {
+	objectivec.IObject
+}
+
 // An object that represents the host’s network address. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost
@@ -30,6 +35,36 @@ type MIDINetworkHost struct {
 func MIDINetworkHostFrom(ptr unsafe.Pointer) MIDINetworkHost {
 	return MIDINetworkHost{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MIDINetworkHostClass) Alloc() MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MIDINetworkHostClass) New() MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MIDINetworkHost) Init() MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MIDINetworkHost) Autorelease() MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMIDINetworkHost creates a new MIDINetworkHost instance.
+func NewMIDINetworkHost() MIDINetworkHost {
+	return mIDINetworkHostClass.New()
+}
+
 
 
 

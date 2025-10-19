@@ -95,6 +95,110 @@ func NewURL() URL {
 }
 
 
+// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:)
+func NewURLFileURLWithPath(path string) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:"), objc.String(path))
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
+func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), objc.String(path), isDir, baseURL)
+	rv.Autorelease()
+	return rv
+}
+// Reads an NSURL object off of the specified pasteboard. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
+func NewURLFromPasteboard(pasteBoard unsafe.Pointer) URL {
+	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLFromPasteboard:"), pasteBoard)
+	rv.Autorelease()
+	return rv
+}
+// Returns a new URL made by resolving the alias file at . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
+func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) URL {
+	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly created NSURL that points to a location specified by resolving bookmark data. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
+func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData unsafe.Pointer, options unsafe.Pointer, relativeURL unsafe.Pointer, isStale unsafe.Pointer, error unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:)
+func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:"), objc.String(path), isDir)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
+func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly created NSURL with a specified scheme, host, and path. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(scheme:host:path:)
+func NewURLWithSchemeHostPath(scheme string, host string, path string) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithScheme:host:path:"), objc.String(scheme), objc.String(host), objc.String(path))
+	rv.Autorelease()
+	return rv
+}
+// Initializes an NSURL object with a provided URL string. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:)
+func NewURLWithString(URLString string) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
+	rv.Autorelease()
+	return rv
+}
+// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
+func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an NSURL object with a base URL and a relative string. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
+func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), objc.String(URLString), baseURL)
+	rv.Autorelease()
+	return rv
+}
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
 func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
@@ -111,63 +215,6 @@ func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsa
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
-func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), path, isDir, baseURL)
-	rv.Autorelease()
-	return rv
-}
-// Reads an NSURL object off of the specified pasteboard. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func NewURLFromPasteboard(pasteBoard unsafe.Pointer) URL {
-	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLFromPasteboard:"), pasteBoard)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly created NSURL that points to a location specified by resolving bookmark data. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
-func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData unsafe.Pointer, options unsafe.Pointer, relativeURL unsafe.Pointer, isStale unsafe.Pointer, error unsafe.Pointer) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly created NSURL with a specified scheme, host, and path. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(scheme:host:path:)
-func NewURLWithSchemeHostPath(scheme string, host string, path string) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithScheme:host:path:"), scheme, host, path)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an NSURL object with a provided URL string. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:)
-func NewURLWithString(URLString string) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:"), URLString)
-	rv.Autorelease()
-	return rv
-}
-// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
-func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), URLString, encodingInvalidCharacters)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a URL object with a C string representing a local file system path. [Full Topic]
 
 //
@@ -175,53 +222,6 @@ func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalid
 func NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsafe.Pointer, isDir bool, baseURL unsafe.Pointer) URL {
 	instance := uRLClass.Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:"), path, isDir, baseURL)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:)
-func NewURLFileURLWithPath(path string) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:"), path)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:)
-func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:"), path, isDir)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
-func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), path, baseURL)
-	rv.Autorelease()
-	return rv
-}
-// Returns a new URL made by resolving the alias file at . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
-func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) URL {
-	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an NSURL object with a base URL and a relative string. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
-func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), URLString, baseURL)
 	rv.Autorelease()
 	return rv
 }
@@ -246,7 +246,7 @@ func (uc _URLClass) URLWithDataRepresentationRelativeToURL(data unsafe.Pointer, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLWithString:
 func (uc _URLClass) URLWithString(URLString string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLWithString:"), URLString)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLWithString:"), objc.String(URLString))
 	return rv
 }
 // Creates and returns an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters. [Full Topic]
@@ -254,7 +254,7 @@ func (uc _URLClass) URLWithString(URLString string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLWithString:encodingInvalidCharacters:
 func (uc _URLClass) URLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLWithString:encodingInvalidCharacters:"), URLString, encodingInvalidCharacters)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
 	return rv
 }
 // Creates and returns an NSURL object initialized with a base URL and a relative string. [Full Topic]
@@ -262,7 +262,7 @@ func (uc _URLClass) URLWithStringEncodingInvalidCharacters(URLString string, enc
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLWithString:relativeToURL:
 func (uc _URLClass) URLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLWithString:relativeToURL:"), URLString, baseURL)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLWithString:relativeToURL:"), objc.String(URLString), baseURL)
 	return rv
 }
 //
@@ -292,7 +292,7 @@ func (uc _URLClass) FileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:)
 func (uc _URLClass) FileURLWithPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:"), path)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:"), objc.String(path))
 	return rv
 }
 // Initializes and returns a newly created NSURL object as a file URL with a specified path. [Full Topic]
@@ -300,19 +300,19 @@ func (uc _URLClass) FileURLWithPath(path string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:)
 func (uc _URLClass) FileURLWithPathIsDirectory(path string, isDir bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:"), path, isDir)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:"), objc.String(path), isDir)
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:relativeTo:)
 func (uc _URLClass) FileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:relativeToURL:"), path, isDir, baseURL)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:relativeToURL:"), objc.String(path), isDir, baseURL)
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:relativeTo:)
 func (uc _URLClass) FileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:relativeToURL:"), path, baseURL)
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
 	return rv
 }
 // Initializes and returns a newly created NSURL object as a file URL with specified path components. [Full Topic]
@@ -368,7 +368,7 @@ func (u_ URL) URLHandleUsingCache(shouldUseCache bool) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:)
 func (u_ URL) URLByAppendingPathComponent(pathComponent string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathComponent:"), pathComponent)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathComponent:"), objc.String(pathComponent))
 	return rv
 }
 // Returns a URL by appending the specified path component with the file extension for a uniform type identifier. [Full Topic]
@@ -376,7 +376,7 @@ func (u_ URL) URLByAppendingPathComponent(pathComponent string) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:conformingTo:)
 func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathComponent:conformingToType:"), partialName, contentType)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
 // Returns a new URL by appending a path component to the original URL, along with a trailing slash if the component is a directory. [Full Topic]
@@ -384,7 +384,7 @@ func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, co
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:isDirectory:)
 func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathComponent:isDirectory:"), pathComponent, isDirectory)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathComponent:isDirectory:"), objc.String(pathComponent), isDirectory)
 	return rv
 }
 // Returns a new URL by appending a path extension to the original URL. [Full Topic]
@@ -392,7 +392,7 @@ func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent string, isDir
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathExtension(_:)
 func (u_ URL) URLByAppendingPathExtension(pathExtension string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathExtension:"), pathExtension)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLByAppendingPathExtension:"), objc.String(pathExtension))
 	return rv
 }
 // Returns a URL by appending the path extension for a uniform type identifier. [Full Topic]
@@ -487,7 +487,7 @@ func (u_ URL) PromisedItemResourceValuesForKeysError(keys unsafe.Pointer, error 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/propertyForKey:
 func (u_ URL) PropertyForKey(propertyKey string) objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("propertyForKey:"), propertyKey)
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("propertyForKey:"), objc.String(propertyKey))
 	return rv
 }
 // Removes all cached resource values and temporary resource values from the URL object. [Full Topic]
@@ -525,7 +525,7 @@ func (u_ URL) ResourceValuesForKeysError(keys unsafe.Pointer, error unsafe.Point
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setProperty:forKey:
 func (u_ URL) SetPropertyForKey(property objc.ID, propertyKey string) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("setProperty:forKey:"), property, propertyKey)
+	rv := objc.Send[bool](u_.ID, objc.Sel("setProperty:forKey:"), property, objc.String(propertyKey))
 	return rv
 }
 // Attempts to set the resource data for the receiver. [Full Topic]

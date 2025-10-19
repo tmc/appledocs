@@ -75,7 +75,7 @@ func NewPersistentContainer() PersistentContainer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
 func NewPersistentContainerWithName(name string) PersistentContainer {
 	instance := persistentContainerClass.Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), name)
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }

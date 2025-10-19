@@ -16,6 +16,11 @@ type _MIDIUMPEndpointManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MIDIUMPEndpointManager] class.
+type IMIDIUMPEndpointManager interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager
 
@@ -27,6 +32,36 @@ type MIDIUMPEndpointManager struct {
 func MIDIUMPEndpointManagerFrom(ptr unsafe.Pointer) MIDIUMPEndpointManager {
 	return MIDIUMPEndpointManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MIDIUMPEndpointManagerClass) Alloc() MIDIUMPEndpointManager {
+	rv := objc.Send[MIDIUMPEndpointManager](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MIDIUMPEndpointManagerClass) New() MIDIUMPEndpointManager {
+	rv := objc.Send[MIDIUMPEndpointManager](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MIDIUMPEndpointManager) Init() MIDIUMPEndpointManager {
+	rv := objc.Send[MIDIUMPEndpointManager](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MIDIUMPEndpointManager) Autorelease() MIDIUMPEndpointManager {
+	rv := objc.Send[MIDIUMPEndpointManager](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMIDIUMPEndpointManager creates a new MIDIUMPEndpointManager instance.
+func NewMIDIUMPEndpointManager() MIDIUMPEndpointManager {
+	return mIDIUMPEndpointManagerClass.New()
+}
+
 
 
 

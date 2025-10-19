@@ -98,7 +98,7 @@ func NewURLSession() URLSession {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
-func NewSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
+func NewURLSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
 	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
@@ -107,7 +107,7 @@ func NewSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
-func NewSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Pointer, delegate unsafe.Pointer, queue unsafe.Pointer) URLSession {
+func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Pointer, delegate unsafe.Pointer, queue unsafe.Pointer) URLSession {
 	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	rv.Autorelease()
 	return rv
@@ -265,7 +265,7 @@ func (u_ URLSession) StreamTaskWithNetService(service unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/streamTask(withHostName:port:)
 func (u_ URLSession) StreamTaskWithHostNamePort(hostname string, port int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("streamTaskWithHostName:port:"), hostname, port)
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("streamTaskWithHostName:port:"), objc.String(hostname), port)
 	return rv
 }
 // Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data. [Full Topic]

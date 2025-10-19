@@ -6,7 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [WarpKernel] class.
@@ -74,7 +73,7 @@ func NewWarpKernel() WarpKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
 func NewWarpKernelWithString(string string) WarpKernel {
-	rv := objc.Send[WarpKernel](objc.ID(warpKernelClass.class), objc.Sel("kernelWithString:"), string)
+	rv := objc.Send[WarpKernel](objc.ID(warpKernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
 	rv.Autorelease()
 	return rv
 }
@@ -85,7 +84,7 @@ func NewWarpKernelWithString(string string) WarpKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
 func (wc _WarpKernelClass) KernelWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), string)
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 // Creates a new image using the kernel and the specified input image and arguments. [Full Topic]

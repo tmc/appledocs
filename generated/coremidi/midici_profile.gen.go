@@ -16,6 +16,11 @@ type _MIDICIProfileClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MIDICIProfile] class.
+type IMIDICIProfile interface {
+	objectivec.IObject
+}
+
 // A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfile
@@ -30,6 +35,36 @@ type MIDICIProfile struct {
 func MIDICIProfileFrom(ptr unsafe.Pointer) MIDICIProfile {
 	return MIDICIProfile{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MIDICIProfileClass) Alloc() MIDICIProfile {
+	rv := objc.Send[MIDICIProfile](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MIDICIProfileClass) New() MIDICIProfile {
+	rv := objc.Send[MIDICIProfile](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MIDICIProfile) Init() MIDICIProfile {
+	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MIDICIProfile) Autorelease() MIDICIProfile {
+	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMIDICIProfile creates a new MIDICIProfile instance.
+func NewMIDICIProfile() MIDICIProfile {
+	return mIDICIProfileClass.New()
+}
+
 
 
 

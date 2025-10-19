@@ -66,6 +66,16 @@ func NewSampler() Sampler {
 }
 
 
+// Initializes a sampler with an image object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:)
+func NewSamplerWithImage(im unsafe.Pointer) Sampler {
+	instance := samplerClass.Alloc()
+	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:"), im)
+	rv.Autorelease()
+	return rv
+}
 // Initializes the sampler with an image object using options specified in a dictionary. [Full Topic]
 
 //
@@ -83,16 +93,6 @@ func NewSamplerWithImageOptions(im unsafe.Pointer, dict unsafe.Pointer) Sampler 
 func NewSamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) Sampler {
 	instance := samplerClass.Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a sampler with an image object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:)
-func NewSamplerWithImage(im unsafe.Pointer) Sampler {
-	instance := samplerClass.Alloc()
-	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:"), im)
 	rv.Autorelease()
 	return rv
 }

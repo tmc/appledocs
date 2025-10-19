@@ -15,6 +15,14 @@ type _MIDIUMPMutableEndpointClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MIDIUMPMutableEndpoint] class.
+type IMIDIUMPMutableEndpoint interface {
+	IMIDIUMPEndpoint
+	RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error unsafe.Pointer) bool
+	SetEnabledError(isEnabled bool, error unsafe.Pointer) bool
+	SetNameError(name string, error unsafe.Pointer) bool
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint
 
@@ -57,11 +65,13 @@ func (m_ MIDIUMPMutableEndpoint) Autorelease() MIDIUMPMutableEndpoint {
 func NewMIDIUMPMutableEndpoint() MIDIUMPMutableEndpoint {
 	return mIDIUMPMutableEndpointClass.New()
 }
+
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/init(name:deviceInfo:productInstanceID:midiProtocol:destinationCallback:)
 func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name string, deviceInfo unsafe.Pointer, productInstanceID string, MIDIProtocol unsafe.Pointer, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
 	instance := mIDIUMPMutableEndpointClass.Alloc()
-	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), name, deviceInfo, productInstanceID, MIDIProtocol, destinationCallback)
+	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), objc.String(name), deviceInfo, objc.String(productInstanceID), MIDIProtocol, destinationCallback)
 	rv.Autorelease()
 	return rv
 }
@@ -82,7 +92,7 @@ func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error unsafe.Po
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setName(_:)
 func (m_ MIDIUMPMutableEndpoint) SetNameError(name string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), name, error)
+	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error)
 	return rv
 }
 

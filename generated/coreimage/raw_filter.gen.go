@@ -67,15 +67,6 @@ func NewRAWFilter() RAWFilter {
 }
 
 
-// Creates a RAW filter from the image at the URL location that you specify. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageURL:"), url)
-	rv.Autorelease()
-	return rv
-}
 // Creates a RAW filter from the pixel buffer and its properties that you specify. [Full Topic]
 
 //
@@ -90,7 +81,16 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties u
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
 func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
+	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
+	rv.Autorelease()
+	return rv
+}
+// Creates a RAW filter from the image at the URL location that you specify. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
+func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
+	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageURL:"), url)
 	rv.Autorelease()
 	return rv
 }
@@ -109,7 +109,7 @@ func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointe
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
 func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
 // Creates a RAW filter from the image at the URL location that you specify. [Full Topic]

@@ -72,7 +72,7 @@ func NewCoder() Coder {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeObjectOfClass:forKey:
 func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, key)
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, objc.String(key))
 	return rv
 }
 

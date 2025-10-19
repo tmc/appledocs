@@ -83,7 +83,7 @@ func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
 func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 	instance := batchUpdateRequestClass.Alloc()
-	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), entityName)
+	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv
 }
@@ -94,7 +94,7 @@ func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/batchUpdateRequestWithEntityName:
 func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), entityName)
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // CoreMIDI Functions (72 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -93,7 +94,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_MIDIBluetoothDriverActivateAllConnections, lib, "MIDIBluetoothDriverActivateAllConnections")
 	tryRegister(&_MIDIBluetoothDriverDisconnect, lib, "MIDIBluetoothDriverDisconnect")
 	tryRegister(&_MIDIClientCreate, lib, "MIDIClientCreate")
@@ -179,6 +179,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Promote all active Bluetooth connections into an online MIDI device capable of input and output. [Full Topic]
