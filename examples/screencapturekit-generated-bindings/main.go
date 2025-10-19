@@ -26,7 +26,7 @@ import (
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/coreimage"
-	_ "github.com/tmc/appledocs/generated/coremedia" // Generated bindings available
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	_ "github.com/tmc/appledocs/generated/imageio" // Generated bindings available
 	"github.com/tmc/appledocs/generated/screencapturekit"
@@ -42,9 +42,8 @@ var (
 )
 
 // C function declarations for frameworks with incomplete bindings
-// Note: These functions are C APIs not documented in Apple's JSON docs
+// Note: These functions are C APIs not available in individual documentation pages
 var (
-	CMSampleBufferGetImageBuffer    func(uintptr) uintptr
 	CGImageDestinationCreateWithURL func(uintptr, uintptr, int, uintptr) uintptr
 	CGImageDestinationAddImage      func(uintptr, uintptr, uintptr)
 	CGImageDestinationFinalize      func(uintptr) bool
@@ -81,14 +80,6 @@ func init() {
 	if err != nil {
 		// Framework not available, will be handled at runtime
 		_ = err
-	}
-
-	// Load CoreMedia framework for CMSampleBufferGetImageBuffer
-	// Note: Generated CoreMedia bindings available, but CMSampleBufferGetImageBuffer is a C function
-	// not in Apple's documentation, so we still need manual registration
-	coreMedia, err := purego.Dlopen("/System/Library/Frameworks/CoreMedia.framework/CoreMedia", purego.RTLD_NOW|purego.RTLD_GLOBAL)
-	if err == nil {
-		purego.RegisterLibFunc(&CMSampleBufferGetImageBuffer, coreMedia, "CMSampleBufferGetImageBuffer")
 	}
 
 	// Load ImageIO framework for PNG saving
@@ -663,13 +654,9 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 		return
 	}
 
-	// Get pixel buffer from sample buffer
-	if CMSampleBufferGetImageBuffer == nil {
-		return
-	}
-
-	pixelBuffer := CMSampleBufferGetImageBuffer(sampleBuffer)
-	if pixelBuffer == 0 {
+	// Get pixel buffer from sample buffer using generated CoreMedia binding
+	pixelBuffer := coremedia.CMSampleBufferGetImageBuffer(coremedia.CMSampleBufferRef(sampleBuffer))
+	if pixelBuffer == nil {
 		fmt.Fprintf(os.Stderr, "\n⚠️  No pixel buffer in sample\n")
 		return
 	}

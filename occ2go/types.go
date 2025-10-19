@@ -23,6 +23,7 @@ type ParsedClass struct {
 	Availability Availability
 	DocURL       string
 	Abstract     string
+	Overview     string // Extended description from documentation overview section
 }
 
 // HasInitMethods returns true if the class has at least one documented init method.

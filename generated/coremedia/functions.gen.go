@@ -9,7 +9,10 @@ import (
 )
 
 
-// CoreMedia Functions (15 total)
+// CoreMedia Functions (16 total)
+//
+// NOTE: CMSampleBufferGetImageBuffer was manually added from the cmsamplebuffer-api.json collection page
+// since the generator doesn't yet parse API collection pages (see appledocs-208)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -18,6 +21,7 @@ var (
 	_CMBufferQueueCopyHead func(unsafe.Pointer) unsafe.Pointer
 	_CMMemoryPoolGetTypeID func() unsafe.Pointer
 	_CMMetadataDataTypeRegistryDataTypeConformsToDataType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CMSampleBufferGetImageBuffer func(CMSampleBufferRef) unsafe.Pointer
 	_CMSampleBufferGetSampleAttachmentsArray func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CMSimpleQueueGetTypeID func() unsafe.Pointer
 	_CMSwapBigEndianClosedCaptionDescriptionToHost func(unsafe.Pointer, uintptr) unsafe.Pointer
@@ -40,6 +44,7 @@ func init() {
 	tryRegister(&_CMBufferQueueCopyHead, lib, "CMBufferQueueCopyHead")
 	tryRegister(&_CMMemoryPoolGetTypeID, lib, "CMMemoryPoolGetTypeID")
 	tryRegister(&_CMMetadataDataTypeRegistryDataTypeConformsToDataType, lib, "CMMetadataDataTypeRegistryDataTypeConformsToDataType")
+	tryRegister(&_CMSampleBufferGetImageBuffer, lib, "CMSampleBufferGetImageBuffer")
 	tryRegister(&_CMSampleBufferGetSampleAttachmentsArray, lib, "CMSampleBufferGetSampleAttachmentsArray")
 	tryRegister(&_CMSimpleQueueGetTypeID, lib, "CMSimpleQueueGetTypeID")
 	tryRegister(&_CMSwapBigEndianClosedCaptionDescriptionToHost, lib, "CMSwapBigEndianClosedCaptionDescriptionToHost")
@@ -96,6 +101,14 @@ func CMMemoryPoolGetTypeID() unsafe.Pointer {
 func CMMetadataDataTypeRegistryDataTypeConformsToDataType(dataType unsafe.Pointer, conformsToDataType unsafe.Pointer) unsafe.Pointer {
 	return _CMMetadataDataTypeRegistryDataTypeConformsToDataType(dataType, conformsToDataType)
 	}
+
+
+// Returns an image buffer that contains the media data. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSampleBufferGetImageBuffer(_:)
+func CMSampleBufferGetImageBuffer(sbuf CMSampleBufferRef) unsafe.Pointer {
+	return _CMSampleBufferGetImageBuffer(sbuf)
+}
 
 
 // Retrieves an array of sample attachment dictionaries that represents each sample in a sample buffer. [Full Topic]

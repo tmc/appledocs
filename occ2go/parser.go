@@ -70,6 +70,7 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		cls.Availability = availability
 		cls.DocURL = docURL
 		cls.Abstract = abstract
+		cls.Overview = ExtractOverview(doc)
 		return nil, cls, nil, nil
 
 	case strings.HasPrefix(externalID, "c:objc(pl)"):
@@ -117,6 +118,99 @@ func ExtractAbstract(abstract []appledocs.InlineContent) string {
 		}
 	}
 	return strings.Join(parts, " ")
+}
+
+// ExtractOverview extracts the overview description from primaryContentSections.
+// It looks for content sections with an "overview" anchor and extracts the paragraph text.
+func ExtractOverview(doc *appledocs.Document) string {
+	if doc == nil {
+		return ""
+	}
+
+	for _, section := range doc.PrimaryContentSections {
+		if section.Kind != "content" {
+			continue
+		}
+
+		// Look for overview heading and subsequent paragraphs
+		inOverview := false
+		var overviewParts []string
+
+		for _, contentItem := range section.Content {
+			// Type assert to map to access fields
+			contentMap, ok := contentItem.(map[string]interface{})
+			if !ok {
+				continue
+			}
+
+			contentType, _ := contentMap["type"].(string)
+
+			// Check if this is the overview heading
+			if contentType == "heading" {
+				anchor, _ := contentMap["anchor"].(string)
+				if anchor == "overview" {
+					inOverview = true
+					continue
+				}
+				// If we're in the overview section and hit another heading, stop
+				if inOverview {
+					break
+				}
+			}
+
+			if !inOverview {
+				continue
+			}
+
+			// Extract paragraph text
+			if contentType == "paragraph" {
+				if inlineContent, ok := contentMap["inlineContent"].([]interface{}); ok {
+					for _, inline := range inlineContent {
+						if inlineMap, ok := inline.(map[string]interface{}); ok {
+							if text, ok := inlineMap["text"].(string); ok && text != "" {
+								overviewParts = append(overviewParts, text)
+							}
+						}
+					}
+				}
+			}
+
+			// Extract list items
+			if contentType == "unorderedList" || contentType == "orderedList" {
+				if items, ok := contentMap["items"].([]interface{}); ok {
+					for _, item := range items {
+						if itemMap, ok := item.(map[string]interface{}); ok {
+							if content, ok := itemMap["content"].([]interface{}); ok {
+								for _, c := range content {
+									if cMap, ok := c.(map[string]interface{}); ok {
+										if inlineContent, ok := cMap["inlineContent"].([]interface{}); ok {
+											var itemText []string
+											for _, inline := range inlineContent {
+												if inlineMap, ok := inline.(map[string]interface{}); ok {
+													if text, ok := inlineMap["text"].(string); ok && text != "" {
+														itemText = append(itemText, text)
+													}
+												}
+											}
+											if len(itemText) > 0 {
+												overviewParts = append(overviewParts, strings.Join(itemText, " "))
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if len(overviewParts) > 0 {
+			return strings.Join(overviewParts, " ")
+		}
+	}
+
+	return ""
 }
 
 // ConvertDocURLToWeb converts an Apple documentation identifier URL to a web-accessible URL.
