@@ -15,20 +15,35 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 var (
-	e2e = flag.Bool("e2e", false, "run end-to-end test mode (non-interactive)")
+	e2e         = flag.Bool("e2e", false, "run end-to-end test mode (non-interactive)")
+	testLoading = flag.Bool("test-loading", false, "test framework loading")
 )
 
 func init() {
 	runtime.LockOSThread()
+
+	// Explicitly load ScreenCaptureKit framework
+	// This is required for the Objective-C classes to be available
+	_, err := purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/ScreenCaptureKit", purego.RTLD_NOW|purego.RTLD_GLOBAL)
+	if err != nil {
+		// Framework not available, will be handled at runtime
+		_ = err
+	}
 }
 
 func main() {
 	flag.Parse()
+
+	if *testLoading {
+		testFrameworkLoading()
+		return
+	}
 
 	if *e2e {
 		runE2ETest()
@@ -68,11 +83,12 @@ func main() {
 			defer func() { done <- true }()
 
 			if error != 0 {
-				fmt.Println("✗ Error getting shareable content:")
+				fmt.Println("✗ Error getting shareable content")
 				desc := error.Send(objc.RegisterName("localizedDescription"))
 				if desc != 0 {
-					cstr := desc.Send(objc.RegisterName("UTF8String"))
-					fmt.Printf("   %s\n", objc.Send[string](cstr, objc.RegisterName("description")))
+					// Get UTF8 string from NSString
+					descStr := objc.Send[string](desc, objc.RegisterName("UTF8String"))
+					fmt.Printf("   Error: %s\n", descStr)
 				}
 				return
 			}
@@ -305,4 +321,83 @@ func demonstrateScreenCaptureKitAPI() {
 	
 	fmt.Println()
 	fmt.Println("═══════════════════════════════════════════════════════════")
+}
+
+func testFrameworkLoading() {
+	fmt.Println("=== ScreenCaptureKit Framework Loading Test ===")
+	fmt.Println()
+
+	// Try to load ScreenCaptureKit framework explicitly
+	fmt.Println("1. Attempting to load ScreenCaptureKit.framework...")
+	handle, err := purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/ScreenCaptureKit", purego.RTLD_NOW|purego.RTLD_GLOBAL)
+	if err != nil {
+		fmt.Printf("   ✗ Failed to load framework: %v\n", err)
+		fmt.Println()
+
+		// Try without RTLD_GLOBAL
+		fmt.Println("2. Trying without RTLD_GLOBAL...")
+		handle, err = purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/ScreenCaptureKit", purego.RTLD_NOW)
+		if err != nil {
+			fmt.Printf("   ✗ Failed again: %v\n", err)
+			fmt.Println()
+		} else {
+			fmt.Printf("   ✓ Loaded framework (handle: %v)\n", handle)
+			fmt.Println()
+		}
+	} else {
+		fmt.Printf("   ✓ Loaded framework (handle: %v)\n", handle)
+		fmt.Println()
+	}
+
+	// Now check for SCShareableContent class
+	fmt.Println("3. Looking up SCShareableContent class...")
+	scClass := objc.GetClass("SCShareableContent")
+	if scClass == 0 {
+		fmt.Println("   ✗ SCShareableContent class NOT found")
+	} else {
+		fmt.Printf("   ✓ SCShareableContent class found: %v\n", scClass)
+	}
+	fmt.Println()
+
+	// Check for other ScreenCaptureKit classes
+	fmt.Println("4. Checking other ScreenCaptureKit classes...")
+	classes := []string{
+		"SCScreenshotManager",
+		"SCDisplay",
+		"SCWindow",
+		"SCRunningApplication",
+		"SCContentFilter",
+		"SCStream",
+		"SCStreamConfiguration",
+	}
+
+	for _, className := range classes {
+		cls := objc.GetClass(className)
+		if cls == 0 {
+			fmt.Printf("   ✗ %s NOT found\n", className)
+		} else {
+			fmt.Printf("   ✓ %s found: %v\n", className, cls)
+		}
+	}
+	fmt.Println()
+
+	// Try loading with versioned path
+	fmt.Println("5. Trying versioned framework path...")
+	handle2, err := purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/Versions/A/ScreenCaptureKit", purego.RTLD_NOW)
+	if err != nil {
+		fmt.Printf("   ✗ Failed: %v\n", err)
+	} else {
+		fmt.Printf("   ✓ Loaded versioned framework (handle: %v)\n", handle2)
+
+		// Check class again
+		scClass2 := objc.GetClass("SCShareableContent")
+		if scClass2 == 0 {
+			fmt.Println("   ✗ Still no SCShareableContent class")
+		} else {
+			fmt.Printf("   ✓ SCShareableContent found: %v\n", scClass2)
+		}
+	}
+	fmt.Println()
+
+	fmt.Println("=== Test Complete ===")
 }
