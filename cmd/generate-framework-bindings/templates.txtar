@@ -386,7 +386,6 @@ func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
 }
 {{end -}}
 
-{{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
 	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("alloc"))
@@ -417,6 +416,7 @@ func New{{$structName}}() {{$structName}} {
 	return {{$varName}}.New()
 }
 
+{{if .HasInitMethods -}}
 {{- range prepareInitMethodsWithClassName $className .Methods}}
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
@@ -641,7 +641,6 @@ func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
 }
 {{end -}}
 
-{{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
 	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("alloc"))
@@ -672,6 +671,7 @@ func New{{$structName}}() {{$structName}} {
 	return {{$varName}}.New()
 }
 
+{{if .HasInitMethods -}}
 {{- range prepareInitMethodsWithClassName $className .Methods}}
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
@@ -772,6 +772,9 @@ import (
 {{- end}}
 )
 
+// Suppress unused import errors
+var _ = {{.PackageName}}.New{{classToStructName .Class.Name}}
+
 {{with .Class -}}
 {{$structName := classToStructName .Name -}}
 {{$packageName := $.PackageName -}}
@@ -783,7 +786,7 @@ import (
 {{- $canGenerateAllParams := true}}
 {{- range .Parameters}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
-{{- if not (canGenerateTestValue $goType)}}
+{{- if not (canGenerateTestValue $goType .Name)}}
 {{- $canGenerateAllParams = false}}
 {{- end}}
 {{- end}}

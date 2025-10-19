@@ -1358,9 +1358,18 @@ func generateTestValue(goType, framework, paramName string) string {
 	return fmt.Sprintf("%s{}", goType)
 }
 
-// canGenerateTestValue checks if we can generate a reasonable test value for the given type.
+// canGenerateTestValue checks if we can generate a reasonable test value for the given type and parameter name.
 // Returns true if generateTestValue will produce a usable value.
-func canGenerateTestValue(goType string) bool {
+// Params may include the parameter name (for context-sensitive filtering like file paths).
+func canGenerateTestValue(args ...string) bool {
+	if len(args) == 0 {
+		return false
+	}
+	goType := args[0]
+	paramName := ""
+	if len(args) > 1 {
+		paramName = strings.ToLower(args[1])
+	}
 	// We can generate test values for most primitive types and some common types
 	switch goType {
 	case "string", "int", "int8", "int16", "int32", "int64",
@@ -1384,9 +1393,25 @@ func canGenerateTestValue(goType string) bool {
 		return true
 	}
 
-	// We can handle unsafe.Pointer
+	// We CANNOT safely generate test values for unsafe.Pointer
+	// as they would require actual allocated objects which we don't have in tests
 	if goType == "unsafe.Pointer" {
-		return true
+		return false
+	}
+
+	// Special handling for string parameters that are likely file paths or URLs
+	// These would cause runtime crashes if we try to use them
+	if goType == "string" && paramName != "" {
+		problematicNames := []string{
+			"path", "filepath", "filename", "file",
+			"url", "uri",
+			"bundlepath", "resourcepath", "directory", "dir",
+		}
+		for _, name := range problematicNames {
+			if strings.Contains(paramName, name) {
+				return false
+			}
+		}
 	}
 
 	// For other types, we don't know how to create test values

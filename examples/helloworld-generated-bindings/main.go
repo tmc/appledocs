@@ -75,57 +75,51 @@ func main() {
 
 	fmt.Println("=== Hello World (Generated Bindings) ===\n")
 
-	// Get NSApplication shared instance
-	app := appkit.SharedApplication()
-	app.SetActivationPolicy(appkit.ActivationPolicyRegular)
+	// Use RunApp helper to handle application lifecycle
+	appkit.RunApp(func(app appkit.Application) {
+		// Create window
+		window := appkit.NewWindowWithFrame(100, 100, 400, 300,
+			appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
+		window.SetTitle("Hello from Generated Bindings!")
 
-	// Create window
-	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
-		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
-	window.SetTitle("Hello from Generated Bindings!")
+		// Get content view
+		contentView := window.ContentView()
 
-	// Get content view
-	contentView := window.ContentView()
+		// Create and configure label
+		label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
+		label.SetStringValue("Using generated bindings!")
+		label.SetEditable(false)
+		label.SetBordered(false)
+		label.SetDrawsBackground(false)
+		contentView.AddSubviewTyped(label)
 
-	// Create and configure label
-	label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
-	label.SetStringValue("Using generated bindings!")
-	label.SetEditable(false)
-	label.SetBordered(false)
-	label.SetDrawsBackground(false)
-	contentView.AddSubviewTyped(label)
+		// Create and configure counter label
+		counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
+		counterLabel.SetStringValue("Clicks: 0")
+		counterLabel.SetEditable(false)
+		counterLabel.SetBordered(false)
+		counterLabel.SetDrawsBackground(false)
+		counterLabel.SetAlignment(appkit.TextAlignmentCenter)
+		contentView.AddSubviewTyped(counterLabel)
 
-	// Create and configure counter label
-	counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
-	counterLabel.SetStringValue("Clicks: 0")
-	counterLabel.SetEditable(false)
-	counterLabel.SetBordered(false)
-	counterLabel.SetDrawsBackground(false)
-	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
-	contentView.AddSubviewTyped(counterLabel)
+		// Create button using generated constructor
+		button := appkit.NewButtonWithTitleTargetAction("Click Me!", createButtonHandler(), objc.RegisterName("buttonClicked:"))
+		button.SetFrameRect(150, 130, 100, 40)
+		button.SetButtonType(appkit.ButtonTypeMomentaryLight)
+		button.SetBezelStyle(appkit.BezelStyleRounded)
+		contentView.AddSubviewTyped(button)
 
-	// Create button using generated constructor
-	button := appkit.NewButtonWithTitleTargetAction("Click Me!", createButtonHandler(), objc.RegisterName("buttonClicked:"))
-	button.SetFrameRect(150, 130, 100, 40)
-	button.SetButtonType(appkit.ButtonTypeMomentaryLight)
-	button.SetBezelStyle(appkit.BezelStyleRounded)
-	contentView.AddSubviewTyped(button)
+		// Show window using generated method
+		window.MakeKeyAndOrderFront(0)
 
-	// Show window using generated method
-	window.MakeKeyAndOrderFront(0)
-
-	fmt.Println("✅ Using generated bindings:")
-	fmt.Println("   - Types: Window, Button, TextField, View, Application")
-	fmt.Println("   - Constructors: NewWindowWithContentRectStyleMaskBackingDefer, NewButtonWithTitleTargetAction")
-	fmt.Println("   - Methods: MakeKeyAndOrderFront, AddSubviewTyped (type-safe!), SetStringValue")
-	fmt.Println("   - Conversions: ApplicationFrom, TextFieldFrom, ViewFrom")
-	fmt.Println("   - Interfaces: IView, IButton, ITextField for type safety")
-	fmt.Println("\n   Click the button! Press Cmd+Q to quit.\n")
-
-	// Finish launching and run
-	app.FinishLaunching()
-	app.ActivateIgnoringOtherApps(true)
-	app.Run()
+		fmt.Println("✅ Using generated bindings:")
+		fmt.Println("   - Types: Window, Button, TextField, View, Application")
+		fmt.Println("   - Constructors: NewWindowWithFrame, NewButtonWithTitleTargetAction")
+		fmt.Println("   - Methods: MakeKeyAndOrderFront, AddSubviewTyped (type-safe!), SetStringValue")
+		fmt.Println("   - Helper: RunApp for application lifecycle management")
+		fmt.Println("   - Interfaces: IView, IButton, ITextField for type safety")
+		fmt.Println("\n   Click the button! Press Cmd+Q to quit.\n")
+	})
 }
 
 // runE2ETest runs automated end-to-end tests without user interaction.
