@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Pipe] class.
-var pipeClass = _PipeClass{objc.GetClass("NSPipe")}
+var (
+	pipeClass     _PipeClass
+	pipeClassOnce sync.Once
+)
+
+func getPipeClass() _PipeClass {
+	pipeClassOnce.Do(func() {
+		pipeClass = _PipeClass{objc.GetClass("NSPipe")}
+	})
+	return pipeClass
+}
 
 type _PipeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPipe interface {
 // A one-way communications channel between related processes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe
-
 type Pipe struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Pipe struct {
 func PipeFrom(ptr unsafe.Pointer) Pipe {
 	return Pipe{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PipeClass) Alloc() Pipe {
 	rv := objc.Send[Pipe](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PipeClass) New() Pipe {
 	rv := objc.Send[Pipe](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ Pipe) Autorelease() Pipe {
 
 // NewPipe creates a new Pipe instance.
 func NewPipe() Pipe {
-	return pipeClass.New()
+	return getPipeClass().New()
 }
 
 

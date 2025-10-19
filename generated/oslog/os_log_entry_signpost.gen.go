@@ -3,13 +3,24 @@
 package oslog
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OSLogEntrySignpost] class.
-var oSLogEntrySignpostClass = _OSLogEntrySignpostClass{objc.GetClass("OSLogEntrySignpost")}
+var (
+	oSLogEntrySignpostClass     _OSLogEntrySignpostClass
+	oSLogEntrySignpostClassOnce sync.Once
+)
+
+func getOSLogEntrySignpostClass() _OSLogEntrySignpostClass {
+	oSLogEntrySignpostClassOnce.Do(func() {
+		oSLogEntrySignpostClass = _OSLogEntrySignpostClass{objc.GetClass("OSLogEntrySignpost")}
+	})
+	return oSLogEntrySignpostClass
+}
 
 type _OSLogEntrySignpostClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IOSLogEntrySignpost interface {
 // An entry containing a signpost. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost
-
 type OSLogEntrySignpost struct {
 	OSLogEntry
 }
@@ -36,13 +46,15 @@ func OSLogEntrySignpostFrom(ptr unsafe.Pointer) OSLogEntrySignpost {
 		OSLogEntry: OSLogEntryFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEntrySignpostClass) Alloc() OSLogEntrySignpost {
 	rv := objc.Send[OSLogEntrySignpost](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogEntrySignpostClass) New() OSLogEntrySignpost {
 	rv := objc.Send[OSLogEntrySignpost](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (o_ OSLogEntrySignpost) Autorelease() OSLogEntrySignpost {
 
 // NewOSLogEntrySignpost creates a new OSLogEntrySignpost instance.
 func NewOSLogEntrySignpost() OSLogEntrySignpost {
-	return oSLogEntrySignpostClass.New()
+	return getOSLogEntrySignpostClass().New()
 }
 
 

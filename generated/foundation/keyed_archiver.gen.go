@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [KeyedArchiver] class.
-var keyedArchiverClass = _KeyedArchiverClass{objc.GetClass("NSKeyedArchiver")}
+var (
+	keyedArchiverClass     _KeyedArchiverClass
+	keyedArchiverClassOnce sync.Once
+)
+
+func getKeyedArchiverClass() _KeyedArchiverClass {
+	keyedArchiverClassOnce.Do(func() {
+		keyedArchiverClass = _KeyedArchiverClass{objc.GetClass("NSKeyedArchiver")}
+	})
+	return keyedArchiverClass
+}
 
 type _KeyedArchiverClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IKeyedArchiver interface {
 // An encoder that stores an object’s data to an archive referenced by keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver
-
 type KeyedArchiver struct {
 	Coder
 }
@@ -37,13 +47,15 @@ func KeyedArchiverFrom(ptr unsafe.Pointer) KeyedArchiver {
 		Coder: CoderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (kc _KeyedArchiverClass) Alloc() KeyedArchiver {
 	rv := objc.Send[KeyedArchiver](objc.ID(kc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KeyedArchiverClass) New() KeyedArchiver {
 	rv := objc.Send[KeyedArchiver](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (k_ KeyedArchiver) Autorelease() KeyedArchiver {
 
 // NewKeyedArchiver creates a new KeyedArchiver instance.
 func NewKeyedArchiver() KeyedArchiver {
-	return keyedArchiverClass.New()
+	return getKeyedArchiverClass().New()
 }
 
 

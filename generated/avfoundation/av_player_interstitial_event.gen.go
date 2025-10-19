@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlayerInterstitialEvent] class.
-var aVPlayerInterstitialEventClass = _AVPlayerInterstitialEventClass{objc.GetClass("AVPlayerInterstitialEvent")}
+var (
+	aVPlayerInterstitialEventClass     _AVPlayerInterstitialEventClass
+	aVPlayerInterstitialEventClassOnce sync.Once
+)
+
+func getAVPlayerInterstitialEventClass() _AVPlayerInterstitialEventClass {
+	aVPlayerInterstitialEventClassOnce.Do(func() {
+		aVPlayerInterstitialEventClass = _AVPlayerInterstitialEventClass{objc.GetClass("AVPlayerInterstitialEvent")}
+	})
+	return aVPlayerInterstitialEventClass
+}
 
 type _AVPlayerInterstitialEventClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVPlayerInterstitialEvent interface {
 // An object that provides instructions for how a player presents interstitial content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent
-
 type AVPlayerInterstitialEvent struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVPlayerInterstitialEvent struct {
 func AVPlayerInterstitialEventFrom(ptr unsafe.Pointer) AVPlayerInterstitialEvent {
 	return AVPlayerInterstitialEvent{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerInterstitialEventClass) Alloc() AVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerInterstitialEventClass) New() AVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVPlayerInterstitialEvent) Autorelease() AVPlayerInterstitialEvent {
 
 // NewAVPlayerInterstitialEvent creates a new AVPlayerInterstitialEvent instance.
 func NewAVPlayerInterstitialEvent() AVPlayerInterstitialEvent {
-	return aVPlayerInterstitialEventClass.New()
+	return getAVPlayerInterstitialEventClass().New()
 }
 
 

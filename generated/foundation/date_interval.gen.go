@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DateInterval] class.
-var dateIntervalClass = _DateIntervalClass{objc.GetClass("NSDateInterval")}
+var (
+	dateIntervalClass     _DateIntervalClass
+	dateIntervalClassOnce sync.Once
+)
+
+func getDateIntervalClass() _DateIntervalClass {
+	dateIntervalClassOnce.Do(func() {
+		dateIntervalClass = _DateIntervalClass{objc.GetClass("NSDateInterval")}
+	})
+	return dateIntervalClass
+}
 
 type _DateIntervalClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IDateInterval interface {
 // An object representing the span of time between a specific start date and end date. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval
-
 type DateInterval struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type DateInterval struct {
 func DateIntervalFrom(ptr unsafe.Pointer) DateInterval {
 	return DateInterval{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DateIntervalClass) Alloc() DateInterval {
 	rv := objc.Send[DateInterval](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateIntervalClass) New() DateInterval {
 	rv := objc.Send[DateInterval](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (d_ DateInterval) Autorelease() DateInterval {
 
 // NewDateInterval creates a new DateInterval instance.
 func NewDateInterval() DateInterval {
-	return dateIntervalClass.New()
+	return getDateIntervalClass().New()
 }
 
 

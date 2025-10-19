@@ -36,7 +36,6 @@ type IButton interface {
 // A control that defines an area on the screen that a user clicks to trigger an action. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton
-
 type Button struct {
 	Control
 }
@@ -49,6 +48,7 @@ func ButtonFrom(ptr unsafe.Pointer) Button {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _ButtonClass) Alloc() Button {
 	rv := objc.Send[Button](objc.ID(bc.class), objc.Sel("alloc"))
@@ -86,7 +86,6 @@ func NewButton() Button {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
 func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
@@ -95,7 +94,6 @@ func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) Button {
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
@@ -104,7 +102,6 @@ func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, tar
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
 func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }

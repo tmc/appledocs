@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIDeviceManager] class.
-var mIDICIDeviceManagerClass = _MIDICIDeviceManagerClass{objc.GetClass("MIDICIDeviceManager")}
+var (
+	mIDICIDeviceManagerClass     _MIDICIDeviceManagerClass
+	mIDICIDeviceManagerClassOnce sync.Once
+)
+
+func getMIDICIDeviceManagerClass() _MIDICIDeviceManagerClass {
+	mIDICIDeviceManagerClassOnce.Do(func() {
+		mIDICIDeviceManagerClass = _MIDICIDeviceManagerClass{objc.GetClass("MIDICIDeviceManager")}
+	})
+	return mIDICIDeviceManagerClass
+}
 
 type _MIDICIDeviceManagerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMIDICIDeviceManager interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager
-
 type MIDICIDeviceManager struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type MIDICIDeviceManager struct {
 func MIDICIDeviceManagerFrom(ptr unsafe.Pointer) MIDICIDeviceManager {
 	return MIDICIDeviceManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIDeviceManagerClass) Alloc() MIDICIDeviceManager {
 	rv := objc.Send[MIDICIDeviceManager](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIDeviceManagerClass) New() MIDICIDeviceManager {
 	rv := objc.Send[MIDICIDeviceManager](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (m_ MIDICIDeviceManager) Autorelease() MIDICIDeviceManager {
 
 // NewMIDICIDeviceManager creates a new MIDICIDeviceManager instance.
 func NewMIDICIDeviceManager() MIDICIDeviceManager {
-	return mIDICIDeviceManagerClass.New()
+	return getMIDICIDeviceManagerClass().New()
 }
 
 

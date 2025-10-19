@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPortraitEffectsMatte] class.
-var aVPortraitEffectsMatteClass = _AVPortraitEffectsMatteClass{objc.GetClass("AVPortraitEffectsMatte")}
+var (
+	aVPortraitEffectsMatteClass     _AVPortraitEffectsMatteClass
+	aVPortraitEffectsMatteClassOnce sync.Once
+)
+
+func getAVPortraitEffectsMatteClass() _AVPortraitEffectsMatteClass {
+	aVPortraitEffectsMatteClassOnce.Do(func() {
+		aVPortraitEffectsMatteClass = _AVPortraitEffectsMatteClass{objc.GetClass("AVPortraitEffectsMatte")}
+	})
+	return aVPortraitEffectsMatteClass
+}
 
 type _AVPortraitEffectsMatteClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVPortraitEffectsMatte interface {
 // An auxiliary image used to separate foreground from background with high resolution. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPortraitEffectsMatte
-
 type AVPortraitEffectsMatte struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVPortraitEffectsMatte struct {
 func AVPortraitEffectsMatteFrom(ptr unsafe.Pointer) AVPortraitEffectsMatte {
 	return AVPortraitEffectsMatte{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPortraitEffectsMatteClass) Alloc() AVPortraitEffectsMatte {
 	rv := objc.Send[AVPortraitEffectsMatte](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPortraitEffectsMatteClass) New() AVPortraitEffectsMatte {
 	rv := objc.Send[AVPortraitEffectsMatte](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVPortraitEffectsMatte) Autorelease() AVPortraitEffectsMatte {
 
 // NewAVPortraitEffectsMatte creates a new AVPortraitEffectsMatte instance.
 func NewAVPortraitEffectsMatte() AVPortraitEffectsMatte {
-	return aVPortraitEffectsMatteClass.New()
+	return getAVPortraitEffectsMatteClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableArray] class.
-var mutableArrayClass = _MutableArrayClass{objc.GetClass("NSMutableArray")}
+var (
+	mutableArrayClass     _MutableArrayClass
+	mutableArrayClassOnce sync.Once
+)
+
+func getMutableArrayClass() _MutableArrayClass {
+	mutableArrayClassOnce.Do(func() {
+		mutableArrayClass = _MutableArrayClass{objc.GetClass("NSMutableArray")}
+	})
+	return mutableArrayClass
+}
 
 type _MutableArrayClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMutableArray interface {
 // A dynamic ordered collection of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray
-
 type MutableArray struct {
 	Array
 }
@@ -37,13 +47,15 @@ func MutableArrayFrom(ptr unsafe.Pointer) MutableArray {
 		Array: ArrayFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableArrayClass) Alloc() MutableArray {
 	rv := objc.Send[MutableArray](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableArrayClass) New() MutableArray {
 	rv := objc.Send[MutableArray](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (m_ MutableArray) Autorelease() MutableArray {
 
 // NewMutableArray creates a new MutableArray instance.
 func NewMutableArray() MutableArray {
-	return mutableArrayClass.New()
+	return getMutableArrayClass().New()
 }
 
 

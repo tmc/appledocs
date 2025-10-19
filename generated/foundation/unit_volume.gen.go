@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitVolume] class.
-var unitVolumeClass = _UnitVolumeClass{objc.GetClass("NSUnitVolume")}
+var (
+	unitVolumeClass     _UnitVolumeClass
+	unitVolumeClassOnce sync.Once
+)
+
+func getUnitVolumeClass() _UnitVolumeClass {
+	unitVolumeClassOnce.Do(func() {
+		unitVolumeClass = _UnitVolumeClass{objc.GetClass("NSUnitVolume")}
+	})
+	return unitVolumeClass
+}
 
 type _UnitVolumeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitVolume interface {
 // A unit of measure for volume. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume
-
 type UnitVolume struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitVolumeFrom(ptr unsafe.Pointer) UnitVolume {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitVolumeClass) Alloc() UnitVolume {
 	rv := objc.Send[UnitVolume](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitVolumeClass) New() UnitVolume {
 	rv := objc.Send[UnitVolume](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitVolume) Autorelease() UnitVolume {
 
 // NewUnitVolume creates a new UnitVolume instance.
 func NewUnitVolume() UnitVolume {
-	return unitVolumeClass.New()
+	return getUnitVolumeClass().New()
 }
 
 

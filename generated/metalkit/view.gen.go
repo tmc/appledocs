@@ -3,6 +3,7 @@
 package metalkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [View] class.
-var viewClass = _ViewClass{objc.GetClass("NSView")}
+var (
+	viewClass     _ViewClass
+	viewClassOnce sync.Once
+)
+
+func getViewClass() _ViewClass {
+	viewClassOnce.Do(func() {
+		viewClass = _ViewClass{objc.GetClass("NSView")}
+	})
+	return viewClass
+}
 
 type _ViewClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type IView interface {
 }
 
 // A parent class referenced by other MetalKit classes. [Full Topic]
-
 type View struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type View struct {
 func ViewFrom(ptr unsafe.Pointer) View {
 	return View{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ViewClass) Alloc() View {
 	rv := objc.Send[View](objc.ID(vc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ViewClass) New() View {
 	rv := objc.Send[View](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (v_ View) Autorelease() View {
 
 // NewView creates a new View instance.
 func NewView() View {
-	return viewClass.New()
+	return getViewClass().New()
 }
 
 

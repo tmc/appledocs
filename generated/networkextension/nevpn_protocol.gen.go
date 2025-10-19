@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEVPNProtocol] class.
-var nEVPNProtocolClass = _NEVPNProtocolClass{objc.GetClass("NEVPNProtocol")}
+var (
+	nEVPNProtocolClass     _NEVPNProtocolClass
+	nEVPNProtocolClassOnce sync.Once
+)
+
+func getNEVPNProtocolClass() _NEVPNProtocolClass {
+	nEVPNProtocolClassOnce.Do(func() {
+		nEVPNProtocolClass = _NEVPNProtocolClass{objc.GetClass("NEVPNProtocol")}
+	})
+	return nEVPNProtocolClass
+}
 
 type _NEVPNProtocolClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type INEVPNProtocol interface {
 }
 
 // A parent class referenced by other NetworkExtension classes. [Full Topic]
-
 type NEVPNProtocol struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type NEVPNProtocol struct {
 func NEVPNProtocolFrom(ptr unsafe.Pointer) NEVPNProtocol {
 	return NEVPNProtocol{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEVPNProtocolClass) Alloc() NEVPNProtocol {
 	rv := objc.Send[NEVPNProtocol](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEVPNProtocolClass) New() NEVPNProtocol {
 	rv := objc.Send[NEVPNProtocol](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (n_ NEVPNProtocol) Autorelease() NEVPNProtocol {
 
 // NewNEVPNProtocol creates a new NEVPNProtocol instance.
 func NewNEVPNProtocol() NEVPNProtocol {
-	return nEVPNProtocolClass.New()
+	return getNEVPNProtocolClass().New()
 }
 
 

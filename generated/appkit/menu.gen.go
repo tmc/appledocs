@@ -35,7 +35,6 @@ type IMenu interface {
 // An object that manages an app’s menus. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu
-
 type Menu struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Menu struct {
 func MenuFrom(ptr unsafe.Pointer) Menu {
 	return Menu{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MenuClass) Alloc() Menu {
 	rv := objc.Send[Menu](objc.ID(mc.class), objc.Sel("alloc"))

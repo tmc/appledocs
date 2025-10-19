@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [KeyValueSharedObservers] class.
-var keyValueSharedObserversClass = _KeyValueSharedObserversClass{objc.GetClass("NSKeyValueSharedObservers")}
+var (
+	keyValueSharedObserversClass     _KeyValueSharedObserversClass
+	keyValueSharedObserversClassOnce sync.Once
+)
+
+func getKeyValueSharedObserversClass() _KeyValueSharedObserversClass {
+	keyValueSharedObserversClassOnce.Do(func() {
+		keyValueSharedObserversClass = _KeyValueSharedObserversClass{objc.GetClass("NSKeyValueSharedObservers")}
+	})
+	return keyValueSharedObserversClass
+}
 
 type _KeyValueSharedObserversClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IKeyValueSharedObservers interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObservers
-
 type KeyValueSharedObservers struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type KeyValueSharedObservers struct {
 func KeyValueSharedObserversFrom(ptr unsafe.Pointer) KeyValueSharedObservers {
 	return KeyValueSharedObservers{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (kc _KeyValueSharedObserversClass) Alloc() KeyValueSharedObservers {
 	rv := objc.Send[KeyValueSharedObservers](objc.ID(kc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KeyValueSharedObserversClass) New() KeyValueSharedObservers {
 	rv := objc.Send[KeyValueSharedObservers](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (k_ KeyValueSharedObservers) Autorelease() KeyValueSharedObservers {
 
 // NewKeyValueSharedObservers creates a new KeyValueSharedObservers instance.
 func NewKeyValueSharedObservers() KeyValueSharedObservers {
-	return keyValueSharedObserversClass.New()
+	return getKeyValueSharedObserversClass().New()
 }
 
 

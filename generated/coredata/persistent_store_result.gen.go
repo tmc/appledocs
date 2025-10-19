@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentStoreResult] class.
-var persistentStoreResultClass = _PersistentStoreResultClass{objc.GetClass("NSPersistentStoreResult")}
+var (
+	persistentStoreResultClass     _PersistentStoreResultClass
+	persistentStoreResultClassOnce sync.Once
+)
+
+func getPersistentStoreResultClass() _PersistentStoreResultClass {
+	persistentStoreResultClassOnce.Do(func() {
+		persistentStoreResultClass = _PersistentStoreResultClass{objc.GetClass("NSPersistentStoreResult")}
+	})
+	return persistentStoreResultClass
+}
 
 type _PersistentStoreResultClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPersistentStoreResult interface {
 // The abstract base class for results returned from a persistent store coordinator. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreResult
-
 type PersistentStoreResult struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PersistentStoreResult struct {
 func PersistentStoreResultFrom(ptr unsafe.Pointer) PersistentStoreResult {
 	return PersistentStoreResult{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentStoreResultClass) Alloc() PersistentStoreResult {
 	rv := objc.Send[PersistentStoreResult](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentStoreResultClass) New() PersistentStoreResult {
 	rv := objc.Send[PersistentStoreResult](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PersistentStoreResult) Autorelease() PersistentStoreResult {
 
 // NewPersistentStoreResult creates a new PersistentStoreResult instance.
 func NewPersistentStoreResult() PersistentStoreResult {
-	return persistentStoreResultClass.New()
+	return getPersistentStoreResultClass().New()
 }
 
 

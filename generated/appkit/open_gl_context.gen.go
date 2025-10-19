@@ -35,7 +35,6 @@ type IOpenGLContext interface {
 // An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext
-
 type OpenGLContext struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type OpenGLContext struct {
 func OpenGLContextFrom(ptr unsafe.Pointer) OpenGLContext {
 	return OpenGLContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLContextClass) Alloc() OpenGLContext {
 	rv := objc.Send[OpenGLContext](objc.ID(oc.class), objc.Sel("alloc"))

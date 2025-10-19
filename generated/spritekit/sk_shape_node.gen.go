@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKShapeNode] class.
-var sKShapeNodeClass = _SKShapeNodeClass{objc.GetClass("SKShapeNode")}
+var (
+	sKShapeNodeClass     _SKShapeNodeClass
+	sKShapeNodeClassOnce sync.Once
+)
+
+func getSKShapeNodeClass() _SKShapeNodeClass {
+	sKShapeNodeClassOnce.Do(func() {
+		sKShapeNodeClass = _SKShapeNodeClass{objc.GetClass("SKShapeNode")}
+	})
+	return sKShapeNodeClass
+}
 
 type _SKShapeNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKShapeNode interface {
 // A mathematical shape that can be stroked or filled. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShapeNode
-
 type SKShapeNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKShapeNodeFrom(ptr unsafe.Pointer) SKShapeNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKShapeNodeClass) Alloc() SKShapeNode {
 	rv := objc.Send[SKShapeNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKShapeNodeClass) New() SKShapeNode {
 	rv := objc.Send[SKShapeNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKShapeNode) Autorelease() SKShapeNode {
 
 // NewSKShapeNode creates a new SKShapeNode instance.
 func NewSKShapeNode() SKShapeNode {
-	return sKShapeNodeClass.New()
+	return getSKShapeNodeClass().New()
 }
 
 

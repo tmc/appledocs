@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVMetadataItem] class.
-var aVMetadataItemClass = _AVMetadataItemClass{objc.GetClass("AVMetadataItem")}
+var (
+	aVMetadataItemClass     _AVMetadataItemClass
+	aVMetadataItemClassOnce sync.Once
+)
+
+func getAVMetadataItemClass() _AVMetadataItemClass {
+	aVMetadataItemClassOnce.Do(func() {
+		aVMetadataItemClass = _AVMetadataItemClass{objc.GetClass("AVMetadataItem")}
+	})
+	return aVMetadataItemClass
+}
 
 type _AVMetadataItemClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVMetadataItem interface {
 // A metadata item for an audiovisual asset or one of its tracks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem
-
 type AVMetadataItem struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVMetadataItem struct {
 func AVMetadataItemFrom(ptr unsafe.Pointer) AVMetadataItem {
 	return AVMetadataItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVMetadataItemClass) Alloc() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVMetadataItemClass) New() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVMetadataItem) Autorelease() AVMetadataItem {
 
 // NewAVMetadataItem creates a new AVMetadataItem instance.
 func NewAVMetadataItem() AVMetadataItem {
-	return aVMetadataItemClass.New()
+	return getAVMetadataItemClass().New()
 }
 
 

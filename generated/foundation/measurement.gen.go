@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Measurement] class.
-var measurementClass = _MeasurementClass{objc.GetClass("NSMeasurement")}
+var (
+	measurementClass     _MeasurementClass
+	measurementClassOnce sync.Once
+)
+
+func getMeasurementClass() _MeasurementClass {
+	measurementClassOnce.Do(func() {
+		measurementClass = _MeasurementClass{objc.GetClass("NSMeasurement")}
+	})
+	return measurementClass
+}
 
 type _MeasurementClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMeasurement interface {
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement
-
 type Measurement struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Measurement struct {
 func MeasurementFrom(ptr unsafe.Pointer) Measurement {
 	return Measurement{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MeasurementClass) Alloc() Measurement {
 	rv := objc.Send[Measurement](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MeasurementClass) New() Measurement {
 	rv := objc.Send[Measurement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ Measurement) Autorelease() Measurement {
 
 // NewMeasurement creates a new Measurement instance.
 func NewMeasurement() Measurement {
-	return measurementClass.New()
+	return getMeasurementClass().New()
 }
 
 

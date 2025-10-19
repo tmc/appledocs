@@ -35,7 +35,6 @@ type IPasteboardItem interface {
 // An item on a pasteboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem
-
 type PasteboardItem struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type PasteboardItem struct {
 func PasteboardItemFrom(ptr unsafe.Pointer) PasteboardItem {
 	return PasteboardItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PasteboardItemClass) Alloc() PasteboardItem {
 	rv := objc.Send[PasteboardItem](objc.ID(pc.class), objc.Sel("alloc"))

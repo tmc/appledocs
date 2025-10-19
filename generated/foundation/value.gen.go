@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Value] class.
-var valueClass = _ValueClass{objc.GetClass("NSValue")}
+var (
+	valueClass     _ValueClass
+	valueClassOnce sync.Once
+)
+
+func getValueClass() _ValueClass {
+	valueClassOnce.Do(func() {
+		valueClass = _ValueClass{objc.GetClass("NSValue")}
+	})
+	return valueClass
+}
 
 type _ValueClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IValue interface {
 // A simple container for a single C or Objective-C data item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue
-
 type Value struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Value struct {
 func ValueFrom(ptr unsafe.Pointer) Value {
 	return Value{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ValueClass) Alloc() Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ValueClass) New() Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (v_ Value) Autorelease() Value {
 
 // NewValue creates a new Value instance.
 func NewValue() Value {
-	return valueClass.New()
+	return getValueClass().New()
 }
 
 

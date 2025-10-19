@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [leftEyeClosed] class.
-var leftEyeClosedClass = _leftEyeClosedClass{objc.GetClass("leftEyeClosed")}
+var (
+	leftEyeClosedClass     _leftEyeClosedClass
+	leftEyeClosedClassOnce sync.Once
+)
+
+func getleftEyeClosedClass() _leftEyeClosedClass {
+	leftEyeClosedClassOnce.Do(func() {
+		leftEyeClosedClass = _leftEyeClosedClass{objc.GetClass("leftEyeClosed")}
+	})
+	return leftEyeClosedClass
+}
 
 type _leftEyeClosedClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IleftEyeClosed interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-c.ivar
-
 type leftEyeClosed struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type leftEyeClosed struct {
 func leftEyeClosedFrom(ptr unsafe.Pointer) leftEyeClosed {
 	return leftEyeClosed{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _leftEyeClosedClass) Alloc() leftEyeClosed {
 	rv := objc.Send[leftEyeClosed](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _leftEyeClosedClass) New() leftEyeClosed {
 	rv := objc.Send[leftEyeClosed](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (l_ leftEyeClosed) Autorelease() leftEyeClosed {
 
 // NewleftEyeClosed creates a new leftEyeClosed instance.
 func NewleftEyeClosed() leftEyeClosed {
-	return leftEyeClosedClass.New()
+	return getleftEyeClosedClass().New()
 }
 
 

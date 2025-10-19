@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FilterGenerator] class.
-var filterGeneratorClass = _FilterGeneratorClass{objc.GetClass("CIFilterGenerator")}
+var (
+	filterGeneratorClass     _FilterGeneratorClass
+	filterGeneratorClassOnce sync.Once
+)
+
+func getFilterGeneratorClass() _FilterGeneratorClass {
+	filterGeneratorClassOnce.Do(func() {
+		filterGeneratorClass = _FilterGeneratorClass{objc.GetClass("CIFilterGenerator")}
+	})
+	return filterGeneratorClass
+}
 
 type _FilterGeneratorClass struct {
 	class objc.Class
@@ -32,7 +43,6 @@ type IFilterGenerator interface {
 // An object that creates and configures chains of individual image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator
-
 type FilterGenerator struct {
 	objectivec.Object
 }
@@ -43,13 +53,15 @@ type FilterGenerator struct {
 func FilterGeneratorFrom(ptr unsafe.Pointer) FilterGenerator {
 	return FilterGenerator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FilterGeneratorClass) Alloc() FilterGenerator {
 	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FilterGeneratorClass) New() FilterGenerator {
 	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -70,7 +82,7 @@ func (f_ FilterGenerator) Autorelease() FilterGenerator {
 
 // NewFilterGenerator creates a new FilterGenerator instance.
 func NewFilterGenerator() FilterGenerator {
-	return filterGeneratorClass.New()
+	return getFilterGeneratorClass().New()
 }
 
 
@@ -79,7 +91,7 @@ func NewFilterGenerator() FilterGenerator {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/init(contentsOf:)
 func NewFilterGeneratorWithContentsOfURL(aURL unsafe.Pointer) FilterGenerator {
-	instance := filterGeneratorClass.Alloc()
+	instance := getFilterGeneratorClass().Alloc()
 	rv := objc.Send[FilterGenerator](instance.ID, objc.Sel("initWithContentsOfURL:"), aURL)
 	rv.Autorelease()
 	return rv

@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKLightNode] class.
-var sKLightNodeClass = _SKLightNodeClass{objc.GetClass("SKLightNode")}
+var (
+	sKLightNodeClass     _SKLightNodeClass
+	sKLightNodeClassOnce sync.Once
+)
+
+func getSKLightNodeClass() _SKLightNodeClass {
+	sKLightNodeClassOnce.Do(func() {
+		sKLightNodeClass = _SKLightNodeClass{objc.GetClass("SKLightNode")}
+	})
+	return sKLightNodeClass
+}
 
 type _SKLightNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKLightNode interface {
 // A node that lights surrounding nodes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKLightNode
-
 type SKLightNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKLightNodeFrom(ptr unsafe.Pointer) SKLightNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKLightNodeClass) Alloc() SKLightNode {
 	rv := objc.Send[SKLightNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKLightNodeClass) New() SKLightNode {
 	rv := objc.Send[SKLightNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKLightNode) Autorelease() SKLightNode {
 
 // NewSKLightNode creates a new SKLightNode instance.
 func NewSKLightNode() SKLightNode {
-	return sKLightNodeClass.New()
+	return getSKLightNodeClass().New()
 }
 
 

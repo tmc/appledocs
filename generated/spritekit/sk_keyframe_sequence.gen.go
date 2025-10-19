@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKKeyframeSequence] class.
-var sKKeyframeSequenceClass = _SKKeyframeSequenceClass{objc.GetClass("SKKeyframeSequence")}
+var (
+	sKKeyframeSequenceClass     _SKKeyframeSequenceClass
+	sKKeyframeSequenceClassOnce sync.Once
+)
+
+func getSKKeyframeSequenceClass() _SKKeyframeSequenceClass {
+	sKKeyframeSequenceClassOnce.Do(func() {
+		sKKeyframeSequenceClass = _SKKeyframeSequenceClass{objc.GetClass("SKKeyframeSequence")}
+	})
+	return sKKeyframeSequenceClass
+}
 
 type _SKKeyframeSequenceClass struct {
 	class objc.Class
@@ -34,7 +45,6 @@ type ISKKeyframeSequence interface {
 // An object that performs interpolation between values specified at different times (keyframes). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence
-
 type SKKeyframeSequence struct {
 	objectivec.Object
 }
@@ -45,13 +55,15 @@ type SKKeyframeSequence struct {
 func SKKeyframeSequenceFrom(ptr unsafe.Pointer) SKKeyframeSequence {
 	return SKKeyframeSequence{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKKeyframeSequenceClass) Alloc() SKKeyframeSequence {
 	rv := objc.Send[SKKeyframeSequence](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKKeyframeSequenceClass) New() SKKeyframeSequence {
 	rv := objc.Send[SKKeyframeSequence](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -72,7 +84,7 @@ func (s_ SKKeyframeSequence) Autorelease() SKKeyframeSequence {
 
 // NewSKKeyframeSequence creates a new SKKeyframeSequence instance.
 func NewSKKeyframeSequence() SKKeyframeSequence {
-	return sKKeyframeSequenceClass.New()
+	return getSKKeyframeSequenceClass().New()
 }
 
 
@@ -81,7 +93,7 @@ func NewSKKeyframeSequence() SKKeyframeSequence {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/init(capacity:)
 func NewSKKeyframeSequenceWithCapacity(numItems uint) SKKeyframeSequence {
-	instance := sKKeyframeSequenceClass.Alloc()
+	instance := getSKKeyframeSequenceClass().Alloc()
 	rv := objc.Send[SKKeyframeSequence](instance.ID, objc.Sel("initWithCapacity:"), numItems)
 	rv.Autorelease()
 	return rv
@@ -89,7 +101,7 @@ func NewSKKeyframeSequenceWithCapacity(numItems uint) SKKeyframeSequence {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/init(coder:)
 func NewSKKeyframeSequenceWithCoder(aDecoder unsafe.Pointer) SKKeyframeSequence {
-	instance := sKKeyframeSequenceClass.Alloc()
+	instance := getSKKeyframeSequenceClass().Alloc()
 	rv := objc.Send[SKKeyframeSequence](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
@@ -99,7 +111,7 @@ func NewSKKeyframeSequenceWithCoder(aDecoder unsafe.Pointer) SKKeyframeSequence 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/init(keyframeValues:times:)
 func NewSKKeyframeSequenceWithKeyframeValuesTimes(values unsafe.Pointer, times unsafe.Pointer) SKKeyframeSequence {
-	instance := sKKeyframeSequenceClass.Alloc()
+	instance := getSKKeyframeSequenceClass().Alloc()
 	rv := objc.Send[SKKeyframeSequence](instance.ID, objc.Sel("initWithKeyframeValues:times:"), values, times)
 	rv.Autorelease()
 	return rv

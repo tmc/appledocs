@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDIUMPEndpoint] class.
-var mIDIUMPEndpointClass = _MIDIUMPEndpointClass{objc.GetClass("MIDIUMPEndpoint")}
+var (
+	mIDIUMPEndpointClass     _MIDIUMPEndpointClass
+	mIDIUMPEndpointClassOnce sync.Once
+)
+
+func getMIDIUMPEndpointClass() _MIDIUMPEndpointClass {
+	mIDIUMPEndpointClassOnce.Do(func() {
+		mIDIUMPEndpointClass = _MIDIUMPEndpointClass{objc.GetClass("MIDIUMPEndpoint")}
+	})
+	return mIDIUMPEndpointClass
+}
 
 type _MIDIUMPEndpointClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMIDIUMPEndpoint interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint
-
 type MIDIUMPEndpoint struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type MIDIUMPEndpoint struct {
 func MIDIUMPEndpointFrom(ptr unsafe.Pointer) MIDIUMPEndpoint {
 	return MIDIUMPEndpoint{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIUMPEndpointClass) Alloc() MIDIUMPEndpoint {
 	rv := objc.Send[MIDIUMPEndpoint](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDIUMPEndpointClass) New() MIDIUMPEndpoint {
 	rv := objc.Send[MIDIUMPEndpoint](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (m_ MIDIUMPEndpoint) Autorelease() MIDIUMPEndpoint {
 
 // NewMIDIUMPEndpoint creates a new MIDIUMPEndpoint instance.
 func NewMIDIUMPEndpoint() MIDIUMPEndpoint {
-	return mIDIUMPEndpointClass.New()
+	return getMIDIUMPEndpointClass().New()
 }
 
 

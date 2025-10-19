@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitElectricCharge] class.
-var unitElectricChargeClass = _UnitElectricChargeClass{objc.GetClass("NSUnitElectricCharge")}
+var (
+	unitElectricChargeClass     _UnitElectricChargeClass
+	unitElectricChargeClassOnce sync.Once
+)
+
+func getUnitElectricChargeClass() _UnitElectricChargeClass {
+	unitElectricChargeClassOnce.Do(func() {
+		unitElectricChargeClass = _UnitElectricChargeClass{objc.GetClass("NSUnitElectricCharge")}
+	})
+	return unitElectricChargeClass
+}
 
 type _UnitElectricChargeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitElectricCharge interface {
 // A unit of measure for electric charge. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge
-
 type UnitElectricCharge struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitElectricChargeFrom(ptr unsafe.Pointer) UnitElectricCharge {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitElectricChargeClass) Alloc() UnitElectricCharge {
 	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitElectricChargeClass) New() UnitElectricCharge {
 	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitElectricCharge) Autorelease() UnitElectricCharge {
 
 // NewUnitElectricCharge creates a new UnitElectricCharge instance.
 func NewUnitElectricCharge() UnitElectricCharge {
-	return unitElectricChargeClass.New()
+	return getUnitElectricChargeClass().New()
 }
 
 

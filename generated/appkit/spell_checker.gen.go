@@ -36,7 +36,6 @@ type ISpellChecker interface {
 // An interface to the Cocoa spell-checking service. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker
-
 type SpellChecker struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type SpellChecker struct {
 func SpellCheckerFrom(ptr unsafe.Pointer) SpellChecker {
 	return SpellChecker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SpellCheckerClass) Alloc() SpellChecker {
 	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("alloc"))

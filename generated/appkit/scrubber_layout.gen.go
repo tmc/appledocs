@@ -40,7 +40,6 @@ type IScrubberLayout interface {
 // An abstract class that describes the layout of items within a scrubber control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout
-
 type ScrubberLayout struct {
 	objectivec.Object
 }
@@ -51,6 +50,7 @@ type ScrubberLayout struct {
 func ScrubberLayoutFrom(ptr unsafe.Pointer) ScrubberLayout {
 	return ScrubberLayout{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberLayoutClass) Alloc() ScrubberLayout {
 	rv := objc.Send[ScrubberLayout](objc.ID(sc.class), objc.Sel("alloc"))

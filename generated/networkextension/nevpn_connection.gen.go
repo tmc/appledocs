@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEVPNConnection] class.
-var nEVPNConnectionClass = _NEVPNConnectionClass{objc.GetClass("NEVPNConnection")}
+var (
+	nEVPNConnectionClass     _NEVPNConnectionClass
+	nEVPNConnectionClassOnce sync.Once
+)
+
+func getNEVPNConnectionClass() _NEVPNConnectionClass {
+	nEVPNConnectionClassOnce.Do(func() {
+		nEVPNConnectionClass = _NEVPNConnectionClass{objc.GetClass("NEVPNConnection")}
+	})
+	return nEVPNConnectionClass
+}
 
 type _NEVPNConnectionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEVPNConnection interface {
 // An object to start and stop a Personal VPN connection and get its status. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection
-
 type NEVPNConnection struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEVPNConnection struct {
 func NEVPNConnectionFrom(ptr unsafe.Pointer) NEVPNConnection {
 	return NEVPNConnection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEVPNConnectionClass) Alloc() NEVPNConnection {
 	rv := objc.Send[NEVPNConnection](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEVPNConnectionClass) New() NEVPNConnection {
 	rv := objc.Send[NEVPNConnection](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEVPNConnection) Autorelease() NEVPNConnection {
 
 // NewNEVPNConnection creates a new NEVPNConnection instance.
 func NewNEVPNConnection() NEVPNConnection {
-	return nEVPNConnectionClass.New()
+	return getNEVPNConnectionClass().New()
 }
 
 

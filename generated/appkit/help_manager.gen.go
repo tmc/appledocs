@@ -42,7 +42,6 @@ type IHelpManager interface {
 // An object for displaying online help for an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager
-
 type HelpManager struct {
 	objectivec.Object
 }
@@ -53,6 +52,7 @@ type HelpManager struct {
 func HelpManagerFrom(ptr unsafe.Pointer) HelpManager {
 	return HelpManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _HelpManagerClass) Alloc() HelpManager {
 	rv := objc.Send[HelpManager](objc.ID(hc.class), objc.Sel("alloc"))

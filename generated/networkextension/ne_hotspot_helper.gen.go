@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEHotspotHelper] class.
-var nEHotspotHelperClass = _NEHotspotHelperClass{objc.GetClass("NEHotspotHelper")}
+var (
+	nEHotspotHelperClass     _NEHotspotHelperClass
+	nEHotspotHelperClassOnce sync.Once
+)
+
+func getNEHotspotHelperClass() _NEHotspotHelperClass {
+	nEHotspotHelperClassOnce.Do(func() {
+		nEHotspotHelperClass = _NEHotspotHelperClass{objc.GetClass("NEHotspotHelper")}
+	})
+	return nEHotspotHelperClass
+}
 
 type _NEHotspotHelperClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEHotspotHelper interface {
 // A class to register a hotspot helper. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelper
-
 type NEHotspotHelper struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEHotspotHelper struct {
 func NEHotspotHelperFrom(ptr unsafe.Pointer) NEHotspotHelper {
 	return NEHotspotHelper{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotHelperClass) Alloc() NEHotspotHelper {
 	rv := objc.Send[NEHotspotHelper](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEHotspotHelperClass) New() NEHotspotHelper {
 	rv := objc.Send[NEHotspotHelper](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEHotspotHelper) Autorelease() NEHotspotHelper {
 
 // NewNEHotspotHelper creates a new NEHotspotHelper instance.
 func NewNEHotspotHelper() NEHotspotHelper {
-	return nEHotspotHelperClass.New()
+	return getNEHotspotHelperClass().New()
 }
 
 

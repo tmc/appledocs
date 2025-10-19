@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentHistoryToken] class.
-var persistentHistoryTokenClass = _PersistentHistoryTokenClass{objc.GetClass("NSPersistentHistoryToken")}
+var (
+	persistentHistoryTokenClass     _PersistentHistoryTokenClass
+	persistentHistoryTokenClassOnce sync.Once
+)
+
+func getPersistentHistoryTokenClass() _PersistentHistoryTokenClass {
+	persistentHistoryTokenClassOnce.Do(func() {
+		persistentHistoryTokenClass = _PersistentHistoryTokenClass{objc.GetClass("NSPersistentHistoryToken")}
+	})
+	return persistentHistoryTokenClass
+}
 
 type _PersistentHistoryTokenClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPersistentHistoryToken interface {
 // A bookmark for keeping track the most recent history that you’ve processed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryToken
-
 type PersistentHistoryToken struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PersistentHistoryToken struct {
 func PersistentHistoryTokenFrom(ptr unsafe.Pointer) PersistentHistoryToken {
 	return PersistentHistoryToken{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentHistoryTokenClass) Alloc() PersistentHistoryToken {
 	rv := objc.Send[PersistentHistoryToken](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentHistoryTokenClass) New() PersistentHistoryToken {
 	rv := objc.Send[PersistentHistoryToken](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PersistentHistoryToken) Autorelease() PersistentHistoryToken {
 
 // NewPersistentHistoryToken creates a new PersistentHistoryToken instance.
 func NewPersistentHistoryToken() PersistentHistoryToken {
-	return persistentHistoryTokenClass.New()
+	return getPersistentHistoryTokenClass().New()
 }
 
 

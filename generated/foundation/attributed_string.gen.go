@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AttributedString] class.
-var attributedStringClass = _AttributedStringClass{objc.GetClass("NSAttributedString")}
+var (
+	attributedStringClass     _AttributedStringClass
+	attributedStringClassOnce sync.Once
+)
+
+func getAttributedStringClass() _AttributedStringClass {
+	attributedStringClassOnce.Do(func() {
+		attributedStringClass = _AttributedStringClass{objc.GetClass("NSAttributedString")}
+	})
+	return attributedStringClass
+}
 
 type _AttributedStringClass struct {
 	class objc.Class
@@ -56,7 +67,6 @@ type IAttributedString interface {
 // A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString
-
 type AttributedString struct {
 	objectivec.Object
 }
@@ -67,13 +77,15 @@ type AttributedString struct {
 func AttributedStringFrom(ptr unsafe.Pointer) AttributedString {
 	return AttributedString{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AttributedStringClass) Alloc() AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AttributedStringClass) New() AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,7 +106,7 @@ func (a_ AttributedString) Autorelease() AttributedString {
 
 // NewAttributedString creates a new AttributedString instance.
 func NewAttributedString() AttributedString {
-	return attributedStringClass.New()
+	return getAttributedStringClass().New()
 }
 
 

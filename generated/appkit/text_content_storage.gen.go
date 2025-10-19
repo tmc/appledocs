@@ -34,7 +34,6 @@ type ITextContentStorage interface {
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage
-
 type TextContentStorage struct {
 	TextContentManager
 }
@@ -47,6 +46,7 @@ func TextContentStorageFrom(ptr unsafe.Pointer) TextContentStorage {
 		TextContentManager: TextContentManagerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextContentStorageClass) Alloc() TextContentStorage {
 	rv := objc.Send[TextContentStorage](objc.ID(tc.class), objc.Sel("alloc"))

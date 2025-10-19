@@ -35,7 +35,6 @@ type IGlyphInfo interface {
 // A glyph attribute in an attributed string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo
-
 type GlyphInfo struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type GlyphInfo struct {
 func GlyphInfoFrom(ptr unsafe.Pointer) GlyphInfo {
 	return GlyphInfo{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GlyphInfoClass) Alloc() GlyphInfo {
 	rv := objc.Send[GlyphInfo](objc.ID(gc.class), objc.Sel("alloc"))

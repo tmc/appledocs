@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitArea] class.
-var unitAreaClass = _UnitAreaClass{objc.GetClass("NSUnitArea")}
+var (
+	unitAreaClass     _UnitAreaClass
+	unitAreaClassOnce sync.Once
+)
+
+func getUnitAreaClass() _UnitAreaClass {
+	unitAreaClassOnce.Do(func() {
+		unitAreaClass = _UnitAreaClass{objc.GetClass("NSUnitArea")}
+	})
+	return unitAreaClass
+}
 
 type _UnitAreaClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitArea interface {
 // A unit of measure for area. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea
-
 type UnitArea struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitAreaFrom(ptr unsafe.Pointer) UnitArea {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitAreaClass) Alloc() UnitArea {
 	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitAreaClass) New() UnitArea {
 	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitArea) Autorelease() UnitArea {
 
 // NewUnitArea creates a new UnitArea instance.
 func NewUnitArea() UnitArea {
-	return unitAreaClass.New()
+	return getUnitAreaClass().New()
 }
 
 

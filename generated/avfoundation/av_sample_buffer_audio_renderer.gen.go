@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVSampleBufferAudioRenderer] class.
-var aVSampleBufferAudioRendererClass = _AVSampleBufferAudioRendererClass{objc.GetClass("AVSampleBufferAudioRenderer")}
+var (
+	aVSampleBufferAudioRendererClass     _AVSampleBufferAudioRendererClass
+	aVSampleBufferAudioRendererClassOnce sync.Once
+)
+
+func getAVSampleBufferAudioRendererClass() _AVSampleBufferAudioRendererClass {
+	aVSampleBufferAudioRendererClassOnce.Do(func() {
+		aVSampleBufferAudioRendererClass = _AVSampleBufferAudioRendererClass{objc.GetClass("AVSampleBufferAudioRenderer")}
+	})
+	return aVSampleBufferAudioRendererClass
+}
 
 type _AVSampleBufferAudioRendererClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVSampleBufferAudioRenderer interface {
 // An object used to decompress audio and play compressed or uncompressed audio. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer
-
 type AVSampleBufferAudioRenderer struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVSampleBufferAudioRenderer struct {
 func AVSampleBufferAudioRendererFrom(ptr unsafe.Pointer) AVSampleBufferAudioRenderer {
 	return AVSampleBufferAudioRenderer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVSampleBufferAudioRendererClass) Alloc() AVSampleBufferAudioRenderer {
 	rv := objc.Send[AVSampleBufferAudioRenderer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVSampleBufferAudioRendererClass) New() AVSampleBufferAudioRenderer {
 	rv := objc.Send[AVSampleBufferAudioRenderer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVSampleBufferAudioRenderer) Autorelease() AVSampleBufferAudioRenderer 
 
 // NewAVSampleBufferAudioRenderer creates a new AVSampleBufferAudioRenderer instance.
 func NewAVSampleBufferAudioRenderer() AVSampleBufferAudioRenderer {
-	return aVSampleBufferAudioRendererClass.New()
+	return getAVSampleBufferAudioRendererClass().New()
 }
 
 

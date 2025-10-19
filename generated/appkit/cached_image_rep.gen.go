@@ -34,7 +34,6 @@ type ICachedImageRep interface {
 // An object that stores image data in a form that can be readily transferred to the screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep
-
 type CachedImageRep struct {
 	ImageRep
 }
@@ -47,6 +46,7 @@ func CachedImageRepFrom(ptr unsafe.Pointer) CachedImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CachedImageRepClass) Alloc() CachedImageRep {
 	rv := objc.Send[CachedImageRep](objc.ID(cc.class), objc.Sel("alloc"))

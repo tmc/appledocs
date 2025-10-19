@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CloseCommand] class.
-var closeCommandClass = _CloseCommandClass{objc.GetClass("NSCloseCommand")}
+var (
+	closeCommandClass     _CloseCommandClass
+	closeCommandClassOnce sync.Once
+)
+
+func getCloseCommandClass() _CloseCommandClass {
+	closeCommandClassOnce.Do(func() {
+		closeCommandClass = _CloseCommandClass{objc.GetClass("NSCloseCommand")}
+	})
+	return closeCommandClass
+}
 
 type _CloseCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ICloseCommand interface {
 // A command that closes one or more scriptable objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand
-
 type CloseCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func CloseCommandFrom(ptr unsafe.Pointer) CloseCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CloseCommandClass) Alloc() CloseCommand {
 	rv := objc.Send[CloseCommand](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CloseCommandClass) New() CloseCommand {
 	rv := objc.Send[CloseCommand](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ CloseCommand) Autorelease() CloseCommand {
 
 // NewCloseCommand creates a new CloseCommand instance.
 func NewCloseCommand() CloseCommand {
-	return closeCommandClass.New()
+	return getCloseCommandClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [InflectionRuleExplicit] class.
-var inflectionRuleExplicitClass = _InflectionRuleExplicitClass{objc.GetClass("NSInflectionRuleExplicit")}
+var (
+	inflectionRuleExplicitClass     _InflectionRuleExplicitClass
+	inflectionRuleExplicitClassOnce sync.Once
+)
+
+func getInflectionRuleExplicitClass() _InflectionRuleExplicitClass {
+	inflectionRuleExplicitClassOnce.Do(func() {
+		inflectionRuleExplicitClass = _InflectionRuleExplicitClass{objc.GetClass("NSInflectionRuleExplicit")}
+	})
+	return inflectionRuleExplicitClass
+}
 
 type _InflectionRuleExplicitClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IInflectionRuleExplicit interface {
 // An inflection rule that uses a morphology instance to determine how to inflect attribued strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit
-
 type InflectionRuleExplicit struct {
 	InflectionRule
 }
@@ -36,13 +46,15 @@ func InflectionRuleExplicitFrom(ptr unsafe.Pointer) InflectionRuleExplicit {
 		InflectionRule: InflectionRuleFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _InflectionRuleExplicitClass) Alloc() InflectionRuleExplicit {
 	rv := objc.Send[InflectionRuleExplicit](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InflectionRuleExplicitClass) New() InflectionRuleExplicit {
 	rv := objc.Send[InflectionRuleExplicit](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (i_ InflectionRuleExplicit) Autorelease() InflectionRuleExplicit {
 
 // NewInflectionRuleExplicit creates a new InflectionRuleExplicit instance.
 func NewInflectionRuleExplicit() InflectionRuleExplicit {
-	return inflectionRuleExplicitClass.New()
+	return getInflectionRuleExplicitClass().New()
 }
 
 

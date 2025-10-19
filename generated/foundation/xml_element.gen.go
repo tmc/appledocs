@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XMLElement] class.
-var xMLElementClass = _XMLElementClass{objc.GetClass("NSXMLElement")}
+var (
+	xMLElementClass     _XMLElementClass
+	xMLElementClassOnce sync.Once
+)
+
+func getXMLElementClass() _XMLElementClass {
+	xMLElementClassOnce.Do(func() {
+		xMLElementClass = _XMLElementClass{objc.GetClass("NSXMLElement")}
+	})
+	return xMLElementClass
+}
 
 type _XMLElementClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IXMLElement interface {
 // The element nodes in an XML tree structure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement
-
 type XMLElement struct {
 	XMLNode
 }
@@ -36,13 +46,15 @@ func XMLElementFrom(ptr unsafe.Pointer) XMLElement {
 		XMLNode: XMLNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XMLElementClass) Alloc() XMLElement {
 	rv := objc.Send[XMLElement](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XMLElementClass) New() XMLElement {
 	rv := objc.Send[XMLElement](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (x_ XMLElement) Autorelease() XMLElement {
 
 // NewXMLElement creates a new XMLElement instance.
 func NewXMLElement() XMLElement {
-	return xMLElementClass.New()
+	return getXMLElementClass().New()
 }
 
 

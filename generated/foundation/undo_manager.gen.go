@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UndoManager] class.
-var undoManagerClass = _UndoManagerClass{objc.GetClass("NSUndoManager")}
+var (
+	undoManagerClass     _UndoManagerClass
+	undoManagerClassOnce sync.Once
+)
+
+func getUndoManagerClass() _UndoManagerClass {
+	undoManagerClassOnce.Do(func() {
+		undoManagerClass = _UndoManagerClass{objc.GetClass("NSUndoManager")}
+	})
+	return undoManagerClass
+}
 
 type _UndoManagerClass struct {
 	class objc.Class
@@ -34,7 +45,6 @@ type IUndoManager interface {
 // A general-purpose recorder of operations that enables undo and redo. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager
-
 type UndoManager struct {
 	objectivec.Object
 }
@@ -45,13 +55,15 @@ type UndoManager struct {
 func UndoManagerFrom(ptr unsafe.Pointer) UndoManager {
 	return UndoManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UndoManagerClass) Alloc() UndoManager {
 	rv := objc.Send[UndoManager](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UndoManagerClass) New() UndoManager {
 	rv := objc.Send[UndoManager](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -72,7 +84,7 @@ func (u_ UndoManager) Autorelease() UndoManager {
 
 // NewUndoManager creates a new UndoManager instance.
 func NewUndoManager() UndoManager {
-	return undoManagerClass.New()
+	return getUndoManagerClass().New()
 }
 
 

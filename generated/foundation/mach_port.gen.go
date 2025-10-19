@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MachPort] class.
-var machPortClass = _MachPortClass{objc.GetClass("NSMachPort")}
+var (
+	machPortClass     _MachPortClass
+	machPortClassOnce sync.Once
+)
+
+func getMachPortClass() _MachPortClass {
+	machPortClassOnce.Do(func() {
+		machPortClass = _MachPortClass{objc.GetClass("NSMachPort")}
+	})
+	return machPortClass
+}
 
 type _MachPortClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMachPort interface {
 // A port that can be used as an endpoint for distributed object connections (or raw messaging). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort
-
 type MachPort struct {
 	Port
 }
@@ -36,13 +46,15 @@ func MachPortFrom(ptr unsafe.Pointer) MachPort {
 		Port: PortFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MachPortClass) Alloc() MachPort {
 	rv := objc.Send[MachPort](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MachPortClass) New() MachPort {
 	rv := objc.Send[MachPort](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MachPort) Autorelease() MachPort {
 
 // NewMachPort creates a new MachPort instance.
 func NewMachPort() MachPort {
-	return machPortClass.New()
+	return getMachPortClass().New()
 }
 
 

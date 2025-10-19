@@ -35,7 +35,6 @@ type ITextAttachmentViewProvider interface {
 // A container object that associates a text attachment at a particular document location with a view object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider
-
 type TextAttachmentViewProvider struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextAttachmentViewProvider struct {
 func TextAttachmentViewProviderFrom(ptr unsafe.Pointer) TextAttachmentViewProvider {
 	return TextAttachmentViewProvider{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextAttachmentViewProviderClass) Alloc() TextAttachmentViewProvider {
 	rv := objc.Send[TextAttachmentViewProvider](objc.ID(tc.class), objc.Sel("alloc"))

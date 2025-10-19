@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlayerItemIntegratedTimeline] class.
-var aVPlayerItemIntegratedTimelineClass = _AVPlayerItemIntegratedTimelineClass{objc.GetClass("AVPlayerItemIntegratedTimeline")}
+var (
+	aVPlayerItemIntegratedTimelineClass     _AVPlayerItemIntegratedTimelineClass
+	aVPlayerItemIntegratedTimelineClassOnce sync.Once
+)
+
+func getAVPlayerItemIntegratedTimelineClass() _AVPlayerItemIntegratedTimelineClass {
+	aVPlayerItemIntegratedTimelineClassOnce.Do(func() {
+		aVPlayerItemIntegratedTimelineClass = _AVPlayerItemIntegratedTimelineClass{objc.GetClass("AVPlayerItemIntegratedTimeline")}
+	})
+	return aVPlayerItemIntegratedTimelineClass
+}
 
 type _AVPlayerItemIntegratedTimelineClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVPlayerItemIntegratedTimeline interface {
 // An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimeline
-
 type AVPlayerItemIntegratedTimeline struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVPlayerItemIntegratedTimeline struct {
 func AVPlayerItemIntegratedTimelineFrom(ptr unsafe.Pointer) AVPlayerItemIntegratedTimeline {
 	return AVPlayerItemIntegratedTimeline{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerItemIntegratedTimelineClass) Alloc() AVPlayerItemIntegratedTimeline {
 	rv := objc.Send[AVPlayerItemIntegratedTimeline](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerItemIntegratedTimelineClass) New() AVPlayerItemIntegratedTimeline {
 	rv := objc.Send[AVPlayerItemIntegratedTimeline](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVPlayerItemIntegratedTimeline) Autorelease() AVPlayerItemIntegratedTim
 
 // NewAVPlayerItemIntegratedTimeline creates a new AVPlayerItemIntegratedTimeline instance.
 func NewAVPlayerItemIntegratedTimeline() AVPlayerItemIntegratedTimeline {
-	return aVPlayerItemIntegratedTimelineClass.New()
+	return getAVPlayerItemIntegratedTimelineClass().New()
 }
 
 

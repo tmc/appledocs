@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScriptWhoseTest] class.
-var scriptWhoseTestClass = _ScriptWhoseTestClass{objc.GetClass("NSScriptWhoseTest")}
+var (
+	scriptWhoseTestClass     _ScriptWhoseTestClass
+	scriptWhoseTestClassOnce sync.Once
+)
+
+func getScriptWhoseTestClass() _ScriptWhoseTestClass {
+	scriptWhoseTestClassOnce.Do(func() {
+		scriptWhoseTestClass = _ScriptWhoseTestClass{objc.GetClass("NSScriptWhoseTest")}
+	})
+	return scriptWhoseTestClass
+}
 
 type _ScriptWhoseTestClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScriptWhoseTest interface {
 // An abstract class that provides the basis for testing specifiers one at a time or in groups. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest
-
 type ScriptWhoseTest struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ScriptWhoseTest struct {
 func ScriptWhoseTestFrom(ptr unsafe.Pointer) ScriptWhoseTest {
 	return ScriptWhoseTest{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptWhoseTestClass) Alloc() ScriptWhoseTest {
 	rv := objc.Send[ScriptWhoseTest](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptWhoseTestClass) New() ScriptWhoseTest {
 	rv := objc.Send[ScriptWhoseTest](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ ScriptWhoseTest) Autorelease() ScriptWhoseTest {
 
 // NewScriptWhoseTest creates a new ScriptWhoseTest instance.
 func NewScriptWhoseTest() ScriptWhoseTest {
-	return scriptWhoseTestClass.New()
+	return getScriptWhoseTestClass().New()
 }
 
 

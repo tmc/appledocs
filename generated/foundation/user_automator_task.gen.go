@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserAutomatorTask] class.
-var userAutomatorTaskClass = _UserAutomatorTaskClass{objc.GetClass("NSUserAutomatorTask")}
+var (
+	userAutomatorTaskClass     _UserAutomatorTaskClass
+	userAutomatorTaskClassOnce sync.Once
+)
+
+func getUserAutomatorTaskClass() _UserAutomatorTaskClass {
+	userAutomatorTaskClassOnce.Do(func() {
+		userAutomatorTaskClass = _UserAutomatorTaskClass{objc.GetClass("NSUserAutomatorTask")}
+	})
+	return userAutomatorTaskClass
+}
 
 type _UserAutomatorTaskClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUserAutomatorTask interface {
 // An object that executes Automator workflows. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask
-
 type UserAutomatorTask struct {
 	UserScriptTask
 }
@@ -36,13 +46,15 @@ func UserAutomatorTaskFrom(ptr unsafe.Pointer) UserAutomatorTask {
 		UserScriptTask: UserScriptTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserAutomatorTaskClass) Alloc() UserAutomatorTask {
 	rv := objc.Send[UserAutomatorTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserAutomatorTaskClass) New() UserAutomatorTask {
 	rv := objc.Send[UserAutomatorTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UserAutomatorTask) Autorelease() UserAutomatorTask {
 
 // NewUserAutomatorTask creates a new UserAutomatorTask instance.
 func NewUserAutomatorTask() UserAutomatorTask {
-	return userAutomatorTaskClass.New()
+	return getUserAutomatorTaskClass().New()
 }
 
 

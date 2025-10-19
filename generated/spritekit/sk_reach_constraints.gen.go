@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKReachConstraints] class.
-var sKReachConstraintsClass = _SKReachConstraintsClass{objc.GetClass("SKReachConstraints")}
+var (
+	sKReachConstraintsClass     _SKReachConstraintsClass
+	sKReachConstraintsClassOnce sync.Once
+)
+
+func getSKReachConstraintsClass() _SKReachConstraintsClass {
+	sKReachConstraintsClassOnce.Do(func() {
+		sKReachConstraintsClass = _SKReachConstraintsClass{objc.GetClass("SKReachConstraints")}
+	})
+	return sKReachConstraintsClass
+}
 
 type _SKReachConstraintsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKReachConstraints interface {
 // A specification of the degree of freedom when solving inverse kinematics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKReachConstraints
-
 type SKReachConstraints struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKReachConstraints struct {
 func SKReachConstraintsFrom(ptr unsafe.Pointer) SKReachConstraints {
 	return SKReachConstraints{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKReachConstraintsClass) Alloc() SKReachConstraints {
 	rv := objc.Send[SKReachConstraints](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKReachConstraintsClass) New() SKReachConstraints {
 	rv := objc.Send[SKReachConstraints](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKReachConstraints) Autorelease() SKReachConstraints {
 
 // NewSKReachConstraints creates a new SKReachConstraints instance.
 func NewSKReachConstraints() SKReachConstraints {
-	return sKReachConstraintsClass.New()
+	return getSKReachConstraintsClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewSKReachConstraints() SKReachConstraints {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKReachConstraints/init(lowerAngleLimit:upperAngleLimit:)
 func NewSKReachConstraintsWithLowerAngleLimitUpperAngleLimit(lowerAngleLimit float64, upperAngleLimit float64) SKReachConstraints {
-	instance := sKReachConstraintsClass.Alloc()
+	instance := getSKReachConstraintsClass().Alloc()
 	rv := objc.Send[SKReachConstraints](instance.ID, objc.Sel("initWithLowerAngleLimit:upperAngleLimit:"), lowerAngleLimit, upperAngleLimit)
 	rv.Autorelease()
 	return rv

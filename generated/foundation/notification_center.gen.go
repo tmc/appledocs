@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NotificationCenter] class.
-var notificationCenterClass = _NotificationCenterClass{objc.GetClass("NSNotificationCenter")}
+var (
+	notificationCenterClass     _NotificationCenterClass
+	notificationCenterClassOnce sync.Once
+)
+
+func getNotificationCenterClass() _NotificationCenterClass {
+	notificationCenterClassOnce.Do(func() {
+		notificationCenterClass = _NotificationCenterClass{objc.GetClass("NSNotificationCenter")}
+	})
+	return notificationCenterClass
+}
 
 type _NotificationCenterClass struct {
 	class objc.Class
@@ -28,7 +39,6 @@ type INotificationCenter interface {
 // A notification dispatch mechanism that enables the broadcast of information to registered observers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter
-
 type NotificationCenter struct {
 	objectivec.Object
 }
@@ -39,13 +49,15 @@ type NotificationCenter struct {
 func NotificationCenterFrom(ptr unsafe.Pointer) NotificationCenter {
 	return NotificationCenter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NotificationCenterClass) Alloc() NotificationCenter {
 	rv := objc.Send[NotificationCenter](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NotificationCenterClass) New() NotificationCenter {
 	rv := objc.Send[NotificationCenter](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -66,7 +78,7 @@ func (n_ NotificationCenter) Autorelease() NotificationCenter {
 
 // NewNotificationCenter creates a new NotificationCenter instance.
 func NewNotificationCenter() NotificationCenter {
-	return notificationCenterClass.New()
+	return getNotificationCenterClass().New()
 }
 
 

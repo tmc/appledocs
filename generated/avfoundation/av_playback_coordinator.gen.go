@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlaybackCoordinator] class.
-var aVPlaybackCoordinatorClass = _AVPlaybackCoordinatorClass{objc.GetClass("AVPlaybackCoordinator")}
+var (
+	aVPlaybackCoordinatorClass     _AVPlaybackCoordinatorClass
+	aVPlaybackCoordinatorClassOnce sync.Once
+)
+
+func getAVPlaybackCoordinatorClass() _AVPlaybackCoordinatorClass {
+	aVPlaybackCoordinatorClassOnce.Do(func() {
+		aVPlaybackCoordinatorClass = _AVPlaybackCoordinatorClass{objc.GetClass("AVPlaybackCoordinator")}
+	})
+	return aVPlaybackCoordinatorClass
+}
 
 type _AVPlaybackCoordinatorClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IAVPlaybackCoordinator interface {
 // An object that coordinates the playback of players in a connected group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator
-
 type AVPlaybackCoordinator struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type AVPlaybackCoordinator struct {
 func AVPlaybackCoordinatorFrom(ptr unsafe.Pointer) AVPlaybackCoordinator {
 	return AVPlaybackCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlaybackCoordinatorClass) Alloc() AVPlaybackCoordinator {
 	rv := objc.Send[AVPlaybackCoordinator](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlaybackCoordinatorClass) New() AVPlaybackCoordinator {
 	rv := objc.Send[AVPlaybackCoordinator](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVPlaybackCoordinator) Autorelease() AVPlaybackCoordinator {
 
 // NewAVPlaybackCoordinator creates a new AVPlaybackCoordinator instance.
 func NewAVPlaybackCoordinator() AVPlaybackCoordinator {
-	return aVPlaybackCoordinatorClass.New()
+	return getAVPlaybackCoordinatorClass().New()
 }
 
 

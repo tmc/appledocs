@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ConditionLock] class.
-var conditionLockClass = _ConditionLockClass{objc.GetClass("NSConditionLock")}
+var (
+	conditionLockClass     _ConditionLockClass
+	conditionLockClassOnce sync.Once
+)
+
+func getConditionLockClass() _ConditionLockClass {
+	conditionLockClassOnce.Do(func() {
+		conditionLockClass = _ConditionLockClass{objc.GetClass("NSConditionLock")}
+	})
+	return conditionLockClass
+}
 
 type _ConditionLockClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IConditionLock interface {
 // A lock that can be associated with specific, user-defined conditions. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock
-
 type ConditionLock struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ConditionLock struct {
 func ConditionLockFrom(ptr unsafe.Pointer) ConditionLock {
 	return ConditionLock{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConditionLockClass) Alloc() ConditionLock {
 	rv := objc.Send[ConditionLock](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ConditionLockClass) New() ConditionLock {
 	rv := objc.Send[ConditionLock](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ ConditionLock) Autorelease() ConditionLock {
 
 // NewConditionLock creates a new ConditionLock instance.
 func NewConditionLock() ConditionLock {
-	return conditionLockClass.New()
+	return getConditionLockClass().New()
 }
 
 

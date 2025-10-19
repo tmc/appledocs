@@ -3,6 +3,7 @@
 package corelocation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,16 +11,40 @@ import (
 )
 
 // The class instance for the [Geocoder] class.
-var geocoderClass = _GeocoderClass{objc.GetClass("CLGeocoder")}
+var (
+	geocoderClass     _GeocoderClass
+	geocoderClassOnce sync.Once
+)
+
+func getGeocoderClass() _GeocoderClass {
+	geocoderClassOnce.Do(func() {
+		geocoderClass = _GeocoderClass{objc.GetClass("CLGeocoder")}
+	})
+	return geocoderClass
+}
 
 type _GeocoderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Geocoder] class.
+type IGeocoder interface {
+	objectivec.IObject
+	CancelGeocode()
+	GeocodeAddressDictionaryCompletionHandler(addressDictionary unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodeAddressStringCompletionHandler(addressString string, completionHandler unsafe.Pointer)
+	GeocodeAddressStringInRegionCompletionHandler(addressString string, region unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString string, region unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodeAddressStringInRegionCenteredAtInRegionRadiusPreferredLocaleCompletionHandler(addressString string, centroid unsafe.Pointer, radius unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodePostalAddressCompletionHandler(postalAddress unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodePostalAddressPreferredLocaleCompletionHandler(postalAddress unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
+	ReverseGeocodeLocationCompletionHandler(location unsafe.Pointer, completionHandler unsafe.Pointer)
+	ReverseGeocodeLocationPreferredLocaleCompletionHandler(location unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
+}
+
 // An interface for converting between geographic coordinates and place names. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder
-
 type Geocoder struct {
 	objectivec.Object
 }
@@ -30,6 +55,38 @@ type Geocoder struct {
 func GeocoderFrom(ptr unsafe.Pointer) Geocoder {
 	return Geocoder{objectivec.Object{objc.ID(ptr)}}
 }
+
+// Alloc allocates a new instance without initialization.
+func (gc _GeocoderClass) Alloc() Geocoder {
+	rv := objc.Send[Geocoder](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (gc _GeocoderClass) New() Geocoder {
+	rv := objc.Send[Geocoder](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ Geocoder) Init() Geocoder {
+	rv := objc.Send[Geocoder](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ Geocoder) Autorelease() Geocoder {
+	rv := objc.Send[Geocoder](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGeocoder creates a new Geocoder instance.
+func NewGeocoder() Geocoder {
+	return getGeocoderClass().New()
+}
+
 
 // Cancels a pending geocoding request. [Full Topic]
 
@@ -50,26 +107,26 @@ func (g_ Geocoder) GeocodeAddressDictionaryCompletionHandler(addressDictionary u
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:completionHandler:)
 func (g_ Geocoder) GeocodeAddressStringCompletionHandler(addressString string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:completionHandler:"), addressString, completionHandler)
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:completionHandler:"), objc.String(addressString), completionHandler)
 }
 // Submits a forward-geocoding request using the specified string and region information. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:in:completionHandler:)
 func (g_ Geocoder) GeocodeAddressStringInRegionCompletionHandler(addressString string, region unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:completionHandler:"), addressString, region, completionHandler)
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:completionHandler:"), objc.String(addressString), region, completionHandler)
 }
 // Submits a forward-geocoding requesting using the specified address string and locale information. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:in:preferredLocale:completionHandler:)
 func (g_ Geocoder) GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString string, region unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:preferredLocale:completionHandler:"), addressString, region, locale, completionHandler)
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:preferredLocale:completionHandler:"), objc.String(addressString), region, locale, completionHandler)
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:)
 func (g_ Geocoder) GeocodeAddressStringInRegionCenteredAtInRegionRadiusPreferredLocaleCompletionHandler(addressString string, centroid unsafe.Pointer, radius unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:"), addressString, centroid, radius, locale, completionHandler)
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:"), objc.String(addressString), centroid, radius, locale, completionHandler)
 }
 // Submits a forward-geocoding requesting using the specified Contacts framework information. [Full Topic]
 

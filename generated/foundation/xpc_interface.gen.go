@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [XPCInterface] class.
-var xPCInterfaceClass = _XPCInterfaceClass{objc.GetClass("NSXPCInterface")}
+var (
+	xPCInterfaceClass     _XPCInterfaceClass
+	xPCInterfaceClassOnce sync.Once
+)
+
+func getXPCInterfaceClass() _XPCInterfaceClass {
+	xPCInterfaceClassOnce.Do(func() {
+		xPCInterfaceClass = _XPCInterfaceClass{objc.GetClass("NSXPCInterface")}
+	})
+	return xPCInterfaceClass
+}
 
 type _XPCInterfaceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IXPCInterface interface {
 // An interface that may be sent to an exported object or remote object proxy. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface
-
 type XPCInterface struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type XPCInterface struct {
 func XPCInterfaceFrom(ptr unsafe.Pointer) XPCInterface {
 	return XPCInterface{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XPCInterfaceClass) Alloc() XPCInterface {
 	rv := objc.Send[XPCInterface](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XPCInterfaceClass) New() XPCInterface {
 	rv := objc.Send[XPCInterface](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (x_ XPCInterface) Autorelease() XPCInterface {
 
 // NewXPCInterface creates a new XPCInterface instance.
 func NewXPCInterface() XPCInterface {
-	return xPCInterfaceClass.New()
+	return getXPCInterfaceClass().New()
 }
 
 

@@ -35,7 +35,6 @@ type ITextList interface {
 // A section of text that forms a single list. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList
-
 type TextList struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextList struct {
 func TextListFrom(ptr unsafe.Pointer) TextList {
 	return TextList{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextListClass) Alloc() TextList {
 	rv := objc.Send[TextList](objc.ID(tc.class), objc.Sel("alloc"))

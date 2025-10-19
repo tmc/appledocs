@@ -3,13 +3,24 @@
 package oslog
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OSLogEntryBoundary] class.
-var oSLogEntryBoundaryClass = _OSLogEntryBoundaryClass{objc.GetClass("OSLogEntryBoundary")}
+var (
+	oSLogEntryBoundaryClass     _OSLogEntryBoundaryClass
+	oSLogEntryBoundaryClassOnce sync.Once
+)
+
+func getOSLogEntryBoundaryClass() _OSLogEntryBoundaryClass {
+	oSLogEntryBoundaryClassOnce.Do(func() {
+		oSLogEntryBoundaryClass = _OSLogEntryBoundaryClass{objc.GetClass("OSLogEntryBoundary")}
+	})
+	return oSLogEntryBoundaryClass
+}
 
 type _OSLogEntryBoundaryClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IOSLogEntryBoundary interface {
 // The metadata that partitions sequences of other entries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryBoundary
-
 type OSLogEntryBoundary struct {
 	OSLogEntry
 }
@@ -36,13 +46,15 @@ func OSLogEntryBoundaryFrom(ptr unsafe.Pointer) OSLogEntryBoundary {
 		OSLogEntry: OSLogEntryFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEntryBoundaryClass) Alloc() OSLogEntryBoundary {
 	rv := objc.Send[OSLogEntryBoundary](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogEntryBoundaryClass) New() OSLogEntryBoundary {
 	rv := objc.Send[OSLogEntryBoundary](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (o_ OSLogEntryBoundary) Autorelease() OSLogEntryBoundary {
 
 // NewOSLogEntryBoundary creates a new OSLogEntryBoundary instance.
 func NewOSLogEntryBoundary() OSLogEntryBoundary {
-	return oSLogEntryBoundaryClass.New()
+	return getOSLogEntryBoundaryClass().New()
 }
 
 

@@ -98,7 +98,6 @@ type IResponder interface {
 // An abstract class that forms the basis of event and command processing in AppKit. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder
-
 type Responder struct {
 	objectivec.Object
 }
@@ -109,6 +108,7 @@ type Responder struct {
 func ResponderFrom(ptr unsafe.Pointer) Responder {
 	return Responder{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _ResponderClass) Alloc() Responder {
 	rv := objc.Send[Responder](objc.ID(rc.class), objc.Sel("alloc"))
@@ -146,7 +146,6 @@ func NewResponder() Responder {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/init(coder:)
 func NewResponderWithCoder(coder unsafe.Pointer) Responder {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getResponderClass().Alloc()
 	rv := objc.Send[Responder](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

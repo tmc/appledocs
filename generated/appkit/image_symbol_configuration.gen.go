@@ -35,7 +35,6 @@ type IImageSymbolConfiguration interface {
 // An object that contains the specific font, style, and weight attributes to apply to a symbol image. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class
-
 type ImageSymbolConfiguration struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type ImageSymbolConfiguration struct {
 func ImageSymbolConfigurationFrom(ptr unsafe.Pointer) ImageSymbolConfiguration {
 	return ImageSymbolConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageSymbolConfigurationClass) Alloc() ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](objc.ID(ic.class), objc.Sel("alloc"))

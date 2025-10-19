@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [rowCount] class.
-var rowCountClass = _rowCountClass{objc.GetClass("rowCount")}
+var (
+	rowCountClass     _rowCountClass
+	rowCountClassOnce sync.Once
+)
+
+func getrowCountClass() _rowCountClass {
+	rowCountClassOnce.Do(func() {
+		rowCountClass = _rowCountClass{objc.GetClass("rowCount")}
+	})
+	return rowCountClass
+}
 
 type _rowCountClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IrowCount interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/rowCount-c.ivar
-
 type rowCount struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type rowCount struct {
 func rowCountFrom(ptr unsafe.Pointer) rowCount {
 	return rowCount{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _rowCountClass) Alloc() rowCount {
 	rv := objc.Send[rowCount](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _rowCountClass) New() rowCount {
 	rv := objc.Send[rowCount](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (r_ rowCount) Autorelease() rowCount {
 
 // NewrowCount creates a new rowCount instance.
 func NewrowCount() rowCount {
-	return rowCountClass.New()
+	return getrowCountClass().New()
 }
 
 

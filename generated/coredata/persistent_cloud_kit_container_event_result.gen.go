@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentCloudKitContainerEventResult] class.
-var persistentCloudKitContainerEventResultClass = _PersistentCloudKitContainerEventResultClass{objc.GetClass("NSPersistentCloudKitContainerEventResult")}
+var (
+	persistentCloudKitContainerEventResultClass     _PersistentCloudKitContainerEventResultClass
+	persistentCloudKitContainerEventResultClassOnce sync.Once
+)
+
+func getPersistentCloudKitContainerEventResultClass() _PersistentCloudKitContainerEventResultClass {
+	persistentCloudKitContainerEventResultClassOnce.Do(func() {
+		persistentCloudKitContainerEventResultClass = _PersistentCloudKitContainerEventResultClass{objc.GetClass("NSPersistentCloudKitContainerEventResult")}
+	})
+	return persistentCloudKitContainerEventResultClass
+}
 
 type _PersistentCloudKitContainerEventResultClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPersistentCloudKitContainerEventResult interface {
 // The result of a request to fetch persistent CloudKit container events. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult
-
 type PersistentCloudKitContainerEventResult struct {
 	PersistentStoreResult
 }
@@ -36,13 +46,15 @@ func PersistentCloudKitContainerEventResultFrom(ptr unsafe.Pointer) PersistentCl
 		PersistentStoreResult: PersistentStoreResultFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentCloudKitContainerEventResultClass) Alloc() PersistentCloudKitContainerEventResult {
 	rv := objc.Send[PersistentCloudKitContainerEventResult](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentCloudKitContainerEventResultClass) New() PersistentCloudKitContainerEventResult {
 	rv := objc.Send[PersistentCloudKitContainerEventResult](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PersistentCloudKitContainerEventResult) Autorelease() PersistentCloudKi
 
 // NewPersistentCloudKitContainerEventResult creates a new PersistentCloudKitContainerEventResult instance.
 func NewPersistentCloudKitContainerEventResult() PersistentCloudKitContainerEventResult {
-	return persistentCloudKitContainerEventResultClass.New()
+	return getPersistentCloudKitContainerEventResultClass().New()
 }
 
 

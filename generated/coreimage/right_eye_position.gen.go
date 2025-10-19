@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [rightEyePosition] class.
-var rightEyePositionClass = _rightEyePositionClass{objc.GetClass("rightEyePosition")}
+var (
+	rightEyePositionClass     _rightEyePositionClass
+	rightEyePositionClassOnce sync.Once
+)
+
+func getrightEyePositionClass() _rightEyePositionClass {
+	rightEyePositionClassOnce.Do(func() {
+		rightEyePositionClass = _rightEyePositionClass{objc.GetClass("rightEyePosition")}
+	})
+	return rightEyePositionClass
+}
 
 type _rightEyePositionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IrightEyePosition interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyePosition-c.ivar
-
 type rightEyePosition struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type rightEyePosition struct {
 func rightEyePositionFrom(ptr unsafe.Pointer) rightEyePosition {
 	return rightEyePosition{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _rightEyePositionClass) Alloc() rightEyePosition {
 	rv := objc.Send[rightEyePosition](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _rightEyePositionClass) New() rightEyePosition {
 	rv := objc.Send[rightEyePosition](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (r_ rightEyePosition) Autorelease() rightEyePosition {
 
 // NewrightEyePosition creates a new rightEyePosition instance.
 func NewrightEyePosition() rightEyePosition {
-	return rightEyePositionClass.New()
+	return getrightEyePositionClass().New()
 }
 
 

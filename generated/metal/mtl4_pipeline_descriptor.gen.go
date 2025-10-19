@@ -3,6 +3,7 @@
 package metal
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTL4PipelineDescriptor] class.
-var mTL4PipelineDescriptorClass = _MTL4PipelineDescriptorClass{objc.GetClass("MTL4PipelineDescriptor")}
+var (
+	mTL4PipelineDescriptorClass     _MTL4PipelineDescriptorClass
+	mTL4PipelineDescriptorClassOnce sync.Once
+)
+
+func getMTL4PipelineDescriptorClass() _MTL4PipelineDescriptorClass {
+	mTL4PipelineDescriptorClassOnce.Do(func() {
+		mTL4PipelineDescriptorClass = _MTL4PipelineDescriptorClass{objc.GetClass("MTL4PipelineDescriptor")}
+	})
+	return mTL4PipelineDescriptorClass
+}
 
 type _MTL4PipelineDescriptorClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type IMTL4PipelineDescriptor interface {
 }
 
 // A parent class referenced by other Metal classes. [Full Topic]
-
 type MTL4PipelineDescriptor struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type MTL4PipelineDescriptor struct {
 func MTL4PipelineDescriptorFrom(ptr unsafe.Pointer) MTL4PipelineDescriptor {
 	return MTL4PipelineDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4PipelineDescriptorClass) Alloc() MTL4PipelineDescriptor {
 	rv := objc.Send[MTL4PipelineDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTL4PipelineDescriptorClass) New() MTL4PipelineDescriptor {
 	rv := objc.Send[MTL4PipelineDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (m_ MTL4PipelineDescriptor) Autorelease() MTL4PipelineDescriptor {
 
 // NewMTL4PipelineDescriptor creates a new MTL4PipelineDescriptor instance.
 func NewMTL4PipelineDescriptor() MTL4PipelineDescriptor {
-	return mTL4PipelineDescriptorClass.New()
+	return getMTL4PipelineDescriptorClass().New()
 }
 
 

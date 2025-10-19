@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NEDNSOverHTTPSSettings] class.
-var nEDNSOverHTTPSSettingsClass = _NEDNSOverHTTPSSettingsClass{objc.GetClass("NEDNSOverHTTPSSettings")}
+var (
+	nEDNSOverHTTPSSettingsClass     _NEDNSOverHTTPSSettingsClass
+	nEDNSOverHTTPSSettingsClassOnce sync.Once
+)
+
+func getNEDNSOverHTTPSSettingsClass() _NEDNSOverHTTPSSettingsClass {
+	nEDNSOverHTTPSSettingsClassOnce.Do(func() {
+		nEDNSOverHTTPSSettingsClass = _NEDNSOverHTTPSSettingsClass{objc.GetClass("NEDNSOverHTTPSSettings")}
+	})
+	return nEDNSOverHTTPSSettingsClass
+}
 
 type _NEDNSOverHTTPSSettingsClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INEDNSOverHTTPSSettings interface {
 // The DNS resolver settings for a DNS-over-HTTPS server. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSOverHTTPSSettings
-
 type NEDNSOverHTTPSSettings struct {
 	NEDNSSettings
 }
@@ -36,13 +46,15 @@ func NEDNSOverHTTPSSettingsFrom(ptr unsafe.Pointer) NEDNSOverHTTPSSettings {
 		NEDNSSettings: NEDNSSettingsFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEDNSOverHTTPSSettingsClass) Alloc() NEDNSOverHTTPSSettings {
 	rv := objc.Send[NEDNSOverHTTPSSettings](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEDNSOverHTTPSSettingsClass) New() NEDNSOverHTTPSSettings {
 	rv := objc.Send[NEDNSOverHTTPSSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NEDNSOverHTTPSSettings) Autorelease() NEDNSOverHTTPSSettings {
 
 // NewNEDNSOverHTTPSSettings creates a new NEDNSOverHTTPSSettings instance.
 func NewNEDNSOverHTTPSSettings() NEDNSOverHTTPSSettings {
-	return nEDNSOverHTTPSSettingsClass.New()
+	return getNEDNSOverHTTPSSettingsClass().New()
 }
 
 

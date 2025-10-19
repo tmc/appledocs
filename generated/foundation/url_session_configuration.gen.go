@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLSessionConfiguration] class.
-var uRLSessionConfigurationClass = _URLSessionConfigurationClass{objc.GetClass("NSURLSessionConfiguration")}
+var (
+	uRLSessionConfigurationClass     _URLSessionConfigurationClass
+	uRLSessionConfigurationClassOnce sync.Once
+)
+
+func getURLSessionConfigurationClass() _URLSessionConfigurationClass {
+	uRLSessionConfigurationClassOnce.Do(func() {
+		uRLSessionConfigurationClass = _URLSessionConfigurationClass{objc.GetClass("NSURLSessionConfiguration")}
+	})
+	return uRLSessionConfigurationClass
+}
 
 type _URLSessionConfigurationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLSessionConfiguration interface {
 // A configuration object that defines behavior and policies for a URL session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration
-
 type URLSessionConfiguration struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLSessionConfiguration struct {
 func URLSessionConfigurationFrom(ptr unsafe.Pointer) URLSessionConfiguration {
 	return URLSessionConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionConfigurationClass) Alloc() URLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionConfigurationClass) New() URLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLSessionConfiguration) Autorelease() URLSessionConfiguration {
 
 // NewURLSessionConfiguration creates a new URLSessionConfiguration instance.
 func NewURLSessionConfiguration() URLSessionConfiguration {
-	return uRLSessionConfigurationClass.New()
+	return getURLSessionConfigurationClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVCaptureMovieFileOutput] class.
-var aVCaptureMovieFileOutputClass = _AVCaptureMovieFileOutputClass{objc.GetClass("AVCaptureMovieFileOutput")}
+var (
+	aVCaptureMovieFileOutputClass     _AVCaptureMovieFileOutputClass
+	aVCaptureMovieFileOutputClassOnce sync.Once
+)
+
+func getAVCaptureMovieFileOutputClass() _AVCaptureMovieFileOutputClass {
+	aVCaptureMovieFileOutputClassOnce.Do(func() {
+		aVCaptureMovieFileOutputClass = _AVCaptureMovieFileOutputClass{objc.GetClass("AVCaptureMovieFileOutput")}
+	})
+	return aVCaptureMovieFileOutputClass
+}
 
 type _AVCaptureMovieFileOutputClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVCaptureMovieFileOutput interface {
 // A capture output that records video and audio to a QuickTime movie file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput
-
 type AVCaptureMovieFileOutput struct {
 	AVCaptureFileOutput
 }
@@ -36,13 +46,15 @@ func AVCaptureMovieFileOutputFrom(ptr unsafe.Pointer) AVCaptureMovieFileOutput {
 		AVCaptureFileOutput: AVCaptureFileOutputFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureMovieFileOutputClass) Alloc() AVCaptureMovieFileOutput {
 	rv := objc.Send[AVCaptureMovieFileOutput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureMovieFileOutputClass) New() AVCaptureMovieFileOutput {
 	rv := objc.Send[AVCaptureMovieFileOutput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVCaptureMovieFileOutput) Autorelease() AVCaptureMovieFileOutput {
 
 // NewAVCaptureMovieFileOutput creates a new AVCaptureMovieFileOutput instance.
 func NewAVCaptureMovieFileOutput() AVCaptureMovieFileOutput {
-	return aVCaptureMovieFileOutputClass.New()
+	return getAVCaptureMovieFileOutputClass().New()
 }
 
 

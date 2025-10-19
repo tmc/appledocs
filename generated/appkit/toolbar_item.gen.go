@@ -35,7 +35,6 @@ type IToolbarItem interface {
 // A single item that appears in a window’s toolbar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem
-
 type ToolbarItem struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type ToolbarItem struct {
 func ToolbarItemFrom(ptr unsafe.Pointer) ToolbarItem {
 	return ToolbarItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _ToolbarItemClass) Alloc() ToolbarItem {
 	rv := objc.Send[ToolbarItem](objc.ID(tc.class), objc.Sel("alloc"))

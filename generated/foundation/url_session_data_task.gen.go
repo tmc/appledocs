@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionDataTask] class.
-var uRLSessionDataTaskClass = _URLSessionDataTaskClass{objc.GetClass("NSURLSessionDataTask")}
+var (
+	uRLSessionDataTaskClass     _URLSessionDataTaskClass
+	uRLSessionDataTaskClassOnce sync.Once
+)
+
+func getURLSessionDataTaskClass() _URLSessionDataTaskClass {
+	uRLSessionDataTaskClassOnce.Do(func() {
+		uRLSessionDataTaskClass = _URLSessionDataTaskClass{objc.GetClass("NSURLSessionDataTask")}
+	})
+	return uRLSessionDataTaskClass
+}
 
 type _URLSessionDataTaskClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IURLSessionDataTask interface {
 // A URL session task that returns downloaded data directly to the app in memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDataTask
-
 type URLSessionDataTask struct {
 	URLSessionTask
 }
@@ -36,13 +46,15 @@ func URLSessionDataTaskFrom(ptr unsafe.Pointer) URLSessionDataTask {
 		URLSessionTask: URLSessionTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionDataTaskClass) Alloc() URLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionDataTaskClass) New() URLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ URLSessionDataTask) Autorelease() URLSessionDataTask {
 
 // NewURLSessionDataTask creates a new URLSessionDataTask instance.
 func NewURLSessionDataTask() URLSessionDataTask {
-	return uRLSessionDataTaskClass.New()
+	return getURLSessionDataTaskClass().New()
 }
 
 

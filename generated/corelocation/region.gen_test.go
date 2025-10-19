@@ -6,16 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/corelocation"
 )
 
+// Suppress unused import errors
+var _ = corelocation.NewRegion
 
-// ExampleNewRegionCircularRegionWithCenterRadiusIdentifier demonstrates how to create a Region instance using NewRegionCircularRegionWithCenterRadiusIdentifier.
-// Initializes and returns a region object defining a circular area.
-func ExampleNewRegionCircularRegionWithCenterRadiusIdentifier() {
-	_ = corelocation.NewRegionCircularRegionWithCenterRadiusIdentifier(
-		nil, // center unsafe.Pointer
-		nil, // radius unsafe.Pointer
-		"identifier", // identifier string
-	)
-	// Output:
-}
+
 
 

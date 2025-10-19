@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [QuitCommand] class.
-var quitCommandClass = _QuitCommandClass{objc.GetClass("NSQuitCommand")}
+var (
+	quitCommandClass     _QuitCommandClass
+	quitCommandClassOnce sync.Once
+)
+
+func getQuitCommandClass() _QuitCommandClass {
+	quitCommandClassOnce.Do(func() {
+		quitCommandClass = _QuitCommandClass{objc.GetClass("NSQuitCommand")}
+	})
+	return quitCommandClass
+}
 
 type _QuitCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IQuitCommand interface {
 // A command that quits the specified app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand
-
 type QuitCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func QuitCommandFrom(ptr unsafe.Pointer) QuitCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (qc _QuitCommandClass) Alloc() QuitCommand {
 	rv := objc.Send[QuitCommand](objc.ID(qc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (qc _QuitCommandClass) New() QuitCommand {
 	rv := objc.Send[QuitCommand](objc.ID(qc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (q_ QuitCommand) Autorelease() QuitCommand {
 
 // NewQuitCommand creates a new QuitCommand instance.
 func NewQuitCommand() QuitCommand {
-	return quitCommandClass.New()
+	return getQuitCommandClass().New()
 }
 
 

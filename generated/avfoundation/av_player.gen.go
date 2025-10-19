@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlayer] class.
-var aVPlayerClass = _AVPlayerClass{objc.GetClass("AVPlayer")}
+var (
+	aVPlayerClass     _AVPlayerClass
+	aVPlayerClassOnce sync.Once
+)
+
+func getAVPlayerClass() _AVPlayerClass {
+	aVPlayerClassOnce.Do(func() {
+		aVPlayerClass = _AVPlayerClass{objc.GetClass("AVPlayer")}
+	})
+	return aVPlayerClass
+}
 
 type _AVPlayerClass struct {
 	class objc.Class
@@ -43,7 +54,6 @@ type IAVPlayer interface {
 // An object that provides the interface to control the player’s transport behavior. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer
-
 type AVPlayer struct {
 	objectivec.Object
 }
@@ -54,13 +64,15 @@ type AVPlayer struct {
 func AVPlayerFrom(ptr unsafe.Pointer) AVPlayer {
 	return AVPlayer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerClass) Alloc() AVPlayer {
 	rv := objc.Send[AVPlayer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerClass) New() AVPlayer {
 	rv := objc.Send[AVPlayer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,7 +93,7 @@ func (a_ AVPlayer) Autorelease() AVPlayer {
 
 // NewAVPlayer creates a new AVPlayer instance.
 func NewAVPlayer() AVPlayer {
-	return aVPlayerClass.New()
+	return getAVPlayerClass().New()
 }
 
 
@@ -90,7 +102,7 @@ func NewAVPlayer() AVPlayer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
 func NewAVPlayerWithPlayerItem(item unsafe.Pointer) AVPlayer {
-	instance := aVPlayerClass.Alloc()
+	instance := getAVPlayerClass().Alloc()
 	rv := objc.Send[AVPlayer](instance.ID, objc.Sel("initWithPlayerItem:"), item)
 	rv.Autorelease()
 	return rv
@@ -100,7 +112,7 @@ func NewAVPlayerWithPlayerItem(item unsafe.Pointer) AVPlayer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(url:)
 func NewAVPlayerWithURL(URL unsafe.Pointer) AVPlayer {
-	instance := aVPlayerClass.Alloc()
+	instance := getAVPlayerClass().Alloc()
 	rv := objc.Send[AVPlayer](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
 	return rv

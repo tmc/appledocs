@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAssetResourceLoader] class.
-var aVAssetResourceLoaderClass = _AVAssetResourceLoaderClass{objc.GetClass("AVAssetResourceLoader")}
+var (
+	aVAssetResourceLoaderClass     _AVAssetResourceLoaderClass
+	aVAssetResourceLoaderClassOnce sync.Once
+)
+
+func getAVAssetResourceLoaderClass() _AVAssetResourceLoaderClass {
+	aVAssetResourceLoaderClassOnce.Do(func() {
+		aVAssetResourceLoaderClass = _AVAssetResourceLoaderClass{objc.GetClass("AVAssetResourceLoader")}
+	})
+	return aVAssetResourceLoaderClass
+}
 
 type _AVAssetResourceLoaderClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAssetResourceLoader interface {
 // An object that mediates resource requests from a URL asset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader
-
 type AVAssetResourceLoader struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVAssetResourceLoader struct {
 func AVAssetResourceLoaderFrom(ptr unsafe.Pointer) AVAssetResourceLoader {
 	return AVAssetResourceLoader{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetResourceLoaderClass) Alloc() AVAssetResourceLoader {
 	rv := objc.Send[AVAssetResourceLoader](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetResourceLoaderClass) New() AVAssetResourceLoader {
 	rv := objc.Send[AVAssetResourceLoader](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVAssetResourceLoader) Autorelease() AVAssetResourceLoader {
 
 // NewAVAssetResourceLoader creates a new AVAssetResourceLoader instance.
 func NewAVAssetResourceLoader() AVAssetResourceLoader {
-	return aVAssetResourceLoaderClass.New()
+	return getAVAssetResourceLoaderClass().New()
 }
 
 

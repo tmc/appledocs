@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [GradientLayer] class.
-var gradientLayerClass = _GradientLayerClass{objc.GetClass("CAGradientLayer")}
+var (
+	gradientLayerClass     _GradientLayerClass
+	gradientLayerClassOnce sync.Once
+)
+
+func getGradientLayerClass() _GradientLayerClass {
+	gradientLayerClassOnce.Do(func() {
+		gradientLayerClass = _GradientLayerClass{objc.GetClass("CAGradientLayer")}
+	})
+	return gradientLayerClass
+}
 
 type _GradientLayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IGradientLayer interface {
 // A layer that draws a color gradient over its background color, filling the shape of the layer. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer
-
 type GradientLayer struct {
 	Layer
 }
@@ -36,13 +46,15 @@ func GradientLayerFrom(ptr unsafe.Pointer) GradientLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GradientLayerClass) Alloc() GradientLayer {
 	rv := objc.Send[GradientLayer](objc.ID(gc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GradientLayerClass) New() GradientLayer {
 	rv := objc.Send[GradientLayer](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (g_ GradientLayer) Autorelease() GradientLayer {
 
 // NewGradientLayer creates a new GradientLayer instance.
 func NewGradientLayer() GradientLayer {
-	return gradientLayerClass.New()
+	return getGradientLayerClass().New()
 }
 
 

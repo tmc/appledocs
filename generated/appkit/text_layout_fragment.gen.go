@@ -35,7 +35,6 @@ type ITextLayoutFragment interface {
 // A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment
-
 type TextLayoutFragment struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextLayoutFragment struct {
 func TextLayoutFragmentFrom(ptr unsafe.Pointer) TextLayoutFragment {
 	return TextLayoutFragment{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextLayoutFragmentClass) Alloc() TextLayoutFragment {
 	rv := objc.Send[TextLayoutFragment](objc.ID(tc.class), objc.Sel("alloc"))

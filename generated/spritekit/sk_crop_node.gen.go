@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKCropNode] class.
-var sKCropNodeClass = _SKCropNodeClass{objc.GetClass("SKCropNode")}
+var (
+	sKCropNodeClass     _SKCropNodeClass
+	sKCropNodeClassOnce sync.Once
+)
+
+func getSKCropNodeClass() _SKCropNodeClass {
+	sKCropNodeClassOnce.Do(func() {
+		sKCropNodeClass = _SKCropNodeClass{objc.GetClass("SKCropNode")}
+	})
+	return sKCropNodeClass
+}
 
 type _SKCropNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKCropNode interface {
 // A node that masks pixels drawn by its children so that only some pixels are seen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKCropNode
-
 type SKCropNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKCropNodeFrom(ptr unsafe.Pointer) SKCropNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKCropNodeClass) Alloc() SKCropNode {
 	rv := objc.Send[SKCropNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKCropNodeClass) New() SKCropNode {
 	rv := objc.Send[SKCropNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKCropNode) Autorelease() SKCropNode {
 
 // NewSKCropNode creates a new SKCropNode instance.
 func NewSKCropNode() SKCropNode {
-	return sKCropNodeClass.New()
+	return getSKCropNodeClass().New()
 }
 
 

@@ -36,7 +36,6 @@ type ITableHeaderView interface {
 // An object that draws headers over a table view’s columns and handles mouse events in those headers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView
-
 type TableHeaderView struct {
 	View
 }
@@ -49,6 +48,7 @@ func TableHeaderViewFrom(ptr unsafe.Pointer) TableHeaderView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableHeaderViewClass) Alloc() TableHeaderView {
 	rv := objc.Send[TableHeaderView](objc.ID(tc.class), objc.Sel("alloc"))

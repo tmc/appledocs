@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDI2DeviceInfo] class.
-var mIDI2DeviceInfoClass = _MIDI2DeviceInfoClass{objc.GetClass("MIDI2DeviceInfo")}
+var (
+	mIDI2DeviceInfoClass     _MIDI2DeviceInfoClass
+	mIDI2DeviceInfoClassOnce sync.Once
+)
+
+func getMIDI2DeviceInfoClass() _MIDI2DeviceInfoClass {
+	mIDI2DeviceInfoClassOnce.Do(func() {
+		mIDI2DeviceInfoClass = _MIDI2DeviceInfoClass{objc.GetClass("MIDI2DeviceInfo")}
+	})
+	return mIDI2DeviceInfoClass
+}
 
 type _MIDI2DeviceInfoClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMIDI2DeviceInfo interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo
-
 type MIDI2DeviceInfo struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type MIDI2DeviceInfo struct {
 func MIDI2DeviceInfoFrom(ptr unsafe.Pointer) MIDI2DeviceInfo {
 	return MIDI2DeviceInfo{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDI2DeviceInfoClass) Alloc() MIDI2DeviceInfo {
 	rv := objc.Send[MIDI2DeviceInfo](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDI2DeviceInfoClass) New() MIDI2DeviceInfo {
 	rv := objc.Send[MIDI2DeviceInfo](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,14 +71,14 @@ func (m_ MIDI2DeviceInfo) Autorelease() MIDI2DeviceInfo {
 
 // NewMIDI2DeviceInfo creates a new MIDI2DeviceInfo instance.
 func NewMIDI2DeviceInfo() MIDI2DeviceInfo {
-	return mIDI2DeviceInfoClass.New()
+	return getMIDI2DeviceInfoClass().New()
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/init(manufacturerID:family:modelNumber:revisionLevel:)
 func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family unsafe.Pointer, modelNumber unsafe.Pointer, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
-	instance := mIDI2DeviceInfoClass.Alloc()
+	instance := getMIDI2DeviceInfoClass().Alloc()
 	rv := objc.Send[MIDI2DeviceInfo](instance.ID, objc.Sel("initWithManufacturerID:family:modelNumber:revisionLevel:"), manufacturerID, family, modelNumber, revisionLevel)
 	rv.Autorelease()
 	return rv

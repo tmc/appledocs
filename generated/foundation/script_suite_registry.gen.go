@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScriptSuiteRegistry] class.
-var scriptSuiteRegistryClass = _ScriptSuiteRegistryClass{objc.GetClass("NSScriptSuiteRegistry")}
+var (
+	scriptSuiteRegistryClass     _ScriptSuiteRegistryClass
+	scriptSuiteRegistryClassOnce sync.Once
+)
+
+func getScriptSuiteRegistryClass() _ScriptSuiteRegistryClass {
+	scriptSuiteRegistryClassOnce.Do(func() {
+		scriptSuiteRegistryClass = _ScriptSuiteRegistryClass{objc.GetClass("NSScriptSuiteRegistry")}
+	})
+	return scriptSuiteRegistryClass
+}
 
 type _ScriptSuiteRegistryClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScriptSuiteRegistry interface {
 // The top-level repository of scriptability information for an app at runtime. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry
-
 type ScriptSuiteRegistry struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ScriptSuiteRegistry struct {
 func ScriptSuiteRegistryFrom(ptr unsafe.Pointer) ScriptSuiteRegistry {
 	return ScriptSuiteRegistry{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptSuiteRegistryClass) Alloc() ScriptSuiteRegistry {
 	rv := objc.Send[ScriptSuiteRegistry](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptSuiteRegistryClass) New() ScriptSuiteRegistry {
 	rv := objc.Send[ScriptSuiteRegistry](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ ScriptSuiteRegistry) Autorelease() ScriptSuiteRegistry {
 
 // NewScriptSuiteRegistry creates a new ScriptSuiteRegistry instance.
 func NewScriptSuiteRegistry() ScriptSuiteRegistry {
-	return scriptSuiteRegistryClass.New()
+	return getScriptSuiteRegistryClass().New()
 }
 
 

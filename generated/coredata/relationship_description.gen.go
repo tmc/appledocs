@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RelationshipDescription] class.
-var relationshipDescriptionClass = _RelationshipDescriptionClass{objc.GetClass("NSRelationshipDescription")}
+var (
+	relationshipDescriptionClass     _RelationshipDescriptionClass
+	relationshipDescriptionClassOnce sync.Once
+)
+
+func getRelationshipDescriptionClass() _RelationshipDescriptionClass {
+	relationshipDescriptionClassOnce.Do(func() {
+		relationshipDescriptionClass = _RelationshipDescriptionClass{objc.GetClass("NSRelationshipDescription")}
+	})
+	return relationshipDescriptionClass
+}
 
 type _RelationshipDescriptionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IRelationshipDescription interface {
 // A description of a relationship between two entities. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription
-
 type RelationshipDescription struct {
 	PropertyDescription
 }
@@ -36,13 +46,15 @@ func RelationshipDescriptionFrom(ptr unsafe.Pointer) RelationshipDescription {
 		PropertyDescription: PropertyDescriptionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RelationshipDescriptionClass) Alloc() RelationshipDescription {
 	rv := objc.Send[RelationshipDescription](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RelationshipDescriptionClass) New() RelationshipDescription {
 	rv := objc.Send[RelationshipDescription](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ RelationshipDescription) Autorelease() RelationshipDescription {
 
 // NewRelationshipDescription creates a new RelationshipDescription instance.
 func NewRelationshipDescription() RelationshipDescription {
-	return relationshipDescriptionClass.New()
+	return getRelationshipDescriptionClass().New()
 }
 
 

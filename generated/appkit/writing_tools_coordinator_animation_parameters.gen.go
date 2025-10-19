@@ -35,7 +35,6 @@ type IWritingToolsCoordinatorAnimationParameters interface {
 // An object you use to configure additional tasks or animations to run alongside the Writing Tools animations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters
-
 type WritingToolsCoordinatorAnimationParameters struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type WritingToolsCoordinatorAnimationParameters struct {
 func WritingToolsCoordinatorAnimationParametersFrom(ptr unsafe.Pointer) WritingToolsCoordinatorAnimationParameters {
 	return WritingToolsCoordinatorAnimationParameters{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WritingToolsCoordinatorAnimationParametersClass) Alloc() WritingToolsCoordinatorAnimationParameters {
 	rv := objc.Send[WritingToolsCoordinatorAnimationParameters](objc.ID(wc.class), objc.Sel("alloc"))

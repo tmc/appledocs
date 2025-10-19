@@ -3,6 +3,7 @@
 package metal
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTLRenderPassDescriptor] class.
-var mTLRenderPassDescriptorClass = _MTLRenderPassDescriptorClass{objc.GetClass("MTLRenderPassDescriptor")}
+var (
+	mTLRenderPassDescriptorClass     _MTLRenderPassDescriptorClass
+	mTLRenderPassDescriptorClassOnce sync.Once
+)
+
+func getMTLRenderPassDescriptorClass() _MTLRenderPassDescriptorClass {
+	mTLRenderPassDescriptorClassOnce.Do(func() {
+		mTLRenderPassDescriptorClass = _MTLRenderPassDescriptorClass{objc.GetClass("MTLRenderPassDescriptor")}
+	})
+	return mTLRenderPassDescriptorClass
+}
 
 type _MTLRenderPassDescriptorClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMTLRenderPassDescriptor interface {
 // A group of render targets that hold the results of a render pass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor
-
 type MTLRenderPassDescriptor struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MTLRenderPassDescriptor struct {
 func MTLRenderPassDescriptorFrom(ptr unsafe.Pointer) MTLRenderPassDescriptor {
 	return MTLRenderPassDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTLRenderPassDescriptorClass) Alloc() MTLRenderPassDescriptor {
 	rv := objc.Send[MTLRenderPassDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTLRenderPassDescriptorClass) New() MTLRenderPassDescriptor {
 	rv := objc.Send[MTLRenderPassDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MTLRenderPassDescriptor) Autorelease() MTLRenderPassDescriptor {
 
 // NewMTLRenderPassDescriptor creates a new MTLRenderPassDescriptor instance.
 func NewMTLRenderPassDescriptor() MTLRenderPassDescriptor {
-	return mTLRenderPassDescriptorClass.New()
+	return getMTLRenderPassDescriptorClass().New()
 }
 
 

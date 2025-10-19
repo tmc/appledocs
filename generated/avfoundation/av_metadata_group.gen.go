@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVMetadataGroup] class.
-var aVMetadataGroupClass = _AVMetadataGroupClass{objc.GetClass("AVMetadataGroup")}
+var (
+	aVMetadataGroupClass     _AVMetadataGroupClass
+	aVMetadataGroupClassOnce sync.Once
+)
+
+func getAVMetadataGroupClass() _AVMetadataGroupClass {
+	aVMetadataGroupClassOnce.Do(func() {
+		aVMetadataGroupClass = _AVMetadataGroupClass{objc.GetClass("AVMetadataGroup")}
+	})
+	return aVMetadataGroupClass
+}
 
 type _AVMetadataGroupClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type IAVMetadataGroup interface {
 }
 
 // A parent class referenced by other AVFoundation classes. [Full Topic]
-
 type AVMetadataGroup struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type AVMetadataGroup struct {
 func AVMetadataGroupFrom(ptr unsafe.Pointer) AVMetadataGroup {
 	return AVMetadataGroup{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVMetadataGroupClass) Alloc() AVMetadataGroup {
 	rv := objc.Send[AVMetadataGroup](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVMetadataGroupClass) New() AVMetadataGroup {
 	rv := objc.Send[AVMetadataGroup](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (a_ AVMetadataGroup) Autorelease() AVMetadataGroup {
 
 // NewAVMetadataGroup creates a new AVMetadataGroup instance.
 func NewAVMetadataGroup() AVMetadataGroup {
-	return aVMetadataGroupClass.New()
+	return getAVMetadataGroupClass().New()
 }
 
 

@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // CoreGraphics Functions (727 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -748,7 +749,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_CGColorSpaceRelease, lib, "CGColorSpaceRelease")
 	tryRegister(&_CGContextSetInterpolationQuality, lib, "CGContextSetInterpolationQuality")
 	tryRegister(&_CGAcquireDisplayFadeReservation, lib, "CGAcquireDisplayFadeReservation")
@@ -1489,6 +1489,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Decrements the retain count of a color space. [Full Topic]

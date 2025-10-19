@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NETunnelProviderManager] class.
-var nETunnelProviderManagerClass = _NETunnelProviderManagerClass{objc.GetClass("NETunnelProviderManager")}
+var (
+	nETunnelProviderManagerClass     _NETunnelProviderManagerClass
+	nETunnelProviderManagerClassOnce sync.Once
+)
+
+func getNETunnelProviderManagerClass() _NETunnelProviderManagerClass {
+	nETunnelProviderManagerClassOnce.Do(func() {
+		nETunnelProviderManagerClass = _NETunnelProviderManagerClass{objc.GetClass("NETunnelProviderManager")}
+	})
+	return nETunnelProviderManagerClass
+}
 
 type _NETunnelProviderManagerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INETunnelProviderManager interface {
 // An object to create and manage the tunnel provider’s VPN configuration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager
-
 type NETunnelProviderManager struct {
 	NEVPNManager
 }
@@ -36,13 +46,15 @@ func NETunnelProviderManagerFrom(ptr unsafe.Pointer) NETunnelProviderManager {
 		NEVPNManager: NEVPNManagerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NETunnelProviderManagerClass) Alloc() NETunnelProviderManager {
 	rv := objc.Send[NETunnelProviderManager](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NETunnelProviderManagerClass) New() NETunnelProviderManager {
 	rv := objc.Send[NETunnelProviderManager](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NETunnelProviderManager) Autorelease() NETunnelProviderManager {
 
 // NewNETunnelProviderManager creates a new NETunnelProviderManager instance.
 func NewNETunnelProviderManager() NETunnelProviderManager {
-	return nETunnelProviderManagerClass.New()
+	return getNETunnelProviderManagerClass().New()
 }
 
 

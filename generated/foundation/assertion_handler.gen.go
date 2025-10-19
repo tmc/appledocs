@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AssertionHandler] class.
-var assertionHandlerClass = _AssertionHandlerClass{objc.GetClass("NSAssertionHandler")}
+var (
+	assertionHandlerClass     _AssertionHandlerClass
+	assertionHandlerClassOnce sync.Once
+)
+
+func getAssertionHandlerClass() _AssertionHandlerClass {
+	assertionHandlerClassOnce.Do(func() {
+		assertionHandlerClass = _AssertionHandlerClass{objc.GetClass("NSAssertionHandler")}
+	})
+	return assertionHandlerClass
+}
 
 type _AssertionHandlerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAssertionHandler interface {
 // An object that logs an assertion to the console. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler
-
 type AssertionHandler struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AssertionHandler struct {
 func AssertionHandlerFrom(ptr unsafe.Pointer) AssertionHandler {
 	return AssertionHandler{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssertionHandlerClass) Alloc() AssertionHandler {
 	rv := objc.Send[AssertionHandler](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AssertionHandlerClass) New() AssertionHandler {
 	rv := objc.Send[AssertionHandler](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AssertionHandler) Autorelease() AssertionHandler {
 
 // NewAssertionHandler creates a new AssertionHandler instance.
 func NewAssertionHandler() AssertionHandler {
-	return assertionHandlerClass.New()
+	return getAssertionHandlerClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentHistoryResult] class.
-var persistentHistoryResultClass = _PersistentHistoryResultClass{objc.GetClass("NSPersistentHistoryResult")}
+var (
+	persistentHistoryResultClass     _PersistentHistoryResultClass
+	persistentHistoryResultClassOnce sync.Once
+)
+
+func getPersistentHistoryResultClass() _PersistentHistoryResultClass {
+	persistentHistoryResultClassOnce.Do(func() {
+		persistentHistoryResultClass = _PersistentHistoryResultClass{objc.GetClass("NSPersistentHistoryResult")}
+	})
+	return persistentHistoryResultClass
+}
 
 type _PersistentHistoryResultClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPersistentHistoryResult interface {
 // The result of a request to fetch persistent history. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult
-
 type PersistentHistoryResult struct {
 	PersistentStoreResult
 }
@@ -36,13 +46,15 @@ func PersistentHistoryResultFrom(ptr unsafe.Pointer) PersistentHistoryResult {
 		PersistentStoreResult: PersistentStoreResultFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentHistoryResultClass) Alloc() PersistentHistoryResult {
 	rv := objc.Send[PersistentHistoryResult](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentHistoryResultClass) New() PersistentHistoryResult {
 	rv := objc.Send[PersistentHistoryResult](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PersistentHistoryResult) Autorelease() PersistentHistoryResult {
 
 // NewPersistentHistoryResult creates a new PersistentHistoryResult instance.
 func NewPersistentHistoryResult() PersistentHistoryResult {
-	return persistentHistoryResultClass.New()
+	return getPersistentHistoryResultClass().New()
 }
 
 

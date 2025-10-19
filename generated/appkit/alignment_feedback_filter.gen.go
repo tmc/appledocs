@@ -35,7 +35,6 @@ type IAlignmentFeedbackFilter interface {
 // An object that can filter the movement of an object and provides haptic feedback when alignment occurs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter
-
 type AlignmentFeedbackFilter struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type AlignmentFeedbackFilter struct {
 func AlignmentFeedbackFilterFrom(ptr unsafe.Pointer) AlignmentFeedbackFilter {
 	return AlignmentFeedbackFilter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AlignmentFeedbackFilterClass) Alloc() AlignmentFeedbackFilter {
 	rv := objc.Send[AlignmentFeedbackFilter](objc.ID(ac.class), objc.Sel("alloc"))

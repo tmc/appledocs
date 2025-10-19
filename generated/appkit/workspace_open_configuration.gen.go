@@ -35,7 +35,6 @@ type IWorkspaceOpenConfiguration interface {
 // The configuration options for opening URLs or launching apps. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration
-
 type WorkspaceOpenConfiguration struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type WorkspaceOpenConfiguration struct {
 func WorkspaceOpenConfigurationFrom(ptr unsafe.Pointer) WorkspaceOpenConfiguration {
 	return WorkspaceOpenConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WorkspaceOpenConfigurationClass) Alloc() WorkspaceOpenConfiguration {
 	rv := objc.Send[WorkspaceOpenConfiguration](objc.ID(wc.class), objc.Sel("alloc"))

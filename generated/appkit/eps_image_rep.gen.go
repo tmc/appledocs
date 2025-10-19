@@ -34,7 +34,6 @@ type IEPSImageRep interface {
 // An object that can render an image from encapsulated PostScript (EPS) code. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep
-
 type EPSImageRep struct {
 	ImageRep
 }
@@ -47,6 +46,7 @@ func EPSImageRepFrom(ptr unsafe.Pointer) EPSImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _EPSImageRepClass) Alloc() EPSImageRep {
 	rv := objc.Send[EPSImageRep](objc.ID(ec.class), objc.Sel("alloc"))

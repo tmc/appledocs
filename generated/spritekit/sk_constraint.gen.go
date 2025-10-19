@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKConstraint] class.
-var sKConstraintClass = _SKConstraintClass{objc.GetClass("SKConstraint")}
+var (
+	sKConstraintClass     _SKConstraintClass
+	sKConstraintClassOnce sync.Once
+)
+
+func getSKConstraintClass() _SKConstraintClass {
+	sKConstraintClassOnce.Do(func() {
+		sKConstraintClass = _SKConstraintClass{objc.GetClass("SKConstraint")}
+	})
+	return sKConstraintClass
+}
 
 type _SKConstraintClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKConstraint interface {
 // A specification for constraining a node’s position or rotation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKConstraint
-
 type SKConstraint struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKConstraint struct {
 func SKConstraintFrom(ptr unsafe.Pointer) SKConstraint {
 	return SKConstraint{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKConstraintClass) Alloc() SKConstraint {
 	rv := objc.Send[SKConstraint](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKConstraintClass) New() SKConstraint {
 	rv := objc.Send[SKConstraint](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKConstraint) Autorelease() SKConstraint {
 
 // NewSKConstraint creates a new SKConstraint instance.
 func NewSKConstraint() SKConstraint {
-	return sKConstraintClass.New()
+	return getSKConstraintClass().New()
 }
 
 

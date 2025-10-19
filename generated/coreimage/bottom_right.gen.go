@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [bottomRight] class.
-var bottomRightClass = _bottomRightClass{objc.GetClass("bottomRight")}
+var (
+	bottomRightClass     _bottomRightClass
+	bottomRightClassOnce sync.Once
+)
+
+func getbottomRightClass() _bottomRightClass {
+	bottomRightClassOnce.Do(func() {
+		bottomRightClass = _bottomRightClass{objc.GetClass("bottomRight")}
+	})
+	return bottomRightClass
+}
 
 type _bottomRightClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IbottomRight interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomRight-c.ivar
-
 type bottomRight struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type bottomRight struct {
 func bottomRightFrom(ptr unsafe.Pointer) bottomRight {
 	return bottomRight{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _bottomRightClass) Alloc() bottomRight {
 	rv := objc.Send[bottomRight](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _bottomRightClass) New() bottomRight {
 	rv := objc.Send[bottomRight](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (b_ bottomRight) Autorelease() bottomRight {
 
 // NewbottomRight creates a new bottomRight instance.
 func NewbottomRight() bottomRight {
-	return bottomRightClass.New()
+	return getbottomRightClass().New()
 }
 
 

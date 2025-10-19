@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKRange] class.
-var sKRangeClass = _SKRangeClass{objc.GetClass("SKRange")}
+var (
+	sKRangeClass     _SKRangeClass
+	sKRangeClassOnce sync.Once
+)
+
+func getSKRangeClass() _SKRangeClass {
+	sKRangeClassOnce.Do(func() {
+		sKRangeClass = _SKRangeClass{objc.GetClass("SKRange")}
+	})
+	return sKRangeClass
+}
 
 type _SKRangeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKRange interface {
 // A definition of a range of floating-point values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange
-
 type SKRange struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKRange struct {
 func SKRangeFrom(ptr unsafe.Pointer) SKRange {
 	return SKRange{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKRangeClass) Alloc() SKRange {
 	rv := objc.Send[SKRange](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKRangeClass) New() SKRange {
 	rv := objc.Send[SKRange](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,16 +74,40 @@ func (s_ SKRange) Autorelease() SKRange {
 
 // NewSKRange creates a new SKRange instance.
 func NewSKRange() SKRange {
-	return sKRangeClass.New()
+	return getSKRangeClass().New()
 }
 
 
+// Creates and initializes a new range object using a value and a maximum distance from that value. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(value:variance:)
+func NewSKRangeWithValueVariance(value float64, variance float64) SKRange {
+	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithValue:variance:"), value, variance)
+	return rv
+}
+// Creates and initializes a new range object that specifies a constant value. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(constantValue:)
+func NewSKRangeWithConstantValue(value float64) SKRange {
+	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithConstantValue:"), value)
+	return rv
+}
+// Creates and initializes a new range object that specifies only a minimum value. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(lowerLimit:)
+func NewSKRangeWithLowerLimit(lower float64) SKRange {
+	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithLowerLimit:"), lower)
+	return rv
+}
 // Initializes a new range object. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(lowerLimit:upperLimit:)
 func NewSKRangeWithLowerLimitUpperLimit(lower float64, upper float64) SKRange {
-	instance := sKRangeClass.Alloc()
+	instance := getSKRangeClass().Alloc()
 	rv := objc.Send[SKRange](instance.ID, objc.Sel("initWithLowerLimit:upperLimit:"), lower, upper)
 	rv.Autorelease()
 	return rv
@@ -80,36 +116,8 @@ func NewSKRangeWithLowerLimitUpperLimit(lower float64, upper float64) SKRange {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(upperLimit:)
-func NewRangeWithUpperLimit(upper float64) SKRange {
-	rv := objc.Send[SKRange](objc.ID(sKRangeClass.class), objc.Sel("rangeWithUpperLimit:"), upper)
-	rv.Autorelease()
-	return rv
-}
-// Creates and initializes a new range object using a value and a maximum distance from that value. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(value:variance:)
-func NewRangeWithValueVariance(value float64, variance float64) SKRange {
-	rv := objc.Send[SKRange](objc.ID(sKRangeClass.class), objc.Sel("rangeWithValue:variance:"), value, variance)
-	rv.Autorelease()
-	return rv
-}
-// Creates and initializes a new range object that specifies a constant value. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(constantValue:)
-func NewRangeWithConstantValue(value float64) SKRange {
-	rv := objc.Send[SKRange](objc.ID(sKRangeClass.class), objc.Sel("rangeWithConstantValue:"), value)
-	rv.Autorelease()
-	return rv
-}
-// Creates and initializes a new range object that specifies only a minimum value. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(lowerLimit:)
-func NewRangeWithLowerLimit(lower float64) SKRange {
-	rv := objc.Send[SKRange](objc.ID(sKRangeClass.class), objc.Sel("rangeWithLowerLimit:"), lower)
-	rv.Autorelease()
+func NewSKRangeWithUpperLimit(upper float64) SKRange {
+	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithUpperLimit:"), upper)
 	return rv
 }
 

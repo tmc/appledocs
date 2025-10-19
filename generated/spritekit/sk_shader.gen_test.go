@@ -10,10 +10,10 @@ import (
 var _ = spritekit.NewSKShader
 
 
-// ExampleNewShaderWithFileNamed demonstrates how to create a SKShader instance using NewShaderWithFileNamed.
+// ExampleNewSKShaderWithFileNamed demonstrates how to create a SKShader instance using NewSKShaderWithFileNamed.
 // Creates a new shader object by loading the source for a fragment shader from a file stored in the app’s bundle.
-func ExampleNewShaderWithFileNamed() {
-	_ = spritekit.NewShaderWithFileNamed(
+func ExampleNewSKShaderWithFileNamed() {
+	_ = spritekit.NewSKShaderWithFileNamed(
 		"name", // name string
 	)
 	// Output:

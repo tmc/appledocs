@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlayerItemTrack] class.
-var aVPlayerItemTrackClass = _AVPlayerItemTrackClass{objc.GetClass("AVPlayerItemTrack")}
+var (
+	aVPlayerItemTrackClass     _AVPlayerItemTrackClass
+	aVPlayerItemTrackClassOnce sync.Once
+)
+
+func getAVPlayerItemTrackClass() _AVPlayerItemTrackClass {
+	aVPlayerItemTrackClassOnce.Do(func() {
+		aVPlayerItemTrackClass = _AVPlayerItemTrackClass{objc.GetClass("AVPlayerItemTrack")}
+	})
+	return aVPlayerItemTrackClass
+}
 
 type _AVPlayerItemTrackClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVPlayerItemTrack interface {
 // An object that represents the presentation state of an asset track during playback. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack
-
 type AVPlayerItemTrack struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVPlayerItemTrack struct {
 func AVPlayerItemTrackFrom(ptr unsafe.Pointer) AVPlayerItemTrack {
 	return AVPlayerItemTrack{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerItemTrackClass) Alloc() AVPlayerItemTrack {
 	rv := objc.Send[AVPlayerItemTrack](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerItemTrackClass) New() AVPlayerItemTrack {
 	rv := objc.Send[AVPlayerItemTrack](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVPlayerItemTrack) Autorelease() AVPlayerItemTrack {
 
 // NewAVPlayerItemTrack creates a new AVPlayerItemTrack instance.
 func NewAVPlayerItemTrack() AVPlayerItemTrack {
-	return aVPlayerItemTrackClass.New()
+	return getAVPlayerItemTrackClass().New()
 }
 
 

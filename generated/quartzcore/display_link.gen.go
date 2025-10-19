@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DisplayLink] class.
-var displayLinkClass = _DisplayLinkClass{objc.GetClass("CADisplayLink")}
+var (
+	displayLinkClass     _DisplayLinkClass
+	displayLinkClassOnce sync.Once
+)
+
+func getDisplayLinkClass() _DisplayLinkClass {
+	displayLinkClassOnce.Do(func() {
+		displayLinkClass = _DisplayLinkClass{objc.GetClass("CADisplayLink")}
+	})
+	return displayLinkClass
+}
 
 type _DisplayLinkClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IDisplayLink interface {
 // A timer object that allows your app to synchronize its drawing to the refresh rate of the display. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink
-
 type DisplayLink struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type DisplayLink struct {
 func DisplayLinkFrom(ptr unsafe.Pointer) DisplayLink {
 	return DisplayLink{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DisplayLinkClass) Alloc() DisplayLink {
 	rv := objc.Send[DisplayLink](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DisplayLinkClass) New() DisplayLink {
 	rv := objc.Send[DisplayLink](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DisplayLink) Autorelease() DisplayLink {
 
 // NewDisplayLink creates a new DisplayLink instance.
 func NewDisplayLink() DisplayLink {
-	return displayLinkClass.New()
+	return getDisplayLinkClass().New()
 }
 
 

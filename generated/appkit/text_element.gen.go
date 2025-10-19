@@ -35,7 +35,6 @@ type ITextElement interface {
 // An abstract base class that represents the smallest units of text layout such as paragraphs or attachments. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextElement
-
 type TextElement struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextElement struct {
 func TextElementFrom(ptr unsafe.Pointer) TextElement {
 	return TextElement{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextElementClass) Alloc() TextElement {
 	rv := objc.Send[TextElement](objc.ID(tc.class), objc.Sel("alloc"))

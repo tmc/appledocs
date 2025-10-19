@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Invocation] class.
-var invocationClass = _InvocationClass{objc.GetClass("NSInvocation")}
+var (
+	invocationClass     _InvocationClass
+	invocationClassOnce sync.Once
+)
+
+func getInvocationClass() _InvocationClass {
+	invocationClassOnce.Do(func() {
+		invocationClass = _InvocationClass{objc.GetClass("NSInvocation")}
+	})
+	return invocationClass
+}
 
 type _InvocationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IInvocation interface {
 // An Objective-C message rendered as an object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation
-
 type Invocation struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Invocation struct {
 func InvocationFrom(ptr unsafe.Pointer) Invocation {
 	return Invocation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _InvocationClass) Alloc() Invocation {
 	rv := objc.Send[Invocation](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InvocationClass) New() Invocation {
 	rv := objc.Send[Invocation](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (i_ Invocation) Autorelease() Invocation {
 
 // NewInvocation creates a new Invocation instance.
 func NewInvocation() Invocation {
-	return invocationClass.New()
+	return getInvocationClass().New()
 }
 
 

@@ -34,7 +34,6 @@ type IPathControl interface {
 // A display of a file system path or virtual path information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl
-
 type PathControl struct {
 	Control
 }
@@ -47,6 +46,7 @@ func PathControlFrom(ptr unsafe.Pointer) PathControl {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PathControlClass) Alloc() PathControl {
 	rv := objc.Send[PathControl](objc.ID(pc.class), objc.Sel("alloc"))

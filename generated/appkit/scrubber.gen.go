@@ -45,7 +45,6 @@ type IScrubber interface {
 // A customizable item picker control for the Touch Bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber
-
 type Scrubber struct {
 	View
 }
@@ -58,6 +57,7 @@ func ScrubberFrom(ptr unsafe.Pointer) Scrubber {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberClass) Alloc() Scrubber {
 	rv := objc.Send[Scrubber](objc.ID(sc.class), objc.Sel("alloc"))
@@ -95,7 +95,6 @@ func NewScrubber() Scrubber {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
 func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -106,7 +105,6 @@ func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
 func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

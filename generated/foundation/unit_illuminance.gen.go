@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitIlluminance] class.
-var unitIlluminanceClass = _UnitIlluminanceClass{objc.GetClass("NSUnitIlluminance")}
+var (
+	unitIlluminanceClass     _UnitIlluminanceClass
+	unitIlluminanceClassOnce sync.Once
+)
+
+func getUnitIlluminanceClass() _UnitIlluminanceClass {
+	unitIlluminanceClassOnce.Do(func() {
+		unitIlluminanceClass = _UnitIlluminanceClass{objc.GetClass("NSUnitIlluminance")}
+	})
+	return unitIlluminanceClass
+}
 
 type _UnitIlluminanceClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitIlluminance interface {
 // A unit of measure for illuminance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance
-
 type UnitIlluminance struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitIlluminanceFrom(ptr unsafe.Pointer) UnitIlluminance {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitIlluminanceClass) Alloc() UnitIlluminance {
 	rv := objc.Send[UnitIlluminance](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitIlluminanceClass) New() UnitIlluminance {
 	rv := objc.Send[UnitIlluminance](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitIlluminance) Autorelease() UnitIlluminance {
 
 // NewUnitIlluminance creates a new UnitIlluminance instance.
 func NewUnitIlluminance() UnitIlluminance {
-	return unitIlluminanceClass.New()
+	return getUnitIlluminanceClass().New()
 }
 
 

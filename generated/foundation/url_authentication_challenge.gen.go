@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLAuthenticationChallenge] class.
-var uRLAuthenticationChallengeClass = _URLAuthenticationChallengeClass{objc.GetClass("NSURLAuthenticationChallenge")}
+var (
+	uRLAuthenticationChallengeClass     _URLAuthenticationChallengeClass
+	uRLAuthenticationChallengeClassOnce sync.Once
+)
+
+func getURLAuthenticationChallengeClass() _URLAuthenticationChallengeClass {
+	uRLAuthenticationChallengeClassOnce.Do(func() {
+		uRLAuthenticationChallengeClass = _URLAuthenticationChallengeClass{objc.GetClass("NSURLAuthenticationChallenge")}
+	})
+	return uRLAuthenticationChallengeClass
+}
 
 type _URLAuthenticationChallengeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLAuthenticationChallenge interface {
 // A challenge from a server requiring authentication from the client. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge
-
 type URLAuthenticationChallenge struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLAuthenticationChallenge struct {
 func URLAuthenticationChallengeFrom(ptr unsafe.Pointer) URLAuthenticationChallenge {
 	return URLAuthenticationChallenge{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLAuthenticationChallengeClass) Alloc() URLAuthenticationChallenge {
 	rv := objc.Send[URLAuthenticationChallenge](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLAuthenticationChallengeClass) New() URLAuthenticationChallenge {
 	rv := objc.Send[URLAuthenticationChallenge](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLAuthenticationChallenge) Autorelease() URLAuthenticationChallenge {
 
 // NewURLAuthenticationChallenge creates a new URLAuthenticationChallenge instance.
 func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
-	return uRLAuthenticationChallengeClass.New()
+	return getURLAuthenticationChallengeClass().New()
 }
 
 

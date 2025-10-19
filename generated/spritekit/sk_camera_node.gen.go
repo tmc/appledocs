@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKCameraNode] class.
-var sKCameraNodeClass = _SKCameraNodeClass{objc.GetClass("SKCameraNode")}
+var (
+	sKCameraNodeClass     _SKCameraNodeClass
+	sKCameraNodeClassOnce sync.Once
+)
+
+func getSKCameraNodeClass() _SKCameraNodeClass {
+	sKCameraNodeClassOnce.Do(func() {
+		sKCameraNodeClass = _SKCameraNodeClass{objc.GetClass("SKCameraNode")}
+	})
+	return sKCameraNodeClass
+}
 
 type _SKCameraNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKCameraNode interface {
 // A node that determines which parts of the scene are visible within a view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKCameraNode
-
 type SKCameraNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKCameraNodeFrom(ptr unsafe.Pointer) SKCameraNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKCameraNodeClass) Alloc() SKCameraNode {
 	rv := objc.Send[SKCameraNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKCameraNodeClass) New() SKCameraNode {
 	rv := objc.Send[SKCameraNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKCameraNode) Autorelease() SKCameraNode {
 
 // NewSKCameraNode creates a new SKCameraNode instance.
 func NewSKCameraNode() SKCameraNode {
-	return sKCameraNodeClass.New()
+	return getSKCameraNodeClass().New()
 }
 
 

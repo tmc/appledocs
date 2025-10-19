@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NEFilterBrowserFlow] class.
-var nEFilterBrowserFlowClass = _NEFilterBrowserFlowClass{objc.GetClass("NEFilterBrowserFlow")}
+var (
+	nEFilterBrowserFlowClass     _NEFilterBrowserFlowClass
+	nEFilterBrowserFlowClassOnce sync.Once
+)
+
+func getNEFilterBrowserFlowClass() _NEFilterBrowserFlowClass {
+	nEFilterBrowserFlowClassOnce.Do(func() {
+		nEFilterBrowserFlowClass = _NEFilterBrowserFlowClass{objc.GetClass("NEFilterBrowserFlow")}
+	})
+	return nEFilterBrowserFlowClass
+}
 
 type _NEFilterBrowserFlowClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INEFilterBrowserFlow interface {
 // A flow of network data, originating from a WebKit-based browser, that the filter examines. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterBrowserFlow
-
 type NEFilterBrowserFlow struct {
 	NEFilterFlow
 }
@@ -36,13 +46,15 @@ func NEFilterBrowserFlowFrom(ptr unsafe.Pointer) NEFilterBrowserFlow {
 		NEFilterFlow: NEFilterFlowFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterBrowserFlowClass) Alloc() NEFilterBrowserFlow {
 	rv := objc.Send[NEFilterBrowserFlow](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEFilterBrowserFlowClass) New() NEFilterBrowserFlow {
 	rv := objc.Send[NEFilterBrowserFlow](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NEFilterBrowserFlow) Autorelease() NEFilterBrowserFlow {
 
 // NewNEFilterBrowserFlow creates a new NEFilterBrowserFlow instance.
 func NewNEFilterBrowserFlow() NEFilterBrowserFlow {
-	return nEFilterBrowserFlowClass.New()
+	return getNEFilterBrowserFlowClass().New()
 }
 
 

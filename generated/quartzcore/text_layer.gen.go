@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextLayer] class.
-var textLayerClass = _TextLayerClass{objc.GetClass("CATextLayer")}
+var (
+	textLayerClass     _TextLayerClass
+	textLayerClassOnce sync.Once
+)
+
+func getTextLayerClass() _TextLayerClass {
+	textLayerClassOnce.Do(func() {
+		textLayerClass = _TextLayerClass{objc.GetClass("CATextLayer")}
+	})
+	return textLayerClass
+}
 
 type _TextLayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ITextLayer interface {
 // A layer that provides simple text layout and rendering of plain or attributed strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer
-
 type TextLayer struct {
 	Layer
 }
@@ -36,13 +46,15 @@ func TextLayerFrom(ptr unsafe.Pointer) TextLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextLayerClass) Alloc() TextLayer {
 	rv := objc.Send[TextLayer](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextLayerClass) New() TextLayer {
 	rv := objc.Send[TextLayer](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (t_ TextLayer) Autorelease() TextLayer {
 
 // NewTextLayer creates a new TextLayer instance.
 func NewTextLayer() TextLayer {
-	return textLayerClass.New()
+	return getTextLayerClass().New()
 }
 
 

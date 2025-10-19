@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersonNameComponentsFormatter] class.
-var personNameComponentsFormatterClass = _PersonNameComponentsFormatterClass{objc.GetClass("NSPersonNameComponentsFormatter")}
+var (
+	personNameComponentsFormatterClass     _PersonNameComponentsFormatterClass
+	personNameComponentsFormatterClassOnce sync.Once
+)
+
+func getPersonNameComponentsFormatterClass() _PersonNameComponentsFormatterClass {
+	personNameComponentsFormatterClassOnce.Do(func() {
+		personNameComponentsFormatterClass = _PersonNameComponentsFormatterClass{objc.GetClass("NSPersonNameComponentsFormatter")}
+	})
+	return personNameComponentsFormatterClass
+}
 
 type _PersonNameComponentsFormatterClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPersonNameComponentsFormatter interface {
 // A formatter that provides localized representations of the components of a person’s name. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter
-
 type PersonNameComponentsFormatter struct {
 	Formatter
 }
@@ -37,13 +47,15 @@ func PersonNameComponentsFormatterFrom(ptr unsafe.Pointer) PersonNameComponentsF
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersonNameComponentsFormatterClass) Alloc() PersonNameComponentsFormatter {
 	rv := objc.Send[PersonNameComponentsFormatter](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersonNameComponentsFormatterClass) New() PersonNameComponentsFormatter {
 	rv := objc.Send[PersonNameComponentsFormatter](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (p_ PersonNameComponentsFormatter) Autorelease() PersonNameComponentsFormat
 
 // NewPersonNameComponentsFormatter creates a new PersonNameComponentsFormatter instance.
 func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
-	return personNameComponentsFormatterClass.New()
+	return getPersonNameComponentsFormatterClass().New()
 }
 
 

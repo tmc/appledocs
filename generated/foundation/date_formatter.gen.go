@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DateFormatter] class.
-var dateFormatterClass = _DateFormatterClass{objc.GetClass("NSDateFormatter")}
+var (
+	dateFormatterClass     _DateFormatterClass
+	dateFormatterClassOnce sync.Once
+)
+
+func getDateFormatterClass() _DateFormatterClass {
+	dateFormatterClassOnce.Do(func() {
+		dateFormatterClass = _DateFormatterClass{objc.GetClass("NSDateFormatter")}
+	})
+	return dateFormatterClass
+}
 
 type _DateFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDateFormatter interface {
 // A formatter that converts between dates and their textual representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter
-
 type DateFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func DateFormatterFrom(ptr unsafe.Pointer) DateFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DateFormatterClass) Alloc() DateFormatter {
 	rv := objc.Send[DateFormatter](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateFormatterClass) New() DateFormatter {
 	rv := objc.Send[DateFormatter](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DateFormatter) Autorelease() DateFormatter {
 
 // NewDateFormatter creates a new DateFormatter instance.
 func NewDateFormatter() DateFormatter {
-	return dateFormatterClass.New()
+	return getDateFormatterClass().New()
 }
 
 

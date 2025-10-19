@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ShapeLayer] class.
-var shapeLayerClass = _ShapeLayerClass{objc.GetClass("CAShapeLayer")}
+var (
+	shapeLayerClass     _ShapeLayerClass
+	shapeLayerClassOnce sync.Once
+)
+
+func getShapeLayerClass() _ShapeLayerClass {
+	shapeLayerClassOnce.Do(func() {
+		shapeLayerClass = _ShapeLayerClass{objc.GetClass("CAShapeLayer")}
+	})
+	return shapeLayerClass
+}
 
 type _ShapeLayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IShapeLayer interface {
 // A layer that draws a cubic Bezier spline in its coordinate space. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer
-
 type ShapeLayer struct {
 	Layer
 }
@@ -36,13 +46,15 @@ func ShapeLayerFrom(ptr unsafe.Pointer) ShapeLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ShapeLayerClass) Alloc() ShapeLayer {
 	rv := objc.Send[ShapeLayer](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ShapeLayerClass) New() ShapeLayer {
 	rv := objc.Send[ShapeLayer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ ShapeLayer) Autorelease() ShapeLayer {
 
 // NewShapeLayer creates a new ShapeLayer instance.
 func NewShapeLayer() ShapeLayer {
-	return shapeLayerClass.New()
+	return getShapeLayerClass().New()
 }
 
 

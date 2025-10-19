@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIProfile] class.
-var mIDICIProfileClass = _MIDICIProfileClass{objc.GetClass("MIDICIProfile")}
+var (
+	mIDICIProfileClass     _MIDICIProfileClass
+	mIDICIProfileClassOnce sync.Once
+)
+
+func getMIDICIProfileClass() _MIDICIProfileClass {
+	mIDICIProfileClassOnce.Do(func() {
+		mIDICIProfileClass = _MIDICIProfileClass{objc.GetClass("MIDICIProfile")}
+	})
+	return mIDICIProfileClass
+}
 
 type _MIDICIProfileClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDICIProfile interface {
 // A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfile
-
 type MIDICIProfile struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDICIProfile struct {
 func MIDICIProfileFrom(ptr unsafe.Pointer) MIDICIProfile {
 	return MIDICIProfile{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIProfileClass) Alloc() MIDICIProfile {
 	rv := objc.Send[MIDICIProfile](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIProfileClass) New() MIDICIProfile {
 	rv := objc.Send[MIDICIProfile](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDICIProfile) Autorelease() MIDICIProfile {
 
 // NewMIDICIProfile creates a new MIDICIProfile instance.
 func NewMIDICIProfile() MIDICIProfile {
-	return mIDICIProfileClass.New()
+	return getMIDICIProfileClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Set] class.
-var setClass = _SetClass{objc.GetClass("NSSet")}
+var (
+	setClass     _SetClass
+	setClassOnce sync.Once
+)
+
+func getSetClass() _SetClass {
+	setClassOnce.Do(func() {
+		setClass = _SetClass{objc.GetClass("NSSet")}
+	})
+	return setClass
+}
 
 type _SetClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISet interface {
 // A static, unordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet
-
 type Set struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Set struct {
 func SetFrom(ptr unsafe.Pointer) Set {
 	return Set{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SetClass) Alloc() Set {
 	rv := objc.Send[Set](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SetClass) New() Set {
 	rv := objc.Send[Set](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ Set) Autorelease() Set {
 
 // NewSet creates a new Set instance.
 func NewSet() Set {
-	return setClass.New()
+	return getSetClass().New()
 }
 
 

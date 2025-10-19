@@ -10,7 +10,6 @@ import (
 var _ = appkit.NewButton
 
 
-
 // ExampleNewButtonWithTitleTargetAction demonstrates how to create a Button instance using NewButtonWithTitleTargetAction.
 // Creates a standard push button with the title you specify.
 func ExampleNewButtonWithTitleTargetAction() {
@@ -32,5 +31,6 @@ func ExampleNewButtonCheckboxWithTitleTargetAction() {
 	)
 	// Output:
 }
+
 
 

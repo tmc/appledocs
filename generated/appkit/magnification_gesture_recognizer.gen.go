@@ -34,7 +34,6 @@ type IMagnificationGestureRecognizer interface {
 // A continuous gesture recognizer that tracks a pinch gesture that magnifies content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer
-
 type MagnificationGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -47,6 +46,7 @@ func MagnificationGestureRecognizerFrom(ptr unsafe.Pointer) MagnificationGesture
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MagnificationGestureRecognizerClass) Alloc() MagnificationGestureRecognizer {
 	rv := objc.Send[MagnificationGestureRecognizer](objc.ID(mc.class), objc.Sel("alloc"))

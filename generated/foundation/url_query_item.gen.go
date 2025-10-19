@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLQueryItem] class.
-var uRLQueryItemClass = _URLQueryItemClass{objc.GetClass("NSURLQueryItem")}
+var (
+	uRLQueryItemClass     _URLQueryItemClass
+	uRLQueryItemClassOnce sync.Once
+)
+
+func getURLQueryItemClass() _URLQueryItemClass {
+	uRLQueryItemClassOnce.Do(func() {
+		uRLQueryItemClass = _URLQueryItemClass{objc.GetClass("NSURLQueryItem")}
+	})
+	return uRLQueryItemClass
+}
 
 type _URLQueryItemClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLQueryItem interface {
 // An object representing a single name/value pair for an item in the query portion of a URL. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem
-
 type URLQueryItem struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLQueryItem struct {
 func URLQueryItemFrom(ptr unsafe.Pointer) URLQueryItem {
 	return URLQueryItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLQueryItemClass) Alloc() URLQueryItem {
 	rv := objc.Send[URLQueryItem](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLQueryItemClass) New() URLQueryItem {
 	rv := objc.Send[URLQueryItem](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLQueryItem) Autorelease() URLQueryItem {
 
 // NewURLQueryItem creates a new URLQueryItem instance.
 func NewURLQueryItem() URLQueryItem {
-	return uRLQueryItemClass.New()
+	return getURLQueryItemClass().New()
 }
 
 

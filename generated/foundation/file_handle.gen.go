@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileHandle] class.
-var fileHandleClass = _FileHandleClass{objc.GetClass("NSFileHandle")}
+var (
+	fileHandleClass     _FileHandleClass
+	fileHandleClassOnce sync.Once
+)
+
+func getFileHandleClass() _FileHandleClass {
+	fileHandleClassOnce.Do(func() {
+		fileHandleClass = _FileHandleClass{objc.GetClass("NSFileHandle")}
+	})
+	return fileHandleClass
+}
 
 type _FileHandleClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IFileHandle interface {
 // An object-oriented wrapper for a file descriptor. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle
-
 type FileHandle struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type FileHandle struct {
 func FileHandleFrom(ptr unsafe.Pointer) FileHandle {
 	return FileHandle{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileHandleClass) Alloc() FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileHandleClass) New() FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (f_ FileHandle) Autorelease() FileHandle {
 
 // NewFileHandle creates a new FileHandle instance.
 func NewFileHandle() FileHandle {
-	return fileHandleClass.New()
+	return getFileHandleClass().New()
 }
 
 

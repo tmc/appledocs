@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKTileGroupRule] class.
-var sKTileGroupRuleClass = _SKTileGroupRuleClass{objc.GetClass("SKTileGroupRule")}
+var (
+	sKTileGroupRuleClass     _SKTileGroupRuleClass
+	sKTileGroupRuleClassOnce sync.Once
+)
+
+func getSKTileGroupRuleClass() _SKTileGroupRuleClass {
+	sKTileGroupRuleClassOnce.Do(func() {
+		sKTileGroupRuleClass = _SKTileGroupRuleClass{objc.GetClass("SKTileGroupRule")}
+	})
+	return sKTileGroupRuleClass
+}
 
 type _SKTileGroupRuleClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKTileGroupRule interface {
 // Rules that describe how various tiles should be placed in a map. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroupRule
-
 type SKTileGroupRule struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKTileGroupRule struct {
 func SKTileGroupRuleFrom(ptr unsafe.Pointer) SKTileGroupRule {
 	return SKTileGroupRule{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTileGroupRuleClass) Alloc() SKTileGroupRule {
 	rv := objc.Send[SKTileGroupRule](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTileGroupRuleClass) New() SKTileGroupRule {
 	rv := objc.Send[SKTileGroupRule](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKTileGroupRule) Autorelease() SKTileGroupRule {
 
 // NewSKTileGroupRule creates a new SKTileGroupRule instance.
 func NewSKTileGroupRule() SKTileGroupRule {
-	return sKTileGroupRuleClass.New()
+	return getSKTileGroupRuleClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewSKTileGroupRule() SKTileGroupRule {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroupRule/init(adjacency:tileDefinitions:)
 func NewSKTileGroupRuleWithAdjacencyTileDefinitions(adjacency unsafe.Pointer, tileDefinitions unsafe.Pointer) SKTileGroupRule {
-	instance := sKTileGroupRuleClass.Alloc()
+	instance := getSKTileGroupRuleClass().Alloc()
 	rv := objc.Send[SKTileGroupRule](instance.ID, objc.Sel("initWithAdjacency:tileDefinitions:"), adjacency, tileDefinitions)
 	rv.Autorelease()
 	return rv

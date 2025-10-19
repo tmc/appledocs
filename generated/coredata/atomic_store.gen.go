@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AtomicStore] class.
-var atomicStoreClass = _AtomicStoreClass{objc.GetClass("NSAtomicStore")}
+var (
+	atomicStoreClass     _AtomicStoreClass
+	atomicStoreClassOnce sync.Once
+)
+
+func getAtomicStoreClass() _AtomicStoreClass {
+	atomicStoreClassOnce.Do(func() {
+		atomicStoreClass = _AtomicStoreClass{objc.GetClass("NSAtomicStore")}
+	})
+	return atomicStoreClass
+}
 
 type _AtomicStoreClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAtomicStore interface {
 // An abstract superclass that you subclass to create a Core Data atomic store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStore
-
 type AtomicStore struct {
 	PersistentStore
 }
@@ -37,13 +47,15 @@ func AtomicStoreFrom(ptr unsafe.Pointer) AtomicStore {
 		PersistentStore: PersistentStoreFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AtomicStoreClass) Alloc() AtomicStore {
 	rv := objc.Send[AtomicStore](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AtomicStoreClass) New() AtomicStore {
 	rv := objc.Send[AtomicStore](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AtomicStore) Autorelease() AtomicStore {
 
 // NewAtomicStore creates a new AtomicStore instance.
 func NewAtomicStore() AtomicStore {
-	return atomicStoreClass.New()
+	return getAtomicStoreClass().New()
 }
 
 

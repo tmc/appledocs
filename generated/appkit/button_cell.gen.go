@@ -34,7 +34,6 @@ type IButtonCell interface {
 // An object that defines the user interface of a button or other clickable region of a view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell
-
 type ButtonCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func ButtonCellFrom(ptr unsafe.Pointer) ButtonCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _ButtonCellClass) Alloc() ButtonCell {
 	rv := objc.Send[ButtonCell](objc.ID(bc.class), objc.Sel("alloc"))

@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NEPacketTunnelNetworkSettings] class.
-var nEPacketTunnelNetworkSettingsClass = _NEPacketTunnelNetworkSettingsClass{objc.GetClass("NEPacketTunnelNetworkSettings")}
+var (
+	nEPacketTunnelNetworkSettingsClass     _NEPacketTunnelNetworkSettingsClass
+	nEPacketTunnelNetworkSettingsClassOnce sync.Once
+)
+
+func getNEPacketTunnelNetworkSettingsClass() _NEPacketTunnelNetworkSettingsClass {
+	nEPacketTunnelNetworkSettingsClassOnce.Do(func() {
+		nEPacketTunnelNetworkSettingsClass = _NEPacketTunnelNetworkSettingsClass{objc.GetClass("NEPacketTunnelNetworkSettings")}
+	})
+	return nEPacketTunnelNetworkSettingsClass
+}
 
 type _NEPacketTunnelNetworkSettingsClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INEPacketTunnelNetworkSettings interface {
 // The configuration for a packet tunnel provider’s virtual interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings
-
 type NEPacketTunnelNetworkSettings struct {
 	NETunnelNetworkSettings
 }
@@ -36,13 +46,15 @@ func NEPacketTunnelNetworkSettingsFrom(ptr unsafe.Pointer) NEPacketTunnelNetwork
 		NETunnelNetworkSettings: NETunnelNetworkSettingsFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEPacketTunnelNetworkSettingsClass) Alloc() NEPacketTunnelNetworkSettings {
 	rv := objc.Send[NEPacketTunnelNetworkSettings](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEPacketTunnelNetworkSettingsClass) New() NEPacketTunnelNetworkSettings {
 	rv := objc.Send[NEPacketTunnelNetworkSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NEPacketTunnelNetworkSettings) Autorelease() NEPacketTunnelNetworkSetti
 
 // NewNEPacketTunnelNetworkSettings creates a new NEPacketTunnelNetworkSettings instance.
 func NewNEPacketTunnelNetworkSettings() NEPacketTunnelNetworkSettings {
-	return nEPacketTunnelNetworkSettingsClass.New()
+	return getNEPacketTunnelNetworkSettingsClass().New()
 }
 
 

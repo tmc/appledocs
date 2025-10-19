@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AppleEventDescriptor] class.
-var appleEventDescriptorClass = _AppleEventDescriptorClass{objc.GetClass("NSAppleEventDescriptor")}
+var (
+	appleEventDescriptorClass     _AppleEventDescriptorClass
+	appleEventDescriptorClassOnce sync.Once
+)
+
+func getAppleEventDescriptorClass() _AppleEventDescriptorClass {
+	appleEventDescriptorClassOnce.Do(func() {
+		appleEventDescriptorClass = _AppleEventDescriptorClass{objc.GetClass("NSAppleEventDescriptor")}
+	})
+	return appleEventDescriptorClass
+}
 
 type _AppleEventDescriptorClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAppleEventDescriptor interface {
 // A wrapper for the Apple event descriptor data type. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor
-
 type AppleEventDescriptor struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AppleEventDescriptor struct {
 func AppleEventDescriptorFrom(ptr unsafe.Pointer) AppleEventDescriptor {
 	return AppleEventDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AppleEventDescriptorClass) Alloc() AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AppleEventDescriptorClass) New() AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AppleEventDescriptor) Autorelease() AppleEventDescriptor {
 
 // NewAppleEventDescriptor creates a new AppleEventDescriptor instance.
 func NewAppleEventDescriptor() AppleEventDescriptor {
-	return appleEventDescriptorClass.New()
+	return getAppleEventDescriptorClass().New()
 }
 
 

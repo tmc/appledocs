@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AttributeDescription] class.
-var attributeDescriptionClass = _AttributeDescriptionClass{objc.GetClass("NSAttributeDescription")}
+var (
+	attributeDescriptionClass     _AttributeDescriptionClass
+	attributeDescriptionClassOnce sync.Once
+)
+
+func getAttributeDescriptionClass() _AttributeDescriptionClass {
+	attributeDescriptionClassOnce.Do(func() {
+		attributeDescriptionClass = _AttributeDescriptionClass{objc.GetClass("NSAttributeDescription")}
+	})
+	return attributeDescriptionClass
+}
 
 type _AttributeDescriptionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAttributeDescription interface {
 // A description of a single attribute belonging to an entity. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription
-
 type AttributeDescription struct {
 	PropertyDescription
 }
@@ -36,13 +46,15 @@ func AttributeDescriptionFrom(ptr unsafe.Pointer) AttributeDescription {
 		PropertyDescription: PropertyDescriptionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AttributeDescriptionClass) Alloc() AttributeDescription {
 	rv := objc.Send[AttributeDescription](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AttributeDescriptionClass) New() AttributeDescription {
 	rv := objc.Send[AttributeDescription](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AttributeDescription) Autorelease() AttributeDescription {
 
 // NewAttributeDescription creates a new AttributeDescription instance.
 func NewAttributeDescription() AttributeDescription {
-	return attributeDescriptionClass.New()
+	return getAttributeDescriptionClass().New()
 }
 
 

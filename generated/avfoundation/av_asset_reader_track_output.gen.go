@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVAssetReaderTrackOutput] class.
-var aVAssetReaderTrackOutputClass = _AVAssetReaderTrackOutputClass{objc.GetClass("AVAssetReaderTrackOutput")}
+var (
+	aVAssetReaderTrackOutputClass     _AVAssetReaderTrackOutputClass
+	aVAssetReaderTrackOutputClassOnce sync.Once
+)
+
+func getAVAssetReaderTrackOutputClass() _AVAssetReaderTrackOutputClass {
+	aVAssetReaderTrackOutputClassOnce.Do(func() {
+		aVAssetReaderTrackOutputClass = _AVAssetReaderTrackOutputClass{objc.GetClass("AVAssetReaderTrackOutput")}
+	})
+	return aVAssetReaderTrackOutputClass
+}
 
 type _AVAssetReaderTrackOutputClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVAssetReaderTrackOutput interface {
 // An object that reads media data from a single track of an asset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReaderTrackOutput
-
 type AVAssetReaderTrackOutput struct {
 	AVAssetReaderOutput
 }
@@ -36,13 +46,15 @@ func AVAssetReaderTrackOutputFrom(ptr unsafe.Pointer) AVAssetReaderTrackOutput {
 		AVAssetReaderOutput: AVAssetReaderOutputFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetReaderTrackOutputClass) Alloc() AVAssetReaderTrackOutput {
 	rv := objc.Send[AVAssetReaderTrackOutput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetReaderTrackOutputClass) New() AVAssetReaderTrackOutput {
 	rv := objc.Send[AVAssetReaderTrackOutput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVAssetReaderTrackOutput) Autorelease() AVAssetReaderTrackOutput {
 
 // NewAVAssetReaderTrackOutput creates a new AVAssetReaderTrackOutput instance.
 func NewAVAssetReaderTrackOutput() AVAssetReaderTrackOutput {
-	return aVAssetReaderTrackOutputClass.New()
+	return getAVAssetReaderTrackOutputClass().New()
 }
 
 

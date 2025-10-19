@@ -35,7 +35,6 @@ type IWritingToolsCoordinatorContext interface {
 // A data object that you use to share your custom view’s text with Writing Tools. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context
-
 type WritingToolsCoordinatorContext struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type WritingToolsCoordinatorContext struct {
 func WritingToolsCoordinatorContextFrom(ptr unsafe.Pointer) WritingToolsCoordinatorContext {
 	return WritingToolsCoordinatorContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WritingToolsCoordinatorContextClass) Alloc() WritingToolsCoordinatorContext {
 	rv := objc.Send[WritingToolsCoordinatorContext](objc.ID(wc.class), objc.Sel("alloc"))

@@ -34,7 +34,6 @@ type ITextView interface {
 // A view that draws text and handles user interactions with that text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView
-
 type TextView struct {
 	Text
 }
@@ -47,6 +46,7 @@ func TextViewFrom(ptr unsafe.Pointer) TextView {
 		Text: TextFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextViewClass) Alloc() TextView {
 	rv := objc.Send[TextView](objc.ID(tc.class), objc.Sel("alloc"))

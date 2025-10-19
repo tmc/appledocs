@@ -35,7 +35,6 @@ type INib interface {
 // An object wrapper, or container, for an Interface Builder nib file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib
-
 type Nib struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Nib struct {
 func NibFrom(ptr unsafe.Pointer) Nib {
 	return Nib{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NibClass) Alloc() Nib {
 	rv := objc.Send[Nib](objc.ID(nc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RecursiveLock] class.
-var recursiveLockClass = _RecursiveLockClass{objc.GetClass("NSRecursiveLock")}
+var (
+	recursiveLockClass     _RecursiveLockClass
+	recursiveLockClassOnce sync.Once
+)
+
+func getRecursiveLockClass() _RecursiveLockClass {
+	recursiveLockClassOnce.Do(func() {
+		recursiveLockClass = _RecursiveLockClass{objc.GetClass("NSRecursiveLock")}
+	})
+	return recursiveLockClass
+}
 
 type _RecursiveLockClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IRecursiveLock interface {
 // A lock that may be acquired multiple times by the same thread without causing a deadlock. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock
-
 type RecursiveLock struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type RecursiveLock struct {
 func RecursiveLockFrom(ptr unsafe.Pointer) RecursiveLock {
 	return RecursiveLock{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RecursiveLockClass) Alloc() RecursiveLock {
 	rv := objc.Send[RecursiveLock](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RecursiveLockClass) New() RecursiveLock {
 	rv := objc.Send[RecursiveLock](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (r_ RecursiveLock) Autorelease() RecursiveLock {
 
 // NewRecursiveLock creates a new RecursiveLock instance.
 func NewRecursiveLock() RecursiveLock {
-	return recursiveLockClass.New()
+	return getRecursiveLockClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableString] class.
-var mutableStringClass = _MutableStringClass{objc.GetClass("NSMutableString")}
+var (
+	mutableStringClass     _MutableStringClass
+	mutableStringClassOnce sync.Once
+)
+
+func getMutableStringClass() _MutableStringClass {
+	mutableStringClassOnce.Do(func() {
+		mutableStringClass = _MutableStringClass{objc.GetClass("NSMutableString")}
+	})
+	return mutableStringClass
+}
 
 type _MutableStringClass struct {
 	class objc.Class
@@ -31,7 +42,6 @@ type IMutableString interface {
 // A dynamic plain-text Unicode string object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString
-
 type MutableString struct {
 	String
 }
@@ -44,13 +54,15 @@ func MutableStringFrom(ptr unsafe.Pointer) MutableString {
 		String: StringFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableStringClass) Alloc() MutableString {
 	rv := objc.Send[MutableString](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableStringClass) New() MutableString {
 	rv := objc.Send[MutableString](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -71,7 +83,7 @@ func (m_ MutableString) Autorelease() MutableString {
 
 // NewMutableString creates a new MutableString instance.
 func NewMutableString() MutableString {
-	return mutableStringClass.New()
+	return getMutableStringClass().New()
 }
 
 
@@ -80,7 +92,7 @@ func NewMutableString() MutableString {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/init(capacity:)
 func NewMutableStringWithCapacity(capacity uint) MutableString {
-	instance := mutableStringClass.Alloc()
+	instance := getMutableStringClass().Alloc()
 	rv := objc.Send[MutableString](instance.ID, objc.Sel("initWithCapacity:"), capacity)
 	rv.Autorelease()
 	return rv

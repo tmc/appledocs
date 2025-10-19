@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileWrapper] class.
-var fileWrapperClass = _FileWrapperClass{objc.GetClass("NSFileWrapper")}
+var (
+	fileWrapperClass     _FileWrapperClass
+	fileWrapperClassOnce sync.Once
+)
+
+func getFileWrapperClass() _FileWrapperClass {
+	fileWrapperClassOnce.Do(func() {
+		fileWrapperClass = _FileWrapperClass{objc.GetClass("NSFileWrapper")}
+	})
+	return fileWrapperClass
+}
 
 type _FileWrapperClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFileWrapper interface {
 // A representation of a node (a file, directory, or symbolic link) in the file system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper
-
 type FileWrapper struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type FileWrapper struct {
 func FileWrapperFrom(ptr unsafe.Pointer) FileWrapper {
 	return FileWrapper{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileWrapperClass) Alloc() FileWrapper {
 	rv := objc.Send[FileWrapper](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileWrapperClass) New() FileWrapper {
 	rv := objc.Send[FileWrapper](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (f_ FileWrapper) Autorelease() FileWrapper {
 
 // NewFileWrapper creates a new FileWrapper instance.
 func NewFileWrapper() FileWrapper {
-	return fileWrapperClass.New()
+	return getFileWrapperClass().New()
 }
 
 

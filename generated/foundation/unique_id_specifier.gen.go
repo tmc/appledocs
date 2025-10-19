@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UniqueIDSpecifier] class.
-var uniqueIDSpecifierClass = _UniqueIDSpecifierClass{objc.GetClass("NSUniqueIDSpecifier")}
+var (
+	uniqueIDSpecifierClass     _UniqueIDSpecifierClass
+	uniqueIDSpecifierClassOnce sync.Once
+)
+
+func getUniqueIDSpecifierClass() _UniqueIDSpecifierClass {
+	uniqueIDSpecifierClassOnce.Do(func() {
+		uniqueIDSpecifierClass = _UniqueIDSpecifierClass{objc.GetClass("NSUniqueIDSpecifier")}
+	})
+	return uniqueIDSpecifierClass
+}
 
 type _UniqueIDSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUniqueIDSpecifier interface {
 // A specifier for an object in a collection (or container) by unique ID. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier
-
 type UniqueIDSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func UniqueIDSpecifierFrom(ptr unsafe.Pointer) UniqueIDSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UniqueIDSpecifierClass) Alloc() UniqueIDSpecifier {
 	rv := objc.Send[UniqueIDSpecifier](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UniqueIDSpecifierClass) New() UniqueIDSpecifier {
 	rv := objc.Send[UniqueIDSpecifier](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UniqueIDSpecifier) Autorelease() UniqueIDSpecifier {
 
 // NewUniqueIDSpecifier creates a new UniqueIDSpecifier instance.
 func NewUniqueIDSpecifier() UniqueIDSpecifier {
-	return uniqueIDSpecifierClass.New()
+	return getUniqueIDSpecifierClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileVersion] class.
-var fileVersionClass = _FileVersionClass{objc.GetClass("NSFileVersion")}
+var (
+	fileVersionClass     _FileVersionClass
+	fileVersionClassOnce sync.Once
+)
+
+func getFileVersionClass() _FileVersionClass {
+	fileVersionClassOnce.Do(func() {
+		fileVersionClass = _FileVersionClass{objc.GetClass("NSFileVersion")}
+	})
+	return fileVersionClass
+}
 
 type _FileVersionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFileVersion interface {
 // A snapshot of a file at a specific point in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion
-
 type FileVersion struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type FileVersion struct {
 func FileVersionFrom(ptr unsafe.Pointer) FileVersion {
 	return FileVersion{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileVersionClass) Alloc() FileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileVersionClass) New() FileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (f_ FileVersion) Autorelease() FileVersion {
 
 // NewFileVersion creates a new FileVersion instance.
 func NewFileVersion() FileVersion {
-	return fileVersionClass.New()
+	return getFileVersionClass().New()
 }
 
 

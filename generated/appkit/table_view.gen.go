@@ -36,7 +36,6 @@ type ITableView interface {
 // A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView
-
 type TableView struct {
 	Control
 }
@@ -49,6 +48,7 @@ func TableViewFrom(ptr unsafe.Pointer) TableView {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableViewClass) Alloc() TableView {
 	rv := objc.Send[TableView](objc.ID(tc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MigrationStage] class.
-var migrationStageClass = _MigrationStageClass{objc.GetClass("NSMigrationStage")}
+var (
+	migrationStageClass     _MigrationStageClass
+	migrationStageClassOnce sync.Once
+)
+
+func getMigrationStageClass() _MigrationStageClass {
+	migrationStageClassOnce.Do(func() {
+		migrationStageClass = _MigrationStageClass{objc.GetClass("NSMigrationStage")}
+	})
+	return migrationStageClass
+}
 
 type _MigrationStageClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMigrationStage interface {
 // An abstract base class for describing an individual stage of a migration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage
-
 type MigrationStage struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MigrationStage struct {
 func MigrationStageFrom(ptr unsafe.Pointer) MigrationStage {
 	return MigrationStage{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MigrationStageClass) Alloc() MigrationStage {
 	rv := objc.Send[MigrationStage](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MigrationStageClass) New() MigrationStage {
 	rv := objc.Send[MigrationStage](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MigrationStage) Autorelease() MigrationStage {
 
 // NewMigrationStage creates a new MigrationStage instance.
 func NewMigrationStage() MigrationStage {
-	return migrationStageClass.New()
+	return getMigrationStageClass().New()
 }
 
 

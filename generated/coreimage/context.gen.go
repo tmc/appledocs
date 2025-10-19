@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -11,7 +12,17 @@ import (
 )
 
 // The class instance for the [Context] class.
-var contextClass = _ContextClass{objc.GetClass("CIContext")}
+var (
+	contextClass     _ContextClass
+	contextClassOnce sync.Once
+)
+
+func getContextClass() _ContextClass {
+	contextClassOnce.Do(func() {
+		contextClass = _ContextClass{objc.GetClass("CIContext")}
+	})
+	return contextClass
+}
 
 type _ContextClass struct {
 	class objc.Class
@@ -66,7 +77,6 @@ type IContext interface {
 // The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext
-
 type Context struct {
 	objectivec.Object
 }
@@ -77,13 +87,15 @@ type Context struct {
 func ContextFrom(ptr unsafe.Pointer) Context {
 	return Context{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ContextClass) Alloc() Context {
 	rv := objc.Send[Context](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ContextClass) New() Context {
 	rv := objc.Send[Context](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,76 +116,24 @@ func (c_ Context) Autorelease() Context {
 
 // NewContext creates a new Context instance.
 func NewContext() Context {
-	return contextClass.New()
+	return getContextClass().New()
 }
 
 
-// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
-func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, sharedContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:)
-func NewContextWithMTLCommandQueue(commandQueue unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLCommandQueue:"), commandQueue)
-	rv.Autorelease()
-	return rv
-}
-// Creates a Core Image context using the specified Metal device and options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlDevice:options:)
-func NewContextWithMTLDeviceOptions(device unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLDevice:options:"), device, options)
-	rv.Autorelease()
-	return rv
-}
-// Creates a Core Image context from a CGL context, using the specified options, color space, and pixel format object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cglContext:pixelFormat:colorSpace:options:)
-func NewContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer, pixelFormat unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGLContext:pixelFormat:colorSpace:options:"), cglctx, pixelFormat, colorSpace, options)
-	rv.Autorelease()
-	return rv
-}
-// Creates a Core Image context from an EAGL context. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
-func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:"), eaglContext)
-	rv.Autorelease()
-	return rv
-}
-// Creates a Core Image context from an EAGL context using the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
-func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
-	rv.Autorelease()
-	return rv
-}
 // Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
 func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
-	rv.Autorelease()
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
 	return rv
 }
+// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options. [Full Topic]
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:options:)
-func NewContextWithMTLCommandQueueOptions(commandQueue unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLCommandQueue:options:"), commandQueue, options)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
+func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, sharedContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
 	return rv
 }
 // Creates a Core Image context using the specified Metal device. [Full Topic]
@@ -181,8 +141,7 @@ func NewContextWithMTLCommandQueueOptions(commandQueue unsafe.Pointer, options u
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlDevice:)
 func NewContextWithMTLDevice(device unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLDevice:"), device)
-	rv.Autorelease()
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLDevice:"), device)
 	return rv
 }
 // Initializes a context without a specific rendering destination, using the specified options. [Full Topic]
@@ -190,7 +149,7 @@ func NewContextWithMTLDevice(device unsafe.Pointer) Context {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(options:)
 func NewContextWithOptions(options unsafe.Pointer) Context {
-	instance := contextClass.Alloc()
+	instance := getContextClass().Alloc()
 	rv := objc.Send[Context](instance.ID, objc.Sel("initWithOptions:"), options)
 	rv.Autorelease()
 	return rv
@@ -200,8 +159,51 @@ func NewContextWithOptions(options unsafe.Pointer) Context {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
 func NewContextWithCGContextOptions(cgctx coregraphics.CGContextRef, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
-	rv.Autorelease()
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
+	return rv
+}
+// Creates a Core Image context from an EAGL context. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
+func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithEAGLContext:"), eaglContext)
+	return rv
+}
+// Creates a Core Image context from an EAGL context using the specified options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
+func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:)
+func NewContextWithMTLCommandQueue(commandQueue unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLCommandQueue:"), commandQueue)
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:options:)
+func NewContextWithMTLCommandQueueOptions(commandQueue unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLCommandQueue:options:"), commandQueue, options)
+	return rv
+}
+// Creates a Core Image context using the specified Metal device and options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlDevice:options:)
+func NewContextWithMTLDeviceOptions(device unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLDevice:options:"), device, options)
+	return rv
+}
+// Creates a Core Image context from a CGL context, using the specified options, color space, and pixel format object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cglContext:pixelFormat:colorSpace:options:)
+func NewContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer, pixelFormat unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithCGLContext:pixelFormat:colorSpace:options:"), cglctx, pixelFormat, colorSpace, options)
 	return rv
 }
 

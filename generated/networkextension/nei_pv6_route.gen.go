@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEIPv6Route] class.
-var nEIPv6RouteClass = _NEIPv6RouteClass{objc.GetClass("NEIPv6Route")}
+var (
+	nEIPv6RouteClass     _NEIPv6RouteClass
+	nEIPv6RouteClassOnce sync.Once
+)
+
+func getNEIPv6RouteClass() _NEIPv6RouteClass {
+	nEIPv6RouteClassOnce.Do(func() {
+		nEIPv6RouteClass = _NEIPv6RouteClass{objc.GetClass("NEIPv6Route")}
+	})
+	return nEIPv6RouteClass
+}
 
 type _NEIPv6RouteClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEIPv6Route interface {
 // The settings for an IPv6 route. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Route
-
 type NEIPv6Route struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEIPv6Route struct {
 func NEIPv6RouteFrom(ptr unsafe.Pointer) NEIPv6Route {
 	return NEIPv6Route{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEIPv6RouteClass) Alloc() NEIPv6Route {
 	rv := objc.Send[NEIPv6Route](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEIPv6RouteClass) New() NEIPv6Route {
 	rv := objc.Send[NEIPv6Route](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEIPv6Route) Autorelease() NEIPv6Route {
 
 // NewNEIPv6Route creates a new NEIPv6Route instance.
 func NewNEIPv6Route() NEIPv6Route {
-	return nEIPv6RouteClass.New()
+	return getNEIPv6RouteClass().New()
 }
 
 

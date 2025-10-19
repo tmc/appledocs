@@ -34,7 +34,6 @@ type ISegmentedCell interface {
 // An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell
-
 type SegmentedCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func SegmentedCellFrom(ptr unsafe.Pointer) SegmentedCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SegmentedCellClass) Alloc() SegmentedCell {
 	rv := objc.Send[SegmentedCell](objc.ID(sc.class), objc.Sel("alloc"))

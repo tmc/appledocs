@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DateComponentsFormatter] class.
-var dateComponentsFormatterClass = _DateComponentsFormatterClass{objc.GetClass("NSDateComponentsFormatter")}
+var (
+	dateComponentsFormatterClass     _DateComponentsFormatterClass
+	dateComponentsFormatterClassOnce sync.Once
+)
+
+func getDateComponentsFormatterClass() _DateComponentsFormatterClass {
+	dateComponentsFormatterClassOnce.Do(func() {
+		dateComponentsFormatterClass = _DateComponentsFormatterClass{objc.GetClass("NSDateComponentsFormatter")}
+	})
+	return dateComponentsFormatterClass
+}
 
 type _DateComponentsFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDateComponentsFormatter interface {
 // A formatter that creates string representations of quantities of time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter
-
 type DateComponentsFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func DateComponentsFormatterFrom(ptr unsafe.Pointer) DateComponentsFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DateComponentsFormatterClass) Alloc() DateComponentsFormatter {
 	rv := objc.Send[DateComponentsFormatter](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateComponentsFormatterClass) New() DateComponentsFormatter {
 	rv := objc.Send[DateComponentsFormatter](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DateComponentsFormatter) Autorelease() DateComponentsFormatter {
 
 // NewDateComponentsFormatter creates a new DateComponentsFormatter instance.
 func NewDateComponentsFormatter() DateComponentsFormatter {
-	return dateComponentsFormatterClass.New()
+	return getDateComponentsFormatterClass().New()
 }
 
 

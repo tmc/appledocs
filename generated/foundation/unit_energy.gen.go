@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitEnergy] class.
-var unitEnergyClass = _UnitEnergyClass{objc.GetClass("NSUnitEnergy")}
+var (
+	unitEnergyClass     _UnitEnergyClass
+	unitEnergyClassOnce sync.Once
+)
+
+func getUnitEnergyClass() _UnitEnergyClass {
+	unitEnergyClassOnce.Do(func() {
+		unitEnergyClass = _UnitEnergyClass{objc.GetClass("NSUnitEnergy")}
+	})
+	return unitEnergyClass
+}
 
 type _UnitEnergyClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitEnergy interface {
 // A unit of measure for energy. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy
-
 type UnitEnergy struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitEnergyFrom(ptr unsafe.Pointer) UnitEnergy {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitEnergyClass) Alloc() UnitEnergy {
 	rv := objc.Send[UnitEnergy](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitEnergyClass) New() UnitEnergy {
 	rv := objc.Send[UnitEnergy](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitEnergy) Autorelease() UnitEnergy {
 
 // NewUnitEnergy creates a new UnitEnergy instance.
 func NewUnitEnergy() UnitEnergy {
-	return unitEnergyClass.New()
+	return getUnitEnergyClass().New()
 }
 
 

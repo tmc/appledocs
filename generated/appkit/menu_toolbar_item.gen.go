@@ -34,7 +34,6 @@ type IMenuToolbarItem interface {
 // A control that presents a menu in a window’s toolbar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem
-
 type MenuToolbarItem struct {
 	ToolbarItem
 }
@@ -47,6 +46,7 @@ func MenuToolbarItemFrom(ptr unsafe.Pointer) MenuToolbarItem {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MenuToolbarItemClass) Alloc() MenuToolbarItem {
 	rv := objc.Send[MenuToolbarItem](objc.ID(mc.class), objc.Sel("alloc"))

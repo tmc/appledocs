@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVContinuityDevice] class.
-var aVContinuityDeviceClass = _AVContinuityDeviceClass{objc.GetClass("AVContinuityDevice")}
+var (
+	aVContinuityDeviceClass     _AVContinuityDeviceClass
+	aVContinuityDeviceClassOnce sync.Once
+)
+
+func getAVContinuityDeviceClass() _AVContinuityDeviceClass {
+	aVContinuityDeviceClassOnce.Do(func() {
+		aVContinuityDeviceClass = _AVContinuityDeviceClass{objc.GetClass("AVContinuityDevice")}
+	})
+	return aVContinuityDeviceClass
+}
 
 type _AVContinuityDeviceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVContinuityDevice interface {
 // A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice
-
 type AVContinuityDevice struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVContinuityDevice struct {
 func AVContinuityDeviceFrom(ptr unsafe.Pointer) AVContinuityDevice {
 	return AVContinuityDevice{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVContinuityDeviceClass) Alloc() AVContinuityDevice {
 	rv := objc.Send[AVContinuityDevice](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVContinuityDeviceClass) New() AVContinuityDevice {
 	rv := objc.Send[AVContinuityDevice](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVContinuityDevice) Autorelease() AVContinuityDevice {
 
 // NewAVContinuityDevice creates a new AVContinuityDevice instance.
 func NewAVContinuityDevice() AVContinuityDevice {
-	return aVContinuityDeviceClass.New()
+	return getAVContinuityDeviceClass().New()
 }
 
 

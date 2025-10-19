@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAudioMixInputParameters] class.
-var aVAudioMixInputParametersClass = _AVAudioMixInputParametersClass{objc.GetClass("AVAudioMixInputParameters")}
+var (
+	aVAudioMixInputParametersClass     _AVAudioMixInputParametersClass
+	aVAudioMixInputParametersClassOnce sync.Once
+)
+
+func getAVAudioMixInputParametersClass() _AVAudioMixInputParametersClass {
+	aVAudioMixInputParametersClassOnce.Do(func() {
+		aVAudioMixInputParametersClass = _AVAudioMixInputParametersClass{objc.GetClass("AVAudioMixInputParameters")}
+	})
+	return aVAudioMixInputParametersClass
+}
 
 type _AVAudioMixInputParametersClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAudioMixInputParameters interface {
 // An object that represents the parameters that you apply when adding an audio track to a mix. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMixInputParameters
-
 type AVAudioMixInputParameters struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVAudioMixInputParameters struct {
 func AVAudioMixInputParametersFrom(ptr unsafe.Pointer) AVAudioMixInputParameters {
 	return AVAudioMixInputParameters{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAudioMixInputParametersClass) Alloc() AVAudioMixInputParameters {
 	rv := objc.Send[AVAudioMixInputParameters](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAudioMixInputParametersClass) New() AVAudioMixInputParameters {
 	rv := objc.Send[AVAudioMixInputParameters](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVAudioMixInputParameters) Autorelease() AVAudioMixInputParameters {
 
 // NewAVAudioMixInputParameters creates a new AVAudioMixInputParameters instance.
 func NewAVAudioMixInputParameters() AVAudioMixInputParameters {
-	return aVAudioMixInputParametersClass.New()
+	return getAVAudioMixInputParametersClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AsynchronousFetchResult] class.
-var asynchronousFetchResultClass = _AsynchronousFetchResultClass{objc.GetClass("NSAsynchronousFetchResult")}
+var (
+	asynchronousFetchResultClass     _AsynchronousFetchResultClass
+	asynchronousFetchResultClassOnce sync.Once
+)
+
+func getAsynchronousFetchResultClass() _AsynchronousFetchResultClass {
+	asynchronousFetchResultClassOnce.Do(func() {
+		asynchronousFetchResultClass = _AsynchronousFetchResultClass{objc.GetClass("NSAsynchronousFetchResult")}
+	})
+	return asynchronousFetchResultClass
+}
 
 type _AsynchronousFetchResultClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAsynchronousFetchResult interface {
 // A fetch result object that encompasses the response from an executed asynchronous fetch request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult
-
 type AsynchronousFetchResult struct {
 	PersistentStoreAsynchronousResult
 }
@@ -36,13 +46,15 @@ func AsynchronousFetchResultFrom(ptr unsafe.Pointer) AsynchronousFetchResult {
 		PersistentStoreAsynchronousResult: PersistentStoreAsynchronousResultFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AsynchronousFetchResultClass) Alloc() AsynchronousFetchResult {
 	rv := objc.Send[AsynchronousFetchResult](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AsynchronousFetchResultClass) New() AsynchronousFetchResult {
 	rv := objc.Send[AsynchronousFetchResult](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AsynchronousFetchResult) Autorelease() AsynchronousFetchResult {
 
 // NewAsynchronousFetchResult creates a new AsynchronousFetchResult instance.
 func NewAsynchronousFetchResult() AsynchronousFetchResult {
-	return asynchronousFetchResultClass.New()
+	return getAsynchronousFetchResultClass().New()
 }
 
 

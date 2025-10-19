@@ -36,7 +36,6 @@ type ISharingServicePicker interface {
 // A list of sharing services that the user can choose from. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker
-
 type SharingServicePicker struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type SharingServicePicker struct {
 func SharingServicePickerFrom(ptr unsafe.Pointer) SharingServicePicker {
 	return SharingServicePicker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerClass) Alloc() SharingServicePicker {
 	rv := objc.Send[SharingServicePicker](objc.ID(sc.class), objc.Sel("alloc"))

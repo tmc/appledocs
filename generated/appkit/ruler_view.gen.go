@@ -41,7 +41,6 @@ type IRulerView interface {
 // A ruler and the markers above or to the side of a scroll view’s document view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView
-
 type RulerView struct {
 	View
 }
@@ -54,6 +53,7 @@ func RulerViewFrom(ptr unsafe.Pointer) RulerView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RulerViewClass) Alloc() RulerView {
 	rv := objc.Send[RulerView](objc.ID(rc.class), objc.Sel("alloc"))
@@ -89,7 +89,6 @@ func NewRulerView() RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
 func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -100,7 +99,6 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
 func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
 	rv.Autorelease()

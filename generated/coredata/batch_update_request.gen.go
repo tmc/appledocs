@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BatchUpdateRequest] class.
-var batchUpdateRequestClass = _BatchUpdateRequestClass{objc.GetClass("NSBatchUpdateRequest")}
+var (
+	batchUpdateRequestClass     _BatchUpdateRequestClass
+	batchUpdateRequestClassOnce sync.Once
+)
+
+func getBatchUpdateRequestClass() _BatchUpdateRequestClass {
+	batchUpdateRequestClassOnce.Do(func() {
+		batchUpdateRequestClass = _BatchUpdateRequestClass{objc.GetClass("NSBatchUpdateRequest")}
+	})
+	return batchUpdateRequestClass
+}
 
 type _BatchUpdateRequestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IBatchUpdateRequest interface {
 // A request to Core Data to do a batch update of data in a persistent store without loading any data into memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest
-
 type BatchUpdateRequest struct {
 	PersistentStoreRequest
 }
@@ -36,13 +46,15 @@ func BatchUpdateRequestFrom(ptr unsafe.Pointer) BatchUpdateRequest {
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BatchUpdateRequestClass) Alloc() BatchUpdateRequest {
 	rv := objc.Send[BatchUpdateRequest](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BatchUpdateRequestClass) New() BatchUpdateRequest {
 	rv := objc.Send[BatchUpdateRequest](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ BatchUpdateRequest) Autorelease() BatchUpdateRequest {
 
 // NewBatchUpdateRequest creates a new BatchUpdateRequest instance.
 func NewBatchUpdateRequest() BatchUpdateRequest {
-	return batchUpdateRequestClass.New()
+	return getBatchUpdateRequestClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
 func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
-	instance := batchUpdateRequestClass.Alloc()
+	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntity:"), entity)
 	rv.Autorelease()
 	return rv
@@ -82,7 +94,7 @@ func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
 func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
-	instance := batchUpdateRequestClass.Alloc()
+	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv

@@ -35,7 +35,6 @@ type ITextPreview interface {
 // A snapshot of the text in your view, which the system uses to create user-visible effects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview
-
 type TextPreview struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextPreview struct {
 func TextPreviewFrom(ptr unsafe.Pointer) TextPreview {
 	return TextPreview{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextPreviewClass) Alloc() TextPreview {
 	rv := objc.Send[TextPreview](objc.ID(tc.class), objc.Sel("alloc"))

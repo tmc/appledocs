@@ -34,7 +34,6 @@ type IPopUpButton interface {
 // A control for selecting an item from a list. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton
-
 type PopUpButton struct {
 	Button
 }
@@ -47,6 +46,7 @@ func PopUpButtonFrom(ptr unsafe.Pointer) PopUpButton {
 		Button: ButtonFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PopUpButtonClass) Alloc() PopUpButton {
 	rv := objc.Send[PopUpButton](objc.ID(pc.class), objc.Sel("alloc"))

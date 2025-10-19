@@ -35,7 +35,6 @@ type ITextLayoutManager interface {
 // The primary class that you use to manage text layout and presentation for custom text displays. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager
-
 type TextLayoutManager struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextLayoutManager struct {
 func TextLayoutManagerFrom(ptr unsafe.Pointer) TextLayoutManager {
 	return TextLayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextLayoutManagerClass) Alloc() TextLayoutManager {
 	rv := objc.Send[TextLayoutManager](objc.ID(tc.class), objc.Sel("alloc"))

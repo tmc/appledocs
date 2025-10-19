@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MetalDisplayLinkUpdate] class.
-var metalDisplayLinkUpdateClass = _MetalDisplayLinkUpdateClass{objc.GetClass("CAMetalDisplayLinkUpdate")}
+var (
+	metalDisplayLinkUpdateClass     _MetalDisplayLinkUpdateClass
+	metalDisplayLinkUpdateClassOnce sync.Once
+)
+
+func getMetalDisplayLinkUpdateClass() _MetalDisplayLinkUpdateClass {
+	metalDisplayLinkUpdateClassOnce.Do(func() {
+		metalDisplayLinkUpdateClass = _MetalDisplayLinkUpdateClass{objc.GetClass("CAMetalDisplayLinkUpdate")}
+	})
+	return metalDisplayLinkUpdateClass
+}
 
 type _MetalDisplayLinkUpdateClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMetalDisplayLinkUpdate interface {
 // Stores information about a single update from a Metal display link instance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update
-
 type MetalDisplayLinkUpdate struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MetalDisplayLinkUpdate struct {
 func MetalDisplayLinkUpdateFrom(ptr unsafe.Pointer) MetalDisplayLinkUpdate {
 	return MetalDisplayLinkUpdate{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetalDisplayLinkUpdateClass) Alloc() MetalDisplayLinkUpdate {
 	rv := objc.Send[MetalDisplayLinkUpdate](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MetalDisplayLinkUpdateClass) New() MetalDisplayLinkUpdate {
 	rv := objc.Send[MetalDisplayLinkUpdate](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MetalDisplayLinkUpdate) Autorelease() MetalDisplayLinkUpdate {
 
 // NewMetalDisplayLinkUpdate creates a new MetalDisplayLinkUpdate instance.
 func NewMetalDisplayLinkUpdate() MetalDisplayLinkUpdate {
-	return metalDisplayLinkUpdateClass.New()
+	return getMetalDisplayLinkUpdateClass().New()
 }
 
 

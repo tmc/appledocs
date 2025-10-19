@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [BlendKernel] class.
-var blendKernelClass = _BlendKernelClass{objc.GetClass("CIBlendKernel")}
+var (
+	blendKernelClass     _BlendKernelClass
+	blendKernelClassOnce sync.Once
+)
+
+func getBlendKernelClass() _BlendKernelClass {
+	blendKernelClassOnce.Do(func() {
+		blendKernelClass = _BlendKernelClass{objc.GetClass("CIBlendKernel")}
+	})
+	return blendKernelClass
+}
 
 type _BlendKernelClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IBlendKernel interface {
 // A GPU-based image-processing routine that is optimized for blending two images. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel
-
 type BlendKernel struct {
 	ColorKernel
 }
@@ -39,13 +49,15 @@ func BlendKernelFrom(ptr unsafe.Pointer) BlendKernel {
 		ColorKernel: ColorKernelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BlendKernelClass) Alloc() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BlendKernelClass) New() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -66,7 +78,7 @@ func (b_ BlendKernel) Autorelease() BlendKernel {
 
 // NewBlendKernel creates a new BlendKernel instance.
 func NewBlendKernel() BlendKernel {
-	return blendKernelClass.New()
+	return getBlendKernelClass().New()
 }
 
 
@@ -75,8 +87,7 @@ func NewBlendKernel() BlendKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
 func NewBlendKernelWithString(string string) BlendKernel {
-	rv := objc.Send[BlendKernel](objc.ID(blendKernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
-	rv.Autorelease()
+	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 

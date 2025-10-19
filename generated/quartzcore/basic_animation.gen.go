@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BasicAnimation] class.
-var basicAnimationClass = _BasicAnimationClass{objc.GetClass("CABasicAnimation")}
+var (
+	basicAnimationClass     _BasicAnimationClass
+	basicAnimationClassOnce sync.Once
+)
+
+func getBasicAnimationClass() _BasicAnimationClass {
+	basicAnimationClassOnce.Do(func() {
+		basicAnimationClass = _BasicAnimationClass{objc.GetClass("CABasicAnimation")}
+	})
+	return basicAnimationClass
+}
 
 type _BasicAnimationClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IBasicAnimation interface {
 // An object that provides basic, single-keyframe animation capabilities for a layer property. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation
-
 type BasicAnimation struct {
 	PropertyAnimation
 }
@@ -36,13 +46,15 @@ func BasicAnimationFrom(ptr unsafe.Pointer) BasicAnimation {
 		PropertyAnimation: PropertyAnimationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BasicAnimationClass) Alloc() BasicAnimation {
 	rv := objc.Send[BasicAnimation](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BasicAnimationClass) New() BasicAnimation {
 	rv := objc.Send[BasicAnimation](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ BasicAnimation) Autorelease() BasicAnimation {
 
 // NewBasicAnimation creates a new BasicAnimation instance.
 func NewBasicAnimation() BasicAnimation {
-	return basicAnimationClass.New()
+	return getBasicAnimationClass().New()
 }
 
 

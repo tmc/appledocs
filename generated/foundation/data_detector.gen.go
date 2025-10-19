@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DataDetector] class.
-var dataDetectorClass = _DataDetectorClass{objc.GetClass("NSDataDetector")}
+var (
+	dataDetectorClass     _DataDetectorClass
+	dataDetectorClassOnce sync.Once
+)
+
+func getDataDetectorClass() _DataDetectorClass {
+	dataDetectorClassOnce.Do(func() {
+		dataDetectorClass = _DataDetectorClass{objc.GetClass("NSDataDetector")}
+	})
+	return dataDetectorClass
+}
 
 type _DataDetectorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDataDetector interface {
 // A specialized regular expression object that matches natural language text for predefined data patterns. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector
-
 type DataDetector struct {
 	RegularExpression
 }
@@ -36,13 +46,15 @@ func DataDetectorFrom(ptr unsafe.Pointer) DataDetector {
 		RegularExpression: RegularExpressionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DataDetectorClass) Alloc() DataDetector {
 	rv := objc.Send[DataDetector](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DataDetectorClass) New() DataDetector {
 	rv := objc.Send[DataDetector](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DataDetector) Autorelease() DataDetector {
 
 // NewDataDetector creates a new DataDetector instance.
 func NewDataDetector() DataDetector {
-	return dataDetectorClass.New()
+	return getDataDetectorClass().New()
 }
 
 

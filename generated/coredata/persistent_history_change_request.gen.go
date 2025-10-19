@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentHistoryChangeRequest] class.
-var persistentHistoryChangeRequestClass = _PersistentHistoryChangeRequestClass{objc.GetClass("NSPersistentHistoryChangeRequest")}
+var (
+	persistentHistoryChangeRequestClass     _PersistentHistoryChangeRequestClass
+	persistentHistoryChangeRequestClassOnce sync.Once
+)
+
+func getPersistentHistoryChangeRequestClass() _PersistentHistoryChangeRequestClass {
+	persistentHistoryChangeRequestClassOnce.Do(func() {
+		persistentHistoryChangeRequestClass = _PersistentHistoryChangeRequestClass{objc.GetClass("NSPersistentHistoryChangeRequest")}
+	})
+	return persistentHistoryChangeRequestClass
+}
 
 type _PersistentHistoryChangeRequestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPersistentHistoryChangeRequest interface {
 // A request to fetch or purge persistent history. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest
-
 type PersistentHistoryChangeRequest struct {
 	PersistentStoreRequest
 }
@@ -36,13 +46,15 @@ func PersistentHistoryChangeRequestFrom(ptr unsafe.Pointer) PersistentHistoryCha
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentHistoryChangeRequestClass) Alloc() PersistentHistoryChangeRequest {
 	rv := objc.Send[PersistentHistoryChangeRequest](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentHistoryChangeRequestClass) New() PersistentHistoryChangeRequest {
 	rv := objc.Send[PersistentHistoryChangeRequest](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PersistentHistoryChangeRequest) Autorelease() PersistentHistoryChangeRe
 
 // NewPersistentHistoryChangeRequest creates a new PersistentHistoryChangeRequest instance.
 func NewPersistentHistoryChangeRequest() PersistentHistoryChangeRequest {
-	return persistentHistoryChangeRequestClass.New()
+	return getPersistentHistoryChangeRequestClass().New()
 }
 
 

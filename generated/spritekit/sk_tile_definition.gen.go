@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKTileDefinition] class.
-var sKTileDefinitionClass = _SKTileDefinitionClass{objc.GetClass("SKTileDefinition")}
+var (
+	sKTileDefinitionClass     _SKTileDefinitionClass
+	sKTileDefinitionClassOnce sync.Once
+)
+
+func getSKTileDefinitionClass() _SKTileDefinitionClass {
+	sKTileDefinitionClassOnce.Do(func() {
+		sKTileDefinitionClass = _SKTileDefinitionClass{objc.GetClass("SKTileDefinition")}
+	})
+	return sKTileDefinitionClass
+}
 
 type _SKTileDefinitionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKTileDefinition interface {
 // A single tile that can be repeated in a tile map. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition
-
 type SKTileDefinition struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKTileDefinition struct {
 func SKTileDefinitionFrom(ptr unsafe.Pointer) SKTileDefinition {
 	return SKTileDefinition{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTileDefinitionClass) Alloc() SKTileDefinition {
 	rv := objc.Send[SKTileDefinition](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTileDefinitionClass) New() SKTileDefinition {
 	rv := objc.Send[SKTileDefinition](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKTileDefinition) Autorelease() SKTileDefinition {
 
 // NewSKTileDefinition creates a new SKTileDefinition instance.
 func NewSKTileDefinition() SKTileDefinition {
-	return sKTileDefinitionClass.New()
+	return getSKTileDefinitionClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewSKTileDefinition() SKTileDefinition {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:)
 func NewSKTileDefinitionWithTexture(texture unsafe.Pointer) SKTileDefinition {
-	instance := sKTileDefinitionClass.Alloc()
+	instance := getSKTileDefinitionClass().Alloc()
 	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTexture:"), texture)
 	rv.Autorelease()
 	return rv
@@ -81,7 +93,7 @@ func NewSKTileDefinitionWithTexture(texture unsafe.Pointer) SKTileDefinition {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:normalTexture:size:)
 func NewSKTileDefinitionWithTextureNormalTextureSize(texture unsafe.Pointer, normalTexture unsafe.Pointer, size unsafe.Pointer) SKTileDefinition {
-	instance := sKTileDefinitionClass.Alloc()
+	instance := getSKTileDefinitionClass().Alloc()
 	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTexture:normalTexture:size:"), texture, normalTexture, size)
 	rv.Autorelease()
 	return rv
@@ -91,7 +103,7 @@ func NewSKTileDefinitionWithTextureNormalTextureSize(texture unsafe.Pointer, nor
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:size:)
 func NewSKTileDefinitionWithTextureSize(texture unsafe.Pointer, size unsafe.Pointer) SKTileDefinition {
-	instance := sKTileDefinitionClass.Alloc()
+	instance := getSKTileDefinitionClass().Alloc()
 	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTexture:size:"), texture, size)
 	rv.Autorelease()
 	return rv
@@ -101,7 +113,7 @@ func NewSKTileDefinitionWithTextureSize(texture unsafe.Pointer, size unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(textures:normalTextures:size:timePerFrame:)
 func NewSKTileDefinitionWithTexturesNormalTexturesSizeTimePerFrame(textures unsafe.Pointer, normalTextures unsafe.Pointer, size unsafe.Pointer, timePerFrame float64) SKTileDefinition {
-	instance := sKTileDefinitionClass.Alloc()
+	instance := getSKTileDefinitionClass().Alloc()
 	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTextures:normalTextures:size:timePerFrame:"), textures, normalTextures, size, timePerFrame)
 	rv.Autorelease()
 	return rv
@@ -111,7 +123,7 @@ func NewSKTileDefinitionWithTexturesNormalTexturesSizeTimePerFrame(textures unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(textures:size:timePerFrame:)
 func NewSKTileDefinitionWithTexturesSizeTimePerFrame(textures unsafe.Pointer, size unsafe.Pointer, timePerFrame float64) SKTileDefinition {
-	instance := sKTileDefinitionClass.Alloc()
+	instance := getSKTileDefinitionClass().Alloc()
 	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTextures:size:timePerFrame:"), textures, size, timePerFrame)
 	rv.Autorelease()
 	return rv

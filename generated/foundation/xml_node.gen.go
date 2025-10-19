@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [XMLNode] class.
-var xMLNodeClass = _XMLNodeClass{objc.GetClass("NSXMLNode")}
+var (
+	xMLNodeClass     _XMLNodeClass
+	xMLNodeClassOnce sync.Once
+)
+
+func getXMLNodeClass() _XMLNodeClass {
+	xMLNodeClassOnce.Do(func() {
+		xMLNodeClass = _XMLNodeClass{objc.GetClass("NSXMLNode")}
+	})
+	return xMLNodeClass
+}
 
 type _XMLNodeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IXMLNode interface {
 // The nodes in the abstract, logical tree structure that represents an XML document. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode
-
 type XMLNode struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type XMLNode struct {
 func XMLNodeFrom(ptr unsafe.Pointer) XMLNode {
 	return XMLNode{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XMLNodeClass) Alloc() XMLNode {
 	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XMLNodeClass) New() XMLNode {
 	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (x_ XMLNode) Autorelease() XMLNode {
 
 // NewXMLNode creates a new XMLNode instance.
 func NewXMLNode() XMLNode {
-	return xMLNodeClass.New()
+	return getXMLNodeClass().New()
 }
 
 

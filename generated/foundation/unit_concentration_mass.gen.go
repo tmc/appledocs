@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitConcentrationMass] class.
-var unitConcentrationMassClass = _UnitConcentrationMassClass{objc.GetClass("NSUnitConcentrationMass")}
+var (
+	unitConcentrationMassClass     _UnitConcentrationMassClass
+	unitConcentrationMassClassOnce sync.Once
+)
+
+func getUnitConcentrationMassClass() _UnitConcentrationMassClass {
+	unitConcentrationMassClassOnce.Do(func() {
+		unitConcentrationMassClass = _UnitConcentrationMassClass{objc.GetClass("NSUnitConcentrationMass")}
+	})
+	return unitConcentrationMassClass
+}
 
 type _UnitConcentrationMassClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitConcentrationMass interface {
 // A unit of measure for concentration of mass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass
-
 type UnitConcentrationMass struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitConcentrationMassFrom(ptr unsafe.Pointer) UnitConcentrationMass {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitConcentrationMassClass) Alloc() UnitConcentrationMass {
 	rv := objc.Send[UnitConcentrationMass](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitConcentrationMassClass) New() UnitConcentrationMass {
 	rv := objc.Send[UnitConcentrationMass](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitConcentrationMass) Autorelease() UnitConcentrationMass {
 
 // NewUnitConcentrationMass creates a new UnitConcentrationMass instance.
 func NewUnitConcentrationMass() UnitConcentrationMass {
-	return unitConcentrationMassClass.New()
+	return getUnitConcentrationMassClass().New()
 }
 
 

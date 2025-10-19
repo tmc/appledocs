@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ValueTransformer] class.
-var valueTransformerClass = _ValueTransformerClass{objc.GetClass("NSValueTransformer")}
+var (
+	valueTransformerClass     _ValueTransformerClass
+	valueTransformerClassOnce sync.Once
+)
+
+func getValueTransformerClass() _ValueTransformerClass {
+	valueTransformerClassOnce.Do(func() {
+		valueTransformerClass = _ValueTransformerClass{objc.GetClass("NSValueTransformer")}
+	})
+	return valueTransformerClass
+}
 
 type _ValueTransformerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IValueTransformer interface {
 // An abstract class used to transform values from one representation to another. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer
-
 type ValueTransformer struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ValueTransformer struct {
 func ValueTransformerFrom(ptr unsafe.Pointer) ValueTransformer {
 	return ValueTransformer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ValueTransformerClass) Alloc() ValueTransformer {
 	rv := objc.Send[ValueTransformer](objc.ID(vc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ValueTransformerClass) New() ValueTransformer {
 	rv := objc.Send[ValueTransformer](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (v_ ValueTransformer) Autorelease() ValueTransformer {
 
 // NewValueTransformer creates a new ValueTransformer instance.
 func NewValueTransformer() ValueTransformer {
-	return valueTransformerClass.New()
+	return getValueTransformerClass().New()
 }
 
 

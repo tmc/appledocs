@@ -34,7 +34,6 @@ type ISliderCell interface {
 // The appearance and behavior of an object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell
-
 type SliderCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func SliderCellFrom(ptr unsafe.Pointer) SliderCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SliderCellClass) Alloc() SliderCell {
 	rv := objc.Send[SliderCell](objc.ID(sc.class), objc.Sel("alloc"))

@@ -35,7 +35,6 @@ type IDraggingItem interface {
 // A single dragged item within a dragging session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem
-
 type DraggingItem struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type DraggingItem struct {
 func DraggingItemFrom(ptr unsafe.Pointer) DraggingItem {
 	return DraggingItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DraggingItemClass) Alloc() DraggingItem {
 	rv := objc.Send[DraggingItem](objc.ID(dc.class), objc.Sel("alloc"))

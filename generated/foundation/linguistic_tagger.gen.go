@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [LinguisticTagger] class.
-var linguisticTaggerClass = _LinguisticTaggerClass{objc.GetClass("NSLinguisticTagger")}
+var (
+	linguisticTaggerClass     _LinguisticTaggerClass
+	linguisticTaggerClassOnce sync.Once
+)
+
+func getLinguisticTaggerClass() _LinguisticTaggerClass {
+	linguisticTaggerClassOnce.Do(func() {
+		linguisticTaggerClass = _LinguisticTaggerClass{objc.GetClass("NSLinguisticTagger")}
+	})
+	return linguisticTaggerClass
+}
 
 type _LinguisticTaggerClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type ILinguisticTagger interface {
 // Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger
-
 type LinguisticTagger struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type LinguisticTagger struct {
 func LinguisticTaggerFrom(ptr unsafe.Pointer) LinguisticTagger {
 	return LinguisticTagger{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LinguisticTaggerClass) Alloc() LinguisticTagger {
 	rv := objc.Send[LinguisticTagger](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LinguisticTaggerClass) New() LinguisticTagger {
 	rv := objc.Send[LinguisticTagger](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (l_ LinguisticTagger) Autorelease() LinguisticTagger {
 
 // NewLinguisticTagger creates a new LinguisticTagger instance.
 func NewLinguisticTagger() LinguisticTagger {
-	return linguisticTaggerClass.New()
+	return getLinguisticTaggerClass().New()
 }
 
 

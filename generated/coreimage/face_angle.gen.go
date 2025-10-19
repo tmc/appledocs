@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [faceAngle] class.
-var faceAngleClass = _faceAngleClass{objc.GetClass("faceAngle")}
+var (
+	faceAngleClass     _faceAngleClass
+	faceAngleClassOnce sync.Once
+)
+
+func getfaceAngleClass() _faceAngleClass {
+	faceAngleClassOnce.Do(func() {
+		faceAngleClass = _faceAngleClass{objc.GetClass("faceAngle")}
+	})
+	return faceAngleClass
+}
 
 type _faceAngleClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IfaceAngle interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/faceAngle-c.ivar
-
 type faceAngle struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type faceAngle struct {
 func faceAngleFrom(ptr unsafe.Pointer) faceAngle {
 	return faceAngle{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _faceAngleClass) Alloc() faceAngle {
 	rv := objc.Send[faceAngle](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _faceAngleClass) New() faceAngle {
 	rv := objc.Send[faceAngle](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (f_ faceAngle) Autorelease() faceAngle {
 
 // NewfaceAngle creates a new faceAngle instance.
 func NewfaceAngle() faceAngle {
-	return faceAngleClass.New()
+	return getfaceAngleClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Locale] class.
-var localeClass = _LocaleClass{objc.GetClass("NSLocale")}
+var (
+	localeClass     _LocaleClass
+	localeClassOnce sync.Once
+)
+
+func getLocaleClass() _LocaleClass {
+	localeClassOnce.Do(func() {
+		localeClass = _LocaleClass{objc.GetClass("NSLocale")}
+	})
+	return localeClass
+}
 
 type _LocaleClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ILocale interface {
 // Information about linguistic, cultural, and technological conventions for use in formatting data for presentation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale
-
 type Locale struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Locale struct {
 func LocaleFrom(ptr unsafe.Pointer) Locale {
 	return Locale{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LocaleClass) Alloc() Locale {
 	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LocaleClass) New() Locale {
 	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (l_ Locale) Autorelease() Locale {
 
 // NewLocale creates a new Locale instance.
 func NewLocale() Locale {
-	return localeClass.New()
+	return getLocaleClass().New()
 }
 
 

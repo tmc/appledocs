@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CalendarDate] class.
-var calendarDateClass = _CalendarDateClass{objc.GetClass("NSCalendarDate")}
+var (
+	calendarDateClass     _CalendarDateClass
+	calendarDateClassOnce sync.Once
+)
+
+func getCalendarDateClass() _CalendarDateClass {
+	calendarDateClassOnce.Do(func() {
+		calendarDateClass = _CalendarDateClass{objc.GetClass("NSCalendarDate")}
+	})
+	return calendarDateClass
+}
 
 type _CalendarDateClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ICalendarDate interface {
 // A specialized date object with embedded calendar information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate
-
 type CalendarDate struct {
 	Date
 }
@@ -36,13 +46,15 @@ func CalendarDateFrom(ptr unsafe.Pointer) CalendarDate {
 		Date: DateFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CalendarDateClass) Alloc() CalendarDate {
 	rv := objc.Send[CalendarDate](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CalendarDateClass) New() CalendarDate {
 	rv := objc.Send[CalendarDate](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ CalendarDate) Autorelease() CalendarDate {
 
 // NewCalendarDate creates a new CalendarDate instance.
 func NewCalendarDate() CalendarDate {
-	return calendarDateClass.New()
+	return getCalendarDateClass().New()
 }
 
 

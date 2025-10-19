@@ -34,7 +34,6 @@ type ICollectionViewFlowLayout interface {
 // A layout that organizes items into a flexible and configurable arrangement. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewFlowLayout
-
 type CollectionViewFlowLayout struct {
 	CollectionViewLayout
 }
@@ -47,6 +46,7 @@ func CollectionViewFlowLayoutFrom(ptr unsafe.Pointer) CollectionViewFlowLayout {
 		CollectionViewLayout: CollectionViewLayoutFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewFlowLayoutClass) Alloc() CollectionViewFlowLayout {
 	rv := objc.Send[CollectionViewFlowLayout](objc.ID(cc.class), objc.Sel("alloc"))

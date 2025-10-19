@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NumberFormatter] class.
-var numberFormatterClass = _NumberFormatterClass{objc.GetClass("NSNumberFormatter")}
+var (
+	numberFormatterClass     _NumberFormatterClass
+	numberFormatterClassOnce sync.Once
+)
+
+func getNumberFormatterClass() _NumberFormatterClass {
+	numberFormatterClassOnce.Do(func() {
+		numberFormatterClass = _NumberFormatterClass{objc.GetClass("NSNumberFormatter")}
+	})
+	return numberFormatterClass
+}
 
 type _NumberFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INumberFormatter interface {
 // A formatter that converts between numeric values and their textual representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter
-
 type NumberFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func NumberFormatterFrom(ptr unsafe.Pointer) NumberFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NumberFormatterClass) Alloc() NumberFormatter {
 	rv := objc.Send[NumberFormatter](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NumberFormatterClass) New() NumberFormatter {
 	rv := objc.Send[NumberFormatter](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NumberFormatter) Autorelease() NumberFormatter {
 
 // NewNumberFormatter creates a new NumberFormatter instance.
 func NewNumberFormatter() NumberFormatter {
-	return numberFormatterClass.New()
+	return getNumberFormatterClass().New()
 }
 
 

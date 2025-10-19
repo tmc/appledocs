@@ -35,7 +35,6 @@ type ITextLineFragment interface {
 // A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment
-
 type TextLineFragment struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextLineFragment struct {
 func TextLineFragmentFrom(ptr unsafe.Pointer) TextLineFragment {
 	return TextLineFragment{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextLineFragmentClass) Alloc() TextLineFragment {
 	rv := objc.Send[TextLineFragment](objc.ID(tc.class), objc.Sel("alloc"))

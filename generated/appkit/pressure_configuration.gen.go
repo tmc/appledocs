@@ -35,7 +35,6 @@ type IPressureConfiguration interface {
 // An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration
-
 type PressureConfiguration struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type PressureConfiguration struct {
 func PressureConfigurationFrom(ptr unsafe.Pointer) PressureConfiguration {
 	return PressureConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PressureConfigurationClass) Alloc() PressureConfiguration {
 	rv := objc.Send[PressureConfiguration](objc.ID(pc.class), objc.Sel("alloc"))

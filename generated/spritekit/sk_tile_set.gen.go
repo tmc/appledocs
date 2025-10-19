@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKTileSet] class.
-var sKTileSetClass = _SKTileSetClass{objc.GetClass("SKTileSet")}
+var (
+	sKTileSetClass     _SKTileSetClass
+	sKTileSetClassOnce sync.Once
+)
+
+func getSKTileSetClass() _SKTileSetClass {
+	sKTileSetClassOnce.Do(func() {
+		sKTileSetClass = _SKTileSetClass{objc.GetClass("SKTileSet")}
+	})
+	return sKTileSetClass
+}
 
 type _SKTileSetClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKTileSet interface {
 // A container for related tile groups. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet
-
 type SKTileSet struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKTileSet struct {
 func SKTileSetFrom(ptr unsafe.Pointer) SKTileSet {
 	return SKTileSet{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTileSetClass) Alloc() SKTileSet {
 	rv := objc.Send[SKTileSet](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTileSetClass) New() SKTileSet {
 	rv := objc.Send[SKTileSet](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKTileSet) Autorelease() SKTileSet {
 
 // NewSKTileSet creates a new SKTileSet instance.
 func NewSKTileSet() SKTileSet {
-	return sKTileSetClass.New()
+	return getSKTileSetClass().New()
 }
 
 
@@ -70,18 +82,16 @@ func NewSKTileSet() SKTileSet {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(from:)
-func NewTileSetFromURL(url unsafe.Pointer) SKTileSet {
-	rv := objc.Send[SKTileSet](objc.ID(sKTileSetClass.class), objc.Sel("tileSetFromURL:"), url)
-	rv.Autorelease()
+func NewSKTileSetFromURL(url unsafe.Pointer) SKTileSet {
+	rv := objc.Send[SKTileSet](objc.ID(getSKTileSetClass().class), objc.Sel("tileSetFromURL:"), url)
 	return rv
 }
 // Initializes a tile set by searching the app bundle for an archived file by name. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(named:)
-func NewTileSetNamed(name string) SKTileSet {
-	rv := objc.Send[SKTileSet](objc.ID(sKTileSetClass.class), objc.Sel("tileSetNamed:"), name)
-	rv.Autorelease()
+func NewSKTileSetNamed(name string) SKTileSet {
+	rv := objc.Send[SKTileSet](objc.ID(getSKTileSetClass().class), objc.Sel("tileSetNamed:"), objc.String(name))
 	return rv
 }
 // Initializes a new tile set with an array of tile groups and rectangular grid layout. [Full Topic]
@@ -89,7 +99,7 @@ func NewTileSetNamed(name string) SKTileSet {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(tileGroups:)
 func NewSKTileSetWithTileGroups(tileGroups unsafe.Pointer) SKTileSet {
-	instance := sKTileSetClass.Alloc()
+	instance := getSKTileSetClass().Alloc()
 	rv := objc.Send[SKTileSet](instance.ID, objc.Sel("initWithTileGroups:"), tileGroups)
 	rv.Autorelease()
 	return rv
@@ -99,7 +109,7 @@ func NewSKTileSetWithTileGroups(tileGroups unsafe.Pointer) SKTileSet {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(tileGroups:tileSetType:)
 func NewSKTileSetWithTileGroupsTileSetType(tileGroups unsafe.Pointer, tileSetType unsafe.Pointer) SKTileSet {
-	instance := sKTileSetClass.Alloc()
+	instance := getSKTileSetClass().Alloc()
 	rv := objc.Send[SKTileSet](instance.ID, objc.Sel("initWithTileGroups:tileSetType:"), tileGroups, tileSetType)
 	rv.Autorelease()
 	return rv
@@ -119,7 +129,7 @@ func (sc _SKTileSetClass) TileSetFromURL(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(named:)
 func (sc _SKTileSetClass) TileSetNamed(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("tileSetNamed:"), name)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("tileSetNamed:"), objc.String(name))
 	return rv
 }
 //

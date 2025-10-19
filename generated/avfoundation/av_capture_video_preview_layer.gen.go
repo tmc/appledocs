@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaptureVideoPreviewLayer] class.
-var aVCaptureVideoPreviewLayerClass = _AVCaptureVideoPreviewLayerClass{objc.GetClass("AVCaptureVideoPreviewLayer")}
+var (
+	aVCaptureVideoPreviewLayerClass     _AVCaptureVideoPreviewLayerClass
+	aVCaptureVideoPreviewLayerClassOnce sync.Once
+)
+
+func getAVCaptureVideoPreviewLayerClass() _AVCaptureVideoPreviewLayerClass {
+	aVCaptureVideoPreviewLayerClassOnce.Do(func() {
+		aVCaptureVideoPreviewLayerClass = _AVCaptureVideoPreviewLayerClass{objc.GetClass("AVCaptureVideoPreviewLayer")}
+	})
+	return aVCaptureVideoPreviewLayerClass
+}
 
 type _AVCaptureVideoPreviewLayerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaptureVideoPreviewLayer interface {
 // A Core Animation layer that displays video from a camera device. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoPreviewLayer
-
 type AVCaptureVideoPreviewLayer struct {
 	quartzcore.Layer
 }
@@ -37,13 +47,15 @@ func AVCaptureVideoPreviewLayerFrom(ptr unsafe.Pointer) AVCaptureVideoPreviewLay
 		Layer: quartzcore.LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureVideoPreviewLayerClass) Alloc() AVCaptureVideoPreviewLayer {
 	rv := objc.Send[AVCaptureVideoPreviewLayer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureVideoPreviewLayerClass) New() AVCaptureVideoPreviewLayer {
 	rv := objc.Send[AVCaptureVideoPreviewLayer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVCaptureVideoPreviewLayer) Autorelease() AVCaptureVideoPreviewLayer {
 
 // NewAVCaptureVideoPreviewLayer creates a new AVCaptureVideoPreviewLayer instance.
 func NewAVCaptureVideoPreviewLayer() AVCaptureVideoPreviewLayer {
-	return aVCaptureVideoPreviewLayerClass.New()
+	return getAVCaptureVideoPreviewLayerClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableOrderedSet] class.
-var mutableOrderedSetClass = _MutableOrderedSetClass{objc.GetClass("NSMutableOrderedSet")}
+var (
+	mutableOrderedSetClass     _MutableOrderedSetClass
+	mutableOrderedSetClassOnce sync.Once
+)
+
+func getMutableOrderedSetClass() _MutableOrderedSetClass {
+	mutableOrderedSetClassOnce.Do(func() {
+		mutableOrderedSetClass = _MutableOrderedSetClass{objc.GetClass("NSMutableOrderedSet")}
+	})
+	return mutableOrderedSetClass
+}
 
 type _MutableOrderedSetClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableOrderedSet interface {
 // A dynamic, ordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet
-
 type MutableOrderedSet struct {
 	OrderedSet
 }
@@ -36,13 +46,15 @@ func MutableOrderedSetFrom(ptr unsafe.Pointer) MutableOrderedSet {
 		OrderedSet: OrderedSetFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableOrderedSetClass) Alloc() MutableOrderedSet {
 	rv := objc.Send[MutableOrderedSet](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableOrderedSetClass) New() MutableOrderedSet {
 	rv := objc.Send[MutableOrderedSet](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableOrderedSet) Autorelease() MutableOrderedSet {
 
 // NewMutableOrderedSet creates a new MutableOrderedSet instance.
 func NewMutableOrderedSet() MutableOrderedSet {
-	return mutableOrderedSetClass.New()
+	return getMutableOrderedSetClass().New()
 }
 
 

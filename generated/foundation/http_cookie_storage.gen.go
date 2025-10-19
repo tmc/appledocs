@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [HTTPCookieStorage] class.
-var hTTPCookieStorageClass = _HTTPCookieStorageClass{objc.GetClass("NSHTTPCookieStorage")}
+var (
+	hTTPCookieStorageClass     _HTTPCookieStorageClass
+	hTTPCookieStorageClassOnce sync.Once
+)
+
+func getHTTPCookieStorageClass() _HTTPCookieStorageClass {
+	hTTPCookieStorageClassOnce.Do(func() {
+		hTTPCookieStorageClass = _HTTPCookieStorageClass{objc.GetClass("NSHTTPCookieStorage")}
+	})
+	return hTTPCookieStorageClass
+}
 
 type _HTTPCookieStorageClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IHTTPCookieStorage interface {
 // A container that manages the storage of cookies. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage
-
 type HTTPCookieStorage struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type HTTPCookieStorage struct {
 func HTTPCookieStorageFrom(ptr unsafe.Pointer) HTTPCookieStorage {
 	return HTTPCookieStorage{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _HTTPCookieStorageClass) Alloc() HTTPCookieStorage {
 	rv := objc.Send[HTTPCookieStorage](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HTTPCookieStorageClass) New() HTTPCookieStorage {
 	rv := objc.Send[HTTPCookieStorage](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (h_ HTTPCookieStorage) Autorelease() HTTPCookieStorage {
 
 // NewHTTPCookieStorage creates a new HTTPCookieStorage instance.
 func NewHTTPCookieStorage() HTTPCookieStorage {
-	return hTTPCookieStorageClass.New()
+	return getHTTPCookieStorageClass().New()
 }
 
 

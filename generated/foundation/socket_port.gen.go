@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SocketPort] class.
-var socketPortClass = _SocketPortClass{objc.GetClass("NSSocketPort")}
+var (
+	socketPortClass     _SocketPortClass
+	socketPortClassOnce sync.Once
+)
+
+func getSocketPortClass() _SocketPortClass {
+	socketPortClassOnce.Do(func() {
+		socketPortClass = _SocketPortClass{objc.GetClass("NSSocketPort")}
+	})
+	return socketPortClass
+}
 
 type _SocketPortClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISocketPort interface {
 // A port that represents a BSD socket. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort
-
 type SocketPort struct {
 	Port
 }
@@ -36,13 +46,15 @@ func SocketPortFrom(ptr unsafe.Pointer) SocketPort {
 		Port: PortFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SocketPortClass) Alloc() SocketPort {
 	rv := objc.Send[SocketPort](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SocketPortClass) New() SocketPort {
 	rv := objc.Send[SocketPort](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SocketPort) Autorelease() SocketPort {
 
 // NewSocketPort creates a new SocketPort instance.
 func NewSocketPort() SocketPort {
-	return socketPortClass.New()
+	return getSocketPortClass().New()
 }
 
 

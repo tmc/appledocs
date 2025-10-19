@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XMLDocument] class.
-var xMLDocumentClass = _XMLDocumentClass{objc.GetClass("NSXMLDocument")}
+var (
+	xMLDocumentClass     _XMLDocumentClass
+	xMLDocumentClassOnce sync.Once
+)
+
+func getXMLDocumentClass() _XMLDocumentClass {
+	xMLDocumentClassOnce.Do(func() {
+		xMLDocumentClass = _XMLDocumentClass{objc.GetClass("NSXMLDocument")}
+	})
+	return xMLDocumentClass
+}
 
 type _XMLDocumentClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IXMLDocument interface {
 // An XML document as internalized into a logical tree structure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument
-
 type XMLDocument struct {
 	XMLNode
 }
@@ -36,13 +46,15 @@ func XMLDocumentFrom(ptr unsafe.Pointer) XMLDocument {
 		XMLNode: XMLNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XMLDocumentClass) Alloc() XMLDocument {
 	rv := objc.Send[XMLDocument](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XMLDocumentClass) New() XMLDocument {
 	rv := objc.Send[XMLDocument](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (x_ XMLDocument) Autorelease() XMLDocument {
 
 // NewXMLDocument creates a new XMLDocument instance.
 func NewXMLDocument() XMLDocument {
-	return xMLDocumentClass.New()
+	return getXMLDocumentClass().New()
 }
 
 

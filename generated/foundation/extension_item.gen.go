@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ExtensionItem] class.
-var extensionItemClass = _ExtensionItemClass{objc.GetClass("NSExtensionItem")}
+var (
+	extensionItemClass     _ExtensionItemClass
+	extensionItemClassOnce sync.Once
+)
+
+func getExtensionItemClass() _ExtensionItemClass {
+	extensionItemClassOnce.Do(func() {
+		extensionItemClass = _ExtensionItemClass{objc.GetClass("NSExtensionItem")}
+	})
+	return extensionItemClass
+}
 
 type _ExtensionItemClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IExtensionItem interface {
 // An immutable collection of values representing different aspects of an item for an extension to act upon. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem
-
 type ExtensionItem struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ExtensionItem struct {
 func ExtensionItemFrom(ptr unsafe.Pointer) ExtensionItem {
 	return ExtensionItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _ExtensionItemClass) Alloc() ExtensionItem {
 	rv := objc.Send[ExtensionItem](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _ExtensionItemClass) New() ExtensionItem {
 	rv := objc.Send[ExtensionItem](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (e_ ExtensionItem) Autorelease() ExtensionItem {
 
 // NewExtensionItem creates a new ExtensionItem instance.
 func NewExtensionItem() ExtensionItem {
-	return extensionItemClass.New()
+	return getExtensionItemClass().New()
 }
 
 

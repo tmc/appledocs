@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CountCommand] class.
-var countCommandClass = _CountCommandClass{objc.GetClass("NSCountCommand")}
+var (
+	countCommandClass     _CountCommandClass
+	countCommandClassOnce sync.Once
+)
+
+func getCountCommandClass() _CountCommandClass {
+	countCommandClassOnce.Do(func() {
+		countCommandClass = _CountCommandClass{objc.GetClass("NSCountCommand")}
+	})
+	return countCommandClass
+}
 
 type _CountCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ICountCommand interface {
 // A command that counts the number of objects of a specified class in the specified object container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountCommand
-
 type CountCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func CountCommandFrom(ptr unsafe.Pointer) CountCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CountCommandClass) Alloc() CountCommand {
 	rv := objc.Send[CountCommand](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CountCommandClass) New() CountCommand {
 	rv := objc.Send[CountCommand](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ CountCommand) Autorelease() CountCommand {
 
 // NewCountCommand creates a new CountCommand instance.
 func NewCountCommand() CountCommand {
-	return countCommandClass.New()
+	return getCountCommandClass().New()
 }
 
 

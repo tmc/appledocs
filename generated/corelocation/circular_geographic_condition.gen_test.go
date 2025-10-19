@@ -6,15 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/corelocation"
 )
 
+// Suppress unused import errors
+var _ = corelocation.NewCircularGeographicCondition
 
-// ExampleNewCircularGeographicConditionWithCenterRadius demonstrates how to create a CircularGeographicCondition instance using NewCircularGeographicConditionWithCenterRadius.
-// Creates a new circular geographic condition with the center point and radius you provide.
-func ExampleNewCircularGeographicConditionWithCenterRadius() {
-	_ = corelocation.NewCircularGeographicConditionWithCenterRadius(
-		nil, // center unsafe.Pointer
-		nil, // radius unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

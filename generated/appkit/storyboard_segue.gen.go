@@ -35,7 +35,6 @@ type IStoryboardSegue interface {
 // A transition or containment relationship between two scenes in a storyboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue
-
 type StoryboardSegue struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type StoryboardSegue struct {
 func StoryboardSegueFrom(ptr unsafe.Pointer) StoryboardSegue {
 	return StoryboardSegue{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StoryboardSegueClass) Alloc() StoryboardSegue {
 	rv := objc.Send[StoryboardSegue](objc.ID(sc.class), objc.Sel("alloc"))

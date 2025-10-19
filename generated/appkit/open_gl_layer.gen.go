@@ -35,7 +35,6 @@ type IOpenGLLayer interface {
 // A subclass of that is suitable for rendering OpenGL into layers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer
-
 type OpenGLLayer struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type OpenGLLayer struct {
 func OpenGLLayerFrom(ptr unsafe.Pointer) OpenGLLayer {
 	return OpenGLLayer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLLayerClass) Alloc() OpenGLLayer {
 	rv := objc.Send[OpenGLLayer](objc.ID(oc.class), objc.Sel("alloc"))

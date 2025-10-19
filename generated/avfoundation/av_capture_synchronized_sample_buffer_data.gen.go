@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVCaptureSynchronizedSampleBufferData] class.
-var aVCaptureSynchronizedSampleBufferDataClass = _AVCaptureSynchronizedSampleBufferDataClass{objc.GetClass("AVCaptureSynchronizedSampleBufferData")}
+var (
+	aVCaptureSynchronizedSampleBufferDataClass     _AVCaptureSynchronizedSampleBufferDataClass
+	aVCaptureSynchronizedSampleBufferDataClassOnce sync.Once
+)
+
+func getAVCaptureSynchronizedSampleBufferDataClass() _AVCaptureSynchronizedSampleBufferDataClass {
+	aVCaptureSynchronizedSampleBufferDataClassOnce.Do(func() {
+		aVCaptureSynchronizedSampleBufferDataClass = _AVCaptureSynchronizedSampleBufferDataClass{objc.GetClass("AVCaptureSynchronizedSampleBufferData")}
+	})
+	return aVCaptureSynchronizedSampleBufferDataClass
+}
 
 type _AVCaptureSynchronizedSampleBufferDataClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVCaptureSynchronizedSampleBufferData interface {
 // A container for video or audio samples collected using synchronized capture. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData
-
 type AVCaptureSynchronizedSampleBufferData struct {
 	AVCaptureSynchronizedData
 }
@@ -36,13 +46,15 @@ func AVCaptureSynchronizedSampleBufferDataFrom(ptr unsafe.Pointer) AVCaptureSync
 		AVCaptureSynchronizedData: AVCaptureSynchronizedDataFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureSynchronizedSampleBufferDataClass) Alloc() AVCaptureSynchronizedSampleBufferData {
 	rv := objc.Send[AVCaptureSynchronizedSampleBufferData](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureSynchronizedSampleBufferDataClass) New() AVCaptureSynchronizedSampleBufferData {
 	rv := objc.Send[AVCaptureSynchronizedSampleBufferData](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVCaptureSynchronizedSampleBufferData) Autorelease() AVCaptureSynchroni
 
 // NewAVCaptureSynchronizedSampleBufferData creates a new AVCaptureSynchronizedSampleBufferData instance.
 func NewAVCaptureSynchronizedSampleBufferData() AVCaptureSynchronizedSampleBufferData {
-	return aVCaptureSynchronizedSampleBufferDataClass.New()
+	return getAVCaptureSynchronizedSampleBufferDataClass().New()
 }
 
 

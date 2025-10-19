@@ -38,7 +38,6 @@ type IOpenGLView interface {
 // A view that displays OpenGL content in a view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView
-
 type OpenGLView struct {
 	View
 }
@@ -51,6 +50,7 @@ func OpenGLViewFrom(ptr unsafe.Pointer) OpenGLView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLViewClass) Alloc() OpenGLView {
 	rv := objc.Send[OpenGLView](objc.ID(oc.class), objc.Sel("alloc"))
@@ -88,7 +88,6 @@ func NewOpenGLView() OpenGLView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
 func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.Pointer) OpenGLView {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()

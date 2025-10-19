@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitFuelEfficiency] class.
-var unitFuelEfficiencyClass = _UnitFuelEfficiencyClass{objc.GetClass("NSUnitFuelEfficiency")}
+var (
+	unitFuelEfficiencyClass     _UnitFuelEfficiencyClass
+	unitFuelEfficiencyClassOnce sync.Once
+)
+
+func getUnitFuelEfficiencyClass() _UnitFuelEfficiencyClass {
+	unitFuelEfficiencyClassOnce.Do(func() {
+		unitFuelEfficiencyClass = _UnitFuelEfficiencyClass{objc.GetClass("NSUnitFuelEfficiency")}
+	})
+	return unitFuelEfficiencyClass
+}
 
 type _UnitFuelEfficiencyClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitFuelEfficiency interface {
 // A unit of measure for fuel efficiency. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency
-
 type UnitFuelEfficiency struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitFuelEfficiencyFrom(ptr unsafe.Pointer) UnitFuelEfficiency {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitFuelEfficiencyClass) Alloc() UnitFuelEfficiency {
 	rv := objc.Send[UnitFuelEfficiency](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitFuelEfficiencyClass) New() UnitFuelEfficiency {
 	rv := objc.Send[UnitFuelEfficiency](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitFuelEfficiency) Autorelease() UnitFuelEfficiency {
 
 // NewUnitFuelEfficiency creates a new UnitFuelEfficiency instance.
 func NewUnitFuelEfficiency() UnitFuelEfficiency {
-	return unitFuelEfficiencyClass.New()
+	return getUnitFuelEfficiencyClass().New()
 }
 
 

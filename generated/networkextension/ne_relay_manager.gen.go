@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NERelayManager] class.
-var nERelayManagerClass = _NERelayManagerClass{objc.GetClass("NERelayManager")}
+var (
+	nERelayManagerClass     _NERelayManagerClass
+	nERelayManagerClassOnce sync.Once
+)
+
+func getNERelayManagerClass() _NERelayManagerClass {
+	nERelayManagerClassOnce.Do(func() {
+		nERelayManagerClass = _NERelayManagerClass{objc.GetClass("NERelayManager")}
+	})
+	return nERelayManagerClass
+}
 
 type _NERelayManagerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INERelayManager interface {
 // An object you use to create and manage a network relay configuration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager
-
 type NERelayManager struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NERelayManager struct {
 func NERelayManagerFrom(ptr unsafe.Pointer) NERelayManager {
 	return NERelayManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NERelayManagerClass) Alloc() NERelayManager {
 	rv := objc.Send[NERelayManager](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NERelayManagerClass) New() NERelayManager {
 	rv := objc.Send[NERelayManager](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NERelayManager) Autorelease() NERelayManager {
 
 // NewNERelayManager creates a new NERelayManager instance.
 func NewNERelayManager() NERelayManager {
-	return nERelayManagerClass.New()
+	return getNERelayManagerClass().New()
 }
 
 

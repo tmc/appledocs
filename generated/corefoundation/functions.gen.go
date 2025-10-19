@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // CoreFoundation Functions (825 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -846,7 +847,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_CFRelease, lib, "CFRelease")
 	tryRegister(&_CFMakeCollectable, lib, "CFMakeCollectable")
 	tryRegister(&_CFRetain, lib, "CFRetain")
@@ -1685,6 +1685,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Releases a Core Foundation object. [Full Topic]

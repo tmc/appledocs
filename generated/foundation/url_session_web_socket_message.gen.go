@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLSessionWebSocketMessage] class.
-var uRLSessionWebSocketMessageClass = _URLSessionWebSocketMessageClass{objc.GetClass("NSURLSessionWebSocketMessage")}
+var (
+	uRLSessionWebSocketMessageClass     _URLSessionWebSocketMessageClass
+	uRLSessionWebSocketMessageClassOnce sync.Once
+)
+
+func getURLSessionWebSocketMessageClass() _URLSessionWebSocketMessageClass {
+	uRLSessionWebSocketMessageClassOnce.Do(func() {
+		uRLSessionWebSocketMessageClass = _URLSessionWebSocketMessageClass{objc.GetClass("NSURLSessionWebSocketMessage")}
+	})
+	return uRLSessionWebSocketMessageClass
+}
 
 type _URLSessionWebSocketMessageClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IURLSessionWebSocketMessage interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage
-
 type URLSessionWebSocketMessage struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type URLSessionWebSocketMessage struct {
 func URLSessionWebSocketMessageFrom(ptr unsafe.Pointer) URLSessionWebSocketMessage {
 	return URLSessionWebSocketMessage{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionWebSocketMessageClass) Alloc() URLSessionWebSocketMessage {
 	rv := objc.Send[URLSessionWebSocketMessage](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionWebSocketMessageClass) New() URLSessionWebSocketMessage {
 	rv := objc.Send[URLSessionWebSocketMessage](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (u_ URLSessionWebSocketMessage) Autorelease() URLSessionWebSocketMessage {
 
 // NewURLSessionWebSocketMessage creates a new URLSessionWebSocketMessage instance.
 func NewURLSessionWebSocketMessage() URLSessionWebSocketMessage {
-	return uRLSessionWebSocketMessageClass.New()
+	return getURLSessionWebSocketMessageClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVCaptureMultiCamSession] class.
-var aVCaptureMultiCamSessionClass = _AVCaptureMultiCamSessionClass{objc.GetClass("AVCaptureMultiCamSession")}
+var (
+	aVCaptureMultiCamSessionClass     _AVCaptureMultiCamSessionClass
+	aVCaptureMultiCamSessionClassOnce sync.Once
+)
+
+func getAVCaptureMultiCamSessionClass() _AVCaptureMultiCamSessionClass {
+	aVCaptureMultiCamSessionClassOnce.Do(func() {
+		aVCaptureMultiCamSessionClass = _AVCaptureMultiCamSessionClass{objc.GetClass("AVCaptureMultiCamSession")}
+	})
+	return aVCaptureMultiCamSessionClass
+}
 
 type _AVCaptureMultiCamSessionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVCaptureMultiCamSession interface {
 // A capture session that supports simultaneous capture from multiple inputs of the same media type. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultiCamSession
-
 type AVCaptureMultiCamSession struct {
 	AVCaptureSession
 }
@@ -36,13 +46,15 @@ func AVCaptureMultiCamSessionFrom(ptr unsafe.Pointer) AVCaptureMultiCamSession {
 		AVCaptureSession: AVCaptureSessionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureMultiCamSessionClass) Alloc() AVCaptureMultiCamSession {
 	rv := objc.Send[AVCaptureMultiCamSession](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureMultiCamSessionClass) New() AVCaptureMultiCamSession {
 	rv := objc.Send[AVCaptureMultiCamSession](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVCaptureMultiCamSession) Autorelease() AVCaptureMultiCamSession {
 
 // NewAVCaptureMultiCamSession creates a new AVCaptureMultiCamSession instance.
 func NewAVCaptureMultiCamSession() AVCaptureMultiCamSession {
-	return aVCaptureMultiCamSessionClass.New()
+	return getAVCaptureMultiCamSessionClass().New()
 }
 
 

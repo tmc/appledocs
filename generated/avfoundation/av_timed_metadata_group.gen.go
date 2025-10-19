@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVTimedMetadataGroup] class.
-var aVTimedMetadataGroupClass = _AVTimedMetadataGroupClass{objc.GetClass("AVTimedMetadataGroup")}
+var (
+	aVTimedMetadataGroupClass     _AVTimedMetadataGroupClass
+	aVTimedMetadataGroupClassOnce sync.Once
+)
+
+func getAVTimedMetadataGroupClass() _AVTimedMetadataGroupClass {
+	aVTimedMetadataGroupClassOnce.Do(func() {
+		aVTimedMetadataGroupClass = _AVTimedMetadataGroupClass{objc.GetClass("AVTimedMetadataGroup")}
+	})
+	return aVTimedMetadataGroupClass
+}
 
 type _AVTimedMetadataGroupClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVTimedMetadataGroup interface {
 // A collection of metadata items that are valid for use during a specific time range. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup
-
 type AVTimedMetadataGroup struct {
 	AVMetadataGroup
 }
@@ -36,13 +46,15 @@ func AVTimedMetadataGroupFrom(ptr unsafe.Pointer) AVTimedMetadataGroup {
 		AVMetadataGroup: AVMetadataGroupFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVTimedMetadataGroupClass) Alloc() AVTimedMetadataGroup {
 	rv := objc.Send[AVTimedMetadataGroup](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVTimedMetadataGroupClass) New() AVTimedMetadataGroup {
 	rv := objc.Send[AVTimedMetadataGroup](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVTimedMetadataGroup) Autorelease() AVTimedMetadataGroup {
 
 // NewAVTimedMetadataGroup creates a new AVTimedMetadataGroup instance.
 func NewAVTimedMetadataGroup() AVTimedMetadataGroup {
-	return aVTimedMetadataGroupClass.New()
+	return getAVTimedMetadataGroupClass().New()
 }
 
 

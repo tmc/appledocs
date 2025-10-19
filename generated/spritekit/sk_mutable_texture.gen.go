@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKMutableTexture] class.
-var sKMutableTextureClass = _SKMutableTextureClass{objc.GetClass("SKMutableTexture")}
+var (
+	sKMutableTextureClass     _SKMutableTextureClass
+	sKMutableTextureClassOnce sync.Once
+)
+
+func getSKMutableTextureClass() _SKMutableTextureClass {
+	sKMutableTextureClassOnce.Do(func() {
+		sKMutableTextureClass = _SKMutableTextureClass{objc.GetClass("SKMutableTexture")}
+	})
+	return sKMutableTextureClass
+}
 
 type _SKMutableTextureClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKMutableTexture interface {
 // A texture whose contents can be dynamically updated. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture
-
 type SKMutableTexture struct {
 	SKTexture
 }
@@ -37,13 +47,15 @@ func SKMutableTextureFrom(ptr unsafe.Pointer) SKMutableTexture {
 		SKTexture: SKTextureFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKMutableTextureClass) Alloc() SKMutableTexture {
 	rv := objc.Send[SKMutableTexture](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKMutableTextureClass) New() SKMutableTexture {
 	rv := objc.Send[SKMutableTexture](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (s_ SKMutableTexture) Autorelease() SKMutableTexture {
 
 // NewSKMutableTexture creates a new SKMutableTexture instance.
 func NewSKMutableTexture() SKMutableTexture {
-	return sKMutableTextureClass.New()
+	return getSKMutableTextureClass().New()
 }
 
 
@@ -73,7 +85,7 @@ func NewSKMutableTexture() SKMutableTexture {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture/init(size:)
 func NewSKMutableTextureWithSize(size unsafe.Pointer) SKMutableTexture {
-	instance := sKMutableTextureClass.Alloc()
+	instance := getSKMutableTextureClass().Alloc()
 	rv := objc.Send[SKMutableTexture](instance.ID, objc.Sel("initWithSize:"), size)
 	rv.Autorelease()
 	return rv
@@ -83,7 +95,7 @@ func NewSKMutableTextureWithSize(size unsafe.Pointer) SKMutableTexture {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture/init(size:pixelFormat:)
 func NewSKMutableTextureWithSizePixelFormat(size unsafe.Pointer, format int) SKMutableTexture {
-	instance := sKMutableTextureClass.Alloc()
+	instance := getSKMutableTextureClass().Alloc()
 	rv := objc.Send[SKMutableTexture](instance.ID, objc.Sel("initWithSize:pixelFormat:"), size, format)
 	rv.Autorelease()
 	return rv

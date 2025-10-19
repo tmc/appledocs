@@ -34,7 +34,6 @@ type ITextInsertionIndicator interface {
 // A view that represents the insertion indicator in text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator
-
 type TextInsertionIndicator struct {
 	View
 }
@@ -47,6 +46,7 @@ func TextInsertionIndicatorFrom(ptr unsafe.Pointer) TextInsertionIndicator {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextInsertionIndicatorClass) Alloc() TextInsertionIndicator {
 	rv := objc.Send[TextInsertionIndicator](objc.ID(tc.class), objc.Sel("alloc"))

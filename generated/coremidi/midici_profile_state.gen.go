@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIProfileState] class.
-var mIDICIProfileStateClass = _MIDICIProfileStateClass{objc.GetClass("MIDICIProfileState")}
+var (
+	mIDICIProfileStateClass     _MIDICIProfileStateClass
+	mIDICIProfileStateClassOnce sync.Once
+)
+
+func getMIDICIProfileStateClass() _MIDICIProfileStateClass {
+	mIDICIProfileStateClassOnce.Do(func() {
+		mIDICIProfileStateClass = _MIDICIProfileStateClass{objc.GetClass("MIDICIProfileState")}
+	})
+	return mIDICIProfileStateClass
+}
 
 type _MIDICIProfileStateClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDICIProfileState interface {
 // An object that provides the enabled and disabled profiles for a MIDI channel or port on a device. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfileState
-
 type MIDICIProfileState struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDICIProfileState struct {
 func MIDICIProfileStateFrom(ptr unsafe.Pointer) MIDICIProfileState {
 	return MIDICIProfileState{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIProfileStateClass) Alloc() MIDICIProfileState {
 	rv := objc.Send[MIDICIProfileState](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIProfileStateClass) New() MIDICIProfileState {
 	rv := objc.Send[MIDICIProfileState](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDICIProfileState) Autorelease() MIDICIProfileState {
 
 // NewMIDICIProfileState creates a new MIDICIProfileState instance.
 func NewMIDICIProfileState() MIDICIProfileState {
-	return mIDICIProfileStateClass.New()
+	return getMIDICIProfileStateClass().New()
 }
 
 

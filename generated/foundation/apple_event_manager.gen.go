@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AppleEventManager] class.
-var appleEventManagerClass = _AppleEventManagerClass{objc.GetClass("NSAppleEventManager")}
+var (
+	appleEventManagerClass     _AppleEventManagerClass
+	appleEventManagerClassOnce sync.Once
+)
+
+func getAppleEventManagerClass() _AppleEventManagerClass {
+	appleEventManagerClassOnce.Do(func() {
+		appleEventManagerClass = _AppleEventManagerClass{objc.GetClass("NSAppleEventManager")}
+	})
+	return appleEventManagerClass
+}
 
 type _AppleEventManagerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAppleEventManager interface {
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager
-
 type AppleEventManager struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AppleEventManager struct {
 func AppleEventManagerFrom(ptr unsafe.Pointer) AppleEventManager {
 	return AppleEventManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AppleEventManagerClass) Alloc() AppleEventManager {
 	rv := objc.Send[AppleEventManager](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AppleEventManagerClass) New() AppleEventManager {
 	rv := objc.Send[AppleEventManager](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AppleEventManager) Autorelease() AppleEventManager {
 
 // NewAppleEventManager creates a new AppleEventManager instance.
 func NewAppleEventManager() AppleEventManager {
-	return appleEventManagerClass.New()
+	return getAppleEventManagerClass().New()
 }
 
 

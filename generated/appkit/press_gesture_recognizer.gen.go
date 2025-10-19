@@ -34,7 +34,6 @@ type IPressGestureRecognizer interface {
 // A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer
-
 type PressGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -47,6 +46,7 @@ func PressGestureRecognizerFrom(ptr unsafe.Pointer) PressGestureRecognizer {
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PressGestureRecognizerClass) Alloc() PressGestureRecognizer {
 	rv := objc.Send[PressGestureRecognizer](objc.ID(pc.class), objc.Sel("alloc"))

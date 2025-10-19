@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitInformationStorage] class.
-var unitInformationStorageClass = _UnitInformationStorageClass{objc.GetClass("NSUnitInformationStorage")}
+var (
+	unitInformationStorageClass     _UnitInformationStorageClass
+	unitInformationStorageClassOnce sync.Once
+)
+
+func getUnitInformationStorageClass() _UnitInformationStorageClass {
+	unitInformationStorageClassOnce.Do(func() {
+		unitInformationStorageClass = _UnitInformationStorageClass{objc.GetClass("NSUnitInformationStorage")}
+	})
+	return unitInformationStorageClass
+}
 
 type _UnitInformationStorageClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitInformationStorage interface {
 // A unit of measure for quantities of information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage
-
 type UnitInformationStorage struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitInformationStorageFrom(ptr unsafe.Pointer) UnitInformationStorage {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitInformationStorageClass) Alloc() UnitInformationStorage {
 	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitInformationStorageClass) New() UnitInformationStorage {
 	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitInformationStorage) Autorelease() UnitInformationStorage {
 
 // NewUnitInformationStorage creates a new UnitInformationStorage instance.
 func NewUnitInformationStorage() UnitInformationStorage {
-	return unitInformationStorageClass.New()
+	return getUnitInformationStorageClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DataMatrixCodeDescriptor] class.
-var dataMatrixCodeDescriptorClass = _DataMatrixCodeDescriptorClass{objc.GetClass("CIDataMatrixCodeDescriptor")}
+var (
+	dataMatrixCodeDescriptorClass     _DataMatrixCodeDescriptorClass
+	dataMatrixCodeDescriptorClassOnce sync.Once
+)
+
+func getDataMatrixCodeDescriptorClass() _DataMatrixCodeDescriptorClass {
+	dataMatrixCodeDescriptorClassOnce.Do(func() {
+		dataMatrixCodeDescriptorClass = _DataMatrixCodeDescriptorClass{objc.GetClass("CIDataMatrixCodeDescriptor")}
+	})
+	return dataMatrixCodeDescriptorClass
+}
 
 type _DataMatrixCodeDescriptorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDataMatrixCodeDescriptor interface {
 // A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor
-
 type DataMatrixCodeDescriptor struct {
 	BarcodeDescriptor
 }
@@ -36,13 +46,15 @@ func DataMatrixCodeDescriptorFrom(ptr unsafe.Pointer) DataMatrixCodeDescriptor {
 		BarcodeDescriptor: BarcodeDescriptorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DataMatrixCodeDescriptorClass) Alloc() DataMatrixCodeDescriptor {
 	rv := objc.Send[DataMatrixCodeDescriptor](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DataMatrixCodeDescriptorClass) New() DataMatrixCodeDescriptor {
 	rv := objc.Send[DataMatrixCodeDescriptor](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DataMatrixCodeDescriptor) Autorelease() DataMatrixCodeDescriptor {
 
 // NewDataMatrixCodeDescriptor creates a new DataMatrixCodeDescriptor instance.
 func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
-	return dataMatrixCodeDescriptorClass.New()
+	return getDataMatrixCodeDescriptorClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/init(payload:rowCount:columnCount:eccVersion:)
 func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload unsafe.Pointer, rowCount int, columnCount int, eccVersion unsafe.Pointer) DataMatrixCodeDescriptor {
-	instance := dataMatrixCodeDescriptorClass.Alloc()
+	instance := getDataMatrixCodeDescriptorClass().Alloc()
 	rv := objc.Send[DataMatrixCodeDescriptor](instance.ID, objc.Sel("initWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	rv.Autorelease()
 	return rv

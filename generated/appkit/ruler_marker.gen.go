@@ -35,7 +35,6 @@ type IRulerMarker interface {
 // A symbol on a ruler view, indicating a location for the graphics element it represents in the client of the ruler view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker
-
 type RulerMarker struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type RulerMarker struct {
 func RulerMarkerFrom(ptr unsafe.Pointer) RulerMarker {
 	return RulerMarker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RulerMarkerClass) Alloc() RulerMarker {
 	rv := objc.Send[RulerMarker](objc.ID(rc.class), objc.Sel("alloc"))

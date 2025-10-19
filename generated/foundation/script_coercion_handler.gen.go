@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScriptCoercionHandler] class.
-var scriptCoercionHandlerClass = _ScriptCoercionHandlerClass{objc.GetClass("NSScriptCoercionHandler")}
+var (
+	scriptCoercionHandlerClass     _ScriptCoercionHandlerClass
+	scriptCoercionHandlerClassOnce sync.Once
+)
+
+func getScriptCoercionHandlerClass() _ScriptCoercionHandlerClass {
+	scriptCoercionHandlerClassOnce.Do(func() {
+		scriptCoercionHandlerClass = _ScriptCoercionHandlerClass{objc.GetClass("NSScriptCoercionHandler")}
+	})
+	return scriptCoercionHandlerClass
+}
 
 type _ScriptCoercionHandlerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScriptCoercionHandler interface {
 // A mechanism for converting one kind of scripting data to another. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler
-
 type ScriptCoercionHandler struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ScriptCoercionHandler struct {
 func ScriptCoercionHandlerFrom(ptr unsafe.Pointer) ScriptCoercionHandler {
 	return ScriptCoercionHandler{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptCoercionHandlerClass) Alloc() ScriptCoercionHandler {
 	rv := objc.Send[ScriptCoercionHandler](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptCoercionHandlerClass) New() ScriptCoercionHandler {
 	rv := objc.Send[ScriptCoercionHandler](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ ScriptCoercionHandler) Autorelease() ScriptCoercionHandler {
 
 // NewScriptCoercionHandler creates a new ScriptCoercionHandler instance.
 func NewScriptCoercionHandler() ScriptCoercionHandler {
-	return scriptCoercionHandlerClass.New()
+	return getScriptCoercionHandlerClass().New()
 }
 
 

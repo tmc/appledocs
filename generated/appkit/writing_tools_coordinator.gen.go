@@ -37,7 +37,6 @@ type IWritingToolsCoordinator interface {
 // An object that manages interactions between Writing Tools and your custom text view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator
-
 type WritingToolsCoordinator struct {
 	objectivec.Object
 }
@@ -48,6 +47,7 @@ type WritingToolsCoordinator struct {
 func WritingToolsCoordinatorFrom(ptr unsafe.Pointer) WritingToolsCoordinator {
 	return WritingToolsCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WritingToolsCoordinatorClass) Alloc() WritingToolsCoordinator {
 	rv := objc.Send[WritingToolsCoordinator](objc.ID(wc.class), objc.Sel("alloc"))

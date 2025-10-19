@@ -10,19 +10,19 @@ import (
 var _ = spritekit.NewSKRange
 
 
-// ExampleNewRangeWithConstantValue demonstrates how to create a SKRange instance using NewRangeWithConstantValue.
+// ExampleNewSKRangeWithConstantValue demonstrates how to create a SKRange instance using NewSKRangeWithConstantValue.
 // Creates and initializes a new range object that specifies a constant value.
-func ExampleNewRangeWithConstantValue() {
-	_ = spritekit.NewRangeWithConstantValue(
+func ExampleNewSKRangeWithConstantValue() {
+	_ = spritekit.NewSKRangeWithConstantValue(
 		0.0, // value float64
 	)
 	// Output:
 }
 
-// ExampleNewRangeWithLowerLimit demonstrates how to create a SKRange instance using NewRangeWithLowerLimit.
+// ExampleNewSKRangeWithLowerLimit demonstrates how to create a SKRange instance using NewSKRangeWithLowerLimit.
 // Creates and initializes a new range object that specifies only a minimum value.
-func ExampleNewRangeWithLowerLimit() {
-	_ = spritekit.NewRangeWithLowerLimit(
+func ExampleNewSKRangeWithLowerLimit() {
+	_ = spritekit.NewSKRangeWithLowerLimit(
 		0.0, // lower float64
 	)
 	// Output:
@@ -38,19 +38,19 @@ func ExampleNewSKRangeWithLowerLimitUpperLimit() {
 	// Output:
 }
 
-// ExampleNewRangeWithUpperLimit demonstrates how to create a SKRange instance using NewRangeWithUpperLimit.
+// ExampleNewSKRangeWithUpperLimit demonstrates how to create a SKRange instance using NewSKRangeWithUpperLimit.
 // Creates and initializes a new range object that specifies only a maximum value.
-func ExampleNewRangeWithUpperLimit() {
-	_ = spritekit.NewRangeWithUpperLimit(
+func ExampleNewSKRangeWithUpperLimit() {
+	_ = spritekit.NewSKRangeWithUpperLimit(
 		0.0, // upper float64
 	)
 	// Output:
 }
 
-// ExampleNewRangeWithValueVariance demonstrates how to create a SKRange instance using NewRangeWithValueVariance.
+// ExampleNewSKRangeWithValueVariance demonstrates how to create a SKRange instance using NewSKRangeWithValueVariance.
 // Creates and initializes a new range object using a value and a maximum distance from that value.
-func ExampleNewRangeWithValueVariance() {
-	_ = spritekit.NewRangeWithValueVariance(
+func ExampleNewSKRangeWithValueVariance() {
+	_ = spritekit.NewSKRangeWithValueVariance(
 		0.0, // value float64
 		0.0, // variance float64
 	)

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MorphologyCustomPronoun] class.
-var morphologyCustomPronounClass = _MorphologyCustomPronounClass{objc.GetClass("NSMorphologyCustomPronoun")}
+var (
+	morphologyCustomPronounClass     _MorphologyCustomPronounClass
+	morphologyCustomPronounClassOnce sync.Once
+)
+
+func getMorphologyCustomPronounClass() _MorphologyCustomPronounClass {
+	morphologyCustomPronounClassOnce.Do(func() {
+		morphologyCustomPronounClass = _MorphologyCustomPronounClass{objc.GetClass("NSMorphologyCustomPronoun")}
+	})
+	return morphologyCustomPronounClass
+}
 
 type _MorphologyCustomPronounClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMorphologyCustomPronoun interface {
 // A custom pronoun behavior for use in a specific langauge. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun
-
 type MorphologyCustomPronoun struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MorphologyCustomPronoun struct {
 func MorphologyCustomPronounFrom(ptr unsafe.Pointer) MorphologyCustomPronoun {
 	return MorphologyCustomPronoun{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MorphologyCustomPronounClass) Alloc() MorphologyCustomPronoun {
 	rv := objc.Send[MorphologyCustomPronoun](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MorphologyCustomPronounClass) New() MorphologyCustomPronoun {
 	rv := objc.Send[MorphologyCustomPronoun](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MorphologyCustomPronoun) Autorelease() MorphologyCustomPronoun {
 
 // NewMorphologyCustomPronoun creates a new MorphologyCustomPronoun instance.
 func NewMorphologyCustomPronoun() MorphologyCustomPronoun {
-	return morphologyCustomPronounClass.New()
+	return getMorphologyCustomPronounClass().New()
 }
 
 

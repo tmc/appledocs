@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NETunnelProviderProtocol] class.
-var nETunnelProviderProtocolClass = _NETunnelProviderProtocolClass{objc.GetClass("NETunnelProviderProtocol")}
+var (
+	nETunnelProviderProtocolClass     _NETunnelProviderProtocolClass
+	nETunnelProviderProtocolClassOnce sync.Once
+)
+
+func getNETunnelProviderProtocolClass() _NETunnelProviderProtocolClass {
+	nETunnelProviderProtocolClassOnce.Do(func() {
+		nETunnelProviderProtocolClass = _NETunnelProviderProtocolClass{objc.GetClass("NETunnelProviderProtocol")}
+	})
+	return nETunnelProviderProtocolClass
+}
 
 type _NETunnelProviderProtocolClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INETunnelProviderProtocol interface {
 // Configuration parameters for a VPN tunnel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol
-
 type NETunnelProviderProtocol struct {
 	NEVPNProtocol
 }
@@ -36,13 +46,15 @@ func NETunnelProviderProtocolFrom(ptr unsafe.Pointer) NETunnelProviderProtocol {
 		NEVPNProtocol: NEVPNProtocolFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NETunnelProviderProtocolClass) Alloc() NETunnelProviderProtocol {
 	rv := objc.Send[NETunnelProviderProtocol](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NETunnelProviderProtocolClass) New() NETunnelProviderProtocol {
 	rv := objc.Send[NETunnelProviderProtocol](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NETunnelProviderProtocol) Autorelease() NETunnelProviderProtocol {
 
 // NewNETunnelProviderProtocol creates a new NETunnelProviderProtocol instance.
 func NewNETunnelProviderProtocol() NETunnelProviderProtocol {
-	return nETunnelProviderProtocolClass.New()
+	return getNETunnelProviderProtocolClass().New()
 }
 
 

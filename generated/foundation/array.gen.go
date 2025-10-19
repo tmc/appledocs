@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Array] class.
-var arrayClass = _ArrayClass{objc.GetClass("NSArray")}
+var (
+	arrayClass     _ArrayClass
+	arrayClassOnce sync.Once
+)
+
+func getArrayClass() _ArrayClass {
+	arrayClassOnce.Do(func() {
+		arrayClass = _ArrayClass{objc.GetClass("NSArray")}
+	})
+	return arrayClass
+}
 
 type _ArrayClass struct {
 	class objc.Class
@@ -76,7 +87,6 @@ type IArray interface {
 // A static ordered collection of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray
-
 type Array struct {
 	objectivec.Object
 }
@@ -87,13 +97,15 @@ type Array struct {
 func ArrayFrom(ptr unsafe.Pointer) Array {
 	return Array{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _ArrayClass) Alloc() Array {
 	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _ArrayClass) New() Array {
 	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -114,17 +126,33 @@ func (a_ Array) Autorelease() Array {
 
 // NewArray creates a new Array instance.
 func NewArray() Array {
-	return arrayClass.New()
+	return getArrayClass().New()
 }
 
 
-// Initializes a newly allocated array using as the source of data objects for the array. [Full Topic]
+// Initializes a newly allocated array with the contents of the location specified by a given URL. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
-func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
+func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+// Creates and returns an array containing a given object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
+func NewArrayWithObject(anObject unsafe.Pointer) Array {
+	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
+func NewArrayWithCoder(coder unsafe.Pointer) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -133,26 +161,26 @@ func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
 func NewArrayWithContentsOfFile(path string) Array {
-	instance := arrayClass.Alloc()
+	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array with the contents of the location specified by a given URL. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
-func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
 func NewArrayWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
+	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array to include a given number of objects from a given C array. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
+func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
 	return rv
 }
@@ -161,7 +189,7 @@ func NewArrayWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Ar
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
 func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
+	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
@@ -171,35 +199,18 @@ func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
 func NewArrayWithArray(array unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
+	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
-func NewArrayWithCoder(coder unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-// Creates and returns an array containing a given object. [Full Topic]
+// Initializes a newly allocated array using as the source of data objects for the array. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
-func NewArrayWithObject(anObject unsafe.Pointer) Array {
-	rv := objc.Send[Array](objc.ID(arrayClass.class), objc.Sel("arrayWithObject:"), anObject)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array to include a given number of objects from a given C array. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
-func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
+func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
 	rv.Autorelease()
 	return rv
 }

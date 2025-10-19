@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BatchDeleteRequest] class.
-var batchDeleteRequestClass = _BatchDeleteRequestClass{objc.GetClass("NSBatchDeleteRequest")}
+var (
+	batchDeleteRequestClass     _BatchDeleteRequestClass
+	batchDeleteRequestClassOnce sync.Once
+)
+
+func getBatchDeleteRequestClass() _BatchDeleteRequestClass {
+	batchDeleteRequestClassOnce.Do(func() {
+		batchDeleteRequestClass = _BatchDeleteRequestClass{objc.GetClass("NSBatchDeleteRequest")}
+	})
+	return batchDeleteRequestClass
+}
 
 type _BatchDeleteRequestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IBatchDeleteRequest interface {
 // A request that deletes objects in the SQLite persistent store without loading them into memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest
-
 type BatchDeleteRequest struct {
 	PersistentStoreRequest
 }
@@ -36,13 +46,15 @@ func BatchDeleteRequestFrom(ptr unsafe.Pointer) BatchDeleteRequest {
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BatchDeleteRequestClass) Alloc() BatchDeleteRequest {
 	rv := objc.Send[BatchDeleteRequest](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BatchDeleteRequestClass) New() BatchDeleteRequest {
 	rv := objc.Send[BatchDeleteRequest](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ BatchDeleteRequest) Autorelease() BatchDeleteRequest {
 
 // NewBatchDeleteRequest creates a new BatchDeleteRequest instance.
 func NewBatchDeleteRequest() BatchDeleteRequest {
-	return batchDeleteRequestClass.New()
+	return getBatchDeleteRequestClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKNode] class.
-var sKNodeClass = _SKNodeClass{objc.GetClass("SKNode")}
+var (
+	sKNodeClass     _SKNodeClass
+	sKNodeClassOnce sync.Once
+)
+
+func getSKNodeClass() _SKNodeClass {
+	sKNodeClassOnce.Do(func() {
+		sKNodeClass = _SKNodeClass{objc.GetClass("SKNode")}
+	})
+	return sKNodeClass
+}
 
 type _SKNodeClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type ISKNode interface {
 // The base class of all SpriteKit nodes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKNode
-
 type SKNode struct {
 	UIResponder
 }
@@ -39,13 +49,15 @@ func SKNodeFrom(ptr unsafe.Pointer) SKNode {
 		UIResponder: UIResponderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKNodeClass) Alloc() SKNode {
 	rv := objc.Send[SKNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKNodeClass) New() SKNode {
 	rv := objc.Send[SKNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -66,7 +78,7 @@ func (s_ SKNode) Autorelease() SKNode {
 
 // NewSKNode creates a new SKNode instance.
 func NewSKNode() SKNode {
-	return sKNodeClass.New()
+	return getSKNodeClass().New()
 }
 
 
@@ -113,7 +125,7 @@ func (s_ SKNode) RunActionCompletion(action unsafe.Pointer, block unsafe.Pointer
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKNode/setValue(_:forAttribute:)
 func (s_ SKNode) SetValueForAttributeNamed(value unsafe.Pointer, key string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forAttributeNamed:"), value, key)
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forAttributeNamed:"), value, objc.String(key))
 }
 
 

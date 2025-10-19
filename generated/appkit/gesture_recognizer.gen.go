@@ -40,7 +40,6 @@ type IGestureRecognizer interface {
 // An object that monitors events and calls its action method when a predefined sequence of events occur. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer
-
 type GestureRecognizer struct {
 	objectivec.Object
 }
@@ -51,6 +50,7 @@ type GestureRecognizer struct {
 func GestureRecognizerFrom(ptr unsafe.Pointer) GestureRecognizer {
 	return GestureRecognizer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GestureRecognizerClass) Alloc() GestureRecognizer {
 	rv := objc.Send[GestureRecognizer](objc.ID(gc.class), objc.Sel("alloc"))

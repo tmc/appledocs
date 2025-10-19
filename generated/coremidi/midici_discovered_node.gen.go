@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIDiscoveredNode] class.
-var mIDICIDiscoveredNodeClass = _MIDICIDiscoveredNodeClass{objc.GetClass("MIDICIDiscoveredNode")}
+var (
+	mIDICIDiscoveredNodeClass     _MIDICIDiscoveredNodeClass
+	mIDICIDiscoveredNodeClassOnce sync.Once
+)
+
+func getMIDICIDiscoveredNodeClass() _MIDICIDiscoveredNodeClass {
+	mIDICIDiscoveredNodeClassOnce.Do(func() {
+		mIDICIDiscoveredNodeClass = _MIDICIDiscoveredNodeClass{objc.GetClass("MIDICIDiscoveredNode")}
+	})
+	return mIDICIDiscoveredNodeClass
+}
 
 type _MIDICIDiscoveredNodeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDICIDiscoveredNode interface {
 // A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode
-
 type MIDICIDiscoveredNode struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDICIDiscoveredNode struct {
 func MIDICIDiscoveredNodeFrom(ptr unsafe.Pointer) MIDICIDiscoveredNode {
 	return MIDICIDiscoveredNode{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIDiscoveredNodeClass) Alloc() MIDICIDiscoveredNode {
 	rv := objc.Send[MIDICIDiscoveredNode](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIDiscoveredNodeClass) New() MIDICIDiscoveredNode {
 	rv := objc.Send[MIDICIDiscoveredNode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDICIDiscoveredNode) Autorelease() MIDICIDiscoveredNode {
 
 // NewMIDICIDiscoveredNode creates a new MIDICIDiscoveredNode instance.
 func NewMIDICIDiscoveredNode() MIDICIDiscoveredNode {
-	return mIDICIDiscoveredNodeClass.New()
+	return getMIDICIDiscoveredNodeClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [bytes] class.
-var bytesClass = _bytesClass{objc.GetClass("bytes")}
+var (
+	bytesClass     _bytesClass
+	bytesClassOnce sync.Once
+)
+
+func getbytesClass() _bytesClass {
+	bytesClassOnce.Do(func() {
+		bytesClass = _bytesClass{objc.GetClass("bytes")}
+	})
+	return bytesClass
+}
 
 type _bytesClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type Ibytes interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString/bytes
-
 type bytes struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type bytes struct {
 func bytesFrom(ptr unsafe.Pointer) bytes {
 	return bytes{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _bytesClass) Alloc() bytes {
 	rv := objc.Send[bytes](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _bytesClass) New() bytes {
 	rv := objc.Send[bytes](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (b_ bytes) Autorelease() bytes {
 
 // Newbytes creates a new bytes instance.
 func Newbytes() bytes {
-	return bytesClass.New()
+	return getbytesClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentContainer] class.
-var persistentContainerClass = _PersistentContainerClass{objc.GetClass("NSPersistentContainer")}
+var (
+	persistentContainerClass     _PersistentContainerClass
+	persistentContainerClassOnce sync.Once
+)
+
+func getPersistentContainerClass() _PersistentContainerClass {
+	persistentContainerClassOnce.Do(func() {
+		persistentContainerClass = _PersistentContainerClass{objc.GetClass("NSPersistentContainer")}
+	})
+	return persistentContainerClass
+}
 
 type _PersistentContainerClass struct {
 	class objc.Class
@@ -27,7 +38,6 @@ type IPersistentContainer interface {
 // A container that encapsulates the Core Data stack in your app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer
-
 type PersistentContainer struct {
 	objectivec.Object
 }
@@ -38,13 +48,15 @@ type PersistentContainer struct {
 func PersistentContainerFrom(ptr unsafe.Pointer) PersistentContainer {
 	return PersistentContainer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentContainerClass) Alloc() PersistentContainer {
 	rv := objc.Send[PersistentContainer](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentContainerClass) New() PersistentContainer {
 	rv := objc.Send[PersistentContainer](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -65,7 +77,7 @@ func (p_ PersistentContainer) Autorelease() PersistentContainer {
 
 // NewPersistentContainer creates a new PersistentContainer instance.
 func NewPersistentContainer() PersistentContainer {
-	return persistentContainerClass.New()
+	return getPersistentContainerClass().New()
 }
 
 
@@ -74,7 +86,7 @@ func NewPersistentContainer() PersistentContainer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
 func NewPersistentContainerWithName(name string) PersistentContainer {
-	instance := persistentContainerClass.Alloc()
+	instance := getPersistentContainerClass().Alloc()
 	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
 	return rv

@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVMutableComposition] class.
-var aVMutableCompositionClass = _AVMutableCompositionClass{objc.GetClass("AVMutableComposition")}
+var (
+	aVMutableCompositionClass     _AVMutableCompositionClass
+	aVMutableCompositionClassOnce sync.Once
+)
+
+func getAVMutableCompositionClass() _AVMutableCompositionClass {
+	aVMutableCompositionClassOnce.Do(func() {
+		aVMutableCompositionClass = _AVMutableCompositionClass{objc.GetClass("AVMutableComposition")}
+	})
+	return aVMutableCompositionClass
+}
 
 type _AVMutableCompositionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVMutableComposition interface {
 // An object that you use to create a new composition from existing assets. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition
-
 type AVMutableComposition struct {
 	AVComposition
 }
@@ -36,13 +46,15 @@ func AVMutableCompositionFrom(ptr unsafe.Pointer) AVMutableComposition {
 		AVComposition: AVCompositionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVMutableCompositionClass) Alloc() AVMutableComposition {
 	rv := objc.Send[AVMutableComposition](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVMutableCompositionClass) New() AVMutableComposition {
 	rv := objc.Send[AVMutableComposition](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVMutableComposition) Autorelease() AVMutableComposition {
 
 // NewAVMutableComposition creates a new AVMutableComposition instance.
 func NewAVMutableComposition() AVMutableComposition {
-	return aVMutableCompositionClass.New()
+	return getAVMutableCompositionClass().New()
 }
 
 

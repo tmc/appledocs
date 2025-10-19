@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ExistsCommand] class.
-var existsCommandClass = _ExistsCommandClass{objc.GetClass("NSExistsCommand")}
+var (
+	existsCommandClass     _ExistsCommandClass
+	existsCommandClassOnce sync.Once
+)
+
+func getExistsCommandClass() _ExistsCommandClass {
+	existsCommandClassOnce.Do(func() {
+		existsCommandClass = _ExistsCommandClass{objc.GetClass("NSExistsCommand")}
+	})
+	return existsCommandClass
+}
 
 type _ExistsCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IExistsCommand interface {
 // A command that determines whether a scriptable object exists. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExistsCommand
-
 type ExistsCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func ExistsCommandFrom(ptr unsafe.Pointer) ExistsCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _ExistsCommandClass) Alloc() ExistsCommand {
 	rv := objc.Send[ExistsCommand](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _ExistsCommandClass) New() ExistsCommand {
 	rv := objc.Send[ExistsCommand](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (e_ ExistsCommand) Autorelease() ExistsCommand {
 
 // NewExistsCommand creates a new ExistsCommand instance.
 func NewExistsCommand() ExistsCommand {
-	return existsCommandClass.New()
+	return getExistsCommandClass().New()
 }
 
 

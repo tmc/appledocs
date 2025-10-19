@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Operation] class.
-var operationClass = _OperationClass{objc.GetClass("NSOperation")}
+var (
+	operationClass     _OperationClass
+	operationClassOnce sync.Once
+)
+
+func getOperationClass() _OperationClass {
+	operationClassOnce.Do(func() {
+		operationClass = _OperationClass{objc.GetClass("NSOperation")}
+	})
+	return operationClass
+}
 
 type _OperationClass struct {
 	class objc.Class
@@ -30,7 +41,6 @@ type IOperation interface {
 // An abstract class that represents the code and data associated with a single task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation
-
 type Operation struct {
 	objectivec.Object
 }
@@ -41,13 +51,15 @@ type Operation struct {
 func OperationFrom(ptr unsafe.Pointer) Operation {
 	return Operation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OperationClass) Alloc() Operation {
 	rv := objc.Send[Operation](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OperationClass) New() Operation {
 	rv := objc.Send[Operation](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -68,7 +80,7 @@ func (o_ Operation) Autorelease() Operation {
 
 // NewOperation creates a new Operation instance.
 func NewOperation() Operation {
-	return operationClass.New()
+	return getOperationClass().New()
 }
 
 

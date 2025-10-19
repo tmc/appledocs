@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [HTTPURLResponse] class.
-var hTTPURLResponseClass = _HTTPURLResponseClass{objc.GetClass("NSHTTPURLResponse")}
+var (
+	hTTPURLResponseClass     _HTTPURLResponseClass
+	hTTPURLResponseClassOnce sync.Once
+)
+
+func getHTTPURLResponseClass() _HTTPURLResponseClass {
+	hTTPURLResponseClassOnce.Do(func() {
+		hTTPURLResponseClass = _HTTPURLResponseClass{objc.GetClass("NSHTTPURLResponse")}
+	})
+	return hTTPURLResponseClass
+}
 
 type _HTTPURLResponseClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IHTTPURLResponse interface {
 // The metadata associated with the response to an HTTP protocol URL load request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse
-
 type HTTPURLResponse struct {
 	URLResponse
 }
@@ -36,13 +46,15 @@ func HTTPURLResponseFrom(ptr unsafe.Pointer) HTTPURLResponse {
 		URLResponse: URLResponseFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _HTTPURLResponseClass) Alloc() HTTPURLResponse {
 	rv := objc.Send[HTTPURLResponse](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HTTPURLResponseClass) New() HTTPURLResponse {
 	rv := objc.Send[HTTPURLResponse](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (h_ HTTPURLResponse) Autorelease() HTTPURLResponse {
 
 // NewHTTPURLResponse creates a new HTTPURLResponse instance.
 func NewHTTPURLResponse() HTTPURLResponse {
-	return hTTPURLResponseClass.New()
+	return getHTTPURLResponseClass().New()
 }
 
 

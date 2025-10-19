@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [hasSmile] class.
-var hasSmileClass = _hasSmileClass{objc.GetClass("hasSmile")}
+var (
+	hasSmileClass     _hasSmileClass
+	hasSmileClassOnce sync.Once
+)
+
+func gethasSmileClass() _hasSmileClass {
+	hasSmileClassOnce.Do(func() {
+		hasSmileClass = _hasSmileClass{objc.GetClass("hasSmile")}
+	})
+	return hasSmileClass
+}
 
 type _hasSmileClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IhasSmile interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasSmile-c.ivar
-
 type hasSmile struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type hasSmile struct {
 func hasSmileFrom(ptr unsafe.Pointer) hasSmile {
 	return hasSmile{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _hasSmileClass) Alloc() hasSmile {
 	rv := objc.Send[hasSmile](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _hasSmileClass) New() hasSmile {
 	rv := objc.Send[hasSmile](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (h_ hasSmile) Autorelease() hasSmile {
 
 // NewhasSmile creates a new hasSmile instance.
 func NewhasSmile() hasSmile {
-	return hasSmileClass.New()
+	return gethasSmileClass().New()
 }
 
 

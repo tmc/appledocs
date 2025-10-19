@@ -10,6 +10,19 @@
 // [Full Topic]: https://developer.apple.com/documentation/Foundation
 package foundation
 
+import (
+	"github.com/ebitengine/purego"
+)
+
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/Foundation.framework/Foundation"
+
+
+func init() {
+	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+}
+
 

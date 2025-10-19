@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TimeZone] class.
-var timeZoneClass = _TimeZoneClass{objc.GetClass("NSTimeZone")}
+var (
+	timeZoneClass     _TimeZoneClass
+	timeZoneClassOnce sync.Once
+)
+
+func getTimeZoneClass() _TimeZoneClass {
+	timeZoneClassOnce.Do(func() {
+		timeZoneClass = _TimeZoneClass{objc.GetClass("NSTimeZone")}
+	})
+	return timeZoneClass
+}
 
 type _TimeZoneClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ITimeZone interface {
 // Information about standard time conventions associated with a specific geopolitical region. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone
-
 type TimeZone struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type TimeZone struct {
 func TimeZoneFrom(ptr unsafe.Pointer) TimeZone {
 	return TimeZone{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TimeZoneClass) Alloc() TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TimeZoneClass) New() TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (t_ TimeZone) Autorelease() TimeZone {
 
 // NewTimeZone creates a new TimeZone instance.
 func NewTimeZone() TimeZone {
-	return timeZoneClass.New()
+	return getTimeZoneClass().New()
 }
 
 

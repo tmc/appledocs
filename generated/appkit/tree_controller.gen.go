@@ -34,7 +34,6 @@ type ITreeController interface {
 // A bindings-compatible controller that manages a tree of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController
-
 type TreeController struct {
 	ObjectController
 }
@@ -47,6 +46,7 @@ func TreeControllerFrom(ptr unsafe.Pointer) TreeController {
 		ObjectController: ObjectControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TreeControllerClass) Alloc() TreeController {
 	rv := objc.Send[TreeController](objc.ID(tc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVFragmentedAssetMinder] class.
-var aVFragmentedAssetMinderClass = _AVFragmentedAssetMinderClass{objc.GetClass("AVFragmentedAssetMinder")}
+var (
+	aVFragmentedAssetMinderClass     _AVFragmentedAssetMinderClass
+	aVFragmentedAssetMinderClassOnce sync.Once
+)
+
+func getAVFragmentedAssetMinderClass() _AVFragmentedAssetMinderClass {
+	aVFragmentedAssetMinderClassOnce.Do(func() {
+		aVFragmentedAssetMinderClass = _AVFragmentedAssetMinderClass{objc.GetClass("AVFragmentedAssetMinder")}
+	})
+	return aVFragmentedAssetMinderClass
+}
 
 type _AVFragmentedAssetMinderClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type IAVFragmentedAssetMinder interface {
 }
 
 // A parent class referenced by other AVFoundation classes. [Full Topic]
-
 type AVFragmentedAssetMinder struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type AVFragmentedAssetMinder struct {
 func AVFragmentedAssetMinderFrom(ptr unsafe.Pointer) AVFragmentedAssetMinder {
 	return AVFragmentedAssetMinder{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVFragmentedAssetMinderClass) Alloc() AVFragmentedAssetMinder {
 	rv := objc.Send[AVFragmentedAssetMinder](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVFragmentedAssetMinderClass) New() AVFragmentedAssetMinder {
 	rv := objc.Send[AVFragmentedAssetMinder](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (a_ AVFragmentedAssetMinder) Autorelease() AVFragmentedAssetMinder {
 
 // NewAVFragmentedAssetMinder creates a new AVFragmentedAssetMinder instance.
 func NewAVFragmentedAssetMinder() AVFragmentedAssetMinder {
-	return aVFragmentedAssetMinderClass.New()
+	return getAVFragmentedAssetMinderClass().New()
 }
 
 

@@ -34,7 +34,6 @@ type IOpenPanel interface {
 // A panel that prompts the user to select a file to open. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel
-
 type OpenPanel struct {
 	SavePanel
 }
@@ -47,6 +46,7 @@ func OpenPanelFrom(ptr unsafe.Pointer) OpenPanel {
 		SavePanel: SavePanelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenPanelClass) Alloc() OpenPanel {
 	rv := objc.Send[OpenPanel](objc.ID(oc.class), objc.Sel("alloc"))

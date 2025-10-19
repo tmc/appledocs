@@ -35,7 +35,6 @@ type IStatusBar interface {
 // An object that manages a collection of status items displayed within the system-wide menu bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar
-
 type StatusBar struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type StatusBar struct {
 func StatusBarFrom(ptr unsafe.Pointer) StatusBar {
 	return StatusBar{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StatusBarClass) Alloc() StatusBar {
 	rv := objc.Send[StatusBar](objc.ID(sc.class), objc.Sel("alloc"))

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [InputStream] class.
-var inputStreamClass = _InputStreamClass{objc.GetClass("NSInputStream")}
+var (
+	inputStreamClass     _InputStreamClass
+	inputStreamClassOnce sync.Once
+)
+
+func getInputStreamClass() _InputStreamClass {
+	inputStreamClassOnce.Do(func() {
+		inputStreamClass = _InputStreamClass{objc.GetClass("NSInputStream")}
+	})
+	return inputStreamClass
+}
 
 type _InputStreamClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IInputStream interface {
 // A stream that provides read-only stream functionality. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
-
 type InputStream struct {
 	Stream
 }
@@ -36,13 +46,15 @@ func InputStreamFrom(ptr unsafe.Pointer) InputStream {
 		Stream: StreamFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _InputStreamClass) Alloc() InputStream {
 	rv := objc.Send[InputStream](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InputStreamClass) New() InputStream {
 	rv := objc.Send[InputStream](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (i_ InputStream) Autorelease() InputStream {
 
 // NewInputStream creates a new InputStream instance.
 func NewInputStream() InputStream {
-	return inputStreamClass.New()
+	return getInputStreamClass().New()
 }
 
 

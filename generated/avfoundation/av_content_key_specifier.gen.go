@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVContentKeySpecifier] class.
-var aVContentKeySpecifierClass = _AVContentKeySpecifierClass{objc.GetClass("AVContentKeySpecifier")}
+var (
+	aVContentKeySpecifierClass     _AVContentKeySpecifierClass
+	aVContentKeySpecifierClassOnce sync.Once
+)
+
+func getAVContentKeySpecifierClass() _AVContentKeySpecifierClass {
+	aVContentKeySpecifierClassOnce.Do(func() {
+		aVContentKeySpecifierClass = _AVContentKeySpecifierClass{objc.GetClass("AVContentKeySpecifier")}
+	})
+	return aVContentKeySpecifierClass
+}
 
 type _AVContentKeySpecifierClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVContentKeySpecifier interface {
 // An object that uniquely identifies a content key. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeySpecifier
-
 type AVContentKeySpecifier struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVContentKeySpecifier struct {
 func AVContentKeySpecifierFrom(ptr unsafe.Pointer) AVContentKeySpecifier {
 	return AVContentKeySpecifier{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVContentKeySpecifierClass) Alloc() AVContentKeySpecifier {
 	rv := objc.Send[AVContentKeySpecifier](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVContentKeySpecifierClass) New() AVContentKeySpecifier {
 	rv := objc.Send[AVContentKeySpecifier](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVContentKeySpecifier) Autorelease() AVContentKeySpecifier {
 
 // NewAVContentKeySpecifier creates a new AVContentKeySpecifier instance.
 func NewAVContentKeySpecifier() AVContentKeySpecifier {
-	return aVContentKeySpecifierClass.New()
+	return getAVContentKeySpecifierClass().New()
 }
 
 

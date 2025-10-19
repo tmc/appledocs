@@ -41,7 +41,6 @@ type IScrollView interface {
 // A view that displays a portion of a document view and provides scroll bars that allow the user to move the document view within the scroll view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView
-
 type ScrollView struct {
 	View
 }
@@ -54,6 +53,7 @@ func ScrollViewFrom(ptr unsafe.Pointer) ScrollView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrollViewClass) Alloc() ScrollView {
 	rv := objc.Send[ScrollView](objc.ID(sc.class), objc.Sel("alloc"))
@@ -89,7 +89,6 @@ func NewScrollView() ScrollView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
 func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -98,7 +97,6 @@ func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(frame:)
 func NewScrollViewWithFrame(frameRect unsafe.Pointer) ScrollView {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

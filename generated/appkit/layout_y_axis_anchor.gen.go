@@ -34,7 +34,6 @@ type ILayoutYAxisAnchor interface {
 // A factory class for creating vertical layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor
-
 type LayoutYAxisAnchor struct {
 	LayoutAnchor
 }
@@ -47,6 +46,7 @@ func LayoutYAxisAnchorFrom(ptr unsafe.Pointer) LayoutYAxisAnchor {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutYAxisAnchorClass) Alloc() LayoutYAxisAnchor {
 	rv := objc.Send[LayoutYAxisAnchor](objc.ID(lc.class), objc.Sel("alloc"))

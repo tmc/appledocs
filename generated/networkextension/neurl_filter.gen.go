@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEURLFilter] class.
-var nEURLFilterClass = _NEURLFilterClass{objc.GetClass("NEURLFilter")}
+var (
+	nEURLFilterClass     _NEURLFilterClass
+	nEURLFilterClassOnce sync.Once
+)
+
+func getNEURLFilterClass() _NEURLFilterClass {
+	nEURLFilterClassOnce.Do(func() {
+		nEURLFilterClass = _NEURLFilterClass{objc.GetClass("NEURLFilter")}
+	})
+	return nEURLFilterClass
+}
 
 type _NEURLFilterClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEURLFilter interface {
 // A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter
-
 type NEURLFilter struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEURLFilter struct {
 func NEURLFilterFrom(ptr unsafe.Pointer) NEURLFilter {
 	return NEURLFilter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEURLFilterClass) Alloc() NEURLFilter {
 	rv := objc.Send[NEURLFilter](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEURLFilterClass) New() NEURLFilter {
 	rv := objc.Send[NEURLFilter](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEURLFilter) Autorelease() NEURLFilter {
 
 // NewNEURLFilter creates a new NEURLFilter instance.
 func NewNEURLFilter() NEURLFilter {
-	return nEURLFilterClass.New()
+	return getNEURLFilterClass().New()
 }
 
 

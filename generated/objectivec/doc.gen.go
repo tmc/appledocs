@@ -10,6 +10,19 @@
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC
 package objectivec
 
+import (
+	"github.com/ebitengine/purego"
+)
+
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/usr/lib/libobjc.dylib"
+
+
+func init() {
+	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+}
+
 

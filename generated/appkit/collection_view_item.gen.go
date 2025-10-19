@@ -34,7 +34,6 @@ type ICollectionViewItem interface {
 // The visual representation for a single data element in a collection view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem
-
 type CollectionViewItem struct {
 	ViewController
 }
@@ -47,6 +46,7 @@ func CollectionViewItemFrom(ptr unsafe.Pointer) CollectionViewItem {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewItemClass) Alloc() CollectionViewItem {
 	rv := objc.Send[CollectionViewItem](objc.ID(cc.class), objc.Sel("alloc"))

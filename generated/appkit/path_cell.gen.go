@@ -34,7 +34,6 @@ type IPathCell interface {
 // The user interface of a path control object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathCell
-
 type PathCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func PathCellFrom(ptr unsafe.Pointer) PathCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PathCellClass) Alloc() PathCell {
 	rv := objc.Send[PathCell](objc.ID(pc.class), objc.Sel("alloc"))

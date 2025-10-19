@@ -35,7 +35,6 @@ type IParagraphStyle interface {
 // The paragraph or ruler attributes for an attributed string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle
-
 type ParagraphStyle struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type ParagraphStyle struct {
 func ParagraphStyleFrom(ptr unsafe.Pointer) ParagraphStyle {
 	return ParagraphStyle{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _ParagraphStyleClass) Alloc() ParagraphStyle {
 	rv := objc.Send[ParagraphStyle](objc.ID(pc.class), objc.Sel("alloc"))

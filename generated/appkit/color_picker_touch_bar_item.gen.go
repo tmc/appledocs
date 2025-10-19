@@ -34,7 +34,6 @@ type IColorPickerTouchBarItem interface {
 // A bar item that provides a system-defined color picker. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem
-
 type ColorPickerTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func ColorPickerTouchBarItemFrom(ptr unsafe.Pointer) ColorPickerTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorPickerTouchBarItemClass) Alloc() ColorPickerTouchBarItem {
 	rv := objc.Send[ColorPickerTouchBarItem](objc.ID(cc.class), objc.Sel("alloc"))

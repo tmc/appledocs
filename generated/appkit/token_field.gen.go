@@ -34,7 +34,6 @@ type ITokenField interface {
 // A text field that converts text into visually distinct tokens. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField
-
 type TokenField struct {
 	TextField
 }
@@ -47,6 +46,7 @@ func TokenFieldFrom(ptr unsafe.Pointer) TokenField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TokenFieldClass) Alloc() TokenField {
 	rv := objc.Send[TokenField](objc.ID(tc.class), objc.Sel("alloc"))

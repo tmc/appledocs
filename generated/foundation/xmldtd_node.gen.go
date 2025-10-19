@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XMLDTDNode] class.
-var xMLDTDNodeClass = _XMLDTDNodeClass{objc.GetClass("NSXMLDTDNode")}
+var (
+	xMLDTDNodeClass     _XMLDTDNodeClass
+	xMLDTDNodeClassOnce sync.Once
+)
+
+func getXMLDTDNodeClass() _XMLDTDNodeClass {
+	xMLDTDNodeClassOnce.Do(func() {
+		xMLDTDNodeClass = _XMLDTDNodeClass{objc.GetClass("NSXMLDTDNode")}
+	})
+	return xMLDTDNodeClass
+}
 
 type _XMLDTDNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IXMLDTDNode interface {
 // A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode
-
 type XMLDTDNode struct {
 	XMLNode
 }
@@ -36,13 +46,15 @@ func XMLDTDNodeFrom(ptr unsafe.Pointer) XMLDTDNode {
 		XMLNode: XMLNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XMLDTDNodeClass) Alloc() XMLDTDNode {
 	rv := objc.Send[XMLDTDNode](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XMLDTDNodeClass) New() XMLDTDNode {
 	rv := objc.Send[XMLDTDNode](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (x_ XMLDTDNode) Autorelease() XMLDTDNode {
 
 // NewXMLDTDNode creates a new XMLDTDNode instance.
 func NewXMLDTDNode() XMLDTDNode {
-	return xMLDTDNodeClass.New()
+	return getXMLDTDNodeClass().New()
 }
 
 

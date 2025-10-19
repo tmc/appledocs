@@ -34,7 +34,6 @@ type IViewLayoutRegion interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion
-
 type ViewLayoutRegion struct {
 	objectivec.Object
 }
@@ -43,6 +42,7 @@ type ViewLayoutRegion struct {
 func ViewLayoutRegionFrom(ptr unsafe.Pointer) ViewLayoutRegion {
 	return ViewLayoutRegion{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ViewLayoutRegionClass) Alloc() ViewLayoutRegion {
 	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("alloc"))

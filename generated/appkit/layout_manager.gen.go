@@ -35,7 +35,6 @@ type ILayoutManager interface {
 // An object that coordinates the layout and display of text characters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager
-
 type LayoutManager struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type LayoutManager struct {
 func LayoutManagerFrom(ptr unsafe.Pointer) LayoutManager {
 	return LayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutManagerClass) Alloc() LayoutManager {
 	rv := objc.Send[LayoutManager](objc.ID(lc.class), objc.Sel("alloc"))

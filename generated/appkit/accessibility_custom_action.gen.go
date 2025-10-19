@@ -35,7 +35,6 @@ type IAccessibilityCustomAction interface {
 // A custom action to perform on an accessible object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction
-
 type AccessibilityCustomAction struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type AccessibilityCustomAction struct {
 func AccessibilityCustomActionFrom(ptr unsafe.Pointer) AccessibilityCustomAction {
 	return AccessibilityCustomAction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AccessibilityCustomActionClass) Alloc() AccessibilityCustomAction {
 	rv := objc.Send[AccessibilityCustomAction](objc.ID(ac.class), objc.Sel("alloc"))

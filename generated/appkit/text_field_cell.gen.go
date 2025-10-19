@@ -34,7 +34,6 @@ type ITextFieldCell interface {
 // An object that enhances the text display capabilities of a cell. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell
-
 type TextFieldCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func TextFieldCellFrom(ptr unsafe.Pointer) TextFieldCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextFieldCellClass) Alloc() TextFieldCell {
 	rv := objc.Send[TextFieldCell](objc.ID(tc.class), objc.Sel("alloc"))

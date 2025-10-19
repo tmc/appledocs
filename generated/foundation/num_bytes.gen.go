@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [numBytes] class.
-var numBytesClass = _numBytesClass{objc.GetClass("numBytes")}
+var (
+	numBytesClass     _numBytesClass
+	numBytesClassOnce sync.Once
+)
+
+func getnumBytesClass() _numBytesClass {
+	numBytesClassOnce.Do(func() {
+		numBytesClass = _numBytesClass{objc.GetClass("numBytes")}
+	})
+	return numBytesClass
+}
 
 type _numBytesClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type InumBytes interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString/numBytes
-
 type numBytes struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type numBytes struct {
 func numBytesFrom(ptr unsafe.Pointer) numBytes {
 	return numBytes{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _numBytesClass) Alloc() numBytes {
 	rv := objc.Send[numBytes](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _numBytesClass) New() numBytes {
 	rv := objc.Send[numBytes](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (n_ numBytes) Autorelease() numBytes {
 
 // NewnumBytes creates a new numBytes instance.
 func NewnumBytes() numBytes {
-	return numBytesClass.New()
+	return getnumBytesClass().New()
 }
 
 

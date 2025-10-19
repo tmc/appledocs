@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RectangleFeature] class.
-var rectangleFeatureClass = _RectangleFeatureClass{objc.GetClass("CIRectangleFeature")}
+var (
+	rectangleFeatureClass     _RectangleFeatureClass
+	rectangleFeatureClassOnce sync.Once
+)
+
+func getRectangleFeatureClass() _RectangleFeatureClass {
+	rectangleFeatureClassOnce.Do(func() {
+		rectangleFeatureClass = _RectangleFeatureClass{objc.GetClass("CIRectangleFeature")}
+	})
+	return rectangleFeatureClass
+}
 
 type _RectangleFeatureClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IRectangleFeature interface {
 // Information about a rectangular region detected in a still or video image. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature
-
 type RectangleFeature struct {
 	Feature
 }
@@ -36,13 +46,15 @@ func RectangleFeatureFrom(ptr unsafe.Pointer) RectangleFeature {
 		Feature: FeatureFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RectangleFeatureClass) Alloc() RectangleFeature {
 	rv := objc.Send[RectangleFeature](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RectangleFeatureClass) New() RectangleFeature {
 	rv := objc.Send[RectangleFeature](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ RectangleFeature) Autorelease() RectangleFeature {
 
 // NewRectangleFeature creates a new RectangleFeature instance.
 func NewRectangleFeature() RectangleFeature {
-	return rectangleFeatureClass.New()
+	return getRectangleFeatureClass().New()
 }
 
 

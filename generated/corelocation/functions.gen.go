@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // CoreLocation Functions (2 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -23,7 +24,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_CLLocationCoordinate2DIsValid, lib, "CLLocationCoordinate2DIsValid")
 	tryRegister(&_CLLocationCoordinate2DMake, lib, "CLLocationCoordinate2DMake")
 }
@@ -39,6 +39,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Returns a Boolean value indicating whether the specified coordinate is valid. [Full Topic]

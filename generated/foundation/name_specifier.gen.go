@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NameSpecifier] class.
-var nameSpecifierClass = _NameSpecifierClass{objc.GetClass("NSNameSpecifier")}
+var (
+	nameSpecifierClass     _NameSpecifierClass
+	nameSpecifierClassOnce sync.Once
+)
+
+func getNameSpecifierClass() _NameSpecifierClass {
+	nameSpecifierClassOnce.Do(func() {
+		nameSpecifierClass = _NameSpecifierClass{objc.GetClass("NSNameSpecifier")}
+	})
+	return nameSpecifierClass
+}
 
 type _NameSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INameSpecifier interface {
 // A specifier for an object in a collection (or container) by name. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier
-
 type NameSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func NameSpecifierFrom(ptr unsafe.Pointer) NameSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NameSpecifierClass) Alloc() NameSpecifier {
 	rv := objc.Send[NameSpecifier](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NameSpecifierClass) New() NameSpecifier {
 	rv := objc.Send[NameSpecifier](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NameSpecifier) Autorelease() NameSpecifier {
 
 // NewNameSpecifier creates a new NameSpecifier instance.
 func NewNameSpecifier() NameSpecifier {
-	return nameSpecifierClass.New()
+	return getNameSpecifierClass().New()
 }
 
 

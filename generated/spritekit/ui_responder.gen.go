@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UIResponder] class.
-var uIResponderClass = _UIResponderClass{objc.GetClass("UIResponder")}
+var (
+	uIResponderClass     _UIResponderClass
+	uIResponderClassOnce sync.Once
+)
+
+func getUIResponderClass() _UIResponderClass {
+	uIResponderClassOnce.Do(func() {
+		uIResponderClass = _UIResponderClass{objc.GetClass("UIResponder")}
+	})
+	return uIResponderClass
+}
 
 type _UIResponderClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type IUIResponder interface {
 }
 
 // A parent class referenced by other SpriteKit classes. [Full Topic]
-
 type UIResponder struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type UIResponder struct {
 func UIResponderFrom(ptr unsafe.Pointer) UIResponder {
 	return UIResponder{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UIResponderClass) Alloc() UIResponder {
 	rv := objc.Send[UIResponder](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UIResponderClass) New() UIResponder {
 	rv := objc.Send[UIResponder](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (u_ UIResponder) Autorelease() UIResponder {
 
 // NewUIResponder creates a new UIResponder instance.
 func NewUIResponder() UIResponder {
-	return uIResponderClass.New()
+	return getUIResponderClass().New()
 }
 
 

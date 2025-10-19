@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileAccessIntent] class.
-var fileAccessIntentClass = _FileAccessIntentClass{objc.GetClass("NSFileAccessIntent")}
+var (
+	fileAccessIntentClass     _FileAccessIntentClass
+	fileAccessIntentClassOnce sync.Once
+)
+
+func getFileAccessIntentClass() _FileAccessIntentClass {
+	fileAccessIntentClassOnce.Do(func() {
+		fileAccessIntentClass = _FileAccessIntentClass{objc.GetClass("NSFileAccessIntent")}
+	})
+	return fileAccessIntentClass
+}
 
 type _FileAccessIntentClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFileAccessIntent interface {
 // The details of a coordinated-read or coordinated-write operation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent
-
 type FileAccessIntent struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type FileAccessIntent struct {
 func FileAccessIntentFrom(ptr unsafe.Pointer) FileAccessIntent {
 	return FileAccessIntent{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileAccessIntentClass) Alloc() FileAccessIntent {
 	rv := objc.Send[FileAccessIntent](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileAccessIntentClass) New() FileAccessIntent {
 	rv := objc.Send[FileAccessIntent](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (f_ FileAccessIntent) Autorelease() FileAccessIntent {
 
 // NewFileAccessIntent creates a new FileAccessIntent instance.
 func NewFileAccessIntent() FileAccessIntent {
-	return fileAccessIntentClass.New()
+	return getFileAccessIntentClass().New()
 }
 
 

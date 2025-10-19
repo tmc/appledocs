@@ -35,7 +35,6 @@ type IShadow interface {
 // An object you use to specify attributes to create and style a drop shadow during drawing operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow
-
 type Shadow struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Shadow struct {
 func ShadowFrom(ptr unsafe.Pointer) Shadow {
 	return Shadow{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ShadowClass) Alloc() Shadow {
 	rv := objc.Send[Shadow](objc.ID(sc.class), objc.Sel("alloc"))

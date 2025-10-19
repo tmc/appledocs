@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NetServiceBrowser] class.
-var netServiceBrowserClass = _NetServiceBrowserClass{objc.GetClass("NSNetServiceBrowser")}
+var (
+	netServiceBrowserClass     _NetServiceBrowserClass
+	netServiceBrowserClassOnce sync.Once
+)
+
+func getNetServiceBrowserClass() _NetServiceBrowserClass {
+	netServiceBrowserClassOnce.Do(func() {
+		netServiceBrowserClass = _NetServiceBrowserClass{objc.GetClass("NSNetServiceBrowser")}
+	})
+	return netServiceBrowserClass
+}
 
 type _NetServiceBrowserClass struct {
 	class objc.Class
@@ -30,7 +41,6 @@ type INetServiceBrowser interface {
 // A network service browser that finds published services on a network using multicast DNS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser
-
 type NetServiceBrowser struct {
 	objectivec.Object
 }
@@ -41,13 +51,15 @@ type NetServiceBrowser struct {
 func NetServiceBrowserFrom(ptr unsafe.Pointer) NetServiceBrowser {
 	return NetServiceBrowser{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NetServiceBrowserClass) Alloc() NetServiceBrowser {
 	rv := objc.Send[NetServiceBrowser](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NetServiceBrowserClass) New() NetServiceBrowser {
 	rv := objc.Send[NetServiceBrowser](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -68,7 +80,7 @@ func (n_ NetServiceBrowser) Autorelease() NetServiceBrowser {
 
 // NewNetServiceBrowser creates a new NetServiceBrowser instance.
 func NewNetServiceBrowser() NetServiceBrowser {
-	return netServiceBrowserClass.New()
+	return getNetServiceBrowserClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RenderTask] class.
-var renderTaskClass = _RenderTaskClass{objc.GetClass("CIRenderTask")}
+var (
+	renderTaskClass     _RenderTaskClass
+	renderTaskClassOnce sync.Once
+)
+
+func getRenderTaskClass() _RenderTaskClass {
+	renderTaskClassOnce.Do(func() {
+		renderTaskClass = _RenderTaskClass{objc.GetClass("CIRenderTask")}
+	})
+	return renderTaskClass
+}
 
 type _RenderTaskClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IRenderTask interface {
 // A single render task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask
-
 type RenderTask struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type RenderTask struct {
 func RenderTaskFrom(ptr unsafe.Pointer) RenderTask {
 	return RenderTask{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RenderTaskClass) Alloc() RenderTask {
 	rv := objc.Send[RenderTask](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RenderTaskClass) New() RenderTask {
 	rv := objc.Send[RenderTask](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ RenderTask) Autorelease() RenderTask {
 
 // NewRenderTask creates a new RenderTask instance.
 func NewRenderTask() RenderTask {
-	return renderTaskClass.New()
+	return getRenderTaskClass().New()
 }
 
 

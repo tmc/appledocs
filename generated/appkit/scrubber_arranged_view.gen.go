@@ -35,7 +35,6 @@ type IScrubberArrangedView interface {
 // An abstract base class for the views whose layout is managed by a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView
-
 type ScrubberArrangedView struct {
 	View
 }
@@ -48,6 +47,7 @@ func ScrubberArrangedViewFrom(ptr unsafe.Pointer) ScrubberArrangedView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberArrangedViewClass) Alloc() ScrubberArrangedView {
 	rv := objc.Send[ScrubberArrangedView](objc.ID(sc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Notification] class.
-var notificationClass = _NotificationClass{objc.GetClass("NSNotification")}
+var (
+	notificationClass     _NotificationClass
+	notificationClassOnce sync.Once
+)
+
+func getNotificationClass() _NotificationClass {
+	notificationClassOnce.Do(func() {
+		notificationClass = _NotificationClass{objc.GetClass("NSNotification")}
+	})
+	return notificationClass
+}
 
 type _NotificationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INotification interface {
 // A container for information broadcast through a notification center to all registered observers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification
-
 type Notification struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Notification struct {
 func NotificationFrom(ptr unsafe.Pointer) Notification {
 	return Notification{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NotificationClass) Alloc() Notification {
 	rv := objc.Send[Notification](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NotificationClass) New() Notification {
 	rv := objc.Send[Notification](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ Notification) Autorelease() Notification {
 
 // NewNotification creates a new Notification instance.
 func NewNotification() Notification {
-	return notificationClass.New()
+	return getNotificationClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewNotification() Notification {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
 func NewNotificationWithCoder(coder unsafe.Pointer) Notification {
-	instance := notificationClass.Alloc()
+	instance := getNotificationClass().Alloc()
 	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv

@@ -35,7 +35,6 @@ type ICursor interface {
 // A pointer (also called a cursor). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor
-
 type Cursor struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Cursor struct {
 func CursorFrom(ptr unsafe.Pointer) Cursor {
 	return Cursor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CursorClass) Alloc() Cursor {
 	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("alloc"))

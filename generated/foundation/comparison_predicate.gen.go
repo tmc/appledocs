@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ComparisonPredicate] class.
-var comparisonPredicateClass = _ComparisonPredicateClass{objc.GetClass("NSComparisonPredicate")}
+var (
+	comparisonPredicateClass     _ComparisonPredicateClass
+	comparisonPredicateClassOnce sync.Once
+)
+
+func getComparisonPredicateClass() _ComparisonPredicateClass {
+	comparisonPredicateClassOnce.Do(func() {
+		comparisonPredicateClass = _ComparisonPredicateClass{objc.GetClass("NSComparisonPredicate")}
+	})
+	return comparisonPredicateClass
+}
 
 type _ComparisonPredicateClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IComparisonPredicate interface {
 // A specialized predicate for comparing expressions. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate
-
 type ComparisonPredicate struct {
 	Predicate
 }
@@ -36,13 +46,15 @@ func ComparisonPredicateFrom(ptr unsafe.Pointer) ComparisonPredicate {
 		Predicate: PredicateFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComparisonPredicateClass) Alloc() ComparisonPredicate {
 	rv := objc.Send[ComparisonPredicate](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ComparisonPredicateClass) New() ComparisonPredicate {
 	rv := objc.Send[ComparisonPredicate](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ ComparisonPredicate) Autorelease() ComparisonPredicate {
 
 // NewComparisonPredicate creates a new ComparisonPredicate instance.
 func NewComparisonPredicate() ComparisonPredicate {
-	return comparisonPredicateClass.New()
+	return getComparisonPredicateClass().New()
 }
 
 

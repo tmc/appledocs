@@ -35,7 +35,6 @@ type IPageLayout interface {
 // A panel that queries the user for information such as paper type and orientation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout
-
 type PageLayout struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type PageLayout struct {
 func PageLayoutFrom(ptr unsafe.Pointer) PageLayout {
 	return PageLayout{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PageLayoutClass) Alloc() PageLayout {
 	rv := objc.Send[PageLayout](objc.ID(pc.class), objc.Sel("alloc"))

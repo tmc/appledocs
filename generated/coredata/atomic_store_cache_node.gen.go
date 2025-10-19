@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AtomicStoreCacheNode] class.
-var atomicStoreCacheNodeClass = _AtomicStoreCacheNodeClass{objc.GetClass("NSAtomicStoreCacheNode")}
+var (
+	atomicStoreCacheNodeClass     _AtomicStoreCacheNodeClass
+	atomicStoreCacheNodeClassOnce sync.Once
+)
+
+func getAtomicStoreCacheNodeClass() _AtomicStoreCacheNodeClass {
+	atomicStoreCacheNodeClassOnce.Do(func() {
+		atomicStoreCacheNodeClass = _AtomicStoreCacheNodeClass{objc.GetClass("NSAtomicStoreCacheNode")}
+	})
+	return atomicStoreCacheNodeClass
+}
 
 type _AtomicStoreCacheNodeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAtomicStoreCacheNode interface {
 // A concrete class that you use to represent basic nodes in a Core Data atomic store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode
-
 type AtomicStoreCacheNode struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AtomicStoreCacheNode struct {
 func AtomicStoreCacheNodeFrom(ptr unsafe.Pointer) AtomicStoreCacheNode {
 	return AtomicStoreCacheNode{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AtomicStoreCacheNodeClass) Alloc() AtomicStoreCacheNode {
 	rv := objc.Send[AtomicStoreCacheNode](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AtomicStoreCacheNodeClass) New() AtomicStoreCacheNode {
 	rv := objc.Send[AtomicStoreCacheNode](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AtomicStoreCacheNode) Autorelease() AtomicStoreCacheNode {
 
 // NewAtomicStoreCacheNode creates a new AtomicStoreCacheNode instance.
 func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
-	return atomicStoreCacheNodeClass.New()
+	return getAtomicStoreCacheNodeClass().New()
 }
 
 

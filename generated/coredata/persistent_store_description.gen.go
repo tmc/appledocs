@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentStoreDescription] class.
-var persistentStoreDescriptionClass = _PersistentStoreDescriptionClass{objc.GetClass("NSPersistentStoreDescription")}
+var (
+	persistentStoreDescriptionClass     _PersistentStoreDescriptionClass
+	persistentStoreDescriptionClassOnce sync.Once
+)
+
+func getPersistentStoreDescriptionClass() _PersistentStoreDescriptionClass {
+	persistentStoreDescriptionClassOnce.Do(func() {
+		persistentStoreDescriptionClass = _PersistentStoreDescriptionClass{objc.GetClass("NSPersistentStoreDescription")}
+	})
+	return persistentStoreDescriptionClass
+}
 
 type _PersistentStoreDescriptionClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IPersistentStoreDescription interface {
 // A description object used to create and load a persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription
-
 type PersistentStoreDescription struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type PersistentStoreDescription struct {
 func PersistentStoreDescriptionFrom(ptr unsafe.Pointer) PersistentStoreDescription {
 	return PersistentStoreDescription{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentStoreDescriptionClass) Alloc() PersistentStoreDescription {
 	rv := objc.Send[PersistentStoreDescription](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentStoreDescriptionClass) New() PersistentStoreDescription {
 	rv := objc.Send[PersistentStoreDescription](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (p_ PersistentStoreDescription) Autorelease() PersistentStoreDescription {
 
 // NewPersistentStoreDescription creates a new PersistentStoreDescription instance.
 func NewPersistentStoreDescription() PersistentStoreDescription {
-	return persistentStoreDescriptionClass.New()
+	return getPersistentStoreDescriptionClass().New()
 }
 
 
@@ -73,7 +85,7 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/init(url:)
 func NewPersistentStoreDescriptionWithURL(url unsafe.Pointer) PersistentStoreDescription {
-	instance := persistentStoreDescriptionClass.Alloc()
+	instance := getPersistentStoreDescriptionClass().Alloc()
 	rv := objc.Send[PersistentStoreDescription](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
 	return rv

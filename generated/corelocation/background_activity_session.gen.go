@@ -3,6 +3,7 @@
 package corelocation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,16 +11,31 @@ import (
 )
 
 // The class instance for the [BackgroundActivitySession] class.
-var backgroundActivitySessionClass = _BackgroundActivitySessionClass{objc.GetClass("CLBackgroundActivitySession")}
+var (
+	backgroundActivitySessionClass     _BackgroundActivitySessionClass
+	backgroundActivitySessionClassOnce sync.Once
+)
+
+func getBackgroundActivitySessionClass() _BackgroundActivitySessionClass {
+	backgroundActivitySessionClassOnce.Do(func() {
+		backgroundActivitySessionClass = _BackgroundActivitySessionClass{objc.GetClass("CLBackgroundActivitySession")}
+	})
+	return backgroundActivitySessionClass
+}
 
 type _BackgroundActivitySessionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BackgroundActivitySession] class.
+type IBackgroundActivitySession interface {
+	objectivec.IObject
+	Invalidate()
+}
+
 // An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y
-
 type BackgroundActivitySession struct {
 	objectivec.Object
 }
@@ -30,6 +46,38 @@ type BackgroundActivitySession struct {
 func BackgroundActivitySessionFrom(ptr unsafe.Pointer) BackgroundActivitySession {
 	return BackgroundActivitySession{objectivec.Object{objc.ID(ptr)}}
 }
+
+// Alloc allocates a new instance without initialization.
+func (bc _BackgroundActivitySessionClass) Alloc() BackgroundActivitySession {
+	rv := objc.Send[BackgroundActivitySession](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (bc _BackgroundActivitySessionClass) New() BackgroundActivitySession {
+	rv := objc.Send[BackgroundActivitySession](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BackgroundActivitySession) Init() BackgroundActivitySession {
+	rv := objc.Send[BackgroundActivitySession](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BackgroundActivitySession) Autorelease() BackgroundActivitySession {
+	rv := objc.Send[BackgroundActivitySession](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBackgroundActivitySession creates a new BackgroundActivitySession instance.
+func NewBackgroundActivitySession() BackgroundActivitySession {
+	return getBackgroundActivitySessionClass().New()
+}
+
 
 // Creates a new background activity session. [Full Topic]
 

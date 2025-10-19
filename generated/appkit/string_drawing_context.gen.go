@@ -35,7 +35,6 @@ type IStringDrawingContext interface {
 // An object that manages metrics for drawing attributed strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext
-
 type StringDrawingContext struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type StringDrawingContext struct {
 func StringDrawingContextFrom(ptr unsafe.Pointer) StringDrawingContext {
 	return StringDrawingContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StringDrawingContextClass) Alloc() StringDrawingContext {
 	rv := objc.Send[StringDrawingContext](objc.ID(sc.class), objc.Sel("alloc"))

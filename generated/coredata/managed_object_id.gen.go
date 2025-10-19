@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ManagedObjectID] class.
-var managedObjectIDClass = _ManagedObjectIDClass{objc.GetClass("NSManagedObjectID")}
+var (
+	managedObjectIDClass     _ManagedObjectIDClass
+	managedObjectIDClassOnce sync.Once
+)
+
+func getManagedObjectIDClass() _ManagedObjectIDClass {
+	managedObjectIDClassOnce.Do(func() {
+		managedObjectIDClass = _ManagedObjectIDClass{objc.GetClass("NSManagedObjectID")}
+	})
+	return managedObjectIDClass
+}
 
 type _ManagedObjectIDClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IManagedObjectID interface {
 // A compact, universal identifier for a managed object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID
-
 type ManagedObjectID struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type ManagedObjectID struct {
 func ManagedObjectIDFrom(ptr unsafe.Pointer) ManagedObjectID {
 	return ManagedObjectID{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _ManagedObjectIDClass) Alloc() ManagedObjectID {
 	rv := objc.Send[ManagedObjectID](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _ManagedObjectIDClass) New() ManagedObjectID {
 	rv := objc.Send[ManagedObjectID](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ ManagedObjectID) Autorelease() ManagedObjectID {
 
 // NewManagedObjectID creates a new ManagedObjectID instance.
 func NewManagedObjectID() ManagedObjectID {
-	return managedObjectIDClass.New()
+	return getManagedObjectIDClass().New()
 }
 
 

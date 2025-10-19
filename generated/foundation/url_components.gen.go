@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLComponents] class.
-var uRLComponentsClass = _URLComponentsClass{objc.GetClass("NSURLComponents")}
+var (
+	uRLComponentsClass     _URLComponentsClass
+	uRLComponentsClassOnce sync.Once
+)
+
+func getURLComponentsClass() _URLComponentsClass {
+	uRLComponentsClassOnce.Do(func() {
+		uRLComponentsClass = _URLComponentsClass{objc.GetClass("NSURLComponents")}
+	})
+	return uRLComponentsClass
+}
 
 type _URLComponentsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLComponents interface {
 // An object that parses URLs into and constructs URLs from their constituent parts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents
-
 type URLComponents struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLComponents struct {
 func URLComponentsFrom(ptr unsafe.Pointer) URLComponents {
 	return URLComponents{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLComponentsClass) Alloc() URLComponents {
 	rv := objc.Send[URLComponents](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLComponentsClass) New() URLComponents {
 	rv := objc.Send[URLComponents](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLComponents) Autorelease() URLComponents {
 
 // NewURLComponents creates a new URLComponents instance.
 func NewURLComponents() URLComponents {
-	return uRLComponentsClass.New()
+	return getURLComponentsClass().New()
 }
 
 

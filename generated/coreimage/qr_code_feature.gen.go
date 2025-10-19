@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [QRCodeFeature] class.
-var qRCodeFeatureClass = _QRCodeFeatureClass{objc.GetClass("CIQRCodeFeature")}
+var (
+	qRCodeFeatureClass     _QRCodeFeatureClass
+	qRCodeFeatureClassOnce sync.Once
+)
+
+func getQRCodeFeatureClass() _QRCodeFeatureClass {
+	qRCodeFeatureClassOnce.Do(func() {
+		qRCodeFeatureClass = _QRCodeFeatureClass{objc.GetClass("CIQRCodeFeature")}
+	})
+	return qRCodeFeatureClass
+}
 
 type _QRCodeFeatureClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IQRCodeFeature interface {
 // Information about a Quick Response code detected in a still or video image. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature
-
 type QRCodeFeature struct {
 	Feature
 }
@@ -36,13 +46,15 @@ func QRCodeFeatureFrom(ptr unsafe.Pointer) QRCodeFeature {
 		Feature: FeatureFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (qc _QRCodeFeatureClass) Alloc() QRCodeFeature {
 	rv := objc.Send[QRCodeFeature](objc.ID(qc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (qc _QRCodeFeatureClass) New() QRCodeFeature {
 	rv := objc.Send[QRCodeFeature](objc.ID(qc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (q_ QRCodeFeature) Autorelease() QRCodeFeature {
 
 // NewQRCodeFeature creates a new QRCodeFeature instance.
 func NewQRCodeFeature() QRCodeFeature {
-	return qRCodeFeatureClass.New()
+	return getQRCodeFeatureClass().New()
 }
 
 

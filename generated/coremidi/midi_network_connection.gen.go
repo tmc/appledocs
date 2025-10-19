@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDINetworkConnection] class.
-var mIDINetworkConnectionClass = _MIDINetworkConnectionClass{objc.GetClass("MIDINetworkConnection")}
+var (
+	mIDINetworkConnectionClass     _MIDINetworkConnectionClass
+	mIDINetworkConnectionClassOnce sync.Once
+)
+
+func getMIDINetworkConnectionClass() _MIDINetworkConnectionClass {
+	mIDINetworkConnectionClassOnce.Do(func() {
+		mIDINetworkConnectionClass = _MIDINetworkConnectionClass{objc.GetClass("MIDINetworkConnection")}
+	})
+	return mIDINetworkConnectionClass
+}
 
 type _MIDINetworkConnectionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDINetworkConnection interface {
 // An object that connects a session to a host. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection
-
 type MIDINetworkConnection struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDINetworkConnection struct {
 func MIDINetworkConnectionFrom(ptr unsafe.Pointer) MIDINetworkConnection {
 	return MIDINetworkConnection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDINetworkConnectionClass) Alloc() MIDINetworkConnection {
 	rv := objc.Send[MIDINetworkConnection](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDINetworkConnectionClass) New() MIDINetworkConnection {
 	rv := objc.Send[MIDINetworkConnection](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDINetworkConnection) Autorelease() MIDINetworkConnection {
 
 // NewMIDINetworkConnection creates a new MIDINetworkConnection instance.
 func NewMIDINetworkConnection() MIDINetworkConnection {
-	return mIDINetworkConnectionClass.New()
+	return getMIDINetworkConnectionClass().New()
 }
 
 

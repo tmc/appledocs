@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PropertyListSerialization] class.
-var propertyListSerializationClass = _PropertyListSerializationClass{objc.GetClass("NSPropertyListSerialization")}
+var (
+	propertyListSerializationClass     _PropertyListSerializationClass
+	propertyListSerializationClassOnce sync.Once
+)
+
+func getPropertyListSerializationClass() _PropertyListSerializationClass {
+	propertyListSerializationClassOnce.Do(func() {
+		propertyListSerializationClass = _PropertyListSerializationClass{objc.GetClass("NSPropertyListSerialization")}
+	})
+	return propertyListSerializationClass
+}
 
 type _PropertyListSerializationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPropertyListSerialization interface {
 // An object that converts between a property list and one of several serialized representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization
-
 type PropertyListSerialization struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PropertyListSerialization struct {
 func PropertyListSerializationFrom(ptr unsafe.Pointer) PropertyListSerialization {
 	return PropertyListSerialization{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PropertyListSerializationClass) Alloc() PropertyListSerialization {
 	rv := objc.Send[PropertyListSerialization](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PropertyListSerializationClass) New() PropertyListSerialization {
 	rv := objc.Send[PropertyListSerialization](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PropertyListSerialization) Autorelease() PropertyListSerialization {
 
 // NewPropertyListSerialization creates a new PropertyListSerialization instance.
 func NewPropertyListSerialization() PropertyListSerialization {
-	return propertyListSerializationClass.New()
+	return getPropertyListSerializationClass().New()
 }
 
 

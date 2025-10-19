@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserNotificationCenter] class.
-var userNotificationCenterClass = _UserNotificationCenterClass{objc.GetClass("NSUserNotificationCenter")}
+var (
+	userNotificationCenterClass     _UserNotificationCenterClass
+	userNotificationCenterClassOnce sync.Once
+)
+
+func getUserNotificationCenterClass() _UserNotificationCenterClass {
+	userNotificationCenterClassOnce.Do(func() {
+		userNotificationCenterClass = _UserNotificationCenterClass{objc.GetClass("NSUserNotificationCenter")}
+	})
+	return userNotificationCenterClass
+}
 
 type _UserNotificationCenterClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IUserNotificationCenter interface {
 // An object that delivers notifications from apps to the user. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter
-
 type UserNotificationCenter struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type UserNotificationCenter struct {
 func UserNotificationCenterFrom(ptr unsafe.Pointer) UserNotificationCenter {
 	return UserNotificationCenter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserNotificationCenterClass) Alloc() UserNotificationCenter {
 	rv := objc.Send[UserNotificationCenter](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserNotificationCenterClass) New() UserNotificationCenter {
 	rv := objc.Send[UserNotificationCenter](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ UserNotificationCenter) Autorelease() UserNotificationCenter {
 
 // NewUserNotificationCenter creates a new UserNotificationCenter instance.
 func NewUserNotificationCenter() UserNotificationCenter {
-	return userNotificationCenterClass.New()
+	return getUserNotificationCenterClass().New()
 }
 
 

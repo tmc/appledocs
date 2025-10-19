@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RAWFilter] class.
-var rAWFilterClass = _RAWFilterClass{objc.GetClass("CIRAWFilter")}
+var (
+	rAWFilterClass     _RAWFilterClass
+	rAWFilterClassOnce sync.Once
+)
+
+func getRAWFilterClass() _RAWFilterClass {
+	rAWFilterClassOnce.Do(func() {
+		rAWFilterClass = _RAWFilterClass{objc.GetClass("CIRAWFilter")}
+	})
+	return rAWFilterClass
+}
 
 type _RAWFilterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IRAWFilter interface {
 // A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter
-
 type RAWFilter struct {
 	Filter
 }
@@ -36,13 +46,15 @@ func RAWFilterFrom(ptr unsafe.Pointer) RAWFilter {
 		Filter: FilterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RAWFilterClass) Alloc() RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RAWFilterClass) New() RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ RAWFilter) Autorelease() RAWFilter {
 
 // NewRAWFilter creates a new RAWFilter instance.
 func NewRAWFilter() RAWFilter {
-	return rAWFilterClass.New()
+	return getRAWFilterClass().New()
 }
 
 
@@ -72,8 +84,7 @@ func NewRAWFilter() RAWFilter {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
 func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties unsafe.Pointer) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
-	rv.Autorelease()
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
 // Creates a RAW filter from the image data and type hint that you specify. [Full Topic]
@@ -81,8 +92,7 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties u
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
 func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
-	rv.Autorelease()
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
 // Creates a RAW filter from the image at the URL location that you specify. [Full Topic]
@@ -90,8 +100,7 @@ func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
 func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageURL:"), url)
-	rv.Autorelease()
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
 

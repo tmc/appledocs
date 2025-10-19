@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableData] class.
-var mutableDataClass = _MutableDataClass{objc.GetClass("NSMutableData")}
+var (
+	mutableDataClass     _MutableDataClass
+	mutableDataClassOnce sync.Once
+)
+
+func getMutableDataClass() _MutableDataClass {
+	mutableDataClassOnce.Do(func() {
+		mutableDataClass = _MutableDataClass{objc.GetClass("NSMutableData")}
+	})
+	return mutableDataClass
+}
 
 type _MutableDataClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableData interface {
 // An object representing a dynamic byte buffer in memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData
-
 type MutableData struct {
 	Data
 }
@@ -36,13 +46,15 @@ func MutableDataFrom(ptr unsafe.Pointer) MutableData {
 		Data: DataFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableDataClass) Alloc() MutableData {
 	rv := objc.Send[MutableData](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableDataClass) New() MutableData {
 	rv := objc.Send[MutableData](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableData) Autorelease() MutableData {
 
 // NewMutableData creates a new MutableData instance.
 func NewMutableData() MutableData {
-	return mutableDataClass.New()
+	return getMutableDataClass().New()
 }
 
 

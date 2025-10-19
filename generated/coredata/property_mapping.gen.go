@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PropertyMapping] class.
-var propertyMappingClass = _PropertyMappingClass{objc.GetClass("NSPropertyMapping")}
+var (
+	propertyMappingClass     _PropertyMappingClass
+	propertyMappingClassOnce sync.Once
+)
+
+func getPropertyMappingClass() _PropertyMappingClass {
+	propertyMappingClassOnce.Do(func() {
+		propertyMappingClass = _PropertyMappingClass{objc.GetClass("NSPropertyMapping")}
+	})
+	return propertyMappingClass
+}
 
 type _PropertyMappingClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPropertyMapping interface {
 // A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping
-
 type PropertyMapping struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PropertyMapping struct {
 func PropertyMappingFrom(ptr unsafe.Pointer) PropertyMapping {
 	return PropertyMapping{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PropertyMappingClass) Alloc() PropertyMapping {
 	rv := objc.Send[PropertyMapping](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PropertyMappingClass) New() PropertyMapping {
 	rv := objc.Send[PropertyMapping](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PropertyMapping) Autorelease() PropertyMapping {
 
 // NewPropertyMapping creates a new PropertyMapping instance.
 func NewPropertyMapping() PropertyMapping {
-	return propertyMappingClass.New()
+	return getPropertyMappingClass().New()
 }
 
 

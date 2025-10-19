@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [columnCount] class.
-var columnCountClass = _columnCountClass{objc.GetClass("columnCount")}
+var (
+	columnCountClass     _columnCountClass
+	columnCountClassOnce sync.Once
+)
+
+func getcolumnCountClass() _columnCountClass {
+	columnCountClassOnce.Do(func() {
+		columnCountClass = _columnCountClass{objc.GetClass("columnCount")}
+	})
+	return columnCountClass
+}
 
 type _columnCountClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IcolumnCount interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/columnCount-c.ivar
-
 type columnCount struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type columnCount struct {
 func columnCountFrom(ptr unsafe.Pointer) columnCount {
 	return columnCount{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _columnCountClass) Alloc() columnCount {
 	rv := objc.Send[columnCount](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _columnCountClass) New() columnCount {
 	rv := objc.Send[columnCount](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (c_ columnCount) Autorelease() columnCount {
 
 // NewcolumnCount creates a new columnCount instance.
 func NewcolumnCount() columnCount {
-	return columnCountClass.New()
+	return getcolumnCountClass().New()
 }
 
 

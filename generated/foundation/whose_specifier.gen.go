@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [WhoseSpecifier] class.
-var whoseSpecifierClass = _WhoseSpecifierClass{objc.GetClass("NSWhoseSpecifier")}
+var (
+	whoseSpecifierClass     _WhoseSpecifierClass
+	whoseSpecifierClassOnce sync.Once
+)
+
+func getWhoseSpecifierClass() _WhoseSpecifierClass {
+	whoseSpecifierClassOnce.Do(func() {
+		whoseSpecifierClass = _WhoseSpecifierClass{objc.GetClass("NSWhoseSpecifier")}
+	})
+	return whoseSpecifierClass
+}
 
 type _WhoseSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IWhoseSpecifier interface {
 // A specifier that indicates every object in a collection matching a condition. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier
-
 type WhoseSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func WhoseSpecifierFrom(ptr unsafe.Pointer) WhoseSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WhoseSpecifierClass) Alloc() WhoseSpecifier {
 	rv := objc.Send[WhoseSpecifier](objc.ID(wc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WhoseSpecifierClass) New() WhoseSpecifier {
 	rv := objc.Send[WhoseSpecifier](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (w_ WhoseSpecifier) Autorelease() WhoseSpecifier {
 
 // NewWhoseSpecifier creates a new WhoseSpecifier instance.
 func NewWhoseSpecifier() WhoseSpecifier {
-	return whoseSpecifierClass.New()
+	return getWhoseSpecifierClass().New()
 }
 
 

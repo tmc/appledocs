@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKScene] class.
-var sKSceneClass = _SKSceneClass{objc.GetClass("SKScene")}
+var (
+	sKSceneClass     _SKSceneClass
+	sKSceneClassOnce sync.Once
+)
+
+func getSKSceneClass() _SKSceneClass {
+	sKSceneClassOnce.Do(func() {
+		sKSceneClass = _SKSceneClass{objc.GetClass("SKScene")}
+	})
+	return sKSceneClass
+}
 
 type _SKSceneClass struct {
 	class objc.Class
@@ -34,7 +45,6 @@ type ISKScene interface {
 // An object that organizes all of the active SpriteKit content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene
-
 type SKScene struct {
 	SKEffectNode
 }
@@ -47,13 +57,15 @@ func SKSceneFrom(ptr unsafe.Pointer) SKScene {
 		SKEffectNode: SKEffectNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKSceneClass) Alloc() SKScene {
 	rv := objc.Send[SKScene](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKSceneClass) New() SKScene {
 	rv := objc.Send[SKScene](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -74,7 +86,7 @@ func (s_ SKScene) Autorelease() SKScene {
 
 // NewSKScene creates a new SKScene instance.
 func NewSKScene() SKScene {
-	return sKSceneClass.New()
+	return getSKSceneClass().New()
 }
 
 
@@ -83,7 +95,7 @@ func NewSKScene() SKScene {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/init(size:)
 func NewSKSceneWithSize(size unsafe.Pointer) SKScene {
-	instance := sKSceneClass.Alloc()
+	instance := getSKSceneClass().Alloc()
 	rv := objc.Send[SKScene](instance.ID, objc.Sel("initWithSize:"), size)
 	rv.Autorelease()
 	return rv

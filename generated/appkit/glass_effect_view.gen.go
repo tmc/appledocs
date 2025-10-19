@@ -34,7 +34,6 @@ type IGlassEffectView interface {
 // A view that embeds its content view in a dynamic glass effect. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView
-
 type GlassEffectView struct {
 	View
 }
@@ -47,6 +46,7 @@ func GlassEffectViewFrom(ptr unsafe.Pointer) GlassEffectView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GlassEffectViewClass) Alloc() GlassEffectView {
 	rv := objc.Send[GlassEffectView](objc.ID(gc.class), objc.Sel("alloc"))

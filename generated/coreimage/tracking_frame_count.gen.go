@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [trackingFrameCount] class.
-var trackingFrameCountClass = _trackingFrameCountClass{objc.GetClass("trackingFrameCount")}
+var (
+	trackingFrameCountClass     _trackingFrameCountClass
+	trackingFrameCountClassOnce sync.Once
+)
+
+func gettrackingFrameCountClass() _trackingFrameCountClass {
+	trackingFrameCountClassOnce.Do(func() {
+		trackingFrameCountClass = _trackingFrameCountClass{objc.GetClass("trackingFrameCount")}
+	})
+	return trackingFrameCountClass
+}
 
 type _trackingFrameCountClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ItrackingFrameCount interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingFrameCount-c.ivar
-
 type trackingFrameCount struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type trackingFrameCount struct {
 func trackingFrameCountFrom(ptr unsafe.Pointer) trackingFrameCount {
 	return trackingFrameCount{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _trackingFrameCountClass) Alloc() trackingFrameCount {
 	rv := objc.Send[trackingFrameCount](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _trackingFrameCountClass) New() trackingFrameCount {
 	rv := objc.Send[trackingFrameCount](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (t_ trackingFrameCount) Autorelease() trackingFrameCount {
 
 // NewtrackingFrameCount creates a new trackingFrameCount instance.
 func NewtrackingFrameCount() trackingFrameCount {
-	return trackingFrameCountClass.New()
+	return gettrackingFrameCountClass().New()
 }
 
 

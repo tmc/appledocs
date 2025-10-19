@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [symbolVersion] class.
-var symbolVersionClass = _symbolVersionClass{objc.GetClass("symbolVersion")}
+var (
+	symbolVersionClass     _symbolVersionClass
+	symbolVersionClassOnce sync.Once
+)
+
+func getsymbolVersionClass() _symbolVersionClass {
+	symbolVersionClassOnce.Do(func() {
+		symbolVersionClass = _symbolVersionClass{objc.GetClass("symbolVersion")}
+	})
+	return symbolVersionClass
+}
 
 type _symbolVersionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IsymbolVersion interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/symbolVersion-c.ivar
-
 type symbolVersion struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type symbolVersion struct {
 func symbolVersionFrom(ptr unsafe.Pointer) symbolVersion {
 	return symbolVersion{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _symbolVersionClass) Alloc() symbolVersion {
 	rv := objc.Send[symbolVersion](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _symbolVersionClass) New() symbolVersion {
 	rv := objc.Send[symbolVersion](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (s_ symbolVersion) Autorelease() symbolVersion {
 
 // NewsymbolVersion creates a new symbolVersion instance.
 func NewsymbolVersion() symbolVersion {
-	return symbolVersionClass.New()
+	return getsymbolVersionClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package objectivec
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Object] class.
-var objectClass = _ObjectClass{objc.GetClass("NSObject")}
+var (
+	objectClass     _ObjectClass
+	objectClassOnce sync.Once
+)
+
+func getObjectClass() _ObjectClass {
+	objectClassOnce.Do(func() {
+		objectClass = _ObjectClass{objc.GetClass("NSObject")}
+	})
+	return objectClass
+}
 
 type _ObjectClass struct {
 	class objc.Class
@@ -222,13 +233,15 @@ type Object struct {
 func ObjectFrom(ptr unsafe.Pointer) Object {
 	return Object{objc.ID(ptr)}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _ObjectClass) Alloc() Object {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _ObjectClass) New() Object {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -249,8 +262,10 @@ func (o_ Object) Autorelease() Object {
 
 // NewObject creates a new Object instance.
 func NewObject() Object {
-	return objectClass.New()
+	return getObjectClass().New()
 }
+
+
 
 
 // Returns a Boolean value that indicates whether the observed object supports automatic key-value observation for the given key. [Full Topic]
@@ -258,7 +273,7 @@ func NewObject() Object {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automaticallyNotifiesObservers(forKey:)
 func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key string) bool {
-	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("automaticallyNotifiesObserversForKey:"), key)
+	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("automaticallyNotifiesObserversForKey:"), objc.String(key))
 	return rv
 }
 // Cancels perform requests previously registered with the instance method. [Full Topic]
@@ -426,7 +441,7 @@ func (o_ Object) URLResourceDataDidBecomeAvailable(sender unsafe.Pointer, newByt
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/URL:resourceDidFailLoadingWithReason:
 func (o_ Object) URLResourceDidFailLoadingWithReason(sender unsafe.Pointer, reason string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("URL:resourceDidFailLoadingWithReason:"), sender, reason)
+	objc.Send[objc.ID](o_.ID, objc.Sel("URL:resourceDidFailLoadingWithReason:"), sender, objc.String(reason))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/URLResourceDidCancelLoading:
@@ -553,7 +568,7 @@ func (o_ Object) ActionProperty() unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/application:delegateHandlesKey:
 func (o_ Object) ApplicationDelegateHandlesKey(sender unsafe.Pointer, key string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("application:delegateHandlesKey:"), sender, key)
+	rv := objc.Send[bool](o_.ID, objc.Sel("application:delegateHandlesKey:"), sender, objc.String(key))
 	return rv
 }
 // Implemented to attempt a recovery from an error noted in an application-modal dialog. [Full Topic]
@@ -666,7 +681,7 @@ func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int) 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityInsertTextAtCursor(text:)
 func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), text)
+	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), objc.String(text))
 }
 // Returns the range of selected text in the element. [Full Topic]
 
@@ -794,14 +809,14 @@ func (o_ Object) ComposedString(sender objc.ID) objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionParameterView(_:didChangeParameterWithKey:)
 func (o_ Object) CompositionParameterViewDidChangeParameterWithKey(parameterView unsafe.Pointer, portKey string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("compositionParameterView:didChangeParameterWithKey:"), parameterView, portKey)
+	objc.Send[objc.ID](o_.ID, objc.Sel("compositionParameterView:didChangeParameterWithKey:"), parameterView, objc.String(portKey))
 }
 // Allows you to define which composition parameters are visible in the user interface when the composition parameter view refreshes. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionParameterView(_:shouldDisplayParameterWithKey:attributes:)
 func (o_ Object) CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("compositionParameterView:shouldDisplayParameterWithKey:attributes:"), parameterView, portKey, portAttributes)
+	rv := objc.Send[bool](o_.ID, objc.Sel("compositionParameterView:shouldDisplayParameterWithKey:attributes:"), parameterView, objc.String(portKey), portAttributes)
 	return rv
 }
 // Performs custom tasks when the selected composition in the composition picker view changes. [Full Topic]
@@ -851,7 +866,7 @@ func (o_ Object) ControlTextDidEndEditing(obj unsafe.Pointer) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/copyScriptingValue(_:forKey:withProperties:)
 func (o_ Object) CopyScriptingValueForKeyWithProperties(value objc.ID, key string, properties unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("copyScriptingValue:forKey:withProperties:"), value, key, properties)
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("copyScriptingValue:forKey:withProperties:"), value, objc.String(key), properties)
 	return rv
 }
 // Deallocates the memory occupied by the receiver. [Full Topic]
@@ -973,7 +988,7 @@ func (o_ Object) FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileManager(_:willProcessPath:)
 func (o_ Object) FileManagerWillProcessPath(fm unsafe.Pointer, path string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileManager:willProcessPath:"), fm, path)
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileManager:willProcessPath:"), fm, objc.String(path))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesAbortComplete(_:error:)
@@ -998,7 +1013,7 @@ func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inSe
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCreateFolderComplete(_:error:folder:)
 func (o_ Object) FileTransferServicesCreateFolderCompleteErrorFolder(inServices unsafe.Pointer, inError unsafe.Pointer, inFolderName string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCreateFolderComplete:error:folder:"), inServices, inError, inFolderName)
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCreateFolderComplete:error:folder:"), inServices, inError, objc.String(inFolderName))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesDisconnectionComplete(_:error:)
@@ -1013,12 +1028,12 @@ func (o_ Object) FileTransferServicesFilePreparationCompleteError(inServices uns
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesPathChangeComplete(_:error:finalPath:)
 func (o_ Object) FileTransferServicesPathChangeCompleteErrorFinalPath(inServices unsafe.Pointer, inError unsafe.Pointer, inPath string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesPathChangeComplete:error:finalPath:"), inServices, inError, inPath)
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesPathChangeComplete:error:finalPath:"), inServices, inError, objc.String(inPath))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRemoveItemComplete(_:error:removedItem:)
 func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices unsafe.Pointer, inError unsafe.Pointer, inItemName string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRemoveItemComplete:error:removedItem:"), inServices, inError, inItemName)
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRemoveItemComplete:error:removedItem:"), inServices, inError, objc.String(inItemName))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRetrieveFolderListingComplete(_:error:listing:)
@@ -1214,7 +1229,7 @@ func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier unsafe.Po
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inputText(_:client:)
 func (o_ Object) InputTextClient(string string, sender objc.ID) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:client:"), string, sender)
+	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:client:"), objc.String(string), sender)
 	return rv
 }
 // Receives Unicode, the key code that generated it, and any modifier flags. [Full Topic]
@@ -1222,7 +1237,7 @@ func (o_ Object) InputTextClient(string string, sender objc.ID) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inputText(_:key:modifiers:client:)
 func (o_ Object) InputTextKeyModifiersClient(string string, keyCode int, flags uint, sender objc.ID) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:key:modifiers:client:"), string, keyCode, flags, sender)
+	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:key:modifiers:client:"), objc.String(string), keyCode, flags, sender)
 	return rv
 }
 // For a given key that defines the name of the relationship from the receiver’s class to another class, returns the name of the relationship from the other class to the receiver’s class. [Full Topic]
@@ -1230,7 +1245,7 @@ func (o_ Object) InputTextKeyModifiersClient(string string, keyCode int, flags u
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inverse(forRelationshipKey:)
 func (o_ Object) InverseForRelationshipKey(relationshipKey string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("inverseForRelationshipKey:"), relationshipKey)
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("inverseForRelationshipKey:"), objc.String(relationshipKey))
 	return rv
 }
 // Returns a Boolean value that indicates whether receiver is considered to be “like” a given string when the case of characters in the receiver is ignored. [Full Topic]
@@ -1238,7 +1253,7 @@ func (o_ Object) InverseForRelationshipKey(relationshipKey string) unsafe.Pointe
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isCaseInsensitiveLike(_:)
 func (o_ Object) IsCaseInsensitiveLike(object string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isCaseInsensitiveLike:"), object)
+	rv := objc.Send[bool](o_.ID, objc.Sel("isCaseInsensitiveLike:"), objc.String(object))
 	return rv
 }
 // Returns a Boolean value that indicates whether the receiver is equal to another given object. [Full Topic]
@@ -1286,7 +1301,7 @@ func (o_ Object) IsLessThanOrEqualTo(object objc.ID) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLike(_:)
 func (o_ Object) IsLike(object string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isLike:"), object)
+	rv := objc.Send[bool](o_.ID, objc.Sel("isLike:"), objc.String(object))
 	return rv
 }
 // Returns a Boolean value that indicates whether the receiver is not equal to another given object. [Full Topic]
@@ -1326,7 +1341,7 @@ func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/newScriptingObject(of:forValueForKey:withContentsValue:properties:)
 func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key string, contentsValue objc.ID, properties unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), objectClass, key, contentsValue, properties)
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), objectClass, objc.String(key), contentsValue, properties)
 	return rv
 }
 // Returns the number of groups in an image browser view. [Full Topic]
@@ -1372,7 +1387,7 @@ func (o_ Object) OriginalString(sender objc.ID) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:compareFilename:with:caseSensitive:
 func (o_ Object) PanelCompareFilenameWithCaseSensitive(sender objc.ID, name1 string, name2 string, caseSensitive bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("panel:compareFilename:with:caseSensitive:"), sender, name1, name2, caseSensitive)
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("panel:compareFilename:with:caseSensitive:"), sender, objc.String(name1), objc.String(name2), caseSensitive)
 	return rv
 }
 // Tells the delegate that the user has changed the selected directory in the object specified. [Full Topic]
@@ -1380,14 +1395,14 @@ func (o_ Object) PanelCompareFilenameWithCaseSensitive(sender objc.ID, name1 str
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:directoryDidChange:
 func (o_ Object) PanelDirectoryDidChange(sender objc.ID, path string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("panel:directoryDidChange:"), sender, path)
+	objc.Send[objc.ID](o_.ID, objc.Sel("panel:directoryDidChange:"), sender, objc.String(path))
 }
 // Gives the delegate the opportunity to validate selected items. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:isValidFilename:
 func (o_ Object) PanelIsValidFilename(sender objc.ID, filename string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("panel:isValidFilename:"), sender, filename)
+	rv := objc.Send[bool](o_.ID, objc.Sel("panel:isValidFilename:"), sender, objc.String(filename))
 	return rv
 }
 // Gives the delegate the opportunity to filter items that it doesn’t want the user to choose. [Full Topic]
@@ -1395,7 +1410,7 @@ func (o_ Object) PanelIsValidFilename(sender objc.ID, filename string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:shouldShowFilename:
 func (o_ Object) PanelShouldShowFilename(sender objc.ID, filename string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("panel:shouldShowFilename:"), sender, filename)
+	rv := objc.Send[bool](o_.ID, objc.Sel("panel:shouldShowFilename:"), sender, objc.String(filename))
 	return rv
 }
 // Implemented by an owner object to provide promised data. [Full Topic]
@@ -1445,7 +1460,7 @@ func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performAction(for:identifier:)
 func (o_ Object) PerformActionForPersonIdentifier(person unsafe.Pointer, identifier string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("performActionForPerson:identifier:"), person, identifier)
+	objc.Send[objc.ID](o_.ID, objc.Sel("performActionForPerson:identifier:"), person, objc.String(identifier))
 }
 // Invokes a method of the receiver on a new background thread. [Full Topic]
 
@@ -1568,7 +1583,7 @@ func (o_ Object) ReplacementObjectForArchiver(archiver unsafe.Pointer) objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/saveOptions(_:shouldShowUTType:)
 func (o_ Object) SaveOptionsShouldShowUTType(saveOptions unsafe.Pointer, utType string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("saveOptions:shouldShowUTType:"), saveOptions, utType)
+	rv := objc.Send[bool](o_.ID, objc.Sel("saveOptions:shouldShowUTType:"), saveOptions, objc.String(utType))
 	return rv
 }
 // Given an object specifier, returns the specified object or objects in the receiving container. [Full Topic]
@@ -1658,14 +1673,14 @@ func (o_ Object) SetSharedObservers(sharedObservers unsafe.Pointer) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKey:)
 func (o_ Object) SetValueForKey(value objc.ID, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, key)
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
 // Sets the value for the property identified by a given key path to a given value. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKeyPath:)
 func (o_ Object) SetValueForKeyPath(value objc.ID, keyPath string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKeyPath:"), value, keyPath)
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKeyPath:"), value, objc.String(keyPath))
 }
 // Sets properties of the receiver with values from a given dictionary, using its keys to identify the properties. [Full Topic]
 
@@ -1687,7 +1702,7 @@ func (o_ Object) SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, devi
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanel(_:deviceContainsSuitableMedia:promptString:)
 func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceContainsSuitableMedia:promptString:"), aPanel, device, prompt)
+	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceContainsSuitableMedia:promptString:"), aPanel, device, objc.String(prompt))
 	return rv
 }
 // Allows the delegate to determine if device can be used as a target. [Full Topic]
@@ -1718,7 +1733,7 @@ func (o_ Object) SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/shouldEnableAction(for:identifier:)
 func (o_ Object) ShouldEnableActionForPersonIdentifier(person unsafe.Pointer, identifier string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("shouldEnableActionForPerson:identifier:"), person, identifier)
+	rv := objc.Send[bool](o_.ID, objc.Sel("shouldEnableActionForPerson:identifier:"), person, objc.String(identifier))
 	return rv
 }
 // Writes the specified rows to the specified pasteboard. [Full Topic]
@@ -1734,7 +1749,7 @@ func (o_ Object) TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows u
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/title(for:identifier:)
 func (o_ Object) TitleForPersonIdentifier(person unsafe.Pointer, identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("titleForPerson:identifier:"), person, identifier)
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("titleForPerson:identifier:"), person, objc.String(identifier))
 	return rv
 }
 // Returns the mode mask corresponding to the expected font panel mode. [Full Topic]
@@ -1766,7 +1781,7 @@ func (o_ Object) ValidateToolbarItem(item unsafe.Pointer) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forKey:)
 func (o_ Object) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), key)
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 // Returns the value for the derived property identified by a given key path. [Full Topic]
@@ -1774,7 +1789,7 @@ func (o_ Object) ValueForKey(key string) objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forKeyPath:)
 func (o_ Object) ValueForKeyPath(keyPath string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKeyPath:"), keyPath)
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKeyPath:"), objc.String(keyPath))
 	return rv
 }
 // Returns the tool tip string to be displayed due to the cursor pausing at location within the tool tip rectangle identified by in the view . [Full Topic]

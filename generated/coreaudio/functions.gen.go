@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // CoreAudio Functions (2 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -23,7 +24,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_AudioConvertNanosToHostTime, lib, "AudioConvertNanosToHostTime")
 	tryRegister(&_AudioHardwareDestroyProcessTap, lib, "AudioHardwareDestroyProcessTap")
 }
@@ -39,6 +39,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // AudioConvertNanosToHostTime is a CoreAudio function. [Full Topic]

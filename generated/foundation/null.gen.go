@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Null] class.
-var nullClass = _NullClass{objc.GetClass("NSNull")}
+var (
+	nullClass     _NullClass
+	nullClassOnce sync.Once
+)
+
+func getNullClass() _NullClass {
+	nullClassOnce.Do(func() {
+		nullClass = _NullClass{objc.GetClass("NSNull")}
+	})
+	return nullClass
+}
 
 type _NullClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INull interface {
 // A singleton object used to represent null values in collection objects that don’t allow values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull
-
 type Null struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Null struct {
 func NullFrom(ptr unsafe.Pointer) Null {
 	return Null{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NullClass) Alloc() Null {
 	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NullClass) New() Null {
 	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ Null) Autorelease() Null {
 
 // NewNull creates a new Null instance.
 func NewNull() Null {
-	return nullClass.New()
+	return getNullClass().New()
 }
 
 

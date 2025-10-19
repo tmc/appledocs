@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RangeSpecifier] class.
-var rangeSpecifierClass = _RangeSpecifierClass{objc.GetClass("NSRangeSpecifier")}
+var (
+	rangeSpecifierClass     _RangeSpecifierClass
+	rangeSpecifierClassOnce sync.Once
+)
+
+func getRangeSpecifierClass() _RangeSpecifierClass {
+	rangeSpecifierClassOnce.Do(func() {
+		rangeSpecifierClass = _RangeSpecifierClass{objc.GetClass("NSRangeSpecifier")}
+	})
+	return rangeSpecifierClass
+}
 
 type _RangeSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IRangeSpecifier interface {
 // A specifier for a range of objects in a container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier
-
 type RangeSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func RangeSpecifierFrom(ptr unsafe.Pointer) RangeSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RangeSpecifierClass) Alloc() RangeSpecifier {
 	rv := objc.Send[RangeSpecifier](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RangeSpecifierClass) New() RangeSpecifier {
 	rv := objc.Send[RangeSpecifier](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ RangeSpecifier) Autorelease() RangeSpecifier {
 
 // NewRangeSpecifier creates a new RangeSpecifier instance.
 func NewRangeSpecifier() RangeSpecifier {
-	return rangeSpecifierClass.New()
+	return getRangeSpecifierClass().New()
 }
 
 

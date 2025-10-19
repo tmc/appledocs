@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentCloudKitContainerOptions] class.
-var persistentCloudKitContainerOptionsClass = _PersistentCloudKitContainerOptionsClass{objc.GetClass("NSPersistentCloudKitContainerOptions")}
+var (
+	persistentCloudKitContainerOptionsClass     _PersistentCloudKitContainerOptionsClass
+	persistentCloudKitContainerOptionsClassOnce sync.Once
+)
+
+func getPersistentCloudKitContainerOptionsClass() _PersistentCloudKitContainerOptionsClass {
+	persistentCloudKitContainerOptionsClassOnce.Do(func() {
+		persistentCloudKitContainerOptionsClass = _PersistentCloudKitContainerOptionsClass{objc.GetClass("NSPersistentCloudKitContainerOptions")}
+	})
+	return persistentCloudKitContainerOptionsClass
+}
 
 type _PersistentCloudKitContainerOptionsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPersistentCloudKitContainerOptions interface {
 // An object that customizes how a store description aligns with a CloudKit database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions
-
 type PersistentCloudKitContainerOptions struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PersistentCloudKitContainerOptions struct {
 func PersistentCloudKitContainerOptionsFrom(ptr unsafe.Pointer) PersistentCloudKitContainerOptions {
 	return PersistentCloudKitContainerOptions{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentCloudKitContainerOptionsClass) Alloc() PersistentCloudKitContainerOptions {
 	rv := objc.Send[PersistentCloudKitContainerOptions](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentCloudKitContainerOptionsClass) New() PersistentCloudKitContainerOptions {
 	rv := objc.Send[PersistentCloudKitContainerOptions](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PersistentCloudKitContainerOptions) Autorelease() PersistentCloudKitCon
 
 // NewPersistentCloudKitContainerOptions creates a new PersistentCloudKitContainerOptions instance.
 func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions {
-	return persistentCloudKitContainerOptionsClass.New()
+	return getPersistentCloudKitContainerOptionsClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
 func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {
-	instance := persistentCloudKitContainerOptionsClass.Alloc()
+	instance := getPersistentCloudKitContainerOptionsClass().Alloc()
 	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
 	rv.Autorelease()
 	return rv

@@ -17,7 +17,7 @@ import (
 var (
 	_CACurrentMediaTime func() unsafe.Pointer
 	_CAFrameRateRangeIsEqualToRange func(unsafe.Pointer, unsafe.Pointer) bool
-	_CATransform3DMakeScale func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CATransform3DMakeScale func(CGFloat, CGFloat, CGFloat) unsafe.Pointer
 )
 
 func init() {
@@ -69,7 +69,7 @@ func CAFrameRateRangeIsEqualToRange(range_ unsafe.Pointer, other unsafe.Pointer)
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeScale(_:_:_:)
-func CATransform3DMakeScale(sx unsafe.Pointer, sy unsafe.Pointer, sz unsafe.Pointer) unsafe.Pointer {
+func CATransform3DMakeScale(sx CGFloat, sy CGFloat, sz CGFloat) unsafe.Pointer {
 	return _CATransform3DMakeScale(sx, sy, sz)
 	}
 

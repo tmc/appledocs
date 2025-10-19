@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DirectoryEnumerator] class.
-var directoryEnumeratorClass = _DirectoryEnumeratorClass{objc.GetClass("NSDirectoryEnumerator")}
+var (
+	directoryEnumeratorClass     _DirectoryEnumeratorClass
+	directoryEnumeratorClassOnce sync.Once
+)
+
+func getDirectoryEnumeratorClass() _DirectoryEnumeratorClass {
+	directoryEnumeratorClassOnce.Do(func() {
+		directoryEnumeratorClass = _DirectoryEnumeratorClass{objc.GetClass("NSDirectoryEnumerator")}
+	})
+	return directoryEnumeratorClass
+}
 
 type _DirectoryEnumeratorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDirectoryEnumerator interface {
 // An object that enumerates the contents of a directory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator
-
 type DirectoryEnumerator struct {
 	Enumerator
 }
@@ -36,13 +46,15 @@ func DirectoryEnumeratorFrom(ptr unsafe.Pointer) DirectoryEnumerator {
 		Enumerator: EnumeratorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DirectoryEnumeratorClass) Alloc() DirectoryEnumerator {
 	rv := objc.Send[DirectoryEnumerator](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DirectoryEnumeratorClass) New() DirectoryEnumerator {
 	rv := objc.Send[DirectoryEnumerator](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DirectoryEnumerator) Autorelease() DirectoryEnumerator {
 
 // NewDirectoryEnumerator creates a new DirectoryEnumerator instance.
 func NewDirectoryEnumerator() DirectoryEnumerator {
-	return directoryEnumeratorClass.New()
+	return getDirectoryEnumeratorClass().New()
 }
 
 

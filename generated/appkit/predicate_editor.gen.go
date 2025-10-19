@@ -34,7 +34,6 @@ type IPredicateEditor interface {
 // A defined set of rules that allows the editing of predicate objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor
-
 type PredicateEditor struct {
 	RuleEditor
 }
@@ -47,6 +46,7 @@ func PredicateEditorFrom(ptr unsafe.Pointer) PredicateEditor {
 		RuleEditor: RuleEditorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PredicateEditorClass) Alloc() PredicateEditor {
 	rv := objc.Send[PredicateEditor](objc.ID(pc.class), objc.Sel("alloc"))

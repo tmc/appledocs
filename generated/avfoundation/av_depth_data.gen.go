@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVDepthData] class.
-var aVDepthDataClass = _AVDepthDataClass{objc.GetClass("AVDepthData")}
+var (
+	aVDepthDataClass     _AVDepthDataClass
+	aVDepthDataClassOnce sync.Once
+)
+
+func getAVDepthDataClass() _AVDepthDataClass {
+	aVDepthDataClassOnce.Do(func() {
+		aVDepthDataClass = _AVDepthDataClass{objc.GetClass("AVDepthData")}
+	})
+	return aVDepthDataClass
+}
 
 type _AVDepthDataClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVDepthData interface {
 // A container for per-pixel distance or disparity information captured by compatible camera devices. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDepthData
-
 type AVDepthData struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVDepthData struct {
 func AVDepthDataFrom(ptr unsafe.Pointer) AVDepthData {
 	return AVDepthData{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVDepthDataClass) Alloc() AVDepthData {
 	rv := objc.Send[AVDepthData](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVDepthDataClass) New() AVDepthData {
 	rv := objc.Send[AVDepthData](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVDepthData) Autorelease() AVDepthData {
 
 // NewAVDepthData creates a new AVDepthData instance.
 func NewAVDepthData() AVDepthData {
-	return aVDepthDataClass.New()
+	return getAVDepthDataClass().New()
 }
 
 

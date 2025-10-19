@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SpecifierTest] class.
-var specifierTestClass = _SpecifierTestClass{objc.GetClass("NSSpecifierTest")}
+var (
+	specifierTestClass     _SpecifierTestClass
+	specifierTestClassOnce sync.Once
+)
+
+func getSpecifierTestClass() _SpecifierTestClass {
+	specifierTestClassOnce.Do(func() {
+		specifierTestClass = _SpecifierTestClass{objc.GetClass("NSSpecifierTest")}
+	})
+	return specifierTestClass
+}
 
 type _SpecifierTestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISpecifierTest interface {
 // A comparison between an object specifier and a test object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest
-
 type SpecifierTest struct {
 	ScriptWhoseTest
 }
@@ -36,13 +46,15 @@ func SpecifierTestFrom(ptr unsafe.Pointer) SpecifierTest {
 		ScriptWhoseTest: ScriptWhoseTestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SpecifierTestClass) Alloc() SpecifierTest {
 	rv := objc.Send[SpecifierTest](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SpecifierTestClass) New() SpecifierTest {
 	rv := objc.Send[SpecifierTest](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SpecifierTest) Autorelease() SpecifierTest {
 
 // NewSpecifierTest creates a new SpecifierTest instance.
 func NewSpecifierTest() SpecifierTest {
-	return specifierTestClass.New()
+	return getSpecifierTestClass().New()
 }
 
 

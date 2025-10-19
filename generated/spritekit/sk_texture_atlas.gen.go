@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKTextureAtlas] class.
-var sKTextureAtlasClass = _SKTextureAtlasClass{objc.GetClass("SKTextureAtlas")}
+var (
+	sKTextureAtlasClass     _SKTextureAtlasClass
+	sKTextureAtlasClassOnce sync.Once
+)
+
+func getSKTextureAtlasClass() _SKTextureAtlasClass {
+	sKTextureAtlasClassOnce.Do(func() {
+		sKTextureAtlasClass = _SKTextureAtlasClass{objc.GetClass("SKTextureAtlas")}
+	})
+	return sKTextureAtlasClass
+}
 
 type _SKTextureAtlasClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type ISKTextureAtlas interface {
 // A collection of textures optimized for storage and drawing performance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas
-
 type SKTextureAtlas struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type SKTextureAtlas struct {
 func SKTextureAtlasFrom(ptr unsafe.Pointer) SKTextureAtlas {
 	return SKTextureAtlas{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTextureAtlasClass) Alloc() SKTextureAtlas {
 	rv := objc.Send[SKTextureAtlas](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTextureAtlasClass) New() SKTextureAtlas {
 	rv := objc.Send[SKTextureAtlas](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (s_ SKTextureAtlas) Autorelease() SKTextureAtlas {
 
 // NewSKTextureAtlas creates a new SKTextureAtlas instance.
 func NewSKTextureAtlas() SKTextureAtlas {
-	return sKTextureAtlasClass.New()
+	return getSKTextureAtlasClass().New()
 }
 
 
@@ -72,18 +84,16 @@ func NewSKTextureAtlas() SKTextureAtlas {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(named:)
-func NewAtlasNamed(name string) SKTextureAtlas {
-	rv := objc.Send[SKTextureAtlas](objc.ID(sKTextureAtlasClass.class), objc.Sel("atlasNamed:"), name)
-	rv.Autorelease()
+func NewSKTextureAtlasNamed(name string) SKTextureAtlas {
+	rv := objc.Send[SKTextureAtlas](objc.ID(getSKTextureAtlasClass().class), objc.Sel("atlasNamed:"), objc.String(name))
 	return rv
 }
 // Creates a texture atlas from a set of image files. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)
-func NewAtlasWithDictionary(properties unsafe.Pointer) SKTextureAtlas {
-	rv := objc.Send[SKTextureAtlas](objc.ID(sKTextureAtlasClass.class), objc.Sel("atlasWithDictionary:"), properties)
-	rv.Autorelease()
+func NewSKTextureAtlasWithDictionary(properties unsafe.Pointer) SKTextureAtlas {
+	rv := objc.Send[SKTextureAtlas](objc.ID(getSKTextureAtlasClass().class), objc.Sel("atlasWithDictionary:"), properties)
 	return rv
 }
 
@@ -101,7 +111,7 @@ func (sc _SKTextureAtlasClass) AtlasWithDictionary(properties unsafe.Pointer) un
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(named:)
 func (sc _SKTextureAtlasClass) AtlasNamed(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("atlasNamed:"), name)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("atlasNamed:"), objc.String(name))
 	return rv
 }
 // Loads the textures of multiple atlas objects into memory, calling a completion handler after the task completes. [Full Topic]
@@ -130,7 +140,7 @@ func (s_ SKTextureAtlas) PreloadWithCompletionHandler(completionHandler unsafe.P
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)
 func (s_ SKTextureAtlas) TextureNamed(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textureNamed:"), name)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textureNamed:"), objc.String(name))
 	return rv
 }
 

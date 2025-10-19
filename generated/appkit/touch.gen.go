@@ -36,7 +36,6 @@ type ITouch interface {
 // A snapshot of a particular touch at an instant in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch
-
 type Touch struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type Touch struct {
 func TouchFrom(ptr unsafe.Pointer) Touch {
 	return Touch{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TouchClass) Alloc() Touch {
 	rv := objc.Send[Touch](objc.ID(tc.class), objc.Sel("alloc"))

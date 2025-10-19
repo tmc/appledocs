@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NERelay] class.
-var nERelayClass = _NERelayClass{objc.GetClass("NERelay")}
+var (
+	nERelayClass     _NERelayClass
+	nERelayClassOnce sync.Once
+)
+
+func getNERelayClass() _NERelayClass {
+	nERelayClassOnce.Do(func() {
+		nERelayClass = _NERelayClass{objc.GetClass("NERelay")}
+	})
+	return nERelayClass
+}
 
 type _NERelayClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INERelay interface {
 // A single relay server configuration that you can chain together with other relays. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay
-
 type NERelay struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NERelay struct {
 func NERelayFrom(ptr unsafe.Pointer) NERelay {
 	return NERelay{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NERelayClass) Alloc() NERelay {
 	rv := objc.Send[NERelay](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NERelayClass) New() NERelay {
 	rv := objc.Send[NERelay](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NERelay) Autorelease() NERelay {
 
 // NewNERelay creates a new NERelay instance.
 func NewNERelay() NERelay {
-	return nERelayClass.New()
+	return getNERelayClass().New()
 }
 
 

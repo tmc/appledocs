@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DateIntervalFormatter] class.
-var dateIntervalFormatterClass = _DateIntervalFormatterClass{objc.GetClass("NSDateIntervalFormatter")}
+var (
+	dateIntervalFormatterClass     _DateIntervalFormatterClass
+	dateIntervalFormatterClassOnce sync.Once
+)
+
+func getDateIntervalFormatterClass() _DateIntervalFormatterClass {
+	dateIntervalFormatterClassOnce.Do(func() {
+		dateIntervalFormatterClass = _DateIntervalFormatterClass{objc.GetClass("NSDateIntervalFormatter")}
+	})
+	return dateIntervalFormatterClass
+}
 
 type _DateIntervalFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDateIntervalFormatter interface {
 // A formatter that creates string representations of time intervals. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter
-
 type DateIntervalFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func DateIntervalFormatterFrom(ptr unsafe.Pointer) DateIntervalFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DateIntervalFormatterClass) Alloc() DateIntervalFormatter {
 	rv := objc.Send[DateIntervalFormatter](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateIntervalFormatterClass) New() DateIntervalFormatter {
 	rv := objc.Send[DateIntervalFormatter](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DateIntervalFormatter) Autorelease() DateIntervalFormatter {
 
 // NewDateIntervalFormatter creates a new DateIntervalFormatter instance.
 func NewDateIntervalFormatter() DateIntervalFormatter {
-	return dateIntervalFormatterClass.New()
+	return getDateIntervalFormatterClass().New()
 }
 
 

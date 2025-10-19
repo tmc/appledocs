@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DecimalNumberHandler] class.
-var decimalNumberHandlerClass = _DecimalNumberHandlerClass{objc.GetClass("NSDecimalNumberHandler")}
+var (
+	decimalNumberHandlerClass     _DecimalNumberHandlerClass
+	decimalNumberHandlerClassOnce sync.Once
+)
+
+func getDecimalNumberHandlerClass() _DecimalNumberHandlerClass {
+	decimalNumberHandlerClassOnce.Do(func() {
+		decimalNumberHandlerClass = _DecimalNumberHandlerClass{objc.GetClass("NSDecimalNumberHandler")}
+	})
+	return decimalNumberHandlerClass
+}
 
 type _DecimalNumberHandlerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IDecimalNumberHandler interface {
 // A class that adopts the decimal number behaviors protocol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler
-
 type DecimalNumberHandler struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type DecimalNumberHandler struct {
 func DecimalNumberHandlerFrom(ptr unsafe.Pointer) DecimalNumberHandler {
 	return DecimalNumberHandler{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DecimalNumberHandlerClass) Alloc() DecimalNumberHandler {
 	rv := objc.Send[DecimalNumberHandler](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DecimalNumberHandlerClass) New() DecimalNumberHandler {
 	rv := objc.Send[DecimalNumberHandler](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (d_ DecimalNumberHandler) Autorelease() DecimalNumberHandler {
 
 // NewDecimalNumberHandler creates a new DecimalNumberHandler instance.
 func NewDecimalNumberHandler() DecimalNumberHandler {
-	return decimalNumberHandlerClass.New()
+	return getDecimalNumberHandlerClass().New()
 }
 
 

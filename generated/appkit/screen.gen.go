@@ -37,7 +37,6 @@ type IScreen interface {
 // An object that describes the attributes of a computer’s monitor or screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen
-
 type Screen struct {
 	objectivec.Object
 }
@@ -48,6 +47,7 @@ type Screen struct {
 func ScreenFrom(ptr unsafe.Pointer) Screen {
 	return Screen{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScreenClass) Alloc() Screen {
 	rv := objc.Send[Screen](objc.ID(sc.class), objc.Sel("alloc"))

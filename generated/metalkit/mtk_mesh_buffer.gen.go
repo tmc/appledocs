@@ -3,6 +3,7 @@
 package metalkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTKMeshBuffer] class.
-var mTKMeshBufferClass = _MTKMeshBufferClass{objc.GetClass("MTKMeshBuffer")}
+var (
+	mTKMeshBufferClass     _MTKMeshBufferClass
+	mTKMeshBufferClassOnce sync.Once
+)
+
+func getMTKMeshBufferClass() _MTKMeshBufferClass {
+	mTKMeshBufferClassOnce.Do(func() {
+		mTKMeshBufferClass = _MTKMeshBufferClass{objc.GetClass("MTKMeshBuffer")}
+	})
+	return mTKMeshBufferClass
+}
 
 type _MTKMeshBufferClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IMTKMeshBuffer interface {
 // A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer
-
 type MTKMeshBuffer struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type MTKMeshBuffer struct {
 func MTKMeshBufferFrom(ptr unsafe.Pointer) MTKMeshBuffer {
 	return MTKMeshBuffer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTKMeshBufferClass) Alloc() MTKMeshBuffer {
 	rv := objc.Send[MTKMeshBuffer](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTKMeshBufferClass) New() MTKMeshBuffer {
 	rv := objc.Send[MTKMeshBuffer](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MTKMeshBuffer) Autorelease() MTKMeshBuffer {
 
 // NewMTKMeshBuffer creates a new MTKMeshBuffer instance.
 func NewMTKMeshBuffer() MTKMeshBuffer {
-	return mTKMeshBufferClass.New()
+	return getMTKMeshBufferClass().New()
 }
 
 

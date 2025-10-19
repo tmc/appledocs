@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaptureConnection] class.
-var aVCaptureConnectionClass = _AVCaptureConnectionClass{objc.GetClass("AVCaptureConnection")}
+var (
+	aVCaptureConnectionClass     _AVCaptureConnectionClass
+	aVCaptureConnectionClassOnce sync.Once
+)
+
+func getAVCaptureConnectionClass() _AVCaptureConnectionClass {
+	aVCaptureConnectionClassOnce.Do(func() {
+		aVCaptureConnectionClass = _AVCaptureConnectionClass{objc.GetClass("AVCaptureConnection")}
+	})
+	return aVCaptureConnectionClass
+}
 
 type _AVCaptureConnectionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaptureConnection interface {
 // An object that represents a connection from a capture input to a capture output. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureConnection
-
 type AVCaptureConnection struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVCaptureConnection struct {
 func AVCaptureConnectionFrom(ptr unsafe.Pointer) AVCaptureConnection {
 	return AVCaptureConnection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureConnectionClass) Alloc() AVCaptureConnection {
 	rv := objc.Send[AVCaptureConnection](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureConnectionClass) New() AVCaptureConnection {
 	rv := objc.Send[AVCaptureConnection](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVCaptureConnection) Autorelease() AVCaptureConnection {
 
 // NewAVCaptureConnection creates a new AVCaptureConnection instance.
 func NewAVCaptureConnection() AVCaptureConnection {
-	return aVCaptureConnectionClass.New()
+	return getAVCaptureConnectionClass().New()
 }
 
 

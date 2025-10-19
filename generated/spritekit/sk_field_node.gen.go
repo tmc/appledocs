@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKFieldNode] class.
-var sKFieldNodeClass = _SKFieldNodeClass{objc.GetClass("SKFieldNode")}
+var (
+	sKFieldNodeClass     _SKFieldNodeClass
+	sKFieldNodeClassOnce sync.Once
+)
+
+func getSKFieldNodeClass() _SKFieldNodeClass {
+	sKFieldNodeClassOnce.Do(func() {
+		sKFieldNodeClass = _SKFieldNodeClass{objc.GetClass("SKFieldNode")}
+	})
+	return sKFieldNodeClass
+}
 
 type _SKFieldNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKFieldNode interface {
 // A node that applies physics effects to nearby nodes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode
-
 type SKFieldNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKFieldNodeFrom(ptr unsafe.Pointer) SKFieldNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKFieldNodeClass) Alloc() SKFieldNode {
 	rv := objc.Send[SKFieldNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKFieldNodeClass) New() SKFieldNode {
 	rv := objc.Send[SKFieldNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKFieldNode) Autorelease() SKFieldNode {
 
 // NewSKFieldNode creates a new SKFieldNode instance.
 func NewSKFieldNode() SKFieldNode {
-	return sKFieldNodeClass.New()
+	return getSKFieldNodeClass().New()
 }
 
 

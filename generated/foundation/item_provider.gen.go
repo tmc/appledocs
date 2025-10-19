@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ItemProvider] class.
-var itemProviderClass = _ItemProviderClass{objc.GetClass("NSItemProvider")}
+var (
+	itemProviderClass     _ItemProviderClass
+	itemProviderClassOnce sync.Once
+)
+
+func getItemProviderClass() _ItemProviderClass {
+	itemProviderClassOnce.Do(func() {
+		itemProviderClass = _ItemProviderClass{objc.GetClass("NSItemProvider")}
+	})
+	return itemProviderClass
+}
 
 type _ItemProviderClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IItemProvider interface {
 // An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider
-
 type ItemProvider struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type ItemProvider struct {
 func ItemProviderFrom(ptr unsafe.Pointer) ItemProvider {
 	return ItemProvider{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ItemProviderClass) Alloc() ItemProvider {
 	rv := objc.Send[ItemProvider](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ItemProviderClass) New() ItemProvider {
 	rv := objc.Send[ItemProvider](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (i_ ItemProvider) Autorelease() ItemProvider {
 
 // NewItemProvider creates a new ItemProvider instance.
 func NewItemProvider() ItemProvider {
-	return itemProviderClass.New()
+	return getItemProviderClass().New()
 }
 
 

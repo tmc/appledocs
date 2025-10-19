@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableURLRequest] class.
-var mutableURLRequestClass = _MutableURLRequestClass{objc.GetClass("NSMutableURLRequest")}
+var (
+	mutableURLRequestClass     _MutableURLRequestClass
+	mutableURLRequestClassOnce sync.Once
+)
+
+func getMutableURLRequestClass() _MutableURLRequestClass {
+	mutableURLRequestClassOnce.Do(func() {
+		mutableURLRequestClass = _MutableURLRequestClass{objc.GetClass("NSMutableURLRequest")}
+	})
+	return mutableURLRequestClass
+}
 
 type _MutableURLRequestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableURLRequest interface {
 // A mutable URL load request that is independent of protocol or URL scheme. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest
-
 type MutableURLRequest struct {
 	URLRequest
 }
@@ -36,13 +46,15 @@ func MutableURLRequestFrom(ptr unsafe.Pointer) MutableURLRequest {
 		URLRequest: URLRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableURLRequestClass) Alloc() MutableURLRequest {
 	rv := objc.Send[MutableURLRequest](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableURLRequestClass) New() MutableURLRequest {
 	rv := objc.Send[MutableURLRequest](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableURLRequest) Autorelease() MutableURLRequest {
 
 // NewMutableURLRequest creates a new MutableURLRequest instance.
 func NewMutableURLRequest() MutableURLRequest {
-	return mutableURLRequestClass.New()
+	return getMutableURLRequestClass().New()
 }
 
 

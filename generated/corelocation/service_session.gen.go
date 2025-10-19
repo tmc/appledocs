@@ -3,6 +3,7 @@
 package corelocation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,15 +11,30 @@ import (
 )
 
 // The class instance for the [ServiceSession] class.
-var serviceSessionClass = _ServiceSessionClass{objc.GetClass("CLServiceSession")}
+var (
+	serviceSessionClass     _ServiceSessionClass
+	serviceSessionClassOnce sync.Once
+)
+
+func getServiceSessionClass() _ServiceSessionClass {
+	serviceSessionClassOnce.Do(func() {
+		serviceSessionClass = _ServiceSessionClass{objc.GetClass("CLServiceSession")}
+	})
+	return serviceSessionClass
+}
 
 type _ServiceSessionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ServiceSession] class.
+type IServiceSession interface {
+	objectivec.IObject
+	Invalidate()
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd
-
 type ServiceSession struct {
 	objectivec.Object
 }
@@ -27,6 +43,38 @@ type ServiceSession struct {
 func ServiceSessionFrom(ptr unsafe.Pointer) ServiceSession {
 	return ServiceSession{objectivec.Object{objc.ID(ptr)}}
 }
+
+// Alloc allocates a new instance without initialization.
+func (sc _ServiceSessionClass) Alloc() ServiceSession {
+	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (sc _ServiceSessionClass) New() ServiceSession {
+	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ServiceSession) Init() ServiceSession {
+	rv := objc.Send[ServiceSession](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ServiceSession) Autorelease() ServiceSession {
+	rv := objc.Send[ServiceSession](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewServiceSession creates a new ServiceSession instance.
+func NewServiceSession() ServiceSession {
+	return getServiceSessionClass().New()
+}
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:
@@ -37,13 +85,13 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequir
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKey(authorizationRequirement unsafe.Pointer, purposeKey string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:"), authorizationRequirement, purposeKey)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:"), authorizationRequirement, objc.String(purposeKey))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKeyQueueHandler(authorizationRequirement unsafe.Pointer, purposeKey string, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:"), authorizationRequirement, purposeKey, queue, handler)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:"), authorizationRequirement, objc.String(purposeKey), queue, handler)
 	return rv
 }
 //

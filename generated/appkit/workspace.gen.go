@@ -38,7 +38,6 @@ type IWorkspace interface {
 // A workspace that can launch other apps and perform a variety of file-handling services. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace
-
 type Workspace struct {
 	objectivec.Object
 }
@@ -49,6 +48,7 @@ type Workspace struct {
 func WorkspaceFrom(ptr unsafe.Pointer) Workspace {
 	return Workspace{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WorkspaceClass) Alloc() Workspace {
 	rv := objc.Send[Workspace](objc.ID(wc.class), objc.Sel("alloc"))

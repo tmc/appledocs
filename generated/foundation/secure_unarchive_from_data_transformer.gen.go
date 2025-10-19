@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SecureUnarchiveFromDataTransformer] class.
-var secureUnarchiveFromDataTransformerClass = _SecureUnarchiveFromDataTransformerClass{objc.GetClass("NSSecureUnarchiveFromDataTransformer")}
+var (
+	secureUnarchiveFromDataTransformerClass     _SecureUnarchiveFromDataTransformerClass
+	secureUnarchiveFromDataTransformerClassOnce sync.Once
+)
+
+func getSecureUnarchiveFromDataTransformerClass() _SecureUnarchiveFromDataTransformerClass {
+	secureUnarchiveFromDataTransformerClassOnce.Do(func() {
+		secureUnarchiveFromDataTransformerClass = _SecureUnarchiveFromDataTransformerClass{objc.GetClass("NSSecureUnarchiveFromDataTransformer")}
+	})
+	return secureUnarchiveFromDataTransformerClass
+}
 
 type _SecureUnarchiveFromDataTransformerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISecureUnarchiveFromDataTransformer interface {
 // A value transformer that converts data to and from classes that support secure coding. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer
-
 type SecureUnarchiveFromDataTransformer struct {
 	ValueTransformer
 }
@@ -36,13 +46,15 @@ func SecureUnarchiveFromDataTransformerFrom(ptr unsafe.Pointer) SecureUnarchiveF
 		ValueTransformer: ValueTransformerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SecureUnarchiveFromDataTransformerClass) Alloc() SecureUnarchiveFromDataTransformer {
 	rv := objc.Send[SecureUnarchiveFromDataTransformer](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SecureUnarchiveFromDataTransformerClass) New() SecureUnarchiveFromDataTransformer {
 	rv := objc.Send[SecureUnarchiveFromDataTransformer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SecureUnarchiveFromDataTransformer) Autorelease() SecureUnarchiveFromDa
 
 // NewSecureUnarchiveFromDataTransformer creates a new SecureUnarchiveFromDataTransformer instance.
 func NewSecureUnarchiveFromDataTransformer() SecureUnarchiveFromDataTransformer {
-	return secureUnarchiveFromDataTransformerClass.New()
+	return getSecureUnarchiveFromDataTransformerClass().New()
 }
 
 

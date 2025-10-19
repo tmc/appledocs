@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlayerLayer] class.
-var aVPlayerLayerClass = _AVPlayerLayerClass{objc.GetClass("AVPlayerLayer")}
+var (
+	aVPlayerLayerClass     _AVPlayerLayerClass
+	aVPlayerLayerClassOnce sync.Once
+)
+
+func getAVPlayerLayerClass() _AVPlayerLayerClass {
+	aVPlayerLayerClassOnce.Do(func() {
+		aVPlayerLayerClass = _AVPlayerLayerClass{objc.GetClass("AVPlayerLayer")}
+	})
+	return aVPlayerLayerClass
+}
 
 type _AVPlayerLayerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVPlayerLayer interface {
 // An object that presents the visual contents of a player object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer
-
 type AVPlayerLayer struct {
 	quartzcore.Layer
 }
@@ -37,13 +47,15 @@ func AVPlayerLayerFrom(ptr unsafe.Pointer) AVPlayerLayer {
 		Layer: quartzcore.LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerLayerClass) Alloc() AVPlayerLayer {
 	rv := objc.Send[AVPlayerLayer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerLayerClass) New() AVPlayerLayer {
 	rv := objc.Send[AVPlayerLayer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVPlayerLayer) Autorelease() AVPlayerLayer {
 
 // NewAVPlayerLayer creates a new AVPlayerLayer instance.
 func NewAVPlayerLayer() AVPlayerLayer {
-	return aVPlayerLayerClass.New()
+	return getAVPlayerLayerClass().New()
 }
 
 

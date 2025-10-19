@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaption] class.
-var aVCaptionClass = _AVCaptionClass{objc.GetClass("AVCaption")}
+var (
+	aVCaptionClass     _AVCaptionClass
+	aVCaptionClassOnce sync.Once
+)
+
+func getAVCaptionClass() _AVCaptionClass {
+	aVCaptionClassOnce.Do(func() {
+		aVCaptionClass = _AVCaptionClass{objc.GetClass("AVCaption")}
+	})
+	return aVCaptionClass
+}
 
 type _AVCaptionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaption interface {
 // An object that represents text to present over a time range. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption
-
 type AVCaption struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVCaption struct {
 func AVCaptionFrom(ptr unsafe.Pointer) AVCaption {
 	return AVCaption{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptionClass) Alloc() AVCaption {
 	rv := objc.Send[AVCaption](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptionClass) New() AVCaption {
 	rv := objc.Send[AVCaption](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVCaption) Autorelease() AVCaption {
 
 // NewAVCaption creates a new AVCaption instance.
 func NewAVCaption() AVCaption {
-	return aVCaptionClass.New()
+	return getAVCaptionClass().New()
 }
 
 

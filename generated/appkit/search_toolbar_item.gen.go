@@ -34,7 +34,6 @@ type ISearchToolbarItem interface {
 // A toolbar item that contains a search field optimized for performing text-based searches. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchToolbarItem
-
 type SearchToolbarItem struct {
 	ToolbarItem
 }
@@ -47,6 +46,7 @@ func SearchToolbarItemFrom(ptr unsafe.Pointer) SearchToolbarItem {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SearchToolbarItemClass) Alloc() SearchToolbarItem {
 	rv := objc.Send[SearchToolbarItem](objc.ID(sc.class), objc.Sel("alloc"))

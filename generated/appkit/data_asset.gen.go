@@ -35,7 +35,6 @@ type IDataAsset interface {
 // An object from a data set type stored in an asset catalog. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset
-
 type DataAsset struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type DataAsset struct {
 func DataAssetFrom(ptr unsafe.Pointer) DataAsset {
 	return DataAsset{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DataAssetClass) Alloc() DataAsset {
 	rv := objc.Send[DataAsset](objc.ID(dc.class), objc.Sel("alloc"))

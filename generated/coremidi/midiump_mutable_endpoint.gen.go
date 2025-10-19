@@ -3,13 +3,24 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MIDIUMPMutableEndpoint] class.
-var mIDIUMPMutableEndpointClass = _MIDIUMPMutableEndpointClass{objc.GetClass("MIDIUMPMutableEndpoint")}
+var (
+	mIDIUMPMutableEndpointClass     _MIDIUMPMutableEndpointClass
+	mIDIUMPMutableEndpointClassOnce sync.Once
+)
+
+func getMIDIUMPMutableEndpointClass() _MIDIUMPMutableEndpointClass {
+	mIDIUMPMutableEndpointClassOnce.Do(func() {
+		mIDIUMPMutableEndpointClass = _MIDIUMPMutableEndpointClass{objc.GetClass("MIDIUMPMutableEndpoint")}
+	})
+	return mIDIUMPMutableEndpointClass
+}
 
 type _MIDIUMPMutableEndpointClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IMIDIUMPMutableEndpoint interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint
-
 type MIDIUMPMutableEndpoint struct {
 	MIDIUMPEndpoint
 }
@@ -36,13 +46,15 @@ func MIDIUMPMutableEndpointFrom(ptr unsafe.Pointer) MIDIUMPMutableEndpoint {
 		MIDIUMPEndpoint: MIDIUMPEndpointFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIUMPMutableEndpointClass) Alloc() MIDIUMPMutableEndpoint {
 	rv := objc.Send[MIDIUMPMutableEndpoint](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDIUMPMutableEndpointClass) New() MIDIUMPMutableEndpoint {
 	rv := objc.Send[MIDIUMPMutableEndpoint](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,14 +75,14 @@ func (m_ MIDIUMPMutableEndpoint) Autorelease() MIDIUMPMutableEndpoint {
 
 // NewMIDIUMPMutableEndpoint creates a new MIDIUMPMutableEndpoint instance.
 func NewMIDIUMPMutableEndpoint() MIDIUMPMutableEndpoint {
-	return mIDIUMPMutableEndpointClass.New()
+	return getMIDIUMPMutableEndpointClass().New()
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/init(name:deviceInfo:productInstanceID:midiProtocol:destinationCallback:)
 func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name string, deviceInfo unsafe.Pointer, productInstanceID string, MIDIProtocol unsafe.Pointer, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
-	instance := mIDIUMPMutableEndpointClass.Alloc()
+	instance := getMIDIUMPMutableEndpointClass().Alloc()
 	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), objc.String(name), deviceInfo, objc.String(productInstanceID), MIDIProtocol, destinationCallback)
 	rv.Autorelease()
 	return rv

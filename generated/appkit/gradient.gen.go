@@ -35,7 +35,6 @@ type IGradient interface {
 // An object that can draw gradient fill colors [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient
-
 type Gradient struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Gradient struct {
 func GradientFrom(ptr unsafe.Pointer) Gradient {
 	return Gradient{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GradientClass) Alloc() Gradient {
 	rv := objc.Send[Gradient](objc.ID(gc.class), objc.Sel("alloc"))

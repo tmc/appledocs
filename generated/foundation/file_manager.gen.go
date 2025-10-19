@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileManager] class.
-var fileManagerClass = _FileManagerClass{objc.GetClass("NSFileManager")}
+var (
+	fileManagerClass     _FileManagerClass
+	fileManagerClassOnce sync.Once
+)
+
+func getFileManagerClass() _FileManagerClass {
+	fileManagerClassOnce.Do(func() {
+		fileManagerClass = _FileManagerClass{objc.GetClass("NSFileManager")}
+	})
+	return fileManagerClass
+}
 
 type _FileManagerClass struct {
 	class objc.Class
@@ -92,7 +103,6 @@ type IFileManager interface {
 // A convenient interface to the contents of the file system, and the primary means of interacting with it. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager
-
 type FileManager struct {
 	objectivec.Object
 }
@@ -103,13 +113,15 @@ type FileManager struct {
 func FileManagerFrom(ptr unsafe.Pointer) FileManager {
 	return FileManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileManagerClass) Alloc() FileManager {
 	rv := objc.Send[FileManager](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileManagerClass) New() FileManager {
 	rv := objc.Send[FileManager](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -130,7 +142,7 @@ func (f_ FileManager) Autorelease() FileManager {
 
 // NewFileManager creates a new FileManager instance.
 func NewFileManager() FileManager {
-	return fileManagerClass.New()
+	return getFileManagerClass().New()
 }
 
 
@@ -139,8 +151,7 @@ func NewFileManager() FileManager {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/init(authorization:)
 func NewFileManagerWithAuthorization(authorization unsafe.Pointer) FileManager {
-	rv := objc.Send[FileManager](objc.ID(fileManagerClass.class), objc.Sel("fileManagerWithAuthorization:"), authorization)
-	rv.Autorelease()
+	rv := objc.Send[FileManager](objc.ID(getFileManagerClass().class), objc.Sel("fileManagerWithAuthorization:"), authorization)
 	return rv
 }
 

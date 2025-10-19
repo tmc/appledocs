@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentStore] class.
-var persistentStoreClass = _PersistentStoreClass{objc.GetClass("NSPersistentStore")}
+var (
+	persistentStoreClass     _PersistentStoreClass
+	persistentStoreClassOnce sync.Once
+)
+
+func getPersistentStoreClass() _PersistentStoreClass {
+	persistentStoreClassOnce.Do(func() {
+		persistentStoreClass = _PersistentStoreClass{objc.GetClass("NSPersistentStore")}
+	})
+	return persistentStoreClass
+}
 
 type _PersistentStoreClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPersistentStore interface {
 // The abstract base class for all Core Data persistent stores. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore
-
 type PersistentStore struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PersistentStore struct {
 func PersistentStoreFrom(ptr unsafe.Pointer) PersistentStore {
 	return PersistentStore{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentStoreClass) Alloc() PersistentStore {
 	rv := objc.Send[PersistentStore](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentStoreClass) New() PersistentStore {
 	rv := objc.Send[PersistentStore](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PersistentStore) Autorelease() PersistentStore {
 
 // NewPersistentStore creates a new PersistentStore instance.
 func NewPersistentStore() PersistentStore {
-	return persistentStoreClass.New()
+	return getPersistentStoreClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewPersistentStore() PersistentStore {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
 func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root unsafe.Pointer, name string, url unsafe.Pointer, options unsafe.Pointer) PersistentStore {
-	instance := persistentStoreClass.Alloc()
+	instance := getPersistentStoreClass().Alloc()
 	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, objc.String(name), url, options)
 	rv.Autorelease()
 	return rv

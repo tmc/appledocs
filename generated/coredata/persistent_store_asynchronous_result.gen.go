@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentStoreAsynchronousResult] class.
-var persistentStoreAsynchronousResultClass = _PersistentStoreAsynchronousResultClass{objc.GetClass("NSPersistentStoreAsynchronousResult")}
+var (
+	persistentStoreAsynchronousResultClass     _PersistentStoreAsynchronousResultClass
+	persistentStoreAsynchronousResultClassOnce sync.Once
+)
+
+func getPersistentStoreAsynchronousResultClass() _PersistentStoreAsynchronousResultClass {
+	persistentStoreAsynchronousResultClassOnce.Do(func() {
+		persistentStoreAsynchronousResultClass = _PersistentStoreAsynchronousResultClass{objc.GetClass("NSPersistentStoreAsynchronousResult")}
+	})
+	return persistentStoreAsynchronousResultClass
+}
 
 type _PersistentStoreAsynchronousResultClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPersistentStoreAsynchronousResult interface {
 // A concrete class used to represent the results of an asynchronous request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult
-
 type PersistentStoreAsynchronousResult struct {
 	PersistentStoreResult
 }
@@ -37,13 +47,15 @@ func PersistentStoreAsynchronousResultFrom(ptr unsafe.Pointer) PersistentStoreAs
 		PersistentStoreResult: PersistentStoreResultFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentStoreAsynchronousResultClass) Alloc() PersistentStoreAsynchronousResult {
 	rv := objc.Send[PersistentStoreAsynchronousResult](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentStoreAsynchronousResultClass) New() PersistentStoreAsynchronousResult {
 	rv := objc.Send[PersistentStoreAsynchronousResult](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (p_ PersistentStoreAsynchronousResult) Autorelease() PersistentStoreAsynchr
 
 // NewPersistentStoreAsynchronousResult creates a new PersistentStoreAsynchronousResult instance.
 func NewPersistentStoreAsynchronousResult() PersistentStoreAsynchronousResult {
-	return persistentStoreAsynchronousResultClass.New()
+	return getPersistentStoreAsynchronousResultClass().New()
 }
 
 

@@ -35,7 +35,6 @@ type ITextAttachment interface {
 // The values for the attachment characteristics of attributed strings and related objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment
-
 type TextAttachment struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextAttachment struct {
 func TextAttachmentFrom(ptr unsafe.Pointer) TextAttachment {
 	return TextAttachment{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextAttachmentClass) Alloc() TextAttachment {
 	rv := objc.Send[TextAttachment](objc.ID(tc.class), objc.Sel("alloc"))

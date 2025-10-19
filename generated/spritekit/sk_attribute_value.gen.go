@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKAttributeValue] class.
-var sKAttributeValueClass = _SKAttributeValueClass{objc.GetClass("SKAttributeValue")}
+var (
+	sKAttributeValueClass     _SKAttributeValueClass
+	sKAttributeValueClassOnce sync.Once
+)
+
+func getSKAttributeValueClass() _SKAttributeValueClass {
+	sKAttributeValueClassOnce.Do(func() {
+		sKAttributeValueClass = _SKAttributeValueClass{objc.GetClass("SKAttributeValue")}
+	})
+	return sKAttributeValueClass
+}
 
 type _SKAttributeValueClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKAttributeValue interface {
 // A container for dynamic shader data associated with a node. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue
-
 type SKAttributeValue struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKAttributeValue struct {
 func SKAttributeValueFrom(ptr unsafe.Pointer) SKAttributeValue {
 	return SKAttributeValue{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKAttributeValueClass) Alloc() SKAttributeValue {
 	rv := objc.Send[SKAttributeValue](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKAttributeValueClass) New() SKAttributeValue {
 	rv := objc.Send[SKAttributeValue](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKAttributeValue) Autorelease() SKAttributeValue {
 
 // NewSKAttributeValue creates a new SKAttributeValue instance.
 func NewSKAttributeValue() SKAttributeValue {
-	return sKAttributeValueClass.New()
+	return getSKAttributeValueClass().New()
 }
 
 
@@ -70,36 +82,32 @@ func NewSKAttributeValue() SKAttributeValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(float:)
-func NewValueWithFloat(value float32) SKAttributeValue {
-	rv := objc.Send[SKAttributeValue](objc.ID(sKAttributeValueClass.class), objc.Sel("valueWithFloat:"), value)
-	rv.Autorelease()
+func NewSKAttributeValueWithFloat(value float32) SKAttributeValue {
+	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithFloat:"), value)
 	return rv
 }
 // Creates and initializes a new attribute value object that holds a vector of two floating point numbers. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat2:)
-func NewValueWithVectorFloat2(value unsafe.Pointer) SKAttributeValue {
-	rv := objc.Send[SKAttributeValue](objc.ID(sKAttributeValueClass.class), objc.Sel("valueWithVectorFloat2:"), value)
-	rv.Autorelease()
+func NewSKAttributeValueWithVectorFloat2(value unsafe.Pointer) SKAttributeValue {
+	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithVectorFloat2:"), value)
 	return rv
 }
 // Creates and initializes a new attribute value object that holds a vector of three floating point numbers. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat3:)
-func NewValueWithVectorFloat3(value unsafe.Pointer) SKAttributeValue {
-	rv := objc.Send[SKAttributeValue](objc.ID(sKAttributeValueClass.class), objc.Sel("valueWithVectorFloat3:"), value)
-	rv.Autorelease()
+func NewSKAttributeValueWithVectorFloat3(value unsafe.Pointer) SKAttributeValue {
+	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithVectorFloat3:"), value)
 	return rv
 }
 // Creates and initializes a new attribute value object that holds a vector of four floating point numbers. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat4:)
-func NewValueWithVectorFloat4(value unsafe.Pointer) SKAttributeValue {
-	rv := objc.Send[SKAttributeValue](objc.ID(sKAttributeValueClass.class), objc.Sel("valueWithVectorFloat4:"), value)
-	rv.Autorelease()
+func NewSKAttributeValueWithVectorFloat4(value unsafe.Pointer) SKAttributeValue {
+	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithVectorFloat4:"), value)
 	return rv
 }
 

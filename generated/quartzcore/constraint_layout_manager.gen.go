@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ConstraintLayoutManager] class.
-var constraintLayoutManagerClass = _ConstraintLayoutManagerClass{objc.GetClass("CAConstraintLayoutManager")}
+var (
+	constraintLayoutManagerClass     _ConstraintLayoutManagerClass
+	constraintLayoutManagerClassOnce sync.Once
+)
+
+func getConstraintLayoutManagerClass() _ConstraintLayoutManagerClass {
+	constraintLayoutManagerClassOnce.Do(func() {
+		constraintLayoutManagerClass = _ConstraintLayoutManagerClass{objc.GetClass("CAConstraintLayoutManager")}
+	})
+	return constraintLayoutManagerClass
+}
 
 type _ConstraintLayoutManagerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IConstraintLayoutManager interface {
 // An object that provides a constraint-based layout manager. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager
-
 type ConstraintLayoutManager struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ConstraintLayoutManager struct {
 func ConstraintLayoutManagerFrom(ptr unsafe.Pointer) ConstraintLayoutManager {
 	return ConstraintLayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConstraintLayoutManagerClass) Alloc() ConstraintLayoutManager {
 	rv := objc.Send[ConstraintLayoutManager](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ConstraintLayoutManagerClass) New() ConstraintLayoutManager {
 	rv := objc.Send[ConstraintLayoutManager](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ ConstraintLayoutManager) Autorelease() ConstraintLayoutManager {
 
 // NewConstraintLayoutManager creates a new ConstraintLayoutManager instance.
 func NewConstraintLayoutManager() ConstraintLayoutManager {
-	return constraintLayoutManagerClass.New()
+	return getConstraintLayoutManagerClass().New()
 }
 
 

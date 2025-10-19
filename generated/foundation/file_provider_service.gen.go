@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileProviderService] class.
-var fileProviderServiceClass = _FileProviderServiceClass{objc.GetClass("NSFileProviderService")}
+var (
+	fileProviderServiceClass     _FileProviderServiceClass
+	fileProviderServiceClassOnce sync.Once
+)
+
+func getFileProviderServiceClass() _FileProviderServiceClass {
+	fileProviderServiceClassOnce.Do(func() {
+		fileProviderServiceClass = _FileProviderServiceClass{objc.GetClass("NSFileProviderService")}
+	})
+	return fileProviderServiceClass
+}
 
 type _FileProviderServiceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFileProviderService interface {
 // A service that provides a custom communication channel between your app and a File Provider extension. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService
-
 type FileProviderService struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type FileProviderService struct {
 func FileProviderServiceFrom(ptr unsafe.Pointer) FileProviderService {
 	return FileProviderService{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileProviderServiceClass) Alloc() FileProviderService {
 	rv := objc.Send[FileProviderService](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileProviderServiceClass) New() FileProviderService {
 	rv := objc.Send[FileProviderService](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (f_ FileProviderService) Autorelease() FileProviderService {
 
 // NewFileProviderService creates a new FileProviderService instance.
 func NewFileProviderService() FileProviderService {
-	return fileProviderServiceClass.New()
+	return getFileProviderServiceClass().New()
 }
 
 

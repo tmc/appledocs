@@ -34,7 +34,6 @@ type IPathComponentCell interface {
 // A component of a path. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell
-
 type PathComponentCell struct {
 	TextFieldCell
 }
@@ -47,6 +46,7 @@ func PathComponentCellFrom(ptr unsafe.Pointer) PathComponentCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PathComponentCellClass) Alloc() PathComponentCell {
 	rv := objc.Send[PathComponentCell](objc.ID(pc.class), objc.Sel("alloc"))

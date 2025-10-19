@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentHistoryTransaction] class.
-var persistentHistoryTransactionClass = _PersistentHistoryTransactionClass{objc.GetClass("NSPersistentHistoryTransaction")}
+var (
+	persistentHistoryTransactionClass     _PersistentHistoryTransactionClass
+	persistentHistoryTransactionClassOnce sync.Once
+)
+
+func getPersistentHistoryTransactionClass() _PersistentHistoryTransactionClass {
+	persistentHistoryTransactionClassOnce.Do(func() {
+		persistentHistoryTransactionClass = _PersistentHistoryTransactionClass{objc.GetClass("NSPersistentHistoryTransaction")}
+	})
+	return persistentHistoryTransactionClass
+}
 
 type _PersistentHistoryTransactionClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IPersistentHistoryTransaction interface {
 // A set of changes in the persistent history based on a context save or batch operation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction
-
 type PersistentHistoryTransaction struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type PersistentHistoryTransaction struct {
 func PersistentHistoryTransactionFrom(ptr unsafe.Pointer) PersistentHistoryTransaction {
 	return PersistentHistoryTransaction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentHistoryTransactionClass) Alloc() PersistentHistoryTransaction {
 	rv := objc.Send[PersistentHistoryTransaction](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentHistoryTransactionClass) New() PersistentHistoryTransaction {
 	rv := objc.Send[PersistentHistoryTransaction](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PersistentHistoryTransaction) Autorelease() PersistentHistoryTransactio
 
 // NewPersistentHistoryTransaction creates a new PersistentHistoryTransaction instance.
 func NewPersistentHistoryTransaction() PersistentHistoryTransaction {
-	return persistentHistoryTransactionClass.New()
+	return getPersistentHistoryTransactionClass().New()
 }
 
 

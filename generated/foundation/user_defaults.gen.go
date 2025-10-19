@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserDefaults] class.
-var userDefaultsClass = _UserDefaultsClass{objc.GetClass("NSUserDefaults")}
+var (
+	userDefaultsClass     _UserDefaultsClass
+	userDefaultsClassOnce sync.Once
+)
+
+func getUserDefaultsClass() _UserDefaultsClass {
+	userDefaultsClassOnce.Do(func() {
+		userDefaultsClass = _UserDefaultsClass{objc.GetClass("NSUserDefaults")}
+	})
+	return userDefaultsClass
+}
 
 type _UserDefaultsClass struct {
 	class objc.Class
@@ -27,7 +38,6 @@ type IUserDefaults interface {
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults
-
 type UserDefaults struct {
 	objectivec.Object
 }
@@ -38,13 +48,15 @@ type UserDefaults struct {
 func UserDefaultsFrom(ptr unsafe.Pointer) UserDefaults {
 	return UserDefaults{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserDefaultsClass) Alloc() UserDefaults {
 	rv := objc.Send[UserDefaults](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserDefaultsClass) New() UserDefaults {
 	rv := objc.Send[UserDefaults](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -65,7 +77,7 @@ func (u_ UserDefaults) Autorelease() UserDefaults {
 
 // NewUserDefaults creates a new UserDefaults instance.
 func NewUserDefaults() UserDefaults {
-	return userDefaultsClass.New()
+	return getUserDefaultsClass().New()
 }
 
 
@@ -74,7 +86,7 @@ func NewUserDefaults() UserDefaults {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/init(suiteName:)
 func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
-	instance := userDefaultsClass.Alloc()
+	instance := getUserDefaultsClass().Alloc()
 	rv := objc.Send[UserDefaults](instance.ID, objc.Sel("initWithSuiteName:"), objc.String(suitename))
 	rv.Autorelease()
 	return rv

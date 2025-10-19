@@ -34,7 +34,6 @@ type IStepperCell interface {
 // An object controls the appearance and behavior of an object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell
-
 type StepperCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func StepperCellFrom(ptr unsafe.Pointer) StepperCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StepperCellClass) Alloc() StepperCell {
 	rv := objc.Send[StepperCell](objc.ID(sc.class), objc.Sel("alloc"))

@@ -35,7 +35,6 @@ type IUserInterfaceCompressionOptions interface {
 // An object that specifies how user interface elements resize themselves when space is constrained. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions
-
 type UserInterfaceCompressionOptions struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type UserInterfaceCompressionOptions struct {
 func UserInterfaceCompressionOptionsFrom(ptr unsafe.Pointer) UserInterfaceCompressionOptions {
 	return UserInterfaceCompressionOptions{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserInterfaceCompressionOptionsClass) Alloc() UserInterfaceCompressionOptions {
 	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("alloc"))

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitDuration] class.
-var unitDurationClass = _UnitDurationClass{objc.GetClass("NSUnitDuration")}
+var (
+	unitDurationClass     _UnitDurationClass
+	unitDurationClassOnce sync.Once
+)
+
+func getUnitDurationClass() _UnitDurationClass {
+	unitDurationClassOnce.Do(func() {
+		unitDurationClass = _UnitDurationClass{objc.GetClass("NSUnitDuration")}
+	})
+	return unitDurationClass
+}
 
 type _UnitDurationClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitDuration interface {
 // A unit of measure for a duration of time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration
-
 type UnitDuration struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitDurationFrom(ptr unsafe.Pointer) UnitDuration {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitDurationClass) Alloc() UnitDuration {
 	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitDurationClass) New() UnitDuration {
 	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitDuration) Autorelease() UnitDuration {
 
 // NewUnitDuration creates a new UnitDuration instance.
 func NewUnitDuration() UnitDuration {
-	return unitDurationClass.New()
+	return getUnitDurationClass().New()
 }
 
 

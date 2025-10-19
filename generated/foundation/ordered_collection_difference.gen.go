@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OrderedCollectionDifference] class.
-var orderedCollectionDifferenceClass = _OrderedCollectionDifferenceClass{objc.GetClass("NSOrderedCollectionDifference")}
+var (
+	orderedCollectionDifferenceClass     _OrderedCollectionDifferenceClass
+	orderedCollectionDifferenceClassOnce sync.Once
+)
+
+func getOrderedCollectionDifferenceClass() _OrderedCollectionDifferenceClass {
+	orderedCollectionDifferenceClassOnce.Do(func() {
+		orderedCollectionDifferenceClass = _OrderedCollectionDifferenceClass{objc.GetClass("NSOrderedCollectionDifference")}
+	})
+	return orderedCollectionDifferenceClass
+}
 
 type _OrderedCollectionDifferenceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOrderedCollectionDifference interface {
 // An object representing the difference between two ordered collections. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference
-
 type OrderedCollectionDifference struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type OrderedCollectionDifference struct {
 func OrderedCollectionDifferenceFrom(ptr unsafe.Pointer) OrderedCollectionDifference {
 	return OrderedCollectionDifference{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OrderedCollectionDifferenceClass) Alloc() OrderedCollectionDifference {
 	rv := objc.Send[OrderedCollectionDifference](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OrderedCollectionDifferenceClass) New() OrderedCollectionDifference {
 	rv := objc.Send[OrderedCollectionDifference](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (o_ OrderedCollectionDifference) Autorelease() OrderedCollectionDifference 
 
 // NewOrderedCollectionDifference creates a new OrderedCollectionDifference instance.
 func NewOrderedCollectionDifference() OrderedCollectionDifference {
-	return orderedCollectionDifferenceClass.New()
+	return getOrderedCollectionDifferenceClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PropertySpecifier] class.
-var propertySpecifierClass = _PropertySpecifierClass{objc.GetClass("NSPropertySpecifier")}
+var (
+	propertySpecifierClass     _PropertySpecifierClass
+	propertySpecifierClassOnce sync.Once
+)
+
+func getPropertySpecifierClass() _PropertySpecifierClass {
+	propertySpecifierClassOnce.Do(func() {
+		propertySpecifierClass = _PropertySpecifierClass{objc.GetClass("NSPropertySpecifier")}
+	})
+	return propertySpecifierClass
+}
 
 type _PropertySpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPropertySpecifier interface {
 // A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPropertySpecifier
-
 type PropertySpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func PropertySpecifierFrom(ptr unsafe.Pointer) PropertySpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PropertySpecifierClass) Alloc() PropertySpecifier {
 	rv := objc.Send[PropertySpecifier](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PropertySpecifierClass) New() PropertySpecifier {
 	rv := objc.Send[PropertySpecifier](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PropertySpecifier) Autorelease() PropertySpecifier {
 
 // NewPropertySpecifier creates a new PropertySpecifier instance.
 func NewPropertySpecifier() PropertySpecifier {
-	return propertySpecifierClass.New()
+	return getPropertySpecifierClass().New()
 }
 
 

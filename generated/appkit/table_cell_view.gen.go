@@ -34,7 +34,6 @@ type ITableCellView interface {
 // A reusable container view shown for a particular cell in a table view that uses rows for content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView
-
 type TableCellView struct {
 	View
 }
@@ -47,6 +46,7 @@ func TableCellViewFrom(ptr unsafe.Pointer) TableCellView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableCellViewClass) Alloc() TableCellView {
 	rv := objc.Send[TableCellView](objc.ID(tc.class), objc.Sel("alloc"))

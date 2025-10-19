@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDIUMPEndpointManager] class.
-var mIDIUMPEndpointManagerClass = _MIDIUMPEndpointManagerClass{objc.GetClass("MIDIUMPEndpointManager")}
+var (
+	mIDIUMPEndpointManagerClass     _MIDIUMPEndpointManagerClass
+	mIDIUMPEndpointManagerClassOnce sync.Once
+)
+
+func getMIDIUMPEndpointManagerClass() _MIDIUMPEndpointManagerClass {
+	mIDIUMPEndpointManagerClassOnce.Do(func() {
+		mIDIUMPEndpointManagerClass = _MIDIUMPEndpointManagerClass{objc.GetClass("MIDIUMPEndpointManager")}
+	})
+	return mIDIUMPEndpointManagerClass
+}
 
 type _MIDIUMPEndpointManagerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMIDIUMPEndpointManager interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager
-
 type MIDIUMPEndpointManager struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type MIDIUMPEndpointManager struct {
 func MIDIUMPEndpointManagerFrom(ptr unsafe.Pointer) MIDIUMPEndpointManager {
 	return MIDIUMPEndpointManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIUMPEndpointManagerClass) Alloc() MIDIUMPEndpointManager {
 	rv := objc.Send[MIDIUMPEndpointManager](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDIUMPEndpointManagerClass) New() MIDIUMPEndpointManager {
 	rv := objc.Send[MIDIUMPEndpointManager](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (m_ MIDIUMPEndpointManager) Autorelease() MIDIUMPEndpointManager {
 
 // NewMIDIUMPEndpointManager creates a new MIDIUMPEndpointManager instance.
 func NewMIDIUMPEndpointManager() MIDIUMPEndpointManager {
-	return mIDIUMPEndpointManagerClass.New()
+	return getMIDIUMPEndpointManagerClass().New()
 }
 
 

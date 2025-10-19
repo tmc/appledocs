@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVSynchronizedLayer] class.
-var aVSynchronizedLayerClass = _AVSynchronizedLayerClass{objc.GetClass("AVSynchronizedLayer")}
+var (
+	aVSynchronizedLayerClass     _AVSynchronizedLayerClass
+	aVSynchronizedLayerClassOnce sync.Once
+)
+
+func getAVSynchronizedLayerClass() _AVSynchronizedLayerClass {
+	aVSynchronizedLayerClassOnce.Do(func() {
+		aVSynchronizedLayerClass = _AVSynchronizedLayerClass{objc.GetClass("AVSynchronizedLayer")}
+	})
+	return aVSynchronizedLayerClass
+}
 
 type _AVSynchronizedLayerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVSynchronizedLayer interface {
 // A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSynchronizedLayer
-
 type AVSynchronizedLayer struct {
 	quartzcore.Layer
 }
@@ -37,13 +47,15 @@ func AVSynchronizedLayerFrom(ptr unsafe.Pointer) AVSynchronizedLayer {
 		Layer: quartzcore.LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVSynchronizedLayerClass) Alloc() AVSynchronizedLayer {
 	rv := objc.Send[AVSynchronizedLayer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVSynchronizedLayerClass) New() AVSynchronizedLayer {
 	rv := objc.Send[AVSynchronizedLayer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVSynchronizedLayer) Autorelease() AVSynchronizedLayer {
 
 // NewAVSynchronizedLayer creates a new AVSynchronizedLayer instance.
 func NewAVSynchronizedLayer() AVSynchronizedLayer {
-	return aVSynchronizedLayerClass.New()
+	return getAVSynchronizedLayerClass().New()
 }
 
 

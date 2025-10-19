@@ -3,6 +3,7 @@
 package oslog
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OSLogMessageComponent] class.
-var oSLogMessageComponentClass = _OSLogMessageComponentClass{objc.GetClass("OSLogMessageComponent")}
+var (
+	oSLogMessageComponentClass     _OSLogMessageComponentClass
+	oSLogMessageComponentClassOnce sync.Once
+)
+
+func getOSLogMessageComponentClass() _OSLogMessageComponentClass {
+	oSLogMessageComponentClassOnce.Do(func() {
+		oSLogMessageComponentClass = _OSLogMessageComponentClass{objc.GetClass("OSLogMessageComponent")}
+	})
+	return oSLogMessageComponentClass
+}
 
 type _OSLogMessageComponentClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOSLogMessageComponent interface {
 // The message arguments for a particular entry. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent
-
 type OSLogMessageComponent struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type OSLogMessageComponent struct {
 func OSLogMessageComponentFrom(ptr unsafe.Pointer) OSLogMessageComponent {
 	return OSLogMessageComponent{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogMessageComponentClass) Alloc() OSLogMessageComponent {
 	rv := objc.Send[OSLogMessageComponent](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogMessageComponentClass) New() OSLogMessageComponent {
 	rv := objc.Send[OSLogMessageComponent](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (o_ OSLogMessageComponent) Autorelease() OSLogMessageComponent {
 
 // NewOSLogMessageComponent creates a new OSLogMessageComponent instance.
 func NewOSLogMessageComponent() OSLogMessageComponent {
-	return oSLogMessageComponentClass.New()
+	return getOSLogMessageComponentClass().New()
 }
 
 

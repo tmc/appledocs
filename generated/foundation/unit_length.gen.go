@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitLength] class.
-var unitLengthClass = _UnitLengthClass{objc.GetClass("NSUnitLength")}
+var (
+	unitLengthClass     _UnitLengthClass
+	unitLengthClassOnce sync.Once
+)
+
+func getUnitLengthClass() _UnitLengthClass {
+	unitLengthClassOnce.Do(func() {
+		unitLengthClass = _UnitLengthClass{objc.GetClass("NSUnitLength")}
+	})
+	return unitLengthClass
+}
 
 type _UnitLengthClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitLength interface {
 // A unit of measure for length. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength
-
 type UnitLength struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitLengthFrom(ptr unsafe.Pointer) UnitLength {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitLengthClass) Alloc() UnitLength {
 	rv := objc.Send[UnitLength](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitLengthClass) New() UnitLength {
 	rv := objc.Send[UnitLength](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitLength) Autorelease() UnitLength {
 
 // NewUnitLength creates a new UnitLength instance.
 func NewUnitLength() UnitLength {
-	return unitLengthClass.New()
+	return getUnitLengthClass().New()
 }
 
 

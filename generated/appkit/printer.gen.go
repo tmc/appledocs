@@ -35,7 +35,6 @@ type IPrinter interface {
 // An object that describes a printer’s capabilities. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter
-
 type Printer struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Printer struct {
 func PrinterFrom(ptr unsafe.Pointer) Printer {
 	return Printer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PrinterClass) Alloc() Printer {
 	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("alloc"))

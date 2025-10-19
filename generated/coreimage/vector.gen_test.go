@@ -12,7 +12,6 @@ var _ = coreimage.NewVector
 
 
 
-
 // ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
 // Initialize a Core Image vector object with one value.
 func ExampleNewVectorWithX() {
@@ -54,6 +53,7 @@ func ExampleNewVectorWithXYZW() {
 	)
 	// Output:
 }
+
 
 
 // ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.

@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PersistentStoreCoordinator] class.
-var persistentStoreCoordinatorClass = _PersistentStoreCoordinatorClass{objc.GetClass("NSPersistentStoreCoordinator")}
+var (
+	persistentStoreCoordinatorClass     _PersistentStoreCoordinatorClass
+	persistentStoreCoordinatorClassOnce sync.Once
+)
+
+func getPersistentStoreCoordinatorClass() _PersistentStoreCoordinatorClass {
+	persistentStoreCoordinatorClassOnce.Do(func() {
+		persistentStoreCoordinatorClass = _PersistentStoreCoordinatorClass{objc.GetClass("NSPersistentStoreCoordinator")}
+	})
+	return persistentStoreCoordinatorClass
+}
 
 type _PersistentStoreCoordinatorClass struct {
 	class objc.Class
@@ -32,7 +43,6 @@ type IPersistentStoreCoordinator interface {
 // An object that enables an app’s contexts and the underlying persistent stores to work together. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator
-
 type PersistentStoreCoordinator struct {
 	objectivec.Object
 }
@@ -43,13 +53,15 @@ type PersistentStoreCoordinator struct {
 func PersistentStoreCoordinatorFrom(ptr unsafe.Pointer) PersistentStoreCoordinator {
 	return PersistentStoreCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentStoreCoordinatorClass) Alloc() PersistentStoreCoordinator {
 	rv := objc.Send[PersistentStoreCoordinator](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentStoreCoordinatorClass) New() PersistentStoreCoordinator {
 	rv := objc.Send[PersistentStoreCoordinator](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -70,7 +82,7 @@ func (p_ PersistentStoreCoordinator) Autorelease() PersistentStoreCoordinator {
 
 // NewPersistentStoreCoordinator creates a new PersistentStoreCoordinator instance.
 func NewPersistentStoreCoordinator() PersistentStoreCoordinator {
-	return persistentStoreCoordinatorClass.New()
+	return getPersistentStoreCoordinatorClass().New()
 }
 
 
@@ -79,7 +91,7 @@ func NewPersistentStoreCoordinator() PersistentStoreCoordinator {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/init(managedObjectModel:)
 func NewPersistentStoreCoordinatorWithManagedObjectModel(model unsafe.Pointer) PersistentStoreCoordinator {
-	instance := persistentStoreCoordinatorClass.Alloc()
+	instance := getPersistentStoreCoordinatorClass().Alloc()
 	rv := objc.Send[PersistentStoreCoordinator](instance.ID, objc.Sel("initWithManagedObjectModel:"), model)
 	rv.Autorelease()
 	return rv

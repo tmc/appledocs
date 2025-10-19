@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserUnixTask] class.
-var userUnixTaskClass = _UserUnixTaskClass{objc.GetClass("NSUserUnixTask")}
+var (
+	userUnixTaskClass     _UserUnixTaskClass
+	userUnixTaskClassOnce sync.Once
+)
+
+func getUserUnixTaskClass() _UserUnixTaskClass {
+	userUnixTaskClassOnce.Do(func() {
+		userUnixTaskClass = _UserUnixTaskClass{objc.GetClass("NSUserUnixTask")}
+	})
+	return userUnixTaskClass
+}
 
 type _UserUnixTaskClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUserUnixTask interface {
 // An object that executes unix applications. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask
-
 type UserUnixTask struct {
 	UserScriptTask
 }
@@ -36,13 +46,15 @@ func UserUnixTaskFrom(ptr unsafe.Pointer) UserUnixTask {
 		UserScriptTask: UserScriptTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserUnixTaskClass) Alloc() UserUnixTask {
 	rv := objc.Send[UserUnixTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserUnixTaskClass) New() UserUnixTask {
 	rv := objc.Send[UserUnixTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UserUnixTask) Autorelease() UserUnixTask {
 
 // NewUserUnixTask creates a new UserUnixTask instance.
 func NewUserUnixTask() UserUnixTask {
-	return userUnixTaskClass.New()
+	return getUserUnixTaskClass().New()
 }
 
 

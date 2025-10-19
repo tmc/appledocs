@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DateComponents] class.
-var dateComponentsClass = _DateComponentsClass{objc.GetClass("NSDateComponents")}
+var (
+	dateComponentsClass     _DateComponentsClass
+	dateComponentsClassOnce sync.Once
+)
+
+func getDateComponentsClass() _DateComponentsClass {
+	dateComponentsClassOnce.Do(func() {
+		dateComponentsClass = _DateComponentsClass{objc.GetClass("NSDateComponents")}
+	})
+	return dateComponentsClass
+}
 
 type _DateComponentsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IDateComponents interface {
 // An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents
-
 type DateComponents struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type DateComponents struct {
 func DateComponentsFrom(ptr unsafe.Pointer) DateComponents {
 	return DateComponents{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DateComponentsClass) Alloc() DateComponents {
 	rv := objc.Send[DateComponents](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateComponentsClass) New() DateComponents {
 	rv := objc.Send[DateComponents](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (d_ DateComponents) Autorelease() DateComponents {
 
 // NewDateComponents creates a new DateComponents instance.
 func NewDateComponents() DateComponents {
-	return dateComponentsClass.New()
+	return getDateComponentsClass().New()
 }
 
 

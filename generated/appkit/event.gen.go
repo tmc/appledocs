@@ -35,7 +35,6 @@ type IEvent interface {
 // An object that contains information about an input action, such as a mouse click or a key press. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent
-
 type Event struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Event struct {
 func EventFrom(ptr unsafe.Pointer) Event {
 	return Event{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _EventClass) Alloc() Event {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("alloc"))

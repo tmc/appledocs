@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKWarpGeometry] class.
-var sKWarpGeometryClass = _SKWarpGeometryClass{objc.GetClass("SKWarpGeometry")}
+var (
+	sKWarpGeometryClass     _SKWarpGeometryClass
+	sKWarpGeometryClassOnce sync.Once
+)
+
+func getSKWarpGeometryClass() _SKWarpGeometryClass {
+	sKWarpGeometryClassOnce.Do(func() {
+		sKWarpGeometryClass = _SKWarpGeometryClass{objc.GetClass("SKWarpGeometry")}
+	})
+	return sKWarpGeometryClass
+}
 
 type _SKWarpGeometryClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKWarpGeometry interface {
 // A definition for a deformation of nodes that conform to . [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometry
-
 type SKWarpGeometry struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKWarpGeometry struct {
 func SKWarpGeometryFrom(ptr unsafe.Pointer) SKWarpGeometry {
 	return SKWarpGeometry{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKWarpGeometryClass) Alloc() SKWarpGeometry {
 	rv := objc.Send[SKWarpGeometry](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKWarpGeometryClass) New() SKWarpGeometry {
 	rv := objc.Send[SKWarpGeometry](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKWarpGeometry) Autorelease() SKWarpGeometry {
 
 // NewSKWarpGeometry creates a new SKWarpGeometry instance.
 func NewSKWarpGeometry() SKWarpGeometry {
-	return sKWarpGeometryClass.New()
+	return getSKWarpGeometryClass().New()
 }
 
 

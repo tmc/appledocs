@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [InflectionRule] class.
-var inflectionRuleClass = _InflectionRuleClass{objc.GetClass("NSInflectionRule")}
+var (
+	inflectionRuleClass     _InflectionRuleClass
+	inflectionRuleClassOnce sync.Once
+)
+
+func getInflectionRuleClass() _InflectionRuleClass {
+	inflectionRuleClassOnce.Do(func() {
+		inflectionRuleClass = _InflectionRuleClass{objc.GetClass("NSInflectionRule")}
+	})
+	return inflectionRuleClass
+}
 
 type _InflectionRuleClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IInflectionRule interface {
 // A rule that affects how an attributed string performs automatic grammatical agreement. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule
-
 type InflectionRule struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type InflectionRule struct {
 func InflectionRuleFrom(ptr unsafe.Pointer) InflectionRule {
 	return InflectionRule{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _InflectionRuleClass) Alloc() InflectionRule {
 	rv := objc.Send[InflectionRule](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InflectionRuleClass) New() InflectionRule {
 	rv := objc.Send[InflectionRule](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (i_ InflectionRule) Autorelease() InflectionRule {
 
 // NewInflectionRule creates a new InflectionRule instance.
 func NewInflectionRule() InflectionRule {
-	return inflectionRuleClass.New()
+	return getInflectionRuleClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDINetworkHost] class.
-var mIDINetworkHostClass = _MIDINetworkHostClass{objc.GetClass("MIDINetworkHost")}
+var (
+	mIDINetworkHostClass     _MIDINetworkHostClass
+	mIDINetworkHostClassOnce sync.Once
+)
+
+func getMIDINetworkHostClass() _MIDINetworkHostClass {
+	mIDINetworkHostClassOnce.Do(func() {
+		mIDINetworkHostClass = _MIDINetworkHostClass{objc.GetClass("MIDINetworkHost")}
+	})
+	return mIDINetworkHostClass
+}
 
 type _MIDINetworkHostClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDINetworkHost interface {
 // An object that represents the host’s network address. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost
-
 type MIDINetworkHost struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDINetworkHost struct {
 func MIDINetworkHostFrom(ptr unsafe.Pointer) MIDINetworkHost {
 	return MIDINetworkHost{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDINetworkHostClass) Alloc() MIDINetworkHost {
 	rv := objc.Send[MIDINetworkHost](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDINetworkHostClass) New() MIDINetworkHost {
 	rv := objc.Send[MIDINetworkHost](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDINetworkHost) Autorelease() MIDINetworkHost {
 
 // NewMIDINetworkHost creates a new MIDINetworkHost instance.
 func NewMIDINetworkHost() MIDINetworkHost {
-	return mIDINetworkHostClass.New()
+	return getMIDINetworkHostClass().New()
 }
 
 

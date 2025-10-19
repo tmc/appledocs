@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Dimension] class.
-var dimensionClass = _DimensionClass{objc.GetClass("NSDimension")}
+var (
+	dimensionClass     _DimensionClass
+	dimensionClassOnce sync.Once
+)
+
+func getDimensionClass() _DimensionClass {
+	dimensionClassOnce.Do(func() {
+		dimensionClass = _DimensionClass{objc.GetClass("NSDimension")}
+	})
+	return dimensionClass
+}
 
 type _DimensionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDimension interface {
 // An abstract class representing a dimensional unit of measure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension
-
 type Dimension struct {
 	Unit
 }
@@ -36,13 +46,15 @@ func DimensionFrom(ptr unsafe.Pointer) Dimension {
 		Unit: UnitFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DimensionClass) Alloc() Dimension {
 	rv := objc.Send[Dimension](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DimensionClass) New() Dimension {
 	rv := objc.Send[Dimension](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ Dimension) Autorelease() Dimension {
 
 // NewDimension creates a new Dimension instance.
 func NewDimension() Dimension {
-	return dimensionClass.New()
+	return getDimensionClass().New()
 }
 
 

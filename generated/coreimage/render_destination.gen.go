@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RenderDestination] class.
-var renderDestinationClass = _RenderDestinationClass{objc.GetClass("CIRenderDestination")}
+var (
+	renderDestinationClass     _RenderDestinationClass
+	renderDestinationClassOnce sync.Once
+)
+
+func getRenderDestinationClass() _RenderDestinationClass {
+	renderDestinationClassOnce.Do(func() {
+		renderDestinationClass = _RenderDestinationClass{objc.GetClass("CIRenderDestination")}
+	})
+	return renderDestinationClass
+}
 
 type _RenderDestinationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IRenderDestination interface {
 // A specification for configuring all attributes of a render task’s destination and issuing asynchronous render tasks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination
-
 type RenderDestination struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type RenderDestination struct {
 func RenderDestinationFrom(ptr unsafe.Pointer) RenderDestination {
 	return RenderDestination{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RenderDestinationClass) Alloc() RenderDestination {
 	rv := objc.Send[RenderDestination](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RenderDestinationClass) New() RenderDestination {
 	rv := objc.Send[RenderDestination](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,26 +74,16 @@ func (r_ RenderDestination) Autorelease() RenderDestination {
 
 // NewRenderDestination creates a new RenderDestination instance.
 func NewRenderDestination() RenderDestination {
-	return renderDestinationClass.New()
+	return getRenderDestinationClass().New()
 }
 
 
-// Creates a render destination based on a Metal texture with specified pixel format. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
-func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer unsafe.Pointer, block unsafe.Pointer) RenderDestination {
-	instance := renderDestinationClass.Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
-	rv.Autorelease()
-	return rv
-}
 // Creates a render destination based on a client-managed buffer. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
 func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format unsafe.Pointer) RenderDestination {
-	instance := renderDestinationClass.Alloc()
+	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
 	rv.Autorelease()
 	return rv
@@ -91,7 +93,7 @@ func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(glTexture:target:width:height:)
 func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, target unsafe.Pointer, width uint, height uint) RenderDestination {
-	instance := renderDestinationClass.Alloc()
+	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithGLTexture:target:width:height:"), texture, target, width, height)
 	rv.Autorelease()
 	return rv
@@ -101,7 +103,7 @@ func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(ioSurface:)
 func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination {
-	instance := renderDestinationClass.Alloc()
+	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithIOSurface:"), surface)
 	rv.Autorelease()
 	return rv
@@ -111,7 +113,7 @@ func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(mtlTexture:commandBuffer:)
 func NewRenderDestinationWithMTLTextureCommandBuffer(texture unsafe.Pointer, commandBuffer unsafe.Pointer) RenderDestination {
-	instance := renderDestinationClass.Alloc()
+	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithMTLTexture:commandBuffer:"), texture, commandBuffer)
 	rv.Autorelease()
 	return rv
@@ -121,8 +123,18 @@ func NewRenderDestinationWithMTLTextureCommandBuffer(texture unsafe.Pointer, com
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
 func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
-	instance := renderDestinationClass.Alloc()
+	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithPixelBuffer:"), pixelBuffer)
+	rv.Autorelease()
+	return rv
+}
+// Creates a render destination based on a Metal texture with specified pixel format. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
+func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer unsafe.Pointer, block unsafe.Pointer) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
 	rv.Autorelease()
 	return rv
 }

@@ -34,7 +34,6 @@ type IImageView interface {
 // A display of image data in a frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView
-
 type ImageView struct {
 	Control
 }
@@ -47,6 +46,7 @@ func ImageViewFrom(ptr unsafe.Pointer) ImageView {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageViewClass) Alloc() ImageView {
 	rv := objc.Send[ImageView](objc.ID(ic.class), objc.Sel("alloc"))

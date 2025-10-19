@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FetchedResultsController] class.
-var fetchedResultsControllerClass = _FetchedResultsControllerClass{objc.GetClass("NSFetchedResultsController")}
+var (
+	fetchedResultsControllerClass     _FetchedResultsControllerClass
+	fetchedResultsControllerClassOnce sync.Once
+)
+
+func getFetchedResultsControllerClass() _FetchedResultsControllerClass {
+	fetchedResultsControllerClassOnce.Do(func() {
+		fetchedResultsControllerClass = _FetchedResultsControllerClass{objc.GetClass("NSFetchedResultsController")}
+	})
+	return fetchedResultsControllerClass
+}
 
 type _FetchedResultsControllerClass struct {
 	class objc.Class
@@ -29,7 +40,6 @@ type IFetchedResultsController interface {
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController
-
 type FetchedResultsController struct {
 	objectivec.Object
 }
@@ -40,13 +50,15 @@ type FetchedResultsController struct {
 func FetchedResultsControllerFrom(ptr unsafe.Pointer) FetchedResultsController {
 	return FetchedResultsController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FetchedResultsControllerClass) Alloc() FetchedResultsController {
 	rv := objc.Send[FetchedResultsController](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FetchedResultsControllerClass) New() FetchedResultsController {
 	rv := objc.Send[FetchedResultsController](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -67,7 +79,7 @@ func (f_ FetchedResultsController) Autorelease() FetchedResultsController {
 
 // NewFetchedResultsController creates a new FetchedResultsController instance.
 func NewFetchedResultsController() FetchedResultsController {
-	return fetchedResultsControllerClass.New()
+	return getFetchedResultsControllerClass().New()
 }
 
 
@@ -76,7 +88,7 @@ func NewFetchedResultsController() FetchedResultsController {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/init(fetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)
 func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(fetchRequest unsafe.Pointer, context unsafe.Pointer, sectionNameKeyPath string, name string) FetchedResultsController {
-	instance := fetchedResultsControllerClass.Alloc()
+	instance := getFetchedResultsControllerClass().Alloc()
 	rv := objc.Send[FetchedResultsController](instance.ID, objc.Sel("initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:"), fetchRequest, context, objc.String(sectionNameKeyPath), objc.String(name))
 	rv.Autorelease()
 	return rv

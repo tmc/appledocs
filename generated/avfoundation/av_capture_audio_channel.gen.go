@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaptureAudioChannel] class.
-var aVCaptureAudioChannelClass = _AVCaptureAudioChannelClass{objc.GetClass("AVCaptureAudioChannel")}
+var (
+	aVCaptureAudioChannelClass     _AVCaptureAudioChannelClass
+	aVCaptureAudioChannelClassOnce sync.Once
+)
+
+func getAVCaptureAudioChannelClass() _AVCaptureAudioChannelClass {
+	aVCaptureAudioChannelClassOnce.Do(func() {
+		aVCaptureAudioChannelClass = _AVCaptureAudioChannelClass{objc.GetClass("AVCaptureAudioChannel")}
+	})
+	return aVCaptureAudioChannelClass
+}
 
 type _AVCaptureAudioChannelClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaptureAudioChannel interface {
 // An object that monitors average and peak power levels for an audio channel in a capture connection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioChannel
-
 type AVCaptureAudioChannel struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVCaptureAudioChannel struct {
 func AVCaptureAudioChannelFrom(ptr unsafe.Pointer) AVCaptureAudioChannel {
 	return AVCaptureAudioChannel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureAudioChannelClass) Alloc() AVCaptureAudioChannel {
 	rv := objc.Send[AVCaptureAudioChannel](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureAudioChannelClass) New() AVCaptureAudioChannel {
 	rv := objc.Send[AVCaptureAudioChannel](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVCaptureAudioChannel) Autorelease() AVCaptureAudioChannel {
 
 // NewAVCaptureAudioChannel creates a new AVCaptureAudioChannel instance.
 func NewAVCaptureAudioChannel() AVCaptureAudioChannel {
-	return aVCaptureAudioChannelClass.New()
+	return getAVCaptureAudioChannelClass().New()
 }
 
 

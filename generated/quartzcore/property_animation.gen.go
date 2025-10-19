@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PropertyAnimation] class.
-var propertyAnimationClass = _PropertyAnimationClass{objc.GetClass("CAPropertyAnimation")}
+var (
+	propertyAnimationClass     _PropertyAnimationClass
+	propertyAnimationClassOnce sync.Once
+)
+
+func getPropertyAnimationClass() _PropertyAnimationClass {
+	propertyAnimationClassOnce.Do(func() {
+		propertyAnimationClass = _PropertyAnimationClass{objc.GetClass("CAPropertyAnimation")}
+	})
+	return propertyAnimationClass
+}
 
 type _PropertyAnimationClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPropertyAnimation interface {
 // An abstract subclass for creating animations that manipulate the value of layer properties. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation
-
 type PropertyAnimation struct {
 	Animation
 }
@@ -36,13 +46,15 @@ func PropertyAnimationFrom(ptr unsafe.Pointer) PropertyAnimation {
 		Animation: AnimationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PropertyAnimationClass) Alloc() PropertyAnimation {
 	rv := objc.Send[PropertyAnimation](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PropertyAnimationClass) New() PropertyAnimation {
 	rv := objc.Send[PropertyAnimation](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PropertyAnimation) Autorelease() PropertyAnimation {
 
 // NewPropertyAnimation creates a new PropertyAnimation instance.
 func NewPropertyAnimation() PropertyAnimation {
-	return propertyAnimationClass.New()
+	return getPropertyAnimationClass().New()
 }
 
 
@@ -71,9 +83,8 @@ func NewPropertyAnimation() PropertyAnimation {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
-func NewAnimationWithKeyPath(path string) PropertyAnimation {
-	rv := objc.Send[PropertyAnimation](objc.ID(propertyAnimationClass.class), objc.Sel("animationWithKeyPath:"), path)
-	rv.Autorelease()
+func NewPropertyAnimationWithKeyPath(path string) PropertyAnimation {
+	rv := objc.Send[PropertyAnimation](objc.ID(getPropertyAnimationClass().class), objc.Sel("animationWithKeyPath:"), objc.String(path))
 	return rv
 }
 
@@ -83,7 +94,7 @@ func NewAnimationWithKeyPath(path string) PropertyAnimation {
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
 func (pc _PropertyAnimationClass) AnimationWithKeyPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("animationWithKeyPath:"), path)
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("animationWithKeyPath:"), objc.String(path))
 	return rv
 }
 

@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEDNSSettings] class.
-var nEDNSSettingsClass = _NEDNSSettingsClass{objc.GetClass("NEDNSSettings")}
+var (
+	nEDNSSettingsClass     _NEDNSSettingsClass
+	nEDNSSettingsClassOnce sync.Once
+)
+
+func getNEDNSSettingsClass() _NEDNSSettingsClass {
+	nEDNSSettingsClassOnce.Do(func() {
+		nEDNSSettingsClass = _NEDNSSettingsClass{objc.GetClass("NEDNSSettings")}
+	})
+	return nEDNSSettingsClass
+}
 
 type _NEDNSSettingsClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type INEDNSSettings interface {
 }
 
 // A parent class referenced by other NetworkExtension classes. [Full Topic]
-
 type NEDNSSettings struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type NEDNSSettings struct {
 func NEDNSSettingsFrom(ptr unsafe.Pointer) NEDNSSettings {
 	return NEDNSSettings{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEDNSSettingsClass) Alloc() NEDNSSettings {
 	rv := objc.Send[NEDNSSettings](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEDNSSettingsClass) New() NEDNSSettings {
 	rv := objc.Send[NEDNSSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (n_ NEDNSSettings) Autorelease() NEDNSSettings {
 
 // NewNEDNSSettings creates a new NEDNSSettings instance.
 func NewNEDNSSettings() NEDNSSettings {
-	return nEDNSSettingsClass.New()
+	return getNEDNSSettingsClass().New()
 }
 
 

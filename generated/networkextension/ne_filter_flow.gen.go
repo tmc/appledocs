@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEFilterFlow] class.
-var nEFilterFlowClass = _NEFilterFlowClass{objc.GetClass("NEFilterFlow")}
+var (
+	nEFilterFlowClass     _NEFilterFlowClass
+	nEFilterFlowClassOnce sync.Once
+)
+
+func getNEFilterFlowClass() _NEFilterFlowClass {
+	nEFilterFlowClassOnce.Do(func() {
+		nEFilterFlowClass = _NEFilterFlowClass{objc.GetClass("NEFilterFlow")}
+	})
+	return nEFilterFlowClass
+}
 
 type _NEFilterFlowClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEFilterFlow interface {
 // The abstract base class for types that represent flows of network data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterFlow
-
 type NEFilterFlow struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEFilterFlow struct {
 func NEFilterFlowFrom(ptr unsafe.Pointer) NEFilterFlow {
 	return NEFilterFlow{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterFlowClass) Alloc() NEFilterFlow {
 	rv := objc.Send[NEFilterFlow](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEFilterFlowClass) New() NEFilterFlow {
 	rv := objc.Send[NEFilterFlow](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEFilterFlow) Autorelease() NEFilterFlow {
 
 // NewNEFilterFlow creates a new NEFilterFlow instance.
 func NewNEFilterFlow() NEFilterFlow {
-	return nEFilterFlowClass.New()
+	return getNEFilterFlowClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UbiquitousKeyValueStore] class.
-var ubiquitousKeyValueStoreClass = _UbiquitousKeyValueStoreClass{objc.GetClass("NSUbiquitousKeyValueStore")}
+var (
+	ubiquitousKeyValueStoreClass     _UbiquitousKeyValueStoreClass
+	ubiquitousKeyValueStoreClassOnce sync.Once
+)
+
+func getUbiquitousKeyValueStoreClass() _UbiquitousKeyValueStoreClass {
+	ubiquitousKeyValueStoreClassOnce.Do(func() {
+		ubiquitousKeyValueStoreClass = _UbiquitousKeyValueStoreClass{objc.GetClass("NSUbiquitousKeyValueStore")}
+	})
+	return ubiquitousKeyValueStoreClass
+}
 
 type _UbiquitousKeyValueStoreClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IUbiquitousKeyValueStore interface {
 // An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore
-
 type UbiquitousKeyValueStore struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type UbiquitousKeyValueStore struct {
 func UbiquitousKeyValueStoreFrom(ptr unsafe.Pointer) UbiquitousKeyValueStore {
 	return UbiquitousKeyValueStore{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UbiquitousKeyValueStoreClass) Alloc() UbiquitousKeyValueStore {
 	rv := objc.Send[UbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UbiquitousKeyValueStoreClass) New() UbiquitousKeyValueStore {
 	rv := objc.Send[UbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ UbiquitousKeyValueStore) Autorelease() UbiquitousKeyValueStore {
 
 // NewUbiquitousKeyValueStore creates a new UbiquitousKeyValueStore instance.
 func NewUbiquitousKeyValueStore() UbiquitousKeyValueStore {
-	return ubiquitousKeyValueStoreClass.New()
+	return getUbiquitousKeyValueStoreClass().New()
 }
 
 

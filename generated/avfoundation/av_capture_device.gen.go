@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaptureDevice] class.
-var aVCaptureDeviceClass = _AVCaptureDeviceClass{objc.GetClass("AVCaptureDevice")}
+var (
+	aVCaptureDeviceClass     _AVCaptureDeviceClass
+	aVCaptureDeviceClassOnce sync.Once
+)
+
+func getAVCaptureDeviceClass() _AVCaptureDeviceClass {
+	aVCaptureDeviceClassOnce.Do(func() {
+		aVCaptureDeviceClass = _AVCaptureDeviceClass{objc.GetClass("AVCaptureDevice")}
+	})
+	return aVCaptureDeviceClass
+}
 
 type _AVCaptureDeviceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaptureDevice interface {
 // An object that represents a hardware or virtual capture device like a camera or microphone. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice
-
 type AVCaptureDevice struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVCaptureDevice struct {
 func AVCaptureDeviceFrom(ptr unsafe.Pointer) AVCaptureDevice {
 	return AVCaptureDevice{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureDeviceClass) Alloc() AVCaptureDevice {
 	rv := objc.Send[AVCaptureDevice](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureDeviceClass) New() AVCaptureDevice {
 	rv := objc.Send[AVCaptureDevice](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVCaptureDevice) Autorelease() AVCaptureDevice {
 
 // NewAVCaptureDevice creates a new AVCaptureDevice instance.
 func NewAVCaptureDevice() AVCaptureDevice {
-	return aVCaptureDeviceClass.New()
+	return getAVCaptureDeviceClass().New()
 }
 
 

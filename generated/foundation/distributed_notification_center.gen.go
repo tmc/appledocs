@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DistributedNotificationCenter] class.
-var distributedNotificationCenterClass = _DistributedNotificationCenterClass{objc.GetClass("NSDistributedNotificationCenter")}
+var (
+	distributedNotificationCenterClass     _DistributedNotificationCenterClass
+	distributedNotificationCenterClassOnce sync.Once
+)
+
+func getDistributedNotificationCenterClass() _DistributedNotificationCenterClass {
+	distributedNotificationCenterClassOnce.Do(func() {
+		distributedNotificationCenterClass = _DistributedNotificationCenterClass{objc.GetClass("NSDistributedNotificationCenter")}
+	})
+	return distributedNotificationCenterClass
+}
 
 type _DistributedNotificationCenterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDistributedNotificationCenter interface {
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter
-
 type DistributedNotificationCenter struct {
 	NotificationCenter
 }
@@ -36,13 +46,15 @@ func DistributedNotificationCenterFrom(ptr unsafe.Pointer) DistributedNotificati
 		NotificationCenter: NotificationCenterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DistributedNotificationCenterClass) Alloc() DistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DistributedNotificationCenterClass) New() DistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DistributedNotificationCenter) Autorelease() DistributedNotificationCen
 
 // NewDistributedNotificationCenter creates a new DistributedNotificationCenter instance.
 func NewDistributedNotificationCenter() DistributedNotificationCenter {
-	return distributedNotificationCenterClass.New()
+	return getDistributedNotificationCenterClass().New()
 }
 
 

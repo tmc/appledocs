@@ -41,7 +41,6 @@ type IToolbar interface {
 // An object that manages the space above your app’s custom content and either below or integrated with the window’s title bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar
-
 type Toolbar struct {
 	objectivec.Object
 }
@@ -52,6 +51,7 @@ type Toolbar struct {
 func ToolbarFrom(ptr unsafe.Pointer) Toolbar {
 	return Toolbar{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _ToolbarClass) Alloc() Toolbar {
 	rv := objc.Send[Toolbar](objc.ID(tc.class), objc.Sel("alloc"))
@@ -89,7 +89,6 @@ func NewToolbar() Toolbar {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/init(identifier:)
 func NewToolbarWithIdentifier(identifier unsafe.Pointer) Toolbar {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getToolbarClass().Alloc()
 	rv := objc.Send[Toolbar](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()

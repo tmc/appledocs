@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MessagePort] class.
-var messagePortClass = _MessagePortClass{objc.GetClass("NSMessagePort")}
+var (
+	messagePortClass     _MessagePortClass
+	messagePortClassOnce sync.Once
+)
+
+func getMessagePortClass() _MessagePortClass {
+	messagePortClassOnce.Do(func() {
+		messagePortClass = _MessagePortClass{objc.GetClass("NSMessagePort")}
+	})
+	return messagePortClass
+}
 
 type _MessagePortClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMessagePort interface {
 // A port that can be used as an endpoint for distributed object connections (or raw messaging). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MessagePort
-
 type MessagePort struct {
 	Port
 }
@@ -36,13 +46,15 @@ func MessagePortFrom(ptr unsafe.Pointer) MessagePort {
 		Port: PortFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MessagePortClass) Alloc() MessagePort {
 	rv := objc.Send[MessagePort](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MessagePortClass) New() MessagePort {
 	rv := objc.Send[MessagePort](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MessagePort) Autorelease() MessagePort {
 
 // NewMessagePort creates a new MessagePort instance.
 func NewMessagePort() MessagePort {
-	return messagePortClass.New()
+	return getMessagePortClass().New()
 }
 
 

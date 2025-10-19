@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEPacketTunnelFlow] class.
-var nEPacketTunnelFlowClass = _NEPacketTunnelFlowClass{objc.GetClass("NEPacketTunnelFlow")}
+var (
+	nEPacketTunnelFlowClass     _NEPacketTunnelFlowClass
+	nEPacketTunnelFlowClassOnce sync.Once
+)
+
+func getNEPacketTunnelFlowClass() _NEPacketTunnelFlowClass {
+	nEPacketTunnelFlowClassOnce.Do(func() {
+		nEPacketTunnelFlowClass = _NEPacketTunnelFlowClass{objc.GetClass("NEPacketTunnelFlow")}
+	})
+	return nEPacketTunnelFlowClass
+}
 
 type _NEPacketTunnelFlowClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEPacketTunnelFlow interface {
 // An object you use to read and write packets to and from the tunnel’s virtual interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow
-
 type NEPacketTunnelFlow struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEPacketTunnelFlow struct {
 func NEPacketTunnelFlowFrom(ptr unsafe.Pointer) NEPacketTunnelFlow {
 	return NEPacketTunnelFlow{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEPacketTunnelFlowClass) Alloc() NEPacketTunnelFlow {
 	rv := objc.Send[NEPacketTunnelFlow](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEPacketTunnelFlowClass) New() NEPacketTunnelFlow {
 	rv := objc.Send[NEPacketTunnelFlow](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEPacketTunnelFlow) Autorelease() NEPacketTunnelFlow {
 
 // NewNEPacketTunnelFlow creates a new NEPacketTunnelFlow instance.
 func NewNEPacketTunnelFlow() NEPacketTunnelFlow {
-	return nEPacketTunnelFlowClass.New()
+	return getNEPacketTunnelFlowClass().New()
 }
 
 

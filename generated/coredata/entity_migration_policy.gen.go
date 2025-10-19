@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [EntityMigrationPolicy] class.
-var entityMigrationPolicyClass = _EntityMigrationPolicyClass{objc.GetClass("NSEntityMigrationPolicy")}
+var (
+	entityMigrationPolicyClass     _EntityMigrationPolicyClass
+	entityMigrationPolicyClassOnce sync.Once
+)
+
+func getEntityMigrationPolicyClass() _EntityMigrationPolicyClass {
+	entityMigrationPolicyClassOnce.Do(func() {
+		entityMigrationPolicyClass = _EntityMigrationPolicyClass{objc.GetClass("NSEntityMigrationPolicy")}
+	})
+	return entityMigrationPolicyClass
+}
 
 type _EntityMigrationPolicyClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IEntityMigrationPolicy interface {
 // A policy instance that customizes the migration process for an entity mapping. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy
-
 type EntityMigrationPolicy struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type EntityMigrationPolicy struct {
 func EntityMigrationPolicyFrom(ptr unsafe.Pointer) EntityMigrationPolicy {
 	return EntityMigrationPolicy{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _EntityMigrationPolicyClass) Alloc() EntityMigrationPolicy {
 	rv := objc.Send[EntityMigrationPolicy](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EntityMigrationPolicyClass) New() EntityMigrationPolicy {
 	rv := objc.Send[EntityMigrationPolicy](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (e_ EntityMigrationPolicy) Autorelease() EntityMigrationPolicy {
 
 // NewEntityMigrationPolicy creates a new EntityMigrationPolicy instance.
 func NewEntityMigrationPolicy() EntityMigrationPolicy {
-	return entityMigrationPolicyClass.New()
+	return getEntityMigrationPolicyClass().New()
 }
 
 

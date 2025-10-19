@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [CharacterSet] class.
-var characterSetClass = _CharacterSetClass{objc.GetClass("NSCharacterSet")}
+var (
+	characterSetClass     _CharacterSetClass
+	characterSetClassOnce sync.Once
+)
+
+func getCharacterSetClass() _CharacterSetClass {
+	characterSetClassOnce.Do(func() {
+		characterSetClass = _CharacterSetClass{objc.GetClass("NSCharacterSet")}
+	})
+	return characterSetClass
+}
 
 type _CharacterSetClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ICharacterSet interface {
 // An object representing a fixed set of Unicode character values for use in search operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet
-
 type CharacterSet struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type CharacterSet struct {
 func CharacterSetFrom(ptr unsafe.Pointer) CharacterSet {
 	return CharacterSet{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CharacterSetClass) Alloc() CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CharacterSetClass) New() CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ CharacterSet) Autorelease() CharacterSet {
 
 // NewCharacterSet creates a new CharacterSet instance.
 func NewCharacterSet() CharacterSet {
-	return characterSetClass.New()
+	return getCharacterSetClass().New()
 }
 
 

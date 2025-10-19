@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLDownload] class.
-var uRLDownloadClass = _URLDownloadClass{objc.GetClass("NSURLDownload")}
+var (
+	uRLDownloadClass     _URLDownloadClass
+	uRLDownloadClassOnce sync.Once
+)
+
+func getURLDownloadClass() _URLDownloadClass {
+	uRLDownloadClassOnce.Do(func() {
+		uRLDownloadClass = _URLDownloadClass{objc.GetClass("NSURLDownload")}
+	})
+	return uRLDownloadClass
+}
 
 type _URLDownloadClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLDownload interface {
 // An object that downloads a resource asynchronously and saves the data to a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload
-
 type URLDownload struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLDownload struct {
 func URLDownloadFrom(ptr unsafe.Pointer) URLDownload {
 	return URLDownload{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLDownloadClass) Alloc() URLDownload {
 	rv := objc.Send[URLDownload](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLDownloadClass) New() URLDownload {
 	rv := objc.Send[URLDownload](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLDownload) Autorelease() URLDownload {
 
 // NewURLDownload creates a new URLDownload instance.
 func NewURLDownload() URLDownload {
-	return uRLDownloadClass.New()
+	return getURLDownloadClass().New()
 }
 
 

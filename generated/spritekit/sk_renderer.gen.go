@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKRenderer] class.
-var sKRendererClass = _SKRendererClass{objc.GetClass("SKRenderer")}
+var (
+	sKRendererClass     _SKRendererClass
+	sKRendererClassOnce sync.Once
+)
+
+func getSKRendererClass() _SKRendererClass {
+	sKRendererClassOnce.Do(func() {
+		sKRendererClass = _SKRendererClass{objc.GetClass("SKRenderer")}
+	})
+	return sKRendererClass
+}
 
 type _SKRendererClass struct {
 	class objc.Class
@@ -27,7 +38,6 @@ type ISKRenderer interface {
 // An object that renders a scene into a custom Metal rendering pipeline and drives the scene update cycle. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRenderer
-
 type SKRenderer struct {
 	objectivec.Object
 }
@@ -38,13 +48,15 @@ type SKRenderer struct {
 func SKRendererFrom(ptr unsafe.Pointer) SKRenderer {
 	return SKRenderer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKRendererClass) Alloc() SKRenderer {
 	rv := objc.Send[SKRenderer](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKRendererClass) New() SKRenderer {
 	rv := objc.Send[SKRenderer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -65,7 +77,7 @@ func (s_ SKRenderer) Autorelease() SKRenderer {
 
 // NewSKRenderer creates a new SKRenderer instance.
 func NewSKRenderer() SKRenderer {
-	return sKRendererClass.New()
+	return getSKRendererClass().New()
 }
 
 
@@ -73,9 +85,8 @@ func NewSKRenderer() SKRenderer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRenderer/init(device:)
-func NewRendererWithDevice(device unsafe.Pointer) SKRenderer {
-	rv := objc.Send[SKRenderer](objc.ID(sKRendererClass.class), objc.Sel("rendererWithDevice:"), device)
-	rv.Autorelease()
+func NewSKRendererWithDevice(device unsafe.Pointer) SKRenderer {
+	rv := objc.Send[SKRenderer](objc.ID(getSKRendererClass().class), objc.Sel("rendererWithDevice:"), device)
 	return rv
 }
 

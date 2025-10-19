@@ -34,7 +34,6 @@ type ISharingServicePickerTouchBarItem interface {
 // A bar item that, along with its delegate, provides a list of objects eligible for sharing. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem
-
 type SharingServicePickerTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func SharingServicePickerTouchBarItemFrom(ptr unsafe.Pointer) SharingServicePick
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerTouchBarItemClass) Alloc() SharingServicePickerTouchBarItem {
 	rv := objc.Send[SharingServicePickerTouchBarItem](objc.ID(sc.class), objc.Sel("alloc"))

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitDispersion] class.
-var unitDispersionClass = _UnitDispersionClass{objc.GetClass("NSUnitDispersion")}
+var (
+	unitDispersionClass     _UnitDispersionClass
+	unitDispersionClassOnce sync.Once
+)
+
+func getUnitDispersionClass() _UnitDispersionClass {
+	unitDispersionClassOnce.Do(func() {
+		unitDispersionClass = _UnitDispersionClass{objc.GetClass("NSUnitDispersion")}
+	})
+	return unitDispersionClass
+}
 
 type _UnitDispersionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitDispersion interface {
 // A unit of measure for specific quantities of dispersion. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion
-
 type UnitDispersion struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitDispersionFrom(ptr unsafe.Pointer) UnitDispersion {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitDispersionClass) Alloc() UnitDispersion {
 	rv := objc.Send[UnitDispersion](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitDispersionClass) New() UnitDispersion {
 	rv := objc.Send[UnitDispersion](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitDispersion) Autorelease() UnitDispersion {
 
 // NewUnitDispersion creates a new UnitDispersion instance.
 func NewUnitDispersion() UnitDispersion {
-	return unitDispersionClass.New()
+	return getUnitDispersionClass().New()
 }
 
 

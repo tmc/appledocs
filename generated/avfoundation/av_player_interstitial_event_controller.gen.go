@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVPlayerInterstitialEventController] class.
-var aVPlayerInterstitialEventControllerClass = _AVPlayerInterstitialEventControllerClass{objc.GetClass("AVPlayerInterstitialEventController")}
+var (
+	aVPlayerInterstitialEventControllerClass     _AVPlayerInterstitialEventControllerClass
+	aVPlayerInterstitialEventControllerClassOnce sync.Once
+)
+
+func getAVPlayerInterstitialEventControllerClass() _AVPlayerInterstitialEventControllerClass {
+	aVPlayerInterstitialEventControllerClassOnce.Do(func() {
+		aVPlayerInterstitialEventControllerClass = _AVPlayerInterstitialEventControllerClass{objc.GetClass("AVPlayerInterstitialEventController")}
+	})
+	return aVPlayerInterstitialEventControllerClass
+}
 
 type _AVPlayerInterstitialEventControllerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVPlayerInterstitialEventController interface {
 // An object that schedules interstitial events for items played by the primary player. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController
-
 type AVPlayerInterstitialEventController struct {
 	AVPlayerInterstitialEventMonitor
 }
@@ -36,13 +46,15 @@ func AVPlayerInterstitialEventControllerFrom(ptr unsafe.Pointer) AVPlayerInterst
 		AVPlayerInterstitialEventMonitor: AVPlayerInterstitialEventMonitorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerInterstitialEventControllerClass) Alloc() AVPlayerInterstitialEventController {
 	rv := objc.Send[AVPlayerInterstitialEventController](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerInterstitialEventControllerClass) New() AVPlayerInterstitialEventController {
 	rv := objc.Send[AVPlayerInterstitialEventController](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVPlayerInterstitialEventController) Autorelease() AVPlayerInterstitial
 
 // NewAVPlayerInterstitialEventController creates a new AVPlayerInterstitialEventController instance.
 func NewAVPlayerInterstitialEventController() AVPlayerInterstitialEventController {
-	return aVPlayerInterstitialEventControllerClass.New()
+	return getAVPlayerInterstitialEventControllerClass().New()
 }
 
 

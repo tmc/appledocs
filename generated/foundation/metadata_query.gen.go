@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MetadataQuery] class.
-var metadataQueryClass = _MetadataQueryClass{objc.GetClass("NSMetadataQuery")}
+var (
+	metadataQueryClass     _MetadataQueryClass
+	metadataQueryClassOnce sync.Once
+)
+
+func getMetadataQueryClass() _MetadataQueryClass {
+	metadataQueryClassOnce.Do(func() {
+		metadataQueryClass = _MetadataQueryClass{objc.GetClass("NSMetadataQuery")}
+	})
+	return metadataQueryClass
+}
 
 type _MetadataQueryClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMetadataQuery interface {
 // A query that you perform against Spotlight metadata. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery
-
 type MetadataQuery struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MetadataQuery struct {
 func MetadataQueryFrom(ptr unsafe.Pointer) MetadataQuery {
 	return MetadataQuery{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataQueryClass) Alloc() MetadataQuery {
 	rv := objc.Send[MetadataQuery](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MetadataQueryClass) New() MetadataQuery {
 	rv := objc.Send[MetadataQuery](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MetadataQuery) Autorelease() MetadataQuery {
 
 // NewMetadataQuery creates a new MetadataQuery instance.
 func NewMetadataQuery() MetadataQuery {
-	return metadataQueryClass.New()
+	return getMetadataQueryClass().New()
 }
 
 

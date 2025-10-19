@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [HashTable] class.
-var hashTableClass = _HashTableClass{objc.GetClass("NSHashTable")}
+var (
+	hashTableClass     _HashTableClass
+	hashTableClassOnce sync.Once
+)
+
+func getHashTableClass() _HashTableClass {
+	hashTableClassOnce.Do(func() {
+		hashTableClass = _HashTableClass{objc.GetClass("NSHashTable")}
+	})
+	return hashTableClass
+}
 
 type _HashTableClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IHashTable interface {
 // A collection similar to a set, but with broader range of available memory semantics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable
-
 type HashTable struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type HashTable struct {
 func HashTableFrom(ptr unsafe.Pointer) HashTable {
 	return HashTable{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _HashTableClass) Alloc() HashTable {
 	rv := objc.Send[HashTable](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HashTableClass) New() HashTable {
 	rv := objc.Send[HashTable](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (h_ HashTable) Autorelease() HashTable {
 
 // NewHashTable creates a new HashTable instance.
 func NewHashTable() HashTable {
-	return hashTableClass.New()
+	return getHashTableClass().New()
 }
 
 

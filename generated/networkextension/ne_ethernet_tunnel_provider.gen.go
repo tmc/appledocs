@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NEEthernetTunnelProvider] class.
-var nEEthernetTunnelProviderClass = _NEEthernetTunnelProviderClass{objc.GetClass("NEEthernetTunnelProvider")}
+var (
+	nEEthernetTunnelProviderClass     _NEEthernetTunnelProviderClass
+	nEEthernetTunnelProviderClassOnce sync.Once
+)
+
+func getNEEthernetTunnelProviderClass() _NEEthernetTunnelProviderClass {
+	nEEthernetTunnelProviderClassOnce.Do(func() {
+		nEEthernetTunnelProviderClass = _NEEthernetTunnelProviderClass{objc.GetClass("NEEthernetTunnelProvider")}
+	})
+	return nEEthernetTunnelProviderClass
+}
 
 type _NEEthernetTunnelProviderClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INEEthernetTunnelProvider interface {
 // A type that implements the client side of a custom link-layer packet tunneling protocol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelProvider
-
 type NEEthernetTunnelProvider struct {
 	NEPacketTunnelProvider
 }
@@ -36,13 +46,15 @@ func NEEthernetTunnelProviderFrom(ptr unsafe.Pointer) NEEthernetTunnelProvider {
 		NEPacketTunnelProvider: NEPacketTunnelProviderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEEthernetTunnelProviderClass) Alloc() NEEthernetTunnelProvider {
 	rv := objc.Send[NEEthernetTunnelProvider](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEEthernetTunnelProviderClass) New() NEEthernetTunnelProvider {
 	rv := objc.Send[NEEthernetTunnelProvider](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NEEthernetTunnelProvider) Autorelease() NEEthernetTunnelProvider {
 
 // NewNEEthernetTunnelProvider creates a new NEEthernetTunnelProvider instance.
 func NewNEEthernetTunnelProvider() NEEthernetTunnelProvider {
-	return nEEthernetTunnelProviderClass.New()
+	return getNEEthernetTunnelProviderClass().New()
 }
 
 

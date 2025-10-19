@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKPhysicsContact] class.
-var sKPhysicsContactClass = _SKPhysicsContactClass{objc.GetClass("SKPhysicsContact")}
+var (
+	sKPhysicsContactClass     _SKPhysicsContactClass
+	sKPhysicsContactClassOnce sync.Once
+)
+
+func getSKPhysicsContactClass() _SKPhysicsContactClass {
+	sKPhysicsContactClassOnce.Do(func() {
+		sKPhysicsContactClass = _SKPhysicsContactClass{objc.GetClass("SKPhysicsContact")}
+	})
+	return sKPhysicsContactClass
+}
 
 type _SKPhysicsContactClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKPhysicsContact interface {
 // A description of the contact between two physics bodies. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsContact
-
 type SKPhysicsContact struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKPhysicsContact struct {
 func SKPhysicsContactFrom(ptr unsafe.Pointer) SKPhysicsContact {
 	return SKPhysicsContact{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKPhysicsContactClass) Alloc() SKPhysicsContact {
 	rv := objc.Send[SKPhysicsContact](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKPhysicsContactClass) New() SKPhysicsContact {
 	rv := objc.Send[SKPhysicsContact](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKPhysicsContact) Autorelease() SKPhysicsContact {
 
 // NewSKPhysicsContact creates a new SKPhysicsContact instance.
 func NewSKPhysicsContact() SKPhysicsContact {
-	return sKPhysicsContactClass.New()
+	return getSKPhysicsContactClass().New()
 }
 
 

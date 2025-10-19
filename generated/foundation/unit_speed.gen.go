@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitSpeed] class.
-var unitSpeedClass = _UnitSpeedClass{objc.GetClass("NSUnitSpeed")}
+var (
+	unitSpeedClass     _UnitSpeedClass
+	unitSpeedClassOnce sync.Once
+)
+
+func getUnitSpeedClass() _UnitSpeedClass {
+	unitSpeedClassOnce.Do(func() {
+		unitSpeedClass = _UnitSpeedClass{objc.GetClass("NSUnitSpeed")}
+	})
+	return unitSpeedClass
+}
 
 type _UnitSpeedClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitSpeed interface {
 // A unit of measure for speed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed
-
 type UnitSpeed struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitSpeedFrom(ptr unsafe.Pointer) UnitSpeed {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitSpeedClass) Alloc() UnitSpeed {
 	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitSpeedClass) New() UnitSpeed {
 	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitSpeed) Autorelease() UnitSpeed {
 
 // NewUnitSpeed creates a new UnitSpeed instance.
 func NewUnitSpeed() UnitSpeed {
-	return unitSpeedClass.New()
+	return getUnitSpeedClass().New()
 }
 
 

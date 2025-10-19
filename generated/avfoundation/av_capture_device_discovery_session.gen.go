@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaptureDeviceDiscoverySession] class.
-var aVCaptureDeviceDiscoverySessionClass = _AVCaptureDeviceDiscoverySessionClass{objc.GetClass("AVCaptureDeviceDiscoverySession")}
+var (
+	aVCaptureDeviceDiscoverySessionClass     _AVCaptureDeviceDiscoverySessionClass
+	aVCaptureDeviceDiscoverySessionClassOnce sync.Once
+)
+
+func getAVCaptureDeviceDiscoverySessionClass() _AVCaptureDeviceDiscoverySessionClass {
+	aVCaptureDeviceDiscoverySessionClassOnce.Do(func() {
+		aVCaptureDeviceDiscoverySessionClass = _AVCaptureDeviceDiscoverySessionClass{objc.GetClass("AVCaptureDeviceDiscoverySession")}
+	})
+	return aVCaptureDeviceDiscoverySessionClass
+}
 
 type _AVCaptureDeviceDiscoverySessionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaptureDeviceDiscoverySession interface {
 // An object that finds capture devices that match specific search criteria. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession
-
 type AVCaptureDeviceDiscoverySession struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVCaptureDeviceDiscoverySession struct {
 func AVCaptureDeviceDiscoverySessionFrom(ptr unsafe.Pointer) AVCaptureDeviceDiscoverySession {
 	return AVCaptureDeviceDiscoverySession{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureDeviceDiscoverySessionClass) Alloc() AVCaptureDeviceDiscoverySession {
 	rv := objc.Send[AVCaptureDeviceDiscoverySession](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureDeviceDiscoverySessionClass) New() AVCaptureDeviceDiscoverySession {
 	rv := objc.Send[AVCaptureDeviceDiscoverySession](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVCaptureDeviceDiscoverySession) Autorelease() AVCaptureDeviceDiscovery
 
 // NewAVCaptureDeviceDiscoverySession creates a new AVCaptureDeviceDiscoverySession instance.
 func NewAVCaptureDeviceDiscoverySession() AVCaptureDeviceDiscoverySession {
-	return aVCaptureDeviceDiscoverySessionClass.New()
+	return getAVCaptureDeviceDiscoverySessionClass().New()
 }
 
 

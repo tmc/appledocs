@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitElectricResistance] class.
-var unitElectricResistanceClass = _UnitElectricResistanceClass{objc.GetClass("NSUnitElectricResistance")}
+var (
+	unitElectricResistanceClass     _UnitElectricResistanceClass
+	unitElectricResistanceClassOnce sync.Once
+)
+
+func getUnitElectricResistanceClass() _UnitElectricResistanceClass {
+	unitElectricResistanceClassOnce.Do(func() {
+		unitElectricResistanceClass = _UnitElectricResistanceClass{objc.GetClass("NSUnitElectricResistance")}
+	})
+	return unitElectricResistanceClass
+}
 
 type _UnitElectricResistanceClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitElectricResistance interface {
 // A unit of measure for electric resistance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance
-
 type UnitElectricResistance struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitElectricResistanceFrom(ptr unsafe.Pointer) UnitElectricResistance {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitElectricResistanceClass) Alloc() UnitElectricResistance {
 	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitElectricResistanceClass) New() UnitElectricResistance {
 	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitElectricResistance) Autorelease() UnitElectricResistance {
 
 // NewUnitElectricResistance creates a new UnitElectricResistance instance.
 func NewUnitElectricResistance() UnitElectricResistance {
-	return unitElectricResistanceClass.New()
+	return getUnitElectricResistanceClass().New()
 }
 
 

@@ -35,7 +35,6 @@ type ISound interface {
 // A simple interface for loading and playing audio files. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound
-
 type Sound struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Sound struct {
 func SoundFrom(ptr unsafe.Pointer) Sound {
 	return Sound{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SoundClass) Alloc() Sound {
 	rv := objc.Send[Sound](objc.ID(sc.class), objc.Sel("alloc"))

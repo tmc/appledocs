@@ -37,7 +37,6 @@ type IBox interface {
 // A stylized rectangular box with an optional title. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox
-
 type Box struct {
 	View
 }
@@ -50,6 +49,7 @@ func BoxFrom(ptr unsafe.Pointer) Box {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BoxClass) Alloc() Box {
 	rv := objc.Send[Box](objc.ID(bc.class), objc.Sel("alloc"))

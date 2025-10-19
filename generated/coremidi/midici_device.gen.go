@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIDevice] class.
-var mIDICIDeviceClass = _MIDICIDeviceClass{objc.GetClass("MIDICIDevice")}
+var (
+	mIDICIDeviceClass     _MIDICIDeviceClass
+	mIDICIDeviceClassOnce sync.Once
+)
+
+func getMIDICIDeviceClass() _MIDICIDeviceClass {
+	mIDICIDeviceClassOnce.Do(func() {
+		mIDICIDeviceClass = _MIDICIDeviceClass{objc.GetClass("MIDICIDevice")}
+	})
+	return mIDICIDeviceClass
+}
 
 type _MIDICIDeviceClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMIDICIDevice interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice
-
 type MIDICIDevice struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type MIDICIDevice struct {
 func MIDICIDeviceFrom(ptr unsafe.Pointer) MIDICIDevice {
 	return MIDICIDevice{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIDeviceClass) Alloc() MIDICIDevice {
 	rv := objc.Send[MIDICIDevice](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIDeviceClass) New() MIDICIDevice {
 	rv := objc.Send[MIDICIDevice](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (m_ MIDICIDevice) Autorelease() MIDICIDevice {
 
 // NewMIDICIDevice creates a new MIDICIDevice instance.
 func NewMIDICIDevice() MIDICIDevice {
-	return mIDICIDeviceClass.New()
+	return getMIDICIDeviceClass().New()
 }
 
 

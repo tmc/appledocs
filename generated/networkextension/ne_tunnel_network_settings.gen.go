@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NETunnelNetworkSettings] class.
-var nETunnelNetworkSettingsClass = _NETunnelNetworkSettingsClass{objc.GetClass("NETunnelNetworkSettings")}
+var (
+	nETunnelNetworkSettingsClass     _NETunnelNetworkSettingsClass
+	nETunnelNetworkSettingsClassOnce sync.Once
+)
+
+func getNETunnelNetworkSettingsClass() _NETunnelNetworkSettingsClass {
+	nETunnelNetworkSettingsClassOnce.Do(func() {
+		nETunnelNetworkSettingsClass = _NETunnelNetworkSettingsClass{objc.GetClass("NETunnelNetworkSettings")}
+	})
+	return nETunnelNetworkSettingsClass
+}
 
 type _NETunnelNetworkSettingsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INETunnelNetworkSettings interface {
 // The configuration for a tunnel provider’s virtual interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings
-
 type NETunnelNetworkSettings struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NETunnelNetworkSettings struct {
 func NETunnelNetworkSettingsFrom(ptr unsafe.Pointer) NETunnelNetworkSettings {
 	return NETunnelNetworkSettings{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NETunnelNetworkSettingsClass) Alloc() NETunnelNetworkSettings {
 	rv := objc.Send[NETunnelNetworkSettings](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NETunnelNetworkSettingsClass) New() NETunnelNetworkSettings {
 	rv := objc.Send[NETunnelNetworkSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NETunnelNetworkSettings) Autorelease() NETunnelNetworkSettings {
 
 // NewNETunnelNetworkSettings creates a new NETunnelNetworkSettings instance.
 func NewNETunnelNetworkSettings() NETunnelNetworkSettings {
-	return nETunnelNetworkSettingsClass.New()
+	return getNETunnelNetworkSettingsClass().New()
 }
 
 

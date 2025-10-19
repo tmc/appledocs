@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MappingModel] class.
-var mappingModelClass = _MappingModelClass{objc.GetClass("NSMappingModel")}
+var (
+	mappingModelClass     _MappingModelClass
+	mappingModelClassOnce sync.Once
+)
+
+func getMappingModelClass() _MappingModelClass {
+	mappingModelClassOnce.Do(func() {
+		mappingModelClass = _MappingModelClass{objc.GetClass("NSMappingModel")}
+	})
+	return mappingModelClass
+}
 
 type _MappingModelClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMappingModel interface {
 // A model instance that specifies how to map a model from a source to a destination managed object model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel
-
 type MappingModel struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MappingModel struct {
 func MappingModelFrom(ptr unsafe.Pointer) MappingModel {
 	return MappingModel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MappingModelClass) Alloc() MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MappingModelClass) New() MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MappingModel) Autorelease() MappingModel {
 
 // NewMappingModel creates a new MappingModel instance.
 func NewMappingModel() MappingModel {
-	return mappingModelClass.New()
+	return getMappingModelClass().New()
 }
 
 
@@ -71,8 +83,7 @@ func NewMappingModel() MappingModel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
 func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) MappingModel {
-	rv := objc.Send[MappingModel](objc.ID(mappingModelClass.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
-	rv.Autorelease()
+	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
 

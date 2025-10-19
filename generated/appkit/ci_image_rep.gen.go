@@ -34,7 +34,6 @@ type ICIImageRep interface {
 // An object that can render an image from a Core Image object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep
-
 type CIImageRep struct {
 	ImageRep
 }
@@ -47,6 +46,7 @@ func CIImageRepFrom(ptr unsafe.Pointer) CIImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _CIImageRepClass) Alloc() CIImageRep {
 	rv := objc.Send[CIImageRep](objc.ID(ic.class), objc.Sel("alloc"))

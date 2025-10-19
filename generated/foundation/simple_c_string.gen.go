@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SimpleCString] class.
-var simpleCStringClass = _SimpleCStringClass{objc.GetClass("NSSimpleCString")}
+var (
+	simpleCStringClass     _SimpleCStringClass
+	simpleCStringClassOnce sync.Once
+)
+
+func getSimpleCStringClass() _SimpleCStringClass {
+	simpleCStringClassOnce.Do(func() {
+		simpleCStringClass = _SimpleCStringClass{objc.GetClass("NSSimpleCString")}
+	})
+	return simpleCStringClass
+}
 
 type _SimpleCStringClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type ISimpleCString interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString
-
 type SimpleCString struct {
 	String
 }
@@ -33,13 +43,15 @@ func SimpleCStringFrom(ptr unsafe.Pointer) SimpleCString {
 		String: StringFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SimpleCStringClass) Alloc() SimpleCString {
 	rv := objc.Send[SimpleCString](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SimpleCStringClass) New() SimpleCString {
 	rv := objc.Send[SimpleCString](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (s_ SimpleCString) Autorelease() SimpleCString {
 
 // NewSimpleCString creates a new SimpleCString instance.
 func NewSimpleCString() SimpleCString {
-	return simpleCStringClass.New()
+	return getSimpleCStringClass().New()
 }
 
 

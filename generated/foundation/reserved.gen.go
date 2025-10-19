@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [reserved] class.
-var reservedClass = _reservedClass{objc.GetClass("reserved")}
+var (
+	reservedClass     _reservedClass
+	reservedClassOnce sync.Once
+)
+
+func getreservedClass() _reservedClass {
+	reservedClassOnce.Do(func() {
+		reservedClass = _reservedClass{objc.GetClass("reserved")}
+	})
+	return reservedClass
+}
 
 type _reservedClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type Ireserved interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/reserved
-
 type reserved struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type reserved struct {
 func reservedFrom(ptr unsafe.Pointer) reserved {
 	return reserved{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _reservedClass) Alloc() reserved {
 	rv := objc.Send[reserved](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _reservedClass) New() reserved {
 	rv := objc.Send[reserved](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (r_ reserved) Autorelease() reserved {
 
 // Newreserved creates a new reserved instance.
 func Newreserved() reserved {
-	return reservedClass.New()
+	return getreservedClass().New()
 }
 
 

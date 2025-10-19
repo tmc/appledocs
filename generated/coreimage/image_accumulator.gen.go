@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -11,7 +12,17 @@ import (
 )
 
 // The class instance for the [ImageAccumulator] class.
-var imageAccumulatorClass = _ImageAccumulatorClass{objc.GetClass("CIImageAccumulator")}
+var (
+	imageAccumulatorClass     _ImageAccumulatorClass
+	imageAccumulatorClassOnce sync.Once
+)
+
+func getImageAccumulatorClass() _ImageAccumulatorClass {
+	imageAccumulatorClassOnce.Do(func() {
+		imageAccumulatorClass = _ImageAccumulatorClass{objc.GetClass("CIImageAccumulator")}
+	})
+	return imageAccumulatorClass
+}
 
 type _ImageAccumulatorClass struct {
 	class objc.Class
@@ -29,7 +40,6 @@ type IImageAccumulator interface {
 // An object that manages feedback-based image processing for tasks such as painting or fluid simulation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator
-
 type ImageAccumulator struct {
 	objectivec.Object
 }
@@ -40,13 +50,15 @@ type ImageAccumulator struct {
 func ImageAccumulatorFrom(ptr unsafe.Pointer) ImageAccumulator {
 	return ImageAccumulator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageAccumulatorClass) Alloc() ImageAccumulator {
 	rv := objc.Send[ImageAccumulator](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageAccumulatorClass) New() ImageAccumulator {
 	rv := objc.Send[ImageAccumulator](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -67,27 +79,27 @@ func (i_ ImageAccumulator) Autorelease() ImageAccumulator {
 
 // NewImageAccumulator creates a new ImageAccumulator instance.
 func NewImageAccumulator() ImageAccumulator {
-	return imageAccumulatorClass.New()
+	return getImageAccumulatorClass().New()
 }
 
 
-// Initializes an image accumulator with the specified extent and pixel format. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:)
-func NewImageAccumulatorWithExtentFormat(extent unsafe.Pointer, format unsafe.Pointer) ImageAccumulator {
-	instance := imageAccumulatorClass.Alloc()
-	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:"), extent, format)
-	rv.Autorelease()
-	return rv
-}
 // Initializes an image accumulator with the specified extent, pixel format, and color space. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:colorSpace:)
 func NewImageAccumulatorWithExtentFormatColorSpace(extent unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) ImageAccumulator {
-	instance := imageAccumulatorClass.Alloc()
+	instance := getImageAccumulatorClass().Alloc()
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:colorSpace:"), extent, format, colorSpace)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an image accumulator with the specified extent and pixel format. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:)
+func NewImageAccumulatorWithExtentFormat(extent unsafe.Pointer, format unsafe.Pointer) ImageAccumulator {
+	instance := getImageAccumulatorClass().Alloc()
+	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:"), extent, format)
 	rv.Autorelease()
 	return rv
 }

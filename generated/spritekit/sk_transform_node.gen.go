@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKTransformNode] class.
-var sKTransformNodeClass = _SKTransformNodeClass{objc.GetClass("SKTransformNode")}
+var (
+	sKTransformNodeClass     _SKTransformNodeClass
+	sKTransformNodeClassOnce sync.Once
+)
+
+func getSKTransformNodeClass() _SKTransformNodeClass {
+	sKTransformNodeClassOnce.Do(func() {
+		sKTransformNodeClass = _SKTransformNodeClass{objc.GetClass("SKTransformNode")}
+	})
+	return sKTransformNodeClass
+}
 
 type _SKTransformNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKTransformNode interface {
 // A node that allows its children to rotate in 3D. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTransformNode
-
 type SKTransformNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKTransformNodeFrom(ptr unsafe.Pointer) SKTransformNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTransformNodeClass) Alloc() SKTransformNode {
 	rv := objc.Send[SKTransformNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTransformNodeClass) New() SKTransformNode {
 	rv := objc.Send[SKTransformNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKTransformNode) Autorelease() SKTransformNode {
 
 // NewSKTransformNode creates a new SKTransformNode instance.
 func NewSKTransformNode() SKTransformNode {
-	return sKTransformNodeClass.New()
+	return getSKTransformNodeClass().New()
 }
 
 

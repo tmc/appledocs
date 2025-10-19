@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ColorKernel] class.
-var colorKernelClass = _ColorKernelClass{objc.GetClass("CIColorKernel")}
+var (
+	colorKernelClass     _ColorKernelClass
+	colorKernelClassOnce sync.Once
+)
+
+func getColorKernelClass() _ColorKernelClass {
+	colorKernelClassOnce.Do(func() {
+		colorKernelClass = _ColorKernelClass{objc.GetClass("CIColorKernel")}
+	})
+	return colorKernelClass
+}
 
 type _ColorKernelClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IColorKernel interface {
 // A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
-
 type ColorKernel struct {
 	Kernel
 }
@@ -37,13 +47,15 @@ func ColorKernelFrom(ptr unsafe.Pointer) ColorKernel {
 		Kernel: KernelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorKernelClass) Alloc() ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ColorKernelClass) New() ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (c_ ColorKernel) Autorelease() ColorKernel {
 
 // NewColorKernel creates a new ColorKernel instance.
 func NewColorKernel() ColorKernel {
-	return colorKernelClass.New()
+	return getColorKernelClass().New()
 }
 
 
@@ -73,8 +85,7 @@ func NewColorKernel() ColorKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
 func NewColorKernelWithString(string string) ColorKernel {
-	rv := objc.Send[ColorKernel](objc.ID(colorKernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
-	rv.Autorelease()
+	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MeasurementFormatter] class.
-var measurementFormatterClass = _MeasurementFormatterClass{objc.GetClass("NSMeasurementFormatter")}
+var (
+	measurementFormatterClass     _MeasurementFormatterClass
+	measurementFormatterClassOnce sync.Once
+)
+
+func getMeasurementFormatterClass() _MeasurementFormatterClass {
+	measurementFormatterClassOnce.Do(func() {
+		measurementFormatterClass = _MeasurementFormatterClass{objc.GetClass("NSMeasurementFormatter")}
+	})
+	return measurementFormatterClass
+}
 
 type _MeasurementFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMeasurementFormatter interface {
 // A formatter that provides localized representations of units and measurements. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter
-
 type MeasurementFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func MeasurementFormatterFrom(ptr unsafe.Pointer) MeasurementFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MeasurementFormatterClass) Alloc() MeasurementFormatter {
 	rv := objc.Send[MeasurementFormatter](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MeasurementFormatterClass) New() MeasurementFormatter {
 	rv := objc.Send[MeasurementFormatter](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MeasurementFormatter) Autorelease() MeasurementFormatter {
 
 // NewMeasurementFormatter creates a new MeasurementFormatter instance.
 func NewMeasurementFormatter() MeasurementFormatter {
-	return measurementFormatterClass.New()
+	return getMeasurementFormatterClass().New()
 }
 
 

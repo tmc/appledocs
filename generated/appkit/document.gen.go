@@ -37,7 +37,6 @@ type IDocument interface {
 // An abstract class that defines the interface for macOS documents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument
-
 type Document struct {
 	objectivec.Object
 }
@@ -48,6 +47,7 @@ type Document struct {
 func DocumentFrom(ptr unsafe.Pointer) Document {
 	return Document{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DocumentClass) Alloc() Document {
 	rv := objc.Send[Document](objc.ID(dc.class), objc.Sel("alloc"))

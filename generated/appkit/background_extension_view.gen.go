@@ -34,7 +34,6 @@ type IBackgroundExtensionView interface {
 // A view that extends content to fill its own bounds. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView
-
 type BackgroundExtensionView struct {
 	View
 }
@@ -47,6 +46,7 @@ func BackgroundExtensionViewFrom(ptr unsafe.Pointer) BackgroundExtensionView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BackgroundExtensionViewClass) Alloc() BackgroundExtensionView {
 	rv := objc.Send[BackgroundExtensionView](objc.ID(bc.class), objc.Sel("alloc"))

@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/corelocation"
 )
 
+// Suppress unused import errors
+var _ = corelocation.NewPlacemark
+
 
 // ExampleNewPlacemark demonstrates how to create a Placemark instance.
 func ExampleNewPlacemark() {
@@ -13,23 +16,6 @@ func ExampleNewPlacemark() {
 	// Output:
 }
 
-// ExampleNewPlacemarkWithLocationNamePostalAddress demonstrates how to create a Placemark instance using NewPlacemarkWithLocationNamePostalAddress.
-func ExampleNewPlacemarkWithLocationNamePostalAddress() {
-	_ = corelocation.NewPlacemarkWithLocationNamePostalAddress(
-		nil, // location unsafe.Pointer
-		"name", // name string
-		nil, // postalAddress unsafe.Pointer
-	)
-	// Output:
-}
 
-// ExampleNewPlacemarkWithPlacemark demonstrates how to create a Placemark instance using NewPlacemarkWithPlacemark.
-// Initializes and returns a placemark object from another placemark object.
-func ExampleNewPlacemarkWithPlacemark() {
-	_ = corelocation.NewPlacemarkWithPlacemark(
-		nil, // placemark unsafe.Pointer
-	)
-	// Output:
-}
 
 

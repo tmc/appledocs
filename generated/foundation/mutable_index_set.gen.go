@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableIndexSet] class.
-var mutableIndexSetClass = _MutableIndexSetClass{objc.GetClass("NSMutableIndexSet")}
+var (
+	mutableIndexSetClass     _MutableIndexSetClass
+	mutableIndexSetClassOnce sync.Once
+)
+
+func getMutableIndexSetClass() _MutableIndexSetClass {
+	mutableIndexSetClassOnce.Do(func() {
+		mutableIndexSetClass = _MutableIndexSetClass{objc.GetClass("NSMutableIndexSet")}
+	})
+	return mutableIndexSetClass
+}
 
 type _MutableIndexSetClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableIndexSet interface {
 // A mutable collection of unique integer values that represent indexes in another collection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet
-
 type MutableIndexSet struct {
 	IndexSet
 }
@@ -36,13 +46,15 @@ func MutableIndexSetFrom(ptr unsafe.Pointer) MutableIndexSet {
 		IndexSet: IndexSetFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableIndexSetClass) Alloc() MutableIndexSet {
 	rv := objc.Send[MutableIndexSet](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableIndexSetClass) New() MutableIndexSet {
 	rv := objc.Send[MutableIndexSet](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableIndexSet) Autorelease() MutableIndexSet {
 
 // NewMutableIndexSet creates a new MutableIndexSet instance.
 func NewMutableIndexSet() MutableIndexSet {
-	return mutableIndexSetClass.New()
+	return getMutableIndexSetClass().New()
 }
 
 

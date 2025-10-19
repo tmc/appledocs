@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEHotspotConfiguration] class.
-var nEHotspotConfigurationClass = _NEHotspotConfigurationClass{objc.GetClass("NEHotspotConfiguration")}
+var (
+	nEHotspotConfigurationClass     _NEHotspotConfigurationClass
+	nEHotspotConfigurationClassOnce sync.Once
+)
+
+func getNEHotspotConfigurationClass() _NEHotspotConfigurationClass {
+	nEHotspotConfigurationClassOnce.Do(func() {
+		nEHotspotConfigurationClass = _NEHotspotConfigurationClass{objc.GetClass("NEHotspotConfiguration")}
+	})
+	return nEHotspotConfigurationClass
+}
 
 type _NEHotspotConfigurationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEHotspotConfiguration interface {
 // Configuration settings for a Wi-Fi network. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration
-
 type NEHotspotConfiguration struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEHotspotConfiguration struct {
 func NEHotspotConfigurationFrom(ptr unsafe.Pointer) NEHotspotConfiguration {
 	return NEHotspotConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotConfigurationClass) Alloc() NEHotspotConfiguration {
 	rv := objc.Send[NEHotspotConfiguration](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEHotspotConfigurationClass) New() NEHotspotConfiguration {
 	rv := objc.Send[NEHotspotConfiguration](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEHotspotConfiguration) Autorelease() NEHotspotConfiguration {
 
 // NewNEHotspotConfiguration creates a new NEHotspotConfiguration instance.
 func NewNEHotspotConfiguration() NEHotspotConfiguration {
-	return nEHotspotConfigurationClass.New()
+	return getNEHotspotConfigurationClass().New()
 }
 
 

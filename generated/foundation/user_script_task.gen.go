@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserScriptTask] class.
-var userScriptTaskClass = _UserScriptTaskClass{objc.GetClass("NSUserScriptTask")}
+var (
+	userScriptTaskClass     _UserScriptTaskClass
+	userScriptTaskClassOnce sync.Once
+)
+
+func getUserScriptTaskClass() _UserScriptTaskClass {
+	userScriptTaskClassOnce.Do(func() {
+		userScriptTaskClass = _UserScriptTaskClass{objc.GetClass("NSUserScriptTask")}
+	})
+	return userScriptTaskClass
+}
 
 type _UserScriptTaskClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IUserScriptTask interface {
 // An object that executes scripts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask
-
 type UserScriptTask struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type UserScriptTask struct {
 func UserScriptTaskFrom(ptr unsafe.Pointer) UserScriptTask {
 	return UserScriptTask{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserScriptTaskClass) Alloc() UserScriptTask {
 	rv := objc.Send[UserScriptTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserScriptTaskClass) New() UserScriptTask {
 	rv := objc.Send[UserScriptTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ UserScriptTask) Autorelease() UserScriptTask {
 
 // NewUserScriptTask creates a new UserScriptTask instance.
 func NewUserScriptTask() UserScriptTask {
-	return userScriptTaskClass.New()
+	return getUserScriptTaskClass().New()
 }
 
 

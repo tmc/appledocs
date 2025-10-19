@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ManagedObjectModelReference] class.
-var managedObjectModelReferenceClass = _ManagedObjectModelReferenceClass{objc.GetClass("NSManagedObjectModelReference")}
+var (
+	managedObjectModelReferenceClass     _ManagedObjectModelReferenceClass
+	managedObjectModelReferenceClassOnce sync.Once
+)
+
+func getManagedObjectModelReferenceClass() _ManagedObjectModelReferenceClass {
+	managedObjectModelReferenceClassOnce.Do(func() {
+		managedObjectModelReferenceClass = _ManagedObjectModelReferenceClass{objc.GetClass("NSManagedObjectModelReference")}
+	})
+	return managedObjectModelReferenceClass
+}
 
 type _ManagedObjectModelReferenceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IManagedObjectModelReference interface {
 // An object that describes a specific version of an object model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModelReference
-
 type ManagedObjectModelReference struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ManagedObjectModelReference struct {
 func ManagedObjectModelReferenceFrom(ptr unsafe.Pointer) ManagedObjectModelReference {
 	return ManagedObjectModelReference{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _ManagedObjectModelReferenceClass) Alloc() ManagedObjectModelReference {
 	rv := objc.Send[ManagedObjectModelReference](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _ManagedObjectModelReferenceClass) New() ManagedObjectModelReference {
 	rv := objc.Send[ManagedObjectModelReference](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ ManagedObjectModelReference) Autorelease() ManagedObjectModelReference 
 
 // NewManagedObjectModelReference creates a new ManagedObjectModelReference instance.
 func NewManagedObjectModelReference() ManagedObjectModelReference {
-	return managedObjectModelReferenceClass.New()
+	return getManagedObjectModelReferenceClass().New()
 }
 
 

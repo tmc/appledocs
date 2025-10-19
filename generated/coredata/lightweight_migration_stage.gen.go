@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LightweightMigrationStage] class.
-var lightweightMigrationStageClass = _LightweightMigrationStageClass{objc.GetClass("NSLightweightMigrationStage")}
+var (
+	lightweightMigrationStageClass     _LightweightMigrationStageClass
+	lightweightMigrationStageClassOnce sync.Once
+)
+
+func getLightweightMigrationStageClass() _LightweightMigrationStageClass {
+	lightweightMigrationStageClassOnce.Do(func() {
+		lightweightMigrationStageClass = _LightweightMigrationStageClass{objc.GetClass("NSLightweightMigrationStage")}
+	})
+	return lightweightMigrationStageClass
+}
 
 type _LightweightMigrationStageClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ILightweightMigrationStage interface {
 // An object that describes a series of models suitable for lightweight migration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage
-
 type LightweightMigrationStage struct {
 	MigrationStage
 }
@@ -36,13 +46,15 @@ func LightweightMigrationStageFrom(ptr unsafe.Pointer) LightweightMigrationStage
 		MigrationStage: MigrationStageFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LightweightMigrationStageClass) Alloc() LightweightMigrationStage {
 	rv := objc.Send[LightweightMigrationStage](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LightweightMigrationStageClass) New() LightweightMigrationStage {
 	rv := objc.Send[LightweightMigrationStage](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (l_ LightweightMigrationStage) Autorelease() LightweightMigrationStage {
 
 // NewLightweightMigrationStage creates a new LightweightMigrationStage instance.
 func NewLightweightMigrationStage() LightweightMigrationStage {
-	return lightweightMigrationStageClass.New()
+	return getLightweightMigrationStageClass().New()
 }
 
 

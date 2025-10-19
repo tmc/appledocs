@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ReplicatorLayer] class.
-var replicatorLayerClass = _ReplicatorLayerClass{objc.GetClass("CAReplicatorLayer")}
+var (
+	replicatorLayerClass     _ReplicatorLayerClass
+	replicatorLayerClassOnce sync.Once
+)
+
+func getReplicatorLayerClass() _ReplicatorLayerClass {
+	replicatorLayerClassOnce.Do(func() {
+		replicatorLayerClass = _ReplicatorLayerClass{objc.GetClass("CAReplicatorLayer")}
+	})
+	return replicatorLayerClass
+}
 
 type _ReplicatorLayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IReplicatorLayer interface {
 // A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer
-
 type ReplicatorLayer struct {
 	Layer
 }
@@ -36,13 +46,15 @@ func ReplicatorLayerFrom(ptr unsafe.Pointer) ReplicatorLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReplicatorLayerClass) Alloc() ReplicatorLayer {
 	rv := objc.Send[ReplicatorLayer](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _ReplicatorLayerClass) New() ReplicatorLayer {
 	rv := objc.Send[ReplicatorLayer](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ ReplicatorLayer) Autorelease() ReplicatorLayer {
 
 // NewReplicatorLayer creates a new ReplicatorLayer instance.
 func NewReplicatorLayer() ReplicatorLayer {
-	return replicatorLayerClass.New()
+	return getReplicatorLayerClass().New()
 }
 
 

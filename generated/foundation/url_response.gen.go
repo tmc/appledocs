@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLResponse] class.
-var uRLResponseClass = _URLResponseClass{objc.GetClass("NSURLResponse")}
+var (
+	uRLResponseClass     _URLResponseClass
+	uRLResponseClassOnce sync.Once
+)
+
+func getURLResponseClass() _URLResponseClass {
+	uRLResponseClassOnce.Do(func() {
+		uRLResponseClass = _URLResponseClass{objc.GetClass("NSURLResponse")}
+	})
+	return uRLResponseClass
+}
 
 type _URLResponseClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLResponse interface {
 // The metadata associated with the response to a URL load request, independent of protocol and URL scheme. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse
-
 type URLResponse struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLResponse struct {
 func URLResponseFrom(ptr unsafe.Pointer) URLResponse {
 	return URLResponse{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLResponseClass) Alloc() URLResponse {
 	rv := objc.Send[URLResponse](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLResponseClass) New() URLResponse {
 	rv := objc.Send[URLResponse](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLResponse) Autorelease() URLResponse {
 
 // NewURLResponse creates a new URLResponse instance.
 func NewURLResponse() URLResponse {
-	return uRLResponseClass.New()
+	return getURLResponseClass().New()
 }
 
 

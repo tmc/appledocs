@@ -36,7 +36,6 @@ type IColor interface {
 // An object that stores color data and sometimes opacity (alpha value). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor
-
 type Color struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type Color struct {
 func ColorFrom(ptr unsafe.Pointer) Color {
 	return Color{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorClass) Alloc() Color {
 	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("alloc"))

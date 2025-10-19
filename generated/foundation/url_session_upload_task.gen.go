@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionUploadTask] class.
-var uRLSessionUploadTaskClass = _URLSessionUploadTaskClass{objc.GetClass("NSURLSessionUploadTask")}
+var (
+	uRLSessionUploadTaskClass     _URLSessionUploadTaskClass
+	uRLSessionUploadTaskClassOnce sync.Once
+)
+
+func getURLSessionUploadTaskClass() _URLSessionUploadTaskClass {
+	uRLSessionUploadTaskClassOnce.Do(func() {
+		uRLSessionUploadTaskClass = _URLSessionUploadTaskClass{objc.GetClass("NSURLSessionUploadTask")}
+	})
+	return uRLSessionUploadTaskClass
+}
 
 type _URLSessionUploadTaskClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IURLSessionUploadTask interface {
 // A URL session task that uploads data to the network in a request body. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionUploadTask
-
 type URLSessionUploadTask struct {
 	URLSessionDataTask
 }
@@ -36,13 +46,15 @@ func URLSessionUploadTaskFrom(ptr unsafe.Pointer) URLSessionUploadTask {
 		URLSessionDataTask: URLSessionDataTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionUploadTaskClass) Alloc() URLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionUploadTaskClass) New() URLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ URLSessionUploadTask) Autorelease() URLSessionUploadTask {
 
 // NewURLSessionUploadTask creates a new URLSessionUploadTask instance.
 func NewURLSessionUploadTask() URLSessionUploadTask {
-	return uRLSessionUploadTaskClass.New()
+	return getURLSessionUploadTaskClass().New()
 }
 
 

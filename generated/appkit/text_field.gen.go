@@ -34,7 +34,6 @@ type ITextField interface {
 // Text the user can select or edit to send an action message to a target when the user presses the Return key. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField
-
 type TextField struct {
 	Control
 }
@@ -47,6 +46,7 @@ func TextFieldFrom(ptr unsafe.Pointer) TextField {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextFieldClass) Alloc() TextField {
 	rv := objc.Send[TextField](objc.ID(tc.class), objc.Sel("alloc"))

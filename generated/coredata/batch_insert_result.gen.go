@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BatchInsertResult] class.
-var batchInsertResultClass = _BatchInsertResultClass{objc.GetClass("NSBatchInsertResult")}
+var (
+	batchInsertResultClass     _BatchInsertResultClass
+	batchInsertResultClassOnce sync.Once
+)
+
+func getBatchInsertResultClass() _BatchInsertResultClass {
+	batchInsertResultClassOnce.Do(func() {
+		batchInsertResultClass = _BatchInsertResultClass{objc.GetClass("NSBatchInsertResult")}
+	})
+	return batchInsertResultClass
+}
 
 type _BatchInsertResultClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IBatchInsertResult interface {
 // The result that Core Data returns when executing a batch-insertion request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult
-
 type BatchInsertResult struct {
 	PersistentStoreResult
 }
@@ -36,13 +46,15 @@ func BatchInsertResultFrom(ptr unsafe.Pointer) BatchInsertResult {
 		PersistentStoreResult: PersistentStoreResultFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BatchInsertResultClass) Alloc() BatchInsertResult {
 	rv := objc.Send[BatchInsertResult](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BatchInsertResultClass) New() BatchInsertResult {
 	rv := objc.Send[BatchInsertResult](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ BatchInsertResult) Autorelease() BatchInsertResult {
 
 // NewBatchInsertResult creates a new BatchInsertResult instance.
 func NewBatchInsertResult() BatchInsertResult {
-	return batchInsertResultClass.New()
+	return getBatchInsertResultClass().New()
 }
 
 

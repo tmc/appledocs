@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DecimalNumber] class.
-var decimalNumberClass = _DecimalNumberClass{objc.GetClass("NSDecimalNumber")}
+var (
+	decimalNumberClass     _DecimalNumberClass
+	decimalNumberClassOnce sync.Once
+)
+
+func getDecimalNumberClass() _DecimalNumberClass {
+	decimalNumberClassOnce.Do(func() {
+		decimalNumberClass = _DecimalNumberClass{objc.GetClass("NSDecimalNumber")}
+	})
+	return decimalNumberClass
+}
 
 type _DecimalNumberClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDecimalNumber interface {
 // An object for representing and performing arithmetic on base-10 numbers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber
-
 type DecimalNumber struct {
 	Number
 }
@@ -36,13 +46,15 @@ func DecimalNumberFrom(ptr unsafe.Pointer) DecimalNumber {
 		Number: NumberFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DecimalNumberClass) Alloc() DecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DecimalNumberClass) New() DecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DecimalNumber) Autorelease() DecimalNumber {
 
 // NewDecimalNumber creates a new DecimalNumber instance.
 func NewDecimalNumber() DecimalNumber {
-	return decimalNumberClass.New()
+	return getDecimalNumberClass().New()
 }
 
 

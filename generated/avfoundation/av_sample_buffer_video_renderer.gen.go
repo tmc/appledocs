@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVSampleBufferVideoRenderer] class.
-var aVSampleBufferVideoRendererClass = _AVSampleBufferVideoRendererClass{objc.GetClass("AVSampleBufferVideoRenderer")}
+var (
+	aVSampleBufferVideoRendererClass     _AVSampleBufferVideoRendererClass
+	aVSampleBufferVideoRendererClassOnce sync.Once
+)
+
+func getAVSampleBufferVideoRendererClass() _AVSampleBufferVideoRendererClass {
+	aVSampleBufferVideoRendererClassOnce.Do(func() {
+		aVSampleBufferVideoRendererClass = _AVSampleBufferVideoRendererClass{objc.GetClass("AVSampleBufferVideoRenderer")}
+	})
+	return aVSampleBufferVideoRendererClass
+}
 
 type _AVSampleBufferVideoRendererClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVSampleBufferVideoRenderer interface {
 // An object that enqueues video sample buffers for rendering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer
-
 type AVSampleBufferVideoRenderer struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVSampleBufferVideoRenderer struct {
 func AVSampleBufferVideoRendererFrom(ptr unsafe.Pointer) AVSampleBufferVideoRenderer {
 	return AVSampleBufferVideoRenderer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVSampleBufferVideoRendererClass) Alloc() AVSampleBufferVideoRenderer {
 	rv := objc.Send[AVSampleBufferVideoRenderer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVSampleBufferVideoRendererClass) New() AVSampleBufferVideoRenderer {
 	rv := objc.Send[AVSampleBufferVideoRenderer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVSampleBufferVideoRenderer) Autorelease() AVSampleBufferVideoRenderer 
 
 // NewAVSampleBufferVideoRenderer creates a new AVSampleBufferVideoRenderer instance.
 func NewAVSampleBufferVideoRenderer() AVSampleBufferVideoRenderer {
-	return aVSampleBufferVideoRendererClass.New()
+	return getAVSampleBufferVideoRendererClass().New()
 }
 
 

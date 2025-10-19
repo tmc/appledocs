@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserAppleScriptTask] class.
-var userAppleScriptTaskClass = _UserAppleScriptTaskClass{objc.GetClass("NSUserAppleScriptTask")}
+var (
+	userAppleScriptTaskClass     _UserAppleScriptTaskClass
+	userAppleScriptTaskClassOnce sync.Once
+)
+
+func getUserAppleScriptTaskClass() _UserAppleScriptTaskClass {
+	userAppleScriptTaskClassOnce.Do(func() {
+		userAppleScriptTaskClass = _UserAppleScriptTaskClass{objc.GetClass("NSUserAppleScriptTask")}
+	})
+	return userAppleScriptTaskClass
+}
 
 type _UserAppleScriptTaskClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUserAppleScriptTask interface {
 // An object that executes AppleScript scripts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask
-
 type UserAppleScriptTask struct {
 	UserScriptTask
 }
@@ -36,13 +46,15 @@ func UserAppleScriptTaskFrom(ptr unsafe.Pointer) UserAppleScriptTask {
 		UserScriptTask: UserScriptTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserAppleScriptTaskClass) Alloc() UserAppleScriptTask {
 	rv := objc.Send[UserAppleScriptTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserAppleScriptTaskClass) New() UserAppleScriptTask {
 	rv := objc.Send[UserAppleScriptTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UserAppleScriptTask) Autorelease() UserAppleScriptTask {
 
 // NewUserAppleScriptTask creates a new UserAppleScriptTask instance.
 func NewUserAppleScriptTask() UserAppleScriptTask {
-	return userAppleScriptTaskClass.New()
+	return getUserAppleScriptTaskClass().New()
 }
 
 

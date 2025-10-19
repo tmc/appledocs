@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NEEthernetTunnelNetworkSettings] class.
-var nEEthernetTunnelNetworkSettingsClass = _NEEthernetTunnelNetworkSettingsClass{objc.GetClass("NEEthernetTunnelNetworkSettings")}
+var (
+	nEEthernetTunnelNetworkSettingsClass     _NEEthernetTunnelNetworkSettingsClass
+	nEEthernetTunnelNetworkSettingsClassOnce sync.Once
+)
+
+func getNEEthernetTunnelNetworkSettingsClass() _NEEthernetTunnelNetworkSettingsClass {
+	nEEthernetTunnelNetworkSettingsClassOnce.Do(func() {
+		nEEthernetTunnelNetworkSettingsClass = _NEEthernetTunnelNetworkSettingsClass{objc.GetClass("NEEthernetTunnelNetworkSettings")}
+	})
+	return nEEthernetTunnelNetworkSettingsClass
+}
 
 type _NEEthernetTunnelNetworkSettingsClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INEEthernetTunnelNetworkSettings interface {
 // The network settings for an ethernet-based VPN tunnel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings
-
 type NEEthernetTunnelNetworkSettings struct {
 	NEPacketTunnelNetworkSettings
 }
@@ -36,13 +46,15 @@ func NEEthernetTunnelNetworkSettingsFrom(ptr unsafe.Pointer) NEEthernetTunnelNet
 		NEPacketTunnelNetworkSettings: NEPacketTunnelNetworkSettingsFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEEthernetTunnelNetworkSettingsClass) Alloc() NEEthernetTunnelNetworkSettings {
 	rv := objc.Send[NEEthernetTunnelNetworkSettings](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEEthernetTunnelNetworkSettingsClass) New() NEEthernetTunnelNetworkSettings {
 	rv := objc.Send[NEEthernetTunnelNetworkSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NEEthernetTunnelNetworkSettings) Autorelease() NEEthernetTunnelNetworkS
 
 // NewNEEthernetTunnelNetworkSettings creates a new NEEthernetTunnelNetworkSettings instance.
 func NewNEEthernetTunnelNetworkSettings() NEEthernetTunnelNetworkSettings {
-	return nEEthernetTunnelNetworkSettingsClass.New()
+	return getNEEthernetTunnelNetworkSettingsClass().New()
 }
 
 

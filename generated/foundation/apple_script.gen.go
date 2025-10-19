@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AppleScript] class.
-var appleScriptClass = _AppleScriptClass{objc.GetClass("NSAppleScript")}
+var (
+	appleScriptClass     _AppleScriptClass
+	appleScriptClassOnce sync.Once
+)
+
+func getAppleScriptClass() _AppleScriptClass {
+	appleScriptClassOnce.Do(func() {
+		appleScriptClass = _AppleScriptClass{objc.GetClass("NSAppleScript")}
+	})
+	return appleScriptClass
+}
 
 type _AppleScriptClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAppleScript interface {
 // An object that provides the ability to load, compile, and execute scripts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript
-
 type AppleScript struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AppleScript struct {
 func AppleScriptFrom(ptr unsafe.Pointer) AppleScript {
 	return AppleScript{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AppleScriptClass) Alloc() AppleScript {
 	rv := objc.Send[AppleScript](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AppleScriptClass) New() AppleScript {
 	rv := objc.Send[AppleScript](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AppleScript) Autorelease() AppleScript {
 
 // NewAppleScript creates a new AppleScript instance.
 func NewAppleScript() AppleScript {
-	return appleScriptClass.New()
+	return getAppleScriptClass().New()
 }
 
 

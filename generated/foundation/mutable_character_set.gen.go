@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableCharacterSet] class.
-var mutableCharacterSetClass = _MutableCharacterSetClass{objc.GetClass("NSMutableCharacterSet")}
+var (
+	mutableCharacterSetClass     _MutableCharacterSetClass
+	mutableCharacterSetClassOnce sync.Once
+)
+
+func getMutableCharacterSetClass() _MutableCharacterSetClass {
+	mutableCharacterSetClassOnce.Do(func() {
+		mutableCharacterSetClass = _MutableCharacterSetClass{objc.GetClass("NSMutableCharacterSet")}
+	})
+	return mutableCharacterSetClass
+}
 
 type _MutableCharacterSetClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableCharacterSet interface {
 // An object representing a mutable set of Unicode character values for use in search operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet
-
 type MutableCharacterSet struct {
 	CharacterSet
 }
@@ -36,13 +46,15 @@ func MutableCharacterSetFrom(ptr unsafe.Pointer) MutableCharacterSet {
 		CharacterSet: CharacterSetFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableCharacterSetClass) Alloc() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableCharacterSetClass) New() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableCharacterSet) Autorelease() MutableCharacterSet {
 
 // NewMutableCharacterSet creates a new MutableCharacterSet instance.
 func NewMutableCharacterSet() MutableCharacterSet {
-	return mutableCharacterSetClass.New()
+	return getMutableCharacterSetClass().New()
 }
 
 

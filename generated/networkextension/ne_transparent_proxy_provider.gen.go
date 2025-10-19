@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NETransparentProxyProvider] class.
-var nETransparentProxyProviderClass = _NETransparentProxyProviderClass{objc.GetClass("NETransparentProxyProvider")}
+var (
+	nETransparentProxyProviderClass     _NETransparentProxyProviderClass
+	nETransparentProxyProviderClassOnce sync.Once
+)
+
+func getNETransparentProxyProviderClass() _NETransparentProxyProviderClass {
+	nETransparentProxyProviderClassOnce.Do(func() {
+		nETransparentProxyProviderClass = _NETransparentProxyProviderClass{objc.GetClass("NETransparentProxyProvider")}
+	})
+	return nETransparentProxyProviderClass
+}
 
 type _NETransparentProxyProviderClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INETransparentProxyProvider interface {
 // An object that implements the client side of a custom transparent network proxy solution. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETransparentProxyProvider
-
 type NETransparentProxyProvider struct {
 	NEAppProxyProvider
 }
@@ -36,13 +46,15 @@ func NETransparentProxyProviderFrom(ptr unsafe.Pointer) NETransparentProxyProvid
 		NEAppProxyProvider: NEAppProxyProviderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NETransparentProxyProviderClass) Alloc() NETransparentProxyProvider {
 	rv := objc.Send[NETransparentProxyProvider](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NETransparentProxyProviderClass) New() NETransparentProxyProvider {
 	rv := objc.Send[NETransparentProxyProvider](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NETransparentProxyProvider) Autorelease() NETransparentProxyProvider {
 
 // NewNETransparentProxyProvider creates a new NETransparentProxyProvider instance.
 func NewNETransparentProxyProvider() NETransparentProxyProvider {
-	return nETransparentProxyProviderClass.New()
+	return getNETransparentProxyProviderClass().New()
 }
 
 

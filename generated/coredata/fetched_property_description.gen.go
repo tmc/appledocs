@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FetchedPropertyDescription] class.
-var fetchedPropertyDescriptionClass = _FetchedPropertyDescriptionClass{objc.GetClass("NSFetchedPropertyDescription")}
+var (
+	fetchedPropertyDescriptionClass     _FetchedPropertyDescriptionClass
+	fetchedPropertyDescriptionClassOnce sync.Once
+)
+
+func getFetchedPropertyDescriptionClass() _FetchedPropertyDescriptionClass {
+	fetchedPropertyDescriptionClassOnce.Do(func() {
+		fetchedPropertyDescriptionClass = _FetchedPropertyDescriptionClass{objc.GetClass("NSFetchedPropertyDescription")}
+	})
+	return fetchedPropertyDescriptionClass
+}
 
 type _FetchedPropertyDescriptionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IFetchedPropertyDescription interface {
 // A description object used to define which properties are fetched from Core Data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription
-
 type FetchedPropertyDescription struct {
 	PropertyDescription
 }
@@ -36,13 +46,15 @@ func FetchedPropertyDescriptionFrom(ptr unsafe.Pointer) FetchedPropertyDescripti
 		PropertyDescription: PropertyDescriptionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FetchedPropertyDescriptionClass) Alloc() FetchedPropertyDescription {
 	rv := objc.Send[FetchedPropertyDescription](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FetchedPropertyDescriptionClass) New() FetchedPropertyDescription {
 	rv := objc.Send[FetchedPropertyDescription](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (f_ FetchedPropertyDescription) Autorelease() FetchedPropertyDescription {
 
 // NewFetchedPropertyDescription creates a new FetchedPropertyDescription instance.
 func NewFetchedPropertyDescription() FetchedPropertyDescription {
-	return fetchedPropertyDescriptionClass.New()
+	return getFetchedPropertyDescriptionClass().New()
 }
 
 

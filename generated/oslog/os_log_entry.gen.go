@@ -3,6 +3,7 @@
 package oslog
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OSLogEntry] class.
-var oSLogEntryClass = _OSLogEntryClass{objc.GetClass("OSLogEntry")}
+var (
+	oSLogEntryClass     _OSLogEntryClass
+	oSLogEntryClassOnce sync.Once
+)
+
+func getOSLogEntryClass() _OSLogEntryClass {
+	oSLogEntryClassOnce.Do(func() {
+		oSLogEntryClass = _OSLogEntryClass{objc.GetClass("OSLogEntry")}
+	})
+	return oSLogEntryClass
+}
 
 type _OSLogEntryClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOSLogEntry interface {
 // A single entry from the unified logging system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry
-
 type OSLogEntry struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type OSLogEntry struct {
 func OSLogEntryFrom(ptr unsafe.Pointer) OSLogEntry {
 	return OSLogEntry{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEntryClass) Alloc() OSLogEntry {
 	rv := objc.Send[OSLogEntry](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogEntryClass) New() OSLogEntry {
 	rv := objc.Send[OSLogEntry](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (o_ OSLogEntry) Autorelease() OSLogEntry {
 
 // NewOSLogEntry creates a new OSLogEntry instance.
 func NewOSLogEntry() OSLogEntry {
-	return oSLogEntryClass.New()
+	return getOSLogEntryClass().New()
 }
 
 

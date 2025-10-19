@@ -34,7 +34,6 @@ type ITabViewController interface {
 // A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController
-
 type TabViewController struct {
 	ViewController
 }
@@ -47,6 +46,7 @@ func TabViewControllerFrom(ptr unsafe.Pointer) TabViewController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TabViewControllerClass) Alloc() TabViewController {
 	rv := objc.Send[TabViewController](objc.ID(tc.class), objc.Sel("alloc"))

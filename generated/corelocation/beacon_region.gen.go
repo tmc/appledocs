@@ -3,22 +3,38 @@
 package corelocation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BeaconRegion] class.
-var beaconRegionClass = _BeaconRegionClass{objc.GetClass("CLBeaconRegion")}
+var (
+	beaconRegionClass     _BeaconRegionClass
+	beaconRegionClassOnce sync.Once
+)
+
+func getBeaconRegionClass() _BeaconRegionClass {
+	beaconRegionClassOnce.Do(func() {
+		beaconRegionClass = _BeaconRegionClass{objc.GetClass("CLBeaconRegion")}
+	})
+	return beaconRegionClass
+}
 
 type _BeaconRegionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BeaconRegion] class.
+type IBeaconRegion interface {
+	IRegion
+	PeripheralDataWithMeasuredPower(measuredPower unsafe.Pointer) unsafe.Pointer
+}
+
 // A region for detecting the presence of iBeacon devices. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion
-
 type BeaconRegion struct {
 	Region
 }
@@ -31,6 +47,38 @@ func BeaconRegionFrom(ptr unsafe.Pointer) BeaconRegion {
 		Region: RegionFrom(ptr),
 	}
 }
+
+// Alloc allocates a new instance without initialization.
+func (bc _BeaconRegionClass) Alloc() BeaconRegion {
+	rv := objc.Send[BeaconRegion](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (bc _BeaconRegionClass) New() BeaconRegion {
+	rv := objc.Send[BeaconRegion](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BeaconRegion) Init() BeaconRegion {
+	rv := objc.Send[BeaconRegion](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BeaconRegion) Autorelease() BeaconRegion {
+	rv := objc.Send[BeaconRegion](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBeaconRegion creates a new BeaconRegion instance.
+func NewBeaconRegion() BeaconRegion {
+	return getBeaconRegionClass().New()
+}
+
 
 // Retrieves data that you can use to advertise the current device as a beacon. [Full Topic]
 

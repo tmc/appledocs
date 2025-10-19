@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Thread] class.
-var threadClass = _ThreadClass{objc.GetClass("NSThread")}
+var (
+	threadClass     _ThreadClass
+	threadClassOnce sync.Once
+)
+
+func getThreadClass() _ThreadClass {
+	threadClassOnce.Do(func() {
+		threadClass = _ThreadClass{objc.GetClass("NSThread")}
+	})
+	return threadClass
+}
 
 type _ThreadClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IThread interface {
 // A thread of execution. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread
-
 type Thread struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Thread struct {
 func ThreadFrom(ptr unsafe.Pointer) Thread {
 	return Thread{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _ThreadClass) Alloc() Thread {
 	rv := objc.Send[Thread](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _ThreadClass) New() Thread {
 	rv := objc.Send[Thread](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (t_ Thread) Autorelease() Thread {
 
 // NewThread creates a new Thread instance.
 func NewThread() Thread {
-	return threadClass.New()
+	return getThreadClass().New()
 }
 
 

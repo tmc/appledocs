@@ -34,7 +34,6 @@ type IOutlineView interface {
 // A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView
-
 type OutlineView struct {
 	TableView
 }
@@ -47,6 +46,7 @@ func OutlineViewFrom(ptr unsafe.Pointer) OutlineView {
 		TableView: TableViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OutlineViewClass) Alloc() OutlineView {
 	rv := objc.Send[OutlineView](objc.ID(oc.class), objc.Sel("alloc"))

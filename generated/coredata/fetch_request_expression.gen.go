@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FetchRequestExpression] class.
-var fetchRequestExpressionClass = _FetchRequestExpressionClass{objc.GetClass("NSFetchRequestExpression")}
+var (
+	fetchRequestExpressionClass     _FetchRequestExpressionClass
+	fetchRequestExpressionClassOnce sync.Once
+)
+
+func getFetchRequestExpressionClass() _FetchRequestExpressionClass {
+	fetchRequestExpressionClassOnce.Do(func() {
+		fetchRequestExpressionClass = _FetchRequestExpressionClass{objc.GetClass("NSFetchRequestExpression")}
+	})
+	return fetchRequestExpressionClass
+}
 
 type _FetchRequestExpressionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IFetchRequestExpression interface {
 // An expression that evaluates the result of a fetch request on a managed object context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression
-
 type FetchRequestExpression struct {
 	Expression
 }
@@ -36,13 +46,15 @@ func FetchRequestExpressionFrom(ptr unsafe.Pointer) FetchRequestExpression {
 		Expression: ExpressionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FetchRequestExpressionClass) Alloc() FetchRequestExpression {
 	rv := objc.Send[FetchRequestExpression](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FetchRequestExpressionClass) New() FetchRequestExpression {
 	rv := objc.Send[FetchRequestExpression](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (f_ FetchRequestExpression) Autorelease() FetchRequestExpression {
 
 // NewFetchRequestExpression creates a new FetchRequestExpression instance.
 func NewFetchRequestExpression() FetchRequestExpression {
-	return fetchRequestExpressionClass.New()
+	return getFetchRequestExpressionClass().New()
 }
 
 

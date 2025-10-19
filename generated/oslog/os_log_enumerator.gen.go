@@ -3,6 +3,7 @@
 package oslog
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OSLogEnumerator] class.
-var oSLogEnumeratorClass = _OSLogEnumeratorClass{objc.GetClass("OSLogEnumerator")}
+var (
+	oSLogEnumeratorClass     _OSLogEnumeratorClass
+	oSLogEnumeratorClassOnce sync.Once
+)
+
+func getOSLogEnumeratorClass() _OSLogEnumeratorClass {
+	oSLogEnumeratorClassOnce.Do(func() {
+		oSLogEnumeratorClass = _OSLogEnumeratorClass{objc.GetClass("OSLogEnumerator")}
+	})
+	return oSLogEnumeratorClass
+}
 
 type _OSLogEnumeratorClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOSLogEnumerator interface {
 // An enumerator that can access and list log entries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEnumerator
-
 type OSLogEnumerator struct {
 	foundation.Enumerator
 }
@@ -37,13 +47,15 @@ func OSLogEnumeratorFrom(ptr unsafe.Pointer) OSLogEnumerator {
 		Enumerator: foundation.EnumeratorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEnumeratorClass) Alloc() OSLogEnumerator {
 	rv := objc.Send[OSLogEnumerator](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogEnumeratorClass) New() OSLogEnumerator {
 	rv := objc.Send[OSLogEnumerator](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (o_ OSLogEnumerator) Autorelease() OSLogEnumerator {
 
 // NewOSLogEnumerator creates a new OSLogEnumerator instance.
 func NewOSLogEnumerator() OSLogEnumerator {
-	return oSLogEnumeratorClass.New()
+	return getOSLogEnumeratorClass().New()
 }
 
 

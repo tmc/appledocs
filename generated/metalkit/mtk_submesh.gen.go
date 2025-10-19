@@ -3,6 +3,7 @@
 package metalkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTKSubmesh] class.
-var mTKSubmeshClass = _MTKSubmeshClass{objc.GetClass("MTKSubmesh")}
+var (
+	mTKSubmeshClass     _MTKSubmeshClass
+	mTKSubmeshClassOnce sync.Once
+)
+
+func getMTKSubmeshClass() _MTKSubmeshClass {
+	mTKSubmeshClassOnce.Do(func() {
+		mTKSubmeshClass = _MTKSubmeshClass{objc.GetClass("MTKSubmesh")}
+	})
+	return mTKSubmeshClass
+}
 
 type _MTKSubmeshClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMTKSubmesh interface {
 // A container for the index data of a Model I/O submesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh
-
 type MTKSubmesh struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MTKSubmesh struct {
 func MTKSubmeshFrom(ptr unsafe.Pointer) MTKSubmesh {
 	return MTKSubmesh{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTKSubmeshClass) Alloc() MTKSubmesh {
 	rv := objc.Send[MTKSubmesh](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTKSubmeshClass) New() MTKSubmesh {
 	rv := objc.Send[MTKSubmesh](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MTKSubmesh) Autorelease() MTKSubmesh {
 
 // NewMTKSubmesh creates a new MTKSubmesh instance.
 func NewMTKSubmesh() MTKSubmesh {
-	return mTKSubmeshClass.New()
+	return getMTKSubmeshClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [topLeft] class.
-var topLeftClass = _topLeftClass{objc.GetClass("topLeft")}
+var (
+	topLeftClass     _topLeftClass
+	topLeftClassOnce sync.Once
+)
+
+func gettopLeftClass() _topLeftClass {
+	topLeftClassOnce.Do(func() {
+		topLeftClass = _topLeftClass{objc.GetClass("topLeft")}
+	})
+	return topLeftClass
+}
 
 type _topLeftClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ItopLeft interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topLeft-c.ivar
-
 type topLeft struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type topLeft struct {
 func topLeftFrom(ptr unsafe.Pointer) topLeft {
 	return topLeft{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _topLeftClass) Alloc() topLeft {
 	rv := objc.Send[topLeft](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _topLeftClass) New() topLeft {
 	rv := objc.Send[topLeft](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (t_ topLeft) Autorelease() topLeft {
 
 // NewtopLeft creates a new topLeft instance.
 func NewtopLeft() topLeft {
-	return topLeftClass.New()
+	return gettopLeftClass().New()
 }
 
 

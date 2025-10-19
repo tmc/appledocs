@@ -3,13 +3,24 @@
 package metalkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTKView] class.
-var mTKViewClass = _MTKViewClass{objc.GetClass("MTKView")}
+var (
+	mTKViewClass     _MTKViewClass
+	mTKViewClassOnce sync.Once
+)
+
+func getMTKViewClass() _MTKViewClass {
+	mTKViewClassOnce.Do(func() {
+		mTKViewClass = _MTKViewClass{objc.GetClass("MTKView")}
+	})
+	return mTKViewClass
+}
 
 type _MTKViewClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IMTKView interface {
 // A specialized view that creates, configures, and displays Metal objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView
-
 type MTKView struct {
 	View
 }
@@ -38,13 +48,15 @@ func MTKViewFrom(ptr unsafe.Pointer) MTKView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTKViewClass) Alloc() MTKView {
 	rv := objc.Send[MTKView](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTKViewClass) New() MTKView {
 	rv := objc.Send[MTKView](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -65,27 +77,27 @@ func (m_ MTKView) Autorelease() MTKView {
 
 // NewMTKView creates a new MTKView instance.
 func NewMTKView() MTKView {
-	return mTKViewClass.New()
+	return getMTKViewClass().New()
 }
 
 
-// Initializes a view with the specified frame rectangle and Metal device. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(frame:device:)
-func NewMTKViewWithFrameDevice(frameRect unsafe.Pointer, device unsafe.Pointer) MTKView {
-	instance := mTKViewClass.Alloc()
-	rv := objc.Send[MTKView](instance.ID, objc.Sel("initWithFrame:device:"), frameRect, device)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a view from data in a given unarchiver. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
 func NewMTKViewWithCoder(coder unsafe.Pointer) MTKView {
-	instance := mTKViewClass.Alloc()
+	instance := getMTKViewClass().Alloc()
 	rv := objc.Send[MTKView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a view with the specified frame rectangle and Metal device. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(frame:device:)
+func NewMTKViewWithFrameDevice(frameRect unsafe.Pointer, device unsafe.Pointer) MTKView {
+	instance := getMTKViewClass().Alloc()
+	rv := objc.Send[MTKView](instance.ID, objc.Sel("initWithFrame:device:"), frameRect, device)
 	rv.Autorelease()
 	return rv
 }

@@ -3,6 +3,7 @@
 package metalkit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTKMesh] class.
-var mTKMeshClass = _MTKMeshClass{objc.GetClass("MTKMesh")}
+var (
+	mTKMeshClass     _MTKMeshClass
+	mTKMeshClassOnce sync.Once
+)
+
+func getMTKMeshClass() _MTKMeshClass {
+	mTKMeshClassOnce.Do(func() {
+		mTKMeshClass = _MTKMeshClass{objc.GetClass("MTKMesh")}
+	})
+	return mTKMeshClass
+}
 
 type _MTKMeshClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMTKMesh interface {
 // A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh
-
 type MTKMesh struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MTKMesh struct {
 func MTKMeshFrom(ptr unsafe.Pointer) MTKMesh {
 	return MTKMesh{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTKMeshClass) Alloc() MTKMesh {
 	rv := objc.Send[MTKMesh](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTKMeshClass) New() MTKMesh {
 	rv := objc.Send[MTKMesh](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MTKMesh) Autorelease() MTKMesh {
 
 // NewMTKMesh creates a new MTKMesh instance.
 func NewMTKMesh() MTKMesh {
-	return mTKMeshClass.New()
+	return getMTKMeshClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewMTKMesh() MTKMesh {
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/init(mesh:device:)
 func NewMTKMeshWithMeshDeviceError(mesh unsafe.Pointer, device unsafe.Pointer, error unsafe.Pointer) MTKMesh {
-	instance := mTKMeshClass.Alloc()
+	instance := getMTKMeshClass().Alloc()
 	rv := objc.Send[MTKMesh](instance.ID, objc.Sel("initWithMesh:device:error:"), mesh, device, error)
 	rv.Autorelease()
 	return rv

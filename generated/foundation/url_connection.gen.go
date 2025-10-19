@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLConnection] class.
-var uRLConnectionClass = _URLConnectionClass{objc.GetClass("NSURLConnection")}
+var (
+	uRLConnectionClass     _URLConnectionClass
+	uRLConnectionClassOnce sync.Once
+)
+
+func getURLConnectionClass() _URLConnectionClass {
+	uRLConnectionClassOnce.Do(func() {
+		uRLConnectionClass = _URLConnectionClass{objc.GetClass("NSURLConnection")}
+	})
+	return uRLConnectionClass
+}
 
 type _URLConnectionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLConnection interface {
 // An object that enables you to start and stop URL requests. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection
-
 type URLConnection struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLConnection struct {
 func URLConnectionFrom(ptr unsafe.Pointer) URLConnection {
 	return URLConnection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLConnectionClass) Alloc() URLConnection {
 	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLConnectionClass) New() URLConnection {
 	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLConnection) Autorelease() URLConnection {
 
 // NewURLConnection creates a new URLConnection instance.
 func NewURLConnection() URLConnection {
-	return uRLConnectionClass.New()
+	return getURLConnectionClass().New()
 }
 
 

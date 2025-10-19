@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PositionalSpecifier] class.
-var positionalSpecifierClass = _PositionalSpecifierClass{objc.GetClass("NSPositionalSpecifier")}
+var (
+	positionalSpecifierClass     _PositionalSpecifierClass
+	positionalSpecifierClassOnce sync.Once
+)
+
+func getPositionalSpecifierClass() _PositionalSpecifierClass {
+	positionalSpecifierClassOnce.Do(func() {
+		positionalSpecifierClass = _PositionalSpecifierClass{objc.GetClass("NSPositionalSpecifier")}
+	})
+	return positionalSpecifierClass
+}
 
 type _PositionalSpecifierClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPositionalSpecifier interface {
 // A specifier for an insertion point in a container relative to another object in the container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier
-
 type PositionalSpecifier struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PositionalSpecifier struct {
 func PositionalSpecifierFrom(ptr unsafe.Pointer) PositionalSpecifier {
 	return PositionalSpecifier{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PositionalSpecifierClass) Alloc() PositionalSpecifier {
 	rv := objc.Send[PositionalSpecifier](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PositionalSpecifierClass) New() PositionalSpecifier {
 	rv := objc.Send[PositionalSpecifier](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PositionalSpecifier) Autorelease() PositionalSpecifier {
 
 // NewPositionalSpecifier creates a new PositionalSpecifier instance.
 func NewPositionalSpecifier() PositionalSpecifier {
-	return positionalSpecifierClass.New()
+	return getPositionalSpecifierClass().New()
 }
 
 

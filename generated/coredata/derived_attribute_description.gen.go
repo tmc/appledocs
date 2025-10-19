@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DerivedAttributeDescription] class.
-var derivedAttributeDescriptionClass = _DerivedAttributeDescriptionClass{objc.GetClass("NSDerivedAttributeDescription")}
+var (
+	derivedAttributeDescriptionClass     _DerivedAttributeDescriptionClass
+	derivedAttributeDescriptionClassOnce sync.Once
+)
+
+func getDerivedAttributeDescriptionClass() _DerivedAttributeDescriptionClass {
+	derivedAttributeDescriptionClassOnce.Do(func() {
+		derivedAttributeDescriptionClass = _DerivedAttributeDescriptionClass{objc.GetClass("NSDerivedAttributeDescription")}
+	})
+	return derivedAttributeDescriptionClass
+}
 
 type _DerivedAttributeDescriptionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDerivedAttributeDescription interface {
 // A description of an attribute that derives its value by performing a calculation on a related attribute. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription
-
 type DerivedAttributeDescription struct {
 	AttributeDescription
 }
@@ -36,13 +46,15 @@ func DerivedAttributeDescriptionFrom(ptr unsafe.Pointer) DerivedAttributeDescrip
 		AttributeDescription: AttributeDescriptionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DerivedAttributeDescriptionClass) Alloc() DerivedAttributeDescription {
 	rv := objc.Send[DerivedAttributeDescription](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DerivedAttributeDescriptionClass) New() DerivedAttributeDescription {
 	rv := objc.Send[DerivedAttributeDescription](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DerivedAttributeDescription) Autorelease() DerivedAttributeDescription 
 
 // NewDerivedAttributeDescription creates a new DerivedAttributeDescription instance.
 func NewDerivedAttributeDescription() DerivedAttributeDescription {
-	return derivedAttributeDescriptionClass.New()
+	return getDerivedAttributeDescriptionClass().New()
 }
 
 

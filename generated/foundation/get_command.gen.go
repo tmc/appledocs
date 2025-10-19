@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [GetCommand] class.
-var getCommandClass = _GetCommandClass{objc.GetClass("NSGetCommand")}
+var (
+	getCommandClass     _GetCommandClass
+	getCommandClassOnce sync.Once
+)
+
+func getGetCommandClass() _GetCommandClass {
+	getCommandClassOnce.Do(func() {
+		getCommandClass = _GetCommandClass{objc.GetClass("NSGetCommand")}
+	})
+	return getCommandClass
+}
 
 type _GetCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IGetCommand interface {
 // A command that retrieves a value or object from a scriptable object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetCommand
-
 type GetCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func GetCommandFrom(ptr unsafe.Pointer) GetCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GetCommandClass) Alloc() GetCommand {
 	rv := objc.Send[GetCommand](objc.ID(gc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GetCommandClass) New() GetCommand {
 	rv := objc.Send[GetCommand](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (g_ GetCommand) Autorelease() GetCommand {
 
 // NewGetCommand creates a new GetCommand instance.
 func NewGetCommand() GetCommand {
-	return getCommandClass.New()
+	return getGetCommandClass().New()
 }
 
 

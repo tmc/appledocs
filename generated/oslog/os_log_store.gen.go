@@ -3,6 +3,7 @@
 package oslog
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OSLogStore] class.
-var oSLogStoreClass = _OSLogStoreClass{objc.GetClass("OSLogStore")}
+var (
+	oSLogStoreClass     _OSLogStoreClass
+	oSLogStoreClassOnce sync.Once
+)
+
+func getOSLogStoreClass() _OSLogStoreClass {
+	oSLogStoreClassOnce.Do(func() {
+		oSLogStoreClass = _OSLogStoreClass{objc.GetClass("OSLogStore")}
+	})
+	return oSLogStoreClass
+}
 
 type _OSLogStoreClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOSLogStore interface {
 // A set of entries from the unified logging system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore
-
 type OSLogStore struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type OSLogStore struct {
 func OSLogStoreFrom(ptr unsafe.Pointer) OSLogStore {
 	return OSLogStore{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogStoreClass) Alloc() OSLogStore {
 	rv := objc.Send[OSLogStore](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogStoreClass) New() OSLogStore {
 	rv := objc.Send[OSLogStore](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (o_ OSLogStore) Autorelease() OSLogStore {
 
 // NewOSLogStore creates a new OSLogStore instance.
 func NewOSLogStore() OSLogStore {
-	return oSLogStoreClass.New()
+	return getOSLogStoreClass().New()
 }
 
 

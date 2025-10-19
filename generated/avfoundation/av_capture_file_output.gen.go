@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVCaptureFileOutput] class.
-var aVCaptureFileOutputClass = _AVCaptureFileOutputClass{objc.GetClass("AVCaptureFileOutput")}
+var (
+	aVCaptureFileOutputClass     _AVCaptureFileOutputClass
+	aVCaptureFileOutputClassOnce sync.Once
+)
+
+func getAVCaptureFileOutputClass() _AVCaptureFileOutputClass {
+	aVCaptureFileOutputClassOnce.Do(func() {
+		aVCaptureFileOutputClass = _AVCaptureFileOutputClass{objc.GetClass("AVCaptureFileOutput")}
+	})
+	return aVCaptureFileOutputClass
+}
 
 type _AVCaptureFileOutputClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVCaptureFileOutput interface {
 // The abstract superclass for capture outputs that can record captured data to a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFileOutput
-
 type AVCaptureFileOutput struct {
 	AVCaptureOutput
 }
@@ -36,13 +46,15 @@ func AVCaptureFileOutputFrom(ptr unsafe.Pointer) AVCaptureFileOutput {
 		AVCaptureOutput: AVCaptureOutputFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureFileOutputClass) Alloc() AVCaptureFileOutput {
 	rv := objc.Send[AVCaptureFileOutput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureFileOutputClass) New() AVCaptureFileOutput {
 	rv := objc.Send[AVCaptureFileOutput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVCaptureFileOutput) Autorelease() AVCaptureFileOutput {
 
 // NewAVCaptureFileOutput creates a new AVCaptureFileOutput instance.
 func NewAVCaptureFileOutput() AVCaptureFileOutput {
-	return aVCaptureFileOutputClass.New()
+	return getAVCaptureFileOutputClass().New()
 }
 
 

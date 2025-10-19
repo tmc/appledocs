@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SpellServer] class.
-var spellServerClass = _SpellServerClass{objc.GetClass("NSSpellServer")}
+var (
+	spellServerClass     _SpellServerClass
+	spellServerClassOnce sync.Once
+)
+
+func getSpellServerClass() _SpellServerClass {
+	spellServerClassOnce.Do(func() {
+		spellServerClass = _SpellServerClass{objc.GetClass("NSSpellServer")}
+	})
+	return spellServerClass
+}
 
 type _SpellServerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISpellServer interface {
 // A server that your app uses to provide a spell checker service to other apps running in the system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
-
 type SpellServer struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SpellServer struct {
 func SpellServerFrom(ptr unsafe.Pointer) SpellServer {
 	return SpellServer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SpellServerClass) Alloc() SpellServer {
 	rv := objc.Send[SpellServer](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SpellServerClass) New() SpellServer {
 	rv := objc.Send[SpellServer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SpellServer) Autorelease() SpellServer {
 
 // NewSpellServer creates a new SpellServer instance.
 func NewSpellServer() SpellServer {
-	return spellServerClass.New()
+	return getSpellServerClass().New()
 }
 
 

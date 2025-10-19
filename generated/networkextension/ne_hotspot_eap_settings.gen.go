@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEHotspotEAPSettings] class.
-var nEHotspotEAPSettingsClass = _NEHotspotEAPSettingsClass{objc.GetClass("NEHotspotEAPSettings")}
+var (
+	nEHotspotEAPSettingsClass     _NEHotspotEAPSettingsClass
+	nEHotspotEAPSettingsClassOnce sync.Once
+)
+
+func getNEHotspotEAPSettingsClass() _NEHotspotEAPSettingsClass {
+	nEHotspotEAPSettingsClassOnce.Do(func() {
+		nEHotspotEAPSettingsClass = _NEHotspotEAPSettingsClass{objc.GetClass("NEHotspotEAPSettings")}
+	})
+	return nEHotspotEAPSettingsClass
+}
 
 type _NEHotspotEAPSettingsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEHotspotEAPSettings interface {
 // Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings
-
 type NEHotspotEAPSettings struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEHotspotEAPSettings struct {
 func NEHotspotEAPSettingsFrom(ptr unsafe.Pointer) NEHotspotEAPSettings {
 	return NEHotspotEAPSettings{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotEAPSettingsClass) Alloc() NEHotspotEAPSettings {
 	rv := objc.Send[NEHotspotEAPSettings](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEHotspotEAPSettingsClass) New() NEHotspotEAPSettings {
 	rv := objc.Send[NEHotspotEAPSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEHotspotEAPSettings) Autorelease() NEHotspotEAPSettings {
 
 // NewNEHotspotEAPSettings creates a new NEHotspotEAPSettings instance.
 func NewNEHotspotEAPSettings() NEHotspotEAPSettings {
-	return nEHotspotEAPSettingsClass.New()
+	return getNEHotspotEAPSettingsClass().New()
 }
 
 

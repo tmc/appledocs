@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLCache] class.
-var uRLCacheClass = _URLCacheClass{objc.GetClass("NSURLCache")}
+var (
+	uRLCacheClass     _URLCacheClass
+	uRLCacheClassOnce sync.Once
+)
+
+func getURLCacheClass() _URLCacheClass {
+	uRLCacheClassOnce.Do(func() {
+		uRLCacheClass = _URLCacheClass{objc.GetClass("NSURLCache")}
+	})
+	return uRLCacheClass
+}
 
 type _URLCacheClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLCache interface {
 // An object that maps URL requests to cached response objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache
-
 type URLCache struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLCache struct {
 func URLCacheFrom(ptr unsafe.Pointer) URLCache {
 	return URLCache{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLCacheClass) Alloc() URLCache {
 	rv := objc.Send[URLCache](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLCacheClass) New() URLCache {
 	rv := objc.Send[URLCache](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLCache) Autorelease() URLCache {
 
 // NewURLCache creates a new URLCache instance.
 func NewURLCache() URLCache {
-	return uRLCacheClass.New()
+	return getURLCacheClass().New()
 }
 
 

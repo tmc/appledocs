@@ -34,7 +34,6 @@ type IPageController interface {
 // An object that controls swipe navigation and animations between views or view content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController
-
 type PageController struct {
 	ViewController
 }
@@ -47,6 +46,7 @@ func PageControllerFrom(ptr unsafe.Pointer) PageController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PageControllerClass) Alloc() PageController {
 	rv := objc.Send[PageController](objc.ID(pc.class), objc.Sel("alloc"))

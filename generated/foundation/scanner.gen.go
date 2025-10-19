@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Scanner] class.
-var scannerClass = _ScannerClass{objc.GetClass("NSScanner")}
+var (
+	scannerClass     _ScannerClass
+	scannerClassOnce sync.Once
+)
+
+func getScannerClass() _ScannerClass {
+	scannerClassOnce.Do(func() {
+		scannerClass = _ScannerClass{objc.GetClass("NSScanner")}
+	})
+	return scannerClass
+}
 
 type _ScannerClass struct {
 	class objc.Class
@@ -27,7 +38,6 @@ type IScanner interface {
 // A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner
-
 type Scanner struct {
 	objectivec.Object
 }
@@ -38,13 +48,15 @@ type Scanner struct {
 func ScannerFrom(ptr unsafe.Pointer) Scanner {
 	return Scanner{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScannerClass) Alloc() Scanner {
 	rv := objc.Send[Scanner](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScannerClass) New() Scanner {
 	rv := objc.Send[Scanner](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -65,7 +77,7 @@ func (s_ Scanner) Autorelease() Scanner {
 
 // NewScanner creates a new Scanner instance.
 func NewScanner() Scanner {
-	return scannerClass.New()
+	return getScannerClass().New()
 }
 
 

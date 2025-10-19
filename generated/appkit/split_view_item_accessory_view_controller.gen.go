@@ -33,7 +33,6 @@ type ISplitViewItemAccessoryViewController interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController
-
 type SplitViewItemAccessoryViewController struct {
 	ViewController
 }
@@ -44,6 +43,7 @@ func SplitViewItemAccessoryViewControllerFrom(ptr unsafe.Pointer) SplitViewItemA
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SplitViewItemAccessoryViewControllerClass) Alloc() SplitViewItemAccessoryViewController {
 	rv := objc.Send[SplitViewItemAccessoryViewController](objc.ID(sc.class), objc.Sel("alloc"))

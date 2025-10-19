@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAssetReader] class.
-var aVAssetReaderClass = _AVAssetReaderClass{objc.GetClass("AVAssetReader")}
+var (
+	aVAssetReaderClass     _AVAssetReaderClass
+	aVAssetReaderClassOnce sync.Once
+)
+
+func getAVAssetReaderClass() _AVAssetReaderClass {
+	aVAssetReaderClassOnce.Do(func() {
+		aVAssetReaderClass = _AVAssetReaderClass{objc.GetClass("AVAssetReader")}
+	})
+	return aVAssetReaderClass
+}
 
 type _AVAssetReaderClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAssetReader interface {
 // An object that reads media data from an asset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader
-
 type AVAssetReader struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVAssetReader struct {
 func AVAssetReaderFrom(ptr unsafe.Pointer) AVAssetReader {
 	return AVAssetReader{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetReaderClass) Alloc() AVAssetReader {
 	rv := objc.Send[AVAssetReader](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetReaderClass) New() AVAssetReader {
 	rv := objc.Send[AVAssetReader](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVAssetReader) Autorelease() AVAssetReader {
 
 // NewAVAssetReader creates a new AVAssetReader instance.
 func NewAVAssetReader() AVAssetReader {
-	return aVAssetReaderClass.New()
+	return getAVAssetReaderClass().New()
 }
 
 

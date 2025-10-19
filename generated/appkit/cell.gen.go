@@ -82,7 +82,6 @@ type ICell interface {
 // A mechanism for displaying text or images in a view object without the overhead of a full subclass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell
-
 type Cell struct {
 	objectivec.Object
 }
@@ -93,6 +92,7 @@ type Cell struct {
 func CellFrom(ptr unsafe.Pointer) Cell {
 	return Cell{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CellClass) Alloc() Cell {
 	rv := objc.Send[Cell](objc.ID(cc.class), objc.Sel("alloc"))
@@ -128,7 +128,6 @@ func NewCell() Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
 func NewCellWithCoder(coder unsafe.Pointer) Cell {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -139,7 +138,6 @@ func NewCellWithCoder(coder unsafe.Pointer) Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(imageCell:)
 func NewCellImageCell(image unsafe.Pointer) Cell {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initImageCell:"), image)
 	rv.Autorelease()
@@ -150,7 +148,6 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
 func NewCellTextCell(string string) Cell {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string))
 	rv.Autorelease()

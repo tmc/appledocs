@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextFeature] class.
-var textFeatureClass = _TextFeatureClass{objc.GetClass("CITextFeature")}
+var (
+	textFeatureClass     _TextFeatureClass
+	textFeatureClassOnce sync.Once
+)
+
+func getTextFeatureClass() _TextFeatureClass {
+	textFeatureClassOnce.Do(func() {
+		textFeatureClass = _TextFeatureClass{objc.GetClass("CITextFeature")}
+	})
+	return textFeatureClass
+}
 
 type _TextFeatureClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ITextFeature interface {
 // Information about a text that was detected in a still or video image. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature
-
 type TextFeature struct {
 	Feature
 }
@@ -36,13 +46,15 @@ func TextFeatureFrom(ptr unsafe.Pointer) TextFeature {
 		Feature: FeatureFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextFeatureClass) Alloc() TextFeature {
 	rv := objc.Send[TextFeature](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextFeatureClass) New() TextFeature {
 	rv := objc.Send[TextFeature](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (t_ TextFeature) Autorelease() TextFeature {
 
 // NewTextFeature creates a new TextFeature instance.
 func NewTextFeature() TextFeature {
-	return textFeatureClass.New()
+	return getTextFeatureClass().New()
 }
 
 

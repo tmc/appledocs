@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [XPCConnection] class.
-var xPCConnectionClass = _XPCConnectionClass{objc.GetClass("NSXPCConnection")}
+var (
+	xPCConnectionClass     _XPCConnectionClass
+	xPCConnectionClassOnce sync.Once
+)
+
+func getXPCConnectionClass() _XPCConnectionClass {
+	xPCConnectionClassOnce.Do(func() {
+		xPCConnectionClass = _XPCConnectionClass{objc.GetClass("NSXPCConnection")}
+	})
+	return xPCConnectionClass
+}
 
 type _XPCConnectionClass struct {
 	class objc.Class
@@ -32,7 +43,6 @@ type IXPCConnection interface {
 // A bidirectional communication channel between two processes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection
-
 type XPCConnection struct {
 	objectivec.Object
 }
@@ -43,13 +53,15 @@ type XPCConnection struct {
 func XPCConnectionFrom(ptr unsafe.Pointer) XPCConnection {
 	return XPCConnection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XPCConnectionClass) Alloc() XPCConnection {
 	rv := objc.Send[XPCConnection](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XPCConnectionClass) New() XPCConnection {
 	rv := objc.Send[XPCConnection](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -70,16 +82,26 @@ func (x_ XPCConnection) Autorelease() XPCConnection {
 
 // NewXPCConnection creates a new XPCConnection instance.
 func NewXPCConnection() XPCConnection {
-	return xPCConnectionClass.New()
+	return getXPCConnectionClass().New()
 }
 
 
+// Initializes an object to connect to an object in another process, identified by an object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
+func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection {
+	instance := getXPCConnectionClass().Alloc()
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithListenerEndpoint:"), endpoint)
+	rv.Autorelease()
+	return rv
+}
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a . [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
 func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
-	instance := xPCConnectionClass.Alloc()
+	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
 	rv.Autorelease()
 	return rv
@@ -89,18 +111,8 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
 func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
-	instance := xPCConnectionClass.Alloc()
+	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
-	rv.Autorelease()
-	return rv
-}
-// Initializes an object to connect to an object in another process, identified by an object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
-func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection {
-	instance := xPCConnectionClass.Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithListenerEndpoint:"), endpoint)
 	rv.Autorelease()
 	return rv
 }

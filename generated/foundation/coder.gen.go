@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Coder] class.
-var coderClass = _CoderClass{objc.GetClass("NSCoder")}
+var (
+	coderClass     _CoderClass
+	coderClassOnce sync.Once
+)
+
+func getCoderClass() _CoderClass {
+	coderClassOnce.Do(func() {
+		coderClass = _CoderClass{objc.GetClass("NSCoder")}
+	})
+	return coderClass
+}
 
 type _CoderClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type ICoder interface {
 // An abstract class that serves as the basis for objects that enable archiving and distribution of other objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder
-
 type Coder struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type Coder struct {
 func CoderFrom(ptr unsafe.Pointer) Coder {
 	return Coder{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CoderClass) Alloc() Coder {
 	rv := objc.Send[Coder](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CoderClass) New() Coder {
 	rv := objc.Send[Coder](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ Coder) Autorelease() Coder {
 
 // NewCoder creates a new Coder instance.
 func NewCoder() Coder {
-	return coderClass.New()
+	return getCoderClass().New()
 }
 
 

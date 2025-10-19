@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ManagedObjectModel] class.
-var managedObjectModelClass = _ManagedObjectModelClass{objc.GetClass("NSManagedObjectModel")}
+var (
+	managedObjectModelClass     _ManagedObjectModelClass
+	managedObjectModelClassOnce sync.Once
+)
+
+func getManagedObjectModelClass() _ManagedObjectModelClass {
+	managedObjectModelClassOnce.Do(func() {
+		managedObjectModelClass = _ManagedObjectModelClass{objc.GetClass("NSManagedObjectModel")}
+	})
+	return managedObjectModelClass
+}
 
 type _ManagedObjectModelClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IManagedObjectModel interface {
 // A programmatic representation of the file describing your objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel
-
 type ManagedObjectModel struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type ManagedObjectModel struct {
 func ManagedObjectModelFrom(ptr unsafe.Pointer) ManagedObjectModel {
 	return ManagedObjectModel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _ManagedObjectModelClass) Alloc() ManagedObjectModel {
 	rv := objc.Send[ManagedObjectModel](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _ManagedObjectModelClass) New() ManagedObjectModel {
 	rv := objc.Send[ManagedObjectModel](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (m_ ManagedObjectModel) Autorelease() ManagedObjectModel {
 
 // NewManagedObjectModel creates a new ManagedObjectModel instance.
 func NewManagedObjectModel() ManagedObjectModel {
-	return managedObjectModelClass.New()
+	return getManagedObjectModelClass().New()
 }
 
 

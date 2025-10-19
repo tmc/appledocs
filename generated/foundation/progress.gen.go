@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Progress] class.
-var progressClass = _ProgressClass{objc.GetClass("NSProgress")}
+var (
+	progressClass     _ProgressClass
+	progressClassOnce sync.Once
+)
+
+func getProgressClass() _ProgressClass {
+	progressClassOnce.Do(func() {
+		progressClass = _ProgressClass{objc.GetClass("NSProgress")}
+	})
+	return progressClass
+}
 
 type _ProgressClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IProgress interface {
 // An object that conveys ongoing progress to the user for a specified task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress
-
 type Progress struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type Progress struct {
 func ProgressFrom(ptr unsafe.Pointer) Progress {
 	return Progress{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _ProgressClass) Alloc() Progress {
 	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _ProgressClass) New() Progress {
 	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (p_ Progress) Autorelease() Progress {
 
 // NewProgress creates a new Progress instance.
 func NewProgress() Progress {
-	return progressClass.New()
+	return getProgressClass().New()
 }
 
 
@@ -73,7 +85,7 @@ func NewProgress() Progress {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
 func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoOrNil unsafe.Pointer) Progress {
-	instance := progressClass.Alloc()
+	instance := getProgressClass().Alloc()
 	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
 	rv.Autorelease()
 	return rv
@@ -83,8 +95,7 @@ func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoO
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
 func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](objc.ID(progressClass.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
-	rv.Autorelease()
+	rv := objc.Send[Progress](objc.ID(getProgressClass().class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 

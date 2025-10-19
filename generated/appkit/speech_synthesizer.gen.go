@@ -35,7 +35,6 @@ type ISpeechSynthesizer interface {
 // The Cocoa interface to speech synthesis in macOS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer
-
 type SpeechSynthesizer struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type SpeechSynthesizer struct {
 func SpeechSynthesizerFrom(ptr unsafe.Pointer) SpeechSynthesizer {
 	return SpeechSynthesizer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SpeechSynthesizerClass) Alloc() SpeechSynthesizer {
 	rv := objc.Send[SpeechSynthesizer](objc.ID(sc.class), objc.Sel("alloc"))

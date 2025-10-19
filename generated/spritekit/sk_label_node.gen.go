@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKLabelNode] class.
-var sKLabelNodeClass = _SKLabelNodeClass{objc.GetClass("SKLabelNode")}
+var (
+	sKLabelNodeClass     _SKLabelNodeClass
+	sKLabelNodeClassOnce sync.Once
+)
+
+func getSKLabelNodeClass() _SKLabelNodeClass {
+	sKLabelNodeClassOnce.Do(func() {
+		sKLabelNodeClass = _SKLabelNodeClass{objc.GetClass("SKLabelNode")}
+	})
+	return sKLabelNodeClass
+}
 
 type _SKLabelNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKLabelNode interface {
 // A graphical element that draws text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKLabelNode
-
 type SKLabelNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKLabelNodeFrom(ptr unsafe.Pointer) SKLabelNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKLabelNodeClass) Alloc() SKLabelNode {
 	rv := objc.Send[SKLabelNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKLabelNodeClass) New() SKLabelNode {
 	rv := objc.Send[SKLabelNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKLabelNode) Autorelease() SKLabelNode {
 
 // NewSKLabelNode creates a new SKLabelNode instance.
 func NewSKLabelNode() SKLabelNode {
-	return sKLabelNodeClass.New()
+	return getSKLabelNodeClass().New()
 }
 
 

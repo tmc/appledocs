@@ -34,7 +34,6 @@ type IPanel interface {
 // A special kind of window that typically performs a function that is auxiliary to the main window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel
-
 type Panel struct {
 	Window
 }
@@ -47,6 +46,7 @@ func PanelFrom(ptr unsafe.Pointer) Panel {
 		Window: WindowFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PanelClass) Alloc() Panel {
 	rv := objc.Send[Panel](objc.ID(pc.class), objc.Sel("alloc"))

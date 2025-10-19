@@ -35,7 +35,6 @@ type IHapticFeedbackManager interface {
 // An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager
-
 type HapticFeedbackManager struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type HapticFeedbackManager struct {
 func HapticFeedbackManagerFrom(ptr unsafe.Pointer) HapticFeedbackManager {
 	return HapticFeedbackManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _HapticFeedbackManagerClass) Alloc() HapticFeedbackManager {
 	rv := objc.Send[HapticFeedbackManager](objc.ID(hc.class), objc.Sel("alloc"))

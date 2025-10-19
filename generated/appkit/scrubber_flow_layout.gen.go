@@ -34,7 +34,6 @@ type IScrubberFlowLayout interface {
 // A concrete layout object that arranges items end-to-end in a linear strip. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout
-
 type ScrubberFlowLayout struct {
 	ScrubberLayout
 }
@@ -47,6 +46,7 @@ func ScrubberFlowLayoutFrom(ptr unsafe.Pointer) ScrubberFlowLayout {
 		ScrubberLayout: ScrubberLayoutFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberFlowLayoutClass) Alloc() ScrubberFlowLayout {
 	rv := objc.Send[ScrubberFlowLayout](objc.ID(sc.class), objc.Sel("alloc"))

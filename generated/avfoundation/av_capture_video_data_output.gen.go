@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVCaptureVideoDataOutput] class.
-var aVCaptureVideoDataOutputClass = _AVCaptureVideoDataOutputClass{objc.GetClass("AVCaptureVideoDataOutput")}
+var (
+	aVCaptureVideoDataOutputClass     _AVCaptureVideoDataOutputClass
+	aVCaptureVideoDataOutputClassOnce sync.Once
+)
+
+func getAVCaptureVideoDataOutputClass() _AVCaptureVideoDataOutputClass {
+	aVCaptureVideoDataOutputClassOnce.Do(func() {
+		aVCaptureVideoDataOutputClass = _AVCaptureVideoDataOutputClass{objc.GetClass("AVCaptureVideoDataOutput")}
+	})
+	return aVCaptureVideoDataOutputClass
+}
 
 type _AVCaptureVideoDataOutputClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCaptureVideoDataOutput interface {
 // A capture output that records video and provides access to video frames for processing. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput
-
 type AVCaptureVideoDataOutput struct {
 	AVCaptureOutput
 }
@@ -37,13 +47,15 @@ func AVCaptureVideoDataOutputFrom(ptr unsafe.Pointer) AVCaptureVideoDataOutput {
 		AVCaptureOutput: AVCaptureOutputFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureVideoDataOutputClass) Alloc() AVCaptureVideoDataOutput {
 	rv := objc.Send[AVCaptureVideoDataOutput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureVideoDataOutputClass) New() AVCaptureVideoDataOutput {
 	rv := objc.Send[AVCaptureVideoDataOutput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVCaptureVideoDataOutput) Autorelease() AVCaptureVideoDataOutput {
 
 // NewAVCaptureVideoDataOutput creates a new AVCaptureVideoDataOutput instance.
 func NewAVCaptureVideoDataOutput() AVCaptureVideoDataOutput {
-	return aVCaptureVideoDataOutputClass.New()
+	return getAVCaptureVideoDataOutputClass().New()
 }
 
 

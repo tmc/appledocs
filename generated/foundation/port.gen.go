@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Port] class.
-var portClass = _PortClass{objc.GetClass("NSPort")}
+var (
+	portClass     _PortClass
+	portClassOnce sync.Once
+)
+
+func getPortClass() _PortClass {
+	portClassOnce.Do(func() {
+		portClass = _PortClass{objc.GetClass("NSPort")}
+	})
+	return portClass
+}
 
 type _PortClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPort interface {
 // An abstract class that represents a communication channel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Port
-
 type Port struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Port struct {
 func PortFrom(ptr unsafe.Pointer) Port {
 	return Port{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PortClass) Alloc() Port {
 	rv := objc.Send[Port](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PortClass) New() Port {
 	rv := objc.Send[Port](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ Port) Autorelease() Port {
 
 // NewPort creates a new Port instance.
 func NewPort() Port {
-	return portClass.New()
+	return getPortClass().New()
 }
 
 

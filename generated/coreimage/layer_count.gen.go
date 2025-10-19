@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [layerCount] class.
-var layerCountClass = _layerCountClass{objc.GetClass("layerCount")}
+var (
+	layerCountClass     _layerCountClass
+	layerCountClassOnce sync.Once
+)
+
+func getlayerCountClass() _layerCountClass {
+	layerCountClassOnce.Do(func() {
+		layerCountClass = _layerCountClass{objc.GetClass("layerCount")}
+	})
+	return layerCountClass
+}
 
 type _layerCountClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IlayerCount interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/layerCount-c.ivar
-
 type layerCount struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type layerCount struct {
 func layerCountFrom(ptr unsafe.Pointer) layerCount {
 	return layerCount{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _layerCountClass) Alloc() layerCount {
 	rv := objc.Send[layerCount](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _layerCountClass) New() layerCount {
 	rv := objc.Send[layerCount](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (l_ layerCount) Autorelease() layerCount {
 
 // NewlayerCount creates a new layerCount instance.
 func NewlayerCount() layerCount {
-	return layerCountClass.New()
+	return getlayerCountClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDIUMPCIProfile] class.
-var mIDIUMPCIProfileClass = _MIDIUMPCIProfileClass{objc.GetClass("MIDIUMPCIProfile")}
+var (
+	mIDIUMPCIProfileClass     _MIDIUMPCIProfileClass
+	mIDIUMPCIProfileClassOnce sync.Once
+)
+
+func getMIDIUMPCIProfileClass() _MIDIUMPCIProfileClass {
+	mIDIUMPCIProfileClassOnce.Do(func() {
+		mIDIUMPCIProfileClass = _MIDIUMPCIProfileClass{objc.GetClass("MIDIUMPCIProfile")}
+	})
+	return mIDIUMPCIProfileClass
+}
 
 type _MIDIUMPCIProfileClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDIUMPCIProfile interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile
-
 type MIDIUMPCIProfile struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type MIDIUMPCIProfile struct {
 func MIDIUMPCIProfileFrom(ptr unsafe.Pointer) MIDIUMPCIProfile {
 	return MIDIUMPCIProfile{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIUMPCIProfileClass) Alloc() MIDIUMPCIProfile {
 	rv := objc.Send[MIDIUMPCIProfile](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDIUMPCIProfileClass) New() MIDIUMPCIProfile {
 	rv := objc.Send[MIDIUMPCIProfile](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (m_ MIDIUMPCIProfile) Autorelease() MIDIUMPCIProfile {
 
 // NewMIDIUMPCIProfile creates a new MIDIUMPCIProfile instance.
 func NewMIDIUMPCIProfile() MIDIUMPCIProfile {
-	return mIDIUMPCIProfileClass.New()
+	return getMIDIUMPCIProfileClass().New()
 }
 
 

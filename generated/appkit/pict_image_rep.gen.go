@@ -34,7 +34,6 @@ type IPICTImageRep interface {
 // An object that renders an image from a PICT format data stream of version 1, version 2, and extended version 2. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep
-
 type PICTImageRep struct {
 	ImageRep
 }
@@ -47,6 +46,7 @@ func PICTImageRepFrom(ptr unsafe.Pointer) PICTImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PICTImageRepClass) Alloc() PICTImageRep {
 	rv := objc.Send[PICTImageRep](objc.ID(pc.class), objc.Sel("alloc"))

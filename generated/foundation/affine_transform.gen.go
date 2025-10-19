@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AffineTransform] class.
-var affineTransformClass = _AffineTransformClass{objc.GetClass("NSAffineTransform")}
+var (
+	affineTransformClass     _AffineTransformClass
+	affineTransformClassOnce sync.Once
+)
+
+func getAffineTransformClass() _AffineTransformClass {
+	affineTransformClassOnce.Do(func() {
+		affineTransformClass = _AffineTransformClass{objc.GetClass("NSAffineTransform")}
+	})
+	return affineTransformClass
+}
 
 type _AffineTransformClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAffineTransform interface {
 // A graphics coordinate transformation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform
-
 type AffineTransform struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AffineTransform struct {
 func AffineTransformFrom(ptr unsafe.Pointer) AffineTransform {
 	return AffineTransform{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AffineTransformClass) Alloc() AffineTransform {
 	rv := objc.Send[AffineTransform](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AffineTransformClass) New() AffineTransform {
 	rv := objc.Send[AffineTransform](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AffineTransform) Autorelease() AffineTransform {
 
 // NewAffineTransform creates a new AffineTransform instance.
 func NewAffineTransform() AffineTransform {
-	return affineTransformClass.New()
+	return getAffineTransformClass().New()
 }
 
 

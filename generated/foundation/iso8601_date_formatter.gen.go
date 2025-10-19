@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ISO8601DateFormatter] class.
-var iSO8601DateFormatterClass = _ISO8601DateFormatterClass{objc.GetClass("NSISO8601DateFormatter")}
+var (
+	iSO8601DateFormatterClass     _ISO8601DateFormatterClass
+	iSO8601DateFormatterClassOnce sync.Once
+)
+
+func getISO8601DateFormatterClass() _ISO8601DateFormatterClass {
+	iSO8601DateFormatterClassOnce.Do(func() {
+		iSO8601DateFormatterClass = _ISO8601DateFormatterClass{objc.GetClass("NSISO8601DateFormatter")}
+	})
+	return iSO8601DateFormatterClass
+}
 
 type _ISO8601DateFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IISO8601DateFormatter interface {
 // A formatter that converts between dates and their ISO 8601 string representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter
-
 type ISO8601DateFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func ISO8601DateFormatterFrom(ptr unsafe.Pointer) ISO8601DateFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ISO8601DateFormatterClass) Alloc() ISO8601DateFormatter {
 	rv := objc.Send[ISO8601DateFormatter](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ISO8601DateFormatterClass) New() ISO8601DateFormatter {
 	rv := objc.Send[ISO8601DateFormatter](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (i_ ISO8601DateFormatter) Autorelease() ISO8601DateFormatter {
 
 // NewISO8601DateFormatter creates a new ISO8601DateFormatter instance.
 func NewISO8601DateFormatter() ISO8601DateFormatter {
-	return iSO8601DateFormatterClass.New()
+	return getISO8601DateFormatterClass().New()
 }
 
 

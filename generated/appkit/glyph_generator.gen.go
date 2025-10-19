@@ -35,7 +35,6 @@ type IGlyphGenerator interface {
 // An object that performs the initial, nominal glyph generation phase in the layout process. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator
-
 type GlyphGenerator struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type GlyphGenerator struct {
 func GlyphGeneratorFrom(ptr unsafe.Pointer) GlyphGenerator {
 	return GlyphGenerator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GlyphGeneratorClass) Alloc() GlyphGenerator {
 	rv := objc.Send[GlyphGenerator](objc.ID(gc.class), objc.Sel("alloc"))

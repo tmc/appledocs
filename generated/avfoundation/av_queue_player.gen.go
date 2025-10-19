@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVQueuePlayer] class.
-var aVQueuePlayerClass = _AVQueuePlayerClass{objc.GetClass("AVQueuePlayer")}
+var (
+	aVQueuePlayerClass     _AVQueuePlayerClass
+	aVQueuePlayerClassOnce sync.Once
+)
+
+func getAVQueuePlayerClass() _AVQueuePlayerClass {
+	aVQueuePlayerClassOnce.Do(func() {
+		aVQueuePlayerClass = _AVQueuePlayerClass{objc.GetClass("AVQueuePlayer")}
+	})
+	return aVQueuePlayerClass
+}
 
 type _AVQueuePlayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVQueuePlayer interface {
 // An object that plays a sequence of player items. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer
-
 type AVQueuePlayer struct {
 	AVPlayer
 }
@@ -36,13 +46,15 @@ func AVQueuePlayerFrom(ptr unsafe.Pointer) AVQueuePlayer {
 		AVPlayer: AVPlayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVQueuePlayerClass) Alloc() AVQueuePlayer {
 	rv := objc.Send[AVQueuePlayer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVQueuePlayerClass) New() AVQueuePlayer {
 	rv := objc.Send[AVQueuePlayer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVQueuePlayer) Autorelease() AVQueuePlayer {
 
 // NewAVQueuePlayer creates a new AVQueuePlayer instance.
 func NewAVQueuePlayer() AVQueuePlayer {
-	return aVQueuePlayerClass.New()
+	return getAVQueuePlayerClass().New()
 }
 
 

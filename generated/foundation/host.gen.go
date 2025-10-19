@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Host] class.
-var hostClass = _HostClass{objc.GetClass("NSHost")}
+var (
+	hostClass     _HostClass
+	hostClassOnce sync.Once
+)
+
+func getHostClass() _HostClass {
+	hostClassOnce.Do(func() {
+		hostClass = _HostClass{objc.GetClass("NSHost")}
+	})
+	return hostClass
+}
 
 type _HostClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IHost interface {
 // A representation of an individual host on the network. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host
-
 type Host struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Host struct {
 func HostFrom(ptr unsafe.Pointer) Host {
 	return Host{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _HostClass) Alloc() Host {
 	rv := objc.Send[Host](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HostClass) New() Host {
 	rv := objc.Send[Host](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (h_ Host) Autorelease() Host {
 
 // NewHost creates a new Host instance.
 func NewHost() Host {
-	return hostClass.New()
+	return getHostClass().New()
 }
 
 

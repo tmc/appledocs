@@ -74,7 +74,6 @@ type ICollectionView interface {
 // An ordered collection of data items displayed in a customizable layout. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView
-
 type CollectionView struct {
 	View
 }
@@ -87,6 +86,7 @@ func CollectionViewFrom(ptr unsafe.Pointer) CollectionView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewClass) Alloc() CollectionView {
 	rv := objc.Send[CollectionView](objc.ID(cc.class), objc.Sel("alloc"))

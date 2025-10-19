@@ -34,7 +34,6 @@ type IComboBoxCell interface {
 // The user interface of a combo box. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell
-
 type ComboBoxCell struct {
 	TextFieldCell
 }
@@ -47,6 +46,7 @@ func ComboBoxCellFrom(ptr unsafe.Pointer) ComboBoxCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComboBoxCellClass) Alloc() ComboBoxCell {
 	rv := objc.Send[ComboBoxCell](objc.ID(cc.class), objc.Sel("alloc"))

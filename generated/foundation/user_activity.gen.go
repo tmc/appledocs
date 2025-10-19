@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserActivity] class.
-var userActivityClass = _UserActivityClass{objc.GetClass("NSUserActivity")}
+var (
+	userActivityClass     _UserActivityClass
+	userActivityClassOnce sync.Once
+)
+
+func getUserActivityClass() _UserActivityClass {
+	userActivityClassOnce.Do(func() {
+		userActivityClass = _UserActivityClass{objc.GetClass("NSUserActivity")}
+	})
+	return userActivityClass
+}
 
 type _UserActivityClass struct {
 	class objc.Class
@@ -29,7 +40,6 @@ type IUserActivity interface {
 // A representation of the state of your app at a moment in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity
-
 type UserActivity struct {
 	objectivec.Object
 }
@@ -40,13 +50,15 @@ type UserActivity struct {
 func UserActivityFrom(ptr unsafe.Pointer) UserActivity {
 	return UserActivity{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserActivityClass) Alloc() UserActivity {
 	rv := objc.Send[UserActivity](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserActivityClass) New() UserActivity {
 	rv := objc.Send[UserActivity](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -67,7 +79,7 @@ func (u_ UserActivity) Autorelease() UserActivity {
 
 // NewUserActivity creates a new UserActivity instance.
 func NewUserActivity() UserActivity {
-	return userActivityClass.New()
+	return getUserActivityClass().New()
 }
 
 
@@ -76,7 +88,7 @@ func NewUserActivity() UserActivity {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
 func NewUserActivityWithActivityType(activityType string) UserActivity {
-	instance := userActivityClass.Alloc()
+	instance := getUserActivityClass().Alloc()
 	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), objc.String(activityType))
 	rv.Autorelease()
 	return rv

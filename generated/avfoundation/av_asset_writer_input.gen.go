@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAssetWriterInput] class.
-var aVAssetWriterInputClass = _AVAssetWriterInputClass{objc.GetClass("AVAssetWriterInput")}
+var (
+	aVAssetWriterInputClass     _AVAssetWriterInputClass
+	aVAssetWriterInputClassOnce sync.Once
+)
+
+func getAVAssetWriterInputClass() _AVAssetWriterInputClass {
+	aVAssetWriterInputClassOnce.Do(func() {
+		aVAssetWriterInputClass = _AVAssetWriterInputClass{objc.GetClass("AVAssetWriterInput")}
+	})
+	return aVAssetWriterInputClass
+}
 
 type _AVAssetWriterInputClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAssetWriterInput interface {
 // An object that appends media samples to a track in an asset writer’s output file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput
-
 type AVAssetWriterInput struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVAssetWriterInput struct {
 func AVAssetWriterInputFrom(ptr unsafe.Pointer) AVAssetWriterInput {
 	return AVAssetWriterInput{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetWriterInputClass) Alloc() AVAssetWriterInput {
 	rv := objc.Send[AVAssetWriterInput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetWriterInputClass) New() AVAssetWriterInput {
 	rv := objc.Send[AVAssetWriterInput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVAssetWriterInput) Autorelease() AVAssetWriterInput {
 
 // NewAVAssetWriterInput creates a new AVAssetWriterInput instance.
 func NewAVAssetWriterInput() AVAssetWriterInput {
-	return aVAssetWriterInputClass.New()
+	return getAVAssetWriterInputClass().New()
 }
 
 

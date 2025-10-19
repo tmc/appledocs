@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Transaction] class.
-var transactionClass = _TransactionClass{objc.GetClass("CATransaction")}
+var (
+	transactionClass     _TransactionClass
+	transactionClassOnce sync.Once
+)
+
+func getTransactionClass() _TransactionClass {
+	transactionClassOnce.Do(func() {
+		transactionClass = _TransactionClass{objc.GetClass("CATransaction")}
+	})
+	return transactionClass
+}
 
 type _TransactionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ITransaction interface {
 // A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction
-
 type Transaction struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Transaction struct {
 func TransactionFrom(ptr unsafe.Pointer) Transaction {
 	return Transaction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TransactionClass) Alloc() Transaction {
 	rv := objc.Send[Transaction](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TransactionClass) New() Transaction {
 	rv := objc.Send[Transaction](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (t_ Transaction) Autorelease() Transaction {
 
 // NewTransaction creates a new Transaction instance.
 func NewTransaction() Transaction {
-	return transactionClass.New()
+	return getTransactionClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewTransaction() Transaction {
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/setValue(_:forKey:)
 func (tc _TransactionClass) SetValueForKey(anObject objc.ID, key string) {
-	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, key)
+	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, objc.String(key))
 }
 
 

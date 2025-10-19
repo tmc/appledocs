@@ -3,13 +3,24 @@
 package metal
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTL4MachineLearningPipelineDescriptor] class.
-var mTL4MachineLearningPipelineDescriptorClass = _MTL4MachineLearningPipelineDescriptorClass{objc.GetClass("MTL4MachineLearningPipelineDescriptor")}
+var (
+	mTL4MachineLearningPipelineDescriptorClass     _MTL4MachineLearningPipelineDescriptorClass
+	mTL4MachineLearningPipelineDescriptorClassOnce sync.Once
+)
+
+func getMTL4MachineLearningPipelineDescriptorClass() _MTL4MachineLearningPipelineDescriptorClass {
+	mTL4MachineLearningPipelineDescriptorClassOnce.Do(func() {
+		mTL4MachineLearningPipelineDescriptorClass = _MTL4MachineLearningPipelineDescriptorClass{objc.GetClass("MTL4MachineLearningPipelineDescriptor")}
+	})
+	return mTL4MachineLearningPipelineDescriptorClass
+}
 
 type _MTL4MachineLearningPipelineDescriptorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMTL4MachineLearningPipelineDescriptor interface {
 // Description for a machine learning pipeline state. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MachineLearningPipelineDescriptor
-
 type MTL4MachineLearningPipelineDescriptor struct {
 	MTL4PipelineDescriptor
 }
@@ -36,13 +46,15 @@ func MTL4MachineLearningPipelineDescriptorFrom(ptr unsafe.Pointer) MTL4MachineLe
 		MTL4PipelineDescriptor: MTL4PipelineDescriptorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4MachineLearningPipelineDescriptorClass) Alloc() MTL4MachineLearningPipelineDescriptor {
 	rv := objc.Send[MTL4MachineLearningPipelineDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTL4MachineLearningPipelineDescriptorClass) New() MTL4MachineLearningPipelineDescriptor {
 	rv := objc.Send[MTL4MachineLearningPipelineDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MTL4MachineLearningPipelineDescriptor) Autorelease() MTL4MachineLearnin
 
 // NewMTL4MachineLearningPipelineDescriptor creates a new MTL4MachineLearningPipelineDescriptor instance.
 func NewMTL4MachineLearningPipelineDescriptor() MTL4MachineLearningPipelineDescriptor {
-	return mTL4MachineLearningPipelineDescriptorClass.New()
+	return getMTL4MachineLearningPipelineDescriptorClass().New()
 }
 
 

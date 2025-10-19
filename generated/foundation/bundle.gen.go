@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Bundle] class.
-var bundleClass = _BundleClass{objc.GetClass("NSBundle")}
+var (
+	bundleClass     _BundleClass
+	bundleClassOnce sync.Once
+)
+
+func getBundleClass() _BundleClass {
+	bundleClassOnce.Do(func() {
+		bundleClass = _BundleClass{objc.GetClass("NSBundle")}
+	})
+	return bundleClass
+}
 
 type _BundleClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IBundle interface {
 // A representation of the code and resources stored in a bundle directory on disk. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle
-
 type Bundle struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type Bundle struct {
 func BundleFrom(ptr unsafe.Pointer) Bundle {
 	return Bundle{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BundleClass) Alloc() Bundle {
 	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BundleClass) New() Bundle {
 	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ Bundle) Autorelease() Bundle {
 
 // NewBundle creates a new Bundle instance.
 func NewBundle() Bundle {
-	return bundleClass.New()
+	return getBundleClass().New()
 }
 
 
@@ -72,8 +84,7 @@ func NewBundle() Bundle {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
 func NewBundleForClass(aClass objc.Class) Bundle {
-	rv := objc.Send[Bundle](objc.ID(bundleClass.class), objc.Sel("bundleForClass:"), aClass)
-	rv.Autorelease()
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
 	return rv
 }
 

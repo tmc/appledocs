@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PresentationIntent] class.
-var presentationIntentClass = _PresentationIntentClass{objc.GetClass("NSPresentationIntent")}
+var (
+	presentationIntentClass     _PresentationIntentClass
+	presentationIntentClassOnce sync.Once
+)
+
+func getPresentationIntentClass() _PresentationIntentClass {
+	presentationIntentClassOnce.Do(func() {
+		presentationIntentClass = _PresentationIntentClass{objc.GetClass("NSPresentationIntent")}
+	})
+	return presentationIntentClass
+}
 
 type _PresentationIntentClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPresentationIntent interface {
 // A type that contains the Markdown formatting for blocks of text, like paragraphs, lists, code blocks, and parts of tables. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent
-
 type PresentationIntent struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PresentationIntent struct {
 func PresentationIntentFrom(ptr unsafe.Pointer) PresentationIntent {
 	return PresentationIntent{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PresentationIntentClass) Alloc() PresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PresentationIntentClass) New() PresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PresentationIntent) Autorelease() PresentationIntent {
 
 // NewPresentationIntent creates a new PresentationIntent instance.
 func NewPresentationIntent() PresentationIntent {
-	return presentationIntentClass.New()
+	return getPresentationIntentClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PurgeableData] class.
-var purgeableDataClass = _PurgeableDataClass{objc.GetClass("NSPurgeableData")}
+var (
+	purgeableDataClass     _PurgeableDataClass
+	purgeableDataClassOnce sync.Once
+)
+
+func getPurgeableDataClass() _PurgeableDataClass {
+	purgeableDataClassOnce.Do(func() {
+		purgeableDataClass = _PurgeableDataClass{objc.GetClass("NSPurgeableData")}
+	})
+	return purgeableDataClass
+}
 
 type _PurgeableDataClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPurgeableData interface {
 // A mutable data object containing bytes that can be discarded when they’re no longer needed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPurgeableData
-
 type PurgeableData struct {
 	MutableData
 }
@@ -36,13 +46,15 @@ func PurgeableDataFrom(ptr unsafe.Pointer) PurgeableData {
 		MutableData: MutableDataFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PurgeableDataClass) Alloc() PurgeableData {
 	rv := objc.Send[PurgeableData](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PurgeableDataClass) New() PurgeableData {
 	rv := objc.Send[PurgeableData](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PurgeableData) Autorelease() PurgeableData {
 
 // NewPurgeableData creates a new PurgeableData instance.
 func NewPurgeableData() PurgeableData {
-	return purgeableDataClass.New()
+	return getPurgeableDataClass().New()
 }
 
 

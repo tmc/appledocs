@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLSession] class.
-var uRLSessionClass = _URLSessionClass{objc.GetClass("NSURLSession")}
+var (
+	uRLSessionClass     _URLSessionClass
+	uRLSessionClassOnce sync.Once
+)
+
+func getURLSessionClass() _URLSessionClass {
+	uRLSessionClassOnce.Do(func() {
+		uRLSessionClass = _URLSessionClass{objc.GetClass("NSURLSession")}
+	})
+	return uRLSessionClass
+}
 
 type _URLSessionClass struct {
 	class objc.Class
@@ -52,7 +63,6 @@ type IURLSession interface {
 // An object that coordinates a group of related, network data transfer tasks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession
-
 type URLSession struct {
 	objectivec.Object
 }
@@ -63,13 +73,15 @@ type URLSession struct {
 func URLSessionFrom(ptr unsafe.Pointer) URLSession {
 	return URLSession{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionClass) Alloc() URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionClass) New() URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,7 +102,7 @@ func (u_ URLSession) Autorelease() URLSession {
 
 // NewURLSession creates a new URLSession instance.
 func NewURLSession() URLSession {
-	return uRLSessionClass.New()
+	return getURLSessionClass().New()
 }
 
 
@@ -99,8 +111,7 @@ func NewURLSession() URLSession {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
 func NewURLSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
-	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:"), configuration)
-	rv.Autorelease()
+	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:"), configuration)
 	return rv
 }
 // Creates a session with the specified session configuration, delegate, and operation queue. [Full Topic]
@@ -108,8 +119,7 @@ func NewURLSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
 func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Pointer, delegate unsafe.Pointer, queue unsafe.Pointer) URLSession {
-	rv := objc.Send[URLSession](objc.ID(uRLSessionClass.class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
-	rv.Autorelease()
+	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
 }
 

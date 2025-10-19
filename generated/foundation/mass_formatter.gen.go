@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MassFormatter] class.
-var massFormatterClass = _MassFormatterClass{objc.GetClass("NSMassFormatter")}
+var (
+	massFormatterClass     _MassFormatterClass
+	massFormatterClassOnce sync.Once
+)
+
+func getMassFormatterClass() _MassFormatterClass {
+	massFormatterClassOnce.Do(func() {
+		massFormatterClass = _MassFormatterClass{objc.GetClass("NSMassFormatter")}
+	})
+	return massFormatterClass
+}
 
 type _MassFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMassFormatter interface {
 // A formatter that provides localized descriptions of mass and weight values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter
-
 type MassFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func MassFormatterFrom(ptr unsafe.Pointer) MassFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MassFormatterClass) Alloc() MassFormatter {
 	rv := objc.Send[MassFormatter](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MassFormatterClass) New() MassFormatter {
 	rv := objc.Send[MassFormatter](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MassFormatter) Autorelease() MassFormatter {
 
 // NewMassFormatter creates a new MassFormatter instance.
 func NewMassFormatter() MassFormatter {
-	return massFormatterClass.New()
+	return getMassFormatterClass().New()
 }
 
 

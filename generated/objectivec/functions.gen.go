@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // ObjectiveC Functions (160 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -181,7 +182,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_NXCompareHashTables, lib, "NXCompareHashTables")
 	tryRegister(&_NXCopyHashTable, lib, "NXCopyHashTable")
 	tryRegister(&_NXCountHashTable, lib, "NXCountHashTable")
@@ -355,6 +355,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // NXCompareHashTables is a ObjectiveC function. [Full Topic]

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ImageProcessorKernel] class.
-var imageProcessorKernelClass = _ImageProcessorKernelClass{objc.GetClass("CIImageProcessorKernel")}
+var (
+	imageProcessorKernelClass     _ImageProcessorKernelClass
+	imageProcessorKernelClassOnce sync.Once
+)
+
+func getImageProcessorKernelClass() _ImageProcessorKernelClass {
+	imageProcessorKernelClassOnce.Do(func() {
+		imageProcessorKernelClass = _ImageProcessorKernelClass{objc.GetClass("CIImageProcessorKernel")}
+	})
+	return imageProcessorKernelClass
+}
 
 type _ImageProcessorKernelClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IImageProcessorKernel interface {
 // The abstract class you extend to create custom image processors that can integrate with Core Image workflows. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel
-
 type ImageProcessorKernel struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ImageProcessorKernel struct {
 func ImageProcessorKernelFrom(ptr unsafe.Pointer) ImageProcessorKernel {
 	return ImageProcessorKernel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageProcessorKernelClass) Alloc() ImageProcessorKernel {
 	rv := objc.Send[ImageProcessorKernel](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageProcessorKernelClass) New() ImageProcessorKernel {
 	rv := objc.Send[ImageProcessorKernel](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (i_ ImageProcessorKernel) Autorelease() ImageProcessorKernel {
 
 // NewImageProcessorKernel creates a new ImageProcessorKernel instance.
 func NewImageProcessorKernel() ImageProcessorKernel {
-	return imageProcessorKernelClass.New()
+	return getImageProcessorKernelClass().New()
 }
 
 

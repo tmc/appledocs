@@ -34,7 +34,6 @@ type IColorPanel interface {
 // A standard user interface for selecting color in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel
-
 type ColorPanel struct {
 	Panel
 }
@@ -47,6 +46,7 @@ func ColorPanelFrom(ptr unsafe.Pointer) ColorPanel {
 		Panel: PanelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorPanelClass) Alloc() ColorPanel {
 	rv := objc.Send[ColorPanel](objc.ID(cc.class), objc.Sel("alloc"))

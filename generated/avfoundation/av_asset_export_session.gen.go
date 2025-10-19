@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAssetExportSession] class.
-var aVAssetExportSessionClass = _AVAssetExportSessionClass{objc.GetClass("AVAssetExportSession")}
+var (
+	aVAssetExportSessionClass     _AVAssetExportSessionClass
+	aVAssetExportSessionClassOnce sync.Once
+)
+
+func getAVAssetExportSessionClass() _AVAssetExportSessionClass {
+	aVAssetExportSessionClassOnce.Do(func() {
+		aVAssetExportSessionClass = _AVAssetExportSessionClass{objc.GetClass("AVAssetExportSession")}
+	})
+	return aVAssetExportSessionClass
+}
 
 type _AVAssetExportSessionClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IAVAssetExportSession interface {
 // An object that exports assets in a format that you specify using an export preset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession
-
 type AVAssetExportSession struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type AVAssetExportSession struct {
 func AVAssetExportSessionFrom(ptr unsafe.Pointer) AVAssetExportSession {
 	return AVAssetExportSession{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetExportSessionClass) Alloc() AVAssetExportSession {
 	rv := objc.Send[AVAssetExportSession](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetExportSessionClass) New() AVAssetExportSession {
 	rv := objc.Send[AVAssetExportSession](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVAssetExportSession) Autorelease() AVAssetExportSession {
 
 // NewAVAssetExportSession creates a new AVAssetExportSession instance.
 func NewAVAssetExportSession() AVAssetExportSession {
-	return aVAssetExportSessionClass.New()
+	return getAVAssetExportSessionClass().New()
 }
 
 

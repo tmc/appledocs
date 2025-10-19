@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AsynchronousFetchRequest] class.
-var asynchronousFetchRequestClass = _AsynchronousFetchRequestClass{objc.GetClass("NSAsynchronousFetchRequest")}
+var (
+	asynchronousFetchRequestClass     _AsynchronousFetchRequestClass
+	asynchronousFetchRequestClassOnce sync.Once
+)
+
+func getAsynchronousFetchRequestClass() _AsynchronousFetchRequestClass {
+	asynchronousFetchRequestClassOnce.Do(func() {
+		asynchronousFetchRequestClass = _AsynchronousFetchRequestClass{objc.GetClass("NSAsynchronousFetchRequest")}
+	})
+	return asynchronousFetchRequestClass
+}
 
 type _AsynchronousFetchRequestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAsynchronousFetchRequest interface {
 // A fetch request that retrieves results asynchronously and supports progress notification. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest
-
 type AsynchronousFetchRequest struct {
 	PersistentStoreRequest
 }
@@ -36,13 +46,15 @@ func AsynchronousFetchRequestFrom(ptr unsafe.Pointer) AsynchronousFetchRequest {
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AsynchronousFetchRequestClass) Alloc() AsynchronousFetchRequest {
 	rv := objc.Send[AsynchronousFetchRequest](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AsynchronousFetchRequestClass) New() AsynchronousFetchRequest {
 	rv := objc.Send[AsynchronousFetchRequest](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AsynchronousFetchRequest) Autorelease() AsynchronousFetchRequest {
 
 // NewAsynchronousFetchRequest creates a new AsynchronousFetchRequest instance.
 func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
-	return asynchronousFetchRequestClass.New()
+	return getAsynchronousFetchRequestClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/init(fetchRequest:completionBlock:)
 func NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(request unsafe.Pointer, blk unsafe.Pointer) AsynchronousFetchRequest {
-	instance := asynchronousFetchRequestClass.Alloc()
+	instance := getAsynchronousFetchRequestClass().Alloc()
 	rv := objc.Send[AsynchronousFetchRequest](instance.ID, objc.Sel("initWithFetchRequest:completionBlock:"), request, blk)
 	rv.Autorelease()
 	return rv

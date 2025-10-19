@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitAngle] class.
-var unitAngleClass = _UnitAngleClass{objc.GetClass("NSUnitAngle")}
+var (
+	unitAngleClass     _UnitAngleClass
+	unitAngleClassOnce sync.Once
+)
+
+func getUnitAngleClass() _UnitAngleClass {
+	unitAngleClassOnce.Do(func() {
+		unitAngleClass = _UnitAngleClass{objc.GetClass("NSUnitAngle")}
+	})
+	return unitAngleClass
+}
 
 type _UnitAngleClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitAngle interface {
 // A unit of measure for planar angle and rotation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle
-
 type UnitAngle struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitAngleFrom(ptr unsafe.Pointer) UnitAngle {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitAngleClass) Alloc() UnitAngle {
 	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitAngleClass) New() UnitAngle {
 	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitAngle) Autorelease() UnitAngle {
 
 // NewUnitAngle creates a new UnitAngle instance.
 func NewUnitAngle() UnitAngle {
-	return unitAngleClass.New()
+	return getUnitAngleClass().New()
 }
 
 

@@ -35,7 +35,6 @@ type IAppearance interface {
 // An object that manages standard appearance attributes for UI elements in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance
-
 type Appearance struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Appearance struct {
 func AppearanceFrom(ptr unsafe.Pointer) Appearance {
 	return Appearance{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AppearanceClass) Alloc() Appearance {
 	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("alloc"))

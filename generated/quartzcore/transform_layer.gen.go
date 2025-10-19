@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TransformLayer] class.
-var transformLayerClass = _TransformLayerClass{objc.GetClass("CATransformLayer")}
+var (
+	transformLayerClass     _TransformLayerClass
+	transformLayerClassOnce sync.Once
+)
+
+func getTransformLayerClass() _TransformLayerClass {
+	transformLayerClassOnce.Do(func() {
+		transformLayerClass = _TransformLayerClass{objc.GetClass("CATransformLayer")}
+	})
+	return transformLayerClass
+}
 
 type _TransformLayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ITransformLayer interface {
 // Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransformLayer
-
 type TransformLayer struct {
 	Layer
 }
@@ -36,13 +46,15 @@ func TransformLayerFrom(ptr unsafe.Pointer) TransformLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TransformLayerClass) Alloc() TransformLayer {
 	rv := objc.Send[TransformLayer](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TransformLayerClass) New() TransformLayer {
 	rv := objc.Send[TransformLayer](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (t_ TransformLayer) Autorelease() TransformLayer {
 
 // NewTransformLayer creates a new TransformLayer instance.
 func NewTransformLayer() TransformLayer {
-	return transformLayerClass.New()
+	return getTransformLayerClass().New()
 }
 
 

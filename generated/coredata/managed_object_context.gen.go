@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ManagedObjectContext] class.
-var managedObjectContextClass = _ManagedObjectContextClass{objc.GetClass("NSManagedObjectContext")}
+var (
+	managedObjectContextClass     _ManagedObjectContextClass
+	managedObjectContextClassOnce sync.Once
+)
+
+func getManagedObjectContextClass() _ManagedObjectContextClass {
+	managedObjectContextClassOnce.Do(func() {
+		managedObjectContextClass = _ManagedObjectContextClass{objc.GetClass("NSManagedObjectContext")}
+	})
+	return managedObjectContextClass
+}
 
 type _ManagedObjectContextClass struct {
 	class objc.Class
@@ -33,7 +44,6 @@ type IManagedObjectContext interface {
 // An object space to manipulate and track changes to managed objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext
-
 type ManagedObjectContext struct {
 	objectivec.Object
 }
@@ -44,13 +54,15 @@ type ManagedObjectContext struct {
 func ManagedObjectContextFrom(ptr unsafe.Pointer) ManagedObjectContext {
 	return ManagedObjectContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _ManagedObjectContextClass) Alloc() ManagedObjectContext {
 	rv := objc.Send[ManagedObjectContext](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _ManagedObjectContextClass) New() ManagedObjectContext {
 	rv := objc.Send[ManagedObjectContext](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -71,7 +83,7 @@ func (m_ ManagedObjectContext) Autorelease() ManagedObjectContext {
 
 // NewManagedObjectContext creates a new ManagedObjectContext instance.
 func NewManagedObjectContext() ManagedObjectContext {
-	return managedObjectContextClass.New()
+	return getManagedObjectContextClass().New()
 }
 
 
@@ -80,7 +92,7 @@ func NewManagedObjectContext() ManagedObjectContext {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/init(concurrencyType:)
 func NewManagedObjectContextWithConcurrencyType(ct unsafe.Pointer) ManagedObjectContext {
-	instance := managedObjectContextClass.Alloc()
+	instance := getManagedObjectContextClass().Alloc()
 	rv := objc.Send[ManagedObjectContext](instance.ID, objc.Sel("initWithConcurrencyType:"), ct)
 	rv.Autorelease()
 	return rv

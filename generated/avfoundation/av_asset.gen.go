@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAsset] class.
-var aVAssetClass = _AVAssetClass{objc.GetClass("AVAsset")}
+var (
+	aVAssetClass     _AVAssetClass
+	aVAssetClassOnce sync.Once
+)
+
+func getAVAssetClass() _AVAssetClass {
+	aVAssetClassOnce.Do(func() {
+		aVAssetClass = _AVAssetClass{objc.GetClass("AVAsset")}
+	})
+	return aVAssetClass
+}
 
 type _AVAssetClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IAVAsset interface {
 // An object that models timed audiovisual media. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset
-
 type AVAsset struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type AVAsset struct {
 func AVAssetFrom(ptr unsafe.Pointer) AVAsset {
 	return AVAsset{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetClass) Alloc() AVAsset {
 	rv := objc.Send[AVAsset](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetClass) New() AVAsset {
 	rv := objc.Send[AVAsset](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVAsset) Autorelease() AVAsset {
 
 // NewAVAsset creates a new AVAsset instance.
 func NewAVAsset() AVAsset {
-	return aVAssetClass.New()
+	return getAVAssetClass().New()
 }
 
 

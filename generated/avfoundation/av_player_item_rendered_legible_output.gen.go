@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVPlayerItemRenderedLegibleOutput] class.
-var aVPlayerItemRenderedLegibleOutputClass = _AVPlayerItemRenderedLegibleOutputClass{objc.GetClass("AVPlayerItemRenderedLegibleOutput")}
+var (
+	aVPlayerItemRenderedLegibleOutputClass     _AVPlayerItemRenderedLegibleOutputClass
+	aVPlayerItemRenderedLegibleOutputClassOnce sync.Once
+)
+
+func getAVPlayerItemRenderedLegibleOutputClass() _AVPlayerItemRenderedLegibleOutputClass {
+	aVPlayerItemRenderedLegibleOutputClassOnce.Do(func() {
+		aVPlayerItemRenderedLegibleOutputClass = _AVPlayerItemRenderedLegibleOutputClass{objc.GetClass("AVPlayerItemRenderedLegibleOutput")}
+	})
+	return aVPlayerItemRenderedLegibleOutputClass
+}
 
 type _AVPlayerItemRenderedLegibleOutputClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVPlayerItemRenderedLegibleOutput interface {
 // A player item output that vends media with a legible characteristic as rendered pixel buffers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput
-
 type AVPlayerItemRenderedLegibleOutput struct {
 	AVPlayerItemOutput
 }
@@ -36,13 +46,15 @@ func AVPlayerItemRenderedLegibleOutputFrom(ptr unsafe.Pointer) AVPlayerItemRende
 		AVPlayerItemOutput: AVPlayerItemOutputFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerItemRenderedLegibleOutputClass) Alloc() AVPlayerItemRenderedLegibleOutput {
 	rv := objc.Send[AVPlayerItemRenderedLegibleOutput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerItemRenderedLegibleOutputClass) New() AVPlayerItemRenderedLegibleOutput {
 	rv := objc.Send[AVPlayerItemRenderedLegibleOutput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVPlayerItemRenderedLegibleOutput) Autorelease() AVPlayerItemRenderedLe
 
 // NewAVPlayerItemRenderedLegibleOutput creates a new AVPlayerItemRenderedLegibleOutput instance.
 func NewAVPlayerItemRenderedLegibleOutput() AVPlayerItemRenderedLegibleOutput {
-	return aVPlayerItemRenderedLegibleOutputClass.New()
+	return getAVPlayerItemRenderedLegibleOutputClass().New()
 }
 
 

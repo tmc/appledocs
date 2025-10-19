@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [IndexSpecifier] class.
-var indexSpecifierClass = _IndexSpecifierClass{objc.GetClass("NSIndexSpecifier")}
+var (
+	indexSpecifierClass     _IndexSpecifierClass
+	indexSpecifierClassOnce sync.Once
+)
+
+func getIndexSpecifierClass() _IndexSpecifierClass {
+	indexSpecifierClassOnce.Do(func() {
+		indexSpecifierClass = _IndexSpecifierClass{objc.GetClass("NSIndexSpecifier")}
+	})
+	return indexSpecifierClass
+}
 
 type _IndexSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IIndexSpecifier interface {
 // A specifier representing an object in a collection (or container) with an index number. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier
-
 type IndexSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func IndexSpecifierFrom(ptr unsafe.Pointer) IndexSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _IndexSpecifierClass) Alloc() IndexSpecifier {
 	rv := objc.Send[IndexSpecifier](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IndexSpecifierClass) New() IndexSpecifier {
 	rv := objc.Send[IndexSpecifier](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (i_ IndexSpecifier) Autorelease() IndexSpecifier {
 
 // NewIndexSpecifier creates a new IndexSpecifier instance.
 func NewIndexSpecifier() IndexSpecifier {
-	return indexSpecifierClass.New()
+	return getIndexSpecifierClass().New()
 }
 
 

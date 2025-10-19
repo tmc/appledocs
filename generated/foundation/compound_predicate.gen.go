@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CompoundPredicate] class.
-var compoundPredicateClass = _CompoundPredicateClass{objc.GetClass("NSCompoundPredicate")}
+var (
+	compoundPredicateClass     _CompoundPredicateClass
+	compoundPredicateClassOnce sync.Once
+)
+
+func getCompoundPredicateClass() _CompoundPredicateClass {
+	compoundPredicateClassOnce.Do(func() {
+		compoundPredicateClass = _CompoundPredicateClass{objc.GetClass("NSCompoundPredicate")}
+	})
+	return compoundPredicateClass
+}
 
 type _CompoundPredicateClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ICompoundPredicate interface {
 // A specialized predicate that evaluates logical combinations of other predicates. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate
-
 type CompoundPredicate struct {
 	Predicate
 }
@@ -36,13 +46,15 @@ func CompoundPredicateFrom(ptr unsafe.Pointer) CompoundPredicate {
 		Predicate: PredicateFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CompoundPredicateClass) Alloc() CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CompoundPredicateClass) New() CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ CompoundPredicate) Autorelease() CompoundPredicate {
 
 // NewCompoundPredicate creates a new CompoundPredicate instance.
 func NewCompoundPredicate() CompoundPredicate {
-	return compoundPredicateClass.New()
+	return getCompoundPredicateClass().New()
 }
 
 

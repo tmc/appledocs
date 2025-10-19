@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Constraint] class.
-var constraintClass = _ConstraintClass{objc.GetClass("CAConstraint")}
+var (
+	constraintClass     _ConstraintClass
+	constraintClassOnce sync.Once
+)
+
+func getConstraintClass() _ConstraintClass {
+	constraintClassOnce.Do(func() {
+		constraintClass = _ConstraintClass{objc.GetClass("CAConstraint")}
+	})
+	return constraintClass
+}
 
 type _ConstraintClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IConstraint interface {
 // A representation of a single layout constraint between two layers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint
-
 type Constraint struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Constraint struct {
 func ConstraintFrom(ptr unsafe.Pointer) Constraint {
 	return Constraint{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConstraintClass) Alloc() Constraint {
 	rv := objc.Send[Constraint](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ConstraintClass) New() Constraint {
 	rv := objc.Send[Constraint](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ Constraint) Autorelease() Constraint {
 
 // NewConstraint creates a new Constraint instance.
 func NewConstraint() Constraint {
-	return constraintClass.New()
+	return getConstraintClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKPhysicsJointSpring] class.
-var sKPhysicsJointSpringClass = _SKPhysicsJointSpringClass{objc.GetClass("SKPhysicsJointSpring")}
+var (
+	sKPhysicsJointSpringClass     _SKPhysicsJointSpringClass
+	sKPhysicsJointSpringClassOnce sync.Once
+)
+
+func getSKPhysicsJointSpringClass() _SKPhysicsJointSpringClass {
+	sKPhysicsJointSpringClassOnce.Do(func() {
+		sKPhysicsJointSpringClass = _SKPhysicsJointSpringClass{objc.GetClass("SKPhysicsJointSpring")}
+	})
+	return sKPhysicsJointSpringClass
+}
 
 type _SKPhysicsJointSpringClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKPhysicsJointSpring interface {
 // A joint that simulates a spring connecting two physics bodies. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointSpring
-
 type SKPhysicsJointSpring struct {
 	SKPhysicsJoint
 }
@@ -36,13 +46,15 @@ func SKPhysicsJointSpringFrom(ptr unsafe.Pointer) SKPhysicsJointSpring {
 		SKPhysicsJoint: SKPhysicsJointFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKPhysicsJointSpringClass) Alloc() SKPhysicsJointSpring {
 	rv := objc.Send[SKPhysicsJointSpring](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKPhysicsJointSpringClass) New() SKPhysicsJointSpring {
 	rv := objc.Send[SKPhysicsJointSpring](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKPhysicsJointSpring) Autorelease() SKPhysicsJointSpring {
 
 // NewSKPhysicsJointSpring creates a new SKPhysicsJointSpring instance.
 func NewSKPhysicsJointSpring() SKPhysicsJointSpring {
-	return sKPhysicsJointSpringClass.New()
+	return getSKPhysicsJointSpringClass().New()
 }
 
 

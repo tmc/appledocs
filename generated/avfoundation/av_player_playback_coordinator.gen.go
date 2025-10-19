@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVPlayerPlaybackCoordinator] class.
-var aVPlayerPlaybackCoordinatorClass = _AVPlayerPlaybackCoordinatorClass{objc.GetClass("AVPlayerPlaybackCoordinator")}
+var (
+	aVPlayerPlaybackCoordinatorClass     _AVPlayerPlaybackCoordinatorClass
+	aVPlayerPlaybackCoordinatorClassOnce sync.Once
+)
+
+func getAVPlayerPlaybackCoordinatorClass() _AVPlayerPlaybackCoordinatorClass {
+	aVPlayerPlaybackCoordinatorClassOnce.Do(func() {
+		aVPlayerPlaybackCoordinatorClass = _AVPlayerPlaybackCoordinatorClass{objc.GetClass("AVPlayerPlaybackCoordinator")}
+	})
+	return aVPlayerPlaybackCoordinatorClass
+}
 
 type _AVPlayerPlaybackCoordinatorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVPlayerPlaybackCoordinator interface {
 // A playback coordinator subclass that coordinates the playback of player objects in a connected group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator
-
 type AVPlayerPlaybackCoordinator struct {
 	AVPlaybackCoordinator
 }
@@ -36,13 +46,15 @@ func AVPlayerPlaybackCoordinatorFrom(ptr unsafe.Pointer) AVPlayerPlaybackCoordin
 		AVPlaybackCoordinator: AVPlaybackCoordinatorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerPlaybackCoordinatorClass) Alloc() AVPlayerPlaybackCoordinator {
 	rv := objc.Send[AVPlayerPlaybackCoordinator](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerPlaybackCoordinatorClass) New() AVPlayerPlaybackCoordinator {
 	rv := objc.Send[AVPlayerPlaybackCoordinator](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVPlayerPlaybackCoordinator) Autorelease() AVPlayerPlaybackCoordinator 
 
 // NewAVPlayerPlaybackCoordinator creates a new AVPlayerPlaybackCoordinator instance.
 func NewAVPlayerPlaybackCoordinator() AVPlayerPlaybackCoordinator {
-	return aVPlayerPlaybackCoordinatorClass.New()
+	return getAVPlayerPlaybackCoordinatorClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NEDNSProxyProviderProtocol] class.
-var nEDNSProxyProviderProtocolClass = _NEDNSProxyProviderProtocolClass{objc.GetClass("NEDNSProxyProviderProtocol")}
+var (
+	nEDNSProxyProviderProtocolClass     _NEDNSProxyProviderProtocolClass
+	nEDNSProxyProviderProtocolClassOnce sync.Once
+)
+
+func getNEDNSProxyProviderProtocolClass() _NEDNSProxyProviderProtocolClass {
+	nEDNSProxyProviderProtocolClassOnce.Do(func() {
+		nEDNSProxyProviderProtocolClass = _NEDNSProxyProviderProtocolClass{objc.GetClass("NEDNSProxyProviderProtocol")}
+	})
+	return nEDNSProxyProviderProtocolClass
+}
 
 type _NEDNSProxyProviderProtocolClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INEDNSProxyProviderProtocol interface {
 // Configuration parameters for a DNS proxy. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyProviderProtocol
-
 type NEDNSProxyProviderProtocol struct {
 	NEVPNProtocol
 }
@@ -36,13 +46,15 @@ func NEDNSProxyProviderProtocolFrom(ptr unsafe.Pointer) NEDNSProxyProviderProtoc
 		NEVPNProtocol: NEVPNProtocolFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEDNSProxyProviderProtocolClass) Alloc() NEDNSProxyProviderProtocol {
 	rv := objc.Send[NEDNSProxyProviderProtocol](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEDNSProxyProviderProtocolClass) New() NEDNSProxyProviderProtocol {
 	rv := objc.Send[NEDNSProxyProviderProtocol](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NEDNSProxyProviderProtocol) Autorelease() NEDNSProxyProviderProtocol {
 
 // NewNEDNSProxyProviderProtocol creates a new NEDNSProxyProviderProtocol instance.
 func NewNEDNSProxyProviderProtocol() NEDNSProxyProviderProtocol {
-	return nEDNSProxyProviderProtocolClass.New()
+	return getNEDNSProxyProviderProtocolClass().New()
 }
 
 

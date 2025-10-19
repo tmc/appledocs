@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -11,7 +12,17 @@ import (
 )
 
 // The class instance for the [Color] class.
-var colorClass = _ColorClass{objc.GetClass("CIColor")}
+var (
+	colorClass     _ColorClass
+	colorClassOnce sync.Once
+)
+
+func getColorClass() _ColorClass {
+	colorClassOnce.Do(func() {
+		colorClass = _ColorClass{objc.GetClass("CIColor")}
+	})
+	return colorClass
+}
 
 type _ColorClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IColor interface {
 // The Core Image class that defines a color object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor
-
 type Color struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type Color struct {
 func ColorFrom(ptr unsafe.Pointer) Color {
 	return Color{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorClass) Alloc() Color {
 	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ColorClass) New() Color {
 	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ Color) Autorelease() Color {
 
 // NewColor creates a new Color instance.
 func NewColor() Color {
-	return colorClass.New()
+	return getColorClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewColor() Color {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
 func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
-	instance := colorClass.Alloc()
+	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
 	rv.Autorelease()
 	return rv
@@ -80,7 +92,7 @@ func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
 func NewColorWithColor(color unsafe.Pointer) Color {
-	instance := colorClass.Alloc()
+	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
 	rv.Autorelease()
 	return rv
@@ -90,7 +102,7 @@ func NewColorWithColor(color unsafe.Pointer) Color {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/initWithRed:green:blue:
 func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
-	instance := colorClass.Alloc()
+	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:"), red, green, blue)
 	rv.Autorelease()
 	return rv
@@ -100,7 +112,7 @@ func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:)
 func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alpha float64) Color {
-	instance := colorClass.Alloc()
+	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:"), red, green, blue, alpha)
 	rv.Autorelease()
 	return rv
@@ -110,7 +122,7 @@ func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alp
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
 func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) Color {
-	instance := colorClass.Alloc()
+	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	rv.Autorelease()
 	return rv
@@ -120,7 +132,7 @@ func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue fl
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
 func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace coregraphics.CGColorSpaceRef) Color {
-	instance := colorClass.Alloc()
+	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	rv.Autorelease()
 	return rv
@@ -130,8 +142,7 @@ func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
 func NewColorWithString(representation string) Color {
-	rv := objc.Send[Color](objc.ID(colorClass.class), objc.Sel("colorWithString:"), objc.String(representation))
-	rv.Autorelease()
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
 	return rv
 }
 

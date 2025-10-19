@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [IndexSet] class.
-var indexSetClass = _IndexSetClass{objc.GetClass("NSIndexSet")}
+var (
+	indexSetClass     _IndexSetClass
+	indexSetClassOnce sync.Once
+)
+
+func getIndexSetClass() _IndexSetClass {
+	indexSetClassOnce.Do(func() {
+		indexSetClass = _IndexSetClass{objc.GetClass("NSIndexSet")}
+	})
+	return indexSetClass
+}
 
 type _IndexSetClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IIndexSet interface {
 // An immutable collection of unique integer values that represent indexes in another collection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
-
 type IndexSet struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type IndexSet struct {
 func IndexSetFrom(ptr unsafe.Pointer) IndexSet {
 	return IndexSet{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _IndexSetClass) Alloc() IndexSet {
 	rv := objc.Send[IndexSet](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IndexSetClass) New() IndexSet {
 	rv := objc.Send[IndexSet](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (i_ IndexSet) Autorelease() IndexSet {
 
 // NewIndexSet creates a new IndexSet instance.
 func NewIndexSet() IndexSet {
-	return indexSetClass.New()
+	return getIndexSetClass().New()
 }
 
 

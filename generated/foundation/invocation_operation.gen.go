@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [InvocationOperation] class.
-var invocationOperationClass = _InvocationOperationClass{objc.GetClass("NSInvocationOperation")}
+var (
+	invocationOperationClass     _InvocationOperationClass
+	invocationOperationClassOnce sync.Once
+)
+
+func getInvocationOperationClass() _InvocationOperationClass {
+	invocationOperationClassOnce.Do(func() {
+		invocationOperationClass = _InvocationOperationClass{objc.GetClass("NSInvocationOperation")}
+	})
+	return invocationOperationClass
+}
 
 type _InvocationOperationClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IInvocationOperation interface {
 // An operation that manages the execution of a single encapsulated task specified as an invocation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation
-
 type InvocationOperation struct {
 	Operation
 }
@@ -36,13 +46,15 @@ func InvocationOperationFrom(ptr unsafe.Pointer) InvocationOperation {
 		Operation: OperationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _InvocationOperationClass) Alloc() InvocationOperation {
 	rv := objc.Send[InvocationOperation](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InvocationOperationClass) New() InvocationOperation {
 	rv := objc.Send[InvocationOperation](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (i_ InvocationOperation) Autorelease() InvocationOperation {
 
 // NewInvocationOperation creates a new InvocationOperation instance.
 func NewInvocationOperation() InvocationOperation {
-	return invocationOperationClass.New()
+	return getInvocationOperationClass().New()
 }
 
 

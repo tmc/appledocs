@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ByteCountFormatter] class.
-var byteCountFormatterClass = _ByteCountFormatterClass{objc.GetClass("NSByteCountFormatter")}
+var (
+	byteCountFormatterClass     _ByteCountFormatterClass
+	byteCountFormatterClassOnce sync.Once
+)
+
+func getByteCountFormatterClass() _ByteCountFormatterClass {
+	byteCountFormatterClassOnce.Do(func() {
+		byteCountFormatterClass = _ByteCountFormatterClass{objc.GetClass("NSByteCountFormatter")}
+	})
+	return byteCountFormatterClass
+}
 
 type _ByteCountFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IByteCountFormatter interface {
 // A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter
-
 type ByteCountFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func ByteCountFormatterFrom(ptr unsafe.Pointer) ByteCountFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _ByteCountFormatterClass) Alloc() ByteCountFormatter {
 	rv := objc.Send[ByteCountFormatter](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _ByteCountFormatterClass) New() ByteCountFormatter {
 	rv := objc.Send[ByteCountFormatter](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ ByteCountFormatter) Autorelease() ByteCountFormatter {
 
 // NewByteCountFormatter creates a new ByteCountFormatter instance.
 func NewByteCountFormatter() ByteCountFormatter {
-	return byteCountFormatterClass.New()
+	return getByteCountFormatterClass().New()
 }
 
 

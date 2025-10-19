@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVURLAsset] class.
-var aVURLAssetClass = _AVURLAssetClass{objc.GetClass("AVURLAsset")}
+var (
+	aVURLAssetClass     _AVURLAssetClass
+	aVURLAssetClassOnce sync.Once
+)
+
+func getAVURLAssetClass() _AVURLAssetClass {
+	aVURLAssetClassOnce.Do(func() {
+		aVURLAssetClass = _AVURLAssetClass{objc.GetClass("AVURLAsset")}
+	})
+	return aVURLAssetClass
+}
 
 type _AVURLAssetClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVURLAsset interface {
 // An asset that represents media at a local or remote URL. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset
-
 type AVURLAsset struct {
 	AVAsset
 }
@@ -36,13 +46,15 @@ func AVURLAssetFrom(ptr unsafe.Pointer) AVURLAsset {
 		AVAsset: AVAssetFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVURLAssetClass) Alloc() AVURLAsset {
 	rv := objc.Send[AVURLAsset](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVURLAssetClass) New() AVURLAsset {
 	rv := objc.Send[AVURLAsset](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVURLAsset) Autorelease() AVURLAsset {
 
 // NewAVURLAsset creates a new AVURLAsset instance.
 func NewAVURLAsset() AVURLAsset {
-	return aVURLAssetClass.New()
+	return getAVURLAssetClass().New()
 }
 
 

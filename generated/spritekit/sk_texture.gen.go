@@ -3,14 +3,26 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SKTexture] class.
-var sKTextureClass = _SKTextureClass{objc.GetClass("SKTexture")}
+var (
+	sKTextureClass     _SKTextureClass
+	sKTextureClassOnce sync.Once
+)
+
+func getSKTextureClass() _SKTextureClass {
+	sKTextureClassOnce.Do(func() {
+		sKTextureClass = _SKTextureClass{objc.GetClass("SKTexture")}
+	})
+	return sKTextureClass
+}
 
 type _SKTextureClass struct {
 	class objc.Class
@@ -19,7 +31,7 @@ type _SKTextureClass struct {
 // An interface definition for the [SKTexture] class.
 type ISKTexture interface {
 	objectivec.IObject
-	CGImage() unsafe.Pointer
+	CGImage() coregraphics.CGImageRef
 	PreloadWithCompletionHandler(completionHandler unsafe.Pointer)
 	Size() unsafe.Pointer
 	TextureRect() unsafe.Pointer
@@ -28,7 +40,6 @@ type ISKTexture interface {
 // An image, decoded on the GPU, that can be used to render various SpriteKit objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTexture
-
 type SKTexture struct {
 	objectivec.Object
 }
@@ -39,13 +50,15 @@ type SKTexture struct {
 func SKTextureFrom(ptr unsafe.Pointer) SKTexture {
 	return SKTexture{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTextureClass) Alloc() SKTexture {
 	rv := objc.Send[SKTexture](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTextureClass) New() SKTexture {
 	rv := objc.Send[SKTexture](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -66,7 +79,7 @@ func (s_ SKTexture) Autorelease() SKTexture {
 
 // NewSKTexture creates a new SKTexture instance.
 func NewSKTexture() SKTexture {
-	return sKTextureClass.New()
+	return getSKTextureClass().New()
 }
 
 
@@ -74,9 +87,8 @@ func NewSKTexture() SKTexture {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTexture/init(noiseMap:)
-func NewTextureWithNoiseMap(noiseMap unsafe.Pointer) SKTexture {
-	rv := objc.Send[SKTexture](objc.ID(sKTextureClass.class), objc.Sel("textureWithNoiseMap:"), noiseMap)
-	rv.Autorelease()
+func NewSKTextureWithNoiseMap(noiseMap unsafe.Pointer) SKTexture {
+	rv := objc.Send[SKTexture](objc.ID(getSKTextureClass().class), objc.Sel("textureWithNoiseMap:"), noiseMap)
 	return rv
 }
 
@@ -100,8 +112,8 @@ func (sc _SKTextureClass) PreloadTexturesWithCompletionHandler(textures unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTexture/cgImage()
-func (s_ SKTexture) CGImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("CGImage"))
+func (s_ SKTexture) CGImage() coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](s_.ID, objc.Sel("CGImage"))
 	return rv
 }
 // Load texture data into memory, calling a completion handler after the task completes. [Full Topic]

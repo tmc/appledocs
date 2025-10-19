@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKEffectNode] class.
-var sKEffectNodeClass = _SKEffectNodeClass{objc.GetClass("SKEffectNode")}
+var (
+	sKEffectNodeClass     _SKEffectNodeClass
+	sKEffectNodeClassOnce sync.Once
+)
+
+func getSKEffectNodeClass() _SKEffectNodeClass {
+	sKEffectNodeClassOnce.Do(func() {
+		sKEffectNodeClass = _SKEffectNodeClass{objc.GetClass("SKEffectNode")}
+	})
+	return sKEffectNodeClass
+}
 
 type _SKEffectNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKEffectNode interface {
 // A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKEffectNode
-
 type SKEffectNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKEffectNodeFrom(ptr unsafe.Pointer) SKEffectNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKEffectNodeClass) Alloc() SKEffectNode {
 	rv := objc.Send[SKEffectNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKEffectNodeClass) New() SKEffectNode {
 	rv := objc.Send[SKEffectNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKEffectNode) Autorelease() SKEffectNode {
 
 // NewSKEffectNode creates a new SKEffectNode instance.
 func NewSKEffectNode() SKEffectNode {
-	return sKEffectNodeClass.New()
+	return getSKEffectNodeClass().New()
 }
 
 

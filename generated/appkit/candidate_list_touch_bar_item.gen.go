@@ -34,7 +34,6 @@ type ICandidateListTouchBarItem interface {
 // A bar item that, along with its delegate, provides a list of textual suggestions for the current text view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem
-
 type CandidateListTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func CandidateListTouchBarItemFrom(ptr unsafe.Pointer) CandidateListTouchBarItem
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CandidateListTouchBarItemClass) Alloc() CandidateListTouchBarItem {
 	rv := objc.Send[CandidateListTouchBarItem](objc.ID(cc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package metal
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray] class.
-var mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass = _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass{objc.GetClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")}
+var (
+	mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass     _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass
+	mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClassOnce sync.Once
+)
+
+func getMTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass() _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass {
+	mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClassOnce.Do(func() {
+		mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass = _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass{objc.GetClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")}
+	})
+	return mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass
+}
 
 type _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray interfac
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray
-
 type MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray struct {
 func MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayFrom(ptr unsafe.Pointer) MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
 	return MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass) Alloc() MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
 	rv := objc.Send[MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass) New() MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
 	rv := objc.Send[MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (m_ MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray) Auto
 
 // NewMTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray creates a new MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray instance.
 func NewMTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray() MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-	return mTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass.New()
+	return getMTLAccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass().New()
 }
 
 

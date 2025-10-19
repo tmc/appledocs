@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEProvider] class.
-var nEProviderClass = _NEProviderClass{objc.GetClass("NEProvider")}
+var (
+	nEProviderClass     _NEProviderClass
+	nEProviderClassOnce sync.Once
+)
+
+func getNEProviderClass() _NEProviderClass {
+	nEProviderClassOnce.Do(func() {
+		nEProviderClass = _NEProviderClass{objc.GetClass("NEProvider")}
+	})
+	return nEProviderClass
+}
 
 type _NEProviderClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEProvider interface {
 // An abstract base class for all NetworkExtension providers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider
-
 type NEProvider struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEProvider struct {
 func NEProviderFrom(ptr unsafe.Pointer) NEProvider {
 	return NEProvider{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEProviderClass) Alloc() NEProvider {
 	rv := objc.Send[NEProvider](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEProviderClass) New() NEProvider {
 	rv := objc.Send[NEProvider](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEProvider) Autorelease() NEProvider {
 
 // NewNEProvider creates a new NEProvider instance.
 func NewNEProvider() NEProvider {
-	return nEProviderClass.New()
+	return getNEProviderClass().New()
 }
 
 

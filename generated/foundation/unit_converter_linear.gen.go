@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitConverterLinear] class.
-var unitConverterLinearClass = _UnitConverterLinearClass{objc.GetClass("NSUnitConverterLinear")}
+var (
+	unitConverterLinearClass     _UnitConverterLinearClass
+	unitConverterLinearClassOnce sync.Once
+)
+
+func getUnitConverterLinearClass() _UnitConverterLinearClass {
+	unitConverterLinearClassOnce.Do(func() {
+		unitConverterLinearClass = _UnitConverterLinearClass{objc.GetClass("NSUnitConverterLinear")}
+	})
+	return unitConverterLinearClass
+}
 
 type _UnitConverterLinearClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitConverterLinear interface {
 // A description of how to convert between units using a linear equation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear
-
 type UnitConverterLinear struct {
 	UnitConverter
 }
@@ -36,13 +46,15 @@ func UnitConverterLinearFrom(ptr unsafe.Pointer) UnitConverterLinear {
 		UnitConverter: UnitConverterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitConverterLinearClass) Alloc() UnitConverterLinear {
 	rv := objc.Send[UnitConverterLinear](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitConverterLinearClass) New() UnitConverterLinear {
 	rv := objc.Send[UnitConverterLinear](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitConverterLinear) Autorelease() UnitConverterLinear {
 
 // NewUnitConverterLinear creates a new UnitConverterLinear instance.
 func NewUnitConverterLinear() UnitConverterLinear {
-	return unitConverterLinearClass.New()
+	return getUnitConverterLinearClass().New()
 }
 
 

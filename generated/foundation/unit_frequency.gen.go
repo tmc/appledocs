@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitFrequency] class.
-var unitFrequencyClass = _UnitFrequencyClass{objc.GetClass("NSUnitFrequency")}
+var (
+	unitFrequencyClass     _UnitFrequencyClass
+	unitFrequencyClassOnce sync.Once
+)
+
+func getUnitFrequencyClass() _UnitFrequencyClass {
+	unitFrequencyClassOnce.Do(func() {
+		unitFrequencyClass = _UnitFrequencyClass{objc.GetClass("NSUnitFrequency")}
+	})
+	return unitFrequencyClass
+}
 
 type _UnitFrequencyClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitFrequency interface {
 // A unit of measure for frequency. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency
-
 type UnitFrequency struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitFrequencyFrom(ptr unsafe.Pointer) UnitFrequency {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitFrequencyClass) Alloc() UnitFrequency {
 	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitFrequencyClass) New() UnitFrequency {
 	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitFrequency) Autorelease() UnitFrequency {
 
 // NewUnitFrequency creates a new UnitFrequency instance.
 func NewUnitFrequency() UnitFrequency {
-	return unitFrequencyClass.New()
+	return getUnitFrequencyClass().New()
 }
 
 

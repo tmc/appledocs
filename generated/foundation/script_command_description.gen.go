@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScriptCommandDescription] class.
-var scriptCommandDescriptionClass = _ScriptCommandDescriptionClass{objc.GetClass("NSScriptCommandDescription")}
+var (
+	scriptCommandDescriptionClass     _ScriptCommandDescriptionClass
+	scriptCommandDescriptionClassOnce sync.Once
+)
+
+func getScriptCommandDescriptionClass() _ScriptCommandDescriptionClass {
+	scriptCommandDescriptionClassOnce.Do(func() {
+		scriptCommandDescriptionClass = _ScriptCommandDescriptionClass{objc.GetClass("NSScriptCommandDescription")}
+	})
+	return scriptCommandDescriptionClass
+}
 
 type _ScriptCommandDescriptionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScriptCommandDescription interface {
 // A script command that a macOS app supports. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription
-
 type ScriptCommandDescription struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ScriptCommandDescription struct {
 func ScriptCommandDescriptionFrom(ptr unsafe.Pointer) ScriptCommandDescription {
 	return ScriptCommandDescription{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptCommandDescriptionClass) Alloc() ScriptCommandDescription {
 	rv := objc.Send[ScriptCommandDescription](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptCommandDescriptionClass) New() ScriptCommandDescription {
 	rv := objc.Send[ScriptCommandDescription](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ ScriptCommandDescription) Autorelease() ScriptCommandDescription {
 
 // NewScriptCommandDescription creates a new ScriptCommandDescription instance.
 func NewScriptCommandDescription() ScriptCommandDescription {
-	return scriptCommandDescriptionClass.New()
+	return getScriptCommandDescriptionClass().New()
 }
 
 

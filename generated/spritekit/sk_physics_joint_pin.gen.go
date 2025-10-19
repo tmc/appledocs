@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKPhysicsJointPin] class.
-var sKPhysicsJointPinClass = _SKPhysicsJointPinClass{objc.GetClass("SKPhysicsJointPin")}
+var (
+	sKPhysicsJointPinClass     _SKPhysicsJointPinClass
+	sKPhysicsJointPinClassOnce sync.Once
+)
+
+func getSKPhysicsJointPinClass() _SKPhysicsJointPinClass {
+	sKPhysicsJointPinClassOnce.Do(func() {
+		sKPhysicsJointPinClass = _SKPhysicsJointPinClass{objc.GetClass("SKPhysicsJointPin")}
+	})
+	return sKPhysicsJointPinClass
+}
 
 type _SKPhysicsJointPinClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKPhysicsJointPin interface {
 // A joint that pins together two physics bodies, allowing independent rotation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointPin
-
 type SKPhysicsJointPin struct {
 	SKPhysicsJoint
 }
@@ -36,13 +46,15 @@ func SKPhysicsJointPinFrom(ptr unsafe.Pointer) SKPhysicsJointPin {
 		SKPhysicsJoint: SKPhysicsJointFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKPhysicsJointPinClass) Alloc() SKPhysicsJointPin {
 	rv := objc.Send[SKPhysicsJointPin](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKPhysicsJointPinClass) New() SKPhysicsJointPin {
 	rv := objc.Send[SKPhysicsJointPin](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKPhysicsJointPin) Autorelease() SKPhysicsJointPin {
 
 // NewSKPhysicsJointPin creates a new SKPhysicsJointPin instance.
 func NewSKPhysicsJointPin() SKPhysicsJointPin {
-	return sKPhysicsJointPinClass.New()
+	return getSKPhysicsJointPinClass().New()
 }
 
 

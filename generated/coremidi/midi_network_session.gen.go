@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDINetworkSession] class.
-var mIDINetworkSessionClass = _MIDINetworkSessionClass{objc.GetClass("MIDINetworkSession")}
+var (
+	mIDINetworkSessionClass     _MIDINetworkSessionClass
+	mIDINetworkSessionClassOnce sync.Once
+)
+
+func getMIDINetworkSessionClass() _MIDINetworkSessionClass {
+	mIDINetworkSessionClassOnce.Do(func() {
+		mIDINetworkSessionClass = _MIDINetworkSessionClass{objc.GetClass("MIDINetworkSession")}
+	})
+	return mIDINetworkSessionClass
+}
 
 type _MIDINetworkSessionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDINetworkSession interface {
 // An object that represents a pairing of a source and destination. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession
-
 type MIDINetworkSession struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDINetworkSession struct {
 func MIDINetworkSessionFrom(ptr unsafe.Pointer) MIDINetworkSession {
 	return MIDINetworkSession{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDINetworkSessionClass) Alloc() MIDINetworkSession {
 	rv := objc.Send[MIDINetworkSession](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDINetworkSessionClass) New() MIDINetworkSession {
 	rv := objc.Send[MIDINetworkSession](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDINetworkSession) Autorelease() MIDINetworkSession {
 
 // NewMIDINetworkSession creates a new MIDINetworkSession instance.
 func NewMIDINetworkSession() MIDINetworkSession {
-	return mIDINetworkSessionClass.New()
+	return getMIDINetworkSessionClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FilterShape] class.
-var filterShapeClass = _FilterShapeClass{objc.GetClass("CIFilterShape")}
+var (
+	filterShapeClass     _FilterShapeClass
+	filterShapeClassOnce sync.Once
+)
+
+func getFilterShapeClass() _FilterShapeClass {
+	filterShapeClassOnce.Do(func() {
+		filterShapeClass = _FilterShapeClass{objc.GetClass("CIFilterShape")}
+	})
+	return filterShapeClass
+}
 
 type _FilterShapeClass struct {
 	class objc.Class
@@ -30,7 +41,6 @@ type IFilterShape interface {
 // A description of the bounding shape of a filter and the domain of definition for a filter operation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape
-
 type FilterShape struct {
 	objectivec.Object
 }
@@ -41,13 +51,15 @@ type FilterShape struct {
 func FilterShapeFrom(ptr unsafe.Pointer) FilterShape {
 	return FilterShape{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FilterShapeClass) Alloc() FilterShape {
 	rv := objc.Send[FilterShape](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FilterShapeClass) New() FilterShape {
 	rv := objc.Send[FilterShape](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -68,7 +80,7 @@ func (f_ FilterShape) Autorelease() FilterShape {
 
 // NewFilterShape creates a new FilterShape instance.
 func NewFilterShape() FilterShape {
-	return filterShapeClass.New()
+	return getFilterShapeClass().New()
 }
 
 
@@ -77,7 +89,7 @@ func NewFilterShape() FilterShape {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/init(rect:)
 func NewFilterShapeWithRect(r unsafe.Pointer) FilterShape {
-	instance := filterShapeClass.Alloc()
+	instance := getFilterShapeClass().Alloc()
 	rv := objc.Send[FilterShape](instance.ID, objc.Sel("initWithRect:"), r)
 	rv.Autorelease()
 	return rv

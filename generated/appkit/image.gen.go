@@ -36,7 +36,6 @@ type IImage interface {
 // A high-level interface for manipulating image data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage
-
 type Image struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type Image struct {
 func ImageFrom(ptr unsafe.Pointer) Image {
 	return Image{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageClass) Alloc() Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("alloc"))

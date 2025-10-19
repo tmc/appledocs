@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ClassDescription] class.
-var classDescriptionClass = _ClassDescriptionClass{objc.GetClass("NSClassDescription")}
+var (
+	classDescriptionClass     _ClassDescriptionClass
+	classDescriptionClassOnce sync.Once
+)
+
+func getClassDescriptionClass() _ClassDescriptionClass {
+	classDescriptionClassOnce.Do(func() {
+		classDescriptionClass = _ClassDescriptionClass{objc.GetClass("NSClassDescription")}
+	})
+	return classDescriptionClass
+}
 
 type _ClassDescriptionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IClassDescription interface {
 // An abstract class that provides the interface for querying the relationships and properties of a class. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription
-
 type ClassDescription struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ClassDescription struct {
 func ClassDescriptionFrom(ptr unsafe.Pointer) ClassDescription {
 	return ClassDescription{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ClassDescriptionClass) Alloc() ClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ClassDescriptionClass) New() ClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ ClassDescription) Autorelease() ClassDescription {
 
 // NewClassDescription creates a new ClassDescription instance.
 func NewClassDescription() ClassDescription {
-	return classDescriptionClass.New()
+	return getClassDescriptionClass().New()
 }
 
 

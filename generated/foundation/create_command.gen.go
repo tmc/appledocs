@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CreateCommand] class.
-var createCommandClass = _CreateCommandClass{objc.GetClass("NSCreateCommand")}
+var (
+	createCommandClass     _CreateCommandClass
+	createCommandClassOnce sync.Once
+)
+
+func getCreateCommandClass() _CreateCommandClass {
+	createCommandClassOnce.Do(func() {
+		createCommandClass = _CreateCommandClass{objc.GetClass("NSCreateCommand")}
+	})
+	return createCommandClass
+}
 
 type _CreateCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ICreateCommand interface {
 // A command that creates a scriptable object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand
-
 type CreateCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func CreateCommandFrom(ptr unsafe.Pointer) CreateCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CreateCommandClass) Alloc() CreateCommand {
 	rv := objc.Send[CreateCommand](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CreateCommandClass) New() CreateCommand {
 	rv := objc.Send[CreateCommand](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ CreateCommand) Autorelease() CreateCommand {
 
 // NewCreateCommand creates a new CreateCommand instance.
 func NewCreateCommand() CreateCommand {
-	return createCommandClass.New()
+	return getCreateCommandClass().New()
 }
 
 

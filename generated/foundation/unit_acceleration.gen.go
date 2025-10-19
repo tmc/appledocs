@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitAcceleration] class.
-var unitAccelerationClass = _UnitAccelerationClass{objc.GetClass("NSUnitAcceleration")}
+var (
+	unitAccelerationClass     _UnitAccelerationClass
+	unitAccelerationClassOnce sync.Once
+)
+
+func getUnitAccelerationClass() _UnitAccelerationClass {
+	unitAccelerationClassOnce.Do(func() {
+		unitAccelerationClass = _UnitAccelerationClass{objc.GetClass("NSUnitAcceleration")}
+	})
+	return unitAccelerationClass
+}
 
 type _UnitAccelerationClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitAcceleration interface {
 // A unit of measure for acceleration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration
-
 type UnitAcceleration struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitAccelerationFrom(ptr unsafe.Pointer) UnitAcceleration {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitAccelerationClass) Alloc() UnitAcceleration {
 	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitAccelerationClass) New() UnitAcceleration {
 	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitAcceleration) Autorelease() UnitAcceleration {
 
 // NewUnitAcceleration creates a new UnitAcceleration instance.
 func NewUnitAcceleration() UnitAcceleration {
-	return unitAccelerationClass.New()
+	return getUnitAccelerationClass().New()
 }
 
 

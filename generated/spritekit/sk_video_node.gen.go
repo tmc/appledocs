@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKVideoNode] class.
-var sKVideoNodeClass = _SKVideoNodeClass{objc.GetClass("SKVideoNode")}
+var (
+	sKVideoNodeClass     _SKVideoNodeClass
+	sKVideoNodeClassOnce sync.Once
+)
+
+func getSKVideoNodeClass() _SKVideoNodeClass {
+	sKVideoNodeClassOnce.Do(func() {
+		sKVideoNodeClass = _SKVideoNodeClass{objc.GetClass("SKVideoNode")}
+	})
+	return sKVideoNodeClass
+}
 
 type _SKVideoNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKVideoNode interface {
 // A graphical element that plays video content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKVideoNode
-
 type SKVideoNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKVideoNodeFrom(ptr unsafe.Pointer) SKVideoNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKVideoNodeClass) Alloc() SKVideoNode {
 	rv := objc.Send[SKVideoNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKVideoNodeClass) New() SKVideoNode {
 	rv := objc.Send[SKVideoNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKVideoNode) Autorelease() SKVideoNode {
 
 // NewSKVideoNode creates a new SKVideoNode instance.
 func NewSKVideoNode() SKVideoNode {
-	return sKVideoNodeClass.New()
+	return getSKVideoNodeClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [hasMouthPosition] class.
-var hasMouthPositionClass = _hasMouthPositionClass{objc.GetClass("hasMouthPosition")}
+var (
+	hasMouthPositionClass     _hasMouthPositionClass
+	hasMouthPositionClassOnce sync.Once
+)
+
+func gethasMouthPositionClass() _hasMouthPositionClass {
+	hasMouthPositionClassOnce.Do(func() {
+		hasMouthPositionClass = _hasMouthPositionClass{objc.GetClass("hasMouthPosition")}
+	})
+	return hasMouthPositionClass
+}
 
 type _hasMouthPositionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IhasMouthPosition interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasMouthPosition-c.ivar
-
 type hasMouthPosition struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type hasMouthPosition struct {
 func hasMouthPositionFrom(ptr unsafe.Pointer) hasMouthPosition {
 	return hasMouthPosition{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _hasMouthPositionClass) Alloc() hasMouthPosition {
 	rv := objc.Send[hasMouthPosition](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _hasMouthPositionClass) New() hasMouthPosition {
 	rv := objc.Send[hasMouthPosition](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (h_ hasMouthPosition) Autorelease() hasMouthPosition {
 
 // NewhasMouthPosition creates a new hasMouthPosition instance.
 func NewhasMouthPosition() hasMouthPosition {
-	return hasMouthPositionClass.New()
+	return gethasMouthPositionClass().New()
 }
 
 

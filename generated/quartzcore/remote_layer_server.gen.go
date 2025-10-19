@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RemoteLayerServer] class.
-var remoteLayerServerClass = _RemoteLayerServerClass{objc.GetClass("CARemoteLayerServer")}
+var (
+	remoteLayerServerClass     _RemoteLayerServerClass
+	remoteLayerServerClassOnce sync.Once
+)
+
+func getRemoteLayerServerClass() _RemoteLayerServerClass {
+	remoteLayerServerClassOnce.Do(func() {
+		remoteLayerServerClass = _RemoteLayerServerClass{objc.GetClass("CARemoteLayerServer")}
+	})
+	return remoteLayerServerClass
+}
 
 type _RemoteLayerServerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IRemoteLayerServer interface {
 // A legacy class for cross-process rendering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer
-
 type RemoteLayerServer struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type RemoteLayerServer struct {
 func RemoteLayerServerFrom(ptr unsafe.Pointer) RemoteLayerServer {
 	return RemoteLayerServer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RemoteLayerServerClass) Alloc() RemoteLayerServer {
 	rv := objc.Send[RemoteLayerServer](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RemoteLayerServerClass) New() RemoteLayerServer {
 	rv := objc.Send[RemoteLayerServer](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (r_ RemoteLayerServer) Autorelease() RemoteLayerServer {
 
 // NewRemoteLayerServer creates a new RemoteLayerServer instance.
 func NewRemoteLayerServer() RemoteLayerServer {
-	return remoteLayerServerClass.New()
+	return getRemoteLayerServerClass().New()
 }
 
 

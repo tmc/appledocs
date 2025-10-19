@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [IncrementalStore] class.
-var incrementalStoreClass = _IncrementalStoreClass{objc.GetClass("NSIncrementalStore")}
+var (
+	incrementalStoreClass     _IncrementalStoreClass
+	incrementalStoreClassOnce sync.Once
+)
+
+func getIncrementalStoreClass() _IncrementalStoreClass {
+	incrementalStoreClassOnce.Do(func() {
+		incrementalStoreClass = _IncrementalStoreClass{objc.GetClass("NSIncrementalStore")}
+	})
+	return incrementalStoreClass
+}
 
 type _IncrementalStoreClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IIncrementalStore interface {
 // An abstract superclass defining the API through which Core Data communicates with a store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore
-
 type IncrementalStore struct {
 	PersistentStore
 }
@@ -38,13 +48,15 @@ func IncrementalStoreFrom(ptr unsafe.Pointer) IncrementalStore {
 		PersistentStore: PersistentStoreFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _IncrementalStoreClass) Alloc() IncrementalStore {
 	rv := objc.Send[IncrementalStore](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IncrementalStoreClass) New() IncrementalStore {
 	rv := objc.Send[IncrementalStore](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -65,7 +77,7 @@ func (i_ IncrementalStore) Autorelease() IncrementalStore {
 
 // NewIncrementalStore creates a new IncrementalStore instance.
 func NewIncrementalStore() IncrementalStore {
-	return incrementalStoreClass.New()
+	return getIncrementalStoreClass().New()
 }
 
 

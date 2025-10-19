@@ -11,10 +11,10 @@ var _ = spritekit.NewSKTextureAtlas
 
 
 
-// ExampleNewAtlasNamed demonstrates how to create a SKTextureAtlas instance using NewAtlasNamed.
+// ExampleNewSKTextureAtlasNamed demonstrates how to create a SKTextureAtlas instance using NewSKTextureAtlasNamed.
 // Creates a texture atlas from data stored in the app bundle.
-func ExampleNewAtlasNamed() {
-	_ = spritekit.NewAtlasNamed(
+func ExampleNewSKTextureAtlasNamed() {
+	_ = spritekit.NewSKTextureAtlasNamed(
 		"name", // name string
 	)
 	// Output:

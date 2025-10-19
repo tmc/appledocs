@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AutoreleasePool] class.
-var autoreleasePoolClass = _AutoreleasePoolClass{objc.GetClass("NSAutoreleasePool")}
+var (
+	autoreleasePoolClass     _AutoreleasePoolClass
+	autoreleasePoolClassOnce sync.Once
+)
+
+func getAutoreleasePoolClass() _AutoreleasePoolClass {
+	autoreleasePoolClassOnce.Do(func() {
+		autoreleasePoolClass = _AutoreleasePoolClass{objc.GetClass("NSAutoreleasePool")}
+	})
+	return autoreleasePoolClass
+}
 
 type _AutoreleasePoolClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAutoreleasePool interface {
 // An object that supports Cocoa’s reference-counted memory management system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool
-
 type AutoreleasePool struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AutoreleasePool struct {
 func AutoreleasePoolFrom(ptr unsafe.Pointer) AutoreleasePool {
 	return AutoreleasePool{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AutoreleasePoolClass) Alloc() AutoreleasePool {
 	rv := objc.Send[AutoreleasePool](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AutoreleasePoolClass) New() AutoreleasePool {
 	rv := objc.Send[AutoreleasePool](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AutoreleasePool) Autorelease() AutoreleasePool {
 
 // NewAutoreleasePool creates a new AutoreleasePool instance.
 func NewAutoreleasePool() AutoreleasePool {
-	return autoreleasePoolClass.New()
+	return getAutoreleasePoolClass().New()
 }
 
 

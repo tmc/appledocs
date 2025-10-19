@@ -3,13 +3,24 @@
 package objectivec
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [isa] class.
-var isaClass = _isaClass{objc.GetClass("isa")}
+var (
+	isaClass     _isaClass
+	isaClassOnce sync.Once
+)
+
+func getisaClass() _isaClass {
+	isaClassOnce.Do(func() {
+		isaClass = _isaClass{objc.GetClass("isa")}
+	})
+	return isaClass
+}
 
 type _isaClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type Iisa interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isa
-
 type isa struct {
 	Object
 }
@@ -31,6 +41,38 @@ type isa struct {
 func isaFrom(ptr unsafe.Pointer) isa {
 	return isa{Object{objc.ID(ptr)}}
 }
+
+// Alloc allocates a new instance without initialization.
+func (ic _isaClass) Alloc() isa {
+	rv := objc.Send[isa](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ic _isaClass) New() isa {
+	rv := objc.Send[isa](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ isa) Init() isa {
+	rv := objc.Send[isa](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ isa) Autorelease() isa {
+	rv := objc.Send[isa](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// Newisa creates a new isa instance.
+func Newisa() isa {
+	return getisaClass().New()
+}
+
 
 
 

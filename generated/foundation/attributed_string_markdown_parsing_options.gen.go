@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AttributedStringMarkdownParsingOptions] class.
-var attributedStringMarkdownParsingOptionsClass = _AttributedStringMarkdownParsingOptionsClass{objc.GetClass("NSAttributedStringMarkdownParsingOptions")}
+var (
+	attributedStringMarkdownParsingOptionsClass     _AttributedStringMarkdownParsingOptionsClass
+	attributedStringMarkdownParsingOptionsClassOnce sync.Once
+)
+
+func getAttributedStringMarkdownParsingOptionsClass() _AttributedStringMarkdownParsingOptionsClass {
+	attributedStringMarkdownParsingOptionsClassOnce.Do(func() {
+		attributedStringMarkdownParsingOptionsClass = _AttributedStringMarkdownParsingOptionsClass{objc.GetClass("NSAttributedStringMarkdownParsingOptions")}
+	})
+	return attributedStringMarkdownParsingOptionsClass
+}
 
 type _AttributedStringMarkdownParsingOptionsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAttributedStringMarkdownParsingOptions interface {
 // Options that affect the parsing of Markdown content into an attributed string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions
-
 type AttributedStringMarkdownParsingOptions struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AttributedStringMarkdownParsingOptions struct {
 func AttributedStringMarkdownParsingOptionsFrom(ptr unsafe.Pointer) AttributedStringMarkdownParsingOptions {
 	return AttributedStringMarkdownParsingOptions{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AttributedStringMarkdownParsingOptionsClass) Alloc() AttributedStringMarkdownParsingOptions {
 	rv := objc.Send[AttributedStringMarkdownParsingOptions](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AttributedStringMarkdownParsingOptionsClass) New() AttributedStringMarkdownParsingOptions {
 	rv := objc.Send[AttributedStringMarkdownParsingOptions](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AttributedStringMarkdownParsingOptions) Autorelease() AttributedStringM
 
 // NewAttributedStringMarkdownParsingOptions creates a new AttributedStringMarkdownParsingOptions instance.
 func NewAttributedStringMarkdownParsingOptions() AttributedStringMarkdownParsingOptions {
-	return attributedStringMarkdownParsingOptionsClass.New()
+	return getAttributedStringMarkdownParsingOptionsClass().New()
 }
 
 

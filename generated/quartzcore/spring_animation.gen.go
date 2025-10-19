@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SpringAnimation] class.
-var springAnimationClass = _SpringAnimationClass{objc.GetClass("CASpringAnimation")}
+var (
+	springAnimationClass     _SpringAnimationClass
+	springAnimationClassOnce sync.Once
+)
+
+func getSpringAnimationClass() _SpringAnimationClass {
+	springAnimationClassOnce.Do(func() {
+		springAnimationClass = _SpringAnimationClass{objc.GetClass("CASpringAnimation")}
+	})
+	return springAnimationClass
+}
 
 type _SpringAnimationClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISpringAnimation interface {
 // An animation that applies a spring-like force to a layer’s properties. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation
-
 type SpringAnimation struct {
 	BasicAnimation
 }
@@ -36,13 +46,15 @@ func SpringAnimationFrom(ptr unsafe.Pointer) SpringAnimation {
 		BasicAnimation: BasicAnimationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SpringAnimationClass) Alloc() SpringAnimation {
 	rv := objc.Send[SpringAnimation](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SpringAnimationClass) New() SpringAnimation {
 	rv := objc.Send[SpringAnimation](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SpringAnimation) Autorelease() SpringAnimation {
 
 // NewSpringAnimation creates a new SpringAnimation instance.
 func NewSpringAnimation() SpringAnimation {
-	return springAnimationClass.New()
+	return getSpringAnimationClass().New()
 }
 
 

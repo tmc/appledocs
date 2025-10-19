@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [StagedMigrationManager] class.
-var stagedMigrationManagerClass = _StagedMigrationManagerClass{objc.GetClass("NSStagedMigrationManager")}
+var (
+	stagedMigrationManagerClass     _StagedMigrationManagerClass
+	stagedMigrationManagerClassOnce sync.Once
+)
+
+func getStagedMigrationManagerClass() _StagedMigrationManagerClass {
+	stagedMigrationManagerClassOnce.Do(func() {
+		stagedMigrationManagerClass = _StagedMigrationManagerClass{objc.GetClass("NSStagedMigrationManager")}
+	})
+	return stagedMigrationManagerClass
+}
 
 type _StagedMigrationManagerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IStagedMigrationManager interface {
 // An object that handles the migration event loop and provides access to the migrating persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager
-
 type StagedMigrationManager struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type StagedMigrationManager struct {
 func StagedMigrationManagerFrom(ptr unsafe.Pointer) StagedMigrationManager {
 	return StagedMigrationManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StagedMigrationManagerClass) Alloc() StagedMigrationManager {
 	rv := objc.Send[StagedMigrationManager](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _StagedMigrationManagerClass) New() StagedMigrationManager {
 	rv := objc.Send[StagedMigrationManager](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ StagedMigrationManager) Autorelease() StagedMigrationManager {
 
 // NewStagedMigrationManager creates a new StagedMigrationManager instance.
 func NewStagedMigrationManager() StagedMigrationManager {
-	return stagedMigrationManagerClass.New()
+	return getStagedMigrationManagerClass().New()
 }
 
 

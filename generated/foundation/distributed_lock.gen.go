@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [DistributedLock] class.
-var distributedLockClass = _DistributedLockClass{objc.GetClass("NSDistributedLock")}
+var (
+	distributedLockClass     _DistributedLockClass
+	distributedLockClassOnce sync.Once
+)
+
+func getDistributedLockClass() _DistributedLockClass {
+	distributedLockClassOnce.Do(func() {
+		distributedLockClass = _DistributedLockClass{objc.GetClass("NSDistributedLock")}
+	})
+	return distributedLockClass
+}
 
 type _DistributedLockClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IDistributedLock interface {
 // A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
-
 type DistributedLock struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type DistributedLock struct {
 func DistributedLockFrom(ptr unsafe.Pointer) DistributedLock {
 	return DistributedLock{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DistributedLockClass) Alloc() DistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DistributedLockClass) New() DistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (d_ DistributedLock) Autorelease() DistributedLock {
 
 // NewDistributedLock creates a new DistributedLock instance.
 func NewDistributedLock() DistributedLock {
-	return distributedLockClass.New()
+	return getDistributedLockClass().New()
 }
 
 

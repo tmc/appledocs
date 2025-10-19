@@ -216,7 +216,6 @@ type IView interface {
 // The infrastructure for drawing, printing, and handling events in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView
-
 type View struct {
 	Responder
 }
@@ -229,6 +228,7 @@ func ViewFrom(ptr unsafe.Pointer) View {
 		Responder: ResponderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ViewClass) Alloc() View {
 	rv := objc.Send[View](objc.ID(vc.class), objc.Sel("alloc"))
@@ -261,25 +261,23 @@ func NewView() View {
 }
 
 
-// Initializes a view using from data in the specified coder object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
-func NewViewWithCoder(coder unsafe.Pointer) View {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
-	instance := getViewClass().Alloc()
-	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 // Initializes and returns a newly allocated object with a specified frame rectangle. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(frame:)
 func NewViewWithFrame(frameRect unsafe.Pointer) View {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a view using from data in the specified coder object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
+func NewViewWithCoder(coder unsafe.Pointer) View {
+	instance := getViewClass().Alloc()
+	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

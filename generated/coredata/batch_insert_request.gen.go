@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BatchInsertRequest] class.
-var batchInsertRequestClass = _BatchInsertRequestClass{objc.GetClass("NSBatchInsertRequest")}
+var (
+	batchInsertRequestClass     _BatchInsertRequestClass
+	batchInsertRequestClassOnce sync.Once
+)
+
+func getBatchInsertRequestClass() _BatchInsertRequestClass {
+	batchInsertRequestClassOnce.Do(func() {
+		batchInsertRequestClass = _BatchInsertRequestClass{objc.GetClass("NSBatchInsertRequest")}
+	})
+	return batchInsertRequestClass
+}
 
 type _BatchInsertRequestClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IBatchInsertRequest interface {
 // A request to insert a batch of data in a persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest
-
 type BatchInsertRequest struct {
 	PersistentStoreRequest
 }
@@ -36,13 +46,15 @@ func BatchInsertRequestFrom(ptr unsafe.Pointer) BatchInsertRequest {
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BatchInsertRequestClass) Alloc() BatchInsertRequest {
 	rv := objc.Send[BatchInsertRequest](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BatchInsertRequestClass) New() BatchInsertRequest {
 	rv := objc.Send[BatchInsertRequest](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (b_ BatchInsertRequest) Autorelease() BatchInsertRequest {
 
 // NewBatchInsertRequest creates a new BatchInsertRequest instance.
 func NewBatchInsertRequest() BatchInsertRequest {
-	return batchInsertRequestClass.New()
+	return getBatchInsertRequestClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewBatchInsertRequest() BatchInsertRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entity:managedObjectHandler:)
 func NewBatchInsertRequestWithEntityManagedObjectHandler(entity unsafe.Pointer, handler unsafe.Pointer) BatchInsertRequest {
-	instance := batchInsertRequestClass.Alloc()
+	instance := getBatchInsertRequestClass().Alloc()
 	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntity:managedObjectHandler:"), entity, handler)
 	rv.Autorelease()
 	return rv
@@ -82,7 +94,7 @@ func NewBatchInsertRequestWithEntityManagedObjectHandler(entity unsafe.Pointer, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:dictionaryHandler:)
 func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
-	instance := batchInsertRequestClass.Alloc()
+	instance := getBatchInsertRequestClass().Alloc()
 	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:dictionaryHandler:"), objc.String(entityName), handler)
 	rv.Autorelease()
 	return rv
@@ -92,7 +104,7 @@ func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string, han
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:managedObjectHandler:)
 func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
-	instance := batchInsertRequestClass.Alloc()
+	instance := getBatchInsertRequestClass().Alloc()
 	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:managedObjectHandler:"), objc.String(entityName), handler)
 	rv.Autorelease()
 	return rv

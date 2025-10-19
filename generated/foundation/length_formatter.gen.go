@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LengthFormatter] class.
-var lengthFormatterClass = _LengthFormatterClass{objc.GetClass("NSLengthFormatter")}
+var (
+	lengthFormatterClass     _LengthFormatterClass
+	lengthFormatterClassOnce sync.Once
+)
+
+func getLengthFormatterClass() _LengthFormatterClass {
+	lengthFormatterClassOnce.Do(func() {
+		lengthFormatterClass = _LengthFormatterClass{objc.GetClass("NSLengthFormatter")}
+	})
+	return lengthFormatterClass
+}
 
 type _LengthFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ILengthFormatter interface {
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter
-
 type LengthFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func LengthFormatterFrom(ptr unsafe.Pointer) LengthFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LengthFormatterClass) Alloc() LengthFormatter {
 	rv := objc.Send[LengthFormatter](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LengthFormatterClass) New() LengthFormatter {
 	rv := objc.Send[LengthFormatter](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (l_ LengthFormatter) Autorelease() LengthFormatter {
 
 // NewLengthFormatter creates a new LengthFormatter instance.
 func NewLengthFormatter() LengthFormatter {
-	return lengthFormatterClass.New()
+	return getLengthFormatterClass().New()
 }
 
 

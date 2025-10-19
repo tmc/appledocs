@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Transition] class.
-var transitionClass = _TransitionClass{objc.GetClass("CATransition")}
+var (
+	transitionClass     _TransitionClass
+	transitionClassOnce sync.Once
+)
+
+func getTransitionClass() _TransitionClass {
+	transitionClassOnce.Do(func() {
+		transitionClass = _TransitionClass{objc.GetClass("CATransition")}
+	})
+	return transitionClass
+}
 
 type _TransitionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ITransition interface {
 // An object that provides an animated transition between a layer’s states. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition
-
 type Transition struct {
 	Animation
 }
@@ -36,13 +46,15 @@ func TransitionFrom(ptr unsafe.Pointer) Transition {
 		Animation: AnimationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TransitionClass) Alloc() Transition {
 	rv := objc.Send[Transition](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TransitionClass) New() Transition {
 	rv := objc.Send[Transition](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (t_ Transition) Autorelease() Transition {
 
 // NewTransition creates a new Transition instance.
 func NewTransition() Transition {
-	return transitionClass.New()
+	return getTransitionClass().New()
 }
 
 

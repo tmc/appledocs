@@ -34,7 +34,6 @@ type IPanGestureRecognizer interface {
 // A continuous gesture recognizer for panning gestures. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer
-
 type PanGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -47,6 +46,7 @@ func PanGestureRecognizerFrom(ptr unsafe.Pointer) PanGestureRecognizer {
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PanGestureRecognizerClass) Alloc() PanGestureRecognizer {
 	rv := objc.Send[PanGestureRecognizer](objc.ID(pc.class), objc.Sel("alloc"))

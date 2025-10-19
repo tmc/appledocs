@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OrderedSet] class.
-var orderedSetClass = _OrderedSetClass{objc.GetClass("NSOrderedSet")}
+var (
+	orderedSetClass     _OrderedSetClass
+	orderedSetClassOnce sync.Once
+)
+
+func getOrderedSetClass() _OrderedSetClass {
+	orderedSetClassOnce.Do(func() {
+		orderedSetClass = _OrderedSetClass{objc.GetClass("NSOrderedSet")}
+	})
+	return orderedSetClass
+}
 
 type _OrderedSetClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOrderedSet interface {
 // A static, ordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet
-
 type OrderedSet struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type OrderedSet struct {
 func OrderedSetFrom(ptr unsafe.Pointer) OrderedSet {
 	return OrderedSet{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OrderedSetClass) Alloc() OrderedSet {
 	rv := objc.Send[OrderedSet](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OrderedSetClass) New() OrderedSet {
 	rv := objc.Send[OrderedSet](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (o_ OrderedSet) Autorelease() OrderedSet {
 
 // NewOrderedSet creates a new OrderedSet instance.
 func NewOrderedSet() OrderedSet {
-	return orderedSetClass.New()
+	return getOrderedSetClass().New()
 }
 
 

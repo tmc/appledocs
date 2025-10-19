@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKView] class.
-var sKViewClass = _SKViewClass{objc.GetClass("SKView")}
+var (
+	sKViewClass     _SKViewClass
+	sKViewClassOnce sync.Once
+)
+
+func getSKViewClass() _SKViewClass {
+	sKViewClassOnce.Do(func() {
+		sKViewClass = _SKViewClass{objc.GetClass("SKView")}
+	})
+	return sKViewClass
+}
 
 type _SKViewClass struct {
 	class objc.Class
@@ -29,7 +40,6 @@ type ISKView interface {
 // A view subclass that renders a SpriteKit scene. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView
-
 type SKView struct {
 	View
 }
@@ -42,13 +52,15 @@ func SKViewFrom(ptr unsafe.Pointer) SKView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKViewClass) Alloc() SKView {
 	rv := objc.Send[SKView](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKViewClass) New() SKView {
 	rv := objc.Send[SKView](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -69,7 +81,7 @@ func (s_ SKView) Autorelease() SKView {
 
 // NewSKView creates a new SKView instance.
 func NewSKView() SKView {
-	return sKViewClass.New()
+	return getSKViewClass().New()
 }
 
 

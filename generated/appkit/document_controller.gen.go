@@ -35,7 +35,6 @@ type IDocumentController interface {
 // An object that manages an app’s documents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController
-
 type DocumentController struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type DocumentController struct {
 func DocumentControllerFrom(ptr unsafe.Pointer) DocumentController {
 	return DocumentController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DocumentControllerClass) Alloc() DocumentController {
 	rv := objc.Send[DocumentController](objc.ID(dc.class), objc.Sel("alloc"))

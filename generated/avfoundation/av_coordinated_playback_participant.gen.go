@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCoordinatedPlaybackParticipant] class.
-var aVCoordinatedPlaybackParticipantClass = _AVCoordinatedPlaybackParticipantClass{objc.GetClass("AVCoordinatedPlaybackParticipant")}
+var (
+	aVCoordinatedPlaybackParticipantClass     _AVCoordinatedPlaybackParticipantClass
+	aVCoordinatedPlaybackParticipantClassOnce sync.Once
+)
+
+func getAVCoordinatedPlaybackParticipantClass() _AVCoordinatedPlaybackParticipantClass {
+	aVCoordinatedPlaybackParticipantClassOnce.Do(func() {
+		aVCoordinatedPlaybackParticipantClass = _AVCoordinatedPlaybackParticipantClass{objc.GetClass("AVCoordinatedPlaybackParticipant")}
+	})
+	return aVCoordinatedPlaybackParticipantClass
+}
 
 type _AVCoordinatedPlaybackParticipantClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVCoordinatedPlaybackParticipant interface {
 // An object that represents a participant in a coordinated playback session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCoordinatedPlaybackParticipant
-
 type AVCoordinatedPlaybackParticipant struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVCoordinatedPlaybackParticipant struct {
 func AVCoordinatedPlaybackParticipantFrom(ptr unsafe.Pointer) AVCoordinatedPlaybackParticipant {
 	return AVCoordinatedPlaybackParticipant{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCoordinatedPlaybackParticipantClass) Alloc() AVCoordinatedPlaybackParticipant {
 	rv := objc.Send[AVCoordinatedPlaybackParticipant](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCoordinatedPlaybackParticipantClass) New() AVCoordinatedPlaybackParticipant {
 	rv := objc.Send[AVCoordinatedPlaybackParticipant](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVCoordinatedPlaybackParticipant) Autorelease() AVCoordinatedPlaybackPa
 
 // NewAVCoordinatedPlaybackParticipant creates a new AVCoordinatedPlaybackParticipant instance.
 func NewAVCoordinatedPlaybackParticipant() AVCoordinatedPlaybackParticipant {
-	return aVCoordinatedPlaybackParticipantClass.New()
+	return getAVCoordinatedPlaybackParticipantClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Cache] class.
-var cacheClass = _CacheClass{objc.GetClass("NSCache")}
+var (
+	cacheClass     _CacheClass
+	cacheClassOnce sync.Once
+)
+
+func getCacheClass() _CacheClass {
+	cacheClassOnce.Do(func() {
+		cacheClass = _CacheClass{objc.GetClass("NSCache")}
+	})
+	return cacheClass
+}
 
 type _CacheClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ICache interface {
 // A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache
-
 type Cache struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Cache struct {
 func CacheFrom(ptr unsafe.Pointer) Cache {
 	return Cache{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CacheClass) Alloc() Cache {
 	rv := objc.Send[Cache](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CacheClass) New() Cache {
 	rv := objc.Send[Cache](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ Cache) Autorelease() Cache {
 
 // NewCache creates a new Cache instance.
 func NewCache() Cache {
-	return cacheClass.New()
+	return getCacheClass().New()
 }
 
 

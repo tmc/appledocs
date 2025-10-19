@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScriptExecutionContext] class.
-var scriptExecutionContextClass = _ScriptExecutionContextClass{objc.GetClass("NSScriptExecutionContext")}
+var (
+	scriptExecutionContextClass     _ScriptExecutionContextClass
+	scriptExecutionContextClassOnce sync.Once
+)
+
+func getScriptExecutionContextClass() _ScriptExecutionContextClass {
+	scriptExecutionContextClassOnce.Do(func() {
+		scriptExecutionContextClass = _ScriptExecutionContextClass{objc.GetClass("NSScriptExecutionContext")}
+	})
+	return scriptExecutionContextClass
+}
 
 type _ScriptExecutionContextClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScriptExecutionContext interface {
 // The context in which the current script command is executed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptExecutionContext
-
 type ScriptExecutionContext struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ScriptExecutionContext struct {
 func ScriptExecutionContextFrom(ptr unsafe.Pointer) ScriptExecutionContext {
 	return ScriptExecutionContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptExecutionContextClass) Alloc() ScriptExecutionContext {
 	rv := objc.Send[ScriptExecutionContext](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptExecutionContextClass) New() ScriptExecutionContext {
 	rv := objc.Send[ScriptExecutionContext](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ ScriptExecutionContext) Autorelease() ScriptExecutionContext {
 
 // NewScriptExecutionContext creates a new ScriptExecutionContext instance.
 func NewScriptExecutionContext() ScriptExecutionContext {
-	return scriptExecutionContextClass.New()
+	return getScriptExecutionContextClass().New()
 }
 
 

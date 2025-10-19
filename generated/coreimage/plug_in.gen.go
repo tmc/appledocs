@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PlugIn] class.
-var plugInClass = _PlugInClass{objc.GetClass("CIPlugIn")}
+var (
+	plugInClass     _PlugInClass
+	plugInClassOnce sync.Once
+)
+
+func getPlugInClass() _PlugInClass {
+	plugInClassOnce.Do(func() {
+		plugInClass = _PlugInClass{objc.GetClass("CIPlugIn")}
+	})
+	return plugInClass
+}
 
 type _PlugInClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPlugIn interface {
 // The mechanism for loading image units in macOS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn
-
 type PlugIn struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PlugIn struct {
 func PlugInFrom(ptr unsafe.Pointer) PlugIn {
 	return PlugIn{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlugInClass) Alloc() PlugIn {
 	rv := objc.Send[PlugIn](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PlugInClass) New() PlugIn {
 	rv := objc.Send[PlugIn](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PlugIn) Autorelease() PlugIn {
 
 // NewPlugIn creates a new PlugIn instance.
 func NewPlugIn() PlugIn {
-	return plugInClass.New()
+	return getPlugInClass().New()
 }
 
 

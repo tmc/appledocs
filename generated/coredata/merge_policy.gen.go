@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MergePolicy] class.
-var mergePolicyClass = _MergePolicyClass{objc.GetClass("NSMergePolicy")}
+var (
+	mergePolicyClass     _MergePolicyClass
+	mergePolicyClassOnce sync.Once
+)
+
+func getMergePolicyClass() _MergePolicyClass {
+	mergePolicyClassOnce.Do(func() {
+		mergePolicyClass = _MergePolicyClass{objc.GetClass("NSMergePolicy")}
+	})
+	return mergePolicyClass
+}
 
 type _MergePolicyClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMergePolicy interface {
 // A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy
-
 type MergePolicy struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MergePolicy struct {
 func MergePolicyFrom(ptr unsafe.Pointer) MergePolicy {
 	return MergePolicy{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MergePolicyClass) Alloc() MergePolicy {
 	rv := objc.Send[MergePolicy](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MergePolicyClass) New() MergePolicy {
 	rv := objc.Send[MergePolicy](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MergePolicy) Autorelease() MergePolicy {
 
 // NewMergePolicy creates a new MergePolicy instance.
 func NewMergePolicy() MergePolicy {
-	return mergePolicyClass.New()
+	return getMergePolicyClass().New()
 }
 
 

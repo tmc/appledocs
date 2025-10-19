@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CompositeAttributeDescription] class.
-var compositeAttributeDescriptionClass = _CompositeAttributeDescriptionClass{objc.GetClass("NSCompositeAttributeDescription")}
+var (
+	compositeAttributeDescriptionClass     _CompositeAttributeDescriptionClass
+	compositeAttributeDescriptionClassOnce sync.Once
+)
+
+func getCompositeAttributeDescriptionClass() _CompositeAttributeDescriptionClass {
+	compositeAttributeDescriptionClassOnce.Do(func() {
+		compositeAttributeDescriptionClass = _CompositeAttributeDescriptionClass{objc.GetClass("NSCompositeAttributeDescription")}
+	})
+	return compositeAttributeDescriptionClass
+}
 
 type _CompositeAttributeDescriptionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ICompositeAttributeDescription interface {
 // A description of an attribute that derives its value by composing other attributes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription
-
 type CompositeAttributeDescription struct {
 	AttributeDescription
 }
@@ -36,13 +46,15 @@ func CompositeAttributeDescriptionFrom(ptr unsafe.Pointer) CompositeAttributeDes
 		AttributeDescription: AttributeDescriptionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CompositeAttributeDescriptionClass) Alloc() CompositeAttributeDescription {
 	rv := objc.Send[CompositeAttributeDescription](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CompositeAttributeDescriptionClass) New() CompositeAttributeDescription {
 	rv := objc.Send[CompositeAttributeDescription](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (c_ CompositeAttributeDescription) Autorelease() CompositeAttributeDescript
 
 // NewCompositeAttributeDescription creates a new CompositeAttributeDescription instance.
 func NewCompositeAttributeDescription() CompositeAttributeDescription {
-	return compositeAttributeDescriptionClass.New()
+	return getCompositeAttributeDescriptionClass().New()
 }
 
 

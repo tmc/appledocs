@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserNotification] class.
-var userNotificationClass = _UserNotificationClass{objc.GetClass("NSUserNotification")}
+var (
+	userNotificationClass     _UserNotificationClass
+	userNotificationClassOnce sync.Once
+)
+
+func getUserNotificationClass() _UserNotificationClass {
+	userNotificationClassOnce.Do(func() {
+		userNotificationClass = _UserNotificationClass{objc.GetClass("NSUserNotification")}
+	})
+	return userNotificationClass
+}
 
 type _UserNotificationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IUserNotification interface {
 // A notification that can be scheduled for display in the notification center. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification
-
 type UserNotification struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type UserNotification struct {
 func UserNotificationFrom(ptr unsafe.Pointer) UserNotification {
 	return UserNotification{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserNotificationClass) Alloc() UserNotification {
 	rv := objc.Send[UserNotification](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserNotificationClass) New() UserNotification {
 	rv := objc.Send[UserNotification](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ UserNotification) Autorelease() UserNotification {
 
 // NewUserNotification creates a new UserNotification instance.
 func NewUserNotification() UserNotification {
-	return userNotificationClass.New()
+	return getUserNotificationClass().New()
 }
 
 

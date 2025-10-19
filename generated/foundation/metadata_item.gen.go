@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MetadataItem] class.
-var metadataItemClass = _MetadataItemClass{objc.GetClass("NSMetadataItem")}
+var (
+	metadataItemClass     _MetadataItemClass
+	metadataItemClassOnce sync.Once
+)
+
+func getMetadataItemClass() _MetadataItemClass {
+	metadataItemClassOnce.Do(func() {
+		metadataItemClass = _MetadataItemClass{objc.GetClass("NSMetadataItem")}
+	})
+	return metadataItemClass
+}
 
 type _MetadataItemClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMetadataItem interface {
 // The metadata associated with a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem
-
 type MetadataItem struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MetadataItem struct {
 func MetadataItemFrom(ptr unsafe.Pointer) MetadataItem {
 	return MetadataItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataItemClass) Alloc() MetadataItem {
 	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MetadataItemClass) New() MetadataItem {
 	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MetadataItem) Autorelease() MetadataItem {
 
 // NewMetadataItem creates a new MetadataItem instance.
 func NewMetadataItem() MetadataItem {
-	return metadataItemClass.New()
+	return getMetadataItemClass().New()
 }
 
 

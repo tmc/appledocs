@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIDiscoveryManager] class.
-var mIDICIDiscoveryManagerClass = _MIDICIDiscoveryManagerClass{objc.GetClass("MIDICIDiscoveryManager")}
+var (
+	mIDICIDiscoveryManagerClass     _MIDICIDiscoveryManagerClass
+	mIDICIDiscoveryManagerClassOnce sync.Once
+)
+
+func getMIDICIDiscoveryManagerClass() _MIDICIDiscoveryManagerClass {
+	mIDICIDiscoveryManagerClassOnce.Do(func() {
+		mIDICIDiscoveryManagerClass = _MIDICIDiscoveryManagerClass{objc.GetClass("MIDICIDiscoveryManager")}
+	})
+	return mIDICIDiscoveryManagerClass
+}
 
 type _MIDICIDiscoveryManagerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDICIDiscoveryManager interface {
 // A singleton object that performs systemwide MIDI-CI discovery. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveryManager
-
 type MIDICIDiscoveryManager struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDICIDiscoveryManager struct {
 func MIDICIDiscoveryManagerFrom(ptr unsafe.Pointer) MIDICIDiscoveryManager {
 	return MIDICIDiscoveryManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIDiscoveryManagerClass) Alloc() MIDICIDiscoveryManager {
 	rv := objc.Send[MIDICIDiscoveryManager](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIDiscoveryManagerClass) New() MIDICIDiscoveryManager {
 	rv := objc.Send[MIDICIDiscoveryManager](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDICIDiscoveryManager) Autorelease() MIDICIDiscoveryManager {
 
 // NewMIDICIDiscoveryManager creates a new MIDICIDiscoveryManager instance.
 func NewMIDICIDiscoveryManager() MIDICIDiscoveryManager {
-	return mIDICIDiscoveryManagerClass.New()
+	return getMIDICIDiscoveryManagerClass().New()
 }
 
 

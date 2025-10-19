@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [WarpKernel] class.
-var warpKernelClass = _WarpKernelClass{objc.GetClass("CIWarpKernel")}
+var (
+	warpKernelClass     _WarpKernelClass
+	warpKernelClassOnce sync.Once
+)
+
+func getWarpKernelClass() _WarpKernelClass {
+	warpKernelClassOnce.Do(func() {
+		warpKernelClass = _WarpKernelClass{objc.GetClass("CIWarpKernel")}
+	})
+	return warpKernelClass
+}
 
 type _WarpKernelClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IWarpKernel interface {
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel
-
 type WarpKernel struct {
 	Kernel
 }
@@ -37,13 +47,15 @@ func WarpKernelFrom(ptr unsafe.Pointer) WarpKernel {
 		Kernel: KernelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WarpKernelClass) Alloc() WarpKernel {
 	rv := objc.Send[WarpKernel](objc.ID(wc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WarpKernelClass) New() WarpKernel {
 	rv := objc.Send[WarpKernel](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (w_ WarpKernel) Autorelease() WarpKernel {
 
 // NewWarpKernel creates a new WarpKernel instance.
 func NewWarpKernel() WarpKernel {
-	return warpKernelClass.New()
+	return getWarpKernelClass().New()
 }
 
 
@@ -73,8 +85,7 @@ func NewWarpKernel() WarpKernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
 func NewWarpKernelWithString(string string) WarpKernel {
-	rv := objc.Send[WarpKernel](objc.ID(warpKernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
-	rv.Autorelease()
+	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 

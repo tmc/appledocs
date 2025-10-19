@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NetService] class.
-var netServiceClass = _NetServiceClass{objc.GetClass("NSNetService")}
+var (
+	netServiceClass     _NetServiceClass
+	netServiceClassOnce sync.Once
+)
+
+func getNetServiceClass() _NetServiceClass {
+	netServiceClassOnce.Do(func() {
+		netServiceClass = _NetServiceClass{objc.GetClass("NSNetService")}
+	})
+	return netServiceClass
+}
 
 type _NetServiceClass struct {
 	class objc.Class
@@ -36,7 +47,6 @@ type INetService interface {
 // A network service that broadcasts its availability using multicast DNS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService
-
 type NetService struct {
 	objectivec.Object
 }
@@ -47,13 +57,15 @@ type NetService struct {
 func NetServiceFrom(ptr unsafe.Pointer) NetService {
 	return NetService{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NetServiceClass) Alloc() NetService {
 	rv := objc.Send[NetService](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NetServiceClass) New() NetService {
 	rv := objc.Send[NetService](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -74,7 +86,7 @@ func (n_ NetService) Autorelease() NetService {
 
 // NewNetService creates a new NetService instance.
 func NewNetService() NetService {
-	return netServiceClass.New()
+	return getNetServiceClass().New()
 }
 
 
@@ -83,7 +95,7 @@ func NewNetService() NetService {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
 func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
-	instance := netServiceClass.Alloc()
+	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), objc.String(domain), objc.String(type_), objc.String(name))
 	rv.Autorelease()
 	return rv
@@ -93,7 +105,7 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
 func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
-	instance := netServiceClass.Alloc()
+	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
 	rv.Autorelease()
 	return rv

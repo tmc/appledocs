@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionStreamTask] class.
-var uRLSessionStreamTaskClass = _URLSessionStreamTaskClass{objc.GetClass("NSURLSessionStreamTask")}
+var (
+	uRLSessionStreamTaskClass     _URLSessionStreamTaskClass
+	uRLSessionStreamTaskClassOnce sync.Once
+)
+
+func getURLSessionStreamTaskClass() _URLSessionStreamTaskClass {
+	uRLSessionStreamTaskClassOnce.Do(func() {
+		uRLSessionStreamTaskClass = _URLSessionStreamTaskClass{objc.GetClass("NSURLSessionStreamTask")}
+	})
+	return uRLSessionStreamTaskClass
+}
 
 type _URLSessionStreamTaskClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLSessionStreamTask interface {
 // A URL session task that is stream-based. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask
-
 type URLSessionStreamTask struct {
 	URLSessionTask
 }
@@ -37,13 +47,15 @@ func URLSessionStreamTaskFrom(ptr unsafe.Pointer) URLSessionStreamTask {
 		URLSessionTask: URLSessionTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionStreamTaskClass) Alloc() URLSessionStreamTask {
 	rv := objc.Send[URLSessionStreamTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionStreamTaskClass) New() URLSessionStreamTask {
 	rv := objc.Send[URLSessionStreamTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (u_ URLSessionStreamTask) Autorelease() URLSessionStreamTask {
 
 // NewURLSessionStreamTask creates a new URLSessionStreamTask instance.
 func NewURLSessionStreamTask() URLSessionStreamTask {
-	return uRLSessionStreamTaskClass.New()
+	return getURLSessionStreamTaskClass().New()
 }
 
 

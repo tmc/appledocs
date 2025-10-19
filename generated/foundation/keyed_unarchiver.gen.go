@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [KeyedUnarchiver] class.
-var keyedUnarchiverClass = _KeyedUnarchiverClass{objc.GetClass("NSKeyedUnarchiver")}
+var (
+	keyedUnarchiverClass     _KeyedUnarchiverClass
+	keyedUnarchiverClassOnce sync.Once
+)
+
+func getKeyedUnarchiverClass() _KeyedUnarchiverClass {
+	keyedUnarchiverClassOnce.Do(func() {
+		keyedUnarchiverClass = _KeyedUnarchiverClass{objc.GetClass("NSKeyedUnarchiver")}
+	})
+	return keyedUnarchiverClass
+}
 
 type _KeyedUnarchiverClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IKeyedUnarchiver interface {
 // A decoder that restores data from an archive referenced by keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver
-
 type KeyedUnarchiver struct {
 	Coder
 }
@@ -36,13 +46,15 @@ func KeyedUnarchiverFrom(ptr unsafe.Pointer) KeyedUnarchiver {
 		Coder: CoderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (kc _KeyedUnarchiverClass) Alloc() KeyedUnarchiver {
 	rv := objc.Send[KeyedUnarchiver](objc.ID(kc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KeyedUnarchiverClass) New() KeyedUnarchiver {
 	rv := objc.Send[KeyedUnarchiver](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (k_ KeyedUnarchiver) Autorelease() KeyedUnarchiver {
 
 // NewKeyedUnarchiver creates a new KeyedUnarchiver instance.
 func NewKeyedUnarchiver() KeyedUnarchiver {
-	return keyedUnarchiverClass.New()
+	return getKeyedUnarchiverClass().New()
 }
 
 

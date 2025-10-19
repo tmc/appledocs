@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [hasTrackingFrameCount] class.
-var hasTrackingFrameCountClass = _hasTrackingFrameCountClass{objc.GetClass("hasTrackingFrameCount")}
+var (
+	hasTrackingFrameCountClass     _hasTrackingFrameCountClass
+	hasTrackingFrameCountClassOnce sync.Once
+)
+
+func gethasTrackingFrameCountClass() _hasTrackingFrameCountClass {
+	hasTrackingFrameCountClassOnce.Do(func() {
+		hasTrackingFrameCountClass = _hasTrackingFrameCountClass{objc.GetClass("hasTrackingFrameCount")}
+	})
+	return hasTrackingFrameCountClass
+}
 
 type _hasTrackingFrameCountClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IhasTrackingFrameCount interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingFrameCount-c.ivar
-
 type hasTrackingFrameCount struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type hasTrackingFrameCount struct {
 func hasTrackingFrameCountFrom(ptr unsafe.Pointer) hasTrackingFrameCount {
 	return hasTrackingFrameCount{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _hasTrackingFrameCountClass) Alloc() hasTrackingFrameCount {
 	rv := objc.Send[hasTrackingFrameCount](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _hasTrackingFrameCountClass) New() hasTrackingFrameCount {
 	rv := objc.Send[hasTrackingFrameCount](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (h_ hasTrackingFrameCount) Autorelease() hasTrackingFrameCount {
 
 // NewhasTrackingFrameCount creates a new hasTrackingFrameCount instance.
 func NewhasTrackingFrameCount() hasTrackingFrameCount {
-	return hasTrackingFrameCountClass.New()
+	return gethasTrackingFrameCountClass().New()
 }
 
 

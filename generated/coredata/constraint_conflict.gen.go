@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ConstraintConflict] class.
-var constraintConflictClass = _ConstraintConflictClass{objc.GetClass("NSConstraintConflict")}
+var (
+	constraintConflictClass     _ConstraintConflictClass
+	constraintConflictClassOnce sync.Once
+)
+
+func getConstraintConflictClass() _ConstraintConflictClass {
+	constraintConflictClassOnce.Do(func() {
+		constraintConflictClass = _ConstraintConflictClass{objc.GetClass("NSConstraintConflict")}
+	})
+	return constraintConflictClass
+}
 
 type _ConstraintConflictClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IConstraintConflict interface {
 // An encapsulation of conflicts that occur during an attempt to save a managed object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict
-
 type ConstraintConflict struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ConstraintConflict struct {
 func ConstraintConflictFrom(ptr unsafe.Pointer) ConstraintConflict {
 	return ConstraintConflict{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConstraintConflictClass) Alloc() ConstraintConflict {
 	rv := objc.Send[ConstraintConflict](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ConstraintConflictClass) New() ConstraintConflict {
 	rv := objc.Send[ConstraintConflict](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ ConstraintConflict) Autorelease() ConstraintConflict {
 
 // NewConstraintConflict creates a new ConstraintConflict instance.
 func NewConstraintConflict() ConstraintConflict {
-	return constraintConflictClass.New()
+	return getConstraintConflictClass().New()
 }
 
 

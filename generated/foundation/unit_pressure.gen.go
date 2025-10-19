@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitPressure] class.
-var unitPressureClass = _UnitPressureClass{objc.GetClass("NSUnitPressure")}
+var (
+	unitPressureClass     _UnitPressureClass
+	unitPressureClassOnce sync.Once
+)
+
+func getUnitPressureClass() _UnitPressureClass {
+	unitPressureClassOnce.Do(func() {
+		unitPressureClass = _UnitPressureClass{objc.GetClass("NSUnitPressure")}
+	})
+	return unitPressureClass
+}
 
 type _UnitPressureClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitPressure interface {
 // A unit of measure for pressure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure
-
 type UnitPressure struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitPressureFrom(ptr unsafe.Pointer) UnitPressure {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitPressureClass) Alloc() UnitPressure {
 	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitPressureClass) New() UnitPressure {
 	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitPressure) Autorelease() UnitPressure {
 
 // NewUnitPressure creates a new UnitPressure instance.
 func NewUnitPressure() UnitPressure {
-	return unitPressureClass.New()
+	return getUnitPressureClass().New()
 }
 
 

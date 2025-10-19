@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [OperationQueue] class.
-var operationQueueClass = _OperationQueueClass{objc.GetClass("NSOperationQueue")}
+var (
+	operationQueueClass     _OperationQueueClass
+	operationQueueClassOnce sync.Once
+)
+
+func getOperationQueueClass() _OperationQueueClass {
+	operationQueueClassOnce.Do(func() {
+		operationQueueClass = _OperationQueueClass{objc.GetClass("NSOperationQueue")}
+	})
+	return operationQueueClass
+}
 
 type _OperationQueueClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IOperationQueue interface {
 // A queue that regulates the execution of operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue
-
 type OperationQueue struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type OperationQueue struct {
 func OperationQueueFrom(ptr unsafe.Pointer) OperationQueue {
 	return OperationQueue{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OperationQueueClass) Alloc() OperationQueue {
 	rv := objc.Send[OperationQueue](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OperationQueueClass) New() OperationQueue {
 	rv := objc.Send[OperationQueue](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (o_ OperationQueue) Autorelease() OperationQueue {
 
 // NewOperationQueue creates a new OperationQueue instance.
 func NewOperationQueue() OperationQueue {
-	return operationQueueClass.New()
+	return getOperationQueueClass().New()
 }
 
 

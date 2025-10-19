@@ -50,7 +50,6 @@ type IStackView interface {
 // A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView
-
 type StackView struct {
 	View
 }
@@ -63,6 +62,7 @@ func StackViewFrom(ptr unsafe.Pointer) StackView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StackViewClass) Alloc() StackView {
 	rv := objc.Send[StackView](objc.ID(sc.class), objc.Sel("alloc"))
@@ -100,7 +100,6 @@ func NewStackView() StackView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/init(views:)
 func NewStackViewWithViews(views unsafe.Pointer) StackView {
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[StackView](objc.ID(getStackViewClass().class), objc.Sel("stackViewWithViews:"), views)
 	return rv
 }

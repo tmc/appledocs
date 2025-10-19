@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [LocalizedNumberFormatRule] class.
-var localizedNumberFormatRuleClass = _LocalizedNumberFormatRuleClass{objc.GetClass("NSLocalizedNumberFormatRule")}
+var (
+	localizedNumberFormatRuleClass     _LocalizedNumberFormatRuleClass
+	localizedNumberFormatRuleClassOnce sync.Once
+)
+
+func getLocalizedNumberFormatRuleClass() _LocalizedNumberFormatRuleClass {
+	localizedNumberFormatRuleClassOnce.Do(func() {
+		localizedNumberFormatRuleClass = _LocalizedNumberFormatRuleClass{objc.GetClass("NSLocalizedNumberFormatRule")}
+	})
+	return localizedNumberFormatRuleClass
+}
 
 type _LocalizedNumberFormatRuleClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ILocalizedNumberFormatRule interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocalizedNumberFormatRule
-
 type LocalizedNumberFormatRule struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type LocalizedNumberFormatRule struct {
 func LocalizedNumberFormatRuleFrom(ptr unsafe.Pointer) LocalizedNumberFormatRule {
 	return LocalizedNumberFormatRule{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LocalizedNumberFormatRuleClass) Alloc() LocalizedNumberFormatRule {
 	rv := objc.Send[LocalizedNumberFormatRule](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LocalizedNumberFormatRuleClass) New() LocalizedNumberFormatRule {
 	rv := objc.Send[LocalizedNumberFormatRule](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (l_ LocalizedNumberFormatRule) Autorelease() LocalizedNumberFormatRule {
 
 // NewLocalizedNumberFormatRule creates a new LocalizedNumberFormatRule instance.
 func NewLocalizedNumberFormatRule() LocalizedNumberFormatRule {
-	return localizedNumberFormatRuleClass.New()
+	return getLocalizedNumberFormatRuleClass().New()
 }
 
 

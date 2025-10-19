@@ -39,7 +39,6 @@ type ITableRowView interface {
 // The view shown for a row in a table view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView
-
 type TableRowView struct {
 	View
 }
@@ -52,6 +51,7 @@ func TableRowViewFrom(ptr unsafe.Pointer) TableRowView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableRowViewClass) Alloc() TableRowView {
 	rv := objc.Send[TableRowView](objc.ID(tc.class), objc.Sel("alloc"))

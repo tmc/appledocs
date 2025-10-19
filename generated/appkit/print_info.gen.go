@@ -35,7 +35,6 @@ type IPrintInfo interface {
 // An object that stores information that’s used to generate printed output. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo
-
 type PrintInfo struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type PrintInfo struct {
 func PrintInfoFrom(ptr unsafe.Pointer) PrintInfo {
 	return PrintInfo{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PrintInfoClass) Alloc() PrintInfo {
 	rv := objc.Send[PrintInfo](objc.ID(pc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [maskPattern] class.
-var maskPatternClass = _maskPatternClass{objc.GetClass("maskPattern")}
+var (
+	maskPatternClass     _maskPatternClass
+	maskPatternClassOnce sync.Once
+)
+
+func getmaskPatternClass() _maskPatternClass {
+	maskPatternClassOnce.Do(func() {
+		maskPatternClass = _maskPatternClass{objc.GetClass("maskPattern")}
+	})
+	return maskPatternClass
+}
 
 type _maskPatternClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ImaskPattern interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/maskPattern-c.ivar
-
 type maskPattern struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type maskPattern struct {
 func maskPatternFrom(ptr unsafe.Pointer) maskPattern {
 	return maskPattern{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _maskPatternClass) Alloc() maskPattern {
 	rv := objc.Send[maskPattern](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _maskPatternClass) New() maskPattern {
 	rv := objc.Send[maskPattern](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (m_ maskPattern) Autorelease() maskPattern {
 
 // NewmaskPattern creates a new maskPattern instance.
 func NewmaskPattern() maskPattern {
-	return maskPatternClass.New()
+	return getmaskPatternClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKAttribute] class.
-var sKAttributeClass = _SKAttributeClass{objc.GetClass("SKAttribute")}
+var (
+	sKAttributeClass     _SKAttributeClass
+	sKAttributeClassOnce sync.Once
+)
+
+func getSKAttributeClass() _SKAttributeClass {
+	sKAttributeClassOnce.Do(func() {
+		sKAttributeClass = _SKAttributeClass{objc.GetClass("SKAttribute")}
+	})
+	return sKAttributeClass
+}
 
 type _SKAttributeClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKAttribute interface {
 // A specification for dynamic per-node data used with a custom shader. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttribute
-
 type SKAttribute struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKAttribute struct {
 func SKAttributeFrom(ptr unsafe.Pointer) SKAttribute {
 	return SKAttribute{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKAttributeClass) Alloc() SKAttribute {
 	rv := objc.Send[SKAttribute](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKAttributeClass) New() SKAttribute {
 	rv := objc.Send[SKAttribute](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKAttribute) Autorelease() SKAttribute {
 
 // NewSKAttribute creates a new SKAttribute instance.
 func NewSKAttribute() SKAttribute {
-	return sKAttributeClass.New()
+	return getSKAttributeClass().New()
 }
 
 
@@ -71,8 +83,8 @@ func NewSKAttribute() SKAttribute {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttribute/init(name:type:)
 func NewSKAttributeWithNameType(name string, type_ unsafe.Pointer) SKAttribute {
-	instance := sKAttributeClass.Alloc()
-	rv := objc.Send[SKAttribute](instance.ID, objc.Sel("initWithName:type:"), name, type_)
+	instance := getSKAttributeClass().Alloc()
+	rv := objc.Send[SKAttribute](instance.ID, objc.Sel("initWithName:type:"), objc.String(name), type_)
 	rv.Autorelease()
 	return rv
 }
@@ -81,7 +93,7 @@ func NewSKAttributeWithNameType(name string, type_ unsafe.Pointer) SKAttribute {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttribute/attributeWithName:type:
 func (sc _SKAttributeClass) AttributeWithNameType(name string, type_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("attributeWithName:type:"), name, type_)
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("attributeWithName:type:"), objc.String(name), type_)
 	return rv
 }
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ProcessInfo] class.
-var processInfoClass = _ProcessInfoClass{objc.GetClass("NSProcessInfo")}
+var (
+	processInfoClass     _ProcessInfoClass
+	processInfoClassOnce sync.Once
+)
+
+func getProcessInfoClass() _ProcessInfoClass {
+	processInfoClassOnce.Do(func() {
+		processInfoClass = _ProcessInfoClass{objc.GetClass("NSProcessInfo")}
+	})
+	return processInfoClass
+}
 
 type _ProcessInfoClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IProcessInfo interface {
 // A collection of information about the current process. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo
-
 type ProcessInfo struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type ProcessInfo struct {
 func ProcessInfoFrom(ptr unsafe.Pointer) ProcessInfo {
 	return ProcessInfo{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _ProcessInfoClass) Alloc() ProcessInfo {
 	rv := objc.Send[ProcessInfo](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _ProcessInfoClass) New() ProcessInfo {
 	rv := objc.Send[ProcessInfo](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ ProcessInfo) Autorelease() ProcessInfo {
 
 // NewProcessInfo creates a new ProcessInfo instance.
 func NewProcessInfo() ProcessInfo {
-	return processInfoClass.New()
+	return getProcessInfoClass().New()
 }
 
 

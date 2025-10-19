@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKPhysicsJointFixed] class.
-var sKPhysicsJointFixedClass = _SKPhysicsJointFixedClass{objc.GetClass("SKPhysicsJointFixed")}
+var (
+	sKPhysicsJointFixedClass     _SKPhysicsJointFixedClass
+	sKPhysicsJointFixedClassOnce sync.Once
+)
+
+func getSKPhysicsJointFixedClass() _SKPhysicsJointFixedClass {
+	sKPhysicsJointFixedClassOnce.Do(func() {
+		sKPhysicsJointFixedClass = _SKPhysicsJointFixedClass{objc.GetClass("SKPhysicsJointFixed")}
+	})
+	return sKPhysicsJointFixedClass
+}
 
 type _SKPhysicsJointFixedClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKPhysicsJointFixed interface {
 // A joint that fuses two physics bodies together at a reference point. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointFixed
-
 type SKPhysicsJointFixed struct {
 	SKPhysicsJoint
 }
@@ -36,13 +46,15 @@ func SKPhysicsJointFixedFrom(ptr unsafe.Pointer) SKPhysicsJointFixed {
 		SKPhysicsJoint: SKPhysicsJointFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKPhysicsJointFixedClass) Alloc() SKPhysicsJointFixed {
 	rv := objc.Send[SKPhysicsJointFixed](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKPhysicsJointFixedClass) New() SKPhysicsJointFixed {
 	rv := objc.Send[SKPhysicsJointFixed](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKPhysicsJointFixed) Autorelease() SKPhysicsJointFixed {
 
 // NewSKPhysicsJointFixed creates a new SKPhysicsJointFixed instance.
 func NewSKPhysicsJointFixed() SKPhysicsJointFixed {
-	return sKPhysicsJointFixedClass.New()
+	return getSKPhysicsJointFixedClass().New()
 }
 
 

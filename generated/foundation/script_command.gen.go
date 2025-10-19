@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ScriptCommand] class.
-var scriptCommandClass = _ScriptCommandClass{objc.GetClass("NSScriptCommand")}
+var (
+	scriptCommandClass     _ScriptCommandClass
+	scriptCommandClassOnce sync.Once
+)
+
+func getScriptCommandClass() _ScriptCommandClass {
+	scriptCommandClassOnce.Do(func() {
+		scriptCommandClass = _ScriptCommandClass{objc.GetClass("NSScriptCommand")}
+	})
+	return scriptCommandClass
+}
 
 type _ScriptCommandClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScriptCommand interface {
 // A self-contained scripting statement. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand
-
 type ScriptCommand struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ScriptCommand struct {
 func ScriptCommandFrom(ptr unsafe.Pointer) ScriptCommand {
 	return ScriptCommand{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptCommandClass) Alloc() ScriptCommand {
 	rv := objc.Send[ScriptCommand](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptCommandClass) New() ScriptCommand {
 	rv := objc.Send[ScriptCommand](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ ScriptCommand) Autorelease() ScriptCommand {
 
 // NewScriptCommand creates a new ScriptCommand instance.
 func NewScriptCommand() ScriptCommand {
-	return scriptCommandClass.New()
+	return getScriptCommandClass().New()
 }
 
 

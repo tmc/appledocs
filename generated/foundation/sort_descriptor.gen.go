@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SortDescriptor] class.
-var sortDescriptorClass = _SortDescriptorClass{objc.GetClass("NSSortDescriptor")}
+var (
+	sortDescriptorClass     _SortDescriptorClass
+	sortDescriptorClassOnce sync.Once
+)
+
+func getSortDescriptorClass() _SortDescriptorClass {
+	sortDescriptorClassOnce.Do(func() {
+		sortDescriptorClass = _SortDescriptorClass{objc.GetClass("NSSortDescriptor")}
+	})
+	return sortDescriptorClass
+}
 
 type _SortDescriptorClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type ISortDescriptor interface {
 // An immutable description of how to order a collection of objects according to a property common to all the objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor
-
 type SortDescriptor struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type SortDescriptor struct {
 func SortDescriptorFrom(ptr unsafe.Pointer) SortDescriptor {
 	return SortDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SortDescriptorClass) Alloc() SortDescriptor {
 	rv := objc.Send[SortDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SortDescriptorClass) New() SortDescriptor {
 	rv := objc.Send[SortDescriptor](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SortDescriptor) Autorelease() SortDescriptor {
 
 // NewSortDescriptor creates a new SortDescriptor instance.
 func NewSortDescriptor() SortDescriptor {
-	return sortDescriptorClass.New()
+	return getSortDescriptorClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewSortDescriptor() SortDescriptor {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
 func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescriptor {
-	instance := sortDescriptorClass.Alloc()
+	instance := getSortDescriptorClass().Alloc()
 	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:"), objc.String(key), ascending)
 	rv.Autorelease()
 	return rv

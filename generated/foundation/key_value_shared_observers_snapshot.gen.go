@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [KeyValueSharedObserversSnapshot] class.
-var keyValueSharedObserversSnapshotClass = _KeyValueSharedObserversSnapshotClass{objc.GetClass("NSKeyValueSharedObserversSnapshot")}
+var (
+	keyValueSharedObserversSnapshotClass     _KeyValueSharedObserversSnapshotClass
+	keyValueSharedObserversSnapshotClassOnce sync.Once
+)
+
+func getKeyValueSharedObserversSnapshotClass() _KeyValueSharedObserversSnapshotClass {
+	keyValueSharedObserversSnapshotClassOnce.Do(func() {
+		keyValueSharedObserversSnapshotClass = _KeyValueSharedObserversSnapshotClass{objc.GetClass("NSKeyValueSharedObserversSnapshot")}
+	})
+	return keyValueSharedObserversSnapshotClass
+}
 
 type _KeyValueSharedObserversSnapshotClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IKeyValueSharedObserversSnapshot interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObserversSnapshot
-
 type KeyValueSharedObserversSnapshot struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type KeyValueSharedObserversSnapshot struct {
 func KeyValueSharedObserversSnapshotFrom(ptr unsafe.Pointer) KeyValueSharedObserversSnapshot {
 	return KeyValueSharedObserversSnapshot{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (kc _KeyValueSharedObserversSnapshotClass) Alloc() KeyValueSharedObserversSnapshot {
 	rv := objc.Send[KeyValueSharedObserversSnapshot](objc.ID(kc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KeyValueSharedObserversSnapshotClass) New() KeyValueSharedObserversSnapshot {
 	rv := objc.Send[KeyValueSharedObserversSnapshot](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (k_ KeyValueSharedObserversSnapshot) Autorelease() KeyValueSharedObserversS
 
 // NewKeyValueSharedObserversSnapshot creates a new KeyValueSharedObserversSnapshot instance.
 func NewKeyValueSharedObserversSnapshot() KeyValueSharedObserversSnapshot {
-	return keyValueSharedObserversSnapshotClass.New()
+	return getKeyValueSharedObserversSnapshotClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [JSONSerialization] class.
-var jSONSerializationClass = _JSONSerializationClass{objc.GetClass("NSJSONSerialization")}
+var (
+	jSONSerializationClass     _JSONSerializationClass
+	jSONSerializationClassOnce sync.Once
+)
+
+func getJSONSerializationClass() _JSONSerializationClass {
+	jSONSerializationClassOnce.Do(func() {
+		jSONSerializationClass = _JSONSerializationClass{objc.GetClass("NSJSONSerialization")}
+	})
+	return jSONSerializationClass
+}
 
 type _JSONSerializationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IJSONSerialization interface {
 // An object that converts between JSON and the equivalent Foundation objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization
-
 type JSONSerialization struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type JSONSerialization struct {
 func JSONSerializationFrom(ptr unsafe.Pointer) JSONSerialization {
 	return JSONSerialization{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (jc _JSONSerializationClass) Alloc() JSONSerialization {
 	rv := objc.Send[JSONSerialization](objc.ID(jc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (jc _JSONSerializationClass) New() JSONSerialization {
 	rv := objc.Send[JSONSerialization](objc.ID(jc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (j_ JSONSerialization) Autorelease() JSONSerialization {
 
 // NewJSONSerialization creates a new JSONSerialization instance.
 func NewJSONSerialization() JSONSerialization {
-	return jSONSerializationClass.New()
+	return getJSONSerializationClass().New()
 }
 
 

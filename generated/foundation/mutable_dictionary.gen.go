@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableDictionary] class.
-var mutableDictionaryClass = _MutableDictionaryClass{objc.GetClass("NSMutableDictionary")}
+var (
+	mutableDictionaryClass     _MutableDictionaryClass
+	mutableDictionaryClassOnce sync.Once
+)
+
+func getMutableDictionaryClass() _MutableDictionaryClass {
+	mutableDictionaryClassOnce.Do(func() {
+		mutableDictionaryClass = _MutableDictionaryClass{objc.GetClass("NSMutableDictionary")}
+	})
+	return mutableDictionaryClass
+}
 
 type _MutableDictionaryClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableDictionary interface {
 // A dynamic collection of objects associated with unique keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary
-
 type MutableDictionary struct {
 	Dictionary
 }
@@ -36,13 +46,15 @@ func MutableDictionaryFrom(ptr unsafe.Pointer) MutableDictionary {
 		Dictionary: DictionaryFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableDictionaryClass) Alloc() MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableDictionaryClass) New() MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableDictionary) Autorelease() MutableDictionary {
 
 // NewMutableDictionary creates a new MutableDictionary instance.
 func NewMutableDictionary() MutableDictionary {
-	return mutableDictionaryClass.New()
+	return getMutableDictionaryClass().New()
 }
 
 

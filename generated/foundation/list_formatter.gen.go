@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ListFormatter] class.
-var listFormatterClass = _ListFormatterClass{objc.GetClass("NSListFormatter")}
+var (
+	listFormatterClass     _ListFormatterClass
+	listFormatterClassOnce sync.Once
+)
+
+func getListFormatterClass() _ListFormatterClass {
+	listFormatterClassOnce.Do(func() {
+		listFormatterClass = _ListFormatterClass{objc.GetClass("NSListFormatter")}
+	})
+	return listFormatterClass
+}
 
 type _ListFormatterClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IListFormatter interface {
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter
-
 type ListFormatter struct {
 	Formatter
 }
@@ -36,13 +46,15 @@ func ListFormatterFrom(ptr unsafe.Pointer) ListFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _ListFormatterClass) Alloc() ListFormatter {
 	rv := objc.Send[ListFormatter](objc.ID(lc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _ListFormatterClass) New() ListFormatter {
 	rv := objc.Send[ListFormatter](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (l_ ListFormatter) Autorelease() ListFormatter {
 
 // NewListFormatter creates a new ListFormatter instance.
 func NewListFormatter() ListFormatter {
-	return listFormatterClass.New()
+	return getListFormatterClass().New()
 }
 
 

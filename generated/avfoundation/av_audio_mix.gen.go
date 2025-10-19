@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAudioMix] class.
-var aVAudioMixClass = _AVAudioMixClass{objc.GetClass("AVAudioMix")}
+var (
+	aVAudioMixClass     _AVAudioMixClass
+	aVAudioMixClassOnce sync.Once
+)
+
+func getAVAudioMixClass() _AVAudioMixClass {
+	aVAudioMixClassOnce.Do(func() {
+		aVAudioMixClass = _AVAudioMixClass{objc.GetClass("AVAudioMix")}
+	})
+	return aVAudioMixClass
+}
 
 type _AVAudioMixClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAudioMix interface {
 // An object that manages the input parameters for mixing audio tracks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMix
-
 type AVAudioMix struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVAudioMix struct {
 func AVAudioMixFrom(ptr unsafe.Pointer) AVAudioMix {
 	return AVAudioMix{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAudioMixClass) Alloc() AVAudioMix {
 	rv := objc.Send[AVAudioMix](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAudioMixClass) New() AVAudioMix {
 	rv := objc.Send[AVAudioMix](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVAudioMix) Autorelease() AVAudioMix {
 
 // NewAVAudioMix creates a new AVAudioMix instance.
 func NewAVAudioMix() AVAudioMix {
-	return aVAudioMixClass.New()
+	return getAVAudioMixClass().New()
 }
 
 

@@ -55,7 +55,6 @@ type IControl interface {
 // A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl
-
 type Control struct {
 	View
 }
@@ -68,6 +67,7 @@ func ControlFrom(ptr unsafe.Pointer) Control {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ControlClass) Alloc() Control {
 	rv := objc.Send[Control](objc.ID(cc.class), objc.Sel("alloc"))
@@ -105,7 +105,6 @@ func NewControl() Control {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
 func NewControlWithCoder(coder unsafe.Pointer) Control {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -116,7 +115,6 @@ func NewControlWithCoder(coder unsafe.Pointer) Control {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
 func NewControlWithFrame(frameRect unsafe.Pointer) Control {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

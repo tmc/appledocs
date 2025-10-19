@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XPCCoder] class.
-var xPCCoderClass = _XPCCoderClass{objc.GetClass("NSXPCCoder")}
+var (
+	xPCCoderClass     _XPCCoderClass
+	xPCCoderClassOnce sync.Once
+)
+
+func getXPCCoderClass() _XPCCoderClass {
+	xPCCoderClassOnce.Do(func() {
+		xPCCoderClass = _XPCCoderClass{objc.GetClass("NSXPCCoder")}
+	})
+	return xPCCoderClass
+}
 
 type _XPCCoderClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IXPCCoder interface {
 // A coder that encodes and decodes objects that your app sends over an XPC connection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder
-
 type XPCCoder struct {
 	Coder
 }
@@ -36,13 +46,15 @@ func XPCCoderFrom(ptr unsafe.Pointer) XPCCoder {
 		Coder: CoderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XPCCoderClass) Alloc() XPCCoder {
 	rv := objc.Send[XPCCoder](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XPCCoderClass) New() XPCCoder {
 	rv := objc.Send[XPCCoder](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (x_ XPCCoder) Autorelease() XPCCoder {
 
 // NewXPCCoder creates a new XPCCoder instance.
 func NewXPCCoder() XPCCoder {
-	return xPCCoderClass.New()
+	return getXPCCoderClass().New()
 }
 
 

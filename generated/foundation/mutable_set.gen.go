@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableSet] class.
-var mutableSetClass = _MutableSetClass{objc.GetClass("NSMutableSet")}
+var (
+	mutableSetClass     _MutableSetClass
+	mutableSetClassOnce sync.Once
+)
+
+func getMutableSetClass() _MutableSetClass {
+	mutableSetClassOnce.Do(func() {
+		mutableSetClass = _MutableSetClass{objc.GetClass("NSMutableSet")}
+	})
+	return mutableSetClass
+}
 
 type _MutableSetClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMutableSet interface {
 // A dynamic unordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet
-
 type MutableSet struct {
 	Set
 }
@@ -36,13 +46,15 @@ func MutableSetFrom(ptr unsafe.Pointer) MutableSet {
 		Set: SetFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableSetClass) Alloc() MutableSet {
 	rv := objc.Send[MutableSet](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableSetClass) New() MutableSet {
 	rv := objc.Send[MutableSet](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MutableSet) Autorelease() MutableSet {
 
 // NewMutableSet creates a new MutableSet instance.
 func NewMutableSet() MutableSet {
-	return mutableSetClass.New()
+	return getMutableSetClass().New()
 }
 
 

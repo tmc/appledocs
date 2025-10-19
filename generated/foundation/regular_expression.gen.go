@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [RegularExpression] class.
-var regularExpressionClass = _RegularExpressionClass{objc.GetClass("NSRegularExpression")}
+var (
+	regularExpressionClass     _RegularExpressionClass
+	regularExpressionClassOnce sync.Once
+)
+
+func getRegularExpressionClass() _RegularExpressionClass {
+	regularExpressionClassOnce.Do(func() {
+		regularExpressionClass = _RegularExpressionClass{objc.GetClass("NSRegularExpression")}
+	})
+	return regularExpressionClass
+}
 
 type _RegularExpressionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IRegularExpression interface {
 // An immutable representation of a compiled regular expression that you apply to Unicode strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression
-
 type RegularExpression struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type RegularExpression struct {
 func RegularExpressionFrom(ptr unsafe.Pointer) RegularExpression {
 	return RegularExpression{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RegularExpressionClass) Alloc() RegularExpression {
 	rv := objc.Send[RegularExpression](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RegularExpressionClass) New() RegularExpression {
 	rv := objc.Send[RegularExpression](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (r_ RegularExpression) Autorelease() RegularExpression {
 
 // NewRegularExpression creates a new RegularExpression instance.
 func NewRegularExpression() RegularExpression {
-	return regularExpressionClass.New()
+	return getRegularExpressionClass().New()
 }
 
 

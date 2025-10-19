@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScrollLayer] class.
-var scrollLayerClass = _ScrollLayerClass{objc.GetClass("CAScrollLayer")}
+var (
+	scrollLayerClass     _ScrollLayerClass
+	scrollLayerClassOnce sync.Once
+)
+
+func getScrollLayerClass() _ScrollLayerClass {
+	scrollLayerClassOnce.Do(func() {
+		scrollLayerClass = _ScrollLayerClass{objc.GetClass("CAScrollLayer")}
+	})
+	return scrollLayerClass
+}
 
 type _ScrollLayerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IScrollLayer interface {
 // A layer that displays scrollable content larger than its own bounds. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer
-
 type ScrollLayer struct {
 	Layer
 }
@@ -37,13 +47,15 @@ func ScrollLayerFrom(ptr unsafe.Pointer) ScrollLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrollLayerClass) Alloc() ScrollLayer {
 	rv := objc.Send[ScrollLayer](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScrollLayerClass) New() ScrollLayer {
 	rv := objc.Send[ScrollLayer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (s_ ScrollLayer) Autorelease() ScrollLayer {
 
 // NewScrollLayer creates a new ScrollLayer instance.
 func NewScrollLayer() ScrollLayer {
-	return scrollLayerClass.New()
+	return getScrollLayerClass().New()
 }
 
 

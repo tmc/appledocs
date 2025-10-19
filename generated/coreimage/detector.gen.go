@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Detector] class.
-var detectorClass = _DetectorClass{objc.GetClass("CIDetector")}
+var (
+	detectorClass     _DetectorClass
+	detectorClassOnce sync.Once
+)
+
+func getDetectorClass() _DetectorClass {
+	detectorClassOnce.Do(func() {
+		detectorClass = _DetectorClass{objc.GetClass("CIDetector")}
+	})
+	return detectorClass
+}
 
 type _DetectorClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IDetector interface {
 // An image processor that identifies notable features, such as faces and barcodes, in a still image or video. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector
-
 type Detector struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type Detector struct {
 func DetectorFrom(ptr unsafe.Pointer) Detector {
 	return Detector{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DetectorClass) Alloc() Detector {
 	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DetectorClass) New() Detector {
 	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (d_ Detector) Autorelease() Detector {
 
 // NewDetector creates a new Detector instance.
 func NewDetector() Detector {
-	return detectorClass.New()
+	return getDetectorClass().New()
 }
 
 
@@ -73,8 +85,7 @@ func NewDetector() Detector {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
 func NewDetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) Detector {
-	rv := objc.Send[Detector](objc.ID(detectorClass.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
-	rv.Autorelease()
+	rv := objc.Send[Detector](objc.ID(getDetectorClass().class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
 

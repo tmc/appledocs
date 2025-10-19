@@ -37,7 +37,6 @@ type IAccessibilityElement interface {
 // The basic infrastructure necessary for interacting with an assistive app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class
-
 type AccessibilityElement struct {
 	objectivec.Object
 }
@@ -48,6 +47,7 @@ type AccessibilityElement struct {
 func AccessibilityElementFrom(ptr unsafe.Pointer) AccessibilityElement {
 	return AccessibilityElement{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AccessibilityElementClass) Alloc() AccessibilityElement {
 	rv := objc.Send[AccessibilityElement](objc.ID(ac.class), objc.Sel("alloc"))

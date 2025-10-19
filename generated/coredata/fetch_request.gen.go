@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FetchRequest] class.
-var fetchRequestClass = _FetchRequestClass{objc.GetClass("NSFetchRequest")}
+var (
+	fetchRequestClass     _FetchRequestClass
+	fetchRequestClassOnce sync.Once
+)
+
+func getFetchRequestClass() _FetchRequestClass {
+	fetchRequestClassOnce.Do(func() {
+		fetchRequestClass = _FetchRequestClass{objc.GetClass("NSFetchRequest")}
+	})
+	return fetchRequestClass
+}
 
 type _FetchRequestClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFetchRequest interface {
 // A description of search criteria used to retrieve data from a persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest
-
 type FetchRequest struct {
 	PersistentStoreRequest
 }
@@ -37,13 +47,15 @@ func FetchRequestFrom(ptr unsafe.Pointer) FetchRequest {
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FetchRequestClass) Alloc() FetchRequest {
 	rv := objc.Send[FetchRequest](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FetchRequestClass) New() FetchRequest {
 	rv := objc.Send[FetchRequest](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (f_ FetchRequest) Autorelease() FetchRequest {
 
 // NewFetchRequest creates a new FetchRequest instance.
 func NewFetchRequest() FetchRequest {
-	return fetchRequestClass.New()
+	return getFetchRequestClass().New()
 }
 
 
@@ -73,7 +85,7 @@ func NewFetchRequest() FetchRequest {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
 func NewFetchRequestWithEntityName(entityName string) FetchRequest {
-	instance := fetchRequestClass.Alloc()
+	instance := getFetchRequestClass().Alloc()
 	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv

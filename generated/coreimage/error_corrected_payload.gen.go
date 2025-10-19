@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [errorCorrectedPayload] class.
-var errorCorrectedPayloadClass = _errorCorrectedPayloadClass{objc.GetClass("errorCorrectedPayload")}
+var (
+	errorCorrectedPayloadClass     _errorCorrectedPayloadClass
+	errorCorrectedPayloadClassOnce sync.Once
+)
+
+func geterrorCorrectedPayloadClass() _errorCorrectedPayloadClass {
+	errorCorrectedPayloadClassOnce.Do(func() {
+		errorCorrectedPayloadClass = _errorCorrectedPayloadClass{objc.GetClass("errorCorrectedPayload")}
+	})
+	return errorCorrectedPayloadClass
+}
 
 type _errorCorrectedPayloadClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IerrorCorrectedPayload interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectedPayload-c.ivar
-
 type errorCorrectedPayload struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type errorCorrectedPayload struct {
 func errorCorrectedPayloadFrom(ptr unsafe.Pointer) errorCorrectedPayload {
 	return errorCorrectedPayload{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _errorCorrectedPayloadClass) Alloc() errorCorrectedPayload {
 	rv := objc.Send[errorCorrectedPayload](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _errorCorrectedPayloadClass) New() errorCorrectedPayload {
 	rv := objc.Send[errorCorrectedPayload](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (e_ errorCorrectedPayload) Autorelease() errorCorrectedPayload {
 
 // NewerrorCorrectedPayload creates a new errorCorrectedPayload instance.
 func NewerrorCorrectedPayload() errorCorrectedPayload {
-	return errorCorrectedPayloadClass.New()
+	return geterrorCorrectedPayloadClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKTransition] class.
-var sKTransitionClass = _SKTransitionClass{objc.GetClass("SKTransition")}
+var (
+	sKTransitionClass     _SKTransitionClass
+	sKTransitionClassOnce sync.Once
+)
+
+func getSKTransitionClass() _SKTransitionClass {
+	sKTransitionClassOnce.Do(func() {
+		sKTransitionClass = _SKTransitionClass{objc.GetClass("SKTransition")}
+	})
+	return sKTransitionClass
+}
 
 type _SKTransitionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISKTransition interface {
 // An object used to perform an animated transition to a new scene. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTransition
-
 type SKTransition struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type SKTransition struct {
 func SKTransitionFrom(ptr unsafe.Pointer) SKTransition {
 	return SKTransition{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTransitionClass) Alloc() SKTransition {
 	rv := objc.Send[SKTransition](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTransitionClass) New() SKTransition {
 	rv := objc.Send[SKTransition](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ SKTransition) Autorelease() SKTransition {
 
 // NewSKTransition creates a new SKTransition instance.
 func NewSKTransition() SKTransition {
-	return sKTransitionClass.New()
+	return getSKTransitionClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVCaptureSession] class.
-var aVCaptureSessionClass = _AVCaptureSessionClass{objc.GetClass("AVCaptureSession")}
+var (
+	aVCaptureSessionClass     _AVCaptureSessionClass
+	aVCaptureSessionClassOnce sync.Once
+)
+
+func getAVCaptureSessionClass() _AVCaptureSessionClass {
+	aVCaptureSessionClassOnce.Do(func() {
+		aVCaptureSessionClass = _AVCaptureSessionClass{objc.GetClass("AVCaptureSession")}
+	})
+	return aVCaptureSessionClass
+}
 
 type _AVCaptureSessionClass struct {
 	class objc.Class
@@ -46,7 +57,6 @@ type IAVCaptureSession interface {
 // An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession
-
 type AVCaptureSession struct {
 	objectivec.Object
 }
@@ -57,13 +67,15 @@ type AVCaptureSession struct {
 func AVCaptureSessionFrom(ptr unsafe.Pointer) AVCaptureSession {
 	return AVCaptureSession{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureSessionClass) Alloc() AVCaptureSession {
 	rv := objc.Send[AVCaptureSession](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureSessionClass) New() AVCaptureSession {
 	rv := objc.Send[AVCaptureSession](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +96,7 @@ func (a_ AVCaptureSession) Autorelease() AVCaptureSession {
 
 // NewAVCaptureSession creates a new AVCaptureSession instance.
 func NewAVCaptureSession() AVCaptureSession {
-	return aVCaptureSessionClass.New()
+	return getAVCaptureSessionClass().New()
 }
 
 

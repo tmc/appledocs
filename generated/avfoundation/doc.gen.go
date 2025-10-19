@@ -10,6 +10,19 @@
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation
 package avfoundation
 
+import (
+	"github.com/ebitengine/purego"
+)
+
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/AVFoundation.framework/AVFoundation"
+
+
+func init() {
+	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+}
+
 

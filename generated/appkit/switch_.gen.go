@@ -34,7 +34,6 @@ type ISwitch_ interface {
 // A control that offers a binary choice. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSwitch
-
 type Switch_ struct {
 	Control
 }
@@ -47,6 +46,7 @@ func Switch_From(ptr unsafe.Pointer) Switch_ {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _Switch_Class) Alloc() Switch_ {
 	rv := objc.Send[Switch_](objc.ID(sc.class), objc.Sel("alloc"))

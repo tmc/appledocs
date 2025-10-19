@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEFilterProviderConfiguration] class.
-var nEFilterProviderConfigurationClass = _NEFilterProviderConfigurationClass{objc.GetClass("NEFilterProviderConfiguration")}
+var (
+	nEFilterProviderConfigurationClass     _NEFilterProviderConfigurationClass
+	nEFilterProviderConfigurationClassOnce sync.Once
+)
+
+func getNEFilterProviderConfigurationClass() _NEFilterProviderConfigurationClass {
+	nEFilterProviderConfigurationClassOnce.Do(func() {
+		nEFilterProviderConfigurationClass = _NEFilterProviderConfigurationClass{objc.GetClass("NEFilterProviderConfiguration")}
+	})
+	return nEFilterProviderConfigurationClass
+}
 
 type _NEFilterProviderConfigurationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEFilterProviderConfiguration interface {
 // Configuration parameters for a content filter. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProviderConfiguration
-
 type NEFilterProviderConfiguration struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEFilterProviderConfiguration struct {
 func NEFilterProviderConfigurationFrom(ptr unsafe.Pointer) NEFilterProviderConfiguration {
 	return NEFilterProviderConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterProviderConfigurationClass) Alloc() NEFilterProviderConfiguration {
 	rv := objc.Send[NEFilterProviderConfiguration](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEFilterProviderConfigurationClass) New() NEFilterProviderConfiguration {
 	rv := objc.Send[NEFilterProviderConfiguration](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEFilterProviderConfiguration) Autorelease() NEFilterProviderConfigurat
 
 // NewNEFilterProviderConfiguration creates a new NEFilterProviderConfiguration instance.
 func NewNEFilterProviderConfiguration() NEFilterProviderConfiguration {
-	return nEFilterProviderConfigurationClass.New()
+	return getNEFilterProviderConfigurationClass().New()
 }
 
 

@@ -34,7 +34,6 @@ type IMutableParagraphStyle interface {
 // An object for changing the values of the subattributes in a paragraph style attribute. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle
-
 type MutableParagraphStyle struct {
 	ParagraphStyle
 }
@@ -47,6 +46,7 @@ func MutableParagraphStyleFrom(ptr unsafe.Pointer) MutableParagraphStyle {
 		ParagraphStyle: ParagraphStyleFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableParagraphStyleClass) Alloc() MutableParagraphStyle {
 	rv := objc.Send[MutableParagraphStyle](objc.ID(mc.class), objc.Sel("alloc"))

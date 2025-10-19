@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [BackgroundActivityScheduler] class.
-var backgroundActivitySchedulerClass = _BackgroundActivitySchedulerClass{objc.GetClass("NSBackgroundActivityScheduler")}
+var (
+	backgroundActivitySchedulerClass     _BackgroundActivitySchedulerClass
+	backgroundActivitySchedulerClassOnce sync.Once
+)
+
+func getBackgroundActivitySchedulerClass() _BackgroundActivitySchedulerClass {
+	backgroundActivitySchedulerClassOnce.Do(func() {
+		backgroundActivitySchedulerClass = _BackgroundActivitySchedulerClass{objc.GetClass("NSBackgroundActivityScheduler")}
+	})
+	return backgroundActivitySchedulerClass
+}
 
 type _BackgroundActivitySchedulerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IBackgroundActivityScheduler interface {
 // A task scheduler suitable for low priority operations that can run in the background. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler
-
 type BackgroundActivityScheduler struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type BackgroundActivityScheduler struct {
 func BackgroundActivitySchedulerFrom(ptr unsafe.Pointer) BackgroundActivityScheduler {
 	return BackgroundActivityScheduler{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BackgroundActivitySchedulerClass) Alloc() BackgroundActivityScheduler {
 	rv := objc.Send[BackgroundActivityScheduler](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BackgroundActivitySchedulerClass) New() BackgroundActivityScheduler {
 	rv := objc.Send[BackgroundActivityScheduler](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (b_ BackgroundActivityScheduler) Autorelease() BackgroundActivityScheduler 
 
 // NewBackgroundActivityScheduler creates a new BackgroundActivityScheduler instance.
 func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
-	return backgroundActivitySchedulerClass.New()
+	return getBackgroundActivitySchedulerClass().New()
 }
 
 

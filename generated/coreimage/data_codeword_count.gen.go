@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [dataCodewordCount] class.
-var dataCodewordCountClass = _dataCodewordCountClass{objc.GetClass("dataCodewordCount")}
+var (
+	dataCodewordCountClass     _dataCodewordCountClass
+	dataCodewordCountClassOnce sync.Once
+)
+
+func getdataCodewordCountClass() _dataCodewordCountClass {
+	dataCodewordCountClassOnce.Do(func() {
+		dataCodewordCountClass = _dataCodewordCountClass{objc.GetClass("dataCodewordCount")}
+	})
+	return dataCodewordCountClass
+}
 
 type _dataCodewordCountClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IdataCodewordCount interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/dataCodewordCount-c.ivar
-
 type dataCodewordCount struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type dataCodewordCount struct {
 func dataCodewordCountFrom(ptr unsafe.Pointer) dataCodewordCount {
 	return dataCodewordCount{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _dataCodewordCountClass) Alloc() dataCodewordCount {
 	rv := objc.Send[dataCodewordCount](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _dataCodewordCountClass) New() dataCodewordCount {
 	rv := objc.Send[dataCodewordCount](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (d_ dataCodewordCount) Autorelease() dataCodewordCount {
 
 // NewdataCodewordCount creates a new dataCodewordCount instance.
 func NewdataCodewordCount() dataCodewordCount {
-	return dataCodewordCountClass.New()
+	return getdataCodewordCountClass().New()
 }
 
 

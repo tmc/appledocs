@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLProtectionSpace] class.
-var uRLProtectionSpaceClass = _URLProtectionSpaceClass{objc.GetClass("NSURLProtectionSpace")}
+var (
+	uRLProtectionSpaceClass     _URLProtectionSpaceClass
+	uRLProtectionSpaceClassOnce sync.Once
+)
+
+func getURLProtectionSpaceClass() _URLProtectionSpaceClass {
+	uRLProtectionSpaceClassOnce.Do(func() {
+		uRLProtectionSpaceClass = _URLProtectionSpaceClass{objc.GetClass("NSURLProtectionSpace")}
+	})
+	return uRLProtectionSpaceClass
+}
 
 type _URLProtectionSpaceClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLProtectionSpace interface {
 // A server or an area on a server, commonly referred to as a realm, that requires authentication. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace
-
 type URLProtectionSpace struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLProtectionSpace struct {
 func URLProtectionSpaceFrom(ptr unsafe.Pointer) URLProtectionSpace {
 	return URLProtectionSpace{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLProtectionSpaceClass) Alloc() URLProtectionSpace {
 	rv := objc.Send[URLProtectionSpace](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLProtectionSpaceClass) New() URLProtectionSpace {
 	rv := objc.Send[URLProtectionSpace](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLProtectionSpace) Autorelease() URLProtectionSpace {
 
 // NewURLProtectionSpace creates a new URLProtectionSpace instance.
 func NewURLProtectionSpace() URLProtectionSpace {
-	return uRLProtectionSpaceClass.New()
+	return getURLProtectionSpaceClass().New()
 }
 
 

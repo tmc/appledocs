@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [IndexPath] class.
-var indexPathClass = _IndexPathClass{objc.GetClass("NSIndexPath")}
+var (
+	indexPathClass     _IndexPathClass
+	indexPathClassOnce sync.Once
+)
+
+func getIndexPathClass() _IndexPathClass {
+	indexPathClassOnce.Do(func() {
+		indexPathClass = _IndexPathClass{objc.GetClass("NSIndexPath")}
+	})
+	return indexPathClass
+}
 
 type _IndexPathClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IIndexPath interface {
 // A list of indexes that together represent the path to a specific location in a tree of nested arrays. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath
-
 type IndexPath struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type IndexPath struct {
 func IndexPathFrom(ptr unsafe.Pointer) IndexPath {
 	return IndexPath{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _IndexPathClass) Alloc() IndexPath {
 	rv := objc.Send[IndexPath](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IndexPathClass) New() IndexPath {
 	rv := objc.Send[IndexPath](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (i_ IndexPath) Autorelease() IndexPath {
 
 // NewIndexPath creates a new IndexPath instance.
 func NewIndexPath() IndexPath {
-	return indexPathClass.New()
+	return getIndexPathClass().New()
 }
 
 

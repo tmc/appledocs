@@ -35,7 +35,6 @@ type IAdaptiveImageGlyph interface {
 // A data object for an emoji-like image that can appear in attributed text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph
-
 type AdaptiveImageGlyph struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type AdaptiveImageGlyph struct {
 func AdaptiveImageGlyphFrom(ptr unsafe.Pointer) AdaptiveImageGlyph {
 	return AdaptiveImageGlyph{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AdaptiveImageGlyphClass) Alloc() AdaptiveImageGlyph {
 	rv := objc.Send[AdaptiveImageGlyph](objc.ID(ac.class), objc.Sel("alloc"))

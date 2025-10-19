@@ -49,7 +49,6 @@ type ITabView interface {
 // A multipage interface that displays one page at a time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView
-
 type TabView struct {
 	View
 }
@@ -62,6 +61,7 @@ func TabViewFrom(ptr unsafe.Pointer) TabView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TabViewClass) Alloc() TabView {
 	rv := objc.Send[TabView](objc.ID(tc.class), objc.Sel("alloc"))

@@ -34,7 +34,6 @@ type IScrubberTextItemView interface {
 // A concrete view subclass for displaying text for an item in a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView
-
 type ScrubberTextItemView struct {
 	ScrubberItemView
 }
@@ -47,6 +46,7 @@ func ScrubberTextItemViewFrom(ptr unsafe.Pointer) ScrubberTextItemView {
 		ScrubberItemView: ScrubberItemViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberTextItemViewClass) Alloc() ScrubberTextItemView {
 	rv := objc.Send[ScrubberTextItemView](objc.ID(sc.class), objc.Sel("alloc"))

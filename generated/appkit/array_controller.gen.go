@@ -34,7 +34,6 @@ type IArrayController interface {
 // A bindings-compatible controller that manages a collection of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController
-
 type ArrayController struct {
 	ObjectController
 }
@@ -47,6 +46,7 @@ func ArrayControllerFrom(ptr unsafe.Pointer) ArrayController {
 		ObjectController: ObjectControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _ArrayControllerClass) Alloc() ArrayController {
 	rv := objc.Send[ArrayController](objc.ID(ac.class), objc.Sel("alloc"))

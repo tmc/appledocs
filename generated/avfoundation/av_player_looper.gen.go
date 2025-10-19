@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVPlayerLooper] class.
-var aVPlayerLooperClass = _AVPlayerLooperClass{objc.GetClass("AVPlayerLooper")}
+var (
+	aVPlayerLooperClass     _AVPlayerLooperClass
+	aVPlayerLooperClassOnce sync.Once
+)
+
+func getAVPlayerLooperClass() _AVPlayerLooperClass {
+	aVPlayerLooperClassOnce.Do(func() {
+		aVPlayerLooperClass = _AVPlayerLooperClass{objc.GetClass("AVPlayerLooper")}
+	})
+	return aVPlayerLooperClass
+}
 
 type _AVPlayerLooperClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVPlayerLooper interface {
 // An object that loops media content using a queue player. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper
-
 type AVPlayerLooper struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVPlayerLooper struct {
 func AVPlayerLooperFrom(ptr unsafe.Pointer) AVPlayerLooper {
 	return AVPlayerLooper{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVPlayerLooperClass) Alloc() AVPlayerLooper {
 	rv := objc.Send[AVPlayerLooper](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVPlayerLooperClass) New() AVPlayerLooper {
 	rv := objc.Send[AVPlayerLooper](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVPlayerLooper) Autorelease() AVPlayerLooper {
 
 // NewAVPlayerLooper creates a new AVPlayerLooper instance.
 func NewAVPlayerLooper() AVPlayerLooper {
-	return aVPlayerLooperClass.New()
+	return getAVPlayerLooperClass().New()
 }
 
 

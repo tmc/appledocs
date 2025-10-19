@@ -42,7 +42,6 @@ type IViewController interface {
 // A controller that manages a view, typically loaded from a nib file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController
-
 type ViewController struct {
 	Responder
 }
@@ -55,6 +54,7 @@ func ViewControllerFrom(ptr unsafe.Pointer) ViewController {
 		Responder: ResponderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ViewControllerClass) Alloc() ViewController {
 	rv := objc.Send[ViewController](objc.ID(vc.class), objc.Sel("alloc"))
@@ -92,7 +92,6 @@ func NewViewController() ViewController {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
 func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOrNil unsafe.Pointer) ViewController {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
 	rv.Autorelease()

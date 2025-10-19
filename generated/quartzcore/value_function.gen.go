@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [ValueFunction] class.
-var valueFunctionClass = _ValueFunctionClass{objc.GetClass("CAValueFunction")}
+var (
+	valueFunctionClass     _ValueFunctionClass
+	valueFunctionClassOnce sync.Once
+)
+
+func getValueFunctionClass() _ValueFunctionClass {
+	valueFunctionClassOnce.Do(func() {
+		valueFunctionClass = _ValueFunctionClass{objc.GetClass("CAValueFunction")}
+	})
+	return valueFunctionClass
+}
 
 type _ValueFunctionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IValueFunction interface {
 // An object that provides a flexible method of defining animated transformations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction
-
 type ValueFunction struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type ValueFunction struct {
 func ValueFunctionFrom(ptr unsafe.Pointer) ValueFunction {
 	return ValueFunction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ValueFunctionClass) Alloc() ValueFunction {
 	rv := objc.Send[ValueFunction](objc.ID(vc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ValueFunctionClass) New() ValueFunction {
 	rv := objc.Send[ValueFunction](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (v_ ValueFunction) Autorelease() ValueFunction {
 
 // NewValueFunction creates a new ValueFunction instance.
 func NewValueFunction() ValueFunction {
-	return valueFunctionClass.New()
+	return getValueFunctionClass().New()
 }
 
 

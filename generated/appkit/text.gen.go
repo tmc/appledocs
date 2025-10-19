@@ -65,7 +65,6 @@ type IText interface {
 // The most general programmatic interface for objects that manage text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText
-
 type Text struct {
 	View
 }
@@ -78,6 +77,7 @@ func TextFrom(ptr unsafe.Pointer) Text {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextClass) Alloc() Text {
 	rv := objc.Send[Text](objc.ID(tc.class), objc.Sel("alloc"))
@@ -113,7 +113,6 @@ func NewText() Text {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
 func NewTextWithCoder(coder unsafe.Pointer) Text {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getTextClass().Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -122,7 +121,6 @@ func NewTextWithCoder(coder unsafe.Pointer) Text {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
 func NewTextWithFrame(frameRect unsafe.Pointer) Text {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getTextClass().Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [hasRightEyePosition] class.
-var hasRightEyePositionClass = _hasRightEyePositionClass{objc.GetClass("hasRightEyePosition")}
+var (
+	hasRightEyePositionClass     _hasRightEyePositionClass
+	hasRightEyePositionClassOnce sync.Once
+)
+
+func gethasRightEyePositionClass() _hasRightEyePositionClass {
+	hasRightEyePositionClassOnce.Do(func() {
+		hasRightEyePositionClass = _hasRightEyePositionClass{objc.GetClass("hasRightEyePosition")}
+	})
+	return hasRightEyePositionClass
+}
 
 type _hasRightEyePositionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IhasRightEyePosition interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasRightEyePosition-c.ivar
-
 type hasRightEyePosition struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type hasRightEyePosition struct {
 func hasRightEyePositionFrom(ptr unsafe.Pointer) hasRightEyePosition {
 	return hasRightEyePosition{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (hc _hasRightEyePositionClass) Alloc() hasRightEyePosition {
 	rv := objc.Send[hasRightEyePosition](objc.ID(hc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _hasRightEyePositionClass) New() hasRightEyePosition {
 	rv := objc.Send[hasRightEyePosition](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (h_ hasRightEyePosition) Autorelease() hasRightEyePosition {
 
 // NewhasRightEyePosition creates a new hasRightEyePosition instance.
 func NewhasRightEyePosition() hasRightEyePosition {
-	return hasRightEyePositionClass.New()
+	return gethasRightEyePositionClass().New()
 }
 
 

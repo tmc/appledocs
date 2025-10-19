@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Proxy] class.
-var proxyClass = _ProxyClass{objc.GetClass("NSProxy")}
+var (
+	proxyClass     _ProxyClass
+	proxyClassOnce sync.Once
+)
+
+func getProxyClass() _ProxyClass {
+	proxyClassOnce.Do(func() {
+		proxyClass = _ProxyClass{objc.GetClass("NSProxy")}
+	})
+	return proxyClass
+}
 
 type _ProxyClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IProxy interface {
 // An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy
-
 type Proxy struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Proxy struct {
 func ProxyFrom(ptr unsafe.Pointer) Proxy {
 	return Proxy{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _ProxyClass) Alloc() Proxy {
 	rv := objc.Send[Proxy](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _ProxyClass) New() Proxy {
 	rv := objc.Send[Proxy](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ Proxy) Autorelease() Proxy {
 
 // NewProxy creates a new Proxy instance.
 func NewProxy() Proxy {
-	return proxyClass.New()
+	return getProxyClass().New()
 }
 
 

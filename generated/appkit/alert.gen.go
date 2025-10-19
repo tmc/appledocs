@@ -36,7 +36,6 @@ type IAlert interface {
 // A modal dialog or sheet attached to a document window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert
-
 type Alert struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type Alert struct {
 func AlertFrom(ptr unsafe.Pointer) Alert {
 	return Alert{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AlertClass) Alloc() Alert {
 	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alloc"))

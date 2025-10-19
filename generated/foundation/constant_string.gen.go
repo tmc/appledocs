@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ConstantString] class.
-var constantStringClass = _ConstantStringClass{objc.GetClass("NSConstantString")}
+var (
+	constantStringClass     _ConstantStringClass
+	constantStringClassOnce sync.Once
+)
+
+func getConstantStringClass() _ConstantStringClass {
+	constantStringClassOnce.Do(func() {
+		constantStringClass = _ConstantStringClass{objc.GetClass("NSConstantString")}
+	})
+	return constantStringClass
+}
 
 type _ConstantStringClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type IConstantString interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConstantString
-
 type ConstantString struct {
 	SimpleCString
 }
@@ -33,13 +43,15 @@ func ConstantStringFrom(ptr unsafe.Pointer) ConstantString {
 		SimpleCString: SimpleCStringFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConstantStringClass) Alloc() ConstantString {
 	rv := objc.Send[ConstantString](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ConstantStringClass) New() ConstantString {
 	rv := objc.Send[ConstantString](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (c_ ConstantString) Autorelease() ConstantString {
 
 // NewConstantString creates a new ConstantString instance.
 func NewConstantString() ConstantString {
-	return constantStringClass.New()
+	return getConstantStringClass().New()
 }
 
 

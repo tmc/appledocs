@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Stream] class.
-var streamClass = _StreamClass{objc.GetClass("NSStream")}
+var (
+	streamClass     _StreamClass
+	streamClassOnce sync.Once
+)
+
+func getStreamClass() _StreamClass {
+	streamClassOnce.Do(func() {
+		streamClass = _StreamClass{objc.GetClass("NSStream")}
+	})
+	return streamClass
+}
 
 type _StreamClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IStream interface {
 // An abstract class representing a stream. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream
-
 type Stream struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Stream struct {
 func StreamFrom(ptr unsafe.Pointer) Stream {
 	return Stream{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StreamClass) Alloc() Stream {
 	rv := objc.Send[Stream](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _StreamClass) New() Stream {
 	rv := objc.Send[Stream](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ Stream) Autorelease() Stream {
 
 // NewStream creates a new Stream instance.
 func NewStream() Stream {
-	return streamClass.New()
+	return getStreamClass().New()
 }
 
 

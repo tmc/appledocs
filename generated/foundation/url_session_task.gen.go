@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLSessionTask] class.
-var uRLSessionTaskClass = _URLSessionTaskClass{objc.GetClass("NSURLSessionTask")}
+var (
+	uRLSessionTaskClass     _URLSessionTaskClass
+	uRLSessionTaskClassOnce sync.Once
+)
+
+func getURLSessionTaskClass() _URLSessionTaskClass {
+	uRLSessionTaskClassOnce.Do(func() {
+		uRLSessionTaskClass = _URLSessionTaskClass{objc.GetClass("NSURLSessionTask")}
+	})
+	return uRLSessionTaskClass
+}
 
 type _URLSessionTaskClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IURLSessionTask interface {
 // A task, like downloading a specific resource, performed in a URL session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask
-
 type URLSessionTask struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type URLSessionTask struct {
 func URLSessionTaskFrom(ptr unsafe.Pointer) URLSessionTask {
 	return URLSessionTask{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionTaskClass) Alloc() URLSessionTask {
 	rv := objc.Send[URLSessionTask](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionTaskClass) New() URLSessionTask {
 	rv := objc.Send[URLSessionTask](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (u_ URLSessionTask) Autorelease() URLSessionTask {
 
 // NewURLSessionTask creates a new URLSessionTask instance.
 func NewURLSessionTask() URLSessionTask {
-	return uRLSessionTaskClass.New()
+	return getURLSessionTaskClass().New()
 }
 
 

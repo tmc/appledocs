@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Sampler] class.
-var samplerClass = _SamplerClass{objc.GetClass("CISampler")}
+var (
+	samplerClass     _SamplerClass
+	samplerClassOnce sync.Once
+)
+
+func getSamplerClass() _SamplerClass {
+	samplerClassOnce.Do(func() {
+		samplerClass = _SamplerClass{objc.GetClass("CISampler")}
+	})
+	return samplerClass
+}
 
 type _SamplerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ISampler interface {
 // An object that retrieves pixel samples for processing by a filter kernel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler
-
 type Sampler struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Sampler struct {
 func SamplerFrom(ptr unsafe.Pointer) Sampler {
 	return Sampler{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SamplerClass) Alloc() Sampler {
 	rv := objc.Send[Sampler](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SamplerClass) New() Sampler {
 	rv := objc.Send[Sampler](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (s_ Sampler) Autorelease() Sampler {
 
 // NewSampler creates a new Sampler instance.
 func NewSampler() Sampler {
-	return samplerClass.New()
+	return getSamplerClass().New()
 }
 
 
@@ -71,7 +83,7 @@ func NewSampler() Sampler {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:)
 func NewSamplerWithImage(im unsafe.Pointer) Sampler {
-	instance := samplerClass.Alloc()
+	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:"), im)
 	rv.Autorelease()
 	return rv
@@ -81,7 +93,7 @@ func NewSamplerWithImage(im unsafe.Pointer) Sampler {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:options:)
 func NewSamplerWithImageOptions(im unsafe.Pointer, dict unsafe.Pointer) Sampler {
-	instance := samplerClass.Alloc()
+	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:options:"), im, dict)
 	rv.Autorelease()
 	return rv
@@ -91,7 +103,7 @@ func NewSamplerWithImageOptions(im unsafe.Pointer, dict unsafe.Pointer) Sampler 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/initWithImage:keysAndValues:
 func NewSamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) Sampler {
-	instance := samplerClass.Alloc()
+	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
 	rv.Autorelease()
 	return rv

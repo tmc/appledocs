@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AttributedStringMarkdownSourcePosition] class.
-var attributedStringMarkdownSourcePositionClass = _AttributedStringMarkdownSourcePositionClass{objc.GetClass("NSAttributedStringMarkdownSourcePosition")}
+var (
+	attributedStringMarkdownSourcePositionClass     _AttributedStringMarkdownSourcePositionClass
+	attributedStringMarkdownSourcePositionClassOnce sync.Once
+)
+
+func getAttributedStringMarkdownSourcePositionClass() _AttributedStringMarkdownSourcePositionClass {
+	attributedStringMarkdownSourcePositionClassOnce.Do(func() {
+		attributedStringMarkdownSourcePositionClass = _AttributedStringMarkdownSourcePositionClass{objc.GetClass("NSAttributedStringMarkdownSourcePosition")}
+	})
+	return attributedStringMarkdownSourcePositionClass
+}
 
 type _AttributedStringMarkdownSourcePositionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAttributedStringMarkdownSourcePosition interface {
 // The position of attributed string text in its original Markdown source string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition
-
 type AttributedStringMarkdownSourcePosition struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AttributedStringMarkdownSourcePosition struct {
 func AttributedStringMarkdownSourcePositionFrom(ptr unsafe.Pointer) AttributedStringMarkdownSourcePosition {
 	return AttributedStringMarkdownSourcePosition{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AttributedStringMarkdownSourcePositionClass) Alloc() AttributedStringMarkdownSourcePosition {
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AttributedStringMarkdownSourcePositionClass) New() AttributedStringMarkdownSourcePosition {
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AttributedStringMarkdownSourcePosition) Autorelease() AttributedStringM
 
 // NewAttributedStringMarkdownSourcePosition creates a new AttributedStringMarkdownSourcePosition instance.
 func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourcePosition {
-	return attributedStringMarkdownSourcePositionClass.New()
+	return getAttributedStringMarkdownSourcePositionClass().New()
 }
 
 

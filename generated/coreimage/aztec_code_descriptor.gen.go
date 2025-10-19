@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AztecCodeDescriptor] class.
-var aztecCodeDescriptorClass = _AztecCodeDescriptorClass{objc.GetClass("CIAztecCodeDescriptor")}
+var (
+	aztecCodeDescriptorClass     _AztecCodeDescriptorClass
+	aztecCodeDescriptorClassOnce sync.Once
+)
+
+func getAztecCodeDescriptorClass() _AztecCodeDescriptorClass {
+	aztecCodeDescriptorClassOnce.Do(func() {
+		aztecCodeDescriptorClass = _AztecCodeDescriptorClass{objc.GetClass("CIAztecCodeDescriptor")}
+	})
+	return aztecCodeDescriptorClass
+}
 
 type _AztecCodeDescriptorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAztecCodeDescriptor interface {
 // A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor
-
 type AztecCodeDescriptor struct {
 	BarcodeDescriptor
 }
@@ -36,13 +46,15 @@ func AztecCodeDescriptorFrom(ptr unsafe.Pointer) AztecCodeDescriptor {
 		BarcodeDescriptor: BarcodeDescriptorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AztecCodeDescriptorClass) Alloc() AztecCodeDescriptor {
 	rv := objc.Send[AztecCodeDescriptor](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AztecCodeDescriptorClass) New() AztecCodeDescriptor {
 	rv := objc.Send[AztecCodeDescriptor](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AztecCodeDescriptor) Autorelease() AztecCodeDescriptor {
 
 // NewAztecCodeDescriptor creates a new AztecCodeDescriptor instance.
 func NewAztecCodeDescriptor() AztecCodeDescriptor {
-	return aztecCodeDescriptorClass.New()
+	return getAztecCodeDescriptorClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewAztecCodeDescriptor() AztecCodeDescriptor {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/init(payload:isCompact:layerCount:dataCodewordCount:)
 func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, layerCount int, dataCodewordCount int) AztecCodeDescriptor {
-	instance := aztecCodeDescriptorClass.Alloc()
+	instance := getAztecCodeDescriptorClass().Alloc()
 	rv := objc.Send[AztecCodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:layerCount:dataCodewordCount:"), errorCorrectedPayload, isCompact, layerCount, dataCodewordCount)
 	rv.Autorelease()
 	return rv

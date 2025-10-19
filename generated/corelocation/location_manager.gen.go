@@ -3,6 +3,7 @@
 package corelocation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,16 +11,51 @@ import (
 )
 
 // The class instance for the [LocationManager] class.
-var locationManagerClass = _LocationManagerClass{objc.GetClass("CLLocationManager")}
+var (
+	locationManagerClass     _LocationManagerClass
+	locationManagerClassOnce sync.Once
+)
+
+func getLocationManagerClass() _LocationManagerClass {
+	locationManagerClassOnce.Do(func() {
+		locationManagerClass = _LocationManagerClass{objc.GetClass("CLLocationManager")}
+	})
+	return locationManagerClass
+}
 
 type _LocationManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LocationManager] class.
+type ILocationManager interface {
+	objectivec.IObject
+	DismissHeadingCalibrationDisplay()
+	RequestAlwaysAuthorization()
+	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer)
+	RequestLocation()
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string)
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer)
+	RequestWhenInUseAuthorization()
+	StartMonitoringForRegion(region unsafe.Pointer)
+	StartMonitoringLocationPushesWithCompletion(completion unsafe.Pointer)
+	StartMonitoringSignificantLocationChanges()
+	StartMonitoringVisits()
+	StartRangingBeaconsInRegion(region unsafe.Pointer)
+	StartRangingBeaconsSatisfyingConstraint(constraint unsafe.Pointer)
+	StartUpdatingHeading()
+	StartUpdatingLocation()
+	StopMonitoringLocationPushes()
+	StopMonitoringSignificantLocationChanges()
+	StopMonitoringVisits()
+	StopRangingBeaconsSatisfyingConstraint(constraint unsafe.Pointer)
+	StopUpdatingHeading()
+	StopUpdatingLocation()
+}
+
 // The object you use to start and stop the delivery of location-related events to your app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager
-
 type LocationManager struct {
 	objectivec.Object
 }
@@ -30,6 +66,38 @@ type LocationManager struct {
 func LocationManagerFrom(ptr unsafe.Pointer) LocationManager {
 	return LocationManager{objectivec.Object{objc.ID(ptr)}}
 }
+
+// Alloc allocates a new instance without initialization.
+func (lc _LocationManagerClass) Alloc() LocationManager {
+	rv := objc.Send[LocationManager](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (lc _LocationManagerClass) New() LocationManager {
+	rv := objc.Send[LocationManager](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LocationManager) Init() LocationManager {
+	rv := objc.Send[LocationManager](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LocationManager) Autorelease() LocationManager {
+	rv := objc.Send[LocationManager](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLocationManager creates a new LocationManager instance.
+func NewLocationManager() LocationManager {
+	return getLocationManagerClass().New()
+}
+
 
 // Returns a Boolean value indicating whether the location manager is able to generate heading-related events. [Full Topic]
 
@@ -88,7 +156,7 @@ func (l_ LocationManager) RequestAlwaysAuthorization() {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestHistoricalLocations(purposeKey:sampleCount:completionHandler:)
 func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:"), purposeKey, sampleCount, handler)
+	objc.Send[objc.ID](l_.ID, objc.Sel("requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:"), objc.String(purposeKey), sampleCount, handler)
 }
 // Requests the one-time delivery of the user’s current location. [Full Topic]
 
@@ -102,14 +170,14 @@ func (l_ LocationManager) RequestLocation() {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestTemporaryFullAccuracyAuthorization(withPurposeKey:)
 func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:"), purposeKey)
+	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:"), objc.String(purposeKey))
 }
 // Requests permission to temporarily use location services with full accuracy and reports the results to the provided completion handler. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestTemporaryFullAccuracyAuthorization(withPurposeKey:completion:)
 func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:"), purposeKey, completion)
+	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:"), objc.String(purposeKey), completion)
 }
 // Requests the user’s permission to use location services while the app is in use. [Full Topic]
 

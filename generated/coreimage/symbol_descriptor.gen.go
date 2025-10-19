@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [symbolDescriptor] class.
-var symbolDescriptorClass = _symbolDescriptorClass{objc.GetClass("symbolDescriptor")}
+var (
+	symbolDescriptorClass     _symbolDescriptorClass
+	symbolDescriptorClassOnce sync.Once
+)
+
+func getsymbolDescriptorClass() _symbolDescriptorClass {
+	symbolDescriptorClassOnce.Do(func() {
+		symbolDescriptorClass = _symbolDescriptorClass{objc.GetClass("symbolDescriptor")}
+	})
+	return symbolDescriptorClass
+}
 
 type _symbolDescriptorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IsymbolDescriptor interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/symbolDescriptor-c.ivar
-
 type symbolDescriptor struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type symbolDescriptor struct {
 func symbolDescriptorFrom(ptr unsafe.Pointer) symbolDescriptor {
 	return symbolDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _symbolDescriptorClass) Alloc() symbolDescriptor {
 	rv := objc.Send[symbolDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _symbolDescriptorClass) New() symbolDescriptor {
 	rv := objc.Send[symbolDescriptor](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (s_ symbolDescriptor) Autorelease() symbolDescriptor {
 
 // NewsymbolDescriptor creates a new symbolDescriptor instance.
 func NewsymbolDescriptor() symbolDescriptor {
-	return symbolDescriptorClass.New()
+	return getsymbolDescriptorClass().New()
 }
 
 

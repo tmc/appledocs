@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TextCheckingResult] class.
-var textCheckingResultClass = _TextCheckingResultClass{objc.GetClass("NSTextCheckingResult")}
+var (
+	textCheckingResultClass     _TextCheckingResultClass
+	textCheckingResultClassOnce sync.Once
+)
+
+func getTextCheckingResultClass() _TextCheckingResultClass {
+	textCheckingResultClassOnce.Do(func() {
+		textCheckingResultClass = _TextCheckingResultClass{objc.GetClass("NSTextCheckingResult")}
+	})
+	return textCheckingResultClass
+}
 
 type _TextCheckingResultClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ITextCheckingResult interface {
 // An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
-
 type TextCheckingResult struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type TextCheckingResult struct {
 func TextCheckingResultFrom(ptr unsafe.Pointer) TextCheckingResult {
 	return TextCheckingResult{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextCheckingResultClass) Alloc() TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextCheckingResultClass) New() TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (t_ TextCheckingResult) Autorelease() TextCheckingResult {
 
 // NewTextCheckingResult creates a new TextCheckingResult instance.
 func NewTextCheckingResult() TextCheckingResult {
-	return textCheckingResultClass.New()
+	return getTextCheckingResultClass().New()
 }
 
 

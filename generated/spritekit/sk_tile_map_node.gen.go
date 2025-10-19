@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKTileMapNode] class.
-var sKTileMapNodeClass = _SKTileMapNodeClass{objc.GetClass("SKTileMapNode")}
+var (
+	sKTileMapNodeClass     _SKTileMapNodeClass
+	sKTileMapNodeClassOnce sync.Once
+)
+
+func getSKTileMapNodeClass() _SKTileMapNodeClass {
+	sKTileMapNodeClassOnce.Do(func() {
+		sKTileMapNodeClass = _SKTileMapNodeClass{objc.GetClass("SKTileMapNode")}
+	})
+	return sKTileMapNodeClass
+}
 
 type _SKTileMapNodeClass struct {
 	class objc.Class
@@ -32,7 +43,6 @@ type ISKTileMapNode interface {
 // A two-dimensional array of images. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode
-
 type SKTileMapNode struct {
 	SKNode
 }
@@ -45,13 +55,15 @@ func SKTileMapNodeFrom(ptr unsafe.Pointer) SKTileMapNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKTileMapNodeClass) Alloc() SKTileMapNode {
 	rv := objc.Send[SKTileMapNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKTileMapNodeClass) New() SKTileMapNode {
 	rv := objc.Send[SKTileMapNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -72,7 +84,7 @@ func (s_ SKTileMapNode) Autorelease() SKTileMapNode {
 
 // NewSKTileMapNode creates a new SKTileMapNode instance.
 func NewSKTileMapNode() SKTileMapNode {
-	return sKTileMapNodeClass.New()
+	return getSKTileMapNodeClass().New()
 }
 
 
@@ -101,7 +113,7 @@ func (s_ SKTileMapNode) SetTileGroupAndTileDefinitionForColumnRow(tileGroup unsa
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/setValue(_:forAttribute:)
 func (s_ SKTileMapNode) SetValueForAttributeNamed(value unsafe.Pointer, key string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forAttributeNamed:"), value, key)
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forAttributeNamed:"), value, objc.String(key))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/tileColumnIndex(fromPosition:)
@@ -134,7 +146,7 @@ func (s_ SKTileMapNode) TileRowIndexFromPosition(position unsafe.Pointer) uint {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/value(forAttributeNamed:)
 func (s_ SKTileMapNode) ValueForAttributeNamed(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueForAttributeNamed:"), key)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueForAttributeNamed:"), objc.String(key))
 	return rv
 }
 

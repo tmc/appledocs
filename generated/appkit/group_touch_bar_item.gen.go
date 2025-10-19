@@ -34,7 +34,6 @@ type IGroupTouchBarItem interface {
 // A bar item that provides a bar to contain other items. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem
-
 type GroupTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func GroupTouchBarItemFrom(ptr unsafe.Pointer) GroupTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GroupTouchBarItemClass) Alloc() GroupTouchBarItem {
 	rv := objc.Send[GroupTouchBarItem](objc.ID(gc.class), objc.Sel("alloc"))

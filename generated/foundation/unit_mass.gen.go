@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitMass] class.
-var unitMassClass = _UnitMassClass{objc.GetClass("NSUnitMass")}
+var (
+	unitMassClass     _UnitMassClass
+	unitMassClassOnce sync.Once
+)
+
+func getUnitMassClass() _UnitMassClass {
+	unitMassClassOnce.Do(func() {
+		unitMassClass = _UnitMassClass{objc.GetClass("NSUnitMass")}
+	})
+	return unitMassClass
+}
 
 type _UnitMassClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitMass interface {
 // A unit of measure for mass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass
-
 type UnitMass struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitMassFrom(ptr unsafe.Pointer) UnitMass {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitMassClass) Alloc() UnitMass {
 	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitMassClass) New() UnitMass {
 	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitMass) Autorelease() UnitMass {
 
 // NewUnitMass creates a new UnitMass instance.
 func NewUnitMass() UnitMass {
-	return unitMassClass.New()
+	return getUnitMassClass().New()
 }
 
 

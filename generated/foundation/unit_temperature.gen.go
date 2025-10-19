@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitTemperature] class.
-var unitTemperatureClass = _UnitTemperatureClass{objc.GetClass("NSUnitTemperature")}
+var (
+	unitTemperatureClass     _UnitTemperatureClass
+	unitTemperatureClassOnce sync.Once
+)
+
+func getUnitTemperatureClass() _UnitTemperatureClass {
+	unitTemperatureClassOnce.Do(func() {
+		unitTemperatureClass = _UnitTemperatureClass{objc.GetClass("NSUnitTemperature")}
+	})
+	return unitTemperatureClass
+}
 
 type _UnitTemperatureClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitTemperature interface {
 // A unit of measure for temperature. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature
-
 type UnitTemperature struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitTemperatureFrom(ptr unsafe.Pointer) UnitTemperature {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitTemperatureClass) Alloc() UnitTemperature {
 	rv := objc.Send[UnitTemperature](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitTemperatureClass) New() UnitTemperature {
 	rv := objc.Send[UnitTemperature](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitTemperature) Autorelease() UnitTemperature {
 
 // NewUnitTemperature creates a new UnitTemperature instance.
 func NewUnitTemperature() UnitTemperature {
-	return unitTemperatureClass.New()
+	return getUnitTemperatureClass().New()
 }
 
 

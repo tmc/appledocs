@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Morphology] class.
-var morphologyClass = _MorphologyClass{objc.GetClass("NSMorphology")}
+var (
+	morphologyClass     _MorphologyClass
+	morphologyClassOnce sync.Once
+)
+
+func getMorphologyClass() _MorphologyClass {
+	morphologyClassOnce.Do(func() {
+		morphologyClass = _MorphologyClass{objc.GetClass("NSMorphology")}
+	})
+	return morphologyClass
+}
 
 type _MorphologyClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMorphology interface {
 // A description of the grammatical properties of a string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology
-
 type Morphology struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Morphology struct {
 func MorphologyFrom(ptr unsafe.Pointer) Morphology {
 	return Morphology{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MorphologyClass) Alloc() Morphology {
 	rv := objc.Send[Morphology](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MorphologyClass) New() Morphology {
 	rv := objc.Send[Morphology](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ Morphology) Autorelease() Morphology {
 
 // NewMorphology creates a new Morphology instance.
 func NewMorphology() Morphology {
-	return morphologyClass.New()
+	return getMorphologyClass().New()
 }
 
 

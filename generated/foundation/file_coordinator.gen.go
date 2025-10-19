@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileCoordinator] class.
-var fileCoordinatorClass = _FileCoordinatorClass{objc.GetClass("NSFileCoordinator")}
+var (
+	fileCoordinatorClass     _FileCoordinatorClass
+	fileCoordinatorClassOnce sync.Once
+)
+
+func getFileCoordinatorClass() _FileCoordinatorClass {
+	fileCoordinatorClassOnce.Do(func() {
+		fileCoordinatorClass = _FileCoordinatorClass{objc.GetClass("NSFileCoordinator")}
+	})
+	return fileCoordinatorClass
+}
 
 type _FileCoordinatorClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFileCoordinator interface {
 // An object that coordinates the reading and writing of files and directories among file presenters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator
-
 type FileCoordinator struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type FileCoordinator struct {
 func FileCoordinatorFrom(ptr unsafe.Pointer) FileCoordinator {
 	return FileCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileCoordinatorClass) Alloc() FileCoordinator {
 	rv := objc.Send[FileCoordinator](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileCoordinatorClass) New() FileCoordinator {
 	rv := objc.Send[FileCoordinator](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (f_ FileCoordinator) Autorelease() FileCoordinator {
 
 // NewFileCoordinator creates a new FileCoordinator instance.
 func NewFileCoordinator() FileCoordinator {
-	return fileCoordinatorClass.New()
+	return getFileCoordinatorClass().New()
 }
 
 

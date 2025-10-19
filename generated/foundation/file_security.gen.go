@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [FileSecurity] class.
-var fileSecurityClass = _FileSecurityClass{objc.GetClass("NSFileSecurity")}
+var (
+	fileSecurityClass     _FileSecurityClass
+	fileSecurityClassOnce sync.Once
+)
+
+func getFileSecurityClass() _FileSecurityClass {
+	fileSecurityClassOnce.Do(func() {
+		fileSecurityClass = _FileSecurityClass{objc.GetClass("NSFileSecurity")}
+	})
+	return fileSecurityClass
+}
 
 type _FileSecurityClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IFileSecurity interface {
 // A stub class that encapsulates security information about a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity
-
 type FileSecurity struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type FileSecurity struct {
 func FileSecurityFrom(ptr unsafe.Pointer) FileSecurity {
 	return FileSecurity{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileSecurityClass) Alloc() FileSecurity {
 	rv := objc.Send[FileSecurity](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileSecurityClass) New() FileSecurity {
 	rv := objc.Send[FileSecurity](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (f_ FileSecurity) Autorelease() FileSecurity {
 
 // NewFileSecurity creates a new FileSecurity instance.
 func NewFileSecurity() FileSecurity {
-	return fileSecurityClass.New()
+	return getFileSecurityClass().New()
 }
 
 

@@ -34,7 +34,6 @@ type IStepper interface {
 // An interface with up and down arrow buttons for incrementing or decrementing a value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper
-
 type Stepper struct {
 	Control
 }
@@ -47,6 +46,7 @@ func StepperFrom(ptr unsafe.Pointer) Stepper {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StepperClass) Alloc() Stepper {
 	rv := objc.Send[Stepper](objc.ID(sc.class), objc.Sel("alloc"))

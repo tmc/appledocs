@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [CachedURLResponse] class.
-var cachedURLResponseClass = _CachedURLResponseClass{objc.GetClass("NSCachedURLResponse")}
+var (
+	cachedURLResponseClass     _CachedURLResponseClass
+	cachedURLResponseClassOnce sync.Once
+)
+
+func getCachedURLResponseClass() _CachedURLResponseClass {
+	cachedURLResponseClassOnce.Do(func() {
+		cachedURLResponseClass = _CachedURLResponseClass{objc.GetClass("NSCachedURLResponse")}
+	})
+	return cachedURLResponseClass
+}
 
 type _CachedURLResponseClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ICachedURLResponse interface {
 // A cached response to a URL request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse
-
 type CachedURLResponse struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type CachedURLResponse struct {
 func CachedURLResponseFrom(ptr unsafe.Pointer) CachedURLResponse {
 	return CachedURLResponse{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CachedURLResponseClass) Alloc() CachedURLResponse {
 	rv := objc.Send[CachedURLResponse](objc.ID(cc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CachedURLResponseClass) New() CachedURLResponse {
 	rv := objc.Send[CachedURLResponse](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (c_ CachedURLResponse) Autorelease() CachedURLResponse {
 
 // NewCachedURLResponse creates a new CachedURLResponse instance.
 func NewCachedURLResponse() CachedURLResponse {
-	return cachedURLResponseClass.New()
+	return getCachedURLResponseClass().New()
 }
 
 

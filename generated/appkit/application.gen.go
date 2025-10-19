@@ -49,7 +49,6 @@ type IApplication interface {
 // An object that manages an app’s main event loop and resources used by all of that app’s objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication
-
 type Application struct {
 	Responder
 }
@@ -62,6 +61,7 @@ func ApplicationFrom(ptr unsafe.Pointer) Application {
 		Responder: ResponderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _ApplicationClass) Alloc() Application {
 	rv := objc.Send[Application](objc.ID(ac.class), objc.Sel("alloc"))

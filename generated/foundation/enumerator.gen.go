@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Enumerator] class.
-var enumeratorClass = _EnumeratorClass{objc.GetClass("NSEnumerator")}
+var (
+	enumeratorClass     _EnumeratorClass
+	enumeratorClassOnce sync.Once
+)
+
+func getEnumeratorClass() _EnumeratorClass {
+	enumeratorClassOnce.Do(func() {
+		enumeratorClass = _EnumeratorClass{objc.GetClass("NSEnumerator")}
+	})
+	return enumeratorClass
+}
 
 type _EnumeratorClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IEnumerator interface {
 // An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator
-
 type Enumerator struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Enumerator struct {
 func EnumeratorFrom(ptr unsafe.Pointer) Enumerator {
 	return Enumerator{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _EnumeratorClass) Alloc() Enumerator {
 	rv := objc.Send[Enumerator](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EnumeratorClass) New() Enumerator {
 	rv := objc.Send[Enumerator](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (e_ Enumerator) Autorelease() Enumerator {
 
 // NewEnumerator creates a new Enumerator instance.
 func NewEnumerator() Enumerator {
-	return enumeratorClass.New()
+	return getEnumeratorClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLCredential] class.
-var uRLCredentialClass = _URLCredentialClass{objc.GetClass("NSURLCredential")}
+var (
+	uRLCredentialClass     _URLCredentialClass
+	uRLCredentialClassOnce sync.Once
+)
+
+func getURLCredentialClass() _URLCredentialClass {
+	uRLCredentialClassOnce.Do(func() {
+		uRLCredentialClass = _URLCredentialClass{objc.GetClass("NSURLCredential")}
+	})
+	return uRLCredentialClass
+}
 
 type _URLCredentialClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLCredential interface {
 // n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential
-
 type URLCredential struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLCredential struct {
 func URLCredentialFrom(ptr unsafe.Pointer) URLCredential {
 	return URLCredential{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLCredentialClass) Alloc() URLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLCredentialClass) New() URLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLCredential) Autorelease() URLCredential {
 
 // NewURLCredential creates a new URLCredential instance.
 func NewURLCredential() URLCredential {
-	return uRLCredentialClass.New()
+	return getURLCredentialClass().New()
 }
 
 

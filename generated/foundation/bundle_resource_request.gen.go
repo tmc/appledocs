@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [BundleResourceRequest] class.
-var bundleResourceRequestClass = _BundleResourceRequestClass{objc.GetClass("NSBundleResourceRequest")}
+var (
+	bundleResourceRequestClass     _BundleResourceRequestClass
+	bundleResourceRequestClassOnce sync.Once
+)
+
+func getBundleResourceRequestClass() _BundleResourceRequestClass {
+	bundleResourceRequestClassOnce.Do(func() {
+		bundleResourceRequestClass = _BundleResourceRequestClass{objc.GetClass("NSBundleResourceRequest")}
+	})
+	return bundleResourceRequestClass
+}
 
 type _BundleResourceRequestClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IBundleResourceRequest interface {
 // A resource manager you use to download content hosted on the App Store at the time your app needs it. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest
-
 type BundleResourceRequest struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type BundleResourceRequest struct {
 func BundleResourceRequestFrom(ptr unsafe.Pointer) BundleResourceRequest {
 	return BundleResourceRequest{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BundleResourceRequestClass) Alloc() BundleResourceRequest {
 	rv := objc.Send[BundleResourceRequest](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BundleResourceRequestClass) New() BundleResourceRequest {
 	rv := objc.Send[BundleResourceRequest](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (b_ BundleResourceRequest) Autorelease() BundleResourceRequest {
 
 // NewBundleResourceRequest creates a new BundleResourceRequest instance.
 func NewBundleResourceRequest() BundleResourceRequest {
-	return bundleResourceRequestClass.New()
+	return getBundleResourceRequestClass().New()
 }
 
 

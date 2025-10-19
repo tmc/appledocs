@@ -35,7 +35,6 @@ type ISplitViewItem interface {
 // An item in a split view controller. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem
-
 type SplitViewItem struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type SplitViewItem struct {
 func SplitViewItemFrom(ptr unsafe.Pointer) SplitViewItem {
 	return SplitViewItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SplitViewItemClass) Alloc() SplitViewItem {
 	rv := objc.Send[SplitViewItem](objc.ID(sc.class), objc.Sel("alloc"))
@@ -81,7 +81,6 @@ func NewSplitViewItem() SplitViewItem {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(inspectorWithViewController:)
 func NewSplitViewItemInspectorWithViewController(viewController unsafe.Pointer) SplitViewItem {
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[SplitViewItem](objc.ID(getSplitViewItemClass().class), objc.Sel("inspectorWithViewController:"), viewController)
 	return rv
 }

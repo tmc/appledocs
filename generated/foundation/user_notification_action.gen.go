@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [UserNotificationAction] class.
-var userNotificationActionClass = _UserNotificationActionClass{objc.GetClass("NSUserNotificationAction")}
+var (
+	userNotificationActionClass     _UserNotificationActionClass
+	userNotificationActionClassOnce sync.Once
+)
+
+func getUserNotificationActionClass() _UserNotificationActionClass {
+	userNotificationActionClassOnce.Do(func() {
+		userNotificationActionClass = _UserNotificationActionClass{objc.GetClass("NSUserNotificationAction")}
+	})
+	return userNotificationActionClass
+}
 
 type _UserNotificationActionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IUserNotificationAction interface {
 // An action that the user can take in response to receiving a notification. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction
-
 type UserNotificationAction struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type UserNotificationAction struct {
 func UserNotificationActionFrom(ptr unsafe.Pointer) UserNotificationAction {
 	return UserNotificationAction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserNotificationActionClass) Alloc() UserNotificationAction {
 	rv := objc.Send[UserNotificationAction](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UserNotificationActionClass) New() UserNotificationAction {
 	rv := objc.Send[UserNotificationAction](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ UserNotificationAction) Autorelease() UserNotificationAction {
 
 // NewUserNotificationAction creates a new UserNotificationAction instance.
 func NewUserNotificationAction() UserNotificationAction {
-	return userNotificationActionClass.New()
+	return getUserNotificationActionClass().New()
 }
 
 

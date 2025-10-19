@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Unit] class.
-var unitClass = _UnitClass{objc.GetClass("NSUnit")}
+var (
+	unitClass     _UnitClass
+	unitClassOnce sync.Once
+)
+
+func getUnitClass() _UnitClass {
+	unitClassOnce.Do(func() {
+		unitClass = _UnitClass{objc.GetClass("NSUnit")}
+	})
+	return unitClass
+}
 
 type _UnitClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IUnit interface {
 // An abstract class representing a unit of measure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit
-
 type Unit struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Unit struct {
 func UnitFrom(ptr unsafe.Pointer) Unit {
 	return Unit{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitClass) Alloc() Unit {
 	rv := objc.Send[Unit](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitClass) New() Unit {
 	rv := objc.Send[Unit](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ Unit) Autorelease() Unit {
 
 // NewUnit creates a new Unit instance.
 func NewUnit() Unit {
-	return unitClass.New()
+	return getUnitClass().New()
 }
 
 

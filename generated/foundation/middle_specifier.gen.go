@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MiddleSpecifier] class.
-var middleSpecifierClass = _MiddleSpecifierClass{objc.GetClass("NSMiddleSpecifier")}
+var (
+	middleSpecifierClass     _MiddleSpecifierClass
+	middleSpecifierClassOnce sync.Once
+)
+
+func getMiddleSpecifierClass() _MiddleSpecifierClass {
+	middleSpecifierClassOnce.Do(func() {
+		middleSpecifierClass = _MiddleSpecifierClass{objc.GetClass("NSMiddleSpecifier")}
+	})
+	return middleSpecifierClass
+}
 
 type _MiddleSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IMiddleSpecifier interface {
 // A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMiddleSpecifier
-
 type MiddleSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func MiddleSpecifierFrom(ptr unsafe.Pointer) MiddleSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MiddleSpecifierClass) Alloc() MiddleSpecifier {
 	rv := objc.Send[MiddleSpecifier](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MiddleSpecifierClass) New() MiddleSpecifier {
 	rv := objc.Send[MiddleSpecifier](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MiddleSpecifier) Autorelease() MiddleSpecifier {
 
 // NewMiddleSpecifier creates a new MiddleSpecifier instance.
 func NewMiddleSpecifier() MiddleSpecifier {
-	return middleSpecifierClass.New()
+	return getMiddleSpecifierClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAssetDownloadTask] class.
-var aVAssetDownloadTaskClass = _AVAssetDownloadTaskClass{objc.GetClass("AVAssetDownloadTask")}
+var (
+	aVAssetDownloadTaskClass     _AVAssetDownloadTaskClass
+	aVAssetDownloadTaskClassOnce sync.Once
+)
+
+func getAVAssetDownloadTaskClass() _AVAssetDownloadTaskClass {
+	aVAssetDownloadTaskClassOnce.Do(func() {
+		aVAssetDownloadTaskClass = _AVAssetDownloadTaskClass{objc.GetClass("AVAssetDownloadTask")}
+	})
+	return aVAssetDownloadTaskClass
+}
 
 type _AVAssetDownloadTaskClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAssetDownloadTask interface {
 // A session used to download HTTP Live Streaming assets. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
-
 type AVAssetDownloadTask struct {
 	foundation.URLSessionTask
 }
@@ -37,13 +47,15 @@ func AVAssetDownloadTaskFrom(ptr unsafe.Pointer) AVAssetDownloadTask {
 		URLSessionTask: foundation.URLSessionTaskFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetDownloadTaskClass) Alloc() AVAssetDownloadTask {
 	rv := objc.Send[AVAssetDownloadTask](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetDownloadTaskClass) New() AVAssetDownloadTask {
 	rv := objc.Send[AVAssetDownloadTask](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVAssetDownloadTask) Autorelease() AVAssetDownloadTask {
 
 // NewAVAssetDownloadTask creates a new AVAssetDownloadTask instance.
 func NewAVAssetDownloadTask() AVAssetDownloadTask {
-	return aVAssetDownloadTaskClass.New()
+	return getAVAssetDownloadTaskClass().New()
 }
 
 

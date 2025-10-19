@@ -35,7 +35,6 @@ type IFont interface {
 // The representation of a font in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont
-
 type Font struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Font struct {
 func FontFrom(ptr unsafe.Pointer) Font {
 	return Font{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FontClass) Alloc() Font {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("alloc"))

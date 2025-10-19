@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [EmitterCell] class.
-var emitterCellClass = _EmitterCellClass{objc.GetClass("CAEmitterCell")}
+var (
+	emitterCellClass     _EmitterCellClass
+	emitterCellClassOnce sync.Once
+)
+
+func getEmitterCellClass() _EmitterCellClass {
+	emitterCellClassOnce.Do(func() {
+		emitterCellClass = _EmitterCellClass{objc.GetClass("CAEmitterCell")}
+	})
+	return emitterCellClass
+}
 
 type _EmitterCellClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IEmitterCell interface {
 // The definition of a particle emitted by a particle layer. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell
-
 type EmitterCell struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type EmitterCell struct {
 func EmitterCellFrom(ptr unsafe.Pointer) EmitterCell {
 	return EmitterCell{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _EmitterCellClass) Alloc() EmitterCell {
 	rv := objc.Send[EmitterCell](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EmitterCellClass) New() EmitterCell {
 	rv := objc.Send[EmitterCell](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (e_ EmitterCell) Autorelease() EmitterCell {
 
 // NewEmitterCell creates a new EmitterCell instance.
 func NewEmitterCell() EmitterCell {
-	return emitterCellClass.New()
+	return getEmitterCellClass().New()
 }
 
 

@@ -41,7 +41,6 @@ type IProgressIndicator interface {
 // An interface that provides visual feedback to the user about the status of an ongoing task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator
-
 type ProgressIndicator struct {
 	View
 }
@@ -54,6 +53,7 @@ func ProgressIndicatorFrom(ptr unsafe.Pointer) ProgressIndicator {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _ProgressIndicatorClass) Alloc() ProgressIndicator {
 	rv := objc.Send[ProgressIndicator](objc.ID(pc.class), objc.Sel("alloc"))

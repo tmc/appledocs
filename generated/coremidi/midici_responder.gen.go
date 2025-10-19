@@ -3,6 +3,7 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MIDICIResponder] class.
-var mIDICIResponderClass = _MIDICIResponderClass{objc.GetClass("MIDICIResponder")}
+var (
+	mIDICIResponderClass     _MIDICIResponderClass
+	mIDICIResponderClassOnce sync.Once
+)
+
+func getMIDICIResponderClass() _MIDICIResponderClass {
+	mIDICIResponderClassOnce.Do(func() {
+		mIDICIResponderClass = _MIDICIResponderClass{objc.GetClass("MIDICIResponder")}
+	})
+	return mIDICIResponderClass
+}
 
 type _MIDICIResponderClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMIDICIResponder interface {
 // An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIResponder
-
 type MIDICIResponder struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MIDICIResponder struct {
 func MIDICIResponderFrom(ptr unsafe.Pointer) MIDICIResponder {
 	return MIDICIResponder{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDICIResponderClass) Alloc() MIDICIResponder {
 	rv := objc.Send[MIDICIResponder](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDICIResponderClass) New() MIDICIResponder {
 	rv := objc.Send[MIDICIResponder](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MIDICIResponder) Autorelease() MIDICIResponder {
 
 // NewMIDICIResponder creates a new MIDICIResponder instance.
 func NewMIDICIResponder() MIDICIResponder {
-	return mIDICIResponderClass.New()
+	return getMIDICIResponderClass().New()
 }
 
 

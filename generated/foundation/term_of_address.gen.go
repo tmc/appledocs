@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [TermOfAddress] class.
-var termOfAddressClass = _TermOfAddressClass{objc.GetClass("NSTermOfAddress")}
+var (
+	termOfAddressClass     _TermOfAddressClass
+	termOfAddressClassOnce sync.Once
+)
+
+func getTermOfAddressClass() _TermOfAddressClass {
+	termOfAddressClassOnce.Do(func() {
+		termOfAddressClass = _TermOfAddressClass{objc.GetClass("NSTermOfAddress")}
+	})
+	return termOfAddressClass
+}
 
 type _TermOfAddressClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type ITermOfAddress interface {
 // The type for representing grammatical gender in localized text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress
-
 type TermOfAddress struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type TermOfAddress struct {
 func TermOfAddressFrom(ptr unsafe.Pointer) TermOfAddress {
 	return TermOfAddress{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TermOfAddressClass) Alloc() TermOfAddress {
 	rv := objc.Send[TermOfAddress](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TermOfAddressClass) New() TermOfAddress {
 	rv := objc.Send[TermOfAddress](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (t_ TermOfAddress) Autorelease() TermOfAddress {
 
 // NewTermOfAddress creates a new TermOfAddress instance.
 func NewTermOfAddress() TermOfAddress {
-	return termOfAddressClass.New()
+	return getTermOfAddressClass().New()
 }
 
 

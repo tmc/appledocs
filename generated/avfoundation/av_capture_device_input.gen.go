@@ -3,13 +3,24 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AVCaptureDeviceInput] class.
-var aVCaptureDeviceInputClass = _AVCaptureDeviceInputClass{objc.GetClass("AVCaptureDeviceInput")}
+var (
+	aVCaptureDeviceInputClass     _AVCaptureDeviceInputClass
+	aVCaptureDeviceInputClassOnce sync.Once
+)
+
+func getAVCaptureDeviceInputClass() _AVCaptureDeviceInputClass {
+	aVCaptureDeviceInputClassOnce.Do(func() {
+		aVCaptureDeviceInputClass = _AVCaptureDeviceInputClass{objc.GetClass("AVCaptureDeviceInput")}
+	})
+	return aVCaptureDeviceInputClass
+}
 
 type _AVCaptureDeviceInputClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAVCaptureDeviceInput interface {
 // An object that provides media input from a capture device to a capture session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput
-
 type AVCaptureDeviceInput struct {
 	AVCaptureInput
 }
@@ -36,13 +46,15 @@ func AVCaptureDeviceInputFrom(ptr unsafe.Pointer) AVCaptureDeviceInput {
 		AVCaptureInput: AVCaptureInputFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVCaptureDeviceInputClass) Alloc() AVCaptureDeviceInput {
 	rv := objc.Send[AVCaptureDeviceInput](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVCaptureDeviceInputClass) New() AVCaptureDeviceInput {
 	rv := objc.Send[AVCaptureDeviceInput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AVCaptureDeviceInput) Autorelease() AVCaptureDeviceInput {
 
 // NewAVCaptureDeviceInput creates a new AVCaptureDeviceInput instance.
 func NewAVCaptureDeviceInput() AVCaptureDeviceInput {
-	return aVCaptureDeviceInputClass.New()
+	return getAVCaptureDeviceInputClass().New()
 }
 
 

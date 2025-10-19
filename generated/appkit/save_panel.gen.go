@@ -40,7 +40,6 @@ type ISavePanel interface {
 // A panel that prompts the user for information about where to save a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel
-
 type SavePanel struct {
 	Panel
 }
@@ -53,6 +52,7 @@ func SavePanelFrom(ptr unsafe.Pointer) SavePanel {
 		Panel: PanelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SavePanelClass) Alloc() SavePanel {
 	rv := objc.Send[SavePanel](objc.ID(sc.class), objc.Sel("alloc"))

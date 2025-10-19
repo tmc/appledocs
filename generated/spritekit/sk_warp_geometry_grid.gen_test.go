@@ -11,15 +11,15 @@ var _ = spritekit.NewSKWarpGeometryGrid
 
 
 
-
-// ExampleNewGridWithColumnsRows demonstrates how to create a SKWarpGeometryGrid instance using NewGridWithColumnsRows.
+// ExampleNewSKWarpGeometryGridWithColumnsRows demonstrates how to create a SKWarpGeometryGrid instance using NewSKWarpGeometryGridWithColumnsRows.
 // Creates a warp geometry grid of a specified size.
-func ExampleNewGridWithColumnsRows() {
-	_ = spritekit.NewGridWithColumnsRows(
+func ExampleNewSKWarpGeometryGridWithColumnsRows() {
+	_ = spritekit.NewSKWarpGeometryGridWithColumnsRows(
 		0, // cols int
 		0, // rows int
 	)
 	// Output:
 }
+
 
 

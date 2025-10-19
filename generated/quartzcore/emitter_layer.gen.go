@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [EmitterLayer] class.
-var emitterLayerClass = _EmitterLayerClass{objc.GetClass("CAEmitterLayer")}
+var (
+	emitterLayerClass     _EmitterLayerClass
+	emitterLayerClassOnce sync.Once
+)
+
+func getEmitterLayerClass() _EmitterLayerClass {
+	emitterLayerClassOnce.Do(func() {
+		emitterLayerClass = _EmitterLayerClass{objc.GetClass("CAEmitterLayer")}
+	})
+	return emitterLayerClass
+}
 
 type _EmitterLayerClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IEmitterLayer interface {
 // A layer that emits, animates, and renders a particle system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer
-
 type EmitterLayer struct {
 	Layer
 }
@@ -36,13 +46,15 @@ func EmitterLayerFrom(ptr unsafe.Pointer) EmitterLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _EmitterLayerClass) Alloc() EmitterLayer {
 	rv := objc.Send[EmitterLayer](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EmitterLayerClass) New() EmitterLayer {
 	rv := objc.Send[EmitterLayer](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (e_ EmitterLayer) Autorelease() EmitterLayer {
 
 // NewEmitterLayer creates a new EmitterLayer instance.
 func NewEmitterLayer() EmitterLayer {
-	return emitterLayerClass.New()
+	return getEmitterLayerClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVMediaSelection] class.
-var aVMediaSelectionClass = _AVMediaSelectionClass{objc.GetClass("AVMediaSelection")}
+var (
+	aVMediaSelectionClass     _AVMediaSelectionClass
+	aVMediaSelectionClassOnce sync.Once
+)
+
+func getAVMediaSelectionClass() _AVMediaSelectionClass {
+	aVMediaSelectionClassOnce.Do(func() {
+		aVMediaSelectionClass = _AVMediaSelectionClass{objc.GetClass("AVMediaSelection")}
+	})
+	return aVMediaSelectionClass
+}
 
 type _AVMediaSelectionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVMediaSelection interface {
 // An object that represents a complete rendition of media selection options on an asset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection
-
 type AVMediaSelection struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVMediaSelection struct {
 func AVMediaSelectionFrom(ptr unsafe.Pointer) AVMediaSelection {
 	return AVMediaSelection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVMediaSelectionClass) Alloc() AVMediaSelection {
 	rv := objc.Send[AVMediaSelection](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVMediaSelectionClass) New() AVMediaSelection {
 	rv := objc.Send[AVMediaSelection](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVMediaSelection) Autorelease() AVMediaSelection {
 
 // NewAVMediaSelection creates a new AVMediaSelection instance.
 func NewAVMediaSelection() AVMediaSelection {
-	return aVMediaSelectionClass.New()
+	return getAVMediaSelectionClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RandomSpecifier] class.
-var randomSpecifierClass = _RandomSpecifierClass{objc.GetClass("NSRandomSpecifier")}
+var (
+	randomSpecifierClass     _RandomSpecifierClass
+	randomSpecifierClassOnce sync.Once
+)
+
+func getRandomSpecifierClass() _RandomSpecifierClass {
+	randomSpecifierClassOnce.Do(func() {
+		randomSpecifierClass = _RandomSpecifierClass{objc.GetClass("NSRandomSpecifier")}
+	})
+	return randomSpecifierClass
+}
 
 type _RandomSpecifierClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IRandomSpecifier interface {
 // A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRandomSpecifier
-
 type RandomSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -36,13 +46,15 @@ func RandomSpecifierFrom(ptr unsafe.Pointer) RandomSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RandomSpecifierClass) Alloc() RandomSpecifier {
 	rv := objc.Send[RandomSpecifier](objc.ID(rc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RandomSpecifierClass) New() RandomSpecifier {
 	rv := objc.Send[RandomSpecifier](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (r_ RandomSpecifier) Autorelease() RandomSpecifier {
 
 // NewRandomSpecifier creates a new RandomSpecifier instance.
 func NewRandomSpecifier() RandomSpecifier {
-	return randomSpecifierClass.New()
+	return getRandomSpecifierClass().New()
 }
 
 

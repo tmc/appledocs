@@ -36,7 +36,6 @@ type ITouchBar interface {
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar
-
 type TouchBar struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type TouchBar struct {
 func TouchBarFrom(ptr unsafe.Pointer) TouchBar {
 	return TouchBar{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TouchBarClass) Alloc() TouchBar {
 	rv := objc.Send[TouchBar](objc.ID(tc.class), objc.Sel("alloc"))
@@ -84,7 +84,6 @@ func NewTouchBar() TouchBar {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
 func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

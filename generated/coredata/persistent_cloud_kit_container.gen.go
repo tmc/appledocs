@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentCloudKitContainer] class.
-var persistentCloudKitContainerClass = _PersistentCloudKitContainerClass{objc.GetClass("NSPersistentCloudKitContainer")}
+var (
+	persistentCloudKitContainerClass     _PersistentCloudKitContainerClass
+	persistentCloudKitContainerClassOnce sync.Once
+)
+
+func getPersistentCloudKitContainerClass() _PersistentCloudKitContainerClass {
+	persistentCloudKitContainerClassOnce.Do(func() {
+		persistentCloudKitContainerClass = _PersistentCloudKitContainerClass{objc.GetClass("NSPersistentCloudKitContainer")}
+	})
+	return persistentCloudKitContainerClass
+}
 
 type _PersistentCloudKitContainerClass struct {
 	class objc.Class
@@ -41,7 +52,6 @@ type IPersistentCloudKitContainer interface {
 // A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer
-
 type PersistentCloudKitContainer struct {
 	PersistentContainer
 }
@@ -54,13 +64,15 @@ func PersistentCloudKitContainerFrom(ptr unsafe.Pointer) PersistentCloudKitConta
 		PersistentContainer: PersistentContainerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentCloudKitContainerClass) Alloc() PersistentCloudKitContainer {
 	rv := objc.Send[PersistentCloudKitContainer](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentCloudKitContainerClass) New() PersistentCloudKitContainer {
 	rv := objc.Send[PersistentCloudKitContainer](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,7 +93,7 @@ func (p_ PersistentCloudKitContainer) Autorelease() PersistentCloudKitContainer 
 
 // NewPersistentCloudKitContainer creates a new PersistentCloudKitContainer instance.
 func NewPersistentCloudKitContainer() PersistentCloudKitContainer {
-	return persistentCloudKitContainerClass.New()
+	return getPersistentCloudKitContainerClass().New()
 }
 
 
@@ -90,7 +102,7 @@ func NewPersistentCloudKitContainer() PersistentCloudKitContainer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/initializeCloudKitSchema(options:)
 func NewPersistentCloudKitContainerializeCloudKitSchemaWithOptionsError(options unsafe.Pointer, error unsafe.Pointer) PersistentCloudKitContainer {
-	instance := persistentCloudKitContainerClass.Alloc()
+	instance := getPersistentCloudKitContainerClass().Alloc()
 	rv := objc.Send[PersistentCloudKitContainer](instance.ID, objc.Sel("initializeCloudKitSchemaWithOptions:error:"), options, error)
 	rv.Autorelease()
 	return rv

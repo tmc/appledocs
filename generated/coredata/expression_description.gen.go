@@ -3,13 +3,24 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ExpressionDescription] class.
-var expressionDescriptionClass = _ExpressionDescriptionClass{objc.GetClass("NSExpressionDescription")}
+var (
+	expressionDescriptionClass     _ExpressionDescriptionClass
+	expressionDescriptionClassOnce sync.Once
+)
+
+func getExpressionDescriptionClass() _ExpressionDescriptionClass {
+	expressionDescriptionClassOnce.Do(func() {
+		expressionDescriptionClass = _ExpressionDescriptionClass{objc.GetClass("NSExpressionDescription")}
+	})
+	return expressionDescriptionClass
+}
 
 type _ExpressionDescriptionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IExpressionDescription interface {
 // An object that describes an expression to include with a fetch request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription
-
 type ExpressionDescription struct {
 	PropertyDescription
 }
@@ -36,13 +46,15 @@ func ExpressionDescriptionFrom(ptr unsafe.Pointer) ExpressionDescription {
 		PropertyDescription: PropertyDescriptionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _ExpressionDescriptionClass) Alloc() ExpressionDescription {
 	rv := objc.Send[ExpressionDescription](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _ExpressionDescriptionClass) New() ExpressionDescription {
 	rv := objc.Send[ExpressionDescription](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (e_ ExpressionDescription) Autorelease() ExpressionDescription {
 
 // NewExpressionDescription creates a new ExpressionDescription instance.
 func NewExpressionDescription() ExpressionDescription {
-	return expressionDescriptionClass.New()
+	return getExpressionDescriptionClass().New()
 }
 
 

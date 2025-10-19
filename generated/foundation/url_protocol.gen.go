@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLProtocol] class.
-var uRLProtocolClass = _URLProtocolClass{objc.GetClass("NSURLProtocol")}
+var (
+	uRLProtocolClass     _URLProtocolClass
+	uRLProtocolClassOnce sync.Once
+)
+
+func getURLProtocolClass() _URLProtocolClass {
+	uRLProtocolClassOnce.Do(func() {
+		uRLProtocolClass = _URLProtocolClass{objc.GetClass("NSURLProtocol")}
+	})
+	return uRLProtocolClass
+}
 
 type _URLProtocolClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLProtocol interface {
 // An abstract class that handles the loading of protocol-specific URL data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol
-
 type URLProtocol struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLProtocol struct {
 func URLProtocolFrom(ptr unsafe.Pointer) URLProtocol {
 	return URLProtocol{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLProtocolClass) Alloc() URLProtocol {
 	rv := objc.Send[URLProtocol](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLProtocolClass) New() URLProtocol {
 	rv := objc.Send[URLProtocol](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLProtocol) Autorelease() URLProtocol {
 
 // NewURLProtocol creates a new URLProtocol instance.
 func NewURLProtocol() URLProtocol {
-	return uRLProtocolClass.New()
+	return getURLProtocolClass().New()
 }
 
 

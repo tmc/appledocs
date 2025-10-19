@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NWEndpoint] class.
-var nWEndpointClass = _NWEndpointClass{objc.GetClass("NWEndpoint")}
+var (
+	nWEndpointClass     _NWEndpointClass
+	nWEndpointClassOnce sync.Once
+)
+
+func getNWEndpointClass() _NWEndpointClass {
+	nWEndpointClassOnce.Do(func() {
+		nWEndpointClass = _NWEndpointClass{objc.GetClass("NWEndpoint")}
+	})
+	return nWEndpointClass
+}
 
 type _NWEndpointClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INWEndpoint interface {
 // An abstract base class, shared by or , that represents the source or destination of a network connection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWEndpoint
-
 type NWEndpoint struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NWEndpoint struct {
 func NWEndpointFrom(ptr unsafe.Pointer) NWEndpoint {
 	return NWEndpoint{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NWEndpointClass) Alloc() NWEndpoint {
 	rv := objc.Send[NWEndpoint](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NWEndpointClass) New() NWEndpoint {
 	rv := objc.Send[NWEndpoint](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NWEndpoint) Autorelease() NWEndpoint {
 
 // NewNWEndpoint creates a new NWEndpoint instance.
 func NewNWEndpoint() NWEndpoint {
-	return nWEndpointClass.New()
+	return getNWEndpointClass().New()
 }
 
 

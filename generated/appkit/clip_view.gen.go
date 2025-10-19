@@ -40,7 +40,6 @@ type IClipView interface {
 // An object that clips a document view to a scroll view’s frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView
-
 type ClipView struct {
 	View
 }
@@ -53,6 +52,7 @@ func ClipViewFrom(ptr unsafe.Pointer) ClipView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ClipViewClass) Alloc() ClipView {
 	rv := objc.Send[ClipView](objc.ID(cc.class), objc.Sel("alloc"))

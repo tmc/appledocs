@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [URLCredentialStorage] class.
-var uRLCredentialStorageClass = _URLCredentialStorageClass{objc.GetClass("NSURLCredentialStorage")}
+var (
+	uRLCredentialStorageClass     _URLCredentialStorageClass
+	uRLCredentialStorageClassOnce sync.Once
+)
+
+func getURLCredentialStorageClass() _URLCredentialStorageClass {
+	uRLCredentialStorageClassOnce.Do(func() {
+		uRLCredentialStorageClass = _URLCredentialStorageClass{objc.GetClass("NSURLCredentialStorage")}
+	})
+	return uRLCredentialStorageClass
+}
 
 type _URLCredentialStorageClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IURLCredentialStorage interface {
 // The manager of a shared credentials cache. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage
-
 type URLCredentialStorage struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type URLCredentialStorage struct {
 func URLCredentialStorageFrom(ptr unsafe.Pointer) URLCredentialStorage {
 	return URLCredentialStorage{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLCredentialStorageClass) Alloc() URLCredentialStorage {
 	rv := objc.Send[URLCredentialStorage](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLCredentialStorageClass) New() URLCredentialStorage {
 	rv := objc.Send[URLCredentialStorage](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (u_ URLCredentialStorage) Autorelease() URLCredentialStorage {
 
 // NewURLCredentialStorage creates a new URLCredentialStorage instance.
 func NewURLCredentialStorage() URLCredentialStorage {
-	return uRLCredentialStorageClass.New()
+	return getURLCredentialStorageClass().New()
 }
 
 

@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableAttributedString] class.
-var mutableAttributedStringClass = _MutableAttributedStringClass{objc.GetClass("NSMutableAttributedString")}
+var (
+	mutableAttributedStringClass     _MutableAttributedStringClass
+	mutableAttributedStringClassOnce sync.Once
+)
+
+func getMutableAttributedStringClass() _MutableAttributedStringClass {
+	mutableAttributedStringClassOnce.Do(func() {
+		mutableAttributedStringClass = _MutableAttributedStringClass{objc.GetClass("NSMutableAttributedString")}
+	})
+	return mutableAttributedStringClass
+}
 
 type _MutableAttributedStringClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMutableAttributedString interface {
 // A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString
-
 type MutableAttributedString struct {
 	AttributedString
 }
@@ -37,13 +47,15 @@ func MutableAttributedStringFrom(ptr unsafe.Pointer) MutableAttributedString {
 		AttributedString: AttributedStringFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableAttributedStringClass) Alloc() MutableAttributedString {
 	rv := objc.Send[MutableAttributedString](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MutableAttributedStringClass) New() MutableAttributedString {
 	rv := objc.Send[MutableAttributedString](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (m_ MutableAttributedString) Autorelease() MutableAttributedString {
 
 // NewMutableAttributedString creates a new MutableAttributedString instance.
 func NewMutableAttributedString() MutableAttributedString {
-	return mutableAttributedStringClass.New()
+	return getMutableAttributedStringClass().New()
 }
 
 

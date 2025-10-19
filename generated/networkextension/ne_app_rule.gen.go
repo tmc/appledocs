@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEAppRule] class.
-var nEAppRuleClass = _NEAppRuleClass{objc.GetClass("NEAppRule")}
+var (
+	nEAppRuleClass     _NEAppRuleClass
+	nEAppRuleClassOnce sync.Once
+)
+
+func getNEAppRuleClass() _NEAppRuleClass {
+	nEAppRuleClassOnce.Do(func() {
+		nEAppRuleClass = _NEAppRuleClass{objc.GetClass("NEAppRule")}
+	})
+	return nEAppRuleClass
+}
 
 type _NEAppRuleClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INEAppRule interface {
 // The identity of an app whose traffic is to be routed through the tunnel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule
-
 type NEAppRule struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type NEAppRule struct {
 func NEAppRuleFrom(ptr unsafe.Pointer) NEAppRule {
 	return NEAppRule{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEAppRuleClass) Alloc() NEAppRule {
 	rv := objc.Send[NEAppRule](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEAppRuleClass) New() NEAppRule {
 	rv := objc.Send[NEAppRule](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (n_ NEAppRule) Autorelease() NEAppRule {
 
 // NewNEAppRule creates a new NEAppRule instance.
 func NewNEAppRule() NEAppRule {
-	return nEAppRuleClass.New()
+	return getNEAppRuleClass().New()
 }
 
 

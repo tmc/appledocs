@@ -35,7 +35,6 @@ type ITextViewportLayoutController interface {
 // Manages the layout process inside the viewport interacting with its delegate. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutController
-
 type TextViewportLayoutController struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextViewportLayoutController struct {
 func TextViewportLayoutControllerFrom(ptr unsafe.Pointer) TextViewportLayoutController {
 	return TextViewportLayoutController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextViewportLayoutControllerClass) Alloc() TextViewportLayoutController {
 	rv := objc.Send[TextViewportLayoutController](objc.ID(tc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [trackingID] class.
-var trackingIDClass = _trackingIDClass{objc.GetClass("trackingID")}
+var (
+	trackingIDClass     _trackingIDClass
+	trackingIDClassOnce sync.Once
+)
+
+func gettrackingIDClass() _trackingIDClass {
+	trackingIDClassOnce.Do(func() {
+		trackingIDClass = _trackingIDClass{objc.GetClass("trackingID")}
+	})
+	return trackingIDClass
+}
 
 type _trackingIDClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ItrackingID interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingID-c.ivar
-
 type trackingID struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type trackingID struct {
 func trackingIDFrom(ptr unsafe.Pointer) trackingID {
 	return trackingID{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _trackingIDClass) Alloc() trackingID {
 	rv := objc.Send[trackingID](objc.ID(tc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _trackingIDClass) New() trackingID {
 	rv := objc.Send[trackingID](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (t_ trackingID) Autorelease() trackingID {
 
 // NewtrackingID creates a new trackingID instance.
 func NewtrackingID() trackingID {
-	return trackingIDClass.New()
+	return gettrackingIDClass().New()
 }
 
 

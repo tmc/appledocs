@@ -3,13 +3,24 @@
 package coremidi
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MIDIUMPMutableFunctionBlock] class.
-var mIDIUMPMutableFunctionBlockClass = _MIDIUMPMutableFunctionBlockClass{objc.GetClass("MIDIUMPMutableFunctionBlock")}
+var (
+	mIDIUMPMutableFunctionBlockClass     _MIDIUMPMutableFunctionBlockClass
+	mIDIUMPMutableFunctionBlockClassOnce sync.Once
+)
+
+func getMIDIUMPMutableFunctionBlockClass() _MIDIUMPMutableFunctionBlockClass {
+	mIDIUMPMutableFunctionBlockClassOnce.Do(func() {
+		mIDIUMPMutableFunctionBlockClass = _MIDIUMPMutableFunctionBlockClass{objc.GetClass("MIDIUMPMutableFunctionBlock")}
+	})
+	return mIDIUMPMutableFunctionBlockClass
+}
 
 type _MIDIUMPMutableFunctionBlockClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IMIDIUMPMutableFunctionBlock interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock
-
 type MIDIUMPMutableFunctionBlock struct {
 	MIDIUMPFunctionBlock
 }
@@ -36,13 +46,15 @@ func MIDIUMPMutableFunctionBlockFrom(ptr unsafe.Pointer) MIDIUMPMutableFunctionB
 		MIDIUMPFunctionBlock: MIDIUMPFunctionBlockFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIUMPMutableFunctionBlockClass) Alloc() MIDIUMPMutableFunctionBlock {
 	rv := objc.Send[MIDIUMPMutableFunctionBlock](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MIDIUMPMutableFunctionBlockClass) New() MIDIUMPMutableFunctionBlock {
 	rv := objc.Send[MIDIUMPMutableFunctionBlock](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,14 +75,14 @@ func (m_ MIDIUMPMutableFunctionBlock) Autorelease() MIDIUMPMutableFunctionBlock 
 
 // NewMIDIUMPMutableFunctionBlock creates a new MIDIUMPMutableFunctionBlock instance.
 func NewMIDIUMPMutableFunctionBlock() MIDIUMPMutableFunctionBlock {
-	return mIDIUMPMutableFunctionBlockClass.New()
+	return getMIDIUMPMutableFunctionBlockClass().New()
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock/init(name:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:midi1Info:uiHint:isEnabled:)
 func NewMIDIUMPMutableFunctionBlockWithNameDirectionFirstGroupTotalGroupsSpannedMaxSysEx8StreamsMIDI1InfoUIHintIsEnabled(name string, direction unsafe.Pointer, firstGroup unsafe.Pointer, totalGroupsSpanned unsafe.Pointer, maxSysEx8Streams unsafe.Pointer, MIDI1Info unsafe.Pointer, UIHint unsafe.Pointer, isEnabled bool) MIDIUMPMutableFunctionBlock {
-	instance := mIDIUMPMutableFunctionBlockClass.Alloc()
+	instance := getMIDIUMPMutableFunctionBlockClass().Alloc()
 	rv := objc.Send[MIDIUMPMutableFunctionBlock](instance.ID, objc.Sel("initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:"), objc.String(name), direction, firstGroup, totalGroupsSpanned, maxSysEx8Streams, MIDI1Info, UIHint, isEnabled)
 	rv.Autorelease()
 	return rv

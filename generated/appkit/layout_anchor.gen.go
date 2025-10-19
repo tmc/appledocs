@@ -35,7 +35,6 @@ type ILayoutAnchor interface {
 // A factory class for creating layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor
-
 type LayoutAnchor struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type LayoutAnchor struct {
 func LayoutAnchorFrom(ptr unsafe.Pointer) LayoutAnchor {
 	return LayoutAnchor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutAnchorClass) Alloc() LayoutAnchor {
 	rv := objc.Send[LayoutAnchor](objc.ID(lc.class), objc.Sel("alloc"))

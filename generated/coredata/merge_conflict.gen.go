@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MergeConflict] class.
-var mergeConflictClass = _MergeConflictClass{objc.GetClass("NSMergeConflict")}
+var (
+	mergeConflictClass     _MergeConflictClass
+	mergeConflictClassOnce sync.Once
+)
+
+func getMergeConflictClass() _MergeConflictClass {
+	mergeConflictClassOnce.Do(func() {
+		mergeConflictClass = _MergeConflictClass{objc.GetClass("NSMergeConflict")}
+	})
+	return mergeConflictClass
+}
 
 type _MergeConflictClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMergeConflict interface {
 // An encapsulation of conflicts that occur during an attempt to save changes in a managed object context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict
-
 type MergeConflict struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MergeConflict struct {
 func MergeConflictFrom(ptr unsafe.Pointer) MergeConflict {
 	return MergeConflict{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MergeConflictClass) Alloc() MergeConflict {
 	rv := objc.Send[MergeConflict](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MergeConflictClass) New() MergeConflict {
 	rv := objc.Send[MergeConflict](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MergeConflict) Autorelease() MergeConflict {
 
 // NewMergeConflict creates a new MergeConflict instance.
 func NewMergeConflict() MergeConflict {
-	return mergeConflictClass.New()
+	return getMergeConflictClass().New()
 }
 
 

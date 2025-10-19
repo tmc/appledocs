@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MigrationManager] class.
-var migrationManagerClass = _MigrationManagerClass{objc.GetClass("NSMigrationManager")}
+var (
+	migrationManagerClass     _MigrationManagerClass
+	migrationManagerClassOnce sync.Once
+)
+
+func getMigrationManagerClass() _MigrationManagerClass {
+	migrationManagerClassOnce.Do(func() {
+		migrationManagerClass = _MigrationManagerClass{objc.GetClass("NSMigrationManager")}
+	})
+	return migrationManagerClass
+}
 
 type _MigrationManagerClass struct {
 	class objc.Class
@@ -25,7 +36,6 @@ type IMigrationManager interface {
 // A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager
-
 type MigrationManager struct {
 	objectivec.Object
 }
@@ -36,13 +46,15 @@ type MigrationManager struct {
 func MigrationManagerFrom(ptr unsafe.Pointer) MigrationManager {
 	return MigrationManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MigrationManagerClass) Alloc() MigrationManager {
 	rv := objc.Send[MigrationManager](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MigrationManagerClass) New() MigrationManager {
 	rv := objc.Send[MigrationManager](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (m_ MigrationManager) Autorelease() MigrationManager {
 
 // NewMigrationManager creates a new MigrationManager instance.
 func NewMigrationManager() MigrationManager {
-	return migrationManagerClass.New()
+	return getMigrationManagerClass().New()
 }
 
 

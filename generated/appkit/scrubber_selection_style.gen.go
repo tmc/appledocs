@@ -35,7 +35,6 @@ type IScrubberSelectionStyle interface {
 // An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle
-
 type ScrubberSelectionStyle struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type ScrubberSelectionStyle struct {
 func ScrubberSelectionStyleFrom(ptr unsafe.Pointer) ScrubberSelectionStyle {
 	return ScrubberSelectionStyle{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberSelectionStyleClass) Alloc() ScrubberSelectionStyle {
 	rv := objc.Send[ScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("alloc"))

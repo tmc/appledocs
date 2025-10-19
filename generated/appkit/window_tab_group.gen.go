@@ -38,7 +38,6 @@ type IWindowTabGroup interface {
 // A group of windows that display together as a single tabbed window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup
-
 type WindowTabGroup struct {
 	objectivec.Object
 }
@@ -49,6 +48,7 @@ type WindowTabGroup struct {
 func WindowTabGroupFrom(ptr unsafe.Pointer) WindowTabGroup {
 	return WindowTabGroup{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WindowTabGroupClass) Alloc() WindowTabGroup {
 	rv := objc.Send[WindowTabGroup](objc.ID(wc.class), objc.Sel("alloc"))

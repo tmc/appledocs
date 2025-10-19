@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Exception] class.
-var exceptionClass = _ExceptionClass{objc.GetClass("NSException")}
+var (
+	exceptionClass     _ExceptionClass
+	exceptionClassOnce sync.Once
+)
+
+func getExceptionClass() _ExceptionClass {
+	exceptionClassOnce.Do(func() {
+		exceptionClass = _ExceptionClass{objc.GetClass("NSException")}
+	})
+	return exceptionClass
+}
 
 type _ExceptionClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IException interface {
 // An object that represents a special condition that interrupts the normal flow of program execution. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException
-
 type Exception struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Exception struct {
 func ExceptionFrom(ptr unsafe.Pointer) Exception {
 	return Exception{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _ExceptionClass) Alloc() Exception {
 	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _ExceptionClass) New() Exception {
 	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (e_ Exception) Autorelease() Exception {
 
 // NewException creates a new Exception instance.
 func NewException() Exception {
-	return exceptionClass.New()
+	return getExceptionClass().New()
 }
 
 

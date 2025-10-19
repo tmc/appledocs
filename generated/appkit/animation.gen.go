@@ -35,7 +35,6 @@ type IAnimation interface {
 // An object that manages the timing and progress of animations in the user interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation
-
 type Animation struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Animation struct {
 func AnimationFrom(ptr unsafe.Pointer) Animation {
 	return Animation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AnimationClass) Alloc() Animation {
 	rv := objc.Send[Animation](objc.ID(ac.class), objc.Sel("alloc"))

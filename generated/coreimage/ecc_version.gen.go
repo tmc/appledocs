@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [eccVersion] class.
-var eccVersionClass = _eccVersionClass{objc.GetClass("eccVersion")}
+var (
+	eccVersionClass     _eccVersionClass
+	eccVersionClassOnce sync.Once
+)
+
+func geteccVersionClass() _eccVersionClass {
+	eccVersionClassOnce.Do(func() {
+		eccVersionClass = _eccVersionClass{objc.GetClass("eccVersion")}
+	})
+	return eccVersionClass
+}
 
 type _eccVersionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IeccVersion interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-c.ivar
-
 type eccVersion struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type eccVersion struct {
 func eccVersionFrom(ptr unsafe.Pointer) eccVersion {
 	return eccVersion{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _eccVersionClass) Alloc() eccVersion {
 	rv := objc.Send[eccVersion](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _eccVersionClass) New() eccVersion {
 	rv := objc.Send[eccVersion](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (e_ eccVersion) Autorelease() eccVersion {
 
 // NeweccVersion creates a new eccVersion instance.
 func NeweccVersion() eccVersion {
-	return eccVersionClass.New()
+	return geteccVersionClass().New()
 }
 
 

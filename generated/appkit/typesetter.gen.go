@@ -35,7 +35,6 @@ type ITypesetter interface {
 // An abstract class that performs various type layout tasks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter
-
 type Typesetter struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Typesetter struct {
 func TypesetterFrom(ptr unsafe.Pointer) Typesetter {
 	return Typesetter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TypesetterClass) Alloc() Typesetter {
 	rv := objc.Send[Typesetter](objc.ID(tc.class), objc.Sel("alloc"))

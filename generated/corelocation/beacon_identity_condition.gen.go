@@ -3,22 +3,37 @@
 package corelocation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BeaconIdentityCondition] class.
-var beaconIdentityConditionClass = _BeaconIdentityConditionClass{objc.GetClass("CLBeaconIdentityCondition")}
+var (
+	beaconIdentityConditionClass     _BeaconIdentityConditionClass
+	beaconIdentityConditionClassOnce sync.Once
+)
+
+func getBeaconIdentityConditionClass() _BeaconIdentityConditionClass {
+	beaconIdentityConditionClassOnce.Do(func() {
+		beaconIdentityConditionClass = _BeaconIdentityConditionClass{objc.GetClass("CLBeaconIdentityCondition")}
+	})
+	return beaconIdentityConditionClass
+}
 
 type _BeaconIdentityConditionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BeaconIdentityCondition] class.
+type IBeaconIdentityCondition interface {
+	ICondition
+}
+
 // A condition that describes the identity characteristics of a beacon. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition
-
 type BeaconIdentityCondition struct {
 	Condition
 }
@@ -31,13 +46,15 @@ func BeaconIdentityConditionFrom(ptr unsafe.Pointer) BeaconIdentityCondition {
 		Condition: ConditionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BeaconIdentityConditionClass) Alloc() BeaconIdentityCondition {
 	rv := objc.Send[BeaconIdentityCondition](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BeaconIdentityConditionClass) New() BeaconIdentityCondition {
 	rv := objc.Send[BeaconIdentityCondition](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -58,14 +75,16 @@ func (b_ BeaconIdentityCondition) Autorelease() BeaconIdentityCondition {
 
 // NewBeaconIdentityCondition creates a new BeaconIdentityCondition instance.
 func NewBeaconIdentityCondition() BeaconIdentityCondition {
-	return beaconIdentityConditionClass.New()
+	return getBeaconIdentityConditionClass().New()
 }
+
+
 // Creates a new beacon identity condition with the identifier you specify. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
 func NewBeaconIdentityConditionWithUUID(uuid unsafe.Pointer) BeaconIdentityCondition {
-	instance := beaconIdentityConditionClass.Alloc()
+	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
 	rv.Autorelease()
 	return rv
@@ -75,7 +94,7 @@ func NewBeaconIdentityConditionWithUUID(uuid unsafe.Pointer) BeaconIdentityCondi
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
 func NewBeaconIdentityConditionWithUUIDMajor(uuid unsafe.Pointer, major unsafe.Pointer) BeaconIdentityCondition {
-	instance := beaconIdentityConditionClass.Alloc()
+	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:"), uuid, major)
 	rv.Autorelease()
 	return rv
@@ -85,7 +104,7 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid unsafe.Pointer, major unsafe.P
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
 func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid unsafe.Pointer, major unsafe.Pointer, minor unsafe.Pointer) BeaconIdentityCondition {
-	instance := beaconIdentityConditionClass.Alloc()
+	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:minor:"), uuid, major, minor)
 	rv.Autorelease()
 	return rv

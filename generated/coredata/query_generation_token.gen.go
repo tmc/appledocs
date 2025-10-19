@@ -3,6 +3,7 @@
 package coredata
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [QueryGenerationToken] class.
-var queryGenerationTokenClass = _QueryGenerationTokenClass{objc.GetClass("NSQueryGenerationToken")}
+var (
+	queryGenerationTokenClass     _QueryGenerationTokenClass
+	queryGenerationTokenClassOnce sync.Once
+)
+
+func getQueryGenerationTokenClass() _QueryGenerationTokenClass {
+	queryGenerationTokenClassOnce.Do(func() {
+		queryGenerationTokenClass = _QueryGenerationTokenClass{objc.GetClass("NSQueryGenerationToken")}
+	})
+	return queryGenerationTokenClass
+}
 
 type _QueryGenerationTokenClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IQueryGenerationToken interface {
 // A token that indicates which generation of the persistent store is being accessed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken
-
 type QueryGenerationToken struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type QueryGenerationToken struct {
 func QueryGenerationTokenFrom(ptr unsafe.Pointer) QueryGenerationToken {
 	return QueryGenerationToken{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (qc _QueryGenerationTokenClass) Alloc() QueryGenerationToken {
 	rv := objc.Send[QueryGenerationToken](objc.ID(qc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (qc _QueryGenerationTokenClass) New() QueryGenerationToken {
 	rv := objc.Send[QueryGenerationToken](objc.ID(qc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (q_ QueryGenerationToken) Autorelease() QueryGenerationToken {
 
 // NewQueryGenerationToken creates a new QueryGenerationToken instance.
 func NewQueryGenerationToken() QueryGenerationToken {
-	return queryGenerationTokenClass.New()
+	return getQueryGenerationTokenClass().New()
 }
 
 

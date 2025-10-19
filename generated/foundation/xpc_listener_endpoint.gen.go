@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [XPCListenerEndpoint] class.
-var xPCListenerEndpointClass = _XPCListenerEndpointClass{objc.GetClass("NSXPCListenerEndpoint")}
+var (
+	xPCListenerEndpointClass     _XPCListenerEndpointClass
+	xPCListenerEndpointClassOnce sync.Once
+)
+
+func getXPCListenerEndpointClass() _XPCListenerEndpointClass {
+	xPCListenerEndpointClassOnce.Do(func() {
+		xPCListenerEndpointClass = _XPCListenerEndpointClass{objc.GetClass("NSXPCListenerEndpoint")}
+	})
+	return xPCListenerEndpointClass
+}
 
 type _XPCListenerEndpointClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IXPCListenerEndpoint interface {
 // An object that names a specific XPC listener. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListenerEndpoint
-
 type XPCListenerEndpoint struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type XPCListenerEndpoint struct {
 func XPCListenerEndpointFrom(ptr unsafe.Pointer) XPCListenerEndpoint {
 	return XPCListenerEndpoint{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XPCListenerEndpointClass) Alloc() XPCListenerEndpoint {
 	rv := objc.Send[XPCListenerEndpoint](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XPCListenerEndpointClass) New() XPCListenerEndpoint {
 	rv := objc.Send[XPCListenerEndpoint](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (x_ XPCListenerEndpoint) Autorelease() XPCListenerEndpoint {
 
 // NewXPCListenerEndpoint creates a new XPCListenerEndpoint instance.
 func NewXPCListenerEndpoint() XPCListenerEndpoint {
-	return xPCListenerEndpointClass.New()
+	return getXPCListenerEndpointClass().New()
 }
 
 

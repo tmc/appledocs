@@ -34,7 +34,6 @@ type IColorWell interface {
 // A control that displays a color value and lets the user change that color value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell
-
 type ColorWell struct {
 	Control
 }
@@ -47,6 +46,7 @@ func ColorWellFrom(ptr unsafe.Pointer) ColorWell {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorWellClass) Alloc() ColorWell {
 	rv := objc.Send[ColorWell](objc.ID(cc.class), objc.Sel("alloc"))

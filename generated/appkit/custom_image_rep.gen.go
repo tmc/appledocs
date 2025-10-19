@@ -34,7 +34,6 @@ type ICustomImageRep interface {
 // An object that uses a delegate object to render an image from a custom format. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep
-
 type CustomImageRep struct {
 	ImageRep
 }
@@ -47,6 +46,7 @@ func CustomImageRepFrom(ptr unsafe.Pointer) CustomImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CustomImageRepClass) Alloc() CustomImageRep {
 	rv := objc.Send[CustomImageRep](objc.ID(cc.class), objc.Sel("alloc"))

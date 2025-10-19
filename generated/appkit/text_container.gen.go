@@ -35,7 +35,6 @@ type ITextContainer interface {
 // A region where text layout occurs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer
-
 type TextContainer struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextContainer struct {
 func TextContainerFrom(ptr unsafe.Pointer) TextContainer {
 	return TextContainer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextContainerClass) Alloc() TextContainer {
 	rv := objc.Send[TextContainer](objc.ID(tc.class), objc.Sel("alloc"))

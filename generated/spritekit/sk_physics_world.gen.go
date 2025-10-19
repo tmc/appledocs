@@ -3,6 +3,7 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [SKPhysicsWorld] class.
-var sKPhysicsWorldClass = _SKPhysicsWorldClass{objc.GetClass("SKPhysicsWorld")}
+var (
+	sKPhysicsWorldClass     _SKPhysicsWorldClass
+	sKPhysicsWorldClassOnce sync.Once
+)
+
+func getSKPhysicsWorldClass() _SKPhysicsWorldClass {
+	sKPhysicsWorldClassOnce.Do(func() {
+		sKPhysicsWorldClass = _SKPhysicsWorldClass{objc.GetClass("SKPhysicsWorld")}
+	})
+	return sKPhysicsWorldClass
+}
 
 type _SKPhysicsWorldClass struct {
 	class objc.Class
@@ -34,7 +45,6 @@ type ISKPhysicsWorld interface {
 // The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld
-
 type SKPhysicsWorld struct {
 	objectivec.Object
 }
@@ -45,13 +55,15 @@ type SKPhysicsWorld struct {
 func SKPhysicsWorldFrom(ptr unsafe.Pointer) SKPhysicsWorld {
 	return SKPhysicsWorld{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKPhysicsWorldClass) Alloc() SKPhysicsWorld {
 	rv := objc.Send[SKPhysicsWorld](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKPhysicsWorldClass) New() SKPhysicsWorld {
 	rv := objc.Send[SKPhysicsWorld](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -72,7 +84,7 @@ func (s_ SKPhysicsWorld) Autorelease() SKPhysicsWorld {
 
 // NewSKPhysicsWorld creates a new SKPhysicsWorld instance.
 func NewSKPhysicsWorld() SKPhysicsWorld {
-	return sKPhysicsWorldClass.New()
+	return getSKPhysicsWorldClass().New()
 }
 
 

@@ -35,7 +35,6 @@ type ITreeNode interface {
 // A node in a tree of nodes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode
-
 type TreeNode struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TreeNode struct {
 func TreeNodeFrom(ptr unsafe.Pointer) TreeNode {
 	return TreeNode{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TreeNodeClass) Alloc() TreeNode {
 	rv := objc.Send[TreeNode](objc.ID(tc.class), objc.Sel("alloc"))

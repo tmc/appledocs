@@ -36,7 +36,6 @@ type IVisualEffectView interface {
 // A view that adds translucency and vibrancy effects to the views in your interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView
-
 type VisualEffectView struct {
 	View
 }
@@ -49,6 +48,7 @@ func VisualEffectViewFrom(ptr unsafe.Pointer) VisualEffectView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _VisualEffectViewClass) Alloc() VisualEffectView {
 	rv := objc.Send[VisualEffectView](objc.ID(vc.class), objc.Sel("alloc"))

@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MapTable] class.
-var mapTableClass = _MapTableClass{objc.GetClass("NSMapTable")}
+var (
+	mapTableClass     _MapTableClass
+	mapTableClassOnce sync.Once
+)
+
+func getMapTableClass() _MapTableClass {
+	mapTableClassOnce.Do(func() {
+		mapTableClass = _MapTableClass{objc.GetClass("NSMapTable")}
+	})
+	return mapTableClass
+}
 
 type _MapTableClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMapTable interface {
 // A collection similar to a dictionary, but with a broader range of available memory semantics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable
-
 type MapTable struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MapTable struct {
 func MapTableFrom(ptr unsafe.Pointer) MapTable {
 	return MapTable{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MapTableClass) Alloc() MapTable {
 	rv := objc.Send[MapTable](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MapTableClass) New() MapTable {
 	rv := objc.Send[MapTable](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MapTable) Autorelease() MapTable {
 
 // NewMapTable creates a new MapTable instance.
 func NewMapTable() MapTable {
-	return mapTableClass.New()
+	return getMapTableClass().New()
 }
 
 

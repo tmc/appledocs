@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DeleteCommand] class.
-var deleteCommandClass = _DeleteCommandClass{objc.GetClass("NSDeleteCommand")}
+var (
+	deleteCommandClass     _DeleteCommandClass
+	deleteCommandClassOnce sync.Once
+)
+
+func getDeleteCommandClass() _DeleteCommandClass {
+	deleteCommandClassOnce.Do(func() {
+		deleteCommandClass = _DeleteCommandClass{objc.GetClass("NSDeleteCommand")}
+	})
+	return deleteCommandClass
+}
 
 type _DeleteCommandClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IDeleteCommand interface {
 // A command that deletes a scriptable object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand
-
 type DeleteCommand struct {
 	ScriptCommand
 }
@@ -36,13 +46,15 @@ func DeleteCommandFrom(ptr unsafe.Pointer) DeleteCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DeleteCommandClass) Alloc() DeleteCommand {
 	rv := objc.Send[DeleteCommand](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DeleteCommandClass) New() DeleteCommand {
 	rv := objc.Send[DeleteCommand](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (d_ DeleteCommand) Autorelease() DeleteCommand {
 
 // NewDeleteCommand creates a new DeleteCommand instance.
 func NewDeleteCommand() DeleteCommand {
-	return deleteCommandClass.New()
+	return getDeleteCommandClass().New()
 }
 
 

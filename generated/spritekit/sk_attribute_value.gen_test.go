@@ -17,10 +17,10 @@ func ExampleNewSKAttributeValue() {
 	// Output:
 }
 
-// ExampleNewValueWithFloat demonstrates how to create a SKAttributeValue instance using NewValueWithFloat.
+// ExampleNewSKAttributeValueWithFloat demonstrates how to create a SKAttributeValue instance using NewSKAttributeValueWithFloat.
 // Creates and initializes a new attribute value object that holds a floating point number.
-func ExampleNewValueWithFloat() {
-	_ = spritekit.NewValueWithFloat(
+func ExampleNewSKAttributeValueWithFloat() {
+	_ = spritekit.NewSKAttributeValueWithFloat(
 		0.0, // value float32
 	)
 	// Output:

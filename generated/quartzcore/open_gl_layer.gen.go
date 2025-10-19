@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OpenGLLayer] class.
-var openGLLayerClass = _OpenGLLayerClass{objc.GetClass("CAOpenGLLayer")}
+var (
+	openGLLayerClass     _OpenGLLayerClass
+	openGLLayerClassOnce sync.Once
+)
+
+func getOpenGLLayerClass() _OpenGLLayerClass {
+	openGLLayerClassOnce.Do(func() {
+		openGLLayerClass = _OpenGLLayerClass{objc.GetClass("CAOpenGLLayer")}
+	})
+	return openGLLayerClass
+}
 
 type _OpenGLLayerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IOpenGLLayer interface {
 // A layer that provides a layer suitable for rendering OpenGL content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer
-
 type OpenGLLayer struct {
 	Layer
 }
@@ -37,13 +47,15 @@ func OpenGLLayerFrom(ptr unsafe.Pointer) OpenGLLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLLayerClass) Alloc() OpenGLLayer {
 	rv := objc.Send[OpenGLLayer](objc.ID(oc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OpenGLLayerClass) New() OpenGLLayer {
 	rv := objc.Send[OpenGLLayer](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (o_ OpenGLLayer) Autorelease() OpenGLLayer {
 
 // NewOpenGLLayer creates a new OpenGLLayer instance.
 func NewOpenGLLayer() OpenGLLayer {
-	return openGLLayerClass.New()
+	return getOpenGLLayerClass().New()
 }
 
 

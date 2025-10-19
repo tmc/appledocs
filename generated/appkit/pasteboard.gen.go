@@ -36,7 +36,6 @@ type IPasteboard interface {
 // An object that transfers data to and from the pasteboard server. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard
-
 type Pasteboard struct {
 	objectivec.Object
 }
@@ -47,6 +46,7 @@ type Pasteboard struct {
 func PasteboardFrom(ptr unsafe.Pointer) Pasteboard {
 	return Pasteboard{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PasteboardClass) Alloc() Pasteboard {
 	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("alloc"))

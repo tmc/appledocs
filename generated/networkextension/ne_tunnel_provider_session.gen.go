@@ -3,13 +3,24 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NETunnelProviderSession] class.
-var nETunnelProviderSessionClass = _NETunnelProviderSessionClass{objc.GetClass("NETunnelProviderSession")}
+var (
+	nETunnelProviderSessionClass     _NETunnelProviderSessionClass
+	nETunnelProviderSessionClassOnce sync.Once
+)
+
+func getNETunnelProviderSessionClass() _NETunnelProviderSessionClass {
+	nETunnelProviderSessionClassOnce.Do(func() {
+		nETunnelProviderSessionClass = _NETunnelProviderSessionClass{objc.GetClass("NETunnelProviderSession")}
+	})
+	return nETunnelProviderSessionClass
+}
 
 type _NETunnelProviderSessionClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type INETunnelProviderSession interface {
 // An object to start and stop a tunnel connection and get its status. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderSession
-
 type NETunnelProviderSession struct {
 	NEVPNConnection
 }
@@ -36,13 +46,15 @@ func NETunnelProviderSessionFrom(ptr unsafe.Pointer) NETunnelProviderSession {
 		NEVPNConnection: NEVPNConnectionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NETunnelProviderSessionClass) Alloc() NETunnelProviderSession {
 	rv := objc.Send[NETunnelProviderSession](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NETunnelProviderSessionClass) New() NETunnelProviderSession {
 	rv := objc.Send[NETunnelProviderSession](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (n_ NETunnelProviderSession) Autorelease() NETunnelProviderSession {
 
 // NewNETunnelProviderSession creates a new NETunnelProviderSession instance.
 func NewNETunnelProviderSession() NETunnelProviderSession {
-	return nETunnelProviderSessionClass.New()
+	return getNETunnelProviderSessionClass().New()
 }
 
 

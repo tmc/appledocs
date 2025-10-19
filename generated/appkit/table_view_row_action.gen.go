@@ -35,7 +35,6 @@ type ITableViewRowAction interface {
 // A single action to present when the user swipes horizontally on a table row. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction
-
 type TableViewRowAction struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TableViewRowAction struct {
 func TableViewRowActionFrom(ptr unsafe.Pointer) TableViewRowAction {
 	return TableViewRowAction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableViewRowActionClass) Alloc() TableViewRowAction {
 	rv := objc.Send[TableViewRowAction](objc.ID(tc.class), objc.Sel("alloc"))

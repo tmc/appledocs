@@ -34,7 +34,6 @@ type IComboButton interface {
 // A button with a pull-down menu and a default action. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton
-
 type ComboButton struct {
 	Control
 }
@@ -47,6 +46,7 @@ func ComboButtonFrom(ptr unsafe.Pointer) ComboButton {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComboButtonClass) Alloc() ComboButton {
 	rv := objc.Send[ComboButton](objc.ID(cc.class), objc.Sel("alloc"))

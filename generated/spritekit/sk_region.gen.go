@@ -3,14 +3,26 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SKRegion] class.
-var sKRegionClass = _SKRegionClass{objc.GetClass("SKRegion")}
+var (
+	sKRegionClass     _SKRegionClass
+	sKRegionClassOnce sync.Once
+)
+
+func getSKRegionClass() _SKRegionClass {
+	sKRegionClassOnce.Do(func() {
+		sKRegionClass = _SKRegionClass{objc.GetClass("SKRegion")}
+	})
+	return sKRegionClass
+}
 
 type _SKRegionClass struct {
 	class objc.Class
@@ -29,7 +41,6 @@ type ISKRegion interface {
 // The definition of an arbitrary area. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRegion
-
 type SKRegion struct {
 	objectivec.Object
 }
@@ -40,13 +51,15 @@ type SKRegion struct {
 func SKRegionFrom(ptr unsafe.Pointer) SKRegion {
 	return SKRegion{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKRegionClass) Alloc() SKRegion {
 	rv := objc.Send[SKRegion](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKRegionClass) New() SKRegion {
 	rv := objc.Send[SKRegion](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -67,7 +80,7 @@ func (s_ SKRegion) Autorelease() SKRegion {
 
 // NewSKRegion creates a new SKRegion instance.
 func NewSKRegion() SKRegion {
-	return sKRegionClass.New()
+	return getSKRegionClass().New()
 }
 
 
@@ -75,8 +88,8 @@ func NewSKRegion() SKRegion {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRegion/init(path:)
-func NewSKRegionWithPath(path unsafe.Pointer) SKRegion {
-	instance := sKRegionClass.Alloc()
+func NewSKRegionWithPath(path coregraphics.CGPathRef) SKRegion {
+	instance := getSKRegionClass().Alloc()
 	rv := objc.Send[SKRegion](instance.ID, objc.Sel("initWithPath:"), path)
 	rv.Autorelease()
 	return rv
@@ -86,7 +99,7 @@ func NewSKRegionWithPath(path unsafe.Pointer) SKRegion {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRegion/init(radius:)
 func NewSKRegionWithRadius(radius float32) SKRegion {
-	instance := sKRegionClass.Alloc()
+	instance := getSKRegionClass().Alloc()
 	rv := objc.Send[SKRegion](instance.ID, objc.Sel("initWithRadius:"), radius)
 	rv.Autorelease()
 	return rv
@@ -96,7 +109,7 @@ func NewSKRegionWithRadius(radius float32) SKRegion {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRegion/init(size:)
 func NewSKRegionWithSize(size unsafe.Pointer) SKRegion {
-	instance := sKRegionClass.Alloc()
+	instance := getSKRegionClass().Alloc()
 	rv := objc.Send[SKRegion](instance.ID, objc.Sel("initWithSize:"), size)
 	rv.Autorelease()
 	return rv

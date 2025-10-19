@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MetalDisplayLink] class.
-var metalDisplayLinkClass = _MetalDisplayLinkClass{objc.GetClass("CAMetalDisplayLink")}
+var (
+	metalDisplayLinkClass     _MetalDisplayLinkClass
+	metalDisplayLinkClassOnce sync.Once
+)
+
+func getMetalDisplayLinkClass() _MetalDisplayLinkClass {
+	metalDisplayLinkClassOnce.Do(func() {
+		metalDisplayLinkClass = _MetalDisplayLinkClass{objc.GetClass("CAMetalDisplayLink")}
+	})
+	return metalDisplayLinkClass
+}
 
 type _MetalDisplayLinkClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMetalDisplayLink interface {
 // A class your Metal app uses to register for callbacks to synchronize its animations for a display. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink
-
 type MetalDisplayLink struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MetalDisplayLink struct {
 func MetalDisplayLinkFrom(ptr unsafe.Pointer) MetalDisplayLink {
 	return MetalDisplayLink{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetalDisplayLinkClass) Alloc() MetalDisplayLink {
 	rv := objc.Send[MetalDisplayLink](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MetalDisplayLinkClass) New() MetalDisplayLink {
 	rv := objc.Send[MetalDisplayLink](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MetalDisplayLink) Autorelease() MetalDisplayLink {
 
 // NewMetalDisplayLink creates a new MetalDisplayLink instance.
 func NewMetalDisplayLink() MetalDisplayLink {
-	return metalDisplayLinkClass.New()
+	return getMetalDisplayLinkClass().New()
 }
 
 

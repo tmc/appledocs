@@ -34,7 +34,6 @@ type IBrowserCell interface {
 // The user interface of a browser. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell
-
 type BrowserCell struct {
 	Cell
 }
@@ -47,6 +46,7 @@ func BrowserCellFrom(ptr unsafe.Pointer) BrowserCell {
 		Cell: CellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BrowserCellClass) Alloc() BrowserCell {
 	rv := objc.Send[BrowserCell](objc.ID(bc.class), objc.Sel("alloc"))

@@ -35,7 +35,6 @@ type ISlider interface {
 // A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider
-
 type Slider struct {
 	Control
 }
@@ -48,6 +47,7 @@ func SliderFrom(ptr unsafe.Pointer) Slider {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SliderClass) Alloc() Slider {
 	rv := objc.Send[Slider](objc.ID(sc.class), objc.Sel("alloc"))

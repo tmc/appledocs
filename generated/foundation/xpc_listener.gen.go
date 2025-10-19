@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [XPCListener] class.
-var xPCListenerClass = _XPCListenerClass{objc.GetClass("NSXPCListener")}
+var (
+	xPCListenerClass     _XPCListenerClass
+	xPCListenerClassOnce sync.Once
+)
+
+func getXPCListenerClass() _XPCListenerClass {
+	xPCListenerClassOnce.Do(func() {
+		xPCListenerClass = _XPCListenerClass{objc.GetClass("NSXPCListener")}
+	})
+	return xPCListenerClass
+}
 
 type _XPCListenerClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IXPCListener interface {
 // A listener that waits for new incoming connections, configures them, and accepts or rejects them. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener
-
 type XPCListener struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type XPCListener struct {
 func XPCListenerFrom(ptr unsafe.Pointer) XPCListener {
 	return XPCListener{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (xc _XPCListenerClass) Alloc() XPCListener {
 	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XPCListenerClass) New() XPCListener {
 	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (x_ XPCListener) Autorelease() XPCListener {
 
 // NewXPCListener creates a new XPCListener instance.
 func NewXPCListener() XPCListener {
-	return xPCListenerClass.New()
+	return getXPCListenerClass().New()
 }
 
 

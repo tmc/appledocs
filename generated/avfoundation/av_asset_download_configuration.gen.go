@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVAssetDownloadConfiguration] class.
-var aVAssetDownloadConfigurationClass = _AVAssetDownloadConfigurationClass{objc.GetClass("AVAssetDownloadConfiguration")}
+var (
+	aVAssetDownloadConfigurationClass     _AVAssetDownloadConfigurationClass
+	aVAssetDownloadConfigurationClassOnce sync.Once
+)
+
+func getAVAssetDownloadConfigurationClass() _AVAssetDownloadConfigurationClass {
+	aVAssetDownloadConfigurationClassOnce.Do(func() {
+		aVAssetDownloadConfigurationClass = _AVAssetDownloadConfigurationClass{objc.GetClass("AVAssetDownloadConfiguration")}
+	})
+	return aVAssetDownloadConfigurationClass
+}
 
 type _AVAssetDownloadConfigurationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAVAssetDownloadConfiguration interface {
 // An object that provides the configuration for a download task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadConfiguration
-
 type AVAssetDownloadConfiguration struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type AVAssetDownloadConfiguration struct {
 func AVAssetDownloadConfigurationFrom(ptr unsafe.Pointer) AVAssetDownloadConfiguration {
 	return AVAssetDownloadConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVAssetDownloadConfigurationClass) Alloc() AVAssetDownloadConfiguration {
 	rv := objc.Send[AVAssetDownloadConfiguration](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVAssetDownloadConfigurationClass) New() AVAssetDownloadConfiguration {
 	rv := objc.Send[AVAssetDownloadConfiguration](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ AVAssetDownloadConfiguration) Autorelease() AVAssetDownloadConfiguratio
 
 // NewAVAssetDownloadConfiguration creates a new AVAssetDownloadConfiguration instance.
 func NewAVAssetDownloadConfiguration() AVAssetDownloadConfiguration {
-	return aVAssetDownloadConfigurationClass.New()
+	return getAVAssetDownloadConfigurationClass().New()
 }
 
 

@@ -34,7 +34,6 @@ type IObjectController interface {
 // A controller that can manage an object’s properties referenced by key-value paths. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController
-
 type ObjectController struct {
 	Controller
 }
@@ -47,6 +46,7 @@ func ObjectControllerFrom(ptr unsafe.Pointer) ObjectController {
 		Controller: ControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _ObjectControllerClass) Alloc() ObjectController {
 	rv := objc.Send[ObjectController](objc.ID(oc.class), objc.Sel("alloc"))

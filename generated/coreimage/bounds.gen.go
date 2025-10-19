@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [bounds] class.
-var boundsClass = _boundsClass{objc.GetClass("bounds")}
+var (
+	boundsClass     _boundsClass
+	boundsClassOnce sync.Once
+)
+
+func getboundsClass() _boundsClass {
+	boundsClassOnce.Do(func() {
+		boundsClass = _boundsClass{objc.GetClass("bounds")}
+	})
+	return boundsClass
+}
 
 type _boundsClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type Ibounds interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bounds-c.ivar
-
 type bounds struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type bounds struct {
 func boundsFrom(ptr unsafe.Pointer) bounds {
 	return bounds{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _boundsClass) Alloc() bounds {
 	rv := objc.Send[bounds](objc.ID(bc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _boundsClass) New() bounds {
 	rv := objc.Send[bounds](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (b_ bounds) Autorelease() bounds {
 
 // Newbounds creates a new bounds instance.
 func Newbounds() bounds {
-	return boundsClass.New()
+	return getboundsClass().New()
 }
 
 

@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [errorCorrectionLevel] class.
-var errorCorrectionLevelClass = _errorCorrectionLevelClass{objc.GetClass("errorCorrectionLevel")}
+var (
+	errorCorrectionLevelClass     _errorCorrectionLevelClass
+	errorCorrectionLevelClassOnce sync.Once
+)
+
+func geterrorCorrectionLevelClass() _errorCorrectionLevelClass {
+	errorCorrectionLevelClassOnce.Do(func() {
+		errorCorrectionLevelClass = _errorCorrectionLevelClass{objc.GetClass("errorCorrectionLevel")}
+	})
+	return errorCorrectionLevelClass
+}
 
 type _errorCorrectionLevelClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IerrorCorrectionLevel interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectionLevel-c.ivar
-
 type errorCorrectionLevel struct {
 	objectivec.Object
 }
@@ -32,13 +42,15 @@ type errorCorrectionLevel struct {
 func errorCorrectionLevelFrom(ptr unsafe.Pointer) errorCorrectionLevel {
 	return errorCorrectionLevel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ec _errorCorrectionLevelClass) Alloc() errorCorrectionLevel {
 	rv := objc.Send[errorCorrectionLevel](objc.ID(ec.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _errorCorrectionLevelClass) New() errorCorrectionLevel {
 	rv := objc.Send[errorCorrectionLevel](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -59,7 +71,7 @@ func (e_ errorCorrectionLevel) Autorelease() errorCorrectionLevel {
 
 // NewerrorCorrectionLevel creates a new errorCorrectionLevel instance.
 func NewerrorCorrectionLevel() errorCorrectionLevel {
-	return errorCorrectionLevelClass.New()
+	return geterrorCorrectionLevelClass().New()
 }
 
 

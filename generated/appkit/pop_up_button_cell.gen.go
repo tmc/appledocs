@@ -34,7 +34,6 @@ type IPopUpButtonCell interface {
 // The class defines the visual appearance of pop-up buttons that display pop-up or pull-down menus. Pop-up menus present the user with a set of choices, much the way radio buttons do, but using much less space. Pull-down menus also provide a set of choices but present the information in a slightly different way, usually to provide a set of commands from which the user can choose. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButtonCell
-
 type PopUpButtonCell struct {
 	MenuItemCell
 }
@@ -47,6 +46,7 @@ func PopUpButtonCellFrom(ptr unsafe.Pointer) PopUpButtonCell {
 		MenuItemCell: MenuItemCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PopUpButtonCellClass) Alloc() PopUpButtonCell {
 	rv := objc.Send[PopUpButtonCell](objc.ID(pc.class), objc.Sel("alloc"))

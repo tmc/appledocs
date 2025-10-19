@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Number] class.
-var numberClass = _NumberClass{objc.GetClass("NSNumber")}
+var (
+	numberClass     _NumberClass
+	numberClassOnce sync.Once
+)
+
+func getNumberClass() _NumberClass {
+	numberClassOnce.Do(func() {
+		numberClass = _NumberClass{objc.GetClass("NSNumber")}
+	})
+	return numberClass
+}
 
 type _NumberClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type INumber interface {
 // An object wrapper for primitive scalar numeric values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber
-
 type Number struct {
 	Value
 }
@@ -37,13 +47,15 @@ func NumberFrom(ptr unsafe.Pointer) Number {
 		Value: ValueFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NumberClass) Alloc() Number {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NumberClass) New() Number {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (n_ Number) Autorelease() Number {
 
 // NewNumber creates a new Number instance.
 func NewNumber() Number {
-	return numberClass.New()
+	return getNumberClass().New()
 }
 
 

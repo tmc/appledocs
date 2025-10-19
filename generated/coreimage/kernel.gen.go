@@ -3,6 +3,7 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Kernel] class.
-var kernelClass = _KernelClass{objc.GetClass("CIKernel")}
+var (
+	kernelClass     _KernelClass
+	kernelClassOnce sync.Once
+)
+
+func getKernelClass() _KernelClass {
+	kernelClassOnce.Do(func() {
+		kernelClass = _KernelClass{objc.GetClass("CIKernel")}
+	})
+	return kernelClass
+}
 
 type _KernelClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IKernel interface {
 // A GPU-based image-processing routine used to create custom Core Image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel
-
 type Kernel struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type Kernel struct {
 func KernelFrom(ptr unsafe.Pointer) Kernel {
 	return Kernel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (kc _KernelClass) Alloc() Kernel {
 	rv := objc.Send[Kernel](objc.ID(kc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KernelClass) New() Kernel {
 	rv := objc.Send[Kernel](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (k_ Kernel) Autorelease() Kernel {
 
 // NewKernel creates a new Kernel instance.
 func NewKernel() Kernel {
-	return kernelClass.New()
+	return getKernelClass().New()
 }
 
 
@@ -73,8 +85,7 @@ func NewKernel() Kernel {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:)
 func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe.Pointer, error unsafe.Pointer) Kernel {
-	rv := objc.Send[Kernel](objc.ID(kernelClass.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error)
-	rv.Autorelease()
+	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error)
 	return rv
 }
 // Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format. [Full Topic]
@@ -82,8 +93,7 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
 func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) Kernel {
-	rv := objc.Send[Kernel](objc.ID(kernelClass.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
-	rv.Autorelease()
+	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
 	return rv
 }
 // Creates a single kernel object. [Full Topic]
@@ -91,8 +101,7 @@ func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name st
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
 func NewKernelWithString(string string) Kernel {
-	rv := objc.Send[Kernel](objc.ID(kernelClass.class), objc.Sel("kernelWithString:"), objc.String(string))
-	rv.Autorelease()
+	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 

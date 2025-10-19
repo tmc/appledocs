@@ -34,7 +34,6 @@ type IMovie interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie
-
 type Movie struct {
 	objectivec.Object
 }
@@ -43,6 +42,7 @@ type Movie struct {
 func MovieFrom(ptr unsafe.Pointer) Movie {
 	return Movie{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MovieClass) Alloc() Movie {
 	rv := objc.Send[Movie](objc.ID(mc.class), objc.Sel("alloc"))

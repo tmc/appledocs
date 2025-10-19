@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Date] class.
-var dateClass = _DateClass{objc.GetClass("NSDate")}
+var (
+	dateClass     _DateClass
+	dateClassOnce sync.Once
+)
+
+func getDateClass() _DateClass {
+	dateClassOnce.Do(func() {
+		dateClass = _DateClass{objc.GetClass("NSDate")}
+	})
+	return dateClass
+}
 
 type _DateClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IDate interface {
 // A representation of a specific point in time, independent of any calendar or time zone. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
-
 type Date struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Date struct {
 func DateFrom(ptr unsafe.Pointer) Date {
 	return Date{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DateClass) Alloc() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateClass) New() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (d_ Date) Autorelease() Date {
 
 // NewDate creates a new Date instance.
 func NewDate() Date {
-	return dateClass.New()
+	return getDateClass().New()
 }
 
 

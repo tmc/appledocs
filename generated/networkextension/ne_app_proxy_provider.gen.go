@@ -3,6 +3,7 @@
 package networkextension
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [NEAppProxyProvider] class.
-var nEAppProxyProviderClass = _NEAppProxyProviderClass{objc.GetClass("NEAppProxyProvider")}
+var (
+	nEAppProxyProviderClass     _NEAppProxyProviderClass
+	nEAppProxyProviderClassOnce sync.Once
+)
+
+func getNEAppProxyProviderClass() _NEAppProxyProviderClass {
+	nEAppProxyProviderClassOnce.Do(func() {
+		nEAppProxyProviderClass = _NEAppProxyProviderClass{objc.GetClass("NEAppProxyProvider")}
+	})
+	return nEAppProxyProviderClass
+}
 
 type _NEAppProxyProviderClass struct {
 	class objc.Class
@@ -22,7 +33,6 @@ type INEAppProxyProvider interface {
 }
 
 // A parent class referenced by other NetworkExtension classes. [Full Topic]
-
 type NEAppProxyProvider struct {
 	objectivec.Object
 }
@@ -33,13 +43,15 @@ type NEAppProxyProvider struct {
 func NEAppProxyProviderFrom(ptr unsafe.Pointer) NEAppProxyProvider {
 	return NEAppProxyProvider{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEAppProxyProviderClass) Alloc() NEAppProxyProvider {
 	rv := objc.Send[NEAppProxyProvider](objc.ID(nc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEAppProxyProviderClass) New() NEAppProxyProvider {
 	rv := objc.Send[NEAppProxyProvider](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -60,7 +72,7 @@ func (n_ NEAppProxyProvider) Autorelease() NEAppProxyProvider {
 
 // NewNEAppProxyProvider creates a new NEAppProxyProvider instance.
 func NewNEAppProxyProvider() NEAppProxyProvider {
-	return nEAppProxyProviderClass.New()
+	return getNEAppProxyProviderClass().New()
 }
 
 

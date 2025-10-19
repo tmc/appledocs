@@ -3,6 +3,7 @@
 package avfoundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [AVSampleBufferRenderSynchronizer] class.
-var aVSampleBufferRenderSynchronizerClass = _AVSampleBufferRenderSynchronizerClass{objc.GetClass("AVSampleBufferRenderSynchronizer")}
+var (
+	aVSampleBufferRenderSynchronizerClass     _AVSampleBufferRenderSynchronizerClass
+	aVSampleBufferRenderSynchronizerClassOnce sync.Once
+)
+
+func getAVSampleBufferRenderSynchronizerClass() _AVSampleBufferRenderSynchronizerClass {
+	aVSampleBufferRenderSynchronizerClassOnce.Do(func() {
+		aVSampleBufferRenderSynchronizerClass = _AVSampleBufferRenderSynchronizerClass{objc.GetClass("AVSampleBufferRenderSynchronizer")}
+	})
+	return aVSampleBufferRenderSynchronizerClass
+}
 
 type _AVSampleBufferRenderSynchronizerClass struct {
 	class objc.Class
@@ -26,7 +37,6 @@ type IAVSampleBufferRenderSynchronizer interface {
 // An object used to synchronize multiple queued sample buffers to a single timeline. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer
-
 type AVSampleBufferRenderSynchronizer struct {
 	objectivec.Object
 }
@@ -37,13 +47,15 @@ type AVSampleBufferRenderSynchronizer struct {
 func AVSampleBufferRenderSynchronizerFrom(ptr unsafe.Pointer) AVSampleBufferRenderSynchronizer {
 	return AVSampleBufferRenderSynchronizer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AVSampleBufferRenderSynchronizerClass) Alloc() AVSampleBufferRenderSynchronizer {
 	rv := objc.Send[AVSampleBufferRenderSynchronizer](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AVSampleBufferRenderSynchronizerClass) New() AVSampleBufferRenderSynchronizer {
 	rv := objc.Send[AVSampleBufferRenderSynchronizer](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -64,7 +76,7 @@ func (a_ AVSampleBufferRenderSynchronizer) Autorelease() AVSampleBufferRenderSyn
 
 // NewAVSampleBufferRenderSynchronizer creates a new AVSampleBufferRenderSynchronizer instance.
 func NewAVSampleBufferRenderSynchronizer() AVSampleBufferRenderSynchronizer {
-	return aVSampleBufferRenderSynchronizerClass.New()
+	return getAVSampleBufferRenderSynchronizerClass().New()
 }
 
 

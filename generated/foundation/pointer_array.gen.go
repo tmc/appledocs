@@ -3,6 +3,7 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [PointerArray] class.
-var pointerArrayClass = _PointerArrayClass{objc.GetClass("NSPointerArray")}
+var (
+	pointerArrayClass     _PointerArrayClass
+	pointerArrayClassOnce sync.Once
+)
+
+func getPointerArrayClass() _PointerArrayClass {
+	pointerArrayClassOnce.Do(func() {
+		pointerArrayClass = _PointerArrayClass{objc.GetClass("NSPointerArray")}
+	})
+	return pointerArrayClass
+}
 
 type _PointerArrayClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IPointerArray interface {
 // A collection similar to an array, but with a broader range of available memory semantics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray
-
 type PointerArray struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type PointerArray struct {
 func PointerArrayFrom(ptr unsafe.Pointer) PointerArray {
 	return PointerArray{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PointerArrayClass) Alloc() PointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PointerArrayClass) New() PointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (p_ PointerArray) Autorelease() PointerArray {
 
 // NewPointerArray creates a new PointerArray instance.
 func NewPointerArray() PointerArray {
-	return pointerArrayClass.New()
+	return getPointerArrayClass().New()
 }
 
 

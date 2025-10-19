@@ -3,6 +3,7 @@
 package metal
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [MTLCompileOptions] class.
-var mTLCompileOptionsClass = _MTLCompileOptionsClass{objc.GetClass("MTLCompileOptions")}
+var (
+	mTLCompileOptionsClass     _MTLCompileOptionsClass
+	mTLCompileOptionsClassOnce sync.Once
+)
+
+func getMTLCompileOptionsClass() _MTLCompileOptionsClass {
+	mTLCompileOptionsClassOnce.Do(func() {
+		mTLCompileOptionsClass = _MTLCompileOptionsClass{objc.GetClass("MTLCompileOptions")}
+	})
+	return mTLCompileOptionsClass
+}
 
 type _MTLCompileOptionsClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IMTLCompileOptions interface {
 // Compilation settings for a Metal shader library. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions
-
 type MTLCompileOptions struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type MTLCompileOptions struct {
 func MTLCompileOptionsFrom(ptr unsafe.Pointer) MTLCompileOptions {
 	return MTLCompileOptions{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTLCompileOptionsClass) Alloc() MTLCompileOptions {
 	rv := objc.Send[MTLCompileOptions](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTLCompileOptionsClass) New() MTLCompileOptions {
 	rv := objc.Send[MTLCompileOptions](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (m_ MTLCompileOptions) Autorelease() MTLCompileOptions {
 
 // NewMTLCompileOptions creates a new MTLCompileOptions instance.
 func NewMTLCompileOptions() MTLCompileOptions {
-	return mTLCompileOptionsClass.New()
+	return getMTLCompileOptionsClass().New()
 }
 
 

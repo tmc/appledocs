@@ -3,13 +3,24 @@
 package spritekit
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SKReferenceNode] class.
-var sKReferenceNodeClass = _SKReferenceNodeClass{objc.GetClass("SKReferenceNode")}
+var (
+	sKReferenceNodeClass     _SKReferenceNodeClass
+	sKReferenceNodeClassOnce sync.Once
+)
+
+func getSKReferenceNodeClass() _SKReferenceNodeClass {
+	sKReferenceNodeClassOnce.Do(func() {
+		sKReferenceNodeClass = _SKReferenceNodeClass{objc.GetClass("SKReferenceNode")}
+	})
+	return sKReferenceNodeClass
+}
 
 type _SKReferenceNodeClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type ISKReferenceNode interface {
 // A node that’s defined in an archived file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKReferenceNode
-
 type SKReferenceNode struct {
 	SKNode
 }
@@ -36,13 +46,15 @@ func SKReferenceNodeFrom(ptr unsafe.Pointer) SKReferenceNode {
 		SKNode: SKNodeFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SKReferenceNodeClass) Alloc() SKReferenceNode {
 	rv := objc.Send[SKReferenceNode](objc.ID(sc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SKReferenceNodeClass) New() SKReferenceNode {
 	rv := objc.Send[SKReferenceNode](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (s_ SKReferenceNode) Autorelease() SKReferenceNode {
 
 // NewSKReferenceNode creates a new SKReferenceNode instance.
 func NewSKReferenceNode() SKReferenceNode {
-	return sKReferenceNodeClass.New()
+	return getSKReferenceNodeClass().New()
 }
 
 

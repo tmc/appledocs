@@ -3,6 +3,7 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
@@ -10,7 +11,17 @@ import (
 )
 
 // The class instance for the [Animation] class.
-var animationClass = _AnimationClass{objc.GetClass("CAAnimation")}
+var (
+	animationClass     _AnimationClass
+	animationClassOnce sync.Once
+)
+
+func getAnimationClass() _AnimationClass {
+	animationClassOnce.Do(func() {
+		animationClass = _AnimationClass{objc.GetClass("CAAnimation")}
+	})
+	return animationClass
+}
 
 type _AnimationClass struct {
 	class objc.Class
@@ -24,7 +35,6 @@ type IAnimation interface {
 // The abstract superclass for animations in Core Animation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation
-
 type Animation struct {
 	objectivec.Object
 }
@@ -35,13 +45,15 @@ type Animation struct {
 func AnimationFrom(ptr unsafe.Pointer) Animation {
 	return Animation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AnimationClass) Alloc() Animation {
 	rv := objc.Send[Animation](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AnimationClass) New() Animation {
 	rv := objc.Send[Animation](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -62,7 +74,7 @@ func (a_ Animation) Autorelease() Animation {
 
 // NewAnimation creates a new Animation instance.
 func NewAnimation() Animation {
-	return animationClass.New()
+	return getAnimationClass().New()
 }
 
 

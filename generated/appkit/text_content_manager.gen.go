@@ -35,7 +35,6 @@ type ITextContentManager interface {
 // An abstract class that defines the interface and a default implementation for managing the text document contents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager
-
 type TextContentManager struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextContentManager struct {
 func TextContentManagerFrom(ptr unsafe.Pointer) TextContentManager {
 	return TextContentManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextContentManagerClass) Alloc() TextContentManager {
 	rv := objc.Send[TextContentManager](objc.ID(tc.class), objc.Sel("alloc"))

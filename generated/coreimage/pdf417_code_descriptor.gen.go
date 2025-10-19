@@ -3,13 +3,24 @@
 package coreimage
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PDF417CodeDescriptor] class.
-var pDF417CodeDescriptorClass = _PDF417CodeDescriptorClass{objc.GetClass("CIPDF417CodeDescriptor")}
+var (
+	pDF417CodeDescriptorClass     _PDF417CodeDescriptorClass
+	pDF417CodeDescriptorClassOnce sync.Once
+)
+
+func getPDF417CodeDescriptorClass() _PDF417CodeDescriptorClass {
+	pDF417CodeDescriptorClassOnce.Do(func() {
+		pDF417CodeDescriptorClass = _PDF417CodeDescriptorClass{objc.GetClass("CIPDF417CodeDescriptor")}
+	})
+	return pDF417CodeDescriptorClass
+}
 
 type _PDF417CodeDescriptorClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IPDF417CodeDescriptor interface {
 // A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor
-
 type PDF417CodeDescriptor struct {
 	BarcodeDescriptor
 }
@@ -36,13 +46,15 @@ func PDF417CodeDescriptorFrom(ptr unsafe.Pointer) PDF417CodeDescriptor {
 		BarcodeDescriptor: BarcodeDescriptorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PDF417CodeDescriptorClass) Alloc() PDF417CodeDescriptor {
 	rv := objc.Send[PDF417CodeDescriptor](objc.ID(pc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PDF417CodeDescriptorClass) New() PDF417CodeDescriptor {
 	rv := objc.Send[PDF417CodeDescriptor](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (p_ PDF417CodeDescriptor) Autorelease() PDF417CodeDescriptor {
 
 // NewPDF417CodeDescriptor creates a new PDF417CodeDescriptor instance.
 func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
-	return pDF417CodeDescriptorClass.New()
+	return getPDF417CodeDescriptorClass().New()
 }
 
 
@@ -72,7 +84,7 @@ func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/init(payload:isCompact:rowCount:columnCount:)
 func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, rowCount int, columnCount int) PDF417CodeDescriptor {
-	instance := pDF417CodeDescriptorClass.Alloc()
+	instance := getPDF417CodeDescriptorClass().Alloc()
 	rv := objc.Send[PDF417CodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
 	rv.Autorelease()
 	return rv

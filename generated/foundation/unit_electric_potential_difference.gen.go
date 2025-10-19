@@ -3,13 +3,24 @@
 package foundation
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitElectricPotentialDifference] class.
-var unitElectricPotentialDifferenceClass = _UnitElectricPotentialDifferenceClass{objc.GetClass("NSUnitElectricPotentialDifference")}
+var (
+	unitElectricPotentialDifferenceClass     _UnitElectricPotentialDifferenceClass
+	unitElectricPotentialDifferenceClassOnce sync.Once
+)
+
+func getUnitElectricPotentialDifferenceClass() _UnitElectricPotentialDifferenceClass {
+	unitElectricPotentialDifferenceClassOnce.Do(func() {
+		unitElectricPotentialDifferenceClass = _UnitElectricPotentialDifferenceClass{objc.GetClass("NSUnitElectricPotentialDifference")}
+	})
+	return unitElectricPotentialDifferenceClass
+}
 
 type _UnitElectricPotentialDifferenceClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IUnitElectricPotentialDifference interface {
 // A unit of measure for electric potential difference. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference
-
 type UnitElectricPotentialDifference struct {
 	Dimension
 }
@@ -36,13 +46,15 @@ func UnitElectricPotentialDifferenceFrom(ptr unsafe.Pointer) UnitElectricPotenti
 		Dimension: DimensionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitElectricPotentialDifferenceClass) Alloc() UnitElectricPotentialDifference {
 	rv := objc.Send[UnitElectricPotentialDifference](objc.ID(uc.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UnitElectricPotentialDifferenceClass) New() UnitElectricPotentialDifference {
 	rv := objc.Send[UnitElectricPotentialDifference](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (u_ UnitElectricPotentialDifference) Autorelease() UnitElectricPotentialDif
 
 // NewUnitElectricPotentialDifference creates a new UnitElectricPotentialDifference instance.
 func NewUnitElectricPotentialDifference() UnitElectricPotentialDifference {
-	return unitElectricPotentialDifferenceClass.New()
+	return getUnitElectricPotentialDifferenceClass().New()
 }
 
 

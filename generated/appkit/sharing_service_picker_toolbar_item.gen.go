@@ -34,7 +34,6 @@ type ISharingServicePickerToolbarItem interface {
 // A toolbar item that displays the macOS share sheet. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
-
 type SharingServicePickerToolbarItem struct {
 	ToolbarItem
 }
@@ -47,6 +46,7 @@ func SharingServicePickerToolbarItemFrom(ptr unsafe.Pointer) SharingServicePicke
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerToolbarItemClass) Alloc() SharingServicePickerToolbarItem {
 	rv := objc.Send[SharingServicePickerToolbarItem](objc.ID(sc.class), objc.Sel("alloc"))

@@ -47,7 +47,6 @@ type ISplitView interface {
 // A view that arranges two or more views in a linear stack running horizontally or vertically. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView
-
 type SplitView struct {
 	View
 }
@@ -60,6 +59,7 @@ func SplitViewFrom(ptr unsafe.Pointer) SplitView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SplitViewClass) Alloc() SplitView {
 	rv := objc.Send[SplitView](objc.ID(sc.class), objc.Sel("alloc"))

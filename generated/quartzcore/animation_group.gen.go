@@ -3,13 +3,24 @@
 package quartzcore
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AnimationGroup] class.
-var animationGroupClass = _AnimationGroupClass{objc.GetClass("CAAnimationGroup")}
+var (
+	animationGroupClass     _AnimationGroupClass
+	animationGroupClassOnce sync.Once
+)
+
+func getAnimationGroupClass() _AnimationGroupClass {
+	animationGroupClassOnce.Do(func() {
+		animationGroupClass = _AnimationGroupClass{objc.GetClass("CAAnimationGroup")}
+	})
+	return animationGroupClass
+}
 
 type _AnimationGroupClass struct {
 	class objc.Class
@@ -23,7 +34,6 @@ type IAnimationGroup interface {
 // An object that allows multiple animations to be grouped and run concurrently. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimationGroup
-
 type AnimationGroup struct {
 	Animation
 }
@@ -36,13 +46,15 @@ func AnimationGroupFrom(ptr unsafe.Pointer) AnimationGroup {
 		Animation: AnimationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AnimationGroupClass) Alloc() AnimationGroup {
 	rv := objc.Send[AnimationGroup](objc.ID(ac.class), objc.Sel("alloc"))
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AnimationGroupClass) New() AnimationGroup {
 	rv := objc.Send[AnimationGroup](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -63,7 +75,7 @@ func (a_ AnimationGroup) Autorelease() AnimationGroup {
 
 // NewAnimationGroup creates a new AnimationGroup instance.
 func NewAnimationGroup() AnimationGroup {
-	return animationGroupClass.New()
+	return getAnimationGroupClass().New()
 }
 
 
