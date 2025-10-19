@@ -83,13 +83,13 @@ func init() {
 // waitForScreenRecordingPermission waits for Screen Recording permission to be granted
 // It retries the ScreenCaptureKit API call with exponential backoff and user feedback
 // Returns typed SCShareableContent once F7D7's property accessor work is complete
-func waitForScreenRecordingPermission() (content screencapturekit.SCShareableContent, displayCount, windowCount int, err error) {
+func waitForScreenRecordingPermission() (content screencapturekit.ShareableContent, displayCount, windowCount int, err error) {
 	maxAttempts := 10
 	baseDelay := 500 * time.Millisecond
 
 	for attempt := 1; attempt <= maxAttempts; attempt++ {
 		done := make(chan bool, 1)
-		var shareableContent screencapturekit.SCShareableContent
+		var shareableContent screencapturekit.ShareableContent
 		var displays, windows int
 		var lastError string
 
@@ -114,8 +114,8 @@ func waitForScreenRecordingPermission() (content screencapturekit.SCShareableCon
 					return
 				}
 
-				// Convert objc.ID to typed SCShareableContent
-				shareableContent = screencapturekit.SCShareableContentFrom(unsafe.Pointer(c))
+				// Convert objc.ID to typed ShareableContent
+				shareableContent = screencapturekit.ShareableContentFrom(unsafe.Pointer(c))
 				// Retain to prevent deallocation
 				c.Send(objc.RegisterName("retain"))
 
@@ -130,7 +130,7 @@ func waitForScreenRecordingPermission() (content screencapturekit.SCShareableCon
 		//       (only GetCurrentProcessShareableContentWithCompletionHandler exists)
 		shareableContentClass := objc.GetClass("SCShareableContent")
 		if shareableContentClass == 0 {
-			return screencapturekit.SCShareableContent{}, 0, 0, fmt.Errorf("SCShareableContent class not found (requires macOS 12.3+)")
+			return screencapturekit.ShareableContent{}, 0, 0, fmt.Errorf("ShareableContent class not found (requires macOS 12.3+)")
 		}
 		sel := objc.RegisterName("getShareableContentWithCompletionHandler:")
 		objc.ID(shareableContentClass).Send(sel, completionBlock)
@@ -181,7 +181,7 @@ func waitForScreenRecordingPermission() (content screencapturekit.SCShareableCon
 	fmt.Fprintf(os.Stderr, "\n\n❌ Screen Recording permission not granted after %d attempts\n", maxAttempts)
 	fmt.Fprintf(os.Stderr, "   Please check System Settings → Privacy & Security → Screen Recording\n")
 	fmt.Fprintf(os.Stderr, "   Then rerun this example.\n\n")
-	return screencapturekit.SCShareableContent{}, 0, 0, fmt.Errorf("screen recording permission not available")
+	return screencapturekit.ShareableContent{}, 0, 0, fmt.Errorf("screen recording permission not available")
 }
 
 func main() {
@@ -210,7 +210,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Failed to get shareable content: %v\n", err)
 		os.Exit(1)
 	}
-	// Release using objc.Send (NSObject methods not yet in generated bindings)
+	// Release using manual objc.Send (generated Release() method would require import changes)
 	defer shareableContent.ID.Send(objc.RegisterName("release"))
 
 	fmt.Fprintf(os.Stderr, "\r   ✓ Permission granted!                                        \n\n")
@@ -333,7 +333,7 @@ func main() {
 
 // recordScreen uses SCStream to record screen content
 // Now accepts typed SCDisplay
-func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) error {
+func recordScreen(display screencapturekit.Display, duration time.Duration) error {
 	fmt.Println("⏺  Setting up SCStream...")
 
 	// Get display width and height
@@ -360,10 +360,10 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	config.Send(objc.RegisterName("setShowsCursor:"), true)
 
 	// Create content filter for the display
-	// Init methods are generated; keeping manual approach for clarity:
-	//   emptyApps := []screencapturekit.SCRunningApplication{}
-	//   emptyWindows := []screencapturekit.SCWindow{}
-	//   filter := screencapturekit.NewSCContentFilterWithDisplayExcludingApplicationsExceptingWindows(
+	// Using manual approach for init methods (generated constructors exist but require proper NSArray creation)
+	//   emptyApps := []screencapturekit.RunningApplication{}
+	//   emptyWindows := []screencapturekit.Window{}
+	//   filter := screencapturekit.NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(
 	//       display, emptyApps, emptyWindows)
 
 	filterClass := objc.GetClass("SCContentFilter")
@@ -381,8 +381,8 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	filterID = filterID.Send(initSel, display.ID, emptyArray, emptyArray)
 	defer filterID.Send(objc.RegisterName("release"))
 
-	// Convert to typed SCContentFilter (for future use)
-	_ = screencapturekit.SCContentFilterFrom(unsafe.Pointer(filterID))
+	// Convert to typed ContentFilter (generated type wrapper)
+	_ = screencapturekit.ContentFilterFrom(unsafe.Pointer(filterID))
 
 	// Create SCStream
 	streamClass := objc.GetClass("SCStream")
@@ -404,19 +404,45 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 		fmt.Printf("📁 Output directory: %s\n", handler.outputDir)
 	}
 
-	// Use the helper API to create delegate
-	delegate := screencapturekit.NewSCStreamOutputDelegate(handler)
+	// Create delegate using objc.RegisterClass
+	delegateClassName := "FrameOutputDelegate"
+	callback := func(self objc.ID, cmd objc.SEL, stream objc.ID, sampleBuffer uintptr, outputType int) {
+		handler.StreamDidOutputSampleBuffer(screencapturekit.StreamFrom(unsafe.Pointer(stream)), sampleBuffer, outputType)
+	}
+
+	// Get SCStreamOutput protocol
+	protocol := objc.GetProtocol("SCStreamOutput")
+	var protocols []*objc.Protocol
+	if protocol != nil {
+		protocols = []*objc.Protocol{protocol}
+	}
+
+	class, err := objc.RegisterClass(
+		delegateClassName,
+		objc.GetClass("NSObject"),
+		protocols,
+		nil, // no fields
+		[]objc.MethodDef{{
+			Cmd: objc.RegisterName("stream:didOutputSampleBuffer:ofType:"),
+			Fn:  callback,
+		}},
+	)
+	if err != nil {
+		return fmt.Errorf("failed to register delegate class: %v", err)
+	}
+
+	delegate := objc.ID(class).Send(objc.RegisterName("alloc")).Send(objc.RegisterName("init"))
 	defer delegate.Send(objc.RegisterName("release"))
 
-	fmt.Println("✓ Created SCStreamOutput delegate using helper API!")
+	fmt.Println("✓ Created SCStreamOutput delegate!")
 	if *saveFrames {
 		fmt.Println("   💾 Frame saving enabled (every 30th frame)")
 	}
 	fmt.Println()
 
 	// Create SCStream with filter and config
-	// Init methods are generated; keeping manual approach for clarity:
-	//   stream := screencapturekit.NewSCStreamWithFilterConfigurationDelegate(
+	// Using manual approach (generated constructors exist but we need precise control over delegate timing)
+	//   stream := screencapturekit.NewStreamWithFilterConfigurationDelegate(
 	//       filter, config, nil)
 
 	initStreamSel := objc.RegisterName("initWithFilter:configuration:delegate:")
@@ -427,8 +453,8 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	}
 	defer streamID.Send(objc.RegisterName("release"))
 
-	// Convert to typed SCStream (for future use)
-	_ = screencapturekit.SCStreamFrom(unsafe.Pointer(streamID))
+	// Convert to typed Stream (generated type wrapper)
+	_ = screencapturekit.StreamFrom(unsafe.Pointer(streamID))
 
 	// Create dispatch queue for stream output
 	queueClass := objc.GetClass("OS_dispatch_queue")
@@ -543,7 +569,7 @@ type FrameHandler struct {
 }
 
 // StreamDidOutputSampleBuffer implements the SCStreamOutputHandler interface
-func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStream, sampleBuffer uintptr, outputType int) {
+func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.Stream, sampleBuffer uintptr, outputType int) {
 	// Only process screen output
 	if outputType != 0 { // SCStreamOutputTypeScreen = 0
 		return
