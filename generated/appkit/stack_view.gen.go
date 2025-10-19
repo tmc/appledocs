@@ -69,7 +69,8 @@ func (sc _StackViewClass) Alloc() StackView {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _StackViewClass) New() StackView {
 	rv := objc.Send[StackView](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -99,8 +100,8 @@ func NewStackView() StackView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/init(views:)
 func NewStackViewWithViews(views unsafe.Pointer) StackView {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[StackView](objc.ID(getStackViewClass().class), objc.Sel("stackViewWithViews:"), views)
-	rv.Autorelease()
 	return rv
 }
 

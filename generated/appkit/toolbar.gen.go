@@ -58,7 +58,8 @@ func (tc _ToolbarClass) Alloc() Toolbar {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _ToolbarClass) New() Toolbar {
 	rv := objc.Send[Toolbar](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,6 +89,7 @@ func NewToolbar() Toolbar {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/init(identifier:)
 func NewToolbarWithIdentifier(identifier unsafe.Pointer) Toolbar {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getToolbarClass().Alloc()
 	rv := objc.Send[Toolbar](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()

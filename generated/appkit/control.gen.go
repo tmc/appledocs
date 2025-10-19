@@ -74,7 +74,8 @@ func (cc _ControlClass) Alloc() Control {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ControlClass) New() Control {
 	rv := objc.Send[Control](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,6 +105,7 @@ func NewControl() Control {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
 func NewControlWithCoder(coder unsafe.Pointer) Control {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -114,6 +116,7 @@ func NewControlWithCoder(coder unsafe.Pointer) Control {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
 func NewControlWithFrame(frameRect unsafe.Pointer) Control {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

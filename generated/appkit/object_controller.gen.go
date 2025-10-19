@@ -53,7 +53,8 @@ func (oc _ObjectControllerClass) Alloc() ObjectController {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _ObjectControllerClass) New() ObjectController {
 	rv := objc.Send[ObjectController](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()

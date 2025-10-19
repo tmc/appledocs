@@ -235,7 +235,8 @@ func (vc _ViewClass) Alloc() View {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ViewClass) New() View {
 	rv := objc.Send[View](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -265,6 +266,7 @@ func NewView() View {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
 func NewViewWithCoder(coder unsafe.Pointer) View {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -275,6 +277,7 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(frame:)
 func NewViewWithFrame(frameRect unsafe.Pointer) View {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

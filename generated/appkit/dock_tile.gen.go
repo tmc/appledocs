@@ -52,7 +52,8 @@ func (dc _DockTileClass) Alloc() DockTile {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DockTileClass) New() DockTile {
 	rv := objc.Send[DockTile](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()

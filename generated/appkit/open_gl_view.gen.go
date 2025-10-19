@@ -57,7 +57,8 @@ func (oc _OpenGLViewClass) Alloc() OpenGLView {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OpenGLViewClass) New() OpenGLView {
 	rv := objc.Send[OpenGLView](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,6 +88,7 @@ func NewOpenGLView() OpenGLView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
 func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.Pointer) OpenGLView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()

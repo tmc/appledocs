@@ -84,7 +84,8 @@ func (tc _TextClass) Alloc() Text {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextClass) New() Text {
 	rv := objc.Send[Text](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -112,6 +113,7 @@ func NewText() Text {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
 func NewTextWithCoder(coder unsafe.Pointer) Text {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getTextClass().Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -120,6 +122,7 @@ func NewTextWithCoder(coder unsafe.Pointer) Text {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
 func NewTextWithFrame(frameRect unsafe.Pointer) Text {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getTextClass().Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

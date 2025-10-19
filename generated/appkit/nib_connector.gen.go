@@ -52,7 +52,8 @@ func (nc _NibConnectorClass) Alloc() NibConnector {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NibConnectorClass) New() NibConnector {
 	rv := objc.Send[NibConnector](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()

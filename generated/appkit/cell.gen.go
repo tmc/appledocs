@@ -99,7 +99,8 @@ func (cc _CellClass) Alloc() Cell {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CellClass) New() Cell {
 	rv := objc.Send[Cell](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -127,6 +128,7 @@ func NewCell() Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
 func NewCellWithCoder(coder unsafe.Pointer) Cell {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -137,6 +139,7 @@ func NewCellWithCoder(coder unsafe.Pointer) Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(imageCell:)
 func NewCellImageCell(image unsafe.Pointer) Cell {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initImageCell:"), image)
 	rv.Autorelease()
@@ -147,6 +150,7 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
 func NewCellTextCell(string string) Cell {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string))
 	rv.Autorelease()

@@ -1,0 +1,81 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [StringDrawingContext] class.
+var (
+	stringDrawingContextClass     _StringDrawingContextClass
+	stringDrawingContextClassOnce sync.Once
+)
+
+func getStringDrawingContextClass() _StringDrawingContextClass {
+	stringDrawingContextClassOnce.Do(func() {
+		stringDrawingContextClass = _StringDrawingContextClass{objc.GetClass("NSStringDrawingContext")}
+	})
+	return stringDrawingContextClass
+}
+
+type _StringDrawingContextClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [StringDrawingContext] class.
+type IStringDrawingContext interface {
+	objectivec.IObject
+}
+
+// An object that manages metrics for drawing attributed strings. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext
+
+type StringDrawingContext struct {
+	objectivec.Object
+}
+
+// StringDrawingContextFrom constructs a [StringDrawingContext] from an unsafe.Pointer.
+//
+// An object that manages metrics for drawing attributed strings.
+func StringDrawingContextFrom(ptr unsafe.Pointer) StringDrawingContext {
+	return StringDrawingContext{objectivec.Object{objc.ID(ptr)}}
+}
+// Alloc allocates a new instance without initialization.
+func (sc _StringDrawingContextClass) Alloc() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StringDrawingContextClass) New() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ StringDrawingContext) Init() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ StringDrawingContext) Autorelease() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStringDrawingContext creates a new StringDrawingContext instance.
+func NewStringDrawingContext() StringDrawingContext {
+	return getStringDrawingContextClass().New()
+}
+
+
+
+

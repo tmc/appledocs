@@ -53,7 +53,8 @@ func (tc _TouchBarClass) Alloc() TouchBar {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TouchBarClass) New() TouchBar {
 	rv := objc.Send[TouchBar](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -83,6 +84,7 @@ func NewTouchBar() TouchBar {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
 func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

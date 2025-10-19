@@ -53,7 +53,8 @@ func (ac _AlertClass) Alloc() Alert {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AlertClass) New() Alert {
 	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()

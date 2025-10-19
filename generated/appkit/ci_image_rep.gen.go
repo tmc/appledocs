@@ -53,7 +53,8 @@ func (ic _CIImageRepClass) Alloc() CIImageRep {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _CIImageRepClass) New() CIImageRep {
 	rv := objc.Send[CIImageRep](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()

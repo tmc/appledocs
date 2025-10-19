@@ -60,7 +60,8 @@ func (rc _RulerViewClass) Alloc() RulerView {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RulerViewClass) New() RulerView {
 	rv := objc.Send[RulerView](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,6 +89,7 @@ func NewRulerView() RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
 func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -98,6 +100,7 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
 func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
 	rv.Autorelease()

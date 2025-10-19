@@ -52,7 +52,8 @@ func (fc _FilePromiseReceiverClass) Alloc() FilePromiseReceiver {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FilePromiseReceiverClass) New() FilePromiseReceiver {
 	rv := objc.Send[FilePromiseReceiver](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()

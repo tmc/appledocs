@@ -64,7 +64,8 @@ func (sc _ScrubberClass) Alloc() Scrubber {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScrubberClass) New() Scrubber {
 	rv := objc.Send[Scrubber](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,6 +95,7 @@ func NewScrubber() Scrubber {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
 func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -104,6 +106,7 @@ func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
 func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

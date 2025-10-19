@@ -61,7 +61,8 @@ func (vc _ViewControllerClass) Alloc() ViewController {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ViewControllerClass) New() ViewController {
 	rv := objc.Send[ViewController](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,6 +92,7 @@ func NewViewController() ViewController {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
 func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOrNil unsafe.Pointer) ViewController {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
 	rv.Autorelease()

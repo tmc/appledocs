@@ -55,7 +55,8 @@ func (bc _ButtonClass) Alloc() Button {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _ButtonClass) New() Button {
 	rv := objc.Send[Button](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +86,8 @@ func NewButton() Button {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
 func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
-	rv.Autorelease()
 	return rv
 }
 // Creates a standard push button with a title and image. [Full Topic]
@@ -94,8 +95,8 @@ func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) Button {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
-	rv.Autorelease()
 	return rv
 }
 // Creates a standard push button with the title you specify. [Full Topic]
@@ -103,8 +104,8 @@ func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, tar
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
 func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
-	rv.Autorelease()
 	return rv
 }
 

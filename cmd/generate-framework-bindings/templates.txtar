@@ -430,7 +430,8 @@ func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
 	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -469,10 +470,11 @@ func New{{$structName}}() {{$structName}} {
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	{{- if .IsClassMethod}}
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[{{$structName}}](objc.ID(get{{$structName}}Class().class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	rv.Autorelease()
 	return rv
 	{{- else}}
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := get{{$structName}}Class().Alloc()
 	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()
@@ -711,7 +713,8 @@ func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
 	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -750,10 +753,11 @@ func New{{$structName}}() {{$structName}} {
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	{{- if .IsClassMethod}}
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[{{$structName}}](objc.ID(get{{$structName}}Class().class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	rv.Autorelease()
 	return rv
 	{{- else}}
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := get{{$structName}}Class().Alloc()
 	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()

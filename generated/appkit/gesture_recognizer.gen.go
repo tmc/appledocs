@@ -57,7 +57,8 @@ func (gc _GestureRecognizerClass) Alloc() GestureRecognizer {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GestureRecognizerClass) New() GestureRecognizer {
 	rv := objc.Send[GestureRecognizer](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()

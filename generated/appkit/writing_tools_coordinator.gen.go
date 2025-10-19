@@ -54,7 +54,8 @@ func (wc _WritingToolsCoordinatorClass) Alloc() WritingToolsCoordinator {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WritingToolsCoordinatorClass) New() WritingToolsCoordinator {
 	rv := objc.Send[WritingToolsCoordinator](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()

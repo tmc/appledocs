@@ -60,7 +60,8 @@ func (sc _ScrollViewClass) Alloc() ScrollView {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScrollViewClass) New() ScrollView {
 	rv := objc.Send[ScrollView](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,6 +89,7 @@ func NewScrollView() ScrollView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
 func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -96,6 +98,7 @@ func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(frame:)
 func NewScrollViewWithFrame(frameRect unsafe.Pointer) ScrollView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()

@@ -52,7 +52,8 @@ func (tc _TextSelectionNavigationClass) Alloc() TextSelectionNavigation {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextSelectionNavigationClass) New() TextSelectionNavigation {
 	rv := objc.Send[TextSelectionNavigation](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()

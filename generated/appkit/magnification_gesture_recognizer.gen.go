@@ -53,7 +53,8 @@ func (mc _MagnificationGestureRecognizerClass) Alloc() MagnificationGestureRecog
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MagnificationGestureRecognizerClass) New() MagnificationGestureRecognizer {
 	rv := objc.Send[MagnificationGestureRecognizer](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()

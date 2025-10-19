@@ -53,7 +53,8 @@ func (pc _PathControlClass) Alloc() PathControl {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PathControlClass) New() PathControl {
 	rv := objc.Send[PathControl](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()

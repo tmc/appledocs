@@ -53,7 +53,8 @@ func (tc _TextFieldCellClass) Alloc() TextFieldCell {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextFieldCellClass) New() TextFieldCell {
 	rv := objc.Send[TextFieldCell](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()

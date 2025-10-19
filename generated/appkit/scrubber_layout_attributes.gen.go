@@ -52,7 +52,8 @@ func (sc _ScrubberLayoutAttributesClass) Alloc() ScrubberLayoutAttributes {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScrubberLayoutAttributesClass) New() ScrubberLayoutAttributes {
 	rv := objc.Send[ScrubberLayoutAttributes](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()

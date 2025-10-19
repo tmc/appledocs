@@ -52,7 +52,8 @@ func (tc _TouchBarItemClass) Alloc() TouchBarItem {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TouchBarItemClass) New() TouchBarItem {
 	rv := objc.Send[TouchBarItem](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()

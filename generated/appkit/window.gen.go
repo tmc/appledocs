@@ -190,7 +190,8 @@ func (wc _WindowClass) Alloc() Window {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WindowClass) New() Window {
 	rv := objc.Send[Window](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -220,6 +221,7 @@ func NewWindow() Window {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
 func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
@@ -230,6 +232,7 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, s
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
 func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen unsafe.Pointer) Window {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:screen:"), contentRect, style, backingStoreType, flag, screen)
 	rv.Autorelease()
@@ -240,8 +243,8 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect unsafe.Poin
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
 func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
-	rv.Autorelease()
 	return rv
 }
 // Returns a Cocoa window created from a Carbon window. [Full Topic]
@@ -249,6 +252,7 @@ func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Wi
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
 func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
 	rv.Autorelease()

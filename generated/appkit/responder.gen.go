@@ -115,7 +115,8 @@ func (rc _ResponderClass) Alloc() Responder {
 	return rv
 }
 
-// New creates and returns a new instance with a +1 retain count.
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _ResponderClass) New() Responder {
 	rv := objc.Send[Responder](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -145,6 +146,7 @@ func NewResponder() Responder {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/init(coder:)
 func NewResponderWithCoder(coder unsafe.Pointer) Responder {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getResponderClass().Alloc()
 	rv := objc.Send[Responder](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
