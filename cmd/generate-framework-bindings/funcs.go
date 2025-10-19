@@ -1548,6 +1548,20 @@ func generateTestValue(goType, framework, paramName string) string {
 	// Handle primitive types
 	switch goType {
 	case "string":
+		// Special handling for specific parameter names that need valid values
+		paramLower := strings.ToLower(paramName)
+		if strings.Contains(paramLower, "querystring") || strings.Contains(paramLower, "query") && strings.Contains(paramLower, "string") {
+			// Metadata query string - needs valid syntax
+			return `"kMDItemFSName == '*.txt'"`
+		}
+		if strings.Contains(paramLower, "path") {
+			// Path parameters need to be absolute paths
+			return `"/tmp/test"`
+		}
+		if strings.Contains(paramLower, "url") || strings.Contains(paramLower, "urlstring") {
+			// URL strings
+			return `"https://example.com"`
+		}
 		return fmt.Sprintf(`"%s"`, paramName)
 	case "int", "int8", "int16", "int32", "int64":
 		return "0"
