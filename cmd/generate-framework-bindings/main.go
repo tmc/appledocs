@@ -380,6 +380,77 @@ func getTemplateVariant(filename, variant string) (string, error) {
 	return "", fmt.Errorf("template not found: %s", filename)
 }
 
+// extractSymbolsFromAPICollections finds all -api.json collection files for a framework
+// and extracts the symbol URLs they reference. It returns a deduplicated list of symbol paths.
+func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verbose bool) []string {
+	// Find all -api.json files in the framework directory
+	apiFiles := []string{}
+	err := fs.WalkDir(fsys, framework, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+		if strings.HasSuffix(path, "-api.json") {
+			apiFiles = append(apiFiles, path)
+		}
+		return nil
+	})
+	if err != nil && verbose {
+		fmt.Fprintf(os.Stderr, "Warning: failed to walk framework directory for API collections: %v\n", err)
+		return nil
+	}
+
+	if verbose && len(apiFiles) > 0 {
+		fmt.Fprintf(os.Stderr, "Found %d API collection files\n", len(apiFiles))
+	}
+
+	// Extract symbol URLs from each API collection file
+	symbolPaths := make(map[string]bool) // Use map for deduplication
+	for _, apiFile := range apiFiles {
+		doc, err := fsys.ReadDocument(apiFile)
+		if err != nil {
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to read API collection %s: %v\n", apiFile, err)
+			}
+			continue
+		}
+
+		// Parse topicSections to extract symbol URLs
+		if doc.TopicSections != nil {
+			for _, section := range doc.TopicSections {
+				if section.Identifiers != nil {
+					for _, urlStr := range section.Identifiers {
+						// Convert doc:// URL to file path
+						// Format: doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBufferGetImageBuffer(_:)
+						// We need: CoreMedia/cmsamplebuffergetimagebuffer(_:).json
+						const prefix = "/documentation/"
+						idx := strings.Index(urlStr, prefix)
+						if idx == -1 {
+							continue
+						}
+						path := urlStr[idx+len(prefix):]
+						// Lowercase the path (Apple's filesystem uses lowercase)
+						path = strings.ToLower(path)
+						path = path + ".json"
+						symbolPaths[path] = true
+					}
+				}
+			}
+		}
+	}
+
+	// Convert map to sorted slice
+	result := make([]string, 0, len(symbolPaths))
+	for path := range symbolPaths {
+		result = append(result, path)
+	}
+	sort.Strings(result)
+
+	return result
+}
+
 func main() {
 	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for")
 	inputDir := flag.String("input", "", "Input directory with JSON files (defaults to ~/.appledocs/cache/developer.apple.com/tutorials/data/documentation)")
@@ -437,6 +508,14 @@ func main() {
 
 	processedFiles := 0
 	parseErrors := 0
+
+	// First, process API collection pages to extract additional symbol URLs
+	apiCollectionSymbols := extractSymbolsFromAPICollections(fsys, *framework, verbose)
+	if verbose && len(apiCollectionSymbols) > 0 {
+		fmt.Fprintf(os.Stderr, "Found %d symbols from API collection pages\n", len(apiCollectionSymbols))
+	}
+
+	// Process regular symbols
 	for path, doc := range appledocs.Symbols(fsys, *framework) {
 		processedFiles++
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
@@ -454,6 +533,35 @@ func main() {
 			parseErrors++
 			if verbose {
 				fmt.Fprintf(os.Stderr, "Warning: failed to parse %s: %v\n", path, err)
+			}
+		}
+	}
+
+	// Also process symbols found in API collection pages
+	for _, symbolPath := range apiCollectionSymbols {
+		doc, err := fsys.ReadDocument(symbolPath)
+		if err != nil {
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to read collection symbol %s: %v\n", symbolPath, err)
+			}
+			continue
+		}
+		processedFiles++
+		fn, cls, proto, err := occ2go.ParseDocument(doc)
+		if err == nil {
+			if fn != nil {
+				functions = append(functions, fn)
+			}
+			if cls != nil {
+				classes = append(classes, cls)
+			}
+			if proto != nil {
+				protocols = append(protocols, proto)
+			}
+		} else {
+			parseErrors++
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse collection symbol %s: %v\n", symbolPath, err)
 			}
 		}
 	}
@@ -491,6 +599,11 @@ func main() {
 			// Check for properties: c:objc(cs)ClassName(py)propertyName
 			if strings.Contains(externalID, "(py)") {
 				property, err := occ2go.ParseProperty(doc)
+				if err != nil && verbose {
+					if strings.Contains(externalID, "NSWindow") {
+						fmt.Fprintf(os.Stderr, "Failed to parse property %s: %v\n", externalID, err)
+					}
+				}
 				if err == nil && property != nil {
 					// Extract class name from external ID
 					parts := strings.Split(externalID, "(")
@@ -498,6 +611,9 @@ func main() {
 						className := strings.TrimPrefix(parts[1], "cs)")
 						classPropertiesMap[className] = append(classPropertiesMap[className], property)
 						propertyCount++
+						if verbose && className == "NSWindow" {
+							fmt.Fprintf(os.Stderr, "Parsed property for NSWindow: %s (type: %s)\n", property.Name, property.Type)
+						}
 					}
 				}
 			}
