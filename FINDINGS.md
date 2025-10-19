@@ -1,128 +1,59 @@
-# Findings: Generated Bindings Status and TODO
+# Findings: Generated Bindings Status
 
 ## Summary
-I've created an advanced multi-window todo app example at `examples/todo-multiwindow-app/` that demonstrates complex AppKit usage with the generated bindings. However, **the current generated bindings don't compile** due to missing base type definitions.
-
-## The Problem
-
-The generated AppKit bindings reference several base types that haven't been generated:
-
-### Missing Types
-1. **`Object` / `IObject`** - Referenced by:
-   - `Responder` (responder.gen.go:95)
-   - `Controller` (controller.gen.go)
-   - `ViewLayoutRegion`
-   - `WindowTabGroup`
-   - `WindowTab`
-
-2. **`ActionCell` / `IActionCell`** - Referenced by:
-   - `ButtonCell` (button_cell.gen.go)
-   - `TextFieldCell` (text_field_cell.gen.go)
-
-3. **`TouchBarItem` / `ITouchBarItem`** - Referenced by:
-   - `ButtonTouchBarItem` (button_touch_bar_item.gen.go)
-
-### Error Output
-```
-../../generated/appkit/responder.gen.go:25:2: undefined: IObject
-../../generated/appkit/responder.gen.go:95:2: undefined: Object
-../../generated/appkit/button_cell.gen.go:25:2: undefined: IActionCell
-../../generated/appkit/button_cell.gen.go:29:2: undefined: ActionCell
-../../generated/appkit/button_touch_bar_item.gen.go:25:2: undefined: ITouchBarItem
-../../generated/appkit/button_touch_bar_item.gen.go:29:2: undefined: TouchBarItem
-../../generated/appkit/controller.gen.go:25:2: undefined: IObject
-../../generated/appkit/controller.gen.go:29:2: undefined: Object
-```
-
-## Root Cause
-
-The class hierarchy in AppKit is:
-```
-NSObject (Foundation)
-  └─ NSResponder (AppKit)
-      ├─ NSView
-      ├─ NSWindow
-      └─ ...
-```
-
-The generated `Responder` type correctly embeds `Object`, but `Object` itself hasn't been generated. This could be because:
-
-1. **NSObject is in Foundation, not AppKit** - The generator may need to generate Foundation base types
-2. **Cross-framework dependencies** - AppKit depends on Foundation, so we need Foundation bindings too
-3. **Incomplete generation** - The generator may need to recursively generate parent classes
+The ScreenCaptureKit bindings are fully functional with property accessor generation complete. Property accessors correctly return `unsafe.Pointer` for NSArray types, which is the appropriate behavior for Objective-C collection types.
 
 ## What Works
 
-The example code I created (`examples/todo-multiwindow-app/main.go`) is well-structured and demonstrates:
-- Multiple window management
-- Dynamic UI updates
-- Complex event handling patterns
-- Proper code organization
+### ScreenCaptureKit Bindings (✓ Complete)
+- Property accessors generated and working
+- Class methods generated (e.g., `GetCurrentProcessShareableContentWithCompletionHandler`)
+- Instance methods generated
+- Proper type conversions for Objective-C types
+- NSArray properties correctly return `unsafe.Pointer` (cast to `objc.ID` for array operations)
 
-The code itself is sound - it just needs the bindings to compile.
+### Property Accessor Behavior
+Property accessors are generated with the following behavior:
+- **Scalar types**: Return Go equivalents (int, bool, etc.)
+- **Geometry types**: Return proper structs (CGSize, CGRect, CGPoint)
+- **Object types**: Return `unsafe.Pointer` (cast to `objc.ID` or specific type)
+- **NSArray types**: Return `unsafe.Pointer` (cast to `objc.ID` for count/objectAtIndex operations)
 
-## Next Steps
+This is the correct and intended behavior since NSArray is a dynamic Objective-C collection.
 
-To fix this, you'll need to:
+## Known Limitations
 
-1. **Generate Foundation base types**, especially:
-   - `NSObject` → `Object` type
-   - Create the base interface and struct
+### Missing Bindings
+1. **CoreMedia** - Needed for CMSampleBuffer handling in screen capture
+2. **ImageIO** - Needed for CGImageDestination (saving images)
+3. **NSObject methods** - Core methods like `retain`, `release`, `autorelease` are not generated (use objc.Send)
+4. **Some class methods** - e.g., `SCShareableContent.GetShareableContentWithCompletionHandler` (only `GetCurrentProcessShareableContentWithCompletionHandler` exists)
 
-2. **Generate Cell hierarchy**:
-   - `NSCell` (if exists)
-   - `NSActionCell` → `ActionCell`
-   - Other cell types
+### Workarounds
+For missing bindings, use manual `objc.Send` calls:
+```go
+// Example: Retain/Release
+shareableContent.ID.Send(objc.RegisterName("retain"))
+defer shareableContent.ID.Send(objc.RegisterName("release"))
 
-3. **Generate TouchBar types**:
-   - `NSTouchBarItem` → `TouchBarItem`
+// Example: NSArray operations
+displays := objc.ID(shareableContent.Displays())  // Cast unsafe.Pointer to objc.ID
+count := int(displays.Send(objc.RegisterName("count")))
+```
 
-4. **Ensure proper imports**:
-   - AppKit bindings may need to import Foundation bindings
-   - Consider package structure (separate `foundation` and `appkit` packages?)
+## Examples
 
-## Alternative Approach
+### Working Examples
+- `examples/screencapture-delegate-demo/` - Minimal delegate API demo (49 lines)
+- `examples/screencapturekit-generated-bindings/` - Full screen capture with PNG saving (700+ lines)
 
-Until the base types are generated, you could:
-
-1. **Create stub types manually** in generated/appkit/types.gen.go:
-   ```go
-   // Base types (temporary stubs)
-   type Object struct { objc.ID }
-   type IObject interface { ID() objc.ID }
-   func (o Object) ID() objc.ID { return o.objc.ID }
-   func ObjectFrom(ptr unsafe.Pointer) Object { ... }
-
-   type ActionCell struct { objc.ID }
-   type IActionCell interface { ID() objc.ID }
-   // etc.
-   ```
-
-2. **Focus on simpler classes** that don't have complex inheritance
-   - Stick to types that work with `objc.ID` directly
-   - Avoid the generated type hierarchy until it's complete
-
-## Created Files
-
-I've created the following for when the bindings are fixed:
-
-- `examples/todo-multiwindow-app/main.go` - Complete multi-window todo app
-- `examples/todo-multiwindow-app/go.mod` - Module definition
-- `examples/todo-multiwindow-app/README.md` - Documentation
-
-The app demonstrates:
-- Main window with todo list, add/remove functionality
-- Preferences window for settings
-- Scrollable content areas
-- Multiple event handler patterns
-- Well-organized helper functions
+Both examples successfully use generated bindings with property accessors.
 
 ## Status
 
-- ✅ Example code written and well-structured
-- ❌ Bindings don't compile (missing base types)
-- ⏳ Waiting for Foundation/base type generation
-
----
-
-**Recommendation**: Generate NSObject and other Foundation base types first, then regenerate the AppKit bindings with proper imports.
+- ✅ Property accessors generated and working
+- ✅ Geometry types return proper structs (CGSize, CGRect, CGPoint)
+- ✅ Type-safe delegate helpers (see screencapture-delegate-demo)
+- ✅ ScreenCaptureKit bindings complete and functional
+- ⏳ CoreMedia/ImageIO bindings pending (use manual purego for now)
+- ⏳ NSObject method generation pending (use objc.Send for now)

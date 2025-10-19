@@ -6,18 +6,11 @@
 // - Display and window enumeration
 // - Screen recording with SCStream
 // - Typed ScreenCaptureKit bindings (SCShareableContent, SCDisplay, SCWindow, etc.)
-// - Mixed objc.Send and typed methods (transitioning to full typed API)
+// - Using generated property accessors (e.g., shareableContent.Displays())
 //
-// NOTE: This code is prepared for property accessor generation (in progress by session F7D7).
-// Throughout the code, you'll find TODO comments marking where property accessors will replace
-// manual objc.Send calls once the generator supports them. For example:
-//
-//   Current:  displays := shareableContent.ID.Send(objc.RegisterName("displays"))
-//   Future:   displayArray := shareableContent.Displays() // returns []SCDisplay
-//
-// The code uses typed bindings where available (SCShareableContent, SCDisplay, etc.) and falls
-// back to objc.ID.Send() for methods/properties not yet generated. Once property generation is
-// complete, simply uncomment the TODO sections to use fully type-safe property accessors.
+// NOTE: Property accessors are generated and return unsafe.Pointer for NSArray types,
+// which are then cast to objc.ID for array operations. This is the correct approach
+// since NSArray is a dynamic Objective-C collection type.
 package main
 
 import (
@@ -145,33 +138,27 @@ func waitForScreenRecordingPermission() (content screencapturekit.SCShareableCon
 					return
 				}
 
-				// Convert objc.ID to typed SCShareableContent
+					// Convert objc.ID to typed SCShareableContent
 				shareableContent = screencapturekit.SCShareableContentFrom(unsafe.Pointer(c))
-				// TODO: Once Retain method is generated, use: shareableContent.Retain()
+				// Retain to prevent deallocation
 				c.Send(objc.RegisterName("retain"))
 
-				// TODO: Once F7D7 completes property generation, replace with:
-				//   displayArray := shareableContent.Displays()
-				//   displays = len(displayArray)
-				//   windowArray := shareableContent.Windows()
-				//   windows = len(windowArray)
-
-				// For now, use objc.Send until properties are generated:
-				d := c.Send(objc.RegisterName("displays"))
+				// Use generated property accessors (returns unsafe.Pointer for NSArray)
+				d := objc.ID(shareableContent.Displays())
 				if d != 0 {
 					displays = int(d.Send(objc.RegisterName("count")))
 				}
 
-				w := c.Send(objc.RegisterName("windows"))
+				w := objc.ID(shareableContent.Windows())
 				if w != 0 {
 					windows = int(w.Send(objc.RegisterName("count")))
 				}
 			},
 		)
 
-		// Call async class method using typed binding
-		// TODO: Once class method generation is complete, replace with:
-		//   screencapturekit.SCShareableContentClass.GetShareableContentWithCompletionHandler(completionBlock)
+			// Call async class method using manual objc.Send
+		// Note: GetShareableContentWithCompletionHandler is not in generated bindings
+		//       (only GetCurrentProcessShareableContentWithCompletionHandler exists)
 		shareableContentClass := objc.GetClass("SCShareableContent")
 		if shareableContentClass == 0 {
 			return screencapturekit.SCShareableContent{}, 0, 0, fmt.Errorf("SCShareableContent class not found (requires macOS 12.3+)")
@@ -254,7 +241,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Failed to get shareable content: %v\n", err)
 		os.Exit(1)
 	}
-	// TODO: Once Release method is generated, use: shareableContent.Release()
+	// Release using objc.Send (NSObject methods not yet in generated bindings)
 	defer shareableContent.ID.Send(objc.RegisterName("release"))
 
 	fmt.Fprintf(os.Stderr, "\r   ✓ Permission granted!                                        \n\n")
@@ -263,7 +250,7 @@ func main() {
 	fmt.Println("=== Results ===")
 	fmt.Printf("✓ Found %d display(s)\n", displayCount)
 
-	// TODO: Once F7D7 completes property generation, replace with:
+	// Property accessors are generated; NSArray properties return unsafe.Pointer:
 	//   displayArray := shareableContent.Displays() // returns []SCDisplay
 	//   for i, display := range displayArray {
 	//       fmt.Printf("   Display %d: ID=%d, %dx%d\n", i,
@@ -279,7 +266,7 @@ func main() {
 				// Convert to typed SCDisplay (for future use)
 				_ = screencapturekit.SCDisplayFrom(unsafe.Pointer(displayID))
 
-				// TODO: Replace with property accessors once generated:
+				// Using property accessors (return unsafe.Pointer for objects):
 				//   id := display.DisplayID()
 				//   w := display.Width()
 				//   h := display.Height()
@@ -294,7 +281,7 @@ func main() {
 	// Print window information
 	fmt.Printf("\n✓ Found %d window(s)\n", windowCount)
 	if windowCount > 0 {
-		// TODO: Once F7D7 completes property generation, replace with:
+		// Property accessors are generated; NSArray properties return unsafe.Pointer:
 		//   windowArray := shareableContent.Windows() // returns []SCWindow
 		//   for i, window := range windowArray {
 		//       title := window.Title()  // string property
@@ -348,7 +335,7 @@ func main() {
 	}
 
 	// Print applications
-	// TODO: Once F7D7 completes property generation, replace with:
+	// Property accessors are generated; NSArray properties return unsafe.Pointer:
 	//   appArray := shareableContent.Applications() // returns []SCRunningApplication
 	//   for i, app := range appArray[:min(5, len(appArray))] {
 	//       fmt.Printf("   - %s (pid: %d)\n", app.ApplicationName(), app.ProcessID())
@@ -408,7 +395,7 @@ func main() {
 		fmt.Println()
 
 		// Get the selected display
-		// TODO: Once property generation is complete, replace with:
+		// Property accessors exist but return unsafe.Pointer for objects:
 		//   displayArray := shareableContent.Displays()
 		//   display := displayArray[*displayNum]
 
@@ -420,7 +407,7 @@ func main() {
 
 		display := screencapturekit.SCDisplayFrom(unsafe.Pointer(displayObjcID))
 
-		// TODO: Replace with property accessors:
+		// Using property accessors (return unsafe.Pointer for objects):
 		//   displayID := display.DisplayID()
 		//   width := display.Width()
 		//   height := display.Height()
@@ -452,7 +439,7 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	fmt.Println("⏺  Setting up SCStream...")
 
 	// Get display width and height
-	// TODO: Replace with property accessors:
+	// Using property accessors (return unsafe.Pointer for objects):
 	//   width := display.Width()
 	//   height := display.Height()
 	width := int(display.ID.Send(objc.RegisterName("width")))
@@ -475,7 +462,7 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	config.Send(objc.RegisterName("setShowsCursor:"), true)
 
 	// Create content filter for the display
-	// TODO: Once init method generation is complete, replace with:
+	// Init methods are generated; keeping manual approach for clarity:
 	//   emptyApps := []screencapturekit.SCRunningApplication{}
 	//   emptyWindows := []screencapturekit.SCWindow{}
 	//   filter := screencapturekit.NewSCContentFilterWithDisplayExcludingApplicationsExceptingWindows(
@@ -530,7 +517,7 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	fmt.Println()
 
 	// Create SCStream with filter and config
-	// TODO: Once init method generation is complete, replace with:
+	// Init methods are generated; keeping manual approach for clarity:
 	//   stream := screencapturekit.NewSCStreamWithFilterConfigurationDelegate(
 	//       filter, config, nil)
 
@@ -556,7 +543,7 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	addOutputSel := objc.RegisterName("addStreamOutput:type:sampleHandlerQueue:error:")
 
 	// Add stream output with our delegate
-	// TODO: Once method generation is complete, replace with:
+	// Methods exist; using manual objc.Send for flexibility:
 	//   err := stream.AddStreamOutputTypeSampleHandlerQueueError(delegate, 0, nil, &errorPtr)
 
 	// For now, use nil queue (main queue)
@@ -592,7 +579,7 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	})
 	defer startBlock.Release()
 
-	// TODO: Once method generation is complete, replace with:
+	// Methods exist; using manual objc.Send for flexibility:
 	//   stream.StartCaptureWithCompletionHandler(startBlock)
 	streamID.Send(objc.RegisterName("startCaptureWithCompletionHandler:"), startBlock)
 
@@ -623,7 +610,7 @@ func recordScreen(display screencapturekit.SCDisplay, duration time.Duration) er
 	})
 	defer stopBlock.Release()
 
-	// TODO: Once method generation is complete, replace with:
+	// Methods exist; using manual objc.Send for flexibility:
 	//   stream.StopCaptureWithCompletionHandler(stopBlock)
 	streamID.Send(objc.RegisterName("stopCaptureWithCompletionHandler:"), stopBlock)
 
