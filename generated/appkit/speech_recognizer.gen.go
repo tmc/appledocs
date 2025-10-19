@@ -32,9 +32,10 @@ type ISpeechRecognizer interface {
 	objectivec.IObject
 }
 
-// The Cocoa interface to speech recognition in macOS.
+// The Cocoa interface to speech recognition in macOS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer
+
 type SpeechRecognizer struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type SpeechRecognizer struct {
 func SpeechRecognizerFrom(ptr unsafe.Pointer) SpeechRecognizer {
 	return SpeechRecognizer{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SpeechRecognizerClass) Alloc() SpeechRecognizer {
 	rv := objc.Send[SpeechRecognizer](objc.ID(sc.class), objc.Sel("alloc"))

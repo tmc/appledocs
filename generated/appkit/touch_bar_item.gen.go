@@ -32,9 +32,10 @@ type ITouchBarItem interface {
 	objectivec.IObject
 }
 
-// A UI control shown in the Touch Bar on supported models of MacBook Pro.
+// A UI control shown in the Touch Bar on supported models of MacBook Pro. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem
+
 type TouchBarItem struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TouchBarItem struct {
 func TouchBarItemFrom(ptr unsafe.Pointer) TouchBarItem {
 	return TouchBarItem{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TouchBarItemClass) Alloc() TouchBarItem {
 	rv := objc.Send[TouchBarItem](objc.ID(tc.class), objc.Sel("alloc"))

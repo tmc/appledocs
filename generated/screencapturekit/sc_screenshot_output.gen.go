@@ -75,5 +75,18 @@ func NewSCScreenshotOutput() SCScreenshotOutput {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
+func (s_ SCScreenshotOutput) HdrImage() coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](s_.ID, objc.Sel("hdrImage"))
+	return rv
+}
+
+// SetHdrImage sets the value of the hdrImage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
+func (s_ SCScreenshotOutput) SetHdrImage(value coregraphics.CGImageRef) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHdrImage:"), value)
+}
 
 

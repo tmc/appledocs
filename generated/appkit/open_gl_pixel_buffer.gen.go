@@ -32,9 +32,10 @@ type IOpenGLPixelBuffer interface {
 	objectivec.IObject
 }
 
-// An object that provides access to accelerated offscreen rendering.
+// An object that provides access to accelerated offscreen rendering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer
+
 type OpenGLPixelBuffer struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type OpenGLPixelBuffer struct {
 func OpenGLPixelBufferFrom(ptr unsafe.Pointer) OpenGLPixelBuffer {
 	return OpenGLPixelBuffer{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLPixelBufferClass) Alloc() OpenGLPixelBuffer {
 	rv := objc.Send[OpenGLPixelBuffer](objc.ID(oc.class), objc.Sel("alloc"))

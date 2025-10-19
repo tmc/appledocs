@@ -78,5 +78,12 @@ func NewSCShareableContentInfo() SCShareableContentInfo {
 }
 
 
+// The current presentation style of the stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/style
+func (s_ SCShareableContentInfo) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("style"))
+	return rv
+}
 
 

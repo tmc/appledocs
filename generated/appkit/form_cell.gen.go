@@ -31,9 +31,10 @@ type IFormCell interface {
 	IActionCell
 }
 
-// The class is used to implement text entry fields in a form. The left part of an object contains a title. The right part contains an editable text entry field.
+// The class is used to implement text entry fields in a form. The left part of an object contains a title. The right part contains an editable text entry field. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell
+
 type FormCell struct {
 	ActionCell
 }
@@ -46,7 +47,6 @@ func FormCellFrom(ptr unsafe.Pointer) FormCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (fc _FormCellClass) Alloc() FormCell {
 	rv := objc.Send[FormCell](objc.ID(fc.class), objc.Sel("alloc"))

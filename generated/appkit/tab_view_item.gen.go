@@ -32,9 +32,10 @@ type ITabViewItem interface {
 	objectivec.IObject
 }
 
-// An item in a tab view.
+// An item in a tab view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem
+
 type TabViewItem struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TabViewItem struct {
 func TabViewItemFrom(ptr unsafe.Pointer) TabViewItem {
 	return TabViewItem{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TabViewItemClass) Alloc() TabViewItem {
 	rv := objc.Send[TabViewItem](objc.ID(tc.class), objc.Sel("alloc"))

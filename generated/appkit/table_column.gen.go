@@ -32,9 +32,10 @@ type ITableColumn interface {
 	objectivec.IObject
 }
 
-// The display characteristics and identifier for a column in a table view.
+// The display characteristics and identifier for a column in a table view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn
+
 type TableColumn struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TableColumn struct {
 func TableColumnFrom(ptr unsafe.Pointer) TableColumn {
 	return TableColumn{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TableColumnClass) Alloc() TableColumn {
 	rv := objc.Send[TableColumn](objc.ID(tc.class), objc.Sel("alloc"))

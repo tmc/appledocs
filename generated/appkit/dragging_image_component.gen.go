@@ -32,9 +32,10 @@ type IDraggingImageComponent interface {
 	objectivec.IObject
 }
 
-// A single object in a dragging item.
+// A single object in a dragging item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent
+
 type DraggingImageComponent struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type DraggingImageComponent struct {
 func DraggingImageComponentFrom(ptr unsafe.Pointer) DraggingImageComponent {
 	return DraggingImageComponent{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DraggingImageComponentClass) Alloc() DraggingImageComponent {
 	rv := objc.Send[DraggingImageComponent](objc.ID(dc.class), objc.Sel("alloc"))

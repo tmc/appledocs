@@ -32,9 +32,10 @@ type IColorList interface {
 	objectivec.IObject
 }
 
-// An ordered list of color objects, identified by keys.
+// An ordered list of color objects, identified by keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList
+
 type ColorList struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type ColorList struct {
 func ColorListFrom(ptr unsafe.Pointer) ColorList {
 	return ColorList{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _ColorListClass) Alloc() ColorList {
 	rv := objc.Send[ColorList](objc.ID(cc.class), objc.Sel("alloc"))

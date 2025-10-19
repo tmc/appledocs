@@ -31,9 +31,10 @@ type IStatusBarButton interface {
 	IButton
 }
 
-// The appearance and behavior of an item in the systemwide menu bar.
+// The appearance and behavior of an item in the systemwide menu bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton
+
 type StatusBarButton struct {
 	Button
 }
@@ -46,7 +47,6 @@ func StatusBarButtonFrom(ptr unsafe.Pointer) StatusBarButton {
 		Button: ButtonFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _StatusBarButtonClass) Alloc() StatusBarButton {
 	rv := objc.Send[StatusBarButton](objc.ID(sc.class), objc.Sel("alloc"))

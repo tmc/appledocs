@@ -32,9 +32,10 @@ type ITextTab interface {
 	objectivec.IObject
 }
 
-// A tab in a paragraph.
+// A tab in a paragraph. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTab
+
 type TextTab struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TextTab struct {
 func TextTabFrom(ptr unsafe.Pointer) TextTab {
 	return TextTab{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextTabClass) Alloc() TextTab {
 	rv := objc.Send[TextTab](objc.ID(tc.class), objc.Sel("alloc"))

@@ -31,9 +31,10 @@ type ISearchField interface {
 	ITextField
 }
 
-// A text field optimized for performing text-based searches.
+// A text field optimized for performing text-based searches. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField
+
 type SearchField struct {
 	TextField
 }
@@ -46,7 +47,6 @@ func SearchFieldFrom(ptr unsafe.Pointer) SearchField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SearchFieldClass) Alloc() SearchField {
 	rv := objc.Send[SearchField](objc.ID(sc.class), objc.Sel("alloc"))

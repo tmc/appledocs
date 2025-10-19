@@ -31,9 +31,10 @@ type IGlassEffectContainerView interface {
 	IView
 }
 
-// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
+// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView
+
 type GlassEffectContainerView struct {
 	View
 }
@@ -46,7 +47,6 @@ func GlassEffectContainerViewFrom(ptr unsafe.Pointer) GlassEffectContainerView {
 		View: ViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (gc _GlassEffectContainerViewClass) Alloc() GlassEffectContainerView {
 	rv := objc.Send[GlassEffectContainerView](objc.ID(gc.class), objc.Sel("alloc"))

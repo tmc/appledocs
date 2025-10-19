@@ -31,9 +31,10 @@ type IDictionaryController interface {
 	IArrayController
 }
 
-// A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.
+// A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController
+
 type DictionaryController struct {
 	ArrayController
 }
@@ -46,7 +47,6 @@ func DictionaryControllerFrom(ptr unsafe.Pointer) DictionaryController {
 		ArrayController: ArrayControllerFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DictionaryControllerClass) Alloc() DictionaryController {
 	rv := objc.Send[DictionaryController](objc.ID(dc.class), objc.Sel("alloc"))

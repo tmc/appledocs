@@ -31,9 +31,10 @@ type IPopoverTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
+// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem
+
 type PopoverTouchBarItem struct {
 	TouchBarItem
 }
@@ -46,7 +47,6 @@ func PopoverTouchBarItemFrom(ptr unsafe.Pointer) PopoverTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PopoverTouchBarItemClass) Alloc() PopoverTouchBarItem {
 	rv := objc.Send[PopoverTouchBarItem](objc.ID(pc.class), objc.Sel("alloc"))

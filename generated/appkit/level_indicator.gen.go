@@ -31,9 +31,10 @@ type ILevelIndicator interface {
 	IControl
 }
 
-// A visual representation of a level or quantity, using discrete values.
+// A visual representation of a level or quantity, using discrete values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator
+
 type LevelIndicator struct {
 	Control
 }
@@ -46,7 +47,6 @@ func LevelIndicatorFrom(ptr unsafe.Pointer) LevelIndicator {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (lc _LevelIndicatorClass) Alloc() LevelIndicator {
 	rv := objc.Send[LevelIndicator](objc.ID(lc.class), objc.Sel("alloc"))

@@ -32,9 +32,10 @@ type IDockTile interface {
 	objectivec.IObject
 }
 
-// The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock.
+// The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile
+
 type DockTile struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type DockTile struct {
 func DockTileFrom(ptr unsafe.Pointer) DockTile {
 	return DockTile{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DockTileClass) Alloc() DockTile {
 	rv := objc.Send[DockTile](objc.ID(dc.class), objc.Sel("alloc"))

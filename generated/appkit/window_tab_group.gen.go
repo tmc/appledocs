@@ -35,9 +35,10 @@ type IWindowTabGroup interface {
 	RemoveWindow(window unsafe.Pointer)
 }
 
-// A group of windows that display together as a single tabbed window.
+// A group of windows that display together as a single tabbed window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup
+
 type WindowTabGroup struct {
 	objectivec.Object
 }
@@ -48,7 +49,6 @@ type WindowTabGroup struct {
 func WindowTabGroupFrom(ptr unsafe.Pointer) WindowTabGroup {
 	return WindowTabGroup{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (wc _WindowTabGroupClass) Alloc() WindowTabGroup {
 	rv := objc.Send[WindowTabGroup](objc.ID(wc.class), objc.Sel("alloc"))
@@ -81,26 +81,26 @@ func NewWindowTabGroup() WindowTabGroup {
 }
 
 
-// Adds a window to the tab group.
+// Adds a window to the tab group. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/addWindow(_:)
 func (w_ WindowTabGroup) AddWindow(window unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addWindow:"), window)
 }
+// Inserts a window at a specific location within the tab group. [Full Topic]
 
-// Inserts a window at a specific location within the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/insertWindow(_:at:)
 func (w_ WindowTabGroup) InsertWindowAtIndex(window unsafe.Pointer, index int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("insertWindow:atIndex:"), window, index)
 }
+// Removes a window from the tab group. [Full Topic]
 
-// Removes a window from the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/removeWindow(_:)
 func (w_ WindowTabGroup) RemoveWindow(window unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("removeWindow:"), window)
 }
-
 
 

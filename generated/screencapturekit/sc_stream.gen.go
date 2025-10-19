@@ -86,11 +86,13 @@ func NewSCStream() SCStream {
 func (s_ SCStream) StartCaptureWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startCaptureWithCompletionHandler:"), completionHandler)
 }
+
 // Updates the stream by applying a new content filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/updateContentFilter(_:completionHandler:)
 func (s_ SCStream) UpdateContentFilterCompletionHandler(contentFilter unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateContentFilter:completionHandler:"), contentFilter, completionHandler)
 }
+
 
 

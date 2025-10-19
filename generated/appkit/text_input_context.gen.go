@@ -32,9 +32,10 @@ type ITextInputContext interface {
 	objectivec.IObject
 }
 
-// An object that represents the Cocoa text input system.
+// An object that represents the Cocoa text input system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext
+
 type TextInputContext struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TextInputContext struct {
 func TextInputContextFrom(ptr unsafe.Pointer) TextInputContext {
 	return TextInputContext{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextInputContextClass) Alloc() TextInputContext {
 	rv := objc.Send[TextInputContext](objc.ID(tc.class), objc.Sel("alloc"))

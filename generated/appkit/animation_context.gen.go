@@ -32,9 +32,10 @@ type IAnimationContext interface {
 	objectivec.IObject
 }
 
-// An animation context, which contains information about environment and state.
+// An animation context, which contains information about environment and state. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext
+
 type AnimationContext struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type AnimationContext struct {
 func AnimationContextFrom(ptr unsafe.Pointer) AnimationContext {
 	return AnimationContext{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ac _AnimationContextClass) Alloc() AnimationContext {
 	rv := objc.Send[AnimationContext](objc.ID(ac.class), objc.Sel("alloc"))

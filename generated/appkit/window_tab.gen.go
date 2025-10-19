@@ -32,9 +32,10 @@ type IWindowTab interface {
 	objectivec.IObject
 }
 
-// A tab associated with a window that is part of a tabbing group.
+// A tab associated with a window that is part of a tabbing group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab
+
 type WindowTab struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type WindowTab struct {
 func WindowTabFrom(ptr unsafe.Pointer) WindowTab {
 	return WindowTab{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (wc _WindowTabClass) Alloc() WindowTab {
 	rv := objc.Send[WindowTab](objc.ID(wc.class), objc.Sel("alloc"))

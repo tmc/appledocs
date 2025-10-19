@@ -32,9 +32,10 @@ type ITextStorage interface {
 	foundation.IMutableAttributedString
 }
 
-// The fundamental storage mechanism of TextKit that contains the text managed by the system.
+// The fundamental storage mechanism of TextKit that contains the text managed by the system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage
+
 type TextStorage struct {
 	foundation.MutableAttributedString
 }
@@ -47,7 +48,6 @@ func TextStorageFrom(ptr unsafe.Pointer) TextStorage {
 		MutableAttributedString: foundation.MutableAttributedStringFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextStorageClass) Alloc() TextStorage {
 	rv := objc.Send[TextStorage](objc.ID(tc.class), objc.Sel("alloc"))

@@ -32,9 +32,10 @@ type IFontDescriptor interface {
 	objectivec.IObject
 }
 
-// A dictionary of attributes that describe a font.
+// A dictionary of attributes that describe a font. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor
+
 type FontDescriptor struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type FontDescriptor struct {
 func FontDescriptorFrom(ptr unsafe.Pointer) FontDescriptor {
 	return FontDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (fc _FontDescriptorClass) Alloc() FontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("alloc"))

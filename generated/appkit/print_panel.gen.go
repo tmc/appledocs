@@ -32,9 +32,10 @@ type IPrintPanel interface {
 	objectivec.IObject
 }
 
-// The Print panel that queries the user for information about a print job.
+// The Print panel that queries the user for information about a print job. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel
+
 type PrintPanel struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type PrintPanel struct {
 func PrintPanelFrom(ptr unsafe.Pointer) PrintPanel {
 	return PrintPanel{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PrintPanelClass) Alloc() PrintPanel {
 	rv := objc.Send[PrintPanel](objc.ID(pc.class), objc.Sel("alloc"))

@@ -32,9 +32,10 @@ type IPreviewRepresentingActivityItem interface {
 	objectivec.IObject
 }
 
-// A type that adds metadata to an item you share using the macOS share sheet.
+// A type that adds metadata to an item you share using the macOS share sheet. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem
+
 type PreviewRepresentingActivityItem struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type PreviewRepresentingActivityItem struct {
 func PreviewRepresentingActivityItemFrom(ptr unsafe.Pointer) PreviewRepresentingActivityItem {
 	return PreviewRepresentingActivityItem{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PreviewRepresentingActivityItemClass) Alloc() PreviewRepresentingActivityItem {
 	rv := objc.Send[PreviewRepresentingActivityItem](objc.ID(pc.class), objc.Sel("alloc"))

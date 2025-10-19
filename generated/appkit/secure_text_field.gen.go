@@ -31,9 +31,10 @@ type ISecureTextField interface {
 	ITextField
 }
 
-// A text field that hides the typed text.
+// A text field that hides the typed text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextField
+
 type SecureTextField struct {
 	TextField
 }
@@ -46,7 +47,6 @@ func SecureTextFieldFrom(ptr unsafe.Pointer) SecureTextField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SecureTextFieldClass) Alloc() SecureTextField {
 	rv := objc.Send[SecureTextField](objc.ID(sc.class), objc.Sel("alloc"))

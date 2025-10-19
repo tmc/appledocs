@@ -32,9 +32,10 @@ type IViewAnimation interface {
 	quartzcore.IAnimation
 }
 
-// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
+// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation
+
 type ViewAnimation struct {
 	quartzcore.Animation
 }
@@ -47,7 +48,6 @@ func ViewAnimationFrom(ptr unsafe.Pointer) ViewAnimation {
 		Animation: quartzcore.AnimationFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (vc _ViewAnimationClass) Alloc() ViewAnimation {
 	rv := objc.Send[ViewAnimation](objc.ID(vc.class), objc.Sel("alloc"))

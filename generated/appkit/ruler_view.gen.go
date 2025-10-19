@@ -38,9 +38,10 @@ type IRulerView interface {
 	TrackMarkerWithMouseEvent(marker unsafe.Pointer, event unsafe.Pointer) bool
 }
 
-// A ruler and the markers above or to the side of a scroll view’s document view.
+// A ruler and the markers above or to the side of a scroll view’s document view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView
+
 type RulerView struct {
 	View
 }
@@ -53,7 +54,6 @@ func RulerViewFrom(ptr unsafe.Pointer) RulerView {
 		View: ViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (rc _RulerViewClass) Alloc() RulerView {
 	rv := objc.Send[RulerView](objc.ID(rc.class), objc.Sel("alloc"))
@@ -89,16 +89,18 @@ func NewRulerView() RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
 func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
+// Initializes a newly allocated NSRulerView to have ( or ) within . [Full Topic]
 
-// Initializes a newly allocated NSRulerView to have ( or ) within .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
 func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
 	rv.Autorelease()
@@ -106,61 +108,61 @@ func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientatio
 }
 
 
-// Registers a new unit of measurement with the NSRulerView class, making it available to all instances of NSRulerView.
+// Registers a new unit of measurement with the NSRulerView class, making it available to all instances of NSRulerView. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/registerUnit(withName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)
 func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName unsafe.Pointer, abbreviation string, conversionFactor float64, stepUpCycle unsafe.Pointer, stepDownCycle unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, objc.String(abbreviation), conversionFactor, stepUpCycle, stepDownCycle)
 }
+// Adds to the receiver, without consulting the client view for approval. [Full Topic]
 
-// Adds to the receiver, without consulting the client view for approval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/addMarker(_:)
 func (r_ RulerView) AddMarker(marker unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addMarker:"), marker)
 }
+// Draws the receiver’s hash marks and labels in , which is expressed in the receiver’s coordinate system. [Full Topic]
 
-// Draws the receiver’s hash marks and labels in , which is expressed in the receiver’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/drawHashMarksAndLabels(in:)
 func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("drawHashMarksAndLabelsInRect:"), rect)
 }
+// Draws the receiver’s markers in , which is expressed in the receiver’s coordinate system. [Full Topic]
 
-// Draws the receiver’s markers in , which is expressed in the receiver’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/drawMarkers(in:)
 func (r_ RulerView) DrawMarkersInRect(rect unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("drawMarkersInRect:"), rect)
 }
+// Forces recalculation of the hash mark spacing for the next time the receiver is displayed. [Full Topic]
 
-// Forces recalculation of the hash mark spacing for the next time the receiver is displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/invalidateHashMarks()
 func (r_ RulerView) InvalidateHashMarks() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("invalidateHashMarks"))
 }
+// Draws temporary lines in the ruler area. [Full Topic]
 
-// Draws temporary lines in the ruler area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/moveRulerline(fromLocation:toLocation:)
 func (r_ RulerView) MoveRulerlineFromLocationToLocation(oldLocation float64, newLocation float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("moveRulerlineFromLocation:toLocation:"), oldLocation, newLocation)
 }
+// Removes from the receiver, without consulting the client view for approval. [Full Topic]
 
-// Removes from the receiver, without consulting the client view for approval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/removeMarker(_:)
 func (r_ RulerView) RemoveMarker(marker unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeMarker:"), marker)
 }
+// Tracks the mouse to add based on the initial mouse-down or mouse-dragged event . [Full Topic]
 
-// Tracks the mouse to add based on the initial mouse-down or mouse-dragged event .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/trackMarker(_:withMouseEvent:)
 func (r_ RulerView) TrackMarkerWithMouseEvent(marker unsafe.Pointer, event unsafe.Pointer) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trackMarker:withMouseEvent:"), marker, event)
 	return rv
 }
-
 

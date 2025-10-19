@@ -31,9 +31,10 @@ type IBrowser interface {
 	IControl
 }
 
-// An interface that displays a hierarchically organized list of data items that can be navigated and selected.
+// An interface that displays a hierarchically organized list of data items that can be navigated and selected. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser
+
 type Browser struct {
 	Control
 }
@@ -46,7 +47,6 @@ func BrowserFrom(ptr unsafe.Pointer) Browser {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (bc _BrowserClass) Alloc() Browser {
 	rv := objc.Send[Browser](objc.ID(bc.class), objc.Sel("alloc"))

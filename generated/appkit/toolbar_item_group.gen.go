@@ -31,9 +31,10 @@ type IToolbarItemGroup interface {
 	IToolbarItem
 }
 
-// A group of subitems in a toolbar item.
+// A group of subitems in a toolbar item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup
+
 type ToolbarItemGroup struct {
 	ToolbarItem
 }
@@ -46,7 +47,6 @@ func ToolbarItemGroupFrom(ptr unsafe.Pointer) ToolbarItemGroup {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _ToolbarItemGroupClass) Alloc() ToolbarItemGroup {
 	rv := objc.Send[ToolbarItemGroup](objc.ID(tc.class), objc.Sel("alloc"))

@@ -33,9 +33,10 @@ type ITableView interface {
 	RowAtPoint(point unsafe.Pointer) int
 }
 
-// A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.
+// A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView
+
 type TableView struct {
 	Control
 }
@@ -48,7 +49,6 @@ func TableViewFrom(ptr unsafe.Pointer) TableView {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TableViewClass) Alloc() TableView {
 	rv := objc.Send[TableView](objc.ID(tc.class), objc.Sel("alloc"))
@@ -81,21 +81,21 @@ func NewTableView() TableView {
 }
 
 
-// Returns the rectangle containing the row at the specified index.
+// Returns the rectangle containing the row at the specified index. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rect(ofRow:)
 func (t_ TableView) RectOfRow(row int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rectOfRow:"), row)
 	return rv
 }
+// Returns the index of the row the specified point lies in. [Full Topic]
 
-// Returns the index of the row the specified point lies in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/row(at:)
 func (t_ TableView) RowAtPoint(point unsafe.Pointer) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("rowAtPoint:"), point)
 	return rv
 }
-
 
 

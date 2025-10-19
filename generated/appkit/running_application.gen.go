@@ -32,9 +32,10 @@ type IRunningApplication interface {
 	objectivec.IObject
 }
 
-// An object that can manipulate and provide information for a single instance of an app.
+// An object that can manipulate and provide information for a single instance of an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication
+
 type RunningApplication struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type RunningApplication struct {
 func RunningApplicationFrom(ptr unsafe.Pointer) RunningApplication {
 	return RunningApplication{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (rc _RunningApplicationClass) Alloc() RunningApplication {
 	rv := objc.Send[RunningApplication](objc.ID(rc.class), objc.Sel("alloc"))

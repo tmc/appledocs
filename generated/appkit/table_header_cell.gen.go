@@ -31,9 +31,10 @@ type ITableHeaderCell interface {
 	ITextFieldCell
 }
 
-// An object that a table header view uses to draw the content of the column headers.
+// An object that a table header view uses to draw the content of the column headers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderCell
+
 type TableHeaderCell struct {
 	TextFieldCell
 }
@@ -46,7 +47,6 @@ func TableHeaderCellFrom(ptr unsafe.Pointer) TableHeaderCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TableHeaderCellClass) Alloc() TableHeaderCell {
 	rv := objc.Send[TableHeaderCell](objc.ID(tc.class), objc.Sel("alloc"))

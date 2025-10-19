@@ -32,9 +32,10 @@ type IBezierPath interface {
 	objectivec.IObject
 }
 
-// An object that can create paths using PostScript-style commands.
+// An object that can create paths using PostScript-style commands. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath
+
 type BezierPath struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type BezierPath struct {
 func BezierPathFrom(ptr unsafe.Pointer) BezierPath {
 	return BezierPath{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (bc _BezierPathClass) Alloc() BezierPath {
 	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("alloc"))

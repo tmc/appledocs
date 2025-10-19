@@ -31,9 +31,10 @@ type IScrubberImageItemView interface {
 	IScrubberItemView
 }
 
-// A concrete view subclass for displaying images in a scrubber items.
+// A concrete view subclass for displaying images in a scrubber items. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView
+
 type ScrubberImageItemView struct {
 	ScrubberItemView
 }
@@ -46,7 +47,6 @@ func ScrubberImageItemViewFrom(ptr unsafe.Pointer) ScrubberImageItemView {
 		ScrubberItemView: ScrubberItemViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberImageItemViewClass) Alloc() ScrubberImageItemView {
 	rv := objc.Send[ScrubberImageItemView](objc.ID(sc.class), objc.Sel("alloc"))

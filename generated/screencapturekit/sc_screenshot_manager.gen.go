@@ -85,3 +85,4 @@ func (sc _SCScreenshotManagerClass) CaptureImageInRectCompletionHandler(rect uns
 }
 
 
+

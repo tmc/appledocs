@@ -33,9 +33,10 @@ type ITouch interface {
 	PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer
 }
 
-// A snapshot of a particular touch at an instant in time.
+// A snapshot of a particular touch at an instant in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch
+
 type Touch struct {
 	objectivec.Object
 }
@@ -46,7 +47,6 @@ type Touch struct {
 func TouchFrom(ptr unsafe.Pointer) Touch {
 	return Touch{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TouchClass) Alloc() Touch {
 	rv := objc.Send[Touch](objc.ID(tc.class), objc.Sel("alloc"))
@@ -79,13 +79,13 @@ func NewTouch() Touch {
 }
 
 
-// Indicates the previous location of the touch in the view’s coordinates.
+// Indicates the previous location of the touch in the view’s coordinates. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
 func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
 }
-
 
 

@@ -32,9 +32,10 @@ type IColorSpace interface {
 	objectivec.IObject
 }
 
-// An object that represents a custom color space.
+// An object that represents a custom color space. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace
+
 type ColorSpace struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type ColorSpace struct {
 func ColorSpaceFrom(ptr unsafe.Pointer) ColorSpace {
 	return ColorSpace{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _ColorSpaceClass) Alloc() ColorSpace {
 	rv := objc.Send[ColorSpace](objc.ID(cc.class), objc.Sel("alloc"))

@@ -31,9 +31,10 @@ type IWindowController interface {
 	IResponder
 }
 
-// A controller that manages a window, usually a window stored in a nib file.
+// A controller that manages a window, usually a window stored in a nib file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController
+
 type WindowController struct {
 	Responder
 }
@@ -46,7 +47,6 @@ func WindowControllerFrom(ptr unsafe.Pointer) WindowController {
 		Responder: ResponderFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (wc _WindowControllerClass) Alloc() WindowController {
 	rv := objc.Send[WindowController](objc.ID(wc.class), objc.Sel("alloc"))

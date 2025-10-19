@@ -31,9 +31,10 @@ type IPersistentDocument interface {
 	IDocument
 }
 
-// A document object that can integrate with Core Data.
+// A document object that can integrate with Core Data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument
+
 type PersistentDocument struct {
 	Document
 }
@@ -46,7 +47,6 @@ func PersistentDocumentFrom(ptr unsafe.Pointer) PersistentDocument {
 		Document: DocumentFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentDocumentClass) Alloc() PersistentDocument {
 	rv := objc.Send[PersistentDocument](objc.ID(pc.class), objc.Sel("alloc"))

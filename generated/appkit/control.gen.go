@@ -52,9 +52,10 @@ type IControl interface {
 	ValidateEditing()
 }
 
-// A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.
+// A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl
+
 type Control struct {
 	View
 }
@@ -67,7 +68,6 @@ func ControlFrom(ptr unsafe.Pointer) Control {
 		View: ViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _ControlClass) Alloc() Control {
 	rv := objc.Send[Control](objc.ID(cc.class), objc.Sel("alloc"))
@@ -100,20 +100,23 @@ func NewControl() Control {
 }
 
 
-// Initializes a control with data in an unarchiver.
+// Initializes a control with data in an unarchiver. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
 func NewControlWithCoder(coder unsafe.Pointer) Control {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
+// Initializes a control with the specified frame rectangle. [Full Topic]
 
-// Initializes a control with the specified frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
 func NewControlWithFrame(frameRect unsafe.Pointer) Control {
+	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
@@ -121,157 +124,157 @@ func NewControlWithFrame(frameRect unsafe.Pointer) Control {
 }
 
 
-// Terminates the current editing operation and discards any edited text.
+// Terminates the current editing operation and discards any edited text. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/abortEditing()
 func (c_ Control) AbortEditing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("abortEditing"))
 	return rv
 }
+// Returns the current field editor for the control. [Full Topic]
 
-// Returns the current field editor for the control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/currentEditor()
 func (c_ Control) CurrentEditor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentEditor"))
 	return rv
 }
+// Performs custom expansion tool tip drawing. [Full Topic]
 
-// Performs custom expansion tool tip drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/draw(withExpansionFrame:in:)
 func (c_ Control) DrawWithExpansionFrameInView(contentFrame unsafe.Pointer, view unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithExpansionFrame:inView:"), contentFrame, view)
 }
+// Begins editing of the receiver’s text using the specified field editor. [Full Topic]
 
-// Begins editing of the receiver’s text using the specified field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/edit(withFrame:editor:delegate:event:)
 func (c_ Control) EditWithFrameEditorDelegateEvent(rect unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("editWithFrame:editor:delegate:event:"), rect, textObj, delegate, event)
 }
+// Ends the editing of text in the receiver using the specified field editor. [Full Topic]
 
-// Ends the editing of text in the receiver using the specified field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/endEditing(_:)
 func (c_ Control) EndEditing(textObj unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endEditing:"), textObj)
 }
+// The frame in which a tool tip can be displayed, if needed. [Full Topic]
 
-// The frame in which a tool tip can be displayed, if needed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/expansionFrame(withFrame:)
 func (c_ Control) ExpansionFrameWithFrame(contentFrame unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("expansionFrameWithFrame:"), contentFrame)
 	return rv
 }
+// Notifies the control that the intrinsic content size for its cell is no longer valid. [Full Topic]
 
-// Notifies the control that the intrinsic content size for its cell is no longer valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/invalidateIntrinsicContentSize(for:)
 func (c_ Control) InvalidateIntrinsicContentSizeForCell(cell unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateIntrinsicContentSizeForCell:"), cell)
 }
+// Simulates a single mouse click on the receiver. [Full Topic]
 
-// Simulates a single mouse click on the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/performClick(_:)
 func (c_ Control) PerformClick(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performClick:"), sender)
 }
+// Selects the specified text range in the receiver’s field editor. [Full Topic]
 
-// Selects the specified text range in the receiver’s field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/select(withFrame:editor:delegate:start:length:)
 func (c_ Control) SelectWithFrameEditorDelegateStartLength(rect unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectWithFrame:editor:delegate:start:length:"), rect, textObj, delegate, selStart, selLength)
 }
+// Causes the specified action to be sent to the target. [Full Topic]
 
-// Causes the specified action to be sent to the target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sendAction(_:to:)
 func (c_ Control) SendActionTo(action objc.SEL, target objc.ID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sendAction:to:"), action, target)
 	return rv
 }
+// Sets the conditions on which the receiver sends action messages to its target. [Full Topic]
 
-// Sets the conditions on which the receiver sends action messages to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sendAction(on:)
 func (c_ Control) SendActionOn(mask unsafe.Pointer) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("sendActionOn:"), mask)
 	return rv
 }
+// Sets the auto-ranging and floating point number format of the receiver’s cell. [Full Topic]
 
-// Sets the auto-ranging and floating point number format of the receiver’s cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/setFloatingPointFormat:left:right:
 func (c_ Control) SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatingPointFormat:left:right:"), autoRange, leftDigits, rightDigits)
 }
+// Asks the control to calculate and return the size that best fits the specified size. [Full Topic]
 
-// Asks the control to calculate and return the size that best fits the specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sizeThatFits(_:)
 func (c_ Control) SizeThatFits(size unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sizeThatFits:"), size)
 	return rv
 }
+// Resizes the receiver’s frame so that it’s the minimum size needed to contain its cell. [Full Topic]
 
-// Resizes the receiver’s frame so that it’s the minimum size needed to contain its cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sizeToFit()
 func (c_ Control) SizeToFit() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("sizeToFit"))
 }
+// Sets the value of the receiver’s cell to a double-precision floating-point value obtained from the specified object. [Full Topic]
 
-// Sets the value of the receiver’s cell to a double-precision floating-point value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeDoubleValueFrom(_:)
 func (c_ Control) TakeDoubleValueFrom(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeDoubleValueFrom:"), sender)
 }
+// Sets the value of the receiver’s cell to a single-precision floating-point value obtained from the specified object. [Full Topic]
 
-// Sets the value of the receiver’s cell to a single-precision floating-point value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeFloatValueFrom(_:)
 func (c_ Control) TakeFloatValueFrom(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeFloatValueFrom:"), sender)
 }
+// Sets the value of the receiver’s cell to an integer value obtained from the specified object. [Full Topic]
 
-// Sets the value of the receiver’s cell to an integer value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeIntValueFrom(_:)
 func (c_ Control) TakeIntValueFrom(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntValueFrom:"), sender)
 }
+// Sets the value of the receiver’s cell to an value obtained from the specified object. [Full Topic]
 
-// Sets the value of the receiver’s cell to an value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeIntegerValueFrom(_:)
 func (c_ Control) TakeIntegerValueFrom(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntegerValueFrom:"), sender)
 }
+// Sets the value of the receiver’s cell to the object value obtained from the specified object. [Full Topic]
 
-// Sets the value of the receiver’s cell to the object value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeObjectValueFrom(_:)
 func (c_ Control) TakeObjectValueFrom(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeObjectValueFrom:"), sender)
 }
+// Sets the value of the receiver’s cell to the string value obtained from the specified object. [Full Topic]
 
-// Sets the value of the receiver’s cell to the string value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeStringValueFrom(_:)
 func (c_ Control) TakeStringValueFrom(sender objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeStringValueFrom:"), sender)
 }
+// Validates changes to any user-typed text. [Full Topic]
 
-// Validates changes to any user-typed text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/validateEditing()
 func (c_ Control) ValidateEditing() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("validateEditing"))
 }
-
 

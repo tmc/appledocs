@@ -32,9 +32,10 @@ type IPDFPanel interface {
 	objectivec.IObject
 }
 
-// A Save or Export as PDF panel that’s consistent with the macOS user interface.
+// A Save or Export as PDF panel that’s consistent with the macOS user interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel
+
 type PDFPanel struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type PDFPanel struct {
 func PDFPanelFrom(ptr unsafe.Pointer) PDFPanel {
 	return PDFPanel{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PDFPanelClass) Alloc() PDFPanel {
 	rv := objc.Send[PDFPanel](objc.ID(pc.class), objc.Sel("alloc"))

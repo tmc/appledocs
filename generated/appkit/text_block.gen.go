@@ -32,9 +32,10 @@ type ITextBlock interface {
 	objectivec.IObject
 }
 
-// A block of text laid out in a subregion of the text container.
+// A block of text laid out in a subregion of the text container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock
+
 type TextBlock struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TextBlock struct {
 func TextBlockFrom(ptr unsafe.Pointer) TextBlock {
 	return TextBlock{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextBlockClass) Alloc() TextBlock {
 	rv := objc.Send[TextBlock](objc.ID(tc.class), objc.Sel("alloc"))

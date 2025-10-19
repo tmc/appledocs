@@ -31,9 +31,10 @@ type IMenuItemCell interface {
 	IButtonCell
 }
 
-// An object that handles the measurement and display of a single menu item in its encompassing frame.
+// An object that handles the measurement and display of a single menu item in its encompassing frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell
+
 type MenuItemCell struct {
 	ButtonCell
 }
@@ -46,7 +47,6 @@ func MenuItemCellFrom(ptr unsafe.Pointer) MenuItemCell {
 		ButtonCell: ButtonCellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (mc _MenuItemCellClass) Alloc() MenuItemCell {
 	rv := objc.Send[MenuItemCell](objc.ID(mc.class), objc.Sel("alloc"))

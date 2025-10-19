@@ -31,9 +31,10 @@ type ISplitViewController interface {
 	IViewController
 }
 
-// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
+// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController
+
 type SplitViewController struct {
 	ViewController
 }
@@ -46,7 +47,6 @@ func SplitViewControllerFrom(ptr unsafe.Pointer) SplitViewController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SplitViewControllerClass) Alloc() SplitViewController {
 	rv := objc.Send[SplitViewController](objc.ID(sc.class), objc.Sel("alloc"))

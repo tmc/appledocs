@@ -31,9 +31,10 @@ type ICustomTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that contains a responder of your choice, such as a view, a button, or a scrubber.
+// A bar item that contains a responder of your choice, such as a view, a button, or a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem
+
 type CustomTouchBarItem struct {
 	TouchBarItem
 }
@@ -46,7 +47,6 @@ func CustomTouchBarItemFrom(ptr unsafe.Pointer) CustomTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _CustomTouchBarItemClass) Alloc() CustomTouchBarItem {
 	rv := objc.Send[CustomTouchBarItem](objc.ID(cc.class), objc.Sel("alloc"))

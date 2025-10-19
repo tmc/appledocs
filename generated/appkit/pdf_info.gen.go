@@ -32,9 +32,10 @@ type IPDFInfo interface {
 	objectivec.IObject
 }
 
-// An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size.
+// An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo
+
 type PDFInfo struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type PDFInfo struct {
 func PDFInfoFrom(ptr unsafe.Pointer) PDFInfo {
 	return PDFInfo{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PDFInfoClass) Alloc() PDFInfo {
 	rv := objc.Send[PDFInfo](objc.ID(pc.class), objc.Sel("alloc"))

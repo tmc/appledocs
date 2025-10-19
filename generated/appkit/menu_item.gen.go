@@ -32,9 +32,10 @@ type IMenuItem interface {
 	objectivec.IObject
 }
 
-// A command item in an app menu.
+// A command item in an app menu. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem
+
 type MenuItem struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type MenuItem struct {
 func MenuItemFrom(ptr unsafe.Pointer) MenuItem {
 	return MenuItem{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (mc _MenuItemClass) Alloc() MenuItem {
 	rv := objc.Send[MenuItem](objc.ID(mc.class), objc.Sel("alloc"))

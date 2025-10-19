@@ -31,9 +31,10 @@ type ILevelIndicatorCell interface {
 	IActionCell
 }
 
-// is a subclass of that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes.
+// is a subclass of that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicatorCell
+
 type LevelIndicatorCell struct {
 	ActionCell
 }
@@ -46,7 +47,6 @@ func LevelIndicatorCellFrom(ptr unsafe.Pointer) LevelIndicatorCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (lc _LevelIndicatorCellClass) Alloc() LevelIndicatorCell {
 	rv := objc.Send[LevelIndicatorCell](objc.ID(lc.class), objc.Sel("alloc"))

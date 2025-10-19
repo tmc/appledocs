@@ -78,5 +78,21 @@ func NewSCStreamConfiguration() SCStreamConfiguration {
 }
 
 
+// The maximum number of frames for the queue to store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamConfiguration/queueDepth
+func (s_ SCStreamConfiguration) QueueDepth() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("queueDepth"))
+	return rv
+}
+
+// SetQueueDepth sets the value of the queueDepth property.
+// The maximum number of frames for the queue to store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamConfiguration/queueDepth
+func (s_ SCStreamConfiguration) SetQueueDepth(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setQueueDepth:"), value)
+}
 
 

@@ -78,5 +78,12 @@ func NewSCDisplay() SCDisplay {
 }
 
 
+// The Core Graphics display identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/displayID
+func (s_ SCDisplay) DisplayID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("displayID"))
+	return rv
+}
 
 

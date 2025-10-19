@@ -31,9 +31,10 @@ type ITitlebarAccessoryViewController interface {
 	IViewController
 }
 
-// An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.
+// An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController
+
 type TitlebarAccessoryViewController struct {
 	ViewController
 }
@@ -46,7 +47,6 @@ func TitlebarAccessoryViewControllerFrom(ptr unsafe.Pointer) TitlebarAccessoryVi
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TitlebarAccessoryViewControllerClass) Alloc() TitlebarAccessoryViewController {
 	rv := objc.Send[TitlebarAccessoryViewController](objc.ID(tc.class), objc.Sel("alloc"))

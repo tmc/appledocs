@@ -31,9 +31,10 @@ type ILayoutDimension interface {
 	ILayoutAnchor
 }
 
-// A factory class for creating size-based layout constraint objects using a fluent API.
+// A factory class for creating size-based layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutDimension
+
 type LayoutDimension struct {
 	LayoutAnchor
 }
@@ -46,7 +47,6 @@ func LayoutDimensionFrom(ptr unsafe.Pointer) LayoutDimension {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutDimensionClass) Alloc() LayoutDimension {
 	rv := objc.Send[LayoutDimension](objc.ID(lc.class), objc.Sel("alloc"))

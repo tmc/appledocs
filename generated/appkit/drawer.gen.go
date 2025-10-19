@@ -31,9 +31,10 @@ type IDrawer interface {
 	IResponder
 }
 
-// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses.
+// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer
+
 type Drawer struct {
 	Responder
 }
@@ -46,7 +47,6 @@ func DrawerFrom(ptr unsafe.Pointer) Drawer {
 		Responder: ResponderFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DrawerClass) Alloc() Drawer {
 	rv := objc.Send[Drawer](objc.ID(dc.class), objc.Sel("alloc"))

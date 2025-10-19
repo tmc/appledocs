@@ -31,9 +31,10 @@ type ITextAttachmentCell interface {
 	ICell
 }
 
-// An object that implements the functionality of the text attachment cell protocol.
+// An object that implements the functionality of the text attachment cell protocol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell-swift.class
+
 type TextAttachmentCell struct {
 	Cell
 }
@@ -46,7 +47,6 @@ func TextAttachmentCellFrom(ptr unsafe.Pointer) TextAttachmentCell {
 		Cell: CellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextAttachmentCellClass) Alloc() TextAttachmentCell {
 	rv := objc.Send[TextAttachmentCell](objc.ID(tc.class), objc.Sel("alloc"))

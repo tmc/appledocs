@@ -31,9 +31,10 @@ type IFontPanel interface {
 	IPanel
 }
 
-// The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text.
+// The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel
+
 type FontPanel struct {
 	Panel
 }
@@ -46,7 +47,6 @@ func FontPanelFrom(ptr unsafe.Pointer) FontPanel {
 		Panel: PanelFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (fc _FontPanelClass) Alloc() FontPanel {
 	rv := objc.Send[FontPanel](objc.ID(fc.class), objc.Sel("alloc"))

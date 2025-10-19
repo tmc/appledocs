@@ -32,9 +32,10 @@ type IStatusItem interface {
 	objectivec.IObject
 }
 
-// An individual element displayed in the system menu bar.
+// An individual element displayed in the system menu bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem
+
 type StatusItem struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type StatusItem struct {
 func StatusItemFrom(ptr unsafe.Pointer) StatusItem {
 	return StatusItem{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _StatusItemClass) Alloc() StatusItem {
 	rv := objc.Send[StatusItem](objc.ID(sc.class), objc.Sel("alloc"))

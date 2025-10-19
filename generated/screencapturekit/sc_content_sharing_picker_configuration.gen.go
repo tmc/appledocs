@@ -78,5 +78,21 @@ func NewSCContentSharingPickerConfiguration() SCContentSharingPickerConfiguratio
 }
 
 
+// A list of bundle IDs to exclude from the sharing picker.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedBundleIDs
+func (s_ SCContentSharingPickerConfiguration) ExcludedBundleIDs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("excludedBundleIDs"))
+	return rv
+}
+
+// SetExcludedBundleIDs sets the value of the excludedBundleIDs property.
+// A list of bundle IDs to exclude from the sharing picker.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedBundleIDs
+func (s_ SCContentSharingPickerConfiguration) SetExcludedBundleIDs(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setExcludedBundleIDs:"), value)
+}
 
 

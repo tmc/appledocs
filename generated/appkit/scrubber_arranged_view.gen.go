@@ -32,9 +32,10 @@ type IScrubberArrangedView interface {
 	ApplyLayoutAttributes(layoutAttributes unsafe.Pointer)
 }
 
-// An abstract base class for the views whose layout is managed by a scrubber.
+// An abstract base class for the views whose layout is managed by a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView
+
 type ScrubberArrangedView struct {
 	View
 }
@@ -47,7 +48,6 @@ func ScrubberArrangedViewFrom(ptr unsafe.Pointer) ScrubberArrangedView {
 		View: ViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberArrangedViewClass) Alloc() ScrubberArrangedView {
 	rv := objc.Send[ScrubberArrangedView](objc.ID(sc.class), objc.Sel("alloc"))
@@ -80,12 +80,12 @@ func NewScrubberArrangedView() ScrubberArrangedView {
 }
 
 
-// Updates the layout of the arranged view to respect the provided layout attributes.
+// Updates the layout of the arranged view to respect the provided layout attributes. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/apply(_:)
 func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("applyLayoutAttributes:"), layoutAttributes)
 }
-
 
 

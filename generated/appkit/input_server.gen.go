@@ -34,6 +34,7 @@ type IInputServer interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputServer
+
 type InputServer struct {
 	objectivec.Object
 }
@@ -42,7 +43,6 @@ type InputServer struct {
 func InputServerFrom(ptr unsafe.Pointer) InputServer {
 	return InputServer{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ic _InputServerClass) Alloc() InputServer {
 	rv := objc.Send[InputServer](objc.ID(ic.class), objc.Sel("alloc"))

@@ -33,9 +33,10 @@ type ISpellChecker interface {
 	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
 }
 
-// An interface to the Cocoa spell-checking service.
+// An interface to the Cocoa spell-checking service. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker
+
 type SpellChecker struct {
 	objectivec.Object
 }
@@ -46,7 +47,6 @@ type SpellChecker struct {
 func SpellCheckerFrom(ptr unsafe.Pointer) SpellChecker {
 	return SpellChecker{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SpellCheckerClass) Alloc() SpellChecker {
 	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("alloc"))
@@ -85,6 +85,5 @@ func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSp
 	rv := objc.Send[int](s_.ID, objc.Sel("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), selectedRange, objc.String(stringToCheck), checkingTypes, options, tag, completionHandler)
 	return rv
 }
-
 
 

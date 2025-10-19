@@ -32,9 +32,10 @@ type ITextRange interface {
 	objectivec.IObject
 }
 
-// A class that represents a contiguous range between two locations inside document contents.
+// A class that represents a contiguous range between two locations inside document contents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextRange
+
 type TextRange struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TextRange struct {
 func TextRangeFrom(ptr unsafe.Pointer) TextRange {
 	return TextRange{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextRangeClass) Alloc() TextRange {
 	rv := objc.Send[TextRange](objc.ID(tc.class), objc.Sel("alloc"))

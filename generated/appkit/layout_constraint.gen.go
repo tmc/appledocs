@@ -32,9 +32,10 @@ type ILayoutConstraint interface {
 	objectivec.IObject
 }
 
-// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
+// The relationship between two user interface objects that must be satisfied by the constraint-based layout system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint
+
 type LayoutConstraint struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type LayoutConstraint struct {
 func LayoutConstraintFrom(ptr unsafe.Pointer) LayoutConstraint {
 	return LayoutConstraint{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutConstraintClass) Alloc() LayoutConstraint {
 	rv := objc.Send[LayoutConstraint](objc.ID(lc.class), objc.Sel("alloc"))

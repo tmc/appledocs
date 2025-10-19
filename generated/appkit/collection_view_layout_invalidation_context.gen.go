@@ -32,9 +32,10 @@ type ICollectionViewLayoutInvalidationContext interface {
 	objectivec.IObject
 }
 
-// An object that identifies the portions of your layout that need to be updated.
+// An object that identifies the portions of your layout that need to be updated. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext
+
 type CollectionViewLayoutInvalidationContext struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type CollectionViewLayoutInvalidationContext struct {
 func CollectionViewLayoutInvalidationContextFrom(ptr unsafe.Pointer) CollectionViewLayoutInvalidationContext {
 	return CollectionViewLayoutInvalidationContext{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewLayoutInvalidationContextClass) Alloc() CollectionViewLayoutInvalidationContext {
 	rv := objc.Send[CollectionViewLayoutInvalidationContext](objc.ID(cc.class), objc.Sel("alloc"))

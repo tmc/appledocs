@@ -32,9 +32,10 @@ type IFilePromiseProvider interface {
 	objectivec.IObject
 }
 
-// An object that provides a promise for the pasteboard.
+// An object that provides a promise for the pasteboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider
+
 type FilePromiseProvider struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type FilePromiseProvider struct {
 func FilePromiseProviderFrom(ptr unsafe.Pointer) FilePromiseProvider {
 	return FilePromiseProvider{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (fc _FilePromiseProviderClass) Alloc() FilePromiseProvider {
 	rv := objc.Send[FilePromiseProvider](objc.ID(fc.class), objc.Sel("alloc"))

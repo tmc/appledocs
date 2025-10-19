@@ -32,9 +32,10 @@ type IStoryboard interface {
 	objectivec.IObject
 }
 
-// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file.
+// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard
+
 type Storyboard struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type Storyboard struct {
 func StoryboardFrom(ptr unsafe.Pointer) Storyboard {
 	return Storyboard{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _StoryboardClass) Alloc() Storyboard {
 	rv := objc.Send[Storyboard](objc.ID(sc.class), objc.Sel("alloc"))

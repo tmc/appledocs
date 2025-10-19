@@ -33,9 +33,10 @@ type IImage interface {
 	BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer
 }
 
-// A high-level interface for manipulating image data.
+// A high-level interface for manipulating image data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage
+
 type Image struct {
 	objectivec.Object
 }
@@ -46,7 +47,6 @@ type Image struct {
 func ImageFrom(ptr unsafe.Pointer) Image {
 	return Image{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ic _ImageClass) Alloc() Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("alloc"))
@@ -79,13 +79,13 @@ func NewImage() Image {
 }
 
 
-// Returns the best representation for the device with the specified characteristics.
+// Returns the best representation for the device with the specified characteristics. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentationForDevice:
 func (i_ Image) BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
 	return rv
 }
-
 
 

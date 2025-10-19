@@ -32,9 +32,10 @@ type ITextAlternatives interface {
 	objectivec.IObject
 }
 
-// A list of alternative strings for a piece of text.
+// A list of alternative strings for a piece of text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives
+
 type TextAlternatives struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TextAlternatives struct {
 func TextAlternativesFrom(ptr unsafe.Pointer) TextAlternatives {
 	return TextAlternatives{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextAlternativesClass) Alloc() TextAlternatives {
 	rv := objc.Send[TextAlternatives](objc.ID(tc.class), objc.Sel("alloc"))

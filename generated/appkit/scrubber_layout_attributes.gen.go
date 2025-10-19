@@ -32,9 +32,10 @@ type IScrubberLayoutAttributes interface {
 	objectivec.IObject
 }
 
-// The layout of a scrubber item.
+// The layout of a scrubber item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes
+
 type ScrubberLayoutAttributes struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type ScrubberLayoutAttributes struct {
 func ScrubberLayoutAttributesFrom(ptr unsafe.Pointer) ScrubberLayoutAttributes {
 	return ScrubberLayoutAttributes{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberLayoutAttributesClass) Alloc() ScrubberLayoutAttributes {
 	rv := objc.Send[ScrubberLayoutAttributes](objc.ID(sc.class), objc.Sel("alloc"))

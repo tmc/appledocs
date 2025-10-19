@@ -32,9 +32,10 @@ type IMenuItemBadge interface {
 	objectivec.IObject
 }
 
-// A control that provides additional quantitative information specific to a menu item, such as the number of available updates.
+// A control that provides additional quantitative information specific to a menu item, such as the number of available updates. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge
+
 type MenuItemBadge struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type MenuItemBadge struct {
 func MenuItemBadgeFrom(ptr unsafe.Pointer) MenuItemBadge {
 	return MenuItemBadge{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (mc _MenuItemBadgeClass) Alloc() MenuItemBadge {
 	rv := objc.Send[MenuItemBadge](objc.ID(mc.class), objc.Sel("alloc"))

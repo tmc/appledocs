@@ -31,9 +31,10 @@ type IDatePicker interface {
 	IControl
 }
 
-// A display of a calendar date with controls for editing the date value.
+// A display of a calendar date with controls for editing the date value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker
+
 type DatePicker struct {
 	Control
 }
@@ -46,7 +47,6 @@ func DatePickerFrom(ptr unsafe.Pointer) DatePicker {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DatePickerClass) Alloc() DatePicker {
 	rv := objc.Send[DatePicker](objc.ID(dc.class), objc.Sel("alloc"))

@@ -31,9 +31,10 @@ type IScrubberProportionalLayout interface {
 	IScrubberLayout
 }
 
-// A concrete layout object that sizes each item to some fraction of the scrubber’s visible size.
+// A concrete layout object that sizes each item to some fraction of the scrubber’s visible size. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout
+
 type ScrubberProportionalLayout struct {
 	ScrubberLayout
 }
@@ -46,7 +47,6 @@ func ScrubberProportionalLayoutFrom(ptr unsafe.Pointer) ScrubberProportionalLayo
 		ScrubberLayout: ScrubberLayoutFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberProportionalLayoutClass) Alloc() ScrubberProportionalLayout {
 	rv := objc.Send[ScrubberProportionalLayout](objc.ID(sc.class), objc.Sel("alloc"))

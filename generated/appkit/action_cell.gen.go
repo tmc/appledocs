@@ -31,9 +31,10 @@ type IActionCell interface {
 	ICell
 }
 
-// An active area inside a control.
+// An active area inside a control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell
+
 type ActionCell struct {
 	Cell
 }
@@ -46,7 +47,6 @@ func ActionCellFrom(ptr unsafe.Pointer) ActionCell {
 		Cell: CellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ac _ActionCellClass) Alloc() ActionCell {
 	rv := objc.Send[ActionCell](objc.ID(ac.class), objc.Sel("alloc"))

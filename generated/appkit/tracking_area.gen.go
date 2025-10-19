@@ -32,9 +32,10 @@ type ITrackingArea interface {
 	objectivec.IObject
 }
 
-// A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.
+// A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea
+
 type TrackingArea struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type TrackingArea struct {
 func TrackingAreaFrom(ptr unsafe.Pointer) TrackingArea {
 	return TrackingArea{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TrackingAreaClass) Alloc() TrackingArea {
 	rv := objc.Send[TrackingArea](objc.ID(tc.class), objc.Sel("alloc"))

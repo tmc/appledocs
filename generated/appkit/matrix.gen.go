@@ -31,9 +31,10 @@ type IMatrix interface {
 	IControl
 }
 
-// A legacy interface for grouping radio buttons or other types of cells together.
+// A legacy interface for grouping radio buttons or other types of cells together. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix
+
 type Matrix struct {
 	Control
 }
@@ -46,7 +47,6 @@ func MatrixFrom(ptr unsafe.Pointer) Matrix {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (mc _MatrixClass) Alloc() Matrix {
 	rv := objc.Send[Matrix](objc.ID(mc.class), objc.Sel("alloc"))

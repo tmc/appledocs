@@ -89,4 +89,17 @@ func NewSCContentFilterWithDisplayExcludingApplicationsExceptingWindows(display 
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter/includeMenuBar
+func (s_ SCContentFilter) IncludeMenuBar() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("includeMenuBar"))
+	return rv
+}
+
+// SetIncludeMenuBar sets the value of the includeMenuBar property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter/includeMenuBar
+func (s_ SCContentFilter) SetIncludeMenuBar(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIncludeMenuBar:"), value)
+}
 

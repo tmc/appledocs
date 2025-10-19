@@ -32,9 +32,10 @@ type ILayoutGuide interface {
 	objectivec.IObject
 }
 
-// A rectangular area that can interact with Auto Layout.
+// A rectangular area that can interact with Auto Layout. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide
+
 type LayoutGuide struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type LayoutGuide struct {
 func LayoutGuideFrom(ptr unsafe.Pointer) LayoutGuide {
 	return LayoutGuide{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutGuideClass) Alloc() LayoutGuide {
 	rv := objc.Send[LayoutGuide](objc.ID(lc.class), objc.Sel("alloc"))

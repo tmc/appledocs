@@ -33,9 +33,10 @@ type IVisualEffectView interface {
 	ViewWillMoveToWindow(newWindow unsafe.Pointer)
 }
 
-// A view that adds translucency and vibrancy effects to the views in your interface.
+// A view that adds translucency and vibrancy effects to the views in your interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView
+
 type VisualEffectView struct {
 	View
 }
@@ -48,7 +49,6 @@ func VisualEffectViewFrom(ptr unsafe.Pointer) VisualEffectView {
 		View: ViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (vc _VisualEffectViewClass) Alloc() VisualEffectView {
 	rv := objc.Send[VisualEffectView](objc.ID(vc.class), objc.Sel("alloc"))
@@ -81,19 +81,19 @@ func NewVisualEffectView() VisualEffectView {
 }
 
 
-// Notifies the view that it moved to a new window.
+// Notifies the view that it moved to a new window. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/viewDidMoveToWindow()
 func (v_ VisualEffectView) ViewDidMoveToWindow() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewDidMoveToWindow"))
 }
+// Notifies the view immediately before it moves to a new window (which may be ). [Full Topic]
 
-// Notifies the view immediately before it moves to a new window (which may be ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/viewWillMove(toWindow:)
 func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillMoveToWindow:"), newWindow)
 }
-
 
 

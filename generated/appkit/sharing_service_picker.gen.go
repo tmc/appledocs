@@ -33,9 +33,10 @@ type ISharingServicePicker interface {
 	ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int)
 }
 
-// A list of sharing services that the user can choose from.
+// A list of sharing services that the user can choose from. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker
+
 type SharingServicePicker struct {
 	objectivec.Object
 }
@@ -46,7 +47,6 @@ type SharingServicePicker struct {
 func SharingServicePickerFrom(ptr unsafe.Pointer) SharingServicePicker {
 	return SharingServicePicker{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerClass) Alloc() SharingServicePicker {
 	rv := objc.Send[SharingServicePicker](objc.ID(sc.class), objc.Sel("alloc"))
@@ -79,12 +79,12 @@ func NewSharingServicePicker() SharingServicePicker {
 }
 
 
-// Shows the picker interface and populates it with the relevant sharing services.
+// Shows the picker interface and populates it with the relevant sharing services. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
 func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
 }
-
 
 

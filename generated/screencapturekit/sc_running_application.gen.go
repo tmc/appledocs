@@ -78,5 +78,12 @@ func NewSCRunningApplication() SCRunningApplication {
 }
 
 
+// The display name of the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/applicationName
+func (s_ SCRunningApplication) ApplicationName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("applicationName"))
+	return rv
+}
 
 

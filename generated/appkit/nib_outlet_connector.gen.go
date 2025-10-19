@@ -31,9 +31,10 @@ type INibOutletConnector interface {
 	INibConnector
 }
 
-// An outlet connection between Interface Builder objects.
+// An outlet connection between Interface Builder objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibOutletConnector
+
 type NibOutletConnector struct {
 	NibConnector
 }
@@ -46,7 +47,6 @@ func NibOutletConnectorFrom(ptr unsafe.Pointer) NibOutletConnector {
 		NibConnector: NibConnectorFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (nc _NibOutletConnectorClass) Alloc() NibOutletConnector {
 	rv := objc.Send[NibOutletConnector](objc.ID(nc.class), objc.Sel("alloc"))

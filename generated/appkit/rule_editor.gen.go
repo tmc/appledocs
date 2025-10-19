@@ -31,9 +31,10 @@ type IRuleEditor interface {
 	IControl
 }
 
-// An interface for configuring a rule-based list of options.
+// An interface for configuring a rule-based list of options. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor
+
 type RuleEditor struct {
 	Control
 }
@@ -46,7 +47,6 @@ func RuleEditorFrom(ptr unsafe.Pointer) RuleEditor {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (rc _RuleEditorClass) Alloc() RuleEditor {
 	rv := objc.Send[RuleEditor](objc.ID(rc.class), objc.Sel("alloc"))

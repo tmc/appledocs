@@ -504,12 +504,12 @@ func main() {
 		}
 
 		// Attach methods and properties to classes
-		for _, cls := range classes {
-			if methods, ok := classMethodsMap[cls.Name]; ok {
-				cls.Methods = methods
+		for i := range classes {
+			if methods, ok := classMethodsMap[classes[i].Name]; ok {
+				classes[i].Methods = methods
 			}
-			if properties, ok := classPropertiesMap[cls.Name]; ok {
-				cls.Properties = properties
+			if properties, ok := classPropertiesMap[classes[i].Name]; ok {
+				classes[i].Properties = properties
 			}
 		}
 

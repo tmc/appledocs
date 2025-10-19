@@ -33,9 +33,10 @@ type IButton interface {
 	SetPeriodicDelayInterval(delay float32, interval float32)
 }
 
-// A control that defines an area on the screen that a user clicks to trigger an action.
+// A control that defines an area on the screen that a user clicks to trigger an action. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton
+
 type Button struct {
 	Control
 }
@@ -48,7 +49,6 @@ func ButtonFrom(ptr unsafe.Pointer) Button {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (bc _ButtonClass) Alloc() Button {
 	rv := objc.Send[Button](objc.ID(bc.class), objc.Sel("alloc"))
@@ -81,67 +81,71 @@ func NewButton() Button {
 }
 
 
-// Creates a standard checkbox with the title you specify.
+// Creates a standard checkbox with the title you specify. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
 func NewButtonCheckboxWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
+// Creates a standard push button with a title and image. [Full Topic]
 
-// Creates a standard push button with a title and image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) Button {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
+// Creates a standard push button with the title you specify. [Full Topic]
 
-// Creates a standard push button with the title you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
 func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
 
 
-// Creates a standard checkbox with the title you specify.
+// Creates a standard checkbox with the title you specify. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
 func (bc _ButtonClass) CheckboxWithTitleTargetAction(title string, target objc.ID, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
+// Creates a standard push button with a title and image. [Full Topic]
 
-// Creates a standard push button with a title and image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
+// Creates a standard push button with the title you specify. [Full Topic]
 
-// Creates a standard push button with the title you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
 func (bc _ButtonClass) ButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
+// Sets the priority compression options for this button. [Full Topic]
 
-// Sets the priority compression options for this button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)
 func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("compressWithPrioritizedCompressionOptions:"), prioritizedOptions)
 }
+// Sets the message delay and interval periods for a continuous button. [Full Topic]
 
-// Sets the message delay and interval periods for a continuous button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)
 func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
-
 

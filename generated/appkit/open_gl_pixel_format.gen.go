@@ -32,9 +32,10 @@ type IOpenGLPixelFormat interface {
 	objectivec.IObject
 }
 
-// An object that specifies the types of buffers and other attributes of the OpenGL context.
+// An object that specifies the types of buffers and other attributes of the OpenGL context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat
+
 type OpenGLPixelFormat struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type OpenGLPixelFormat struct {
 func OpenGLPixelFormatFrom(ptr unsafe.Pointer) OpenGLPixelFormat {
 	return OpenGLPixelFormat{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLPixelFormatClass) Alloc() OpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("alloc"))

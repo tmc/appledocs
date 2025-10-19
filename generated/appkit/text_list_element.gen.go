@@ -31,9 +31,10 @@ type ITextListElement interface {
 	ITextParagraph
 }
 
-// A class that represents a text list node.
+// A class that represents a text list node. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextListElement
+
 type TextListElement struct {
 	TextParagraph
 }
@@ -46,7 +47,6 @@ func TextListElementFrom(ptr unsafe.Pointer) TextListElement {
 		TextParagraph: TextParagraphFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextListElementClass) Alloc() TextListElement {
 	rv := objc.Send[TextListElement](objc.ID(tc.class), objc.Sel("alloc"))

@@ -34,6 +34,7 @@ type ISliderAccessory interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory
+
 type SliderAccessory struct {
 	objectivec.Object
 }
@@ -42,7 +43,6 @@ type SliderAccessory struct {
 func SliderAccessoryFrom(ptr unsafe.Pointer) SliderAccessory {
 	return SliderAccessory{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SliderAccessoryClass) Alloc() SliderAccessory {
 	rv := objc.Send[SliderAccessory](objc.ID(sc.class), objc.Sel("alloc"))

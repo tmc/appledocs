@@ -32,9 +32,10 @@ type IDraggingSession interface {
 	objectivec.IObject
 }
 
-// The encapsulation of a drag-and-drop action that supports modification of the drag while in progress.
+// The encapsulation of a drag-and-drop action that supports modification of the drag while in progress. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession
+
 type DraggingSession struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type DraggingSession struct {
 func DraggingSessionFrom(ptr unsafe.Pointer) DraggingSession {
 	return DraggingSession{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DraggingSessionClass) Alloc() DraggingSession {
 	rv := objc.Send[DraggingSession](objc.ID(dc.class), objc.Sel("alloc"))

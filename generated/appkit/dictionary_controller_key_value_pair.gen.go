@@ -32,9 +32,10 @@ type IDictionaryControllerKeyValuePair interface {
 	objectivec.IObject
 }
 
-// A set of methods implemented by arranged objects to give access to information about those objects.
+// A set of methods implemented by arranged objects to give access to information about those objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair
+
 type DictionaryControllerKeyValuePair struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type DictionaryControllerKeyValuePair struct {
 func DictionaryControllerKeyValuePairFrom(ptr unsafe.Pointer) DictionaryControllerKeyValuePair {
 	return DictionaryControllerKeyValuePair{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (dc _DictionaryControllerKeyValuePairClass) Alloc() DictionaryControllerKeyValuePair {
 	rv := objc.Send[DictionaryControllerKeyValuePair](objc.ID(dc.class), objc.Sel("alloc"))

@@ -31,9 +31,10 @@ type IBitmapImageRep interface {
 	IImageRep
 }
 
-// An object that renders an image from bitmap data.
+// An object that renders an image from bitmap data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep
+
 type BitmapImageRep struct {
 	ImageRep
 }
@@ -46,7 +47,6 @@ func BitmapImageRepFrom(ptr unsafe.Pointer) BitmapImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (bc _BitmapImageRepClass) Alloc() BitmapImageRep {
 	rv := objc.Send[BitmapImageRep](objc.ID(bc.class), objc.Sel("alloc"))

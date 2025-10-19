@@ -31,9 +31,10 @@ type IPDFImageRep interface {
 	IImageRep
 }
 
-// An object that can render an image from a PDF format data stream.
+// An object that can render an image from a PDF format data stream. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep
+
 type PDFImageRep struct {
 	ImageRep
 }
@@ -46,7 +47,6 @@ func PDFImageRepFrom(ptr unsafe.Pointer) PDFImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PDFImageRepClass) Alloc() PDFImageRep {
 	rv := objc.Send[PDFImageRep](objc.ID(pc.class), objc.Sel("alloc"))

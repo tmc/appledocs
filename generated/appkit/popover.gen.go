@@ -31,9 +31,10 @@ type IPopover interface {
 	IResponder
 }
 
-// A means to display additional content related to existing content on the screen.
+// A means to display additional content related to existing content on the screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover
+
 type Popover struct {
 	Responder
 }
@@ -46,7 +47,6 @@ func PopoverFrom(ptr unsafe.Pointer) Popover {
 		Responder: ResponderFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (pc _PopoverClass) Alloc() Popover {
 	rv := objc.Send[Popover](objc.ID(pc.class), objc.Sel("alloc"))

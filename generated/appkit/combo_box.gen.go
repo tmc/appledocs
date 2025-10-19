@@ -31,9 +31,10 @@ type IComboBox interface {
 	ITextField
 }
 
-// A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value.
+// A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox
+
 type ComboBox struct {
 	TextField
 }
@@ -46,7 +47,6 @@ func ComboBoxFrom(ptr unsafe.Pointer) ComboBox {
 		TextField: TextFieldFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _ComboBoxClass) Alloc() ComboBox {
 	rv := objc.Send[ComboBox](objc.ID(cc.class), objc.Sel("alloc"))

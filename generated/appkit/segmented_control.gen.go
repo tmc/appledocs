@@ -31,9 +31,10 @@ type ISegmentedControl interface {
 	IControl
 }
 
-// Display one or more buttons in a single horizontal group.
+// Display one or more buttons in a single horizontal group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl
+
 type SegmentedControl struct {
 	Control
 }
@@ -46,7 +47,6 @@ func SegmentedControlFrom(ptr unsafe.Pointer) SegmentedControl {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SegmentedControlClass) Alloc() SegmentedControl {
 	rv := objc.Send[SegmentedControl](objc.ID(sc.class), objc.Sel("alloc"))

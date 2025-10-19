@@ -31,9 +31,10 @@ type IScrubberSelectionView interface {
 	IScrubberArrangedView
 }
 
-// An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber.
+// An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionView
+
 type ScrubberSelectionView struct {
 	ScrubberArrangedView
 }
@@ -46,7 +47,6 @@ func ScrubberSelectionViewFrom(ptr unsafe.Pointer) ScrubberSelectionView {
 		ScrubberArrangedView: ScrubberArrangedViewFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberSelectionViewClass) Alloc() ScrubberSelectionView {
 	rv := objc.Send[ScrubberSelectionView](objc.ID(sc.class), objc.Sel("alloc"))

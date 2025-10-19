@@ -31,9 +31,10 @@ type ITextTableBlock interface {
 	ITextBlock
 }
 
-// A text block that appears as a cell in a text table.
+// A text block that appears as a cell in a text table. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock
+
 type TextTableBlock struct {
 	TextBlock
 }
@@ -46,7 +47,6 @@ func TextTableBlockFrom(ptr unsafe.Pointer) TextTableBlock {
 		TextBlock: TextBlockFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (tc _TextTableBlockClass) Alloc() TextTableBlock {
 	rv := objc.Send[TextTableBlock](objc.ID(tc.class), objc.Sel("alloc"))

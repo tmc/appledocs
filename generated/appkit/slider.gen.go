@@ -32,9 +32,10 @@ type ISlider interface {
 	SetTitleFont(fontObj unsafe.Pointer)
 }
 
-// A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.
+// A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider
+
 type Slider struct {
 	Control
 }
@@ -47,7 +48,6 @@ func SliderFrom(ptr unsafe.Pointer) Slider {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SliderClass) Alloc() Slider {
 	rv := objc.Send[Slider](objc.ID(sc.class), objc.Sel("alloc"))
@@ -80,12 +80,12 @@ func NewSlider() Slider {
 }
 
 
-// Sets the font used to draw the slider’s title.
+// Sets the font used to draw the slider’s title. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/setTitleFont:
 func (s_ Slider) SetTitleFont(fontObj unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitleFont:"), fontObj)
 }
-
 
 

@@ -31,9 +31,10 @@ type ISecureTextFieldCell interface {
 	ITextFieldCell
 }
 
-// A text field whose value is hidden from the user.
+// A text field whose value is hidden from the user. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextFieldCell
+
 type SecureTextFieldCell struct {
 	TextFieldCell
 }
@@ -46,7 +47,6 @@ func SecureTextFieldCellFrom(ptr unsafe.Pointer) SecureTextFieldCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SecureTextFieldCellClass) Alloc() SecureTextFieldCell {
 	rv := objc.Send[SecureTextFieldCell](objc.ID(sc.class), objc.Sel("alloc"))

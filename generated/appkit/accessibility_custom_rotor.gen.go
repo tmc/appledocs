@@ -32,9 +32,10 @@ type IAccessibilityCustomRotor interface {
 	objectivec.IObject
 }
 
-// A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element.
+// A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor
+
 type AccessibilityCustomRotor struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type AccessibilityCustomRotor struct {
 func AccessibilityCustomRotorFrom(ptr unsafe.Pointer) AccessibilityCustomRotor {
 	return AccessibilityCustomRotor{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ac _AccessibilityCustomRotorClass) Alloc() AccessibilityCustomRotor {
 	rv := objc.Send[AccessibilityCustomRotor](objc.ID(ac.class), objc.Sel("alloc"))

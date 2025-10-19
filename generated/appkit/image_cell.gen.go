@@ -31,9 +31,10 @@ type IImageCell interface {
 	ICell
 }
 
-// An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
+// An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell
+
 type ImageCell struct {
 	Cell
 }
@@ -46,7 +47,6 @@ func ImageCellFrom(ptr unsafe.Pointer) ImageCell {
 		Cell: CellFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ic _ImageCellClass) Alloc() ImageCell {
 	rv := objc.Send[ImageCell](objc.ID(ic.class), objc.Sel("alloc"))

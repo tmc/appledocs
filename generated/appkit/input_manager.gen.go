@@ -34,6 +34,7 @@ type IInputManager interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager
+
 type InputManager struct {
 	objectivec.Object
 }
@@ -42,7 +43,6 @@ type InputManager struct {
 func InputManagerFrom(ptr unsafe.Pointer) InputManager {
 	return InputManager{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (ic _InputManagerClass) Alloc() InputManager {
 	rv := objc.Send[InputManager](objc.ID(ic.class), objc.Sel("alloc"))

@@ -32,9 +32,10 @@ type IFontManager interface {
 	objectivec.IObject
 }
 
-// The center of activity for the font-conversion system.
+// The center of activity for the font-conversion system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager
+
 type FontManager struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type FontManager struct {
 func FontManagerFrom(ptr unsafe.Pointer) FontManager {
 	return FontManager{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (fc _FontManagerClass) Alloc() FontManager {
 	rv := objc.Send[FontManager](objc.ID(fc.class), objc.Sel("alloc"))

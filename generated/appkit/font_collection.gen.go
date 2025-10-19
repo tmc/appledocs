@@ -32,9 +32,10 @@ type IFontCollection interface {
 	objectivec.IObject
 }
 
-// A font collection, which is a group of font descriptors taken together as a single object.
+// A font collection, which is a group of font descriptors taken together as a single object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollection
+
 type FontCollection struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type FontCollection struct {
 func FontCollectionFrom(ptr unsafe.Pointer) FontCollection {
 	return FontCollection{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (fc _FontCollectionClass) Alloc() FontCollection {
 	rv := objc.Send[FontCollection](objc.ID(fc.class), objc.Sel("alloc"))

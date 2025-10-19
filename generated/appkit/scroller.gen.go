@@ -31,9 +31,10 @@ type IScroller interface {
 	IControl
 }
 
-// An object that controls scrolling of a document view within a scroll view or other type of container view.
+// An object that controls scrolling of a document view within a scroll view or other type of container view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller
+
 type Scroller struct {
 	Control
 }
@@ -46,7 +47,6 @@ func ScrollerFrom(ptr unsafe.Pointer) Scroller {
 		Control: ControlFrom(ptr),
 	}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _ScrollerClass) Alloc() Scroller {
 	rv := objc.Send[Scroller](objc.ID(sc.class), objc.Sel("alloc"))

@@ -32,9 +32,10 @@ type ICollectionViewLayout interface {
 	objectivec.IObject
 }
 
-// An abstract base class that you subclass and use to generate layout information for a collection view.
+// An abstract base class that you subclass and use to generate layout information for a collection view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout
+
 type CollectionViewLayout struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type CollectionViewLayout struct {
 func CollectionViewLayoutFrom(ptr unsafe.Pointer) CollectionViewLayout {
 	return CollectionViewLayout{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewLayoutClass) Alloc() CollectionViewLayout {
 	rv := objc.Send[CollectionViewLayout](objc.ID(cc.class), objc.Sel("alloc"))

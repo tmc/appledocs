@@ -32,9 +32,10 @@ type IGraphicsContext interface {
 	objectivec.IObject
 }
 
-// An object that represents a graphics context.
+// An object that represents a graphics context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext
+
 type GraphicsContext struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type GraphicsContext struct {
 func GraphicsContextFrom(ptr unsafe.Pointer) GraphicsContext {
 	return GraphicsContext{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (gc _GraphicsContextClass) Alloc() GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("alloc"))

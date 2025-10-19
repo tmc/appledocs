@@ -32,9 +32,10 @@ type ISharingService interface {
 	objectivec.IObject
 }
 
-// An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.
+// An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService
+
 type SharingService struct {
 	objectivec.Object
 }
@@ -45,7 +46,6 @@ type SharingService struct {
 func SharingServiceFrom(ptr unsafe.Pointer) SharingService {
 	return SharingService{objectivec.Object{objc.ID(ptr)}}
 }
-
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServiceClass) Alloc() SharingService {
 	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("alloc"))
@@ -78,13 +78,13 @@ func NewSharingService() SharingService {
 }
 
 
-// Returns a list of sharing services which could share all the provided items together.
+// Returns a list of sharing services which could share all the provided items together. [Full Topic]
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/sharingServices(forItems:)
 func (sc _SharingServiceClass) SharingServicesForItems(items unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
 }
-
 
 

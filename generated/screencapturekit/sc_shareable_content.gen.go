@@ -84,4 +84,26 @@ func (sc _SCShareableContentClass) GetCurrentProcessShareableContentWithCompleti
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getCurrentProcessShareableContentWithCompletionHandler:"), completionHandler)
 }
 
+// The apps available for capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/applications
+func (s_ SCShareableContent) Applications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("applications"))
+	return rv
+}
+// The displays available for capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/displays
+func (s_ SCShareableContent) Displays() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("displays"))
+	return rv
+}
+// The windows available for capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/windows
+func (s_ SCShareableContent) Windows() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("windows"))
+	return rv
+}
+
 
