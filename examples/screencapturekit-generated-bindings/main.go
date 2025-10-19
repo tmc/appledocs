@@ -11,8 +11,10 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 	"runtime"
 	"time"
+	"unsafe"
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
@@ -24,6 +26,21 @@ var (
 	record     = flag.Bool("record", false, "record screen content using SCStream")
 	duration   = flag.Duration("duration", 5*time.Second, "recording duration")
 	displayNum = flag.Int("display", 0, "display number to record (0-based)")
+	saveFrames = flag.Bool("save", false, "save frames as PNG files")
+)
+
+// C function declarations for image processing
+var (
+	// CoreMedia
+	CMSampleBufferGetImageBuffer func(uintptr) uintptr
+
+	// CoreGraphics
+	CGImageRelease func(uintptr)
+
+	// ImageIO
+	CGImageDestinationCreateWithURL func(uintptr, uintptr, int, uintptr) uintptr
+	CGImageDestinationAddImage      func(uintptr, uintptr, uintptr)
+	CGImageDestinationFinalize      func(uintptr) bool
 )
 
 func init() {
@@ -57,6 +74,26 @@ func init() {
 	if err != nil {
 		// Framework not available, will be handled at runtime
 		_ = err
+	}
+
+	// Load CoreMedia framework for CMSampleBufferGetImageBuffer
+	coreMedia, err := purego.Dlopen("/System/Library/Frameworks/CoreMedia.framework/CoreMedia", purego.RTLD_NOW|purego.RTLD_GLOBAL)
+	if err == nil {
+		purego.RegisterLibFunc(&CMSampleBufferGetImageBuffer, coreMedia, "CMSampleBufferGetImageBuffer")
+	}
+
+	// Load CoreGraphics framework for CGImage functions
+	coreGraphics, err := purego.Dlopen("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics", purego.RTLD_NOW|purego.RTLD_GLOBAL)
+	if err == nil {
+		purego.RegisterLibFunc(&CGImageRelease, coreGraphics, "CGImageRelease")
+	}
+
+	// Load ImageIO framework for PNG saving
+	imageIO, err := purego.Dlopen("/System/Library/Frameworks/ImageIO.framework/ImageIO", purego.RTLD_NOW|purego.RTLD_GLOBAL)
+	if err == nil {
+		purego.RegisterLibFunc(&CGImageDestinationCreateWithURL, imageIO, "CGImageDestinationCreateWithURL")
+		purego.RegisterLibFunc(&CGImageDestinationAddImage, imageIO, "CGImageDestinationAddImage")
+		purego.RegisterLibFunc(&CGImageDestinationFinalize, imageIO, "CGImageDestinationFinalize")
 	}
 }
 
@@ -393,13 +430,27 @@ func recordScreen(display objc.ID, duration time.Duration) error {
 
 	// Create delegate instance
 	frameCount := 0
-	delegate, err := createStreamOutputDelegate(&frameCount)
+
+	// Setup output directory if saving frames
+	outputDir := ""
+	if *saveFrames {
+		outputDir = filepath.Join(os.TempDir(), "screencapture_frames")
+		if err := os.MkdirAll(outputDir, 0755); err != nil {
+			return fmt.Errorf("failed to create output directory: %w", err)
+		}
+		fmt.Printf("📁 Output directory: %s\n", outputDir)
+	}
+
+	delegate, err := createStreamOutputDelegate(&frameCount, *saveFrames, outputDir)
 	if err != nil {
 		return fmt.Errorf("failed to create delegate: %w", err)
 	}
 	defer delegate.Send(objc.RegisterName("release"))
 
 	fmt.Println("✓ Created SCStreamOutput delegate using objc.RegisterClass!")
+	if *saveFrames {
+		fmt.Println("   💾 Frame saving enabled (every 30th frame)")
+	}
 	fmt.Println()
 
 	// Create SCStream with filter and config
@@ -495,6 +546,16 @@ func recordScreen(display objc.ID, duration time.Duration) error {
 	fmt.Printf("   Frame rate: %.1f FPS\n", fps)
 	fmt.Printf("   Resolution: %dx%d\n", width, height)
 
+	if *saveFrames && outputDir != "" {
+		savedCount := frameCount / 30
+		if frameCount%30 == 0 {
+			savedCount = frameCount / 30
+		}
+		fmt.Printf("\n💾 Saved frames:\n")
+		fmt.Printf("   Directory: %s\n", outputDir)
+		fmt.Printf("   Total saved: %d PNG files (every 30th frame)\n", savedCount)
+	}
+
 	return nil
 }
 
@@ -503,7 +564,7 @@ type streamOutputHandler struct {
 }
 
 // createStreamOutputDelegate creates a custom Objective-C class that implements SCStreamOutput protocol
-func createStreamOutputDelegate(frameCount *int) (objc.ID, error) {
+func createStreamOutputDelegate(frameCount *int, shouldSave bool, outputDir string) (objc.ID, error) {
 	// Get NSObject as our superclass
 	nsObjectClass := objc.GetClass("NSObject")
 	if nsObjectClass == 0 {
@@ -527,8 +588,115 @@ func createStreamOutputDelegate(frameCount *int) (objc.ID, error) {
 			fmt.Printf("\r   📹 Received frame %d", *frameCount)
 		}
 
-		// TODO: Extract CVPixelBuffer and save as PNG
-		// This requires CoreMedia and CoreVideo bindings
+		if !shouldSave {
+			return
+		}
+
+		// Save every 30th frame
+		if *frameCount%30 != 0 {
+			return
+		}
+
+		// Get pixel buffer from sample buffer
+		if CMSampleBufferGetImageBuffer == nil {
+			return
+		}
+
+		pixelBuffer := CMSampleBufferGetImageBuffer(sampleBuffer)
+		if pixelBuffer == 0 {
+			fmt.Fprintf(os.Stderr, "\n⚠️  No pixel buffer in sample\n")
+			return
+		}
+
+		// Create CIImage from pixel buffer
+		ciImageClass := objc.GetClass("CIImage")
+		if ciImageClass == 0 {
+			return
+		}
+
+		imageWithCVPixelBuffer := objc.RegisterName("imageWithCVPixelBuffer:")
+		ciImage := objc.ID(ciImageClass).Send(imageWithCVPixelBuffer, pixelBuffer)
+		if ciImage == 0 {
+			fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CIImage\n")
+			return
+		}
+
+		// Create CIContext
+		ciContextClass := objc.GetClass("CIContext")
+		if ciContextClass == 0 {
+			return
+		}
+
+		context := objc.ID(ciContextClass).Send(objc.RegisterName("context"))
+		if context == 0 {
+			fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CIContext\n")
+			return
+		}
+
+		// Get image extent
+		extent := ciImage.Send(objc.RegisterName("extent"))
+
+		// Create CGImage from CIImage
+		createCGImage := objc.RegisterName("createCGImage:fromRect:")
+		cgImage := context.Send(createCGImage, ciImage, extent)
+		if cgImage == 0 {
+			fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CGImage\n")
+			return
+		}
+		defer CGImageRelease(uintptr(cgImage))
+
+		// Create file URL for PNG
+		filename := filepath.Join(outputDir, fmt.Sprintf("frame_%04d.png", *frameCount))
+
+		// Create NSString from filename
+		nsStringClass := objc.GetClass("NSString")
+		stringWithUTF8String := objc.RegisterName("stringWithUTF8String:")
+		cFilename := append([]byte(filename), 0) // null-terminate
+		filenameStr := objc.ID(nsStringClass).Send(stringWithUTF8String, uintptr(unsafe.Pointer(&cFilename[0])))
+
+		// Create NSURL from path
+		nsurlClass := objc.GetClass("NSURL")
+		fileURLWithPath := objc.RegisterName("fileURLWithPath:")
+		fileURL := objc.ID(nsurlClass).Send(fileURLWithPath, filenameStr)
+		if fileURL == 0 {
+			fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create file URL\n")
+			return
+		}
+
+		// Get UTTypePNG identifier
+		utTypePNGClass := objc.GetClass("UTType")
+		png := objc.RegisterName("PNG")
+		utTypePNG := objc.ID(utTypePNGClass).Send(png)
+		identifier := utTypePNG.Send(objc.RegisterName("identifier"))
+
+		// Create CGImageDestination
+		if CGImageDestinationCreateWithURL == nil {
+			return
+		}
+
+		destination := CGImageDestinationCreateWithURL(uintptr(fileURL), uintptr(identifier), 1, 0)
+		if destination == 0 {
+			fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create image destination\n")
+			return
+		}
+		defer func() {
+			// CFRelease(destination)
+			objc.ID(destination).Send(objc.RegisterName("release"))
+		}()
+
+		// Add image to destination
+		if CGImageDestinationAddImage != nil {
+			CGImageDestinationAddImage(destination, uintptr(cgImage), 0)
+		}
+
+		// Finalize (write to disk)
+		if CGImageDestinationFinalize != nil {
+			if CGImageDestinationFinalize(destination) {
+				fmt.Printf("\n   💾 Saved frame to: %s\n", filename)
+			} else {
+				fmt.Fprintf(os.Stderr, "\n⚠️  Failed to finalize image\n")
+			}
+		}
 	}
 
 	// Register the class without protocol (duck typing will make it work)
