@@ -18,6 +18,8 @@ import (
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/coreimage"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/screencapturekit"
 	"github.com/tmc/macgo"
 )
@@ -30,15 +32,10 @@ var (
 	saveFrames = flag.Bool("save", false, "save frames as PNG files")
 )
 
-// C function declarations for image processing
+// C function declarations for frameworks not yet with generated bindings
 var (
-	// CoreMedia
-	CMSampleBufferGetImageBuffer func(uintptr) uintptr
-
-	// CoreGraphics
-	CGImageRelease func(uintptr)
-
-	// ImageIO
+	CMSampleBufferGetImageBuffer    func(uintptr) uintptr
+	CGImageRelease                  func(uintptr)
 	CGImageDestinationCreateWithURL func(uintptr, uintptr, int, uintptr) uintptr
 	CGImageDestinationAddImage      func(uintptr, uintptr, uintptr)
 	CGImageDestinationFinalize      func(uintptr) bool
@@ -78,18 +75,21 @@ func init() {
 	}
 
 	// Load CoreMedia framework for CMSampleBufferGetImageBuffer
+	// TODO: Generate CoreMedia bindings
 	coreMedia, err := purego.Dlopen("/System/Library/Frameworks/CoreMedia.framework/CoreMedia", purego.RTLD_NOW|purego.RTLD_GLOBAL)
 	if err == nil {
 		purego.RegisterLibFunc(&CMSampleBufferGetImageBuffer, coreMedia, "CMSampleBufferGetImageBuffer")
 	}
 
-	// Load CoreGraphics framework for CGImage functions
+	// Load CoreGraphics for CGImageRelease
+	// TODO: Most CoreGraphics calls now use generated bindings, but CGImageRelease still needed
 	coreGraphics, err := purego.Dlopen("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics", purego.RTLD_NOW|purego.RTLD_GLOBAL)
 	if err == nil {
 		purego.RegisterLibFunc(&CGImageRelease, coreGraphics, "CGImageRelease")
 	}
 
 	// Load ImageIO framework for PNG saving
+	// TODO: Generate ImageIO bindings
 	imageIO, err := purego.Dlopen("/System/Library/Frameworks/ImageIO.framework/ImageIO", purego.RTLD_NOW|purego.RTLD_GLOBAL)
 	if err == nil {
 		purego.RegisterLibFunc(&CGImageDestinationCreateWithURL, imageIO, "CGImageDestinationCreateWithURL")
@@ -598,27 +598,16 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 		return
 	}
 
-	// Create CIImage from pixel buffer
-	ciImageClass := objc.GetClass("CIImage")
-	if ciImageClass == 0 {
-		return
-	}
-
-	imageWithCVPixelBuffer := objc.RegisterName("imageWithCVPixelBuffer:")
-	ciImage := objc.ID(ciImageClass).Send(imageWithCVPixelBuffer, pixelBuffer)
-	if ciImage == 0 {
+	// Create CIImage from pixel buffer using generated bindings
+	ciImage := coreimage.NewImageWithCVPixelBuffer(unsafe.Pointer(pixelBuffer))
+	if ciImage.ID == 0 {
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CIImage\n")
 		return
 	}
 
-	// Create CIContext
-	ciContextClass := objc.GetClass("CIContext")
-	if ciContextClass == 0 {
-		return
-	}
-
-	context := objc.ID(ciContextClass).Send(objc.RegisterName("context"))
-	if context == 0 {
+	// Create CIContext using generated bindings
+	context := coreimage.NewContext()
+	if context.ID == 0 {
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CIContext\n")
 		return
 	}
@@ -626,29 +615,20 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 	// Get image extent
 	extent := ciImage.Send(objc.RegisterName("extent"))
 
-	// Create CGImage from CIImage
-	createCGImage := objc.RegisterName("createCGImage:fromRect:")
-	cgImage := context.Send(createCGImage, ciImage, extent)
-	if cgImage == 0 {
+	// Create CGImage from CIImage using generated bindings
+	cgImage := context.CreateCGImageFromRect(unsafe.Pointer(ciImage.ID), unsafe.Pointer(extent))
+	if cgImage == nil {
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CGImage\n")
 		return
 	}
 	defer CGImageRelease(uintptr(cgImage))
 
-	// Create file URL for PNG
+	// Create file URL for PNG using Foundation bindings
 	filename := filepath.Join(h.outputDir, fmt.Sprintf("frame_%04d.png", h.frameCount))
 
-	// Create NSString from filename
-	nsStringClass := objc.GetClass("NSString")
-	stringWithUTF8String := objc.RegisterName("stringWithUTF8String:")
-	cFilename := append([]byte(filename), 0) // null-terminate
-	filenameStr := objc.ID(nsStringClass).Send(stringWithUTF8String, uintptr(unsafe.Pointer(&cFilename[0])))
-
-	// Create NSURL from path
-	nsurlClass := objc.GetClass("NSURL")
-	fileURLWithPath := objc.RegisterName("fileURLWithPath:")
-	fileURL := objc.ID(nsurlClass).Send(fileURLWithPath, filenameStr)
-	if fileURL == 0 {
+	// Create NSURL from path using generated bindings (takes string directly)
+	fileURL := foundation.NewURLFileURLWithPath(filename)
+	if fileURL.ID == 0 {
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create file URL\n")
 		return
 	}
@@ -664,7 +644,7 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 		return
 	}
 
-	destination := CGImageDestinationCreateWithURL(uintptr(fileURL), uintptr(identifier), 1, 0)
+	destination := CGImageDestinationCreateWithURL(uintptr(fileURL.ID), uintptr(identifier), 1, 0)
 	if destination == 0 {
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create image destination\n")
 		return
