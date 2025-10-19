@@ -8,13 +8,20 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"os"
 	"runtime"
+	"time"
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+)
+
+var (
+	e2e = flag.Bool("e2e", false, "run end-to-end test mode (non-interactive)")
 )
 
 func init() {
@@ -141,6 +148,13 @@ func drawShapes(ctx coregraphics.CGContextRef, size coregraphics.CGSize) {
 }
 
 func main() {
+	flag.Parse()
+
+	if *e2e {
+		runE2ETest()
+		return
+	}
+
 	fmt.Println("=== CoreGraphics Drawing (Generated Bindings) ===\n")
 
 	// Create app using generated bindings
@@ -189,4 +203,74 @@ func main() {
 	fmt.Println("\n   Press Cmd+Q or close window to quit\n")
 
 	app.Run()
+}
+
+// runE2ETest runs automated end-to-end test with small delays for visibility
+func runE2ETest() {
+	fmt.Println("=== E2E Test Mode (Drawing Generated Bindings) ===")
+
+	// Create app
+	app := appkit.SharedApplication()
+	app.SetActivationPolicy(appkit.ActivationPolicyAccessory) // No dock icon in tests
+	fmt.Println("✓ Created application")
+	time.Sleep(100 * time.Millisecond)
+
+	// Create window
+	window := appkit.NewWindowWithFrame(100, 100, 800, 600,
+		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable)
+	window.SetTitle("E2E Test Window")
+	fmt.Println("✓ Created window")
+	time.Sleep(100 * time.Millisecond)
+
+	// Set delegate
+	delegate := createAppDelegate()
+	window.SetDelegate(delegate)
+	fmt.Println("✓ Set window delegate")
+	time.Sleep(100 * time.Millisecond)
+
+	// Create and draw image using CoreGraphics
+	fmt.Println("✓ Drawing shapes with CoreGraphics...")
+	image := createDrawnImage(800, 600)
+	if image == 0 {
+		fmt.Println("✗ FAIL: Image not created")
+		os.Exit(1)
+	}
+	fmt.Println("✓ Created image with CoreGraphics drawing")
+	time.Sleep(200 * time.Millisecond)
+
+	// Create image view
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	imageViewClass := objc.GetClass("NSImageView")
+	imageView := objc.ID(imageViewClass).Send(objc.RegisterName("alloc"))
+	imageView = imageView.Send(objc.RegisterName("initWithFrame:"),
+		NSRect{Origin: NSPoint{X: 0, Y: 0}, Size: NSSize{Width: 800, Height: 600}})
+	imageView.Send(objc.RegisterName("setImage:"), image)
+	imageView.Send(objc.RegisterName("setImageScaling:"), 1)
+	fmt.Println("✓ Created image view")
+	time.Sleep(100 * time.Millisecond)
+
+	// Set as content view
+	window.ID.Send(objc.RegisterName("setContentView:"), imageView)
+	fmt.Println("✓ Set content view")
+	time.Sleep(100 * time.Millisecond)
+
+	// Show window briefly
+	window.MakeKeyAndOrderFront(0)
+	fmt.Println("✓ Window displayed with drawing")
+	time.Sleep(300 * time.Millisecond)
+
+	// Close window
+	window.ID.Send(objc.RegisterName("close"))
+	fmt.Println("✓ Window closed")
+
+	fmt.Println("\n=== E2E Test PASSED ===")
+	fmt.Println("   ✓ Used generated CoreGraphics bindings")
+	fmt.Println("   ✓ Drew shapes: rectangles, circles, triangles")
+	fmt.Println("   ✓ No manual purego.RegisterLibFunc calls")
+	os.Exit(0)
 }

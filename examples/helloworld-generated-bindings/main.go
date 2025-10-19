@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"time"
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
@@ -210,16 +211,20 @@ func runE2ETest() {
 	// Get NSApplication shared instance
 	app := appkit.SharedApplication()
 	app.SetActivationPolicy(appkit.ActivationPolicyAccessory) // No dock icon in tests
+	fmt.Println("✓ Created application")
+	time.Sleep(100 * time.Millisecond)
 
 	// Create window
 	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
 		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
 	window.SetTitle("E2E Test Window")
 	fmt.Println("✓ Created window with title")
+	time.Sleep(100 * time.Millisecond)
 
 	// Get content view
 	contentView := window.ContentView()
 	fmt.Println("✓ Got content view")
+	time.Sleep(100 * time.Millisecond)
 
 	// Create and configure label
 	label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
@@ -228,6 +233,7 @@ func runE2ETest() {
 	label.SetBordered(false)
 	contentView.AddSubviewTyped(label)
 	fmt.Println("✓ Created and configured label")
+	time.Sleep(100 * time.Millisecond)
 
 	// Create counter label
 	counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
@@ -237,6 +243,7 @@ func runE2ETest() {
 	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
 	contentView.AddSubviewTyped(counterLabel)
 	fmt.Println("✓ Created counter label")
+	time.Sleep(100 * time.Millisecond)
 
 	// Create button
 	button := appkit.NewButtonWithFrame(150, 130, 100, 40)
@@ -249,6 +256,7 @@ func runE2ETest() {
 	button.SetAction(objc.RegisterName("buttonClicked:"))
 	contentView.AddSubviewTyped(button)
 	fmt.Println("✓ Created button with target/action")
+	time.Sleep(100 * time.Millisecond)
 
 	// Verify button is valid
 	if button.ID == 0 {
@@ -256,6 +264,7 @@ func runE2ETest() {
 		os.Exit(1)
 	}
 	fmt.Println("✓ Button created and configured")
+	time.Sleep(100 * time.Millisecond)
 
 	// Verify label string values
 	labelValue := label.ID.Send(objc.RegisterName("stringValue"))
@@ -265,6 +274,12 @@ func runE2ETest() {
 		os.Exit(1)
 	}
 	fmt.Println("✓ Label values set correctly")
+	time.Sleep(100 * time.Millisecond)
+
+	// Show window briefly
+	window.MakeKeyAndOrderFront(0)
+	fmt.Println("✓ Window displayed")
+	time.Sleep(200 * time.Millisecond)
 
 	// Close window
 	window.ID.Send(objc.RegisterName("close"))

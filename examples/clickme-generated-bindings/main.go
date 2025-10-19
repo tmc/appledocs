@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"runtime"
+	"time"
 
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/appkit"
@@ -21,6 +23,11 @@ func init() {
 
 func main() {
 	flag.Parse()
+
+	if *e2e {
+		runE2ETest()
+		return
+	}
 
 	// Create application
 	app := appkit.SharedApplication()
@@ -58,15 +65,85 @@ func main() {
 	// Activate ignoring other apps
 	app.ActivateIgnoringOtherApps(true)
 
-	// In E2E mode, terminate immediately
-	if *e2e {
-		fmt.Println("E2E mode: terminating immediately")
-		app.Terminate(0)
-		return
-	}
-
 	// Run the application event loop
 	app.Run()
+}
+
+// runE2ETest runs automated end-to-end test with small delays for visibility
+func runE2ETest() {
+	fmt.Println("=== E2E Test Mode (Clickme Generated Bindings) ===")
+
+	// Create application
+	app := appkit.SharedApplication()
+	app.SetActivationPolicy(appkit.ActivationPolicyAccessory) // No dock icon in tests
+	fmt.Println("✓ Created application")
+	time.Sleep(100 * time.Millisecond)
+
+	// Create window
+	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
+		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable)
+	window.SetTitle("E2E Test Window")
+	fmt.Println("✓ Created window with title")
+	time.Sleep(100 * time.Millisecond)
+
+	// Get content view
+	contentView := window.ContentView()
+	fmt.Println("✓ Got content view")
+	time.Sleep(100 * time.Millisecond)
+
+	// Create counter label
+	counterLabel = appkit.NewTextFieldWithFrame(100, 200, 200, 40)
+	counterLabel.SetStringValue("Clicks: 0")
+	counterLabel.SetEditable(false)
+	counterLabel.SetBordered(false)
+	counterLabel.SetDrawsBackground(false)
+	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
+	contentView.AddSubviewTyped(counterLabel)
+	fmt.Println("✓ Created counter label")
+	time.Sleep(100 * time.Millisecond)
+
+	// Create button handler
+	buttonHandler := createButtonHandler()
+	fmt.Println("✓ Created button handler")
+	time.Sleep(100 * time.Millisecond)
+
+	// Create button
+	button := appkit.NewButtonWithFrame(150, 120, 100, 40)
+	button.SetTitleString("Click Me!")
+	button.SetTarget(buttonHandler)
+	button.SetAction(objc.RegisterName("buttonClicked:"))
+	contentView.AddSubviewTyped(button)
+	fmt.Println("✓ Created and configured button")
+	time.Sleep(100 * time.Millisecond)
+
+	// Verify button is valid
+	if button.ID == 0 {
+		fmt.Println("✗ FAIL: Button not created")
+		os.Exit(1)
+	}
+	fmt.Println("✓ Button validation passed")
+	time.Sleep(100 * time.Millisecond)
+
+	// Verify label string values
+	labelValue := counterLabel.ID.Send(objc.RegisterName("stringValue"))
+	if labelValue == 0 {
+		fmt.Println("✗ FAIL: Label value not set")
+		os.Exit(1)
+	}
+	fmt.Println("✓ Label values verified")
+	time.Sleep(100 * time.Millisecond)
+
+	// Show window briefly
+	window.MakeKeyAndOrderFront(0)
+	fmt.Println("✓ Window displayed")
+	time.Sleep(200 * time.Millisecond)
+
+	// Close window
+	window.ID.Send(objc.RegisterName("close"))
+	fmt.Println("✓ Window closed")
+
+	fmt.Println("\n=== E2E Test PASSED ===")
+	os.Exit(0)
 }
 
 // createButtonHandler creates an NSObject subclass that handles button clicks
