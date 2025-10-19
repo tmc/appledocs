@@ -509,7 +509,21 @@ func main() {
 // run is the main entry point for the application logic
 func run(ctx context.Context) error {
 	client := &http.Client{Timeout: *timeout}
-	startURL := resolveURL(*baseURL, *entryPoint)
+
+	// Determine start URLs - handle framework names like print-urls mode does
+	var startURLs []string
+
+	// Check if entry point is a framework name (not a full path)
+	if *entryPoint != "/tutorials/data/documentation/technologies.json" && !strings.Contains(*entryPoint, "/") && !strings.HasSuffix(*entryPoint, ".json") {
+		// This looks like a framework name (e.g., "imageio", "coremedia")
+		frameworkURLs := buildFrameworkURLs(*entryPoint)
+		for _, urlPath := range frameworkURLs {
+			startURLs = append(startURLs, resolveURL(*baseURL, urlPath))
+		}
+	} else {
+		// Use the entry point as-is (full path or default)
+		startURLs = []string{resolveURL(*baseURL, *entryPoint)}
+	}
 
 	// Initialize rate limiter
 	var rateLimiter *rate.Limiter
@@ -573,11 +587,13 @@ func run(ctx context.Context) error {
 		}
 	}
 
-	// Mark the start URL as visited and set its depth to 0
-	app.visitedURLs.Store(startURL, true)
-	app.depthMutex.Lock()
-	app.urlDepths[startURL] = 0
-	app.depthMutex.Unlock()
+	// Mark the start URLs as visited and set their depth to 0
+	for _, startURL := range startURLs {
+		app.visitedURLs.Store(startURL, true)
+		app.depthMutex.Lock()
+		app.urlDepths[startURL] = 0
+		app.depthMutex.Unlock()
+	}
 
 	// Setup progress reporting
 	ticker := time.NewTicker(5 * time.Second)
@@ -665,8 +681,10 @@ func run(ctx context.Context) error {
 		}(i)
 	}
 
-	// Add the initial URL to the queue
-	urlQueue <- startURL
+	// Add the initial URLs to the queue
+	for _, startURL := range startURLs {
+		urlQueue <- startURL
+	}
 
 	// Wait for context cancellation or completion
 	<-ctx.Done()
