@@ -488,6 +488,36 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 {{- end}}
 {{- end}}
 
+{{- range .Properties}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $capitalizedName := capitalize .Name}}
+{{- if .Abstract}}
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
+	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
+	return rv
+}
+
+{{- $isReadOnly := contains .Attributes "readonly"}}
+{{- if not $isReadOnly}}
+
+// Set{{$capitalizedName}} sets the value of the {{.Name}} property.
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType}}) {
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
+}
+{{- end}}
+{{- end}}
+
 {{end -}}
 
 -- class.gen.go --
