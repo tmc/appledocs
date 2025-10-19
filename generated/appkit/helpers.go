@@ -89,13 +89,11 @@ func RunApp(setup func(app Application)) {
 	// Call setup function to let caller configure the app and create windows
 	setup(app)
 
-	// Finish launching before activating
-	app.FinishLaunching()
-
 	// Activate app so windows appear in foreground
 	app.ActivateIgnoringOtherApps(true)
 
 	// Run event loop (this blocks until the app quits)
+	// Note: We deliberately don't call FinishLaunching() to match darwinkit behavior
 	app.Run()
 }
 
