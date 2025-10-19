@@ -35,6 +35,36 @@ type AppleScript struct {
 func AppleScriptFrom(ptr unsafe.Pointer) AppleScript {
 	return AppleScript{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AppleScriptClass) Alloc() AppleScript {
+	rv := objc.Send[AppleScript](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AppleScriptClass) New() AppleScript {
+	rv := objc.Send[AppleScript](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AppleScript) Init() AppleScript {
+	rv := objc.Send[AppleScript](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AppleScript) Autorelease() AppleScript {
+	rv := objc.Send[AppleScript](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAppleScript creates a new AppleScript instance.
+func NewAppleScript() AppleScript {
+	return appleScriptClass.New()
+}
+
 
 
 

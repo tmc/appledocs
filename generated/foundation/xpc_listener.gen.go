@@ -35,6 +35,36 @@ type XPCListener struct {
 func XPCListenerFrom(ptr unsafe.Pointer) XPCListener {
 	return XPCListener{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XPCListenerClass) Alloc() XPCListener {
+	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XPCListenerClass) New() XPCListener {
+	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XPCListener) Init() XPCListener {
+	rv := objc.Send[XPCListener](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XPCListener) Autorelease() XPCListener {
+	rv := objc.Send[XPCListener](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXPCListener creates a new XPCListener instance.
+func NewXPCListener() XPCListener {
+	return xPCListenerClass.New()
+}
+
 
 // Returns a new anonymous listener connection. [Full Topic]
 

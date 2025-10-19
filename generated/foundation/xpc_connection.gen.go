@@ -72,6 +72,8 @@ func (x_ XPCConnection) Autorelease() XPCConnection {
 func NewXPCConnection() XPCConnection {
 	return xPCConnectionClass.New()
 }
+
+
 // Initializes an object to connect to an object in another process, identified by an object. [Full Topic]
 
 //

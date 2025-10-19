@@ -35,6 +35,36 @@ type ScriptSuiteRegistry struct {
 func ScriptSuiteRegistryFrom(ptr unsafe.Pointer) ScriptSuiteRegistry {
 	return ScriptSuiteRegistry{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScriptSuiteRegistryClass) Alloc() ScriptSuiteRegistry {
+	rv := objc.Send[ScriptSuiteRegistry](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScriptSuiteRegistryClass) New() ScriptSuiteRegistry {
+	rv := objc.Send[ScriptSuiteRegistry](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScriptSuiteRegistry) Init() ScriptSuiteRegistry {
+	rv := objc.Send[ScriptSuiteRegistry](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScriptSuiteRegistry) Autorelease() ScriptSuiteRegistry {
+	rv := objc.Send[ScriptSuiteRegistry](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScriptSuiteRegistry creates a new ScriptSuiteRegistry instance.
+func NewScriptSuiteRegistry() ScriptSuiteRegistry {
+	return scriptSuiteRegistryClass.New()
+}
+
 
 
 

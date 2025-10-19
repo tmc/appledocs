@@ -36,6 +36,36 @@ func GetCommandFrom(ptr unsafe.Pointer) GetCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (gc _GetCommandClass) Alloc() GetCommand {
+	rv := objc.Send[GetCommand](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (gc _GetCommandClass) New() GetCommand {
+	rv := objc.Send[GetCommand](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GetCommand) Init() GetCommand {
+	rv := objc.Send[GetCommand](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GetCommand) Autorelease() GetCommand {
+	rv := objc.Send[GetCommand](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGetCommand creates a new GetCommand instance.
+func NewGetCommand() GetCommand {
+	return getCommandClass.New()
+}
+
 
 
 

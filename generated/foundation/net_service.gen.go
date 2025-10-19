@@ -76,6 +76,8 @@ func (n_ NetService) Autorelease() NetService {
 func NewNetService() NetService {
 	return netServiceClass.New()
 }
+
+
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information. [Full Topic]
 
 //

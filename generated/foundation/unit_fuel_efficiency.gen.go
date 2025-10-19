@@ -36,6 +36,36 @@ func UnitFuelEfficiencyFrom(ptr unsafe.Pointer) UnitFuelEfficiency {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitFuelEfficiencyClass) Alloc() UnitFuelEfficiency {
+	rv := objc.Send[UnitFuelEfficiency](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitFuelEfficiencyClass) New() UnitFuelEfficiency {
+	rv := objc.Send[UnitFuelEfficiency](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitFuelEfficiency) Init() UnitFuelEfficiency {
+	rv := objc.Send[UnitFuelEfficiency](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitFuelEfficiency) Autorelease() UnitFuelEfficiency {
+	rv := objc.Send[UnitFuelEfficiency](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitFuelEfficiency creates a new UnitFuelEfficiency instance.
+func NewUnitFuelEfficiency() UnitFuelEfficiency {
+	return unitFuelEfficiencyClass.New()
+}
+
 
 
 

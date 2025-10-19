@@ -35,6 +35,36 @@ type DistributedLock struct {
 func DistributedLockFrom(ptr unsafe.Pointer) DistributedLock {
 	return DistributedLock{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DistributedLockClass) Alloc() DistributedLock {
+	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DistributedLockClass) New() DistributedLock {
+	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DistributedLock) Init() DistributedLock {
+	rv := objc.Send[DistributedLock](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DistributedLock) Autorelease() DistributedLock {
+	rv := objc.Send[DistributedLock](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDistributedLock creates a new DistributedLock instance.
+func NewDistributedLock() DistributedLock {
+	return distributedLockClass.New()
+}
+
 
 
 

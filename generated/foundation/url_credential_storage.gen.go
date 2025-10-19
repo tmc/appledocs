@@ -35,6 +35,36 @@ type URLCredentialStorage struct {
 func URLCredentialStorageFrom(ptr unsafe.Pointer) URLCredentialStorage {
 	return URLCredentialStorage{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _URLCredentialStorageClass) Alloc() URLCredentialStorage {
+	rv := objc.Send[URLCredentialStorage](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLCredentialStorageClass) New() URLCredentialStorage {
+	rv := objc.Send[URLCredentialStorage](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ URLCredentialStorage) Init() URLCredentialStorage {
+	rv := objc.Send[URLCredentialStorage](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLCredentialStorage) Autorelease() URLCredentialStorage {
+	rv := objc.Send[URLCredentialStorage](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLCredentialStorage creates a new URLCredentialStorage instance.
+func NewURLCredentialStorage() URLCredentialStorage {
+	return uRLCredentialStorageClass.New()
+}
+
 
 
 

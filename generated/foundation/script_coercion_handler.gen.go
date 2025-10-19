@@ -35,6 +35,36 @@ type ScriptCoercionHandler struct {
 func ScriptCoercionHandlerFrom(ptr unsafe.Pointer) ScriptCoercionHandler {
 	return ScriptCoercionHandler{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScriptCoercionHandlerClass) Alloc() ScriptCoercionHandler {
+	rv := objc.Send[ScriptCoercionHandler](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScriptCoercionHandlerClass) New() ScriptCoercionHandler {
+	rv := objc.Send[ScriptCoercionHandler](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScriptCoercionHandler) Init() ScriptCoercionHandler {
+	rv := objc.Send[ScriptCoercionHandler](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScriptCoercionHandler) Autorelease() ScriptCoercionHandler {
+	rv := objc.Send[ScriptCoercionHandler](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScriptCoercionHandler creates a new ScriptCoercionHandler instance.
+func NewScriptCoercionHandler() ScriptCoercionHandler {
+	return scriptCoercionHandlerClass.New()
+}
+
 
 
 

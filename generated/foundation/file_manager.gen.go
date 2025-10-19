@@ -132,6 +132,8 @@ func (f_ FileManager) Autorelease() FileManager {
 func NewFileManager() FileManager {
 	return fileManagerClass.New()
 }
+
+
 // Initializes a file manager object that is authorized to perform privileged file system operations. [Full Topic]
 
 //

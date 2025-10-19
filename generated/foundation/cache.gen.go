@@ -35,6 +35,36 @@ type Cache struct {
 func CacheFrom(ptr unsafe.Pointer) Cache {
 	return Cache{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CacheClass) Alloc() Cache {
+	rv := objc.Send[Cache](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CacheClass) New() Cache {
+	rv := objc.Send[Cache](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Cache) Init() Cache {
+	rv := objc.Send[Cache](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Cache) Autorelease() Cache {
+	rv := objc.Send[Cache](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCache creates a new Cache instance.
+func NewCache() Cache {
+	return cacheClass.New()
+}
+
 
 
 

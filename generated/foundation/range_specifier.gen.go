@@ -36,6 +36,36 @@ func RangeSpecifierFrom(ptr unsafe.Pointer) RangeSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RangeSpecifierClass) Alloc() RangeSpecifier {
+	rv := objc.Send[RangeSpecifier](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RangeSpecifierClass) New() RangeSpecifier {
+	rv := objc.Send[RangeSpecifier](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RangeSpecifier) Init() RangeSpecifier {
+	rv := objc.Send[RangeSpecifier](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RangeSpecifier) Autorelease() RangeSpecifier {
+	rv := objc.Send[RangeSpecifier](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRangeSpecifier creates a new RangeSpecifier instance.
+func NewRangeSpecifier() RangeSpecifier {
+	return rangeSpecifierClass.New()
+}
+
 
 
 

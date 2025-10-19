@@ -45,6 +45,36 @@ type ExtensionContext struct {
 func ExtensionContextFrom(ptr unsafe.Pointer) ExtensionContext {
 	return ExtensionContext{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _ExtensionContextClass) Alloc() ExtensionContext {
+	rv := objc.Send[ExtensionContext](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _ExtensionContextClass) New() ExtensionContext {
+	rv := objc.Send[ExtensionContext](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ ExtensionContext) Init() ExtensionContext {
+	rv := objc.Send[ExtensionContext](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ ExtensionContext) Autorelease() ExtensionContext {
+	rv := objc.Send[ExtensionContext](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewExtensionContext creates a new ExtensionContext instance.
+func NewExtensionContext() ExtensionContext {
+	return extensionContextClass.New()
+}
+
 
 // Tells the host app to complete the app extension request with the specified broadcast information. [Full Topic]
 

@@ -37,6 +37,36 @@ type Task struct {
 func TaskFrom(ptr unsafe.Pointer) Task {
 	return Task{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TaskClass) Alloc() Task {
+	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TaskClass) New() Task {
+	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ Task) Init() Task {
+	rv := objc.Send[Task](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ Task) Autorelease() Task {
+	rv := objc.Send[Task](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTask creates a new Task instance.
+func NewTask() Task {
+	return taskClass.New()
+}
+
 
 // Runs the process with the current environment. [Full Topic]
 

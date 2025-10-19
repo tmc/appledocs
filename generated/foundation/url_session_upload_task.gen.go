@@ -36,6 +36,36 @@ func URLSessionUploadTaskFrom(ptr unsafe.Pointer) URLSessionUploadTask {
 		URLSessionDataTask: URLSessionDataTaskFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _URLSessionUploadTaskClass) Alloc() URLSessionUploadTask {
+	rv := objc.Send[URLSessionUploadTask](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLSessionUploadTaskClass) New() URLSessionUploadTask {
+	rv := objc.Send[URLSessionUploadTask](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ URLSessionUploadTask) Init() URLSessionUploadTask {
+	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLSessionUploadTask) Autorelease() URLSessionUploadTask {
+	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLSessionUploadTask creates a new URLSessionUploadTask instance.
+func NewURLSessionUploadTask() URLSessionUploadTask {
+	return uRLSessionUploadTaskClass.New()
+}
+
 
 
 

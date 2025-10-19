@@ -36,6 +36,36 @@ func DimensionFrom(ptr unsafe.Pointer) Dimension {
 		Unit: UnitFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DimensionClass) Alloc() Dimension {
+	rv := objc.Send[Dimension](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DimensionClass) New() Dimension {
+	rv := objc.Send[Dimension](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ Dimension) Init() Dimension {
+	rv := objc.Send[Dimension](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ Dimension) Autorelease() Dimension {
+	rv := objc.Send[Dimension](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDimension creates a new Dimension instance.
+func NewDimension() Dimension {
+	return dimensionClass.New()
+}
+
 
 
 

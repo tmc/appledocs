@@ -36,6 +36,36 @@ func UserAutomatorTaskFrom(ptr unsafe.Pointer) UserAutomatorTask {
 		UserScriptTask: UserScriptTaskFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UserAutomatorTaskClass) Alloc() UserAutomatorTask {
+	rv := objc.Send[UserAutomatorTask](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UserAutomatorTaskClass) New() UserAutomatorTask {
+	rv := objc.Send[UserAutomatorTask](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UserAutomatorTask) Init() UserAutomatorTask {
+	rv := objc.Send[UserAutomatorTask](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UserAutomatorTask) Autorelease() UserAutomatorTask {
+	rv := objc.Send[UserAutomatorTask](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUserAutomatorTask creates a new UserAutomatorTask instance.
+func NewUserAutomatorTask() UserAutomatorTask {
+	return userAutomatorTaskClass.New()
+}
+
 
 
 

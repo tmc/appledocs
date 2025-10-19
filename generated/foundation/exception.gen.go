@@ -35,6 +35,36 @@ type Exception struct {
 func ExceptionFrom(ptr unsafe.Pointer) Exception {
 	return Exception{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _ExceptionClass) Alloc() Exception {
+	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _ExceptionClass) New() Exception {
+	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ Exception) Init() Exception {
+	rv := objc.Send[Exception](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ Exception) Autorelease() Exception {
+	rv := objc.Send[Exception](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewException creates a new Exception instance.
+func NewException() Exception {
+	return exceptionClass.New()
+}
+
 
 
 

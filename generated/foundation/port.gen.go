@@ -35,6 +35,36 @@ type Port struct {
 func PortFrom(ptr unsafe.Pointer) Port {
 	return Port{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PortClass) Alloc() Port {
+	rv := objc.Send[Port](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PortClass) New() Port {
+	rv := objc.Send[Port](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ Port) Init() Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ Port) Autorelease() Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPort creates a new Port instance.
+func NewPort() Port {
+	return portClass.New()
+}
+
 
 
 

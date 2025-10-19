@@ -36,6 +36,36 @@ func InputStreamFrom(ptr unsafe.Pointer) InputStream {
 		Stream: StreamFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _InputStreamClass) Alloc() InputStream {
+	rv := objc.Send[InputStream](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _InputStreamClass) New() InputStream {
+	rv := objc.Send[InputStream](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ InputStream) Init() InputStream {
+	rv := objc.Send[InputStream](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ InputStream) Autorelease() InputStream {
+	rv := objc.Send[InputStream](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewInputStream creates a new InputStream instance.
+func NewInputStream() InputStream {
+	return inputStreamClass.New()
+}
+
 
 
 

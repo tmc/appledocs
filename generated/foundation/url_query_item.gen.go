@@ -35,6 +35,36 @@ type URLQueryItem struct {
 func URLQueryItemFrom(ptr unsafe.Pointer) URLQueryItem {
 	return URLQueryItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _URLQueryItemClass) Alloc() URLQueryItem {
+	rv := objc.Send[URLQueryItem](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLQueryItemClass) New() URLQueryItem {
+	rv := objc.Send[URLQueryItem](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ URLQueryItem) Init() URLQueryItem {
+	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLQueryItem) Autorelease() URLQueryItem {
+	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLQueryItem creates a new URLQueryItem instance.
+func NewURLQueryItem() URLQueryItem {
+	return uRLQueryItemClass.New()
+}
+
 
 
 

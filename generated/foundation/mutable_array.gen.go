@@ -37,6 +37,36 @@ func MutableArrayFrom(ptr unsafe.Pointer) MutableArray {
 		Array: ArrayFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableArrayClass) Alloc() MutableArray {
+	rv := objc.Send[MutableArray](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableArrayClass) New() MutableArray {
+	rv := objc.Send[MutableArray](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableArray) Init() MutableArray {
+	rv := objc.Send[MutableArray](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableArray) Autorelease() MutableArray {
+	rv := objc.Send[MutableArray](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableArray creates a new MutableArray instance.
+func NewMutableArray() MutableArray {
+	return mutableArrayClass.New()
+}
+
 
 // Sorts the receiver using a given array of sort descriptors. [Full Topic]
 

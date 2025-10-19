@@ -36,6 +36,36 @@ func MessagePortFrom(ptr unsafe.Pointer) MessagePort {
 		Port: PortFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MessagePortClass) Alloc() MessagePort {
+	rv := objc.Send[MessagePort](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MessagePortClass) New() MessagePort {
+	rv := objc.Send[MessagePort](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MessagePort) Init() MessagePort {
+	rv := objc.Send[MessagePort](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MessagePort) Autorelease() MessagePort {
+	rv := objc.Send[MessagePort](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMessagePort creates a new MessagePort instance.
+func NewMessagePort() MessagePort {
+	return messagePortClass.New()
+}
+
 
 
 

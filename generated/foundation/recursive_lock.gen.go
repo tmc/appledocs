@@ -35,6 +35,36 @@ type RecursiveLock struct {
 func RecursiveLockFrom(ptr unsafe.Pointer) RecursiveLock {
 	return RecursiveLock{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RecursiveLockClass) Alloc() RecursiveLock {
+	rv := objc.Send[RecursiveLock](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RecursiveLockClass) New() RecursiveLock {
+	rv := objc.Send[RecursiveLock](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RecursiveLock) Init() RecursiveLock {
+	rv := objc.Send[RecursiveLock](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RecursiveLock) Autorelease() RecursiveLock {
+	rv := objc.Send[RecursiveLock](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRecursiveLock creates a new RecursiveLock instance.
+func NewRecursiveLock() RecursiveLock {
+	return recursiveLockClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func UnitAreaFrom(ptr unsafe.Pointer) UnitArea {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitAreaClass) Alloc() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitAreaClass) New() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitArea) Init() UnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitArea) Autorelease() UnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitArea creates a new UnitArea instance.
+func NewUnitArea() UnitArea {
+	return unitAreaClass.New()
+}
+
 
 
 

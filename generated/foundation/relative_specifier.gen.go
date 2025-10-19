@@ -36,6 +36,36 @@ func RelativeSpecifierFrom(ptr unsafe.Pointer) RelativeSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RelativeSpecifierClass) Alloc() RelativeSpecifier {
+	rv := objc.Send[RelativeSpecifier](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RelativeSpecifierClass) New() RelativeSpecifier {
+	rv := objc.Send[RelativeSpecifier](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RelativeSpecifier) Init() RelativeSpecifier {
+	rv := objc.Send[RelativeSpecifier](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RelativeSpecifier) Autorelease() RelativeSpecifier {
+	rv := objc.Send[RelativeSpecifier](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRelativeSpecifier creates a new RelativeSpecifier instance.
+func NewRelativeSpecifier() RelativeSpecifier {
+	return relativeSpecifierClass.New()
+}
+
 
 
 

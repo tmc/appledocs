@@ -36,6 +36,36 @@ func XMLDocumentFrom(ptr unsafe.Pointer) XMLDocument {
 		XMLNode: XMLNodeFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XMLDocumentClass) Alloc() XMLDocument {
+	rv := objc.Send[XMLDocument](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XMLDocumentClass) New() XMLDocument {
+	rv := objc.Send[XMLDocument](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XMLDocument) Init() XMLDocument {
+	rv := objc.Send[XMLDocument](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XMLDocument) Autorelease() XMLDocument {
+	rv := objc.Send[XMLDocument](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXMLDocument creates a new XMLDocument instance.
+func NewXMLDocument() XMLDocument {
+	return xMLDocumentClass.New()
+}
+
 
 
 

@@ -73,6 +73,8 @@ func (m_ MutableString) Autorelease() MutableString {
 func NewMutableString() MutableString {
 	return mutableStringClass.New()
 }
+
+
 // Returns an object initialized with initial storage for a given number of characters, [Full Topic]
 
 //

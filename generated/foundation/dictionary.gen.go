@@ -102,13 +102,15 @@ func (d_ Dictionary) Autorelease() Dictionary {
 func NewDictionary() Dictionary {
 	return dictionaryClass.New()
 }
-// Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects. [Full Topic]
+
+
+// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:count:)
-func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, cnt uint) Dictionary {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
+func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) Dictionary {
 	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:count:"), objects, keys, cnt)
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
 	rv.Autorelease()
 	return rv
 }
@@ -122,16 +124,6 @@ func NewDictionaryWithObjectsAndKeys(firstObject objc.ID) Dictionary {
 	rv.Autorelease()
 	return rv
 }
-// Creates a dictionary initialized from data in the provided unarchiver. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(coder:)
-func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a newly allocated dictionary using the keys and values found in a file at a given path. [Full Topic]
 
 //
@@ -139,6 +131,36 @@ func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
 func NewDictionaryWithContentsOfFile(path string) Dictionary {
 	instance := dictionaryClass.Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:)-9fw1u
+func NewDictionaryWithDictionary(otherDictionary unsafe.Pointer) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithDictionary:"), otherDictionary)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:count:)
+func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, cnt uint) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:count:"), objects, keys, cnt)
+	rv.Autorelease()
+	return rv
+}
+// Creates a dictionary initialized from data in the provided unarchiver. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(coder:)
+func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -162,16 +184,6 @@ func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointe
 	rv.Autorelease()
 	return rv
 }
-// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:)-9fw1u
-func NewDictionaryWithDictionary(otherDictionary unsafe.Pointer) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithDictionary:"), otherDictionary)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a newly allocated dictionary using the objects contained in another given dictionary. [Full Topic]
 
 //
@@ -188,16 +200,6 @@ func NewDictionaryWithDictionaryCopyItems(otherDictionary unsafe.Pointer, flag b
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
 func NewDictionaryWithObjectForKey(object unsafe.Pointer, key unsafe.Pointer) Dictionary {
 	rv := objc.Send[Dictionary](objc.ID(dictionaryClass.class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
-func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
 	rv.Autorelease()
 	return rv
 }

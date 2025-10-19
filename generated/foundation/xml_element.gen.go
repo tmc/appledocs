@@ -36,6 +36,36 @@ func XMLElementFrom(ptr unsafe.Pointer) XMLElement {
 		XMLNode: XMLNodeFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XMLElementClass) Alloc() XMLElement {
+	rv := objc.Send[XMLElement](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XMLElementClass) New() XMLElement {
+	rv := objc.Send[XMLElement](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XMLElement) Init() XMLElement {
+	rv := objc.Send[XMLElement](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XMLElement) Autorelease() XMLElement {
+	rv := objc.Send[XMLElement](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXMLElement creates a new XMLElement instance.
+func NewXMLElement() XMLElement {
+	return xMLElementClass.New()
+}
+
 
 
 

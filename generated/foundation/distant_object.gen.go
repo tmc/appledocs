@@ -36,6 +36,36 @@ func DistantObjectFrom(ptr unsafe.Pointer) DistantObject {
 		Proxy: ProxyFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DistantObjectClass) Alloc() DistantObject {
+	rv := objc.Send[DistantObject](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DistantObjectClass) New() DistantObject {
+	rv := objc.Send[DistantObject](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DistantObject) Init() DistantObject {
+	rv := objc.Send[DistantObject](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DistantObject) Autorelease() DistantObject {
+	rv := objc.Send[DistantObject](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDistantObject creates a new DistantObject instance.
+func NewDistantObject() DistantObject {
+	return distantObjectClass.New()
+}
+
 
 
 

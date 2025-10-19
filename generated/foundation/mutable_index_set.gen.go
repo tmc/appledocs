@@ -36,6 +36,36 @@ func MutableIndexSetFrom(ptr unsafe.Pointer) MutableIndexSet {
 		IndexSet: IndexSetFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableIndexSetClass) Alloc() MutableIndexSet {
+	rv := objc.Send[MutableIndexSet](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableIndexSetClass) New() MutableIndexSet {
+	rv := objc.Send[MutableIndexSet](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableIndexSet) Init() MutableIndexSet {
+	rv := objc.Send[MutableIndexSet](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableIndexSet) Autorelease() MutableIndexSet {
+	rv := objc.Send[MutableIndexSet](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableIndexSet creates a new MutableIndexSet instance.
+func NewMutableIndexSet() MutableIndexSet {
+	return mutableIndexSetClass.New()
+}
+
 
 
 

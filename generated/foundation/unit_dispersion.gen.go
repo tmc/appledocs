@@ -36,6 +36,36 @@ func UnitDispersionFrom(ptr unsafe.Pointer) UnitDispersion {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitDispersionClass) Alloc() UnitDispersion {
+	rv := objc.Send[UnitDispersion](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitDispersionClass) New() UnitDispersion {
+	rv := objc.Send[UnitDispersion](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitDispersion) Init() UnitDispersion {
+	rv := objc.Send[UnitDispersion](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitDispersion) Autorelease() UnitDispersion {
+	rv := objc.Send[UnitDispersion](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitDispersion creates a new UnitDispersion instance.
+func NewUnitDispersion() UnitDispersion {
+	return unitDispersionClass.New()
+}
+
 
 
 

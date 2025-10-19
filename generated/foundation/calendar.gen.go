@@ -35,6 +35,36 @@ type Calendar struct {
 func CalendarFrom(ptr unsafe.Pointer) Calendar {
 	return Calendar{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CalendarClass) Alloc() Calendar {
+	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CalendarClass) New() Calendar {
+	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Calendar) Init() Calendar {
+	rv := objc.Send[Calendar](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Calendar) Autorelease() Calendar {
+	rv := objc.Send[Calendar](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCalendar creates a new Calendar instance.
+func NewCalendar() Calendar {
+	return calendarClass.New()
+}
+
 
 
 

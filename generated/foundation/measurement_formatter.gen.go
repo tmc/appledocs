@@ -36,6 +36,36 @@ func MeasurementFormatterFrom(ptr unsafe.Pointer) MeasurementFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MeasurementFormatterClass) Alloc() MeasurementFormatter {
+	rv := objc.Send[MeasurementFormatter](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MeasurementFormatterClass) New() MeasurementFormatter {
+	rv := objc.Send[MeasurementFormatter](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MeasurementFormatter) Init() MeasurementFormatter {
+	rv := objc.Send[MeasurementFormatter](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MeasurementFormatter) Autorelease() MeasurementFormatter {
+	rv := objc.Send[MeasurementFormatter](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMeasurementFormatter creates a new MeasurementFormatter instance.
+func NewMeasurementFormatter() MeasurementFormatter {
+	return measurementFormatterClass.New()
+}
+
 
 
 

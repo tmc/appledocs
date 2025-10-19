@@ -35,6 +35,36 @@ type IndexPath struct {
 func IndexPathFrom(ptr unsafe.Pointer) IndexPath {
 	return IndexPath{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _IndexPathClass) Alloc() IndexPath {
+	rv := objc.Send[IndexPath](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _IndexPathClass) New() IndexPath {
+	rv := objc.Send[IndexPath](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ IndexPath) Init() IndexPath {
+	rv := objc.Send[IndexPath](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ IndexPath) Autorelease() IndexPath {
+	rv := objc.Send[IndexPath](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewIndexPath creates a new IndexPath instance.
+func NewIndexPath() IndexPath {
+	return indexPathClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type UnitConverter struct {
 func UnitConverterFrom(ptr unsafe.Pointer) UnitConverter {
 	return UnitConverter{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitConverterClass) Alloc() UnitConverter {
+	rv := objc.Send[UnitConverter](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitConverterClass) New() UnitConverter {
+	rv := objc.Send[UnitConverter](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitConverter) Init() UnitConverter {
+	rv := objc.Send[UnitConverter](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitConverter) Autorelease() UnitConverter {
+	rv := objc.Send[UnitConverter](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitConverter creates a new UnitConverter instance.
+func NewUnitConverter() UnitConverter {
+	return unitConverterClass.New()
+}
+
 
 
 

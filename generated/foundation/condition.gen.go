@@ -35,6 +35,36 @@ type Condition struct {
 func ConditionFrom(ptr unsafe.Pointer) Condition {
 	return Condition{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ConditionClass) Alloc() Condition {
+	rv := objc.Send[Condition](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ConditionClass) New() Condition {
+	rv := objc.Send[Condition](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Condition) Init() Condition {
+	rv := objc.Send[Condition](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Condition) Autorelease() Condition {
+	rv := objc.Send[Condition](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCondition creates a new Condition instance.
+func NewCondition() Condition {
+	return conditionClass.New()
+}
+
 
 
 

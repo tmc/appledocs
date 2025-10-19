@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // Foundation Functions (23 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -44,7 +45,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_NSClassFromString, lib, "NSClassFromString")
 	tryRegister(&_NSCopyObject, lib, "NSCopyObject")
 	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
@@ -81,6 +81,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Obtains a class by name. [Full Topic]

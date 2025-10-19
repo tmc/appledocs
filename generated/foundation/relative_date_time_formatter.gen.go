@@ -36,6 +36,36 @@ func RelativeDateTimeFormatterFrom(ptr unsafe.Pointer) RelativeDateTimeFormatter
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RelativeDateTimeFormatterClass) Alloc() RelativeDateTimeFormatter {
+	rv := objc.Send[RelativeDateTimeFormatter](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RelativeDateTimeFormatterClass) New() RelativeDateTimeFormatter {
+	rv := objc.Send[RelativeDateTimeFormatter](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RelativeDateTimeFormatter) Init() RelativeDateTimeFormatter {
+	rv := objc.Send[RelativeDateTimeFormatter](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RelativeDateTimeFormatter) Autorelease() RelativeDateTimeFormatter {
+	rv := objc.Send[RelativeDateTimeFormatter](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRelativeDateTimeFormatter creates a new RelativeDateTimeFormatter instance.
+func NewRelativeDateTimeFormatter() RelativeDateTimeFormatter {
+	return relativeDateTimeFormatterClass.New()
+}
+
 
 
 

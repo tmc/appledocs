@@ -35,6 +35,36 @@ type HTTPCookie struct {
 func HTTPCookieFrom(ptr unsafe.Pointer) HTTPCookie {
 	return HTTPCookie{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (hc _HTTPCookieClass) Alloc() HTTPCookie {
+	rv := objc.Send[HTTPCookie](objc.ID(hc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (hc _HTTPCookieClass) New() HTTPCookie {
+	rv := objc.Send[HTTPCookie](objc.ID(hc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (h_ HTTPCookie) Init() HTTPCookie {
+	rv := objc.Send[HTTPCookie](h_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (h_ HTTPCookie) Autorelease() HTTPCookie {
+	rv := objc.Send[HTTPCookie](h_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewHTTPCookie creates a new HTTPCookie instance.
+func NewHTTPCookie() HTTPCookie {
+	return hTTPCookieClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type XMLNode struct {
 func XMLNodeFrom(ptr unsafe.Pointer) XMLNode {
 	return XMLNode{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XMLNodeClass) Alloc() XMLNode {
+	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XMLNodeClass) New() XMLNode {
+	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XMLNode) Init() XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XMLNode) Autorelease() XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXMLNode creates a new XMLNode instance.
+func NewXMLNode() XMLNode {
+	return xMLNodeClass.New()
+}
+
 
 
 

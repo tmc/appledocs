@@ -67,6 +67,8 @@ func (u_ UserDefaults) Autorelease() UserDefaults {
 func NewUserDefaults() UserDefaults {
 	return userDefaultsClass.New()
 }
+
+
 // Creates a user defaults object initialized with the defaults for the specified database name. [Full Topic]
 
 //

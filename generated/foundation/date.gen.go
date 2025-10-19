@@ -35,6 +35,36 @@ type Date struct {
 func DateFrom(ptr unsafe.Pointer) Date {
 	return Date{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DateClass) Alloc() Date {
+	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DateClass) New() Date {
+	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ Date) Init() Date {
+	rv := objc.Send[Date](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ Date) Autorelease() Date {
+	rv := objc.Send[Date](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDate creates a new Date instance.
+func NewDate() Date {
+	return dateClass.New()
+}
+
 
 
 

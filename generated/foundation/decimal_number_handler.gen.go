@@ -35,6 +35,36 @@ type DecimalNumberHandler struct {
 func DecimalNumberHandlerFrom(ptr unsafe.Pointer) DecimalNumberHandler {
 	return DecimalNumberHandler{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DecimalNumberHandlerClass) Alloc() DecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DecimalNumberHandlerClass) New() DecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DecimalNumberHandler) Init() DecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DecimalNumberHandler) Autorelease() DecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDecimalNumberHandler creates a new DecimalNumberHandler instance.
+func NewDecimalNumberHandler() DecimalNumberHandler {
+	return decimalNumberHandlerClass.New()
+}
+
 
 
 

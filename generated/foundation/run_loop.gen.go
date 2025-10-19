@@ -37,6 +37,36 @@ type RunLoop struct {
 func RunLoopFrom(ptr unsafe.Pointer) RunLoop {
 	return RunLoop{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RunLoopClass) Alloc() RunLoop {
+	rv := objc.Send[RunLoop](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RunLoopClass) New() RunLoop {
+	rv := objc.Send[RunLoop](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RunLoop) Init() RunLoop {
+	rv := objc.Send[RunLoop](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RunLoop) Autorelease() RunLoop {
+	rv := objc.Send[RunLoop](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRunLoop creates a new RunLoop instance.
+func NewRunLoop() RunLoop {
+	return runLoopClass.New()
+}
+
 
 // Registers a given timer with a given input mode. [Full Topic]
 

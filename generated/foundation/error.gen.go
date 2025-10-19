@@ -64,6 +64,8 @@ func (e_ Error) Autorelease() Error {
 func NewError() Error {
 	return errorClass.New()
 }
+
+
 // Returns an object initialized for a given domain and code with a given dictionary. [Full Topic]
 
 //

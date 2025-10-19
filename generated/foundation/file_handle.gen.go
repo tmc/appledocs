@@ -36,6 +36,36 @@ type FileHandle struct {
 func FileHandleFrom(ptr unsafe.Pointer) FileHandle {
 	return FileHandle{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FileHandleClass) Alloc() FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FileHandleClass) New() FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FileHandle) Init() FileHandle {
+	rv := objc.Send[FileHandle](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FileHandle) Autorelease() FileHandle {
+	rv := objc.Send[FileHandle](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFileHandle creates a new FileHandle instance.
+func NewFileHandle() FileHandle {
+	return fileHandleClass.New()
+}
+
 
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing. [Full Topic]
 

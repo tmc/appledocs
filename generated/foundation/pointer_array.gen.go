@@ -35,6 +35,36 @@ type PointerArray struct {
 func PointerArrayFrom(ptr unsafe.Pointer) PointerArray {
 	return PointerArray{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PointerArrayClass) Alloc() PointerArray {
+	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PointerArrayClass) New() PointerArray {
+	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PointerArray) Init() PointerArray {
+	rv := objc.Send[PointerArray](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PointerArray) Autorelease() PointerArray {
+	rv := objc.Send[PointerArray](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPointerArray creates a new PointerArray instance.
+func NewPointerArray() PointerArray {
+	return pointerArrayClass.New()
+}
+
 
 
 

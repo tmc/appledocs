@@ -36,6 +36,36 @@ func SecureUnarchiveFromDataTransformerFrom(ptr unsafe.Pointer) SecureUnarchiveF
 		ValueTransformer: ValueTransformerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SecureUnarchiveFromDataTransformerClass) Alloc() SecureUnarchiveFromDataTransformer {
+	rv := objc.Send[SecureUnarchiveFromDataTransformer](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SecureUnarchiveFromDataTransformerClass) New() SecureUnarchiveFromDataTransformer {
+	rv := objc.Send[SecureUnarchiveFromDataTransformer](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SecureUnarchiveFromDataTransformer) Init() SecureUnarchiveFromDataTransformer {
+	rv := objc.Send[SecureUnarchiveFromDataTransformer](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SecureUnarchiveFromDataTransformer) Autorelease() SecureUnarchiveFromDataTransformer {
+	rv := objc.Send[SecureUnarchiveFromDataTransformer](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSecureUnarchiveFromDataTransformer creates a new SecureUnarchiveFromDataTransformer instance.
+func NewSecureUnarchiveFromDataTransformer() SecureUnarchiveFromDataTransformer {
+	return secureUnarchiveFromDataTransformerClass.New()
+}
+
 
 
 

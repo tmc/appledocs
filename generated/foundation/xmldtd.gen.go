@@ -36,6 +36,36 @@ func XMLDTDFrom(ptr unsafe.Pointer) XMLDTD {
 		XMLNode: XMLNodeFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XMLDTDClass) Alloc() XMLDTD {
+	rv := objc.Send[XMLDTD](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XMLDTDClass) New() XMLDTD {
+	rv := objc.Send[XMLDTD](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XMLDTD) Init() XMLDTD {
+	rv := objc.Send[XMLDTD](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XMLDTD) Autorelease() XMLDTD {
+	rv := objc.Send[XMLDTD](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXMLDTD creates a new XMLDTD instance.
+func NewXMLDTD() XMLDTD {
+	return xMLDTDClass.New()
+}
+
 
 
 

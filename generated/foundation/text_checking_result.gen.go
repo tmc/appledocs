@@ -35,6 +35,36 @@ type TextCheckingResult struct {
 func TextCheckingResultFrom(ptr unsafe.Pointer) TextCheckingResult {
 	return TextCheckingResult{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextCheckingResultClass) Alloc() TextCheckingResult {
+	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextCheckingResultClass) New() TextCheckingResult {
+	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextCheckingResult) Init() TextCheckingResult {
+	rv := objc.Send[TextCheckingResult](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextCheckingResult) Autorelease() TextCheckingResult {
+	rv := objc.Send[TextCheckingResult](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextCheckingResult creates a new TextCheckingResult instance.
+func NewTextCheckingResult() TextCheckingResult {
+	return textCheckingResultClass.New()
+}
+
 
 
 

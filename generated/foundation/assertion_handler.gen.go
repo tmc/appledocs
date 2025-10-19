@@ -35,6 +35,36 @@ type AssertionHandler struct {
 func AssertionHandlerFrom(ptr unsafe.Pointer) AssertionHandler {
 	return AssertionHandler{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AssertionHandlerClass) Alloc() AssertionHandler {
+	rv := objc.Send[AssertionHandler](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AssertionHandlerClass) New() AssertionHandler {
+	rv := objc.Send[AssertionHandler](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AssertionHandler) Init() AssertionHandler {
+	rv := objc.Send[AssertionHandler](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AssertionHandler) Autorelease() AssertionHandler {
+	rv := objc.Send[AssertionHandler](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAssertionHandler creates a new AssertionHandler instance.
+func NewAssertionHandler() AssertionHandler {
+	return assertionHandlerClass.New()
+}
+
 
 
 

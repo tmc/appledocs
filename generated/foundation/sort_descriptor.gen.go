@@ -65,6 +65,8 @@ func (s_ SortDescriptor) Autorelease() SortDescriptor {
 func NewSortDescriptor() SortDescriptor {
 	return sortDescriptorClass.New()
 }
+
+
 // Creates a sort descriptor with a specified string key path and sort order. [Full Topic]
 
 //

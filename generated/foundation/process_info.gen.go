@@ -36,6 +36,36 @@ type ProcessInfo struct {
 func ProcessInfoFrom(ptr unsafe.Pointer) ProcessInfo {
 	return ProcessInfo{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _ProcessInfoClass) Alloc() ProcessInfo {
+	rv := objc.Send[ProcessInfo](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _ProcessInfoClass) New() ProcessInfo {
+	rv := objc.Send[ProcessInfo](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ ProcessInfo) Init() ProcessInfo {
+	rv := objc.Send[ProcessInfo](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ ProcessInfo) Autorelease() ProcessInfo {
+	rv := objc.Send[ProcessInfo](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewProcessInfo creates a new ProcessInfo instance.
+func NewProcessInfo() ProcessInfo {
+	return processInfoClass.New()
+}
+
 
 // Performs the specified block asynchronously and notifies you if the process is about to be suspended. [Full Topic]
 

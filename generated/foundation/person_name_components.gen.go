@@ -35,6 +35,36 @@ type PersonNameComponents struct {
 func PersonNameComponentsFrom(ptr unsafe.Pointer) PersonNameComponents {
 	return PersonNameComponents{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PersonNameComponentsClass) Alloc() PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PersonNameComponentsClass) New() PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PersonNameComponents) Init() PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PersonNameComponents) Autorelease() PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPersonNameComponents creates a new PersonNameComponents instance.
+func NewPersonNameComponents() PersonNameComponents {
+	return personNameComponentsClass.New()
+}
+
 
 
 

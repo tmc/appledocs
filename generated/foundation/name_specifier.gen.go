@@ -36,6 +36,36 @@ func NameSpecifierFrom(ptr unsafe.Pointer) NameSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (nc _NameSpecifierClass) Alloc() NameSpecifier {
+	rv := objc.Send[NameSpecifier](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (nc _NameSpecifierClass) New() NameSpecifier {
+	rv := objc.Send[NameSpecifier](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (n_ NameSpecifier) Init() NameSpecifier {
+	rv := objc.Send[NameSpecifier](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ NameSpecifier) Autorelease() NameSpecifier {
+	rv := objc.Send[NameSpecifier](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNameSpecifier creates a new NameSpecifier instance.
+func NewNameSpecifier() NameSpecifier {
+	return nameSpecifierClass.New()
+}
+
 
 
 

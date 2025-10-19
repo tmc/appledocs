@@ -36,6 +36,36 @@ func XPCCoderFrom(ptr unsafe.Pointer) XPCCoder {
 		Coder: CoderFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XPCCoderClass) Alloc() XPCCoder {
+	rv := objc.Send[XPCCoder](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XPCCoderClass) New() XPCCoder {
+	rv := objc.Send[XPCCoder](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XPCCoder) Init() XPCCoder {
+	rv := objc.Send[XPCCoder](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XPCCoder) Autorelease() XPCCoder {
+	rv := objc.Send[XPCCoder](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXPCCoder creates a new XPCCoder instance.
+func NewXPCCoder() XPCCoder {
+	return xPCCoderClass.New()
+}
+
 
 
 

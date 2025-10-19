@@ -35,6 +35,36 @@ type FileVersion struct {
 func FileVersionFrom(ptr unsafe.Pointer) FileVersion {
 	return FileVersion{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FileVersionClass) Alloc() FileVersion {
+	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FileVersionClass) New() FileVersion {
+	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FileVersion) Init() FileVersion {
+	rv := objc.Send[FileVersion](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FileVersion) Autorelease() FileVersion {
+	rv := objc.Send[FileVersion](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFileVersion creates a new FileVersion instance.
+func NewFileVersion() FileVersion {
+	return fileVersionClass.New()
+}
+
 
 
 

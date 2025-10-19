@@ -35,6 +35,36 @@ type AutoreleasePool struct {
 func AutoreleasePoolFrom(ptr unsafe.Pointer) AutoreleasePool {
 	return AutoreleasePool{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AutoreleasePoolClass) Alloc() AutoreleasePool {
+	rv := objc.Send[AutoreleasePool](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AutoreleasePoolClass) New() AutoreleasePool {
+	rv := objc.Send[AutoreleasePool](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AutoreleasePool) Init() AutoreleasePool {
+	rv := objc.Send[AutoreleasePool](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AutoreleasePool) Autorelease() AutoreleasePool {
+	rv := objc.Send[AutoreleasePool](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAutoreleasePool creates a new AutoreleasePool instance.
+func NewAutoreleasePool() AutoreleasePool {
+	return autoreleasePoolClass.New()
+}
+
 
 
 

@@ -66,6 +66,8 @@ func (p_ Progress) Autorelease() Progress {
 func NewProgress() Progress {
 	return progressClass.New()
 }
+
+
 // Creates a new progress instance. [Full Topic]
 
 //

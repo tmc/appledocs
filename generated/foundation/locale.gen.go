@@ -35,6 +35,36 @@ type Locale struct {
 func LocaleFrom(ptr unsafe.Pointer) Locale {
 	return Locale{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _LocaleClass) Alloc() Locale {
+	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _LocaleClass) New() Locale {
+	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ Locale) Init() Locale {
+	rv := objc.Send[Locale](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ Locale) Autorelease() Locale {
+	rv := objc.Send[Locale](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLocale creates a new Locale instance.
+func NewLocale() Locale {
+	return localeClass.New()
+}
+
 
 
 

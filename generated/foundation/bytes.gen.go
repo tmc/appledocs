@@ -32,6 +32,36 @@ type bytes struct {
 func bytesFrom(ptr unsafe.Pointer) bytes {
 	return bytes{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _bytesClass) Alloc() bytes {
+	rv := objc.Send[bytes](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _bytesClass) New() bytes {
+	rv := objc.Send[bytes](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ bytes) Init() bytes {
+	rv := objc.Send[bytes](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ bytes) Autorelease() bytes {
+	rv := objc.Send[bytes](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// Newbytes creates a new bytes instance.
+func Newbytes() bytes {
+	return bytesClass.New()
+}
+
 
 
 

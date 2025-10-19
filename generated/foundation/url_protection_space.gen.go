@@ -35,6 +35,36 @@ type URLProtectionSpace struct {
 func URLProtectionSpaceFrom(ptr unsafe.Pointer) URLProtectionSpace {
 	return URLProtectionSpace{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _URLProtectionSpaceClass) Alloc() URLProtectionSpace {
+	rv := objc.Send[URLProtectionSpace](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLProtectionSpaceClass) New() URLProtectionSpace {
+	rv := objc.Send[URLProtectionSpace](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ URLProtectionSpace) Init() URLProtectionSpace {
+	rv := objc.Send[URLProtectionSpace](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLProtectionSpace) Autorelease() URLProtectionSpace {
+	rv := objc.Send[URLProtectionSpace](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLProtectionSpace creates a new URLProtectionSpace instance.
+func NewURLProtectionSpace() URLProtectionSpace {
+	return uRLProtectionSpaceClass.New()
+}
+
 
 
 

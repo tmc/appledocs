@@ -67,6 +67,36 @@ type AttributedString struct {
 func AttributedStringFrom(ptr unsafe.Pointer) AttributedString {
 	return AttributedString{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AttributedStringClass) Alloc() AttributedString {
+	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AttributedStringClass) New() AttributedString {
+	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AttributedString) Init() AttributedString {
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AttributedString) Autorelease() AttributedString {
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAttributedString creates a new AttributedString instance.
+func NewAttributedString() AttributedString {
+	return attributedStringClass.New()
+}
+
 
 // Returns the value for an attribute with the specified name of the character at the specified index and, by reference, the range where the attribute applies. [Full Topic]
 

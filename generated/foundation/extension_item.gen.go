@@ -35,6 +35,36 @@ type ExtensionItem struct {
 func ExtensionItemFrom(ptr unsafe.Pointer) ExtensionItem {
 	return ExtensionItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _ExtensionItemClass) Alloc() ExtensionItem {
+	rv := objc.Send[ExtensionItem](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _ExtensionItemClass) New() ExtensionItem {
+	rv := objc.Send[ExtensionItem](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ ExtensionItem) Init() ExtensionItem {
+	rv := objc.Send[ExtensionItem](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ ExtensionItem) Autorelease() ExtensionItem {
+	rv := objc.Send[ExtensionItem](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewExtensionItem creates a new ExtensionItem instance.
+func NewExtensionItem() ExtensionItem {
+	return extensionItemClass.New()
+}
+
 
 
 

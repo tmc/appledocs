@@ -36,6 +36,36 @@ func UnitAccelerationFrom(ptr unsafe.Pointer) UnitAcceleration {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitAccelerationClass) Alloc() UnitAcceleration {
+	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitAccelerationClass) New() UnitAcceleration {
+	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitAcceleration) Init() UnitAcceleration {
+	rv := objc.Send[UnitAcceleration](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitAcceleration) Autorelease() UnitAcceleration {
+	rv := objc.Send[UnitAcceleration](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitAcceleration creates a new UnitAcceleration instance.
+func NewUnitAcceleration() UnitAcceleration {
+	return unitAccelerationClass.New()
+}
+
 
 
 

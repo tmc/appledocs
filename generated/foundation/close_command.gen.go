@@ -36,6 +36,36 @@ func CloseCommandFrom(ptr unsafe.Pointer) CloseCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CloseCommandClass) Alloc() CloseCommand {
+	rv := objc.Send[CloseCommand](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CloseCommandClass) New() CloseCommand {
+	rv := objc.Send[CloseCommand](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CloseCommand) Init() CloseCommand {
+	rv := objc.Send[CloseCommand](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CloseCommand) Autorelease() CloseCommand {
+	rv := objc.Send[CloseCommand](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCloseCommand creates a new CloseCommand instance.
+func NewCloseCommand() CloseCommand {
+	return closeCommandClass.New()
+}
+
 
 
 

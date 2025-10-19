@@ -36,6 +36,36 @@ type LinguisticTagger struct {
 func LinguisticTaggerFrom(ptr unsafe.Pointer) LinguisticTagger {
 	return LinguisticTagger{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _LinguisticTaggerClass) Alloc() LinguisticTagger {
+	rv := objc.Send[LinguisticTagger](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _LinguisticTaggerClass) New() LinguisticTagger {
+	rv := objc.Send[LinguisticTagger](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LinguisticTagger) Init() LinguisticTagger {
+	rv := objc.Send[LinguisticTagger](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LinguisticTagger) Autorelease() LinguisticTagger {
+	rv := objc.Send[LinguisticTagger](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLinguisticTagger creates a new LinguisticTagger instance.
+func NewLinguisticTagger() LinguisticTagger {
+	return linguisticTaggerClass.New()
+}
+
 
 // Enumerates over a given range of the string and calls the specified block for each tag. [Full Topic]
 

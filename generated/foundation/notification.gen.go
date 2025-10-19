@@ -64,6 +64,8 @@ func (n_ Notification) Autorelease() Notification {
 func NewNotification() Notification {
 	return notificationClass.New()
 }
+
+
 // Initializes a notification with the data from an unarchiver. [Full Topic]
 
 //

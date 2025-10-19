@@ -36,6 +36,36 @@ func DateFormatterFrom(ptr unsafe.Pointer) DateFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DateFormatterClass) Alloc() DateFormatter {
+	rv := objc.Send[DateFormatter](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DateFormatterClass) New() DateFormatter {
+	rv := objc.Send[DateFormatter](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DateFormatter) Init() DateFormatter {
+	rv := objc.Send[DateFormatter](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DateFormatter) Autorelease() DateFormatter {
+	rv := objc.Send[DateFormatter](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDateFormatter creates a new DateFormatter instance.
+func NewDateFormatter() DateFormatter {
+	return dateFormatterClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type ValueTransformer struct {
 func ValueTransformerFrom(ptr unsafe.Pointer) ValueTransformer {
 	return ValueTransformer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (vc _ValueTransformerClass) Alloc() ValueTransformer {
+	rv := objc.Send[ValueTransformer](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (vc _ValueTransformerClass) New() ValueTransformer {
+	rv := objc.Send[ValueTransformer](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ ValueTransformer) Init() ValueTransformer {
+	rv := objc.Send[ValueTransformer](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ ValueTransformer) Autorelease() ValueTransformer {
+	rv := objc.Send[ValueTransformer](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewValueTransformer creates a new ValueTransformer instance.
+func NewValueTransformer() ValueTransformer {
+	return valueTransformerClass.New()
+}
+
 
 
 

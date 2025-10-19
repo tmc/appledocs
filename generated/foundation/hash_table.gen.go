@@ -35,6 +35,36 @@ type HashTable struct {
 func HashTableFrom(ptr unsafe.Pointer) HashTable {
 	return HashTable{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (hc _HashTableClass) Alloc() HashTable {
+	rv := objc.Send[HashTable](objc.ID(hc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (hc _HashTableClass) New() HashTable {
+	rv := objc.Send[HashTable](objc.ID(hc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (h_ HashTable) Init() HashTable {
+	rv := objc.Send[HashTable](h_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (h_ HashTable) Autorelease() HashTable {
+	rv := objc.Send[HashTable](h_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewHashTable creates a new HashTable instance.
+func NewHashTable() HashTable {
+	return hashTableClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func InflectionRuleExplicitFrom(ptr unsafe.Pointer) InflectionRuleExplicit {
 		InflectionRule: InflectionRuleFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _InflectionRuleExplicitClass) Alloc() InflectionRuleExplicit {
+	rv := objc.Send[InflectionRuleExplicit](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _InflectionRuleExplicitClass) New() InflectionRuleExplicit {
+	rv := objc.Send[InflectionRuleExplicit](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ InflectionRuleExplicit) Init() InflectionRuleExplicit {
+	rv := objc.Send[InflectionRuleExplicit](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ InflectionRuleExplicit) Autorelease() InflectionRuleExplicit {
+	rv := objc.Send[InflectionRuleExplicit](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewInflectionRuleExplicit creates a new InflectionRuleExplicit instance.
+func NewInflectionRuleExplicit() InflectionRuleExplicit {
+	return inflectionRuleExplicitClass.New()
+}
+
 
 
 

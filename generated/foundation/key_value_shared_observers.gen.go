@@ -32,6 +32,36 @@ type KeyValueSharedObservers struct {
 func KeyValueSharedObserversFrom(ptr unsafe.Pointer) KeyValueSharedObservers {
 	return KeyValueSharedObservers{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (kc _KeyValueSharedObserversClass) Alloc() KeyValueSharedObservers {
+	rv := objc.Send[KeyValueSharedObservers](objc.ID(kc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (kc _KeyValueSharedObserversClass) New() KeyValueSharedObservers {
+	rv := objc.Send[KeyValueSharedObservers](objc.ID(kc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (k_ KeyValueSharedObservers) Init() KeyValueSharedObservers {
+	rv := objc.Send[KeyValueSharedObservers](k_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (k_ KeyValueSharedObservers) Autorelease() KeyValueSharedObservers {
+	rv := objc.Send[KeyValueSharedObservers](k_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewKeyValueSharedObservers creates a new KeyValueSharedObservers instance.
+func NewKeyValueSharedObservers() KeyValueSharedObservers {
+	return keyValueSharedObserversClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type BundleResourceRequest struct {
 func BundleResourceRequestFrom(ptr unsafe.Pointer) BundleResourceRequest {
 	return BundleResourceRequest{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BundleResourceRequestClass) Alloc() BundleResourceRequest {
+	rv := objc.Send[BundleResourceRequest](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BundleResourceRequestClass) New() BundleResourceRequest {
+	rv := objc.Send[BundleResourceRequest](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BundleResourceRequest) Init() BundleResourceRequest {
+	rv := objc.Send[BundleResourceRequest](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BundleResourceRequest) Autorelease() BundleResourceRequest {
+	rv := objc.Send[BundleResourceRequest](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBundleResourceRequest creates a new BundleResourceRequest instance.
+func NewBundleResourceRequest() BundleResourceRequest {
+	return bundleResourceRequestClass.New()
+}
+
 
 
 

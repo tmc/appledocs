@@ -36,6 +36,36 @@ func InvocationOperationFrom(ptr unsafe.Pointer) InvocationOperation {
 		Operation: OperationFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _InvocationOperationClass) Alloc() InvocationOperation {
+	rv := objc.Send[InvocationOperation](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _InvocationOperationClass) New() InvocationOperation {
+	rv := objc.Send[InvocationOperation](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ InvocationOperation) Init() InvocationOperation {
+	rv := objc.Send[InvocationOperation](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ InvocationOperation) Autorelease() InvocationOperation {
+	rv := objc.Send[InvocationOperation](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewInvocationOperation creates a new InvocationOperation instance.
+func NewInvocationOperation() InvocationOperation {
+	return invocationOperationClass.New()
+}
+
 
 
 

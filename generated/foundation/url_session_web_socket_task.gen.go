@@ -36,6 +36,36 @@ func URLSessionWebSocketTaskFrom(ptr unsafe.Pointer) URLSessionWebSocketTask {
 		URLSessionTask: URLSessionTaskFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _URLSessionWebSocketTaskClass) Alloc() URLSessionWebSocketTask {
+	rv := objc.Send[URLSessionWebSocketTask](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLSessionWebSocketTaskClass) New() URLSessionWebSocketTask {
+	rv := objc.Send[URLSessionWebSocketTask](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ URLSessionWebSocketTask) Init() URLSessionWebSocketTask {
+	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLSessionWebSocketTask) Autorelease() URLSessionWebSocketTask {
+	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLSessionWebSocketTask creates a new URLSessionWebSocketTask instance.
+func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
+	return uRLSessionWebSocketTaskClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func ListFormatterFrom(ptr unsafe.Pointer) ListFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _ListFormatterClass) Alloc() ListFormatter {
+	rv := objc.Send[ListFormatter](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _ListFormatterClass) New() ListFormatter {
+	rv := objc.Send[ListFormatter](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ ListFormatter) Init() ListFormatter {
+	rv := objc.Send[ListFormatter](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ ListFormatter) Autorelease() ListFormatter {
+	rv := objc.Send[ListFormatter](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewListFormatter creates a new ListFormatter instance.
+func NewListFormatter() ListFormatter {
+	return listFormatterClass.New()
+}
+
 
 
 

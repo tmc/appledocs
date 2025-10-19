@@ -36,6 +36,36 @@ func ByteCountFormatterFrom(ptr unsafe.Pointer) ByteCountFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _ByteCountFormatterClass) Alloc() ByteCountFormatter {
+	rv := objc.Send[ByteCountFormatter](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _ByteCountFormatterClass) New() ByteCountFormatter {
+	rv := objc.Send[ByteCountFormatter](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ ByteCountFormatter) Init() ByteCountFormatter {
+	rv := objc.Send[ByteCountFormatter](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ ByteCountFormatter) Autorelease() ByteCountFormatter {
+	rv := objc.Send[ByteCountFormatter](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewByteCountFormatter creates a new ByteCountFormatter instance.
+func NewByteCountFormatter() ByteCountFormatter {
+	return byteCountFormatterClass.New()
+}
+
 
 
 

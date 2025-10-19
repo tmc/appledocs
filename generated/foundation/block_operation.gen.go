@@ -36,6 +36,36 @@ func BlockOperationFrom(ptr unsafe.Pointer) BlockOperation {
 		Operation: OperationFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BlockOperationClass) Alloc() BlockOperation {
+	rv := objc.Send[BlockOperation](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BlockOperationClass) New() BlockOperation {
+	rv := objc.Send[BlockOperation](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BlockOperation) Init() BlockOperation {
+	rv := objc.Send[BlockOperation](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BlockOperation) Autorelease() BlockOperation {
+	rv := objc.Send[BlockOperation](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBlockOperation creates a new BlockOperation instance.
+func NewBlockOperation() BlockOperation {
+	return blockOperationClass.New()
+}
+
 
 
 

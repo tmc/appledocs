@@ -41,6 +41,36 @@ type Operation struct {
 func OperationFrom(ptr unsafe.Pointer) Operation {
 	return Operation{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (oc _OperationClass) Alloc() Operation {
+	rv := objc.Send[Operation](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _OperationClass) New() Operation {
+	rv := objc.Send[Operation](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ Operation) Init() Operation {
+	rv := objc.Send[Operation](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ Operation) Autorelease() Operation {
+	rv := objc.Send[Operation](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewOperation creates a new Operation instance.
+func NewOperation() Operation {
+	return operationClass.New()
+}
+
 
 // Makes the receiver dependent on the completion of the specified operation. [Full Topic]
 

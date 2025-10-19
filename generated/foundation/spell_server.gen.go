@@ -35,6 +35,36 @@ type SpellServer struct {
 func SpellServerFrom(ptr unsafe.Pointer) SpellServer {
 	return SpellServer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SpellServerClass) Alloc() SpellServer {
+	rv := objc.Send[SpellServer](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SpellServerClass) New() SpellServer {
+	rv := objc.Send[SpellServer](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SpellServer) Init() SpellServer {
+	rv := objc.Send[SpellServer](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SpellServer) Autorelease() SpellServer {
+	rv := objc.Send[SpellServer](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSpellServer creates a new SpellServer instance.
+func NewSpellServer() SpellServer {
+	return spellServerClass.New()
+}
+
 
 
 

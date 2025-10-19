@@ -69,6 +69,8 @@ func (u_ UserActivity) Autorelease() UserActivity {
 func NewUserActivity() UserActivity {
 	return userActivityClass.New()
 }
+
+
 // Creates a user activity object with the specified type. [Full Topic]
 
 //

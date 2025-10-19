@@ -35,6 +35,36 @@ type JSONSerialization struct {
 func JSONSerializationFrom(ptr unsafe.Pointer) JSONSerialization {
 	return JSONSerialization{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (jc _JSONSerializationClass) Alloc() JSONSerialization {
+	rv := objc.Send[JSONSerialization](objc.ID(jc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (jc _JSONSerializationClass) New() JSONSerialization {
+	rv := objc.Send[JSONSerialization](objc.ID(jc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (j_ JSONSerialization) Init() JSONSerialization {
+	rv := objc.Send[JSONSerialization](j_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (j_ JSONSerialization) Autorelease() JSONSerialization {
+	rv := objc.Send[JSONSerialization](j_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewJSONSerialization creates a new JSONSerialization instance.
+func NewJSONSerialization() JSONSerialization {
+	return jSONSerializationClass.New()
+}
+
 
 
 

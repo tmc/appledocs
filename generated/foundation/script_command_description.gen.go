@@ -35,6 +35,36 @@ type ScriptCommandDescription struct {
 func ScriptCommandDescriptionFrom(ptr unsafe.Pointer) ScriptCommandDescription {
 	return ScriptCommandDescription{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScriptCommandDescriptionClass) Alloc() ScriptCommandDescription {
+	rv := objc.Send[ScriptCommandDescription](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScriptCommandDescriptionClass) New() ScriptCommandDescription {
+	rv := objc.Send[ScriptCommandDescription](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScriptCommandDescription) Init() ScriptCommandDescription {
+	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScriptCommandDescription) Autorelease() ScriptCommandDescription {
+	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScriptCommandDescription creates a new ScriptCommandDescription instance.
+func NewScriptCommandDescription() ScriptCommandDescription {
+	return scriptCommandDescriptionClass.New()
+}
+
 
 
 

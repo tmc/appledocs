@@ -36,6 +36,36 @@ func UniqueIDSpecifierFrom(ptr unsafe.Pointer) UniqueIDSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UniqueIDSpecifierClass) Alloc() UniqueIDSpecifier {
+	rv := objc.Send[UniqueIDSpecifier](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UniqueIDSpecifierClass) New() UniqueIDSpecifier {
+	rv := objc.Send[UniqueIDSpecifier](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UniqueIDSpecifier) Init() UniqueIDSpecifier {
+	rv := objc.Send[UniqueIDSpecifier](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UniqueIDSpecifier) Autorelease() UniqueIDSpecifier {
+	rv := objc.Send[UniqueIDSpecifier](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUniqueIDSpecifier creates a new UniqueIDSpecifier instance.
+func NewUniqueIDSpecifier() UniqueIDSpecifier {
+	return uniqueIDSpecifierClass.New()
+}
+
 
 
 

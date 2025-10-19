@@ -65,6 +65,8 @@ func (b_ Bundle) Autorelease() Bundle {
 func NewBundle() Bundle {
 	return bundleClass.New()
 }
+
+
 // Returns the object with which the specified class is associated. [Full Topic]
 
 //

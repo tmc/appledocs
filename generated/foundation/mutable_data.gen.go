@@ -36,6 +36,36 @@ func MutableDataFrom(ptr unsafe.Pointer) MutableData {
 		Data: DataFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableDataClass) Alloc() MutableData {
+	rv := objc.Send[MutableData](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableDataClass) New() MutableData {
+	rv := objc.Send[MutableData](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableData) Init() MutableData {
+	rv := objc.Send[MutableData](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableData) Autorelease() MutableData {
+	rv := objc.Send[MutableData](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableData creates a new MutableData instance.
+func NewMutableData() MutableData {
+	return mutableDataClass.New()
+}
+
 
 
 

@@ -80,6 +80,18 @@ func (d_ Data) Autorelease() Data {
 func NewData() Data {
 	return dataClass.New()
 }
+
+
+// Creates a data object from the data at the provided file URL using specific reading options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-5abi3
+func NewDataWithContentsOfURLOptionsError(url unsafe.Pointer, readOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) Data {
+	instance := dataClass.Alloc()
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
+	rv.Autorelease()
+	return rv
+}
 // Initializes a data object with the given Base64 encoded data. [Full Topic]
 
 //
@@ -87,6 +99,16 @@ func NewData() Data {
 func NewDataWithBase64EncodedDataOptions(base64Data unsafe.Pointer, options unsafe.Pointer) Data {
 	instance := dataClass.Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedData:options:"), base64Data, options)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a data object with the given Base64 encoded string. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64EncodedString:options:)
+func NewDataWithBase64EncodedStringOptions(base64String string, options unsafe.Pointer) Data {
+	instance := dataClass.Alloc()
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedString:options:"), base64String, options)
 	rv.Autorelease()
 	return rv
 }
@@ -100,43 +122,23 @@ func NewDataWithBase64Encoding(base64String string) Data {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a data object filled with a given number of bytes of data from a given buffer, with a custom deallocator block. [Full Topic]
+// Initializes a data object with the content of the file at a given path. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:deallocator:)
-func NewDataWithBytesNoCopyLengthDeallocator(bytes unsafe.Pointer, length uint, deallocator unsafe.Pointer) Data {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfFile:)
+func NewDataWithContentsOfFile(path string) Data {
 	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:deallocator:"), bytes, length, deallocator)
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
-// Initializes a newly allocated data object by adding the given number of bytes from the given buffer. [Full Topic]
+// Creates a data object from the data at the specified file URL, or returns if the system can’t create one. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:freeWhenDone:)
-func NewDataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, b bool) Data {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:)-6rrnr
+func NewDataWithContentsOfURL(url unsafe.Pointer) Data {
 	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:freeWhenDone:"), bytes, length, b)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a data object with the contents of the mapped file specified by a given path. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfMappedFile:)
-func NewDataWithContentsOfMappedFile(path string) Data {
-	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfMappedFile:"), path)
-	rv.Autorelease()
-	return rv
-}
-// Creates a data object from the data at the provided file URL using specific reading options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-5abi3
-func NewDataWithContentsOfURLOptionsError(url unsafe.Pointer, readOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) Data {
-	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
 }
@@ -147,16 +149,6 @@ func NewDataWithContentsOfURLOptionsError(url unsafe.Pointer, readOptionsMask un
 func NewDataWithData(data unsafe.Pointer) Data {
 	instance := dataClass.Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithData:"), data)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a data object with the given Base64 encoded string. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64EncodedString:options:)
-func NewDataWithBase64EncodedStringOptions(base64String string, options unsafe.Pointer) Data {
-	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedString:options:"), base64String, options)
 	rv.Autorelease()
 	return rv
 }
@@ -180,13 +172,23 @@ func NewDataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint) Data {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a data object with the content of the file at a given path. [Full Topic]
+// Initializes a data object filled with a given number of bytes of data from a given buffer, with a custom deallocator block. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfFile:)
-func NewDataWithContentsOfFile(path string) Data {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:deallocator:)
+func NewDataWithBytesNoCopyLengthDeallocator(bytes unsafe.Pointer, length uint, deallocator unsafe.Pointer) Data {
 	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:deallocator:"), bytes, length, deallocator)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated data object by adding the given number of bytes from the given buffer. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:freeWhenDone:)
+func NewDataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, b bool) Data {
+	instance := dataClass.Alloc()
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:freeWhenDone:"), bytes, length, b)
 	rv.Autorelease()
 	return rv
 }
@@ -200,13 +202,13 @@ func NewDataWithContentsOfFileOptionsError(path string, readOptionsMask unsafe.P
 	rv.Autorelease()
 	return rv
 }
-// Creates a data object from the data at the specified file URL, or returns if the system can’t create one. [Full Topic]
+// Initializes a data object with the contents of the mapped file specified by a given path. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:)-6rrnr
-func NewDataWithContentsOfURL(url unsafe.Pointer) Data {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfMappedFile:)
+func NewDataWithContentsOfMappedFile(path string) Data {
 	instance := dataClass.Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfMappedFile:"), path)
 	rv.Autorelease()
 	return rv
 }

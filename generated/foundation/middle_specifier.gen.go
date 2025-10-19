@@ -36,6 +36,36 @@ func MiddleSpecifierFrom(ptr unsafe.Pointer) MiddleSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MiddleSpecifierClass) Alloc() MiddleSpecifier {
+	rv := objc.Send[MiddleSpecifier](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MiddleSpecifierClass) New() MiddleSpecifier {
+	rv := objc.Send[MiddleSpecifier](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MiddleSpecifier) Init() MiddleSpecifier {
+	rv := objc.Send[MiddleSpecifier](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MiddleSpecifier) Autorelease() MiddleSpecifier {
+	rv := objc.Send[MiddleSpecifier](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMiddleSpecifier creates a new MiddleSpecifier instance.
+func NewMiddleSpecifier() MiddleSpecifier {
+	return middleSpecifierClass.New()
+}
+
 
 
 

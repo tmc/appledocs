@@ -35,6 +35,36 @@ type Stream struct {
 func StreamFrom(ptr unsafe.Pointer) Stream {
 	return Stream{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _StreamClass) Alloc() Stream {
+	rv := objc.Send[Stream](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StreamClass) New() Stream {
+	rv := objc.Send[Stream](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Stream) Init() Stream {
+	rv := objc.Send[Stream](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Stream) Autorelease() Stream {
+	rv := objc.Send[Stream](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStream creates a new Stream instance.
+func NewStream() Stream {
+	return streamClass.New()
+}
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)

@@ -37,6 +37,36 @@ type ItemProvider struct {
 func ItemProviderFrom(ptr unsafe.Pointer) ItemProvider {
 	return ItemProvider{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ItemProviderClass) Alloc() ItemProvider {
+	rv := objc.Send[ItemProvider](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ItemProviderClass) New() ItemProvider {
+	rv := objc.Send[ItemProvider](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ItemProvider) Init() ItemProvider {
+	rv := objc.Send[ItemProvider](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ItemProvider) Autorelease() ItemProvider {
+	rv := objc.Send[ItemProvider](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewItemProvider creates a new ItemProvider instance.
+func NewItemProvider() ItemProvider {
+	return itemProviderClass.New()
+}
+
 
 // Returns a Boolean value indicating whether an item provider can load objects of a specified class. [Full Topic]
 

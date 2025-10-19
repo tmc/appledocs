@@ -35,6 +35,36 @@ type URLCredential struct {
 func URLCredentialFrom(ptr unsafe.Pointer) URLCredential {
 	return URLCredential{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _URLCredentialClass) Alloc() URLCredential {
+	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLCredentialClass) New() URLCredential {
+	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ URLCredential) Init() URLCredential {
+	rv := objc.Send[URLCredential](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLCredential) Autorelease() URLCredential {
+	rv := objc.Send[URLCredential](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLCredential creates a new URLCredential instance.
+func NewURLCredential() URLCredential {
+	return uRLCredentialClass.New()
+}
+
 
 
 

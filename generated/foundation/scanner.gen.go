@@ -38,6 +38,36 @@ type Scanner struct {
 func ScannerFrom(ptr unsafe.Pointer) Scanner {
 	return Scanner{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScannerClass) Alloc() Scanner {
+	rv := objc.Send[Scanner](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScannerClass) New() Scanner {
+	rv := objc.Send[Scanner](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Scanner) Init() Scanner {
+	rv := objc.Send[Scanner](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Scanner) Autorelease() Scanner {
+	rv := objc.Send[Scanner](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScanner creates a new Scanner instance.
+func NewScanner() Scanner {
+	return scannerClass.New()
+}
+
 
 // Scans for a double value, returning a found value by reference. [Full Topic]
 

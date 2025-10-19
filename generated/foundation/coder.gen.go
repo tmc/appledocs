@@ -36,6 +36,36 @@ type Coder struct {
 func CoderFrom(ptr unsafe.Pointer) Coder {
 	return Coder{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CoderClass) Alloc() Coder {
+	rv := objc.Send[Coder](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CoderClass) New() Coder {
+	rv := objc.Send[Coder](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Coder) Init() Coder {
+	rv := objc.Send[Coder](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Coder) Autorelease() Coder {
+	rv := objc.Send[Coder](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCoder creates a new Coder instance.
+func NewCoder() Coder {
+	return coderClass.New()
+}
+
 
 // Decodes an object for the key, restricted to the specified class. [Full Topic]
 

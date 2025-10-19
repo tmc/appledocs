@@ -35,6 +35,36 @@ type TimeZone struct {
 func TimeZoneFrom(ptr unsafe.Pointer) TimeZone {
 	return TimeZone{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TimeZoneClass) Alloc() TimeZone {
+	rv := objc.Send[TimeZone](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TimeZoneClass) New() TimeZone {
+	rv := objc.Send[TimeZone](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TimeZone) Init() TimeZone {
+	rv := objc.Send[TimeZone](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TimeZone) Autorelease() TimeZone {
+	rv := objc.Send[TimeZone](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTimeZone creates a new TimeZone instance.
+func NewTimeZone() TimeZone {
+	return timeZoneClass.New()
+}
+
 
 
 

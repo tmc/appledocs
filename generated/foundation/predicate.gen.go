@@ -68,6 +68,8 @@ func (p_ Predicate) Autorelease() Predicate {
 func NewPredicate() Predicate {
 	return predicateClass.New()
 }
+
+
 // Creates a predicate that evaluates using a specified block object and bindings dictionary. [Full Topic]
 
 //

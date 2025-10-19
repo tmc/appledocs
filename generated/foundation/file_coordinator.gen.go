@@ -35,6 +35,36 @@ type FileCoordinator struct {
 func FileCoordinatorFrom(ptr unsafe.Pointer) FileCoordinator {
 	return FileCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FileCoordinatorClass) Alloc() FileCoordinator {
+	rv := objc.Send[FileCoordinator](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FileCoordinatorClass) New() FileCoordinator {
+	rv := objc.Send[FileCoordinator](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FileCoordinator) Init() FileCoordinator {
+	rv := objc.Send[FileCoordinator](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FileCoordinator) Autorelease() FileCoordinator {
+	rv := objc.Send[FileCoordinator](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFileCoordinator creates a new FileCoordinator instance.
+func NewFileCoordinator() FileCoordinator {
+	return fileCoordinatorClass.New()
+}
+
 
 
 

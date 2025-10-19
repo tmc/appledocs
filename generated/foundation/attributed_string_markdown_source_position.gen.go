@@ -35,6 +35,36 @@ type AttributedStringMarkdownSourcePosition struct {
 func AttributedStringMarkdownSourcePositionFrom(ptr unsafe.Pointer) AttributedStringMarkdownSourcePosition {
 	return AttributedStringMarkdownSourcePosition{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AttributedStringMarkdownSourcePositionClass) Alloc() AttributedStringMarkdownSourcePosition {
+	rv := objc.Send[AttributedStringMarkdownSourcePosition](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AttributedStringMarkdownSourcePositionClass) New() AttributedStringMarkdownSourcePosition {
+	rv := objc.Send[AttributedStringMarkdownSourcePosition](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AttributedStringMarkdownSourcePosition) Init() AttributedStringMarkdownSourcePosition {
+	rv := objc.Send[AttributedStringMarkdownSourcePosition](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AttributedStringMarkdownSourcePosition) Autorelease() AttributedStringMarkdownSourcePosition {
+	rv := objc.Send[AttributedStringMarkdownSourcePosition](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAttributedStringMarkdownSourcePosition creates a new AttributedStringMarkdownSourcePosition instance.
+func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourcePosition {
+	return attributedStringMarkdownSourcePositionClass.New()
+}
+
 
 
 

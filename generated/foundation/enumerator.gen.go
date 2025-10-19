@@ -35,6 +35,36 @@ type Enumerator struct {
 func EnumeratorFrom(ptr unsafe.Pointer) Enumerator {
 	return Enumerator{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EnumeratorClass) Alloc() Enumerator {
+	rv := objc.Send[Enumerator](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EnumeratorClass) New() Enumerator {
+	rv := objc.Send[Enumerator](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ Enumerator) Init() Enumerator {
+	rv := objc.Send[Enumerator](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ Enumerator) Autorelease() Enumerator {
+	rv := objc.Send[Enumerator](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEnumerator creates a new Enumerator instance.
+func NewEnumerator() Enumerator {
+	return enumeratorClass.New()
+}
+
 
 
 

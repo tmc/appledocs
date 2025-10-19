@@ -37,6 +37,36 @@ func PersonNameComponentsFormatterFrom(ptr unsafe.Pointer) PersonNameComponentsF
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PersonNameComponentsFormatterClass) Alloc() PersonNameComponentsFormatter {
+	rv := objc.Send[PersonNameComponentsFormatter](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PersonNameComponentsFormatterClass) New() PersonNameComponentsFormatter {
+	rv := objc.Send[PersonNameComponentsFormatter](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PersonNameComponentsFormatter) Init() PersonNameComponentsFormatter {
+	rv := objc.Send[PersonNameComponentsFormatter](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PersonNameComponentsFormatter) Autorelease() PersonNameComponentsFormatter {
+	rv := objc.Send[PersonNameComponentsFormatter](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPersonNameComponentsFormatter creates a new PersonNameComponentsFormatter instance.
+func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
+	return personNameComponentsFormatterClass.New()
+}
+
 
 // Returns a person name components object from a given string. [Full Topic]
 

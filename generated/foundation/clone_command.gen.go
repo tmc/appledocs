@@ -36,6 +36,36 @@ func CloneCommandFrom(ptr unsafe.Pointer) CloneCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CloneCommandClass) Alloc() CloneCommand {
+	rv := objc.Send[CloneCommand](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CloneCommandClass) New() CloneCommand {
+	rv := objc.Send[CloneCommand](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CloneCommand) Init() CloneCommand {
+	rv := objc.Send[CloneCommand](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CloneCommand) Autorelease() CloneCommand {
+	rv := objc.Send[CloneCommand](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCloneCommand creates a new CloneCommand instance.
+func NewCloneCommand() CloneCommand {
+	return cloneCommandClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func EnergyFormatterFrom(ptr unsafe.Pointer) EnergyFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EnergyFormatterClass) Alloc() EnergyFormatter {
+	rv := objc.Send[EnergyFormatter](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EnergyFormatterClass) New() EnergyFormatter {
+	rv := objc.Send[EnergyFormatter](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ EnergyFormatter) Init() EnergyFormatter {
+	rv := objc.Send[EnergyFormatter](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ EnergyFormatter) Autorelease() EnergyFormatter {
+	rv := objc.Send[EnergyFormatter](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEnergyFormatter creates a new EnergyFormatter instance.
+func NewEnergyFormatter() EnergyFormatter {
+	return energyFormatterClass.New()
+}
+
 
 
 

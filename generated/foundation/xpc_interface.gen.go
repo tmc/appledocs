@@ -35,6 +35,36 @@ type XPCInterface struct {
 func XPCInterfaceFrom(ptr unsafe.Pointer) XPCInterface {
 	return XPCInterface{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (xc _XPCInterfaceClass) Alloc() XPCInterface {
+	rv := objc.Send[XPCInterface](objc.ID(xc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (xc _XPCInterfaceClass) New() XPCInterface {
+	rv := objc.Send[XPCInterface](objc.ID(xc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (x_ XPCInterface) Init() XPCInterface {
+	rv := objc.Send[XPCInterface](x_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (x_ XPCInterface) Autorelease() XPCInterface {
+	rv := objc.Send[XPCInterface](x_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewXPCInterface creates a new XPCInterface instance.
+func NewXPCInterface() XPCInterface {
+	return xPCInterfaceClass.New()
+}
+
 
 
 

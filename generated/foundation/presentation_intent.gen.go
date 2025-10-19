@@ -35,6 +35,36 @@ type PresentationIntent struct {
 func PresentationIntentFrom(ptr unsafe.Pointer) PresentationIntent {
 	return PresentationIntent{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PresentationIntentClass) Alloc() PresentationIntent {
+	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PresentationIntentClass) New() PresentationIntent {
+	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PresentationIntent) Init() PresentationIntent {
+	rv := objc.Send[PresentationIntent](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PresentationIntent) Autorelease() PresentationIntent {
+	rv := objc.Send[PresentationIntent](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPresentationIntent creates a new PresentationIntent instance.
+func NewPresentationIntent() PresentationIntent {
+	return presentationIntentClass.New()
+}
+
 
 
 

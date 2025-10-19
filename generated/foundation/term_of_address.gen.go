@@ -35,6 +35,36 @@ type TermOfAddress struct {
 func TermOfAddressFrom(ptr unsafe.Pointer) TermOfAddress {
 	return TermOfAddress{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TermOfAddressClass) Alloc() TermOfAddress {
+	rv := objc.Send[TermOfAddress](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TermOfAddressClass) New() TermOfAddress {
+	rv := objc.Send[TermOfAddress](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TermOfAddress) Init() TermOfAddress {
+	rv := objc.Send[TermOfAddress](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TermOfAddress) Autorelease() TermOfAddress {
+	rv := objc.Send[TermOfAddress](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTermOfAddress creates a new TermOfAddress instance.
+func NewTermOfAddress() TermOfAddress {
+	return termOfAddressClass.New()
+}
+
 
 
 

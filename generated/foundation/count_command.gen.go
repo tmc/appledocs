@@ -36,6 +36,36 @@ func CountCommandFrom(ptr unsafe.Pointer) CountCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CountCommandClass) Alloc() CountCommand {
+	rv := objc.Send[CountCommand](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CountCommandClass) New() CountCommand {
+	rv := objc.Send[CountCommand](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CountCommand) Init() CountCommand {
+	rv := objc.Send[CountCommand](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CountCommand) Autorelease() CountCommand {
+	rv := objc.Send[CountCommand](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCountCommand creates a new CountCommand instance.
+func NewCountCommand() CountCommand {
+	return countCommandClass.New()
+}
+
 
 
 

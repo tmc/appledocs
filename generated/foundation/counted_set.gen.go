@@ -36,6 +36,36 @@ func CountedSetFrom(ptr unsafe.Pointer) CountedSet {
 		MutableSet: MutableSetFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CountedSetClass) Alloc() CountedSet {
+	rv := objc.Send[CountedSet](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CountedSetClass) New() CountedSet {
+	rv := objc.Send[CountedSet](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CountedSet) Init() CountedSet {
+	rv := objc.Send[CountedSet](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CountedSet) Autorelease() CountedSet {
+	rv := objc.Send[CountedSet](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCountedSet creates a new CountedSet instance.
+func NewCountedSet() CountedSet {
+	return countedSetClass.New()
+}
+
 
 
 

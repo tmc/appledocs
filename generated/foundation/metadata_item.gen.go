@@ -35,6 +35,36 @@ type MetadataItem struct {
 func MetadataItemFrom(ptr unsafe.Pointer) MetadataItem {
 	return MetadataItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MetadataItemClass) Alloc() MetadataItem {
+	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MetadataItemClass) New() MetadataItem {
+	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MetadataItem) Init() MetadataItem {
+	rv := objc.Send[MetadataItem](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MetadataItem) Autorelease() MetadataItem {
+	rv := objc.Send[MetadataItem](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMetadataItem creates a new MetadataItem instance.
+func NewMetadataItem() MetadataItem {
+	return metadataItemClass.New()
+}
+
 
 
 

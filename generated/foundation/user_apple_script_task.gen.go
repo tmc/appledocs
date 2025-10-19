@@ -36,6 +36,36 @@ func UserAppleScriptTaskFrom(ptr unsafe.Pointer) UserAppleScriptTask {
 		UserScriptTask: UserScriptTaskFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UserAppleScriptTaskClass) Alloc() UserAppleScriptTask {
+	rv := objc.Send[UserAppleScriptTask](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UserAppleScriptTaskClass) New() UserAppleScriptTask {
+	rv := objc.Send[UserAppleScriptTask](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UserAppleScriptTask) Init() UserAppleScriptTask {
+	rv := objc.Send[UserAppleScriptTask](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UserAppleScriptTask) Autorelease() UserAppleScriptTask {
+	rv := objc.Send[UserAppleScriptTask](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUserAppleScriptTask creates a new UserAppleScriptTask instance.
+func NewUserAppleScriptTask() UserAppleScriptTask {
+	return userAppleScriptTaskClass.New()
+}
+
 
 
 

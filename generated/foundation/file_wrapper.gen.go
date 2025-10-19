@@ -35,6 +35,36 @@ type FileWrapper struct {
 func FileWrapperFrom(ptr unsafe.Pointer) FileWrapper {
 	return FileWrapper{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FileWrapperClass) Alloc() FileWrapper {
+	rv := objc.Send[FileWrapper](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FileWrapperClass) New() FileWrapper {
+	rv := objc.Send[FileWrapper](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FileWrapper) Init() FileWrapper {
+	rv := objc.Send[FileWrapper](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FileWrapper) Autorelease() FileWrapper {
+	rv := objc.Send[FileWrapper](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFileWrapper creates a new FileWrapper instance.
+func NewFileWrapper() FileWrapper {
+	return fileWrapperClass.New()
+}
+
 
 
 

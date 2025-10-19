@@ -32,6 +32,36 @@ type reserved struct {
 func reservedFrom(ptr unsafe.Pointer) reserved {
 	return reserved{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _reservedClass) Alloc() reserved {
+	rv := objc.Send[reserved](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _reservedClass) New() reserved {
+	rv := objc.Send[reserved](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ reserved) Init() reserved {
+	rv := objc.Send[reserved](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ reserved) Autorelease() reserved {
+	rv := objc.Send[reserved](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// Newreserved creates a new reserved instance.
+func Newreserved() reserved {
+	return reservedClass.New()
+}
+
 
 
 

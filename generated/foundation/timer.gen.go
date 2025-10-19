@@ -66,25 +66,8 @@ func (t_ Timer) Autorelease() Timer {
 func NewTimer() Timer {
 	return timerClass.New()
 }
-// Initializes a timer using the specified object and selector. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fireAt:interval:target:selector:userInfo:repeats:)
-func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date unsafe.Pointer, ti TimeInterval, t objc.ID, s objc.SEL, ui objc.ID, rep bool) Timer {
-	instance := timerClass.Alloc()
-	rv := objc.Send[Timer](instance.ID, objc.Sel("initWithFireDate:interval:target:selector:userInfo:repeats:"), date, ti, t, s, ui, rep)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a timer object with the specified invocation object. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:invocation:repeats:)
-func NewTimerWithTimeIntervalInvocationRepeats(ti TimeInterval, invocation unsafe.Pointer, yesOrNo bool) Timer {
-	rv := objc.Send[Timer](objc.ID(timerClass.class), objc.Sel("timerWithTimeInterval:invocation:repeats:"), ti, invocation, yesOrNo)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a timer object with the specified time interval and block. [Full Topic]
 
 //
@@ -110,6 +93,25 @@ func NewTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti TimeInterval, aTar
 func NewTimerWithFireDateIntervalRepeatsBlock(date unsafe.Pointer, interval TimeInterval, repeats bool, block unsafe.Pointer) Timer {
 	instance := timerClass.Alloc()
 	rv := objc.Send[Timer](instance.ID, objc.Sel("initWithFireDate:interval:repeats:block:"), date, interval, repeats, block)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a timer using the specified object and selector. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fireAt:interval:target:selector:userInfo:repeats:)
+func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date unsafe.Pointer, ti TimeInterval, t objc.ID, s objc.SEL, ui objc.ID, rep bool) Timer {
+	instance := timerClass.Alloc()
+	rv := objc.Send[Timer](instance.ID, objc.Sel("initWithFireDate:interval:target:selector:userInfo:repeats:"), date, ti, t, s, ui, rep)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a timer object with the specified invocation object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:invocation:repeats:)
+func NewTimerWithTimeIntervalInvocationRepeats(ti TimeInterval, invocation unsafe.Pointer, yesOrNo bool) Timer {
+	rv := objc.Send[Timer](objc.ID(timerClass.class), objc.Sel("timerWithTimeInterval:invocation:repeats:"), ti, invocation, yesOrNo)
 	rv.Autorelease()
 	return rv
 }

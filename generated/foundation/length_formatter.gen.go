@@ -36,6 +36,36 @@ func LengthFormatterFrom(ptr unsafe.Pointer) LengthFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _LengthFormatterClass) Alloc() LengthFormatter {
+	rv := objc.Send[LengthFormatter](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _LengthFormatterClass) New() LengthFormatter {
+	rv := objc.Send[LengthFormatter](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LengthFormatter) Init() LengthFormatter {
+	rv := objc.Send[LengthFormatter](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LengthFormatter) Autorelease() LengthFormatter {
+	rv := objc.Send[LengthFormatter](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLengthFormatter creates a new LengthFormatter instance.
+func NewLengthFormatter() LengthFormatter {
+	return lengthFormatterClass.New()
+}
+
 
 
 

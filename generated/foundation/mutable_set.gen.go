@@ -36,6 +36,36 @@ func MutableSetFrom(ptr unsafe.Pointer) MutableSet {
 		Set: SetFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableSetClass) Alloc() MutableSet {
+	rv := objc.Send[MutableSet](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableSetClass) New() MutableSet {
+	rv := objc.Send[MutableSet](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableSet) Init() MutableSet {
+	rv := objc.Send[MutableSet](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableSet) Autorelease() MutableSet {
+	rv := objc.Send[MutableSet](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableSet creates a new MutableSet instance.
+func NewMutableSet() MutableSet {
+	return mutableSetClass.New()
+}
+
 
 
 

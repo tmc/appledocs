@@ -36,6 +36,36 @@ func QuitCommandFrom(ptr unsafe.Pointer) QuitCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (qc _QuitCommandClass) Alloc() QuitCommand {
+	rv := objc.Send[QuitCommand](objc.ID(qc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (qc _QuitCommandClass) New() QuitCommand {
+	rv := objc.Send[QuitCommand](objc.ID(qc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (q_ QuitCommand) Init() QuitCommand {
+	rv := objc.Send[QuitCommand](q_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (q_ QuitCommand) Autorelease() QuitCommand {
+	rv := objc.Send[QuitCommand](q_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewQuitCommand creates a new QuitCommand instance.
+func NewQuitCommand() QuitCommand {
+	return quitCommandClass.New()
+}
+
 
 
 

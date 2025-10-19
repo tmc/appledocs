@@ -36,6 +36,36 @@ func MutableDictionaryFrom(ptr unsafe.Pointer) MutableDictionary {
 		Dictionary: DictionaryFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableDictionaryClass) Alloc() MutableDictionary {
+	rv := objc.Send[MutableDictionary](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableDictionaryClass) New() MutableDictionary {
+	rv := objc.Send[MutableDictionary](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableDictionary) Init() MutableDictionary {
+	rv := objc.Send[MutableDictionary](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableDictionary) Autorelease() MutableDictionary {
+	rv := objc.Send[MutableDictionary](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableDictionary creates a new MutableDictionary instance.
+func NewMutableDictionary() MutableDictionary {
+	return mutableDictionaryClass.New()
+}
+
 
 
 

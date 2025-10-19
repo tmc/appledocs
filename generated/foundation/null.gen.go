@@ -35,6 +35,36 @@ type Null struct {
 func NullFrom(ptr unsafe.Pointer) Null {
 	return Null{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (nc _NullClass) Alloc() Null {
+	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (nc _NullClass) New() Null {
+	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (n_ Null) Init() Null {
+	rv := objc.Send[Null](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ Null) Autorelease() Null {
+	rv := objc.Send[Null](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNull creates a new Null instance.
+func NewNull() Null {
+	return nullClass.New()
+}
+
 
 
 

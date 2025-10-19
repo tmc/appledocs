@@ -35,6 +35,36 @@ type FileAccessIntent struct {
 func FileAccessIntentFrom(ptr unsafe.Pointer) FileAccessIntent {
 	return FileAccessIntent{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FileAccessIntentClass) Alloc() FileAccessIntent {
+	rv := objc.Send[FileAccessIntent](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FileAccessIntentClass) New() FileAccessIntent {
+	rv := objc.Send[FileAccessIntent](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FileAccessIntent) Init() FileAccessIntent {
+	rv := objc.Send[FileAccessIntent](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FileAccessIntent) Autorelease() FileAccessIntent {
+	rv := objc.Send[FileAccessIntent](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFileAccessIntent creates a new FileAccessIntent instance.
+func NewFileAccessIntent() FileAccessIntent {
+	return fileAccessIntentClass.New()
+}
+
 
 
 

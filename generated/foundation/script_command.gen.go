@@ -35,6 +35,36 @@ type ScriptCommand struct {
 func ScriptCommandFrom(ptr unsafe.Pointer) ScriptCommand {
 	return ScriptCommand{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScriptCommandClass) Alloc() ScriptCommand {
+	rv := objc.Send[ScriptCommand](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScriptCommandClass) New() ScriptCommand {
+	rv := objc.Send[ScriptCommand](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScriptCommand) Init() ScriptCommand {
+	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScriptCommand) Autorelease() ScriptCommand {
+	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScriptCommand creates a new ScriptCommand instance.
+func NewScriptCommand() ScriptCommand {
+	return scriptCommandClass.New()
+}
+
 
 
 

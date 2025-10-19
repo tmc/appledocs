@@ -35,6 +35,36 @@ type BackgroundActivityScheduler struct {
 func BackgroundActivitySchedulerFrom(ptr unsafe.Pointer) BackgroundActivityScheduler {
 	return BackgroundActivityScheduler{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BackgroundActivitySchedulerClass) Alloc() BackgroundActivityScheduler {
+	rv := objc.Send[BackgroundActivityScheduler](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BackgroundActivitySchedulerClass) New() BackgroundActivityScheduler {
+	rv := objc.Send[BackgroundActivityScheduler](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BackgroundActivityScheduler) Init() BackgroundActivityScheduler {
+	rv := objc.Send[BackgroundActivityScheduler](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BackgroundActivityScheduler) Autorelease() BackgroundActivityScheduler {
+	rv := objc.Send[BackgroundActivityScheduler](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBackgroundActivityScheduler creates a new BackgroundActivityScheduler instance.
+func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
+	return backgroundActivitySchedulerClass.New()
+}
+
 
 
 

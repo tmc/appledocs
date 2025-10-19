@@ -10,6 +10,7 @@ import (
 var _ = foundation.NewPredicate
 
 
+
 // ExampleNewPredicateFromMetadataQueryString demonstrates how to create a Predicate instance using NewPredicateFromMetadataQueryString.
 // Creates a predicate with a metadata query string.
 func ExampleNewPredicateFromMetadataQueryString() {
@@ -27,7 +28,6 @@ func ExampleNewPredicateWithValue() {
 	)
 	// Output:
 }
-
 
 
 

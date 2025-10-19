@@ -10,18 +10,6 @@ import (
 var _ = foundation.NewURL
 
 
-// ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
-// Initializes a newly created NSURL referencing the local file or directory at  .
-func ExampleNewURLFileURLWithPathIsDirectory() {
-	_ = foundation.NewURLFileURLWithPathIsDirectory(
-		"path", // path string
-		false, // isDir bool
-	)
-	// Output:
-}
-
-
-
 
 
 
@@ -36,6 +24,28 @@ func ExampleNewURLWithSchemeHostPath() {
 	)
 	// Output:
 }
+
+// ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
+// Initializes a newly created NSURL referencing the local file or directory at  .
+func ExampleNewURLFileURLWithPath() {
+	_ = foundation.NewURLFileURLWithPath(
+		"path", // path string
+	)
+	// Output:
+}
+
+// ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
+// Initializes a newly created NSURL referencing the local file or directory at  .
+func ExampleNewURLFileURLWithPathIsDirectory() {
+	_ = foundation.NewURLFileURLWithPathIsDirectory(
+		"path", // path string
+		false, // isDir bool
+	)
+	// Output:
+}
+
+
+
 
 // ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
 // Initializes an NSURL object with a provided URL string.
@@ -57,15 +67,5 @@ func ExampleNewURLWithStringEncodingInvalidCharacters() {
 }
 
 
-
-
-// ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
-// Initializes a newly created NSURL referencing the local file or directory at  .
-func ExampleNewURLFileURLWithPath() {
-	_ = foundation.NewURLFileURLWithPath(
-		"path", // path string
-	)
-	// Output:
-}
 
 

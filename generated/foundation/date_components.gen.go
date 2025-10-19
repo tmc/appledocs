@@ -35,6 +35,36 @@ type DateComponents struct {
 func DateComponentsFrom(ptr unsafe.Pointer) DateComponents {
 	return DateComponents{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DateComponentsClass) Alloc() DateComponents {
+	rv := objc.Send[DateComponents](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DateComponentsClass) New() DateComponents {
+	rv := objc.Send[DateComponents](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DateComponents) Init() DateComponents {
+	rv := objc.Send[DateComponents](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DateComponents) Autorelease() DateComponents {
+	rv := objc.Send[DateComponents](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDateComponents creates a new DateComponents instance.
+func NewDateComponents() DateComponents {
+	return dateComponentsClass.New()
+}
+
 
 
 

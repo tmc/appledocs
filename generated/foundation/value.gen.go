@@ -35,6 +35,36 @@ type Value struct {
 func ValueFrom(ptr unsafe.Pointer) Value {
 	return Value{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (vc _ValueClass) Alloc() Value {
+	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (vc _ValueClass) New() Value {
+	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ Value) Init() Value {
+	rv := objc.Send[Value](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ Value) Autorelease() Value {
+	rv := objc.Send[Value](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewValue creates a new Value instance.
+func NewValue() Value {
+	return valueClass.New()
+}
+
 
 
 

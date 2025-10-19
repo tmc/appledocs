@@ -35,6 +35,36 @@ type FileSecurity struct {
 func FileSecurityFrom(ptr unsafe.Pointer) FileSecurity {
 	return FileSecurity{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FileSecurityClass) Alloc() FileSecurity {
+	rv := objc.Send[FileSecurity](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FileSecurityClass) New() FileSecurity {
+	rv := objc.Send[FileSecurity](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FileSecurity) Init() FileSecurity {
+	rv := objc.Send[FileSecurity](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FileSecurity) Autorelease() FileSecurity {
+	rv := objc.Send[FileSecurity](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFileSecurity creates a new FileSecurity instance.
+func NewFileSecurity() FileSecurity {
+	return fileSecurityClass.New()
+}
+
 
 
 

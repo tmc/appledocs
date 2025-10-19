@@ -35,6 +35,36 @@ type CharacterSet struct {
 func CharacterSetFrom(ptr unsafe.Pointer) CharacterSet {
 	return CharacterSet{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CharacterSetClass) Alloc() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CharacterSetClass) New() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CharacterSet) Init() CharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CharacterSet) Autorelease() CharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCharacterSet creates a new CharacterSet instance.
+func NewCharacterSet() CharacterSet {
+	return characterSetClass.New()
+}
+
 
 
 

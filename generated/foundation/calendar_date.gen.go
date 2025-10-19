@@ -36,6 +36,36 @@ func CalendarDateFrom(ptr unsafe.Pointer) CalendarDate {
 		Date: DateFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CalendarDateClass) Alloc() CalendarDate {
+	rv := objc.Send[CalendarDate](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CalendarDateClass) New() CalendarDate {
+	rv := objc.Send[CalendarDate](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CalendarDate) Init() CalendarDate {
+	rv := objc.Send[CalendarDate](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CalendarDate) Autorelease() CalendarDate {
+	rv := objc.Send[CalendarDate](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCalendarDate creates a new CalendarDate instance.
+func NewCalendarDate() CalendarDate {
+	return calendarDateClass.New()
+}
+
 
 
 

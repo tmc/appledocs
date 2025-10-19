@@ -35,6 +35,36 @@ type AppleEventDescriptor struct {
 func AppleEventDescriptorFrom(ptr unsafe.Pointer) AppleEventDescriptor {
 	return AppleEventDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AppleEventDescriptorClass) Alloc() AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AppleEventDescriptorClass) New() AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AppleEventDescriptor) Init() AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AppleEventDescriptor) Autorelease() AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAppleEventDescriptor creates a new AppleEventDescriptor instance.
+func NewAppleEventDescriptor() AppleEventDescriptor {
+	return appleEventDescriptorClass.New()
+}
+
 
 
 

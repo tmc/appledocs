@@ -36,6 +36,36 @@ func UnitMassFrom(ptr unsafe.Pointer) UnitMass {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitMassClass) Alloc() UnitMass {
+	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitMassClass) New() UnitMass {
+	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitMass) Init() UnitMass {
+	rv := objc.Send[UnitMass](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitMass) Autorelease() UnitMass {
+	rv := objc.Send[UnitMass](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitMass creates a new UnitMass instance.
+func NewUnitMass() UnitMass {
+	return unitMassClass.New()
+}
+
 
 
 

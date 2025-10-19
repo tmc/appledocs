@@ -36,6 +36,36 @@ func UnitSpeedFrom(ptr unsafe.Pointer) UnitSpeed {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UnitSpeedClass) Alloc() UnitSpeed {
+	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UnitSpeedClass) New() UnitSpeed {
+	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UnitSpeed) Init() UnitSpeed {
+	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UnitSpeed) Autorelease() UnitSpeed {
+	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUnitSpeed creates a new UnitSpeed instance.
+func NewUnitSpeed() UnitSpeed {
+	return unitSpeedClass.New()
+}
+
 
 
 

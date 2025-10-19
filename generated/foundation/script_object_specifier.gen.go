@@ -35,6 +35,36 @@ type ScriptObjectSpecifier struct {
 func ScriptObjectSpecifierFrom(ptr unsafe.Pointer) ScriptObjectSpecifier {
 	return ScriptObjectSpecifier{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScriptObjectSpecifierClass) Alloc() ScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScriptObjectSpecifierClass) New() ScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScriptObjectSpecifier) Init() ScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScriptObjectSpecifier) Autorelease() ScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScriptObjectSpecifier creates a new ScriptObjectSpecifier instance.
+func NewScriptObjectSpecifier() ScriptObjectSpecifier {
+	return scriptObjectSpecifierClass.New()
+}
+
 
 
 
