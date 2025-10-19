@@ -5,3 +5,4 @@ package createml
 //go:generate rm -f *.gen.go
 //go:generate generate-framework-bindings -framework CreateML -output .
 
+

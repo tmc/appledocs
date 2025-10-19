@@ -7,7 +7,7 @@
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to NaturalLanguage without requiring cgo.
 //
-// [Full Topic]: doc://com.apple.naturallanguage/documentation/NaturalLanguage
+// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage
 package naturallanguage
 
 // frameworkPath is the system path to the framework binary.

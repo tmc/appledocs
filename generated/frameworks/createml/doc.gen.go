@@ -7,7 +7,7 @@
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CreateML without requiring cgo.
 //
-// [Full Topic]: doc://com.apple.createml/documentation/CreateML
+// [Full Topic]: https://developer.apple.com/documentation/CreateML
 package createml
 
 // frameworkPath is the system path to the framework binary.
