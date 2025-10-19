@@ -1589,14 +1589,14 @@ func generateTestValue(goType, framework, paramName string) string {
 	}
 
 	// Handle AppKit/CoreGraphics geometry types
-	if goType == "CGRect" || goType == "Rect" {
-		return "CGRect{}"
+	if goType == "CGRect" || goType == "Rect" || goType == "coregraphics.CGRect" {
+		return "coregraphics.CGRect{}"
 	}
-	if goType == "CGSize" || goType == "Size" {
-		return "CGSize{}"
+	if goType == "CGSize" || goType == "Size" || goType == "coregraphics.CGSize" {
+		return "coregraphics.CGSize{}"
 	}
-	if goType == "CGPoint" || goType == "Point" {
-		return "CGPoint{}"
+	if goType == "CGPoint" || goType == "Point" || goType == "coregraphics.CGPoint" {
+		return "coregraphics.CGPoint{}"
 	}
 
 	// Handle framework-specific types
@@ -1986,6 +1986,17 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 	// Check methods for CoreGraphics dependencies
 	if classDependsOnCoreGraphics(class.Methods, framework) {
 		imports.NeedsCoreGraphics = true
+	}
+
+	// Check properties for CoreGraphics dependencies
+	if !imports.NeedsCoreGraphics {
+		for _, prop := range class.Properties {
+			goType := mapObjCTypeToGo(prop.Type, framework)
+			if strings.HasPrefix(goType, "coregraphics.") {
+				imports.NeedsCoreGraphics = true
+				break
+			}
+		}
 	}
 
 	return imports

@@ -28,15 +28,15 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "Foundation"},
 	{ObjCType: "NSRange", GoType: "unsafe.Pointer", Framework: "Foundation"},
 
-	// Geometry types for AppKit - return actual struct values (not pointers)
+	// Geometry types for AppKit - import from CoreGraphics package
 	// These are returned by value from Objective-C methods and properties
-	{ObjCType: "NSRect", GoType: "CGRect", Framework: "AppKit"},
-	{ObjCType: "CGRect", GoType: "CGRect", Framework: "AppKit"},
-	{ObjCType: "NSSize", GoType: "CGSize", Framework: "AppKit"},
-	{ObjCType: "CGSize", GoType: "CGSize", Framework: "AppKit"},
-	{ObjCType: "NSPoint", GoType: "CGPoint", Framework: "AppKit"},
-	{ObjCType: "CGPoint", GoType: "CGPoint", Framework: "AppKit"},
-	{ObjCType: "NSRange", GoType: "CGPoint", Framework: "AppKit"},  // NSRange maps to CGPoint for compatibility
+	{ObjCType: "NSRect", GoType: "coregraphics.CGRect", Framework: "AppKit"},
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "AppKit"},
+	{ObjCType: "NSSize", GoType: "coregraphics.CGSize", Framework: "AppKit"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "AppKit"},
+	{ObjCType: "NSPoint", GoType: "coregraphics.CGPoint", Framework: "AppKit"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "AppKit"},
+	{ObjCType: "NSRange", GoType: "coregraphics.CGPoint", Framework: "AppKit"},  // NSRange maps to CGPoint for compatibility
 
 	// Geometry types for CoreImage - also as unsafe.Pointer (no coregraphics imports)
 	{ObjCType: "CGRect", GoType: "unsafe.Pointer", Framework: "CoreImage"},

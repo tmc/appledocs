@@ -132,7 +132,8 @@ type {{.}} unsafe.Pointer
 {{end}}
 {{end -}}
 
-// Common CoreGraphics struct types
+{{if eq .Framework "CoreGraphics" -}}
+// CoreGraphics struct types
 type CGFloat = float64
 
 type CGPoint struct {
@@ -164,7 +165,12 @@ type Range = CGPoint  // NSRange
 type Size = CGSize    // NSSize
 type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
+{{end -}}
+
+{{if ne .Framework "CoreGraphics" -}}
+// TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+{{end -}}
 
 {{if eq .Framework "Foundation" -}}
 // Foundation-specific types
