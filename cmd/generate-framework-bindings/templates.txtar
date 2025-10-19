@@ -432,6 +432,7 @@ func New{{$structName}}() {{$structName}} {
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
+
 {{- end}}
 {{- end}}
 
@@ -458,6 +459,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
+
 {{- end}}
 {{- end}}
 
@@ -626,6 +628,7 @@ func New{{$structName}}() {{$structName}} {
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
+
 {{- end}}
 {{- end}}
 
@@ -652,6 +655,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
+
 {{- end}}
 {{- end}}
 
@@ -681,6 +685,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
+
 {{- end}}
 {{- end}}
 {{end -}}
