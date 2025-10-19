@@ -315,6 +315,8 @@ type I{{$structName}} interface {
 	{{- $superResolved := resolveType $.Framework $superStructName}}
 	{{- if hasPrefix $superResolved "foundation."}}
 	foundation.I{{trimPrefix $superResolved "foundation."}}
+	{{- else if hasPrefix $superResolved "quartzcore."}}
+	quartzcore.I{{trimPrefix $superResolved "quartzcore."}}
 	{{- else if hasPrefix $superResolved "objectivec."}}
 	objectivec.I{{trimPrefix $superResolved "objectivec."}}
 	{{- else}}
@@ -522,6 +524,7 @@ import (
 	"{{.OutputModule}}/objc"
 {{- $needsObjectiveC := false}}
 {{- $needsFoundation := false}}
+{{- $needsQuartzCore := false}}
 {{- $structName := classToStructName .Class.Name}}
 {{- if and (ne $.Framework "ObjectiveC") .Class.SuperClass}}
 {{- $superStructName := classToStructName .Class.SuperClass}}
@@ -529,6 +532,8 @@ import (
 {{- $isSelfReferential := eq $superStructName $structName}}
 {{- if hasPrefix $superResolved "foundation."}}
 {{- $needsFoundation = true}}
+{{- else if hasPrefix $superResolved "quartzcore."}}
+{{- $needsQuartzCore = true}}
 {{- else if or (eq .Class.SuperClass "NSObject") (eq $superStructName "Object") $isSelfReferential}}
 {{- $needsObjectiveC = true}}
 {{- end}}
@@ -540,6 +545,9 @@ import (
 {{- end}}
 {{- if $needsFoundation}}
 	"{{.OutputModule}}/foundation"
+{{- end}}
+{{- if $needsQuartzCore}}
+	"{{.OutputModule}}/quartzcore"
 {{- end}}
 )
 
@@ -570,6 +578,8 @@ type I{{$structName}} interface {
 	{{- $superResolved := resolveType $.Framework $superStructName}}
 	{{- if hasPrefix $superResolved "foundation."}}
 	foundation.I{{trimPrefix $superResolved "foundation."}}
+	{{- else if hasPrefix $superResolved "quartzcore."}}
+	quartzcore.I{{trimPrefix $superResolved "quartzcore."}}
 	{{- else if hasPrefix $superResolved "objectivec."}}
 	objectivec.I{{trimPrefix $superResolved "objectivec."}}
 	{{- else}}

@@ -1432,7 +1432,7 @@ func resolveType(framework, typeName string) string {
 		return ""
 	}
 
-	// Common Foundation base classes that AppKit classes inherit from
+	// Common Foundation base classes that other frameworks inherit from
 	foundationTypes := map[string]bool{
 		"MutableAttributedString": true,
 		"AttributedString":        true,
@@ -1452,6 +1452,34 @@ func resolveType(framework, typeName string) string {
 		"MutableURLRequest":       true,
 		"Value":                   true,
 		"Number":                  true,
+		"URLSession":              true,
+		"URLSessionTask":          true,
+		"URLSessionDataTask":      true,
+		"URLSessionUploadTask":    true,
+		"URLSessionDownloadTask":  true,
+		"URLSessionStreamTask":    true,
+		"Enumerator":              true, // For OSLog.OSLogEnumerator
+		"Operation":               true,
+		"OperationQueue":          true,
+	}
+
+	// QuartzCore types used by other frameworks
+	quartzCoreTypes := map[string]bool{
+		"Layer":          true, // CALayer
+		"Animation":      true, // CAAnimation
+		"MediaTiming":    true, // CAMediaTiming protocol
+		"Transaction":    true, // CATransaction
+		"TransformLayer": true, // CATransformLayer
+	}
+
+	// If we're in QuartzCore framework, all types are local
+	if framework == "QuartzCore" {
+		return typeName
+	}
+
+	// If this is a known QuartzCore type and we're not in QuartzCore, qualify it
+	if quartzCoreTypes[typeName] {
+		return "quartzcore." + typeName
 	}
 
 	// If we're in Foundation framework, all types are local
