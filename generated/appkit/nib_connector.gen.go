@@ -32,10 +32,9 @@ type INibConnector interface {
 	objectivec.IObject
 }
 
-// A connection between two nibs. [Full Topic]
+// A connection between two nibs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector
-
 type NibConnector struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type NibConnector struct {
 func NibConnectorFrom(ptr unsafe.Pointer) NibConnector {
 	return NibConnector{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NibConnectorClass) Alloc() NibConnector {
 	rv := objc.Send[NibConnector](objc.ID(nc.class), objc.Sel("alloc"))

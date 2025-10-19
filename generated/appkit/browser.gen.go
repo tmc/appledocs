@@ -31,10 +31,11 @@ type IBrowser interface {
 	IControl
 }
 
-// An interface that displays a hierarchically organized list of data items that can be navigated and selected. [Full Topic]
+// An interface that displays a hierarchically organized list of data items that can be navigated and selected.
+//
+// A browser displays information using a set of columns, which are indexed from left to right. Each successive column displays the next level down in the data hierarchy. This class uses the class to implement its user interface. Browsers have the following components: Columns Scroll views Matrices Browser cells To the user, browsers display data in columns and rows within each column. These components are arranged in the following component hierarchy:
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser
-
 type Browser struct {
 	Control
 }
@@ -47,6 +48,7 @@ func BrowserFrom(ptr unsafe.Pointer) Browser {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BrowserClass) Alloc() Browser {
 	rv := objc.Send[Browser](objc.ID(bc.class), objc.Sel("alloc"))

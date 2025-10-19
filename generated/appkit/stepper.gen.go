@@ -31,10 +31,11 @@ type IStepper interface {
 	IControl
 }
 
-// An interface with up and down arrow buttons for incrementing or decrementing a value. [Full Topic]
+// An interface with up and down arrow buttons for incrementing or decrementing a value.
+//
+// A stepper consists of two small arrows that can increment and decrement a value that appears beside it, such as a date or time. The illustration below shows a stepper to the right of a text field, which would show the stepper’s value. The class uses the class to implement its user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper
-
 type Stepper struct {
 	Control
 }
@@ -47,6 +48,7 @@ func StepperFrom(ptr unsafe.Pointer) Stepper {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StepperClass) Alloc() Stepper {
 	rv := objc.Send[Stepper](objc.ID(sc.class), objc.Sel("alloc"))

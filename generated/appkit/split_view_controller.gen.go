@@ -31,10 +31,11 @@ type ISplitViewController interface {
 	IViewController
 }
 
-// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views. [Full Topic]
+// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
+//
+// A split view controller manages a set of child views that it displays next to each other in a side-by-side or top-to-bottom arrangement. A split view controller owns an array of split view items ( ), each of which has a view controller ( ) and corresponding view. The split view controller’s object manages those child views and the dividers between them. By default, a split view arranges its child views vertically from top to bottom. To specify a horizontal (side-by-side) arrangement, implement the property of the object to return . The split view controller serves as the delegate of its object. If you override a split view delegate method, your override must call . To use a split view controller, you must use Auto Layout for the child views and to support animations that collapse and reveal child views. For example, if you design a layout that contains two views, a content area and an optional sidebar, you employ Auto Layout constraints to specify whether the content area shrinks or remains the same size when the sidebar becomes visible. A split view controller employs lazy loading of its views. For example, adding a collapsed split view item as a new child doesn’t load the associated view until it shows. For more information about using in your app, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController
-
 type SplitViewController struct {
 	ViewController
 }
@@ -47,6 +48,7 @@ func SplitViewControllerFrom(ptr unsafe.Pointer) SplitViewController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SplitViewControllerClass) Alloc() SplitViewController {
 	rv := objc.Send[SplitViewController](objc.ID(sc.class), objc.Sel("alloc"))

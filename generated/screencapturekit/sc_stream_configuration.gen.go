@@ -34,6 +34,8 @@ type ISCStreamConfiguration interface {
 
 // An instance that provides the output configuration for a stream.
 //
+// Creating an instance of this class provides a default configuration for a stream. Only configure its properties if you need to customize the output.
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamConfiguration
 type SCStreamConfiguration struct {
 	objectivec.Object

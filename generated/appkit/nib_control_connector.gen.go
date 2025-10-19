@@ -31,10 +31,9 @@ type INibControlConnector interface {
 	INibConnector
 }
 
-// A control connection between two Interface Builder objects. [Full Topic]
+// A control connection between two Interface Builder objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibControlConnector
-
 type NibControlConnector struct {
 	NibConnector
 }
@@ -47,6 +46,7 @@ func NibControlConnectorFrom(ptr unsafe.Pointer) NibControlConnector {
 		NibConnector: NibConnectorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (nc _NibControlConnectorClass) Alloc() NibControlConnector {
 	rv := objc.Send[NibControlConnector](objc.ID(nc.class), objc.Sel("alloc"))

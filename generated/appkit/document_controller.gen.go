@@ -32,10 +32,11 @@ type IDocumentController interface {
 	objectivec.IObject
 }
 
-// An object that manages an app’s documents. [Full Topic]
+// An object that manages an app’s documents.
+//
+// As the first-responder target of New and Open menu commands, creates and opens documents and tracks them throughout a session of the app. When opening documents, a document controller runs and manages the modal Open panel. objects also maintain and manage the mappings of document types, extensions, and subclasses as specified in the property loaded from the information property list ( ). You can use various methods to get a list of the current documents, get the current document (which is the document whose window is currently key), get documents based on a given filename or window, and find out about a document’s extension, type, display name, and document class. In some situations, it’s worthwhile to subclass in non- -based apps to get some of its features. For example, the management of the Open Recent menu is useful in apps that don’t use subclasses of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController
-
 type DocumentController struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type DocumentController struct {
 func DocumentControllerFrom(ptr unsafe.Pointer) DocumentController {
 	return DocumentController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DocumentControllerClass) Alloc() DocumentController {
 	rv := objc.Send[DocumentController](objc.ID(dc.class), objc.Sel("alloc"))

@@ -31,10 +31,11 @@ type ITrackingSeparatorToolbarItem interface {
 	IToolbarItem
 }
 
-// A toolbar separator that aligns with the vertical split view in the same window. [Full Topic]
+// A toolbar separator that aligns with the vertical split view in the same window.
+//
+// Use a to divide an into sections that visually align with the views on either side of the divider of the . This keeps s above the content that’s the for the item’s . The must be in the same window as the toolbar containing this item before showing the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem
-
 type TrackingSeparatorToolbarItem struct {
 	ToolbarItem
 }
@@ -47,6 +48,7 @@ func TrackingSeparatorToolbarItemFrom(ptr unsafe.Pointer) TrackingSeparatorToolb
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TrackingSeparatorToolbarItemClass) Alloc() TrackingSeparatorToolbarItem {
 	rv := objc.Send[TrackingSeparatorToolbarItem](objc.ID(tc.class), objc.Sel("alloc"))

@@ -32,10 +32,11 @@ type ITextTab interface {
 	objectivec.IObject
 }
 
-// A tab in a paragraph. [Full Topic]
+// A tab in a paragraph.
+//
+// A text tab represents a tab in an object, storing an alignment type and location. objects are most frequently used with the TextKit system and with and objects. The text system supports four alignment types: left, center, right, and decimal (based on the decimal separator character of the locale in effect). These alignment types are absolute, not based on the line sweep direction of text. For example, tabbed text is always positioned to the left of a right-aligned tab, whether the line sweep direction is left to right or right to left. A tab’s location, on the other hand, is relative to the back margin. A tab set at 1.5”, for example, is at 1.5” from the right in right to left text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTab
-
 type TextTab struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextTab struct {
 func TextTabFrom(ptr unsafe.Pointer) TextTab {
 	return TextTab{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextTabClass) Alloc() TextTab {
 	rv := objc.Send[TextTab](objc.ID(tc.class), objc.Sel("alloc"))

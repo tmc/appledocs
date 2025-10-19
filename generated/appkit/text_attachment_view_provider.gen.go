@@ -32,10 +32,11 @@ type ITextAttachmentViewProvider interface {
 	objectivec.IObject
 }
 
-// A container object that associates a text attachment at a particular document location with a view object. [Full Topic]
+// A container object that associates a text attachment at a particular document location with a view object.
+//
+// Use when you need to represent document locations in terms of an  or an  or you want to support view-based text attachments. The view provider controls the view placement and layout without requiring view classes to be aware of the text attachment coordination using a in macOS 12 or iOS 15 and later.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider
-
 type TextAttachmentViewProvider struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextAttachmentViewProvider struct {
 func TextAttachmentViewProviderFrom(ptr unsafe.Pointer) TextAttachmentViewProvider {
 	return TextAttachmentViewProvider{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextAttachmentViewProviderClass) Alloc() TextAttachmentViewProvider {
 	rv := objc.Send[TextAttachmentViewProvider](objc.ID(tc.class), objc.Sel("alloc"))

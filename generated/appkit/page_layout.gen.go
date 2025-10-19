@@ -32,10 +32,11 @@ type IPageLayout interface {
 	objectivec.IObject
 }
 
-// A panel that queries the user for information such as paper type and orientation. [Full Topic]
+// A panel that queries the user for information such as paper type and orientation.
+//
+// A page layout panel is typically displayed in response to the user selecting the Page Setup menu item. You obtain an instance with the class method. The pane can then be run as a sheet using or modally using or . For design guidance, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout
-
 type PageLayout struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type PageLayout struct {
 func PageLayoutFrom(ptr unsafe.Pointer) PageLayout {
 	return PageLayout{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PageLayoutClass) Alloc() PageLayout {
 	rv := objc.Send[PageLayout](objc.ID(pc.class), objc.Sel("alloc"))

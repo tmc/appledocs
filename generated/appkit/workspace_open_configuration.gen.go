@@ -32,10 +32,11 @@ type IWorkspaceOpenConfiguration interface {
 	objectivec.IObject
 }
 
-// The configuration options for opening URLs or launching apps. [Full Topic]
+// The configuration options for opening URLs or launching apps.
+//
+// Create an object before launching an app or opening a URL using the shared object. Use the properties of this object to customize the behavior of the launched app or the handling of the URLs. For example, you might tell the app to hide itself immediately after launch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration
-
 type WorkspaceOpenConfiguration struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type WorkspaceOpenConfiguration struct {
 func WorkspaceOpenConfigurationFrom(ptr unsafe.Pointer) WorkspaceOpenConfiguration {
 	return WorkspaceOpenConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WorkspaceOpenConfigurationClass) Alloc() WorkspaceOpenConfiguration {
 	rv := objc.Send[WorkspaceOpenConfiguration](objc.ID(wc.class), objc.Sel("alloc"))

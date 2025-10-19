@@ -31,10 +31,11 @@ type IImageView interface {
 	IControl
 }
 
-// A display of image data in a frame. [Full Topic]
+// A display of image data in a frame.
+//
+// Image views can be static or editable. A static image view only displays the image that you specify. An editable image view object lets the user change the displayed image. You can also configure an image view to allow copying, pasting, deleting, and dragging of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView
-
 type ImageView struct {
 	Control
 }
@@ -47,6 +48,7 @@ func ImageViewFrom(ptr unsafe.Pointer) ImageView {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageViewClass) Alloc() ImageView {
 	rv := objc.Send[ImageView](objc.ID(ic.class), objc.Sel("alloc"))

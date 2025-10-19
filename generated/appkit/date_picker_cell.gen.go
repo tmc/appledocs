@@ -31,10 +31,9 @@ type IDatePickerCell interface {
 	IActionCell
 }
 
-// An object that controls the behavior of a date picker, or of a single date picker cell in a matrix. [Full Topic]
+// An object that controls the behavior of a date picker, or of a single date picker cell in a matrix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell
-
 type DatePickerCell struct {
 	ActionCell
 }
@@ -47,6 +46,7 @@ func DatePickerCellFrom(ptr unsafe.Pointer) DatePickerCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DatePickerCellClass) Alloc() DatePickerCell {
 	rv := objc.Send[DatePickerCell](objc.ID(dc.class), objc.Sel("alloc"))

@@ -32,10 +32,11 @@ type IStoryboard interface {
 	objectivec.IObject
 }
 
-// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file. [Full Topic]
+// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file.
+//
+// You can use storyboard files to define the view and window controllers for all or part of an app’s user interface. Typically, AppKit creates these objects automatically in response to actions defined within a storyboard file itself, such as the clicking of a button or the choosing of a menu item. However, you can use a storyboard object to directly instantiate the initial view controller from a storyboard file or to instantiate other view or window controllers that you want to present programmatically. In the context of a storyboard file, each contained controller is called a . A transition from one scene to another in a storyboard is called a . This same term, and the same Cocoa APIs, express a containment relationship between two scenes. In macOS, containment (rather than transition) is the more common notion for storyboards. For descriptions of the related APIs, refer to and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard
-
 type Storyboard struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Storyboard struct {
 func StoryboardFrom(ptr unsafe.Pointer) Storyboard {
 	return Storyboard{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StoryboardClass) Alloc() Storyboard {
 	rv := objc.Send[Storyboard](objc.ID(sc.class), objc.Sel("alloc"))

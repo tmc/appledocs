@@ -32,10 +32,11 @@ type ICollectionViewUpdateItem interface {
 	objectivec.IObject
 }
 
-// A description of a single change to make to an item in a collection view. [Full Topic]
+// A description of a single change to make to an item in a collection view.
+//
+// You do not create instances of this class directly. When updating its content, the collection view object creates them and passes them to the layout object’s method, which can use them to prepare for the upcoming changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewUpdateItem
-
 type CollectionViewUpdateItem struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type CollectionViewUpdateItem struct {
 func CollectionViewUpdateItemFrom(ptr unsafe.Pointer) CollectionViewUpdateItem {
 	return CollectionViewUpdateItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewUpdateItemClass) Alloc() CollectionViewUpdateItem {
 	rv := objc.Send[CollectionViewUpdateItem](objc.ID(cc.class), objc.Sel("alloc"))

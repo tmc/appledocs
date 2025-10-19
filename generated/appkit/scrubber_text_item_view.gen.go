@@ -31,10 +31,11 @@ type IScrubberTextItemView interface {
 	IScrubberItemView
 }
 
-// A concrete view subclass for displaying text for an item in a scrubber. [Full Topic]
+// A concrete view subclass for displaying text for an item in a scrubber.
+//
+// Provide the text you want to display in the scrubber item to the property. If you want finer control over the appearance of the text, you can access the underlying text field using the property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView
-
 type ScrubberTextItemView struct {
 	ScrubberItemView
 }
@@ -47,6 +48,7 @@ func ScrubberTextItemViewFrom(ptr unsafe.Pointer) ScrubberTextItemView {
 		ScrubberItemView: ScrubberItemViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberTextItemViewClass) Alloc() ScrubberTextItemView {
 	rv := objc.Send[ScrubberTextItemView](objc.ID(sc.class), objc.Sel("alloc"))
@@ -79,5 +81,12 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 }
 
 
+// The text field that the scrubber item uses to display its text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
+func (s_ ScrubberTextItemView) TextField() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textField"))
+	return rv
+}
 
 

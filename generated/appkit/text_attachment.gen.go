@@ -32,10 +32,11 @@ type ITextAttachment interface {
 	objectivec.IObject
 }
 
-// The values for the attachment characteristics of attributed strings and related objects. [Full Topic]
+// The values for the attachment characteristics of attributed strings and related objects.
+//
+// The class uses text attachment objects as the values for attachment attributes (stored in the attributed string under the key). A text attachment object contains either an object or an object, which in turn holds the contents of the attached file. The properties of this class configure the appearance of the text attachment in your interface. In macOS, the text attachment also uses a cell object that conforms to the protocol to draw the image that represents the text and handles mouse events. For more information about text attachments, see the and . In macOS 12 and iOS 15 and later, and provide additional capabilities to represent document locations in terms of an  or an  , and provide support for view-based text attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment
-
 type TextAttachment struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextAttachment struct {
 func TextAttachmentFrom(ptr unsafe.Pointer) TextAttachment {
 	return TextAttachment{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextAttachmentClass) Alloc() TextAttachment {
 	rv := objc.Send[TextAttachment](objc.ID(tc.class), objc.Sel("alloc"))

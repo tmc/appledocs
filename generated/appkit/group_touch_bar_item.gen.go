@@ -31,10 +31,9 @@ type IGroupTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a bar to contain other items. [Full Topic]
+// A bar item that provides a bar to contain other items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem
-
 type GroupTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func GroupTouchBarItemFrom(ptr unsafe.Pointer) GroupTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GroupTouchBarItemClass) Alloc() GroupTouchBarItem {
 	rv := objc.Send[GroupTouchBarItem](objc.ID(gc.class), objc.Sel("alloc"))
@@ -79,5 +79,21 @@ func NewGroupTouchBarItem() GroupTouchBarItem {
 }
 
 
+// A bar that holds this group’s items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/groupTouchBar
+func (g_ GroupTouchBarItem) GroupTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("groupTouchBar"))
+	return rv
+}
+
+// SetGroupTouchBar sets the value of the groupTouchBar property.
+// A bar that holds this group’s items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/groupTouchBar
+func (g_ GroupTouchBarItem) SetGroupTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGroupTouchBar:"), value)
+}
 
 

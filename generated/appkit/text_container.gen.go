@@ -32,10 +32,11 @@ type ITextContainer interface {
 	objectivec.IObject
 }
 
-// A region where text layout occurs. [Full Topic]
+// A region where text layout occurs.
+//
+// An uses to determine where to break lines, lay out portions of text, and so on. An object typically defines rectangular regions, but you can define exclusion paths inside the text container to create regions where text doesn’t flow. You can also subclass to create text containers with nonrectangular regions, such as circular regions, regions with holes in them, or regions that flow alongside graphics. You can access instances of the , , and classes from threads other than the main thread as long as the app guarantees access from only one thread at a time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer
-
 type TextContainer struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextContainer struct {
 func TextContainerFrom(ptr unsafe.Pointer) TextContainer {
 	return TextContainer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextContainerClass) Alloc() TextContainer {
 	rv := objc.Send[TextContainer](objc.ID(tc.class), objc.Sel("alloc"))

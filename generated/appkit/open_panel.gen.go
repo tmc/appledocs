@@ -31,10 +31,11 @@ type IOpenPanel interface {
 	ISavePanel
 }
 
-// A panel that prompts the user to select a file to open. [Full Topic]
+// A panel that prompts the user to select a file to open.
+//
+// Apps use the Open panel as a convenient way to query the user for the name of a file to open. In macOS 10.15 and later, the system always draws Open panels in a separate process, regardless of whether the app is sandboxed. When the user chooses a file to open, macOS adds that file to the app’s sandbox. Prior to macOS 10.15, the system drew the panels in a separate process only for sandboxed apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel
-
 type OpenPanel struct {
 	SavePanel
 }
@@ -47,6 +48,7 @@ func OpenPanelFrom(ptr unsafe.Pointer) OpenPanel {
 		SavePanel: SavePanelFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenPanelClass) Alloc() OpenPanel {
 	rv := objc.Send[OpenPanel](objc.ID(oc.class), objc.Sel("alloc"))
@@ -79,5 +81,21 @@ func NewOpenPanel() OpenPanel {
 }
 
 
+// A Boolean that indicates whether the user can choose files in the panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseFiles
+func (o_ OpenPanel) CanChooseFiles() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseFiles"))
+	return rv
+}
+
+// SetCanChooseFiles sets the value of the canChooseFiles property.
+// A Boolean that indicates whether the user can choose files in the panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseFiles
+func (o_ OpenPanel) SetCanChooseFiles(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseFiles:"), value)
+}
 
 

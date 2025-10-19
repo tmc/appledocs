@@ -32,10 +32,11 @@ type IColorList interface {
 	objectivec.IObject
 }
 
-// An ordered list of color objects, identified by keys. [Full Topic]
+// An ordered list of color objects, identified by keys.
+//
+// A color list manages a list of objects, each of which has an associated name. The list mode color picker uses instances of to represent any lists of colors that come with the system, as well as any lists the user creates. An app can use a color list to manage document-specific color lists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList
-
 type ColorList struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ColorList struct {
 func ColorListFrom(ptr unsafe.Pointer) ColorList {
 	return ColorList{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorListClass) Alloc() ColorList {
 	rv := objc.Send[ColorList](objc.ID(cc.class), objc.Sel("alloc"))

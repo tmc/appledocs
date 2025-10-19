@@ -32,10 +32,11 @@ type IUserInterfaceCompressionOptions interface {
 	objectivec.IObject
 }
 
-// An object that specifies how user interface elements resize themselves when space is constrained. [Full Topic]
+// An object that specifies how user interface elements resize themselves when space is constrained.
+//
+// An instance of contains zero or more options. Because a compression options object behaves like a set, you can use common operations like intersection, union and subtraction to interact with instances and their members. You can access system-defined options through the class methods detailed in Creating standard options, or you can create your own custom options with the initializer. To compare two different compression options objects, use the methods described in the Comparing compression options section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions
-
 type UserInterfaceCompressionOptions struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type UserInterfaceCompressionOptions struct {
 func UserInterfaceCompressionOptionsFrom(ptr unsafe.Pointer) UserInterfaceCompressionOptions {
 	return UserInterfaceCompressionOptions{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserInterfaceCompressionOptionsClass) Alloc() UserInterfaceCompressionOptions {
 	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("alloc"))

@@ -32,10 +32,11 @@ type IOpenGLPixelFormat interface {
 	objectivec.IObject
 }
 
-// An object that specifies the types of buffers and other attributes of the OpenGL context. [Full Topic]
+// An object that specifies the types of buffers and other attributes of the OpenGL context.
+//
+// To render with OpenGL into an , you must specify the context’s pixel format. Every object wraps a low-level, platform-specific Core OpenGL (CGL) pixel format object. Your application can retrieve the CGL pixel format object by calling the method. For more information on the underling CGL pixel format object, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat
-
 type OpenGLPixelFormat struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type OpenGLPixelFormat struct {
 func OpenGLPixelFormatFrom(ptr unsafe.Pointer) OpenGLPixelFormat {
 	return OpenGLPixelFormat{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLPixelFormatClass) Alloc() OpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("alloc"))

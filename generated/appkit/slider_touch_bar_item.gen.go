@@ -31,10 +31,9 @@ type ISliderTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a slider control for choosing a value in a range. [Full Topic]
+// A bar item that provides a slider control for choosing a value in a range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem
-
 type SliderTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func SliderTouchBarItemFrom(ptr unsafe.Pointer) SliderTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SliderTouchBarItemClass) Alloc() SliderTouchBarItem {
 	rv := objc.Send[SliderTouchBarItem](objc.ID(sc.class), objc.Sel("alloc"))

@@ -31,10 +31,11 @@ type IPanGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A continuous gesture recognizer for panning gestures. [Full Topic]
+// A continuous gesture recognizer for panning gestures.
+//
+// The gesture is recognized when the user clicks all of specified buttons, drags the mouse, and releases one or more of the buttons. Use the pan gesture recognizer object to retrieve the distance traveled during the pan and the location of the mouse as it pans. Upon creation, the gesture recognizer is configured to recognize pan gestures involving only the primary button. It also delays sending primary button events to the view by setting the property to . To change the set of buttons to track, modify the property. In this gesture recognizer, the method always reports the current mouse point, which changes as the user drags the mouse.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer
-
 type PanGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -47,6 +48,7 @@ func PanGestureRecognizerFrom(ptr unsafe.Pointer) PanGestureRecognizer {
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PanGestureRecognizerClass) Alloc() PanGestureRecognizer {
 	rv := objc.Send[PanGestureRecognizer](objc.ID(pc.class), objc.Sel("alloc"))

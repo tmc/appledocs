@@ -31,10 +31,11 @@ type IScroller interface {
 	IControl
 }
 
-// An object that controls scrolling of a document view within a scroll view or other type of container view. [Full Topic]
+// An object that controls scrolling of a document view within a scroll view or other type of container view.
+//
+// A scroller displays a slot containing a knob that the user can drag directly to the desired location. The knob indicates both the position within the document view and—by varying in size within the slot—the amount visible relative to the size of the document view. Typically, you don’t need to program with scrollers; instead, you configure them with an object in a . Don’t use an scroller when a slider would be more appropriate. An object represents a range of values for something in the application and lets the user choose a setting. A scroller represents the relative position of the visible portion of a view and lets the user choose which portion to view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller
-
 type Scroller struct {
 	Control
 }
@@ -47,6 +48,7 @@ func ScrollerFrom(ptr unsafe.Pointer) Scroller {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrollerClass) Alloc() Scroller {
 	rv := objc.Send[Scroller](objc.ID(sc.class), objc.Sel("alloc"))

@@ -31,10 +31,11 @@ type IScrubberImageItemView interface {
 	IScrubberItemView
 }
 
-// A concrete view subclass for displaying images in a scrubber items. [Full Topic]
+// A concrete view subclass for displaying images in a scrubber items.
+//
+// Provide the image you want to display in the scrubber item to the property. If you want finer control over the appearance of the image, you can access the underlying image view using the property. The image is scaled proportionally to fit the view’s frame. Use the property to determine how the scaled image is cropped within that frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView
-
 type ScrubberImageItemView struct {
 	ScrubberItemView
 }
@@ -47,6 +48,7 @@ func ScrubberImageItemViewFrom(ptr unsafe.Pointer) ScrubberImageItemView {
 		ScrubberItemView: ScrubberItemViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberImageItemViewClass) Alloc() ScrubberImageItemView {
 	rv := objc.Send[ScrubberImageItemView](objc.ID(sc.class), objc.Sel("alloc"))
@@ -79,5 +81,28 @@ func NewScrubberImageItemView() ScrubberImageItemView {
 }
 
 
+// The alignment of the image within the scrubber item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
+func (s_ ScrubberImageItemView) ImageAlignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageAlignment"))
+	return rv
+}
+
+// SetImageAlignment sets the value of the imageAlignment property.
+// The alignment of the image within the scrubber item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
+func (s_ ScrubberImageItemView) SetImageAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImageAlignment:"), value)
+}
+// The image view that the scrubber item uses to display its image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageView
+func (s_ ScrubberImageItemView) ImageView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageView"))
+	return rv
+}
 
 

@@ -32,10 +32,11 @@ type IGradient interface {
 	objectivec.IObject
 }
 
-// An object that can draw gradient fill colors [Full Topic]
+// An object that can draw gradient fill colors
+//
+// This class provides convenience methods for drawing radial or linear (axial) gradients for rectangles and objects. It also supports primitive methods that let you customize the shape of the gradient fill. A gradient consists of two or more color changes over the range of the gradient shape. When creating a gradient object, you specify the colors and their locations relative to the start and end of the gradient. This combination of color and location is known as a . During drawing, the object uses the color stop information to compute color changes for you and passes that information to the Quartz shading functions. Because the class uses Quartz shadings, drawing is handled by computing the colors at a given point mathematically. This technique results in smooth gradients regardless of the resolution of the target device. For more information about gradients and their appearance, see in .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient
-
 type Gradient struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Gradient struct {
 func GradientFrom(ptr unsafe.Pointer) Gradient {
 	return Gradient{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GradientClass) Alloc() Gradient {
 	rv := objc.Send[Gradient](objc.ID(gc.class), objc.Sel("alloc"))

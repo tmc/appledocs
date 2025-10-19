@@ -32,10 +32,11 @@ type ITextBlock interface {
 	objectivec.IObject
 }
 
-// A block of text laid out in a subregion of the text container. [Full Topic]
+// A block of text laid out in a subregion of the text container.
+//
+// A text block appears as an attribute of a paragraph, and as part of the paragraph style. The most important subclass of is , which represents a block of text that appears as a cell in a table. The table itself is a object. All objects reference this table, which controls their sizing and positioning.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock
-
 type TextBlock struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextBlock struct {
 func TextBlockFrom(ptr unsafe.Pointer) TextBlock {
 	return TextBlock{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextBlockClass) Alloc() TextBlock {
 	rv := objc.Send[TextBlock](objc.ID(tc.class), objc.Sel("alloc"))

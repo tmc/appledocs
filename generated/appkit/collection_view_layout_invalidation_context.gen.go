@@ -32,10 +32,11 @@ type ICollectionViewLayoutInvalidationContext interface {
 	objectivec.IObject
 }
 
-// An object that identifies the portions of your layout that need to be updated. [Full Topic]
+// An object that identifies the portions of your layout that need to be updated.
+//
+// Invalidation contexts are a way to improve the efficiency of layout operations and must be supported explicitly by the layout object. Instead of invalidating the entire layout, you can create an invalidation layout object that specifies only the portions of the layout that changed. You then pass that invalidation context to the method of the layout object. Typically, you ask the layout object to create an invalidation context for you. The class defines methods for creating a supported invalidation context. If you define a custom layout, you can define additional methods for creating invalidation contexts with custom information. Layout objects may also create invalidation contexts in response to specific changes. For example, layout objects automatically create invalidation contexts when you change the collection view’s data source, when you insert or delete items, and when you reload the collection view’s data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext
-
 type CollectionViewLayoutInvalidationContext struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type CollectionViewLayoutInvalidationContext struct {
 func CollectionViewLayoutInvalidationContextFrom(ptr unsafe.Pointer) CollectionViewLayoutInvalidationContext {
 	return CollectionViewLayoutInvalidationContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewLayoutInvalidationContextClass) Alloc() CollectionViewLayoutInvalidationContext {
 	rv := objc.Send[CollectionViewLayoutInvalidationContext](objc.ID(cc.class), objc.Sel("alloc"))

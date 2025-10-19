@@ -36,6 +36,8 @@ type ISCStream interface {
 
 // An instance that represents a stream of shareable content.
 //
+// Use a stream to capture video of screen content like apps and windows. Create a content stream by passing it an instance of and an object. The stream uses the filter to determine which screen content to capture, and uses the configuration data to configure the output.
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream
 type SCStream struct {
 	objectivec.Object

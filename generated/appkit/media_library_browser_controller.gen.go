@@ -32,10 +32,11 @@ type IMediaLibraryBrowserController interface {
 	objectivec.IObject
 }
 
-// An object that configures and displays a Media Library Browser panel. [Full Topic]
+// An object that configures and displays a Media Library Browser panel.
+//
+// From this panel a user can drag media into views in their app. The class provides a standard interface to the MediaLibrary framework content. For more information see , , , and in .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController
-
 type MediaLibraryBrowserController struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type MediaLibraryBrowserController struct {
 func MediaLibraryBrowserControllerFrom(ptr unsafe.Pointer) MediaLibraryBrowserController {
 	return MediaLibraryBrowserController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MediaLibraryBrowserControllerClass) Alloc() MediaLibraryBrowserController {
 	rv := objc.Send[MediaLibraryBrowserController](objc.ID(mc.class), objc.Sel("alloc"))

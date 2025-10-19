@@ -31,10 +31,11 @@ type IClickGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A discrete gesture recognizer that tracks a specified number of mouse clicks. [Full Topic]
+// A discrete gesture recognizer that tracks a specified number of mouse clicks.
+//
+// When configuring this gesture recognizer, you can specify which mouse buttons must be clicked and how many clicks must occur before the action method is called. The user must click the specified mouse button the required number of times without dragging the mouse for the gesture to be recognized. The gesture recognizer automatically sets the values of the , , and properties to for each button in the property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer
-
 type ClickGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -47,6 +48,7 @@ func ClickGestureRecognizerFrom(ptr unsafe.Pointer) ClickGestureRecognizer {
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ClickGestureRecognizerClass) Alloc() ClickGestureRecognizer {
 	rv := objc.Send[ClickGestureRecognizer](objc.ID(cc.class), objc.Sel("alloc"))

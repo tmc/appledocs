@@ -31,10 +31,11 @@ type ILevelIndicator interface {
 	IControl
 }
 
-// A visual representation of a level or quantity, using discrete values. [Full Topic]
+// A visual representation of a level or quantity, using discrete values.
+//
+// A level indicator is similar to an object, but provides a more customized visual feedback to the user. Unlike sliders, level indicators do not have a “knob” indicating the current setting, and they do not allow the user to adjust the current setting. You set the value of the level indicator programmatically. The supported indicator styles include: A capacity style level indicator. The continuous mode for this style is often used to indicate conditions such as how much data is on hard disk. The discrete mode is similar to audio level indicators in audio playback applications. You can specify both a warning value and a critical value that provides additional visual feedback to the user. A ranking style level indicator. This is similar to the star ranking displays provided in iTunes and iPhoto. You can also specify your own ranking image. A relevancy style level indicator. This style is used to display the relevancy of a search result, for example in Mail. uses an to implement much of the control’s functionality. provides cover methods for most of the methods, which call the corresponding cell method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator
-
 type LevelIndicator struct {
 	Control
 }
@@ -47,6 +48,7 @@ func LevelIndicatorFrom(ptr unsafe.Pointer) LevelIndicator {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LevelIndicatorClass) Alloc() LevelIndicator {
 	rv := objc.Send[LevelIndicator](objc.ID(lc.class), objc.Sel("alloc"))

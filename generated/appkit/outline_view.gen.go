@@ -31,10 +31,11 @@ type IOutlineView interface {
 	ITableView
 }
 
-// A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed. [Full Topic]
+// A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
+//
+// Like a table view, an outline view does not store its own data, instead it retrieves data values as needed from a data source to which it has a weak reference (see ). See , which declares the methods that an object uses to access the contents of its data source object. An outline view has the following features: A user can expand and collapse rows, edit values, and resize and rearrange columns. Each item in the outline view must be unique. In order for the collapsed state to remain consistent between reloads the item’s pointer must remain the same and the item must maintain sameness. The view gets data from a data source (see ). The view retrieves only the data that needs to be displayed. For more information about using NSOutlineView in your app, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView
-
 type OutlineView struct {
 	TableView
 }
@@ -47,6 +48,7 @@ func OutlineViewFrom(ptr unsafe.Pointer) OutlineView {
 		TableView: TableViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OutlineViewClass) Alloc() OutlineView {
 	rv := objc.Send[OutlineView](objc.ID(oc.class), objc.Sel("alloc"))

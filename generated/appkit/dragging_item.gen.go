@@ -32,10 +32,11 @@ type IDraggingItem interface {
 	objectivec.IObject
 }
 
-// A single dragged item within a dragging session. [Full Topic]
+// A single dragged item within a dragging session.
+//
+// objects have extremely limited lifetimes. Don’t retain these items because changing outside of the prescribed lifetimes has no impact on the drag. When you call the method , the system immediately consumes the dragging items that pass to the method, and doesn’t retain them. Any further changes to the dragging item associated with the returned must occur with the enumeration method . When enumerating, the system creates instances right before giving them to the enumeration block. After returning from the block, the dragging item is no longer valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem
-
 type DraggingItem struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type DraggingItem struct {
 func DraggingItemFrom(ptr unsafe.Pointer) DraggingItem {
 	return DraggingItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DraggingItemClass) Alloc() DraggingItem {
 	rv := objc.Send[DraggingItem](objc.ID(dc.class), objc.Sel("alloc"))

@@ -34,7 +34,6 @@ type ITextCheckingController interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextCheckingController
-
 type TextCheckingController struct {
 	objectivec.Object
 }
@@ -43,6 +42,7 @@ type TextCheckingController struct {
 func TextCheckingControllerFrom(ptr unsafe.Pointer) TextCheckingController {
 	return TextCheckingController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextCheckingControllerClass) Alloc() TextCheckingController {
 	rv := objc.Send[TextCheckingController](objc.ID(tc.class), objc.Sel("alloc"))

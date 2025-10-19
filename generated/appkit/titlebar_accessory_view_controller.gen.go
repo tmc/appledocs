@@ -31,10 +31,11 @@ type ITitlebarAccessoryViewController interface {
 	IViewController
 }
 
-// An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window. [Full Topic]
+// An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.
+//
+// Because a title bar accessory view controller is contained in a visual effect view (that is, ), it automatically handles the blur behind the accessory view and the size and location changes for the content of the view when a window goes in and out of full screen mode. If you’re currently using fullscreen accessory APIs, such as , you should use APIs instead. Typically, you create an object, give it your custom view, set the property to ensure that it displays correctly in relation to the title bar, and add the view controller to your window. For more information about methods you can use to add and remove a title bar accessory view controller, see Managing Title Bars. Don’t override the property in your subclass. Instead, you can override , and set the property in that method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController
-
 type TitlebarAccessoryViewController struct {
 	ViewController
 }
@@ -47,6 +48,7 @@ func TitlebarAccessoryViewControllerFrom(ptr unsafe.Pointer) TitlebarAccessoryVi
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TitlebarAccessoryViewControllerClass) Alloc() TitlebarAccessoryViewController {
 	rv := objc.Send[TitlebarAccessoryViewController](objc.ID(tc.class), objc.Sel("alloc"))

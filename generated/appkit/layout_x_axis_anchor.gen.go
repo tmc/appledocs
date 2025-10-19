@@ -31,10 +31,11 @@ type ILayoutXAxisAnchor interface {
 	ILayoutAnchor
 }
 
-// A factory class for creating horizontal layout constraint objects using a fluent API. [Full Topic]
+// A factory class for creating horizontal layout constraint objects using a fluent API.
+//
+// adds type information to the methods inherited from . Specifically, the generic methods declared by must now take a matching object. For more information on using layout anchors, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor
-
 type LayoutXAxisAnchor struct {
 	LayoutAnchor
 }
@@ -47,6 +48,7 @@ func LayoutXAxisAnchorFrom(ptr unsafe.Pointer) LayoutXAxisAnchor {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutXAxisAnchorClass) Alloc() LayoutXAxisAnchor {
 	rv := objc.Send[LayoutXAxisAnchor](objc.ID(lc.class), objc.Sel("alloc"))

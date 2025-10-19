@@ -34,10 +34,11 @@ type IDocument interface {
 	ValidateUserInterfaceItem(item unsafe.Pointer) bool
 }
 
-// An abstract class that defines the interface for macOS documents. [Full Topic]
+// An abstract class that defines the interface for macOS documents.
+//
+// A document is an object that can internally represent data displayed in a window and that can read data from and write data to a file or file package. Documents create and manage one or more window controllers and are in turn managed by a document controller. Documents respond to first-responder action messages to save, revert, and print their data. Conceptually, a document is a container for a body of information identified by a name under which it is stored in a disk file. In this sense, however, the document is not the same as the file but is an object in memory that owns and manages the document data. In the context of AppKit, a document is an instance of a custom subclass that knows how to represent internally, in one or more formats, persistent data that is displayed in windows. A document can read that data from a file and write it to a file. It is also the first-responder target for many menu commands related to documents, such as Save, Revert, and Print. A document manages its window’s edited status and is set up to perform undo and redo operations. When a window is closing, the document is asked before the window delegate to approve the closing. is one of the triad of AppKit classes that establish an architectural basis for document-based apps (the others being and ). For more information about using in a document-based app, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument
-
 type Document struct {
 	objectivec.Object
 }
@@ -48,6 +49,7 @@ type Document struct {
 func DocumentFrom(ptr unsafe.Pointer) Document {
 	return Document{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DocumentClass) Alloc() Document {
 	rv := objc.Send[Document](objc.ID(dc.class), objc.Sel("alloc"))
@@ -80,28 +82,28 @@ func NewDocument() Document {
 }
 
 
-// Returns the classes that support secure coding. [Full Topic]
-
+// Returns the classes that support secure coding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)
 func (dc _DocumentClass) AllowedClassesForRestorableStateKeyPath(keyPath string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
 	return rv
 }
-// Saves the interface-related state of the document. [Full Topic]
 
+// Saves the interface-related state of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/encodeRestorableState(with:)
 func (d_ Document) EncodeRestorableStateWithCoder(coder unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("encodeRestorableStateWithCoder:"), coder)
 }
-// Validates the specified user interface item that the receiver manages. [Full Topic]
 
+// Validates the specified user interface item that the receiver manages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/validateUserInterfaceItem(_:)
 func (d_ Document) ValidateUserInterfaceItem(item unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("validateUserInterfaceItem:"), item)
 	return rv
 }
+
 
 

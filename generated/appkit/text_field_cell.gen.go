@@ -31,10 +31,11 @@ type ITextFieldCell interface {
 	IActionCell
 }
 
-// An object that enhances the text display capabilities of a cell. [Full Topic]
+// An object that enhances the text display capabilities of a cell.
+//
+// The class adds to the text display capabilities of the class by allowing you to set the color of both the text and its background. You can also specify whether the cell draws its background at all. All of the methods declared by this class are also declared by the class, which uses objects to draw and edit text. The cover methods call the corresponding methods. Placeholder strings, set using the or property, appear in the text field cell if the actual string is or an empty string. They’re drawn in gray on the cell and aren’t archived in the “pre-10.2” nib format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell
-
 type TextFieldCell struct {
 	ActionCell
 }
@@ -47,6 +48,7 @@ func TextFieldCellFrom(ptr unsafe.Pointer) TextFieldCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextFieldCellClass) Alloc() TextFieldCell {
 	rv := objc.Send[TextFieldCell](objc.ID(tc.class), objc.Sel("alloc"))

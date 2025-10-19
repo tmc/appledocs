@@ -32,10 +32,11 @@ type IAppearance interface {
 	objectivec.IObject
 }
 
-// An object that manages standard appearance attributes for UI elements in an app. [Full Topic]
+// An object that manages standard appearance attributes for UI elements in an app.
+//
+// An object manages how AppKit renders your app’s UI elements. Specifically, appearance objects determine which colors and images AppKit uses when drawing windows, views, and controls. Although you can use an appearance object to determine how to draw custom views and controls, a better approach is to choose colors and images that adapt automatically to the current appearance. For example, define a color asset whose actual color value changes for light and dark appearances. You can assign specific appearances to your views in Interface Builder. The user chooses the default appearance for the system, but you can override that appearance for all or part of your app. Apps inherit the default system appearance, windows inherit their app’s appearance, and views inherit the appearance of their nearest ancestor (either a superview or window). To force a window or view to adopt an appearance, assign a specific appearance object to its property. When AppKit draws a control, it automatically sets the current appearance on the current thread to the control’s appearance. The current appearance influences the drawing path and return values you get when you access system fonts and colors. The current appearance also affects the appearance of text and images, such as the text and template images in a toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance
-
 type Appearance struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Appearance struct {
 func AppearanceFrom(ptr unsafe.Pointer) Appearance {
 	return Appearance{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AppearanceClass) Alloc() Appearance {
 	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("alloc"))

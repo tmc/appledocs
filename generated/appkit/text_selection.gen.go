@@ -32,10 +32,9 @@ type ITextSelection interface {
 	objectivec.IObject
 }
 
-// A class that represents a single logical selection context that corresponds to an insertion point. [Full Topic]
+// A class that represents a single logical selection context that corresponds to an insertion point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection
-
 type TextSelection struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextSelection struct {
 func TextSelectionFrom(ptr unsafe.Pointer) TextSelection {
 	return TextSelection{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextSelectionClass) Alloc() TextSelection {
 	rv := objc.Send[TextSelection](objc.ID(tc.class), objc.Sel("alloc"))

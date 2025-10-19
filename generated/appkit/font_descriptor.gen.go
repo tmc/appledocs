@@ -32,10 +32,11 @@ type IFontDescriptor interface {
 	objectivec.IObject
 }
 
-// A dictionary of attributes that describe a font. [Full Topic]
+// A dictionary of attributes that describe a font.
+//
+// A font descriptor can be used to create or modify an object. The system provides a font matching capability, so that you can partially describe a font by creating a font descriptor with, for example, just a family name. You can then find all the available fonts on the system with a matching family name using . There are several ways to create a new object. You can use and , , , or . to create a font descriptor based on either your custom attributes dictionary or on a specific font’s name and size. Alternatively you can use one of the instance methods (such as ) to create a modified version of an existing descriptor. The latter methods are useful if you have an existing descriptor and simply want to change one aspect. All attributes in the attributes dictionary are optional.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor
-
 type FontDescriptor struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type FontDescriptor struct {
 func FontDescriptorFrom(ptr unsafe.Pointer) FontDescriptor {
 	return FontDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FontDescriptorClass) Alloc() FontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("alloc"))

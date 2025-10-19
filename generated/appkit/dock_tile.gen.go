@@ -32,10 +32,11 @@ type IDockTile interface {
 	objectivec.IObject
 }
 
-// The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock. [Full Topic]
+// The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock.
+//
+// You do not create Dock tile objects explicitly in your app. Instead, you retrieve the Dock tile for an existing window or for the app by calling that object’s method. Also, you do not subclass the class; instead, you use the methods of the class to make the following customizations: Badge the tile with a custom string. Remove or show the application icon badge. Draw the tile content yourself. If you decide to draw the tile content yourself, you must provide a custom content view to handle the drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile
-
 type DockTile struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type DockTile struct {
 func DockTileFrom(ptr unsafe.Pointer) DockTile {
 	return DockTile{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DockTileClass) Alloc() DockTile {
 	rv := objc.Send[DockTile](objc.ID(dc.class), objc.Sel("alloc"))

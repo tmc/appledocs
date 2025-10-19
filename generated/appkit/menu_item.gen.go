@@ -32,10 +32,11 @@ type IMenuItem interface {
 	objectivec.IObject
 }
 
-// A command item in an app menu. [Full Topic]
+// A command item in an app menu.
+//
+// The class includes some private functionality needed to maintain binary compatibility with other components of Cocoa. Because of this fact, you can’t replace the class with a different class, but you can subclass it if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem
-
 type MenuItem struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type MenuItem struct {
 func MenuItemFrom(ptr unsafe.Pointer) MenuItem {
 	return MenuItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MenuItemClass) Alloc() MenuItem {
 	rv := objc.Send[MenuItem](objc.ID(mc.class), objc.Sel("alloc"))

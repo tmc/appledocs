@@ -32,10 +32,11 @@ type IPrintOperation interface {
 	objectivec.IObject
 }
 
-// An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs. [Full Topic]
+// An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.
+//
+// An object works in conjunction with two other objects: an object, which specifies how the code should be generated, and an object, which generates the actual code. It is important to note that the majority of methods in copy the instance of passed into them. Future changes to that print info are not reflected in the print info retained by the current object. All changes should be made to the print info before passing to the methods of this class. The only method in which does not copy the instance is .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation
-
 type PrintOperation struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type PrintOperation struct {
 func PrintOperationFrom(ptr unsafe.Pointer) PrintOperation {
 	return PrintOperation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PrintOperationClass) Alloc() PrintOperation {
 	rv := objc.Send[PrintOperation](objc.ID(pc.class), objc.Sel("alloc"))

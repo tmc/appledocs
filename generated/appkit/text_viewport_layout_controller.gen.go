@@ -32,10 +32,11 @@ type ITextViewportLayoutController interface {
 	objectivec.IObject
 }
 
-// Manages the layout process inside the viewport interacting with its delegate. [Full Topic]
+// Manages the layout process inside the viewport interacting with its delegate.
+//
+// A viewport is a rectangular area within a flipped coordinate system expanding along the y-axis. With text contents, lines advance expanding the view in the current writing direction. The viewport defines the active area where the framework lays out text fragments. In most cases, the area corresponds to the user visible area with an additional over-scroll region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutController
-
 type TextViewportLayoutController struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextViewportLayoutController struct {
 func TextViewportLayoutControllerFrom(ptr unsafe.Pointer) TextViewportLayoutController {
 	return TextViewportLayoutController{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextViewportLayoutControllerClass) Alloc() TextViewportLayoutController {
 	rv := objc.Send[TextViewportLayoutController](objc.ID(tc.class), objc.Sel("alloc"))

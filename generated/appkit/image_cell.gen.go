@@ -31,10 +31,11 @@ type IImageCell interface {
 	ICell
 }
 
-// An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame. [Full Topic]
+// An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
+//
+// The object value of an object must be an object, so if you use the method of , be sure to supply an object as an argument. Because an object does not need to be converted for display, do not use the methods relating to formatters. An object is usually associated with some kind of control object. For example, an or an .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell
-
 type ImageCell struct {
 	Cell
 }
@@ -47,6 +48,7 @@ func ImageCellFrom(ptr unsafe.Pointer) ImageCell {
 		Cell: CellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageCellClass) Alloc() ImageCell {
 	rv := objc.Send[ImageCell](objc.ID(ic.class), objc.Sel("alloc"))

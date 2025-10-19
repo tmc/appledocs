@@ -32,10 +32,9 @@ type IMenu interface {
 	objectivec.IObject
 }
 
-// An object that manages an app’s menus. [Full Topic]
+// An object that manages an app’s menus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu
-
 type Menu struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Menu struct {
 func MenuFrom(ptr unsafe.Pointer) Menu {
 	return Menu{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MenuClass) Alloc() Menu {
 	rv := objc.Send[Menu](objc.ID(mc.class), objc.Sel("alloc"))
@@ -78,12 +78,12 @@ func NewMenu() Menu {
 }
 
 
-// Displays a contextual menu over a view for an event. [Full Topic]
-
+// Displays a contextual menu over a view for an event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:)
 func (mc _MenuClass) PopUpContextMenuWithEventForView(menu unsafe.Pointer, event unsafe.Pointer, view unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("popUpContextMenu:withEvent:forView:"), menu, event, view)
 }
+
 
 

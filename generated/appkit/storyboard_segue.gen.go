@@ -32,10 +32,11 @@ type IStoryboardSegue interface {
 	objectivec.IObject
 }
 
-// A transition or containment relationship between two scenes in a storyboard. [Full Topic]
+// A transition or containment relationship between two scenes in a storyboard.
+//
+// In this context, a is a view controller or a window controller and a is an instance of the class. A storyboard segue has a procedural notion of being invoked, known in the API as being . You can take advantage of hooks into the segue performance process by way of the protocol. You do not create storyboard segue objects directly. Instead, the system creates them as needed as segues are invoked. To run code during initialization and performance of a segue, override the and methods. You can initiate a segue programmatically with the method of the protocol. For example, you might do this to transition from a scene in one storyboard file to a scene in another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue
-
 type StoryboardSegue struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type StoryboardSegue struct {
 func StoryboardSegueFrom(ptr unsafe.Pointer) StoryboardSegue {
 	return StoryboardSegue{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StoryboardSegueClass) Alloc() StoryboardSegue {
 	rv := objc.Send[StoryboardSegue](objc.ID(sc.class), objc.Sel("alloc"))

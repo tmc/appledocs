@@ -32,10 +32,11 @@ type IGlyphInfo interface {
 	objectivec.IObject
 }
 
-// A glyph attribute in an attributed string. [Full Topic]
+// A glyph attribute in an attributed string.
+//
+// Glyphs are the graphic representations of characters, stored in a font, that the text system draws on a display or printed page. Before text can be laid out, the layout manager (< ) generates a stream of glyphs, using the character and font information specified by the attributed string and contained in the font file. represents a glyph attribute value ( ) in an attributed string ( ) and provides a means to override the standard glyph generation process and substitute a specified glyph over the attribute’s range. Glyph attributes are integer values that the layout manager uses to denote special handling for particular glyphs during rendering. enables you to override a font’s built-in mapping from a Unicode character code to a corresponding glyph ID. Overriding the mapping allows you to specify a variant glyph for a given character if the font contains multiple variations for that character or to specify a glyph that doesn’t have a standard mapping (such as some ligature glyphs).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo
-
 type GlyphInfo struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type GlyphInfo struct {
 func GlyphInfoFrom(ptr unsafe.Pointer) GlyphInfo {
 	return GlyphInfo{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GlyphInfoClass) Alloc() GlyphInfo {
 	rv := objc.Send[GlyphInfo](objc.ID(gc.class), objc.Sel("alloc"))

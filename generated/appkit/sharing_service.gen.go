@@ -32,10 +32,11 @@ type ISharingService interface {
 	objectivec.IObject
 }
 
-// An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari. [Full Topic]
+// An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.
+//
+// An object provides a consistent user experience for sharing items— objects, objects, objects, video (through file URLs), of any object that implements the protocol—in macOS. For any item or group of items, the displays a sheet with the content to share. A sharing service can create a post on a social network like Twitter or Facebook, send a message by email or iMessage, upload videos to viewing services, or send a file using AirDrop. You can use objects directly in your app. The following example shows how to create a button that shares content directly to a social media service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService
-
 type SharingService struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type SharingService struct {
 func SharingServiceFrom(ptr unsafe.Pointer) SharingService {
 	return SharingService{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServiceClass) Alloc() SharingService {
 	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("alloc"))
@@ -78,13 +80,13 @@ func NewSharingService() SharingService {
 }
 
 
-// Returns a list of sharing services which could share all the provided items together. [Full Topic]
-
+// Returns a list of sharing services which could share all the provided items together.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/sharingServices(forItems:)
 func (sc _SharingServiceClass) SharingServicesForItems(items unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
 }
+
 
 

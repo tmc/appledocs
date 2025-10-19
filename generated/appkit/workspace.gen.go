@@ -35,10 +35,11 @@ type IWorkspace interface {
 	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
-// A workspace that can launch other apps and perform a variety of file-handling services. [Full Topic]
+// A workspace that can launch other apps and perform a variety of file-handling services.
+//
+// There is one shared object per app. You use the class method to access it. For example, the following statement uses an object to request that a file be opened in the TextEdit app: You can use the workspace object to: Open, manipulate, and get information about files and devices. Track changes to the file system, devices, and the user database. Get and set Finder information for files. Launch apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace
-
 type Workspace struct {
 	objectivec.Object
 }
@@ -49,6 +50,7 @@ type Workspace struct {
 func WorkspaceFrom(ptr unsafe.Pointer) Workspace {
 	return Workspace{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WorkspaceClass) Alloc() Workspace {
 	rv := objc.Send[Workspace](objc.ID(wc.class), objc.Sel("alloc"))
@@ -81,28 +83,28 @@ func NewWorkspace() Workspace {
 }
 
 
-// Launches the app at the specified URL. [Full Topic]
-
+// Launches the app at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/launchApplication(at:options:configuration:)
 func (w_ Workspace) LaunchApplicationAtURLOptionsConfigurationError(url unsafe.Pointer, options unsafe.Pointer, configuration unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("launchApplicationAtURL:options:configuration:error:"), url, options, configuration, error)
 	return rv
 }
-// Opens the location at the specified URL. [Full Topic]
 
+// Opens the location at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:)
 func (w_ Workspace) OpenURL(url unsafe.Pointer) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("openURL:"), url)
 	return rv
 }
-// Opens one or more URLs asynchronously in the specified app using the provided options. [Full Topic]
 
+// Opens one or more URLs asynchronously in the specified app using the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:withApplicationAt:configuration:completionHandler:)
 func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURLs:withApplicationAtURL:configuration:completionHandler:"), urls, applicationURL, configuration, completionHandler)
 }
+
 
 

@@ -32,10 +32,11 @@ type IImageSymbolConfiguration interface {
 	objectivec.IObject
 }
 
-// An object that contains the specific font, style, and weight attributes to apply to a symbol image. [Full Topic]
+// An object that contains the specific font, style, and weight attributes to apply to a symbol image.
+//
+// Symbol image configuration objects include details such as the point size, scale, text style, and weight to apply to your symbol image. The system uses these details to determine which variant of the image to use and how to scale or style the image. objects are immutable after you create them. If you use the method on the object, the new image attributes replace any previous attributes you supplied. After creating a symbol configuration object, assign it to the property of the object you use to display the image. If you draw the image directly, use the method to create a new image that contains the new attributes. For design guidance, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class
-
 type ImageSymbolConfiguration struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ImageSymbolConfiguration struct {
 func ImageSymbolConfigurationFrom(ptr unsafe.Pointer) ImageSymbolConfiguration {
 	return ImageSymbolConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageSymbolConfigurationClass) Alloc() ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](objc.ID(ic.class), objc.Sel("alloc"))

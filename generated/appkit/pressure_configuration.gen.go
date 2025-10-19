@@ -32,10 +32,11 @@ type IPressureConfiguration interface {
 	objectivec.IObject
 }
 
-// An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events. [Full Topic]
+// An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.
+//
+// Use an object to configure the behavior and progression of a Force Touch trackpad when it responds to a mouse drag or pressure event sequence. Pressure configurations are assigned to views ( ) and gesture recognizers ( ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration
-
 type PressureConfiguration struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type PressureConfiguration struct {
 func PressureConfigurationFrom(ptr unsafe.Pointer) PressureConfiguration {
 	return PressureConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PressureConfigurationClass) Alloc() PressureConfiguration {
 	rv := objc.Send[PressureConfiguration](objc.ID(pc.class), objc.Sel("alloc"))

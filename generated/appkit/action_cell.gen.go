@@ -31,10 +31,11 @@ type IActionCell interface {
 	ICell
 }
 
-// An active area inside a control. [Full Topic]
+// An active area inside a control.
+//
+// An does three things: it displays text or an icon; it provides the target object and action method used by its object; and it handles mouse (cursor) tracking by properly highlighting its area and sending action messages to its target based on cursor movement. The of an is the view in which the receiver was last drawn.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell
-
 type ActionCell struct {
 	Cell
 }
@@ -47,6 +48,7 @@ func ActionCellFrom(ptr unsafe.Pointer) ActionCell {
 		Cell: CellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _ActionCellClass) Alloc() ActionCell {
 	rv := objc.Send[ActionCell](objc.ID(ac.class), objc.Sel("alloc"))
@@ -79,5 +81,53 @@ func NewActionCell() ActionCell {
 }
 
 
+// Returns the receiver’s action-message selector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
+func (a_ ActionCell) Action() objc.SEL {
+	rv := objc.Send[objc.SEL](a_.ID, objc.Sel("action"))
+	return rv
+}
+
+// SetAction sets the value of the action property.
+// Returns the receiver’s action-message selector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
+func (a_ ActionCell) SetAction(value objc.SEL) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAction:"), value)
+}
+// Returns the receiver’s tag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
+func (a_ ActionCell) Tag() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("tag"))
+	return rv
+}
+
+// SetTag sets the value of the tag property.
+// Returns the receiver’s tag.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
+func (a_ ActionCell) SetTag(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTag:"), value)
+}
+// Returns the receiver’s target object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
+func (a_ ActionCell) Target() objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
+	return rv
+}
+
+// SetTarget sets the value of the target property.
+// Returns the receiver’s target object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
+func (a_ ActionCell) SetTarget(value objc.ID) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
+}
 
 

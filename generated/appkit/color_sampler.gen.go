@@ -32,10 +32,11 @@ type IColorSampler interface {
 	objectivec.IObject
 }
 
-// An object that displays the system’s color-sampling interface and returns the selected color to your app. [Full Topic]
+// An object that displays the system’s color-sampling interface and returns the selected color to your app.
+//
+// Create an object when you want the user to select a color based on existing onscreen colors. When you call the method, AppKit shows the system’s color sampler interface and reports the selected color back to the provided block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler
-
 type ColorSampler struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ColorSampler struct {
 func ColorSamplerFrom(ptr unsafe.Pointer) ColorSampler {
 	return ColorSampler{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorSamplerClass) Alloc() ColorSampler {
 	rv := objc.Send[ColorSampler](objc.ID(cc.class), objc.Sel("alloc"))

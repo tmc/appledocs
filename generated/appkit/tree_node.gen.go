@@ -32,10 +32,11 @@ type ITreeNode interface {
 	objectivec.IObject
 }
 
-// A node in a tree of nodes. [Full Topic]
+// A node in a tree of nodes.
+//
+// simplifies the creation and management of trees of objects. Each tree node represents a model object. A tree node with as its parent node is considered the root of the tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode
-
 type TreeNode struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TreeNode struct {
 func TreeNodeFrom(ptr unsafe.Pointer) TreeNode {
 	return TreeNode{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TreeNodeClass) Alloc() TreeNode {
 	rv := objc.Send[TreeNode](objc.ID(tc.class), objc.Sel("alloc"))

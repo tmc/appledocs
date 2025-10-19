@@ -32,10 +32,11 @@ type IFilePromiseProvider interface {
 	objectivec.IObject
 }
 
-// An object that provides a promise for the pasteboard. [Full Topic]
+// An object that provides a promise for the pasteboard.
+//
+// A file promise is a possible future file of a specified type. When you’re working with drag and drop, use promises to indicate intent for future action. Avoid loading or performing any actions on the file until the promise completes. Use the class when creating file promises. Instantiate one for each file promised. Set the and properties before writing any to the pasteboard. The file type must be a Uniform Type Identifier (UTI) that ultimately conforms to or . The will write the promised file to the destination directory. Optionally, you may attach a object of your choosing to the to determine which promise is being referenced when promising multiple files under the same instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider
-
 type FilePromiseProvider struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type FilePromiseProvider struct {
 func FilePromiseProviderFrom(ptr unsafe.Pointer) FilePromiseProvider {
 	return FilePromiseProvider{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FilePromiseProviderClass) Alloc() FilePromiseProvider {
 	rv := objc.Send[FilePromiseProvider](objc.ID(fc.class), objc.Sel("alloc"))

@@ -35,10 +35,11 @@ type IWindowTabGroup interface {
 	RemoveWindow(window unsafe.Pointer)
 }
 
-// A group of windows that display together as a single tabbed window. [Full Topic]
+// A group of windows that display together as a single tabbed window.
+//
+// AppKit automatically creates instances of to reflect the tabbing state of your windows. You can access a window’s current tab group using the property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup
-
 type WindowTabGroup struct {
 	objectivec.Object
 }
@@ -49,6 +50,7 @@ type WindowTabGroup struct {
 func WindowTabGroupFrom(ptr unsafe.Pointer) WindowTabGroup {
 	return WindowTabGroup{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WindowTabGroupClass) Alloc() WindowTabGroup {
 	rv := objc.Send[WindowTabGroup](objc.ID(wc.class), objc.Sel("alloc"))
@@ -81,26 +83,79 @@ func NewWindowTabGroup() WindowTabGroup {
 }
 
 
-// Adds a window to the tab group. [Full Topic]
-
+// Adds a window to the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/addWindow(_:)
 func (w_ WindowTabGroup) AddWindow(window unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addWindow:"), window)
 }
-// Inserts a window at a specific location within the tab group. [Full Topic]
 
+// Inserts a window at a specific location within the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/insertWindow(_:at:)
 func (w_ WindowTabGroup) InsertWindowAtIndex(window unsafe.Pointer, index int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("insertWindow:atIndex:"), window, index)
 }
-// Removes a window from the tab group. [Full Topic]
 
+// Removes a window from the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/removeWindow(_:)
 func (w_ WindowTabGroup) RemoveWindow(window unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("removeWindow:"), window)
+}
+
+// The unique identifier for a tabbed window group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/identifier
+func (w_ WindowTabGroup) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("identifier"))
+	return rv
+}
+// A Boolean value indicating if the tab overview is currently displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isOverviewVisible
+func (w_ WindowTabGroup) OverviewVisible() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("overviewVisible"))
+	return rv
+}
+
+// SetOverviewVisible sets the value of the overviewVisible property.
+// A Boolean value indicating if the tab overview is currently displayed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isOverviewVisible
+func (w_ WindowTabGroup) SetOverviewVisible(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setOverviewVisible:"), value)
+}
+// A Boolean value indicating whether the tabbed window group currently displays a tab bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isTabBarVisible
+func (w_ WindowTabGroup) TabBarVisible() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("tabBarVisible"))
+	return rv
+}
+// The selected, or frontmost, window in the tab group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/selectedWindow
+func (w_ WindowTabGroup) SelectedWindow() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectedWindow"))
+	return rv
+}
+
+// SetSelectedWindow sets the value of the selectedWindow property.
+// The selected, or frontmost, window in the tab group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/selectedWindow
+func (w_ WindowTabGroup) SetSelectedWindow(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectedWindow:"), value)
+}
+// A collection of the windows that are currently grouped together by this window tab group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/windows
+func (w_ WindowTabGroup) Windows() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windows"))
+	return rv
 }
 
 

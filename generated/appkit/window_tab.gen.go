@@ -32,10 +32,11 @@ type IWindowTab interface {
 	objectivec.IObject
 }
 
-// A tab associated with a window that is part of a tabbing group. [Full Topic]
+// A tab associated with a window that is part of a tabbing group.
+//
+// describes the way a window displays as part of a tabbed window group. The properties of are configurable at any time, but only take effect when the associated displays in a tab. AppKit automatically creates an instance of for each . You can access a window’s tab object using the property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab
-
 type WindowTab struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type WindowTab struct {
 func WindowTabFrom(ptr unsafe.Pointer) WindowTab {
 	return WindowTab{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (wc _WindowTabClass) Alloc() WindowTab {
 	rv := objc.Send[WindowTab](objc.ID(wc.class), objc.Sel("alloc"))
@@ -78,5 +80,69 @@ func NewWindowTab() WindowTab {
 }
 
 
+// An optional accessory view for the tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
+func (w_ WindowTab) AccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("accessoryView"))
+	return rv
+}
+
+// SetAccessoryView sets the value of the accessoryView property.
+// An optional accessory view for the tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
+func (w_ WindowTab) SetAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
+}
+// The title for the window tab, specified as an attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
+func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attributedTitle"))
+	return rv
+}
+
+// SetAttributedTitle sets the value of the attributedTitle property.
+// The title for the window tab, specified as an attributed string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
+func (w_ WindowTab) SetAttributedTitle(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
+}
+// The title for the window tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
+func (w_ WindowTab) Title() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("title"))
+	return rv
+}
+
+// SetTitle sets the value of the title property.
+// The title for the window tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
+func (w_ WindowTab) SetTitle(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
+}
+// The tooltip for this window tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
+func (w_ WindowTab) ToolTip() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolTip"))
+	return rv
+}
+
+// SetToolTip sets the value of the toolTip property.
+// The tooltip for this window tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
+func (w_ WindowTab) SetToolTip(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), value)
+}
 
 

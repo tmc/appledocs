@@ -32,10 +32,11 @@ type ITableColumn interface {
 	objectivec.IObject
 }
 
-// The display characteristics and identifier for a column in a table view. [Full Topic]
+// The display characteristics and identifier for a column in a table view.
+//
+// A table column object determines the width (including the maximum and minimum widths) of its column in the table view and specifies the column’s resizing and editing behavior. A table column stores two cell objects: the header cell, which is used to draw the column header, and the data cell, which is used to draw the values for each row. In a cell-based table, you can control the display of the column by specifying subclasses of to use and by setting the font and other display characteristics for these cells. For example, you can use an to display string values or substitute an to display pictures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn
-
 type TableColumn struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TableColumn struct {
 func TableColumnFrom(ptr unsafe.Pointer) TableColumn {
 	return TableColumn{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableColumnClass) Alloc() TableColumn {
 	rv := objc.Send[TableColumn](objc.ID(tc.class), objc.Sel("alloc"))

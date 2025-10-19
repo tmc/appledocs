@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TableHeaderView] class.
@@ -29,14 +30,15 @@ type _TableHeaderViewClass struct {
 // An interface definition for the [TableHeaderView] class.
 type ITableHeaderView interface {
 	IView
-	ColumnAtPoint(point unsafe.Pointer) int
-	HeaderRectOfColumn(column int) unsafe.Pointer
+	ColumnAtPoint(point coregraphics.CGPoint) int
+	HeaderRectOfColumn(column int) coregraphics.CGRect
 }
 
-// An object that draws headers over a table view’s columns and handles mouse events in those headers. [Full Topic]
+// An object that draws headers over a table view’s columns and handles mouse events in those headers.
+//
+// uses to implement its user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView
-
 type TableHeaderView struct {
 	View
 }
@@ -49,6 +51,7 @@ func TableHeaderViewFrom(ptr unsafe.Pointer) TableHeaderView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableHeaderViewClass) Alloc() TableHeaderView {
 	rv := objc.Send[TableHeaderView](objc.ID(tc.class), objc.Sel("alloc"))
@@ -81,21 +84,58 @@ func NewTableHeaderView() TableHeaderView {
 }
 
 
-// Returns the index of the column whose header lies under in the receiver, or –1 if no such column is found. [Full Topic]
-
+// Returns the index of the column whose header lies under in the receiver, or –1 if no such column is found.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/column(at:)
-func (t_ TableHeaderView) ColumnAtPoint(point unsafe.Pointer) int {
+func (t_ TableHeaderView) ColumnAtPoint(point coregraphics.CGPoint) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("columnAtPoint:"), point)
 	return rv
 }
-// Returns the rectangle containing the header tile for the column at . [Full Topic]
 
+// Returns the rectangle containing the header tile for the column at .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/headerRect(ofColumn:)
-func (t_ TableHeaderView) HeaderRectOfColumn(column int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("headerRectOfColumn:"), column)
+func (t_ TableHeaderView) HeaderRectOfColumn(column int) coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("headerRectOfColumn:"), column)
 	return rv
+}
+
+// The index of the column that the user is dragging.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedColumn
+func (t_ TableHeaderView) DraggedColumn() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("draggedColumn"))
+	return rv
+}
+// The horizontal distance that the user has dragged a column.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedDistance
+func (t_ TableHeaderView) DraggedDistance() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("draggedDistance"))
+	return rv
+}
+// The index of the column that the user is resizing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/resizedColumn
+func (t_ TableHeaderView) ResizedColumn() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("resizedColumn"))
+	return rv
+}
+// The instance that this table header view belongs to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
+func (t_ TableHeaderView) TableView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tableView"))
+	return rv
+}
+
+// SetTableView sets the value of the tableView property.
+// The instance that this table header view belongs to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
+func (t_ TableHeaderView) SetTableView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 
 

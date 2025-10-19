@@ -31,10 +31,11 @@ type ICachedImageRep interface {
 	IImageRep
 }
 
-// An object that stores image data in a form that can be readily transferred to the screen. [Full Topic]
+// An object that stores image data in a form that can be readily transferred to the screen.
+//
+// An object differs from other image representation objects in that it simply stores the already rendered image, whereas other image representation objects generally have knowledge about how to render the image from source data. You typically do not use this class directly. Instead, and its other image representation objects create instances of as needed to cache versions of the rendered image. This caching speeds up screen-based drawing for existing images during subsequent rendering operations. Cached image representations are also used to capture drawing commands for images created programmatically by locking focus on an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep
-
 type CachedImageRep struct {
 	ImageRep
 }
@@ -47,6 +48,7 @@ func CachedImageRepFrom(ptr unsafe.Pointer) CachedImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CachedImageRepClass) Alloc() CachedImageRep {
 	rv := objc.Send[CachedImageRep](objc.ID(cc.class), objc.Sel("alloc"))

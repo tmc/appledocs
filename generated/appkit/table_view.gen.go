@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TableView] class.
@@ -29,14 +30,15 @@ type _TableViewClass struct {
 // An interface definition for the [TableView] class.
 type ITableView interface {
 	IControl
-	RectOfRow(row int) unsafe.Pointer
-	RowAtPoint(point unsafe.Pointer) int
+	RectOfRow(row int) coregraphics.CGRect
+	RowAtPoint(point coregraphics.CGPoint) int
 }
 
-// A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records. [Full Topic]
+// A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.
+//
+// Table views are displayed in scroll views. Beginning with macOS v10.7, you can use objects (most commonly customized objects) instead of cells for specifying rows and columns. You can still use objects for each row and column item if you prefer. A table view does not store its own data; it retrieves data values as needed from a data source to which it has a weak reference. You should not, therefore, directly set data values programmatically in the table view; instead, modify the values in the data source and allow the changes to be reflected in the table view. To learn about the methods that an object uses to provide and access the contents of its data source object, see . To customize a table view’s behavior without subclassing , use the methods defined by the protocol. For example, the delegate supports table column management, type-to-select functionality, row selection and editing, custom tracking, and custom views for individual columns and rows. To learn more about the table view delegate, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView
-
 type TableView struct {
 	Control
 }
@@ -49,6 +51,7 @@ func TableViewFrom(ptr unsafe.Pointer) TableView {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableViewClass) Alloc() TableView {
 	rv := objc.Send[TableView](objc.ID(tc.class), objc.Sel("alloc"))
@@ -81,21 +84,21 @@ func NewTableView() TableView {
 }
 
 
-// Returns the rectangle containing the row at the specified index. [Full Topic]
-
+// Returns the rectangle containing the row at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rect(ofRow:)
-func (t_ TableView) RectOfRow(row int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rectOfRow:"), row)
+func (t_ TableView) RectOfRow(row int) coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rectOfRow:"), row)
 	return rv
 }
-// Returns the index of the row the specified point lies in. [Full Topic]
 
+// Returns the index of the row the specified point lies in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/row(at:)
-func (t_ TableView) RowAtPoint(point unsafe.Pointer) int {
+func (t_ TableView) RowAtPoint(point coregraphics.CGPoint) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("rowAtPoint:"), point)
 	return rv
 }
+
 
 

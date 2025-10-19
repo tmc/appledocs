@@ -31,10 +31,11 @@ type ITokenFieldCell interface {
 	ITextFieldCell
 }
 
-// A text field cell subclass that enables tokenized editing of an array of objects. [Full Topic]
+// A text field cell subclass that enables tokenized editing of an array of objects.
+//
+// is a subclass of that provides tokenized editing of an array of objects similar to the address field in the Mail app. The objects may be strings or objects that can be represented as strings. A single token field cell can be presented in an control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell
-
 type TokenFieldCell struct {
 	TextFieldCell
 }
@@ -47,6 +48,7 @@ func TokenFieldCellFrom(ptr unsafe.Pointer) TokenFieldCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TokenFieldCellClass) Alloc() TokenFieldCell {
 	rv := objc.Send[TokenFieldCell](objc.ID(tc.class), objc.Sel("alloc"))

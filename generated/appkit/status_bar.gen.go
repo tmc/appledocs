@@ -32,10 +32,11 @@ type IStatusBar interface {
 	objectivec.IObject
 }
 
-// An object that manages a collection of status items displayed within the system-wide menu bar. [Full Topic]
+// An object that manages a collection of status items displayed within the system-wide menu bar.
+//
+// A status item (an instance of ) can be displayed with text or an icon, can provide a menu and a target-action message when clicked, or can be a fully customized view that you create. Use status items sparingly and only if the alternatives (such as a Dock menu, preference pane, or status window) are not suitable. Because there is limited space in which to display status items, status items are not guaranteed to be available at all times. For this reason, do not rely on them being available and always provide a user preference for hiding your application’s status items to free up space in the menu bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar
-
 type StatusBar struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type StatusBar struct {
 func StatusBarFrom(ptr unsafe.Pointer) StatusBar {
 	return StatusBar{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StatusBarClass) Alloc() StatusBar {
 	rv := objc.Send[StatusBar](objc.ID(sc.class), objc.Sel("alloc"))

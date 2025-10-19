@@ -32,10 +32,11 @@ type ITextList interface {
 	objectivec.IObject
 }
 
-// A section of text that forms a single list. [Full Topic]
+// A section of text that forms a single list.
+//
+// The visible elements of the list, including list markers, appear in the text as they do for lists created by hand. The list object, however, allows the list to be recognized as such by the text system. This enables automatic creation of markers and spacing. Text lists are used in HTML import and export. Text lists appear as attributes on paragraphs, as part of the paragraph style. An may have an array of text lists, representing the nested lists containing the paragraph, in order from outermost to innermost. For example, if list1 contains four paragraphs, the middle two of which are also in the inner list2, then the text lists array for the first and fourth paragraphs is (list1), while the text lists array for the second and third paragraphs is (list1, list2). The methods implementing this are on , and on . In addition, has convenience methods for lists, such as , which determines the range covered by a list, and , which determines the ordinal position within a list of a particular item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList
-
 type TextList struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextList struct {
 func TextListFrom(ptr unsafe.Pointer) TextList {
 	return TextList{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextListClass) Alloc() TextList {
 	rv := objc.Send[TextList](objc.ID(tc.class), objc.Sel("alloc"))

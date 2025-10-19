@@ -31,10 +31,11 @@ type IComboBoxCell interface {
 	ITextFieldCell
 }
 
-// The user interface of a combo box. [Full Topic]
+// The user interface of a combo box.
+//
+// is a subclass of used to implement the user interface of “combo boxes” (see for information on how combo boxes look and work). The subclass of uses a single , and essentially all of the class’s methods simply invoke the corresponding method. Also see the protocol, which declares the methods that an object uses to access the contents of its data source object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell
-
 type ComboBoxCell struct {
 	TextFieldCell
 }
@@ -47,6 +48,7 @@ func ComboBoxCellFrom(ptr unsafe.Pointer) ComboBoxCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComboBoxCellClass) Alloc() ComboBoxCell {
 	rv := objc.Send[ComboBoxCell](objc.ID(cc.class), objc.Sel("alloc"))

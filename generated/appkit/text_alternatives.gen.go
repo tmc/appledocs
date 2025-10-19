@@ -32,10 +32,11 @@ type ITextAlternatives interface {
 	objectivec.IObject
 }
 
-// A list of alternative strings for a piece of text. [Full Topic]
+// A list of alternative strings for a piece of text.
+//
+// is an immutable value class that stores a list of alternatives for a piece of text and communicates the user’s selection of an alternative via a notification to your app. To support dictation, for example, you might use to present a list of alternative interpretations for a word or phrase the user speaks. If the user chooses to replace the initial interpretation with an alternative, notifies you of the choice so that you can update the text appropriately. instances are attached to attributed strings as the value of a text attribute, .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives
-
 type TextAlternatives struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextAlternatives struct {
 func TextAlternativesFrom(ptr unsafe.Pointer) TextAlternatives {
 	return TextAlternatives{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextAlternativesClass) Alloc() TextAlternatives {
 	rv := objc.Send[TextAlternatives](objc.ID(tc.class), objc.Sel("alloc"))

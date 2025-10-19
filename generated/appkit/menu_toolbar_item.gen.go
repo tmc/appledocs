@@ -31,10 +31,11 @@ type IMenuToolbarItem interface {
 	IToolbarItem
 }
 
-// A control that presents a menu in a window’s toolbar. [Full Topic]
+// A control that presents a menu in a window’s toolbar.
+//
+// If you set an action on an control item, the user invokes the action when clicking on the item through pressing and holding to display the menu. If you set an action on the item and to , the system displays the indicator as a separate segment so the user can invoke the menu with a click on that segment. If you don’t set an action on the , a simple click invokes the menu, and the indicator is purely decorative.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem
-
 type MenuToolbarItem struct {
 	ToolbarItem
 }
@@ -47,6 +48,7 @@ func MenuToolbarItemFrom(ptr unsafe.Pointer) MenuToolbarItem {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MenuToolbarItemClass) Alloc() MenuToolbarItem {
 	rv := objc.Send[MenuToolbarItem](objc.ID(mc.class), objc.Sel("alloc"))

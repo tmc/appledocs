@@ -34,7 +34,6 @@ type IFontAssetRequest interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest
-
 type FontAssetRequest struct {
 	objectivec.Object
 }
@@ -43,6 +42,7 @@ type FontAssetRequest struct {
 func FontAssetRequestFrom(ptr unsafe.Pointer) FontAssetRequest {
 	return FontAssetRequest{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FontAssetRequestClass) Alloc() FontAssetRequest {
 	rv := objc.Send[FontAssetRequest](objc.ID(fc.class), objc.Sel("alloc"))

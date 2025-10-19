@@ -31,10 +31,11 @@ type ITextInsertionIndicator interface {
 	IView
 }
 
-// A view that represents the insertion indicator in text. [Full Topic]
+// A view that represents the insertion indicator in text.
+//
+// and both use to display the insertion indicator. You can use this indicator if you have your own text engine or need to display an indicator elsewhere. To use the indicator, instantiate an , then add the view to your view hierarchy. Set the indicator view’s frame to where you want to display a text insertion indicator. The indicator has the same height as the indicator view’s frame, and centers horizontally within the indicator view’s frame. The specifies whether the indicator hides, remains visible, or blinks (automatic). When set to , the indicator stops blinking when you set the frame. The indicator starts blinking when the frame doesn’t change for a period of time. When the user dictates, the indicator displays a trailing glow when it is moved. Set the to when your custom view becomes the first responder. When your custom view resigns first responder, set the to to indicate that key events aren’t sent to your view. By default the indicator’s color is . You can set a different color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator
-
 type TextInsertionIndicator struct {
 	View
 }
@@ -47,6 +48,7 @@ func TextInsertionIndicatorFrom(ptr unsafe.Pointer) TextInsertionIndicator {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextInsertionIndicatorClass) Alloc() TextInsertionIndicator {
 	rv := objc.Send[TextInsertionIndicator](objc.ID(tc.class), objc.Sel("alloc"))
@@ -79,5 +81,53 @@ func NewTextInsertionIndicator() TextInsertionIndicator {
 }
 
 
+// Options that affect the automatic display mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
+func (t_ TextInsertionIndicator) AutomaticModeOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("automaticModeOptions"))
+	return rv
+}
+
+// SetAutomaticModeOptions sets the value of the automaticModeOptions property.
+// Options that affect the automatic display mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
+func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticModeOptions:"), value)
+}
+// The color of this indicator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
+func (t_ TextInsertionIndicator) Color() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
+	return rv
+}
+
+// SetColor sets the value of the color property.
+// The color of this indicator.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
+func (t_ TextInsertionIndicator) SetColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
+}
+// A value that describes the display mode of an indicator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
+func (t_ TextInsertionIndicator) DisplayMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("displayMode"))
+	return rv
+}
+
+// SetDisplayMode sets the value of the displayMode property.
+// A value that describes the display mode of an indicator.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
+func (t_ TextInsertionIndicator) SetDisplayMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
+}
 
 

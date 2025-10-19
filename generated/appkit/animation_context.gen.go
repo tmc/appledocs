@@ -32,10 +32,11 @@ type IAnimationContext interface {
 	objectivec.IObject
 }
 
-// An animation context, which contains information about environment and state. [Full Topic]
+// An animation context, which contains information about environment and state.
+//
+// is analogous to and is similar in overall concept to . Each thread maintains its own stack of nestable instances, with each new instance initialized as a copy of the instance below (so, inheriting its current properties). Multiple instances can be nested, allowing a given block of code to initiate animations using its own specified duration without affecting animations initiated by surrounding code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext
-
 type AnimationContext struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type AnimationContext struct {
 func AnimationContextFrom(ptr unsafe.Pointer) AnimationContext {
 	return AnimationContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AnimationContextClass) Alloc() AnimationContext {
 	rv := objc.Send[AnimationContext](objc.ID(ac.class), objc.Sel("alloc"))

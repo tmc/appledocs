@@ -31,10 +31,11 @@ type IObjectController interface {
 	IController
 }
 
-// A controller that can manage an object’s properties referenced by key-value paths. [Full Topic]
+// A controller that can manage an object’s properties referenced by key-value paths.
+//
+// is a Cocoa bindings–compatible controller class. Properties of the content object of instances of this class can be bound to user interface elements to access and modify their values. By default, the content of an instance is an object. This allows a single instance to be used to manage many different properties referenced by key-value paths. The default content object class can be changed by calling , which subclasses must override. Your application should use a custom data class that is key-value compliant whenever possible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController
-
 type ObjectController struct {
 	Controller
 }
@@ -47,6 +48,7 @@ func ObjectControllerFrom(ptr unsafe.Pointer) ObjectController {
 		Controller: ControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _ObjectControllerClass) Alloc() ObjectController {
 	rv := objc.Send[ObjectController](objc.ID(oc.class), objc.Sel("alloc"))

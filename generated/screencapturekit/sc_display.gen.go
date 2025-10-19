@@ -34,6 +34,8 @@ type ISCDisplay interface {
 
 // An instance that represents a display device.
 //
+// A display object represents a physical display connected to a Mac. Query the display to retrieve its unique identifier and onscreen coordinates. Retrieve the available displays from an instance of . Select a display to capture and use it to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay
 type SCDisplay struct {
 	objectivec.Object

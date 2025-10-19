@@ -32,10 +32,11 @@ type IMenuItemBadge interface {
 	objectivec.IObject
 }
 
-// A control that provides additional quantitative information specific to a menu item, such as the number of available updates. [Full Topic]
+// A control that provides additional quantitative information specific to a menu item, such as the number of available updates.
+//
+// You create a badge using an initializer or a predefined factory method, and then you assign it to the property of a for display. For example, to display a badge with a count, use the initalizer, passing in the value of as an . To display a badge with a custom string, use the initializer, passing in the string you want to display. To display a badge using a predefined , use a factory method such as , passing in the of the badge to display. The default value of this property is .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge
-
 type MenuItemBadge struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type MenuItemBadge struct {
 func MenuItemBadgeFrom(ptr unsafe.Pointer) MenuItemBadge {
 	return MenuItemBadge{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MenuItemBadgeClass) Alloc() MenuItemBadge {
 	rv := objc.Send[MenuItemBadge](objc.ID(mc.class), objc.Sel("alloc"))

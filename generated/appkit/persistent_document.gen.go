@@ -31,10 +31,11 @@ type IPersistentDocument interface {
 	IDocument
 }
 
-// A document object that can integrate with Core Data. [Full Topic]
+// A document object that can integrate with Core Data.
+//
+// The class is a subclass of that is designed to easily integrate into the Core Data framework. It provides methods to access a document-wide object, and provides default implementations of methods to read and write files using the persistence framework. In a persistent document, the undo manager functionality is taken over by managed object context. Standard document behavior is implemented as follows: Opening a document invokes with the new URL, and adds a store of the default type (XML). Objects are loaded from the persistent store on demand through the document’s context. Saving a new document adds a store of the default type with the chosen URL and invokes save: on the context. For an existing document, a save just invokes on the context. Save As for a new document simply invokes save. For an opened document, it migrates the persistent store to the new URL and invokes on the context. Revert resets the document’s managed object context. Objects are subsequently loaded from the persistent store on demand, as with opening a new document. By default an instance creates its own ready-to-use persistence stack including managed object context, persistent object store coordinator and persistent store. There is a one-to-one mapping between the document and the backing object store. You can customize the architecture of the persistence stack by overriding the property and method. You might wish to do this, for example, to specify a particular managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument
-
 type PersistentDocument struct {
 	Document
 }
@@ -47,6 +48,7 @@ func PersistentDocumentFrom(ptr unsafe.Pointer) PersistentDocument {
 		Document: DocumentFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentDocumentClass) Alloc() PersistentDocument {
 	rv := objc.Send[PersistentDocument](objc.ID(pc.class), objc.Sel("alloc"))

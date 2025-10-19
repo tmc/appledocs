@@ -32,10 +32,11 @@ type IGraphicsContext interface {
 	objectivec.IObject
 }
 
-// An object that represents a graphics context. [Full Topic]
+// An object that represents a graphics context.
+//
+// You can think of a graphics context as a destination to which drawing and graphics state operations are sent for execution. Each graphics context contains its own graphics environment and state. The class is an abstract superclass for destination-specific graphics contexts. You obtain instances of concrete subclasses with the class methods , , , , and . At any time there is the notion of the current context. The current context for the current thread may be set using . Graphics contexts are maintained on a stack. You push a graphics context onto the stack by sending it a message, and pop it off the stack by sending it a message. By sending to a graphics context object you remove it from the stack, and the next graphics context on the stack becomes the current graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext
-
 type GraphicsContext struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type GraphicsContext struct {
 func GraphicsContextFrom(ptr unsafe.Pointer) GraphicsContext {
 	return GraphicsContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GraphicsContextClass) Alloc() GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("alloc"))

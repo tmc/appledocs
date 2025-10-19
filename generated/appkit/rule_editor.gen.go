@@ -31,10 +31,11 @@ type IRuleEditor interface {
 	IControl
 }
 
-// An interface for configuring a rule-based list of options. [Full Topic]
+// An interface for configuring a rule-based list of options.
+//
+// A rule editor lets the user visually create and configure a list of options that are expressed as a predicate (as described in ). Each row displayed by the rule editor represents a particular path down a tree of choices. The rule editor’s delegate provides the tree of choices to be displayed. The rule editor presents those choices to the user as a row of popup buttons, static text fields, and custom views. exposes one binding, . You can bind to an ordered collection (such as an instance of ). Each object in the collection should have the following properties:
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor
-
 type RuleEditor struct {
 	Control
 }
@@ -47,6 +48,7 @@ func RuleEditorFrom(ptr unsafe.Pointer) RuleEditor {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RuleEditorClass) Alloc() RuleEditor {
 	rv := objc.Send[RuleEditor](objc.ID(rc.class), objc.Sel("alloc"))

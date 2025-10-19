@@ -32,10 +32,11 @@ type IParagraphStyle interface {
 	objectivec.IObject
 }
 
-// The paragraph or ruler attributes for an attributed string. [Full Topic]
+// The paragraph or ruler attributes for an attributed string.
+//
+// An object stores formatting information for a paragraph of text. The formatting information includes the amount of space between lines, indentations for lines of text, line heights, tab-stop positions, and more. Apply paragraph styles to the text of an attributed string by adding the attribute and setting its value to an instance of this class. The text-rendering system uses the paragraph style information in an attributed string to lay out and render the text. The class manages an immutable set of style information, but you can create an when you want to modify the style information before applying it to your text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle
-
 type ParagraphStyle struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ParagraphStyle struct {
 func ParagraphStyleFrom(ptr unsafe.Pointer) ParagraphStyle {
 	return ParagraphStyle{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _ParagraphStyleClass) Alloc() ParagraphStyle {
 	rv := objc.Send[ParagraphStyle](objc.ID(pc.class), objc.Sel("alloc"))

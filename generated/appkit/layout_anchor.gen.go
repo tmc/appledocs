@@ -32,10 +32,11 @@ type ILayoutAnchor interface {
 	objectivec.IObject
 }
 
-// A factory class for creating layout constraint objects using a fluent API. [Full Topic]
+// A factory class for creating layout constraint objects using a fluent API.
+//
+// Use these constraints to programatically define your layout using Auto Layout. Instead of creating objects directly, start with an or object you wish to constrain, and select one of that object’s anchor properties. These properties correspond to the main values used in Auto Layout, and provide an appropriate subclass for creating constraints to that attribute. Use the anchor’s methods to construct your constraint. As you can see from these examples, the class provides several advantages over using the API directly. The code is cleaner, more concise, and easier to read. The subclasses provide additional type checking, preventing you from creating invalid constraints. For more information on the anchor properties, see in the or .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor
-
 type LayoutAnchor struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type LayoutAnchor struct {
 func LayoutAnchorFrom(ptr unsafe.Pointer) LayoutAnchor {
 	return LayoutAnchor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutAnchorClass) Alloc() LayoutAnchor {
 	rv := objc.Send[LayoutAnchor](objc.ID(lc.class), objc.Sel("alloc"))

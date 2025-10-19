@@ -31,10 +31,11 @@ type IPathComponentCell interface {
 	ITextFieldCell
 }
 
-// A component of a path. [Full Topic]
+// A component of a path.
+//
+// An object manages a collection of objects, in conjunction with an object, to represent a path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell
-
 type PathComponentCell struct {
 	TextFieldCell
 }
@@ -47,6 +48,7 @@ func PathComponentCellFrom(ptr unsafe.Pointer) PathComponentCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PathComponentCellClass) Alloc() PathComponentCell {
 	rv := objc.Send[PathComponentCell](objc.ID(pc.class), objc.Sel("alloc"))

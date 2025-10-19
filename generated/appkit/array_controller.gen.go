@@ -31,10 +31,11 @@ type IArrayController interface {
 	IObjectController
 }
 
-// A bindings-compatible controller that manages a collection of objects. [Full Topic]
+// A bindings-compatible controller that manages a collection of objects.
+//
+// Typically the collection that an manages is an array, however, if the controller manages a relationship of a managed object (see ) the collection may be a set. provides selection management and sorting capabilities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController
-
 type ArrayController struct {
 	ObjectController
 }
@@ -47,6 +48,7 @@ func ArrayControllerFrom(ptr unsafe.Pointer) ArrayController {
 		ObjectController: ObjectControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _ArrayControllerClass) Alloc() ArrayController {
 	rv := objc.Send[ArrayController](objc.ID(ac.class), objc.Sel("alloc"))

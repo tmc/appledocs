@@ -31,10 +31,11 @@ type IRotationGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion. [Full Topic]
+// A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion.
+//
+// This rotation gesture implies that the underlying view should rotate in a matching direction. The gesture is recognized when the trackpad touches end. Upon creation, the gesture recognizer sets the value of the property to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer
-
 type RotationGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -47,6 +48,7 @@ func RotationGestureRecognizerFrom(ptr unsafe.Pointer) RotationGestureRecognizer
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (rc _RotationGestureRecognizerClass) Alloc() RotationGestureRecognizer {
 	rv := objc.Send[RotationGestureRecognizer](objc.ID(rc.class), objc.Sel("alloc"))

@@ -32,10 +32,11 @@ type ILayoutManager interface {
 	objectivec.IObject
 }
 
-// An object that coordinates the layout and display of text characters. [Full Topic]
+// An object that coordinates the layout and display of text characters.
+//
+// maps Unicode character codes to glyphs, sets the glyphs in a series of objects, and displays them in a series of objects. In addition to its core function of laying out text, a layout manager object coordinates its text view objects, provides services to those text views to support instances for editing paragraph styles, and handles the layout and display of text attributes not inherent in glyphs (such as underline or strikethrough). You can create a subclass of to handle additional text attributes, whether inherent or not.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager
-
 type LayoutManager struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type LayoutManager struct {
 func LayoutManagerFrom(ptr unsafe.Pointer) LayoutManager {
 	return LayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutManagerClass) Alloc() LayoutManager {
 	rv := objc.Send[LayoutManager](objc.ID(lc.class), objc.Sel("alloc"))

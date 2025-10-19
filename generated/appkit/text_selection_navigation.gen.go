@@ -32,10 +32,9 @@ type ITextSelectionNavigation interface {
 	objectivec.IObject
 }
 
-// An interface you use to expose methods for obtaining results from actions performed on text selections. [Full Topic]
+// An interface you use to expose methods for obtaining results from actions performed on text selections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation
-
 type TextSelectionNavigation struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type TextSelectionNavigation struct {
 func TextSelectionNavigationFrom(ptr unsafe.Pointer) TextSelectionNavigation {
 	return TextSelectionNavigation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextSelectionNavigationClass) Alloc() TextSelectionNavigation {
 	rv := objc.Send[TextSelectionNavigation](objc.ID(tc.class), objc.Sel("alloc"))

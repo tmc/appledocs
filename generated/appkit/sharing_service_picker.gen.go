@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SharingServicePicker] class.
@@ -30,13 +31,14 @@ type _SharingServicePickerClass struct {
 // An interface definition for the [SharingServicePicker] class.
 type ISharingServicePicker interface {
 	objectivec.IObject
-	ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int)
+	ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view unsafe.Pointer, preferredEdge int)
 }
 
-// A list of sharing services that the user can choose from. [Full Topic]
+// A list of sharing services that the user can choose from.
+//
+// An object presents an interface for sharing one or more items using a specific service. In macOS 12 and earlier, this picker displays a menu with a list of services that someone can use to share the item. In macOS 13 and later, the picker displays a popover with a preview of the item and the list of services. When someone chooses a service, the picker automatically shares the proposed item with that service. Create a sharing service picker and configure it with a delegate object to monitor interactions. Your delegate must conform to the protocol. Present the picker from your interface using the method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker
-
 type SharingServicePicker struct {
 	objectivec.Object
 }
@@ -47,6 +49,7 @@ type SharingServicePicker struct {
 func SharingServicePickerFrom(ptr unsafe.Pointer) SharingServicePicker {
 	return SharingServicePicker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerClass) Alloc() SharingServicePicker {
 	rv := objc.Send[SharingServicePicker](objc.ID(sc.class), objc.Sel("alloc"))
@@ -79,12 +82,28 @@ func NewSharingServicePicker() SharingServicePicker {
 }
 
 
-// Shows the picker interface and populates it with the relevant sharing services. [Full Topic]
-
+// Shows the picker interface and populates it with the relevant sharing services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
-func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int) {
+func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view unsafe.Pointer, preferredEdge int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
+}
+
+// The object for managing the sharing service picker.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
+func (s_ SharingServicePicker) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+// SetDelegate sets the value of the delegate property.
+// The object for managing the sharing service picker.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
+func (s_ SharingServicePicker) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

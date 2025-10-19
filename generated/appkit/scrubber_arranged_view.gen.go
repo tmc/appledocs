@@ -32,10 +32,9 @@ type IScrubberArrangedView interface {
 	ApplyLayoutAttributes(layoutAttributes unsafe.Pointer)
 }
 
-// An abstract base class for the views whose layout is managed by a scrubber. [Full Topic]
+// An abstract base class for the views whose layout is managed by a scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView
-
 type ScrubberArrangedView struct {
 	View
 }
@@ -48,6 +47,7 @@ func ScrubberArrangedViewFrom(ptr unsafe.Pointer) ScrubberArrangedView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberArrangedViewClass) Alloc() ScrubberArrangedView {
 	rv := objc.Send[ScrubberArrangedView](objc.ID(sc.class), objc.Sel("alloc"))
@@ -80,12 +80,44 @@ func NewScrubberArrangedView() ScrubberArrangedView {
 }
 
 
-// Updates the layout of the arranged view to respect the provided layout attributes. [Full Topic]
-
+// Updates the layout of the arranged view to respect the provided layout attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/apply(_:)
 func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("applyLayoutAttributes:"), layoutAttributes)
+}
+
+// A Boolean value that specifies whether the view is currently highlighted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isHighlighted
+func (s_ ScrubberArrangedView) Highlighted() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("highlighted"))
+	return rv
+}
+
+// SetHighlighted sets the value of the highlighted property.
+// A Boolean value that specifies whether the view is currently highlighted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isHighlighted
+func (s_ ScrubberArrangedView) SetHighlighted(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHighlighted:"), value)
+}
+// A Boolean value that specifies whether the current view is selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isSelected
+func (s_ ScrubberArrangedView) Selected() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("selected"))
+	return rv
+}
+
+// SetSelected sets the value of the selected property.
+// A Boolean value that specifies whether the current view is selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isSelected
+func (s_ ScrubberArrangedView) SetSelected(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSelected:"), value)
 }
 
 

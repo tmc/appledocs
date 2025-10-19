@@ -32,10 +32,11 @@ type ITabViewItem interface {
 	objectivec.IObject
 }
 
-// An item in a tab view. [Full Topic]
+// An item in a tab view.
+//
+// An is a convenient way for presenting information in multiple pages. A tab view is usually distinguished by a row of tabs that give the visual appearance of folder tabs. When the user clicks a tab, the tab view displays a view page provided by your application. A tab view keeps a zero-based array of tab view items, one for each tab in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem
-
 type TabViewItem struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TabViewItem struct {
 func TabViewItemFrom(ptr unsafe.Pointer) TabViewItem {
 	return TabViewItem{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TabViewItemClass) Alloc() TabViewItem {
 	rv := objc.Send[TabViewItem](objc.ID(tc.class), objc.Sel("alloc"))

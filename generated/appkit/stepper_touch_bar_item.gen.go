@@ -31,10 +31,9 @@ type IStepperTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a stepper control for incrementing or decrementing a value. [Full Topic]
+// A bar item that provides a stepper control for incrementing or decrementing a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem
-
 type StepperTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func StepperTouchBarItemFrom(ptr unsafe.Pointer) StepperTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StepperTouchBarItemClass) Alloc() StepperTouchBarItem {
 	rv := objc.Send[StepperTouchBarItem](objc.ID(sc.class), objc.Sel("alloc"))

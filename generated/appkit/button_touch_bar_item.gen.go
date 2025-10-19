@@ -31,10 +31,9 @@ type IButtonTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a button. [Full Topic]
+// A bar item that provides a button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonTouchBarItem
-
 type ButtonTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func ButtonTouchBarItemFrom(ptr unsafe.Pointer) ButtonTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _ButtonTouchBarItemClass) Alloc() ButtonTouchBarItem {
 	rv := objc.Send[ButtonTouchBarItem](objc.ID(bc.class), objc.Sel("alloc"))

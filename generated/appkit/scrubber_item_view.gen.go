@@ -31,10 +31,9 @@ type IScrubberItemView interface {
 	IScrubberArrangedView
 }
 
-// An item at a specific index position in the scrubber. [Full Topic]
+// An item at a specific index position in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberItemView
-
 type ScrubberItemView struct {
 	ScrubberArrangedView
 }
@@ -47,6 +46,7 @@ func ScrubberItemViewFrom(ptr unsafe.Pointer) ScrubberItemView {
 		ScrubberArrangedView: ScrubberArrangedViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberItemViewClass) Alloc() ScrubberItemView {
 	rv := objc.Send[ScrubberItemView](objc.ID(sc.class), objc.Sel("alloc"))

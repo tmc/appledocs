@@ -31,10 +31,11 @@ type IATSTypesetter interface {
 	ITypesetter
 }
 
-// A concrete typesetter object that places glyphs during the text layout process. [Full Topic]
+// A concrete typesetter object that places glyphs during the text layout process.
+//
+// An object creates line fragment rectangles, positions glyphs within the line fragments, determines line breaks by word wrapping and hyphenation, and handles tab positioning. This object encapsulates the advanced typesetting capabilities of Core Text. provides line and character spacing accuracy and supports many languages, including bidirectional languages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter
-
 type ATSTypesetter struct {
 	Typesetter
 }
@@ -47,6 +48,7 @@ func ATSTypesetterFrom(ptr unsafe.Pointer) ATSTypesetter {
 		Typesetter: TypesetterFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _ATSTypesetterClass) Alloc() ATSTypesetter {
 	rv := objc.Send[ATSTypesetter](objc.ID(ac.class), objc.Sel("alloc"))

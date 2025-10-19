@@ -34,6 +34,8 @@ type ISCRunningApplication interface {
 
 // An instance that represents an app running on a device.
 //
+// Retrieve the available apps from an instance of . Select one or more apps to capture and use them to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication
 type SCRunningApplication struct {
 	objectivec.Object

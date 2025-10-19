@@ -32,10 +32,11 @@ type IAnimation interface {
 	objectivec.IObject
 }
 
-// An object that manages the timing and progress of animations in the user interface. [Full Topic]
+// An object that manages the timing and progress of animations in the user interface.
+//
+// also lets you link together multiple animations so that when one animation ends another one starts. It does not provide any drawing support for animation and does not directly deal with views, targets, or actions. objects have several characteristics, including duration, frame rate, and animation curve, which describes the relative speed of the animation over its course. You can set progress marks in an animation, each of which specifies a percentage of the animation completed; when an animation reaches a progress mark, it notifies its delegate and posts a notification to any observers. Animations execute in one of three blocking modes: blocking, non-blocking on the main thread, and non-blocking on a separate thread. The non-blocking modes permit the handling of user events while the animation is running.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation
-
 type Animation struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Animation struct {
 func AnimationFrom(ptr unsafe.Pointer) Animation {
 	return Animation{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AnimationClass) Alloc() Animation {
 	rv := objc.Send[Animation](objc.ID(ac.class), objc.Sel("alloc"))

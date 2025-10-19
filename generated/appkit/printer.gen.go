@@ -32,10 +32,11 @@ type IPrinter interface {
 	objectivec.IObject
 }
 
-// An object that describes a printer’s capabilities. [Full Topic]
+// An object that describes a printer’s capabilities.
+//
+// provides information about a printer; it does not modify printer attributes or control a printing job. A printer object can be constructed by specifying either the printer name or the make and model of an available printer. Typically, Cocoa apps don’t create objects; instead, the printing system uses these objects to support the printing jobs and when it shows users a list of printers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter
-
 type Printer struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Printer struct {
 func PrinterFrom(ptr unsafe.Pointer) Printer {
 	return Printer{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PrinterClass) Alloc() Printer {
 	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("alloc"))

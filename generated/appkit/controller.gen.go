@@ -32,10 +32,9 @@ type IController interface {
 	objectivec.IObject
 }
 
-// An abstract class that implements the and informal protocols required for controller classes. [Full Topic]
+// An abstract class that implements the and informal protocols required for controller classes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController
-
 type Controller struct {
 	objectivec.Object
 }
@@ -46,6 +45,7 @@ type Controller struct {
 func ControllerFrom(ptr unsafe.Pointer) Controller {
 	return Controller{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ControllerClass) Alloc() Controller {
 	rv := objc.Send[Controller](objc.ID(cc.class), objc.Sel("alloc"))

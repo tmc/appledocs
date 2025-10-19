@@ -32,10 +32,11 @@ type IStringDrawingContext interface {
 	objectivec.IObject
 }
 
-// An object that manages metrics for drawing attributed strings. [Full Topic]
+// An object that manages metrics for drawing attributed strings.
+//
+// Prior to drawing, you can create an instance of this class and use it to specify the minimum scale factor and tracking adjustments for a string. After drawing, you can retrieve the actual values that were used during drawing. To use this class, allocate and initialize a new instance, set the minimum values, and pass your object to one of the corresponding methods that take the context object as a parameter. Upon completion of drawing, you can use the actual drawing values to make adjustments or record where the string was actually drawn.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext
-
 type StringDrawingContext struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type StringDrawingContext struct {
 func StringDrawingContextFrom(ptr unsafe.Pointer) StringDrawingContext {
 	return StringDrawingContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _StringDrawingContextClass) Alloc() StringDrawingContext {
 	rv := objc.Send[StringDrawingContext](objc.ID(sc.class), objc.Sel("alloc"))

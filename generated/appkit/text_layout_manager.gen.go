@@ -32,10 +32,11 @@ type ITextLayoutManager interface {
 	objectivec.IObject
 }
 
-// The primary class that you use to manage text layout and presentation for custom text displays. [Full Topic]
+// The primary class that you use to manage text layout and presentation for custom text displays.
+//
+// is the centerpiece of the TextKit object network that maintains the layout geometry through an array of objects. It lays out results using and objects vended from a that participates in the content layout process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager
-
 type TextLayoutManager struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TextLayoutManager struct {
 func TextLayoutManagerFrom(ptr unsafe.Pointer) TextLayoutManager {
 	return TextLayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextLayoutManagerClass) Alloc() TextLayoutManager {
 	rv := objc.Send[TextLayoutManager](objc.ID(tc.class), objc.Sel("alloc"))

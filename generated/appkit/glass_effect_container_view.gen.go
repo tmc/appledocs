@@ -31,10 +31,9 @@ type IGlassEffectContainerView interface {
 	IView
 }
 
-// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other. [Full Topic]
+// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView
-
 type GlassEffectContainerView struct {
 	View
 }
@@ -47,6 +46,7 @@ func GlassEffectContainerViewFrom(ptr unsafe.Pointer) GlassEffectContainerView {
 		View: ViewFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GlassEffectContainerViewClass) Alloc() GlassEffectContainerView {
 	rv := objc.Send[GlassEffectContainerView](objc.ID(gc.class), objc.Sel("alloc"))
@@ -79,5 +79,37 @@ func NewGlassEffectContainerView() GlassEffectContainerView {
 }
 
 
+// The view that contains descendant views to merge together when in proximity to each other.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
+func (g_ GlassEffectContainerView) ContentView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("contentView"))
+	return rv
+}
+
+// SetContentView sets the value of the contentView property.
+// The view that contains descendant views to merge together when in proximity to each other.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
+func (g_ GlassEffectContainerView) SetContentView(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
+}
+// The proximity at which the glass effect container view begins merging eligible descendent glass effect views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
+func (g_ GlassEffectContainerView) Spacing() float64 {
+	rv := objc.Send[float64](g_.ID, objc.Sel("spacing"))
+	return rv
+}
+
+// SetSpacing sets the value of the spacing property.
+// The proximity at which the glass effect container view begins merging eligible descendent glass effect views.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
+func (g_ GlassEffectContainerView) SetSpacing(value float64) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSpacing:"), value)
+}
 
 

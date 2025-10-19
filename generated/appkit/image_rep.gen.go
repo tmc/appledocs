@@ -32,10 +32,11 @@ type IImageRep interface {
 	objectivec.IObject
 }
 
-// A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data. [Full Topic]
+// A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.
+//
+// The class is called “semiabstract” because it has some instance variables and implementation of its own, in addition to defining subclasses. Although an subclass can be used directly, it is typically accessed through an object, which manages a group of image representations, choosing the best one for the current output device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep
-
 type ImageRep struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ImageRep struct {
 func ImageRepFrom(ptr unsafe.Pointer) ImageRep {
 	return ImageRep{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageRepClass) Alloc() ImageRep {
 	rv := objc.Send[ImageRep](objc.ID(ic.class), objc.Sel("alloc"))

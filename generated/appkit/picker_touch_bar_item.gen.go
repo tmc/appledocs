@@ -31,10 +31,9 @@ type IPickerTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a picker control with multiple options. [Full Topic]
+// A bar item that provides a picker control with multiple options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem
-
 type PickerTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func PickerTouchBarItemFrom(ptr unsafe.Pointer) PickerTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PickerTouchBarItemClass) Alloc() PickerTouchBarItem {
 	rv := objc.Send[PickerTouchBarItem](objc.ID(pc.class), objc.Sel("alloc"))

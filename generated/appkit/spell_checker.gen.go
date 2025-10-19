@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SpellChecker] class.
@@ -30,13 +31,14 @@ type _SpellCheckerClass struct {
 // An interface definition for the [SpellChecker] class.
 type ISpellChecker interface {
 	objectivec.IObject
-	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
+	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange coregraphics.CGPoint, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
 }
 
-// An interface to the Cocoa spell-checking service. [Full Topic]
+// An interface to the Cocoa spell-checking service.
+//
+// To handle all its spell checking, an app needs only one instance of , known as the spell checker. Using the spell checker you manage the Spelling panel, in which the user can specify decisions about words that are suspect. The spell checker also offers the ability to provide word completions to augment the text completion system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker
-
 type SpellChecker struct {
 	objectivec.Object
 }
@@ -47,6 +49,7 @@ type SpellChecker struct {
 func SpellCheckerFrom(ptr unsafe.Pointer) SpellChecker {
 	return SpellChecker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SpellCheckerClass) Alloc() SpellChecker {
 	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("alloc"))
@@ -81,9 +84,10 @@ func NewSpellChecker() SpellChecker {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/requestCandidates(forSelectedRange:in:types:options:inSpellDocumentWithTag:completionHandler:)
-func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
+func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange coregraphics.CGPoint, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), selectedRange, objc.String(stringToCheck), checkingTypes, options, tag, completionHandler)
 	return rv
 }
+
 
 

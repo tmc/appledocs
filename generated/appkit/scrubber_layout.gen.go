@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrubberLayout] class.
@@ -32,15 +33,16 @@ type IScrubberLayout interface {
 	objectivec.IObject
 	InvalidateLayout()
 	LayoutAttributesForItemAtIndex(index int) unsafe.Pointer
-	LayoutAttributesForItemsInRect(rect unsafe.Pointer) unsafe.Pointer
+	LayoutAttributesForItemsInRect(rect coregraphics.CGRect) unsafe.Pointer
 	PrepareLayout()
-	ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect unsafe.Pointer, toVisibleRect unsafe.Pointer) bool
+	ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect coregraphics.CGRect, toVisibleRect coregraphics.CGRect) bool
 }
 
-// An abstract class that describes the layout of items within a scrubber control. [Full Topic]
+// An abstract class that describes the layout of items within a scrubber control.
+//
+// To determine the layout of items in a scrubber, use one of the built-in subclasses ( or ), or create a custom subclass to implement your own layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout
-
 type ScrubberLayout struct {
 	objectivec.Object
 }
@@ -51,6 +53,7 @@ type ScrubberLayout struct {
 func ScrubberLayoutFrom(ptr unsafe.Pointer) ScrubberLayout {
 	return ScrubberLayout{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScrubberLayoutClass) Alloc() ScrubberLayout {
 	rv := objc.Send[ScrubberLayout](objc.ID(sc.class), objc.Sel("alloc"))
@@ -83,42 +86,63 @@ func NewScrubberLayout() ScrubberLayout {
 }
 
 
-// Signals that the layout has been invalidated, and that the scrubber control should perform a new layout pass. [Full Topic]
-
+// Signals that the layout has been invalidated, and that the scrubber control should perform a new layout pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/invalidateLayout()
 func (s_ ScrubberLayout) InvalidateLayout() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayout"))
 }
-// The layout attributes for the item with the specified index. [Full Topic]
 
+// The layout attributes for the item with the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/layoutAttributesForItem(at:)
 func (s_ ScrubberLayout) LayoutAttributesForItemAtIndex(index int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("layoutAttributesForItemAtIndex:"), index)
 	return rv
 }
-// The set of layout attributes for all items within the provided rectangle. [Full Topic]
 
+// The set of layout attributes for all items within the provided rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/layoutAttributesForItems(in:)
-func (s_ ScrubberLayout) LayoutAttributesForItemsInRect(rect unsafe.Pointer) unsafe.Pointer {
+func (s_ ScrubberLayout) LayoutAttributesForItemsInRect(rect coregraphics.CGRect) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("layoutAttributesForItemsInRect:"), rect)
 	return rv
 }
-// Gives you an opportunity to perform layout calculations when the scrubber’s layout is invalidated. [Full Topic]
 
+// Gives you an opportunity to perform layout calculations when the scrubber’s layout is invalidated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/prepare()
 func (s_ ScrubberLayout) PrepareLayout() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("prepareLayout"))
 }
-// Determines whether the scrubber should refresh its layout in response to a change of its visible region. [Full Topic]
 
+// Determines whether the scrubber should refresh its layout in response to a change of its visible region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/shouldInvalidateLayoutForChange(fromVisibleRect:toVisibleRect:)
-func (s_ ScrubberLayout) ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect unsafe.Pointer, toVisibleRect unsafe.Pointer) bool {
+func (s_ ScrubberLayout) ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect coregraphics.CGRect, toVisibleRect coregraphics.CGRect) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:"), fromVisibleRect, toVisibleRect)
+	return rv
+}
+
+// The size required to contain all elements within the scrubber.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/scrubberContentSize
+func (s_ ScrubberLayout) ScrubberContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("scrubberContentSize"))
+	return rv
+}
+// Determines whether the scrubber should refresh its layout when an item is highlighted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/shouldInvalidateLayoutForHighlightChange
+func (s_ ScrubberLayout) ShouldInvalidateLayoutForHighlightChange() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForHighlightChange"))
+	return rv
+}
+// Determines whether the scrubber should refresh its layout when the selection changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/shouldInvalidateLayoutForSelectionChange
+func (s_ ScrubberLayout) ShouldInvalidateLayoutForSelectionChange() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForSelectionChange"))
 	return rv
 }
 

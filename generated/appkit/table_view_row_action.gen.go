@@ -32,10 +32,11 @@ type ITableViewRowAction interface {
 	objectivec.IObject
 }
 
-// A single action to present when the user swipes horizontally on a table row. [Full Topic]
+// A single action to present when the user swipes horizontally on a table row.
+//
+// In an editable table, performing a horizontal swipe on a row reveals a button to delete the row by default. This class lets you define one or more custom actions to display for a given row in your table. Each instance of this class represents a single action to perform and includes the text, formatting information, and behavior for the corresponding button. To add custom actions to your table view’s rows, implement the method in your table view’s delegate object. In that method, create and return an array of actions for the specified row. The table handles the remaining work of displaying the action buttons and executing the appropriate handler block when the user clicks the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction
-
 type TableViewRowAction struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type TableViewRowAction struct {
 func TableViewRowActionFrom(ptr unsafe.Pointer) TableViewRowAction {
 	return TableViewRowAction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableViewRowActionClass) Alloc() TableViewRowAction {
 	rv := objc.Send[TableViewRowAction](objc.ID(tc.class), objc.Sel("alloc"))

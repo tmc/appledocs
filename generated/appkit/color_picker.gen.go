@@ -32,10 +32,11 @@ type IColorPicker interface {
 	objectivec.IObject
 }
 
-// An abstract superclass that implements the default color picking protocol. [Full Topic]
+// An abstract superclass that implements the default color picking protocol.
+//
+// The and protocols define a way to add color pickers (custom user interfaces for color selection) to the color panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker
-
 type ColorPicker struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ColorPicker struct {
 func ColorPickerFrom(ptr unsafe.Pointer) ColorPicker {
 	return ColorPicker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorPickerClass) Alloc() ColorPicker {
 	rv := objc.Send[ColorPicker](objc.ID(cc.class), objc.Sel("alloc"))

@@ -32,10 +32,11 @@ type ITypesetter interface {
 	objectivec.IObject
 }
 
-// An abstract class that performs various type layout tasks. [Full Topic]
+// An abstract class that performs various type layout tasks.
+//
+// uses concrete subclasses of to perform line layout, which includes word wrapping, hyphenation, and line breaking in either vertical or horizontal rectangles. By default, the text system uses the concrete subclass .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter
-
 type Typesetter struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Typesetter struct {
 func TypesetterFrom(ptr unsafe.Pointer) Typesetter {
 	return Typesetter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TypesetterClass) Alloc() Typesetter {
 	rv := objc.Send[Typesetter](objc.ID(tc.class), objc.Sel("alloc"))

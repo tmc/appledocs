@@ -31,10 +31,11 @@ type IToolbarItemGroup interface {
 	IToolbarItem
 }
 
-// A group of subitems in a toolbar item. [Full Topic]
+// A group of subitems in a toolbar item.
+//
+// An represents a collection set of subitems in a toolbar that the system displays based on available space and settings that you specify. The system uses the views and labels of the subitems, but the parent’s attributes take precedence. This differs from other objects because they’re attached — the user drags them together as a single item rather than separately. If a subitem of the group has an action set on it, the group uses that action instead of its own when the user clicks or taps on that item. The system prefers the subitem’s action if it exists, otherwise it uses the group’s action. To configure an instance of , you first create the individual toolbar subitems: Then, you put them in a grouped item: In this configuration, you get two grouped items, and two labels. If you set a label on the parent item, you get two grouped items with one shared label: If instead you set a view on the parent item, you get two labels with one shared view:
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup
-
 type ToolbarItemGroup struct {
 	ToolbarItem
 }
@@ -47,6 +48,7 @@ func ToolbarItemGroupFrom(ptr unsafe.Pointer) ToolbarItemGroup {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _ToolbarItemGroupClass) Alloc() ToolbarItemGroup {
 	rv := objc.Send[ToolbarItemGroup](objc.ID(tc.class), objc.Sel("alloc"))

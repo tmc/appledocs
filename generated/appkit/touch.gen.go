@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Touch] class.
@@ -30,13 +31,14 @@ type _TouchClass struct {
 // An interface definition for the [Touch] class.
 type ITouch interface {
 	objectivec.IObject
-	PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer
+	PreviousLocationInView(view unsafe.Pointer) coregraphics.CGPoint
 }
 
-// A snapshot of a particular touch at an instant in time. [Full Topic]
+// A snapshot of a particular touch at an instant in time.
+//
+// A touch event is not persistent throughout the touch. A touch creates new instances as it progresses. Use the identity property to follow a specific touch across its lifetime. Touches do not have a corresponding screen location. The first touch of a touch collection latches to the view underlying the cursor using the same hit detection as mouse events. Additional touches on the same device latch to the same view. Latches remain on views until the user ends a touch or an event cancels it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch
-
 type Touch struct {
 	objectivec.Object
 }
@@ -47,6 +49,7 @@ type Touch struct {
 func TouchFrom(ptr unsafe.Pointer) Touch {
 	return Touch{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TouchClass) Alloc() Touch {
 	rv := objc.Send[Touch](objc.ID(tc.class), objc.Sel("alloc"))
@@ -79,13 +82,13 @@ func NewTouch() Touch {
 }
 
 
-// Indicates the previous location of the touch in the view’s coordinates. [Full Topic]
-
+// Indicates the previous location of the touch in the view’s coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
-func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("previousLocationInView:"), view)
+func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
 }
+
 
 

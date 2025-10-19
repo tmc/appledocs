@@ -31,10 +31,11 @@ type IDrawer interface {
 	IResponder
 }
 
-// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses. [Full Topic]
+// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses.
+//
+// A drawer is associated with a window, called its parent, and can appear only while its parent is visible onscreen. A drawer cannot be moved or ordered independently of a window, but is instead attached to one edge of its parent and moves along with it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer
-
 type Drawer struct {
 	Responder
 }
@@ -47,6 +48,7 @@ func DrawerFrom(ptr unsafe.Pointer) Drawer {
 		Responder: ResponderFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (dc _DrawerClass) Alloc() Drawer {
 	rv := objc.Send[Drawer](objc.ID(dc.class), objc.Sel("alloc"))

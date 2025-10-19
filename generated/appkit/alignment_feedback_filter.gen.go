@@ -32,10 +32,11 @@ type IAlignmentFeedbackFilter interface {
 	objectivec.IObject
 }
 
-// An object that can filter the movement of an object and provides haptic feedback when alignment occurs. [Full Topic]
+// An object that can filter the movement of an object and provides haptic feedback when alignment occurs.
+//
+// With a Force Touch trackpad, apps can produce tactile feedback to complement user actions. If your app implements alignment features, you can use the class to filter object movements and provide haptic feedback to the user at appropriate times. As the user drags objects into alignment with a guide or another object, the user actually feels a physical bump as the object snaps into place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter
-
 type AlignmentFeedbackFilter struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type AlignmentFeedbackFilter struct {
 func AlignmentFeedbackFilterFrom(ptr unsafe.Pointer) AlignmentFeedbackFilter {
 	return AlignmentFeedbackFilter{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AlignmentFeedbackFilterClass) Alloc() AlignmentFeedbackFilter {
 	rv := objc.Send[AlignmentFeedbackFilter](objc.ID(ac.class), objc.Sel("alloc"))

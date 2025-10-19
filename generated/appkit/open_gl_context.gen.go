@@ -32,10 +32,11 @@ type IOpenGLContext interface {
 	objectivec.IObject
 }
 
-// An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered. [Full Topic]
+// An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
+//
+// An OpenGL context is created using an object that specifies the context’s buffer types and other attributes. A context can be full-screen, offscreen, or associated with an object. A context draws into its , which is the frame buffer that is the target of OpenGL drawing operations. Every object wraps a low-level, platform-specific Core OpenGL (CGL) context. Your application can retrieve the CGL context by calling the method. For more information on the underling CGL context, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext
-
 type OpenGLContext struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type OpenGLContext struct {
 func OpenGLContextFrom(ptr unsafe.Pointer) OpenGLContext {
 	return OpenGLContext{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLContextClass) Alloc() OpenGLContext {
 	rv := objc.Send[OpenGLContext](objc.ID(oc.class), objc.Sel("alloc"))

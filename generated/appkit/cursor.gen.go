@@ -32,10 +32,11 @@ type ICursor interface {
 	objectivec.IObject
 }
 
-// A pointer (also called a cursor). [Full Topic]
+// A pointer (also called a cursor).
+//
+// The following table shows and describes the system cursors, and indicates the class method for obtaining them: In macOS 10.3 and later, cursor size is no longer limited to 16 by 16 pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor
-
 type Cursor struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Cursor struct {
 func CursorFrom(ptr unsafe.Pointer) Cursor {
 	return Cursor{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _CursorClass) Alloc() Cursor {
 	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("alloc"))

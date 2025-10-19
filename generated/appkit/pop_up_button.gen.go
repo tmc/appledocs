@@ -31,10 +31,11 @@ type IPopUpButton interface {
 	IButton
 }
 
-// A control for selecting an item from a list. [Full Topic]
+// A control for selecting an item from a list.
+//
+// An object uses an object to implement its user interface. Note that while a menu is tracking user input, programmatic changes to the menu, such as adding, removing, or changing items on the menu, is not reflected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton
-
 type PopUpButton struct {
 	Button
 }
@@ -47,6 +48,7 @@ func PopUpButtonFrom(ptr unsafe.Pointer) PopUpButton {
 		Button: ButtonFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PopUpButtonClass) Alloc() PopUpButton {
 	rv := objc.Send[PopUpButton](objc.ID(pc.class), objc.Sel("alloc"))

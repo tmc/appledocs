@@ -32,10 +32,11 @@ type IColorSpace interface {
 	objectivec.IObject
 }
 
-// An object that represents a custom color space. [Full Topic]
+// An object that represents a custom color space.
+//
+// You can make custom color spaces from ColorSync profiles or from ICC profiles. also has factory methods that return objects representing the system color spaces. You can use the method of the class to create color objects using custom objects. You can also send the message to an object to convert it between two color spaces, either of which may be a custom color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace
-
 type ColorSpace struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type ColorSpace struct {
 func ColorSpaceFrom(ptr unsafe.Pointer) ColorSpace {
 	return ColorSpace{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorSpaceClass) Alloc() ColorSpace {
 	rv := objc.Send[ColorSpace](objc.ID(cc.class), objc.Sel("alloc"))

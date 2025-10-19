@@ -31,10 +31,11 @@ type ILayoutDimension interface {
 	ILayoutAnchor
 }
 
-// A factory class for creating size-based layout constraint objects using a fluent API. [Full Topic]
+// A factory class for creating size-based layout constraint objects using a fluent API.
+//
+// Use these constraints to programmatically define your layout using Auto Layout. All sizes are measured in points. In addition to providing size-specific methods for creating constraints, this class adds type information to the methods inherited from . Specifically, the generic methods declared by must now take a matching object. For more information on using layout anchors, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutDimension
-
 type LayoutDimension struct {
 	LayoutAnchor
 }
@@ -47,6 +48,7 @@ func LayoutDimensionFrom(ptr unsafe.Pointer) LayoutDimension {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutDimensionClass) Alloc() LayoutDimension {
 	rv := objc.Send[LayoutDimension](objc.ID(lc.class), objc.Sel("alloc"))

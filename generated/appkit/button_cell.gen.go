@@ -31,10 +31,11 @@ type IButtonCell interface {
 	IActionCell
 }
 
-// An object that defines the user interface of a button or other clickable region of a view. [Full Topic]
+// An object that defines the user interface of a button or other clickable region of a view.
+//
+// Setting the integer, float, double, or object value of an object results in a call to with the value converted to integer. In the case of , is equivalent to , and a non- object that doesn’t respond to sets the state to . Otherwise, the state is set to the object’s . Similarly, for most button types, querying the integer, float, double, or object value of an returns the current state in the requested representation. In the case of , this is an containing for on, for off, and integer value for the mixed state. For accelerator buttons (type or ) on systems that support pressure sensitivity, querying returns the amount of pressure applied while pressing the button. The configuration of an object controls how the button object appears and behaves, but it’s that sends a message when the control is clicked. For more information on the behavior of , see the and class specifications, and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell
-
 type ButtonCell struct {
 	ActionCell
 }
@@ -47,6 +48,7 @@ func ButtonCellFrom(ptr unsafe.Pointer) ButtonCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _ButtonCellClass) Alloc() ButtonCell {
 	rv := objc.Send[ButtonCell](objc.ID(bc.class), objc.Sel("alloc"))

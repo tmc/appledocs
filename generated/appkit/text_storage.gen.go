@@ -32,10 +32,11 @@ type ITextStorage interface {
 	foundation.IMutableAttributedString
 }
 
-// The fundamental storage mechanism of TextKit that contains the text managed by the system. [Full Topic]
+// The fundamental storage mechanism of TextKit that contains the text managed by the system.
+//
+// is a semi-concrete subclass of that adds behavior for managing a set of client objects. A text storage object notifies its layout managers of changes to its characters or attributes, which lets the layout managers redisplay the text as needed. You can access a text storage object from any thread of your app, but your app must guarantee access from only one thread at a time. In macOS, this class also defines properties for getting and setting scriptable attributes of objects. Unless you’re dealing with scriptability, you shouldn’t access these properties directly. In particular, using the , , or properties is an inefficient way to manipulate the text storage, since accessing these properties involves the creation of many objects. Instead, use the text access methods defined by , , , and to perform character-level manipulation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage
-
 type TextStorage struct {
 	foundation.MutableAttributedString
 }
@@ -48,6 +49,7 @@ func TextStorageFrom(ptr unsafe.Pointer) TextStorage {
 		MutableAttributedString: foundation.MutableAttributedStringFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextStorageClass) Alloc() TextStorage {
 	rv := objc.Send[TextStorage](objc.ID(tc.class), objc.Sel("alloc"))

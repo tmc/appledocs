@@ -34,7 +34,6 @@ type IBindingSelectionMarker interface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker
-
 type BindingSelectionMarker struct {
 	objectivec.Object
 }
@@ -43,6 +42,7 @@ type BindingSelectionMarker struct {
 func BindingSelectionMarkerFrom(ptr unsafe.Pointer) BindingSelectionMarker {
 	return BindingSelectionMarker{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (bc _BindingSelectionMarkerClass) Alloc() BindingSelectionMarker {
 	rv := objc.Send[BindingSelectionMarker](objc.ID(bc.class), objc.Sel("alloc"))

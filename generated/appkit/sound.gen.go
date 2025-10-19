@@ -32,10 +32,11 @@ type ISound interface {
 	objectivec.IObject
 }
 
-// A simple interface for loading and playing audio files. [Full Topic]
+// A simple interface for loading and playing audio files.
+//
+// You create a sound object with an audio file or data, which can be in any format that Core Audio supports. Customize the sound by configuring its properties, such as setting its playback volume and looping behavior. Call the sound’s method to begin playback. The system executes this call asynchronously so that it doesn’t interrupt the functioning of your app. If you want to play the system beep sound, use the (Swift) or (Objective-C) function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound
-
 type Sound struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Sound struct {
 func SoundFrom(ptr unsafe.Pointer) Sound {
 	return Sound{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SoundClass) Alloc() Sound {
 	rv := objc.Send[Sound](objc.ID(sc.class), objc.Sel("alloc"))

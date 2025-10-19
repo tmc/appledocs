@@ -33,10 +33,11 @@ type IColor interface {
 	ColorUsingColorSpaceName(name unsafe.Pointer) unsafe.Pointer
 }
 
-// An object that stores color data and sometimes opacity (alpha value). [Full Topic]
+// An object that stores color data and sometimes opacity (alpha value).
+//
+// Many methods in AppKit require you to specify color data using an object; when drawing you use them to set the current fill and stroke colors. Color objects are immutable and thread-safe. You can create color objects in many ways: Load colors from an asset catalog. Colors created from assets can adapt automatically to system appearance changes. Use the semantic colors for custom UI elements, so that they match the appearance of other AppKit views; see . Use the adaptable system colors, such as , when you want a specific tint that looks correct in both light and dark environments. Create a color object from another object, such as a Core Graphics representation of a color, or a Core Image color. Create a color from an object, and paint a repeating pattern instead of using a solid color. Create a color by applying a transform to another object. For example, you might perform a blend operation between two colors, or you might create a color that represents the same color, but in a different color space. Create custom colors using raw component values, and a variety of color spaces, when you need to represent user-specified colors. For user-specified colors, you can also display a color panel and let the user specify the color. For information about color panels, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor
-
 type Color struct {
 	objectivec.Object
 }
@@ -47,6 +48,7 @@ type Color struct {
 func ColorFrom(ptr unsafe.Pointer) Color {
 	return Color{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorClass) Alloc() Color {
 	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("alloc"))
@@ -79,13 +81,13 @@ func NewColor() Color {
 }
 
 
-// Creates a new color object whose color is the same as the receiver’s, except that the new color object is in the specified color space. [Full Topic]
-
+// Creates a new color object whose color is the same as the receiver’s, except that the new color object is in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/usingColorSpaceName(_:)
 func (c_ Color) ColorUsingColorSpaceName(name unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorUsingColorSpaceName:"), name)
 	return rv
 }
+
 
 

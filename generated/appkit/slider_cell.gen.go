@@ -31,10 +31,11 @@ type ISliderCell interface {
 	IActionCell
 }
 
-// The appearance and behavior of an object. [Full Topic]
+// The appearance and behavior of an object.
+//
+// You can customize an to a certain degree, using its properties. If this doesn’t give you sufficient flexibility, you can create a subclass. In that subclass, you can override any of the following methods: , , , and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell
-
 type SliderCell struct {
 	ActionCell
 }
@@ -47,6 +48,7 @@ func SliderCellFrom(ptr unsafe.Pointer) SliderCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SliderCellClass) Alloc() SliderCell {
 	rv := objc.Send[SliderCell](objc.ID(sc.class), objc.Sel("alloc"))

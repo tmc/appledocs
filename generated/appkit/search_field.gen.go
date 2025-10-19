@@ -31,10 +31,11 @@ type ISearchField interface {
 	ITextField
 }
 
-// A text field optimized for performing text-based searches. [Full Topic]
+// A text field optimized for performing text-based searches.
+//
+// provides a customized text field for entering search data. The class also provides a search button, a cancel button, and a pop-up icon menu for listing recent search strings and custom search categories. An object wraps an object. The cell provides access to most search field attributes and a comprehensive programmatic interface for manipulating the search field. You can use an object to manipulate some aspects of the search field. For additional information about search fields and how to implement them, see the class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField
-
 type SearchField struct {
 	TextField
 }
@@ -47,6 +48,7 @@ func SearchFieldFrom(ptr unsafe.Pointer) SearchField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SearchFieldClass) Alloc() SearchField {
 	rv := objc.Send[SearchField](objc.ID(sc.class), objc.Sel("alloc"))

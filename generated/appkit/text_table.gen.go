@@ -31,10 +31,11 @@ type ITextTable interface {
 	ITextBlock
 }
 
-// An object that represents a text table as a whole. [Full Topic]
+// An object that represents a text table as a whole.
+//
+// A text table is responsible for laying out and drawing the text table blocks it contains, and it maintains the basic parameters of the table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable
-
 type TextTable struct {
 	TextBlock
 }
@@ -47,6 +48,7 @@ func TextTableFrom(ptr unsafe.Pointer) TextTable {
 		TextBlock: TextBlockFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextTableClass) Alloc() TextTable {
 	rv := objc.Send[TextTable](objc.ID(tc.class), objc.Sel("alloc"))

@@ -31,10 +31,11 @@ type IMutableFontCollection interface {
 	IFontCollection
 }
 
-// A mutable collection of font descriptors taken together as a single object. [Full Topic]
+// A mutable collection of font descriptors taken together as a single object.
+//
+// You can use this class to modify the search queries for the font descriptors used by the parent class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection
-
 type MutableFontCollection struct {
 	FontCollection
 }
@@ -47,6 +48,7 @@ func MutableFontCollectionFrom(ptr unsafe.Pointer) MutableFontCollection {
 		FontCollection: FontCollectionFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableFontCollectionClass) Alloc() MutableFontCollection {
 	rv := objc.Send[MutableFontCollection](objc.ID(mc.class), objc.Sel("alloc"))

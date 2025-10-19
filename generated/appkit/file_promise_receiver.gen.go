@@ -32,10 +32,11 @@ type IFilePromiseReceiver interface {
 	objectivec.IObject
 }
 
-// An object that receives a file promise from the pasteboard. [Full Topic]
+// An object that receives a file promise from the pasteboard.
+//
+// Because implements the protocol, you receive all file promises on the drag pasteboard as follows: Likewise, you can enumerate dragged items by calling the following:
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver
-
 type FilePromiseReceiver struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type FilePromiseReceiver struct {
 func FilePromiseReceiverFrom(ptr unsafe.Pointer) FilePromiseReceiver {
 	return FilePromiseReceiver{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FilePromiseReceiverClass) Alloc() FilePromiseReceiver {
 	rv := objc.Send[FilePromiseReceiver](objc.ID(fc.class), objc.Sel("alloc"))

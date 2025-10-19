@@ -34,6 +34,8 @@ type ISCWindow interface {
 
 // An instance that represents an onscreen window.
 //
+// Retrieve the available windows from an instance of . Select one or more windows to capture and use them to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCWindow
 type SCWindow struct {
 	objectivec.Object

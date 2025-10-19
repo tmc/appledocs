@@ -34,6 +34,8 @@ type ISCContentFilter interface {
 
 // An instance that filters the content a stream captures.
 //
+// Use a content filter to limit an object’s output to only that matching your filter criteria. Retrieve the displays, apps, and windows that your app can capture from an instance of .
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter
 type SCContentFilter struct {
 	objectivec.Object

@@ -32,10 +32,11 @@ type IPDFPanel interface {
 	objectivec.IObject
 }
 
-// A Save or Export as PDF panel that’s consistent with the macOS user interface. [Full Topic]
+// A Save or Export as PDF panel that’s consistent with the macOS user interface.
+//
+// A PDF panel has a variety of built-in customization controls, such as page orientation, paper size, and tags. It also supports the use of a custom accessory view controller that allows an app to specify how a PDF file should be created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel
-
 type PDFPanel struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type PDFPanel struct {
 func PDFPanelFrom(ptr unsafe.Pointer) PDFPanel {
 	return PDFPanel{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PDFPanelClass) Alloc() PDFPanel {
 	rv := objc.Send[PDFPanel](objc.ID(pc.class), objc.Sel("alloc"))

@@ -32,10 +32,11 @@ type IViewAnimation interface {
 	quartzcore.IAnimation
 }
 
-// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects. [Full Topic]
+// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
+//
+// An object takes an array of dictionaries from which it determines the objects to animate and the effects to apply to them. Each dictionary must have a target object and, optionally, properties that specify beginning and ending frame and whether to fade in or fade out. (See for further information.) Animations with are, by default, in non-blocking mode over a duration of 0.5 seconds using the ease in-out animation curve. But you can configure the animation to have any duration, curve, frame rate, and blocking mode. You may also set progress marks, assign a delegate, and implement delegation methods in order to animate view and windows concurrent with the ones specified as targets in the view-animation dictionary. Invoking the method on a running object moves the animation to the end frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation
-
 type ViewAnimation struct {
 	quartzcore.Animation
 }
@@ -48,6 +49,7 @@ func ViewAnimationFrom(ptr unsafe.Pointer) ViewAnimation {
 		Animation: quartzcore.AnimationFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (vc _ViewAnimationClass) Alloc() ViewAnimation {
 	rv := objc.Send[ViewAnimation](objc.ID(vc.class), objc.Sel("alloc"))

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Event] class.
@@ -97,8 +98,8 @@ func (e_ Event) EventRef() unsafe.Pointer {
 // The event location in the base coordinate system of the associated window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/locationInWindow
-func (e_ Event) LocationInWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("locationInWindow"))
+func (e_ Event) LocationInWindow() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("locationInWindow"))
 	return rv
 }
 // An integer bit field that indicates the pressed modifier keys.

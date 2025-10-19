@@ -31,10 +31,9 @@ type IPopoverTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns. [Full Topic]
+// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem
-
 type PopoverTouchBarItem struct {
 	TouchBarItem
 }
@@ -47,6 +46,7 @@ func PopoverTouchBarItemFrom(ptr unsafe.Pointer) PopoverTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PopoverTouchBarItemClass) Alloc() PopoverTouchBarItem {
 	rv := objc.Send[PopoverTouchBarItem](objc.ID(pc.class), objc.Sel("alloc"))
@@ -79,5 +79,37 @@ func NewPopoverTouchBarItem() PopoverTouchBarItem {
 }
 
 
+// The bar displayed when this item is “popped.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
+func (p_ PopoverTouchBarItem) PopoverTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("popoverTouchBar"))
+	return rv
+}
+
+// SetPopoverTouchBar sets the value of the popoverTouchBar property.
+// The bar displayed when this item is “popped.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
+func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPopoverTouchBar:"), value)
+}
+// The bar that is displayed when a user press-and-holds on the popover item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
+func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressAndHoldTouchBar"))
+	return rv
+}
+
+// SetPressAndHoldTouchBar sets the value of the pressAndHoldTouchBar property.
+// The bar that is displayed when a user press-and-holds on the popover item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
+func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
+}
 
 

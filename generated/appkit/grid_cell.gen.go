@@ -32,10 +32,11 @@ type IGridCell interface {
 	objectivec.IObject
 }
 
-// An individual content area within a grid view, typically at the intersection of a row and a column. [Full Topic]
+// An individual content area within a grid view, typically at the intersection of a row and a column.
+//
+// Use a grid cell to specify the content view to display and to position the content view within the cell’s area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridCell
-
 type GridCell struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type GridCell struct {
 func GridCellFrom(ptr unsafe.Pointer) GridCell {
 	return GridCell{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (gc _GridCellClass) Alloc() GridCell {
 	rv := objc.Send[GridCell](objc.ID(gc.class), objc.Sel("alloc"))

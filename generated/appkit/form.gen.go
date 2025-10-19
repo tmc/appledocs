@@ -31,10 +31,9 @@ type IForm interface {
 	IMatrix
 }
 
-// An object is a vertical matrix of objects to implement the fields. [Full Topic]
+// An object is a vertical matrix of objects to implement the fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm
-
 type Form struct {
 	Matrix
 }
@@ -47,6 +46,7 @@ func FormFrom(ptr unsafe.Pointer) Form {
 		Matrix: MatrixFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FormClass) Alloc() Form {
 	rv := objc.Send[Form](objc.ID(fc.class), objc.Sel("alloc"))

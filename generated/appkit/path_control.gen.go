@@ -31,10 +31,11 @@ type IPathControl interface {
 	IControl
 }
 
-// A display of a file system path or virtual path information. [Full Topic]
+// A display of a file system path or virtual path information.
+//
+// The class uses to implement its user interface. provides cover methods for most methods—the cover method simply invokes the corresponding cell method. See also , which represents individual components of the path, and two associated protocols: and . has three styles represented by the enumeration constants , , and . The represented path can be a file system path or any other type of path leading through a sequence of nodes or components, as defined by the programmer. automatically supports drag and drop, which can be further customized via delegate methods. To accept drag and drop, calls with and . When the URL value in the object changes because of an automatic drag and drop operation or the user selecting a new path via the open panel, the action is sent. In OS X v10.5 the value returned by is , in macOS 10.6 and later, returns the clicked cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl
-
 type PathControl struct {
 	Control
 }
@@ -47,6 +48,7 @@ func PathControlFrom(ptr unsafe.Pointer) PathControl {
 		Control: ControlFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (pc _PathControlClass) Alloc() PathControl {
 	rv := objc.Send[PathControl](objc.ID(pc.class), objc.Sel("alloc"))

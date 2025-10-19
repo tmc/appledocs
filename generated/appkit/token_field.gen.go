@@ -31,10 +31,11 @@ type ITokenField interface {
 	ITextField
 }
 
-// A text field that converts text into visually distinct tokens. [Full Topic]
+// A text field that converts text into visually distinct tokens.
+//
+// Use a token field when you want typed text to be transformed into “tokens”, which are visually distinct elements in the text field interface. For example, you might use a token field in a mail app to display email addresses for individual users. The distinct appearance of tokens makes them easy for users to distinguish from surrounding text. uses an to implement much of the control’s functionality. provides cover methods for most methods of , which invoke the corresponding cell method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField
-
 type TokenField struct {
 	TextField
 }
@@ -47,6 +48,7 @@ func TokenFieldFrom(ptr unsafe.Pointer) TokenField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TokenFieldClass) Alloc() TokenField {
 	rv := objc.Send[TokenField](objc.ID(tc.class), objc.Sel("alloc"))

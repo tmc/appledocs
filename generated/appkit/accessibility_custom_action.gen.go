@@ -32,10 +32,11 @@ type IAccessibilityCustomAction interface {
 	objectivec.IObject
 }
 
-// A custom action to perform on an accessible object. [Full Topic]
+// A custom action to perform on an accessible object.
+//
+// Apps that support custom actions can create instances of this class, specifying the user-readable name of the action, and either a handler closure or the object and selector to use when performing the action. Assistive apps display custom actions in response to specific user cues. For example, VoiceOver lets users access actions quickly using the Actions rotor. After creating an instance of this class, add it to the property of an appropriate accessible object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction
-
 type AccessibilityCustomAction struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type AccessibilityCustomAction struct {
 func AccessibilityCustomActionFrom(ptr unsafe.Pointer) AccessibilityCustomAction {
 	return AccessibilityCustomAction{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (ac _AccessibilityCustomActionClass) Alloc() AccessibilityCustomAction {
 	rv := objc.Send[AccessibilityCustomAction](objc.ID(ac.class), objc.Sel("alloc"))

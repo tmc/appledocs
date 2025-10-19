@@ -32,10 +32,11 @@ type IFont interface {
 	objectivec.IObject
 }
 
-// The representation of a font in an app. [Full Topic]
+// The representation of a font in an app.
+//
+// objects represent fonts to an app, providing access to characteristics of the font and assistance in laying out glyphs relative to one another. Font objects are also used to establish the current font for drawing text directly into a graphics context, using the method. You don’t create objects using the and methods. Instead, you use either or to look up an available font and alter its size or matrix to your needs. These methods check for an existing font object with the specified characteristics, returning it if there is one. Otherwise, they look up the font data requested and create the appropriate object. also defines a number of methods for getting standard system fonts, such as , , and . To request the default size for these standard fonts, pass a negative number or as the font size. See for more information about system fonts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont
-
 type Font struct {
 	objectivec.Object
 }
@@ -46,6 +47,7 @@ type Font struct {
 func FontFrom(ptr unsafe.Pointer) Font {
 	return Font{objectivec.Object{objc.ID(ptr)}}
 }
+
 // Alloc allocates a new instance without initialization.
 func (fc _FontClass) Alloc() Font {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("alloc"))

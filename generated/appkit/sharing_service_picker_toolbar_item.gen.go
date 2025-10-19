@@ -31,10 +31,11 @@ type ISharingServicePickerToolbarItem interface {
 	IToolbarItem
 }
 
-// A toolbar item that displays the macOS share sheet. [Full Topic]
+// A toolbar item that displays the macOS share sheet.
+//
+// An object is a standard item you add to your window’s toolbar. When someone clicks it, the item displays the macOS share sheet. Use this item to share the selected or focal content from the current window. For example, you might share the photo someone is viewing, the currently selected text, or the window’s associated document. Provide the items to share using the associated object. For an app built using Mac Catalyst, provide the items from the object in the property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
-
 type SharingServicePickerToolbarItem struct {
 	ToolbarItem
 }
@@ -47,6 +48,7 @@ func SharingServicePickerToolbarItemFrom(ptr unsafe.Pointer) SharingServicePicke
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerToolbarItemClass) Alloc() SharingServicePickerToolbarItem {
 	rv := objc.Send[SharingServicePickerToolbarItem](objc.ID(sc.class), objc.Sel("alloc"))

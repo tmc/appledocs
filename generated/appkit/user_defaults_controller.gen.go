@@ -31,10 +31,11 @@ type IUserDefaultsController interface {
 	IController
 }
 
-// A controller that accesses user preference information for your app from the user’s defaults database. [Full Topic]
+// A controller that accesses user preference information for your app from the user’s defaults database.
+//
+// is a Cocoa bindings–compatible controller class. Properties of the shared instance of this class can be bound to user interface elements to access and modify values stored in .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController
-
 type UserDefaultsController struct {
 	Controller
 }
@@ -47,6 +48,7 @@ func UserDefaultsControllerFrom(ptr unsafe.Pointer) UserDefaultsController {
 		Controller: ControllerFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserDefaultsControllerClass) Alloc() UserDefaultsController {
 	rv := objc.Send[UserDefaultsController](objc.ID(uc.class), objc.Sel("alloc"))

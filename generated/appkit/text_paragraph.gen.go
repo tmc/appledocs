@@ -31,10 +31,9 @@ type ITextParagraph interface {
 	ITextElement
 }
 
-// A class that represents a single paragraph backed by an attributed string as the contents. [Full Topic]
+// A class that represents a single paragraph backed by an attributed string as the contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph
-
 type TextParagraph struct {
 	TextElement
 }
@@ -47,6 +46,7 @@ func TextParagraphFrom(ptr unsafe.Pointer) TextParagraph {
 		TextElement: TextElementFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextParagraphClass) Alloc() TextParagraph {
 	rv := objc.Send[TextParagraph](objc.ID(tc.class), objc.Sel("alloc"))

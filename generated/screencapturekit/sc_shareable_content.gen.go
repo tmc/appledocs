@@ -34,6 +34,8 @@ type ISCShareableContent interface {
 
 // An instance that represents a set of displays, apps, and windows that your app can capture.
 //
+// Use the , , and properties to create a object that specifies what display content to capture. You apply the filter to an instance of to limit its output to only the content matching your filter.
+//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent
 type SCShareableContent struct {
 	objectivec.Object

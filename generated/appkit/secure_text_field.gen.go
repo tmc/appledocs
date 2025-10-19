@@ -31,10 +31,11 @@ type ISecureTextField interface {
 	ITextField
 }
 
-// A text field that hides the typed text. [Full Topic]
+// A text field that hides the typed text.
+//
+// A secure text field is suitable for use as a password-entry object or for any item in which the text value must be kept secret. uses to implement its user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextField
-
 type SecureTextField struct {
 	TextField
 }
@@ -47,6 +48,7 @@ func SecureTextFieldFrom(ptr unsafe.Pointer) SecureTextField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
+
 // Alloc allocates a new instance without initialization.
 func (sc _SecureTextFieldClass) Alloc() SecureTextField {
 	rv := objc.Send[SecureTextField](objc.ID(sc.class), objc.Sel("alloc"))
