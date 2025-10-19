@@ -245,41 +245,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println("\n📸 Capturing screenshot using ScreenCaptureKit...")
-
-	// Get main display ID
-	mainDisplayID := coregraphics.CGMainDisplayID()
-	fmt.Printf("✓ Main display ID: %v\n", mainDisplayID)
-
-	// Capture screenshot of main display
-	cgImage := coregraphics.CGDisplayCreateImage(mainDisplayID)
-	if cgImage == nil {
-		fmt.Println("✗ FAIL: Failed to capture display image")
-		os.Exit(1)
-	}
-	fmt.Println("✓ Captured display image")
-
-	// Get image dimensions
-	width := coregraphics.CGImageGetWidth(cgImage)
-	height := coregraphics.CGImageGetHeight(cgImage)
-	fmt.Printf("✓ Image size: %d x %d pixels\n", width, height)
-
-	// Get other image properties
-	bitsPerComponent := coregraphics.CGImageGetBitsPerComponent(cgImage)
-	bitsPerPixel := coregraphics.CGImageGetBitsPerPixel(cgImage)
-	fmt.Printf("✓ Image format: %d bits/component, %d bits/pixel\n", bitsPerComponent, bitsPerPixel)
-
-	// Release CGImage
-	coregraphics.CGImageRelease(cgImage)
-	fmt.Println("✓ Released CGImage")
+	fmt.Println("\n✅ Successfully demonstrated:")
+	fmt.Println("   ✓ Async SCShareableContent enumeration with objc.NewBlock()")
+	fmt.Println("   ✓ TCC permission handling with retry logic")
+	fmt.Println("   ✓ Display and window enumeration")
+	fmt.Println("\n💡 Note: SCScreenshotManager async API requires further investigation")
+	fmt.Println("   The completion handler with CGImageRef + NSError signature")
+	fmt.Println("   does not get called when using objc.NewBlock() from purego.")
+	fmt.Println("   See test_screenshot.m for working Objective-C example.")
 
 	fmt.Println("\n✅ ScreenCaptureKit example complete!")
-	fmt.Println("   - Used CoreGraphics display capture")
-	fmt.Printf("   - Captured %dx%d screenshot from main display\n", width, height)
-	fmt.Println("   - ScreenCaptureKit bindings generated and available")
-	fmt.Println("\n💡 Note: This example uses CoreGraphics (CGDisplayCreateImage)")
-	fmt.Println("   For full ScreenCaptureKit features (window capture, filters),")
-	fmt.Println("   async completion handlers are required (macOS 12.3+)")
+	fmt.Println("   ✓ Async enumeration working")
+	fmt.Println("   ✓ TCC permission handling working")
+	fmt.Println("\nRun with -e2e flag to test CoreGraphics fallback without TCC.")
 }
 
 func runE2ETest() {
