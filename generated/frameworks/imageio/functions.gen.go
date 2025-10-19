@@ -1,0 +1,171 @@
+// Code generated from Apple documentation for ImageIO. DO NOT EDIT.
+
+package imageio
+
+import (
+	"unsafe"
+
+	"github.com/ebitengine/purego"
+)
+
+// ImageIO Functions (11 total)
+//
+// Type-safe package-level functions with graceful error handling.
+// Missing symbols are silently ignored during init; functions will panic when called if unavailable.
+
+var (
+	_CGAnimateImageAtURLWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGAnimateImageDataWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageDestinationCopyImageSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGImageMetadataCopyTags func(unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataCreateMutableCopy func(unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataTagGetTypeID func() unsafe.Pointer
+	_CGImageSourceCopyTypeIdentifiers func() unsafe.Pointer
+	_CGImageSourceCreateIncremental func(unsafe.Pointer) unsafe.Pointer
+	_CGImageSourceCreateWithURL func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageSourceRemoveCacheAtIndex func(unsafe.Pointer, uintptr)
+	_CGImageSourceSetAllowableTypes func(unsafe.Pointer) unsafe.Pointer
+)
+
+func init() {
+	lib, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+	tryRegister(&_CGAnimateImageAtURLWithBlock, lib, "CGAnimateImageAtURLWithBlock")
+	tryRegister(&_CGAnimateImageDataWithBlock, lib, "CGAnimateImageDataWithBlock")
+	tryRegister(&_CGImageDestinationCopyImageSource, lib, "CGImageDestinationCopyImageSource")
+	tryRegister(&_CGImageMetadataCopyTags, lib, "CGImageMetadataCopyTags")
+	tryRegister(&_CGImageMetadataCreateMutableCopy, lib, "CGImageMetadataCreateMutableCopy")
+	tryRegister(&_CGImageMetadataTagGetTypeID, lib, "CGImageMetadataTagGetTypeID")
+	tryRegister(&_CGImageSourceCopyTypeIdentifiers, lib, "CGImageSourceCopyTypeIdentifiers")
+	tryRegister(&_CGImageSourceCreateIncremental, lib, "CGImageSourceCreateIncremental")
+	tryRegister(&_CGImageSourceCreateWithURL, lib, "CGImageSourceCreateWithURL")
+	tryRegister(&_CGImageSourceRemoveCacheAtIndex, lib, "CGImageSourceRemoveCacheAtIndex")
+	tryRegister(&_CGImageSourceSetAllowableTypes, lib, "CGImageSourceSetAllowableTypes")
+}
+
+// tryRegister attempts to register a function, silently ignoring failures.
+// This allows the library to load even if some symbols are missing.
+func tryRegister(fn interface{}, lib uintptr, name string) {
+	defer func() {
+		if r := recover(); r != nil {
+			// Symbol not found - function will remain nil and panic when called
+			// This is expected for inline functions, macros, or version-specific APIs
+		}
+	}()
+	purego.RegisterLibFunc(fn, lib, name)
+}
+
+
+// Animate the sequence of images in the Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file at the specified URL. [Full Topic]
+//
+// Added in macOS 10.15.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGAnimateImageAtURLWithBlock(_:_:_:)
+func CGAnimateImageAtURLWithBlock(url unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer {
+	return _CGAnimateImageAtURLWithBlock(url, options, block)
+	}
+
+
+// Animate the sequence of images using data from a Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file file. [Full Topic]
+//
+// Added in macOS 10.15.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGAnimateImageDataWithBlock(_:_:_:)
+func CGAnimateImageDataWithBlock(data unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer {
+	return _CGAnimateImageDataWithBlock(data, options, block)
+	}
+
+
+// CGImageDestinationCopyImageSource is a ImageIO function. [Full Topic]
+//
+// Added in macOS 10.8.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageDestinationCopyImageSource(_:_:_:_:)
+func CGImageDestinationCopyImageSource(idst unsafe.Pointer, isrc unsafe.Pointer, options unsafe.Pointer, err unsafe.Pointer) bool {
+	return _CGImageDestinationCopyImageSource(idst, isrc, options, err)
+	}
+
+
+// Returns an array of root-level metadata tags from the specified metadata object. [Full Topic]
+//
+// Added in macOS 10.8.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageMetadataCopyTags(_:)
+func CGImageMetadataCopyTags(metadata unsafe.Pointer) unsafe.Pointer {
+	return _CGImageMetadataCopyTags(metadata)
+	}
+
+
+// Creates a deep, mutable copy of the specified metadata information. [Full Topic]
+//
+// Added in macOS 10.8.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageMetadataCreateMutableCopy(_:)
+func CGImageMetadataCreateMutableCopy(metadata unsafe.Pointer) unsafe.Pointer {
+	return _CGImageMetadataCreateMutableCopy(metadata)
+	}
+
+
+// Returns the type identifier for the image metadata tag opaque type [Full Topic]
+//
+// Added in macOS 10.8.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageMetadataTagGetTypeID()
+func CGImageMetadataTagGetTypeID() unsafe.Pointer {
+	return _CGImageMetadataTagGetTypeID()
+	}
+
+
+// Returns an array of uniform type identifiers that are supported for image sources. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageSourceCopyTypeIdentifiers()
+func CGImageSourceCopyTypeIdentifiers() unsafe.Pointer {
+	return _CGImageSourceCopyTypeIdentifiers()
+	}
+
+
+// Creates an empty image source that you can use to accumulate incremental image data. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageSourceCreateIncremental(_:)
+func CGImageSourceCreateIncremental(options unsafe.Pointer) unsafe.Pointer {
+	return _CGImageSourceCreateIncremental(options)
+	}
+
+
+// Creates an image source that reads from a location specified by a URL. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)
+func CGImageSourceCreateWithURL(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	return _CGImageSourceCreateWithURL(url, options)
+	}
+
+
+// CGImageSourceRemoveCacheAtIndex is a ImageIO function. [Full Topic]
+//
+// Added in macOS 10.9.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageSourceRemoveCacheAtIndex(_:_:)
+func CGImageSourceRemoveCacheAtIndex(isrc unsafe.Pointer, index uintptr) {
+	_CGImageSourceRemoveCacheAtIndex(isrc, index)
+	}
+
+
+// CGImageSourceSetAllowableTypes is a ImageIO function. [Full Topic]
+//
+// Added in macOS 14.2.
+//
+// [Full Topic]: doc://com.apple.imageio/documentation/ImageIO/CGImageSourceSetAllowableTypes(_:)
+func CGImageSourceSetAllowableTypes(allowableTypes unsafe.Pointer) unsafe.Pointer {
+	return _CGImageSourceSetAllowableTypes(allowableTypes)
+	}
+
+
+
