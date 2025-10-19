@@ -118,12 +118,10 @@ func NewWindowWithFrame(x, y, width, height float64, styleMask WindowStyleMask) 
 		Origin: NSPoint{X: x, Y: y},
 		Size:   NSSize{Width: width, Height: height},
 	}
+
+	// Use the generated constructor which now properly initializes windowClass via lazy loading
 	return NewWindowWithContentRectStyleMaskBackingDefer(
-		unsafe.Pointer(&rect),
-		styleMask,
-		BackingStoreBuffered,
-		false,
-	)
+		unsafe.Pointer(&rect), styleMask, BackingStoreBuffered, false)
 }
 
 // WindowStyleMask values for window style.

@@ -10,6 +10,7 @@ import (
 var _ = appkit.NewButton
 
 
+
 // ExampleNewButtonWithTitleTargetAction demonstrates how to create a Button instance using NewButtonWithTitleTargetAction.
 // Creates a standard push button with the title you specify.
 func ExampleNewButtonWithTitleTargetAction() {
@@ -21,16 +22,15 @@ func ExampleNewButtonWithTitleTargetAction() {
 	// Output:
 }
 
-// ExampleNewCheckboxWithTitleTargetAction demonstrates how to create a Button instance using NewCheckboxWithTitleTargetAction.
+// ExampleNewButtonCheckboxWithTitleTargetAction demonstrates how to create a Button instance using NewButtonCheckboxWithTitleTargetAction.
 // Creates a standard checkbox with the title you specify.
-func ExampleNewCheckboxWithTitleTargetAction() {
-	_ = appkit.NewCheckboxWithTitleTargetAction(
+func ExampleNewButtonCheckboxWithTitleTargetAction() {
+	_ = appkit.NewButtonCheckboxWithTitleTargetAction(
 		"title", // title string
 		0, // target objc.ID
 		0, // action objc.SEL
 	)
 	// Output:
 }
-
 
 

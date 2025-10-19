@@ -78,16 +78,6 @@ func NewNetService() NetService {
 }
 
 
-// Initializes the receiver for publishing a network service of type at the socket location specified by , , and . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
-func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
-	instance := netServiceClass.Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
-	rv.Autorelease()
-	return rv
-}
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information. [Full Topic]
 
 //
@@ -95,6 +85,16 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
 	instance := netServiceClass.Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), objc.String(domain), objc.String(type_), objc.String(name))
+	rv.Autorelease()
+	return rv
+}
+// Initializes the receiver for publishing a network service of type at the socket location specified by , , and . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
+func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
+	instance := netServiceClass.Alloc()
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
 	rv.Autorelease()
 	return rv
 }

@@ -289,6 +289,7 @@ func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}
 package {{.PackageName}}
 
 import (
+	"sync"
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
@@ -309,7 +310,17 @@ import (
 {{$instReceiver := receiverName $structName false -}}
 
 // The class instance for the [{{$structName}}] class.
-var {{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
+var (
+	{{$varName}}     {{$classTypeName}}
+	{{$varName}}Once sync.Once
+)
+
+func get{{$structName}}Class() {{$classTypeName}} {
+	{{$varName}}Once.Do(func() {
+		{{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
+	})
+	return {{$varName}}
+}
 
 type {{$classTypeName}} struct {
 	class objc.Class
@@ -440,7 +451,7 @@ func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
 
 // New{{$structName}} creates a new {{$structName}} instance.
 func New{{$structName}}() {{$structName}} {
-	return {{$varName}}.New()
+	return get{{$structName}}Class().New()
 }
 
 {{if .HasInitMethods -}}
@@ -458,11 +469,11 @@ func New{{$structName}}() {{$structName}} {
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	{{- if .IsClassMethod}}
-	rv := objc.Send[{{$structName}}](objc.ID({{$varName}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{$structName}}](objc.ID(get{{$structName}}Class().class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()
 	return rv
 	{{- else}}
-	instance := {{$varName}}.Alloc()
+	instance := get{{$structName}}Class().Alloc()
 	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()
 	return rv
@@ -530,6 +541,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 package {{.PackageName}}
 
 import (
+	"sync"
 	"unsafe"
 
 	"{{.OutputModule}}/objc"
@@ -579,7 +591,17 @@ import (
 {{$instReceiver := receiverName $structName false -}}
 
 // The class instance for the [{{$structName}}] class.
-var {{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
+var (
+	{{$varName}}     {{$classTypeName}}
+	{{$varName}}Once sync.Once
+)
+
+func get{{$structName}}Class() {{$classTypeName}} {
+	{{$varName}}Once.Do(func() {
+		{{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
+	})
+	return {{$varName}}
+}
 
 type {{$classTypeName}} struct {
 	class objc.Class
@@ -710,7 +732,7 @@ func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
 
 // New{{$structName}} creates a new {{$structName}} instance.
 func New{{$structName}}() {{$structName}} {
-	return {{$varName}}.New()
+	return get{{$structName}}Class().New()
 }
 
 {{if .HasInitMethods -}}
@@ -728,11 +750,11 @@ func New{{$structName}}() {{$structName}} {
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	{{- if .IsClassMethod}}
-	rv := objc.Send[{{$structName}}](objc.ID({{$varName}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{$structName}}](objc.ID(get{{$structName}}Class().class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()
 	return rv
 	{{- else}}
-	instance := {{$varName}}.Alloc()
+	instance := get{{$structName}}Class().Alloc()
 	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()
 	return rv

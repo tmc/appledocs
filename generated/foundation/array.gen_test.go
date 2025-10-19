@@ -10,15 +10,15 @@ import (
 var _ = foundation.NewArray
 
 
-
 // ExampleNewArrayWithContentsOfFile demonstrates how to create a Array instance using NewArrayWithContentsOfFile.
 // Initializes a newly allocated array with the contents of the file specified by a given path.
 func ExampleNewArrayWithContentsOfFile() {
 	_ = foundation.NewArrayWithContentsOfFile(
-		"path", // path string
+		"/tmp/test", // path string
 	)
 	// Output:
 }
+
 
 
 // ExampleNewArray demonstrates how to create a Array instance.

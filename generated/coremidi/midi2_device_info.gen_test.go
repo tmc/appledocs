@@ -6,16 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coremidi"
 )
 
+// Suppress unused import errors
+var _ = coremidi.NewMIDI2DeviceInfo
 
-// ExampleNewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel demonstrates how to create a MIDI2DeviceInfo instance using NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel.
-func ExampleNewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel() {
-	_ = coremidi.NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(
-		nil, // manufacturerID unsafe.Pointer
-		nil, // family unsafe.Pointer
-		nil, // modelNumber unsafe.Pointer
-		nil, // revisionLevel unsafe.Pointer
-	)
-	// Output:
-}
+
 
 
