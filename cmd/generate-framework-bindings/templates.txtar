@@ -363,8 +363,10 @@ type I{{$structName}} interface {
 
 {{if .Abstract -}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{if .DocURL -}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{if and (not .Abstract) .DocURL -}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -420,8 +422,10 @@ func New{{$structName}}() {{$structName}} {
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{- if .DocURL}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -439,8 +443,10 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{- if .DocURL}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -463,8 +469,10 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{- if .DocURL}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -549,8 +557,10 @@ type I{{$structName}} interface {
 
 {{if .Abstract -}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{if .DocURL -}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{if and (not .Abstract) .DocURL -}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -606,8 +616,10 @@ func New{{$structName}}() {{$structName}} {
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{- if .DocURL}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -625,8 +637,10 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{- if .DocURL}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
@@ -649,8 +663,10 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{end -}}
-{{- if .DocURL}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
