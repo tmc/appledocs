@@ -547,38 +547,17 @@ import (
 	"unsafe"
 
 	"{{.OutputModule}}/objc"
-{{- $needsObjectiveC := false}}
-{{- $needsFoundation := false}}
-{{- $needsQuartzCore := false}}
-{{- $needsCoreGraphics := false}}
-{{- $structName := classToStructName .Class.Name}}
-{{- if and (ne $.Framework "ObjectiveC") .Class.SuperClass}}
-{{- $superStructName := classToStructName .Class.SuperClass}}
-{{- $superResolved := resolveType $.Framework $superStructName}}
-{{- $isSelfReferential := eq $superStructName $structName}}
-{{- if hasPrefix $superResolved "foundation."}}
-{{- $needsFoundation = true}}
-{{- else if hasPrefix $superResolved "quartzcore."}}
-{{- $needsQuartzCore = true}}
-{{- else if or (eq .Class.SuperClass "NSObject") (eq $superStructName "Object") $isSelfReferential}}
-{{- $needsObjectiveC = true}}
-{{- end}}
-{{- else if ne $.Framework "ObjectiveC"}}
-{{- $needsObjectiveC = true}}
-{{- end}}
-{{- if classDependsOnCoreGraphics .Class.Methods $.Framework}}
-{{- $needsCoreGraphics = true}}
-{{- end}}
-{{- if $needsObjectiveC}}
+{{- $imports := getClassImports .Class $.Framework $.OutputModule}}
+{{- if $imports.NeedsObjectiveC}}
 	"{{.OutputModule}}/objectivec"
 {{- end}}
-{{- if $needsFoundation}}
+{{- if $imports.NeedsFoundation}}
 	"{{.OutputModule}}/foundation"
 {{- end}}
-{{- if $needsQuartzCore}}
+{{- if $imports.NeedsQuartzCore}}
 	"{{.OutputModule}}/quartzcore"
 {{- end}}
-{{- if $needsCoreGraphics}}
+{{- if $imports.NeedsCoreGraphics}}
 	"{{.OutputModule}}/coregraphics"
 {{- end}}
 )
@@ -611,30 +590,7 @@ type {{$classTypeName}} struct {
 
 // An interface definition for the [{{$structName}}] class.
 type I{{$structName}} interface {
-	{{- if and .SuperClass (ne .SuperClass "NSObject")}}
-	{{- $superStructName := classToStructName .SuperClass}}
-	{{- $isSelfReferential := eq $superStructName $structName}}
-	{{- if $isSelfReferential}}
-	objectivec.IObject
-	{{- else}}
-	{{- $superResolved := resolveType $.Framework $superStructName}}
-	{{- if hasPrefix $superResolved "foundation."}}
-	foundation.I{{trimPrefix $superResolved "foundation."}}
-	{{- else if hasPrefix $superResolved "quartzcore."}}
-	quartzcore.I{{trimPrefix $superResolved "quartzcore."}}
-	{{- else if hasPrefix $superResolved "objectivec."}}
-	objectivec.I{{trimPrefix $superResolved "objectivec."}}
-	{{- else}}
-	I{{$superStructName}}
-	{{- end}}
-	{{- end}}
-	{{- else if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject")}}
-	objc.IObject
-	{{- else if eq $.Framework "ObjectiveC"}}
-	IObject
-	{{- else}}
-	objectivec.IObject
-	{{- end}}
+	{{getInterfaceParent . $.Framework}}
 	{{- range prepareInstanceMethods .Methods}}
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}

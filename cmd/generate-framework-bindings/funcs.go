@@ -95,6 +95,10 @@ var templateFuncs = template.FuncMap{
 
 	// Method name disambiguation
 	"methodGoName": methodGoName,
+
+	// Class-level helpers
+	"getClassImports":       getClassImports,
+	"getInterfaceParent":    getInterfaceParent,
 }
 
 // FunctionData represents data for function template rendering.
@@ -1833,7 +1837,7 @@ func isInheritedFromNSObject(selector string) bool {
 		"release":             true,
 		"autorelease":         true,
 		"retainCount":         true,
-		
+
 		// Object identity and comparison
 		"isEqual:":            true,
 		"hash":                true,
@@ -1841,13 +1845,13 @@ func isInheritedFromNSObject(selector string) bool {
 		"isMemberOfClass:":    true,
 		"conformsToProtocol:": true,
 		"respondsToSelector:": true,
-		
+
 		// Description and debugging
 		"description":         true,
 		"debugDescription":    true,
 		"className":           true,
 		"superclass":          true,
-		
+
 		// KVC (Key-Value Coding)
 		"valueForKey:":                    true,
 		"setValue:forKey:":                true,
@@ -1860,7 +1864,7 @@ func isInheritedFromNSObject(selector string) bool {
 		"setValuesForKeysWithDictionary:": true,
 		"valuesForKeys:":                  true,
 		"takeValuesFromDictionary:":       true,
-		
+
 		// KVO (Key-Value Observing)
 		"addObserver:forKeyPath:options:context:":                          true,
 		"removeObserver:forKeyPath:":                                        true,
@@ -1876,29 +1880,29 @@ func isInheritedFromNSObject(selector string) bool {
 		"observeValueForKeyPath:ofObject:change:context:":                   true,
 		"keyPathsForValuesAffectingValueForKey:":                            true,
 		"automaticallyNotifiesObserversForKey:":                             true,
-		
+
 		// Notifications
 		"postNotification:":                       true,
 		"postNotificationName:object:":            true,
 		"postNotificationName:object:userInfo:":   true,
-		
+
 		// Copying
 		"copy":                true,
 		"mutableCopy":         true,
 		"copyWithZone:":       true,
 		"mutableCopyWithZone:": true,
-		
+
 		// Archiving
 		"classForCoder":       true,
 		"replacementObjectForCoder:": true,
 		"awakeAfterUsingCoder:":      true,
-		
+
 		// Forwarding
 		"forwardInvocation:":  true,
 		"forwardingTargetForSelector:": true,
 		"methodSignatureForSelector:":  true,
 		"doesNotRecognizeSelector:":    true,
-		
+
 		// Scripting
 		"scriptingIsEqualTo:":         true,
 		"scriptingIsLessThanOrEqualTo:": true,
@@ -1908,7 +1912,7 @@ func isInheritedFromNSObject(selector string) bool {
 		"scriptingBeginsWith:":        true,
 		"scriptingEndsWith:":          true,
 		"scriptingContains:":          true,
-		
+
 		// Performance
 		"performSelector:":                    true,
 		"performSelector:withObject:":         true,
@@ -1921,6 +1925,109 @@ func isInheritedFromNSObject(selector string) bool {
 		"cancelPreviousPerformRequestsWithTarget:":              true,
 		"cancelPreviousPerformRequestsWithTarget:selector:object:": true,
 	}
-	
+
 	return nsobjectMethods[selector]
+}
+
+// ClassImports holds the import paths needed for a class
+type ClassImports struct {
+	NeedsObjectiveC   bool
+	NeedsFoundation   bool
+	NeedsQuartzCore   bool
+	NeedsCoreGraphics bool
+}
+
+// getClassImports analyzes a class and its methods to determine which framework imports are needed.
+// This consolidates the complex import detection logic from the template into a single helper function.
+// Returns a ClassImports struct with boolean flags for each potential import.
+func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) ClassImports {
+	imports := ClassImports{}
+
+	if class == nil {
+		return imports
+	}
+
+	// Determine struct name for self-referential check
+	structName := classToStructName(class.Name)
+
+	// Check superclass for import needs
+	if framework != "ObjectiveC" && class.SuperClass != "" {
+		superStructName := classToStructName(class.SuperClass)
+		superResolved := resolveType(framework, superStructName)
+		isSelfReferential := (superStructName == structName)
+
+		// If superclass has a framework prefix, we need that import
+		if strings.HasPrefix(superResolved, "foundation.") {
+			imports.NeedsFoundation = true
+		} else if strings.HasPrefix(superResolved, "quartzcore.") {
+			imports.NeedsQuartzCore = true
+		} else if class.SuperClass == "NSObject" || superStructName == "Object" || isSelfReferential {
+			imports.NeedsObjectiveC = true
+		}
+	} else if framework != "ObjectiveC" {
+		// No superclass specified, default to objectivec
+		imports.NeedsObjectiveC = true
+	}
+
+	// Check methods for CoreGraphics dependencies
+	if classDependsOnCoreGraphics(class.Methods, framework) {
+		imports.NeedsCoreGraphics = true
+	}
+
+	return imports
+}
+
+// getInterfaceParent determines the parent interface for a class interface definition.
+// This consolidates the complex interface hierarchy resolution logic from the template.
+// Returns the fully-qualified parent interface name (e.g., "foundation.IMutableAttributedString" or "objectivec.IObject").
+func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
+	if class == nil {
+		return "objectivec.IObject"
+	}
+
+	className := class.Name
+	structName := classToStructName(className)
+
+	// Special cases for ObjectiveC framework
+	if framework == "ObjectiveC" {
+		if className == "NSObject" {
+			return "objc.IObject"
+		}
+		return "IObject"
+	}
+
+	// Check if class has a superclass (other than NSObject)
+	if class.SuperClass != "" && class.SuperClass != "NSObject" {
+		superStructName := classToStructName(class.SuperClass)
+
+		// Check for self-referential case (class inherits from itself - edge case)
+		if superStructName == structName {
+			return "objectivec.IObject"
+		}
+
+		// Resolve superclass to its qualified type
+		superResolved := resolveType(framework, superStructName)
+
+		// Build interface name based on resolved framework
+		if strings.HasPrefix(superResolved, "foundation.") {
+			typeName := strings.TrimPrefix(superResolved, "foundation.")
+			return "foundation.I" + typeName
+		}
+
+		if strings.HasPrefix(superResolved, "quartzcore.") {
+			typeName := strings.TrimPrefix(superResolved, "quartzcore.")
+			return "quartzcore.I" + typeName
+		}
+
+		if strings.HasPrefix(superResolved, "objectivec.") {
+			typeName := strings.TrimPrefix(superResolved, "objectivec.")
+			return "objectivec.I" + typeName
+		}
+
+		// Local type in same framework
+		return "I" + superStructName
+	}
+
+	// Default: inherit from objectivec.IObject
+	return "objectivec.IObject"
 }
