@@ -18,6 +18,7 @@ import (
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/macgo"
 )
 
 var (
@@ -27,6 +28,40 @@ var (
 
 func init() {
 	runtime.LockOSThread()
+
+	// Skip macgo setup for test modes (E2E, framework loading test)
+	// These modes don't need TCC permissions or app bundle setup
+	skipMacgo := false
+	for _, arg := range os.Args[1:] {
+		if arg == "-e2e" || arg == "-test-loading" {
+			skipMacgo = true
+			break
+		}
+	}
+
+	if !skipMacgo {
+		// Use macgo to set up app bundle with proper entitlements
+		// This enables proper TCC permission requests for screen capture
+		cfg := &macgo.Config{
+			AppName:  "ScreenCaptureKit-Example",
+			BundleID: "com.github.tmc.appledocs.screencapturekit-example",
+			Version:  "1.0.0",
+			Custom: []string{
+				// Request screen capture entitlement
+				"com.apple.security.app-sandbox",
+				"com.apple.security.device.camera", // Sometimes needed for screen recording
+			},
+			AdHocSign:           true, // Use ad-hoc signing
+			ForceLaunchServices: true, // Use 'open' to trigger TCC prompts
+			Debug:               os.Getenv("MACGO_DEBUG") == "1",
+		}
+
+		// Start macgo - this will relaunch via app bundle if needed
+		if err := macgo.Start(cfg); err != nil {
+			fmt.Fprintf(os.Stderr, "macgo.Start failed: %v\n", err)
+			os.Exit(1)
+		}
+	}
 
 	// Explicitly load ScreenCaptureKit framework
 	// This is required for the Objective-C classes to be available
