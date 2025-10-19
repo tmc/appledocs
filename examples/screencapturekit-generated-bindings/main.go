@@ -49,10 +49,10 @@ func init() {
 	// Use macgo to set up app bundle with proper entitlements
 	// This enables proper TCC permission requests for screen capture
 	cfg := &macgo.Config{
-		AppName:             "ScreenCaptureKit-Example",
-		BundleID:            "com.github.tmc.appledocs.screencapturekit-example",
-		Version:             "1.0.0",
-		Custom:              []string{
+		AppName:  "ScreenCaptureKit-Example",
+		BundleID: "com.github.tmc.appledocs.screencapturekit-example",
+		Version:  "1.0.0",
+		Custom: []string{
 			// Request screen capture entitlement
 			"com.apple.security.app-sandbox",
 			"com.apple.security.device.camera", // Sometimes needed for screen recording
@@ -114,18 +114,18 @@ func waitForScreenRecordingPermission() (content screencapturekit.SCShareableCon
 					return
 				}
 
-					// Convert objc.ID to typed SCShareableContent
+				// Convert objc.ID to typed SCShareableContent
 				shareableContent = screencapturekit.SCShareableContentFrom(unsafe.Pointer(c))
 				// Retain to prevent deallocation
 				c.Send(objc.RegisterName("retain"))
 
 				// Use generated property accessors with helper functions
-				displays = nsArrayCount(shareableContent.Displays())
-				windows = nsArrayCount(shareableContent.Windows())
+				displays = len(shareableContent.Displays())
+				windows = len(shareableContent.Windows())
 			},
 		)
 
-			// Call async class method using manual objc.Send
+		// Call async class method using manual objc.Send
 		// Note: GetShareableContentWithCompletionHandler is not in generated bindings
 		//       (only GetCurrentProcessShareableContentWithCompletionHandler exists)
 		shareableContentClass := objc.GetClass("SCShareableContent")
@@ -215,127 +215,65 @@ func main() {
 
 	fmt.Fprintf(os.Stderr, "\r   ✓ Permission granted!                                        \n\n")
 
-	// Print display information
+	// Print display information using generated property accessors
 	fmt.Println("=== Results ===")
 	fmt.Printf("✓ Found %d display(s)\n", displayCount)
 
-	// Property accessors are generated; NSArray properties return unsafe.Pointer:
-	//   displayArray := shareableContent.Displays() // returns []SCDisplay
-	//   for i, display := range displayArray {
-	//       fmt.Printf("   Display %d: ID=%d, %dx%d\n", i,
-	//           display.DisplayID(), display.Width(), display.Height())
-	//   }
-
-	// For now, use objc.Send until properties are generated:
-	displays := shareableContent.ID.Send(objc.RegisterName("displays"))
-	if displays != 0 {
-		for i := 0; i < displayCount; i++ {
-			displayID := displays.Send(objc.RegisterName("objectAtIndex:"), i)
-			if displayID != 0 {
-				// Convert to typed SCDisplay (for future use)
-				_ = screencapturekit.SCDisplayFrom(unsafe.Pointer(displayID))
-
-				// Using property accessors (return unsafe.Pointer for objects):
-				//   id := display.DisplayID()
-				//   w := display.Width()
-				//   h := display.Height()
-				id := displayID.Send(objc.RegisterName("displayID"))
-				width := displayID.Send(objc.RegisterName("width"))
-				height := displayID.Send(objc.RegisterName("height"))
-				fmt.Printf("   Display %d: ID=%d, %dx%d\n", i, id, width, height)
-			}
-		}
+	displays := shareableContent.Displays()
+	for i, display := range displays {
+		// DisplayID() returns unsafe.Pointer, Width/Height not yet generated
+		id := display.DisplayID()
+		width := display.ID.Send(objc.RegisterName("width"))
+		height := display.ID.Send(objc.RegisterName("height"))
+		fmt.Printf("   Display %d: ID=%v, %dx%d\n", i, id, width, height)
 	}
 
 	// Print window information
 	fmt.Printf("\n✓ Found %d window(s)\n", windowCount)
 	if windowCount > 0 {
-		// Property accessors are generated; NSArray properties return unsafe.Pointer:
-		//   windowArray := shareableContent.Windows() // returns []SCWindow
-		//   for i, window := range windowArray {
-		//       title := window.Title()  // string property
-		//       app := window.OwningApplication() // SCRunningApplication property
-		//       appName := app.ApplicationName()
-		//       fmt.Printf("   - Window %d: %s (app: %s)\n", window.WindowID(), title, appName)
-		//   }
-
-		// For now, use objc.Send until properties are generated:
-		windows := shareableContent.ID.Send(objc.RegisterName("windows"))
-		if windows != 0 {
-			maxToShow := windowCount
-			if !*listAll && maxToShow > 5 {
-				fmt.Println("   (showing first 5, use -all to show all):")
-				maxToShow = 5
-			} else if *listAll {
-				fmt.Println("   (showing all):")
-			} else {
-				fmt.Println("   (showing all):")
+		windows := shareableContent.Windows()
+		maxToShow := len(windows)
+		if !*listAll && maxToShow > 5 {
+			fmt.Println("   (showing first 5, use -all to show all):")
+			maxToShow = 5
+		} else {
+			fmt.Println("   (showing all):")
+		}
+		for _, window := range windows[:maxToShow] {
+			// Property accessors not yet generated for SCWindow
+			id := window.ID.Send(objc.RegisterName("windowID"))
+			titleObj := window.ID.Send(objc.RegisterName("title"))
+			titleStr := nsStringToGo(titleObj)
+			if titleStr == "" {
+				titleStr = "(no title)"
 			}
-			for i := 0; i < maxToShow; i++ {
-				windowID := windows.Send(objc.RegisterName("objectAtIndex:"), i)
-				if windowID != 0 {
-					// Convert to typed SCWindow (for future use)
-					_ = screencapturekit.SCWindowFrom(unsafe.Pointer(windowID))
 
-					// Get window properties (will use accessor methods once generated)
-					id := windowID.Send(objc.RegisterName("windowID"))
-					title := windowID.Send(objc.RegisterName("title"))
-					titleStr := "(no title)"
-					if title != 0 {
-						titleStr = objc.Send[string](title, objc.RegisterName("UTF8String"))
-						if titleStr == "" {
-							titleStr = "(no title)"
-						}
-					}
-
-					app := windowID.Send(objc.RegisterName("owningApplication"))
-					appName := ""
-					if app != 0 {
-						appNameObj := app.Send(objc.RegisterName("applicationName"))
-						if appNameObj != 0 {
-							appName = objc.Send[string](appNameObj, objc.RegisterName("UTF8String"))
-						}
-					}
-
-					fmt.Printf("   - Window %d: %s (app: %s)\n", id, titleStr, appName)
-				}
+			appObj := window.ID.Send(objc.RegisterName("owningApplication"))
+			appNameStr := ""
+			if appObj != 0 {
+				appNameObj := appObj.Send(objc.RegisterName("applicationName"))
+				appNameStr = nsStringToGo(appNameObj)
 			}
+
+			fmt.Printf("   - Window %d: %s (app: %s)\n", id, titleStr, appNameStr)
 		}
 	}
 
 	// Print applications
-	// Property accessors are generated; NSArray properties return unsafe.Pointer:
-	//   appArray := shareableContent.Applications() // returns []SCRunningApplication
-	//   for i, app := range appArray[:min(5, len(appArray))] {
-	//       fmt.Printf("   - %s (pid: %d)\n", app.ApplicationName(), app.ProcessID())
-	//   }
-
-	// For now, use objc.Send until properties are generated:
-	applications := shareableContent.ID.Send(objc.RegisterName("applications"))
-	if applications != 0 {
-		appCount := int(applications.Send(objc.RegisterName("count")))
-		fmt.Printf("\n✓ Found %d running application(s)\n", appCount)
-		if appCount > 0 {
-			fmt.Println("   (showing first 5):")
-			maxToShow := appCount
-			if maxToShow > 5 {
-				maxToShow = 5
-			}
-			for i := 0; i < maxToShow; i++ {
-				appID := applications.Send(objc.RegisterName("objectAtIndex:"), i)
-				if appID != 0 {
-					// Convert to typed SCRunningApplication (for future use)
-					_ = screencapturekit.SCRunningApplicationFrom(unsafe.Pointer(appID))
-
-					appNameObj := appID.Send(objc.RegisterName("applicationName"))
-					processID := appID.Send(objc.RegisterName("processID"))
-					appName := ""
-					if appNameObj != 0 {
-						appName = objc.Send[string](appNameObj, objc.RegisterName("UTF8String"))
-					}
-					fmt.Printf("   - %s (pid: %d)\n", appName, processID)
-				}
-			}
+	applications := shareableContent.Applications()
+	fmt.Printf("\n✓ Found %d running application(s)\n", len(applications))
+	if len(applications) > 0 {
+		fmt.Println("   (showing first 5):")
+		maxToShow := len(applications)
+		if maxToShow > 5 {
+			maxToShow = 5
+		}
+		for _, app := range applications[:maxToShow] {
+			// Property accessors not yet generated for SCRunningApplication
+			appNameObj := app.ID.Send(objc.RegisterName("applicationName"))
+			processID := app.ID.Send(objc.RegisterName("processID"))
+			appName := nsStringToGo(appNameObj)
+			fmt.Printf("   - %s (pid: %d)\n", appName, processID)
 		}
 	}
 
@@ -363,27 +301,18 @@ func main() {
 		fmt.Println("=== Starting Screen Recording ===")
 		fmt.Println()
 
-		// Get the selected display
-		// Property accessors exist but return unsafe.Pointer for objects:
-		//   displayArray := shareableContent.Displays()
-		//   display := displayArray[*displayNum]
-
-		displayObjcID := displays.Send(objc.RegisterName("objectAtIndex:"), *displayNum)
-		if displayObjcID == 0 {
-			fmt.Println("❌ Failed to get display")
+		// Get the selected display from the slice
+		displays := shareableContent.Displays()
+		if *displayNum >= len(displays) {
+			fmt.Println("❌ Invalid display index")
 			os.Exit(1)
 		}
 
-		display := screencapturekit.SCDisplayFrom(unsafe.Pointer(displayObjcID))
-
-		// Using property accessors (return unsafe.Pointer for objects):
-		//   displayID := display.DisplayID()
-		//   width := display.Width()
-		//   height := display.Height()
-		displayID := displayObjcID.Send(objc.RegisterName("displayID"))
-		width := displayObjcID.Send(objc.RegisterName("width"))
-		height := displayObjcID.Send(objc.RegisterName("height"))
-		fmt.Printf("Recording display %d: ID=%d, %dx%d\n", *displayNum, displayID, width, height)
+		display := displays[*displayNum]
+		displayID := display.DisplayID()
+		width := display.ID.Send(objc.RegisterName("width"))
+		height := display.ID.Send(objc.RegisterName("height"))
+		fmt.Printf("Recording display %d: ID=%v, %dx%d\n", *displayNum, displayID, width, height)
 		fmt.Printf("Duration: %v\n", *duration)
 		fmt.Println()
 
@@ -687,7 +616,7 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 	destination := imageio.CGImageDestinationCreateWithURL(
 		unsafe.Pointer(fileURL.ID),
 		unsafe.Pointer(identifier),
-		1, // count
+		1,   // count
 		nil, // options
 	)
 	if destination == nil {
