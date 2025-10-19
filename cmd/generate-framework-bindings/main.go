@@ -381,8 +381,10 @@ func getTemplateVariant(filename, variant string) (string, error) {
 }
 
 // extractSymbolsFromAPICollections finds all -api.json collection files for a framework
-// and extracts the symbol URLs they reference. It returns a deduplicated list of symbol paths.
-func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verbose bool) []string {
+// and creates synthetic documents from their references. This allows processing symbols
+// that only exist in API collections without individual documentation files.
+// Returns a map of identifier -> synthetic document.
+func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verbose bool) map[string]*appledocs.Document {
 	// Find all -api.json files in the framework directory
 	apiFiles := []string{}
 	err := fs.WalkDir(fsys, framework, func(path string, d fs.DirEntry, err error) error {
@@ -406,8 +408,8 @@ func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verb
 		fmt.Fprintf(os.Stderr, "Found %d API collection files\n", len(apiFiles))
 	}
 
-	// Extract symbol URLs from each API collection file
-	symbolPaths := make(map[string]bool) // Use map for deduplication
+	// Extract references from each API collection file and create synthetic documents
+	syntheticDocs := make(map[string]*appledocs.Document)
 	for _, apiFile := range apiFiles {
 		doc, err := fsys.ReadDocument(apiFile)
 		if err != nil {
@@ -417,38 +419,191 @@ func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verb
 			continue
 		}
 
-		// Parse topicSections to extract symbol URLs
-		if doc.TopicSections != nil {
-			for _, section := range doc.TopicSections {
-				if section.Identifiers != nil {
-					for _, urlStr := range section.Identifiers {
-						// Convert doc:// URL to file path
-						// Format: doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBufferGetImageBuffer(_:)
-						// We need: CoreMedia/cmsamplebuffergetimagebuffer(_:).json
-						const prefix = "/documentation/"
-						idx := strings.Index(urlStr, prefix)
-						if idx == -1 {
-							continue
-						}
-						path := urlStr[idx+len(prefix):]
-						// Lowercase the path (Apple's filesystem uses lowercase)
-						path = strings.ToLower(path)
-						path = path + ".json"
-						symbolPaths[path] = true
+		// Process references to create synthetic documents for symbols
+		if doc.References != nil {
+			for identifier, ref := range doc.References {
+				// Only process function symbols (role: "symbol", kind: "symbol")
+				if ref.Role != "symbol" || ref.Kind != "symbol" {
+					continue
+				}
+
+				// Skip if we already have this symbol
+				if _, exists := syntheticDocs[identifier]; exists {
+					continue
+				}
+
+				// Skip if no fragments (can't generate code without them)
+				if len(ref.Fragments) == 0 {
+					continue
+				}
+
+				// Only process C functions - skip Swift/ObjC class/struct declarations
+				// C functions start with "func" keyword followed by identifier
+				if len(ref.Fragments) > 0 && ref.Fragments[0].Kind == "keyword" {
+					keyword := ref.Fragments[0].Text
+					// Skip Swift-specific keywords
+					if keyword == "class" || keyword == "struct" || keyword == "enum" || keyword == "protocol" || keyword == "typealias" {
+						continue
+					}
+					// Only process "func" and "let" (for constants)
+					if keyword != "func" && keyword != "let" {
+						continue
 					}
 				}
+
+				// Determine if this is a C function by checking preciseIdentifier in fragments
+				// C functions must have:
+				// 1. Either a function identifier with c:@F@ OR all types are C types (c:@T@, c:@...)
+				// 2. NO Swift types (s:) in return type or parameters
+				isCFunction := false
+				hasSwiftTypes := false
+
+				// Check for Swift types (if any typeIdentifier has s: prefix, it's Swift)
+				for _, frag := range ref.Fragments {
+					if frag.Kind == "typeIdentifier" && frag.PreciseIdentifier != "" {
+						if strings.HasPrefix(frag.PreciseIdentifier, "s:") {
+							hasSwiftTypes = true
+							break
+						}
+					}
+				}
+				if hasSwiftTypes {
+					continue
+				}
+
+				// Now check if it's a C function
+				for _, frag := range ref.Fragments {
+					if frag.Kind == "identifier" && frag.PreciseIdentifier != "" {
+						if strings.HasPrefix(frag.PreciseIdentifier, "c:@F@") {
+							isCFunction = true
+							break
+						}
+					}
+				}
+				// If no identifier with c:@F@ found, check if all types are C types
+				if !isCFunction {
+					allTypesAreC := true
+					foundAnyType := false
+					for _, frag := range ref.Fragments {
+						if frag.Kind == "typeIdentifier" && frag.PreciseIdentifier != "" {
+							foundAnyType = true
+							if !strings.HasPrefix(frag.PreciseIdentifier, "c:@") {
+								allTypesAreC = false
+								break
+							}
+						}
+					}
+					if foundAnyType && allTypesAreC {
+						isCFunction = true
+					}
+				}
+				if !isCFunction {
+					continue
+				}
+
+				// Convert Fragments to Tokens for the parser
+				// Filter out Swift parameter labels and convert Swift syntax to C-like syntax
+				var tokens []appledocs.Token
+				skipNextColonText := false
+				for i, frag := range ref.Fragments {
+					// Skip Swift parameter labels
+					if frag.Kind == "externalParam" || frag.Kind == "internalParam" {
+						// Skip the next ": " text token that follows parameter labels
+						skipNextColonText = true
+						continue
+					}
+
+					// Skip ": " text tokens that follow parameter labels
+					if skipNextColonText && frag.Kind == "text" && strings.HasPrefix(strings.TrimSpace(frag.Text), ":") {
+						skipNextColonText = false
+						// Keep the comma and space if present (e.g., "?, " becomes ", ")
+						if strings.Contains(frag.Text, ",") {
+							tokens = append(tokens, appledocs.Token{
+								Kind: "text",
+								Text: ", ",
+							})
+						}
+						continue
+					}
+					skipNextColonText = false
+
+					// Remove Swift optional markers (?) from type identifiers
+					// They appear in text tokens like "?, " or "?) -> "
+					text := frag.Text
+					if frag.Kind == "text" && strings.Contains(text, "?") {
+						// Replace "?, " with ", " and "?) " with ") "
+						text = strings.ReplaceAll(text, "?", "")
+					}
+
+					// Skip empty text after processing
+					if frag.Kind == "text" && strings.TrimSpace(text) == "" && i > 0 {
+						continue
+					}
+
+					tokens = append(tokens, appledocs.Token{
+						Kind: frag.Kind,
+						Text: text,
+					})
+				}
+
+				// Create synthetic document from reference
+				// We need to provide tokens in PrimaryContentSections for the parser
+				syntheticDoc := &appledocs.Document{
+					Identifier: appledocs.Identifier{
+						InterfaceLanguage: "occ",
+						URL:               identifier,
+					},
+					Kind: ref.Kind,
+					Metadata: appledocs.Metadata{
+						Title:      ref.Title,
+						Role:       ref.Role,
+						SymbolKind: ref.SymbolKind,
+						Fragments:  ref.Fragments,
+						ExternalID: extractExternalIDFromFragments(ref.Fragments, ref.Title),
+					},
+					Abstract: ref.Abstract,
+					PrimaryContentSections: []appledocs.ContentSection{
+						{
+							Kind: "declarations",
+							Declarations: []appledocs.Declaration{
+								{
+									Tokens: tokens,
+								},
+							},
+						},
+					},
+				}
+
+				syntheticDocs[identifier] = syntheticDoc
 			}
 		}
 	}
 
-	// Convert map to sorted slice
-	result := make([]string, 0, len(symbolPaths))
-	for path := range symbolPaths {
-		result = append(result, path)
+	if verbose && len(syntheticDocs) > 0 {
+		fmt.Fprintf(os.Stderr, "Created %d synthetic documents from API collection references\n", len(syntheticDocs))
 	}
-	sort.Strings(result)
 
-	return result
+	return syntheticDocs
+}
+
+// extractExternalIDFromFragments attempts to construct an external ID from fragments
+// For C functions, this typically looks like: c:@F@FunctionName
+func extractExternalIDFromFragments(fragments []appledocs.Fragment, title string) string {
+	// Look for the function name in fragments
+	for _, frag := range fragments {
+		if frag.Kind == "identifier" {
+			// Construct C function external ID
+			return "c:@F@" + frag.Text
+		}
+	}
+	// Fallback: use title if available
+	if title != "" {
+		// Remove Swift parameter syntax like (_:) from title
+		cleanTitle := strings.TrimSuffix(title, "(_:)")
+		cleanTitle = strings.TrimSuffix(cleanTitle, "()")
+		return "c:@F@" + cleanTitle
+	}
+	return ""
 }
 
 func main() {
@@ -509,11 +664,8 @@ func main() {
 	processedFiles := 0
 	parseErrors := 0
 
-	// First, process API collection pages to extract additional symbol URLs
-	apiCollectionSymbols := extractSymbolsFromAPICollections(fsys, *framework, verbose)
-	if verbose && len(apiCollectionSymbols) > 0 {
-		fmt.Fprintf(os.Stderr, "Found %d symbols from API collection pages\n", len(apiCollectionSymbols))
-	}
+	// First, extract synthetic documents from API collection pages
+	syntheticDocs := extractSymbolsFromAPICollections(fsys, *framework, verbose)
 
 	// Process regular symbols
 	for path, doc := range appledocs.Symbols(fsys, *framework) {
@@ -537,15 +689,8 @@ func main() {
 		}
 	}
 
-	// Also process symbols found in API collection pages
-	for _, symbolPath := range apiCollectionSymbols {
-		doc, err := fsys.ReadDocument(symbolPath)
-		if err != nil {
-			if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to read collection symbol %s: %v\n", symbolPath, err)
-			}
-			continue
-		}
+	// Also process synthetic documents from API collection references
+	for identifier, doc := range syntheticDocs {
 		processedFiles++
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
 		if err == nil {
@@ -561,7 +706,7 @@ func main() {
 		} else {
 			parseErrors++
 			if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to parse collection symbol %s: %v\n", symbolPath, err)
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse synthetic document %s: %v\n", identifier, err)
 			}
 		}
 	}

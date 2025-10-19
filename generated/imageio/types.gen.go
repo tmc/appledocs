@@ -22,6 +22,9 @@ type CGImageDestinationRef unsafe.Pointer
 // CGImageMetadataRef is a CoreGraphics opaque type.
 type CGImageMetadataRef unsafe.Pointer
 
+// CGImageRef is a CoreGraphics opaque type.
+type CGImageRef unsafe.Pointer
+
 // CGImageSourceRef is a CoreGraphics opaque type.
 type CGImageSourceRef unsafe.Pointer
 

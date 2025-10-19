@@ -113,8 +113,9 @@ type Platform struct {
 
 // Fragment represents a syntax element.
 type Fragment struct {
-	Kind string `json:"kind"`
-	Text string `json:"text"`
+	Kind              string `json:"kind"`
+	Text              string `json:"text"`
+	PreciseIdentifier string `json:"preciseIdentifier,omitempty"`
 }
 
 // InlineContent represents inline documentation content.

@@ -9,7 +9,7 @@ import (
 )
 
 
-// ImageIO Functions (11 total)
+// ImageIO Functions (13 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -17,7 +17,9 @@ import (
 var (
 	_CGAnimateImageAtURLWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGAnimateImageDataWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageDestinationAddImage func(unsafe.Pointer, CGImageRef, unsafe.Pointer)
 	_CGImageDestinationCopyImageSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGImageDestinationFinalize func(unsafe.Pointer) bool
 	_CGImageMetadataCopyTags func(CGImageMetadataRef) unsafe.Pointer
 	_CGImageMetadataCreateMutableCopy func(CGImageMetadataRef) CGMutableImageMetadataRef
 	_CGImageMetadataTagGetTypeID func() unsafe.Pointer
@@ -35,7 +37,9 @@ func init() {
 	}
 	tryRegister(&_CGAnimateImageAtURLWithBlock, lib, "CGAnimateImageAtURLWithBlock")
 	tryRegister(&_CGAnimateImageDataWithBlock, lib, "CGAnimateImageDataWithBlock")
+	tryRegister(&_CGImageDestinationAddImage, lib, "CGImageDestinationAddImage")
 	tryRegister(&_CGImageDestinationCopyImageSource, lib, "CGImageDestinationCopyImageSource")
+	tryRegister(&_CGImageDestinationFinalize, lib, "CGImageDestinationFinalize")
 	tryRegister(&_CGImageMetadataCopyTags, lib, "CGImageMetadataCopyTags")
 	tryRegister(&_CGImageMetadataCreateMutableCopy, lib, "CGImageMetadataCreateMutableCopy")
 	tryRegister(&_CGImageMetadataTagGetTypeID, lib, "CGImageMetadataTagGetTypeID")
@@ -80,6 +84,16 @@ func CGAnimateImageDataWithBlock(data unsafe.Pointer, options unsafe.Pointer, bl
 	}
 
 
+// Adds an image to an image destination. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImage(_:_:_:)
+func CGImageDestinationAddImage(idst unsafe.Pointer, image CGImageRef, properties unsafe.Pointer) {
+	_CGImageDestinationAddImage(idst, image, properties)
+	}
+
+
 // CGImageDestinationCopyImageSource is a ImageIO function. [Full Topic]
 //
 // Added in macOS 10.8.
@@ -87,6 +101,16 @@ func CGAnimateImageDataWithBlock(data unsafe.Pointer, options unsafe.Pointer, bl
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCopyImageSource(_:_:_:_:)
 func CGImageDestinationCopyImageSource(idst unsafe.Pointer, isrc unsafe.Pointer, options unsafe.Pointer, err unsafe.Pointer) bool {
 	return _CGImageDestinationCopyImageSource(idst, isrc, options, err)
+	}
+
+
+// Writes image data and properties to the data, URL, or data consumer associated with the image destination. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationFinalize(_:)
+func CGImageDestinationFinalize(idst unsafe.Pointer) bool {
+	return _CGImageDestinationFinalize(idst)
 	}
 
 
