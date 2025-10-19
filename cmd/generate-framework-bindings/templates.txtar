@@ -368,9 +368,8 @@ type I{{$structName}} interface {
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-{{if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject") -}}
 type {{$structName}} struct {
-	objc.ID
+	{{getStructEmbeddedField . $.Framework}}
 }
 
 // {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
@@ -379,50 +378,8 @@ type {{$structName}} struct {
 // {{commentLine .Abstract}}
 {{end -}}
 func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	return {{$structName}}{objc.ID(ptr)}
+	{{getFromConstructorBody . $.Framework}}
 }
-{{else -}}
-{{- $superStructName := ""}}
-{{- $superIsNSObject := false}}
-{{- $isSelfReferential := false}}
-{{- $superResolved := ""}}
-{{- if .SuperClass}}
-{{- $superStructName = classToStructName .SuperClass}}
-{{- $superResolved = resolveType $.Framework $superStructName}}
-{{- if or (eq .SuperClass "NSObject") (eq $superStructName "Object")}}
-{{- $superIsNSObject = true}}
-{{- end}}
-{{- if eq $superStructName $structName}}
-{{- $isSelfReferential = true}}
-{{- end}}
-{{- end}}
-type {{$structName}} struct {
-	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
-	{{$superResolved}}
-	{{- else if eq $.Framework "ObjectiveC"}}
-	Object
-	{{- else}}
-	objectivec.Object
-	{{- end}}
-}
-
-// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
-{{if .Abstract -}}
-//
-// {{commentLine .Abstract}}
-{{end -}}
-func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
-	return {{$structName}}{
-		{{$superStructName}}: {{$superResolved}}From(ptr),
-	}
-	{{- else if eq $.Framework "ObjectiveC"}}
-	return {{$structName}}{Object{objc.ID(ptr)}}
-	{{- else}}
-	return {{$structName}}{objectivec.Object{objc.ID(ptr)}}
-	{{- end}}
-}
-{{end -}}
 
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
@@ -469,17 +426,7 @@ func New{{$structName}}() {{$structName}} {
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
-	{{- if .IsClassMethod}}
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
-	rv := objc.Send[{{$structName}}](objc.ID(get{{$structName}}Class().class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	return rv
-	{{- else}}
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
-	instance := get{{$structName}}Class().Alloc()
-	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	rv.Autorelease()
-	return rv
-	{{- end}}
+{{getConstructorBody . $structName $paramNames}}
 }
 {{- end}}
 {{- end}}
@@ -607,9 +554,8 @@ type I{{$structName}} interface {
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-{{if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject") -}}
 type {{$structName}} struct {
-	objc.ID
+	{{getStructEmbeddedField . $.Framework}}
 }
 
 // {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
@@ -618,50 +564,8 @@ type {{$structName}} struct {
 // {{commentLine .Abstract}}
 {{end -}}
 func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	return {{$structName}}{objc.ID(ptr)}
+	{{getFromConstructorBody . $.Framework}}
 }
-{{else -}}
-{{- $superStructName := ""}}
-{{- $superIsNSObject := false}}
-{{- $isSelfReferential := false}}
-{{- $superResolved := ""}}
-{{- if .SuperClass}}
-{{- $superStructName = classToStructName .SuperClass}}
-{{- $superResolved = resolveType $.Framework $superStructName}}
-{{- if or (eq .SuperClass "NSObject") (eq $superStructName "Object")}}
-{{- $superIsNSObject = true}}
-{{- end}}
-{{- if eq $superStructName $structName}}
-{{- $isSelfReferential = true}}
-{{- end}}
-{{- end}}
-type {{$structName}} struct {
-	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
-	{{$superResolved}}
-	{{- else if eq $.Framework "ObjectiveC"}}
-	Object
-	{{- else}}
-	objectivec.Object
-	{{- end}}
-}
-
-// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
-{{if .Abstract -}}
-//
-// {{commentLine .Abstract}}
-{{end -}}
-func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
-	return {{$structName}}{
-		{{$superStructName}}: {{$superResolved}}From(ptr),
-	}
-	{{- else if eq $.Framework "ObjectiveC"}}
-	return {{$structName}}{Object{objc.ID(ptr)}}
-	{{- else}}
-	return {{$structName}}{objectivec.Object{objc.ID(ptr)}}
-	{{- end}}
-}
-{{end -}}
 
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
@@ -708,17 +612,7 @@ func New{{$structName}}() {{$structName}} {
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
-	{{- if .IsClassMethod}}
-	// Class methods (convenience constructors) return autoreleased objects - don't call Autorelease()
-	rv := objc.Send[{{$structName}}](objc.ID(get{{$structName}}Class().class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	return rv
-	{{- else}}
-	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
-	instance := get{{$structName}}Class().Alloc()
-	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	rv.Autorelease()
-	return rv
-	{{- end}}
+{{getConstructorBody . $structName $paramNames}}
 }
 {{- end}}
 {{- end}}
