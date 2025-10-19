@@ -362,7 +362,7 @@ type I{{$structName}} interface {
 }
 
 {{if .Abstract -}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{if .DocURL -}}
 //
@@ -419,7 +419,7 @@ func New{{$structName}}() {{$structName}} {
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 
 {{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{- if .DocURL}}
 //
@@ -438,7 +438,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 
 {{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{- if .DocURL}}
 //
@@ -462,7 +462,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 
 {{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{- if .DocURL}}
 //
@@ -548,7 +548,7 @@ type I{{$structName}} interface {
 }
 
 {{if .Abstract -}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{if .DocURL -}}
 //
@@ -605,7 +605,7 @@ func New{{$structName}}() {{$structName}} {
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 
 {{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{- if .DocURL}}
 //
@@ -624,7 +624,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 
 {{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{- if .DocURL}}
 //
@@ -648,7 +648,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 
 {{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{end -}}
 {{- if .DocURL}}
 //
