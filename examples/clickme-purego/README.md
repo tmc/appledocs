@@ -1,54 +1,69 @@
-# ClickMe Purego Example
+# Click Me - Pure Purego Version
 
-Simple GUI application demonstrating button creation using pure Go with purego.
+This example demonstrates creating a simple macOS window with a clickable button using pure purego/objc without any high-level bindings.
 
-## What This Example Demonstrates
+## Features
 
-- Creating a simple macOS window
-- Creating and positioning an NSButton
-- Adding views to a window's content view
-- Simpler alternative to the helloworld example
+- Creates a window with title "Hello from Purego!"
+- Displays a "Click Me!" button
+- Shows a counter label that updates each time the button is clicked
+- Uses only `github.com/ebitengine/purego` - no other dependencies
+- Demonstrates custom Objective-C class registration for button handling
 
-## Building and Running
+## Building
 
 ```bash
 go build
+```
+
+## Running
+
+```bash
 ./clickme-purego
 ```
 
-For E2E testing:
+Click the button and watch the counter increment!
+
+## E2E Testing
 
 ```bash
 ./clickme-purego -e2e
 ```
 
-## Key Translation from darwinkit
+## Code Highlights
 
-### Button Creation
-
-**darwinkit**:
+### Manual String Conversion
 ```go
-button := appkit.NewButtonWithTitle("Click Me!")
-button.SetFrameOrigin(foundation.Point{X: 150, Y: 120})
-button.SetFrameSize(foundation.Size{Width: 100, Height: 40})
-window.ContentView().AddSubview(button)
-```
-
-**purego**:
-```go
-button := objc.ID(objc.GetClass("NSButton")).Send(objc.RegisterName("alloc"))
-buttonFrame := NSRect{
-    Origin: NSPoint{X: 150, Y: 120},
-    Size:   NSSize{Width: 100, Height: 40},
+func createNSString(s string) objc.ID {
+    nsStringClass := objc.GetClass("NSString")
+    str := objc.ID(nsStringClass).Send(objc.RegisterName("alloc"))
+    return str.Send(objc.RegisterName("initWithUTF8String:"), objc.RegisterName(s))
 }
-button = button.Send(objc.RegisterName("initWithFrame:"), buttonFrame)
-buttonTitle := createNSString("Click Me!")
-button.Send(objc.RegisterName("setTitle:"), buttonTitle)
-contentView := window.Send(objc.RegisterName("contentView"))
-objc.ID(contentView).Send(objc.RegisterName("addSubview:"), button)
 ```
 
-## See Also
+### Custom Button Handler
+```go
+func createButtonHandler() objc.ID {
+    // Register a new Objective-C class with a buttonClicked: method
+    class, _ = objc.RegisterClass("ButtonHandler", superClass, nil, nil, []objc.MethodDef{
+        {Cmd: objc.RegisterName("buttonClicked:"), Fn: buttonClicked},
+    })
+    // ...
+}
+```
 
-- Original: `/Volumes/tmc/go/src/github.com/progrium/darwinkit/macos/_examples/clickme`
-- HelloWorld purego: `../helloworld-purego`
+## Comparison
+
+This is the pure purego version of the clickme example. Compare with:
+- `../clickme-darwinkit/` - DarwinKit version (high-level Go API)
+- `../clickme-generated-bindings/` - Generated bindings version (type-safe, auto string conversion)
+
+See `../CLICKME_COMPARISON.md` for a detailed comparison.
+
+## Learning Value
+
+This example is excellent for:
+- Understanding how Objective-C runtime works
+- Learning the low-level details of AppKit
+- Debugging framework behavior
+- Implementing features not yet available in bindings

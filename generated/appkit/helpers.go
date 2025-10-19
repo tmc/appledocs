@@ -87,9 +87,10 @@ func RunApp(setup func(app Application)) {
 	app.SetActivationPolicy(ActivationPolicyRegular)
 
 	// Call setup function to let caller configure the app and create windows
+	// This is where windows should be created and MakeKeyAndOrderFront called
 	setup(app)
 
-	// Activate app so windows appear in foreground
+	// Activate app AFTER windows are created so they appear in foreground
 	app.ActivateIgnoringOtherApps(true)
 
 	// Run event loop (this blocks until the app quits)
