@@ -356,13 +356,19 @@ type I{{$structName}} interface {
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
+	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+	{{- if $hasValidReturnType}}
 	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{- end}}
 	{{- end}}
 	{{- end}}
 }
 
 {{if .Abstract -}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
+// {{commentLine .Abstract}}
+{{if .Overview}}//
+// {{commentLine .Overview}}
+{{end -}}
 {{if .DocURL}}//
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
@@ -464,6 +470,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
+{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+{{- if $hasValidReturnType}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
@@ -487,10 +495,12 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 }
 {{- end}}
 {{- end}}
+{{- end}}
 
 {{- range .Properties}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
 {{- $capitalizedName := capitalize .Name}}
+{{- if ne $goType ""}}
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
@@ -515,6 +525,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType}}) {
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 }
+{{- end}}
 {{- end}}
 {{- end}}
 
@@ -578,13 +589,19 @@ type I{{$structName}} interface {
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
+	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+	{{- if $hasValidReturnType}}
 	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{- end}}
 	{{- end}}
 	{{- end}}
 }
 
 {{if .Abstract -}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
+// {{commentLine .Abstract}}
+{{if .Overview}}//
+// {{commentLine .Overview}}
+{{end -}}
 {{if .DocURL}}//
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
@@ -686,6 +703,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
+{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+{{- if $hasValidReturnType}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
@@ -707,12 +726,14 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
+{{- end}}
 {{end}}
 {{- end}}
 
 {{- range .Properties}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
 {{- $capitalizedName := capitalize .Name}}
+{{- if ne $goType ""}}
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
@@ -741,6 +762,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType}}) {
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 }
+{{- end}}
 {{- end}}
 {{- end}}
 {{end -}}

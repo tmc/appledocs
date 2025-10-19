@@ -59,6 +59,8 @@ var typeRegistry = []TypeMapping{
 
 	// CoreGraphics types
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventRef", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "CGEventRef", GoType: "unsafe.Pointer", Framework: "CoreGraphics"},
 	// Note: CGAffineTransform is now handled by occ2go.MapCTypeToGo and resolveType
 	// Removed incorrect mapping that was stripping the "CG" prefix
 
