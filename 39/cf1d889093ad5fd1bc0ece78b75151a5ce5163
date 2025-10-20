@@ -1,0 +1,9 @@
+Session: 2A97
+Model: claude-sonnet-4-5
+Date: 2025-10-20T11:05:47Z
+Bug: appledocs-213 - NSArray generic type handling
+Fix: Use resolveType() for cross-framework array elements before falling back to unsafe.Pointer
+Location: cmd/generate-framework-bindings/funcs.go:867-874
+Impact: Enables proper type resolution for NSArray<CrossFrameworkType *>
+Build: 100% success maintained
+Test: Verified generator builds and all frameworks compile
