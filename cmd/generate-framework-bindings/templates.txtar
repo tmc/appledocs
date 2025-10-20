@@ -797,6 +797,8 @@ import (
 {{- end}}
 {{- if hasPrefix $goType "coregraphics."}}
 {{- $needsCoreGraphics = true}}
+{{- else if and (or (eq $goType "CGRect") (eq $goType "CGSize") (eq $goType "CGPoint")) (ne $.Framework "Foundation")}}
+{{- $needsCoreGraphics = true}}
 {{- end}}
 {{- end}}
 {{- end}}

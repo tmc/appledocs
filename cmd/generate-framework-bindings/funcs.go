@@ -1852,6 +1852,9 @@ func generateTestValue(goType, framework, paramName string) string {
 			return "foundation.Point{}"
 		case "Range":
 			return "foundation.Range{}"
+		case "TimeInterval":
+			// TimeInterval is a type alias for float64, not a struct
+			return "foundation.TimeInterval(0.0)"
 		default:
 			// Other foundation types - try to use zero value or constructor
 			return fmt.Sprintf("%s{}", goType)
@@ -1861,6 +1864,10 @@ func generateTestValue(goType, framework, paramName string) string {
 	// Handle package-local types (no dot) - these need to be qualified with packageName in test files
 	// The template WILL add the package prefix for these
 	if !strings.Contains(goType, ".") {
+		// Special cases for known type aliases (not structs)
+		if goType == "TimeInterval" {
+			return "TimeInterval(0.0)"
+		}
 		// Could be an enum or a struct from the same package
 		// Use struct literal syntax instead of type cast
 		// We return the unqualified type name; the template will add the package prefix
@@ -1885,9 +1892,12 @@ func generateTestValue(goType, framework, paramName string) string {
 func generateTestValueWithPackage(goType, framework, packageName, paramName string) string {
 	testValue := generateTestValue(goType, framework, paramName)
 
-	// Check if the test value already contains a package qualifier
+	// Check if the test value already starts with a package qualifier
 	// (e.g., "coregraphics.CGRect{}", "foundation.Range{}")
-	if strings.Contains(testValue, ".") {
+	if strings.HasPrefix(testValue, "foundation.") ||
+		strings.HasPrefix(testValue, "coregraphics.") ||
+		strings.HasPrefix(testValue, "objc.") ||
+		strings.HasPrefix(testValue, "unsafe.") {
 		// Already fully qualified - return as-is
 		return testValue
 	}
@@ -1900,7 +1910,7 @@ func generateTestValueWithPackage(goType, framework, packageName, paramName stri
 		return testValue
 	}
 
-	// Check if goType already has a package prefix
+	// Check if goType already has a package prefix (belt and suspenders check)
 	if strings.HasPrefix(goType, "foundation.") ||
 		strings.HasPrefix(goType, "coregraphics.") ||
 		strings.HasPrefix(goType, "objc.") ||
@@ -2190,6 +2200,7 @@ func isInheritedFromNSObject(selector string) bool {
 
 		// Object identity and comparison
 		"isEqual:":            true,
+		"isEqualTo:":          true,
 		"hash":                true,
 		"isKindOfClass:":      true,
 		"isMemberOfClass:":    true,
