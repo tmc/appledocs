@@ -204,6 +204,9 @@ var typeRegistry = []TypeMapping{
 	// ==== CloudKit types in CoreData ====
 	{ObjCType: "CKShare", GoType: "cloudkit.CKShare", Framework: "CoreData"},
 
+	// ==== Foundation geometry types in ParavirtualizedGraphics ====
+	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "ParavirtualizedGraphics"},
+
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
 	// Generic completion handler: void (^)(NSError *)
