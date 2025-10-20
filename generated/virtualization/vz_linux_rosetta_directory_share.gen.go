@@ -1,0 +1,84 @@
+// Code generated from Apple documentation for Virtualization. DO NOT EDIT.
+
+package virtualization
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [VZLinuxRosettaDirectoryShare] class.
+var (
+	VZLinuxRosettaDirectoryShareClass     _VZLinuxRosettaDirectoryShareClass
+	VZLinuxRosettaDirectoryShareClassOnce sync.Once
+)
+
+func getVZLinuxRosettaDirectoryShareClass() _VZLinuxRosettaDirectoryShareClass {
+	VZLinuxRosettaDirectoryShareClassOnce.Do(func() {
+		VZLinuxRosettaDirectoryShareClass = _VZLinuxRosettaDirectoryShareClass{objc.GetClass("VZLinuxRosettaDirectoryShare")}
+	})
+	return VZLinuxRosettaDirectoryShareClass
+}
+
+type _VZLinuxRosettaDirectoryShareClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [VZLinuxRosettaDirectoryShare] class.
+type IVZLinuxRosettaDirectoryShare interface {
+	objectivec.IObject
+}
+
+// The Linux directory share for Rosetta.
+//
+// This directory share exposes the Rosetta directory from the host file system to the guest. The example below shows the process of creating a , and then associating the Rosetta directory share with the VM configuration. For complete instructions on installing Rosetta see , which includes additional information about checking for Rosetta availability, mounting the directory share, and registering the Rosetta runtime binary to run Intel binaries in a guest VM. For information on using a custom kernel to enhance Rosetta performance, see .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare
+type VZLinuxRosettaDirectoryShare struct {
+	objectivec.Object
+}
+
+// VZLinuxRosettaDirectoryShareFrom constructs a [VZLinuxRosettaDirectoryShare] from an unsafe.Pointer.
+//
+// The Linux directory share for Rosetta.
+func VZLinuxRosettaDirectoryShareFrom(ptr unsafe.Pointer) VZLinuxRosettaDirectoryShare {
+	return VZLinuxRosettaDirectoryShare{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (vc _VZLinuxRosettaDirectoryShareClass) Alloc() VZLinuxRosettaDirectoryShare {
+	rv := objc.Send[VZLinuxRosettaDirectoryShare](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (vc _VZLinuxRosettaDirectoryShareClass) New() VZLinuxRosettaDirectoryShare {
+	rv := objc.Send[VZLinuxRosettaDirectoryShare](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ VZLinuxRosettaDirectoryShare) Init() VZLinuxRosettaDirectoryShare {
+	rv := objc.Send[VZLinuxRosettaDirectoryShare](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ VZLinuxRosettaDirectoryShare) Autorelease() VZLinuxRosettaDirectoryShare {
+	rv := objc.Send[VZLinuxRosettaDirectoryShare](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewVZLinuxRosettaDirectoryShare creates a new VZLinuxRosettaDirectoryShare instance.
+func NewVZLinuxRosettaDirectoryShare() VZLinuxRosettaDirectoryShare {
+	return getVZLinuxRosettaDirectoryShareClass().New()
+}
+
+
+
+

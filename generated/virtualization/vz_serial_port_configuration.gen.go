@@ -1,0 +1,84 @@
+// Code generated from Apple documentation for Virtualization. DO NOT EDIT.
+
+package virtualization
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [VZSerialPortConfiguration] class.
+var (
+	VZSerialPortConfigurationClass     _VZSerialPortConfigurationClass
+	VZSerialPortConfigurationClassOnce sync.Once
+)
+
+func getVZSerialPortConfigurationClass() _VZSerialPortConfigurationClass {
+	VZSerialPortConfigurationClassOnce.Do(func() {
+		VZSerialPortConfigurationClass = _VZSerialPortConfigurationClass{objc.GetClass("VZSerialPortConfiguration")}
+	})
+	return VZSerialPortConfigurationClass
+}
+
+type _VZSerialPortConfigurationClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [VZSerialPortConfiguration] class.
+type IVZSerialPortConfiguration interface {
+	objectivec.IObject
+}
+
+// The common configuration traits for serial port requests.
+//
+// Don’t create a object directly. Instead, instantiate a concrete instance of one of its subclasses, such as . Use the property of this class to configure the medium through which serial communication happens.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSerialPortConfiguration
+type VZSerialPortConfiguration struct {
+	objectivec.Object
+}
+
+// VZSerialPortConfigurationFrom constructs a [VZSerialPortConfiguration] from an unsafe.Pointer.
+//
+// The common configuration traits for serial port requests.
+func VZSerialPortConfigurationFrom(ptr unsafe.Pointer) VZSerialPortConfiguration {
+	return VZSerialPortConfiguration{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (vc _VZSerialPortConfigurationClass) Alloc() VZSerialPortConfiguration {
+	rv := objc.Send[VZSerialPortConfiguration](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (vc _VZSerialPortConfigurationClass) New() VZSerialPortConfiguration {
+	rv := objc.Send[VZSerialPortConfiguration](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ VZSerialPortConfiguration) Init() VZSerialPortConfiguration {
+	rv := objc.Send[VZSerialPortConfiguration](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ VZSerialPortConfiguration) Autorelease() VZSerialPortConfiguration {
+	rv := objc.Send[VZSerialPortConfiguration](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewVZSerialPortConfiguration creates a new VZSerialPortConfiguration instance.
+func NewVZSerialPortConfiguration() VZSerialPortConfiguration {
+	return getVZSerialPortConfigurationClass().New()
+}
+
+
+
+
