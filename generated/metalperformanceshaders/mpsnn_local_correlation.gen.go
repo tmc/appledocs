@@ -1,0 +1,102 @@
+// Code generated from Apple documentation for MetalPerformanceShaders. DO NOT EDIT.
+
+package metalperformanceshaders
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [LocalCorrelation] class.
+var (
+	LocalCorrelationClass     _LocalCorrelationClass
+	LocalCorrelationClassOnce sync.Once
+)
+
+func getLocalCorrelationClass() _LocalCorrelationClass {
+	LocalCorrelationClassOnce.Do(func() {
+		LocalCorrelationClass = _LocalCorrelationClass{objc.GetClass("MPSNNLocalCorrelation")}
+	})
+	return LocalCorrelationClass
+}
+
+type _LocalCorrelationClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [LocalCorrelation] class.
+type ILocalCorrelation interface {
+	objectivec.IObject
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation
+type LocalCorrelation struct {
+	objectivec.Object
+}
+
+// LocalCorrelationFrom constructs a [LocalCorrelation] from an unsafe.Pointer.
+func LocalCorrelationFrom(ptr unsafe.Pointer) LocalCorrelation {
+	return LocalCorrelation{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (lc _LocalCorrelationClass) Alloc() LocalCorrelation {
+	rv := objc.Send[LocalCorrelation](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (lc _LocalCorrelationClass) New() LocalCorrelation {
+	rv := objc.Send[LocalCorrelation](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LocalCorrelation) Init() LocalCorrelation {
+	rv := objc.Send[LocalCorrelation](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LocalCorrelation) Autorelease() LocalCorrelation {
+	rv := objc.Send[LocalCorrelation](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLocalCorrelation creates a new LocalCorrelation instance.
+func NewLocalCorrelation() LocalCorrelation {
+	return getLocalCorrelationClass().New()
+}
+
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/init(coder:device:)
+func NewLocalCorrelationWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) LocalCorrelation {
+	instance := getLocalCorrelationClass().Alloc()
+	rv := objc.Send[LocalCorrelation](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}
+
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
+func (l_ LocalCorrelation) StrideInY() uint {
+	rv := objc.Send[uint](l_.ID, objc.Sel("strideInY"))
+	return rv
+}
+
+
+// SetStrideInY sets the value of the strideInY property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
+func (l_ LocalCorrelation) SetStrideInY(value uint) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setStrideInY:"), value)
+}
+
