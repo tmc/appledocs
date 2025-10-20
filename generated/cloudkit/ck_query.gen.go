@@ -80,22 +80,22 @@ func NewCKQuery() CKQuery {
 }
 
 
-// Creates an operation group from a serialized instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/init(coder:)
-func NewCKQueryWithCoder(aDecoder unsafe.Pointer) CKQuery {
-	instance := getCKQueryClass().Alloc()
-	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a query with the specified record type and predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/initWithRecordType:predicate:
 func NewCKQueryWithRecordTypePredicate(recordType unsafe.Pointer, predicate unsafe.Pointer) CKQuery {
 	instance := getCKQueryClass().Alloc()
 	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithRecordType:predicate:"), recordType, predicate)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates an operation group from a serialized instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/init(coder:)
+func NewCKQueryWithCoder(aDecoder unsafe.Pointer) CKQuery {
+	instance := getCKQueryClass().Alloc()
+	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }

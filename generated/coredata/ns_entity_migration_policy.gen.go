@@ -30,13 +30,13 @@ type _EntityMigrationPolicyClass struct {
 // An interface definition for the [EntityMigrationPolicy] class.
 type IEntityMigrationPolicy interface {
 	objectivec.IObject
-	BeginEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
-	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
-	CreateRelationshipsForDestinationInstanceEntityMappingManagerError(dInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
-	EndEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
-	EndInstanceCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
-	EndRelationshipCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
-	PerformCustomValidationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
+	BeginEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
+	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
+	CreateRelationshipsForDestinationInstanceEntityMappingManagerError(dInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
+	EndEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
+	EndInstanceCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
+	EndRelationshipCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
+	PerformCustomValidationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 // A policy instance that customizes the migration process for an entity mapping.
@@ -90,56 +90,56 @@ func NewEntityMigrationPolicy() EntityMigrationPolicy {
 // Sets up state information before the start of a given entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/begin(_:with:)
-func (e_ EntityMigrationPolicy) BeginEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("beginEntityMapping:manager:error:"), mapping, manager, error)
+func (e_ EntityMigrationPolicy) BeginEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("beginEntityMapping:manager:error:"), mapping, manager, error_)
 	return rv
 }
 
 // Creates the destination instance(s) for a given source instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/createDestinationInstances(forSource:in:manager:)
-func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("createDestinationInstancesForSourceInstance:entityMapping:manager:error:"), sInstance, mapping, manager, error)
+func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("createDestinationInstancesForSourceInstance:entityMapping:manager:error:"), sInstance, mapping, manager, error_)
 	return rv
 }
 
 // Constructs the relationships between the newly-created destination instances.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/createRelationships(forDestination:in:manager:)
-func (e_ EntityMigrationPolicy) CreateRelationshipsForDestinationInstanceEntityMappingManagerError(dInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("createRelationshipsForDestinationInstance:entityMapping:manager:error:"), dInstance, mapping, manager, error)
+func (e_ EntityMigrationPolicy) CreateRelationshipsForDestinationInstanceEntityMappingManagerError(dInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("createRelationshipsForDestinationInstance:entityMapping:manager:error:"), dInstance, mapping, manager, error_)
 	return rv
 }
 
 // Performs cleanup at the end of the migration, from any phase of the mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/end(_:manager:)
-func (e_ EntityMigrationPolicy) EndEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("endEntityMapping:manager:error:"), mapping, manager, error)
+func (e_ EntityMigrationPolicy) EndEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("endEntityMapping:manager:error:"), mapping, manager, error_)
 	return rv
 }
 
 // Indicates the end of the instance creation stage for the specified entity mapping, and the precursor to the next migration stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/endInstanceCreation(forMapping:manager:)
-func (e_ EntityMigrationPolicy) EndInstanceCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("endInstanceCreationForEntityMapping:manager:error:"), mapping, manager, error)
+func (e_ EntityMigrationPolicy) EndInstanceCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("endInstanceCreationForEntityMapping:manager:error:"), mapping, manager, error_)
 	return rv
 }
 
 // Indicates the end of the relationship creation stage for the specified entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/endRelationshipCreation(forMapping:manager:)
-func (e_ EntityMigrationPolicy) EndRelationshipCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("endRelationshipCreationForEntityMapping:manager:error:"), mapping, manager, error)
+func (e_ EntityMigrationPolicy) EndRelationshipCreationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("endRelationshipCreationForEntityMapping:manager:error:"), mapping, manager, error_)
 	return rv
 }
 
 // Provides the option to perform custom validation on migrated objects during the validation stage of the entity migration policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/performCustomValidation(forMapping:manager:)
-func (e_ EntityMigrationPolicy) PerformCustomValidationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("performCustomValidationForEntityMapping:manager:error:"), mapping, manager, error)
+func (e_ EntityMigrationPolicy) PerformCustomValidationForEntityMappingManagerError(mapping unsafe.Pointer, manager unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("performCustomValidationForEntityMapping:manager:error:"), mapping, manager, error_)
 	return rv
 }
 

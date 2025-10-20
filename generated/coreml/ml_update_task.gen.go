@@ -85,32 +85,32 @@ func NewUpdateTask() UpdateTask {
 // Creates a task that updates the model at the URL with the training data, and calls the completion handler when the update completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:completionHandler:)
-func NewUpdateTaskForModelAtURLTrainingDataCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, completionHandler unsafe.Pointer, error unsafe.Pointer) UpdateTask {
-	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:completionHandler:error:"), modelURL, trainingData, completionHandler, error)
+func NewUpdateTaskForModelAtURLTrainingDataCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, completionHandler unsafe.Pointer, error_ unsafe.Pointer) UpdateTask {
+	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:completionHandler:error:"), modelURL, trainingData, completionHandler, error_)
 	return rv
 }
 
 // Creates a task that updates the model at the URL with the training data and configuration, and calls the completion handler when the update completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:configuration:completionHandler:)
-func NewUpdateTaskForModelAtURLTrainingDataConfigurationCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, completionHandler unsafe.Pointer, error unsafe.Pointer) UpdateTask {
-	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:"), modelURL, trainingData, configuration, completionHandler, error)
+func NewUpdateTaskForModelAtURLTrainingDataConfigurationCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, completionHandler unsafe.Pointer, error_ unsafe.Pointer) UpdateTask {
+	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:"), modelURL, trainingData, configuration, completionHandler, error_)
 	return rv
 }
 
 // Creates a task that updates the model at the URL with the training data and configuration, and calls the progress handlers during and after the update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:configuration:progressHandlers:)
-func NewUpdateTaskForModelAtURLTrainingDataConfigurationProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, progressHandlers unsafe.Pointer, error unsafe.Pointer) UpdateTask {
-	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:"), modelURL, trainingData, configuration, progressHandlers, error)
+func NewUpdateTaskForModelAtURLTrainingDataConfigurationProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, progressHandlers unsafe.Pointer, error_ unsafe.Pointer) UpdateTask {
+	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:"), modelURL, trainingData, configuration, progressHandlers, error_)
 	return rv
 }
 
 // Creates a task that updates the model at the URL with the training data, and calls the progress handlers during and after the update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:progressHandlers:)
-func NewUpdateTaskForModelAtURLTrainingDataProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, progressHandlers unsafe.Pointer, error unsafe.Pointer) UpdateTask {
-	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:progressHandlers:error:"), modelURL, trainingData, progressHandlers, error)
+func NewUpdateTaskForModelAtURLTrainingDataProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, progressHandlers unsafe.Pointer, error_ unsafe.Pointer) UpdateTask {
+	rv := objc.Send[UpdateTask](objc.ID(getUpdateTaskClass().class), objc.Sel("updateTaskForModelAtURL:trainingData:progressHandlers:error:"), modelURL, trainingData, progressHandlers, error_)
 	return rv
 }
 
@@ -118,32 +118,32 @@ func NewUpdateTaskForModelAtURLTrainingDataProgressHandlersError(modelURL unsafe
 // Creates a task that updates the model at the URL with the training data, and calls the completion handler when the update completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:completionHandler:)
-func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, completionHandler unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:completionHandler:error:"), modelURL, trainingData, completionHandler, error)
+func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, completionHandler unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:completionHandler:error:"), modelURL, trainingData, completionHandler, error_)
 	return rv
 }
 
 // Creates a task that updates the model at the URL with the training data and configuration, and calls the completion handler when the update completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:configuration:completionHandler:)
-func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataConfigurationCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, completionHandler unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:"), modelURL, trainingData, configuration, completionHandler, error)
+func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataConfigurationCompletionHandlerError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, completionHandler unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:"), modelURL, trainingData, configuration, completionHandler, error_)
 	return rv
 }
 
 // Creates a task that updates the model at the URL with the training data and configuration, and calls the progress handlers during and after the update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:configuration:progressHandlers:)
-func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataConfigurationProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, progressHandlers unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:"), modelURL, trainingData, configuration, progressHandlers, error)
+func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataConfigurationProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, configuration unsafe.Pointer, progressHandlers unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:"), modelURL, trainingData, configuration, progressHandlers, error_)
 	return rv
 }
 
 // Creates a task that updates the model at the URL with the training data, and calls the progress handlers during and after the update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateTask/init(forModelAt:trainingData:progressHandlers:)
-func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, progressHandlers unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:progressHandlers:error:"), modelURL, trainingData, progressHandlers, error)
+func (uc _UpdateTaskClass) UpdateTaskForModelAtURLTrainingDataProgressHandlersError(modelURL unsafe.Pointer, trainingData objc.ID, progressHandlers unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("updateTaskForModelAtURL:trainingData:progressHandlers:error:"), modelURL, trainingData, progressHandlers, error_)
 	return rv
 }
 

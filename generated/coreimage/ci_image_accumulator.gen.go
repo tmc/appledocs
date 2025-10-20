@@ -85,22 +85,22 @@ func NewImageAccumulator() ImageAccumulator {
 }
 
 
-// Initializes an image accumulator with the specified extent and pixel format.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:)
-func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format unsafe.Pointer) ImageAccumulator {
-	instance := getImageAccumulatorClass().Alloc()
-	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:"), extent, format)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes an image accumulator with the specified extent, pixel format, and color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:colorSpace:)
 func NewImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) ImageAccumulator {
 	instance := getImageAccumulatorClass().Alloc()
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:colorSpace:"), extent, format, colorSpace)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes an image accumulator with the specified extent and pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:)
+func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format unsafe.Pointer) ImageAccumulator {
+	instance := getImageAccumulatorClass().Alloc()
+	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:"), extent, format)
 	rv.Autorelease()
 	return rv
 }

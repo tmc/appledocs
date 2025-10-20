@@ -31,15 +31,15 @@ type _ModelClass struct {
 type IModel interface {
 	objectivec.IObject
 	NewState() unsafe.Pointer
-	ParameterValueForKeyError(key unsafe.Pointer, error unsafe.Pointer) objc.ID
+	ParameterValueForKeyError(key unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	Prediction()
-	PredictionFromFeaturesError(input objc.ID, error unsafe.Pointer) objc.ID
-	PredictionFromFeaturesOptionsError(input objc.ID, options unsafe.Pointer, error unsafe.Pointer) objc.ID
+	PredictionFromFeaturesError(input objc.ID, error_ unsafe.Pointer) objc.ID
+	PredictionFromFeaturesOptionsError(input objc.ID, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	PredictionFromFeaturesCompletionHandler(input objc.ID, completionHandler unsafe.Pointer)
 	PredictionFromFeaturesOptionsCompletionHandler(input objc.ID, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	PredictionFromFeaturesUsingStateOptionsCompletionHandler(inputFeatures objc.ID, state unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
-	PredictionsFromBatchOptionsError(inputBatch objc.ID, options unsafe.Pointer, error unsafe.Pointer) objc.ID
-	PredictionsFromBatchError(inputBatch objc.ID, error unsafe.Pointer) objc.ID
+	PredictionsFromBatchOptionsError(inputBatch objc.ID, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	PredictionsFromBatchError(inputBatch objc.ID, error_ unsafe.Pointer) objc.ID
 }
 
 // An encapsulation of all the details of your machine learning model.
@@ -93,16 +93,16 @@ func NewModel() Model {
 // Creates a Core ML model instance from a compiled model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Model {
-	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error)
+func NewModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Model {
+	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
 // Creates a Core ML model instance from a compiled model file and a custom configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func NewModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error unsafe.Pointer) Model {
-	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error)
+func NewModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) Model {
+	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
 
@@ -123,24 +123,24 @@ func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL unsafe.Pointer
 // Compiles a model on the device to update the model in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-6442s
-func (mc _ModelClass) CompileModelAtURLError(modelURL unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error)
+func (mc _ModelClass) CompileModelAtURLError(modelURL unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error_)
 	return rv
 }
 
 // Creates a Core ML model instance from a compiled model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error)
+func (mc _ModelClass) ModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
 // Creates a Core ML model instance from a compiled model file and a custom configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error)
+func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
 
@@ -169,8 +169,8 @@ func (m_ Model) NewState() unsafe.Pointer {
 // Returns a model parameter value for a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/parameterValue(for:)
-func (m_ Model) ParameterValueForKeyError(key unsafe.Pointer, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("parameterValueForKey:error:"), key, error)
+func (m_ Model) ParameterValueForKeyError(key unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("parameterValueForKey:error:"), key, error_)
 	return rv
 }
 
@@ -183,16 +183,16 @@ func (m_ Model) Prediction() {
 // Generates a prediction from the feature values within the input feature provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/prediction(from:)-9y2aa
-func (m_ Model) PredictionFromFeaturesError(input objc.ID, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:error:"), input, error)
+func (m_ Model) PredictionFromFeaturesError(input objc.ID, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:error:"), input, error_)
 	return rv
 }
 
 // Generates a prediction from the feature values within the input feature provider using the prediction options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/prediction(from:options:)-81mr6
-func (m_ Model) PredictionFromFeaturesOptionsError(input objc.ID, options unsafe.Pointer, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:options:error:"), input, options, error)
+func (m_ Model) PredictionFromFeaturesOptionsError(input objc.ID, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:options:error:"), input, options, error_)
 	return rv
 }
 
@@ -220,16 +220,16 @@ func (m_ Model) PredictionFromFeaturesUsingStateOptionsCompletionHandler(inputFe
 // Generates a prediction for each input feature provider within the batch provider using the prediction options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictions(from:options:)
-func (m_ Model) PredictionsFromBatchOptionsError(inputBatch objc.ID, options unsafe.Pointer, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:options:error:"), inputBatch, options, error)
+func (m_ Model) PredictionsFromBatchOptionsError(inputBatch objc.ID, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:options:error:"), inputBatch, options, error_)
 	return rv
 }
 
 // Generates predictions for each input feature provider within the batch provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictions(fromBatch:)
-func (m_ Model) PredictionsFromBatchError(inputBatch objc.ID, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:error:"), inputBatch, error)
+func (m_ Model) PredictionsFromBatchError(inputBatch objc.ID, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:error:"), inputBatch, error_)
 	return rv
 }
 

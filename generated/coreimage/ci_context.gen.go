@@ -122,11 +122,11 @@ func NewContext() Context {
 }
 
 
-// Creates a Core Image context from an EAGL context.
+// Creates a Core Image context from an EAGL context using the specified options.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
-func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithEAGLContext:"), eaglContext)
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
+func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
 	return rv
 }
 
@@ -138,49 +138,18 @@ func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.P
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:options:)
+func NewContextWithMTLCommandQueueOptions(commandQueue objc.ID, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLCommandQueue:options:"), commandQueue, options)
+	return rv
+}
+
 // Creates a Core Image context using the specified Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlDevice:)
 func NewContextWithMTLDevice(device objc.ID) Context {
 	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLDevice:"), device)
-	return rv
-}
-
-// Creates a Core Image context from a Quartz context, using the specified options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
-func NewContextWithCGContextOptions(cgctx coregraphics.CGContextRef, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
-	return rv
-}
-
-// Creates a Core Image context from an EAGL context using the specified options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
-func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
-	return rv
-}
-
-// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
-func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:)
-func NewContextWithMTLCommandQueue(commandQueue objc.ID) Context {
-	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLCommandQueue:"), commandQueue)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:options:)
-func NewContextWithMTLCommandQueueOptions(commandQueue objc.ID, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLCommandQueue:options:"), commandQueue, options)
 	return rv
 }
 
@@ -199,6 +168,37 @@ func NewContextWithOptions(options unsafe.Pointer) Context {
 	instance := getContextClass().Alloc()
 	rv := objc.Send[Context](instance.ID, objc.Sel("initWithOptions:"), options)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates a Core Image context from a Quartz context, using the specified options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
+func NewContextWithCGContextOptions(cgctx coregraphics.CGContextRef, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
+	return rv
+}
+
+// Creates a Core Image context from an EAGL context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
+func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithEAGLContext:"), eaglContext)
+	return rv
+}
+
+// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
+func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:)
+func NewContextWithMTLCommandQueue(commandQueue objc.ID) Context {
+	rv := objc.Send[Context](objc.ID(getContextClass().class), objc.Sel("contextWithMTLCommandQueue:"), commandQueue)
 	return rv
 }
 

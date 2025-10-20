@@ -84,22 +84,12 @@ func NewSTWebHistory() STWebHistory {
 }
 
 
-// Creates a web history instance to delete web-usage data associated to the profile identifier you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(profileIdentifier:)
-func NewSTWebHistoryWithProfileIdentifier(profileIdentifier unsafe.Pointer) STWebHistory {
-	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithProfileIdentifier:"), profileIdentifier)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a web history instance to delete web-usage data associated to the bundle identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:)
-func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error_ unsafe.Pointer) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:error:"), objc.String(bundleIdentifier), error)
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:error:"), objc.String(bundleIdentifier), error_)
 	rv.Autorelease()
 	return rv
 }
@@ -107,9 +97,19 @@ func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error uns
 // Creates a web history instance to delete web-usage data associated to the bundle identifier and profile identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:profileIdentifier:)
-func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier string, profileIdentifier unsafe.Pointer, error unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier string, profileIdentifier unsafe.Pointer, error_ unsafe.Pointer) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:profileIdentifier:error:"), objc.String(bundleIdentifier), profileIdentifier, error)
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:profileIdentifier:error:"), objc.String(bundleIdentifier), profileIdentifier, error_)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a web history instance to delete web-usage data associated to the profile identifier you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(profileIdentifier:)
+func NewSTWebHistoryWithProfileIdentifier(profileIdentifier unsafe.Pointer) STWebHistory {
+	instance := getSTWebHistoryClass().Alloc()
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithProfileIdentifier:"), profileIdentifier)
 	rv.Autorelease()
 	return rv
 }

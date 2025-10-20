@@ -78,6 +78,14 @@ func NewMappingModel() MappingModel {
 }
 
 
+// Returns the mapping model that will translate data from the source to the destination model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
+func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) MappingModel {
+	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
+	return rv
+}
+
 // Returns a mapping model initialized from a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(contentsOf:)
@@ -88,20 +96,12 @@ func NewMappingModelWithContentsOfURL(url unsafe.Pointer) MappingModel {
 	return rv
 }
 
-// Returns the mapping model that will translate data from the source to the destination model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
-func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) MappingModel {
-	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
-	return rv
-}
-
 
 // Returns a newly created mapping model that will migrate data from the source to the destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/inferredMappingModel(forSourceModel:destinationModel:)
-func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelError(sourceModel unsafe.Pointer, destinationModel unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("inferredMappingModelForSourceModel:destinationModel:error:"), sourceModel, destinationModel, error)
+func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelError(sourceModel unsafe.Pointer, destinationModel unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("inferredMappingModelForSourceModel:destinationModel:error:"), sourceModel, destinationModel, error_)
 	return rv
 }
 

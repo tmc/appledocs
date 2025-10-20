@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [AssetWriter] class.
@@ -90,7 +91,7 @@ func NewAssetWriter() AssetWriter {
 // Creates an object that outputs segment data in a specified container format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(contentType:)
-func NewAssetWriterWithContentType(outputContentType unsafe.Pointer) AssetWriter {
+func NewAssetWriterWithContentType(outputContentType uniformtypeidentifiers.UTType) AssetWriter {
 	instance := getAssetWriterClass().Alloc()
 	rv := objc.Send[AssetWriter](instance.ID, objc.Sel("initWithContentType:"), outputContentType)
 	rv.Autorelease()

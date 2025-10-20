@@ -81,6 +81,16 @@ func NewURLComponents() URLComponents {
 }
 
 
+// Creates a URL components object by parsing a URL in string form.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
+func NewURLComponentsWithString(URLString string) URLComponents {
+	instance := getURLComponentsClass().Alloc()
+	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:encodingInvalidCharacters:)
@@ -97,16 +107,6 @@ func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encod
 func NewURLComponentsWithURLResolvingAgainstBaseURL(url unsafe.Pointer, resolve bool) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithURL:resolvingAgainstBaseURL:"), url, resolve)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a URL components object by parsing a URL in string form.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
-func NewURLComponentsWithString(URLString string) URLComponents {
-	instance := getURLComponentsClass().Alloc()
-	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
 	rv.Autorelease()
 	return rv
 }

@@ -84,9 +84,9 @@ func NewDictionaryFeatureProvider() DictionaryFeatureProvider {
 // Creates the feature provider based on a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/init(dictionary:)
-func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, error unsafe.Pointer) DictionaryFeatureProvider {
+func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, error_ unsafe.Pointer) DictionaryFeatureProvider {
 	instance := getDictionaryFeatureProviderClass().Alloc()
-	rv := objc.Send[DictionaryFeatureProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error)
+	rv := objc.Send[DictionaryFeatureProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()
 	return rv
 }

@@ -87,14 +87,6 @@ func NewProgress() Progress {
 }
 
 
-// Creates and returns a progress instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
-func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](objc.ID(getProgressClass().class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
-	return rv
-}
-
 // Creates a new progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
@@ -102,6 +94,14 @@ func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoO
 	instance := getProgressClass().Alloc()
 	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates and returns a progress instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
+func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](objc.ID(getProgressClass().class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 

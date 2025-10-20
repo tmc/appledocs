@@ -30,30 +30,30 @@ type _FileManagerClass struct {
 // An interface definition for the [FileManager] class.
 type IFileManager interface {
 	objectivec.IObject
-	AttributesOfFileSystemForPathError(path string, error unsafe.Pointer) unsafe.Pointer
-	AttributesOfItemAtPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	AttributesOfFileSystemForPathError(path string, error_ unsafe.Pointer) unsafe.Pointer
+	AttributesOfItemAtPathError(path string, error_ unsafe.Pointer) unsafe.Pointer
 	ChangeCurrentDirectoryPath(path string) bool
 	ChangeFileAttributesAtPath(attributes objc.ID, path string) bool
 	ComponentsToDisplayForPath(path string) []string
 	ContainerURLForSecurityApplicationGroupIdentifier(groupIdentifier string) unsafe.Pointer
 	ContentsAtPath(path string) unsafe.Pointer
 	ContentsEqualAtPathAndPath(path1 string, path2 string) bool
-	ContentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(url unsafe.Pointer, keys unsafe.Pointer, mask unsafe.Pointer, error unsafe.Pointer) []URL
-	ContentsOfDirectoryAtPathError(path string, error unsafe.Pointer) []string
-	CopyItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool
-	CopyItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool
-	CreateDirectoryAtURLWithIntermediateDirectoriesAttributesError(url unsafe.Pointer, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool
+	ContentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(url unsafe.Pointer, keys unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) []URL
+	ContentsOfDirectoryAtPathError(path string, error_ unsafe.Pointer) []string
+	CopyItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool
+	CopyItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool
+	CreateDirectoryAtURLWithIntermediateDirectoriesAttributesError(url unsafe.Pointer, createIntermediates bool, attributes unsafe.Pointer, error_ unsafe.Pointer) bool
 	CreateDirectoryAtPathAttributes(path string, attributes objc.ID) bool
-	CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool
+	CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes unsafe.Pointer, error_ unsafe.Pointer) bool
 	CreateFileAtPathContentsAttributes(path string, data unsafe.Pointer, attr unsafe.Pointer) bool
-	CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.Pointer, destURL unsafe.Pointer, error unsafe.Pointer) bool
+	CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.Pointer, destURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	CreateSymbolicLinkAtPathPathContent(path string, otherpath string) bool
-	CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error unsafe.Pointer) bool
-	DestinationOfSymbolicLinkAtPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error_ unsafe.Pointer) bool
+	DestinationOfSymbolicLinkAtPathError(path string, error_ unsafe.Pointer) unsafe.Pointer
 	DirectoryContentsAtPath(path string) unsafe.Pointer
 	DisplayNameAtPath(path string) unsafe.Pointer
 	EnumeratorAtPath(path string) unsafe.Pointer
-	EvictUbiquitousItemAtURLError(url unsafe.Pointer, error unsafe.Pointer) bool
+	EvictUbiquitousItemAtURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
 	FetchLatestRemoteVersionOfItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
 	FileAttributesAtPathTraverseLink(path string, yorn bool) unsafe.Pointer
 	FileExistsAtPath(path string) bool
@@ -61,36 +61,36 @@ type IFileManager interface {
 	FileSystemAttributesAtPath(path string) unsafe.Pointer
 	FileSystemRepresentationWithPath(path string) unsafe.Pointer
 	GetFileProviderServicesForItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
-	GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship unsafe.Pointer, directory unsafe.Pointer, domainMask unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) bool
-	GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship unsafe.Pointer, directoryURL unsafe.Pointer, otherURL unsafe.Pointer, error unsafe.Pointer) bool
+	GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship unsafe.Pointer, directory unsafe.Pointer, domainMask unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) bool
+	GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship unsafe.Pointer, directoryURL unsafe.Pointer, otherURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	HomeDirectoryForUser(userName string) unsafe.Pointer
 	IsDeletableFileAtPath(path string) bool
 	IsExecutableFileAtPath(path string) bool
 	IsReadableFileAtPath(path string) bool
 	IsUbiquitousItemAtURL(url unsafe.Pointer) bool
 	IsWritableFileAtPath(path string) bool
-	LinkItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool
-	LinkItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool
+	LinkItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool
+	LinkItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool
 	MountedVolumeURLsIncludingResourceValuesForKeysOptions(propertyKeys unsafe.Pointer, options unsafe.Pointer) []URL
-	MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool
-	MoveItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool
+	MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool
+	MoveItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool
 	PathContentOfSymbolicLinkAtPath(path string) unsafe.Pointer
 	PauseSyncForUbiquitousItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
-	RemoveItemAtURLError(URL unsafe.Pointer, error unsafe.Pointer) bool
-	RemoveItemAtPathError(path string, error unsafe.Pointer) bool
-	ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL unsafe.Pointer, newItemURL unsafe.Pointer, backupItemName string, options unsafe.Pointer, resultingURL unsafe.Pointer, error unsafe.Pointer) bool
+	RemoveItemAtURLError(URL unsafe.Pointer, error_ unsafe.Pointer) bool
+	RemoveItemAtPathError(path string, error_ unsafe.Pointer) bool
+	ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL unsafe.Pointer, newItemURL unsafe.Pointer, backupItemName string, options unsafe.Pointer, resultingURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	ResumeSyncForUbiquitousItemAtURLWithBehaviorCompletionHandler(url unsafe.Pointer, behavior unsafe.Pointer, completionHandler unsafe.Pointer)
-	SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error unsafe.Pointer) bool
-	SetUbiquitousItemAtURLDestinationURLError(flag bool, url unsafe.Pointer, destinationURL unsafe.Pointer, error unsafe.Pointer) bool
-	StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointer, error unsafe.Pointer) bool
+	SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error_ unsafe.Pointer) bool
+	SetUbiquitousItemAtURLDestinationURLError(flag bool, url unsafe.Pointer, destinationURL unsafe.Pointer, error_ unsafe.Pointer) bool
+	StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
 	StringWithFileSystemRepresentationLength(str unsafe.Pointer, len uint) unsafe.Pointer
 	SubpathsAtPath(path string) []string
-	SubpathsOfDirectoryAtPathError(path string, error unsafe.Pointer) []string
-	TrashItemAtURLResultingItemURLError(url unsafe.Pointer, outResultingURL unsafe.Pointer, error unsafe.Pointer) bool
+	SubpathsOfDirectoryAtPathError(path string, error_ unsafe.Pointer) []string
+	TrashItemAtURLResultingItemURLError(url unsafe.Pointer, outResultingURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	UnmountVolumeAtURLOptionsCompletionHandler(url unsafe.Pointer, mask unsafe.Pointer, completionHandler unsafe.Pointer)
 	UploadLocalVersionOfUbiquitousItemAtURLWithConflictResolutionPolicyCompletionHandler(url unsafe.Pointer, conflictResolutionPolicy unsafe.Pointer, completionHandler unsafe.Pointer)
-	URLForDirectoryInDomainAppropriateForURLCreateError(directory unsafe.Pointer, domain unsafe.Pointer, url unsafe.Pointer, shouldCreate bool, error unsafe.Pointer) unsafe.Pointer
-	URLForPublishingUbiquitousItemAtURLExpirationDateError(url unsafe.Pointer, outDate unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	URLForDirectoryInDomainAppropriateForURLCreateError(directory unsafe.Pointer, domain unsafe.Pointer, url unsafe.Pointer, shouldCreate bool, error_ unsafe.Pointer) unsafe.Pointer
+	URLForPublishingUbiquitousItemAtURLExpirationDateError(url unsafe.Pointer, outDate unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	URLForUbiquityContainerIdentifier(containerIdentifier string) unsafe.Pointer
 	URLsForDirectoryInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer) []URL
 	CopyPathToPathHandler(src string, dest string, handler objc.ID) bool
@@ -168,16 +168,16 @@ func (fc _FileManagerClass) FileManagerWithAuthorization(authorization unsafe.Po
 // Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfFileSystem(forPath:)
-func (f_ FileManager) AttributesOfFileSystemForPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfFileSystemForPath:error:"), objc.String(path), error)
+func (f_ FileManager) AttributesOfFileSystemForPathError(path string, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfFileSystemForPath:error:"), objc.String(path), error_)
 	return rv
 }
 
 // Returns the attributes of the item at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfItem(atPath:)
-func (f_ FileManager) AttributesOfItemAtPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfItemAtPath:error:"), objc.String(path), error)
+func (f_ FileManager) AttributesOfItemAtPathError(path string, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributesOfItemAtPath:error:"), objc.String(path), error_)
 	return rv
 }
 
@@ -232,40 +232,40 @@ func (f_ FileManager) ContentsEqualAtPathAndPath(path1 string, path2 string) boo
 // Performs a shallow search of the specified directory and returns URLs for the contained items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/contentsOfDirectory(at:includingPropertiesForKeys:options:)
-func (f_ FileManager) ContentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(url unsafe.Pointer, keys unsafe.Pointer, mask unsafe.Pointer, error unsafe.Pointer) []URL {
-	rv := objc.Send[[]URL](f_.ID, objc.Sel("contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:"), url, keys, mask, error)
+func (f_ FileManager) ContentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(url unsafe.Pointer, keys unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) []URL {
+	rv := objc.Send[[]URL](f_.ID, objc.Sel("contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:"), url, keys, mask, error_)
 	return rv
 }
 
 // Performs a shallow search of the specified directory and returns the paths of any contained items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/contentsOfDirectory(atPath:)
-func (f_ FileManager) ContentsOfDirectoryAtPathError(path string, error unsafe.Pointer) []string {
-	rv := objc.Send[[]string](f_.ID, objc.Sel("contentsOfDirectoryAtPath:error:"), objc.String(path), error)
+func (f_ FileManager) ContentsOfDirectoryAtPathError(path string, error_ unsafe.Pointer) []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("contentsOfDirectoryAtPath:error:"), objc.String(path), error_)
 	return rv
 }
 
 // Copies the file at the specified URL to a new location synchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/copyItem(at:to:)
-func (f_ FileManager) CopyItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("copyItemAtURL:toURL:error:"), srcURL, dstURL, error)
+func (f_ FileManager) CopyItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("copyItemAtURL:toURL:error:"), srcURL, dstURL, error_)
 	return rv
 }
 
 // Copies the item at the specified path to a new location synchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/copyItem(atPath:toPath:)
-func (f_ FileManager) CopyItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("copyItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error)
+func (f_ FileManager) CopyItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("copyItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error_)
 	return rv
 }
 
 // Creates a directory with the given attributes at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createDirectory(at:withIntermediateDirectories:attributes:)
-func (f_ FileManager) CreateDirectoryAtURLWithIntermediateDirectoriesAttributesError(url unsafe.Pointer, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtURL:withIntermediateDirectories:attributes:error:"), url, createIntermediates, attributes, error)
+func (f_ FileManager) CreateDirectoryAtURLWithIntermediateDirectoriesAttributesError(url unsafe.Pointer, createIntermediates bool, attributes unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtURL:withIntermediateDirectories:attributes:error:"), url, createIntermediates, attributes, error_)
 	return rv
 }
 
@@ -280,8 +280,8 @@ func (f_ FileManager) CreateDirectoryAtPathAttributes(path string, attributes ob
 // Creates a directory with given attributes at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createDirectory(atPath:withIntermediateDirectories:attributes:)
-func (f_ FileManager) CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), objc.String(path), createIntermediates, attributes, error)
+func (f_ FileManager) CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), objc.String(path), createIntermediates, attributes, error_)
 	return rv
 }
 
@@ -296,8 +296,8 @@ func (f_ FileManager) CreateFileAtPathContentsAttributes(path string, data unsaf
 // Creates a symbolic link at the specified URL that points to an item at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createSymbolicLink(at:withDestinationURL:)
-func (f_ FileManager) CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.Pointer, destURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtURL:withDestinationURL:error:"), url, destURL, error)
+func (f_ FileManager) CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.Pointer, destURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtURL:withDestinationURL:error:"), url, destURL, error_)
 	return rv
 }
 
@@ -312,16 +312,16 @@ func (f_ FileManager) CreateSymbolicLinkAtPathPathContent(path string, otherpath
 // Creates a symbolic link that points to the specified destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createSymbolicLink(atPath:withDestinationPath:)
-func (f_ FileManager) CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:withDestinationPath:error:"), objc.String(path), objc.String(destPath), error)
+func (f_ FileManager) CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:withDestinationPath:error:"), objc.String(path), objc.String(destPath), error_)
 	return rv
 }
 
 // Returns the path of the item pointed to by a symbolic link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/destinationOfSymbolicLink(atPath:)
-func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), objc.String(path), error)
+func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), objc.String(path), error_)
 	return rv
 }
 
@@ -352,8 +352,8 @@ func (f_ FileManager) EnumeratorAtPath(path string) unsafe.Pointer {
 // Removes the local copy of the specified item that’s stored in iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/evictUbiquitousItem(at:)
-func (f_ FileManager) EvictUbiquitousItemAtURLError(url unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("evictUbiquitousItemAtURL:error:"), url, error)
+func (f_ FileManager) EvictUbiquitousItemAtURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("evictUbiquitousItemAtURL:error:"), url, error_)
 	return rv
 }
 
@@ -414,16 +414,16 @@ func (f_ FileManager) GetFileProviderServicesForItemAtURLCompletionHandler(url u
 // Determines the type of relationship that exists between a system directory and the specified item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/getRelationship(_:of:in:toItemAt:)
-func (f_ FileManager) GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship unsafe.Pointer, directory unsafe.Pointer, domainMask unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("getRelationship:ofDirectory:inDomain:toItemAtURL:error:"), outRelationship, directory, domainMask, url, error)
+func (f_ FileManager) GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship unsafe.Pointer, directory unsafe.Pointer, domainMask unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("getRelationship:ofDirectory:inDomain:toItemAtURL:error:"), outRelationship, directory, domainMask, url, error_)
 	return rv
 }
 
 // Determines the type of relationship that exists between a directory and an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/getRelationship(_:ofDirectoryAt:toItemAt:)
-func (f_ FileManager) GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship unsafe.Pointer, directoryURL unsafe.Pointer, otherURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("getRelationship:ofDirectoryAtURL:toItemAtURL:error:"), outRelationship, directoryURL, otherURL, error)
+func (f_ FileManager) GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship unsafe.Pointer, directoryURL unsafe.Pointer, otherURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("getRelationship:ofDirectoryAtURL:toItemAtURL:error:"), outRelationship, directoryURL, otherURL, error_)
 	return rv
 }
 
@@ -478,16 +478,16 @@ func (f_ FileManager) IsWritableFileAtPath(path string) bool {
 // Creates a hard link between the items at the specified URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/linkItem(at:to:)
-func (f_ FileManager) LinkItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("linkItemAtURL:toURL:error:"), srcURL, dstURL, error)
+func (f_ FileManager) LinkItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("linkItemAtURL:toURL:error:"), srcURL, dstURL, error_)
 	return rv
 }
 
 // Creates a hard link between the items at the specified paths.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/linkItem(atPath:toPath:)
-func (f_ FileManager) LinkItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("linkItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error)
+func (f_ FileManager) LinkItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("linkItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error_)
 	return rv
 }
 
@@ -502,16 +502,16 @@ func (f_ FileManager) MountedVolumeURLsIncludingResourceValuesForKeysOptions(pro
 // Moves the file or directory at the specified URL to a new location synchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/moveItem(at:to:)
-func (f_ FileManager) MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtURL:toURL:error:"), srcURL, dstURL, error)
+func (f_ FileManager) MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtURL:toURL:error:"), srcURL, dstURL, error_)
 	return rv
 }
 
 // Moves the file or directory at the specified path to a new location synchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/moveItem(atPath:toPath:)
-func (f_ FileManager) MoveItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error)
+func (f_ FileManager) MoveItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error_)
 	return rv
 }
 
@@ -533,24 +533,24 @@ func (f_ FileManager) PauseSyncForUbiquitousItemAtURLCompletionHandler(url unsaf
 // Removes the file or directory at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/removeItem(at:)
-func (f_ FileManager) RemoveItemAtURLError(URL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("removeItemAtURL:error:"), URL, error)
+func (f_ FileManager) RemoveItemAtURLError(URL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("removeItemAtURL:error:"), URL, error_)
 	return rv
 }
 
 // Removes the file or directory at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/removeItem(atPath:)
-func (f_ FileManager) RemoveItemAtPathError(path string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("removeItemAtPath:error:"), objc.String(path), error)
+func (f_ FileManager) RemoveItemAtPathError(path string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("removeItemAtPath:error:"), objc.String(path), error_)
 	return rv
 }
 
 // Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/replaceItem(at:withItemAt:backupItemName:options:resultingItemURL:)
-func (f_ FileManager) ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL unsafe.Pointer, newItemURL unsafe.Pointer, backupItemName string, options unsafe.Pointer, resultingURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:"), originalItemURL, newItemURL, objc.String(backupItemName), options, resultingURL, error)
+func (f_ FileManager) ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL unsafe.Pointer, newItemURL unsafe.Pointer, backupItemName string, options unsafe.Pointer, resultingURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:"), originalItemURL, newItemURL, objc.String(backupItemName), options, resultingURL, error_)
 	return rv
 }
 
@@ -564,24 +564,24 @@ func (f_ FileManager) ResumeSyncForUbiquitousItemAtURLWithBehaviorCompletionHand
 // Sets the attributes of the specified file or directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/setAttributes(_:ofItemAtPath:)
-func (f_ FileManager) SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("setAttributes:ofItemAtPath:error:"), attributes, objc.String(path), error)
+func (f_ FileManager) SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("setAttributes:ofItemAtPath:error:"), attributes, objc.String(path), error_)
 	return rv
 }
 
 // Indicates whether the item at the specified URL should be stored in iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/setUbiquitous(_:itemAt:destinationURL:)
-func (f_ FileManager) SetUbiquitousItemAtURLDestinationURLError(flag bool, url unsafe.Pointer, destinationURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("setUbiquitous:itemAtURL:destinationURL:error:"), flag, url, destinationURL, error)
+func (f_ FileManager) SetUbiquitousItemAtURLDestinationURLError(flag bool, url unsafe.Pointer, destinationURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("setUbiquitous:itemAtURL:destinationURL:error:"), flag, url, destinationURL, error_)
 	return rv
 }
 
 // Starts downloading (if necessary) the specified item to the local system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/startDownloadingUbiquitousItem(at:)
-func (f_ FileManager) StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("startDownloadingUbiquitousItemAtURL:error:"), url, error)
+func (f_ FileManager) StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("startDownloadingUbiquitousItemAtURL:error:"), url, error_)
 	return rv
 }
 
@@ -604,16 +604,16 @@ func (f_ FileManager) SubpathsAtPath(path string) []string {
 // Performs a deep enumeration of the specified directory and returns the paths of all of the contained subdirectories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/subpathsOfDirectory(atPath:)
-func (f_ FileManager) SubpathsOfDirectoryAtPathError(path string, error unsafe.Pointer) []string {
-	rv := objc.Send[[]string](f_.ID, objc.Sel("subpathsOfDirectoryAtPath:error:"), objc.String(path), error)
+func (f_ FileManager) SubpathsOfDirectoryAtPathError(path string, error_ unsafe.Pointer) []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("subpathsOfDirectoryAtPath:error:"), objc.String(path), error_)
 	return rv
 }
 
 // Moves an item to the trash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/trashItem(at:resultingItemURL:)
-func (f_ FileManager) TrashItemAtURLResultingItemURLError(url unsafe.Pointer, outResultingURL unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("trashItemAtURL:resultingItemURL:error:"), url, outResultingURL, error)
+func (f_ FileManager) TrashItemAtURLResultingItemURLError(url unsafe.Pointer, outResultingURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("trashItemAtURL:resultingItemURL:error:"), url, outResultingURL, error_)
 	return rv
 }
 
@@ -634,16 +634,16 @@ func (f_ FileManager) UploadLocalVersionOfUbiquitousItemAtURLWithConflictResolut
 // Locates and optionally creates the specified common directory in a domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/url(for:in:appropriateFor:create:)
-func (f_ FileManager) URLForDirectoryInDomainAppropriateForURLCreateError(directory unsafe.Pointer, domain unsafe.Pointer, url unsafe.Pointer, shouldCreate bool, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForDirectory:inDomain:appropriateForURL:create:error:"), directory, domain, url, shouldCreate, error)
+func (f_ FileManager) URLForDirectoryInDomainAppropriateForURLCreateError(directory unsafe.Pointer, domain unsafe.Pointer, url unsafe.Pointer, shouldCreate bool, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForDirectory:inDomain:appropriateForURL:create:error:"), directory, domain, url, shouldCreate, error_)
 	return rv
 }
 
 // Returns a URL that can be emailed to users to allow them to download a copy of a flat file item from iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/url(forPublishingUbiquitousItemAt:expiration:)
-func (f_ FileManager) URLForPublishingUbiquitousItemAtURLExpirationDateError(url unsafe.Pointer, outDate unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForPublishingUbiquitousItemAtURL:expirationDate:error:"), url, outDate, error)
+func (f_ FileManager) URLForPublishingUbiquitousItemAtURLExpirationDateError(url unsafe.Pointer, outDate unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForPublishingUbiquitousItemAtURL:expirationDate:error:"), url, outDate, error_)
 	return rv
 }
 

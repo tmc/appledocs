@@ -30,7 +30,7 @@ type _TaskClass struct {
 // An interface definition for the [Task] class.
 type ITask interface {
 	objectivec.IObject
-	LaunchAndReturnError(error unsafe.Pointer) bool
+	LaunchAndReturnError(error_ unsafe.Pointer) bool
 	Terminate()
 }
 
@@ -86,8 +86,8 @@ func NewTask() Task {
 // Runs the process with the current environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run()
-func (t_ Task) LaunchAndReturnError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error)
+func (t_ Task) LaunchAndReturnError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error_)
 	return rv
 }
 

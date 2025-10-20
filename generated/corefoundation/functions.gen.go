@@ -3111,8 +3111,8 @@ func CFBundleLoadExecutable(bundle unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleLoadExecutableAndReturnError(_:_:)
-func CFBundleLoadExecutableAndReturnError(bundle unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFBundleLoadExecutableAndReturnError(bundle, error)
+func CFBundleLoadExecutableAndReturnError(bundle unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFBundleLoadExecutableAndReturnError(bundle, error_)
 	}
 
 
@@ -3145,8 +3145,8 @@ func CFBundleOpenBundleResourceMap(bundle unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundlePreflightExecutable(_:_:)
-func CFBundlePreflightExecutable(bundle unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFBundlePreflightExecutable(bundle, error)
+func CFBundlePreflightExecutable(bundle unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFBundlePreflightExecutable(bundle, error_)
 	}
 
 
@@ -3695,8 +3695,8 @@ func CFDateFormatterCreateDateFormatFromTemplate(allocator unsafe.Pointer, tmpla
 // Returns a date object representing a given string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateDateFromString(_:_:_:_:)
-func CFDateFormatterCreateDateFromString(allocator unsafe.Pointer, formatter unsafe.Pointer, string unsafe.Pointer, rangep unsafe.Pointer) unsafe.Pointer {
-	return _CFDateFormatterCreateDateFromString(allocator, formatter, string, rangep)
+func CFDateFormatterCreateDateFromString(allocator unsafe.Pointer, formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer) unsafe.Pointer {
+	return _CFDateFormatterCreateDateFromString(allocator, formatter, string_, rangep)
 	}
 
 
@@ -3729,8 +3729,8 @@ func CFDateFormatterCreateStringWithDate(allocator unsafe.Pointer, formatter uns
 // Returns an absolute time object representing a given string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetAbsoluteTimeFromString(_:_:_:_:)
-func CFDateFormatterGetAbsoluteTimeFromString(formatter unsafe.Pointer, string unsafe.Pointer, rangep unsafe.Pointer, atp unsafe.Pointer) unsafe.Pointer {
-	return _CFDateFormatterGetAbsoluteTimeFromString(formatter, string, rangep, atp)
+func CFDateFormatterGetAbsoluteTimeFromString(formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer, atp unsafe.Pointer) unsafe.Pointer {
+	return _CFDateFormatterGetAbsoluteTimeFromString(formatter, string_, rangep, atp)
 	}
 
 
@@ -4875,8 +4875,8 @@ func CFNumberFormatterCreate(allocator unsafe.Pointer, locale unsafe.Pointer, st
 // Returns a number object representing a given string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateNumberFromString(_:_:_:_:_:)
-func CFNumberFormatterCreateNumberFromString(allocator unsafe.Pointer, formatter unsafe.Pointer, string unsafe.Pointer, rangep unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
-	return _CFNumberFormatterCreateNumberFromString(allocator, formatter, string, rangep, options)
+func CFNumberFormatterCreateNumberFromString(allocator unsafe.Pointer, formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	return _CFNumberFormatterCreateNumberFromString(allocator, formatter, string_, rangep, options)
 	}
 
 
@@ -4939,8 +4939,8 @@ func CFNumberFormatterGetTypeID() unsafe.Pointer {
 // Returns a number or value representing a given string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetValueFromString(_:_:_:_:_:)
-func CFNumberFormatterGetValueFromString(formatter unsafe.Pointer, string unsafe.Pointer, rangep unsafe.Pointer, numberType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
-	return _CFNumberFormatterGetValueFromString(formatter, string, rangep, numberType, valuePtr)
+func CFNumberFormatterGetValueFromString(formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer, numberType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
+	return _CFNumberFormatterGetValueFromString(formatter, string_, rangep, numberType, valuePtr)
 	}
 
 
@@ -5285,8 +5285,8 @@ func CFPreferencesSynchronize(applicationID unsafe.Pointer, userName unsafe.Poin
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateData(_:_:_:_:_:)
-func CFPropertyListCreateData(allocator unsafe.Pointer, propertyList unsafe.Pointer, format unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFPropertyListCreateData(allocator, propertyList, format, options, error)
+func CFPropertyListCreateData(allocator unsafe.Pointer, propertyList unsafe.Pointer, format unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFPropertyListCreateData(allocator, propertyList, format, options, error_)
 	}
 
 
@@ -5327,8 +5327,8 @@ func CFPropertyListCreateFromXMLData(allocator unsafe.Pointer, xmlData unsafe.Po
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateWithData(_:_:_:_:_:)
-func CFPropertyListCreateWithData(allocator unsafe.Pointer, data unsafe.Pointer, options unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFPropertyListCreateWithData(allocator, data, options, format, error)
+func CFPropertyListCreateWithData(allocator unsafe.Pointer, data unsafe.Pointer, options unsafe.Pointer, format unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFPropertyListCreateWithData(allocator, data, options, format, error_)
 	}
 
 
@@ -5337,8 +5337,8 @@ func CFPropertyListCreateWithData(allocator unsafe.Pointer, data unsafe.Pointer,
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateWithStream(_:_:_:_:_:_:)
-func CFPropertyListCreateWithStream(allocator unsafe.Pointer, stream unsafe.Pointer, streamLength unsafe.Pointer, options unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFPropertyListCreateWithStream(allocator, stream, streamLength, options, format, error)
+func CFPropertyListCreateWithStream(allocator unsafe.Pointer, stream unsafe.Pointer, streamLength unsafe.Pointer, options unsafe.Pointer, format unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFPropertyListCreateWithStream(allocator, stream, streamLength, options, format, error_)
 	}
 
 
@@ -5367,8 +5367,8 @@ func CFPropertyListIsValid(plist unsafe.Pointer, format unsafe.Pointer) unsafe.P
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListWrite(_:_:_:_:_:)
-func CFPropertyListWrite(propertyList unsafe.Pointer, stream unsafe.Pointer, format unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFPropertyListWrite(propertyList, stream, format, options, error)
+func CFPropertyListWrite(propertyList unsafe.Pointer, stream unsafe.Pointer, format unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFPropertyListWrite(propertyList, stream, format, options, error_)
 	}
 
 
@@ -6801,8 +6801,8 @@ func CFStringGetFastestEncoding(theString unsafe.Pointer) unsafe.Pointer {
 // Extracts the contents of a string as a -terminated 8-bit string appropriate for passing to POSIX APIs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetFileSystemRepresentation(_:_:_:)
-func CFStringGetFileSystemRepresentation(string unsafe.Pointer, buffer unsafe.Pointer, maxBufLen unsafe.Pointer) unsafe.Pointer {
-	return _CFStringGetFileSystemRepresentation(string, buffer, maxBufLen)
+func CFStringGetFileSystemRepresentation(string_ unsafe.Pointer, buffer unsafe.Pointer, maxBufLen unsafe.Pointer) unsafe.Pointer {
+	return _CFStringGetFileSystemRepresentation(string_, buffer, maxBufLen)
 	}
 
 
@@ -6811,8 +6811,8 @@ func CFStringGetFileSystemRepresentation(string unsafe.Pointer, buffer unsafe.Po
 // Added in macOS 10.7.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetHyphenationLocationBeforeIndex(_:_:_:_:_:_:)
-func CFStringGetHyphenationLocationBeforeIndex(string unsafe.Pointer, location unsafe.Pointer, limitRange unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer, character unsafe.Pointer) unsafe.Pointer {
-	return _CFStringGetHyphenationLocationBeforeIndex(string, location, limitRange, options, locale, character)
+func CFStringGetHyphenationLocationBeforeIndex(string_ unsafe.Pointer, location unsafe.Pointer, limitRange unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer, character unsafe.Pointer) unsafe.Pointer {
+	return _CFStringGetHyphenationLocationBeforeIndex(string_, location, limitRange, options, locale, character)
 	}
 
 
@@ -6859,8 +6859,8 @@ func CFStringGetMaximumSizeForEncoding(length unsafe.Pointer, encoding unsafe.Po
 // Determines the upper bound on the number of bytes required to hold the file system representation of the string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMaximumSizeOfFileSystemRepresentation(_:)
-func CFStringGetMaximumSizeOfFileSystemRepresentation(string unsafe.Pointer) unsafe.Pointer {
-	return _CFStringGetMaximumSizeOfFileSystemRepresentation(string)
+func CFStringGetMaximumSizeOfFileSystemRepresentation(string_ unsafe.Pointer) unsafe.Pointer {
+	return _CFStringGetMaximumSizeOfFileSystemRepresentation(string_)
 	}
 
 
@@ -6885,8 +6885,8 @@ func CFStringGetNameOfEncoding(encoding unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetParagraphBounds(_:_:_:_:_:)
-func CFStringGetParagraphBounds(string unsafe.Pointer, range_ unsafe.Pointer, parBeginIndex unsafe.Pointer, parEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
-	_CFStringGetParagraphBounds(string, range_, parBeginIndex, parEndIndex, contentsEndIndex)
+func CFStringGetParagraphBounds(string_ unsafe.Pointer, range_ unsafe.Pointer, parBeginIndex unsafe.Pointer, parEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
+	_CFStringGetParagraphBounds(string_, range_, parBeginIndex, parEndIndex, contentsEndIndex)
 	}
 
 
@@ -7043,8 +7043,8 @@ func CFStringTokenizerAdvanceToNextToken(tokenizer unsafe.Pointer) unsafe.Pointe
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCopyBestStringLanguage(_:_:)
-func CFStringTokenizerCopyBestStringLanguage(string unsafe.Pointer, range_ unsafe.Pointer) unsafe.Pointer {
-	return _CFStringTokenizerCopyBestStringLanguage(string, range_)
+func CFStringTokenizerCopyBestStringLanguage(string_ unsafe.Pointer, range_ unsafe.Pointer) unsafe.Pointer {
+	return _CFStringTokenizerCopyBestStringLanguage(string_, range_)
 	}
 
 
@@ -7063,8 +7063,8 @@ func CFStringTokenizerCopyCurrentTokenAttribute(tokenizer unsafe.Pointer, attrib
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCreate(_:_:_:_:_:)
-func CFStringTokenizerCreate(alloc unsafe.Pointer, string unsafe.Pointer, range_ unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
-	return _CFStringTokenizerCreate(alloc, string, range_, options, locale)
+func CFStringTokenizerCreate(alloc unsafe.Pointer, string_ unsafe.Pointer, range_ unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+	return _CFStringTokenizerCreate(alloc, string_, range_, options, locale)
 	}
 
 
@@ -7113,16 +7113,16 @@ func CFStringTokenizerGoToTokenAtIndex(tokenizer unsafe.Pointer, index unsafe.Po
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerSetString(_:_:_:)
-func CFStringTokenizerSetString(tokenizer unsafe.Pointer, string unsafe.Pointer, range_ unsafe.Pointer) {
-	_CFStringTokenizerSetString(tokenizer, string, range_)
+func CFStringTokenizerSetString(tokenizer unsafe.Pointer, string_ unsafe.Pointer, range_ unsafe.Pointer) {
+	_CFStringTokenizerSetString(tokenizer, string_, range_)
 	}
 
 
 // Perform in-place transliteration on a mutable string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTransform(_:_:_:_:)
-func CFStringTransform(string unsafe.Pointer, range_ unsafe.Pointer, transform unsafe.Pointer, reverse unsafe.Pointer) unsafe.Pointer {
-	return _CFStringTransform(string, range_, transform, reverse)
+func CFStringTransform(string_ unsafe.Pointer, range_ unsafe.Pointer, transform unsafe.Pointer, reverse unsafe.Pointer) unsafe.Pointer {
+	return _CFStringTransform(string_, range_, transform, reverse)
 	}
 
 
@@ -7577,8 +7577,8 @@ func CFURLCopyQueryString(anURL unsafe.Pointer, charactersToLeaveEscaped unsafe.
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourcePropertiesForKeys(_:_:_:)
-func CFURLCopyResourcePropertiesForKeys(url unsafe.Pointer, keys unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLCopyResourcePropertiesForKeys(url, keys, error)
+func CFURLCopyResourcePropertiesForKeys(url unsafe.Pointer, keys unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLCopyResourcePropertiesForKeys(url, keys, error_)
 	}
 
 
@@ -7587,8 +7587,8 @@ func CFURLCopyResourcePropertiesForKeys(url unsafe.Pointer, keys unsafe.Pointer,
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourcePropertyForKey(_:_:_:_:)
-func CFURLCopyResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValueTypeRefPtr unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLCopyResourcePropertyForKey(url, key, propertyValueTypeRefPtr, error)
+func CFURLCopyResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValueTypeRefPtr unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLCopyResourcePropertyForKey(url, key, propertyValueTypeRefPtr, error_)
 	}
 
 
@@ -7637,8 +7637,8 @@ func CFURLCreateAbsoluteURLWithBytes(alloc unsafe.Pointer, relativeURLBytes unsa
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkData(_:_:_:_:_:_:)
-func CFURLCreateBookmarkData(allocator unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, resourcePropertiesToInclude unsafe.Pointer, relativeToURL unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLCreateBookmarkData(allocator, url, options, resourcePropertiesToInclude, relativeToURL, error)
+func CFURLCreateBookmarkData(allocator unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, resourcePropertiesToInclude unsafe.Pointer, relativeToURL unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLCreateBookmarkData(allocator, url, options, resourcePropertiesToInclude, relativeToURL, error_)
 	}
 
 
@@ -7669,8 +7669,8 @@ func CFURLCreateBookmarkDataFromFile(allocator unsafe.Pointer, fileURL unsafe.Po
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateByResolvingBookmarkData(_:_:_:_:_:_:_:)
-func CFURLCreateByResolvingBookmarkData(allocator unsafe.Pointer, bookmark unsafe.Pointer, options unsafe.Pointer, relativeToURL unsafe.Pointer, resourcePropertiesToInclude unsafe.Pointer, isStale unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLCreateByResolvingBookmarkData(allocator, bookmark, options, relativeToURL, resourcePropertiesToInclude, isStale, error)
+func CFURLCreateByResolvingBookmarkData(allocator unsafe.Pointer, bookmark unsafe.Pointer, options unsafe.Pointer, relativeToURL unsafe.Pointer, resourcePropertiesToInclude unsafe.Pointer, isStale unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLCreateByResolvingBookmarkData(allocator, bookmark, options, relativeToURL, resourcePropertiesToInclude, isStale, error_)
 	}
 
 
@@ -7727,8 +7727,8 @@ func CFURLCreateDataAndPropertiesFromResource(alloc unsafe.Pointer, url unsafe.P
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFilePathURL(_:_:_:)
-func CFURLCreateFilePathURL(allocator unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLCreateFilePathURL(allocator, url, error)
+func CFURLCreateFilePathURL(allocator unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLCreateFilePathURL(allocator, url, error_)
 	}
 
 
@@ -7737,8 +7737,8 @@ func CFURLCreateFilePathURL(allocator unsafe.Pointer, url unsafe.Pointer, error 
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFileReferenceURL(_:_:_:)
-func CFURLCreateFileReferenceURL(allocator unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLCreateFileReferenceURL(allocator, url, error)
+func CFURLCreateFileReferenceURL(allocator unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLCreateFileReferenceURL(allocator, url, error_)
 	}
 
 
@@ -7901,8 +7901,8 @@ func CFURLEnumeratorGetDescendentLevel(enumerator unsafe.Pointer) unsafe.Pointer
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetNextURL(_:_:_:)
-func CFURLEnumeratorGetNextURL(enumerator unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLEnumeratorGetNextURL(enumerator, url, error)
+func CFURLEnumeratorGetNextURL(enumerator unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLEnumeratorGetNextURL(enumerator, url, error_)
 	}
 
 
@@ -8021,8 +8021,8 @@ func CFURLIsFileReferenceURL(url unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLResourceIsReachable(_:_:)
-func CFURLResourceIsReachable(url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLResourceIsReachable(url, error)
+func CFURLResourceIsReachable(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLResourceIsReachable(url, error_)
 	}
 
 
@@ -8031,8 +8031,8 @@ func CFURLResourceIsReachable(url unsafe.Pointer, error unsafe.Pointer) unsafe.P
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetResourcePropertiesForKeys(_:_:_:)
-func CFURLSetResourcePropertiesForKeys(url unsafe.Pointer, keyedPropertyValues unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLSetResourcePropertiesForKeys(url, keyedPropertyValues, error)
+func CFURLSetResourcePropertiesForKeys(url unsafe.Pointer, keyedPropertyValues unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLSetResourcePropertiesForKeys(url, keyedPropertyValues, error_)
 	}
 
 
@@ -8041,8 +8041,8 @@ func CFURLSetResourcePropertiesForKeys(url unsafe.Pointer, keyedPropertyValues u
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetResourcePropertyForKey(_:_:_:_:)
-func CFURLSetResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValue unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _CFURLSetResourcePropertyForKey(url, key, propertyValue, error)
+func CFURLSetResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValue unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _CFURLSetResourcePropertyForKey(url, key, propertyValue, error_)
 	}
 
 
@@ -8173,8 +8173,8 @@ func CFUserNotificationCancel(userNotification unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCreate(_:_:_:_:_:)
-func CFUserNotificationCreate(allocator unsafe.Pointer, timeout unsafe.Pointer, flags unsafe.Pointer, error unsafe.Pointer, dictionary unsafe.Pointer) unsafe.Pointer {
-	return _CFUserNotificationCreate(allocator, timeout, flags, error, dictionary)
+func CFUserNotificationCreate(allocator unsafe.Pointer, timeout unsafe.Pointer, flags unsafe.Pointer, error_ unsafe.Pointer, dictionary unsafe.Pointer) unsafe.Pointer {
+	return _CFUserNotificationCreate(allocator, timeout, flags, error_, dictionary)
 	}
 
 
@@ -8411,16 +8411,16 @@ func CFWriteStreamWrite(stream unsafe.Pointer, buffer unsafe.Pointer, bufferLeng
 // Given a CFString object containing XML source with unescaped entities, returns a string with specified XML entities escaped. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLCreateStringByEscapingEntities(_:_:_:)
-func CFXMLCreateStringByEscapingEntities(allocator unsafe.Pointer, string unsafe.Pointer, entitiesDictionary unsafe.Pointer) unsafe.Pointer {
-	return _CFXMLCreateStringByEscapingEntities(allocator, string, entitiesDictionary)
+func CFXMLCreateStringByEscapingEntities(allocator unsafe.Pointer, string_ unsafe.Pointer, entitiesDictionary unsafe.Pointer) unsafe.Pointer {
+	return _CFXMLCreateStringByEscapingEntities(allocator, string_, entitiesDictionary)
 	}
 
 
 // Given a CFString object containing XML source with escaped entities, returns a string with specified XML entities unescaped. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLCreateStringByUnescapingEntities(_:_:_:)
-func CFXMLCreateStringByUnescapingEntities(allocator unsafe.Pointer, string unsafe.Pointer, entitiesDictionary unsafe.Pointer) unsafe.Pointer {
-	return _CFXMLCreateStringByUnescapingEntities(allocator, string, entitiesDictionary)
+func CFXMLCreateStringByUnescapingEntities(allocator unsafe.Pointer, string_ unsafe.Pointer, entitiesDictionary unsafe.Pointer) unsafe.Pointer {
+	return _CFXMLCreateStringByUnescapingEntities(allocator, string_, entitiesDictionary)
 	}
 
 

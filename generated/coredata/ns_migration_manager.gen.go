@@ -31,10 +31,10 @@ type _MigrationManagerClass struct {
 type IMigrationManager interface {
 	objectivec.IObject
 	AssociateSourceInstanceWithDestinationInstanceForEntityMapping(sourceInstance unsafe.Pointer, destinationInstance unsafe.Pointer, entityMapping unsafe.Pointer)
-	CancelMigrationWithError(error unsafe.Pointer)
+	CancelMigrationWithError(error_ unsafe.Pointer)
 	DestinationEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer
 	DestinationInstancesForEntityMappingNamedSourceInstances(mappingName string, sourceInstances unsafe.Pointer) []ManagedObject
-	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL unsafe.Pointer, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL unsafe.Pointer, dStoreType string, dOptions objc.ID, error unsafe.Pointer) bool
+	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL unsafe.Pointer, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL unsafe.Pointer, dStoreType string, dOptions objc.ID, error_ unsafe.Pointer) bool
 	Reset()
 	SourceEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer
 	SourceInstancesForEntityMappingNamedDestinationInstances(mappingName string, destinationInstances unsafe.Pointer) []ManagedObject
@@ -107,8 +107,8 @@ func (m_ MigrationManager) AssociateSourceInstanceWithDestinationInstanceForEnti
 // Cancels the migration with a given error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/cancelMigrationWithError(_:)
-func (m_ MigrationManager) CancelMigrationWithError(error unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelMigrationWithError:"), error)
+func (m_ MigrationManager) CancelMigrationWithError(error_ unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("cancelMigrationWithError:"), error_)
 }
 
 // Returns the entity description for the destination entity of a given entity mapping.
@@ -130,8 +130,8 @@ func (m_ MigrationManager) DestinationInstancesForEntityMappingNamedSourceInstan
 // Migrates the store at a given source URL to the store at a given destination URL, performing all of the mappings specified in a given mapping model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/migrateStore(from:sourceType:options:with:toDestinationURL:destinationType:destinationOptions:)
-func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL unsafe.Pointer, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL unsafe.Pointer, dStoreType string, dOptions objc.ID, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:"), sourceURL, objc.String(sStoreType), sOptions, mappings, dURL, objc.String(dStoreType), dOptions, error)
+func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL unsafe.Pointer, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL unsafe.Pointer, dStoreType string, dOptions objc.ID, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:"), sourceURL, objc.String(sStoreType), sOptions, mappings, dURL, objc.String(dStoreType), dOptions, error_)
 	return rv
 }
 

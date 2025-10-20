@@ -80,22 +80,22 @@ func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
 }
 
 
-// Creates a metadata object with the title, image, and icon for a shareable item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objc.ID, title string, image unsafe.Pointer, icon unsafe.Pointer) PreviewRepresentingActivityItem {
-	instance := getPreviewRepresentingActivityItemClass().Alloc()
-	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:image:icon:"), item, objc.String(title), image, icon)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a metadata object that provides a title and images for a shareable item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
 func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objc.ID, title string, imageProvider unsafe.Pointer, iconProvider unsafe.Pointer) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:imageProvider:iconProvider:"), item, objc.String(title), imageProvider, iconProvider)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a metadata object with the title, image, and icon for a shareable item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
+func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objc.ID, title string, image unsafe.Pointer, icon unsafe.Pointer) PreviewRepresentingActivityItem {
+	instance := getPreviewRepresentingActivityItemClass().Alloc()
+	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:image:icon:"), item, objc.String(title), image, icon)
 	rv.Autorelease()
 	return rv
 }

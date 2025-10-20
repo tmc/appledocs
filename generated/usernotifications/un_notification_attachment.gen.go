@@ -83,8 +83,8 @@ func NewUNNotificationAttachment() UNNotificationAttachment {
 // Creates an attachment object from the specified file and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/init(identifier:url:options:)
-func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string, URL unsafe.Pointer, options objc.ID, error unsafe.Pointer) UNNotificationAttachment {
-	rv := objc.Send[UNNotificationAttachment](objc.ID(getUNNotificationAttachmentClass().class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error)
+func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string, URL unsafe.Pointer, options objc.ID, error_ unsafe.Pointer) UNNotificationAttachment {
+	rv := objc.Send[UNNotificationAttachment](objc.ID(getUNNotificationAttachmentClass().class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error_)
 	return rv
 }
 
@@ -92,8 +92,8 @@ func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string,
 // Creates an attachment object from the specified file and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/init(identifier:url:options:)
-func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError(identifier string, URL unsafe.Pointer, options objc.ID, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error)
+func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError(identifier string, URL unsafe.Pointer, options objc.ID, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error_)
 	return rv
 }
 

@@ -29,7 +29,7 @@ type _DateFormatterClass struct {
 // An interface definition for the [DateFormatter] class.
 type IDateFormatter interface {
 	IFormatter
-	DateFromString(string string) unsafe.Pointer
+	DateFromString(string_ string) unsafe.Pointer
 	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string)
 }
 
@@ -97,8 +97,8 @@ func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string, flag bool
 // Returns a date representation of a specified string that the system interprets using the receiver’s current settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/date(from:)
-func (d_ DateFormatter) DateFromString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateFromString:"), objc.String(string))
+func (d_ DateFormatter) DateFromString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
 

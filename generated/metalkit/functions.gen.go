@@ -65,8 +65,8 @@ func MTKMetalVertexDescriptorFromModelIO(modelIODescriptor unsafe.Pointer) unsaf
 // Added in macOS 10.12.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIOWithError
-func MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor, error)
+func MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor, error_)
 	}
 
 
@@ -95,8 +95,8 @@ func MTKModelIOVertexDescriptorFromMetal(metalDescriptor unsafe.Pointer) unsafe.
 // Added in macOS 10.12.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetalWithError
-func MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	return _MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor, error)
+func MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	return _MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor, error_)
 	}
 
 

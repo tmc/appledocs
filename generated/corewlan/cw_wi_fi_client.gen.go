@@ -34,9 +34,9 @@ type ICWWiFiClient interface {
 	InterfaceWithName(interfaceName string) unsafe.Pointer
 	InterfaceNames() []string
 	Interfaces() []CWInterface
-	StartMonitoringEventWithTypeError(type_ unsafe.Pointer, error unsafe.Pointer) bool
-	StopMonitoringAllEventsAndReturnError(error unsafe.Pointer) bool
-	StopMonitoringEventWithTypeError(type_ unsafe.Pointer, error unsafe.Pointer) bool
+	StartMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool
+	StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool
+	StopMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 // A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.
@@ -138,24 +138,24 @@ func (c_ CWWiFiClient) Interfaces() []CWInterface {
 // Register for specific Wi-Fi event notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/startMonitoringEvent(with:)
-func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("startMonitoringEventWithType:error:"), type_, error)
+func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("startMonitoringEventWithType:error:"), type_, error_)
 	return rv
 }
 
 // Unregister for all Wi-Fi event notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/stopMonitoringAllEvents()
-func (c_ CWWiFiClient) StopMonitoringAllEventsAndReturnError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringAllEventsAndReturnError:"), error)
+func (c_ CWWiFiClient) StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringAllEventsAndReturnError:"), error_)
 	return rv
 }
 
 // Unregister for specific Wi-Fi event notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/stopMonitoringEvent(with:)
-func (c_ CWWiFiClient) StopMonitoringEventWithTypeError(type_ unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringEventWithType:error:"), type_, error)
+func (c_ CWWiFiClient) StopMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringEventWithType:error:"), type_, error_)
 	return rv
 }
 

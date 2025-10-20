@@ -81,9 +81,9 @@ func NewMesh() Mesh {
 // Initializes a MetalKit mesh and its submeshes from a Model I/O mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/init(mesh:device:)
-func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objc.ID, error unsafe.Pointer) Mesh {
+func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objc.ID, error_ unsafe.Pointer) Mesh {
 	instance := getMeshClass().Alloc()
-	rv := objc.Send[Mesh](instance.ID, objc.Sel("initWithMesh:device:error:"), mesh, device, error)
+	rv := objc.Send[Mesh](instance.ID, objc.Sel("initWithMesh:device:error:"), mesh, device, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -92,8 +92,8 @@ func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objc.ID, error unsaf
 // Creates and initializes MetalKit meshes from all Model I/O meshes in a Model I/O asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/newMeshesFromAsset:device:sourceMeshes:error:
-func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device objc.ID, sourceMeshes unsafe.Pointer, error unsafe.Pointer) []Mesh {
-	rv := objc.Send[[]Mesh](objc.ID(mc.class), objc.Sel("newMeshesFromAsset:device:sourceMeshes:error:"), asset, device, sourceMeshes, error)
+func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device objc.ID, sourceMeshes unsafe.Pointer, error_ unsafe.Pointer) []Mesh {
+	rv := objc.Send[[]Mesh](objc.ID(mc.class), objc.Sel("newMeshesFromAsset:device:sourceMeshes:error:"), asset, device, sourceMeshes, error_)
 	return rv
 }
 

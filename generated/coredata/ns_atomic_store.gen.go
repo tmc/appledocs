@@ -29,7 +29,7 @@ type _AtomicStoreClass struct {
 // An interface definition for the [AtomicStore] class.
 type IAtomicStore interface {
 	IPersistentStore
-	Save(error unsafe.Pointer) bool
+	Save(error_ unsafe.Pointer) bool
 }
 
 // An abstract superclass that you subclass to create a Core Data atomic store.
@@ -85,8 +85,8 @@ func NewAtomicStore() AtomicStore {
 // Saves the cache nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStore/save()
-func (a_ AtomicStore) Save(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("save:"), error)
+func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("save:"), error_)
 	return rv
 }
 

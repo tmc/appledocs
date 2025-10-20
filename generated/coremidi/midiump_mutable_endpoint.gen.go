@@ -29,9 +29,9 @@ type _MIDIUMPMutableEndpointClass struct {
 // An interface definition for the [MIDIUMPMutableEndpoint] class.
 type IMIDIUMPMutableEndpoint interface {
 	IMIDIUMPEndpoint
-	RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error unsafe.Pointer) bool
-	SetEnabledError(isEnabled bool, error unsafe.Pointer) bool
-	SetNameError(name string, error unsafe.Pointer) bool
+	RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error_ unsafe.Pointer) bool
+	SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool
+	SetNameError(name string, error_ unsafe.Pointer) bool
 }
 
 //
@@ -91,22 +91,22 @@ func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDes
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/registerFunctionBlocks(_:markAsStatic:)
-func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("registerFunctionBlocks:markAsStatic:error:"), functionBlocks, markAsStatic, error)
+func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("registerFunctionBlocks:markAsStatic:error:"), functionBlocks, markAsStatic, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setEnabled(_:)
-func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setEnabled:error:"), isEnabled, error)
+func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setEnabled:error:"), isEnabled, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setName(_:)
-func (m_ MIDIUMPMutableEndpoint) SetNameError(name string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error)
+func (m_ MIDIUMPMutableEndpoint) SetNameError(name string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error_)
 	return rv
 }
 

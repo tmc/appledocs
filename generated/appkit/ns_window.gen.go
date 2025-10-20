@@ -218,16 +218,6 @@ func NewWindow() Window {
 }
 
 
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes the window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
@@ -253,6 +243,16 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
 func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
 	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
+	return rv
+}
+
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
 	return rv
 }
 

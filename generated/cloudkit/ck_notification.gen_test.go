@@ -10,13 +10,5 @@ import (
 var _ = cloudkit.NewCKNotification
 
 
-// ExampleNewCKNotificationFromRemoteNotificationDictionary demonstrates how to create a CKNotification instance using NewCKNotificationFromRemoteNotificationDictionary.
-// Creates a new notification using the specified payload data.
-func ExampleNewCKNotificationFromRemoteNotificationDictionary() {
-	_ = cloudkit.NewCKNotificationFromRemoteNotificationDictionary(
-		0, // notificationDictionary objc.ID
-	)
-	// Output:
-}
 
 

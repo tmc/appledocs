@@ -34,7 +34,7 @@ type IBundle interface {
 	ContextHelpForKey(key unsafe.Pointer) unsafe.Pointer
 	ImageForResource(name unsafe.Pointer) unsafe.Pointer
 	Load() bool
-	LoadAndReturnError(error unsafe.Pointer) bool
+	LoadAndReturnError(error_ unsafe.Pointer) bool
 	LoadAppleScriptObjectiveCScripts()
 	LoadNibNamedOwnerOptions(name string, owner objc.ID, options unsafe.Pointer) unsafe.Pointer
 	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objc.ID, topLevelObjects objc.ID) bool
@@ -48,7 +48,7 @@ type IBundle interface {
 	PathForImageResource(name unsafe.Pointer) unsafe.Pointer
 	PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string
 	PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string
-	PreflightAndReturnError(error unsafe.Pointer) bool
+	PreflightAndReturnError(error_ unsafe.Pointer) bool
 	PreservationPriorityForTag(tag string) unsafe.Pointer
 	SetPreservationPriorityForTags(priority unsafe.Pointer, tags unsafe.Pointer)
 	Unload() bool
@@ -280,8 +280,8 @@ func (b_ Bundle) Load() bool {
 // Loads the bundle’s executable code and returns any errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadAndReturnError()
-func (b_ Bundle) LoadAndReturnError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("loadAndReturnError:"), error)
+func (b_ Bundle) LoadAndReturnError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("loadAndReturnError:"), error_)
 	return rv
 }
 
@@ -390,8 +390,8 @@ func (b_ Bundle) PathsForResourcesOfTypeInDirectoryForLocalization(ext string, s
 // Returns a Boolean value indicating whether the bundle’s executable code could be loaded successfully.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/preflight()
-func (b_ Bundle) PreflightAndReturnError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("preflightAndReturnError:"), error)
+func (b_ Bundle) PreflightAndReturnError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("preflightAndReturnError:"), error_)
 	return rv
 }
 

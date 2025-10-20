@@ -82,26 +82,6 @@ func NewOutputStream() OutputStream {
 }
 
 
-// Returns an initialized output stream for writing to a specified URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(url:append:)-5soau
-func NewOutputStreamWithURLAppend(url unsafe.Pointer, shouldAppend bool) OutputStream {
-	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initWithURL:append:"), url, shouldAppend)
-	rv.Autorelease()
-	return rv
-}
-
-// Returns an initialized output stream that can write to a provided buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toBuffer:capacity:)
-func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) OutputStream {
-	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToBuffer:capacity:"), buffer, capacity)
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an initialized output stream for writing to a specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toFileAtPath:append:)
@@ -118,6 +98,26 @@ func NewOutputStreamToFileAtPathAppend(path string, shouldAppend bool) OutputStr
 func NewOutputStreamToMemory() OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToMemory"))
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an initialized output stream for writing to a specified URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(url:append:)-5soau
+func NewOutputStreamWithURLAppend(url unsafe.Pointer, shouldAppend bool) OutputStream {
+	instance := getOutputStreamClass().Alloc()
+	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initWithURL:append:"), url, shouldAppend)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an initialized output stream that can write to a provided buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toBuffer:capacity:)
+func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) OutputStream {
+	instance := getOutputStreamClass().Alloc()
+	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToBuffer:capacity:"), buffer, capacity)
 	rv.Autorelease()
 	return rv
 }

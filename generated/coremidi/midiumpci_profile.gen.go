@@ -30,7 +30,7 @@ type _MIDIUMPCIProfileClass struct {
 // An interface definition for the [MIDIUMPCIProfile] class.
 type IMIDIUMPCIProfile interface {
 	objectivec.IObject
-	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount unsafe.Pointer, error unsafe.Pointer) bool
+	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 //
@@ -78,8 +78,8 @@ func NewMIDIUMPCIProfile() MIDIUMPCIProfile {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/setProfileState(_:enabledChannelCount:)
-func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setProfileState:enabledChannelCount:error:"), isEnabled, enabledChannelCount, error)
+func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setProfileState:enabledChannelCount:error:"), isEnabled, enabledChannelCount, error_)
 	return rv
 }
 

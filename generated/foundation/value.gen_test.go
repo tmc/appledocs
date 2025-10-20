@@ -10,11 +10,15 @@ import (
 var _ = foundation.NewValue
 
 
-// ExampleNewValueWithRect demonstrates how to create a Value instance using NewValueWithRect.
-// Creates a new value object containing the specified Foundation rectangle structure.
-func ExampleNewValueWithRect() {
-	_ = foundation.NewValueWithRect(
-		foundation.Rect{}, // rect Rect
+
+
+
+
+// ExampleNewValueWithPoint demonstrates how to create a Value instance using NewValueWithPoint.
+// Creates a new value object containing the specified Foundation point structure.
+func ExampleNewValueWithPoint() {
+	_ = foundation.NewValueWithPoint(
+		foundation.Point{}, // point Point
 	)
 	// Output:
 }
@@ -30,13 +34,20 @@ func ExampleNewValueWithRect() {
 
 
 
+// ExampleNewValueWithRange demonstrates how to create a Value instance using NewValueWithRange.
+// Creates a new value object containing the specified Foundation range structure.
+func ExampleNewValueWithRange() {
+	_ = foundation.NewValueWithRange(
+		foundation.Range{}, // range Range
+	)
+	// Output:
+}
 
-
-// ExampleNewValueWithPoint demonstrates how to create a Value instance using NewValueWithPoint.
-// Creates a new value object containing the specified Foundation point structure.
-func ExampleNewValueWithPoint() {
-	_ = foundation.NewValueWithPoint(
-		foundation.Point{}, // point Point
+// ExampleNewValueWithRect demonstrates how to create a Value instance using NewValueWithRect.
+// Creates a new value object containing the specified Foundation rectangle structure.
+func ExampleNewValueWithRect() {
+	_ = foundation.NewValueWithRect(
+		foundation.Rect{}, // rect Rect
 	)
 	// Output:
 }
@@ -59,16 +70,5 @@ func ExampleNewValueWithSize() {
 
 
 
-
-
-
-// ExampleNewValueWithRange demonstrates how to create a Value instance using NewValueWithRange.
-// Creates a new value object containing the specified Foundation range structure.
-func ExampleNewValueWithRange() {
-	_ = foundation.NewValueWithRange(
-		foundation.Range{}, // range Range
-	)
-	// Output:
-}
 
 

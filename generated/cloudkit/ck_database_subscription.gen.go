@@ -81,22 +81,22 @@ func NewCKDatabaseSubscription() CKDatabaseSubscription {
 }
 
 
-// Creates a named subscription for all records in a database.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/initWithSubscriptionID:
-func NewCKDatabaseSubscriptionWithSubscriptionID(subscriptionID unsafe.Pointer) CKDatabaseSubscription {
-	instance := getCKDatabaseSubscriptionClass().Alloc()
-	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithSubscriptionID:"), subscriptionID)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a database subscription from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/init(coder:)
 func NewCKDatabaseSubscriptionWithCoder(aDecoder unsafe.Pointer) CKDatabaseSubscription {
 	instance := getCKDatabaseSubscriptionClass().Alloc()
 	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a named subscription for all records in a database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/initWithSubscriptionID:
+func NewCKDatabaseSubscriptionWithSubscriptionID(subscriptionID unsafe.Pointer) CKDatabaseSubscription {
+	instance := getCKDatabaseSubscriptionClass().Alloc()
+	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithSubscriptionID:"), subscriptionID)
 	rv.Autorelease()
 	return rv
 }

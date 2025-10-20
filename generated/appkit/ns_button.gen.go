@@ -84,14 +84,6 @@ func NewButton() Button {
 }
 
 
-// Creates a standard push button with the title you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
-	return rv
-}
-
 // Creates a standard checkbox with the title you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
@@ -121,6 +113,14 @@ func NewButtonRadioButtonWithTitleTargetAction(title string, target objc.ID, act
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
 func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, target objc.ID, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
+	return rv
+}
+
+// Creates a standard push button with the title you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
+func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
 

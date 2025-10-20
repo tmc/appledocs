@@ -80,16 +80,6 @@ func NewNotification() Notification {
 }
 
 
-// Initializes a notification with a specified name, object, and user information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:userInfo:)
-func NewNotificationWithNameObjectUserInfo(name unsafe.Pointer, object objc.ID, userInfo objc.ID) Notification {
-	instance := getNotificationClass().Alloc()
-	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithName:object:userInfo:"), name, object, userInfo)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a notification with the data from an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
@@ -105,6 +95,16 @@ func NewNotificationWithCoder(coder unsafe.Pointer) Notification {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
 func NewNotificationWithNameObject(aName unsafe.Pointer, anObject objc.ID) Notification {
 	rv := objc.Send[Notification](objc.ID(getNotificationClass().class), objc.Sel("notificationWithName:object:"), aName, anObject)
+	return rv
+}
+
+// Initializes a notification with a specified name, object, and user information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:userInfo:)
+func NewNotificationWithNameObjectUserInfo(name unsafe.Pointer, object objc.ID, userInfo objc.ID) Notification {
+	instance := getNotificationClass().Alloc()
+	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithName:object:userInfo:"), name, object, userInfo)
+	rv.Autorelease()
 	return rv
 }
 

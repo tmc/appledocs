@@ -1947,8 +1947,8 @@ func CGColorConversionInfoCreate(src CGColorSpaceRef, dst CGColorSpaceRef) CGCol
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:srcHeadroom:dst:dstHeadroom:toneMapping:options:_:)
-func CGColorConversionInfoCreateForToneMapping(from CGColorSpaceRef, source_headroom unsafe.Pointer, to CGColorSpaceRef, target_headroom unsafe.Pointer, method unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) CGColorConversionInfoRef {
-	return _CGColorConversionInfoCreateForToneMapping(from, source_headroom, to, target_headroom, method, options, error)
+func CGColorConversionInfoCreateForToneMapping(from CGColorSpaceRef, source_headroom unsafe.Pointer, to CGColorSpaceRef, target_headroom unsafe.Pointer, method unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) CGColorConversionInfoRef {
+	return _CGColorConversionInfoCreateForToneMapping(from, source_headroom, to, target_headroom, method, options, error_)
 	}
 
 
@@ -3527,16 +3527,16 @@ func CGContextShowGlyphsWithAdvances(c CGContextRef, glyphs unsafe.Pointer, adva
 // Displays a character array at the current text position, a point specified by the current text matrix. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showText(string:length:)
-func CGContextShowText(c CGContextRef, string unsafe.Pointer, length unsafe.Pointer) {
-	_CGContextShowText(c, string, length)
+func CGContextShowText(c CGContextRef, string_ unsafe.Pointer, length unsafe.Pointer) {
+	_CGContextShowText(c, string_, length)
 	}
 
 
 // Displays a character string at a position you specify. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showTextAtPoint(x:y:string:length:)
-func CGContextShowTextAtPoint(c CGContextRef, x float64, y float64, string unsafe.Pointer, length unsafe.Pointer) {
-	_CGContextShowTextAtPoint(c, x, y, string, length)
+func CGContextShowTextAtPoint(c CGContextRef, x float64, y float64, string_ unsafe.Pointer, length unsafe.Pointer) {
+	_CGContextShowTextAtPoint(c, x, y, string_, length)
 	}
 
 
@@ -7309,8 +7309,8 @@ func CGPDFStreamGetDictionary(stream CGPDFStreamRef) CGPDFDictionaryRef {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringCopyDate(_:)
-func CGPDFStringCopyDate(string CGPDFStringRef) unsafe.Pointer {
-	return _CGPDFStringCopyDate(string)
+func CGPDFStringCopyDate(string_ CGPDFStringRef) unsafe.Pointer {
+	return _CGPDFStringCopyDate(string_)
 	}
 
 
@@ -7319,8 +7319,8 @@ func CGPDFStringCopyDate(string CGPDFStringRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringCopyTextString(_:)
-func CGPDFStringCopyTextString(string CGPDFStringRef) unsafe.Pointer {
-	return _CGPDFStringCopyTextString(string)
+func CGPDFStringCopyTextString(string_ CGPDFStringRef) unsafe.Pointer {
+	return _CGPDFStringCopyTextString(string_)
 	}
 
 
@@ -7329,8 +7329,8 @@ func CGPDFStringCopyTextString(string CGPDFStringRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringGetBytePtr(_:)
-func CGPDFStringGetBytePtr(string CGPDFStringRef) unsafe.Pointer {
-	return _CGPDFStringGetBytePtr(string)
+func CGPDFStringGetBytePtr(string_ CGPDFStringRef) unsafe.Pointer {
+	return _CGPDFStringGetBytePtr(string_)
 	}
 
 
@@ -7339,8 +7339,8 @@ func CGPDFStringGetBytePtr(string CGPDFStringRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringGetLength(_:)
-func CGPDFStringGetLength(string CGPDFStringRef) unsafe.Pointer {
-	return _CGPDFStringGetLength(string)
+func CGPDFStringGetLength(string_ CGPDFStringRef) unsafe.Pointer {
+	return _CGPDFStringGetLength(string_)
 	}
 
 

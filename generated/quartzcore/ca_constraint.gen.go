@@ -80,16 +80,6 @@ func NewConstraint() Constraint {
 }
 
 
-// Returns an object with the specified parameters. Designated initializer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:scale:offset:)
-func NewConstraintWithAttributeRelativeToAttributeScaleOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, m float64, c float64) Constraint {
-	instance := getConstraintClass().Alloc()
-	rv := objc.Send[Constraint](instance.ID, objc.Sel("initWithAttribute:relativeTo:attribute:scale:offset:"), attr, objc.String(srcId), srcAttr, m, c)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:)
@@ -103,6 +93,16 @@ func NewConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId st
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:offset:)
 func NewConstraintWithAttributeRelativeToAttributeOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, c float64) Constraint {
 	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, objc.String(srcId), srcAttr, c)
+	return rv
+}
+
+// Returns an object with the specified parameters. Designated initializer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:scale:offset:)
+func NewConstraintWithAttributeRelativeToAttributeScaleOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, m float64, c float64) Constraint {
+	instance := getConstraintClass().Alloc()
+	rv := objc.Send[Constraint](instance.ID, objc.Sel("initWithAttribute:relativeTo:attribute:scale:offset:"), attr, objc.String(srcId), srcAttr, m, c)
+	rv.Autorelease()
 	return rv
 }
 

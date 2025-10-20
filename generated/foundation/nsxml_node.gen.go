@@ -31,7 +31,7 @@ type _XMLNodeClass struct {
 type IXMLNode interface {
 	objectivec.IObject
 	ChildAtIndex(index uint) unsafe.Pointer
-	SetStringValueResolvingEntities(string string, resolve bool)
+	SetStringValueResolvingEntities(string_ string, resolve bool)
 	XMLStringWithOptions(options unsafe.Pointer) unsafe.Pointer
 }
 
@@ -147,8 +147,8 @@ func (xc _XMLNodeClass) DocumentWithRootElement(element unsafe.Pointer) objc.ID 
 // Returns a object representing the DTD declaration for an element, attribute, entity, or notation based on a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/dtdNode(withXMLString:)
-func (xc _XMLNodeClass) DTDNodeWithXMLString(string string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("DTDNodeWithXMLString:"), objc.String(string))
+func (xc _XMLNodeClass) DTDNodeWithXMLString(string_ string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("DTDNodeWithXMLString:"), objc.String(string_))
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (xc _XMLNodeClass) ElementWithNameChildrenAttributes(name string, children 
 // Returns an object with a single text-node child containing the specified text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/element(withName:stringValue:)
-func (xc _XMLNodeClass) ElementWithNameStringValue(name string, string string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:stringValue:"), objc.String(name), objc.String(string))
+func (xc _XMLNodeClass) ElementWithNameStringValue(name string, string_ string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:stringValue:"), objc.String(name), objc.String(string_))
 	return rv
 }
 
@@ -227,8 +227,8 @@ func (x_ XMLNode) ChildAtIndex(index uint) unsafe.Pointer {
 // Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/setStringValue(_:resolvingEntities:)
-func (x_ XMLNode) SetStringValueResolvingEntities(string string, resolve bool) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:resolvingEntities:"), objc.String(string), resolve)
+func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:resolvingEntities:"), objc.String(string_), resolve)
 }
 
 // Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.

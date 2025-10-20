@@ -31,7 +31,7 @@ type _ExtensionContextClass struct {
 // An interface definition for the [ExtensionContext] class.
 type IExtensionContext interface {
 	objectivec.IObject
-	CancelRequestWithError(error unsafe.Pointer)
+	CancelRequestWithError(error_ unsafe.Pointer)
 	CompleteRequestReturningItemsCompletionHandler(items objc.ID, completionHandler unsafe.Pointer)
 	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL unsafe.Pointer, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer)
 	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL unsafe.Pointer, setupInfo unsafe.Pointer)
@@ -96,8 +96,8 @@ func NewExtensionContext() ExtensionContext {
 // Tells the host app to cancel the app extension request, with a supplied error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/cancelRequest(withError:)
-func (e_ ExtensionContext) CancelRequestWithError(error unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("cancelRequestWithError:"), error)
+func (e_ ExtensionContext) CancelRequestWithError(error_ unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
 
 // Tells the host app to complete the app extension request with an array of result items.

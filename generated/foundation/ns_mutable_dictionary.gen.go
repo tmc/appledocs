@@ -110,6 +110,15 @@ func NewMutableDictionary() MutableDictionary {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
+func NewMutableDictionaryWithContentsOfURL(url unsafe.Pointer) MutableDictionary {
+	instance := getMutableDictionaryClass().Alloc()
+	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
 func NewMutableDictionaryWithOBEXHeadersData(inHeadersData unsafe.Pointer) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
@@ -124,10 +133,10 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
-func NewMutableDictionaryWithContentsOfURL(url unsafe.Pointer) MutableDictionary {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
+func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
-	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -155,15 +164,6 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCapacity:"), numItems)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
-func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
-	instance := getMutableDictionaryClass().Alloc()
-	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

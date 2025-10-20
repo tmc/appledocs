@@ -13,7 +13,6 @@ var _ = coreimage.NewFilter
 
 
 
-
 // ExampleNewFilterWithName demonstrates how to create a Filter instance using NewFilterWithName.
 // Creates a   object for a specific kind of filter.
 func ExampleNewFilterWithName() {
@@ -22,5 +21,6 @@ func ExampleNewFilterWithName() {
 	)
 	// Output:
 }
+
 
 

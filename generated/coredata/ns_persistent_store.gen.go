@@ -30,7 +30,7 @@ type _PersistentStoreClass struct {
 // An interface definition for the [PersistentStore] class.
 type IPersistentStore interface {
 	objectivec.IObject
-	LoadMetadata(error unsafe.Pointer) bool
+	LoadMetadata(error_ unsafe.Pointer) bool
 }
 
 // The abstract base class for all Core Data persistent stores.
@@ -95,8 +95,8 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 // Returns the metadata from the persistent store at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadataForPersistentStore(with:)
-func (pc _PersistentStoreClass) MetadataForPersistentStoreWithURLError(url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreWithURL:error:"), url, error)
+func (pc _PersistentStoreClass) MetadataForPersistentStoreWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreWithURL:error:"), url, error_)
 	return rv
 }
 
@@ -111,16 +111,16 @@ func (pc _PersistentStoreClass) MigrationManagerClass() objc.Class {
 // Sets the metadata for the store at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/setMetadata(_:forPersistentStoreAt:)
-func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metadata unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreWithURL:error:"), metadata, url, error)
+func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metadata unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreWithURL:error:"), metadata, url, error_)
 	return rv
 }
 
 // Instructs the persistent store to load its metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/loadMetadata()
-func (p_ PersistentStore) LoadMetadata(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("loadMetadata:"), error)
+func (p_ PersistentStore) LoadMetadata(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("loadMetadata:"), error_)
 	return rv
 }
 

@@ -29,7 +29,7 @@ type _PersonNameComponentsFormatterClass struct {
 // An interface definition for the [PersonNameComponentsFormatter] class.
 type IPersonNameComponentsFormatter interface {
 	IFormatter
-	PersonNameComponentsFromString(string string) unsafe.Pointer
+	PersonNameComponentsFromString(string_ string) unsafe.Pointer
 }
 
 // A formatter that provides localized representations of the components of a person’s name.
@@ -85,8 +85,8 @@ func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
 // Returns a person name components object from a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
-func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("personNameComponentsFromString:"), objc.String(string))
+func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("personNameComponentsFromString:"), objc.String(string_))
 	return rv
 }
 

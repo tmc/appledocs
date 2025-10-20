@@ -38,7 +38,7 @@ type IAttributedString interface {
 	AttributesAtIndexLongestEffectiveRangeInRange(location uint, range_ unsafe.Pointer, rangeLimit Range) unsafe.Pointer
 	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options unsafe.Pointer, context unsafe.Pointer) coregraphics.CGRect
 	ContainsAttachmentsInRange(range_ Range) bool
-	DataFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	DataFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	DocFormatFromRangeDocumentAttributes(range_ Range, dict unsafe.Pointer) unsafe.Pointer
 	DoubleClickAtIndex(location uint) Range
 	DrawAtPoint(point coregraphics.CGPoint)
@@ -46,7 +46,7 @@ type IAttributedString interface {
 	DrawWithRectOptionsContext(rect coregraphics.CGRect, options unsafe.Pointer, context unsafe.Pointer)
 	EnumerateAttributeInRangeOptionsUsingBlock(attrName unsafe.Pointer, enumerationRange Range, opts unsafe.Pointer, block unsafe.Pointer)
 	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range, opts unsafe.Pointer, block unsafe.Pointer)
-	FileWrapperFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	FileWrapperFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	FontAttributesInRange(range_ Range) unsafe.Pointer
 	AttributedStringByInflectingString() unsafe.Pointer
 	IsEqualToAttributedString(other unsafe.Pointer) bool
@@ -172,8 +172,8 @@ func (a_ AttributedString) ContainsAttachmentsInRange(range_ Range) bool {
 // Returns a data object that contains a text stream corresponding to the characters and attributes within the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/data(from:documentAttributes:)
-func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataFromRange:documentAttributes:error:"), range_, dict, error)
+func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
 
@@ -231,8 +231,8 @@ func (a_ AttributedString) EnumerateAttributesInRangeOptionsUsingBlock(enumerati
 // Returns a file wrapper object that contains a text stream corresponding to the characters and attributes within the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/fileWrapper(from:documentAttributes:)
-func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fileWrapperFromRange:documentAttributes:error:"), range_, dict, error)
+func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range, dict unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fileWrapperFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
 

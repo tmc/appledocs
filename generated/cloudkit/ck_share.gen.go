@@ -83,26 +83,6 @@ func NewCKShare() CKShare {
 }
 
 
-// Creates a new share for the specified record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:)
-func NewCKShareWithRootRecord(rootRecord unsafe.Pointer) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:"), rootRecord)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a new share for the specified record and record ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
-func NewCKShareWithRootRecordShareID(rootRecord unsafe.Pointer, shareID unsafe.Pointer) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a share from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(coder:)
@@ -119,6 +99,26 @@ func NewCKShareWithCoder(aDecoder unsafe.Pointer) CKShare {
 func NewCKShareWithRecordZoneID(recordZoneID unsafe.Pointer) CKShare {
 	instance := getCKShareClass().Alloc()
 	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRecordZoneID:"), recordZoneID)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new share for the specified record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:)
+func NewCKShareWithRootRecord(rootRecord unsafe.Pointer) CKShare {
+	instance := getCKShareClass().Alloc()
+	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:"), rootRecord)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new share for the specified record and record ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
+func NewCKShareWithRootRecordShareID(rootRecord unsafe.Pointer, shareID unsafe.Pointer) CKShare {
+	instance := getCKShareClass().Alloc()
+	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
 	rv.Autorelease()
 	return rv
 }

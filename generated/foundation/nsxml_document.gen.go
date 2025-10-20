@@ -31,8 +31,8 @@ type IXMLDocument interface {
 	IXMLNode
 	AddChild(child unsafe.Pointer)
 	InsertChildrenAtIndex(children unsafe.Pointer, index uint)
-	ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) objc.ID
-	ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error unsafe.Pointer) objc.ID
+	ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	RemoveChildAtIndex(index uint)
 	RootElement() unsafe.Pointer
 	SetRootElement(root unsafe.Pointer)
@@ -91,9 +91,9 @@ func NewXMLDocument() XMLDocument {
 // Initializes and returns an object created from an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(data:options:)
-func NewXMLDocumentWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer, error unsafe.Pointer) XMLDocument {
+func NewXMLDocumentWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDocument {
 	instance := getXMLDocumentClass().Alloc()
-	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error)
+	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -116,16 +116,16 @@ func (x_ XMLDocument) InsertChildrenAtIndex(children unsafe.Pointer, index uint)
 // Applies the XSLT pattern rules and templates (specified as a data object) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLT:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLT:arguments:error:"), xslt, arguments, error)
+func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLT:arguments:error:"), xslt, arguments, error_)
 	return rv
 }
 
 // Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLTString:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error)
+func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error_)
 	return rv
 }
 

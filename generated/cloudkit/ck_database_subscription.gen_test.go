@@ -10,13 +10,13 @@ import (
 var _ = cloudkit.NewCKDatabaseSubscription
 
 
+
 // ExampleNewCKDatabaseSubscription demonstrates how to create a CKDatabaseSubscription instance.
 // Creates an empty database subscription.
 func ExampleNewCKDatabaseSubscription() {
 	_ = cloudkit.NewCKDatabaseSubscription()
 	// Output:
 }
-
 
 
 

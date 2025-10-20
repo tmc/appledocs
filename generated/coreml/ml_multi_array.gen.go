@@ -87,12 +87,20 @@ func NewMultiArray() MultiArray {
 }
 
 
+// Merges an array of multiarrays into one multiarray along an axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
+func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) MultiArray {
+	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
+	return rv
+}
+
 // Creates a multiarray from a data pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(dataPointer:shape:dataType:strides:deallocator:)
-func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape unsafe.Pointer, dataType unsafe.Pointer, strides unsafe.Pointer, deallocator unsafe.Pointer, error unsafe.Pointer) MultiArray {
+func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape unsafe.Pointer, dataType unsafe.Pointer, strides unsafe.Pointer, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
 	instance := getMultiArrayClass().Alloc()
-	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithDataPointer:shape:dataType:strides:deallocator:error:"), dataPointer, shape, dataType, strides, deallocator, error)
+	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithDataPointer:shape:dataType:strides:deallocator:error:"), dataPointer, shape, dataType, strides, deallocator, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -110,9 +118,9 @@ func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape unsafe.
 // Creates a multidimensional array with a shape and type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(shape:dataType:)
-func NewMultiArrayWithShapeDataTypeError(shape unsafe.Pointer, dataType unsafe.Pointer, error unsafe.Pointer) MultiArray {
+func NewMultiArrayWithShapeDataTypeError(shape unsafe.Pointer, dataType unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
 	instance := getMultiArrayClass().Alloc()
-	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:error:"), shape, dataType, error)
+	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:error:"), shape, dataType, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -124,14 +132,6 @@ func NewMultiArrayWithShapeDataTypeStrides(shape unsafe.Pointer, dataType unsafe
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:strides:"), shape, dataType, strides)
 	rv.Autorelease()
-	return rv
-}
-
-// Merges an array of multiarrays into one multiarray along an axis.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
-func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) MultiArray {
-	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
 

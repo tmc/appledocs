@@ -29,8 +29,8 @@ type _NumberFormatterClass struct {
 // An interface definition for the [NumberFormatter] class.
 type INumberFormatter interface {
 	IFormatter
-	GetObjectValueForStringRangeError(obj objc.ID, string string, rangep Range, error unsafe.Pointer) bool
-	NumberFromString(string string) unsafe.Pointer
+	GetObjectValueForStringRangeError(obj objc.ID, string_ string, rangep Range, error_ unsafe.Pointer) bool
+	NumberFromString(string_ string) unsafe.Pointer
 	StringFromNumber(number unsafe.Pointer) unsafe.Pointer
 }
 
@@ -110,16 +110,16 @@ func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior unsafe.Poin
 // Returns by reference a cell-content object after creating it from a range of characters in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/getObjectValue(_:for:range:)
-func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objc.ID, string string, rangep Range, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string), rangep, error)
+func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objc.ID, string_ string, rangep Range, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
 
 // Returns an object created by parsing a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/number(from:)
-func (n_ NumberFormatter) NumberFromString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("numberFromString:"), objc.String(string))
+func (n_ NumberFormatter) NumberFromString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
 	return rv
 }
 

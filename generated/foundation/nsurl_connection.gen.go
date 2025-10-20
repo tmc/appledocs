@@ -132,8 +132,8 @@ func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(requ
 // Performs a synchronous load of the specified URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendSynchronousRequest(_:returning:)
-func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request unsafe.Pointer, response unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error)
+func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request unsafe.Pointer, response unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error_)
 	return rv
 }
 

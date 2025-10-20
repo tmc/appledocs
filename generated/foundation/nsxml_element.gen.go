@@ -93,9 +93,9 @@ func NewXMLElement() XMLElement {
 // Returns an object initialized with a specified name and a single text-node child containing a specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:stringValue:)
-func NewXMLElementWithNameStringValue(name string, string string) XMLElement {
+func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 	instance := getXMLElementClass().Alloc()
-	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), objc.String(name), objc.String(string))
+	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), objc.String(name), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }

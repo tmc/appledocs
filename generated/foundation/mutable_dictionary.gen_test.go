@@ -10,17 +10,6 @@ import (
 var _ = foundation.NewMutableDictionary
 
 
-
-// ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
-func ExampleNewMutableDictionaryWithContentsOfFile() {
-	_ = foundation.NewMutableDictionaryWithContentsOfFile(
-		"/tmp/test", // path string
-	)
-	// Output:
-}
-
-
-
 // ExampleNewMutableDictionary demonstrates how to create a MutableDictionary instance.
 // Initializes a newly allocated mutable dictionary.
 func ExampleNewMutableDictionary() {
@@ -38,5 +27,16 @@ func ExampleNewMutableDictionaryWithCapacity() {
 	// Output:
 }
 
+
+
+
+
+// ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
+func ExampleNewMutableDictionaryWithContentsOfFile() {
+	_ = foundation.NewMutableDictionaryWithContentsOfFile(
+		"/tmp/test", // path string
+	)
+	// Output:
+}
 
 

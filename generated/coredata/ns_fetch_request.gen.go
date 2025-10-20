@@ -29,7 +29,7 @@ type _FetchRequestClass struct {
 // An interface definition for the [FetchRequest] class.
 type IFetchRequest interface {
 	IPersistentStoreRequest
-	Execute(error unsafe.Pointer) []objc.ID
+	Execute(error_ unsafe.Pointer) []objc.ID
 }
 
 // A description of search criteria used to retrieve data from a persistent store.
@@ -104,8 +104,8 @@ func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsaf
 // Executes the fetch request against the managed object context that is associated with the current queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/execute()
-func (f_ FetchRequest) Execute(error unsafe.Pointer) []objc.ID {
-	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("execute:"), error)
+func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID {
+	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("execute:"), error_)
 	return rv
 }
 

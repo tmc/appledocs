@@ -12,6 +12,15 @@ var _ = foundation.NewNumber
 
 
 
+
+
+
+
+
+
+
+
+
 // ExampleNewNumberWithUnsignedInteger demonstrates how to create a Number instance using NewNumberWithUnsignedInteger.
 // Returns an   object initialized to contain a given value, treated as an  .
 func ExampleNewNumberWithUnsignedInteger() {
@@ -23,22 +32,6 @@ func ExampleNewNumberWithUnsignedInteger() {
 
 
 
-
-
-
-
-
-
-
-// ExampleNewNumberWithInteger demonstrates how to create a Number instance using NewNumberWithInteger.
-// Returns an   object initialized to contain a given value, treated as an  .
-func ExampleNewNumberWithInteger() {
-	_ = foundation.NewNumberWithInteger(
-		0, // value int
-	)
-	// Output:
-}
-
 // ExampleNewNumberWithBool demonstrates how to create a Number instance using NewNumberWithBool.
 // Returns an   object initialized to contain a given value, treated as a  .
 func ExampleNewNumberWithBool() {
@@ -48,6 +41,13 @@ func ExampleNewNumberWithBool() {
 	// Output:
 }
 
-
+// ExampleNewNumberWithInteger demonstrates how to create a Number instance using NewNumberWithInteger.
+// Returns an   object initialized to contain a given value, treated as an  .
+func ExampleNewNumberWithInteger() {
+	_ = foundation.NewNumberWithInteger(
+		0, // value int
+	)
+	// Output:
+}
 
 

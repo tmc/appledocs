@@ -86,8 +86,8 @@ func NewScanner() Scanner {
 // Returns an object that scans a given string according to the user’s default locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
-func (sc _ScannerClass) LocalizedScannerWithString(string string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string))
+func (sc _ScannerClass) LocalizedScannerWithString(string_ string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string_))
 	return rv
 }
 

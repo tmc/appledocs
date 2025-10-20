@@ -31,15 +31,15 @@ type _ManagedObjectContextClass struct {
 type IManagedObjectContext interface {
 	objectivec.IObject
 	AssignObjectToPersistentStore(object objc.ID, store unsafe.Pointer)
-	CountForFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) uint
+	CountForFetchRequestError(request unsafe.Pointer, error_ unsafe.Pointer) uint
 	DetectConflictsForObject(object unsafe.Pointer)
-	ExecuteRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
-	ExecuteFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	ExecuteRequestError(request unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	ExecuteFetchRequestError(request unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	InsertObject(object unsafe.Pointer)
 	Lock()
 	MergeChangesFromContextDidSaveNotification(notification unsafe.Pointer)
 	ObjectWithID(objectID unsafe.Pointer) unsafe.Pointer
-	ObtainPermanentIDsForObjectsError(objects unsafe.Pointer, error unsafe.Pointer) bool
+	ObtainPermanentIDsForObjectsError(objects unsafe.Pointer, error_ unsafe.Pointer) bool
 	PerformBlock(block unsafe.Pointer)
 	PerformBlockAndWait(block unsafe.Pointer)
 	ProcessPendingChanges()
@@ -49,8 +49,8 @@ type IManagedObjectContext interface {
 	ObjectRegisteredForID(objectID unsafe.Pointer) unsafe.Pointer
 	Reset()
 	Rollback()
-	Save(error unsafe.Pointer) bool
-	SetQueryGenerationFromTokenError(generation unsafe.Pointer, error unsafe.Pointer) bool
+	Save(error_ unsafe.Pointer) bool
+	SetQueryGenerationFromTokenError(generation unsafe.Pointer, error_ unsafe.Pointer) bool
 	ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault unsafe.Pointer, oid unsafe.Pointer, property unsafe.Pointer) bool
 	TryLock() bool
 	Undo()
@@ -133,8 +133,8 @@ func (m_ ManagedObjectContext) AssignObjectToPersistentStore(object objc.ID, sto
 // Returns the number of objects the specified request fetches when it executes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/count(for:)-93zbm
-func (m_ ManagedObjectContext) CountForFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("countForFetchRequest:error:"), request, error)
+func (m_ ManagedObjectContext) CountForFetchRequestError(request unsafe.Pointer, error_ unsafe.Pointer) uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("countForFetchRequest:error:"), request, error_)
 	return rv
 }
 
@@ -148,16 +148,16 @@ func (m_ ManagedObjectContext) DetectConflictsForObject(object unsafe.Pointer) {
 // Passes a request to the persistent store without affecting the contents of the managed object context, and returns a persistent store result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/execute(_:)
-func (m_ ManagedObjectContext) ExecuteRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("executeRequest:error:"), request, error)
+func (m_ ManagedObjectContext) ExecuteRequestError(request unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("executeRequest:error:"), request, error_)
 	return rv
 }
 
 // Returns an array of objects that meet the criteria of the specified fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/executeFetchRequest:error:
-func (m_ ManagedObjectContext) ExecuteFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("executeFetchRequest:error:"), request, error)
+func (m_ ManagedObjectContext) ExecuteFetchRequestError(request unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("executeFetchRequest:error:"), request, error_)
 	return rv
 }
 
@@ -200,8 +200,8 @@ func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPa
 // Converts to permanent IDs the object IDs of the objects in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/obtainPermanentIDs(for:)
-func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("obtainPermanentIDsForObjects:error:"), objects, error)
+func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("obtainPermanentIDsForObjects:error:"), objects, error_)
 	return rv
 }
 
@@ -272,16 +272,16 @@ func (m_ ManagedObjectContext) Rollback() {
 // Attempts to commit unsaved changes to registered objects to the context’s parent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/save()
-func (m_ ManagedObjectContext) Save(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("save:"), error)
+func (m_ ManagedObjectContext) Save(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("save:"), error_)
 	return rv
 }
 
 // Sets the query generation this context should use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)
-func (m_ ManagedObjectContext) SetQueryGenerationFromTokenError(generation unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setQueryGenerationFromToken:error:"), generation, error)
+func (m_ ManagedObjectContext) SetQueryGenerationFromTokenError(generation unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setQueryGenerationFromToken:error:"), generation, error_)
 	return rv
 }
 

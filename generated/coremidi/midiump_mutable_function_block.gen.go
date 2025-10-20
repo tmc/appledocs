@@ -29,9 +29,9 @@ type _MIDIUMPMutableFunctionBlockClass struct {
 // An interface definition for the [MIDIUMPMutableFunctionBlock] class.
 type IMIDIUMPMutableFunctionBlock interface {
 	IMIDIUMPFunctionBlock
-	ReconfigureWithFirstGroupDirectionMIDI1InfoUIHintError(firstGroup unsafe.Pointer, direction unsafe.Pointer, MIDI1Info unsafe.Pointer, UIHint unsafe.Pointer, error unsafe.Pointer) bool
-	SetEnabledError(isEnabled bool, error unsafe.Pointer) bool
-	SetNameError(name string, error unsafe.Pointer) bool
+	ReconfigureWithFirstGroupDirectionMIDI1InfoUIHintError(firstGroup unsafe.Pointer, direction unsafe.Pointer, MIDI1Info unsafe.Pointer, UIHint unsafe.Pointer, error_ unsafe.Pointer) bool
+	SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool
+	SetNameError(name string, error_ unsafe.Pointer) bool
 }
 
 //
@@ -91,22 +91,22 @@ func NewMIDIUMPMutableFunctionBlockWithNameDirectionFirstGroupTotalGroupsSpanned
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock/reconfigure(firstGroup:direction:MIDI1Info:UIHint:)
-func (m_ MIDIUMPMutableFunctionBlock) ReconfigureWithFirstGroupDirectionMIDI1InfoUIHintError(firstGroup unsafe.Pointer, direction unsafe.Pointer, MIDI1Info unsafe.Pointer, UIHint unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("reconfigureWithFirstGroup:direction:MIDI1Info:UIHint:error:"), firstGroup, direction, MIDI1Info, UIHint, error)
+func (m_ MIDIUMPMutableFunctionBlock) ReconfigureWithFirstGroupDirectionMIDI1InfoUIHintError(firstGroup unsafe.Pointer, direction unsafe.Pointer, MIDI1Info unsafe.Pointer, UIHint unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("reconfigureWithFirstGroup:direction:MIDI1Info:UIHint:error:"), firstGroup, direction, MIDI1Info, UIHint, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock/setEnabled(_:)
-func (m_ MIDIUMPMutableFunctionBlock) SetEnabledError(isEnabled bool, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setEnabled:error:"), isEnabled, error)
+func (m_ MIDIUMPMutableFunctionBlock) SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setEnabled:error:"), isEnabled, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock/setName(_:)
-func (m_ MIDIUMPMutableFunctionBlock) SetNameError(name string, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error)
+func (m_ MIDIUMPMutableFunctionBlock) SetNameError(name string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error_)
 	return rv
 }
 

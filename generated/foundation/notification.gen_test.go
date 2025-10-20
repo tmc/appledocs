@@ -11,12 +11,6 @@ var _ = foundation.NewNotification
 
 
 
-// ExampleNewNotification demonstrates how to create a Notification instance.
-// Initializes an empty notification.
-func ExampleNewNotification() {
-	_ = foundation.NewNotification()
-	// Output:
-}
 
 
 

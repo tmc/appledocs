@@ -32,7 +32,7 @@ type IFetchedResultsController interface {
 	objectivec.IObject
 	IndexPathForObject(object unsafe.Pointer) unsafe.Pointer
 	ObjectAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer
-	PerformFetch(error unsafe.Pointer) bool
+	PerformFetch(error_ unsafe.Pointer) bool
 	SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int
 	SectionIndexTitleForSectionName(sectionName string) unsafe.Pointer
 }
@@ -122,8 +122,8 @@ func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath unsafe.Pointer) u
 // Executes the controller’s fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/performFetch()
-func (f_ FetchedResultsController) PerformFetch(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("performFetch:"), error)
+func (f_ FetchedResultsController) PerformFetch(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("performFetch:"), error_)
 	return rv
 }
 

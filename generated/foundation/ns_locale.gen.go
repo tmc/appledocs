@@ -85,16 +85,6 @@ func NewLocale() Locale {
 }
 
 
-// Initializes a locale using a given locale identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(localeIdentifier:)
-func NewLocaleWithLocaleIdentifier(string string) Locale {
-	instance := getLocaleClass().Alloc()
-	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithLocaleIdentifier:"), objc.String(string))
-	rv.Autorelease()
-	return rv
-}
-
 // Returns a locale initialized from data in the given unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
@@ -105,12 +95,22 @@ func NewLocaleWithCoder(coder unsafe.Pointer) Locale {
 	return rv
 }
 
+// Initializes a locale using a given locale identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(localeIdentifier:)
+func NewLocaleWithLocaleIdentifier(string_ string) Locale {
+	instance := getLocaleClass().Alloc()
+	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithLocaleIdentifier:"), objc.String(string_))
+	rv.Autorelease()
+	return rv
+}
+
 
 // Returns the canonical identifier for a given locale identification string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/canonicalLocaleIdentifier(from:)
-func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("canonicalLocaleIdentifierFromString:"), objc.String(string))
+func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("canonicalLocaleIdentifierFromString:"), objc.String(string_))
 	return rv
 }
 

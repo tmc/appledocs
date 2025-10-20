@@ -81,22 +81,22 @@ func NewBatchDeleteRequest() BatchDeleteRequest {
 }
 
 
-// Creates a request that deletes the managed objects with the specified identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(objectIDs:)
-func NewBatchDeleteRequestWithObjectIDs(objects unsafe.Pointer) BatchDeleteRequest {
-	instance := getBatchDeleteRequestClass().Alloc()
-	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithObjectIDs:"), objects)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a request that deletes the results of the specified fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(fetchRequest:)
 func NewBatchDeleteRequestWithFetchRequest(fetch unsafe.Pointer) BatchDeleteRequest {
 	instance := getBatchDeleteRequestClass().Alloc()
 	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithFetchRequest:"), fetch)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a request that deletes the managed objects with the specified identifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(objectIDs:)
+func NewBatchDeleteRequestWithObjectIDs(objects unsafe.Pointer) BatchDeleteRequest {
+	instance := getBatchDeleteRequestClass().Alloc()
+	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithObjectIDs:"), objects)
 	rv.Autorelease()
 	return rv
 }

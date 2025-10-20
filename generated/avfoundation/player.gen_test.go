@@ -10,13 +10,13 @@ import (
 var _ = avfoundation.NewPlayer
 
 
+
+
 // ExampleNewPlayer demonstrates how to create a Player instance.
 // Creates a player object.
 func ExampleNewPlayer() {
 	_ = avfoundation.NewPlayer()
 	// Output:
 }
-
-
 
 

@@ -9,7 +9,7 @@ NC := \033[0m # No Color
 
 # Directories
 FRAMEWORKS_DIR := /System/Library/Frameworks
-GENERATED_DIR := generated/frameworks
+GENERATED_DIR := generated
 
 # Priority frameworks list (most commonly used in macOS development)
 PRIORITY_FRAMEWORKS := \
@@ -72,7 +72,7 @@ list-frameworks:
 		echo "$(BLUE)Frameworks matching '$(PATTERN)':$(NC)"; \
 		count=0; \
 		for fw in $(ALL_FRAMEWORKS); do \
-			if echo "$$fw" | grep -qE '$(PATTERN)'; then \
+			if echo "$$fw" | grep -qE '^$(PATTERN)$$'; then \
 				echo "  $$fw"; \
 				count=$$((count + 1)); \
 			fi; \
@@ -126,7 +126,7 @@ setup-pattern:
 	@echo "$(BLUE)Setting up frameworks matching '$(PATTERN)'...$(NC)"
 	@count=0; \
 	for framework in $(ALL_FRAMEWORKS); do \
-		if echo "$$framework" | grep -qE "$(PATTERN)"; then \
+		if echo "$$framework" | grep -qE "^$(PATTERN)$$"; then \
 			dir="$(GENERATED_DIR)/$$(echo $$framework | tr '[:upper:]' '[:lower:]')"; \
 			if [ ! -d "$$dir" ]; then \
 				echo "  $(GREEN)Creating:$(NC) $$dir"; \
@@ -179,7 +179,7 @@ generate-pattern:
 	FAILED=0; \
 	SKIPPED=0; \
 	for framework in $(ALL_FRAMEWORKS); do \
-		if echo "$$framework" | grep -qE "$(PATTERN)"; then \
+		if echo "$$framework" | grep -qE "^$(PATTERN)$$"; then \
 			OUTPUT_DIR="$(GENERATED_DIR)/$$(echo $$framework | tr '[:upper:]' '[:lower:]')"; \
 			if [ -f "$$OUTPUT_DIR/doc.go" ]; then \
 				echo "  $(YELLOW)✓$(NC) $$framework (already generated)"; \

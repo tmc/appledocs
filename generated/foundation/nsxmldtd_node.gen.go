@@ -84,9 +84,9 @@ func NewXMLDTDNode() XMLDTDNode {
 // Returns an object initialized with the DTD declaration in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(xmlString:)
-func NewXMLDTDNodeWithXMLString(string string) XMLDTDNode {
+func NewXMLDTDNodeWithXMLString(string_ string) XMLDTDNode {
 	instance := getXMLDTDNodeClass().Alloc()
-	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithXMLString:"), objc.String(string))
+	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithXMLString:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
