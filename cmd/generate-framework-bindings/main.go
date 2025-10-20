@@ -1457,6 +1457,21 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 		Identifier struct {
 			URL string `json:"url"`
 		} `json:"identifier"`
+		PrimaryContentSections []struct {
+			Kind    string `json:"kind"`
+			Content []struct {
+				Type    string `json:"type"`
+				Style   string `json:"style"`
+				Name    string `json:"name"`
+				Content []struct {
+					Type          string `json:"type"`
+					InlineContent []struct {
+						Type string `json:"type"`
+						Text string `json:"text"`
+					} `json:"inlineContent"`
+				} `json:"content"`
+			} `json:"content"`
+		} `json:"primaryContentSections"`
 	}
 
 	if err := json.Unmarshal(data, &doc); err != nil {
@@ -1471,8 +1486,70 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 		}
 	}
 
+	// Extract deprecation information from Important asides
+	deprecationText := extractDeprecationNotice(doc.PrimaryContentSections)
+	if deprecationText != "" {
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Framework %s is deprecated: %s\n", framework, deprecationText)
+		}
+		// Update config with deprecation information
+		if config != nil {
+			fwConfig := config.Frameworks[framework]
+			fwConfig.Deprecated = true
+			fwConfig.DeprecationReason = deprecationText
+			config.Frameworks[framework] = fwConfig
+		}
+	}
+
 	docURL = occ2go.ConvertDocURLToWeb(doc.Identifier.URL)
 	return abstract, docURL
+}
+
+// extractDeprecationNotice extracts deprecation text from Important asides in content sections
+func extractDeprecationNotice(sections []struct {
+	Kind    string `json:"kind"`
+	Content []struct {
+		Type    string `json:"type"`
+		Style   string `json:"style"`
+		Name    string `json:"name"`
+		Content []struct {
+			Type          string `json:"type"`
+			InlineContent []struct {
+				Type string `json:"type"`
+				Text string `json:"text"`
+			} `json:"inlineContent"`
+		} `json:"content"`
+	} `json:"content"`
+}) string {
+	for _, section := range sections {
+		if section.Kind != "content" {
+			continue
+		}
+		for _, content := range section.Content {
+			if content.Type == "aside" && content.Style == "important" {
+				// Extract text from inline content
+				var texts []string
+				for _, para := range content.Content {
+					if para.Type == "paragraph" {
+						for _, inline := range para.InlineContent {
+							if inline.Type == "text" && inline.Text != "" {
+								texts = append(texts, inline.Text)
+							}
+						}
+					}
+				}
+				deprecationText := strings.Join(texts, "")
+				// Check if it mentions "Do not use" or deprecation
+				if strings.Contains(deprecationText, "Do not use") || strings.Contains(deprecationText, "deprecated") {
+					// Clean up the text
+					deprecationText = strings.TrimSpace(deprecationText)
+					deprecationText = strings.ReplaceAll(deprecationText, "  ", " ")
+					return deprecationText
+				}
+			}
+		}
+	}
+	return ""
 }
 
 // findMinimumMacOSVersion finds the minimum macOS version across all functions

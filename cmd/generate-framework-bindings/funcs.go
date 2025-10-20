@@ -1815,6 +1815,22 @@ func resolveType(framework, typeName string) string {
 		"TransformLayer": true, // CATransformLayer
 	}
 
+	// AppKit types used by other frameworks (common base classes)
+	_ = map[string]bool{
+		"Responder":            true, // NSResponder
+		"View":                 true, // NSView
+		"Control":              true, // NSControl
+		"Window":               true, // NSWindow
+		"ViewController":       true, // NSViewController
+		"NavigationController": true, // NSNavigationController (though less common on macOS)
+		"Panel":                true, // NSPanel
+		"Application":          true, // NSApplication
+		"Document":             true, // NSDocument
+		"WindowController":     true, // NSWindowController
+		"Menu":                 true, // NSMenu
+		"MenuItem":             true, // NSMenuItem
+	}
+
 	// CoreGraphics types used by other frameworks
 	coreGraphicsTypes := map[string]bool{
 		// Struct types
