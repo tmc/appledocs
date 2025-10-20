@@ -10,12 +10,12 @@ import (
 var _ = virtualization.NewVZGenericMachineIdentifier
 
 
-
 // ExampleNewVZGenericMachineIdentifier demonstrates how to create a VZGenericMachineIdentifier instance.
 // Creates a new unique identifier for a VM.
 func ExampleNewVZGenericMachineIdentifier() {
 	_ = virtualization.NewVZGenericMachineIdentifier()
 	// Output:
 }
+
 
 

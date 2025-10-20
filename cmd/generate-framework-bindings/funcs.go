@@ -901,6 +901,8 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "int"
 	case "NSUInteger":
 		return "uint"
+	case "unsigned long long":
+		return "uint64"
 	case "CGFloat":
 		return "float64"
 	case "void":

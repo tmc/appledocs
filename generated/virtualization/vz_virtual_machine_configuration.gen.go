@@ -225,5 +225,29 @@ func (v_ VZVirtualMachineConfiguration) Platform() unsafe.Pointer {
 func (v_ VZVirtualMachineConfiguration) SetPlatform(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
 }
+// The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount. [Full Topic]
+func (v_ VZVirtualMachineConfiguration) CpuCount() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("cpuCount"))
+	return rv
+}
+
+
+// SetCpuCount sets the value of the cpuCount property.
+// The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount.
+func (v_ VZVirtualMachineConfiguration) SetCpuCount(value uint) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setCpuCount:"), value)
+}
+// The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize. [Full Topic]
+func (v_ VZVirtualMachineConfiguration) MemorySize() uint64 {
+	rv := objc.Send[uint64](v_.ID, objc.Sel("memorySize"))
+	return rv
+}
+
+
+// SetMemorySize sets the value of the memorySize property.
+// The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
+func (v_ VZVirtualMachineConfiguration) SetMemorySize(value uint64) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMemorySize:"), value)
+}
 
 

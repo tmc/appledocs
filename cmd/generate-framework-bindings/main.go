@@ -1084,6 +1084,12 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Functions = functions
 	gen.Classes = classes
 	gen.Protocols = protocols
+
+	// Apply property overrides for undocumented properties
+	for _, cls := range gen.Classes {
+		MergePropertyOverrides(framework, cls.Name, cls)
+	}
+
 	gen.prepare()
 
 	// Generate stubs for missing parent classes
