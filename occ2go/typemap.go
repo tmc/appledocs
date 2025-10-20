@@ -29,6 +29,13 @@ func MapCTypeToGo(cType, framework string) string {
 		return "CGVector"
 	case cType == "CGAffineTransform":
 		return "CGAffineTransform"
+	// NS geometry types that are typedef'd to CG types
+	case cType == "NSPoint":
+		return "CGPoint"
+	case cType == "NSSize":
+		return "CGSize"
+	case cType == "NSRect":
+		return "CGRect"
 	}
 
 	// Common C types
