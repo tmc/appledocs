@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // collectionViewProtocol is the collectionView: protocol.
 //
 // Availability:
-//   - macOS 10.6+
+//   - macOS 10.11+
 //
 // Use this protocol when registering custom classes that conform to collectionView:.
 var collectionViewProtocol *objc.Protocol

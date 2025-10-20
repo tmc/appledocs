@@ -9,7 +9,7 @@ import (
 )
 
 
-// Metal Functions (2 total)
+// Metal Functions (6 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -17,6 +17,10 @@ import (
 var (
 	_MTLCopyAllDevices func() unsafe.Pointer
 	_MTLCreateSystemDefaultDevice func() unsafe.Pointer
+	_MTLIOCompressionContextAppendData func(unsafe.Pointer, unsafe.Pointer, uintptr)
+	_MTLIOCompressionContextDefaultChunkSize func() uintptr
+	_MTLIOCreateCompressionContext func(unsafe.Pointer, unsafe.Pointer, uintptr) unsafe.Pointer
+	_MTLIOFlushAndDestroyCompressionContext func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -26,6 +30,10 @@ func init() {
 	}
 	tryRegister(&_MTLCopyAllDevices, lib, "MTLCopyAllDevices")
 	tryRegister(&_MTLCreateSystemDefaultDevice, lib, "MTLCreateSystemDefaultDevice")
+	tryRegister(&_MTLIOCompressionContextAppendData, lib, "MTLIOCompressionContextAppendData")
+	tryRegister(&_MTLIOCompressionContextDefaultChunkSize, lib, "MTLIOCompressionContextDefaultChunkSize")
+	tryRegister(&_MTLIOCreateCompressionContext, lib, "MTLIOCreateCompressionContext")
+	tryRegister(&_MTLIOFlushAndDestroyCompressionContext, lib, "MTLIOFlushAndDestroyCompressionContext")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -59,6 +67,44 @@ func MTLCopyAllDevices() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCreateSystemDefaultDevice()
 func MTLCreateSystemDefaultDevice() unsafe.Pointer {
 	return _MTLCreateSystemDefaultDevice()
+	}
+
+
+// Adds data to a compression context. [Full Topic]
+//
+// Added in macOS 13.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)
+func MTLIOCompressionContextAppendData(context unsafe.Pointer, data unsafe.Pointer, size uintptr) {
+	_MTLIOCompressionContextAppendData(context, data, size)
+	}
+
+
+// Returns a compression chunk size you can use as a default for creating a compression context. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()
+func MTLIOCompressionContextDefaultChunkSize() uintptr {
+	return _MTLIOCompressionContextDefaultChunkSize()
+	}
+
+
+// Creates a compression context that you use to compress data into a single file. [Full Topic]
+//
+// Added in macOS 13.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCreateCompressionContext
+func MTLIOCreateCompressionContext(path unsafe.Pointer, type_ unsafe.Pointer, chunkSize uintptr) unsafe.Pointer {
+	return _MTLIOCreateCompressionContext(path, type_, chunkSize)
+	}
+
+
+// Finishes compressing and saves the file that a compression context represents. [Full Topic]
+//
+// Added in macOS 13.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)
+func MTLIOFlushAndDestroyCompressionContext(context unsafe.Pointer) unsafe.Pointer {
+	return _MTLIOFlushAndDestroyCompressionContext(context)
 	}
 
 

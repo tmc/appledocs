@@ -9,7 +9,7 @@ import (
 )
 
 
-// AppKit Functions (53 total)
+// AppKit Functions (63 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -22,6 +22,9 @@ var (
 	_NSAccessibilityRaiseBadArgumentException func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSAccessibilityPointInView func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSAccessibilityFrameInView func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityUnignoredAncestor func(unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityUnignoredChildren func(unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityUnignoredChildrenForOnlyChild func(unsafe.Pointer) unsafe.Pointer
 	_NSApplicationMain func(int, unsafe.Pointer) int
 	_NSAvailableWindowDepths func() unsafe.Pointer
 	_NSBeep func()
@@ -37,6 +40,9 @@ var (
 	_NSDisableScreenUpdates func()
 	_NSDottedFrameRect func(unsafe.Pointer)
 	_NSDrawColorTiledRects func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDrawDarkBezel func(unsafe.Pointer, unsafe.Pointer)
+	_NSDrawNinePartImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGFloat, bool)
+	_NSDrawTiledRects func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSEnableScreenUpdates func()
 	_NSGetAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSGetCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -51,7 +57,9 @@ var (
 	_NSCreateFilenamePboardType func(unsafe.Pointer) unsafe.Pointer
 	_NSGetFileType func(unsafe.Pointer) unsafe.Pointer
 	_NSGetFileTypes func(unsafe.Pointer) unsafe.Pointer
+	_NSPerformService func(unsafe.Pointer, unsafe.Pointer) bool
 	_NSReadPixel func(unsafe.Pointer) unsafe.Pointer
+	_NSRegisterServicesProvider func(unsafe.Pointer, unsafe.Pointer)
 	_NSReleaseAlertPanel func(unsafe.Pointer)
 	_NSRunAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSRunAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -62,6 +70,8 @@ var (
 	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) unsafe.Pointer
 	_NSShowAnimationEffect func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSShowsServicesMenuItem func(unsafe.Pointer) bool
+	_NSUnregisterServicesProvider func(unsafe.Pointer)
+	_NSUpdateDynamicServices func()
 	_NSBitsPerPixelFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSBitsPerSampleFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSColorSpaceFromDepth func(unsafe.Pointer) unsafe.Pointer
@@ -82,6 +92,9 @@ func init() {
 	tryRegister(&_NSAccessibilityRaiseBadArgumentException, lib, "NSAccessibilityRaiseBadArgumentException")
 	tryRegister(&_NSAccessibilityPointInView, lib, "NSAccessibilityPointInView")
 	tryRegister(&_NSAccessibilityFrameInView, lib, "NSAccessibilityFrameInView")
+	tryRegister(&_NSAccessibilityUnignoredAncestor, lib, "NSAccessibilityUnignoredAncestor")
+	tryRegister(&_NSAccessibilityUnignoredChildren, lib, "NSAccessibilityUnignoredChildren")
+	tryRegister(&_NSAccessibilityUnignoredChildrenForOnlyChild, lib, "NSAccessibilityUnignoredChildrenForOnlyChild")
 	tryRegister(&_NSApplicationMain, lib, "NSApplicationMain")
 	tryRegister(&_NSAvailableWindowDepths, lib, "NSAvailableWindowDepths")
 	tryRegister(&_NSBeep, lib, "NSBeep")
@@ -97,6 +110,9 @@ func init() {
 	tryRegister(&_NSDisableScreenUpdates, lib, "NSDisableScreenUpdates")
 	tryRegister(&_NSDottedFrameRect, lib, "NSDottedFrameRect")
 	tryRegister(&_NSDrawColorTiledRects, lib, "NSDrawColorTiledRects")
+	tryRegister(&_NSDrawDarkBezel, lib, "NSDrawDarkBezel")
+	tryRegister(&_NSDrawNinePartImage, lib, "NSDrawNinePartImage")
+	tryRegister(&_NSDrawTiledRects, lib, "NSDrawTiledRects")
 	tryRegister(&_NSEnableScreenUpdates, lib, "NSEnableScreenUpdates")
 	tryRegister(&_NSGetAlertPanel, lib, "NSGetAlertPanel")
 	tryRegister(&_NSGetCriticalAlertPanel, lib, "NSGetCriticalAlertPanel")
@@ -111,7 +127,9 @@ func init() {
 	tryRegister(&_NSCreateFilenamePboardType, lib, "NSCreateFilenamePboardType")
 	tryRegister(&_NSGetFileType, lib, "NSGetFileType")
 	tryRegister(&_NSGetFileTypes, lib, "NSGetFileTypes")
+	tryRegister(&_NSPerformService, lib, "NSPerformService")
 	tryRegister(&_NSReadPixel, lib, "NSReadPixel")
+	tryRegister(&_NSRegisterServicesProvider, lib, "NSRegisterServicesProvider")
 	tryRegister(&_NSReleaseAlertPanel, lib, "NSReleaseAlertPanel")
 	tryRegister(&_NSRunAlertPanel, lib, "NSRunAlertPanel")
 	tryRegister(&_NSRunAlertPanelRelativeToWindow, lib, "NSRunAlertPanelRelativeToWindow")
@@ -122,6 +140,8 @@ func init() {
 	tryRegister(&_NSSetShowsServicesMenuItem, lib, "NSSetShowsServicesMenuItem")
 	tryRegister(&_NSShowAnimationEffect, lib, "NSShowAnimationEffect")
 	tryRegister(&_NSShowsServicesMenuItem, lib, "NSShowsServicesMenuItem")
+	tryRegister(&_NSUnregisterServicesProvider, lib, "NSUnregisterServicesProvider")
+	tryRegister(&_NSUpdateDynamicServices, lib, "NSUpdateDynamicServices")
 	tryRegister(&_NSBitsPerPixelFromDepth, lib, "NSBitsPerPixelFromDepth")
 	tryRegister(&_NSBitsPerSampleFromDepth, lib, "NSBitsPerSampleFromDepth")
 	tryRegister(&_NSColorSpaceFromDepth, lib, "NSColorSpaceFromDepth")
@@ -207,6 +227,30 @@ func NSAccessibilityPointInView(parentView unsafe.Pointer, point unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)
 func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame unsafe.Pointer) unsafe.Pointer {
 	return _NSAccessibilityFrameInView(parentView, frame)
+	}
+
+
+// Returns an unignored accessibility object, ascending the hierarchy, if necessary. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredAncestor(of:)
+func NSAccessibilityUnignoredAncestor(element unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityUnignoredAncestor(element)
+	}
+
+
+// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildren(from:)
+func NSAccessibilityUnignoredChildren(originalChildren unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityUnignoredChildren(originalChildren)
+	}
+
+
+// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildrenForOnlyChild(from:)
+func NSAccessibilityUnignoredChildrenForOnlyChild(originalChild unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityUnignoredChildrenForOnlyChild(originalChild)
 	}
 
 
@@ -362,6 +406,32 @@ func NSDrawColorTiledRects(boundsRect unsafe.Pointer, clipRect unsafe.Pointer, s
 	}
 
 
+// Draws a dark gray-filled rectangle with a bezel border. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawDarkBezel(_:_:)
+func NSDrawDarkBezel(rect unsafe.Pointer, clipRect unsafe.Pointer) {
+	_NSDrawDarkBezel(rect, clipRect)
+	}
+
+
+// Draws a nine-part tiled image. [Full Topic]
+//
+// Added in macOS 10.5.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawNinePartImage(_:_:_:_:_:_:_:_:_:_:_:_:_:)
+func NSDrawNinePartImage(frame unsafe.Pointer, topLeftCorner unsafe.Pointer, topEdgeFill unsafe.Pointer, topRightCorner unsafe.Pointer, leftEdgeFill unsafe.Pointer, centerFill unsafe.Pointer, rightEdgeFill unsafe.Pointer, bottomLeftCorner unsafe.Pointer, bottomEdgeFill unsafe.Pointer, bottomRightCorner unsafe.Pointer, op unsafe.Pointer, alphaFraction CGFloat, flipped bool) {
+	_NSDrawNinePartImage(frame, topLeftCorner, topEdgeFill, topRightCorner, leftEdgeFill, centerFill, rightEdgeFill, bottomLeftCorner, bottomEdgeFill, bottomRightCorner, op, alphaFraction, flipped)
+	}
+
+
+// Draws rectangles with borders. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawTiledRects(_:_:_:_:_:)
+func NSDrawTiledRects(boundsRect unsafe.Pointer, clipRect unsafe.Pointer, sides unsafe.Pointer, grays unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+	return _NSDrawTiledRects(boundsRect, clipRect, sides, grays, count)
+	}
+
+
 // Enables screen updates. [Full Topic]
 //
 // Deprecated: This function was deprecated in macOS 10.11.
@@ -510,6 +580,14 @@ func NSGetFileTypes(pboardTypes unsafe.Pointer) unsafe.Pointer {
 	}
 
 
+// Programmatically invokes a Services menu service. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPerformService(_:_:)
+func NSPerformService(itemName unsafe.Pointer, pboard unsafe.Pointer) bool {
+	return _NSPerformService(itemName, pboard)
+	}
+
+
 // Reads the color of the pixel at the specified location. [Full Topic]
 //
 // Deprecated: This function was deprecated in macOS 10.14.
@@ -519,6 +597,14 @@ func NSGetFileTypes(pboardTypes unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSReadPixel(_:)
 func NSReadPixel(passedPoint unsafe.Pointer) unsafe.Pointer {
 	return _NSReadPixel(passedPoint)
+	}
+
+
+// Registers a service provider. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRegisterServicesProvider(_:_:)
+func NSRegisterServicesProvider(provider unsafe.Pointer, name unsafe.Pointer) {
+	_NSRegisterServicesProvider(provider, name)
 	}
 
 
@@ -631,6 +717,22 @@ func NSShowAnimationEffect(animationEffect unsafe.Pointer, centerLocation unsafe
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShowsServicesMenuItem(_:)
 func NSShowsServicesMenuItem(itemName unsafe.Pointer) bool {
 	return _NSShowsServicesMenuItem(itemName)
+	}
+
+
+// Unregisters a service provider. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUnregisterServicesProvider(_:)
+func NSUnregisterServicesProvider(name unsafe.Pointer) {
+	_NSUnregisterServicesProvider(name)
+	}
+
+
+// Causes the services information for the system to be updated. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUpdateDynamicServices()
+func NSUpdateDynamicServices() {
+	_NSUpdateDynamicServices()
 	}
 
 

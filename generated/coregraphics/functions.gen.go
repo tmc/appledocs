@@ -16,7 +16,10 @@ import (
 
 var (
 	_CGColorSpaceRelease func(CGColorSpaceRef)
+	_CGContextEOFillPath func(CGContextRef)
 	_CGContextSetInterpolationQuality func(unsafe.Pointer)
+	_CGContextFillPath func(CGContextRef)
+	_CGImageRelease func(CGImageRef)
 	_CGAcquireDisplayFadeReservation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGAffineTransformConcat func(CGAffineTransform, CGAffineTransform) CGAffineTransform
 	_CGAffineTransformDecompose func(CGAffineTransform) unsafe.Pointer
@@ -246,8 +249,6 @@ var (
 	_CGContextDrawPDFDocument func(CGContextRef, CGRect, CGPDFDocumentRef, int)
 	_CGContextDrawTiledImage func(CGContextRef, CGRect, CGImageRef)
 	_CGContextEOClip func(CGContextRef)
-	_CGContextEOFillPath func(CGContextRef)
-	_CGContextFillPath func(CGContextRef)
 	_CGContextFillRects func(CGContextRef, unsafe.Pointer, uintptr)
 	_CGContextGetContentToneMappingInfo func(CGContextRef) unsafe.Pointer
 	_CGContextGetEDRTargetHeadroom func(CGContextRef) float32
@@ -497,7 +498,6 @@ var (
 	_CGImageGetWidth func(CGImageRef) uintptr
 	_CGImageCreateCopyWithContentHeadroom func(float32, CGImageRef) CGImageRef
 	_CGImageCreateWithMaskingColors func(CGImageRef, unsafe.Pointer) CGImageRef
-	_CGImageRelease func(CGImageRef)
 	_CGImageRetain func(CGImageRef) CGImageRef
 	_CGInhibitLocalEvents func(unsafe.Pointer) unsafe.Pointer
 	_CGLayerGetContext func(CGLayerRef) CGContextRef
@@ -750,7 +750,10 @@ func init() {
 		panic(err)
 	}
 	tryRegister(&_CGColorSpaceRelease, lib, "CGColorSpaceRelease")
+	tryRegister(&_CGContextEOFillPath, lib, "CGContextEOFillPath")
 	tryRegister(&_CGContextSetInterpolationQuality, lib, "CGContextSetInterpolationQuality")
+	tryRegister(&_CGContextFillPath, lib, "CGContextFillPath")
+	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
 	tryRegister(&_CGAcquireDisplayFadeReservation, lib, "CGAcquireDisplayFadeReservation")
 	tryRegister(&_CGAffineTransformConcat, lib, "CGAffineTransformConcat")
 	tryRegister(&_CGAffineTransformDecompose, lib, "CGAffineTransformDecompose")
@@ -980,8 +983,6 @@ func init() {
 	tryRegister(&_CGContextDrawPDFDocument, lib, "CGContextDrawPDFDocument")
 	tryRegister(&_CGContextDrawTiledImage, lib, "CGContextDrawTiledImage")
 	tryRegister(&_CGContextEOClip, lib, "CGContextEOClip")
-	tryRegister(&_CGContextEOFillPath, lib, "CGContextEOFillPath")
-	tryRegister(&_CGContextFillPath, lib, "CGContextFillPath")
 	tryRegister(&_CGContextFillRects, lib, "CGContextFillRects")
 	tryRegister(&_CGContextGetContentToneMappingInfo, lib, "CGContextGetContentToneMappingInfo")
 	tryRegister(&_CGContextGetEDRTargetHeadroom, lib, "CGContextGetEDRTargetHeadroom")
@@ -1231,7 +1232,6 @@ func init() {
 	tryRegister(&_CGImageGetWidth, lib, "CGImageGetWidth")
 	tryRegister(&_CGImageCreateCopyWithContentHeadroom, lib, "CGImageCreateCopyWithContentHeadroom")
 	tryRegister(&_CGImageCreateWithMaskingColors, lib, "CGImageCreateWithMaskingColors")
-	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
 	tryRegister(&_CGImageRetain, lib, "CGImageRetain")
 	tryRegister(&_CGInhibitLocalEvents, lib, "CGInhibitLocalEvents")
 	tryRegister(&_CGLayerGetContext, lib, "CGLayerGetContext")
@@ -1502,6 +1502,16 @@ func CGColorSpaceRelease(p0 CGColorSpaceRef) {
 	}
 
 
+// Paints the area within the current path, using the even-odd fill rule. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1454865-cgcontexteofillpath
+func CGContextEOFillPath(p0 CGContextRef) {
+	_CGContextEOFillPath(p0)
+	}
+
+
 // Sets the level of interpolation quality for a graphics context. [Full Topic]
 //
 // Added in macOS 10.0.
@@ -1509,6 +1519,26 @@ func CGColorSpaceRelease(p0 CGColorSpaceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/coregraphics/1455656-cgcontextsetinterpolationquality
 func CGContextSetInterpolationQuality(p0 unsafe.Pointer) {
 	_CGContextSetInterpolationQuality(p0)
+	}
+
+
+// Paints the area within the current path, using the nonzero winding number rule. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1456306-cgcontextfillpath
+func CGContextFillPath(p0 CGContextRef) {
+	_CGContextFillPath(p0)
+	}
+
+
+// Decrements the retain count of a bitmap image. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1556742-cgimagerelease
+func CGImageRelease(p0 CGImageRef) {
+	_CGImageRelease(p0)
 	}
 
 
@@ -3789,26 +3819,6 @@ func CGContextDrawTiledImage(c CGContextRef, rect CGRect, image CGImageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextEOClip
 func CGContextEOClip(c CGContextRef) {
 	_CGContextEOClip(c)
-	}
-
-
-// Paints the area within the current path, using the even-odd fill rule. [Full Topic]
-//
-// Added in macOS 10.0.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextEOFillPath
-func CGContextEOFillPath(c CGContextRef) {
-	_CGContextEOFillPath(c)
-	}
-
-
-// Paints the area within the current path, using the nonzero winding number rule. [Full Topic]
-//
-// Added in macOS 10.0.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextFillPath
-func CGContextFillPath(c CGContextRef) {
-	_CGContextFillPath(c)
 	}
 
 
@@ -6249,16 +6259,6 @@ func CGImageCreateCopyWithContentHeadroom(headroom float32, image CGImageRef) CG
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageCreateWithMaskingColors
 func CGImageCreateWithMaskingColors(image CGImageRef, components unsafe.Pointer) CGImageRef {
 	return _CGImageCreateWithMaskingColors(image, components)
-	}
-
-
-// Decrements the retain count of a bitmap image. [Full Topic]
-//
-// Added in macOS 10.0.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRelease
-func CGImageRelease(image CGImageRef) {
-	_CGImageRelease(image)
 	}
 
 

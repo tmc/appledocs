@@ -10,7 +10,6 @@ import (
 var _ = coreimage.NewContext
 
 
-
 // ExampleNewContextWithMTLDevice demonstrates how to create a Context instance using NewContextWithMTLDevice.
 // Creates a Core Image context using the specified Metal device.
 func ExampleNewContextWithMTLDevice() {
@@ -19,6 +18,10 @@ func ExampleNewContextWithMTLDevice() {
 	)
 	// Output:
 }
+
+
+
+
 
 
 
@@ -32,7 +35,6 @@ func ExampleNewContext() {
 
 
 
-
 // ExampleNewContextWithMTLCommandQueue demonstrates how to create a Context instance using NewContextWithMTLCommandQueue.
 func ExampleNewContextWithMTLCommandQueue() {
 	_ = coreimage.NewContextWithMTLCommandQueue(
@@ -40,7 +42,5 @@ func ExampleNewContextWithMTLCommandQueue() {
 	)
 	// Output:
 }
-
-
 
 

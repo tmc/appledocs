@@ -438,20 +438,20 @@ func classToStructName(className string) string {
 }
 
 // classToVarName converts an Objective-C class name to a Go variable name for the class.
-// Strips prefix and returns lowercase with 'Class' suffix to make it private.
+// Strips prefix and returns capitalized with 'Class' suffix to make it exported.
 // Examples:
 //
-//	NSButton -> buttonClass
-//	NSView -> viewClass
-//	CGContext -> contextClass
+//	NSButton -> ButtonClass
+//	NSView -> ViewClass
+//	CGContext -> ContextClass
 func classToVarName(className string) string {
 	if className == "" {
 		return ""
 	}
 
 	name := stripObjCPrefix(className)
-	// Make it lowercase to be private (internal to the package)
-	return strings.ToLower(name[:1]) + name[1:] + "Class"
+	// Make it capitalized to be public (exported from the package)
+	return strings.ToUpper(name[:1]) + name[1:] + "Class"
 }
 
 // stripObjCPrefix removes Objective-C prefixes algorithmically and invalid identifier characters from a class name

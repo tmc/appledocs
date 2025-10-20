@@ -15,6 +15,7 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
+	_objc_msgSend func()
 	_NXCompareHashTables func(unsafe.Pointer, unsafe.Pointer) bool
 	_NXCopyHashTable func(unsafe.Pointer) unsafe.Pointer
 	_NXCountHashTable func(unsafe.Pointer) unsafe.Pointer
@@ -117,7 +118,6 @@ var (
 	_objc_getRequiredClass func(unsafe.Pointer) unsafe.Pointer
 	_objc_loadWeak func(unsafe.Pointer) unsafe.Pointer
 	_objc_lookUpClass func(unsafe.Pointer) unsafe.Pointer
-	_objc_msgSend func()
 	_objc_msgSendSuper func()
 	_objc_msgSendSuper_stret func()
 	_objc_msgSend_fp2ret func()
@@ -182,6 +182,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	tryRegister(&_objc_msgSend, lib, "objc_msgSend")
 	tryRegister(&_NXCompareHashTables, lib, "NXCompareHashTables")
 	tryRegister(&_NXCopyHashTable, lib, "NXCopyHashTable")
 	tryRegister(&_NXCountHashTable, lib, "NXCountHashTable")
@@ -284,7 +285,6 @@ func init() {
 	tryRegister(&_objc_getRequiredClass, lib, "objc_getRequiredClass")
 	tryRegister(&_objc_loadWeak, lib, "objc_loadWeak")
 	tryRegister(&_objc_lookUpClass, lib, "objc_lookUpClass")
-	tryRegister(&_objc_msgSend, lib, "objc_msgSend")
 	tryRegister(&_objc_msgSendSuper, lib, "objc_msgSendSuper")
 	tryRegister(&_objc_msgSendSuper_stret, lib, "objc_msgSendSuper_stret")
 	tryRegister(&_objc_msgSend_fp2ret, lib, "objc_msgSend_fp2ret")
@@ -356,6 +356,16 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	purego.RegisterLibFunc(fn, lib, name)
 }
 
+
+
+// Sends a message with a simple return value to an instance of a class. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend
+func objc_msgSend() {
+	_objc_msgSend()
+	}
 
 
 // NXCompareHashTables is a ObjectiveC function. [Full Topic]
@@ -1413,16 +1423,6 @@ func objc_loadWeak(location unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_lookUpClass(_:)
 func objc_lookUpClass(name unsafe.Pointer) unsafe.Pointer {
 	return _objc_lookUpClass(name)
-	}
-
-
-// Sends a message with a simple return value to an instance of a class. [Full Topic]
-//
-// Added in macOS 10.0.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend
-func objc_msgSend() {
-	_objc_msgSend()
 	}
 
 

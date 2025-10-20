@@ -4,13 +4,13 @@ package coreimage
 
 import "github.com/ebitengine/purego/objc"
 
-// DitherProtocol is the CIDither protocol.
+// ditherProtocol is the dither protocol.
 //
-// Use this protocol when registering custom classes that conform to CIDither.
-var DitherProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to dither.
+var ditherProtocol *objc.Protocol
 
 func init() {
-	DitherProtocol = objc.GetProtocol("CIDither")
+	ditherProtocol = objc.GetProtocol("dither")
 }
 
 

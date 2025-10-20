@@ -2,11 +2,7 @@
 
 package coretext
 
-import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/coregraphics"
-)
+import "unsafe"
 
 // ATSFontRef is a CoreGraphics opaque type.
 type ATSFontRef unsafe.Pointer
@@ -101,19 +97,4 @@ type CTTypesetterRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
-
-// CGFloat is a CoreGraphics floating-point type
-type CGFloat = float64
-
-// CGPoint is a CoreGraphics point type
-type CGPoint = coregraphics.CGPoint
-
-// CGSize is a CoreGraphics size type
-type CGSize = coregraphics.CGSize
-
-// CGRect is a CoreGraphics rectangle type
-type CGRect = coregraphics.CGRect
-
-// CGAffineTransform is a CoreGraphics affine transform type
-type CGAffineTransform = coregraphics.CGAffineTransform
 

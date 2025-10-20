@@ -2,11 +2,7 @@
 
 package corevideo
 
-import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/coregraphics"
-)
+import "unsafe"
 
 // CFAllocatorRef is a CoreGraphics opaque type.
 type CFAllocatorRef unsafe.Pointer
@@ -77,13 +73,4 @@ type IOSurfaceRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
-
-// CGRect is a CoreGraphics rectangle type
-type CGRect = coregraphics.CGRect
-
-// CGSize is a CoreGraphics size type
-type CGSize = coregraphics.CGSize
-
-// CGPoint is a CoreGraphics point type
-type CGPoint = coregraphics.CGPoint
 

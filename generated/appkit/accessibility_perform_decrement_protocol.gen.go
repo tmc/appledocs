@@ -6,9 +6,6 @@ import "github.com/ebitengine/purego/objc"
 
 // accessibilityPerformDecrementProtocol is the accessibilityPerformDecrement protocol.
 //
-// Availability:
-//   - macOS 10.10+
-//
 // Use this protocol when registering custom classes that conform to accessibilityPerformDecrement.
 var accessibilityPerformDecrementProtocol *objc.Protocol
 

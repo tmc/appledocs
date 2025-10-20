@@ -9,15 +9,19 @@ import (
 )
 
 
-// Foundation Functions (23 total)
+// Foundation Functions (33 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
+	_NSAllocateCollectable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSAllocateMemoryPages func(unsafe.Pointer) unsafe.Pointer
 	_NSClassFromString func(unsafe.Pointer) unsafe.Pointer
+	_NSCopyMemoryPages func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSCopyObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSCountFrames func() unsafe.Pointer
+	_NSExtraRefCount func(unsafe.Pointer) unsafe.Pointer
 	_NSFileTypeForHFSTypeCode func(unsafe.Pointer) unsafe.Pointer
 	_NSFrameAddress func(unsafe.Pointer) unsafe.Pointer
 	_NSFullUserName func() unsafe.Pointer
@@ -26,15 +30,21 @@ var (
 	_NSHFSTypeOfFile func(unsafe.Pointer) unsafe.Pointer
 	_NSHomeDirectory func() unsafe.Pointer
 	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
+	_NSIncrementExtraRefCount func(unsafe.Pointer)
 	_NSIntegralRectWithOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSIsFreedObject func(unsafe.Pointer) bool
 	_NSLog func(unsafe.Pointer)
 	_NSLogv func(unsafe.Pointer, unsafe.Pointer)
+	_NSMouseInRect func(unsafe.Pointer, unsafe.Pointer, bool) bool
 	_NSOpenStepRootDirectory func() unsafe.Pointer
+	_NSReallocateCollectable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSRecordAllocationEvent func(int, unsafe.Pointer)
 	_NSReturnAddress func(unsafe.Pointer) unsafe.Pointer
+	_NSRoundUpToMultipleOfPageSize func(unsafe.Pointer) unsafe.Pointer
 	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_NSSetUncaughtExceptionHandler func()
+	_NSSizeFromString func(unsafe.Pointer) unsafe.Pointer
+	_NSStringFromProtocol func(unsafe.Pointer) unsafe.Pointer
 	_NSTemporaryDirectory func() unsafe.Pointer
 	_NSUserName func() unsafe.Pointer
 	_NXReadNSObjectFromCoder func(unsafe.Pointer) unsafe.Pointer
@@ -45,9 +55,13 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	tryRegister(&_NSAllocateCollectable, lib, "NSAllocateCollectable")
+	tryRegister(&_NSAllocateMemoryPages, lib, "NSAllocateMemoryPages")
 	tryRegister(&_NSClassFromString, lib, "NSClassFromString")
+	tryRegister(&_NSCopyMemoryPages, lib, "NSCopyMemoryPages")
 	tryRegister(&_NSCopyObject, lib, "NSCopyObject")
 	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
+	tryRegister(&_NSExtraRefCount, lib, "NSExtraRefCount")
 	tryRegister(&_NSFileTypeForHFSTypeCode, lib, "NSFileTypeForHFSTypeCode")
 	tryRegister(&_NSFrameAddress, lib, "NSFrameAddress")
 	tryRegister(&_NSFullUserName, lib, "NSFullUserName")
@@ -56,15 +70,21 @@ func init() {
 	tryRegister(&_NSHFSTypeOfFile, lib, "NSHFSTypeOfFile")
 	tryRegister(&_NSHomeDirectory, lib, "NSHomeDirectory")
 	tryRegister(&_NSHomeDirectoryForUser, lib, "NSHomeDirectoryForUser")
+	tryRegister(&_NSIncrementExtraRefCount, lib, "NSIncrementExtraRefCount")
 	tryRegister(&_NSIntegralRectWithOptions, lib, "NSIntegralRectWithOptions")
 	tryRegister(&_NSIsFreedObject, lib, "NSIsFreedObject")
 	tryRegister(&_NSLog, lib, "NSLog")
 	tryRegister(&_NSLogv, lib, "NSLogv")
+	tryRegister(&_NSMouseInRect, lib, "NSMouseInRect")
 	tryRegister(&_NSOpenStepRootDirectory, lib, "NSOpenStepRootDirectory")
+	tryRegister(&_NSReallocateCollectable, lib, "NSReallocateCollectable")
 	tryRegister(&_NSRecordAllocationEvent, lib, "NSRecordAllocationEvent")
 	tryRegister(&_NSReturnAddress, lib, "NSReturnAddress")
+	tryRegister(&_NSRoundUpToMultipleOfPageSize, lib, "NSRoundUpToMultipleOfPageSize")
 	tryRegister(&_NSSearchPathForDirectoriesInDomains, lib, "NSSearchPathForDirectoriesInDomains")
 	tryRegister(&_NSSetUncaughtExceptionHandler, lib, "NSSetUncaughtExceptionHandler")
+	tryRegister(&_NSSizeFromString, lib, "NSSizeFromString")
+	tryRegister(&_NSStringFromProtocol, lib, "NSStringFromProtocol")
 	tryRegister(&_NSTemporaryDirectory, lib, "NSTemporaryDirectory")
 	tryRegister(&_NSUserName, lib, "NSUserName")
 	tryRegister(&_NXReadNSObjectFromCoder, lib, "NXReadNSObjectFromCoder")
@@ -84,6 +104,26 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
+// Allocates collectable memory. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateCollectable
+func NSAllocateCollectable(size unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	return _NSAllocateCollectable(size, options)
+	}
+
+
+// Allocates a new block of memory. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateMemoryPages(_:)
+func NSAllocateMemoryPages(bytes unsafe.Pointer) unsafe.Pointer {
+	return _NSAllocateMemoryPages(bytes)
+	}
+
+
 // Obtains a class by name. [Full Topic]
 //
 // Added in macOS 10.0.
@@ -91,6 +131,16 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassFromString(_:)
 func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
 	return _NSClassFromString(aClassName)
+	}
+
+
+// Copies a block of memory. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyMemoryPages(_:_:_:)
+func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes unsafe.Pointer) {
+	_NSCopyMemoryPages(source, dest, bytes)
 	}
 
 
@@ -113,6 +163,16 @@ func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
 func NSCountFrames() unsafe.Pointer {
 	return _NSCountFrames()
+	}
+
+
+// Returns the specified object’s reference count. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtraRefCount
+func NSExtraRefCount(object unsafe.Pointer) unsafe.Pointer {
+	return _NSExtraRefCount(object)
 	}
 
 
@@ -196,6 +256,16 @@ func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
 	}
 
 
+// Increments the specified object’s reference count. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIncrementExtraRefCount
+func NSIncrementExtraRefCount(object unsafe.Pointer) {
+	_NSIncrementExtraRefCount(object)
+	}
+
+
 // Adjusts the sides of a rectangle to integral values using the specified options. [Full Topic]
 //
 // Added in macOS 10.7.
@@ -236,6 +306,16 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 	}
 
 
+// Returns a Boolean value that indicates whether the point is in the specified rectangle. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMouseInRect(_:_:_:)
+func NSMouseInRect(aPoint unsafe.Pointer, aRect unsafe.Pointer, flipped bool) bool {
+	return _NSMouseInRect(aPoint, aRect, flipped)
+	}
+
+
 // Returns the root directory of the user’s system. [Full Topic]
 //
 // Added in macOS 10.0.
@@ -243,6 +323,16 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOpenStepRootDirectory()
 func NSOpenStepRootDirectory() unsafe.Pointer {
 	return _NSOpenStepRootDirectory()
+	}
+
+
+// Reallocates collectable memory. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReallocateCollectable
+func NSReallocateCollectable(ptr unsafe.Pointer, size unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	return _NSReallocateCollectable(ptr, size, options)
 	}
 
 
@@ -266,6 +356,16 @@ func NSReturnAddress(frame unsafe.Pointer) unsafe.Pointer {
 	}
 
 
+// Returns the specified number of bytes rounded up to a multiple of the page size. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRoundUpToMultipleOfPageSize(_:)
+func NSRoundUpToMultipleOfPageSize(bytes unsafe.Pointer) unsafe.Pointer {
+	return _NSRoundUpToMultipleOfPageSize(bytes)
+	}
+
+
 // Creates a list of directory search paths. [Full Topic]
 //
 // Added in macOS 10.0.
@@ -283,6 +383,26 @@ func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask un
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetUncaughtExceptionHandler(_:)
 func NSSetUncaughtExceptionHandler() {
 	_NSSetUncaughtExceptionHandler()
+	}
+
+
+// Returns an from a text-based representation. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSizeFromString(_:)
+func NSSizeFromString(aString unsafe.Pointer) unsafe.Pointer {
+	return _NSSizeFromString(aString)
+	}
+
+
+// Returns the name of a protocol as a string. [Full Topic]
+//
+// Added in macOS 10.5.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromProtocol(_:)
+func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
+	return _NSStringFromProtocol(proto)
 	}
 
 

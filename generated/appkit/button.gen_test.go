@@ -22,6 +22,18 @@ func ExampleNewButtonCheckboxWithTitleTargetAction() {
 }
 
 
+// ExampleNewButtonRadioButtonWithTitleTargetAction demonstrates how to create a Button instance using NewButtonRadioButtonWithTitleTargetAction.
+// Creates a standard radio button with the title you specify.
+func ExampleNewButtonRadioButtonWithTitleTargetAction() {
+	_ = appkit.NewButtonRadioButtonWithTitleTargetAction(
+		"title", // title string
+		0, // target objc.ID
+		0, // action objc.SEL
+	)
+	// Output:
+}
+
+
 // ExampleNewButtonWithTitleTargetAction demonstrates how to create a Button instance using NewButtonWithTitleTargetAction.
 // Creates a standard push button with the title you specify.
 func ExampleNewButtonWithTitleTargetAction() {
