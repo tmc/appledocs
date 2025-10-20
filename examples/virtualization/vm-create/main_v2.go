@@ -284,14 +284,11 @@ func addStorageDevice(config virtualization.VZVirtualMachineConfiguration) error
 	// Create VirtIO block device
 	blockDevice := virtualization.NewVZVirtioBlockDeviceConfiguration()
 
-	// Set attachment (Priority 3 will make this type-safe)
-	objc.Send[bool](
-		blockDevice.ID,
-		objc.RegisterName("setAttachment:"),
-		unsafe.Pointer(diskAttachment.ID),
-	)
+	// Set attachment using generated method - type-safe!
+	blockDevice.SetAttachment(unsafe.Pointer(diskAttachment.ID))
 
-	// Create array and set storage devices using objc.Send
+	// Set storage devices using objc.Send
+	// Priority 4 will improve this with collection helpers
 	arrayClass := objc.GetClass("NSMutableArray")
 	arrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
 	arrayID := objc.Send[objc.ID](arrayAlloc, objc.RegisterName("init"))
@@ -352,25 +349,15 @@ func addGraphicsDevice(config virtualization.VZVirtualMachineConfiguration) erro
 	// Create scanout configuration using generated constructor - type-safe!
 	scanout := virtualization.NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(1920, 1200)
 
-	// Set scanouts using objc.Send (for now - Priority 3 will fix this)
-	arrayClass := objc.GetClass("NSMutableArray")
-	arrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
-	arrayID := objc.Send[objc.ID](arrayAlloc, objc.RegisterName("init"))
+	// Set scanouts using generated method - type-safe!
+	graphicsDevice.SetScanouts([]virtualization.VZVirtioGraphicsScanoutConfiguration{
+		scanout,
+	})
 
-	objc.Send[bool](
-		arrayID,
-		objc.RegisterName("addObject:"),
-		unsafe.Pointer(scanout.ID),
-	)
-
-	objc.Send[bool](
-		graphicsDevice.ID,
-		objc.RegisterName("setScanouts:"),
-		unsafe.Pointer(arrayID),
-	)
-
-	// Create array and set graphics devices
-	devArrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
+	// Set graphics devices using objc.Send
+	// Priority 4 will improve this with collection helpers
+	devArrayClass := objc.GetClass("NSMutableArray")
+	devArrayAlloc := objc.Send[objc.ID](objc.ID(devArrayClass), objc.RegisterName("alloc"))
 	devArrayID := objc.Send[objc.ID](devArrayAlloc, objc.RegisterName("init"))
 
 	objc.Send[bool](

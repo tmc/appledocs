@@ -79,6 +79,21 @@ func NewVZVirtioBlockDeviceConfiguration() VZVirtioBlockDeviceConfiguration {
 	return getVZVirtioBlockDeviceConfigurationClass().New()
 }
 
+// The storage device attachment for this block device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/attachment
+func (v_ VZVirtioBlockDeviceConfiguration) Attachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+// SetAttachment sets the value of the attachment property.
+// The storage device attachment for this block device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/attachment
+func (v_ VZVirtioBlockDeviceConfiguration) SetAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
 
 // Checks the validity of a block device identifier.
 //

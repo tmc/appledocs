@@ -77,6 +77,21 @@ func NewVZVirtioGraphicsDeviceConfiguration() VZVirtioGraphicsDeviceConfiguratio
 	return getVZVirtioGraphicsDeviceConfigurationClass().New()
 }
 
+// The array of graphics scanout configurations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration/scanouts
+func (v_ VZVirtioGraphicsDeviceConfiguration) Scanouts() []VZVirtioGraphicsScanoutConfiguration {
+	rv := objc.Send[[]VZVirtioGraphicsScanoutConfiguration](v_.ID, objc.Sel("scanouts"))
+	return rv
+}
+
+// SetScanouts sets the value of the scanouts property.
+// The array of graphics scanout configurations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration/scanouts
+func (v_ VZVirtioGraphicsDeviceConfiguration) SetScanouts(value []VZVirtioGraphicsScanoutConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), value)
+}
 
 
 
