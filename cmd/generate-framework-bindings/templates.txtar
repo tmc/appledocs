@@ -42,8 +42,8 @@
 {{end -}}
 {{end -}}
 {{if .GenerateTests -}}
-#-- functions_test.gen.go --
-{{template "functions_test.gen.go" .}}
+#-- functions.gen_test.go --
+{{template "functions.gen_test.go" .}}
 {{end -}}
 {{if .GenerateExamples -}}
 #-- examples_test.gen.go --
@@ -932,7 +932,7 @@ func (c {{index $.TypeToRef $typeName}}) {{$docData.MethodName}}({{range $i, $p 
 {{end -}}
 {{end -}}
 
--- functions_test.gen.go --
+-- functions.gen_test.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}_test
@@ -941,7 +941,7 @@ import (
 	"testing"
 	"unsafe"
 
-	"{{.PackageName}}"
+	"{{.OutputModule}}/{{.PackageName}}"
 )
 
 {{range .Functions -}}
