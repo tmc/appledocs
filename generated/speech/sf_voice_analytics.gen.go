@@ -1,0 +1,84 @@
+// Code generated from Apple documentation for Speech. DO NOT EDIT.
+
+package speech
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [SFVoiceAnalytics] class.
+var (
+	SFVoiceAnalyticsClass     _SFVoiceAnalyticsClass
+	SFVoiceAnalyticsClassOnce sync.Once
+)
+
+func getSFVoiceAnalyticsClass() _SFVoiceAnalyticsClass {
+	SFVoiceAnalyticsClassOnce.Do(func() {
+		SFVoiceAnalyticsClass = _SFVoiceAnalyticsClass{objc.GetClass("SFVoiceAnalytics")}
+	})
+	return SFVoiceAnalyticsClass
+}
+
+type _SFVoiceAnalyticsClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [SFVoiceAnalytics] class.
+type ISFVoiceAnalytics interface {
+	objectivec.IObject
+}
+
+// A collection of vocal analysis metrics.
+//
+// Use an object to access the insights. Voice analytics include the following features: Use to measure how pitch varies in audio. Use to measure how amplitude varies in audio. Use to measure the highness and lowness of the tone. Use to identify voiced regions in speech. These results are part of the object and are available when the system sends the flag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFVoiceAnalytics
+type SFVoiceAnalytics struct {
+	objectivec.Object
+}
+
+// SFVoiceAnalyticsFrom constructs a [SFVoiceAnalytics] from an unsafe.Pointer.
+//
+// A collection of vocal analysis metrics.
+func SFVoiceAnalyticsFrom(ptr unsafe.Pointer) SFVoiceAnalytics {
+	return SFVoiceAnalytics{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (sc _SFVoiceAnalyticsClass) Alloc() SFVoiceAnalytics {
+	rv := objc.Send[SFVoiceAnalytics](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (sc _SFVoiceAnalyticsClass) New() SFVoiceAnalytics {
+	rv := objc.Send[SFVoiceAnalytics](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SFVoiceAnalytics) Init() SFVoiceAnalytics {
+	rv := objc.Send[SFVoiceAnalytics](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SFVoiceAnalytics) Autorelease() SFVoiceAnalytics {
+	rv := objc.Send[SFVoiceAnalytics](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSFVoiceAnalytics creates a new SFVoiceAnalytics instance.
+func NewSFVoiceAnalytics() SFVoiceAnalytics {
+	return getSFVoiceAnalyticsClass().New()
+}
+
+
+
+

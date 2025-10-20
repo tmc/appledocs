@@ -1,0 +1,18 @@
+// Code generated from Apple documentation for FSKit. DO NOT EDIT.
+
+package fskit
+
+import "github.com/ebitengine/purego/objc"
+
+// preallocateSpaceForFileProtocol is the preallocateSpaceForFile: protocol.
+//
+// Availability:
+//   - macOS 15.4+
+//
+// Use this protocol when registering custom classes that conform to preallocateSpaceForFile:.
+var preallocateSpaceForFileProtocol *objc.Protocol
+
+func init() {
+	preallocateSpaceForFileProtocol = objc.GetProtocol("preallocateSpaceForFile:")
+}
+
