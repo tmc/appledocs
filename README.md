@@ -1,14 +1,43 @@
 # appledocs
 
-Go package for programmatic access to Apple's documentation.
+[![Build Status](https://img.shields.io/badge/build-100%25-brightgreen)](FRAMEWORK_COVERAGE.md)
+[![Frameworks](https://img.shields.io/badge/frameworks-69%2F270-blue)](FRAMEWORK_COVERAGE.md)
+[![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)](PLATFORM_RESTRICTIONS.md)
+[![Go Version](https://img.shields.io/badge/go-1.24.1%2B-00ADD8)](go.mod)
+
+Go package for programmatic access to Apple's documentation and framework bindings.
+
+## Table of Contents
+
+- [Framework Bindings](#framework-bindings) - Go bindings for 69 macOS frameworks
+- [Documentation API](#documentation-api) - Parse Apple's documentation JSON
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Swift Bindings](#swift-binding-generation)
 
 ## Installation
+
+### For Documentation Parsing
 
 ```bash
 go get github.com/tmc/appledocs
 ```
 
-## Quick Start
+### For Framework Bindings
+
+```bash
+# Import specific frameworks
+import "github.com/tmc/appledocs/generated/appkit"
+import "github.com/tmc/appledocs/generated/foundation"
+import "github.com/tmc/appledocs/generated/metal"
+```
+
+See [FRAMEWORK_COVERAGE.md](FRAMEWORK_COVERAGE.md) for all available frameworks.
+
+## Documentation API
+
+### Quick Start
 
 ```go
 import "github.com/tmc/appledocs"
@@ -340,9 +369,34 @@ fsys, _ := fetch.Framework("Foundation", "17.0")  // Caches locally
 
 See [DISTRIBUTION.md](DISTRIBUTION.md) for details on module structure and versioning strategy.
 
+## Framework Bindings
+
+This project generates comprehensive, type-safe Go bindings for Apple frameworks using [purego](https://github.com/ebitengine/purego) for cgo-free Objective-C interop.
+
+### Coverage
+
+- **69 frameworks** with complete Go bindings (see [FRAMEWORK_COVERAGE.md](FRAMEWORK_COVERAGE.md))
+- **100% build success rate** (68/68 buildable frameworks)
+- **270 total macOS frameworks** available for binding generation
+- **Latest additions**: Contacts, ContactsUI
+
+### Notable Frameworks
+
+**UI & Graphics**: AppKit, QuartzCore, Metal, MetalKit, CoreGraphics, CoreImage, WebKit
+**Media**: AVFoundation, CoreAudio, CoreVideo, ImageIO
+**ML & Vision**: CoreML, Vision, CreateML, SoundAnalysis
+**System**: Foundation, Security, FileProvider, SystemExtensions
+**Cloud & Data**: CloudKit, CoreData, Contacts
+
+See [FRAMEWORK_COVERAGE.md](FRAMEWORK_COVERAGE.md) for complete list with statistics.
+
+### Platform Support
+
+While 270+ frameworks are documented by Apple, only macOS frameworks can currently be generated. iOS, watchOS, tvOS, and other platform-specific frameworks require platform-specific SDKs. See [PLATFORM_RESTRICTIONS.md](PLATFORM_RESTRICTIONS.md) for details.
+
 ## Swift Binding Generation
 
-In addition to documentation parsing, this project includes tooling for generating Go bindings from Swift framework extensions:
+In addition to Objective-C framework bindings, this project includes experimental tooling for generating Go bindings from Swift framework extensions:
 
 - **Parse** .swiftinterface files with SwiftSyntax
 - **Generate** Swift @_cdecl wrappers
