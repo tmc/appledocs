@@ -195,6 +195,12 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGLayerRef", GoType: "coregraphics.CGLayerRef", Framework: "QuartzCore"},
 	{ObjCType: "CGFontRef", GoType: "coregraphics.CGFontRef", Framework: "QuartzCore"},
 
+	// ==== CoreGraphics types in ImageCaptureCore ====
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "ImageCaptureCore"},
+
+	// ==== CoreGraphics types in ScreenCaptureKit ====
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "ScreenCaptureKit"},
+
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
 	// Generic completion handler: void (^)(NSError *)

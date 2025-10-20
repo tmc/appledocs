@@ -30,7 +30,7 @@ type _StreamClass struct {
 // An interface definition for the [Stream] class.
 type IStream interface {
 	objectivec.IObject
-	AddStreamOutputTypeSampleHandlerQueueError(output objc.ID, type_ unsafe.Pointer, sampleHandlerQueue unsafe.Pointer, error unsafe.Pointer) bool
+	AddStreamOutputTypeSampleHandlerQueueError(output objc.ID, type_ unsafe.Pointer, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool
 	StartCaptureWithCompletionHandler(completionHandler unsafe.Pointer)
 	UpdateContentFilterCompletionHandler(contentFilter unsafe.Pointer, completionHandler unsafe.Pointer)
 }
@@ -86,8 +86,8 @@ func NewStream() Stream {
 // Adds a destination that receives the stream output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/addStreamOutput(_:type:sampleHandlerQueue:)
-func (s_ Stream) AddStreamOutputTypeSampleHandlerQueueError(output objc.ID, type_ unsafe.Pointer, sampleHandlerQueue unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("addStreamOutput:type:sampleHandlerQueue:error:"), output, type_, sampleHandlerQueue, error)
+func (s_ Stream) AddStreamOutputTypeSampleHandlerQueueError(output objc.ID, type_ unsafe.Pointer, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("addStreamOutput:type:sampleHandlerQueue:error:"), output, type_, sampleHandlerQueue, error_)
 	return rv
 }
 
