@@ -83,10 +83,12 @@ var templateFuncs = template.FuncMap{
 	"prepareInitMethodsWithClassName":   prepareInitMethodsWithClassName,
 	"classHasInit":                      classHasInit,
 	"shouldExcludeTestExample":          shouldExcludeTestExample,
-	"sortMethodsByName":           sortMethodsByName,
-	"generateTestValue":           generateTestValue,
-	"canGenerateTestValue":        canGenerateTestValue,
-	"wrapObjCReturn":              wrapObjCReturn,
+	"shouldExcludeTestMethod":           shouldExcludeTestMethod,
+	"sortMethodsByName":              sortMethodsByName,
+	"generateTestValue":              generateTestValue,
+	"generateTestValueWithPackage":   generateTestValueWithPackage,
+	"canGenerateTestValue":           canGenerateTestValue,
+	"wrapObjCReturn":                 wrapObjCReturn,
 	"isEssentialSelector":         isEssentialSelector,
 	"convertDocURL":               convertDocURL,
 
@@ -1142,11 +1144,6 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 			}
 			instanceMethods = append(instanceMethods, m)
 			seenSelectors[m.Selector] = true
-		} else if !m.IsClassMethod && seenSelectors[m.Selector] {
-			// Debug: duplicate selector detected
-			if m.Selector == "creationDate" {
-				fmt.Fprintf(os.Stderr, "DEBUG prepareInstanceMethods: Skipping duplicate selector %s (already seen)\n", m.Selector)
-			}
 		}
 	}
 
@@ -1164,10 +1161,6 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 	for _, m := range instanceMethods {
 		goName := selectorToGoName(m.Selector)
 
-		if m.Selector == "creationDate" {
-			fmt.Fprintf(os.Stderr, "DEBUG: Processing creationDate, goName=%s, goNameCounts=%d\n", goName, goNameCounts[goName])
-		}
-
 		// If this Go name has duplicates, disambiguate using parameter labels
 		if goNameCounts[goName] > 1 {
 			// Create a copy of the method and update its Name field
@@ -1175,15 +1168,8 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 			methodCopy.Name = disambiguateMethodName(m)
 			goName = methodCopy.Name
 
-			if m.Selector == "creationDate" {
-				fmt.Fprintf(os.Stderr, "DEBUG: Disambiguated creationDate to %s\n", goName)
-			}
-
 			// Skip if we've already seen this exact Go name (shouldn't happen after disambiguation)
 			if seenGoNames[goName] {
-				if m.Selector == "creationDate" {
-					fmt.Fprintf(os.Stderr, "DEBUG: Skipping duplicate creationDate (goName=%s already seen)\n", goName)
-				}
 				continue
 			}
 
@@ -1192,24 +1178,13 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 		} else {
 			// No collision, use original method
 			if seenGoNames[goName] {
-				if m.Selector == "creationDate" {
-					fmt.Fprintf(os.Stderr, "DEBUG: Skipping duplicate creationDate (goName=%s already seen in else branch)\n", goName)
-				}
 				continue
 			}
 			result = append(result, m)
 			seenGoNames[goName] = true
-			if m.Selector == "creationDate" {
-				fmt.Fprintf(os.Stderr, "DEBUG: Added creationDate to result\n")
-			}
 		}
 	}
 
-	// Final pass: filter out methods that are property getters/setters
-	// This is a HACK - we need the class context to know which properties exist
-	// For now, we'll rely on the caller to pass filtered methods
-
-	fmt.Fprintf(os.Stderr, "DEBUG: prepareInstanceMethods returning %d methods\n", len(result))
 	return result
 }
 
@@ -1217,46 +1192,31 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 // to prevent duplicate generation. Property methods are generated separately in the properties section.
 func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 	if class == nil {
-		fmt.Fprintf(os.Stderr, "DEBUG: filterPropertyMethods called with nil class\n")
 		return nil
 	}
-
-	fmt.Fprintf(os.Stderr, "DEBUG: filterPropertyMethods called for class %s with %d methods and %d properties\n",
-		class.Name, len(class.Methods), len(class.Properties))
 
 	// Build set of property selectors (getter and setter)
 	propertySelectors := make(map[string]bool)
 	for _, prop := range class.Properties {
 		// Getter selector is just the property name
 		propertySelectors[prop.Name] = true
-		fmt.Fprintf(os.Stderr, "DEBUG:   Property %s -> getter selector: %s\n", prop.Name, prop.Name)
 
 		// Setter selector is "set<CapitalizedName>:"
 		capitalizedName := strings.ToUpper(prop.Name[:1]) + prop.Name[1:]
 		setterSelector := "set" + capitalizedName + ":"
 		propertySelectors[setterSelector] = true
-		fmt.Fprintf(os.Stderr, "DEBUG:   Property %s -> setter selector: %s\n", prop.Name, setterSelector)
 	}
 
 	// Filter methods, excluding those that match property selectors
 	var filtered []*occ2go.ParsedMethod
 	for _, m := range class.Methods {
-		if class.Name == "CKRecord" {
-			fmt.Fprintf(os.Stderr, "DEBUG:   Method: %s (isClass=%v, isProperty=%v)\n",
-				m.Selector, m.IsClassMethod, propertySelectors[m.Selector])
-		}
 		if !m.IsClassMethod && !propertySelectors[m.Selector] {
 			filtered = append(filtered, m)
 		} else if m.IsClassMethod {
 			// Always include class methods
 			filtered = append(filtered, m)
-		} else if propertySelectors[m.Selector] {
-			fmt.Fprintf(os.Stderr, "DEBUG: Filtering property method %s from class %s\n", m.Selector, class.Name)
 		}
 	}
-
-	fmt.Fprintf(os.Stderr, "DEBUG: filterPropertyMethods filtered %d -> %d methods for class %s\n",
-		len(class.Methods), len(filtered), class.Name)
 
 	// Now call prepareInstanceMethods on the filtered list
 	return prepareInstanceMethods(filtered)
@@ -1867,6 +1827,8 @@ func generateTestValue(goType, framework, paramName string) string {
 	}
 
 	// Handle AppKit/CoreGraphics geometry types
+	// When the type is from another package (coregraphics), return the fully qualified name
+	// The template will NOT add a prefix because it checks hasPrefix for known packages
 	if goType == "CGRect" || goType == "Rect" || goType == "coregraphics.CGRect" {
 		return "coregraphics.CGRect{}"
 	}
@@ -1878,7 +1840,8 @@ func generateTestValue(goType, framework, paramName string) string {
 	}
 
 	// Handle framework-specific types
-	// Foundation types
+	// Foundation types - when already qualified with "foundation.", return as-is
+	// The template will NOT add a prefix because it checks hasPrefix("foundation.")
 	if strings.HasPrefix(goType, "foundation.") {
 		typeName := strings.TrimPrefix(goType, "foundation.")
 		switch typeName {
@@ -1897,15 +1860,58 @@ func generateTestValue(goType, framework, paramName string) string {
 	}
 
 	// Handle package-local types (no dot) - these need to be qualified with packageName in test files
+	// The template WILL add the package prefix for these
 	if !strings.Contains(goType, ".") {
 		// Could be an enum or a struct from the same package
-		// Try zero value
+		// Use struct literal syntax instead of type cast
 		// We return the unqualified type name; the template will add the package prefix
-		return fmt.Sprintf("%s(0)", goType)
+		return fmt.Sprintf("%s{}", goType)
 	}
 
 	// Default: try zero value for the type
 	return fmt.Sprintf("%s{}", goType)
+}
+
+// generateTestValueWithPackage generates a test value and applies the proper package prefix
+// based on the Go type and target package context. This simplifies the template logic by
+// handling all the package qualification rules in one place.
+//
+// Parameters:
+//   - goType: The mapped Go type (e.g., "coregraphics.CGRect", "Rect", "string")
+//   - framework: The framework context for type mapping
+//   - packageName: The package name where the test will be generated (e.g., "foundation")
+//   - paramName: The parameter name for context-sensitive test values
+//
+// Returns a fully-qualified test value expression ready to use in generated code.
+func generateTestValueWithPackage(goType, framework, packageName, paramName string) string {
+	testValue := generateTestValue(goType, framework, paramName)
+
+	// Check if the test value already contains a package qualifier
+	// (e.g., "coregraphics.CGRect{}", "foundation.Range{}")
+	if strings.Contains(testValue, ".") {
+		// Already fully qualified - return as-is
+		return testValue
+	}
+
+	// Check if this is a primitive type or stdlib type that doesn't need qualification
+	switch goType {
+	case "string", "int", "int8", "int16", "int32", "int64",
+		"uint", "uint8", "uint16", "uint32", "uint64",
+		"float32", "float64", "bool":
+		return testValue
+	}
+
+	// Check if goType already has a package prefix
+	if strings.HasPrefix(goType, "foundation.") ||
+		strings.HasPrefix(goType, "coregraphics.") ||
+		strings.HasPrefix(goType, "objc.") ||
+		strings.HasPrefix(goType, "unsafe.") {
+		// Type is already qualified, return test value as-is
+		return testValue
+	}
+
+	// Package-local type - needs to be qualified with packageName
+	return packageName + "." + testValue
 }
 
 // canGenerateTestValue checks if we can generate a reasonable test value for the given type and parameter name.

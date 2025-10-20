@@ -14,6 +14,9 @@ frameworks:
       - NSFilePromiseProvider  # Requires valid NSFilePromiseProviderDelegate implementation with writePromiseToURL: method
   ObjectiveC:
     exclude_test_examples: []
+  CloudKit:
+    exclude_test_patterns:
+      - "^ExampleNewCKContainerWithIdentifier$"  # CKContainer requires CloudKit entitlements and container configuration
   QuartzCore:
     exclude_test_examples:
       - CAAnimation  # Causes crash with nil keyPath parameter

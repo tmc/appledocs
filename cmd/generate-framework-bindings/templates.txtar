@@ -391,7 +391,7 @@ type I{{$structName}} interface {
 	{{- else}}
 	objectivec.IObject
 	{{- end}}
-	{{- range prepareInstanceMethods .Methods}}
+	{{- range filterPropertyMethods .}}
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
@@ -504,7 +504,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 }
 {{end}}
 {{- end}}
-{{- range prepareInstanceMethods .Methods}}
+{{- range filterPropertyMethods .}}
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
@@ -598,7 +598,7 @@ type {{$classTypeName}} struct {
 // An interface definition for the [{{$structName}}] class.
 type I{{$structName}} interface {
 	{{getInterfaceParent . $.Framework}}
-	{{- range prepareInstanceMethods .Methods}}
+	{{- range filterPropertyMethods .}}
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
@@ -711,7 +711,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 }
 {{end}}
 {{- end}}
-{{- range prepareInstanceMethods .Methods}}
+{{- range filterPropertyMethods .}}
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
@@ -788,13 +788,20 @@ package {{.PackageName}}_test
 import (
 	"{{.OutputModule}}/{{.PackageName}}"
 {{- $needsFoundation := false}}
+{{- $needsCoreGraphics := false}}
 {{- range prepareInitMethodsWithClassName .Class.Name .Class.Methods}}
 {{- range .Parameters}}
 {{- $goType := mapObjCTypeToGo .Type $.Framework}}
 {{- if hasPrefix $goType "foundation."}}
 {{- $needsFoundation = true}}
 {{- end}}
+{{- if hasPrefix $goType "coregraphics."}}
+{{- $needsCoreGraphics = true}}
 {{- end}}
+{{- end}}
+{{- end}}
+{{- if $needsCoreGraphics}}
+	"{{.OutputModule}}/coregraphics"
 {{- end}}
 {{- if $needsFoundation}}
 	"{{.OutputModule}}/foundation"
@@ -812,6 +819,7 @@ var _ = {{.PackageName}}.New{{classToStructName .Class.Name}}
 {{if .HasInitMethods -}}
 {{- range prepareInitMethodsWithClassName $className .Methods}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
+{{- $testMethodName := printf "Example%s" $constructorName}}
 {{- $canGenerateAllParams := true}}
 {{- range .Parameters}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
@@ -820,7 +828,7 @@ var _ = {{.PackageName}}.New{{classToStructName .Class.Name}}
 {{- end}}
 {{- end}}
 
-{{- if $canGenerateAllParams}}
+{{- if and $canGenerateAllParams (not (shouldExcludeTestMethod $framework $testMethodName))}}
 // Example{{$constructorName}} demonstrates how to create a {{$structName}} instance{{if ne .Selector "init"}} using {{$constructorName}}{{end}}.
 {{if .Abstract -}}
 // {{.Abstract}}
@@ -832,12 +840,8 @@ func Example{{$constructorName}}() {
 	_ = {{$packageName}}.{{$constructorName}}(
 		{{- range $i, $p := .Parameters}}
 		{{- $goType := mapObjCTypeToGo $p.Type $framework}}
-		{{- $testValue := generateTestValue $goType $framework $p.Name}}
-		{{- if and (not (hasPrefix $goType "foundation.")) (not (hasPrefix $goType "objc.")) (not (hasPrefix $goType "unsafe.")) (ne $goType "string") (ne $goType "int") (ne $goType "int8") (ne $goType "int16") (ne $goType "int32") (ne $goType "int64") (ne $goType "uint") (ne $goType "uint8") (ne $goType "uint16") (ne $goType "uint32") (ne $goType "uint64") (ne $goType "bool") (ne $goType "float32") (ne $goType "float64")}}
-		{{$packageName}}.{{$testValue}}, // {{$p.Name}} {{$goType}}
-		{{- else}}
+		{{- $testValue := generateTestValueWithPackage $goType $framework $packageName $p.Name}}
 		{{$testValue}}, // {{$p.Name}} {{$goType}}
-		{{- end}}
 		{{- end}}
 	)
 	{{- end}}
