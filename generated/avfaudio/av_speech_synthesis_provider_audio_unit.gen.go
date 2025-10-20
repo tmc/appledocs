@@ -1,0 +1,102 @@
+// Code generated from Apple documentation for AVFAudio. DO NOT EDIT.
+
+package avfaudio
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [SpeechSynthesisProviderAudioUnit] class.
+var (
+	SpeechSynthesisProviderAudioUnitClass     _SpeechSynthesisProviderAudioUnitClass
+	SpeechSynthesisProviderAudioUnitClassOnce sync.Once
+)
+
+func getSpeechSynthesisProviderAudioUnitClass() _SpeechSynthesisProviderAudioUnitClass {
+	SpeechSynthesisProviderAudioUnitClassOnce.Do(func() {
+		SpeechSynthesisProviderAudioUnitClass = _SpeechSynthesisProviderAudioUnitClass{objc.GetClass("AVSpeechSynthesisProviderAudioUnit")}
+	})
+	return SpeechSynthesisProviderAudioUnitClass
+}
+
+type _SpeechSynthesisProviderAudioUnitClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [SpeechSynthesisProviderAudioUnit] class.
+type ISpeechSynthesisProviderAudioUnit interface {
+	IAudioUnit
+}
+
+// An object that generates speech from text.
+//
+// Use a speech synthesizer audio unit to generate audio buffers that contain speech for a given voice and speech markup. The audio unit receives an as input, and extracts audio buffers through the render block. Use to provide metadata as an array of . The system scans and loads voices for audio unit extensions of this type, and the voices it provides are available for use in and accessibility technologies like VoiceOver and Speak Screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit
+type SpeechSynthesisProviderAudioUnit struct {
+	AudioUnit
+}
+
+// SpeechSynthesisProviderAudioUnitFrom constructs a [SpeechSynthesisProviderAudioUnit] from an unsafe.Pointer.
+//
+// An object that generates speech from text.
+func SpeechSynthesisProviderAudioUnitFrom(ptr unsafe.Pointer) SpeechSynthesisProviderAudioUnit {
+	return SpeechSynthesisProviderAudioUnit{
+		AudioUnit: AudioUnitFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (sc _SpeechSynthesisProviderAudioUnitClass) Alloc() SpeechSynthesisProviderAudioUnit {
+	rv := objc.Send[SpeechSynthesisProviderAudioUnit](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (sc _SpeechSynthesisProviderAudioUnitClass) New() SpeechSynthesisProviderAudioUnit {
+	rv := objc.Send[SpeechSynthesisProviderAudioUnit](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SpeechSynthesisProviderAudioUnit) Init() SpeechSynthesisProviderAudioUnit {
+	rv := objc.Send[SpeechSynthesisProviderAudioUnit](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SpeechSynthesisProviderAudioUnit) Autorelease() SpeechSynthesisProviderAudioUnit {
+	rv := objc.Send[SpeechSynthesisProviderAudioUnit](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSpeechSynthesisProviderAudioUnit creates a new SpeechSynthesisProviderAudioUnit instance.
+func NewSpeechSynthesisProviderAudioUnit() SpeechSynthesisProviderAudioUnit {
+	return getSpeechSynthesisProviderAudioUnitClass().New()
+}
+
+
+// A block that subclasses use to send marker information to the host.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
+func (s_ SpeechSynthesisProviderAudioUnit) SpeechSynthesisOutputMetadataBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechSynthesisOutputMetadataBlock"))
+	return rv
+}
+
+
+// SetSpeechSynthesisOutputMetadataBlock sets the value of the speechSynthesisOutputMetadataBlock property.
+// A block that subclasses use to send marker information to the host.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
+func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechSynthesisOutputMetadataBlock:"), value)
+}
+
+

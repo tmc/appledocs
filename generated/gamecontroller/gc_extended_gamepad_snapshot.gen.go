@@ -1,0 +1,85 @@
+// Code generated from Apple documentation for GameController. DO NOT EDIT.
+
+package gamecontroller
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [GCExtendedGamepadSnapshot] class.
+var (
+	GCExtendedGamepadSnapshotClass     _GCExtendedGamepadSnapshotClass
+	GCExtendedGamepadSnapshotClassOnce sync.Once
+)
+
+func getGCExtendedGamepadSnapshotClass() _GCExtendedGamepadSnapshotClass {
+	GCExtendedGamepadSnapshotClassOnce.Do(func() {
+		GCExtendedGamepadSnapshotClass = _GCExtendedGamepadSnapshotClass{objc.GetClass("GCExtendedGamepadSnapshot")}
+	})
+	return GCExtendedGamepadSnapshotClass
+}
+
+type _GCExtendedGamepadSnapshotClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [GCExtendedGamepadSnapshot] class.
+type IGCExtendedGamepadSnapshot interface {
+	IGCExtendedGamepad
+}
+
+// A recording of all of the values provided by a object.
+//
+// To create a gamepad snapshot, call the method on a object. The class is a subclass of the class, so you use the parent class’s properties to read the individual element values. The snapshot is stored in a device independent format. To get the flattened data representation of the snapshot data, read the property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepadSnapshot
+type GCExtendedGamepadSnapshot struct {
+	GCExtendedGamepad
+}
+
+// GCExtendedGamepadSnapshotFrom constructs a [GCExtendedGamepadSnapshot] from an unsafe.Pointer.
+//
+// A recording of all of the values provided by a object.
+func GCExtendedGamepadSnapshotFrom(ptr unsafe.Pointer) GCExtendedGamepadSnapshot {
+	return GCExtendedGamepadSnapshot{
+		GCExtendedGamepad: GCExtendedGamepadFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (gc _GCExtendedGamepadSnapshotClass) Alloc() GCExtendedGamepadSnapshot {
+	rv := objc.Send[GCExtendedGamepadSnapshot](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (gc _GCExtendedGamepadSnapshotClass) New() GCExtendedGamepadSnapshot {
+	rv := objc.Send[GCExtendedGamepadSnapshot](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GCExtendedGamepadSnapshot) Init() GCExtendedGamepadSnapshot {
+	rv := objc.Send[GCExtendedGamepadSnapshot](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GCExtendedGamepadSnapshot) Autorelease() GCExtendedGamepadSnapshot {
+	rv := objc.Send[GCExtendedGamepadSnapshot](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGCExtendedGamepadSnapshot creates a new GCExtendedGamepadSnapshot instance.
+func NewGCExtendedGamepadSnapshot() GCExtendedGamepadSnapshot {
+	return getGCExtendedGamepadSnapshotClass().New()
+}
+
+
+
+

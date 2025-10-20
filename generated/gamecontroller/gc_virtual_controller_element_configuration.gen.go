@@ -1,0 +1,82 @@
+// Code generated from Apple documentation for GameController. DO NOT EDIT.
+
+package gamecontroller
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [GCVirtualControllerElementConfiguration] class.
+var (
+	GCVirtualControllerElementConfigurationClass     _GCVirtualControllerElementConfigurationClass
+	GCVirtualControllerElementConfigurationClassOnce sync.Once
+)
+
+func getGCVirtualControllerElementConfigurationClass() _GCVirtualControllerElementConfigurationClass {
+	GCVirtualControllerElementConfigurationClassOnce.Do(func() {
+		GCVirtualControllerElementConfigurationClass = _GCVirtualControllerElementConfigurationClass{objc.GetClass("GCVirtualControllerElementConfiguration")}
+	})
+	return GCVirtualControllerElementConfigurationClass
+}
+
+type _GCVirtualControllerElementConfigurationClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [GCVirtualControllerElementConfiguration] class.
+type IGCVirtualControllerElementConfiguration interface {
+	objectivec.IObject
+}
+
+// The properties of a virtual controller’s element that you can customize.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/ElementConfiguration
+type GCVirtualControllerElementConfiguration struct {
+	objectivec.Object
+}
+
+// GCVirtualControllerElementConfigurationFrom constructs a [GCVirtualControllerElementConfiguration] from an unsafe.Pointer.
+//
+// The properties of a virtual controller’s element that you can customize.
+func GCVirtualControllerElementConfigurationFrom(ptr unsafe.Pointer) GCVirtualControllerElementConfiguration {
+	return GCVirtualControllerElementConfiguration{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (gc _GCVirtualControllerElementConfigurationClass) Alloc() GCVirtualControllerElementConfiguration {
+	rv := objc.Send[GCVirtualControllerElementConfiguration](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (gc _GCVirtualControllerElementConfigurationClass) New() GCVirtualControllerElementConfiguration {
+	rv := objc.Send[GCVirtualControllerElementConfiguration](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GCVirtualControllerElementConfiguration) Init() GCVirtualControllerElementConfiguration {
+	rv := objc.Send[GCVirtualControllerElementConfiguration](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GCVirtualControllerElementConfiguration) Autorelease() GCVirtualControllerElementConfiguration {
+	rv := objc.Send[GCVirtualControllerElementConfiguration](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGCVirtualControllerElementConfiguration creates a new GCVirtualControllerElementConfiguration instance.
+func NewGCVirtualControllerElementConfiguration() GCVirtualControllerElementConfiguration {
+	return getGCVirtualControllerElementConfigurationClass().New()
+}
+
+
+
+

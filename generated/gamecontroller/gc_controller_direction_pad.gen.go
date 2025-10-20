@@ -1,0 +1,101 @@
+// Code generated from Apple documentation for GameController. DO NOT EDIT.
+
+package gamecontroller
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [GCControllerDirectionPad] class.
+var (
+	GCControllerDirectionPadClass     _GCControllerDirectionPadClass
+	GCControllerDirectionPadClassOnce sync.Once
+)
+
+func getGCControllerDirectionPadClass() _GCControllerDirectionPadClass {
+	GCControllerDirectionPadClassOnce.Do(func() {
+		GCControllerDirectionPadClass = _GCControllerDirectionPadClass{objc.GetClass("GCControllerDirectionPad")}
+	})
+	return GCControllerDirectionPadClass
+}
+
+type _GCControllerDirectionPadClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [GCControllerDirectionPad] class.
+type IGCControllerDirectionPad interface {
+	IGCControllerElement
+}
+
+// A control element associated with a directional pad or a thumbstick.
+//
+// You get the input values for this element from its subelements. You can use either the and properties to get coordinates, or the , , , and buttons that simulate directional pad buttons.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad
+type GCControllerDirectionPad struct {
+	GCControllerElement
+}
+
+// GCControllerDirectionPadFrom constructs a [GCControllerDirectionPad] from an unsafe.Pointer.
+//
+// A control element associated with a directional pad or a thumbstick.
+func GCControllerDirectionPadFrom(ptr unsafe.Pointer) GCControllerDirectionPad {
+	return GCControllerDirectionPad{
+		GCControllerElement: GCControllerElementFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (gc _GCControllerDirectionPadClass) Alloc() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (gc _GCControllerDirectionPadClass) New() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GCControllerDirectionPad) Init() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GCControllerDirectionPad) Autorelease() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGCControllerDirectionPad creates a new GCControllerDirectionPad instance.
+func NewGCControllerDirectionPad() GCControllerDirectionPad {
+	return getGCControllerDirectionPadClass().New()
+}
+
+
+// The x-axis element of the directional pad.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/xAxis
+func (g_ GCControllerDirectionPad) XAxis() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xAxis"))
+	return rv
+}
+
+// The y-axis element of the directional pad.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/yAxis
+func (g_ GCControllerDirectionPad) YAxis() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("yAxis"))
+	return rv
+}
+
+
+

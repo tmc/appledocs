@@ -1,0 +1,181 @@
+// Code generated from Apple documentation for Photos. DO NOT EDIT.
+
+package photos
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [PHCollectionList] class.
+var (
+	PHCollectionListClass     _PHCollectionListClass
+	PHCollectionListClassOnce sync.Once
+)
+
+func getPHCollectionListClass() _PHCollectionListClass {
+	PHCollectionListClassOnce.Do(func() {
+		PHCollectionListClass = _PHCollectionListClass{objc.GetClass("PHCollectionList")}
+	})
+	return PHCollectionListClass
+}
+
+type _PHCollectionListClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [PHCollectionList] class.
+type IPHCollectionList interface {
+	IPHCollection
+}
+
+// A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.
+//
+// In the Photos framework, collection objects (including asset collections) do not directly reference their member objects, and there are no other objects that directly reference collection objects. To retrieve the members of a collection list, fetch them with a class method such as . To find objects at the root of the collection list hierarchy (such as album folders with no parent folders), use the method. Like assets and asset collections, collection lists are immutable. To create, rename, or delete collection lists, or to add, remove, or rearrange members in a collection list, create a object within a photo library change block. For details on using change requests and change blocks to update the photo library, see .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList
+type PHCollectionList struct {
+	PHCollection
+}
+
+// PHCollectionListFrom constructs a [PHCollectionList] from an unsafe.Pointer.
+//
+// A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.
+func PHCollectionListFrom(ptr unsafe.Pointer) PHCollectionList {
+	return PHCollectionList{
+		PHCollection: PHCollectionFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (pc _PHCollectionListClass) Alloc() PHCollectionList {
+	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (pc _PHCollectionListClass) New() PHCollectionList {
+	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PHCollectionList) Init() PHCollectionList {
+	rv := objc.Send[PHCollectionList](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PHCollectionList) Autorelease() PHCollectionList {
+	rv := objc.Send[PHCollectionList](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPHCollectionList creates a new PHCollectionList instance.
+func NewPHCollectionList() PHCollectionList {
+	return getPHCollectionListClass().New()
+}
+
+
+// Retrieves collection lists of the specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)
+func (pc _PHCollectionListClass) FetchCollectionListsWithTypeSubtypeOptions(collectionListType unsafe.Pointer, subtype unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionListsWithType:subtype:options:"), collectionListType, subtype, options)
+	return rv
+}
+
+// Retrieves collection lists with the specified local-device-specific unique identifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchCollectionLists(withLocalIdentifiers:options:)
+func (pc _PHCollectionListClass) FetchCollectionListsWithLocalIdentifiersOptions(identifiers unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionListsWithLocalIdentifiers:options:"), identifiers, options)
+	return rv
+}
+
+// Retrieves collection lists that contain the specified collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchCollectionListsContaining(_:options:)
+func (pc _PHCollectionListClass) FetchCollectionListsContainingCollectionOptions(collection unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionListsContainingCollection:options:"), collection, options)
+	return rv
+}
+
+// Retrieves collection lists of the specified moment list type containing the specified moment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)
+func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeContainingMomentOptions(momentListSubtype unsafe.Pointer, moment unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchMomentListsWithSubtype:containingMoment:options:"), momentListSubtype, moment, options)
+	return rv
+}
+
+// Retrieves collection lists of the specified moment list type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)
+func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeOptions(momentListSubtype unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchMomentListsWithSubtype:options:"), momentListSubtype, options)
+	return rv
+}
+
+// Creates a temporary collection list that contains the specified asset collections.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)
+func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsTitle(collections unsafe.Pointer, title string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollections:title:"), collections, objc.String(title))
+	return rv
+}
+
+// Creates a temporary collection list containing the asset collections in the specified fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)
+func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsFetchResultTitle(fetchResult unsafe.Pointer, title string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollectionsFetchResult:title:"), fetchResult, objc.String(title))
+	return rv
+}
+
+// The type of asset collection grouping the collection list represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/collectionListSubtype
+func (p_ PHCollectionList) CollectionListSubtype() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collectionListSubtype"))
+	return rv
+}
+
+// The type of asset collection group that the collection list represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/collectionListType
+func (p_ PHCollectionList) CollectionListType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collectionListType"))
+	return rv
+}
+
+// The latest creation date among all assets in the collection list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/endDate
+func (p_ PHCollectionList) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+// The names of locations grouped by the collection (an array of objects).
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/localizedLocationNames
+func (p_ PHCollectionList) LocalizedLocationNames() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("localizedLocationNames"))
+	return rv
+}
+
+// The earliest creation date among all assets in the collection list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/startDate
+func (p_ PHCollectionList) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+
