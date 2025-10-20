@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [rowCount] class.
 var (
-	rowCountClass     _rowCountClass
-	rowCountClassOnce sync.Once
+	RowCountClass     _rowCountClass
+	RowCountClassOnce sync.Once
 )
 
 func getrowCountClass() _rowCountClass {
-	rowCountClassOnce.Do(func() {
-		rowCountClass = _rowCountClass{objc.GetClass("rowCount")}
+	RowCountClassOnce.Do(func() {
+		RowCountClass = _rowCountClass{objc.GetClass("rowCount")}
 	})
-	return rowCountClass
+	return RowCountClass
 }
 
 type _rowCountClass struct {

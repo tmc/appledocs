@@ -1527,6 +1527,8 @@ func getGoTypeImportPath(goType string) string {
 				return "github.com/tmc/appledocs/generated/quartzcore"
 			case "appkit":
 				return "github.com/tmc/appledocs/generated/appkit"
+			case "usernotifications":
+				return "github.com/tmc/appledocs/generated/usernotifications"
 			case "objc":
 				// objc is already imported by default in the template
 				return ""
@@ -1826,6 +1828,14 @@ func canGenerateTestValue(args ...string) bool {
 	if len(args) > 1 {
 		paramName = strings.ToLower(args[1])
 	}
+	// Special handling for Metal device parameters - must check BEFORE the objc.ID case below
+	// Metal framework asserts that device must not be nil, so we can't use 0 as test value
+	if goType == "objc.ID" && paramName != "" {
+		if strings.Contains(paramName, "device") {
+			return false
+		}
+	}
+
 	// We can generate test values for most primitive types and some common types
 	switch goType {
 	case "string", "int", "int8", "int16", "int32", "int64",
@@ -2169,11 +2179,12 @@ func isInheritedFromNSObject(selector string) bool {
 
 // ClassImports holds the import paths needed for a class
 type ClassImports struct {
-	NeedsObjectiveC   bool
-	NeedsFoundation   bool
-	NeedsQuartzCore   bool
-	NeedsCoreGraphics bool
-	NeedsAppKit       bool
+	NeedsObjectiveC      bool
+	NeedsFoundation      bool
+	NeedsQuartzCore      bool
+	NeedsCoreGraphics    bool
+	NeedsAppKit          bool
+	NeedsUserNotifications bool
 }
 
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
@@ -2270,6 +2281,40 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 			goType := mapObjCTypeToGo(prop.Type, framework)
 			if strings.HasPrefix(goType, "foundation.") {
 				imports.NeedsFoundation = true
+				break
+			}
+		}
+	}
+
+	// Check method parameters and return types for UserNotifications dependencies
+	if !imports.NeedsUserNotifications {
+		for _, method := range class.Methods {
+			// Check return type (use Contains to handle slices like []usernotifications.NotificationAction)
+			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
+			if strings.Contains(goReturnType, "usernotifications.") {
+				imports.NeedsUserNotifications = true
+				break
+			}
+			// Check parameter types
+			for _, param := range method.Parameters {
+				goParamType := mapObjCTypeToGo(param.Type, framework)
+				if strings.Contains(goParamType, "usernotifications.") {
+					imports.NeedsUserNotifications = true
+					break
+				}
+			}
+			if imports.NeedsUserNotifications {
+				break
+			}
+		}
+	}
+
+	// Check properties for UserNotifications dependencies
+	if !imports.NeedsUserNotifications {
+		for _, prop := range class.Properties {
+			goType := mapObjCTypeToGo(prop.Type, framework)
+			if strings.Contains(goType, "usernotifications.") {
+				imports.NeedsUserNotifications = true
 				break
 			}
 		}

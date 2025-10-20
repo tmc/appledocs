@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [hasMouthPosition] class.
 var (
-	hasMouthPositionClass     _hasMouthPositionClass
-	hasMouthPositionClassOnce sync.Once
+	HasMouthPositionClass     _hasMouthPositionClass
+	HasMouthPositionClassOnce sync.Once
 )
 
 func gethasMouthPositionClass() _hasMouthPositionClass {
-	hasMouthPositionClassOnce.Do(func() {
-		hasMouthPositionClass = _hasMouthPositionClass{objc.GetClass("hasMouthPosition")}
+	HasMouthPositionClassOnce.Do(func() {
+		HasMouthPositionClass = _hasMouthPositionClass{objc.GetClass("hasMouthPosition")}
 	})
-	return hasMouthPositionClass
+	return HasMouthPositionClass
 }
 
 type _hasMouthPositionClass struct {

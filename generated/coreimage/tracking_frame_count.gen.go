@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [trackingFrameCount] class.
 var (
-	trackingFrameCountClass     _trackingFrameCountClass
-	trackingFrameCountClassOnce sync.Once
+	TrackingFrameCountClass     _trackingFrameCountClass
+	TrackingFrameCountClassOnce sync.Once
 )
 
 func gettrackingFrameCountClass() _trackingFrameCountClass {
-	trackingFrameCountClassOnce.Do(func() {
-		trackingFrameCountClass = _trackingFrameCountClass{objc.GetClass("trackingFrameCount")}
+	TrackingFrameCountClassOnce.Do(func() {
+		TrackingFrameCountClass = _trackingFrameCountClass{objc.GetClass("trackingFrameCount")}
 	})
-	return trackingFrameCountClass
+	return TrackingFrameCountClass
 }
 
 type _trackingFrameCountClass struct {

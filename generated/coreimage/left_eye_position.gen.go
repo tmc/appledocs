@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [leftEyePosition] class.
 var (
-	leftEyePositionClass     _leftEyePositionClass
-	leftEyePositionClassOnce sync.Once
+	LeftEyePositionClass     _leftEyePositionClass
+	LeftEyePositionClassOnce sync.Once
 )
 
 func getleftEyePositionClass() _leftEyePositionClass {
-	leftEyePositionClassOnce.Do(func() {
-		leftEyePositionClass = _leftEyePositionClass{objc.GetClass("leftEyePosition")}
+	LeftEyePositionClassOnce.Do(func() {
+		LeftEyePositionClass = _leftEyePositionClass{objc.GetClass("leftEyePosition")}
 	})
-	return leftEyePositionClass
+	return LeftEyePositionClass
 }
 
 type _leftEyePositionClass struct {

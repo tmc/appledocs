@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [isCompact] class.
 var (
-	isCompactClass     _isCompactClass
-	isCompactClassOnce sync.Once
+	IsCompactClass     _isCompactClass
+	IsCompactClassOnce sync.Once
 )
 
 func getisCompactClass() _isCompactClass {
-	isCompactClassOnce.Do(func() {
-		isCompactClass = _isCompactClass{objc.GetClass("isCompact")}
+	IsCompactClassOnce.Do(func() {
+		IsCompactClass = _isCompactClass{objc.GetClass("isCompact")}
 	})
-	return isCompactClass
+	return IsCompactClass
 }
 
 type _isCompactClass struct {

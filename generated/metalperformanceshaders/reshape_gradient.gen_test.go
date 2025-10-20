@@ -11,12 +11,5 @@ var _ = metalperformanceshaders.NewReshapeGradient
 
 
 
-// ExampleNewReshapeGradientWithDevice demonstrates how to create a ReshapeGradient instance using NewReshapeGradientWithDevice.
-func ExampleNewReshapeGradientWithDevice() {
-	_ = metalperformanceshaders.NewReshapeGradientWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

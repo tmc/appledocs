@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewPredicate
 
 
-// ExampleNewPredicateWithDevice demonstrates how to create a Predicate instance using NewPredicateWithDevice.
-func ExampleNewPredicateWithDevice() {
-	_ = metalperformanceshaders.NewPredicateWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

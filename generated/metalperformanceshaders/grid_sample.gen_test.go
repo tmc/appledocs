@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewGridSample
 
 
-// ExampleNewGridSampleWithDevice demonstrates how to create a GridSample instance using NewGridSampleWithDevice.
-func ExampleNewGridSampleWithDevice() {
-	_ = metalperformanceshaders.NewGridSampleWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

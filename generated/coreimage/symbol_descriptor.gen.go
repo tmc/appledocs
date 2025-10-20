@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [symbolDescriptor] class.
 var (
-	symbolDescriptorClass     _symbolDescriptorClass
-	symbolDescriptorClassOnce sync.Once
+	SymbolDescriptorClass     _symbolDescriptorClass
+	SymbolDescriptorClassOnce sync.Once
 )
 
 func getsymbolDescriptorClass() _symbolDescriptorClass {
-	symbolDescriptorClassOnce.Do(func() {
-		symbolDescriptorClass = _symbolDescriptorClass{objc.GetClass("symbolDescriptor")}
+	SymbolDescriptorClassOnce.Do(func() {
+		SymbolDescriptorClass = _symbolDescriptorClass{objc.GetClass("symbolDescriptor")}
 	})
-	return symbolDescriptorClass
+	return SymbolDescriptorClass
 }
 
 type _symbolDescriptorClass struct {

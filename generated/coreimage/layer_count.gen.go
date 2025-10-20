@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [layerCount] class.
 var (
-	layerCountClass     _layerCountClass
-	layerCountClassOnce sync.Once
+	LayerCountClass     _layerCountClass
+	LayerCountClassOnce sync.Once
 )
 
 func getlayerCountClass() _layerCountClass {
-	layerCountClassOnce.Do(func() {
-		layerCountClass = _layerCountClass{objc.GetClass("layerCount")}
+	LayerCountClassOnce.Do(func() {
+		LayerCountClass = _layerCountClass{objc.GetClass("layerCount")}
 	})
-	return layerCountClass
+	return LayerCountClass
 }
 
 type _layerCountClass struct {

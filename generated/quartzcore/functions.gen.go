@@ -18,7 +18,7 @@ import (
 var (
 	_CACurrentMediaTime func() unsafe.Pointer
 	_CAFrameRateRangeIsEqualToRange func(unsafe.Pointer, unsafe.Pointer) bool
-	_CAFrameRateRangeMake func(float32, float32, float32) unsafe.Pointer
+	_CAFrameRateRangeMake func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CATransform3DConcat func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CATransform3DEqualToTransform func(unsafe.Pointer, unsafe.Pointer) bool
 	_CATransform3DGetAffineTransform func(unsafe.Pointer) coregraphics.CGAffineTransform
@@ -96,7 +96,7 @@ func CAFrameRateRangeIsEqualToRange(range_ unsafe.Pointer, other unsafe.Pointer)
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAFrameRateRangeMake
-func CAFrameRateRangeMake(minimum float32, maximum float32, preferred float32) unsafe.Pointer {
+func CAFrameRateRangeMake(minimum unsafe.Pointer, maximum unsafe.Pointer, preferred unsafe.Pointer) unsafe.Pointer {
 	return _CAFrameRateRangeMake(minimum, maximum, preferred)
 	}
 
@@ -176,7 +176,7 @@ func CATransform3DMakeAffineTransform(m coregraphics.CGAffineTransform) unsafe.P
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeRotation(_:_:_:_:)
-func CATransform3DMakeRotation(angle CGFloat, x CGFloat, y CGFloat, z CGFloat) unsafe.Pointer {
+func CATransform3DMakeRotation(angle float64, x float64, y float64, z float64) unsafe.Pointer {
 	return _CATransform3DMakeRotation(angle, x, y, z)
 	}
 
@@ -186,7 +186,7 @@ func CATransform3DMakeRotation(angle CGFloat, x CGFloat, y CGFloat, z CGFloat) u
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeScale(_:_:_:)
-func CATransform3DMakeScale(sx CGFloat, sy CGFloat, sz CGFloat) unsafe.Pointer {
+func CATransform3DMakeScale(sx float64, sy float64, sz float64) unsafe.Pointer {
 	return _CATransform3DMakeScale(sx, sy, sz)
 	}
 
@@ -196,7 +196,7 @@ func CATransform3DMakeScale(sx CGFloat, sy CGFloat, sz CGFloat) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeTranslation(_:_:_:)
-func CATransform3DMakeTranslation(tx CGFloat, ty CGFloat, tz CGFloat) unsafe.Pointer {
+func CATransform3DMakeTranslation(tx float64, ty float64, tz float64) unsafe.Pointer {
 	return _CATransform3DMakeTranslation(tx, ty, tz)
 	}
 
@@ -206,7 +206,7 @@ func CATransform3DMakeTranslation(tx CGFloat, ty CGFloat, tz CGFloat) unsafe.Poi
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DRotate(_:_:_:_:_:)
-func CATransform3DRotate(t unsafe.Pointer, angle CGFloat, x CGFloat, y CGFloat, z CGFloat) unsafe.Pointer {
+func CATransform3DRotate(t unsafe.Pointer, angle float64, x float64, y float64, z float64) unsafe.Pointer {
 	return _CATransform3DRotate(t, angle, x, y, z)
 	}
 
@@ -216,7 +216,7 @@ func CATransform3DRotate(t unsafe.Pointer, angle CGFloat, x CGFloat, y CGFloat, 
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DScale(_:_:_:_:)
-func CATransform3DScale(t unsafe.Pointer, sx CGFloat, sy CGFloat, sz CGFloat) unsafe.Pointer {
+func CATransform3DScale(t unsafe.Pointer, sx float64, sy float64, sz float64) unsafe.Pointer {
 	return _CATransform3DScale(t, sx, sy, sz)
 	}
 
@@ -226,7 +226,7 @@ func CATransform3DScale(t unsafe.Pointer, sx CGFloat, sy CGFloat, sz CGFloat) un
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DTranslate(_:_:_:_:)
-func CATransform3DTranslate(t unsafe.Pointer, tx CGFloat, ty CGFloat, tz CGFloat) unsafe.Pointer {
+func CATransform3DTranslate(t unsafe.Pointer, tx float64, ty float64, tz float64) unsafe.Pointer {
 	return _CATransform3DTranslate(t, tx, ty, tz)
 	}
 

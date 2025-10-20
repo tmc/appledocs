@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [rightEyeClosed] class.
 var (
-	rightEyeClosedClass     _rightEyeClosedClass
-	rightEyeClosedClassOnce sync.Once
+	RightEyeClosedClass     _rightEyeClosedClass
+	RightEyeClosedClassOnce sync.Once
 )
 
 func getrightEyeClosedClass() _rightEyeClosedClass {
-	rightEyeClosedClassOnce.Do(func() {
-		rightEyeClosedClass = _rightEyeClosedClass{objc.GetClass("rightEyeClosed")}
+	RightEyeClosedClassOnce.Do(func() {
+		RightEyeClosedClass = _rightEyeClosedClass{objc.GetClass("rightEyeClosed")}
 	})
-	return rightEyeClosedClass
+	return RightEyeClosedClass
 }
 
 type _rightEyeClosedClass struct {

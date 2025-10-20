@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewNDArrayLUTDequantize
 
 
-// ExampleNewNDArrayLUTDequantizeWithDevice demonstrates how to create a NDArrayLUTDequantize instance using NewNDArrayLUTDequantizeWithDevice.
-func ExampleNewNDArrayLUTDequantizeWithDevice() {
-	_ = metalperformanceshaders.NewNDArrayLUTDequantizeWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

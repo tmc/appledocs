@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [maskPattern] class.
 var (
-	maskPatternClass     _maskPatternClass
-	maskPatternClassOnce sync.Once
+	MaskPatternClass     _maskPatternClass
+	MaskPatternClassOnce sync.Once
 )
 
 func getmaskPatternClass() _maskPatternClass {
-	maskPatternClassOnce.Do(func() {
-		maskPatternClass = _maskPatternClass{objc.GetClass("maskPattern")}
+	MaskPatternClassOnce.Do(func() {
+		MaskPatternClass = _maskPatternClass{objc.GetClass("maskPattern")}
 	})
-	return maskPatternClass
+	return MaskPatternClass
 }
 
 type _maskPatternClass struct {

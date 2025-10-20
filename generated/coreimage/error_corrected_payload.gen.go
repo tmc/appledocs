@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [errorCorrectedPayload] class.
 var (
-	errorCorrectedPayloadClass     _errorCorrectedPayloadClass
-	errorCorrectedPayloadClassOnce sync.Once
+	ErrorCorrectedPayloadClass     _errorCorrectedPayloadClass
+	ErrorCorrectedPayloadClassOnce sync.Once
 )
 
 func geterrorCorrectedPayloadClass() _errorCorrectedPayloadClass {
-	errorCorrectedPayloadClassOnce.Do(func() {
-		errorCorrectedPayloadClass = _errorCorrectedPayloadClass{objc.GetClass("errorCorrectedPayload")}
+	ErrorCorrectedPayloadClassOnce.Do(func() {
+		ErrorCorrectedPayloadClass = _errorCorrectedPayloadClass{objc.GetClass("errorCorrectedPayload")}
 	})
-	return errorCorrectedPayloadClass
+	return ErrorCorrectedPayloadClass
 }
 
 type _errorCorrectedPayloadClass struct {

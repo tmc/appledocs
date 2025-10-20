@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewAccelerationStructureGroup
 
 
-// ExampleNewAccelerationStructureGroupWithDevice demonstrates how to create a AccelerationStructureGroup instance using NewAccelerationStructureGroupWithDevice.
-func ExampleNewAccelerationStructureGroupWithDevice() {
-	_ = metalperformanceshaders.NewAccelerationStructureGroupWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

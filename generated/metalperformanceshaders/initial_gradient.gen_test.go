@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewInitialGradient
 
 
-// ExampleNewInitialGradientWithDevice demonstrates how to create a InitialGradient instance using NewInitialGradientWithDevice.
-func ExampleNewInitialGradientWithDevice() {
-	_ = metalperformanceshaders.NewInitialGradientWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

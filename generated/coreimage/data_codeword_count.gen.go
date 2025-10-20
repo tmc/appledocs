@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [dataCodewordCount] class.
 var (
-	dataCodewordCountClass     _dataCodewordCountClass
-	dataCodewordCountClassOnce sync.Once
+	DataCodewordCountClass     _dataCodewordCountClass
+	DataCodewordCountClassOnce sync.Once
 )
 
 func getdataCodewordCountClass() _dataCodewordCountClass {
-	dataCodewordCountClassOnce.Do(func() {
-		dataCodewordCountClass = _dataCodewordCountClass{objc.GetClass("dataCodewordCount")}
+	DataCodewordCountClassOnce.Do(func() {
+		DataCodewordCountClass = _dataCodewordCountClass{objc.GetClass("dataCodewordCount")}
 	})
-	return dataCodewordCountClass
+	return DataCodewordCountClass
 }
 
 type _dataCodewordCountClass struct {

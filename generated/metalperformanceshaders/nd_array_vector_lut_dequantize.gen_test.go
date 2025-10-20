@@ -10,13 +10,5 @@ import (
 var _ = metalperformanceshaders.NewNDArrayVectorLUTDequantize
 
 
-// ExampleNewNDArrayVectorLUTDequantizeWithDeviceAxis demonstrates how to create a NDArrayVectorLUTDequantize instance using NewNDArrayVectorLUTDequantizeWithDeviceAxis.
-func ExampleNewNDArrayVectorLUTDequantizeWithDeviceAxis() {
-	_ = metalperformanceshaders.NewNDArrayVectorLUTDequantizeWithDeviceAxis(
-		0, // device objc.ID
-		0, // axis uint
-	)
-	// Output:
-}
 
 

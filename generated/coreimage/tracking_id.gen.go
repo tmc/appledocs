@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [trackingID] class.
 var (
-	trackingIDClass     _trackingIDClass
-	trackingIDClassOnce sync.Once
+	TrackingIDClass     _trackingIDClass
+	TrackingIDClassOnce sync.Once
 )
 
 func gettrackingIDClass() _trackingIDClass {
-	trackingIDClassOnce.Do(func() {
-		trackingIDClass = _trackingIDClass{objc.GetClass("trackingID")}
+	TrackingIDClassOnce.Do(func() {
+		TrackingIDClass = _trackingIDClass{objc.GetClass("trackingID")}
 	})
-	return trackingIDClass
+	return TrackingIDClass
 }
 
 type _trackingIDClass struct {

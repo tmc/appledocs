@@ -12,17 +12,6 @@ var _ = foundation.NewDictionary
 
 
 
-
-
-// ExampleNewDictionaryWithObjectsAndKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsAndKeys.
-// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
-func ExampleNewDictionaryWithObjectsAndKeys() {
-	_ = foundation.NewDictionaryWithObjectsAndKeys(
-		0, // firstObject objc.ID
-	)
-	// Output:
-}
-
 // ExampleNewDictionary demonstrates how to create a Dictionary instance.
 // Initializes a newly allocated dictionary.
 func ExampleNewDictionary() {
@@ -41,6 +30,17 @@ func ExampleNewDictionaryWithContentsOfFile() {
 }
 
 
+
+
+
+// ExampleNewDictionaryWithObjectsAndKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsAndKeys.
+// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
+func ExampleNewDictionaryWithObjectsAndKeys() {
+	_ = foundation.NewDictionaryWithObjectsAndKeys(
+		0, // firstObject objc.ID
+	)
+	// Output:
+}
 
 
 

@@ -36,6 +36,13 @@ func MapCTypeToGo(cType, framework string) string {
 		return "CGSize"
 	case cType == "NSRect":
 		return "CGRect"
+	// Bare geometry type names (sometimes used in Swift/modern APIs)
+	case cType == "Point":
+		return "CGPoint"
+	case cType == "Size":
+		return "CGSize"
+	case cType == "Rect":
+		return "CGRect"
 	}
 
 	// Common C types

@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [hasFaceAngle] class.
 var (
-	hasFaceAngleClass     _hasFaceAngleClass
-	hasFaceAngleClassOnce sync.Once
+	HasFaceAngleClass     _hasFaceAngleClass
+	HasFaceAngleClassOnce sync.Once
 )
 
 func gethasFaceAngleClass() _hasFaceAngleClass {
-	hasFaceAngleClassOnce.Do(func() {
-		hasFaceAngleClass = _hasFaceAngleClass{objc.GetClass("hasFaceAngle")}
+	HasFaceAngleClassOnce.Do(func() {
+		HasFaceAngleClass = _hasFaceAngleClass{objc.GetClass("hasFaceAngle")}
 	})
-	return hasFaceAngleClass
+	return HasFaceAngleClass
 }
 
 type _hasFaceAngleClass struct {

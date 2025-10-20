@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewNDArrayUnaryGradientKernel
 
 
-// ExampleNewNDArrayUnaryGradientKernelWithDevice demonstrates how to create a NDArrayUnaryGradientKernel instance using NewNDArrayUnaryGradientKernelWithDevice.
-func ExampleNewNDArrayUnaryGradientKernelWithDevice() {
-	_ = metalperformanceshaders.NewNDArrayUnaryGradientKernelWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

@@ -127,6 +127,12 @@ var typeRegistry = []TypeMapping{
 	// AppKit event types
 	{ObjCType: "NSEventType", GoType: "EventType", Framework: "AppKit"},
 	{ObjCType: "NSEventModifierFlags", GoType: "EventModifierFlags", Framework: "AppKit"},
+
+	// ==== UserNotifications types ====
+	// UserNotifications types used in Foundation - use objc.ID to avoid import cycles
+	// Foundation imports UserNotifications, and UserNotifications imports Foundation,
+	// creating a cycle if we use typed references
+	{ObjCType: "UNNotificationAction", GoType: "objc.ID", Framework: "Foundation"},
 }
 
 // lookupTypeMapping finds a type mapping for the given Objective-C type.

@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewNDArrayBinarySecondaryGradientKernel
 
 
-// ExampleNewNDArrayBinarySecondaryGradientKernelWithDevice demonstrates how to create a NDArrayBinarySecondaryGradientKernel instance using NewNDArrayBinarySecondaryGradientKernelWithDevice.
-func ExampleNewNDArrayBinarySecondaryGradientKernelWithDevice() {
-	_ = metalperformanceshaders.NewNDArrayBinarySecondaryGradientKernelWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [hasSmile] class.
 var (
-	hasSmileClass     _hasSmileClass
-	hasSmileClassOnce sync.Once
+	HasSmileClass     _hasSmileClass
+	HasSmileClassOnce sync.Once
 )
 
 func gethasSmileClass() _hasSmileClass {
-	hasSmileClassOnce.Do(func() {
-		hasSmileClass = _hasSmileClass{objc.GetClass("hasSmile")}
+	HasSmileClassOnce.Do(func() {
+		HasSmileClass = _hasSmileClass{objc.GetClass("hasSmile")}
 	})
-	return hasSmileClass
+	return HasSmileClass
 }
 
 type _hasSmileClass struct {

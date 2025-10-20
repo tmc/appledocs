@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [symbolVersion] class.
 var (
-	symbolVersionClass     _symbolVersionClass
-	symbolVersionClassOnce sync.Once
+	SymbolVersionClass     _symbolVersionClass
+	SymbolVersionClassOnce sync.Once
 )
 
 func getsymbolVersionClass() _symbolVersionClass {
-	symbolVersionClassOnce.Do(func() {
-		symbolVersionClass = _symbolVersionClass{objc.GetClass("symbolVersion")}
+	SymbolVersionClassOnce.Do(func() {
+		SymbolVersionClass = _symbolVersionClass{objc.GetClass("symbolVersion")}
 	})
-	return symbolVersionClass
+	return SymbolVersionClass
 }
 
 type _symbolVersionClass struct {

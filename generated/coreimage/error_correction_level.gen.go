@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [errorCorrectionLevel] class.
 var (
-	errorCorrectionLevelClass     _errorCorrectionLevelClass
-	errorCorrectionLevelClassOnce sync.Once
+	ErrorCorrectionLevelClass     _errorCorrectionLevelClass
+	ErrorCorrectionLevelClassOnce sync.Once
 )
 
 func geterrorCorrectionLevelClass() _errorCorrectionLevelClass {
-	errorCorrectionLevelClassOnce.Do(func() {
-		errorCorrectionLevelClass = _errorCorrectionLevelClass{objc.GetClass("errorCorrectionLevel")}
+	ErrorCorrectionLevelClassOnce.Do(func() {
+		ErrorCorrectionLevelClass = _errorCorrectionLevelClass{objc.GetClass("errorCorrectionLevel")}
 	})
-	return errorCorrectionLevelClass
+	return ErrorCorrectionLevelClass
 }
 
 type _errorCorrectionLevelClass struct {

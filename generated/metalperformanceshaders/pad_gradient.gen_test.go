@@ -10,12 +10,5 @@ import (
 var _ = metalperformanceshaders.NewPadGradient
 
 
-// ExampleNewPadGradientWithDevice demonstrates how to create a PadGradient instance using NewPadGradientWithDevice.
-func ExampleNewPadGradientWithDevice() {
-	_ = metalperformanceshaders.NewPadGradientWithDevice(
-		0, // device objc.ID
-	)
-	// Output:
-}
 
 

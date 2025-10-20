@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [bottomRight] class.
 var (
-	bottomRightClass     _bottomRightClass
-	bottomRightClassOnce sync.Once
+	BottomRightClass     _bottomRightClass
+	BottomRightClassOnce sync.Once
 )
 
 func getbottomRightClass() _bottomRightClass {
-	bottomRightClassOnce.Do(func() {
-		bottomRightClass = _bottomRightClass{objc.GetClass("bottomRight")}
+	BottomRightClassOnce.Do(func() {
+		BottomRightClass = _bottomRightClass{objc.GetClass("bottomRight")}
 	})
-	return bottomRightClass
+	return BottomRightClass
 }
 
 type _bottomRightClass struct {

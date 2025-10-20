@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [bounds] class.
 var (
-	boundsClass     _boundsClass
-	boundsClassOnce sync.Once
+	BoundsClass     _boundsClass
+	BoundsClassOnce sync.Once
 )
 
 func getboundsClass() _boundsClass {
-	boundsClassOnce.Do(func() {
-		boundsClass = _boundsClass{objc.GetClass("bounds")}
+	BoundsClassOnce.Do(func() {
+		BoundsClass = _boundsClass{objc.GetClass("bounds")}
 	})
-	return boundsClass
+	return BoundsClass
 }
 
 type _boundsClass struct {

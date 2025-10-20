@@ -11,7 +11,6 @@ var _ = coreimage.NewColor
 
 
 
-
 // ExampleNewColorWithRedGreenBlue demonstrates how to create a Color instance using NewColorWithRedGreenBlue.
 // Initialize a Core Image color object in the sRGB color space   with the specified red, green, and blue component values.
 func ExampleNewColorWithRedGreenBlue() {
@@ -45,5 +44,6 @@ func ExampleNewColorWithString() {
 	)
 	// Output:
 }
+
 
 

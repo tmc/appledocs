@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [hasTrackingID] class.
 var (
-	hasTrackingIDClass     _hasTrackingIDClass
-	hasTrackingIDClassOnce sync.Once
+	HasTrackingIDClass     _hasTrackingIDClass
+	HasTrackingIDClassOnce sync.Once
 )
 
 func gethasTrackingIDClass() _hasTrackingIDClass {
-	hasTrackingIDClassOnce.Do(func() {
-		hasTrackingIDClass = _hasTrackingIDClass{objc.GetClass("hasTrackingID")}
+	HasTrackingIDClassOnce.Do(func() {
+		HasTrackingIDClass = _hasTrackingIDClass{objc.GetClass("hasTrackingID")}
 	})
-	return hasTrackingIDClass
+	return HasTrackingIDClass
 }
 
 type _hasTrackingIDClass struct {

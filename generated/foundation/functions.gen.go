@@ -6,10 +6,11 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
+	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
-// Foundation Functions (33 total)
+// Foundation Functions (35 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -18,9 +19,11 @@ var (
 	_NSAllocateCollectable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSAllocateMemoryPages func(unsafe.Pointer) unsafe.Pointer
 	_NSClassFromString func(unsafe.Pointer) unsafe.Pointer
-	_NSCopyMemoryPages func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSCopyMemoryPages func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSCopyObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSCountFrames func() unsafe.Pointer
+	_NSDecimalCompact func(unsafe.Pointer) unsafe.Pointer
+	_NSDecimalPower func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSExtraRefCount func(unsafe.Pointer) unsafe.Pointer
 	_NSFileTypeForHFSTypeCode func(unsafe.Pointer) unsafe.Pointer
 	_NSFrameAddress func(unsafe.Pointer) unsafe.Pointer
@@ -30,20 +33,20 @@ var (
 	_NSHFSTypeOfFile func(unsafe.Pointer) unsafe.Pointer
 	_NSHomeDirectory func() unsafe.Pointer
 	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
-	_NSIncrementExtraRefCount func(unsafe.Pointer)
-	_NSIntegralRectWithOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSIncrementExtraRefCount func(unsafe.Pointer) unsafe.Pointer
+	_NSIntegralRectWithOptions func(coregraphics.CGRect, unsafe.Pointer) coregraphics.CGRect
 	_NSIsFreedObject func(unsafe.Pointer) bool
-	_NSLog func(unsafe.Pointer)
-	_NSLogv func(unsafe.Pointer, unsafe.Pointer)
-	_NSMouseInRect func(unsafe.Pointer, unsafe.Pointer, bool) bool
+	_NSLog func(unsafe.Pointer) unsafe.Pointer
+	_NSLogv func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSMouseInRect func(coregraphics.CGPoint, coregraphics.CGRect, bool) bool
 	_NSOpenStepRootDirectory func() unsafe.Pointer
 	_NSReallocateCollectable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSRecordAllocationEvent func(int, unsafe.Pointer)
+	_NSRecordAllocationEvent func(int, unsafe.Pointer) unsafe.Pointer
 	_NSReturnAddress func(unsafe.Pointer) unsafe.Pointer
 	_NSRoundUpToMultipleOfPageSize func(unsafe.Pointer) unsafe.Pointer
 	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
-	_NSSetUncaughtExceptionHandler func()
-	_NSSizeFromString func(unsafe.Pointer) unsafe.Pointer
+	_NSSetUncaughtExceptionHandler func() unsafe.Pointer
+	_NSSizeFromString func(unsafe.Pointer) coregraphics.CGSize
 	_NSStringFromProtocol func(unsafe.Pointer) unsafe.Pointer
 	_NSTemporaryDirectory func() unsafe.Pointer
 	_NSUserName func() unsafe.Pointer
@@ -61,6 +64,8 @@ func init() {
 	tryRegister(&_NSCopyMemoryPages, lib, "NSCopyMemoryPages")
 	tryRegister(&_NSCopyObject, lib, "NSCopyObject")
 	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
+	tryRegister(&_NSDecimalCompact, lib, "NSDecimalCompact")
+	tryRegister(&_NSDecimalPower, lib, "NSDecimalPower")
 	tryRegister(&_NSExtraRefCount, lib, "NSExtraRefCount")
 	tryRegister(&_NSFileTypeForHFSTypeCode, lib, "NSFileTypeForHFSTypeCode")
 	tryRegister(&_NSFrameAddress, lib, "NSFrameAddress")
@@ -163,6 +168,26 @@ func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
 func NSCountFrames() unsafe.Pointer {
 	return _NSCountFrames()
+	}
+
+
+// Compacts the decimal structure for efficiency. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompact(_:)
+func NSDecimalCompact(number unsafe.Pointer) {
+	_NSDecimalCompact(number)
+	}
+
+
+// Raises the decimal value to the specified power. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalPower(_:_:_:_:)
+func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalPower(result, number, power, roundingMode)
 	}
 
 
@@ -271,7 +296,7 @@ func NSIncrementExtraRefCount(object unsafe.Pointer) {
 // Added in macOS 10.7.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRectWithOptions(_:_:)
-func NSIntegralRectWithOptions(aRect unsafe.Pointer, opts unsafe.Pointer) unsafe.Pointer {
+func NSIntegralRectWithOptions(aRect coregraphics.CGRect, opts unsafe.Pointer) coregraphics.CGRect {
 	return _NSIntegralRectWithOptions(aRect, opts)
 	}
 
@@ -311,7 +336,7 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMouseInRect(_:_:_:)
-func NSMouseInRect(aPoint unsafe.Pointer, aRect unsafe.Pointer, flipped bool) bool {
+func NSMouseInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect, flipped bool) bool {
 	return _NSMouseInRect(aPoint, aRect, flipped)
 	}
 
@@ -391,7 +416,7 @@ func NSSetUncaughtExceptionHandler() {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSizeFromString(_:)
-func NSSizeFromString(aString unsafe.Pointer) unsafe.Pointer {
+func NSSizeFromString(aString unsafe.Pointer) coregraphics.CGSize {
 	return _NSSizeFromString(aString)
 	}
 

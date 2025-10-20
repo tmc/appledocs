@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [columnCount] class.
 var (
-	columnCountClass     _columnCountClass
-	columnCountClassOnce sync.Once
+	ColumnCountClass     _columnCountClass
+	ColumnCountClassOnce sync.Once
 )
 
 func getcolumnCountClass() _columnCountClass {
-	columnCountClassOnce.Do(func() {
-		columnCountClass = _columnCountClass{objc.GetClass("columnCount")}
+	ColumnCountClassOnce.Do(func() {
+		ColumnCountClass = _columnCountClass{objc.GetClass("columnCount")}
 	})
-	return columnCountClass
+	return ColumnCountClass
 }
 
 type _columnCountClass struct {

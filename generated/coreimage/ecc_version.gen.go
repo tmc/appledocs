@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [eccVersion] class.
 var (
-	eccVersionClass     _eccVersionClass
-	eccVersionClassOnce sync.Once
+	EccVersionClass     _eccVersionClass
+	EccVersionClassOnce sync.Once
 )
 
 func geteccVersionClass() _eccVersionClass {
-	eccVersionClassOnce.Do(func() {
-		eccVersionClass = _eccVersionClass{objc.GetClass("eccVersion")}
+	EccVersionClassOnce.Do(func() {
+		EccVersionClass = _eccVersionClass{objc.GetClass("eccVersion")}
 	})
-	return eccVersionClass
+	return EccVersionClass
 }
 
 type _eccVersionClass struct {
