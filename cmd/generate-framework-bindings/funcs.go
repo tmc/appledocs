@@ -77,6 +77,7 @@ var templateFuncs = template.FuncMap{
 	"sortedImportPaths":        sortedImportPaths,
 	"prepareClassMethods":         prepareClassMethods,
 	"prepareInstanceMethods":      prepareInstanceMethods,
+	"filterPropertyMethods":       filterPropertyMethods,
 	"prepareInitMethods":          prepareInitMethods,
 	"initMethodToConstructorName":       initMethodToConstructorName,
 	"prepareInitMethodsWithClassName":   prepareInitMethodsWithClassName,
@@ -777,6 +778,7 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 	// Then apply our framework-specific mapping to add package qualifiers
 	// For example, CGAffineTransform -> coregraphics.CGAffineTransform
 	mapped := mapObjCTypeToGo(goType, framework)
+
 	return mapped
 }
 
@@ -1140,6 +1142,11 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 			}
 			instanceMethods = append(instanceMethods, m)
 			seenSelectors[m.Selector] = true
+		} else if !m.IsClassMethod && seenSelectors[m.Selector] {
+			// Debug: duplicate selector detected
+			if m.Selector == "creationDate" {
+				fmt.Fprintf(os.Stderr, "DEBUG prepareInstanceMethods: Skipping duplicate selector %s (already seen)\n", m.Selector)
+			}
 		}
 	}
 
@@ -1157,6 +1164,10 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 	for _, m := range instanceMethods {
 		goName := selectorToGoName(m.Selector)
 
+		if m.Selector == "creationDate" {
+			fmt.Fprintf(os.Stderr, "DEBUG: Processing creationDate, goName=%s, goNameCounts=%d\n", goName, goNameCounts[goName])
+		}
+
 		// If this Go name has duplicates, disambiguate using parameter labels
 		if goNameCounts[goName] > 1 {
 			// Create a copy of the method and update its Name field
@@ -1164,8 +1175,15 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 			methodCopy.Name = disambiguateMethodName(m)
 			goName = methodCopy.Name
 
+			if m.Selector == "creationDate" {
+				fmt.Fprintf(os.Stderr, "DEBUG: Disambiguated creationDate to %s\n", goName)
+			}
+
 			// Skip if we've already seen this exact Go name (shouldn't happen after disambiguation)
 			if seenGoNames[goName] {
+				if m.Selector == "creationDate" {
+					fmt.Fprintf(os.Stderr, "DEBUG: Skipping duplicate creationDate (goName=%s already seen)\n", goName)
+				}
 				continue
 			}
 
@@ -1174,14 +1192,74 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 		} else {
 			// No collision, use original method
 			if seenGoNames[goName] {
+				if m.Selector == "creationDate" {
+					fmt.Fprintf(os.Stderr, "DEBUG: Skipping duplicate creationDate (goName=%s already seen in else branch)\n", goName)
+				}
 				continue
 			}
 			result = append(result, m)
 			seenGoNames[goName] = true
+			if m.Selector == "creationDate" {
+				fmt.Fprintf(os.Stderr, "DEBUG: Added creationDate to result\n")
+			}
 		}
 	}
 
+	// Final pass: filter out methods that are property getters/setters
+	// This is a HACK - we need the class context to know which properties exist
+	// For now, we'll rely on the caller to pass filtered methods
+
+	fmt.Fprintf(os.Stderr, "DEBUG: prepareInstanceMethods returning %d methods\n", len(result))
 	return result
+}
+
+// filterPropertyMethods removes methods that are generated from properties (getters/setters)
+// to prevent duplicate generation. Property methods are generated separately in the properties section.
+func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
+	if class == nil {
+		fmt.Fprintf(os.Stderr, "DEBUG: filterPropertyMethods called with nil class\n")
+		return nil
+	}
+
+	fmt.Fprintf(os.Stderr, "DEBUG: filterPropertyMethods called for class %s with %d methods and %d properties\n",
+		class.Name, len(class.Methods), len(class.Properties))
+
+	// Build set of property selectors (getter and setter)
+	propertySelectors := make(map[string]bool)
+	for _, prop := range class.Properties {
+		// Getter selector is just the property name
+		propertySelectors[prop.Name] = true
+		fmt.Fprintf(os.Stderr, "DEBUG:   Property %s -> getter selector: %s\n", prop.Name, prop.Name)
+
+		// Setter selector is "set<CapitalizedName>:"
+		capitalizedName := strings.ToUpper(prop.Name[:1]) + prop.Name[1:]
+		setterSelector := "set" + capitalizedName + ":"
+		propertySelectors[setterSelector] = true
+		fmt.Fprintf(os.Stderr, "DEBUG:   Property %s -> setter selector: %s\n", prop.Name, setterSelector)
+	}
+
+	// Filter methods, excluding those that match property selectors
+	var filtered []*occ2go.ParsedMethod
+	for _, m := range class.Methods {
+		if class.Name == "CKRecord" {
+			fmt.Fprintf(os.Stderr, "DEBUG:   Method: %s (isClass=%v, isProperty=%v)\n",
+				m.Selector, m.IsClassMethod, propertySelectors[m.Selector])
+		}
+		if !m.IsClassMethod && !propertySelectors[m.Selector] {
+			filtered = append(filtered, m)
+		} else if m.IsClassMethod {
+			// Always include class methods
+			filtered = append(filtered, m)
+		} else if propertySelectors[m.Selector] {
+			fmt.Fprintf(os.Stderr, "DEBUG: Filtering property method %s from class %s\n", m.Selector, class.Name)
+		}
+	}
+
+	fmt.Fprintf(os.Stderr, "DEBUG: filterPropertyMethods filtered %d -> %d methods for class %s\n",
+		len(class.Methods), len(filtered), class.Name)
+
+	// Now call prepareInstanceMethods on the filtered list
+	return prepareInstanceMethods(filtered)
 }
 
 // prepareInitMethods filters methods to return only init methods (for constructor generation), deduplicated by constructor name.
@@ -1607,13 +1685,19 @@ func getClassRequiredImports(class interface{}, framework string) []string {
 func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework string) map[string]bool {
 	imports := make(map[string]bool)
 
+	// Build the current framework's import path to filter it out
+	currentFrameworkImportPath := "github.com/tmc/appledocs/generated/" + strings.ToLower(framework)
+
 	for _, fn := range functions {
 		// Check return type
 		if fn.ReturnType != "" && fn.ReturnType != "void" {
 			// Use mapCTypeToGoWithFramework to get the same result as prepareFunctionData
 			goType := mapCTypeToGoWithFramework(fn.ReturnType, framework)
 			if importPath := getGoTypeImportPath(goType); importPath != "" {
-				imports[importPath] = true
+				// Don't import the current framework itself
+				if importPath != currentFrameworkImportPath {
+					imports[importPath] = true
+				}
 			}
 		}
 
@@ -1622,7 +1706,10 @@ func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework st
 			// Use mapCTypeToGoWithFramework to get the same result as prepareFunctionData
 			goType := mapCTypeToGoWithFramework(param.Type, framework)
 			if importPath := getGoTypeImportPath(goType); importPath != "" {
-				imports[importPath] = true
+				// Don't import the current framework itself
+				if importPath != currentFrameworkImportPath {
+					imports[importPath] = true
+				}
 			}
 		}
 	}
@@ -1994,8 +2081,15 @@ func resolveType(framework, typeName string) string {
 		"CGPDFPageRef":       true,
 	}
 
+	// Check if the type exists in current framework FIRST before adding qualifications
+	// This prevents self-imports (e.g., coregraphics.CGAffineTransform in CoreGraphics)
+	if currentFrameworkClasses[typeName] {
+		// It's in the current framework, return as-is
+		return typeName
+	}
+
 	// If we're in CoreGraphics framework, all types are local
-	if framework == "CoreGraphics" {
+	if framework == "CoreGraphics" && coreGraphicsTypes[typeName] {
 		return typeName
 	}
 
@@ -2009,7 +2103,7 @@ func resolveType(framework, typeName string) string {
 	}
 
 	// If we're in QuartzCore framework, all types are local
-	if framework == "QuartzCore" {
+	if framework == "QuartzCore" && quartzCoreTypes[typeName] {
 		return typeName
 	}
 
@@ -2019,7 +2113,7 @@ func resolveType(framework, typeName string) string {
 	}
 
 	// If we're in Foundation framework, all types are local
-	if framework == "Foundation" {
+	if framework == "Foundation" && foundationTypes[typeName] {
 		return typeName
 	}
 
@@ -2029,19 +2123,13 @@ func resolveType(framework, typeName string) string {
 	}
 
 	// If we're in AppKit framework, all types are local
-	if framework == "AppKit" {
+	if framework == "AppKit" && appKitTypes[typeName] {
 		return typeName
 	}
 
 	// If this is a known AppKit type and we're not in AppKit, qualify it
 	if appKitTypes[typeName] {
 		return "appkit." + typeName
-	}
-
-	// Check if the type exists in the current framework
-	if currentFrameworkClasses[typeName] {
-		// It's in the current framework, return as-is
-		return typeName
 	}
 
 	// Check if we know about this type from the cross-framework registry

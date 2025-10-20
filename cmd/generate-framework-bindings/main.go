@@ -795,6 +795,8 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	// (Properties are already collected in the first pass)
 	if len(classes) > 0 {
 		classMethodsMap := make(map[string][]*occ2go.ParsedMethod)
+		// Track seen selectors per class to prevent duplicates from documentation
+		classSeenSelectors := make(map[string]map[string]bool)
 
 		methodCount := 0
 		for _, doc := range appledocs.Symbols(fsys, framework) {
@@ -809,8 +811,35 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					parts := strings.Split(externalID, "(")
 					if len(parts) >= 2 {
 						className := strings.TrimPrefix(parts[1], "cs)")
-						classMethodsMap[className] = append(classMethodsMap[className], method)
-						methodCount++
+
+						// Initialize selector tracking for this class if needed
+						if classSeenSelectors[className] == nil {
+							classSeenSelectors[className] = make(map[string]bool)
+						}
+
+						// Create a unique key combining selector and method type (class vs instance)
+						methodKey := method.Selector
+						if method.IsClassMethod {
+							methodKey = "class:" + methodKey
+						} else {
+							methodKey = "instance:" + methodKey
+						}
+
+						// Debug: Print when we detect duplicates
+						if className == "CKRecord" && method.Selector == "creationDate" {
+							if classSeenSelectors[className][methodKey] {
+								fmt.Fprintf(os.Stderr, "DEBUG: Skipping duplicate method %s.%s from externalID: %s\n", className, method.Selector, externalID)
+							} else {
+								fmt.Fprintf(os.Stderr, "DEBUG: Adding method %s.%s from externalID: %s\n", className, method.Selector, externalID)
+							}
+						}
+
+						// Only add if we haven't seen this exact method before
+						if !classSeenSelectors[className][methodKey] {
+							classMethodsMap[className] = append(classMethodsMap[className], method)
+							classSeenSelectors[className][methodKey] = true
+							methodCount++
+						}
 					}
 				}
 			}
