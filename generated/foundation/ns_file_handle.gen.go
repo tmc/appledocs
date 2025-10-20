@@ -97,22 +97,6 @@ func NewFileHandle() FileHandle {
 }
 
 
-// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
-func NewFileHandleForWritingAtPath(path string) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
-	return rv
-}
-
-// Returns a file handle initialized for writing to the file, device, or named socket at the specified URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingToURL:)
-func NewFileHandleForWritingToURLError(url unsafe.Pointer, error unsafe.Pointer) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingToURL:error:"), url, error)
-	return rv
-}
-
 // Returns a file handle initialized from data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(coder:)
@@ -133,14 +117,6 @@ func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
 	return rv
 }
 
-// Returns a file handle initialized for reading the file, device, or named socket at the specified path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
-func NewFileHandleForReadingAtPath(path string) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
-	return rv
-}
-
 // Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:closeOnDealloc:)
@@ -148,6 +124,14 @@ func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt b
 	instance := getFileHandleClass().Alloc()
 	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:closeOnDealloc:"), fd, closeopt)
 	rv.Autorelease()
+	return rv
+}
+
+// Returns a file handle initialized for reading the file, device, or named socket at the specified path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
+func NewFileHandleForReadingAtPath(path string) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -172,6 +156,22 @@ func NewFileHandleForUpdatingAtPath(path string) FileHandle {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingURL:)
 func NewFileHandleForUpdatingURLError(url unsafe.Pointer, error unsafe.Pointer) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingURL:error:"), url, error)
+	return rv
+}
+
+// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
+func NewFileHandleForWritingAtPath(path string) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
+	return rv
+}
+
+// Returns a file handle initialized for writing to the file, device, or named socket at the specified URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingToURL:)
+func NewFileHandleForWritingToURLError(url unsafe.Pointer, error unsafe.Pointer) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingToURL:error:"), url, error)
 	return rv
 }
 

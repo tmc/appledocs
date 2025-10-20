@@ -85,22 +85,22 @@ func NewMachPort() MachPort {
 }
 
 
-// Initializes a newly allocated object with a given Mach port.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:)
-func NewMachPortWithMachPort(machPort unsafe.Pointer) MachPort {
-	instance := getMachPortClass().Alloc()
-	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:"), machPort)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a newly allocated object with a given Mach port and the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:options:)
 func NewMachPortWithMachPortOptions(machPort unsafe.Pointer, f unsafe.Pointer) MachPort {
 	instance := getMachPortClass().Alloc()
 	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:options:"), machPort, f)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a newly allocated object with a given Mach port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:)
+func NewMachPortWithMachPort(machPort unsafe.Pointer) MachPort {
+	instance := getMachPortClass().Alloc()
+	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:"), machPort)
 	rv.Autorelease()
 	return rv
 }

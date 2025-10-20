@@ -11,7 +11,6 @@ var _ = foundation.NewCountedSet
 
 
 
-
 // ExampleNewCountedSetWithCapacity demonstrates how to create a CountedSet instance using NewCountedSetWithCapacity.
 // Returns a counted set object initialized with enough memory to hold a given number of objects.
 func ExampleNewCountedSetWithCapacity() {
@@ -20,5 +19,6 @@ func ExampleNewCountedSetWithCapacity() {
 	)
 	// Output:
 }
+
 
 

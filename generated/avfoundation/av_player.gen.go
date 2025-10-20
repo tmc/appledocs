@@ -99,22 +99,22 @@ func NewPlayer() Player {
 }
 
 
-// Creates a new player to play the specified player item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
-func NewPlayerWithPlayerItem(item unsafe.Pointer) Player {
-	instance := getPlayerClass().Alloc()
-	rv := objc.Send[Player](instance.ID, objc.Sel("initWithPlayerItem:"), item)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(url:)
 func NewPlayerWithURL(URL unsafe.Pointer) Player {
 	instance := getPlayerClass().Alloc()
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithURL:"), URL)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new player to play the specified player item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
+func NewPlayerWithPlayerItem(item unsafe.Pointer) Player {
+	instance := getPlayerClass().Alloc()
+	rv := objc.Send[Player](instance.ID, objc.Sel("initWithPlayerItem:"), item)
 	rv.Autorelease()
 	return rv
 }

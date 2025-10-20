@@ -124,15 +124,6 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
-func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
-	instance := getMutableDictionaryClass().Alloc()
-	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
 func NewMutableDictionaryWithContentsOfURL(url unsafe.Pointer) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
@@ -164,6 +155,15 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCapacity:"), numItems)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
+func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
+	instance := getMutableDictionaryClass().Alloc()
+	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

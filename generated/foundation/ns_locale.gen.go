@@ -85,22 +85,22 @@ func NewLocale() Locale {
 }
 
 
-// Returns a locale initialized from data in the given unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
-func NewLocaleWithCoder(coder unsafe.Pointer) Locale {
-	instance := getLocaleClass().Alloc()
-	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a locale using a given locale identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(localeIdentifier:)
 func NewLocaleWithLocaleIdentifier(string string) Locale {
 	instance := getLocaleClass().Alloc()
 	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithLocaleIdentifier:"), objc.String(string))
+	rv.Autorelease()
+	return rv
+}
+
+// Returns a locale initialized from data in the given unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
+func NewLocaleWithCoder(coder unsafe.Pointer) Locale {
+	instance := getLocaleClass().Alloc()
+	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

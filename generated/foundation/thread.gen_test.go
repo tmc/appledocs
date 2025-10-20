@@ -17,15 +17,5 @@ func ExampleNewThread() {
 	// Output:
 }
 
-// ExampleNewThreadWithTargetSelectorObject demonstrates how to create a Thread instance using NewThreadWithTargetSelectorObject.
-// Returns an   object initialized with the given arguments.
-func ExampleNewThreadWithTargetSelectorObject() {
-	_ = foundation.NewThreadWithTargetSelectorObject(
-		0, // target objc.ID
-		0, // selector objc.SEL
-		0, // argument objc.ID
-	)
-	// Output:
-}
 
 

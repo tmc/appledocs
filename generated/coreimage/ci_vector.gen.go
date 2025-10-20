@@ -82,12 +82,12 @@ func NewVector() Vector {
 }
 
 
-// Initialize a Core Image vector object with four values provided by a structure.
+// Initialize a Core Image vector object with two values provided by a structure.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgRect:)
-func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgPoint:)
+func NewVectorWithCGPoint(p coregraphics.CGPoint) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGRect:"), r)
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGPoint:"), p)
 	rv.Autorelease()
 	return rv
 }
@@ -122,6 +122,36 @@ func NewVectorWithXY(x float64, y float64) Vector {
 	return rv
 }
 
+// Initialize a Core Image vector object with six values provided by a structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgAffineTransform:)
+func NewVectorWithCGAffineTransform(t coregraphics.CGAffineTransform) Vector {
+	instance := getVectorClass().Alloc()
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGAffineTransform:"), t)
+	rv.Autorelease()
+	return rv
+}
+
+// Initialize a Core Image vector object with four values provided by a structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgRect:)
+func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
+	instance := getVectorClass().Alloc()
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGRect:"), r)
+	rv.Autorelease()
+	return rv
+}
+
+// Initialize a Core Image vector object with one value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:)
+func NewVectorWithX(x float64) Vector {
+	instance := getVectorClass().Alloc()
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:"), x)
+	rv.Autorelease()
+	return rv
+}
+
 // Initialize a Core Image vector object with three values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:)
@@ -138,36 +168,6 @@ func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
 func NewVectorWithXYZW(x float64, y float64, z float64, w float64) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:W:"), x, y, z, w)
-	rv.Autorelease()
-	return rv
-}
-
-// Initialize a Core Image vector object with six values provided by a structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgAffineTransform:)
-func NewVectorWithCGAffineTransform(t coregraphics.CGAffineTransform) Vector {
-	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGAffineTransform:"), t)
-	rv.Autorelease()
-	return rv
-}
-
-// Initialize a Core Image vector object with two values provided by a structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgPoint:)
-func NewVectorWithCGPoint(p coregraphics.CGPoint) Vector {
-	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGPoint:"), p)
-	rv.Autorelease()
-	return rv
-}
-
-// Initialize a Core Image vector object with one value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:)
-func NewVectorWithX(x float64) Vector {
-	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:"), x)
 	rv.Autorelease()
 	return rv
 }

@@ -89,6 +89,14 @@ func NewCalendar() Calendar {
 }
 
 
+// Creates a new calendar specified by a given identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(identifier:)
+func NewCalendarWithIdentifier(calendarIdentifierConstant unsafe.Pointer) Calendar {
+	rv := objc.Send[Calendar](objc.ID(getCalendarClass().class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
+	return rv
+}
+
 // Initializes a calendar according to a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(calendarIdentifier:)
@@ -96,14 +104,6 @@ func NewCalendarWithCalendarIdentifier(ident unsafe.Pointer) Calendar {
 	instance := getCalendarClass().Alloc()
 	rv := objc.Send[Calendar](instance.ID, objc.Sel("initWithCalendarIdentifier:"), ident)
 	rv.Autorelease()
-	return rv
-}
-
-// Creates a new calendar specified by a given identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(identifier:)
-func NewCalendarWithIdentifier(calendarIdentifierConstant unsafe.Pointer) Calendar {
-	rv := objc.Send[Calendar](objc.ID(getCalendarClass().class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
 }
 

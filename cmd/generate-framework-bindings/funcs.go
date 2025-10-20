@@ -1935,26 +1935,25 @@ func canGenerateTestValue(args ...string) bool {
 	if len(args) > 1 {
 		paramName = strings.ToLower(args[1])
 	}
-	// Special handling for Metal device parameters - must check BEFORE the objc.ID case below
-	// Metal framework asserts that device must not be nil, so we can't use 0 as test value
-	if goType == "objc.ID" && paramName != "" {
-		if strings.Contains(paramName, "device") {
-			return false
-		}
-	}
-
 	// We can generate test values for most primitive types and some common types
 	switch goType {
 	case "string", "int", "int8", "int16", "int32", "int64",
 		"uint", "uint8", "uint16", "uint32", "uint64",
 		"float32", "float64", "bool",
-		"objc.ID", "objc.SEL":
+		"objc.SEL":
 		return true
 	}
 
-	// objc.Class cannot be tested with 0/nil as it causes crashes in many Foundation APIs
-	// that expect valid class pointers
-	if goType == "objc.Class" {
+	// objc.ID and objc.Class cannot be tested with 0/nil as they cause crashes in many
+	// Foundation/AppKit APIs that expect valid object/class pointers.
+	// Examples:
+	//   - +[NSClassDescription classDescriptionForClass:] requires non-nil class
+	//   - +[NSMutableDictionary dictionaryWithSharedKeySet:] requires non-nil keyset
+	//   - Metal APIs require non-nil device pointers
+	//
+	// TODO: We could whitelist specific parameter names that are known to accept nil
+	// (e.g., "target", "object" in some contexts), but for now we're conservative.
+	if goType == "objc.ID" || goType == "objc.Class" {
 		return false
 	}
 

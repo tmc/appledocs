@@ -10,32 +10,6 @@ import (
 var _ = foundation.NewMutableDictionary
 
 
-// ExampleNewMutableDictionaryWithCapacity demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithCapacity.
-// Initializes a newly allocated mutable dictionary, allocating enough memory to hold   entries.
-func ExampleNewMutableDictionaryWithCapacity() {
-	_ = foundation.NewMutableDictionaryWithCapacity(
-		0, // numItems uint
-	)
-	// Output:
-}
-
-
-// ExampleNewMutableDictionaryWithSharedKeySet demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithSharedKeySet.
-// Creates a mutable dictionary which is optimized for dealing with a known set of keys.
-func ExampleNewMutableDictionaryWithSharedKeySet() {
-	_ = foundation.NewMutableDictionaryWithSharedKeySet(
-		0, // keyset objc.ID
-	)
-	// Output:
-}
-
-// ExampleNewMutableDictionary demonstrates how to create a MutableDictionary instance.
-// Initializes a newly allocated mutable dictionary.
-func ExampleNewMutableDictionary() {
-	_ = foundation.NewMutableDictionary()
-	// Output:
-}
-
 
 // ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
 func ExampleNewMutableDictionaryWithContentsOfFile() {
@@ -45,6 +19,24 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 	// Output:
 }
 
+
+
+// ExampleNewMutableDictionary demonstrates how to create a MutableDictionary instance.
+// Initializes a newly allocated mutable dictionary.
+func ExampleNewMutableDictionary() {
+	_ = foundation.NewMutableDictionary()
+	// Output:
+}
+
+
+// ExampleNewMutableDictionaryWithCapacity demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithCapacity.
+// Initializes a newly allocated mutable dictionary, allocating enough memory to hold   entries.
+func ExampleNewMutableDictionaryWithCapacity() {
+	_ = foundation.NewMutableDictionaryWithCapacity(
+		0, // numItems uint
+	)
+	// Output:
+}
 
 
 

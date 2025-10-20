@@ -4,21 +4,11 @@ package coreimage_test
 
 import (
 	"github.com/tmc/appledocs/generated/coreimage"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // Suppress unused import errors
 var _ = coreimage.NewVector
 
-
-// ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
-// Initialize a Core Image vector object with one value.
-func ExampleNewVectorWithX() {
-	_ = coreimage.NewVectorWithX(
-		0.0, // x float64
-	)
-	// Output:
-}
 
 // ExampleNewVectorWithXYZ demonstrates how to create a Vector instance using NewVectorWithXYZ.
 // Initialize a Core Image vector object with three values.
@@ -32,15 +22,14 @@ func ExampleNewVectorWithXYZ() {
 }
 
 
-// ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
-// Initialize a Core Image vector object with values provided in a string representation.
-func ExampleNewVectorWithString() {
-	_ = coreimage.NewVectorWithString(
-		"representation", // representation string
+// ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
+// Initialize a Core Image vector object with one value.
+func ExampleNewVectorWithX() {
+	_ = coreimage.NewVectorWithX(
+		0.0, // x float64
 	)
 	// Output:
 }
-
 
 // ExampleNewVectorWithXY demonstrates how to create a Vector instance using NewVectorWithXY.
 // Initialize a Core Image vector object with two values.
@@ -64,6 +53,16 @@ func ExampleNewVectorWithXYZW() {
 	// Output:
 }
 
+
+
+// ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
+// Initialize a Core Image vector object with values provided in a string representation.
+func ExampleNewVectorWithString() {
+	_ = coreimage.NewVectorWithString(
+		"representation", // representation string
+	)
+	// Output:
+}
 
 
 

@@ -4,21 +4,10 @@ package coreimage_test
 
 import (
 	"github.com/tmc/appledocs/generated/coreimage"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // Suppress unused import errors
 var _ = coreimage.NewImage
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -39,6 +28,25 @@ func ExampleNewImageWithCGLayer() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ExampleNewImageWithCGImage demonstrates how to create a Image instance using NewImageWithCGImage.
 // Initializes an image object with a Quartz 2D image.
 func ExampleNewImageWithCGImage() {
@@ -47,15 +55,6 @@ func ExampleNewImageWithCGImage() {
 	)
 	// Output:
 }
-
-
-
-
-
-
-
-
-
 
 
 

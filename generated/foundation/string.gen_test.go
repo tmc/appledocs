@@ -10,12 +10,10 @@ import (
 var _ = foundation.NewString
 
 
-// ExampleNewString demonstrates how to create a String instance.
-// Returns an initialized   object that contains no characters.
-func ExampleNewString() {
-	_ = foundation.NewString()
-	// Output:
-}
+
+
+
+
 
 
 
@@ -39,41 +37,34 @@ func ExampleNewStringWithString() {
 
 
 
-// ExampleNewStringWithContentsOfFile demonstrates how to create a String instance using NewStringWithContentsOfFile.
-// Initializes the receiver, a newly allocated   object, by reading data from the file named by  .
-func ExampleNewStringWithContentsOfFile() {
-	_ = foundation.NewStringWithContentsOfFile(
-		"/tmp/test", // path string
-	)
-	// Output:
-}
 
 
 
 
 
-
-
-
-
-
-
-
-// ExampleNewStringWithFormatLocale demonstrates how to create a String instance using NewStringWithFormatLocale.
-// Returns an   object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale.
-func ExampleNewStringWithFormatLocale() {
-	_ = foundation.NewStringWithFormatLocale(
-		"format", // format string
-		0, // locale objc.ID
-	)
-	// Output:
-}
 
 // ExampleNewStringWithFormat demonstrates how to create a String instance using NewStringWithFormat.
 // Returns an   object initialized by using a given format string as a template into which the remaining argument values are substituted.
 func ExampleNewStringWithFormat() {
 	_ = foundation.NewStringWithFormat(
 		"format", // format string
+	)
+	// Output:
+}
+
+// ExampleNewString demonstrates how to create a String instance.
+// Returns an initialized   object that contains no characters.
+func ExampleNewString() {
+	_ = foundation.NewString()
+	// Output:
+}
+
+
+// ExampleNewStringWithContentsOfFile demonstrates how to create a String instance using NewStringWithContentsOfFile.
+// Initializes the receiver, a newly allocated   object, by reading data from the file named by  .
+func ExampleNewStringWithContentsOfFile() {
+	_ = foundation.NewStringWithContentsOfFile(
+		"/tmp/test", // path string
 	)
 	// Output:
 }
