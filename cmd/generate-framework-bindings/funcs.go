@@ -304,7 +304,7 @@ func prepareFunctionData(fn *occ2go.ParsedFunction, framework string) FunctionDa
 	usedNames := make(map[string]int)
 	for i, p := range fn.Parameters {
 		paramType := strings.TrimSpace(strings.TrimRight(p.Type, ",;)"))
-		paramType = occ2go.MapCTypeToGo(paramType, framework)
+		paramType = mapCTypeToGoWithFramework(paramType, framework)
 
 		paramName := p.Name
 		if paramName == "" {
@@ -329,7 +329,7 @@ func prepareFunctionData(fn *occ2go.ParsedFunction, framework string) FunctionDa
 
 	// Process return type
 	if fn.ReturnType != "" && fn.ReturnType != "void" {
-		data.ReturnType = occ2go.MapCTypeToGo(fn.ReturnType, framework)
+		data.ReturnType = mapCTypeToGoWithFramework(fn.ReturnType, framework)
 	}
 
 	return data

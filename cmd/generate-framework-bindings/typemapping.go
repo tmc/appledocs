@@ -48,6 +48,9 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreImage"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreImage"},
 	// CoreImage also uses NS-prefixed geometry types that map to CG types
+	{ObjCType: "NSRect", GoType: "coregraphics.CGRect", Framework: "CoreImage"},
+	{ObjCType: "NSSize", GoType: "coregraphics.CGSize", Framework: "CoreImage"},
+	{ObjCType: "NSPoint", GoType: "coregraphics.CGPoint", Framework: "CoreImage"},
 	{ObjCType: "Rect", GoType: "coregraphics.CGRect", Framework: "CoreImage"},
 	{ObjCType: "Size", GoType: "coregraphics.CGSize", Framework: "CoreImage"},
 	{ObjCType: "Point", GoType: "coregraphics.CGPoint", Framework: "CoreImage"},
