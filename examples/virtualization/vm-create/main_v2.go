@@ -287,22 +287,12 @@ func addStorageDevice(config virtualization.VZVirtualMachineConfiguration) error
 	// Set attachment using generated method - type-safe!
 	blockDevice.SetAttachment(unsafe.Pointer(diskAttachment.ID))
 
-	// Set storage devices using objc.Send
-	// Priority 4 will improve this with collection helpers
-	arrayClass := objc.GetClass("NSMutableArray")
-	arrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
-	arrayID := objc.Send[objc.ID](arrayAlloc, objc.RegisterName("init"))
-
-	objc.Send[bool](
-		arrayID,
-		objc.RegisterName("addObject:"),
-		unsafe.Pointer(blockDevice.ID),
-	)
-
+	// Set storage devices using generated collection helper - type-safe!
+	storageArray := foundation.NewMutableArrayWithObjects(unsafe.Pointer(blockDevice.ID))
 	objc.Send[bool](
 		config.ID,
 		objc.RegisterName("setStorageDevices:"),
-		unsafe.Pointer(arrayID),
+		unsafe.Pointer(storageArray.ID),
 	)
 
 	return nil
@@ -354,22 +344,12 @@ func addGraphicsDevice(config virtualization.VZVirtualMachineConfiguration) erro
 		scanout,
 	})
 
-	// Set graphics devices using objc.Send
-	// Priority 4 will improve this with collection helpers
-	devArrayClass := objc.GetClass("NSMutableArray")
-	devArrayAlloc := objc.Send[objc.ID](objc.ID(devArrayClass), objc.RegisterName("alloc"))
-	devArrayID := objc.Send[objc.ID](devArrayAlloc, objc.RegisterName("init"))
-
-	objc.Send[bool](
-		devArrayID,
-		objc.RegisterName("addObject:"),
-		unsafe.Pointer(graphicsDevice.ID),
-	)
-
+	// Set graphics devices using generated collection helper - type-safe!
+	graphicsArray := foundation.NewMutableArrayWithObjects(unsafe.Pointer(graphicsDevice.ID))
 	objc.Send[bool](
 		config.ID,
 		objc.RegisterName("setGraphicsDevices:"),
-		unsafe.Pointer(devArrayID),
+		unsafe.Pointer(graphicsArray.ID),
 	)
 
 	return nil
