@@ -932,6 +932,16 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Output: %s\n", *outputDir)
 	}
 
+	// Build cross-framework type registry for proper type resolution
+	if err := buildCrossFrameworkTypeRegistry(*outputDir); err != nil {
+		// Non-fatal: warn but continue (registry just won't be populated)
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Warning: failed to build cross-framework type registry: %v\n", err)
+		}
+	} else if verbose && len(crossFrameworkTypeRegistry) > 0 {
+		fmt.Fprintf(os.Stderr, "Built cross-framework type registry with %d types\n", len(crossFrameworkTypeRegistry))
+	}
+
 	// Generate bindings for each matching framework
 	for _, fw := range frameworks {
 		if err := generateFramework(fw, *inputDir, *outputDir, *filterRegexp, *txtarOutput, *variant, *withRefMethods, *generateTests, *generateExamples); err != nil {

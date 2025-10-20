@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+	"regexp"
 	"strings"
 	"text/template"
 
@@ -11,6 +14,11 @@ import (
 // currentFrameworkClasses holds the set of class names (after prefix stripping) defined in the current framework
 // This is used to detect cross-framework type references
 var currentFrameworkClasses = make(map[string]bool)
+
+// crossFrameworkTypeRegistry maps type names to their framework package names
+// This allows proper type resolution across frameworks instead of falling back to unsafe.Pointer
+// Format: map[typeName]frameworkPackage (e.g., "Window" -> "appkit", "String" -> "foundation")
+var crossFrameworkTypeRegistry = make(map[string]string)
 
 // templateFuncs is the FuncMap available to all templates
 var templateFuncs = template.FuncMap{
@@ -1861,13 +1869,19 @@ func resolveType(framework, typeName string) string {
 	}
 
 	// Check if the type exists in the current framework
-	// If not, it's a cross-framework reference we don't know about - use unsafe.Pointer
-	if !currentFrameworkClasses[typeName] {
-		return "unsafe.Pointer"
+	if currentFrameworkClasses[typeName] {
+		// It's in the current framework, return as-is
+		return typeName
 	}
 
-	// Default: assume it's in the current framework
-	return typeName
+	// Check if we know about this type from the cross-framework registry
+	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
+		return frameworkPkg + "." + typeName
+	}
+
+	// Last resort: fall back to unsafe.Pointer for truly unknown types
+	// This should be rare with a well-populated registry
+	return "unsafe.Pointer"
 }
 
 // methodGoName generates the Go method name for a given Objective-C method.
@@ -2240,4 +2254,66 @@ func getConstructorBody(method *occ2go.ParsedMethod, structName, paramNames stri
 	// Instance methods (init*) require Autorelease() to balance the +1 from alloc
 	return fmt.Sprintf("\tinstance := get%sClass().Alloc()\n\trv := objc.Send[%s](instance.ID, objc.Sel(\"%s\")%s)\n\trv.Autorelease()\n\treturn rv",
 		structName, structName, selector, params)
+}
+
+// buildCrossFrameworkTypeRegistry scans generated frameworks and populates the type registry.
+// This allows proper type resolution instead of falling back to unsafe.Pointer.
+//
+// It scans the output directory for generated frameworks and extracts class names,
+// building a map of type name -> framework package name.
+//
+// Example registry entries:
+//   "Window" -> "appkit"
+//   "String" -> "foundation"
+//   "Layer" -> "quartzcore"
+func buildCrossFrameworkTypeRegistry(outputDir string) error {
+	// Check if output directory exists
+	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
+		// Output directory doesn't exist yet, registry will be empty
+		return nil
+	}
+
+	// Scan all subdirectories (frameworks)
+	entries, err := os.ReadDir(outputDir)
+	if err != nil {
+		return fmt.Errorf("failed to read output directory: %w", err)
+	}
+
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+
+		frameworkPkg := strings.ToLower(entry.Name())
+		frameworkDir := filepath.Join(outputDir, entry.Name())
+
+		// Look for types.gen.go which contains type definitions
+		typesFile := filepath.Join(frameworkDir, "types.gen.go")
+		if _, err := os.Stat(typesFile); os.IsNotExist(err) {
+			continue
+		}
+
+		// Parse types.gen.go to extract type names
+		data, err := os.ReadFile(typesFile)
+		if err != nil {
+			continue // Skip on error
+		}
+
+		// Extract type definitions (e.g., "type Window struct")
+		// Simple regex to match "type TypeName" declarations
+		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(?:struct|interface|unsafe\.Pointer)`)
+		matches := typeRegex.FindAllSubmatch(data, -1)
+
+		for _, match := range matches {
+			if len(match) > 1 {
+				typeName := string(match[1])
+				// Add to registry if not already present (first framework wins)
+				if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
+					crossFrameworkTypeRegistry[typeName] = frameworkPkg
+				}
+			}
+		}
+	}
+
+	return nil
 }
