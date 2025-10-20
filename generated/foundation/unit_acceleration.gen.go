@@ -33,6 +33,8 @@ type IUnitAcceleration interface {
 
 // A unit of measure for acceleration.
 //
+// You typically use instances of to represent specific quantities of acceleration using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration
 type UnitAcceleration struct {
 	Dimension

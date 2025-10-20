@@ -34,6 +34,8 @@ type IUserScriptTask interface {
 
 // An object that executes scripts.
 //
+// The class is able to run all the scripts normally run by the one of its subclasses, however it ignores the results. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any. If you need to execute scripts and get the input and output information use the , , and sub classes.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask
 type UserScriptTask struct {
 	objectivec.Object

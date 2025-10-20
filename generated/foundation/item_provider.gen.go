@@ -36,6 +36,8 @@ type IItemProvider interface {
 
 // An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
 //
+// Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions. The system uses an internal queue when calling the completion blocks for the class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider
 type ItemProvider struct {
 	objectivec.Object
@@ -87,11 +89,13 @@ func (i_ ItemProvider) CanLoadObjectOfClass(aClass unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canLoadObjectOfClass:"), aClass)
 	return rv
 }
+
 // Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)
 func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions unsafe.Pointer, visibility unsafe.Pointer, loadHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), objc.String(typeIdentifier), fileOptions, visibility, loadHandler)
 }
+
 
 

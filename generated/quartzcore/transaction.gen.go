@@ -34,6 +34,8 @@ type ITransaction interface {
 
 // A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.
 //
+// is the Core Animation mechanism for batching multiple layer-tree operations into atomic updates to the render tree. Every modification to a layer tree must be part of a transaction. Nested transactions are supported. Core Animation supports two types of transactions: transactions and transactions. Implicit transactions are created automatically when the layer tree is modified by a thread without an active transaction and are committed automatically when the thread’s runloop next iterates. Explicit transactions occur when the the application sends the class a message before modifying the layer tree, and a message afterwards. allows you to override default animation properties that are set for animatable properties. You can customize duration, timing function, whether changes to properties trigger animations, and provide a handler that informs you when all animations from the transaction group are completed. During a transaction you can temporarily acquire a recursive spin lock for managing property atomicity. supports nested transactions. The following code shows how you can fade out a layer (named ) over a 2 second duration while scaling it to three times its original size. The scale animation is within a nested transaction with its own duration of 1 second. After the outer transaction completes, a completion block removes from its parent layer.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction
 type Transaction struct {
 	objectivec.Object
@@ -84,5 +86,6 @@ func NewTransaction() Transaction {
 func (tc _TransactionClass) SetValueForKey(anObject objc.ID, key string) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, objc.String(key))
 }
+
 
 

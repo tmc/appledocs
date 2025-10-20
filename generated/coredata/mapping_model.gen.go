@@ -94,6 +94,7 @@ func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelE
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("inferredMappingModelForSourceModel:destinationModel:error:"), sourceModel, destinationModel, error)
 	return rv
 }
+
 // Returns the mapping model that will translate data from the source to the destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
@@ -101,4 +102,5 @@ func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationMod
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
+
 

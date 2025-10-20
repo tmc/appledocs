@@ -79,5 +79,12 @@ func NewSaveChangesRequest() SaveChangesRequest {
 }
 
 
+// The objects that were modified in the calling context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/updatedObjects
+func (s_ SaveChangesRequest) UpdatedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("updatedObjects"))
+	return rv
+}
 
 

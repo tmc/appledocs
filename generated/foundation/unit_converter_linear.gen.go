@@ -33,6 +33,8 @@ type IUnitConverterLinear interface {
 
 // A description of how to convert between units using a linear equation.
 //
+// A linear equation for unit conversion takes the form , such that the following is true: is the value in terms of the base unit of the dimension. is the known coefficient to use for this unit’s conversion. is the value in terms of the unit on which you call this method. is the known constant to use for this unit’s conversion. The method performs the conversion in the form of , where represents the value passed in and represents the value returned. The method performs the inverse conversion in the form of , where represents the value passed in and represents the value returned. For example, consider the unit that defines. The method calculates the value in the base unit, , using the formula . The method calculates the value in using the formula , where the is and the is . Units that perform conversion using only a scale factor have a equal to the scale factor and a equal to . For example, consider the unit defines. The method calculates the value in meters using the formula . The calculates the value in kilometers using the formula , where the coefficient is and the constant is .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear
 type UnitConverterLinear struct {
 	UnitConverter

@@ -33,6 +33,8 @@ type IBatchDeleteRequest interface {
 
 // A request that deletes objects in the SQLite persistent store without loading them into memory.
 //
+// — available only when using a SQLite persistent store — deletes managed objects at the SQL level of the persistent store. This request is quicker and more efficient than using a context to fetch a large number of objects into memory, delete them, and then save those deletions back to the store. You create a request using an instance of that identifies the objects to delete. Alternatively, you can provide an array of identifiers from specific objects of the same entity type; mixing entity types results in an error when you execute the request. doesn’t automatically merge a request’s deletions because they happen at the SQL level. Subsequently, you must remove any deleted objects from memory after the request finishes. To determine the objects a request deletes, configure it to return the of each deleted object and use those identifiers to update your contexts, as the following example shows: Alternatively, you can use persistent history tracking to make your contexts aware of changes that happen at the persistent store level. For more information, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest
 type BatchDeleteRequest struct {
 	PersistentStoreRequest
@@ -79,5 +81,21 @@ func NewBatchDeleteRequest() BatchDeleteRequest {
 }
 
 
+// The type of result the request provides when it executes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
+func (b_ BatchDeleteRequest) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+	return rv
+}
+
+// SetResultType sets the value of the resultType property.
+// The type of result the request provides when it executes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
+func (b_ BatchDeleteRequest) SetResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
+}
 
 

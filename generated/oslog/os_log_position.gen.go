@@ -34,6 +34,8 @@ type IOSLogPosition interface {
 
 // A representation of a point in a sequence of entries in the unified logging system.
 //
+// Generate positions with instance methods and use them to view entries from a particular starting point.
+//
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogPosition
 type OSLogPosition struct {
 	objectivec.Object

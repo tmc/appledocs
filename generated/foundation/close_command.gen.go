@@ -33,6 +33,8 @@ type ICloseCommand interface {
 
 // A command that closes one or more scriptable objects.
 //
+// An instance of closes the specified scriptable object or objects—typically a document or window (and its associated document, if any). The command may optionally specify a location to save in and how to handle modified documents (by automatically saving changes, not saving them, or asking the user). is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand
 type CloseCommand struct {
 	ScriptCommand

@@ -34,6 +34,8 @@ type ISpellServer interface {
 
 // A server that your app uses to provide a spell checker service to other apps running in the system.
 //
+// A is an application that declares its availability in a standard way, so that any other applications that wish to use it can do so. If you build a spelling checker that makes use of the class and list it as an available service, then users of any application that makes use of or includes a Services menu will see your spelling checker as one of the available dictionaries.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
 type SpellServer struct {
 	objectivec.Object

@@ -34,6 +34,8 @@ type INotificationQueue interface {
 
 // A notification center buffer.
 //
+// Whereas a notification center distributes notifications when posted, notifications placed into the queue can be delayed until the end of the current pass through the run loop or until the run loop is idle. Duplicate notifications can be coalesced so that only one notification is sent although multiple notifications are posted. A notification queue maintains notifications in first in, first out (FIFO) order. When a notification moves to the front of the queue, the queue posts it to the notification center, which in turn dispatches the notification to all objects registered as observers. Every thread has a default notification queue, which is associated with the default notification center for the process. You can create your own notification queues and have multiple queues per center and thread.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue
 type NotificationQueue struct {
 	objectivec.Object

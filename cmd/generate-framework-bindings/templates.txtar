@@ -175,6 +175,27 @@ type TimeInterval = float64  // NSTimeInterval
 {{if eq .Framework "Foundation" -}}
 // Foundation-specific types
 
+// Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
+type Point struct {
+	X float64
+	Y float64
+}
+
+type Size struct {
+	Width  float64
+	Height float64
+}
+
+type Rect struct {
+	Origin Point
+	Size   Size
+}
+
+type Range struct {
+	Location int
+	Length   int
+}
+
 // RectEdge defines which edge of a rectangle.
 type RectEdge int
 
@@ -194,6 +215,11 @@ type WindowOrderingMode int
 type WindowLevel int
 type EventType int
 type EventModifierFlags int
+
+{{end -}}
+{{if eq .Framework "QuartzCore" -}}
+// QuartzCore needs CGFloat for its functions
+type CGFloat = float64
 
 {{end -}}
 
@@ -753,8 +779,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
 	return rv
 }
-
-{{- $isReadOnly := contains .Attributes "readonly"}}
+{{ $isReadOnly := contains .Attributes "readonly"}}
 {{- if not $isReadOnly}}
 
 // Set{{$capitalizedName}} sets the value of the {{.Name}} property.
@@ -768,6 +793,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType}}) {
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 }
+
 {{- end}}
 {{- end}}
 {{- end}}

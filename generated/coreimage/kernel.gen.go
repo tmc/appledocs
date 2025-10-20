@@ -36,6 +36,8 @@ type IKernel interface {
 
 // A GPU-based image-processing routine used to create custom Core Image filters.
 //
+// The kernel language routine for a general-purpose filter kernel has the following characteristics: Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. It may use zero or more input images. Each input image is represented by a parameter of type . A kernel routine typically produces its output by calculating source image coordinates (using the and functions or the function), samples from the source images (using the function), and computes a final pixel color (output using the keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged. The equivalent code in Core Image Kernel Language is: The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See and for more details.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel
 type Kernel struct {
 	objectivec.Object
@@ -87,6 +89,7 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error)
 	return rv
 }
+
 // Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
@@ -94,6 +97,7 @@ func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name st
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
 	return rv
 }
+
 // Creates a single kernel object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
@@ -110,6 +114,7 @@ func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name stri
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error)
 	return rv
 }
+
 // Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
@@ -117,6 +122,7 @@ func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataOutputPixelForm
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
 	return rv
 }
+
 // Creates a single kernel object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
@@ -124,27 +130,31 @@ func (kc _KernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
+
 // Return an array of strings containing the names of all of the kernels contained in the Metal library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/kernelNames(fromMetalLibraryData:)
-func (kc _KernelClass) KernelNamesFromMetalLibraryData(data unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelNamesFromMetalLibraryData:"), data)
+func (kc _KernelClass) KernelNamesFromMetalLibraryData(data unsafe.Pointer) []string {
+	rv := objc.Send[[]string](objc.ID(kc.class), objc.Sel("kernelNamesFromMetalLibraryData:"), data)
 	return rv
 }
+
 // Load kernels from a Metal language string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/kernels(withMetalString:)
-func (kc _KernelClass) KernelsWithMetalStringError(source string, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelsWithMetalString:error:"), objc.String(source), error)
+func (kc _KernelClass) KernelsWithMetalStringError(source string, error unsafe.Pointer) []Kernel {
+	rv := objc.Send[[]Kernel](objc.ID(kc.class), objc.Sel("kernelsWithMetalString:error:"), objc.String(source), error)
 	return rv
 }
+
 // Creates and returns and array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/makeKernels(source:)
-func (kc _KernelClass) KernelsWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelsWithString:"), objc.String(string))
+func (kc _KernelClass) KernelsWithString(string string) []Kernel {
+	rv := objc.Send[[]Kernel](objc.ID(kc.class), objc.Sel("kernelsWithString:"), objc.String(string))
 	return rv
 }
+
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/apply(extent:roiCallback:arguments:)
@@ -152,10 +162,19 @@ func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent unsafe.Pointer, call
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("applyWithExtent:roiCallback:arguments:"), extent, callback, args)
 	return rv
 }
+
 // Sets the selector Core Image uses to query the region of interest for image processing with the kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/setROISelector(_:)
 func (k_ Kernel) SetROISelector(method objc.SEL) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setROISelector:"), method)
+}
+
+// The name of the kernel routine.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/name
+func (k_ Kernel) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("name"))
+	return rv
 }
 

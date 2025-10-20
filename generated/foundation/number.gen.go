@@ -34,6 +34,8 @@ type INumber interface {
 
 // An object wrapper for primitive scalar numeric values.
 //
+// is a subclass of that offers a value as any C scalar (numeric) type. It defines a set of methods specifically for setting and accessing the value as a signed or unsigned , , , , , , or or as a . (Note that number objects do not necessarily preserve the type they are created with.) It also defines a method to determine the ordering of two objects. is “toll-free bridged” with its Core Foundation counterparts: for integer and floating point values, and for Boolean values. See for more information on toll-free bridging.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber
 type Number struct {
 	Value
@@ -87,5 +89,15 @@ func (n_ Number) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
+
+// The number object’s value expressed as a Boolean value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/boolValue
+func (n_ Number) BoolValue() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("boolValue"))
+	return rv
+}
+
+
 
 

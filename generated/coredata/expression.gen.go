@@ -32,7 +32,7 @@ type IExpression interface {
 	objectivec.IObject
 }
 
-// A parent class referenced by other CoreData classes. [Full Topic]
+// A parent class referenced by other CoreData classes.
 type Expression struct {
 	objectivec.Object
 }

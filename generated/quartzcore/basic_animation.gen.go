@@ -33,6 +33,8 @@ type IBasicAnimation interface {
 
 // An object that provides basic, single-keyframe animation capabilities for a layer property.
 //
+// You create an instance of using the inherited method, specifying the key path of the property to be animated in the render tree. For example, you can animate a layer’s scalar (i.e. containing a single value) properties such as its . The following code fades in a layer by animating its opacity from to . Non-scalar properties, such as , can also be animated. Core Animation will interpolate between the color and the color. The animation created in the following code fades a layer’s background color from red to blue. If you want to animate the individual components of a non-scalar property with different values, you pass the values to and as arrays. The following animation moves a layer from to . The can access the individual components of a property. For example, the following animation stretches a layer by animating its object’s from to .
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation
 type BasicAnimation struct {
 	PropertyAnimation

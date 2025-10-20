@@ -34,6 +34,8 @@ type IEmitterCell interface {
 
 // The definition of a particle emitted by a particle layer.
 //
+// The class represents one source of particles being emitted by a object. An emitter cell defines the direction and properties of the emitted particles. Emitter cells can have an array of sub-cells, which lets the particles themselves emit particles.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell
 type EmitterCell struct {
 	objectivec.Object
@@ -78,5 +80,21 @@ func NewEmitterCell() EmitterCell {
 }
 
 
+// The latitudinal orientation of the emission angle. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/emissionLatitude
+func (e_ EmitterCell) EmissionLatitude() float64 {
+	rv := objc.Send[float64](e_.ID, objc.Sel("emissionLatitude"))
+	return rv
+}
+
+// SetEmissionLatitude sets the value of the emissionLatitude property.
+// The latitudinal orientation of the emission angle. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/emissionLatitude
+func (e_ EmitterCell) SetEmissionLatitude(value float64) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmissionLatitude:"), value)
+}
 
 

@@ -78,5 +78,12 @@ func NewOSLogEntry() OSLogEntry {
 }
 
 
+// The fully formatted message for the entry.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/composedMessage
+func (o_ OSLogEntry) ComposedMessage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("composedMessage"))
+	return rv
+}
 
 

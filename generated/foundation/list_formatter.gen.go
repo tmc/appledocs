@@ -33,6 +33,8 @@ type IListFormatter interface {
 
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
 //
+// The list formatter isn’t aware of the context where the formatted string will be used and doesn’t provide capitalization customization of the list items. The formatted result may not be grammatically correct if placed in a sentence, and it should only be used in a standalone manner.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter
 type ListFormatter struct {
 	Formatter

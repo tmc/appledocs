@@ -34,6 +34,8 @@ type IAtomicStoreCacheNode interface {
 
 // A concrete class that you use to represent basic nodes in a Core Data atomic store.
 //
+// A node represents a single record in a persistent store. You can subclass to provide custom behavior.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode
 type AtomicStoreCacheNode struct {
 	objectivec.Object
@@ -85,5 +87,6 @@ func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
+
 
 

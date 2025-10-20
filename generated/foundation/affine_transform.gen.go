@@ -34,6 +34,8 @@ type IAffineTransform interface {
 
 // A graphics coordinate transformation.
 //
+// In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. A transformation specifies how points in one coordinate system are transformed to points in another coordinate system. An affine transformation is a special type of transformation that preserves parallel lines in a path but does not necessarily preserve lengths or angles. Scaling, rotation, and translation are the most commonly used manipulations supported by affine transforms, but shearing is also possible. Methods for applying affine transformations to the current graphics context and a method for applying an affine transformation to an object are described in NSAffineTransform Additions Reference in the Application Kit.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform
 type AffineTransform struct {
 	objectivec.Object

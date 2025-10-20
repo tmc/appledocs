@@ -33,6 +33,8 @@ type IUnitDuration interface {
 
 // A unit of measure for a duration of time.
 //
+// You typically use instances of to represent specific quantities of planar angle using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration
 type UnitDuration struct {
 	Dimension

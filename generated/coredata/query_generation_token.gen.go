@@ -34,6 +34,8 @@ type IQueryGenerationToken interface {
 
 // A token that indicates which generation of the persistent store is being accessed.
 //
+// When a managed object context is pinned to a specific generation of the app data, a query generation token will be associated with that context.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken
 type QueryGenerationToken struct {
 	objectivec.Object

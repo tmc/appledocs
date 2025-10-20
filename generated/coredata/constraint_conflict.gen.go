@@ -34,6 +34,8 @@ type IConstraintConflict interface {
 
 // An encapsulation of conflicts that occur during an attempt to save a managed object.
 //
+// A constraint conflict occurs when your data model is using unique constraints and one or more managed objects are violating that constraint. When this error occurs, the error instance can be interrogated to determine which instance of is violating the constraint and which property on the instance is in violation.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict
 type ConstraintConflict struct {
 	objectivec.Object
@@ -78,5 +80,12 @@ func NewConstraintConflict() ConstraintConflict {
 }
 
 
+// The values currently stored in the database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/databaseSnapshot
+func (c_ ConstraintConflict) DatabaseSnapshot() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseSnapshot"))
+	return rv
+}
 
 

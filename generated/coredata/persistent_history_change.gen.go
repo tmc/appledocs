@@ -78,5 +78,26 @@ func NewPersistentHistoryChange() PersistentHistoryChange {
 }
 
 
+// The change’s numeric identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeID
+func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeID"))
+	return rv
+}
+// A dictionary of attributes marked for preservation after deletion, and their values when deleted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/tombstone
+func (p_ PersistentHistoryChange) Tombstone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tombstone"))
+	return rv
+}
+// The set of properties that were updated on the managed object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/updatedProperties
+func (p_ PersistentHistoryChange) UpdatedProperties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("updatedProperties"))
+	return rv
+}
 
 

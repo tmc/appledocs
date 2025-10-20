@@ -33,6 +33,8 @@ type ITextLayer interface {
 
 // A layer that provides simple text layout and rendering of plain or attributed strings.
 //
+// The first line is aligned to the top of the layer.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer
 type TextLayer struct {
 	Layer
@@ -79,5 +81,21 @@ func NewTextLayer() TextLayer {
 }
 
 
+// Determines how the text is truncated to fit within the receiver’s bounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/truncationMode
+func (t_ TextLayer) TruncationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("truncationMode"))
+	return rv
+}
+
+// SetTruncationMode sets the value of the truncationMode property.
+// Determines how the text is truncated to fit within the receiver’s bounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/truncationMode
+func (t_ TextLayer) SetTruncationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTruncationMode:"), value)
+}
 
 

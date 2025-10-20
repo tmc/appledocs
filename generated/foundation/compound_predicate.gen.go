@@ -33,6 +33,8 @@ type ICompoundPredicate interface {
 
 // A specialized predicate that evaluates logical combinations of other predicates.
 //
+// Use to create an or compound predicate of one or more other predicates, or the of a single predicate. For the logical and operations: An predicate with no subpredicates evaluates to . An predicate with no subpredicates evaluates to . A compound predicate with one or more subpredicates evaluates to the truth of its subpredicates.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate
 type CompoundPredicate struct {
 	Predicate

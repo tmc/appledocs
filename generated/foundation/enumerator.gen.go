@@ -34,6 +34,8 @@ type IEnumerator interface {
 
 // An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries.
 //
+// All creation methods are defined in the collection classes—such as , , and —which provide special objects with which to enumerate their contents. For example, has two methods that return an object: and . also has two methods that return an object: and . These methods let you enumerate the contents of a dictionary by key or by value, respectively. You send repeatedly to a newly created object to have it return the next object in the original collection. When the collection is exhausted, is returned. You cannot “reset” an enumerator after it has exhausted its collection. To enumerate a collection again, you need a new enumerator. The enumerator subclasses used by , , and retain the collection during enumeration. When the enumeration is exhausted, the collection is released.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator
 type Enumerator struct {
 	objectivec.Object

@@ -34,6 +34,8 @@ type IThread interface {
 
 // A thread of execution.
 //
+// Use this class when you want to have an Objective-C method run in its own thread of execution. Threads are especially useful when you need to perform a lengthy task, but don’t want it to block the execution of the rest of the application. In particular, you can use threads to avoid blocking the main thread of the application, which handles user interface and event-related actions. Threads can also be used to divide a large job into several smaller jobs, which can lead to performance increases on multi-core computers. The class supports semantics similar to those of for monitoring the runtime condition of a thread. You can use these semantics to cancel the execution of a thread or determine if the thread is still executing or has finished its task. Canceling a thread requires support from your thread code; see the description for for more information.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread
 type Thread struct {
 	objectivec.Object

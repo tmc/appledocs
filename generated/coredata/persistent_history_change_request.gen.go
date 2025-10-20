@@ -86,6 +86,7 @@ func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token un
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("deleteHistoryBeforeToken:"), token)
 	return rv
 }
+
 // Retrieves the request history after a given token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm
@@ -93,6 +94,7 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token unsa
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterToken:"), token)
 	return rv
 }
+
 // Retrieves history since a given date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
@@ -100,12 +102,46 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date unsafe
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
+
 // Retrieves history based on a fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(withFetch:)
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetchRequest unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryWithFetchRequest:"), fetchRequest)
 	return rv
+}
+
+// The specified fetch request, when retrieving history.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
+func (p_ PersistentHistoryChangeRequest) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchRequest"))
+	return rv
+}
+
+// SetFetchRequest sets the value of the fetchRequest property.
+// The specified fetch request, when retrieving history.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
+func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchRequest:"), value)
+}
+// The type of result that this request returns.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
+func (p_ PersistentHistoryChangeRequest) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resultType"))
+	return rv
+}
+
+// SetResultType sets the value of the resultType property.
+// The type of result that this request returns.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
+func (p_ PersistentHistoryChangeRequest) SetResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
 
 

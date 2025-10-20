@@ -157,8 +157,8 @@ func NewResponderWithCoder(coder unsafe.Pointer) Responder {
 // Returns the classes that support secure coding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/allowedClasses(forRestorableStateKeyPath:)
-func (rc _ResponderClass) AllowedClassesForRestorableStateKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
+func (rc _ResponderClass) AllowedClassesForRestorableStateKeyPath(keyPath string) []objc.Class {
+	rv := objc.Send[[]objc.Class](objc.ID(rc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
 	return rv
 }
 

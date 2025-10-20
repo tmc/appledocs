@@ -49,28 +49,28 @@ func PDFInfoFrom(ptr unsafe.Pointer) PDFInfo {
 }
 
 // Alloc allocates a new instance without initialization.
-func (pc _PDFInfoClass) Alloc() PDFInfo {
-	rv := objc.Send[PDFInfo](objc.ID(pc.class), objc.Sel("alloc"))
+func (fc _PDFInfoClass) Alloc() PDFInfo {
+	rv := objc.Send[PDFInfo](objc.ID(fc.class), objc.Sel("alloc"))
 	return rv
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
 // Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
-func (pc _PDFInfoClass) New() PDFInfo {
-	rv := objc.Send[PDFInfo](objc.ID(pc.class), objc.Sel("new"))
+func (fc _PDFInfoClass) New() PDFInfo {
+	rv := objc.Send[PDFInfo](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
 	return rv
 }
 
 // Init initializes the instance.
-func (p_ PDFInfo) Init() PDFInfo {
-	rv := objc.Send[PDFInfo](p_.ID, objc.Sel("init"))
+func (f_ PDFInfo) Init() PDFInfo {
+	rv := objc.Send[PDFInfo](f_.ID, objc.Sel("init"))
 	return rv
 }
 
 // Autorelease adds the receiver to the current autorelease pool.
-func (p_ PDFInfo) Autorelease() PDFInfo {
-	rv := objc.Send[PDFInfo](p_.ID, objc.Sel("autorelease"))
+func (f_ PDFInfo) Autorelease() PDFInfo {
+	rv := objc.Send[PDFInfo](f_.ID, objc.Sel("autorelease"))
 	return rv
 }
 

@@ -36,6 +36,8 @@ type ITask interface {
 
 // An object that represents a subprocess of the current process.
 //
+// Using this class, your program can run another program as a subprocess and monitor that program’s execution. Unlike , it doesn’t share memory space with the process that creates it. A process operates within an environment defined by the current values for several items: the current directory, standard input, standard output, standard error, and the values of any environment variables, inheriting its environment from the process that launches it. If there are any environment variables that should be different for the subprocess (for example, if the current directory needs to change), change it in the instance after initialization, before your app launches it. Your app can’t change a process’s environment while it’s running. You can only run the subprocess once per instance. Subsequent attempts raise an error.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process
 type Task struct {
 	objectivec.Object
@@ -87,11 +89,31 @@ func (t_ Task) LaunchAndReturnError(error unsafe.Pointer) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error)
 	return rv
 }
+
 // Sends a terminate signal to the receiver and all of its subtasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminate()
 func (t_ Task) Terminate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("terminate"))
+}
+
+// The receiver’s executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
+func (t_ Task) ExecutableURL() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("executableURL"))
+	return rv
+}
+
+
+
+// SetExecutableURL sets the value of the executableURL property.
+// The receiver’s executable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
+func (t_ Task) SetExecutableURL(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExecutableURL:"), value)
 }
 
 

@@ -33,6 +33,8 @@ type IOSLogEntrySignpost interface {
 
 // An entry containing a signpost.
 //
+// These entries are created by the os_signpost API. To learn more about signposts and how to create a signpost entry, see and .
+//
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost
 type OSLogEntrySignpost struct {
 	OSLogEntry
@@ -79,5 +81,19 @@ func NewOSLogEntrySignpost() OSLogEntrySignpost {
 }
 
 
+// The signpost’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostName
+func (o_ OSLogEntrySignpost) SignpostName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("signpostName"))
+	return rv
+}
+// The signpost’s type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostType-swift.property
+func (o_ OSLogEntrySignpost) SignpostType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("signpostType"))
+	return rv
+}
 
 

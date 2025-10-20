@@ -113,15 +113,15 @@ func (s_ SplitViewItem) SetAllowsFullHeightLayout(value bool) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/bottomAlignedAccessoryViewControllers
-func (s_ SplitViewItem) BottomAlignedAccessoryViewControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
+func (s_ SplitViewItem) BottomAlignedAccessoryViewControllers() []SplitViewItemAccessoryViewController {
+	rv := objc.Send[[]SplitViewItemAccessoryViewController](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
 	return rv
 }
 
 // SetBottomAlignedAccessoryViewControllers sets the value of the bottomAlignedAccessoryViewControllers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/bottomAlignedAccessoryViewControllers
-func (s_ SplitViewItem) SetBottomAlignedAccessoryViewControllers(value unsafe.Pointer) {
+func (s_ SplitViewItem) SetBottomAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBottomAlignedAccessoryViewControllers:"), value)
 }
 // The type of separator that the app displays between the title bar and content of a window.
@@ -143,8 +143,8 @@ func (s_ SplitViewItem) SetTitlebarSeparatorStyle(value unsafe.Pointer) {
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See for more details.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/topAlignedAccessoryViewControllers
-func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
+func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() []SplitViewItemAccessoryViewController {
+	rv := objc.Send[[]SplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
 	return rv
 }
 
@@ -153,7 +153,7 @@ func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/topAlignedAccessoryViewControllers
-func (s_ SplitViewItem) SetTopAlignedAccessoryViewControllers(value unsafe.Pointer) {
+func (s_ SplitViewItem) SetTopAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopAlignedAccessoryViewControllers:"), value)
 }
 

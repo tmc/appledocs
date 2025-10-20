@@ -33,6 +33,8 @@ type INumberFormatter interface {
 
 // A formatter that converts between numeric values and their textual representations.
 //
+// Instances of format the textual representation of cells that contain objects and convert textual representations of numeric values into objects. The representation encompasses integers, floats, and doubles; floats and doubles can be formatted to a specified decimal position. objects can also impose ranges on the numeric values cells can accept.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter
 type NumberFormatter struct {
 	Formatter

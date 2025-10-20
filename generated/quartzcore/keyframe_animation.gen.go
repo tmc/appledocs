@@ -33,6 +33,8 @@ type IKeyframeAnimation interface {
 
 // An object that provides keyframe animation capabilities for a layer object.
 //
+// You create a object using the inherited method, specifying the key path of the property that you want to animate on the layer. You can then specify the keyframe values to use to control the timing and animation behavior. For most types of animations, you specify the keyframe values using the and properties. During the animation, Core Animation generates intermediate values by interpolating between the values you provide. When animating a value that is a coordinate point, such as the layer’s position, you can specify a for that point to follow instead of individual values. The pacing of the animation is controlled by the timing information you provide. The following code shows how to create a keyframe animation that animates a layer’s background color from red to green to blue over a two second duration.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation
 type KeyframeAnimation struct {
 	PropertyAnimation
@@ -79,5 +81,21 @@ func NewKeyframeAnimation() KeyframeAnimation {
 }
 
 
+// An optional array of objects that define the pacing for each keyframe segment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions
+func (k_ KeyframeAnimation) TimingFunctions() []MediaTimingFunction {
+	rv := objc.Send[[]MediaTimingFunction](k_.ID, objc.Sel("timingFunctions"))
+	return rv
+}
+
+// SetTimingFunctions sets the value of the timingFunctions property.
+// An optional array of objects that define the pacing for each keyframe segment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions
+func (k_ KeyframeAnimation) SetTimingFunctions(value []MediaTimingFunction) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setTimingFunctions:"), value)
+}
 
 

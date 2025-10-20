@@ -34,6 +34,8 @@ type IFileAccessIntent interface {
 
 // The details of a coordinated-read or coordinated-write operation.
 //
+// Use this class when performing asynchronous operations with a file coordinator using the coordinator’s method.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent
 type FileAccessIntent struct {
 	objectivec.Object

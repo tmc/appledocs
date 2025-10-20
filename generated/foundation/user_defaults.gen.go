@@ -37,6 +37,8 @@ type IUserDefaults interface {
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
 //
+// The class provides a programmatic interface for interacting with the defaults system. The defaults system allows an app to customize its behavior to match a user’s preferences. For example, you can allow users to specify their preferred units of measurement or media playback speed. Apps store these preferences by assigning values to a set of parameters in a user’s defaults database. The parameters are referred to as because they’re commonly used to determine an app’s default state at startup or the way it acts by default. At runtime, you use objects to read the defaults that your app uses from a user’s defaults database. caches the information to avoid having to open the user’s defaults database each time you need a default value. When you set a default value, it’s changed synchronously within your process, and asynchronously to persistent storage and other processes. With the exception of managed devices in educational institutions, a user’s defaults are stored locally on a single device, and persisted for backup and restore. To synchronize preferences and other data across a user’s connected devices, use instead.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults
 type UserDefaults struct {
 	objectivec.Object
@@ -98,12 +100,14 @@ func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 func (u_ UserDefaults) SetURLForKey(url unsafe.Pointer, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, objc.String(defaultName))
 }
+
 // Sets the value of the specified default key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-8ab6d
 func (u_ UserDefaults) SetObjectForKey(value objc.ID, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, objc.String(defaultName))
 }
+
 // Returns the string associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
@@ -111,4 +115,5 @@ func (u_ UserDefaults) StringForKey(defaultName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
 }
+
 

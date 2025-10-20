@@ -33,6 +33,8 @@ type IDataMatrixCodeDescriptor interface {
 
 // A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.
 //
+// A Data Matrix code symbol is a 2D barcode format defined by the ISO/IEC 16022:2006(E) standard. It encodes data in square or rectangular symbol with solid lines on the left and bottom sides
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor
 type DataMatrixCodeDescriptor struct {
 	BarcodeDescriptor
@@ -95,6 +97,35 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/descriptorWithPayload:rowCount:columnCount:eccVersion:
 func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload unsafe.Pointer, rowCount int, columnCount int, eccVersion unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("descriptorWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
+	return rv
+}
+
+// The number of columns in the Data Matrix code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/columnCount-swift.property
+func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("columnCount"))
+	return rv
+}
+// The error correction version of the Data Matrix code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-swift.property
+func (d_ DataMatrixCodeDescriptor) EccVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("eccVersion"))
+	return rv
+}
+// The error-corrected payload containing the data encoded in the Data Matrix code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/errorCorrectedPayload-swift.property
+func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("errorCorrectedPayload"))
+	return rv
+}
+// The number of rows in the Data Matrix code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/rowCount-swift.property
+func (d_ DataMatrixCodeDescriptor) RowCount() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("rowCount"))
 	return rv
 }
 

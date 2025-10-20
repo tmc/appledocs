@@ -78,5 +78,12 @@ func NewMetalDisplayLinkUpdate() MetalDisplayLinkUpdate {
 }
 
 
+// A deadline that indicates when your app needs to finish rendering to the drawable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/targetTimestamp
+func (m_ MetalDisplayLinkUpdate) TargetTimestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetTimestamp"))
+	return rv
+}
 
 

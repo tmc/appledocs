@@ -43,6 +43,8 @@ type IManagedObjectContext interface {
 
 // An object space to manipulate and track changes to managed objects.
 //
+// A context consists of a group of related model objects that represent an internally consistent view of one or more persistent stores. Changes to managed objects remain in memory in the associated context until Core Data saves that context to one or more persistent stores. A single managed object instance exists in one and only one context, but multiple copies of an object can exist in different contexts. Therefore, an object is unique to a particular context.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext
 type ManagedObjectContext struct {
 	objectivec.Object
@@ -104,54 +106,63 @@ func NewManagedObjectContextWithConcurrencyType(ct unsafe.Pointer) ManagedObject
 func (mc _ManagedObjectContextClass) MergeChangesFromRemoteContextSaveIntoContexts(changeNotificationData unsafe.Pointer, contexts unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mergeChangesFromRemoteContextSave:intoContexts:"), changeNotificationData, contexts)
 }
+
 // Specifies the store in which a newly inserted object will be saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/assign(_:to:)
 func (m_ ManagedObjectContext) AssignObjectToPersistentStore(object objc.ID, store unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("assignObject:toPersistentStore:"), object, store)
 }
+
 // Merges the changes specified in a given notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)
 func (m_ ManagedObjectContext) MergeChangesFromContextDidSaveNotification(notification unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("mergeChangesFromContextDidSaveNotification:"), notification)
 }
+
 // Allows a context that has registered as an observer of a value to be notified of a change to that value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/observeValue(forKeyPath:of:change:context:)
 func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath string, object objc.ID, change unsafe.Pointer, context unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), objc.String(keyPath), object, change, context)
 }
+
 // Asynchronously performs the specified closure on the context’s queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/perform(_:)
 func (m_ ManagedObjectContext) PerformBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("performBlock:"), block)
 }
+
 // Synchronously performs the specified closure on the context’s queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/performAndWait(_:)-ypye
 func (m_ ManagedObjectContext) PerformBlockAndWait(block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("performBlockAndWait:"), block)
 }
+
 // Forces the context to process changes to the object graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/processPendingChanges()
 func (m_ ManagedObjectContext) ProcessPendingChanges() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("processPendingChanges"))
 }
+
 // Refreshes all of the registered managed objects in the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/refreshAllObjects()
 func (m_ ManagedObjectContext) RefreshAllObjects() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("refreshAllObjects"))
 }
+
 // Returns the context to its base state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/reset()
 func (m_ ManagedObjectContext) Reset() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("reset"))
 }
+
 // Attempts to commit unsaved changes to registered objects to the context’s parent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/save()
@@ -159,11 +170,75 @@ func (m_ ManagedObjectContext) Save(error unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("save:"), error)
 	return rv
 }
+
 // Sets the query generation this context should use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)
 func (m_ ManagedObjectContext) SetQueryGenerationFromTokenError(generation unsafe.Pointer, error unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setQueryGenerationFromToken:error:"), generation, error)
 	return rv
+}
+
+// A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/automaticallyMergesChangesFromParent
+func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyMergesChangesFromParent"))
+	return rv
+}
+
+// SetAutomaticallyMergesChangesFromParent sets the value of the automaticallyMergesChangesFromParent property.
+// A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/automaticallyMergesChangesFromParent
+func (m_ ManagedObjectContext) SetAutomaticallyMergesChangesFromParent(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyMergesChangesFromParent:"), value)
+}
+// The set of objects that will be removed from their persistent store during the next save operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/deletedObjects
+func (m_ ManagedObjectContext) DeletedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deletedObjects"))
+	return rv
+}
+// The developer-provided name of the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
+func (m_ ManagedObjectContext) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+// SetName sets the value of the name property.
+// The developer-provided name of the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
+func (m_ ManagedObjectContext) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+}
+// Returns the token associated with the query generation currently in use by this context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/queryGenerationToken
+func (m_ ManagedObjectContext) QueryGenerationToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("queryGenerationToken"))
+	return rv
+}
+// The author for the context that is used as an identifier in persistent history transactions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
+func (m_ ManagedObjectContext) TransactionAuthor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transactionAuthor"))
+	return rv
+}
+
+// SetTransactionAuthor sets the value of the transactionAuthor property.
+// The author for the context that is used as an identifier in persistent history transactions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
+func (m_ ManagedObjectContext) SetTransactionAuthor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), value)
 }
 

@@ -153,8 +153,8 @@ func (w_ WindowTabGroup) SetSelectedWindow(value unsafe.Pointer) {
 // A collection of the windows that are currently grouped together by this window tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/windows
-func (w_ WindowTabGroup) Windows() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windows"))
+func (w_ WindowTabGroup) Windows() []Window {
+	rv := objc.Send[[]Window](w_.ID, objc.Sel("windows"))
 	return rv
 }
 

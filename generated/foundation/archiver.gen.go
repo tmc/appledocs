@@ -33,6 +33,8 @@ type IArchiver interface {
 
 // A coder that stores an object’s data to an archive.
 //
+// , a concrete subclass of , provides a way to encode objects into an architecture-independent format that can be stored in a file. When you archive a graph of objects, the class information and instance variables for each object are written to the archive. The companion class decodes the data in an archive and creates a graph of objects equivalent to the original set. stores the archive data in a mutable data object ( ). After encoding the objects, you can have the object write this mutable data object immediately to a file, or you can retrieve the mutable data object for some other use. In macOS 10.2 and later, and have been replaced by and respectively—see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver
 type Archiver struct {
 	Coder

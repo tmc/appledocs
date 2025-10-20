@@ -30,11 +30,13 @@ type _DetectorClass struct {
 // An interface definition for the [Detector] class.
 type IDetector interface {
 	objectivec.IObject
-	FeaturesInImage(image unsafe.Pointer) unsafe.Pointer
-	FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	FeaturesInImage(image unsafe.Pointer) []Feature
+	FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) []Feature
 }
 
 // An image processor that identifies notable features, such as faces and barcodes, in a still image or video.
+//
+// A object uses image processing to search for and identify notable features (faces, rectangles, and barcodes) in a still image or video. Detected features are represented by objects that provide more information about each feature. This class can maintain many state variables that can impact performance. So for best performance, reuse instances instead of creating new ones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector
 type Detector struct {
@@ -96,18 +98,21 @@ func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context unsa
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
+
 // Searches for features in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:)
-func (d_ Detector) FeaturesInImage(image unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("featuresInImage:"), image)
+func (d_ Detector) FeaturesInImage(image unsafe.Pointer) []Feature {
+	rv := objc.Send[[]Feature](d_.ID, objc.Sel("featuresInImage:"), image)
 	return rv
 }
+
 // Searches for features in an image based on the specified image orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:options:)
-func (d_ Detector) FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("featuresInImage:options:"), image, options)
+func (d_ Detector) FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) []Feature {
+	rv := objc.Send[[]Feature](d_.ID, objc.Sel("featuresInImage:options:"), image, options)
 	return rv
 }
+
 

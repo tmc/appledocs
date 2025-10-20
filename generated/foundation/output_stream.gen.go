@@ -33,6 +33,8 @@ type IOutputStream interface {
 
 // A stream that provides write-only stream functionality.
 //
+// is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream
 type OutputStream struct {
 	Stream

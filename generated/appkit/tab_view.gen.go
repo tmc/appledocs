@@ -359,8 +359,8 @@ func (t_ TabView) SetTabViewBorderType(value unsafe.Pointer) {
 // The tab view’s array of tab view items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewItems
-func (t_ TabView) TabViewItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewItems"))
+func (t_ TabView) TabViewItems() []__kindof NSTabViewItem {
+	rv := objc.Send[[]__kindof NSTabViewItem](t_.ID, objc.Sel("tabViewItems"))
 	return rv
 }
 
@@ -369,7 +369,7 @@ func (t_ TabView) TabViewItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewItems
-func (t_ TabView) SetTabViewItems(value unsafe.Pointer) {
+func (t_ TabView) SetTabViewItems(value []__kindof NSTabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewItems:"), value)
 }
 // The tab type to display the tabs.

@@ -34,6 +34,8 @@ type ISet interface {
 
 // A static, unordered collection of unique objects.
 //
+// The , , and classes declare the programmatic interface to an unordered collection of objects. declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and can’t modify the entries after that. , on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic — or mutable — set allows the addition and deletion of entries at any time, automatically allocating memory as needed. Use sets as an alternative to arrays when the order of elements isn’t important and you need to consider performance in testing whether the set contains an object. With an array, testing for membership is slower than with sets. is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging. In Swift, use this class instead of a constant in cases where you require reference semantics.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet
 type Set struct {
 	objectivec.Object

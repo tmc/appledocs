@@ -34,6 +34,8 @@ type IOSLogStore interface {
 
 // A set of entries from the unified logging system.
 //
+// Instances of this class represent a fixed range of entries and may be backed by a or your Mac’s local store. In Swift, Use the function to retrieve a filtered array of log entries. In Objective-C, use instances of this class to create objects. One store can support multiple instances concurrently.
+//
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore
 type OSLogStore struct {
 	objectivec.Object

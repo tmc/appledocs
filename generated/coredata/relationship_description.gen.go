@@ -33,6 +33,8 @@ type IRelationshipDescription interface {
 
 // A description of a relationship between two entities.
 //
+// provides additional attributes that are specific to modeling a relationship between two entities. For the common attributes of all property types, see . For example, use this class to define a relationship’s — the number of managed objects the relationship can reference. For a to-one relationship, set to . For a to-many relationship, set to a number greater than to impose an upper limit; otherwise, use to allow an unlimited number of referenced objects. At runtime, you can modify a relationship description until you associate its owning managed object model with a persistent store coordinator. If you attempt to modify the model after you associate it, Core Data throws an exception. To modify a model that’s in use, create and modify a copy and then discard any objects that belong to the original model.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription
 type RelationshipDescription struct {
 	PropertyDescription
@@ -79,5 +81,21 @@ func NewRelationshipDescription() RelationshipDescription {
 }
 
 
+// The rule to apply when you delete the relationship’s owning managed object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
+func (r_ RelationshipDescription) DeleteRule() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("deleteRule"))
+	return rv
+}
+
+// SetDeleteRule sets the value of the deleteRule property.
+// The rule to apply when you delete the relationship’s owning managed object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
+func (r_ RelationshipDescription) SetDeleteRule(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setDeleteRule:"), value)
+}
 
 

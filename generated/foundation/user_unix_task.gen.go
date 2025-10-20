@@ -33,6 +33,8 @@ type IUserUnixTask interface {
 
 // An object that executes unix applications.
 //
+// The class is intended to run unix applications, typically a shell script, from your application. It is intended to execute user-supplied scripts, and will execute them outside of the application’s sandbox, if any. The class is not intended to execute scripts built into an application; for that, use one of the , , or classes. If the application is sandboxed, then the script must be in the folder. A sandboxed application may read from, but not write to, this folder. If you simply need to execute unix scripts without regard to input or output, use , which can execute any of the specific types. If you need specific control over the input to, or output from, or the error stream of the script, use this class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask
 type UserUnixTask struct {
 	UserScriptTask

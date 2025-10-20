@@ -34,6 +34,8 @@ type IOrderedSet interface {
 
 // A static, ordered collection of unique objects.
 //
+// declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and thereafter the entries can’t be modified. , on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic—or mutable—set allows the addition and deletion of entries at any time, automatically allocating memory as needed. You can use ordered sets as an alternative to arrays when the order of elements is important and performance in testing whether an object is contained in the set is a consideration—testing for membership of an array is slower than testing for membership of a set.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet
 type OrderedSet struct {
 	objectivec.Object

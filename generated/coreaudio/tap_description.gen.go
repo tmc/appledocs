@@ -75,4 +75,17 @@ func NewTapDescription() TapDescription {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
+func (t_ TapDescription) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("name"))
+	return rv
+}
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
+func (t_ TapDescription) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
+}
 

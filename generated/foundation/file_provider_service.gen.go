@@ -34,6 +34,8 @@ type IFileProviderService interface {
 
 // A service that provides a custom communication channel between your app and a File Provider extension.
 //
+// To communicate, both your app and the File Provider extension must implement their part of the service: Your app requests the proxy object, and calls its methods. The File Provider extension declares the supported services and vends a proxy object that implements the protocol for each service. The app and File Provider extension communicate using an XPC service. This service performs actions only on items managed by the File Provider extension. For more information, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService
 type FileProviderService struct {
 	objectivec.Object

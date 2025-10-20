@@ -33,6 +33,8 @@ type ICloneCommand interface {
 
 // A command that clones one or more scriptable objects.
 //
+// An instance of clones the specified scriptable object or objects (such as words, paragraphs, images, and so on) and inserts them in the specified location, or the default location if no location is specified. The cloned scriptable objects typically correspond to objects in the application, but aren’t required to. This command corresponds to AppleScript’s command. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or invoke its methods. When an instance of is executed, it clones the specified objects by sending them messages.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand
 type CloneCommand struct {
 	ScriptCommand

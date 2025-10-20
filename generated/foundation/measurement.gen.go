@@ -34,6 +34,8 @@ type IMeasurement interface {
 
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
 //
+// Use this object in Swift when you need reference semantics or other Foundation-specific behavior. An object represents a quantity and unit of measure. The class provides a programmatic interface to converting measurements into different units, as well as calculating the sum or difference between two measurements. objects are initialized with an object and value. objects are immutable, and cannot be changed after being created. You can use the class to create localized string representations of objects.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement
 type Measurement struct {
 	objectivec.Object

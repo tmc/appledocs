@@ -13,6 +13,9 @@ type CFDataRef unsafe.Pointer
 // CFDictionaryRef is a CoreGraphics opaque type.
 type CFDictionaryRef unsafe.Pointer
 
+// CFStringRef is a CoreGraphics opaque type.
+type CFStringRef unsafe.Pointer
+
 // CFURLRef is a CoreGraphics opaque type.
 type CFURLRef unsafe.Pointer
 

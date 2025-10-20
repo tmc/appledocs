@@ -36,6 +36,8 @@ type IBlendKernel interface {
 
 // A GPU-based image-processing routine that is optimized for blending two images.
 //
+// The blend kernel function has the following characteristics: It has two arguments of type (Core Image Kernel Language) or (Metal Shading Language), representing the foreground and background images. Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. A blend kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the return keyword). For example, the Metal Shading Language source below implements a filter that returns the average of its two input images. Generally, the extent of the output image is the union of the extents of the foreground and background images.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel
 type BlendKernel struct {
 	ColorKernel
@@ -98,6 +100,7 @@ func (bc _BlendKernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
+
 // Creates a new image using the blend kernel and specified foreground and background images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:)
@@ -105,10 +108,12 @@ func (b_ BlendKernel) ApplyWithForegroundBackground(foreground unsafe.Pointer, b
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("applyWithForeground:background:"), foreground, background)
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:colorSpace:)
 func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
 	return rv
 }
+
 

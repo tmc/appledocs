@@ -43,7 +43,7 @@ type IStackView interface {
 	SetHuggingPriorityForOrientation(huggingPriority unsafe.Pointer, orientation unsafe.Pointer)
 	SetViewsInGravity(views unsafe.Pointer, gravity unsafe.Pointer)
 	SetVisibilityPriorityForView(priority unsafe.Pointer, view unsafe.Pointer)
-	ViewsInGravity(gravity unsafe.Pointer) unsafe.Pointer
+	ViewsInGravity(gravity unsafe.Pointer) []__kindof NSView
 	VisibilityPriorityForView(view unsafe.Pointer) unsafe.Pointer
 }
 
@@ -218,8 +218,8 @@ func (s_ StackView) SetVisibilityPriorityForView(priority unsafe.Pointer, view u
 // Returns the array of views in the specified gravity area in the stack view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/views(in:)
-func (s_ StackView) ViewsInGravity(gravity unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("viewsInGravity:"), gravity)
+func (s_ StackView) ViewsInGravity(gravity unsafe.Pointer) []__kindof NSView {
+	rv := objc.Send[[]__kindof NSView](s_.ID, objc.Sel("viewsInGravity:"), gravity)
 	return rv
 }
 
@@ -250,8 +250,8 @@ func (s_ StackView) SetAlignment(value unsafe.Pointer) {
 // The array of views arranged by the stack view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/arrangedSubviews
-func (s_ StackView) ArrangedSubviews() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("arrangedSubviews"))
+func (s_ StackView) ArrangedSubviews() []__kindof NSView {
+	rv := objc.Send[[]__kindof NSView](s_.ID, objc.Sel("arrangedSubviews"))
 	return rv
 }
 // The delegate object for the stack view.
@@ -273,8 +273,8 @@ func (s_ StackView) SetDelegate(value unsafe.Pointer) {
 // An array that contains the detached views from all the stack view’s gravity areas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/detachedViews
-func (s_ StackView) DetachedViews() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("detachedViews"))
+func (s_ StackView) DetachedViews() []__kindof NSView {
+	rv := objc.Send[[]__kindof NSView](s_.ID, objc.Sel("detachedViews"))
 	return rv
 }
 // A Boolean value that indicates whether the stack view removes hidden views from its view hierarchy.
@@ -373,8 +373,8 @@ func (s_ StackView) SetSpacing(value float64) {
 // The array of views owned by the stack view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/views
-func (s_ StackView) Views() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("views"))
+func (s_ StackView) Views() []__kindof NSView {
+	rv := objc.Send[[]__kindof NSView](s_.ID, objc.Sel("views"))
 	return rv
 }
 

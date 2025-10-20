@@ -33,6 +33,8 @@ type IUnitInformationStorage interface {
 
 // A unit of measure for quantities of information.
 //
+// Use instances of to represent quantities of information using the class. The base unit of measure for information is the bit, with a nibble representing four bits and a byte representing eight bits. Larger units of information expand on bits and bytes by orders of magnitude in both decimal and binary forms.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage
 type UnitInformationStorage struct {
 	Dimension

@@ -34,6 +34,8 @@ type IIncrementalStoreNode interface {
 
 // A concrete class used to represent basic nodes in a Core Data incremental store.
 //
+// A node represents a single record in a persistent store. You can subclass to provide custom behavior.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode
 type IncrementalStoreNode struct {
 	objectivec.Object
@@ -78,5 +80,12 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 }
 
 
+// The object ID that identifies the data stored by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
+func (i_ IncrementalStoreNode) ObjectID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("objectID"))
+	return rv
+}
 
 

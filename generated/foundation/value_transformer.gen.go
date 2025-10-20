@@ -34,6 +34,8 @@ type IValueTransformer interface {
 
 // An abstract class used to transform values from one representation to another.
 //
+// You create a value transformer by subclassing and overriding the necessary methods to provide the required custom transformation. You then register the value transformer using the method, so that other parts of your app can access it by name with . Use the method to transform a value from one representation into another. If a value transformer designates that its transformation is reversible by returning for , you can also use the to perform the transformation in reverse. For example, reversing the characters in a string is a reversible operation, whereas changing the characters in a string to be uppercase is a nonreversible operation. A value transformer can take inputs of one type and return a value of a different type. For example, a value transformer could take an or object and return an object containing the PNG representation of that image.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer
 type ValueTransformer struct {
 	objectivec.Object

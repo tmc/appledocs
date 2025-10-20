@@ -34,6 +34,8 @@ type IPositionalSpecifier interface {
 
 // A specifier for an insertion point in a container relative to another object in the container.
 //
+// Instances of specify an insertion point in a container relative to another object in the container, for example, or . The container is specified by an instance of . objects commonly encapsulate object specifiers used as arguments to the ( ) and commands and indicate where the created or moved object is to be inserted relative to the object represented by an object specifier. Invoking an accessor method to obtain information about an instance of causes the object to be evaluated if it hasn’t been already. You don’t normally subclass .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier
 type PositionalSpecifier struct {
 	objectivec.Object

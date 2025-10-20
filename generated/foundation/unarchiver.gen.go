@@ -33,6 +33,8 @@ type IUnarchiver interface {
 
 // A decoder that restores data from an archive.
 //
+// , a concrete subclass of , defines methods for decoding a set of Objective-C objects from an archive. Such archives are produced by objects of the class. In macOS 10.2 and later, and have been replaced by and respectively—see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver
 type Unarchiver struct {
 	Coder

@@ -34,6 +34,8 @@ type IBarcodeDescriptor interface {
 
 // An abstract base class that represents a machine-readable code’s attributes.
 //
+// Subclasses encapsulate the formal specification and fields specific to a code type. Each subclass is sufficient to recreate the unique symbol exactly as seen or used with a custom parser.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor
 type BarcodeDescriptor struct {
 	objectivec.Object

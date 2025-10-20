@@ -33,6 +33,8 @@ type IMutableIndexSet interface {
 
 // A mutable collection of unique integer values that represent indexes in another collection.
 //
+// In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class represents a mutable collection of unique unsigned integers, known as because of the way they are used. This collection is referred to as a . The inclusive range of valid indexes is ; trying to use indexes outside this range is invalid. The values in a mutable index set are always sorted, so the order in which values are added is irrelevant. Do not subclass the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet
 type MutableIndexSet struct {
 	IndexSet

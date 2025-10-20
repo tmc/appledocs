@@ -34,6 +34,8 @@ type IMonitoringEvent interface {
 
 // The object that the framework passes to the monitor’s callback handler upon receiving an event.
 //
+// Instances of contain detailed information about an event in the monitoring of a by a .
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent
 type MonitoringEvent struct {
 	objectivec.Object

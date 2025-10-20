@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TiledLayer] class.
@@ -32,6 +33,8 @@ type ITiledLayer interface {
 }
 
 // A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.
+//
+// As more data is required by the renderer, the layer’s method is called on one or more background threads to supply the drawing operations to fill in one tile of data. The clip bounds and current transformation matrix (CTM) of the drawing context can be used to determine the bounds and resolution of the tile being requested. Regions of the layer may be invalidated using the method however the update will be asynchronous. While the next display update will most likely not contain the updated content, a future update will.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer
 type TiledLayer struct {
@@ -79,5 +82,21 @@ func NewTiledLayer() TiledLayer {
 }
 
 
+// The maximum size of each tile used to create the layer’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/tileSize
+func (t_ TiledLayer) TileSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("tileSize"))
+	return rv
+}
+
+// SetTileSize sets the value of the tileSize property.
+// The maximum size of each tile used to create the layer’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/tileSize
+func (t_ TiledLayer) SetTileSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTileSize:"), value)
+}
 
 

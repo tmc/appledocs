@@ -33,6 +33,8 @@ type IDecimalNumber interface {
 
 // An object for representing and performing arithmetic on base-10 numbers.
 //
+// In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. , an immutable subclass of , provides an object-oriented wrapper for doing base-10 arithmetic. An instance can represent any number that can be expressed as where mantissa is a decimal integer up to 38 digits long, and exponent is an integer from –128 through 127.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber
 type DecimalNumber struct {
 	Number

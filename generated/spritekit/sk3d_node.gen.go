@@ -28,14 +28,16 @@ type _SK3DNodeClass struct {
 
 // An interface definition for the [SK3DNode] class.
 type ISK3DNode interface {
-	ISKNode
+	INode
 }
 
 // 3D SceneKit content drawn as a flattened sprite.
 //
+// Use objects to incorporate 3D SceneKit content into a SpriteKit-based game. When SpriteKit renders the node, the SceneKit scene is animated and rendered first. Then this rendered image is composited into the SpriteKit scene. Use the property to specify the SceneKit scene to be rendered.
+//
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SK3DNode
 type SK3DNode struct {
-	SKNode
+	Node
 }
 
 // SK3DNodeFrom constructs a [SK3DNode] from an unsafe.Pointer.
@@ -43,7 +45,7 @@ type SK3DNode struct {
 // 3D SceneKit content drawn as a flattened sprite.
 func SK3DNodeFrom(ptr unsafe.Pointer) SK3DNode {
 	return SK3DNode{
-		SKNode: SKNodeFrom(ptr),
+		Node: NodeFrom(ptr),
 	}
 }
 

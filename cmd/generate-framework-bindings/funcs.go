@@ -1364,6 +1364,11 @@ func propertyToGoName(propName string) string {
 	if propName == "" {
 		return ""
 	}
+	// Special case: "object" property conflicts with embedded Object type
+	// Generate "GetObject()" instead of "Object()"
+	if strings.ToLower(propName) == "object" {
+		return "GetObject"
+	}
 	// Capitalize first letter
 	return strings.ToUpper(propName[:1]) + propName[1:]
 }
@@ -1385,6 +1390,11 @@ func sliceContainsString(slice []string, str string) bool {
 func capitalizeFirst(s string) string {
 	if s == "" {
 		return ""
+	}
+	// Special case: "object" property conflicts with embedded Object type
+	// Generate "GetObject" instead of "Object"
+	if strings.ToLower(s) == "object" {
+		return "GetObject"
 	}
 	return strings.ToUpper(s[:1]) + s[1:]
 }

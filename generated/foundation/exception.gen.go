@@ -34,6 +34,8 @@ type IException interface {
 
 // An object that represents a special condition that interrupts the normal flow of program execution.
 //
+// Use to implement exception handling. An exception is a special condition that interrupts the normal flow of program execution. Each application can interrupt the program for different reasons. For example, one application might interpret saving a file in a directory that is write-protected as an exception. In this sense, the exception is equivalent to an error. Another application might interpret the user’s key-press (for example, Control-C) as an exception: an indication that a long-running process should abort.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException
 type Exception struct {
 	objectivec.Object
@@ -75,6 +77,15 @@ func (e_ Exception) Autorelease() Exception {
 // NewException creates a new Exception instance.
 func NewException() Exception {
 	return getExceptionClass().New()
+}
+
+
+// A dictionary containing application-specific data pertaining to the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
+func (e_ Exception) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
+	return rv
 }
 
 

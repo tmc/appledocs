@@ -34,6 +34,8 @@ type IOrderedCollectionDifference interface {
 
 // An object representing the difference between two ordered collections.
 //
+// Use or one of its variations to get an instance of , which represents the difference between two ordered collections. For example, the following sample compares two arrays of strings to create a difference that represents the changes:
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference
 type OrderedCollectionDifference struct {
 	objectivec.Object

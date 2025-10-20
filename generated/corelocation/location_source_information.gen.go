@@ -34,6 +34,8 @@ type ILocationSourceInformation interface {
 
 // Information about the source that provides a location.
 //
+// contains information about the source that provides a instance, such as instances that delivers. For example, an app may choose to check the source information and reject locations if the property is when the developer isn’t debugging or testing the app.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation
 type LocationSourceInformation struct {
 	objectivec.Object

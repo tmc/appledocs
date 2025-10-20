@@ -34,6 +34,8 @@ type ICalendar interface {
 
 // A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
 //
+// In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. objects encapsulate information about systems of reckoning time in which the beginning, length, and divisions of a year are defined. They provide information about the calendar and support for calendrical computations such as determining the range of a given calendrical unit and adding units to a given absolute time. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar
 type Calendar struct {
 	objectivec.Object

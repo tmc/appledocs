@@ -34,6 +34,8 @@ type IWarpKernel interface {
 
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
 //
+// The kernel language routine for a warp kernel has the following characteristics: It uses exactly one input image. Its return type is (Core Image Kernel Language) or (Metal Shading Language), specifying a position in source image coordinates. A warp kernel routine requires no input parameters (but can use additional custom parameters you declare). Typically, a warp kernel uses the destination coordinate function to look up the coordinates of the destination pixel currently being rendered, then computes a corresponding position in source image coordinates (output using the keyword). Core Image then samples from the source image at the returned coordinates to produce a pixel color for the output image. For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged. The equivalent code in Core Image Kernel Language is: The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See and for more details.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel
 type WarpKernel struct {
 	Kernel
@@ -96,6 +98,7 @@ func (wc _WarpKernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
+
 // Creates a new image using the kernel and the specified input image and arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
@@ -103,4 +106,5 @@ func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent unsafe
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
 	return rv
 }
+
 

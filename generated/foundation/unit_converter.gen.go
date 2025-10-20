@@ -34,6 +34,8 @@ type IUnitConverter interface {
 
 // An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.
 //
+// For units that can be converted by a scale factor or linear equation, use the concrete subclass .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter
 type UnitConverter struct {
 	objectivec.Object

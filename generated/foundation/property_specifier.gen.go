@@ -33,6 +33,8 @@ type IPropertySpecifier interface {
 
 // A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.
 //
+// You don’t typically subclass .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPropertySpecifier
 type PropertySpecifier struct {
 	ScriptObjectSpecifier

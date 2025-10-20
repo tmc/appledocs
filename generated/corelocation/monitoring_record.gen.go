@@ -34,6 +34,8 @@ type IMonitoringRecord interface {
 
 // An object that represents a condition and its associated information that a location monitor is monitoring.
 //
+// When handling a new , the available for the indicated identifier from the contains the prior event. The updates with the new event when the handling is complete.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord
 type MonitoringRecord struct {
 	objectivec.Object

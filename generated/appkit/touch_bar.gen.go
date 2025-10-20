@@ -103,8 +103,8 @@ func (t_ TouchBar) ItemForIdentifier(identifier unsafe.Pointer) unsafe.Pointer {
 // A list of identifiers for items to show in the Touch Bar’s customization UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
-func (t_ TouchBar) CustomizationAllowedItemIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationAllowedItemIdentifiers"))
+func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationAllowedItemIdentifiers"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
-func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value unsafe.Pointer) {
+func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationAllowedItemIdentifiers:"), value)
 }
 // A globally unique string that makes the Touch Bar eligible for user customization.
@@ -135,8 +135,8 @@ func (t_ TouchBar) SetCustomizationIdentifier(value unsafe.Pointer) {
 // An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
-func (t_ TouchBar) CustomizationRequiredItemIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationRequiredItemIdentifiers"))
+func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationRequiredItemIdentifiers"))
 	return rv
 }
 
@@ -145,14 +145,14 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
-func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value unsafe.Pointer) {
+func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value []string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationRequiredItemIdentifiers:"), value)
 }
 // A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
-func (t_ TouchBar) DefaultItemIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultItemIdentifiers"))
+func (t_ TouchBar) DefaultItemIdentifiers() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("defaultItemIdentifiers"))
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (t_ TouchBar) DefaultItemIdentifiers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
-func (t_ TouchBar) SetDefaultItemIdentifiers(value unsafe.Pointer) {
+func (t_ TouchBar) SetDefaultItemIdentifiers(value []string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultItemIdentifiers:"), value)
 }
 // The delegate that provides items to the Touch Bar.
@@ -206,8 +206,8 @@ func (t_ TouchBar) Visible() bool {
 // The list of identifiers for the current items in the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/itemIdentifiers
-func (t_ TouchBar) ItemIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemIdentifiers"))
+func (t_ TouchBar) ItemIdentifiers() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("itemIdentifiers"))
 	return rv
 }
 // The identifier of an item you want the system to center in the Touch Bar.

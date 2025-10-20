@@ -35,6 +35,8 @@ type ISortDescriptor interface {
 
 // An immutable description of how to order a collection of objects according to a property common to all the objects.
 //
+// You construct instances of by specifying the key path of the property to compare and the order of the sort (ascending or descending). Optionally, you can also specify a selector to use to perform the comparison, which allows you to specify other comparison selectors, such as and . Sorting raises an exception if the objects don’t respond to the sort descriptor’s comparison selector. You can use sort descriptors for the following: Sorting an array (an instance of or — see and ) Comparing two objects directly (see ) Specifying the order of objects that return from a Core Data fetch request (see )
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor
 type SortDescriptor struct {
 	objectivec.Object
@@ -97,6 +99,7 @@ func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key stri
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), objc.String(key), ascending, cmptr)
 	return rv
 }
+
 // Returns a comparison result value that indicates the sort order of two objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/compare(_:to:)
@@ -104,4 +107,14 @@ func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID)
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compareObject:toObject:"), object1, object2)
 	return rv
 }
+
+// The key that specifies the property to compare during sorting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/key
+func (s_ SortDescriptor) Key() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("key"))
+	return rv
+}
+
+
 

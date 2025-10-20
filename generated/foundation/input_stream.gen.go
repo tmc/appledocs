@@ -33,6 +33,8 @@ type IInputStream interface {
 
 // A stream that provides read-only stream functionality.
 //
+// is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
 type InputStream struct {
 	Stream

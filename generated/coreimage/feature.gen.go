@@ -34,6 +34,8 @@ type IFeature interface {
 
 // The abstract superclass for objects representing notable features detected in an image.
 //
+// A object represents a portion of an image that a detector believes matches its criteria. Subclasses of CIFeature holds additional information specific to the detector that discovered the feature.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature
 type Feature struct {
 	objectivec.Object
@@ -78,5 +80,19 @@ func NewFeature() Feature {
 }
 
 
+// The rectangle that holds discovered feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
+func (f_ Feature) Bounds() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bounds"))
+	return rv
+}
+// The type of feature that was discovered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
+func (f_ Feature) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
+	return rv
+}
 
 

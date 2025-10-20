@@ -33,6 +33,8 @@ type ISocketPort interface {
 
 // A port that represents a BSD socket.
 //
+// A object can be used as an endpoint for distributed object connections. Companion classes, and , allow for local (on the same machine) communication only. The class allows for both local and remote communication, but may be more expensive than the others for the local case.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort
 type SocketPort struct {
 	Port

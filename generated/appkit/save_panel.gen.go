@@ -157,8 +157,8 @@ func (s_ SavePanel) SetAccessoryView(value unsafe.Pointer) {
 // An array of types that specify the files types to which you can save.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) AllowedContentTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("allowedContentTypes"))
+func (s_ SavePanel) AllowedContentTypes() []UTType {
+	rv := objc.Send[[]UTType](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (s_ SavePanel) AllowedContentTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) SetAllowedContentTypes(value unsafe.Pointer) {
+func (s_ SavePanel) SetAllowedContentTypes(value []UTType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedContentTypes:"), value)
 }
 // A Boolean value that indicates whether the panel allows the user to save files with a filename extension that’s not in the list of allowed types.
@@ -417,8 +417,8 @@ func (s_ SavePanel) SetShowsTagField(value bool) {
 // The tag names that you want to include on a saved file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
-func (s_ SavePanel) TagNames() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tagNames"))
+func (s_ SavePanel) TagNames() []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("tagNames"))
 	return rv
 }
 
@@ -427,7 +427,7 @@ func (s_ SavePanel) TagNames() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
-func (s_ SavePanel) SetTagNames(value unsafe.Pointer) {
+func (s_ SavePanel) SetTagNames(value []string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTagNames:"), value)
 }
 // The title of the panel.

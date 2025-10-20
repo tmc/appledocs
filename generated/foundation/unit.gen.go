@@ -34,6 +34,8 @@ type IUnit interface {
 
 // An abstract class representing a unit of measure.
 //
+// Each instance of an subclass consists of a , which can be used to create string representations of objects with the class. The subclass is an abstract class that represents a dimensional unit, which can be converted into different units of the same type. The Foundation framework provides several concrete subclasses to represent the most common physical quantities, including mass, length, duration, and speed.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit
 type Unit struct {
 	objectivec.Object

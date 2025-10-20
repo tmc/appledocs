@@ -78,5 +78,28 @@ func NewPersistentStoreRequest() PersistentStoreRequest {
 }
 
 
+// The stores the request should be sent to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
+func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
+	rv := objc.Send[[]PersistentStore](p_.ID, objc.Sel("affectedStores"))
+	return rv
+}
+
+// SetAffectedStores sets the value of the affectedStores property.
+// The stores the request should be sent to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
+func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAffectedStores:"), value)
+}
+// The type of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType
+func (p_ PersistentStoreRequest) RequestType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestType"))
+	return rv
+}
 
 

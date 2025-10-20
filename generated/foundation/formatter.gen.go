@@ -35,6 +35,8 @@ type IFormatter interface {
 
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
 //
+// The Foundation framework provides several concrete subclasses of , including , , , , , , and .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
 type Formatter struct {
 	objectivec.Object
@@ -86,5 +88,6 @@ func (f_ Formatter) StringForObjectValue(obj objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
+
 
 

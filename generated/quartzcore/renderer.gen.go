@@ -35,6 +35,8 @@ type IRenderer interface {
 
 // A layer that allows an application to render a layer tree into a Core OpenGL context.
 //
+// For real-time output you should use an instance of to host the layer-tree.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer
 type Renderer struct {
 	objectivec.Object
@@ -85,5 +87,6 @@ func NewRenderer() Renderer {
 func (r_ Renderer) Render() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("render"))
 }
+
 
 

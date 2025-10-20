@@ -30,10 +30,12 @@ type _LinguisticTaggerClass struct {
 // An interface definition for the [LinguisticTagger] class.
 type ILinguisticTagger interface {
 	objectivec.IObject
-	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ unsafe.Pointer, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
+	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
 }
 
 // Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.
+//
+// provides a uniform interface to a variety of natural language processing functionality with support for many different languages and scripts. You can use this class to segment natural language text into paragraphs, sentences, or words, and tag information about those segments, such as part of speech, lexical class, lemma, script, and language. When you create a linguistic tagger, you specify what kind of information you’re interested in by passing one or more values. Set the property to the natural language text you want to analyze, and the linguistic tagger processes it according to the specified tag schemes. You can then enumerate over the tags in a specified range, using the methods described in Enumerating Linguistic Tags, to get the information requested for a given scheme and unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger
 type LinguisticTagger struct {
@@ -82,8 +84,9 @@ func NewLinguisticTagger() LinguisticTagger {
 // Enumerates over a given range of the string and calls the specified block for each tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
-func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ unsafe.Pointer, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer) {
+func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("enumerateTagsInRange:scheme:options:usingBlock:"), range_, tagScheme, opts, block)
 }
+
 
 

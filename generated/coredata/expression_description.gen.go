@@ -33,6 +33,8 @@ type IExpressionDescription interface {
 
 // An object that describes an expression to include with a fetch request.
 //
+// An expression description describes a value that a fetch request returns, which doesn’t appear as an attribute or relationship on an entity. For example, expressions can aggregate data, or transform an attribute’s value. You add expression descriptions to a fetch request using the method.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription
 type ExpressionDescription struct {
 	PropertyDescription
@@ -79,5 +81,37 @@ func NewExpressionDescription() ExpressionDescription {
 }
 
 
+// The expression to evaluate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
+func (e_ ExpressionDescription) Expression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expression"))
+	return rv
+}
+
+// SetExpression sets the value of the expression property.
+// The expression to evaluate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
+func (e_ ExpressionDescription) SetExpression(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
+}
+// The attribute type of the expression’s result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
+func (e_ ExpressionDescription) ExpressionResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionResultType"))
+	return rv
+}
+
+// SetExpressionResultType sets the value of the expressionResultType property.
+// The attribute type of the expression’s result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
+func (e_ ExpressionDescription) SetExpressionResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
+}
 
 

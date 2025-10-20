@@ -33,6 +33,8 @@ type IUnitEnergy interface {
 
 // A unit of measure for energy.
 //
+// You typically use instances of to represent specific quantities of energy using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy
 type UnitEnergy struct {
 	Dimension

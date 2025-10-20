@@ -35,6 +35,8 @@ type IProcessInfo interface {
 
 // A collection of information about the current process.
 //
+// Each process has a single, shared object known as a that can return information such as arguments, environment variables, host name, and process name. The class method returns the shared agent for the current process. For example, the following line returns the object, which then provides the name of the current process: The class also includes the property, which returns an structure identifying the operating system version on which the process is executing. objects attempt to interpret environment variables and command-line arguments in the user’s default C string encoding if they can’t convert to Unicode as UTF-8 strings. If neither the Unicode nor C string conversion works, the object ignores these values.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo
 type ProcessInfo struct {
 	objectivec.Object
@@ -85,5 +87,15 @@ func NewProcessInfo() ProcessInfo {
 func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), objc.String(reason), block)
 }
+
+// A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnMac
+func (p_ ProcessInfo) IOSAppOnMac() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnMac"))
+	return rv
+}
+
+
 
 

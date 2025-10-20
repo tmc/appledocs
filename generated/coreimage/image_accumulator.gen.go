@@ -39,6 +39,8 @@ type IImageAccumulator interface {
 
 // An object that manages feedback-based image processing for tasks such as painting or fluid simulation.
 //
+// The class enables feedback-based image processing for such things as iterative painting operations or fluid dynamics simulations. You use objects in conjunction with other Core Image classes, such as , , , and , to take advantage of the built-in Core Image filters when processing images.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator
 type ImageAccumulator struct {
 	objectivec.Object
@@ -92,6 +94,7 @@ func NewImageAccumulatorWithExtentFormat(extent unsafe.Pointer, format unsafe.Po
 	rv.Autorelease()
 	return rv
 }
+
 // Initializes an image accumulator with the specified extent, pixel format, and color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:colorSpace:)
@@ -110,6 +113,7 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent unsafe.
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:"), extent, format)
 	return rv
 }
+
 // Creates an image accumulator with the specified extent, pixel format, and color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/imageAccumulatorWithExtent:format:colorSpace:
@@ -117,12 +121,14 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(exte
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	return rv
 }
+
 // Resets the accumulator, discarding any pending updates and the current content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/clear()
 func (i_ ImageAccumulator) Clear() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("clear"))
 }
+
 // Returns the current contents of the image accumulator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/image()
@@ -130,16 +136,33 @@ func (i_ ImageAccumulator) Image() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("image"))
 	return rv
 }
+
 // Sets the contents of the image accumulator to the contents of the specified image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/setImage(_:)
 func (i_ ImageAccumulator) SetImage(image unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), image)
 }
+
 // Updates an image accumulator with a subregion of an image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/setImage(_:dirtyRect:)
 func (i_ ImageAccumulator) SetImageDirtyRect(image unsafe.Pointer, dirtyRect unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:dirtyRect:"), image, dirtyRect)
+}
+
+// The extent of the image associated with the image accumulator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/extent
+func (i_ ImageAccumulator) Extent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("extent"))
+	return rv
+}
+// The pixel format of the image accumulator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/format
+func (i_ ImageAccumulator) Format() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("format"))
+	return rv
 }
 

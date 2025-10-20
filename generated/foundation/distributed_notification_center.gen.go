@@ -33,6 +33,8 @@ type IDistributedNotificationCenter interface {
 
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
 //
+// A instance broadcasts objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter
 type DistributedNotificationCenter struct {
 	NotificationCenter

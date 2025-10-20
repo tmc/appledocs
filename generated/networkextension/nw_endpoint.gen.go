@@ -34,6 +34,8 @@ type INWEndpoint interface {
 
 // An abstract base class, shared by or , that represents the source or destination of a network connection.
 //
+// All endpoint objects are static collections of parameters that describe a network resource. They do not directly provide any resolution services, but instead must be used with other classes to be resolved and create connections.
+//
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWEndpoint
 type NWEndpoint struct {
 	objectivec.Object

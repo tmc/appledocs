@@ -33,6 +33,8 @@ type IReplicatorLayer interface {
 
 // A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations.
 //
+// You can use a object to build complex layouts based on a single source layer that is replicated with transformation rules that can affect the position, rotation color, and time. The following shows a simple example: a red square is added to a replicator layer with an instance count of . The position of each replicated instance is offset along the axis so that it appears to the right of the previous instance. The blue and green color channels are offset so that their values reach at the final instance. The result of the code above is a row of five squares, with colors graduating from white to red. Replicator layers can be nested. The following code adds to a second replicator layer that offsets the position of each instance vertically and subtracts from the red channel. The result of adding this code is to create a grid with the value of the red channel being reduced in the vertical direction.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer
 type ReplicatorLayer struct {
 	Layer
@@ -79,5 +81,21 @@ func NewReplicatorLayer() ReplicatorLayer {
 }
 
 
+// The transform matrix applied to the previous instance to produce the current instance. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceTransform
+func (r_ ReplicatorLayer) InstanceTransform() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceTransform"))
+	return rv
+}
+
+// SetInstanceTransform sets the value of the instanceTransform property.
+// The transform matrix applied to the previous instance to produce the current instance. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceTransform
+func (r_ ReplicatorLayer) SetInstanceTransform(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceTransform:"), value)
+}
 
 

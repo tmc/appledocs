@@ -33,6 +33,8 @@ type IUnitPower interface {
 
 // A unit of measure for power.
 //
+// You typically use instances of to represent specific quantities of power using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower
 type UnitPower struct {
 	Dimension

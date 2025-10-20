@@ -33,6 +33,8 @@ type ICountedSet interface {
 
 // A mutable, unordered collection of distinct objects that may appear more than once in the collection.
 //
+// Each distinct object inserted into an object has a counter associated with it. keeps track of the number of times objects are inserted and requires that objects be removed the same number of times. Thus, there is only one instance of an object in an object even if the object has been added to the set multiple times. The method defined by the superclass has special significance; it returns the number of distinct objects, not the total number of times objects are represented in the set. The and classes are provided for static and dynamic sets, respectively, whose elements are distinct. While and are not toll-free bridged, they provide similar functionality. For more information about , see the .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet
 type CountedSet struct {
 	MutableSet

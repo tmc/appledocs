@@ -37,6 +37,8 @@ type IPersistentContainer interface {
 
 // A container that encapsulates the Core Data stack in your app.
 //
+// NSPersistentContainer simplifies the creation and management of the Core Data stack by handling the creation of the managed object model ( ), persistent store coordinator ( ), and the managed object context ( ).
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer
 type PersistentContainer struct {
 	objectivec.Object
@@ -98,6 +100,7 @@ func NewPersistentContainerWithName(name string) PersistentContainer {
 func (p_ PersistentContainer) LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("loadPersistentStoresWithCompletionHandler:"), block)
 }
+
 // Returns a new managed object context that executes on a private queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/newBackgroundContext()
@@ -105,10 +108,33 @@ func (p_ PersistentContainer) NewBackgroundContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("newBackgroundContext"))
 	return rv
 }
+
 // Executes a closure on a private queue using an ephemeral managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/performBackgroundTask(_:)-39sch
 func (p_ PersistentContainer) PerformBackgroundTask(block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performBackgroundTask:"), block)
+}
+
+// The container’s managed object model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/managedObjectModel
+func (p_ PersistentContainer) ManagedObjectModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
+	return rv
+}
+// The container’s persistent store coordinator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreCoordinator
+func (p_ PersistentContainer) PersistentStoreCoordinator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("persistentStoreCoordinator"))
+	return rv
+}
+// The main queue’s managed object context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/viewContext
+func (p_ PersistentContainer) ViewContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("viewContext"))
+	return rv
 }
 

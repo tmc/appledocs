@@ -34,6 +34,8 @@ type IRemoteLayerServer interface {
 
 // A legacy class for cross-process rendering.
 //
+// is a legacy class for cross-process rendering. and , available with , offer an improved way to perform cross-process rendering.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer
 type RemoteLayerServer struct {
 	objectivec.Object
@@ -78,5 +80,12 @@ func NewRemoteLayerServer() RemoteLayerServer {
 }
 
 
+// The port number of the server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer/serverPort
+func (r_ RemoteLayerServer) ServerPort() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("serverPort"))
+	return rv
+}
 
 

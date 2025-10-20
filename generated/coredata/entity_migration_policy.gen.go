@@ -35,6 +35,8 @@ type IEntityMigrationPolicy interface {
 
 // A policy instance that customizes the migration process for an entity mapping.
 //
+// You set the policy for an entity mapping by passing the name of the migration policy class as the argument to . Typically, you specify the name in the Xcode mapping model editor.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy
 type EntityMigrationPolicy struct {
 	objectivec.Object
@@ -86,5 +88,6 @@ func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntit
 	rv := objc.Send[bool](e_.ID, objc.Sel("createDestinationInstancesForSourceInstance:entityMapping:manager:error:"), sInstance, mapping, manager, error)
 	return rv
 }
+
 
 

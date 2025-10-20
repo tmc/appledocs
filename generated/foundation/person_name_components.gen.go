@@ -34,6 +34,8 @@ type IPersonNameComponents interface {
 
 // An object that manages the separate parts of a person’s name to allow locale-aware formatting.
 //
+// You can use this type in Swift when you need reference semantics or other Foundation-specific behavior. An object encapsulates the components of a person’s name in an extendable, object-oriented manner. It is used to specify a person’s name by providing the components comprising a full name: given name, middle name, family name, prefix, suffix, nickname, and phonetic representation. objects can be used by an instance of to create string representations suitable for display in the current locale.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents
 type PersonNameComponents struct {
 	objectivec.Object
@@ -78,5 +80,23 @@ func NewPersonNameComponents() PersonNameComponents {
 }
 
 
+// Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
+func (p_ PersonNameComponents) GivenName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("givenName"))
+	return rv
+}
+
+
+
+// SetGivenName sets the value of the givenName property.
+// Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
+func (p_ PersonNameComponents) SetGivenName(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGivenName:"), value)
+}
 
 

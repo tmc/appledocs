@@ -34,6 +34,8 @@ type ITextCheckingResult interface {
 
 // An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
 //
+// On both iOS and macOS, instances of are returned by the class and the class to indicate the discovery of content. In those cases, what is found may be a match for a regular expression or a date, address, phone number, and so on. In macOS, instances of are returned by the object to describe the results of spelling, grammar, or text-substitution actions.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
 type TextCheckingResult struct {
 	objectivec.Object

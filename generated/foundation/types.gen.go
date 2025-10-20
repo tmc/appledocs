@@ -3,41 +3,30 @@
 package foundation
 
 
-// Common CoreGraphics struct types
-type CGFloat = float64
-
-type CGPoint struct {
-	X CGFloat
-	Y CGFloat
-}
-
-type CGSize struct {
-	Width  CGFloat
-	Height CGFloat
-}
-
-type CGRect struct {
-	Origin CGPoint
-	Size   CGSize
-}
-
-type CGAffineTransform struct {
-	A  CGFloat
-	B  CGFloat
-	C  CGFloat
-	D  CGFloat
-	Tx CGFloat
-	Ty CGFloat
-}
-
-// Common type aliases
-type Range = CGPoint  // NSRange
-type Size = CGSize    // NSSize
-type Point = CGPoint  // NSPoint
-type Rect = CGRect    // NSRect
+// TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
-
 // Foundation-specific types
+
+// Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
+type Point struct {
+	X float64
+	Y float64
+}
+
+type Size struct {
+	Width  float64
+	Height float64
+}
+
+type Rect struct {
+	Origin Point
+	Size   Size
+}
+
+type Range struct {
+	Location int
+	Length   int
+}
 
 // RectEdge defines which edge of a rectangle.
 type RectEdge int

@@ -33,6 +33,8 @@ type IQRCodeDescriptor interface {
 
 // A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol.
 //
+// ISO/IEC 18004 defines versions from 1 to 40, where a higher symbol version indicates a larger data-carrying capacity. QR Codes can encode text, vCard contact information, or Uniform Resource Identifiers (URI).
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor
 type QRCodeDescriptor struct {
 	BarcodeDescriptor
@@ -95,6 +97,35 @@ func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:
 func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload unsafe.Pointer, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
+	return rv
+}
+
+// The error-corrected codeword payload that comprises the QR code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectedPayload-swift.property
+func (q_ QRCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("errorCorrectedPayload"))
+	return rv
+}
+// The error correction level of the QR code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectionLevel-swift.property
+func (q_ QRCodeDescriptor) ErrorCorrectionLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("errorCorrectionLevel"))
+	return rv
+}
+// The data mask pattern for the QR code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/maskPattern-swift.property
+func (q_ QRCodeDescriptor) MaskPattern() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("maskPattern"))
+	return rv
+}
+// The version of the QR code which corresponds to the size of the QR code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/symbolVersion-swift.property
+func (q_ QRCodeDescriptor) SymbolVersion() int {
+	rv := objc.Send[int](q_.ID, objc.Sel("symbolVersion"))
 	return rv
 }
 

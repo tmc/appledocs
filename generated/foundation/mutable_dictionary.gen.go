@@ -33,6 +33,8 @@ type IMutableDictionary interface {
 
 // A dynamic collection of objects associated with unique keys.
 //
+// In Swift, you can use this type instead of a variable in cases that require reference semantics. The class declares the programmatic interface to objects that manage mutable associations of keys and values. It adds modification operations to the basic operations it inherits from . is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary
 type MutableDictionary struct {
 	Dictionary

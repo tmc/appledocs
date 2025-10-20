@@ -34,6 +34,8 @@ type IPropertyDescription interface {
 
 // A description of a single property belonging to an entity.
 //
+// A property describes a single value within an object managed by the Core Data Framework. There are different types of property, each represented by a subclass which encapsulates the specific property behavior—see , , and . Note that a property name cannot be the same as any no-parameter method name of or . For example, you cannot give a property the name “description”. There are hundreds of methods on which may conflict with property names—and this list can grow without warning from frameworks or other libraries. You should avoid very general words (like “font”, and “color”) and words or phrases which overlap with Cocoa paradigms (such as “isEditing” and “objectSpecifier”). Properties—relationships as well as attributes—may be transient. A managed object context knows about transient properties and tracks changes made to them. Transient properties are ignored by the persistent store, and not just during saves: you cannot fetch using a predicate based on transients (although you can use transient properties to filter in memory yourself).
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription
 type PropertyDescription struct {
 	objectivec.Object
@@ -78,5 +80,21 @@ func NewPropertyDescription() PropertyDescription {
 }
 
 
+// The name of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
+func (p_ PropertyDescription) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+	return rv
+}
+
+// SetName sets the value of the name property.
+// The name of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
+func (p_ PropertyDescription) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+}
 
 

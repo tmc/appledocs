@@ -33,6 +33,8 @@ type IPropertyAnimation interface {
 
 // An abstract subclass for creating animations that manipulate the value of layer properties.
 //
+// The property to animate is specified using a key path that is relative to the layer using the animation. You do not create instances of : to animate the properties of a Core Animation layer, create instance of the concrete subclasses or .
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation
 type PropertyAnimation struct {
 	Animation
@@ -94,6 +96,23 @@ func NewPropertyAnimationWithKeyPath(path string) PropertyAnimation {
 func (pc _PropertyAnimationClass) AnimationWithKeyPath(path string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("animationWithKeyPath:"), objc.String(path))
 	return rv
+}
+
+// Determines if the value of the property is the value at the end of the previous repeat cycle, plus the value of the current repeat cycle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/isCumulative
+func (p_ PropertyAnimation) Cumulative() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("cumulative"))
+	return rv
+}
+
+// SetCumulative sets the value of the cumulative property.
+// Determines if the value of the property is the value at the end of the previous repeat cycle, plus the value of the current repeat cycle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/isCumulative
+func (p_ PropertyAnimation) SetCumulative(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCumulative:"), value)
 }
 
 

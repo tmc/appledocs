@@ -355,8 +355,8 @@ func (t_ Toolbar) SetVisible(value bool) {
 // An array of itemIdentifiers that represent the current items in the toolbar. Setting this property will set the current items in the toolbar by diffing against items that already exist. Use this with great caution if is enabled as it will override any customizations the user has made. This property is key value observable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/itemIdentifiers
-func (t_ Toolbar) ItemIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemIdentifiers"))
+func (t_ Toolbar) ItemIdentifiers() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("itemIdentifiers"))
 	return rv
 }
 
@@ -365,14 +365,14 @@ func (t_ Toolbar) ItemIdentifiers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/itemIdentifiers
-func (t_ Toolbar) SetItemIdentifiers(value unsafe.Pointer) {
+func (t_ Toolbar) SetItemIdentifiers(value []string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItemIdentifiers:"), value)
 }
 // An array containing the toolbar’s current items, in order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/items
-func (t_ Toolbar) Items() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("items"))
+func (t_ Toolbar) Items() []__kindof NSToolbarItem {
+	rv := objc.Send[[]__kindof NSToolbarItem](t_.ID, objc.Sel("items"))
 	return rv
 }
 // The identifier of the toolbar’s currently selected item.
@@ -426,8 +426,8 @@ func (t_ Toolbar) SetSizeMode(value unsafe.Pointer) {
 // An array containing the toolbar’s currently visible items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/visibleItems
-func (t_ Toolbar) VisibleItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("visibleItems"))
+func (t_ Toolbar) VisibleItems() []__kindof NSToolbarItem {
+	rv := objc.Send[[]__kindof NSToolbarItem](t_.ID, objc.Sel("visibleItems"))
 	return rv
 }
 

@@ -34,6 +34,8 @@ type IMutableArray interface {
 
 // A dynamic ordered collection of objects.
 //
+// You can use this type in Swift instead of an variable in cases that require reference semantics. The class declares the programmatic interface to objects that manage a modifiable array of objects. This class adds insertion and deletion operations to the basic array-handling behavior inherited from . NSMutableArray is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray
 type MutableArray struct {
 	Array
@@ -86,5 +88,6 @@ func NewMutableArray() MutableArray {
 func (m_ MutableArray) SortUsingDescriptors(sortDescriptors unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
+
 
 

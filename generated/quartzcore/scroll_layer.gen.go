@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrollLayer] class.
@@ -29,10 +30,12 @@ type _ScrollLayerClass struct {
 // An interface definition for the [ScrollLayer] class.
 type IScrollLayer interface {
 	ILayer
-	ScrollToRect(r unsafe.Pointer)
+	ScrollToRect(r coregraphics.CGRect)
 }
 
 // A layer that displays scrollable content larger than its own bounds.
+//
+// The class is a subclass of that simplifies displaying a portion of a layer. The extent of the scrollable area of the is defined by the layout of its sublayers. The visible portion of the layer content is set by specifying the origin as a point or a rectangular area of the contents to be displayed. does not provide keyboard or mouse event-handling, nor does it provide visible scrollers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer
 type ScrollLayer struct {
@@ -83,8 +86,9 @@ func NewScrollLayer() ScrollLayer {
 // Scroll the contents of the receiver to ensure that the rectangle is visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scroll(to:)-782vd
-func (s_ ScrollLayer) ScrollToRect(r unsafe.Pointer) {
+func (s_ ScrollLayer) ScrollToRect(r coregraphics.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scrollToRect:"), r)
 }
+
 
 

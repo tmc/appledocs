@@ -34,6 +34,8 @@ type IIndexSet interface {
 
 // An immutable collection of unique integer values that represent indexes in another collection.
 //
+// In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class represents an immutable collection of unique unsigned integers, known as because of the way they are used. This collection is referred to as an . Indexes must be in the range . You use index sets in your code to store indexes into some other data structure. For example, given an object, you could use an index set to identify a subset of objects in that array. You should not use index sets to store an arbitrary collection of integer values because index sets store indexes as sorted ranges. This makes them more efficient than storing a collection of individual integers. It also means that each index value can only appear once in the index set. The designated initializers of the class are: , , and . You must not subclass the class. The mutable subclass of is .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
 type IndexSet struct {
 	objectivec.Object

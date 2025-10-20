@@ -55,7 +55,7 @@ type IView interface {
 	BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) unsafe.Pointer
 	CacheDisplayInRectToBitmapImageRep(rect coregraphics.CGRect, bitmapImageRep unsafe.Pointer)
 	CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect
-	ConstraintsAffectingLayoutForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	ConstraintsAffectingLayoutForOrientation(orientation unsafe.Pointer) []LayoutConstraint
 	ContentCompressionResistancePriorityForOrientation(orientation unsafe.Pointer) unsafe.Pointer
 	ContentHuggingPriorityForOrientation(orientation unsafe.Pointer) unsafe.Pointer
 	ConvertPointFromView(point coregraphics.CGPoint, view unsafe.Pointer) coregraphics.CGPoint
@@ -474,8 +474,8 @@ func (v_ View) CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect {
 // Returns the constraints impacting the layout of the view for a given orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/constraintsAffectingLayout(for:)
-func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("constraintsAffectingLayoutForOrientation:"), orientation)
+func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation unsafe.Pointer) []LayoutConstraint {
+	rv := objc.Send[[]LayoutConstraint](v_.ID, objc.Sel("constraintsAffectingLayoutForOrientation:"), orientation)
 	return rv
 }
 
@@ -1740,8 +1740,8 @@ func (v_ View) SetAutoresizingMask(value unsafe.Pointer) {
 // An array of Core Image filters to apply to the view’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) BackgroundFilters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("backgroundFilters"))
+func (v_ View) BackgroundFilters() []__kindof CIFilter {
+	rv := objc.Send[[]__kindof CIFilter](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
 
@@ -1750,7 +1750,7 @@ func (v_ View) BackgroundFilters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value unsafe.Pointer) {
+func (v_ View) SetBackgroundFilters(value []__kindof CIFilter) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBackgroundFilters:"), value)
 }
 // The distance (in points) between the bottom of the view’s alignment rectangle and its baseline.
@@ -1900,15 +1900,15 @@ func (v_ View) SetCompositingFilter(value unsafe.Pointer) {
 // Returns the constraints held by the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/constraints
-func (v_ View) Constraints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("constraints"))
+func (v_ View) Constraints() []LayoutConstraint {
+	rv := objc.Send[[]LayoutConstraint](v_.ID, objc.Sel("constraints"))
 	return rv
 }
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) ContentFilters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("contentFilters"))
+func (v_ View) ContentFilters() []__kindof CIFilter {
+	rv := objc.Send[[]__kindof CIFilter](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
 
@@ -1917,7 +1917,7 @@ func (v_ View) ContentFilters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value unsafe.Pointer) {
+func (v_ View) SetContentFilters(value []__kindof CIFilter) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setContentFilters:"), value)
 }
 // The menu item containing the view or any of its superviews in the view hierarchy.
@@ -2029,8 +2029,8 @@ func (v_ View) SetFrameRotation(value float64) {
 // The gesture recognize objects currently attached to the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
-func (v_ View) GestureRecognizers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("gestureRecognizers"))
+func (v_ View) GestureRecognizers() []__kindof NSGestureRecognizer {
+	rv := objc.Send[[]__kindof NSGestureRecognizer](v_.ID, objc.Sel("gestureRecognizers"))
 	return rv
 }
 
@@ -2039,7 +2039,7 @@ func (v_ View) GestureRecognizers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
-func (v_ View) SetGestureRecognizers(value unsafe.Pointer) {
+func (v_ View) SetGestureRecognizers(value []__kindof NSGestureRecognizer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setGestureRecognizers:"), value)
 }
 // A Boolean value indicating whether the constraints impacting the layout of the view incompletely specify the location of the view.
@@ -2262,8 +2262,8 @@ func (v_ View) SetLayerUsesCoreImageFilters(value bool) {
 // The array of layout guide objects owned by this view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layoutGuides
-func (v_ View) LayoutGuides() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layoutGuides"))
+func (v_ View) LayoutGuides() []LayoutGuide {
+	rv := objc.Send[[]LayoutGuide](v_.ID, objc.Sel("layoutGuides"))
 	return rv
 }
 // A layout guide that provides the recommended amount of padding for content inside of a view.
@@ -2511,8 +2511,8 @@ func (v_ View) RectPreservedDuringLiveResize() coregraphics.CGRect {
 // The array of pasteboard drag types that the view can accept.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/registeredDraggedTypes
-func (v_ View) RegisteredDraggedTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("registeredDraggedTypes"))
+func (v_ View) RegisteredDraggedTypes() []string {
+	rv := objc.Send[[]string](v_.ID, objc.Sel("registeredDraggedTypes"))
 	return rv
 }
 // A layout anchor representing the right edge of the view’s frame.
@@ -2562,8 +2562,8 @@ func (v_ View) SetShadow(value unsafe.Pointer) {
 // The array of views embedded in the current view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
-func (v_ View) Subviews() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("subviews"))
+func (v_ View) Subviews() []__kindof NSView {
+	rv := objc.Send[[]__kindof NSView](v_.ID, objc.Sel("subviews"))
 	return rv
 }
 
@@ -2572,7 +2572,7 @@ func (v_ View) Subviews() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
-func (v_ View) SetSubviews(value unsafe.Pointer) {
+func (v_ View) SetSubviews(value []__kindof NSView) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSubviews:"), value)
 }
 // The view that is the parent of the current view.
@@ -2615,8 +2615,8 @@ func (v_ View) TopAnchor() unsafe.Pointer {
 // An array of the view’s tracking areas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/trackingAreas
-func (v_ View) TrackingAreas() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("trackingAreas"))
+func (v_ View) TrackingAreas() []TrackingArea {
+	rv := objc.Send[[]TrackingArea](v_.ID, objc.Sel("trackingAreas"))
 	return rv
 }
 // A layout anchor representing the trailing edge of the view’s frame.

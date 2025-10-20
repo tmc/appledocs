@@ -34,6 +34,8 @@ type IMorphologyPronoun interface {
 
 // A custom pronoun for referring to a third person.
 //
+// Create instances of  when you need to define custom pronouns for a localized term of address. For examples of how to create custom pronouns, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun
 type MorphologyPronoun struct {
 	objectivec.Object

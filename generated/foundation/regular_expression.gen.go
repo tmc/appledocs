@@ -34,6 +34,8 @@ type IRegularExpression interface {
 
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
 //
+// The fundamental matching method for is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string. There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match. An individual match is represented by an instance of the class, which carries information about the overall matched range (via its property), and the range of each individual capture group (via the method). For basic objects, these match results will be of type , but subclasses may use other types.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression
 type RegularExpression struct {
 	objectivec.Object

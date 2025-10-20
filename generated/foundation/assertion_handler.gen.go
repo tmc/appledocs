@@ -34,6 +34,8 @@ type IAssertionHandler interface {
 
 // An object that logs an assertion to the console.
 //
+// objects are automatically created to handle false assertions. Assertion macros, such as and , are used to evaluate a condition, and if the condition evaluates to false, the macros pass a string to an object describing the failure. Each thread has its own object. When invoked, an assertion handler prints an error message that includes the method and class (or function) containing the assertion and raises an . You create assertions only using the assertion macros—you rarely need to invoke methods directly. The macros for use inside methods and functions send and messages respectively to the current assertion handler. The assertion handler for the current thread is obtained using the class method. See if you need to customize the behavior of .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler
 type AssertionHandler struct {
 	objectivec.Object

@@ -34,6 +34,8 @@ type IDateComponents interface {
 
 // An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.
 //
+// In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. encapsulates the components of a date in an extendable, object-oriented manner. It’s used to specify a date by providing the temporal components that make up a date and time: hour, minutes, seconds, day, month, year, and so on. You can also use it to specify a duration of time, for example, 5 hours and 16 minutes. An object is not required to define all the component fields. When a new instance of is created, the date components are set to . An instance of is not responsible for answering questions about a date beyond the information with which it was initialized. For example, if you initialize one with May 4, 2017, its weekday is , not Thursday. To get the correct day of the week, you must create a suitable instance of , create an object using and then use to retrieve the weekday—as illustrated in the following example. For more details, see in .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents
 type DateComponents struct {
 	objectivec.Object

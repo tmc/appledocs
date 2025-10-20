@@ -36,6 +36,8 @@ type IManagedObjectModel interface {
 
 // A programmatic representation of the file describing your objects.
 //
+// The model contains one or more objects representing the entities in the schema. Each object has property description objects (instances of subclasses of ) that represent the properties (or fields) of the entity in the schema. The Core Data framework uses this description in several ways: Constraining UI creation in Interface Builder Validating attribute and relationship values at runtime Mapping between your managed objects and a database or file-based schema for object persistence A managed object model maintains a mapping between each of its entity objects and a corresponding managed object class for use with the persistent storage mechanisms in the Core Data framework. You can determine the entity for a particular managed object with the method. You typically create managed object models using the data modeling tool in Xcode, but it’s possible to build a model programmatically if needed.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel
 type ManagedObjectModel struct {
 	objectivec.Object
@@ -87,11 +89,13 @@ func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configur
 	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), objc.String(configuration), metadata)
 	return rv
 }
+
 // Associates the specified fetch request with the receiver using the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/setFetchRequestTemplate(_:forName:)
 func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate unsafe.Pointer, name string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, objc.String(name))
 }
+
 
 

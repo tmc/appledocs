@@ -33,6 +33,8 @@ type IEmitterLayer interface {
 
 // A layer that emits, animates, and renders a particle system.
 //
+// The particles, defined by instances of , are drawn above the layer’s background color and border. The following code shows how to set up a simple point (the default is ) particle emitter. It uses an image named as the cell contents and, by setting the emitter cell’s to doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi , the particles are emitted in all directions.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer
 type EmitterLayer struct {
 	Layer
@@ -79,5 +81,21 @@ func NewEmitterLayer() EmitterLayer {
 }
 
 
+// Specifies the emitter shape.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
+func (e_ EmitterLayer) EmitterShape() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("emitterShape"))
+	return rv
+}
+
+// SetEmitterShape sets the value of the emitterShape property.
+// Specifies the emitter shape.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
+func (e_ EmitterLayer) SetEmitterShape(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterShape:"), value)
+}
 
 

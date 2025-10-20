@@ -33,6 +33,8 @@ type IUnitAngle interface {
 
 // A unit of measure for planar angle and rotation.
 //
+// You typically use instances of to represent specific quantities of planar angle using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle
 type UnitAngle struct {
 	Dimension

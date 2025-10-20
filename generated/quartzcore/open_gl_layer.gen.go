@@ -34,6 +34,8 @@ type IOpenGLLayer interface {
 
 // A layer that provides a layer suitable for rendering OpenGL content.
 //
+// To provide OpenGL content you subclass and override . You can specify that the OpenGL content is static by setting the property to .
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer
 type OpenGLLayer struct {
 	Layer
@@ -86,5 +88,6 @@ func NewOpenGLLayer() OpenGLLayer {
 func (o_ OpenGLLayer) DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("drawInCGLContext:pixelFormat:forLayerTime:displayTime:"), ctx, pf, t, ts)
 }
+
 
 

@@ -219,16 +219,6 @@ func NewWindow() Window {
 }
 
 
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes the window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
@@ -254,6 +244,16 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
 func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
 	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
+	return rv
+}
+
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
 	return rv
 }
 
@@ -323,8 +323,8 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point core
 // Returns the window numbers for all visible windows satisfying the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
+func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) []Number {
+	rv := objc.Send[[]Number](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
 
@@ -1564,8 +1564,8 @@ func (w_ Window) CascadingReferenceFrame() coregraphics.CGRect {
 // An array of the window’s attached child windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/childWindows
-func (w_ Window) ChildWindows() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("childWindows"))
+func (w_ Window) ChildWindows() []__kindof NSWindow {
+	rv := objc.Send[[]__kindof NSWindow](w_.ID, objc.Sel("childWindows"))
 	return rv
 }
 // A value that identifies the window’s behavior in window collections.
@@ -1805,8 +1805,8 @@ func (w_ Window) DockTile() unsafe.Pointer {
 // The collection of drawers associated with the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/drawers
-func (w_ Window) Drawers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("drawers"))
+func (w_ Window) Drawers() []Drawer {
+	rv := objc.Send[[]Drawer](w_.ID, objc.Sel("drawers"))
 	return rv
 }
 // The window’s first responder.
@@ -2494,8 +2494,8 @@ func (w_ Window) SheetParent() unsafe.Pointer {
 // An array of the sheets currently attached to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sheets
-func (w_ Window) Sheets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sheets"))
+func (w_ Window) Sheets() []__kindof NSWindow {
+	rv := objc.Send[[]__kindof NSWindow](w_.ID, objc.Sel("sheets"))
 	return rv
 }
 // A Boolean value that indicates whether the window’s resize indicator is visible.
@@ -2579,8 +2579,8 @@ func (w_ Window) TabGroup() unsafe.Pointer {
 // An array of windows that display as tabs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbedWindows
-func (w_ Window) TabbedWindows() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbedWindows"))
+func (w_ Window) TabbedWindows() []Window {
+	rv := objc.Send[[]Window](w_.ID, objc.Sel("tabbedWindows"))
 	return rv
 }
 // A value that allows a group of related windows.
@@ -2650,8 +2650,8 @@ func (w_ Window) SetTitleVisibility(value unsafe.Pointer) {
 // An array of title bar accessory view controllers that are currently added to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
-func (w_ Window) TitlebarAccessoryViewControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
+func (w_ Window) TitlebarAccessoryViewControllers() []__kindof NSTitlebarAccessoryViewController {
+	rv := objc.Send[[]__kindof NSTitlebarAccessoryViewController](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
 	return rv
 }
 
@@ -2660,7 +2660,7 @@ func (w_ Window) TitlebarAccessoryViewControllers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
-func (w_ Window) SetTitlebarAccessoryViewControllers(value unsafe.Pointer) {
+func (w_ Window) SetTitlebarAccessoryViewControllers(value []__kindof NSTitlebarAccessoryViewController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAccessoryViewControllers:"), value)
 }
 // A Boolean value that indicates whether the title bar draws its background.

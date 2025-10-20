@@ -34,6 +34,8 @@ type IPointerArray interface {
 
 // A collection similar to an array, but with a broader range of available memory semantics.
 //
+// The pointer array class is modeled after , but can also hold values. You can insert or remove values which contribute to the array’s . A pointer array can be initialized to maintain strong or weak references to objects, or according to any of the memory or personality options defined by . The and protocols are applicable only when a pointer array is initialized to maintain strong or weak references to objects. When enumerating a pointer array with using , the loop will yield any values present in the array. See in for more information.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray
 type PointerArray struct {
 	objectivec.Object

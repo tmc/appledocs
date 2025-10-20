@@ -34,6 +34,8 @@ type IConditionLock interface {
 
 // A lock that can be associated with specific, user-defined conditions.
 //
+// Using an object, you can ensure that a thread can acquire a lock only if a certain condition is met. Once it has acquired the lock and executed the critical section of code, the thread can relinquish the lock and set the associated condition to something new. The conditions themselves are arbitrary: you define them as needed for your application.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock
 type ConditionLock struct {
 	objectivec.Object

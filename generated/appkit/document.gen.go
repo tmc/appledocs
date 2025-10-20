@@ -85,8 +85,8 @@ func NewDocument() Document {
 // Returns the classes that support secure coding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)
-func (dc _DocumentClass) AllowedClassesForRestorableStateKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
+func (dc _DocumentClass) AllowedClassesForRestorableStateKeyPath(keyPath string) []objc.Class {
+	rv := objc.Send[[]objc.Class](objc.ID(dc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
 	return rv
 }
 

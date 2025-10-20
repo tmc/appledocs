@@ -34,6 +34,8 @@ type IAppleScript interface {
 
 // An object that provides the ability to load, compile, and execute scripts.
 //
+// This class provides applications with the ability to load a script from a URL or from a text string compile or execute a script or an individual Apple event obtain an containing the reply from an executed script or event obtain an attributed string for a compiled script, suitable for display in a script editor obtain various kinds of information about any errors that may occur When you create an instance of object, you can use a URL to specify a script that can be in either text or compiled form, or you can supply the script as a string. Should an error occur when compiling or executing the script, several of the methods return a dictionary containing error information. The keys for obtaining error information, such as , are described in the Constants section. See also NSAppleScript Additions Reference in the Application Kit framework, which defines a method that returns the syntax-highlighted source code for a script.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript
 type AppleScript struct {
 	objectivec.Object

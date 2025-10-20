@@ -87,4 +87,26 @@ func (p_ PersistentStoreAsynchronousResult) Cancel() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancel"))
 }
 
+// The managed object context for the result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/managedObjectContext
+func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectContext"))
+	return rv
+}
+// An error that contains details if the asynchronous fetch request fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/operationError
+func (p_ PersistentStoreAsynchronousResult) OperationError() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("operationError"))
+	return rv
+}
+// An object that reports progress for the asynchronous fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/progress
+func (p_ PersistentStoreAsynchronousResult) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progress"))
+	return rv
+}
+
 

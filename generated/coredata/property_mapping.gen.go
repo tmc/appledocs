@@ -78,5 +78,21 @@ func NewPropertyMapping() PropertyMapping {
 }
 
 
+// The name of the property in the destination entity for the property mapping.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
+func (p_ PropertyMapping) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+	return rv
+}
+
+// SetName sets the value of the name property.
+// The name of the property in the destination entity for the property mapping.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
+func (p_ PropertyMapping) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+}
 
 

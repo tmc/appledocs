@@ -33,6 +33,8 @@ type IUnitElectricPotentialDifference interface {
 
 // A unit of measure for electric potential difference.
 //
+// You typically use instances of to represent specific quantities of electric potential difference using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference
 type UnitElectricPotentialDifference struct {
 	Dimension

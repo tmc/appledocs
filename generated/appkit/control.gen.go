@@ -103,22 +103,22 @@ func NewControl() Control {
 }
 
 
-// Initializes a control with data in an unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
-func NewControlWithCoder(coder unsafe.Pointer) Control {
-	instance := getControlClass().Alloc()
-	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a control with the specified frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
 func NewControlWithFrame(frameRect coregraphics.CGRect) Control {
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a control with data in an unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
+func NewControlWithCoder(coder unsafe.Pointer) Control {
+	instance := getControlClass().Alloc()
+	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

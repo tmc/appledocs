@@ -78,5 +78,21 @@ func NewEntityMapping() EntityMapping {
 }
 
 
+// The mapping type for the entity mapping.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
+func (e_ EntityMapping) MappingType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("mappingType"))
+	return rv
+}
+
+// SetMappingType sets the value of the mappingType property.
+// The mapping type for the entity mapping.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
+func (e_ EntityMapping) SetMappingType(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMappingType:"), value)
+}
 
 

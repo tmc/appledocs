@@ -34,6 +34,8 @@ type IAnimation interface {
 
 // The abstract superclass for animations in Core Animation.
 //
+// provides the basic support for the and protocols. You do not create instance of : to animate Core Animation layers or SceneKit objects, create instances of the concrete subclasses , , , or .
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation
 type Animation struct {
 	objectivec.Object
@@ -78,5 +80,21 @@ func NewAnimation() Animation {
 }
 
 
+// For animations attached to SceneKit objects, the duration for transitioning into the animation’s effect as it begins.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/fadeInDuration
+func (a_ Animation) FadeInDuration() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("fadeInDuration"))
+	return rv
+}
+
+// SetFadeInDuration sets the value of the fadeInDuration property.
+// For animations attached to SceneKit objects, the duration for transitioning into the animation’s effect as it begins.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/fadeInDuration
+func (a_ Animation) SetFadeInDuration(value float64) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFadeInDuration:"), value)
+}
 
 

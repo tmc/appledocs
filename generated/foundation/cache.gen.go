@@ -34,6 +34,8 @@ type ICache interface {
 
 // A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.
 //
+// Cache objects differ from other mutable collections in a few ways: The class incorporates various auto-eviction policies, which ensure that a cache doesn’t use too much of the system’s memory. If memory is needed by other applications, these policies remove some items from the cache, minimizing its memory footprint. You can add, remove, and query items in the cache from different threads without having to lock the cache yourself. Unlike an object, a cache does not copy the key objects that are put into it. You typically use objects to temporarily store objects with transient data that are expensive to create. Reusing these objects can provide performance benefits, because their values do not have to be recalculated. However, the objects are not critical to the application and can be discarded if memory is tight. If discarded, their values will have to be recomputed again when needed. Objects that have subcomponents that can be discarded when not being used can adopt the protocol to improve cache eviction behavior. By default, objects in a cache are automatically removed if their content is discarded, although this automatic removal policy can be changed. If an object is put into the cache, the cache calls on it upon its removal.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache
 type Cache struct {
 	objectivec.Object

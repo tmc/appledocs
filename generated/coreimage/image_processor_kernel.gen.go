@@ -34,6 +34,8 @@ type IImageProcessorKernel interface {
 
 // The abstract class you extend to create custom image processors that can integrate with Core Image workflows.
 //
+// Unlike the class and its other subclasses that allow you to create new image-processing effects with the Core Image Kernel Language, the class provides direct access to the underlying bitmap image data for a step in the Core Image processing pipeline. As such, you can create subclasses of this class to integrate other image-processing technologies—such as Metal compute shaders, , operations, or your own CPU-based image-processing routines—with a Core Image filter chain. Your custom image processing operation is invoked by your subclassed image processor kernel’s method. The method can accept zero, one or more inputs: kernels that generate imagery (such as a noise or pattern generator) need no inputs, while kernels that composite source images together require multiple inputs. The dictionary allows the caller to pass in additional parameter values (such as the radius of a blur) and the contains the destination for your image processing code to write to. The following code shows how you can subclass to apply the Metal Performance Shader kernel to a : To apply to kernel to an image, the calling side invokes the image processor’s method. The following code generates a new object named which contains a thresholded version of the source image, .
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel
 type ImageProcessorKernel struct {
 	objectivec.Object
@@ -85,13 +87,15 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent 
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error)
 	return rv
 }
+
 // Call this method on your multiple-output Core Image Processor Kernel subclass to create an array of new image objects given the specified array of extents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtents:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents unsafe.Pointer, inputs unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error)
+func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents unsafe.Pointer, inputs unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) []Image {
+	rv := objc.Send[[]Image](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error)
 	return rv
 }
+
 // Override this class method if you want your any of the inputs to be in a specific pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/formatForInput(at:)
@@ -99,6 +103,7 @@ func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) unsaf
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("formatForInputAtIndex:"), inputIndex)
 	return rv
 }
+
 // Override this class method if your processor has more than one output and you want your processor’s output to be in a specific supported .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat(at:arguments:)
@@ -106,6 +111,7 @@ func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex in
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("outputFormatAtIndex:arguments:"), outputIndex, arguments)
 	return rv
 }
+
 // Override this class method to implement your Core Image Processor Kernel subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:output:)
@@ -113,6 +119,7 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(input
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error)
 	return rv
 }
+
 // Override this class method of your Core Image Processor Kernel subclass if it needs to produce multiple outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:outputs:)
@@ -120,6 +127,7 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inpu
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:outputs:error:"), inputs, arguments, outputs, error)
 	return rv
 }
+
 // Override this class method to implement your processor’s ROI callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roi(forInput:arguments:outputRect:)
@@ -127,12 +135,14 @@ func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex i
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("roiForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
 }
+
 // Override this class method to implement your processor’s tiled ROI callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roiTileArray(forInput:arguments:outputRect:)
-func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex int, arguments unsafe.Pointer, outputRect unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("roiTileArrayForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
+func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex int, arguments unsafe.Pointer, outputRect unsafe.Pointer) []Vector {
+	rv := objc.Send[[]Vector](objc.ID(ic.class), objc.Sel("roiTileArrayForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
 }
+
 
 

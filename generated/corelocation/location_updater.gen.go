@@ -88,6 +88,7 @@ func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configu
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithConfiguration:queue:handler:"), configuration, queue, handler)
 	return rv
 }
+
 // Creates a location updater on the queue you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/liveUpdaterWithQueue:handler:
@@ -95,23 +96,27 @@ func (lc _LocationUpdaterClass) LiveUpdaterWithQueueHandler(queue unsafe.Pointer
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithQueue:handler:"), queue, handler)
 	return rv
 }
+
 // Invalidates the updater.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/invalidate
 func (l_ LocationUpdater) Invalidate() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("invalidate"))
 }
+
 // Pauses the updater.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/pause
 func (l_ LocationUpdater) Pause() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("pause"))
 }
+
 // Resumes the updater.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/resume
 func (l_ LocationUpdater) Resume() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("resume"))
 }
+
 
 

@@ -33,6 +33,8 @@ type IUnitSpeed interface {
 
 // A unit of measure for speed.
 //
+// You typically use instances of to represent specific quantities of speed using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed
 type UnitSpeed struct {
 	Dimension

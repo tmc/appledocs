@@ -36,7 +36,7 @@ type ICell interface {
 	CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize
 	Compare(otherCell objc.ID) unsafe.Pointer
 	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView unsafe.Pointer) bool
-	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer
+	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view unsafe.Pointer) []DraggingImageComponent
 	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view unsafe.Pointer)
 	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
 	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
@@ -200,8 +200,8 @@ func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentP
 // Generates dragging image components with the specified frame in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draggingImageComponents(withFrame:in:)
-func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("draggingImageComponentsWithFrame:inView:"), frame, view)
+func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view unsafe.Pointer) []DraggingImageComponent {
+	rv := objc.Send[[]DraggingImageComponent](c_.ID, objc.Sel("draggingImageComponentsWithFrame:inView:"), frame, view)
 	return rv
 }
 

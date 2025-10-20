@@ -34,6 +34,8 @@ type IFloor interface {
 
 // The floor of a building on which the user’s device is located.
 //
+// A object specifies the floor of the building on which the device is located. In places where floor information can be determined, a object may include a floor object along with the regular location data. You do not create instances of this class directly, nor should you subclass it.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor
 type Floor struct {
 	objectivec.Object

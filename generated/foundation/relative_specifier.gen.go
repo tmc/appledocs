@@ -33,6 +33,8 @@ type IRelativeSpecifier interface {
 
 // A specifier that indicates an object in a collection by its position relative to another object.
 //
+// You don’t normally subclass .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier
 type RelativeSpecifier struct {
 	ScriptObjectSpecifier

@@ -33,6 +33,8 @@ type IUnitPressure interface {
 
 // A unit of measure for pressure.
 //
+// You typically use instances of to represent specific quantities of pressure using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure
 type UnitPressure struct {
 	Dimension

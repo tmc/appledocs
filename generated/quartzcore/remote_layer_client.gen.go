@@ -34,6 +34,8 @@ type IRemoteLayerClient interface {
 
 // A legacy class for cross-process rendering.
 //
+// is a legacy class for cross-process rendering. and , available with , offer an improved way to perform cross-process rendering.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient
 type RemoteLayerClient struct {
 	objectivec.Object

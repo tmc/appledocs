@@ -34,6 +34,8 @@ type IPropertyListSerialization interface {
 
 // An object that converts between a property list and one of several serialized representations.
 //
+// The class provides methods that convert a property list to and from several serialized formats. A property list is itself an array or dictionary that contains only , , , , , and objects. Property list objects are toll-free bridged with their respective Core Foundation types ( , , and so on). See for more information on toll-free bridging.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization
 type PropertyListSerialization struct {
 	objectivec.Object

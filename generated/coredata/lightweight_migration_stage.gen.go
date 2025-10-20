@@ -33,6 +33,8 @@ type ILightweightMigrationStage interface {
 
 // An object that describes a series of models suitable for lightweight migration.
 //
+// Use when you have a series of models to migrate and those models are compatible with lightweight migrations. Instances of this class supplement your custom migration stages and help maintain a consistent stage order for the entire migration.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage
 type LightweightMigrationStage struct {
 	MigrationStage
@@ -79,5 +81,12 @@ func NewLightweightMigrationStage() LightweightMigrationStage {
 }
 
 
+// The array of version checksums.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage/versionChecksums
+func (l_ LightweightMigrationStage) VersionChecksums() []string {
+	rv := objc.Send[[]string](l_.ID, objc.Sel("versionChecksums"))
+	return rv
+}
 
 

@@ -33,6 +33,8 @@ type ITransformLayer interface {
 
 // Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.
 //
+// Unlike normal layers, transform layers do not flatten their sublayers into the plane at . Due to this, they do not support many of the features of the class compositing model: Only the sublayers of a transform layer are rendered. The properties that are rendered by a layer are ignored, including: , , border style properties, stroke style properties, etc. The properties that assume 2D image processing are also ignored, including: , , , , , and shadow style properties. The property is applied to each sublayer individually, the transform layer does not form a compositing group. The method should never be called on a transform layer as they do not have a 2D coordinate space into which the point can be mapped.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransformLayer
 type TransformLayer struct {
 	Layer

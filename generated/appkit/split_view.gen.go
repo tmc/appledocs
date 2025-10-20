@@ -194,8 +194,8 @@ func (s_ SplitView) SetPositionOfDividerAtIndex(position float64, dividerIndex i
 // The array of views that the split view arranges as its split panes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/arrangedSubviews
-func (s_ SplitView) ArrangedSubviews() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("arrangedSubviews"))
+func (s_ SplitView) ArrangedSubviews() []__kindof NSView {
+	rv := objc.Send[[]__kindof NSView](s_.ID, objc.Sel("arrangedSubviews"))
 	return rv
 }
 // A Boolean value that determines whether the split view arranges all of its subviews as split panes.

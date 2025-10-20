@@ -33,6 +33,8 @@ type IUnitElectricResistance interface {
 
 // A unit of measure for electric resistance.
 //
+// You typically use instances of to represent specific quantities of electric resistance using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance
 type UnitElectricResistance struct {
 	Dimension

@@ -33,6 +33,8 @@ type IDeleteCommand interface {
 
 // A command that deletes a scriptable object.
 //
+// An instance of deletes the specified scriptable object or objects (such as words, paragraphs, and so on). Suppose, for example, a user executes a script that sends the command to the Sketch sample application (located in ). Cocoa creates an object to perform the operation. When the command is executed, it uses the key-value coding mechanism (by invoking ) to remove the specified object or objects from their container. See the description for for related information. is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass or call its methods.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand
 type DeleteCommand struct {
 	ScriptCommand

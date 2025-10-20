@@ -33,6 +33,8 @@ type IDimension interface {
 
 // An abstract class representing a dimensional unit of measure.
 //
+// The Foundation framework provides concrete subclasses for many of the most common types of physical units. Table 1: subclasses. Each instance of a subclass has a , which represents the unit in terms of the dimension’s . For example, the class uses as its base unit. The system defines the predefined unit by a with a of , which corresponds to the conversion ratio of miles to meters (1 mi = 1609.34 m); the system defines the predefined unit by a with a of because it’s the base unit. You typically use an subclass in conjunction with the class to represent specific quantities of a particular unit.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension
 type Dimension struct {
 	Unit

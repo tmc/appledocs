@@ -34,6 +34,8 @@ type IDecimalNumberHandler interface {
 
 // A class that adopts the decimal number behaviors protocol.
 //
+// This class allows you to set the way an object rounds off and handles errors, without having to create a custom class. You can use an instance of this class as an argument to any of the methods that end with . If you don’t think you need special behavior, you probably don’t need this class—it is likely that ’s default behavior will suit your needs. For more information, see the protocol specification.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler
 type DecimalNumberHandler struct {
 	objectivec.Object

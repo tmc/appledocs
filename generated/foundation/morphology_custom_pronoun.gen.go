@@ -34,6 +34,8 @@ type IMorphologyCustomPronoun interface {
 
 // A custom pronoun behavior for use in a specific langauge.
 //
+// Set a instance on a instance when you want to provide a langauge-specific customization of pronoun use in that language. Different languages have different requirements for the grammatical information needed to apply a custom pronoun, so you set custom pronoun behavior on a per-language basis. The example below shows how to create English “ze” and “hir” custom pronouns: only supports third-person pronouns. Use this feature when your app needs to refer to third parties with a specific pronoun.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun
 type MorphologyCustomPronoun struct {
 	objectivec.Object

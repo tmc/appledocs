@@ -34,6 +34,8 @@ type IBundleResourceRequest interface {
 
 // A resource manager you use to download content hosted on the App Store at the time your app needs it.
 //
+// You identify on-demand resources during development by creating string identifiers known as tags and assigning one or more tags to each resource. An object manages the resources marked by one or more tags. You use the resource request to inform the system when the managed tags are needed and when you have finished accessing them. The resource request manages the downloading of any resources marked with the managed tags that are not already on the device and informs your app when the resources are ready for use. The system will not attempt to purge the resources marked with a tag from on-device storage as long as at least one object is managing the tag. Apps can access resources after the completion handler of either or is called successfully. Management ends after a call to or after the resource request object is deallocated. Other properties and methods let you track the progress of a download, change the priority of a download, and check whether the resources marked by a set of tags are already on the device. Methods in indicate to the system the relative importance of preserving a tag in memory after it is no longer in use. For more information, see and .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest
 type BundleResourceRequest struct {
 	objectivec.Object
@@ -75,6 +77,15 @@ func (b_ BundleResourceRequest) Autorelease() BundleResourceRequest {
 // NewBundleResourceRequest creates a new BundleResourceRequest instance.
 func NewBundleResourceRequest() BundleResourceRequest {
 	return getBundleResourceRequestClass().New()
+}
+
+
+// A reference to the progress object associated with the specified resource request. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/progress
+func (b_ BundleResourceRequest) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("progress"))
+	return rv
 }
 
 

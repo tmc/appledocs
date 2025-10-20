@@ -33,6 +33,8 @@ type IGradientLayer interface {
 
 // A layer that draws a color gradient over its background color, filling the shape of the layer.
 //
+// You use a gradient layer to create a color gradient containing an arbitrary number of colors. By default, the colors are spread uniformly across the layer, but you can optionally specify locations for control over the color positions through the gradient. The following code shows how to create a gradient layer containing four colors that are evenly distributed through the gradient. Rotating the layer by 90° ( doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi radians) gives a horizontal gradient. The following figure shows the appearance of the gradient layer.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer
 type GradientLayer struct {
 	Layer

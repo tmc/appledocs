@@ -34,6 +34,8 @@ type IConstraintLayoutManager interface {
 
 // An object that provides a constraint-based layout manager.
 //
+// You use the shared instance of this object by assigning it to the property of any layer objects to which you have added constraints. During a layout update, Core Animation uses the layout manager to update the size and position of the sublayers based on the registered set of constraints. Constraints let you define a set of geometric relationships between a layer and its sibling layers or between a layer and its superlayer. These relationships are expressed using constraint objects, which are instances of the class. When creating constraints, you can reference a layer by name using that object’s property. You can also use the special name to refer to the layer’s superlayer. The following example shows how you can use to create a layer containing two constrained sublayers: and . A series of objects are created so that the sublayers match their superlayer’s height and are half of its width. matches the attribute and matches the attribute. The end result is that the two sublayers are always laid out so that fills the left half of and fills the right half of layer. This class is not meant to be subclassed.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager
 type ConstraintLayoutManager struct {
 	objectivec.Object
@@ -85,5 +87,6 @@ func (cc _ConstraintLayoutManagerClass) LayoutManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layoutManager"))
 	return rv
 }
+
 
 

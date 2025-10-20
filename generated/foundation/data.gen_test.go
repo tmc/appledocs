@@ -10,12 +10,23 @@ import (
 var _ = foundation.NewData
 
 
-
-
 // ExampleNewDataWithContentsOfFile demonstrates how to create a Data instance using NewDataWithContentsOfFile.
 // Initializes a data object with the content of the file at a given path.
 func ExampleNewDataWithContentsOfFile() {
 	_ = foundation.NewDataWithContentsOfFile(
+		"/tmp/test", // path string
+	)
+	// Output:
+}
+
+
+
+
+
+// ExampleNewDataWithContentsOfMappedFile demonstrates how to create a Data instance using NewDataWithContentsOfMappedFile.
+// Initializes a data object with the contents of the mapped file specified by a given path.
+func ExampleNewDataWithContentsOfMappedFile() {
+	_ = foundation.NewDataWithContentsOfMappedFile(
 		"/tmp/test", // path string
 	)
 	// Output:
@@ -34,17 +45,6 @@ func ExampleNewDataWithBase64Encoding() {
 	// Output:
 }
 
-
-
-
-// ExampleNewDataWithContentsOfMappedFile demonstrates how to create a Data instance using NewDataWithContentsOfMappedFile.
-// Initializes a data object with the contents of the mapped file specified by a given path.
-func ExampleNewDataWithContentsOfMappedFile() {
-	_ = foundation.NewDataWithContentsOfMappedFile(
-		"/tmp/test", // path string
-	)
-	// Output:
-}
 
 
 

@@ -33,6 +33,8 @@ type IInvocationOperation interface {
 
 // An operation that manages the execution of a single encapsulated task specified as an invocation.
 //
+// The class is a concrete subclass of that you use to initiate an operation that consists of invoking a selector on a specified object. This class implements a non-concurrent operation. For more information on concurrent versus non-concurrent operations, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation
 type InvocationOperation struct {
 	Operation
@@ -76,6 +78,15 @@ func (i_ InvocationOperation) Autorelease() InvocationOperation {
 // NewInvocationOperation creates a new InvocationOperation instance.
 func NewInvocationOperation() InvocationOperation {
 	return getInvocationOperationClass().New()
+}
+
+
+// The result of the invocation or method.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/result
+func (i_ InvocationOperation) Result() objc.ID {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("result"))
+	return rv
 }
 
 

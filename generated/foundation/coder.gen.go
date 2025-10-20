@@ -35,6 +35,8 @@ type ICoder interface {
 
 // An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
 //
+// declares the interface used by concrete subclasses to transfer objects and other values between memory and some other format. This capability provides the basis for archiving (storing objects and data on disk) and distribution (copying objects and data items between different processes or threads). The concrete subclasses provided by Foundation for these purposes are , , , , and . Concrete subclasses of are “coder classes”, and instances of these classes are “coder objects” (or simply “coders”). A coder that can only encode values is an “encoder”, and one that can only decode values is a “decoder”. operates on objects, scalars, C arrays, structures, strings, and on pointers to these types. It doesn’t handle types whose implementation varies across platforms, such as , , function pointers, and long chains of pointers. A coder stores object type information along with the data, so an object decoded from a stream of bytes is normally of the same class as the object that was originally encoded into the stream. An object can change its class when encoded, however; this is described in . The AVFoundation framework adds methods to the class to make it easier to create archives including Core Media time structures, and extract Core Media time structure from archives.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder
 type Coder struct {
 	objectivec.Object
@@ -86,5 +88,15 @@ func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, objc.String(key))
 	return rv
 }
+
+// The action the coder should take when decoding fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodingFailurePolicy-swift.property
+func (c_ Coder) DecodingFailurePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodingFailurePolicy"))
+	return rv
+}
+
+
 
 

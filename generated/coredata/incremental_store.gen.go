@@ -35,6 +35,8 @@ type IIncrementalStore interface {
 
 // An abstract superclass defining the API through which Core Data communicates with a store.
 //
+// You use this interface to create persistent stores that load and save data incrementally, allowing for the management of large and/or shared datasets.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore
 type IncrementalStore struct {
 	PersistentStore
@@ -88,6 +90,7 @@ func (i_ IncrementalStore) ExecuteRequestWithContextError(request unsafe.Pointer
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("executeRequest:withContext:error:"), request, context, error)
 	return rv
 }
+
 // Loads the metadata for the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore/loadMetadata()
@@ -95,5 +98,6 @@ func (i_ IncrementalStore) LoadMetadata(error unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("loadMetadata:"), error)
 	return rv
 }
+
 
 

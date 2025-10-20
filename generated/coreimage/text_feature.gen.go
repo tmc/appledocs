@@ -33,6 +33,8 @@ type ITextFeature interface {
 
 // Information about a text that was detected in a still or video image.
 //
+// A detected text feature is not necessarily rectangular in the plane of the image; rather, the feature identifies a shape that may be rectangular in space (for example a text on a sign) but which appears as a four-sided polygon in the image. The properties of a object identify its four corners in image coordinates. To detect text in an image or video, choose the type when initializing a object, and use the option to specify the desired orientation for finding upright text.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature
 type TextFeature struct {
 	Feature
@@ -79,5 +81,47 @@ func NewTextFeature() TextFeature {
 }
 
 
+// The image coordinate of the lower-left corner of the detected text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomLeft
+func (t_ TextFeature) BottomLeft() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bottomLeft"))
+	return rv
+}
+// The image coordinate of the lower-right corner of the detected text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomRight
+func (t_ TextFeature) BottomRight() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bottomRight"))
+	return rv
+}
+// A rectangle that indicates the position and extent of the text feature in image coordinates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bounds
+func (t_ TextFeature) Bounds() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bounds"))
+	return rv
+}
+// An array containing additional features detected within the feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/subFeatures
+func (t_ TextFeature) SubFeatures() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("subFeatures"))
+	return rv
+}
+// The image coordinate of the upper-left corner of the detected text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/topLeft
+func (t_ TextFeature) TopLeft() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("topLeft"))
+	return rv
+}
+// The image coordinate of the upper-right corner of the detected text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/topRight
+func (t_ TextFeature) TopRight() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("topRight"))
+	return rv
+}
 
 

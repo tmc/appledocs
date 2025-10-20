@@ -38,6 +38,8 @@ type IPredicate interface {
 
 // A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.
 //
+// Predicates represent logical conditions, which you can use to filter collections of objects. Although it’s common to create predicates directly from instances of , , and , you often create predicates from a format string that the class methods parse on . Examples of predicate format strings include: Simple comparisons, such as or Case- and diacritic-insensitive lookups, such as Logical operations, such as Temporal range constraints, such as Relational conditions, such as Aggregate operations, such as For a complete syntax reference, refer to the . You can also create predicates that include variables using the method so that you can predefine the predicate before substituting concrete values at runtime.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate
 type Predicate struct {
 	objectivec.Object
@@ -89,13 +91,15 @@ func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
+
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
-func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments unsafe.Pointer) Predicate {
+func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objc.ID) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
+
 // Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
@@ -103,6 +107,7 @@ func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Poin
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
+
 // Creates a predicate with a metadata query string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
@@ -110,6 +115,7 @@ func NewPredicateFromMetadataQueryString(queryString string) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
+
 // Creates and returns a predicate that always evaluates to a specified Boolean value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
@@ -126,13 +132,15 @@ func (pc _PredicateClass) PredicateWithBlock(block unsafe.Pointer) unsafe.Pointe
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
+
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
-func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string, arguments unsafe.Pointer) unsafe.Pointer {
+func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string, arguments objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
+
 // Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
@@ -140,6 +148,7 @@ func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, a
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
+
 // Creates a predicate with a metadata query string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
@@ -147,6 +156,7 @@ func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) u
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
+
 // Creates and returns a predicate that always evaluates to a specified Boolean value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
@@ -154,6 +164,7 @@ func (pc _PredicateClass) PredicateWithValue(value bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
+
 // Creates and returns a new predicate formed by creating a new string with a specified format and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateWithFormat:
@@ -161,12 +172,14 @@ func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) unsafe.Poi
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("predicateWithFormat:"), objc.String(predicateFormat))
 	return rv
 }
+
 // Forces a securely decoded predicate to allow evaluation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/allowEvaluation()
 func (p_ Predicate) AllowEvaluation() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("allowEvaluation"))
 }
+
 // Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:)
@@ -174,6 +187,7 @@ func (p_ Predicate) EvaluateWithObject(object objc.ID) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:"), object)
 	return rv
 }
+
 // Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:substitutionVariables:)
@@ -181,6 +195,7 @@ func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objc.ID, bind
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:substitutionVariables:"), object, bindings)
 	return rv
 }
+
 // Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/withSubstitutionVariables(_:)
@@ -188,4 +203,14 @@ func (p_ Predicate) PredicateWithSubstitutionVariables(variables unsafe.Pointer)
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicateWithSubstitutionVariables:"), variables)
 	return rv
 }
+
+// The predicate’s format string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateFormat
+func (p_ Predicate) PredicateFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicateFormat"))
+	return rv
+}
+
+
 

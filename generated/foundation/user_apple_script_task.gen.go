@@ -33,6 +33,8 @@ type IUserAppleScriptTask interface {
 
 // An object that executes AppleScript scripts.
 //
+// The class is intended to run AppleScript scripts from your application. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any. The class is not intended to execute scripts built into an application; for that, use one of the classes. If the application is sandboxed, then the script must be in the folder. A sandboxed application may read from, but not write to, this folder. If you simply need to execute scripts without regard to input or output, use , which can execute any of the specific types. If you need specific control over the input to or output from the script, use this class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask
 type UserAppleScriptTask struct {
 	UserScriptTask

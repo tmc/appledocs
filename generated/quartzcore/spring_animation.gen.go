@@ -33,6 +33,8 @@ type ISpringAnimation interface {
 
 // An animation that applies a spring-like force to a layer’s properties.
 //
+// You would typically use a spring animation to animate a layer’s position so that it appears to be pulled towards a target by a spring. The further the layer is from the target, the greater the acceleration towards it is. allows control over physically based attributes such as the spring’s damping and stiffness. You can use a spring animation to animation properties of a layer other than its position. The following code shows how to create a spring animation that bounces a layer into view by animating its scale from to . Because the spring animation can overshoot its , the animated layer may exceed its frame.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation
 type SpringAnimation struct {
 	BasicAnimation
@@ -79,5 +81,11 @@ func NewSpringAnimation() SpringAnimation {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/bounce
+func (s_ SpringAnimation) Bounce() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("bounce"))
+	return rv
+}
 
 

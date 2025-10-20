@@ -34,6 +34,8 @@ type IPipe interface {
 
 // A one-way communications channel between related processes.
 //
+// objects provide an object-oriented interface for accessing pipes. An object represents both ends of a pipe and enables communication through the pipe. A pipe is a one-way communications channel between related processes; one process writes data, while the other process reads that data. The data that passes through the pipe is buffered; the size of the buffer is determined by the underlying operating system. is an abstract class, the public interface of a class cluster.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe
 type Pipe struct {
 	objectivec.Object

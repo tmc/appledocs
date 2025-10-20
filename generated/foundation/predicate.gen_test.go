@@ -11,6 +11,15 @@ var _ = foundation.NewPredicate
 
 
 
+// ExampleNewPredicateWithFormatArgumentArray demonstrates how to create a Predicate instance using NewPredicateWithFormatArgumentArray.
+// Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
+func ExampleNewPredicateWithFormatArgumentArray() {
+	_ = foundation.NewPredicateWithFormatArgumentArray(
+		"predicateFormat", // predicateFormat string
+		0, // arguments objc.ID
+	)
+	// Output:
+}
 
 
 // ExampleNewPredicateFromMetadataQueryString demonstrates how to create a Predicate instance using NewPredicateFromMetadataQueryString.

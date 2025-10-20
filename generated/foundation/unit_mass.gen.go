@@ -33,6 +33,8 @@ type IUnitMass interface {
 
 // A unit of measure for mass.
 //
+// You typically use instances of to represent specific quantities of mass using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass
 type UnitMass struct {
 	Dimension

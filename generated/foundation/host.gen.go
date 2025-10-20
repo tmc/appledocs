@@ -34,6 +34,8 @@ type IHost interface {
 
 // A representation of an individual host on the network.
 //
+// The class provides methods to access the network name and address information for a host. Instances of the class represent individual on a network. Use objects to get the current host’s names and addresses and to look up other hosts by name or by address. To create an object, use the , , or class methods (don’t use and ). These methods use available network administration services to discover all names and addresses for the host requested. They don’t attempt to contact the host itself, however. This approach avoids untimely delays due to a host being unavailable, but it may result in incomplete information about the host. An object contains all of the network addresses and names discovered for a given host by the network administration services. Each object may contain several addresses and have more than one name. If an object has more than one name, the additional names are variations on the same name, typically the basic host name plus the fully qualified domain name. For example, with a host name in the domain , an object can hold both the names and . methods are thread-safe.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host
 type Host struct {
 	objectivec.Object

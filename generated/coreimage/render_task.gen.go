@@ -35,6 +35,8 @@ type IRenderTask interface {
 
 // A single render task.
 //
+// A single render task issued in conjunction with . A object appears in Xcode Quick Look as a graph.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask
 type RenderTask struct {
 	objectivec.Object
@@ -86,5 +88,6 @@ func (r_ RenderTask) WaitUntilCompletedAndReturnError(error unsafe.Pointer) unsa
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("waitUntilCompletedAndReturnError:"), error)
 	return rv
 }
+
 
 

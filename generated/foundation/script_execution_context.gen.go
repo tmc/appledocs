@@ -34,6 +34,8 @@ type IScriptExecutionContext interface {
 
 // The context in which the current script command is executed.
 //
+// An object is a shared instance (there is only one instance of the class) that represents the context in which the current script command is executed. tracks global state relating to the command being executed, especially the top-level container object (that is, the container implied by a specifier object that specifies no container) used in an evaluation of an object. In most cases, the top-level container for a complete series of nested object specifiers is automatically set to the application object ( ), and you can get this object with the method. But you can also set this top-level container to something else (using ) if the situation warrants it. It is unlikely that you will need to subclass .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptExecutionContext
 type ScriptExecutionContext struct {
 	objectivec.Object

@@ -34,6 +34,8 @@ type IValueFunction interface {
 
 // An object that provides a flexible method of defining animated transformations.
 //
+// You can use a value function to specify the individual components of an animated transform. For example, to create a basic animation that rotates a layer from 0° to 180° around its z-axis, you would create a object with a of , a of , and a of a with a function name of . The following code shows how you would create such a rotation and apply it to a named . The value functions and require 3 values, for the individual , and components. When working with these value functions, you specify the animation’s and as arrays. The following code shows how you could animate a layer’s scale from to using a value function.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction
 type ValueFunction struct {
 	objectivec.Object
@@ -78,5 +80,12 @@ func NewValueFunction() ValueFunction {
 }
 
 
+// Returns the name of the value function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/name
+func (v_ ValueFunction) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
+	return rv
+}
 
 

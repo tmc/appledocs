@@ -34,6 +34,8 @@ type IMorphology interface {
 
 // A description of the grammatical properties of a string.
 //
+// Use a morphology with an to specify how to interpret a specific word when inflecting an . This affects grammatical agreement with traits like number and gender, as well as declaring the word’s part of speech. The type’s design is language-independent; the concepts it can specify encompass the spectrum of what languages can do. Even for languages that don’t have one or more of those properties benefit the system as hints to make appropriate choices even when an exact inflection isn’t possible. Examples of properties absent from languages include Spanish’s lack of a grammatical gender of neuter, or the nonexistence of a paucal (plural few) pronoun in English.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology
 type Morphology struct {
 	objectivec.Object

@@ -9,7 +9,7 @@ import (
 )
 
 
-// ImageIO Functions (13 total)
+// ImageIO Functions (14 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -19,6 +19,7 @@ var (
 	_CGAnimateImageDataWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationAddImage func(unsafe.Pointer, CGImageRef, unsafe.Pointer)
 	_CGImageDestinationCopyImageSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGImageDestinationCreateWithURL func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationFinalize func(unsafe.Pointer) bool
 	_CGImageMetadataCopyTags func(CGImageMetadataRef) unsafe.Pointer
 	_CGImageMetadataCreateMutableCopy func(CGImageMetadataRef) CGMutableImageMetadataRef
@@ -39,6 +40,7 @@ func init() {
 	tryRegister(&_CGAnimateImageDataWithBlock, lib, "CGAnimateImageDataWithBlock")
 	tryRegister(&_CGImageDestinationAddImage, lib, "CGImageDestinationAddImage")
 	tryRegister(&_CGImageDestinationCopyImageSource, lib, "CGImageDestinationCopyImageSource")
+	tryRegister(&_CGImageDestinationCreateWithURL, lib, "CGImageDestinationCreateWithURL")
 	tryRegister(&_CGImageDestinationFinalize, lib, "CGImageDestinationFinalize")
 	tryRegister(&_CGImageMetadataCopyTags, lib, "CGImageMetadataCopyTags")
 	tryRegister(&_CGImageMetadataCreateMutableCopy, lib, "CGImageMetadataCreateMutableCopy")
@@ -101,6 +103,16 @@ func CGImageDestinationAddImage(idst unsafe.Pointer, image CGImageRef, propertie
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCopyImageSource(_:_:_:_:)
 func CGImageDestinationCopyImageSource(idst unsafe.Pointer, isrc unsafe.Pointer, options unsafe.Pointer, err unsafe.Pointer) bool {
 	return _CGImageDestinationCopyImageSource(idst, isrc, options, err)
+	}
+
+
+// Creates an image destination that writes image data to the specified URL. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)
+func CGImageDestinationCreateWithURL(url unsafe.Pointer, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) unsafe.Pointer {
+	return _CGImageDestinationCreateWithURL(url, type_, count, options)
 	}
 
 

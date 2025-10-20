@@ -33,6 +33,8 @@ type IMachPort interface {
 
 // A port that can be used as an endpoint for distributed object connections (or raw messaging).
 //
+// is a subclass of that wraps a Mach port, the fundamental communication port in macOS. allows for local (on the same machine) communication only. A companion class, , allows for both local and remote distributed object communication, but may be more expensive than for the local case. To use effectively, you should be familiar with Mach ports, port access rights, and Mach messages. See the Mach OS documentation for more information.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort
 type MachPort struct {
 	Port

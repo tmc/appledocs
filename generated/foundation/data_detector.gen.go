@@ -33,6 +33,8 @@ type IDataDetector interface {
 
 // A specialized regular expression object that matches natural language text for predefined data patterns.
 //
+// Find dates, addresses, links, phone numbers, and transit information in natural language text with . returns the results of matching content in objects. The objects that returns are different from those that returns. The results are one of the data detector’s types and contain the corresponding properties. For example, results of type have a , , and ; and results of type have a .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector
 type DataDetector struct {
 	RegularExpression

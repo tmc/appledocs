@@ -78,5 +78,21 @@ func NewMigrationStage() MigrationStage {
 }
 
 
+// The textual description of the migration stage’s purpose.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
+func (m_ MigrationStage) Label() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+// SetLabel sets the value of the label property.
+// The textual description of the migration stage’s purpose.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
+func (m_ MigrationStage) SetLabel(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+}
 
 

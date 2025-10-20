@@ -33,6 +33,8 @@ type IShapeLayer interface {
 
 // A layer that draws a cubic Bezier spline in its coordinate space.
 //
+// The shape is composited between the layer’s contents and its first sublayer. The shape will be drawn antialiased, and whenever possible it will be mapped into screen space before being rasterized to preserve resolution independence. However, certain kinds of image processing operations, such as CoreImage filters, applied to the layer or its ancestors may force rasterization in a local coordinate space. The following code shows how you can build complex, composite paths and display them using a shape layer. In this example, a series of progressively transformed ellipses form a simple flower shape. The shape layer that displays the path has its set to which stops the overlapping “petals” from filling with the yellow . The following figure shows the resulting shape layer.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer
 type ShapeLayer struct {
 	Layer
@@ -79,5 +81,21 @@ func NewShapeLayer() ShapeLayer {
 }
 
 
+// The fill rule used when filling the shape’s path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/fillRule
+func (s_ ShapeLayer) FillRule() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("fillRule"))
+	return rv
+}
+
+// SetFillRule sets the value of the fillRule property.
+// The fill rule used when filling the shape’s path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/fillRule
+func (s_ ShapeLayer) SetFillRule(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFillRule:"), value)
+}
 
 

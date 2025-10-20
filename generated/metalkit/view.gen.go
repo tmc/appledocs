@@ -32,7 +32,7 @@ type IView interface {
 	objectivec.IObject
 }
 
-// A parent class referenced by other MetalKit classes. [Full Topic]
+// A parent class referenced by other MetalKit classes.
 type View struct {
 	objectivec.Object
 }

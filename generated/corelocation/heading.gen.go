@@ -34,6 +34,8 @@ type IHeading interface {
 
 // The orientation of the user’s device, relative to true or magnetic north.
 //
+// A object contains computed values for the device’s azimuth (orientation) relative to true or magnetic north. It also includes the raw data for the three-dimensional vector used to compute those values. A navigation app might use the information to rotate a map so that it reflects the direction that the user is facing. Typically, you don’t create instances of this class yourself, nor do you subclass it. Instead, you receive instances of this class through the delegate assigned to the object whose method you called.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading
 type Heading struct {
 	objectivec.Object
@@ -78,5 +80,54 @@ func NewHeading() Heading {
 }
 
 
+// The maximum deviation (measured in degrees) between the reported heading and the true geomagnetic heading.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/headingAccuracy
+func (h_ Heading) HeadingAccuracy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("headingAccuracy"))
+	return rv
+}
+// The heading (measured in degrees) relative to magnetic north.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/magneticHeading
+func (h_ Heading) MagneticHeading() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("magneticHeading"))
+	return rv
+}
+// The time at which this heading was determined.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
+func (h_ Heading) Timestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("timestamp"))
+	return rv
+}
+// The heading (measured in degrees) relative to true north.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/trueHeading
+func (h_ Heading) TrueHeading() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("trueHeading"))
+	return rv
+}
+// The geomagnetic data (measured in microteslas) for the x-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/x
+func (h_ Heading) X() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("x"))
+	return rv
+}
+// The geomagnetic data (measured in microteslas) for the y-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/y
+func (h_ Heading) Y() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("y"))
+	return rv
+}
+// The geomagnetic data (measured in microteslas) for the z-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/z
+func (h_ Heading) Z() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("z"))
+	return rv
+}
 
 

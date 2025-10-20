@@ -33,6 +33,8 @@ type IDateFormatter interface {
 
 // A formatter that converts between dates and their textual representations.
 //
+// Instances of create string representations of objects, and convert textual representations of dates and times into objects. For user-visible representations of dates and times, provides a variety of localized presets and configuration options. For fixed format representations of dates and times, you can specify a custom format string. When working with date representations in ISO 8601 format, use instead. To represent an interval between two objects, use instead. To represent a quantity of time specified by an object, use instead.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter
 type DateFormatter struct {
 	Formatter

@@ -33,6 +33,8 @@ type IUnitFrequency interface {
 
 // A unit of measure for frequency.
 //
+// You typically use instances of to represent specific quantities of frequency using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency
 type UnitFrequency struct {
 	Dimension

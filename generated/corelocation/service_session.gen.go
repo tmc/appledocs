@@ -82,28 +82,33 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequir
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:"), authorizationRequirement)
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKey(authorizationRequirement unsafe.Pointer, purposeKey string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:"), authorizationRequirement, objc.String(purposeKey))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKeyQueueHandler(authorizationRequirement unsafe.Pointer, purposeKey string, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:"), authorizationRequirement, objc.String(purposeKey), queue, handler)
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:queue:handler:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationQueueHandler(authorizationRequirement unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:queue:handler:"), authorizationRequirement, queue, handler)
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/invalidate
 func (s_ ServiceSession) Invalidate() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidate"))
 }
+
 
 

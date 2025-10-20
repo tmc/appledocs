@@ -79,5 +79,12 @@ func NewOSLogEntryActivity() OSLogEntryActivity {
 }
 
 
+// The identifier of the parent activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryActivity/parentActivityIdentifier
+func (o_ OSLogEntryActivity) ParentActivityIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("parentActivityIdentifier"))
+	return rv
+}
 
 

@@ -78,5 +78,23 @@ func NewExtensionItem() ExtensionItem {
 }
 
 
+// An optional array of media data associated with the extension item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
+func (e_ ExtensionItem) Attachments() []ItemProvider {
+	rv := objc.Send[[]ItemProvider](e_.ID, objc.Sel("attachments"))
+	return rv
+}
+
+
+
+// SetAttachments sets the value of the attachments property.
+// An optional array of media data associated with the extension item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
+func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAttachments:"), value)
+}
 
 

@@ -34,6 +34,8 @@ type IDistributedLock interface {
 
 // A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
 //
+// The lock is implemented by an entry (such as a file or directory) in the file system. For multiple applications to use an object to coordinate their activities, the lock must be writable on a file system accessible to all hosts on which the applications might be running. Use the method to attempt to acquire a lock. You should generally use the method to release the lock rather than . doesn’t conform to the protocol, nor does it have a method. The protocol’s method is intended to block the execution of the thread until successful. For an object, this could mean polling the file system at some predetermined rate. A better solution is to provide the method and let you determine the polling frequency that makes sense for your application.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
 type DistributedLock struct {
 	objectivec.Object

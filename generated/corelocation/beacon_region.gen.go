@@ -34,6 +34,8 @@ type IBeaconRegion interface {
 
 // A region for detecting the presence of iBeacon devices.
 //
+// A object defines a region that you use to detect Bluetooth beacons conforming to the iBeacon specification. In contrast to a that centers on a geographic location, a focuses on an iBeacon with specific identifying characteristics, which you provide. When a matching device comes in range, Core Location notifies your app. You monitor beacon regions in two ways. To detect when a beacon is in range, use the method of your location manager object. After detecting a beacon, call the method to determine the relative distance to that beacon. When detecting an iBeacon, you need to specify the , , and values that you programmed into the beacon hardware. You use the values to identify your beacons uniquely, and you can specify a subset of values to detect multiple beacons. The property is typically the same for all of the beacons in your installation. Use the and values to distinguish among different beacons in your installation. If you want to configure the current iOS device as a Bluetooth beacon, create a beacon region with the appropriate identifying information. You can then call the method of the region to get a dictionary that you can use to advertise the device with the Core Bluetooth framework. For more information about using that framework to advertise the device as a beacon, see . For information about how to detect beacons, see .
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion
 type BeaconRegion struct {
 	Region
@@ -87,5 +89,6 @@ func (b_ BeaconRegion) PeripheralDataWithMeasuredPower(measuredPower unsafe.Poin
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("peripheralDataWithMeasuredPower:"), measuredPower)
 	return rv
 }
+
 
 

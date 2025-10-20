@@ -33,6 +33,8 @@ type IKeyedUnarchiver interface {
 
 // A decoder that restores data from an archive referenced by keys.
 //
+// is a concrete subclass of that defines methods for decoding a set of named objects (and scalar values) from a keyed archive. The class produces archives that this class can decode. The archiver creates keyed archive as a hierarchy of objects. The archiver treats each object as a namespace into which it can encode other objects. This means that an unarchiver can only decode objects encoded within the immediate scope of their parent object. Objects encoded elsewhere in the hierarchy — whether higher than, lower than, or parallel to this particular object — aren’t accessible. In this way, the keys used by a particular object to encode its instance variables need to be unique only within the scope of that object. If you invoke one of the -prefixed methods of this class using a key that does not exist in the archive, the return value indicates failure. This value varies by decoded type. For example, if a key does not exist in an archive, returns , returns , and returns . supports limited type coercion for numeric types. You can use any of the integer decode methods to decode a value encoded as any type of integer, whether a standard or an explicit 32-bit or 64-bit integer. Likewise, you can use the - or -returning decode methods to handle value encoded as a or . If an encoded value is too large to fit within the coerced type, the decoding method throws a . Further, when trying to coerce a value to an incompatible type — for example decoding an as a — the decoding method throws an .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver
 type KeyedUnarchiver struct {
 	Coder

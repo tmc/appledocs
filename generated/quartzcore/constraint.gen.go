@@ -34,6 +34,8 @@ type IConstraint interface {
 
 // A representation of a single layout constraint between two layers.
 //
+// Each instance encapsulates one geometry relationship between two layers on the same axis. Sibling layers are referenced by name, using the name property of each layer. The special name is used to refer to the layer’s superlayer. For example, to specify that a layer should be horizontally centered in its superview you would use the following: A minimum of two relationships must be specified per axis. If you specify constraints for the left and right edges of a layer, the width will vary. If you specify constraints for the left edge and the width, the right edge of the layer will move relative to the superlayer’s frame. Often you’ll specify only a single edge constraint, the layer’s size in the same axis will be used as the second relationship.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint
 type Constraint struct {
 	objectivec.Object
@@ -78,5 +80,12 @@ func NewConstraint() Constraint {
 }
 
 
+// The constraint attribute of the layer the receiver is calculated relative to
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/sourceAttribute
+func (c_ Constraint) SourceAttribute() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceAttribute"))
+	return rv
+}
 
 

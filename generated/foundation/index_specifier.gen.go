@@ -33,6 +33,8 @@ type IIndexSpecifier interface {
 
 // A specifier representing an object in a collection (or container) with an index number.
 //
+// The script terms and specify the object with index , while specifies the object with index of . A negative index indicates a location by counting backward from the last object in the collection. You don’t normally subclass .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier
 type IndexSpecifier struct {
 	ScriptObjectSpecifier

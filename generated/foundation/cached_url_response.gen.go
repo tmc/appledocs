@@ -34,6 +34,8 @@ type ICachedURLResponse interface {
 
 // A cached response to a URL request.
 //
+// A object provides the server’s response metadata in the form of a object, along with an object containing the actual cached content data. Its storage policy determines whether the response should be cached on disk, in memory, or not at all. Cached responses also contain a user info dictionary where you can store app-specific information about the cached item. The class stores and retrieves instances of .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse
 type CachedURLResponse struct {
 	objectivec.Object

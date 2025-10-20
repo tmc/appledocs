@@ -35,6 +35,8 @@ type IColor interface {
 
 // The Core Image class that defines a color object.
 //
+// Use instances in conjunction with other Core Image classes, such as and . Many of the built-in Core Image filters have one or more inputs that you can set to affect the filter’s behavior.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor
 type Color struct {
 	objectivec.Object
@@ -79,14 +81,6 @@ func NewColor() Color {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
-func NewColorWithColor(color unsafe.Pointer) Color {
-	instance := getColorClass().Alloc()
-	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
-	rv.Autorelease()
-	return rv
-}
 // Initialize a Core Image color object in the sRGB color space with the specified red, green, and blue component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/initWithRed:green:blue:
@@ -96,6 +90,7 @@ func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
 	rv.Autorelease()
 	return rv
 }
+
 // Initialize a Core Image color object in the sRGB color space with the specified red, green, blue, and alpha component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:)
@@ -105,6 +100,7 @@ func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alp
 	rv.Autorelease()
 	return rv
 }
+
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
@@ -114,6 +110,7 @@ func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue fl
 	rv.Autorelease()
 	return rv
 }
+
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
@@ -123,6 +120,7 @@ func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64
 	rv.Autorelease()
 	return rv
 }
+
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
@@ -130,12 +128,22 @@ func NewColorWithString(representation string) Color {
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
 	return rv
 }
+
 // Create a Core Image color object with a Core Graphics color object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
 func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
+func NewColorWithColor(color unsafe.Pointer) Color {
+	instance := getColorClass().Alloc()
+	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
 	rv.Autorelease()
 	return rv
 }
@@ -148,6 +156,7 @@ func (cc _ColorClass) ColorWithCGColor(color coregraphics.CGColorRef) unsafe.Poi
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithCGColor:"), color)
 	return rv
 }
+
 // Create a Core Image color object in the sRGB color space with the specified red, green, blue, and alpha component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:
@@ -155,6 +164,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64, green float64, blu
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:"), red, green, blue, alpha)
 	return rv
 }
+
 // Create a Core Image color object with the specified red, green, blue, and alpha component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:colorSpace:
@@ -162,6 +172,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green fl
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	return rv
 }
+
 // Create a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:colorSpace:
@@ -169,6 +180,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64, green float64
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	return rv
 }
+
 // Create a Core Image color object in the sRGB color space with the specified red, green, and blue component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:)
@@ -176,11 +188,69 @@ func (cc _ColorClass) ColorWithRedGreenBlue(red float64, green float64, blue flo
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:"), red, green, blue)
 	return rv
 }
+
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
 func (cc _ColorClass) ColorWithString(representation string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), objc.String(representation))
+	return rv
+}
+
+// Returns the alpha value of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/alpha
+func (c_ Color) Alpha() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("alpha"))
+	return rv
+}
+// Returns the unpremultiplied blue component of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.property
+func (c_ Color) Blue() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("blue"))
+	return rv
+}
+// Returns the associated with the color
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorSpace
+func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
+	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("colorSpace"))
+	return rv
+}
+// Return a pointer to an array of values including alpha.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/components
+func (c_ Color) Components() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("components"))
+	return rv
+}
+// Returns the unpremultiplied green component of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.property
+func (c_ Color) Green() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("green"))
+	return rv
+}
+// Returns the color components of the color including alpha.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/numberOfComponents
+func (c_ Color) NumberOfComponents() uintptr {
+	rv := objc.Send[uintptr](c_.ID, objc.Sel("numberOfComponents"))
+	return rv
+}
+// Returns the unpremultiplied red component of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.property
+func (c_ Color) Red() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("red"))
+	return rv
+}
+// Returns a formatted string with the unpremultiplied color and alpha components of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/stringRepresentation
+func (c_ Color) StringRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 

@@ -34,6 +34,8 @@ type IDate interface {
 
 // A representation of a specific point in time, independent of any calendar or time zone.
 //
+// In Swift, use this type when you need reference semantics or other Foundation-specific behavior. objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001). The class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. objects can be used in conjunction with objects to create localized representations of dates and times, as well as with objects to perform calendar arithmetic. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
 type Date struct {
 	objectivec.Object

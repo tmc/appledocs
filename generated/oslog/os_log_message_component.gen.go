@@ -34,6 +34,8 @@ type IOSLogMessageComponent interface {
 
 // The message arguments for a particular entry.
 //
+// There is one component for each placeholder in the formatString plus one component for any text after the last placeholder.
+//
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent
 type OSLogMessageComponent struct {
 	objectivec.Object

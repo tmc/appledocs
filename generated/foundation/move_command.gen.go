@@ -33,6 +33,8 @@ type IMoveCommand interface {
 
 // A command that moves one or more scriptable objects.
 //
+// An instance of moves the specified scriptable object or objects; for example, it may move words to a new location in a document or a file to a new directory. is part of Cocoa’s built-in scripting support. It works automatically to support the AppleScript command through key-value coding. Most applications don’t need to subclass or invoke its methods. However, for circumstances where you might choose to subclass this command, see “Modifying a Standard Command” in in . When an instance of is executed, it does not make copies of moved objects. It removes objects from the source container or containers, then inserts them into the destination container.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand
 type MoveCommand struct {
 	ScriptCommand

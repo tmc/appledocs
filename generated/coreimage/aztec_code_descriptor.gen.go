@@ -33,6 +33,8 @@ type IAztecCodeDescriptor interface {
 
 // A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol.
 //
+// An Aztec code symbol is a 2D barcode format defined by the ISO/IEC 24778:2008 standard. It encodes data in concentric square rings around a central bullseye pattern.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor
 type AztecCodeDescriptor struct {
 	BarcodeDescriptor
@@ -95,6 +97,35 @@ func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(error
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/descriptorWithPayload:isCompact:layerCount:dataCodewordCount:
 func (ac _AztecCodeDescriptorClass) DescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, layerCount int, dataCodewordCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("descriptorWithPayload:isCompact:layerCount:dataCodewordCount:"), errorCorrectedPayload, isCompact, layerCount, dataCodewordCount)
+	return rv
+}
+
+// The number of non-error-correction codewords carried by the Aztec code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/dataCodewordCount-swift.property
+func (a_ AztecCodeDescriptor) DataCodewordCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("dataCodewordCount"))
+	return rv
+}
+// The error-corrected payload that comprises the the Aztec code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-swift.property
+func (a_ AztecCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("errorCorrectedPayload"))
+	return rv
+}
+// A Boolean value telling if the Aztec code is compact.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/isCompact-swift.property
+func (a_ AztecCodeDescriptor) IsCompact() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isCompact"))
+	return rv
+}
+// The number of data layers in the Aztec code symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/layerCount-swift.property
+func (a_ AztecCodeDescriptor) LayerCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("layerCount"))
 	return rv
 }
 

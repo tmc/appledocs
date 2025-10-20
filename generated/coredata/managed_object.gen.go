@@ -34,6 +34,8 @@ type IManagedObject interface {
 
 // The base class that all Core Data model objects inherit from.
 //
+// A managed object has an associated entity description ( ) that provides metadata about the object, including the name of the entity that the object represents and the names of its attributes and relationships. A managed object also has an associated managed object context that tracks changes to the object graph. You can’t use instances of direct subclasses of , or any other class that doesn’t inherit from , with a managed object context. You may create custom subclasses of , although this isn’t always necessary. If you don’t need custom logic, you can create a complete object graph with instances. If you instantiate a managed object directly, you must call the designated initializer .
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject
 type ManagedObject struct {
 	objectivec.Object
@@ -89,4 +91,32 @@ func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity unsafe.Poin
 }
 
 
+// The entity description of the managed object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity-swift.property
+func (m_ ManagedObject) Entity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entity"))
+	return rv
+}
+// A Boolean value that indicates whether the managed object has been inserted in a managed object context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isInserted
+func (m_ ManagedObject) Inserted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("inserted"))
+	return rv
+}
+// The managed object context with which the managed object is registered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/managedObjectContext
+func (m_ ManagedObject) ManagedObjectContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("managedObjectContext"))
+	return rv
+}
+// The object ID of the managed object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectID
+func (m_ ManagedObject) ObjectID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectID"))
+	return rv
+}
 

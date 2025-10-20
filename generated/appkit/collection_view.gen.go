@@ -68,8 +68,8 @@ type ICollectionView interface {
 	SetDraggingSourceOperationMaskForLocal(dragOperationMask unsafe.Pointer, localDestination bool)
 	SupplementaryViewForElementKindAtIndexPath(elementKind unsafe.Pointer, indexPath unsafe.Pointer) unsafe.Pointer
 	ToggleSectionCollapse(sender objc.ID)
-	VisibleItems() unsafe.Pointer
-	VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) unsafe.Pointer
+	VisibleItems() []CollectionViewItem
+	VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) []View<NSCollectionViewElement>
 }
 
 // An ordered collection of data items displayed in a customizable layout.
@@ -408,16 +408,16 @@ func (c_ CollectionView) ToggleSectionCollapse(sender objc.ID) {
 // Returns an array of the actively managed items in the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/visibleItems()
-func (c_ CollectionView) VisibleItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("visibleItems"))
+func (c_ CollectionView) VisibleItems() []CollectionViewItem {
+	rv := objc.Send[[]CollectionViewItem](c_.ID, objc.Sel("visibleItems"))
 	return rv
 }
 
 // Returns an array of the actively managed supplementary views in the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/visibleSupplementaryViews(ofKind:)
-func (c_ CollectionView) VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("visibleSupplementaryViewsOfKind:"), elementKind)
+func (c_ CollectionView) VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) []View<NSCollectionViewElement> {
+	rv := objc.Send[[]View<NSCollectionViewElement>](c_.ID, objc.Sel("visibleSupplementaryViewsOfKind:"), elementKind)
 	return rv
 }
 
@@ -456,8 +456,8 @@ func (c_ CollectionView) SetAllowsMultipleSelection(value bool) {
 // An array containing the collection view’s background colors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundColors
-func (c_ CollectionView) BackgroundColors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundColors"))
+func (c_ CollectionView) BackgroundColors() []Color {
+	rv := objc.Send[[]Color](c_.ID, objc.Sel("backgroundColors"))
 	return rv
 }
 
@@ -466,7 +466,7 @@ func (c_ CollectionView) BackgroundColors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundColors
-func (c_ CollectionView) SetBackgroundColors(value unsafe.Pointer) {
+func (c_ CollectionView) SetBackgroundColors(value []Color) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColors:"), value)
 }
 // The background view placed behind all items and supplementary views.
@@ -520,8 +520,8 @@ func (c_ CollectionView) SetCollectionViewLayout(value unsafe.Pointer) {
 // An array that provides data for the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/content
-func (c_ CollectionView) Content() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("content"))
+func (c_ CollectionView) Content() []objc.ID {
+	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -530,7 +530,7 @@ func (c_ CollectionView) Content() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/content
-func (c_ CollectionView) SetContent(value unsafe.Pointer) {
+func (c_ CollectionView) SetContent(value []objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContent:"), value)
 }
 // An object that provides data for the collection view.

@@ -34,6 +34,8 @@ type IPersistentStore interface {
 
 // The abstract base class for all Core Data persistent stores.
 //
+// Core Data provides four store types—SQLite, Binary, XML, and In-Memory (the XML store is not available on iOS); these are described in Persistent Store Features. Core Data also provides subclasses of that you can use to define your own store types: and . The Binary and XML stores are examples of atomic stores that inherit functionality from .
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore
 type PersistentStore struct {
 	objectivec.Object
@@ -89,4 +91,27 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 }
 
 
+// The metadata for the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
+func (p_ PersistentStore) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+// SetMetadata sets the value of the metadata property.
+// The metadata for the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
+func (p_ PersistentStore) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:"), value)
+}
+// The type string of the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/type
+func (p_ PersistentStore) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+	return rv
+}
 

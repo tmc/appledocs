@@ -35,6 +35,8 @@ type IOperationQueue interface {
 
 // A queue that regulates the execution of operations.
 //
+// An operation queue invokes its queued objects based on their priority and readiness. After you add an operation to a queue, it remains in the queue until the operation finishes its task. You can’t directly remove an operation from a queue after you add it. For more information about using operation queues, see the .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue
 type OperationQueue struct {
 	objectivec.Object
@@ -85,5 +87,6 @@ func NewOperationQueue() OperationQueue {
 func (o_ OperationQueue) CancelAllOperations() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
 }
+
 
 

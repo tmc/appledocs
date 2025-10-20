@@ -34,6 +34,8 @@ type IStream interface {
 
 // An abstract class representing a stream.
 //
+// This class’s interface is common to all Cocoa stream classes, including its concrete subclasses and . objects provide an easy way to read and write data to and from a variety of media in a device-independent way. You can create stream objects for data located in memory, in a file, or on a network (using sockets), and you can use stream objects without loading all of the data into memory at once. By default, instances that aren’t file-based are non-seekable, one-way streams (although custom seekable subclasses are possible). After you provide or consume data, you can’t retrieve the data from the stream.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream
 type Stream struct {
 	objectivec.Object
@@ -83,5 +85,6 @@ func NewStream() Stream {
 func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname string, port int, inputStream unsafe.Pointer, outputStream unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHostWithName:port:inputStream:outputStream:"), objc.String(hostname), port, inputStream, outputStream)
 }
+
 
 

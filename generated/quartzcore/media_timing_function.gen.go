@@ -34,6 +34,8 @@ type IMediaTimingFunction interface {
 
 // A function that defines the pacing of an animation as a timing curve.
 //
+// represents one segment of a function that defines the pacing of an animation as a timing curve. The function maps an input time normalized to the range to an output time also in the range . You can create a media timing function by supplying your own cubic Bézier curve control points using the method or by using one of the predefined timing functions.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction
 type MediaTimingFunction struct {
 	objectivec.Object

@@ -30,7 +30,7 @@ type _UserActivityClass struct {
 // An interface definition for the [UserActivity] class.
 type IUserActivity interface {
 	objectivec.IObject
-	AddUserInfoEntriesFromDictionary(otherDictionary unsafe.Pointer)
+	AddUserInfoEntriesFromDictionary(otherDictionary objc.ID)
 	BecomeCurrent()
 	GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer)
 	Invalidate()
@@ -38,6 +38,8 @@ type IUserActivity interface {
 }
 
 // A representation of the state of your app at a moment in time.
+//
+// An object provides a lightweight way to capture the state of your app and put it to use later. Create this object to capture information about what a person was doing, such as viewing app content, editing a document, viewing a web page, or watching a video. When the system launches your app and an activity object is available, your app can use the information in that object to restore itself to an appropriate state. Spotlight also uses these objects to improve search results for people. To allow people to continue an activity on another device, see .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity
 type UserActivity struct {
@@ -100,41 +102,489 @@ func NewUserActivityWithActivityType(activityType string) UserActivity {
 func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteAllSavedUserActivitiesWithCompletionHandler:"), handler)
 }
+
 // Deletes user activities created by your app that have the specified persistent identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
 func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), persistentIdentifiers, handler)
 }
+
 // Adds the contents of the specified dictionary to the user info dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/addUserInfoEntries(from:)
-func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary unsafe.Pointer) {
+func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addUserInfoEntriesFromDictionary:"), otherDictionary)
 }
+
 // Marks the activity as currently in use by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/becomeCurrent()
 func (u_ UserActivity) BecomeCurrent() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("becomeCurrent"))
 }
+
 // Requests streams back to the originating app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/getContinuationStreams(completionHandler:)
 func (u_ UserActivity) GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getContinuationStreamsWithCompletionHandler:"), completionHandler)
 }
+
 // Invalidates an activity and marks it as no longer eligible for continuation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/invalidate()
 func (u_ UserActivity) Invalidate() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("invalidate"))
 }
+
 // Marks this activity object as inactive without invalidating it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/resignCurrent()
 func (u_ UserActivity) ResignCurrent() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resignCurrent"))
+}
+
+// The user activity object’s activity type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/activityType
+func (u_ UserActivity) ActivityType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("activityType"))
+	return rv
+}
+
+
+// An object containing the payload information that launches an App Clip.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/appClipActivationPayload
+func (u_ UserActivity) AppClipActivationPayload() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("appClipActivationPayload"))
+	return rv
+}
+
+
+// A set of properties that describe the activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contentAttributeSet
+func (u_ UserActivity) ContentAttributeSet() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("contentAttributeSet"))
+	return rv
+}
+
+
+
+// SetContentAttributeSet sets the value of the contentAttributeSet property.
+// A set of properties that describe the activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contentAttributeSet
+func (u_ UserActivity) SetContentAttributeSet(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setContentAttributeSet:"), value)
+}
+// The identifier path associated with a user activity generated by an app that adopts ClassKit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
+func (u_ UserActivity) ContextIdentifierPath() []string {
+	rv := objc.Send[[]string](u_.ID, objc.Sel("contextIdentifierPath"))
+	return rv
+}
+
+
+// The user activity object’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/delegate
+func (u_ UserActivity) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+
+// SetDelegate sets the value of the delegate property.
+// The user activity object’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/delegate
+func (u_ UserActivity) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
+}
+// The barcode that the system scanner passes in.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/detectedBarcodeDescriptor
+func (u_ UserActivity) DetectedBarcodeDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("detectedBarcodeDescriptor"))
+	return rv
+}
+
+
+// The date after which the activity is no longer eligible for Handoff or indexing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
+func (u_ UserActivity) ExpirationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("expirationDate"))
+	return rv
+}
+
+
+
+// SetExpirationDate sets the value of the expirationDate property.
+// The date after which the activity is no longer eligible for Handoff or indexing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
+func (u_ UserActivity) SetExpirationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setExpirationDate:"), value)
+}
+// A unique identifier from the app’s media content catalog for the currently displayed media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
+func (u_ UserActivity) ExternalMediaContentIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("externalMediaContentIdentifier"))
+	return rv
+}
+
+
+
+// SetExternalMediaContentIdentifier sets the value of the externalMediaContentIdentifier property.
+// A unique identifier from the app’s media content catalog for the currently displayed media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
+func (u_ UserActivity) SetExternalMediaContentIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), value)
+}
+// The SiriKit interaction object to use when configuring your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/interaction
+func (u_ UserActivity) Interaction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interaction"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether a user activity represents a ClassKit context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isClassKitDeepLink
+func (u_ UserActivity) IsClassKitDeepLink() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isClassKitDeepLink"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the activity can be continued on another device using Handoff.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
+func (u_ UserActivity) EligibleForHandoff() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForHandoff"))
+	return rv
+}
+
+
+
+// SetEligibleForHandoff sets the value of the eligibleForHandoff property.
+// A Boolean value that indicates whether the activity can be continued on another device using Handoff.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
+func (u_ UserActivity) SetEligibleForHandoff(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForHandoff:"), value)
+}
+// A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPrediction
+func (u_ UserActivity) EligibleForPrediction() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPrediction"))
+	return rv
+}
+
+
+
+// SetEligibleForPrediction sets the value of the eligibleForPrediction property.
+// A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPrediction
+func (u_ UserActivity) SetEligibleForPrediction(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForPrediction:"), value)
+}
+// A Boolean value that indicates whether the activity can be publicly accessed by all iOS users.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPublicIndexing
+func (u_ UserActivity) EligibleForPublicIndexing() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPublicIndexing"))
+	return rv
+}
+
+
+
+// SetEligibleForPublicIndexing sets the value of the eligibleForPublicIndexing property.
+// A Boolean value that indicates whether the activity can be publicly accessed by all iOS users.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPublicIndexing
+func (u_ UserActivity) SetEligibleForPublicIndexing(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForPublicIndexing:"), value)
+}
+// A Boolean value that indicates whether the activity should be added to the on-device index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
+func (u_ UserActivity) EligibleForSearch() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForSearch"))
+	return rv
+}
+
+
+
+// SetEligibleForSearch sets the value of the eligibleForSearch property.
+// A Boolean value that indicates whether the activity should be added to the on-device index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
+func (u_ UserActivity) SetEligibleForSearch(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForSearch:"), value)
+}
+// A set of localized keywords that can help users find the activity in search results.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/keywords
+func (u_ UserActivity) Keywords() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("keywords"))
+	return rv
+}
+
+
+
+// SetKeywords sets the value of the keywords property.
+// A set of localized keywords that can help users find the activity in search results.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/keywords
+func (u_ UserActivity) SetKeywords(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setKeywords:"), value)
+}
+// Attaches the specified map item to a user activity object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/mapItem
+func (u_ UserActivity) MapItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("mapItem"))
+	return rv
+}
+
+
+
+// SetMapItem sets the value of the mapItem property.
+// Attaches the specified map item to a user activity object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/mapItem
+func (u_ UserActivity) SetMapItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMapItem:"), value)
+}
+// The NDEF message read by the system in the background.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/ndefMessagePayload
+func (u_ UserActivity) NdefMessagePayload() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ndefMessagePayload"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the state of the activity needs to be updated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
+func (u_ UserActivity) NeedsSave() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("needsSave"))
+	return rv
+}
+
+
+
+// SetNeedsSave sets the value of the needsSave property.
+// A Boolean value that indicates whether the state of the activity needs to be updated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
+func (u_ UserActivity) SetNeedsSave(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNeedsSave:"), value)
+}
+// A value used to identify the user activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
+func (u_ UserActivity) PersistentIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("persistentIdentifier"))
+	return rv
+}
+
+
+
+// SetPersistentIdentifier sets the value of the persistentIdentifier property.
+// A value used to identify the user activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
+func (u_ UserActivity) SetPersistentIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPersistentIdentifier:"), value)
+}
+// The URL of the webpage that linked to the webpage URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
+func (u_ UserActivity) ReferrerURL() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("referrerURL"))
+	return rv
+}
+
+
+
+// SetReferrerURL sets the value of the referrerURL property.
+// The URL of the webpage that linked to the webpage URL.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
+func (u_ UserActivity) SetReferrerURL(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setReferrerURL:"), value)
+}
+// A set of keys that represent the minimal information about the activity that should be stored for later restoration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/requiredUserInfoKeys
+func (u_ UserActivity) RequiredUserInfoKeys() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("requiredUserInfoKeys"))
+	return rv
+}
+
+
+
+// SetRequiredUserInfoKeys sets the value of the requiredUserInfoKeys property.
+// A set of keys that represent the minimal information about the activity that should be stored for later restoration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/requiredUserInfoKeys
+func (u_ UserActivity) SetRequiredUserInfoKeys(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiredUserInfoKeys:"), value)
+}
+// A set of defined contexts in which an intent or activity might be relevant to a user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/shortcutAvailability
+func (u_ UserActivity) ShortcutAvailability() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("shortcutAvailability"))
+	return rv
+}
+
+
+
+// SetShortcutAvailability sets the value of the shortcutAvailability property.
+// A set of defined contexts in which an intent or activity might be relevant to a user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/shortcutAvailability
+func (u_ UserActivity) SetShortcutAvailability(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setShortcutAvailability:"), value)
+}
+// A phrase suggested to the user when they create a shortcut.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
+func (u_ UserActivity) SuggestedInvocationPhrase() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("suggestedInvocationPhrase"))
+	return rv
+}
+
+
+
+// SetSuggestedInvocationPhrase sets the value of the suggestedInvocationPhrase property.
+// A phrase suggested to the user when they create a shortcut.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
+func (u_ UserActivity) SetSuggestedInvocationPhrase(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), value)
+}
+// A Boolean value that determines whether the continuing app can request streams to be opened back to the originating app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/supportsContinuationStreams
+func (u_ UserActivity) SupportsContinuationStreams() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContinuationStreams"))
+	return rv
+}
+
+
+
+// SetSupportsContinuationStreams sets the value of the supportsContinuationStreams property.
+// A Boolean value that determines whether the continuing app can request streams to be opened back to the originating app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/supportsContinuationStreams
+func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSupportsContinuationStreams:"), value)
+}
+// A string that identifies the user activity’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
+func (u_ UserActivity) TargetContentIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("targetContentIdentifier"))
+	return rv
+}
+
+
+
+// SetTargetContentIdentifier sets the value of the targetContentIdentifier property.
+// A string that identifies the user activity’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
+func (u_ UserActivity) SetTargetContentIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), value)
+}
+// An optional, user-visible title for this activity, such as a document name or web page title.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
+func (u_ UserActivity) Title() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+
+// SetTitle sets the value of the title property.
+// An optional, user-visible title for this activity, such as a document name or web page title.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
+func (u_ UserActivity) SetTitle(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
+}
+// A dictionary containing app-specific state information needed to continue an activity on another device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/userInfo
+func (u_ UserActivity) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+
+// SetUserInfo sets the value of the userInfo property.
+// A dictionary containing app-specific state information needed to continue an activity on another device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/userInfo
+func (u_ UserActivity) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
+}
+// The URL of the webpage to load in a browser to continue the activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
+func (u_ UserActivity) WebpageURL() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("webpageURL"))
+	return rv
+}
+
+
+
+// SetWebpageURL sets the value of the webpageURL property.
+// The URL of the webpage to load in a browser to continue the activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
+func (u_ UserActivity) SetWebpageURL(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setWebpageURL:"), value)
 }
 
 

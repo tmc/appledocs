@@ -34,6 +34,8 @@ type IColorKernel interface {
 
 // A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
 //
+// The kernel language routine for a color kernel has the following characteristics: Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. It may use zero or more input images. Each input image is represented by a parameter of type (Core Image Kernel Language) or (Metal Shading Language), which can be treated as a single pixel color of type (Core Image Kernel Language) or (Metal Shading Language);. A color kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged. The equivalent code in Core Image Kernel Language is: The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See and for more details.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
 type ColorKernel struct {
 	Kernel
@@ -96,6 +98,7 @@ func (cc _ColorKernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
+
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
@@ -103,4 +106,5 @@ func (c_ ColorKernel) ApplyWithExtentArguments(extent unsafe.Pointer, args unsaf
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
 	return rv
 }
+
 

@@ -12,7 +12,6 @@ var _ = appkit.NewGridView
 
 
 
-
 // ExampleNewGridViewWithNumberOfColumnsRows demonstrates how to create a GridView instance using NewGridViewWithNumberOfColumnsRows.
 // Creates a newly allocated grid view object with the specified number of columns and rows.
 func ExampleNewGridViewWithNumberOfColumnsRows() {
@@ -22,5 +21,6 @@ func ExampleNewGridViewWithNumberOfColumnsRows() {
 	)
 	// Output:
 }
+
 
 

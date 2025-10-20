@@ -33,6 +33,8 @@ type IAttributeDescription interface {
 
 // A description of a single attribute belonging to an entity.
 //
+// inherits from , which provides most of the basic behavior. Instances of are used to describe attributes, as distinct from relationships. The class adds the ability to specify the attribute type, and to specify a default value. In a managed object model, you must specify the type of all attributes—you can only use the undefined attribute type ( ) for transient attributes.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription
 type AttributeDescription struct {
 	PropertyDescription
@@ -79,5 +81,37 @@ func NewAttributeDescription() AttributeDescription {
 }
 
 
+// A Boolean value that determines whether to encrypt the attribute’s value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
+func (a_ AttributeDescription) AllowsCloudEncryption() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsCloudEncryption"))
+	return rv
+}
+
+// SetAllowsCloudEncryption sets the value of the allowsCloudEncryption property.
+// A Boolean value that determines whether to encrypt the attribute’s value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
+func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
+}
+// The attribute’s type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
+func (a_ AttributeDescription) AttributeType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributeType"))
+	return rv
+}
+
+// SetAttributeType sets the value of the attributeType property.
+// The attribute’s type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
+func (a_ AttributeDescription) SetAttributeType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
+}
 
 

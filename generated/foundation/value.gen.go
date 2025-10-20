@@ -34,6 +34,8 @@ type IValue interface {
 
 // A simple container for a single C or Objective-C data item.
 //
+// An object can hold any of the scalar types such as , , and , as well as pointers, structures, and object references. Use this class to work with such data types in collections (such as and ), , and other APIs that require Objective-C objects. objects are always immutable.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue
 type Value struct {
 	objectivec.Object

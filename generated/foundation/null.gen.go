@@ -34,6 +34,8 @@ type INull interface {
 
 // A singleton object used to represent null values in collection objects that don’t allow values.
 //
+// is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull
 type Null struct {
 	objectivec.Object

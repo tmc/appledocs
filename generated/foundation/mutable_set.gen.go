@@ -33,6 +33,8 @@ type IMutableSet interface {
 
 // A dynamic unordered collection of unique objects.
 //
+// You can use this type in Swift instead of a in cases that require reference semantics. The class declares the programmatic interface to a mutable, unordered collection of distinct objects. The class, which is a concrete subclass of , supports mutable sets that can contain multiple instances of the same element. The class supports creating and managing immutable sets. NSMutableSet is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet
 type MutableSet struct {
 	Set

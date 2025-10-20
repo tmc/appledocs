@@ -33,6 +33,8 @@ type IDerivedAttributeDescription interface {
 
 // A description of an attribute that derives its value by performing a calculation on a related attribute.
 //
+// Use derived attributes to optimize fetch performance; for example: Create a derived attribute to reflect a attribute with case and diacritics removed for more efficient comparison. Create a derived attribute to reflect the number of objects in a relationship and avoid having to do a join. Derived attributes support the following expressions:
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription
 type DerivedAttributeDescription struct {
 	AttributeDescription
@@ -79,5 +81,21 @@ func NewDerivedAttributeDescription() DerivedAttributeDescription {
 }
 
 
+// An expression for generating derived data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
+func (d_ DerivedAttributeDescription) DerivationExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("derivationExpression"))
+	return rv
+}
+
+// SetDerivationExpression sets the value of the derivationExpression property.
+// An expression for generating derived data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
+func (d_ DerivedAttributeDescription) SetDerivationExpression(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDerivationExpression:"), value)
+}
 
 

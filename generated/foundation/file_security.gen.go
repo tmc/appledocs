@@ -34,6 +34,8 @@ type IFileSecurity interface {
 
 // A stub class that encapsulates security information about a file.
 //
+// contains no methods of its own. Instead, it is transparently bridged to .
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity
 type FileSecurity struct {
 	objectivec.Object

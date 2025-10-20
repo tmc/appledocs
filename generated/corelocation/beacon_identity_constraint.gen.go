@@ -33,6 +33,8 @@ type IBeaconIdentityConstraint interface {
 
 // Identity characteristics that can match one or more beacons.
 //
+// A constraint specifies beacon identity characteristics. Use constraints to check for matching beacons by comparing the beacon’s identity characteristics ( , , and ) to those in the constraint. Constraints always specify a UUID value, but the major and minor values are optional. A beacon satisfies the constraint if all three identity characteristics of the beacon match the same characteristic of the constraint. Major and minor characteristics are wildcards if they have no value. A major or minor wildcard value matches any value in the beacon’s corresponding characteristic.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityConstraint
 type BeaconIdentityConstraint struct {
 	BeaconIdentityCondition

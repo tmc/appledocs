@@ -34,6 +34,8 @@ type IAppleEventManager interface {
 
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
 //
+// Cocoa provides built-in scriptability support that uses scriptability information supplied by an application to automatically convert Apple events into script command objects that perform the desired operation. However, some applications may want to perform more basic Apple event handling, in which an application registers handlers for the Apple events it can process, then calls on the Apple Event Manager to dispatch received Apple events to the appropriate handler. supports these mechanisms by providing methods to register and remove handlers and to dispatch Apple events to the appropriate handler, if one exists. For related information, see Each application has at most one instance of . To obtain a reference to it, you call the class method , which creates the instance if it doesn’t already exist. For information about the Apple Event Manager, see and Apple Events Programming Guide.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager
 type AppleEventManager struct {
 	objectivec.Object

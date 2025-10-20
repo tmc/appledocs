@@ -33,6 +33,8 @@ type IUnitFuelEfficiency interface {
 
 // A unit of measure for fuel efficiency.
 //
+// You typically use instances of to represent specific quantities of fuel efficiency using the class.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency
 type UnitFuelEfficiency struct {
 	Dimension

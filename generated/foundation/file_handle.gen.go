@@ -35,6 +35,8 @@ type IFileHandle interface {
 
 // An object-oriented wrapper for a file descriptor.
 //
+// You use file handle objects to access data associated with files, sockets, pipes, and devices. For files, you can read, write, and seek within the file. For sockets, pipes, and devices, you can use a file handle object to monitor the device and process data asynchronously. Most creation methods for cause the file handle object to take ownership of the associated file descriptor. This means that the file handle object both creates the file descriptor and is responsible for closing it later, usually when the system deallocates the file handle object. If you want to use a file handle object with a file descriptor that you created, use the method or use the method and pass for the parameter.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle
 type FileHandle struct {
 	objectivec.Object
@@ -85,5 +87,6 @@ func NewFileHandle() FileHandle {
 func (f_ FileHandle) CloseFile() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("closeFile"))
 }
+
 
 

@@ -104,7 +104,7 @@ type CGRenderingBufferProviderRef unsafe.Pointer
 type CGShadingRef unsafe.Pointer
 
 
-// Common CoreGraphics struct types
+// CoreGraphics struct types
 type CGFloat = float64
 
 type CGPoint struct {
@@ -136,5 +136,4 @@ type Range = CGPoint  // NSRange
 type Size = CGSize    // NSSize
 type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
-
 

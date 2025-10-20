@@ -33,6 +33,8 @@ type ICircularRegion interface {
 
 // A circular geographic region that a center point and radius deine.
 //
+// The class defines the location and boundaries for a circular geographic region. You can use instances of this class to define geofences for a specific location. The crossing of a geofence’s boundary causes the location manager to notify its delegate.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion
 type CircularRegion struct {
 	Region

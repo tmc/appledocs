@@ -100,8 +100,8 @@ func (t_ TableCellView) SetBackgroundStyle(value unsafe.Pointer) {
 // Returns dragging images for the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
-func (t_ TableCellView) DraggingImageComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("draggingImageComponents"))
+func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
+	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
 // Image displayed by the cell.
