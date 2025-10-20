@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	// Import the generated CreateML bindings
-	_ "github.com/tmc/appledocs/generated/frameworks/createml"
+	_ "github.com/tmc/appledocs/generated/createml"
 )
 
 var (
