@@ -95,7 +95,7 @@ func (g *Generator) AddError(err error) {
 
 // prepare computes cached data needed for generation
 func (g *Generator) prepare() {
-	g.frameworkAbstract, g.frameworkURL = loadFrameworkMetadata(g.InputDir, g.Framework)
+	g.frameworkAbstract, g.frameworkURL, _ = loadFrameworkMetadata(g.InputDir, g.Framework)
 	g.refTypes = extractRefTypes(g.Functions, getFrameworkPrefix(g.Framework))
 	g.typeMethods = groupFunctionsByType(g.Functions, g.Framework)
 	g.typeToRef = make(map[string]string)
@@ -647,6 +647,13 @@ func discoverFrameworks(inputDir, pattern string) ([]string, error) {
 
 // generateFramework generates bindings for a single framework.
 func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples bool) error {
+	// Check if this is an iOS-only framework and skip if so
+	_, _, iOSOnly := loadFrameworkMetadata(inputDir, framework)
+	if iOSOnly {
+		// Already logged in loadFrameworkMetadata with verbose flag
+		return nil // Skip generation silently
+	}
+
 	// Open the appledocs filesystem
 	fsys, err := appledocs.Open(inputDir)
 	if err != nil {
@@ -851,7 +858,14 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Create output directory
 	packageName := strings.ToLower(framework)
-	outDir := filepath.Join(outputDir, packageName)
+
+	// Check if outputDir already ends with the package name to avoid double-nesting
+	// (e.g., when running from generated/appkit/ with -output .)
+	outDir := outputDir
+	if filepath.Base(outputDir) != packageName {
+		outDir = filepath.Join(outputDir, packageName)
+	}
+
 	if !txtarOutput {
 		if err := os.MkdirAll(outDir, 0755); err != nil {
 			return fmt.Errorf("failed to create output directory: %w", err)
@@ -1243,7 +1257,7 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 
 // generateDoc generates package documentation
 func generateDoc(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, variant string) error {
-	frameworkAbstract, frameworkURL := loadFrameworkMetadata(inputDir, framework)
+	frameworkAbstract, frameworkURL, _ := loadFrameworkMetadata(inputDir, framework)
 
 	data := struct {
 		Framework   string
@@ -1436,8 +1450,8 @@ func extractRefTypes(functions []*occ2go.ParsedFunction, prefix string) []string
 	return refTypes
 }
 
-// loadFrameworkMetadata loads the framework-level JSON to extract abstract and URL
-func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL string) {
+// loadFrameworkMetadata loads the framework-level JSON to extract abstract, URL, and platform info
+func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL string, iOSOnly bool) {
 	frameworkPath := filepath.Join(inputDir, framework+".json")
 	data, err := os.ReadFile(frameworkPath)
 	if err != nil {
@@ -1445,7 +1459,7 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 		frameworkPath = filepath.Join(inputDir, strings.ToLower(framework)+".json")
 		data, err = os.ReadFile(frameworkPath)
 		if err != nil {
-			return "", ""
+			return "", "", false
 		}
 	}
 
@@ -1481,7 +1495,7 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 	}
 
 	if err := json.Unmarshal(data, &doc); err != nil {
-		return "", ""
+		return "", "", false
 	}
 
 	// Extract abstract text
@@ -1502,24 +1516,19 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 	}
 
 	if !hasMacOS && len(doc.Metadata.Platforms) > 0 {
-		// iOS-only framework - mark as deprecated for macOS bindings
+		// iOS-only framework - skip generation for macOS bindings
 		platformNames := make([]string, 0, len(doc.Metadata.Platforms))
 		for _, p := range doc.Metadata.Platforms {
 			platformNames = append(platformNames, p.Name)
 		}
-		iosOnlyReason := fmt.Sprintf("iOS-only framework (platforms: %s). Not available on macOS.",
-			strings.Join(platformNames, ", "))
 
 		if verbose {
-			fmt.Fprintf(os.Stderr, "Framework %s is iOS-only: %s\n", framework, iosOnlyReason)
+			fmt.Fprintf(os.Stderr, "Framework %s is iOS-only (platforms: %s). Skipping generation for macOS.\n",
+				framework, strings.Join(platformNames, ", "))
 		}
 
-		if config != nil {
-			fwConfig := config.Frameworks[framework]
-			fwConfig.Deprecated = true
-			fwConfig.DeprecationReason = iosOnlyReason
-			config.Frameworks[framework] = fwConfig
-		}
+		docURL = occ2go.ConvertDocURLToWeb(doc.Identifier.URL)
+		return abstract, docURL, true // iOS-only
 	}
 
 	// Extract deprecation information from Important asides
@@ -1538,7 +1547,7 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 	}
 
 	docURL = occ2go.ConvertDocURLToWeb(doc.Identifier.URL)
-	return abstract, docURL
+	return abstract, docURL, false // Not iOS-only
 }
 
 // extractDeprecationNotice extracts deprecation text from Important asides in content sections
