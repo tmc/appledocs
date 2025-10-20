@@ -9,6 +9,8 @@ frameworks:
     exclude_test_examples:
       - NSUserActivity  # Requires activityType parameter
       - NSPredicate  # Crashes with invalid format string parameter
+    exclude_test_patterns:
+      - "^ExampleNewNotification$"  # NSNotification requires name parameter, crashes with empty notification
   AppKit:
     exclude_test_examples:
       - NSFilePromiseProvider  # Requires valid NSFilePromiseProviderDelegate implementation with writePromiseToURL: method
