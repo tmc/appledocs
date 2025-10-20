@@ -864,7 +864,13 @@ func mapObjCTypeToGo(objcType, framework string) string {
 						// Type is defined in current framework, safe to use
 						return "[]" + strippedType
 					}
-					// Cross-framework reference - fall back to unsafe.Pointer for array elements
+					// Cross-framework reference - try resolveType before falling back to unsafe.Pointer
+					resolvedType := resolveType(framework, elementType)
+					if resolvedType != "unsafe.Pointer" {
+						// resolveType found a valid cross-framework type (foundation.NSString, coregraphics.CGRect, etc.)
+						return "[]" + resolvedType
+					}
+					// Last resort - fall back to unsafe.Pointer for array elements
 					return "[]unsafe.Pointer"
 				}
 
