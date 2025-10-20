@@ -79,7 +79,6 @@ func NewImage() Image {
 	return getImageClass().New()
 }
 
-
 // The underlying texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/texture
@@ -87,6 +86,3 @@ func (i_ Image) Texture() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("texture"))
 	return rv
 }
-
-
-

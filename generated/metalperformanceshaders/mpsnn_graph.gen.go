@@ -80,13 +80,9 @@ func NewGraph() Graph {
 	return getGraphClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/resultStateHandles
 func (g_ Graph) ResultStateHandles() []objc.ID {
 	rv := objc.Send[[]objc.ID](g_.ID, objc.Sel("resultStateHandles"))
 	return rv
 }
-
-
-

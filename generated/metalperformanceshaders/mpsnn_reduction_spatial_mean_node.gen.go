@@ -74,7 +74,3 @@ func (r_ ReductionSpatialMeanNode) Autorelease() ReductionSpatialMeanNode {
 func NewReductionSpatialMeanNode() ReductionSpatialMeanNode {
 	return getReductionSpatialMeanNodeClass().New()
 }
-
-
-
-

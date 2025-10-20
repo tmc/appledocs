@@ -75,7 +75,6 @@ func NewNDArrayMultiaryGradientKernel() NDArrayMultiaryGradientKernel {
 	return getNDArrayMultiaryGradientKernelClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryGradientKernel/init(coder:device:)
 func NewNDArrayMultiaryGradientKernelWithCoderDevice(coder unsafe.Pointer, device objc.ID) NDArrayMultiaryGradientKernel {
@@ -84,6 +83,3 @@ func NewNDArrayMultiaryGradientKernelWithCoderDevice(coder unsafe.Pointer, devic
 	rv.Autorelease()
 	return rv
 }
-
-
-

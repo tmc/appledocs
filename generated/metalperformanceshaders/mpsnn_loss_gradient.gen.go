@@ -76,7 +76,6 @@ func NewLossGradient() LossGradient {
 	return getLossGradientClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradient/init(device:lossDescriptor:)
 func NewLossGradientWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsafe.Pointer) LossGradient {
@@ -86,11 +85,8 @@ func NewLossGradientWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsa
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradient/encodeBatch(commandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:destinationGradients:)
 func (l_ LossGradient) EncodeBatchToCommandBufferSourceGradientsSourceImagesLabelsWeightsSourceStatesDestinationGradients(commandBuffer objc.ID, sourceGradients unsafe.Pointer, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, sourceStates unsafe.Pointer, destinationGradients unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:destinationGradients:"), commandBuffer, sourceGradients, sourceImages, labels, weights, sourceStates, destinationGradients)
 }
-
-

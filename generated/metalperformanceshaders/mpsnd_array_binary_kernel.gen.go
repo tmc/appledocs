@@ -76,7 +76,6 @@ func NewNDArrayBinaryKernel() NDArrayBinaryKernel {
 	return getNDArrayBinaryKernelClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel/init(device:)
 func NewNDArrayBinaryKernelWithDevice(device objc.ID) NDArrayBinaryKernel {
@@ -86,12 +85,9 @@ func NewNDArrayBinaryKernelWithDevice(device objc.ID) NDArrayBinaryKernel {
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel/encode(to:primarySourceArray:secondarySourceArray:)
 func (n_ NDArrayBinaryKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objc.ID, primarySourceArray unsafe.Pointer, secondarySourceArray unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:"), cmdBuf, primarySourceArray, secondarySourceArray)
 	return rv
 }
-
-

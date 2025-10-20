@@ -77,7 +77,3 @@ func (r_ RNNMatrixTrainingLayer) Autorelease() RNNMatrixTrainingLayer {
 func NewRNNMatrixTrainingLayer() RNNMatrixTrainingLayer {
 	return getRNNMatrixTrainingLayerClass().New()
 }
-
-
-
-

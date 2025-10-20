@@ -78,7 +78,6 @@ func NewImageNormalizedHistogram() ImageNormalizedHistogram {
 	return getImageNormalizedHistogramClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageNormalizedHistogram/init(coder:device:)
 func NewImageNormalizedHistogramWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ImageNormalizedHistogram {
@@ -87,6 +86,3 @@ func NewImageNormalizedHistogramWithCoderDevice(aDecoder unsafe.Pointer, device 
 	rv.Autorelease()
 	return rv
 }
-
-
-

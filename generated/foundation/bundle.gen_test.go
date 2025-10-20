@@ -10,6 +10,7 @@ import (
 var _ = foundation.NewBundle
 
 
+
 // ExampleNewBundleForClass demonstrates how to create a Bundle instance using NewBundleForClass.
 // Returns the   object with which the specified class is associated.
 func ExampleNewBundleForClass() {
@@ -36,6 +37,5 @@ func ExampleNewBundleWithPath() {
 	)
 	// Output:
 }
-
 
 

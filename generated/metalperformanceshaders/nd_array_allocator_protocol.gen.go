@@ -12,5 +12,3 @@ var NDArrayAllocatorProtocol *objc.Protocol
 func init() {
 	NDArrayAllocatorProtocol = objc.GetProtocol("MPSNDArrayAllocator")
 }
-
-

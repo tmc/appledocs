@@ -75,7 +75,6 @@ func NewReshapeNode() ReshapeNode {
 	return getReshapeNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeNode/init(source:resultWidth:resultHeight:resultFeatureChannels:)
 func NewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels(source unsafe.Pointer, resultWidth uint, resultHeight uint, resultFeatureChannels uint) ReshapeNode {
@@ -84,6 +83,3 @@ func NewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels(source
 	rv.Autorelease()
 	return rv
 }
-
-
-

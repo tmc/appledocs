@@ -75,7 +75,6 @@ func NewMatrixRandomMTGP32() MatrixRandomMTGP32 {
 	return getMatrixRandomMTGP32Class().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomMTGP32/init(device:destinationDataType:seed:)
 func NewMatrixRandomMTGP32WithDeviceDestinationDataTypeSeed(device objc.ID, destinationDataType unsafe.Pointer, seed uint) MatrixRandomMTGP32 {
@@ -84,6 +83,3 @@ func NewMatrixRandomMTGP32WithDeviceDestinationDataTypeSeed(device objc.ID, dest
 	rv.Autorelease()
 	return rv
 }
-
-
-

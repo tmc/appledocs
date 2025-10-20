@@ -77,7 +77,6 @@ func NewResizeBilinear() ResizeBilinear {
 	return getResizeBilinearClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/init(coder:device:)
 func NewResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ResizeBilinear {
@@ -86,7 +85,6 @@ func NewResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) R
 	rv.Autorelease()
 	return rv
 }
-
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/alignCorners
@@ -108,5 +106,3 @@ func (r_ ResizeBilinear) ResizeWidth() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("resizeWidth"))
 	return rv
 }
-
-

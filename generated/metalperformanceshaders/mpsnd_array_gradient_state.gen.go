@@ -74,7 +74,3 @@ func (n_ NDArrayGradientState) Autorelease() NDArrayGradientState {
 func NewNDArrayGradientState() NDArrayGradientState {
 	return getNDArrayGradientStateClass().New()
 }
-
-
-
-

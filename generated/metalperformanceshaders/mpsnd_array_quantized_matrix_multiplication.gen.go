@@ -75,7 +75,6 @@ func NewNDArrayQuantizedMatrixMultiplication() NDArrayQuantizedMatrixMultiplicat
 	return getNDArrayQuantizedMatrixMultiplicationClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizedMatrixMultiplication/init(device:leftQuantizationDescriptor:rightQuantizationDescriptor:)
 func NewNDArrayQuantizedMatrixMultiplicationWithDeviceLeftQuantizationDescriptorRightQuantizationDescriptor(device objc.ID, leftQuantizationDescriptor unsafe.Pointer, rightQuantizationDescriptor unsafe.Pointer) NDArrayQuantizedMatrixMultiplication {
@@ -84,6 +83,3 @@ func NewNDArrayQuantizedMatrixMultiplicationWithDeviceLeftQuantizationDescriptor
 	rv.Autorelease()
 	return rv
 }
-
-
-

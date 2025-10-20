@@ -78,7 +78,6 @@ func NewInstanceAccelerationStructure() InstanceAccelerationStructure {
 	return getInstanceAccelerationStructureClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSInstanceAccelerationStructure/transformBuffer
 func (i_ InstanceAccelerationStructure) TransformBuffer() objc.ID {
@@ -86,12 +85,9 @@ func (i_ InstanceAccelerationStructure) TransformBuffer() objc.ID {
 	return rv
 }
 
-
 // SetTransformBuffer sets the value of the transformBuffer property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSInstanceAccelerationStructure/transformBuffer
 func (i_ InstanceAccelerationStructure) SetTransformBuffer(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransformBuffer:"), value)
 }
-
-

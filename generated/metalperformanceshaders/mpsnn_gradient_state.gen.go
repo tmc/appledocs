@@ -77,7 +77,3 @@ func (g_ GradientState) Autorelease() GradientState {
 func NewGradientState() GradientState {
 	return getGradientStateClass().New()
 }
-
-
-
-

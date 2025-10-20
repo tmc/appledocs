@@ -20,4 +20,3 @@ var textureWithPixelFormatProtocol *objc.Protocol
 func init() {
 	textureWithPixelFormatProtocol = objc.GetProtocol("textureWithPixelFormat:")
 }
-

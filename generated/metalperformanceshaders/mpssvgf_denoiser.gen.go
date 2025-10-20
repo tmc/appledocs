@@ -75,12 +75,8 @@ func NewSVGFDenoiser() SVGFDenoiser {
 	return getSVGFDenoiserClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDenoiser/encode(commandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)
 func (s_ SVGFDenoiser) EncodeToCommandBufferSourceTextureDestinationTextureSourceTexture2DestinationTexture2MotionVectorTextureDepthNormalTexturePreviousDepthNormalTexture(commandBuffer objc.ID, sourceTexture objc.ID, destinationTexture objc.ID, sourceTexture2 objc.ID, destinationTexture2 objc.ID, motionVectorTexture objc.ID, depthNormalTexture objc.ID, previousDepthNormalTexture objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:"), commandBuffer, sourceTexture, destinationTexture, sourceTexture2, destinationTexture2, motionVectorTexture, depthNormalTexture, previousDepthNormalTexture)
 }
-
-
-

@@ -77,7 +77,3 @@ func (c_ CNNBinaryKernel) Autorelease() CNNBinaryKernel {
 func NewCNNBinaryKernel() CNNBinaryKernel {
 	return getCNNBinaryKernelClass().New()
 }
-
-
-
-

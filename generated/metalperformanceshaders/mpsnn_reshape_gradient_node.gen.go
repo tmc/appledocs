@@ -75,7 +75,6 @@ func NewReshapeGradientNode() ReshapeGradientNode {
 	return getReshapeGradientNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradientNode/init(sourceGradient:sourceImage:gradientState:)
 func NewReshapeGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient unsafe.Pointer, sourceImage unsafe.Pointer, gradientState unsafe.Pointer) ReshapeGradientNode {
@@ -84,6 +83,3 @@ func NewReshapeGradientNodeWithSourceGradientSourceImageGradientState(sourceGrad
 	rv.Autorelease()
 	return rv
 }
-
-
-

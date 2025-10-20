@@ -77,7 +77,6 @@ func NewNDArrayMultiaryKernel() NDArrayMultiaryKernel {
 	return getNDArrayMultiaryKernelClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryKernel/encode(to:sourceArrays:destinationArray:)
 func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objc.ID, sourceArrays unsafe.Pointer, destination unsafe.Pointer) {
@@ -90,6 +89,3 @@ func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysResultStateOutp
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:"), cmdBuf, sourceArrays, outGradientState, outputStateIsTemporary)
 	return rv
 }
-
-
-

@@ -78,7 +78,3 @@ func (l_ LSTMDescriptor) Autorelease() LSTMDescriptor {
 func NewLSTMDescriptor() LSTMDescriptor {
 	return getLSTMDescriptorClass().New()
 }
-
-
-
-

@@ -74,7 +74,3 @@ func (r_ ReductionRowSumNode) Autorelease() ReductionRowSumNode {
 func NewReductionRowSumNode() ReductionRowSumNode {
 	return getReductionRowSumNodeClass().New()
 }
-
-
-
-

@@ -77,7 +77,3 @@ func (b_ BinaryArithmeticNode) Autorelease() BinaryArithmeticNode {
 func NewBinaryArithmeticNode() BinaryArithmeticNode {
 	return getBinaryArithmeticNodeClass().New()
 }
-
-
-
-

@@ -76,7 +76,6 @@ func NewNDArrayDescriptor() NDArrayDescriptor {
 	return getNDArrayDescriptorClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayDescriptor/dimensionOrder()
 func (n_ NDArrayDescriptor) DimensionOrder() unsafe.Pointer {
@@ -90,6 +89,3 @@ func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) unsafe.P
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sliceRangeForDimension:"), dimensionIndex)
 	return rv
 }
-
-
-

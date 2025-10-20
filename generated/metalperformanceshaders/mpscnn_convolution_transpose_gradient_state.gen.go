@@ -74,13 +74,9 @@ func NewCNNConvolutionTransposeGradientState() CNNConvolutionTransposeGradientSt
 	return getCNNConvolutionTransposeGradientStateClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradientState/convolutionTranspose
 func (c_ CNNConvolutionTransposeGradientState) ConvolutionTranspose() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("convolutionTranspose"))
 	return rv
 }
-
-
-

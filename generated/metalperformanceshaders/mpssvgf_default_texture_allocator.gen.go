@@ -75,12 +75,8 @@ func NewSVGFDefaultTextureAllocator() SVGFDefaultTextureAllocator {
 	return getSVGFDefaultTextureAllocatorClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDefaultTextureAllocator/return(_:)
 func (s_ SVGFDefaultTextureAllocator) ReturnTexture(texture objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("returnTexture:"), texture)
 }
-
-
-

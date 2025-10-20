@@ -77,7 +77,6 @@ func NewNDArrayBinaryPrimaryGradientKernel() NDArrayBinaryPrimaryGradientKernel 
 	return getNDArrayBinaryPrimaryGradientKernelClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryPrimaryGradientKernel/encode(to:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)
 func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf objc.ID, primarySourceArray unsafe.Pointer, secondarySourceArray unsafe.Pointer, gradient unsafe.Pointer, state unsafe.Pointer) unsafe.Pointer {
@@ -90,6 +89,3 @@ func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceA
 func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf objc.ID, primarySourceArray unsafe.Pointer, secondarySourceArray unsafe.Pointer, gradient unsafe.Pointer, state unsafe.Pointer, destination unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:"), cmdBuf, primarySourceArray, secondarySourceArray, gradient, state, destination)
 }
-
-
-

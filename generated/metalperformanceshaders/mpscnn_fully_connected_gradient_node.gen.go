@@ -74,7 +74,6 @@ func NewCNNFullyConnectedGradientNode() CNNFullyConnectedGradientNode {
 	return getCNNFullyConnectedGradientNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNFullyConnectedGradientNode/init(sourceGradient:sourceImage:convolutionGradientState:weights:)
 func NewCNNFullyConnectedGradientNodeWithSourceGradientSourceImageConvolutionGradientStateWeights(sourceGradient unsafe.Pointer, sourceImage unsafe.Pointer, gradientState unsafe.Pointer, weights objc.ID) CNNFullyConnectedGradientNode {
@@ -83,6 +82,3 @@ func NewCNNFullyConnectedGradientNodeWithSourceGradientSourceImageConvolutionGra
 	rv.Autorelease()
 	return rv
 }
-
-
-

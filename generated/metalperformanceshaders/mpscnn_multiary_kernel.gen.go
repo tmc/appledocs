@@ -76,13 +76,9 @@ func NewCNNMultiaryKernel() CNNMultiaryKernel {
 	return getCNNMultiaryKernelClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNMultiaryKernel/dilationRateYatIndex(_:)
 func (c_ CNNMultiaryKernel) DilationRateYatIndex(index uint) uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("dilationRateYatIndex:"), index)
 	return rv
 }
-
-
-

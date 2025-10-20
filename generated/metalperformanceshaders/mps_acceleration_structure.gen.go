@@ -78,7 +78,6 @@ func NewAccelerationStructure() AccelerationStructure {
 	return getAccelerationStructureClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructure/init(group:)
 func NewAccelerationStructureWithGroup(group unsafe.Pointer) AccelerationStructure {
@@ -87,6 +86,3 @@ func NewAccelerationStructureWithGroup(group unsafe.Pointer) AccelerationStructu
 	rv.Autorelease()
 	return rv
 }
-
-
-

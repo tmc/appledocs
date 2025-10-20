@@ -74,7 +74,3 @@ func (n_ NDArrayGatherGradient) Autorelease() NDArrayGatherGradient {
 func NewNDArrayGatherGradient() NDArrayGatherGradient {
 	return getNDArrayGatherGradientClass().New()
 }
-
-
-
-

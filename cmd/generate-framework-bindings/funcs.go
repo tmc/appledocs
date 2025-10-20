@@ -879,12 +879,6 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "unsafe.Pointer"
 	}
 
-	// Handle Objective-C blocks (e.g., void (^)(NSModalResponse))
-	// Blocks are closures that cannot be easily represented in Go, so map to unsafe.Pointer
-	if strings.Contains(objcType, "^") {
-		return "unsafe.Pointer"
-	}
-
 	// Special built-in types (before checking pointers)
 	switch objcType {
 	case "id":
@@ -906,8 +900,17 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	}
 
 	// Check the type mapping registry first (includes both with and without pointers)
+	// This must come before the block check so that mapped block types (e.g., void (^)(void) -> func())
+	// are handled correctly
 	if goType, found := lookupTypeMapping(objcType, framework); found {
 		return goType
+	}
+
+	// Handle Objective-C blocks (e.g., void (^)(NSModalResponse))
+	// Blocks are closures that cannot be easily represented in Go, so map to unsafe.Pointer
+	// This comes after type registry check so explicitly mapped blocks can use proper Go types
+	if strings.Contains(objcType, "^") {
+		return "unsafe.Pointer"
 	}
 
 	// Handle pointers for types not in the registry
@@ -1607,7 +1610,8 @@ func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework st
 	for _, fn := range functions {
 		// Check return type
 		if fn.ReturnType != "" && fn.ReturnType != "void" {
-			goType := mapObjCTypeToGo(fn.ReturnType, framework)
+			// Use mapCTypeToGoWithFramework to get the same result as prepareFunctionData
+			goType := mapCTypeToGoWithFramework(fn.ReturnType, framework)
 			if importPath := getGoTypeImportPath(goType); importPath != "" {
 				imports[importPath] = true
 			}
@@ -1615,7 +1619,8 @@ func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework st
 
 		// Check all parameters
 		for _, param := range fn.Parameters {
-			goType := mapObjCTypeToGo(param.Type, framework)
+			// Use mapCTypeToGoWithFramework to get the same result as prepareFunctionData
+			goType := mapCTypeToGoWithFramework(param.Type, framework)
 			if importPath := getGoTypeImportPath(goType); importPath != "" {
 				imports[importPath] = true
 			}

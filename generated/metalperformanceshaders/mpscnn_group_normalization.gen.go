@@ -74,7 +74,6 @@ func NewCNNGroupNormalization() CNNGroupNormalization {
 	return getCNNGroupNormalizationClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalization/init(device:dataSource:)
 func NewCNNGroupNormalizationWithDeviceDataSource(device objc.ID, dataSource objc.ID) CNNGroupNormalization {
@@ -83,6 +82,3 @@ func NewCNNGroupNormalizationWithDeviceDataSource(device objc.ID, dataSource obj
 	rv.Autorelease()
 	return rv
 }
-
-
-

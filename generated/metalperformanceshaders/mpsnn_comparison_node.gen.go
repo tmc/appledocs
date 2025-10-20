@@ -75,7 +75,6 @@ func NewComparisonNode() ComparisonNode {
 	return getComparisonNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode/comparisonType
 func (c_ ComparisonNode) ComparisonType() unsafe.Pointer {
@@ -83,12 +82,9 @@ func (c_ ComparisonNode) ComparisonType() unsafe.Pointer {
 	return rv
 }
 
-
 // SetComparisonType sets the value of the comparisonType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode/comparisonType
 func (c_ ComparisonNode) SetComparisonType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonType:"), value)
 }
-
-

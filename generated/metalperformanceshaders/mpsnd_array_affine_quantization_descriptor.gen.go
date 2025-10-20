@@ -75,7 +75,6 @@ func NewNDArrayAffineQuantizationDescriptor() NDArrayAffineQuantizationDescripto
 	return getNDArrayAffineQuantizationDescriptorClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/init(dataType:hasZeroPoint:hasMinValue:)
 func NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue(quantizationDataType unsafe.Pointer, hasZeroPoint bool, hasMinValue bool) NDArrayAffineQuantizationDescriptor {
@@ -85,7 +84,6 @@ func NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue(q
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasMinValue
 func (n_ NDArrayAffineQuantizationDescriptor) HasMinValue() bool {
@@ -93,13 +91,13 @@ func (n_ NDArrayAffineQuantizationDescriptor) HasMinValue() bool {
 	return rv
 }
 
-
 // SetHasMinValue sets the value of the hasMinValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasMinValue
 func (n_ NDArrayAffineQuantizationDescriptor) SetHasMinValue(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasMinValue:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) HasZeroPoint() bool {
@@ -107,13 +105,13 @@ func (n_ NDArrayAffineQuantizationDescriptor) HasZeroPoint() bool {
 	return rv
 }
 
-
 // SetHasZeroPoint sets the value of the hasZeroPoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) SetHasZeroPoint(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasZeroPoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/implicitZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() unsafe.Pointer {
@@ -121,11 +119,9 @@ func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() unsafe.Pointer
 	return rv
 }
 
-
 // SetImplicitZeroPoint sets the value of the implicitZeroPoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/implicitZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) SetImplicitZeroPoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setImplicitZeroPoint:"), value)
 }
-

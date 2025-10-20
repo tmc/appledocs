@@ -76,7 +76,3 @@ func (f_ FilterNode) Autorelease() FilterNode {
 func NewFilterNode() FilterNode {
 	return getFilterNodeClass().New()
 }
-
-
-
-

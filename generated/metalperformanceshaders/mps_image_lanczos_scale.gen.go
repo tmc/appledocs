@@ -79,7 +79,3 @@ func (i_ ImageLanczosScale) Autorelease() ImageLanczosScale {
 func NewImageLanczosScale() ImageLanczosScale {
 	return getImageLanczosScaleClass().New()
 }
-
-
-
-

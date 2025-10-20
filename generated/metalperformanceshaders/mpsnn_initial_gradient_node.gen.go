@@ -75,7 +75,6 @@ func NewInitialGradientNode() InitialGradientNode {
 	return getInitialGradientNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode/init(source:)
 func NewInitialGradientNodeWithSource(source unsafe.Pointer) InitialGradientNode {
@@ -85,12 +84,9 @@ func NewInitialGradientNodeWithSource(source unsafe.Pointer) InitialGradientNode
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode/nodeWithSource:
 func (ic _InitialGradientNodeClass) NodeWithSource(source unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("nodeWithSource:"), source)
 	return rv
 }
-
-

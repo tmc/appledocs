@@ -75,7 +75,6 @@ func NewGramMatrixCalculationNode() GramMatrixCalculationNode {
 	return getGramMatrixCalculationNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/init(source:)
 func NewGramMatrixCalculationNodeWithSource(sourceNode unsafe.Pointer) GramMatrixCalculationNode {
@@ -84,7 +83,6 @@ func NewGramMatrixCalculationNodeWithSource(sourceNode unsafe.Pointer) GramMatri
 	rv.Autorelease()
 	return rv
 }
-
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/nodeWithSource:alpha:
@@ -100,11 +98,9 @@ func (g_ GramMatrixCalculationNode) PropertyCallBack() objc.ID {
 	return rv
 }
 
-
 // SetPropertyCallBack sets the value of the propertyCallBack property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/propertyCallBack
 func (g_ GramMatrixCalculationNode) SetPropertyCallBack(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPropertyCallBack:"), value)
 }
-

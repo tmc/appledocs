@@ -76,7 +76,3 @@ func (s_ StateNode) Autorelease() StateNode {
 func NewStateNode() StateNode {
 	return getStateNodeClass().New()
 }
-
-
-
-

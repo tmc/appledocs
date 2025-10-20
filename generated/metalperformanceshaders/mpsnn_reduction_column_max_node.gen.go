@@ -74,7 +74,3 @@ func (r_ ReductionColumnMaxNode) Autorelease() ReductionColumnMaxNode {
 func NewReductionColumnMaxNode() ReductionColumnMaxNode {
 	return getReductionColumnMaxNodeClass().New()
 }
-
-
-
-

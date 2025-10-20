@@ -75,7 +75,6 @@ func NewCNNGroupNormalizationGradientState() CNNGroupNormalizationGradientState 
 	return getCNNGroupNormalizationGradientStateClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientState/beta
 func (c_ CNNGroupNormalizationGradientState) Beta() objc.ID {
@@ -96,6 +95,3 @@ func (c_ CNNGroupNormalizationGradientState) GradientForGamma() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("gradientForGamma"))
 	return rv
 }
-
-
-

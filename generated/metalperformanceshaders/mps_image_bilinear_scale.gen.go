@@ -77,7 +77,3 @@ func (i_ ImageBilinearScale) Autorelease() ImageBilinearScale {
 func NewImageBilinearScale() ImageBilinearScale {
 	return getImageBilinearScaleClass().New()
 }
-
-
-
-

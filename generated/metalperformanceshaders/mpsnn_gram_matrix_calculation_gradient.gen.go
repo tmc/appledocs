@@ -74,7 +74,6 @@ func NewGramMatrixCalculationGradient() GramMatrixCalculationGradient {
 	return getGramMatrixCalculationGradientClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/init(coder:device:)
 func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) GramMatrixCalculationGradient {
@@ -84,7 +83,6 @@ func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder unsafe.Pointer, de
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/alpha
 func (g_ GramMatrixCalculationGradient) Alpha() unsafe.Pointer {
@@ -92,11 +90,9 @@ func (g_ GramMatrixCalculationGradient) Alpha() unsafe.Pointer {
 	return rv
 }
 
-
 // SetAlpha sets the value of the alpha property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/alpha
 func (g_ GramMatrixCalculationGradient) SetAlpha(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
 }
-

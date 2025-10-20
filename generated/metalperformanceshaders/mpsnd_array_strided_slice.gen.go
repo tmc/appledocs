@@ -75,7 +75,6 @@ func NewNDArrayStridedSlice() NDArrayStridedSlice {
 	return getNDArrayStridedSliceClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayStridedSlice/strides
 func (n_ NDArrayStridedSlice) Strides() unsafe.Pointer {
@@ -83,12 +82,9 @@ func (n_ NDArrayStridedSlice) Strides() unsafe.Pointer {
 	return rv
 }
 
-
 // SetStrides sets the value of the strides property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayStridedSlice/strides
 func (n_ NDArrayStridedSlice) SetStrides(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setStrides:"), value)
 }
-
-

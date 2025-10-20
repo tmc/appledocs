@@ -74,7 +74,6 @@ func NewInitialGradient() InitialGradient {
 	return getInitialGradientClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradient/init(device:)
 func NewInitialGradientWithDevice(device objc.ID) InitialGradient {
@@ -83,6 +82,3 @@ func NewInitialGradientWithDevice(device objc.ID) InitialGradient {
 	rv.Autorelease()
 	return rv
 }
-
-
-

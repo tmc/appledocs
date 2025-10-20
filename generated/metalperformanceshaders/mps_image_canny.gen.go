@@ -75,7 +75,6 @@ func NewImageCanny() ImageCanny {
 	return getImageCannyClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageCanny/sigma
 func (i_ ImageCanny) Sigma() unsafe.Pointer {
@@ -90,12 +89,9 @@ func (i_ ImageCanny) UseFastMode() bool {
 	return rv
 }
 
-
 // SetUseFastMode sets the value of the useFastMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageCanny/useFastMode
 func (i_ ImageCanny) SetUseFastMode(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUseFastMode:"), value)
 }
-
-

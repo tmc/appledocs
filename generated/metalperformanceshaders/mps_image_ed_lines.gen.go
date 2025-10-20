@@ -75,7 +75,6 @@ func NewImageEDLines() ImageEDLines {
 	return getImageEDLinesClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/clipRectSource
 func (i_ ImageEDLines) ClipRectSource() unsafe.Pointer {
@@ -83,13 +82,13 @@ func (i_ ImageEDLines) ClipRectSource() unsafe.Pointer {
 	return rv
 }
 
-
 // SetClipRectSource sets the value of the clipRectSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/clipRectSource
 func (i_ ImageEDLines) SetClipRectSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/gradientThreshold
 func (i_ ImageEDLines) GradientThreshold() unsafe.Pointer {
@@ -97,13 +96,13 @@ func (i_ ImageEDLines) GradientThreshold() unsafe.Pointer {
 	return rv
 }
 
-
 // SetGradientThreshold sets the value of the gradientThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/gradientThreshold
 func (i_ ImageEDLines) SetGradientThreshold(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGradientThreshold:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/mergeLocalityThreshold
 func (i_ ImageEDLines) MergeLocalityThreshold() unsafe.Pointer {
@@ -111,12 +110,9 @@ func (i_ ImageEDLines) MergeLocalityThreshold() unsafe.Pointer {
 	return rv
 }
 
-
 // SetMergeLocalityThreshold sets the value of the mergeLocalityThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/mergeLocalityThreshold
 func (i_ ImageEDLines) SetMergeLocalityThreshold(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMergeLocalityThreshold:"), value)
 }
-
-

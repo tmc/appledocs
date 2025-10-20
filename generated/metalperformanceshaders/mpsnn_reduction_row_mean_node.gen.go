@@ -74,7 +74,3 @@ func (r_ ReductionRowMeanNode) Autorelease() ReductionRowMeanNode {
 func NewReductionRowMeanNode() ReductionRowMeanNode {
 	return getReductionRowMeanNodeClass().New()
 }
-
-
-
-

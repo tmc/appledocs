@@ -75,7 +75,6 @@ func NewReductionFeatureChannelsSumNode() ReductionFeatureChannelsSumNode {
 	return getReductionFeatureChannelsSumNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsSumNode/weight
 func (r_ ReductionFeatureChannelsSumNode) Weight() unsafe.Pointer {
@@ -83,12 +82,9 @@ func (r_ ReductionFeatureChannelsSumNode) Weight() unsafe.Pointer {
 	return rv
 }
 
-
 // SetWeight sets the value of the weight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsSumNode/weight
 func (r_ ReductionFeatureChannelsSumNode) SetWeight(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setWeight:"), value)
 }
-
-

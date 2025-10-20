@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ImageConversion] class.
@@ -81,7 +81,6 @@ func NewImageConversion() ImageConversion {
 	return getImageConversionClass().New()
 }
 
-
 // Initializes a filter that can convert texture color space, alpha, and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/init(device:srcAlpha:destAlpha:backgroundColor:conversionInfo:)
@@ -91,7 +90,6 @@ func NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(
 	rv.Autorelease()
 	return rv
 }
-
 
 // Premultiplication description for the destination texture.
 //
@@ -108,5 +106,3 @@ func (i_ ImageConversion) SourceAlpha() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sourceAlpha"))
 	return rv
 }
-
-

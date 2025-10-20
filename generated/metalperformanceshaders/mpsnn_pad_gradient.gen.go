@@ -74,7 +74,6 @@ func NewPadGradient() PadGradient {
 	return getPadGradientClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient/init(device:)
 func NewPadGradientWithDevice(device objc.ID) PadGradient {
@@ -83,6 +82,3 @@ func NewPadGradientWithDevice(device objc.ID) PadGradient {
 	rv.Autorelease()
 	return rv
 }
-
-
-

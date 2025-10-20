@@ -75,7 +75,6 @@ func NewQuadrilateralAccelerationStructure() QuadrilateralAccelerationStructure 
 	return getQuadrilateralAccelerationStructureClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure/quadrilateralCount
 func (q_ QuadrilateralAccelerationStructure) QuadrilateralCount() uint {
@@ -83,12 +82,9 @@ func (q_ QuadrilateralAccelerationStructure) QuadrilateralCount() uint {
 	return rv
 }
 
-
 // SetQuadrilateralCount sets the value of the quadrilateralCount property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure/quadrilateralCount
 func (q_ QuadrilateralAccelerationStructure) SetQuadrilateralCount(value uint) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setQuadrilateralCount:"), value)
 }
-
-

@@ -75,7 +75,6 @@ func NewPolygonAccelerationStructure() PolygonAccelerationStructure {
 	return getPolygonAccelerationStructureClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonAccelerationStructure/polygonBuffers
 func (p_ PolygonAccelerationStructure) PolygonBuffers() []PolygonBuffer {
@@ -83,12 +82,9 @@ func (p_ PolygonAccelerationStructure) PolygonBuffers() []PolygonBuffer {
 	return rv
 }
 
-
 // SetPolygonBuffers sets the value of the polygonBuffers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonAccelerationStructure/polygonBuffers
 func (p_ PolygonAccelerationStructure) SetPolygonBuffers(value []PolygonBuffer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPolygonBuffers:"), value)
 }
-
-

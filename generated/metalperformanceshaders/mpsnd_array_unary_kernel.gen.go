@@ -76,7 +76,6 @@ func NewNDArrayUnaryKernel() NDArrayUnaryKernel {
 	return getNDArrayUnaryKernelClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryKernel/encode(to:sourceArray:)
 func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArray(cmdBuf objc.ID, sourceArray unsafe.Pointer) unsafe.Pointer {
@@ -97,6 +96,3 @@ func (n_ NDArrayUnaryKernel) Strides() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("strides"))
 	return rv
 }
-
-
-

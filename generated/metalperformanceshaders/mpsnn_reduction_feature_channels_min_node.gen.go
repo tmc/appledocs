@@ -74,7 +74,3 @@ func (r_ ReductionFeatureChannelsMinNode) Autorelease() ReductionFeatureChannels
 func NewReductionFeatureChannelsMinNode() ReductionFeatureChannelsMinNode {
 	return getReductionFeatureChannelsMinNodeClass().New()
 }
-
-
-
-

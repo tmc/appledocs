@@ -75,7 +75,6 @@ func NewCNNGroupNormalizationGradientNode() CNNGroupNormalizationGradientNode {
 	return getCNNGroupNormalizationGradientNodeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientNode/init(sourceGradient:sourceImage:gradientState:)
 func NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient unsafe.Pointer, sourceImage unsafe.Pointer, gradientState unsafe.Pointer) CNNGroupNormalizationGradientNode {
@@ -85,12 +84,9 @@ func NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientSt
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientNode/nodeWithSourceGradient:sourceImage:gradientState:
 func (cc _CNNGroupNormalizationGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(sourceGradient unsafe.Pointer, sourceImage unsafe.Pointer, gradientState unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	return rv
 }
-
-

@@ -74,7 +74,3 @@ func (n_ NDArrayStridedSliceGradient) Autorelease() NDArrayStridedSliceGradient 
 func NewNDArrayStridedSliceGradient() NDArrayStridedSliceGradient {
 	return getNDArrayStridedSliceGradientClass().New()
 }
-
-
-
-

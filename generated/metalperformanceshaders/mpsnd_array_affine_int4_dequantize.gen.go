@@ -75,7 +75,6 @@ func NewNDArrayAffineInt4Dequantize() NDArrayAffineInt4Dequantize {
 	return getNDArrayAffineInt4DequantizeClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineInt4Dequantize/init(device:quantizationDescriptor:)
 func NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor(device objc.ID, quantizationDescriptor unsafe.Pointer) NDArrayAffineInt4Dequantize {
@@ -84,6 +83,3 @@ func NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor(device objc.
 	rv.Autorelease()
 	return rv
 }
-
-
-

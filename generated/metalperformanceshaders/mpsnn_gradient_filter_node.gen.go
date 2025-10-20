@@ -77,7 +77,3 @@ func (g_ GradientFilterNode) Autorelease() GradientFilterNode {
 func NewGradientFilterNode() GradientFilterNode {
 	return getGradientFilterNodeClass().New()
 }
-
-
-
-
