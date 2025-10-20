@@ -143,6 +143,8 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "CoreImage"},
 	{ObjCType: "CGColorSpaceRef", GoType: "coregraphics.CGColorSpaceRef", Framework: "CoreImage"},
 	{ObjCType: "CGLayerRef", GoType: "coregraphics.CGLayerRef", Framework: "CoreImage"},
+	{ObjCType: "CGColorRef", GoType: "coregraphics.CGColorRef", Framework: "CoreImage"},
+	{ObjCType: "CGContextRef", GoType: "coregraphics.CGContextRef", Framework: "CoreImage"},
 
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
@@ -152,6 +154,9 @@ var typeRegistry = []TypeMapping{
 
 	// AppKit string types
 	{ObjCType: "NSString *", GoType: "string", Framework: "AppKit"},
+
+	// ==== UniformTypeIdentifiers types used in AppKit ====
+	{ObjCType: "UTType", GoType: "uniformtypeidentifiers.UTType", Framework: "AppKit"},
 
 	// Foundation date/time types - unqualified within Foundation
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "Foundation"},

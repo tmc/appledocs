@@ -161,6 +161,12 @@ var goKeywords = map[string]bool{
 	"select": true, "struct": true, "switch": true, "type": true, "var": true,
 	// Special identifiers that cannot be used as type/variable names
 	"init": true,
+	// Built-in types that shadow if used as parameter names
+	"bool": true, "byte": true, "complex64": true, "complex128": true,
+	"error": true, "float32": true, "float64": true,
+	"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
+	"rune": true, "string": true,
+	"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true, "uintptr": true,
 }
 
 // isGoKeyword checks if a string is a Go reserved keyword.
@@ -1196,7 +1202,9 @@ func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 	}
 
 	// Build set of property selectors (getter and setter)
+	// Also build a set of property setter METHOD names (without colon) that would collide with generated setters
 	propertySelectors := make(map[string]bool)
+	propertySetterMethods := make(map[string]bool) // Maps "setFoo" -> true if property "foo" exists
 	for _, prop := range class.Properties {
 		// Getter selector is just the property name
 		propertySelectors[prop.Name] = true
@@ -1205,12 +1213,57 @@ func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 		capitalizedName := strings.ToUpper(prop.Name[:1]) + prop.Name[1:]
 		setterSelector := "set" + capitalizedName + ":"
 		propertySelectors[setterSelector] = true
+
+		// Also track the setter method name without colon for collision detection
+		// E.g., property "accessibilityFrameInParentSpace" -> method "setAccessibilityFrameInParentSpace"
+		setterMethodName := "set" + capitalizedName
+		propertySetterMethods[setterMethodName] = true
+
+		// Debug output for NSAccessibilityElement
+		if class.Name == "NSAccessibilityElement" && strings.Contains(prop.Name, "FrameInParentSpace") {
+			fmt.Fprintf(os.Stderr, "DEBUG: Property %s -> getter=%s, setter=%s, methodName=%s\n",
+				prop.Name, prop.Name, setterSelector, setterMethodName)
+		}
 	}
 
 	// Filter methods, excluding those that match property selectors
 	var filtered []*occ2go.ParsedMethod
+
+	// Build a map of method selectors to detect setter-like collisions
+	methodSelectors := make(map[string]*occ2go.ParsedMethod)
 	for _, m := range class.Methods {
+		methodSelectors[m.Selector] = m
+	}
+
+	for _, m := range class.Methods {
+		// Debug output for NSAccessibilityElement
+		if class.Name == "NSAccessibilityElement" && strings.Contains(m.Selector, "FrameInParentSpace") {
+			fmt.Fprintf(os.Stderr, "DEBUG: Method selector=%s, params=%d, isClass=%v, inPropertySelectors=%v, wouldCollide=%v\n",
+				m.Selector, len(m.Parameters), m.IsClassMethod, propertySelectors[m.Selector], propertySetterMethods[m.Selector])
+		}
+
 		if !m.IsClassMethod && !propertySelectors[m.Selector] {
+			// Skip parameterless set* methods that would collide with property setters
+			// Example: method setAccessibilityFrameInParentSpace() collides with property accessibilityFrameInParentSpace's setter
+			if strings.HasPrefix(m.Selector, "set") && len(m.Parameters) == 0 && !strings.HasSuffix(m.Selector, ":") {
+				if propertySetterMethods[m.Selector] {
+					// Skip this method because it collides with a generated property setter
+					if class.Name == "NSAccessibilityElement" && strings.Contains(m.Selector, "FrameInParentSpace") {
+						fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s because property setter would collide\n", m.Selector)
+					}
+					continue
+				}
+
+				// Also check if there's a setter version with a colon (method overload case)
+				setterVersion := m.Selector + ":"
+				if setterMethod, exists := methodSelectors[setterVersion]; exists && len(setterMethod.Parameters) > 0 {
+					// Skip this parameterless version as it collides with the parameterized method
+					if class.Name == "NSAccessibilityElement" && strings.Contains(m.Selector, "FrameInParentSpace") {
+						fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s because %s method exists\n", m.Selector, setterVersion)
+					}
+					continue
+				}
+			}
 			filtered = append(filtered, m)
 		} else if m.IsClassMethod {
 			// Always include class methods
