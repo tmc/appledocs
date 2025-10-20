@@ -1,0 +1,92 @@
+// Code generated from Apple documentation for WebKit. DO NOT EDIT.
+
+package webkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [NavigationAction] class.
+var (
+	NavigationActionClass     _NavigationActionClass
+	NavigationActionClassOnce sync.Once
+)
+
+func getNavigationActionClass() _NavigationActionClass {
+	NavigationActionClassOnce.Do(func() {
+		NavigationActionClass = _NavigationActionClass{objc.GetClass("WKNavigationAction")}
+	})
+	return NavigationActionClass
+}
+
+type _NavigationActionClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [NavigationAction] class.
+type INavigationAction interface {
+	objectivec.IObject
+}
+
+// An object that contains information about an action that causes navigation to occur.
+//
+// Use a object to make policy decisions about whether to allow navigation within your app’s web view. You don’t create objects directly. Instead, the web view creates them and delivers them to the appropriate delegate objects. Use the methods of your delegate to analyze the action and determine whether to allow the resulting navigation to occur.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationAction
+type NavigationAction struct {
+	objectivec.Object
+}
+
+// NavigationActionFrom constructs a [NavigationAction] from an unsafe.Pointer.
+//
+// An object that contains information about an action that causes navigation to occur.
+func NavigationActionFrom(ptr unsafe.Pointer) NavigationAction {
+	return NavigationAction{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (nc _NavigationActionClass) Alloc() NavigationAction {
+	rv := objc.Send[NavigationAction](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (nc _NavigationActionClass) New() NavigationAction {
+	rv := objc.Send[NavigationAction](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (n_ NavigationAction) Init() NavigationAction {
+	rv := objc.Send[NavigationAction](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ NavigationAction) Autorelease() NavigationAction {
+	rv := objc.Send[NavigationAction](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNavigationAction creates a new NavigationAction instance.
+func NewNavigationAction() NavigationAction {
+	return getNavigationActionClass().New()
+}
+
+
+// The frame in which to display the new content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationAction/targetFrame
+func (n_ NavigationAction) TargetFrame() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("targetFrame"))
+	return rv
+}
+
+
+

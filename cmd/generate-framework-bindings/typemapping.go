@@ -201,6 +201,9 @@ var typeRegistry = []TypeMapping{
 	// ==== CoreGraphics types in ScreenCaptureKit ====
 	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "ScreenCaptureKit"},
 
+	// ==== CloudKit types in CoreData ====
+	{ObjCType: "CKShare", GoType: "cloudkit.Share", Framework: "CoreData"},
+
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
 	// Generic completion handler: void (^)(NSError *)
@@ -244,6 +247,8 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "Quartz"},
 	{ObjCType: "Size", GoType: "foundation.Size", Framework: "Quartz"},
 	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "Quartz"},
+	// Quartz uses CoreGraphics types
+	{ObjCType: "CGColorSpaceRef", GoType: "coregraphics.CGColorSpaceRef", Framework: "Quartz"},
 	// WebKit uses Foundation's Point type
 	{ObjCType: "Point", GoType: "foundation.Point", Framework: "WebKit"},
 	{ObjCType: "NSPoint", GoType: "foundation.Point", Framework: "WebKit"},

@@ -2388,6 +2388,7 @@ type ClassImports struct {
 	NeedsFoundation             bool
 	NeedsQuartzCore             bool
 	NeedsCoreGraphics           bool
+	NeedsCloudKit               bool
 	NeedsAppKit                 bool
 	NeedsUserNotifications      bool
 	NeedsUniformTypeIdentifiers bool
@@ -2455,6 +2456,29 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 				imports.NeedsCoreGraphics = true
 				break
 			}
+		}
+	}
+
+	// Check method parameters and return types for CloudKit dependencies
+	for _, method := range class.Methods {
+		// Check return type
+		if method.ReturnType != "" {
+			goType := mapObjCTypeToGo(method.ReturnType, framework)
+			if strings.HasPrefix(goType, "cloudkit.") {
+				imports.NeedsCloudKit = true
+				break
+			}
+		}
+		// Check parameters
+		for _, param := range method.Parameters {
+			goType := mapObjCTypeToGo(param.Type, framework)
+			if strings.HasPrefix(goType, "cloudkit.") {
+				imports.NeedsCloudKit = true
+				break
+			}
+		}
+		if imports.NeedsCloudKit {
+			break
 		}
 	}
 
