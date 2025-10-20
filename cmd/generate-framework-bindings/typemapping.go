@@ -110,6 +110,23 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "ScreenCaptureKit"},
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "ScreenCaptureKit"},
 
+	// ==== Geometry types - ScreenSaver framework ====
+	// ScreenSaver uses CoreGraphics geometry types
+	{ObjCType: "NSRect", GoType: "coregraphics.CGRect", Framework: "ScreenSaver"},
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "ScreenSaver"},
+	{ObjCType: "Rect", GoType: "coregraphics.CGRect", Framework: "ScreenSaver"},
+	{ObjCType: "NSSize", GoType: "coregraphics.CGSize", Framework: "ScreenSaver"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "ScreenSaver"},
+	{ObjCType: "Size", GoType: "coregraphics.CGSize", Framework: "ScreenSaver"},
+	{ObjCType: "NSPoint", GoType: "coregraphics.CGPoint", Framework: "ScreenSaver"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "ScreenSaver"},
+	{ObjCType: "Point", GoType: "coregraphics.CGPoint", Framework: "ScreenSaver"},
+
+	// ==== AppKit types used in ScreenSaver framework ====
+	// ScreenSaver uses AppKit's BackingStoreType enum
+	{ObjCType: "NSBackingStoreType", GoType: "appkit.BackingStoreType", Framework: "ScreenSaver"},
+	{ObjCType: "BackingStoreType", GoType: "appkit.BackingStoreType", Framework: "ScreenSaver"},
+
 	// ==== AVFoundation types ====
 	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "AVFoundation"},
 
