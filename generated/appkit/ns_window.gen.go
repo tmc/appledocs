@@ -141,7 +141,7 @@ type IWindow interface {
 	SetDynamicDepthLimit(flag bool)
 	SetFrameDisplay(frameRect coregraphics.CGRect, flag bool)
 	SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFlag bool, animateFlag bool)
-	SetFrameFromString(string unsafe.Pointer)
+	SetFrameFromString(string_ unsafe.Pointer)
 	SetFrameOrigin(point coregraphics.CGPoint)
 	SetFrameTopLeftPoint(point coregraphics.CGPoint)
 	SetFrameUsingName(name unsafe.Pointer) bool
@@ -218,6 +218,16 @@ func NewWindow() Window {
 }
 
 
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes the window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
@@ -243,16 +253,6 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
 func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
 	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
-	return rv
-}
-
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
 	return rv
 }
 
@@ -1135,8 +1135,8 @@ func (w_ Window) SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFl
 // Sets the window’s frame rectangle from a given string representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(from:)
-func (w_ Window) SetFrameFromString(string unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameFromString:"), string)
+func (w_ Window) SetFrameFromString(string_ unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameFromString:"), string_)
 }
 
 // Positions the bottom-left corner of the window’s frame rectangle at a given point in screen coordinates.

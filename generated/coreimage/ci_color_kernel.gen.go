@@ -86,8 +86,8 @@ func NewColorKernel() ColorKernel {
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func NewColorKernelWithString(string string) ColorKernel {
-	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
+func NewColorKernelWithString(string_ string) ColorKernel {
+	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func NewColorKernelWithString(string string) ColorKernel {
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func (cc _ColorKernelClass) KernelWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string))
+func (cc _ColorKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 

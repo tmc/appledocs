@@ -53,7 +53,7 @@ type ICell interface {
 	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) unsafe.Pointer
 	HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, controlView unsafe.Pointer) unsafe.Pointer
 	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	IsEntryAcceptable(string string) bool
+	IsEntryAcceptable(string_ string) bool
 	MenuForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer
 	Mnemonic() unsafe.Pointer
 	MnemonicLocation() uint
@@ -65,7 +65,6 @@ type ICell interface {
 	SetEntryType(type_ int)
 	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
 	SetMnemonicLocation(location uint)
-	SetNextState()
 	SetTitleWithMnemonic(stringWithAmpersand string)
 	SetUpFieldEditorAttributes(textObj unsafe.Pointer) unsafe.Pointer
 	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView unsafe.Pointer) bool
@@ -150,9 +149,9 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 // Returns an NSCell object initialized with the specified string and set to have the cell’s default menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
-func NewCellTextCell(string string) Cell {
+func NewCellTextCell(string_ string) Cell {
 	instance := getCellClass().Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string))
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
@@ -328,8 +327,8 @@ func (c_ Cell) ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect 
 // Returns whether a string representing a numeric or date value is formatted in a suitable way for the cell’s entry type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEntryAcceptable:
-func (c_ Cell) IsEntryAcceptable(string string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEntryAcceptable:"), objc.String(string))
+func (c_ Cell) IsEntryAcceptable(string_ string) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEntryAcceptable:"), objc.String(string_))
 	return rv
 }
 
@@ -412,13 +411,6 @@ func (c_ Cell) SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setMnemonicLocation:
 func (c_ Cell) SetMnemonicLocation(location uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMnemonicLocation:"), location)
-}
-
-// Changes cell’s state to the next value in the sequence.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setNextState()
-func (c_ Cell) SetNextState() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNextState"))
 }
 
 // Sets the title of the receiver with one character in the string denoted as an access key.

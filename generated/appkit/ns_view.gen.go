@@ -131,7 +131,7 @@ type IView interface {
 	NeedsToDrawRect(rect coregraphics.CGRect) bool
 	NoteFocusRingMaskChanged()
 	PerformKeyEquivalent(event unsafe.Pointer) bool
-	PerformMnemonic(string string) bool
+	PerformMnemonic(string_ string) bool
 	PrepareContentInRect(rect coregraphics.CGRect)
 	PrepareForReuse()
 	Print(sender objc.ID)
@@ -1045,8 +1045,8 @@ func (v_ View) PerformKeyEquivalent(event unsafe.Pointer) bool {
 // Implemented by subclasses to respond to mnemonics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/performMnemonic:
-func (v_ View) PerformMnemonic(string string) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("performMnemonic:"), objc.String(string))
+func (v_ View) PerformMnemonic(string_ string) bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("performMnemonic:"), objc.String(string_))
 	return rv
 }
 

@@ -29,7 +29,7 @@ type _PersistentDocumentClass struct {
 // An interface definition for the [PersistentDocument] class.
 type IPersistentDocument interface {
 	IDocument
-	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url unsafe.Pointer, fileType string, configuration string, storeOptions unsafe.Pointer, error unsafe.Pointer) bool
+	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url unsafe.Pointer, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 // A document object that can integrate with Core Data.
@@ -85,8 +85,8 @@ func NewPersistentDocument() PersistentDocument {
 // Configures the receiver’s persistent store coordinator with the appropriate stores for a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url unsafe.Pointer, fileType string, configuration string, storeOptions unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, objc.String(fileType), objc.String(configuration), storeOptions, error)
+func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url unsafe.Pointer, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, objc.String(fileType), objc.String(configuration), storeOptions, error_)
 	return rv
 }
 

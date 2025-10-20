@@ -90,14 +90,6 @@ func NewImage() Image {
 }
 
 
-// Creates a symbol image with the system symbol name and accessibility description you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
-func NewImageWithSystemSymbolNameAccessibilityDescription(name string, description string) Image {
-	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
-	return rv
-}
-
 // Creates a new image using the contents of the provided image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(cgImage:size:)
@@ -131,6 +123,14 @@ func NewImageNamed(name unsafe.Pointer) Image {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
 func NewImageWithSymbolNameVariableValue(name string, value unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
+	return rv
+}
+
+// Creates a symbol image with the system symbol name and accessibility description you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
+func NewImageWithSystemSymbolNameAccessibilityDescription(name string, description string) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
 	return rv
 }
 

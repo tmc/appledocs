@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [BlendKernel] class.
@@ -30,7 +31,7 @@ type _BlendKernelClass struct {
 type IBlendKernel interface {
 	IColorKernel
 	ApplyWithForegroundBackground(foreground unsafe.Pointer, background unsafe.Pointer) unsafe.Pointer
-	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace CGColorSpaceRef) unsafe.Pointer
+	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer
 }
 
 // A GPU-based image-processing routine that is optimized for blending two images.
@@ -86,8 +87,8 @@ func NewBlendKernel() BlendKernel {
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func NewBlendKernelWithString(string string) BlendKernel {
-	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
+func NewBlendKernelWithString(string_ string) BlendKernel {
+	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 
@@ -95,8 +96,8 @@ func NewBlendKernelWithString(string string) BlendKernel {
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func (bc _BlendKernelClass) KernelWithString(string string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string))
+func (bc _BlendKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 
@@ -110,7 +111,7 @@ func (b_ BlendKernel) ApplyWithForegroundBackground(foreground unsafe.Pointer, b
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:colorSpace:)
-func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace CGColorSpaceRef) unsafe.Pointer {
+func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
 	return rv
 }

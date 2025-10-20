@@ -98,9 +98,9 @@ func NewSearchFieldCellWithCoder(coder unsafe.Pointer) SearchFieldCell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(textCell:)
-func NewSearchFieldCellTextCell(string string) SearchFieldCell {
+func NewSearchFieldCellTextCell(string_ string) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
-	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initTextCell:"), objc.String(string))
+	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }

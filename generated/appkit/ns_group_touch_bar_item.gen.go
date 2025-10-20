@@ -79,19 +79,19 @@ func NewGroupTouchBarItem() GroupTouchBarItem {
 }
 
 
-// Initializes and returns a group item whose bar is constructed from the supplied items.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:)
-func NewGroupTouchBarItemGroupItemWithIdentifierItems(identifier unsafe.Pointer, items unsafe.Pointer) GroupTouchBarItem {
-	rv := objc.Send[GroupTouchBarItem](objc.ID(getGroupTouchBarItemClass().class), objc.Sel("groupItemWithIdentifier:items:"), identifier, items)
-	return rv
-}
-
 // Initializes and returns a group item whose bar is constructed from the supplied items, and with the specified compression options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:allowedCompressionOptions:)
 func NewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions(identifier unsafe.Pointer, items unsafe.Pointer, allowedCompressionOptions unsafe.Pointer) GroupTouchBarItem {
 	rv := objc.Send[GroupTouchBarItem](objc.ID(getGroupTouchBarItemClass().class), objc.Sel("groupItemWithIdentifier:items:allowedCompressionOptions:"), identifier, items, allowedCompressionOptions)
+	return rv
+}
+
+// Initializes and returns a group item whose bar is constructed from the supplied items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:)
+func NewGroupTouchBarItemGroupItemWithIdentifierItems(identifier unsafe.Pointer, items unsafe.Pointer) GroupTouchBarItem {
+	rv := objc.Send[GroupTouchBarItem](objc.ID(getGroupTouchBarItemClass().class), objc.Sel("groupItemWithIdentifier:items:"), identifier, items)
 	return rv
 }
 

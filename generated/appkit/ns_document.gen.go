@@ -70,8 +70,8 @@ type IDocument interface {
 	PrepareSharingServicePicker(sharingServicePicker unsafe.Pointer)
 	PreparePageLayout(pageLayout unsafe.Pointer) bool
 	PrepareSavePanel(savePanel unsafe.Pointer) bool
-	PresentError(error unsafe.Pointer) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ unsafe.Pointer) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	PresentedItemDidChange()
 	PresentedItemDidChangeUbiquityAttributes(attributes unsafe.Pointer)
 	PresentedItemDidGainVersion(version unsafe.Pointer)
@@ -120,8 +120,8 @@ type IDocument interface {
 	UpdateChangeCountWithTokenForSaveOperation(changeCountToken objc.ID, saveOperation unsafe.Pointer)
 	UpdateUserActivityState(activity unsafe.Pointer)
 	ValidateUserInterfaceItem(item objc.ID) bool
-	WillNotPresentError(error unsafe.Pointer)
-	WillPresentError(error unsafe.Pointer) unsafe.Pointer
+	WillNotPresentError(error_ unsafe.Pointer)
+	WillPresentError(error_ unsafe.Pointer) unsafe.Pointer
 	WindowControllerDidLoadNib(windowController unsafe.Pointer)
 	WindowControllerWillLoadNib(windowController unsafe.Pointer)
 	WritableTypesForSaveOperation(saveOperation unsafe.Pointer) []string
@@ -529,16 +529,16 @@ func (d_ Document) PrepareSavePanel(savePanel unsafe.Pointer) bool {
 // Presents an error alert to the user as a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentError(_:)
-func (d_ Document) PresentError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error)
+func (d_ Document) PresentError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
 
 // Presents an error alert to the user as a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (d_ Document) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error, window, delegate, didPresentSelector, contextInfo)
+func (d_ Document) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
 //
@@ -879,15 +879,15 @@ func (d_ Document) ValidateUserInterfaceItem(item objc.ID) bool {
 // Confirms that the error object is not to be presented to the user and the error cannot be recovered from, so cleanup can be done.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/willNotPresentError(_:)
-func (d_ Document) WillNotPresentError(error unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("willNotPresentError:"), error)
+func (d_ Document) WillNotPresentError(error_ unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("willNotPresentError:"), error_)
 }
 
 // Called when the receiver is about to present an error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/willPresentError(_:)
-func (d_ Document) WillPresentError(error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("willPresentError:"), error)
+func (d_ Document) WillPresentError(error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
 

@@ -32,7 +32,6 @@ type _AccessibilityElementClass struct {
 type IAccessibilityElement interface {
 	objectivec.IObject
 	AccessibilityAddChildElement(childElement unsafe.Pointer)
-	SetAccessibilityFrameInParentSpace()
 }
 
 // The basic infrastructure necessary for interacting with an assistive app.
@@ -96,13 +95,6 @@ func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParen
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)
 func (a_ AccessibilityElement) AccessibilityAddChildElement(childElement unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("accessibilityAddChildElement:"), childElement)
-}
-
-// Sets the accessibility element’s frame in its parent’s coordinate system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/setAccessibilityFrameInParentSpace(_:)
-func (a_ AccessibilityElement) SetAccessibilityFrameInParentSpace() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessibilityFrameInParentSpace"))
 }
 
 // The accessibility element’s frame in its parent’s coordinate system.

@@ -10,13 +10,5 @@ import (
 var _ = appkit.NewDraggingItem
 
 
-// ExampleNewDraggingItemWithPasteboardWriter demonstrates how to create a DraggingItem instance using NewDraggingItemWithPasteboardWriter.
-// Creates and returns a dragging item using the specified content.
-func ExampleNewDraggingItemWithPasteboardWriter() {
-	_ = appkit.NewDraggingItemWithPasteboardWriter(
-		0, // pasteboardWriter objc.ID
-	)
-	// Output:
-}
 
 

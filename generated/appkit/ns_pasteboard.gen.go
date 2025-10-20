@@ -37,7 +37,7 @@ type IPasteboard interface {
 	ReadObjectsForClassesOptions(classArray unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
 	SetDataForType(data unsafe.Pointer, dataType unsafe.Pointer) bool
 	SetPropertyListForType(plist objc.ID, dataType unsafe.Pointer) bool
-	SetStringForType(string string, dataType unsafe.Pointer) bool
+	SetStringForType(string_ string, dataType unsafe.Pointer) bool
 	StringForType(dataType unsafe.Pointer) unsafe.Pointer
 	WriteObjects(objects unsafe.Pointer) bool
 }
@@ -147,8 +147,8 @@ func (p_ Pasteboard) SetPropertyListForType(plist objc.ID, dataType unsafe.Point
 // Sets the given string as the representation for the specified type for the first item on the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/setString(_:forType:)
-func (p_ Pasteboard) SetStringForType(string string, dataType unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string), dataType)
+func (p_ Pasteboard) SetStringForType(string_ string, dataType unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string_), dataType)
 	return rv
 }
 

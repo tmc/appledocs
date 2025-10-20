@@ -45,7 +45,7 @@ type IText interface {
 	PasteFont(sender objc.ID)
 	PasteRuler(sender objc.ID)
 	ReadRTFDFromFile(path string) bool
-	ReplaceCharactersInRangeWithString(range_ foundation.Range, string string)
+	ReplaceCharactersInRangeWithString(range_ foundation.Range, string_ string)
 	ReplaceCharactersInRangeWithRTF(range_ foundation.Range, rtfData unsafe.Pointer)
 	ReplaceCharactersInRangeWithRTFD(range_ foundation.Range, rtfdData unsafe.Pointer)
 	RTFFromRange(range_ foundation.Range) unsafe.Pointer
@@ -235,8 +235,8 @@ func (t_ Text) ReadRTFDFromFile(path string) bool {
 // Replaces the characters in the given range with those in the given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/replaceCharacters(in:with:)
-func (t_ Text) ReplaceCharactersInRangeWithString(range_ foundation.Range, string string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(string))
+func (t_ Text) ReplaceCharactersInRangeWithString(range_ foundation.Range, string_ string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(string_))
 }
 
 // Replaces the characters in the given range with RTF text interpreted from the given RTF data.

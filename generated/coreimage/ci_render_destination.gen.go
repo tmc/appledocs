@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [RenderDestination] class.
@@ -80,26 +81,6 @@ func NewRenderDestination() RenderDestination {
 }
 
 
-// Creates a render destination based on a Core Video pixel buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
-func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
-	instance := getRenderDestinationClass().Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithPixelBuffer:"), pixelBuffer)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a render destination based on a Metal texture with specified pixel format.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
-func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer objc.ID, block objc.ID) RenderDestination {
-	instance := getRenderDestinationClass().Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a render destination based on a client-managed buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
@@ -136,6 +117,26 @@ func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination
 func NewRenderDestinationWithMTLTextureCommandBuffer(texture objc.ID, commandBuffer objc.ID) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithMTLTexture:commandBuffer:"), texture, commandBuffer)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a render destination based on a Core Video pixel buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
+func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithPixelBuffer:"), pixelBuffer)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a render destination based on a Metal texture with specified pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
+func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer objc.ID, block objc.ID) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
 	rv.Autorelease()
 	return rv
 }
@@ -212,8 +213,8 @@ func (r_ RenderDestination) SetCaptureTraceURL(value unsafe.Pointer) {
 // The destination’s color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/colorSpace
-func (r_ RenderDestination) ColorSpace() CGColorSpaceRef {
-	rv := objc.Send[CGColorSpaceRef](r_.ID, objc.Sel("colorSpace"))
+func (r_ RenderDestination) ColorSpace() coregraphics.CGColorSpaceRef {
+	rv := objc.Send[coregraphics.CGColorSpaceRef](r_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -223,7 +224,7 @@ func (r_ RenderDestination) ColorSpace() CGColorSpaceRef {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/colorSpace
-func (r_ RenderDestination) SetColorSpace(value CGColorSpaceRef) {
+func (r_ RenderDestination) SetColorSpace(value coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setColorSpace:"), value)
 }
 // The render destination’s buffer height.

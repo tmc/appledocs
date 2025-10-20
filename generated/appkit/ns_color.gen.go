@@ -92,6 +92,14 @@ func NewColor() Color {
 }
 
 
+// Creates a color object using the specified asset catalog and color names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(catalogName:colorName:)
+func NewColorWithCatalogNameColorName(listName unsafe.Pointer, colorName unsafe.Pointer) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
+	return rv
+}
+
 // Creates a color object from the specified components of the given color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(colorSpace:components:count:)
@@ -105,14 +113,6 @@ func NewColorWithColorSpaceComponentsCount(space unsafe.Pointer, components unsa
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(for:)
 func NewColorForControlTint(controlTint unsafe.Pointer) Color {
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorForControlTint:"), controlTint)
-	return rv
-}
-
-// Creates a color object using the specified asset catalog and color names.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(catalogName:colorName:)
-func NewColorWithCatalogNameColorName(listName unsafe.Pointer, colorName unsafe.Pointer) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
 	return rv
 }
 

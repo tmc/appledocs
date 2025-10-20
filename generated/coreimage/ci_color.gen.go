@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Color] class.
@@ -83,7 +84,7 @@ func NewColor() Color {
 // Create a Core Image color object with a Core Graphics color object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
-func NewColorWithCGColor(color CGColorRef) Color {
+func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
 	rv.Autorelease()
@@ -122,7 +123,7 @@ func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alp
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
-func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace CGColorSpaceRef) Color {
+func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	rv.Autorelease()
@@ -132,7 +133,7 @@ func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue fl
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
-func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace CGColorSpaceRef) Color {
+func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace coregraphics.CGColorSpaceRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	rv.Autorelease()
@@ -151,7 +152,7 @@ func NewColorWithString(representation string) Color {
 // Create a Core Image color object with a Core Graphics color object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithCGColor:
-func (cc _ColorClass) ColorWithCGColor(color CGColorRef) unsafe.Pointer {
+func (cc _ColorClass) ColorWithCGColor(color coregraphics.CGColorRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithCGColor:"), color)
 	return rv
 }
@@ -167,7 +168,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64, green float64, blu
 // Create a Core Image color object with the specified red, green, blue, and alpha component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:colorSpace:
-func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace CGColorSpaceRef) unsafe.Pointer {
+func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	return rv
 }
@@ -175,7 +176,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green fl
 // Create a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:colorSpace:
-func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace CGColorSpaceRef) unsafe.Pointer {
+func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	return rv
 }
@@ -215,8 +216,8 @@ func (c_ Color) Blue() float64 {
 // Returns the associated with the color
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorSpace
-func (c_ Color) ColorSpace() CGColorSpaceRef {
-	rv := objc.Send[CGColorSpaceRef](c_.ID, objc.Sel("colorSpace"))
+func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
+	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 

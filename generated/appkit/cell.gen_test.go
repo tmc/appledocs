@@ -10,13 +10,6 @@ import (
 var _ = appkit.NewCell
 
 
-// ExampleNewCell demonstrates how to create a Cell instance.
-func ExampleNewCell() {
-	_ = appkit.NewCell()
-	// Output:
-}
-
-
 
 // ExampleNewCellTextCell demonstrates how to create a Cell instance using NewCellTextCell.
 // Returns an NSCell object initialized with the specified string and set to have the cell’s default menu.
@@ -26,5 +19,12 @@ func ExampleNewCellTextCell() {
 	)
 	// Output:
 }
+
+// ExampleNewCell demonstrates how to create a Cell instance.
+func ExampleNewCell() {
+	_ = appkit.NewCell()
+	// Output:
+}
+
 
 

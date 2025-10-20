@@ -98,7 +98,7 @@ func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format unsa
 // Initializes an image accumulator with the specified extent, pixel format, and color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:colorSpace:)
-func NewImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format unsafe.Pointer, colorSpace CGColorSpaceRef) ImageAccumulator {
+func NewImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) ImageAccumulator {
 	instance := getImageAccumulatorClass().Alloc()
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	rv.Autorelease()
@@ -117,7 +117,7 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent coregra
 // Creates an image accumulator with the specified extent, pixel format, and color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/imageAccumulatorWithExtent:format:colorSpace:
-func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format unsafe.Pointer, colorSpace CGColorSpaceRef) unsafe.Pointer {
+func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	return rv
 }

@@ -36,7 +36,7 @@ type ISpellChecker interface {
 	CheckSpellingOfStringStartingAt(stringToCheck string, startingOffset int) foundation.Range
 	CheckSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, wordCount unsafe.Pointer) foundation.Range
 	CountWordsInStringLanguage(stringToCount string, language string) int
-	GuessesForWordRangeInStringLanguageInSpellDocumentWithTag(range_ foundation.Range, string string, language string, tag int) []string
+	GuessesForWordRangeInStringLanguageInSpellDocumentWithTag(range_ foundation.Range, string_ string, language string, tag int) []string
 	GuessesForWord(word string) unsafe.Pointer
 	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange foundation.Range, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
 	RequestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
@@ -133,8 +133,8 @@ func (s_ SpellChecker) CountWordsInStringLanguage(stringToCount string, language
 // Returns an array of possible substitutions for the specified string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/guesses(forWordRange:in:language:inSpellDocumentWithTag:)
-func (s_ SpellChecker) GuessesForWordRangeInStringLanguageInSpellDocumentWithTag(range_ foundation.Range, string string, language string, tag int) []string {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("guessesForWordRange:inString:language:inSpellDocumentWithTag:"), range_, objc.String(string), objc.String(language), tag)
+func (s_ SpellChecker) GuessesForWordRangeInStringLanguageInSpellDocumentWithTag(range_ foundation.Range, string_ string, language string, tag int) []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("guessesForWordRange:inString:language:inSpellDocumentWithTag:"), range_, objc.String(string_), objc.String(language), tag)
 	return rv
 }
 

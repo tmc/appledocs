@@ -10,13 +10,5 @@ import (
 var _ = appkit.NewTextInputContext
 
 
-// ExampleNewTextInputContextWithClient demonstrates how to create a TextInputContext instance using NewTextInputContextWithClient.
-// The designated initializer
-func ExampleNewTextInputContextWithClient() {
-	_ = appkit.NewTextInputContextWithClient(
-		0, // client objc.ID
-	)
-	// Output:
-}
 
 

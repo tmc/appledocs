@@ -61,10 +61,10 @@ type IResponder interface {
 	OtherMouseDragged(event unsafe.Pointer)
 	OtherMouseUp(event unsafe.Pointer)
 	PerformKeyEquivalent(event unsafe.Pointer) bool
-	PerformMnemonic(string string) bool
+	PerformMnemonic(string_ string) bool
 	PerformTextFinderAction(sender objc.ID)
-	PresentError(error unsafe.Pointer) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ unsafe.Pointer) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	PressureChangeWithEvent(event unsafe.Pointer)
 	QuickLookWithEvent(event unsafe.Pointer)
 	ResignFirstResponder() bool
@@ -92,7 +92,7 @@ type IResponder interface {
 	ValidateProposedFirstResponderForEvent(responder unsafe.Pointer, event unsafe.Pointer) bool
 	WantsForwardedScrollEventsForAxis(axis unsafe.Pointer) bool
 	WantsScrollEventsForSwipeTrackingOnAxis(axis unsafe.Pointer) bool
-	WillPresentError(error unsafe.Pointer) unsafe.Pointer
+	WillPresentError(error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An abstract class that forms the basis of event and command processing in AppKit.
@@ -384,8 +384,8 @@ func (r_ Responder) PerformKeyEquivalent(event unsafe.Pointer) bool {
 // Handle a mnemonic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/performMnemonic:
-func (r_ Responder) PerformMnemonic(string string) bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("performMnemonic:"), objc.String(string))
+func (r_ Responder) PerformMnemonic(string_ string) bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("performMnemonic:"), objc.String(string_))
 	return rv
 }
 
@@ -399,16 +399,16 @@ func (r_ Responder) PerformTextFinderAction(sender objc.ID) {
 // Presents an error alert to the user as an application-modal dialog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:)
-func (r_ Responder) PresentError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("presentError:"), error)
+func (r_ Responder) PresentError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
 
 // Presents an error alert to the user as a document-modal sheet attached to document window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error, window, delegate, didPresentSelector, contextInfo)
+func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
 // Indicates a pressure change as the result of a user input event on a system that supports pressure sensitivity.
@@ -610,8 +610,8 @@ func (r_ Responder) WantsScrollEventsForSwipeTrackingOnAxis(axis unsafe.Pointer)
 // Returns a custom version of the supplied error object that’s more suitable for presentation in alert sheets and dialogs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/willPresentError(_:)
-func (r_ Responder) WillPresentError(error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("willPresentError:"), error)
+func (r_ Responder) WillPresentError(error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
 

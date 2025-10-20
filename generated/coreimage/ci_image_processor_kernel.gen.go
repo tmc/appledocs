@@ -84,16 +84,16 @@ func NewImageProcessorKernel() ImageProcessorKernel {
 // Call this method on your Core Image Processor Kernel subclass to create a new image of the specified extent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtent:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error)
+func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error_)
 	return rv
 }
 
 // Call this method on your multiple-output Core Image Processor Kernel subclass to create an array of new image objects given the specified array of extents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtents:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents unsafe.Pointer, inputs unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) []Image {
-	rv := objc.Send[[]Image](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error)
+func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents unsafe.Pointer, inputs unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) []Image {
+	rv := objc.Send[[]Image](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error_)
 	return rv
 }
 
@@ -116,16 +116,16 @@ func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex un
 // Override this class method to implement your Core Image Processor Kernel subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:output:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs unsafe.Pointer, arguments unsafe.Pointer, output objc.ID, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error)
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs unsafe.Pointer, arguments unsafe.Pointer, output objc.ID, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error_)
 	return rv
 }
 
 // Override this class method of your Core Image Processor Kernel subclass if it needs to produce multiple outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:outputs:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs unsafe.Pointer, arguments unsafe.Pointer, outputs unsafe.Pointer, error unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:outputs:error:"), inputs, arguments, outputs, error)
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs unsafe.Pointer, arguments unsafe.Pointer, outputs unsafe.Pointer, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:outputs:error:"), inputs, arguments, outputs, error_)
 	return rv
 }
 

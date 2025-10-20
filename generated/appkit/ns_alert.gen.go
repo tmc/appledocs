@@ -86,8 +86,8 @@ func NewAlert() Alert {
 // Returns an alert initialized from information in an error object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-func NewAlertWithError(error unsafe.Pointer) Alert {
-	rv := objc.Send[Alert](objc.ID(getAlertClass().class), objc.Sel("alertWithError:"), error)
+func NewAlertWithError(error_ unsafe.Pointer) Alert {
+	rv := objc.Send[Alert](objc.ID(getAlertClass().class), objc.Sel("alertWithError:"), error_)
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (ac _AlertClass) AlertWithMessageTextDefaultButtonAlternateButtonOtherButto
 // Returns an alert initialized from information in an error object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-func (ac _AlertClass) AlertWithError(error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("alertWithError:"), error)
+func (ac _AlertClass) AlertWithError(error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("alertWithError:"), error_)
 	return rv
 }
 

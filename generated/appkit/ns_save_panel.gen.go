@@ -158,8 +158,8 @@ func (s_ SavePanel) SetAccessoryView(value unsafe.Pointer) {
 // An array of types that specify the files types to which you can save.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) AllowedContentTypes() []UTType {
-	rv := objc.Send[[]UTType](s_.ID, objc.Sel("allowedContentTypes"))
+func (s_ SavePanel) AllowedContentTypes() []uniformtypeidentifiers.UTType {
+	rv := objc.Send[[]uniformtypeidentifiers.UTType](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
 }
 
@@ -169,7 +169,7 @@ func (s_ SavePanel) AllowedContentTypes() []UTType {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) SetAllowedContentTypes(value []UTType) {
+func (s_ SavePanel) SetAllowedContentTypes(value []uniformtypeidentifiers.UTType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedContentTypes:"), value)
 }
 // A Boolean value that indicates whether the panel allows the user to save files with a filename extension that’s not in the list of allowed types.
@@ -226,8 +226,8 @@ func (s_ SavePanel) SetCanSelectHiddenExtension(value bool) {
 // :The current type. If set to , resets to the first allowed content type. Returns if is empty. : Not used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) CurrentContentType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentContentType"))
+func (s_ SavePanel) CurrentContentType() uniformtypeidentifiers.UTType {
+	rv := objc.Send[uniformtypeidentifiers.UTType](s_.ID, objc.Sel("currentContentType"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (s_ SavePanel) CurrentContentType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) SetCurrentContentType(value unsafe.Pointer) {
+func (s_ SavePanel) SetCurrentContentType(value uniformtypeidentifiers.UTType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentContentType:"), value)
 }
 // A custom object you use to manage interactions with an open or save panel.
