@@ -963,6 +963,9 @@ import (
 	"{{.OutputModule}}/{{.PackageName}}"
 )
 
+// Suppress unused import errors
+var _ = unsafe.Pointer(nil)
+
 {{range .Functions -}}
 {{- $docData := prepareFunctionDocData . $.Framework}}
 // Test{{$docData.Name}} tests the {{$docData.Name}} function.
