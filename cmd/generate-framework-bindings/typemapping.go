@@ -28,7 +28,52 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "Foundation"},
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "Foundation"},
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "Foundation"},
+	{ObjCType: "CGVector", GoType: "coregraphics.CGVector", Framework: "Foundation"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "Foundation"},
+
+	// ==== CoreGraphics types in CoreGraphics framework (unqualified) ====
+	// When generating CoreGraphics itself, CG types should not be qualified
+	// Struct types
+	{ObjCType: "CGRect", GoType: "CGRect", Framework: "CoreGraphics"},
+	{ObjCType: "CGSize", GoType: "CGSize", Framework: "CoreGraphics"},
+	{ObjCType: "CGPoint", GoType: "CGPoint", Framework: "CoreGraphics"},
+	{ObjCType: "CGAffineTransform", GoType: "CGAffineTransform", Framework: "CoreGraphics"},
+	{ObjCType: "CGVector", GoType: "CGVector", Framework: "CoreGraphics"},
+	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
+	// Opaque ref types
+	{ObjCType: "CGColorRef", GoType: "CGColorRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGColorSpaceRef", GoType: "CGColorSpaceRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGContextRef", GoType: "CGContextRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGImageRef", GoType: "CGImageRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPathRef", GoType: "CGPathRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGLayerRef", GoType: "CGLayerRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGFontRef", GoType: "CGFontRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDataProviderRef", GoType: "CGDataProviderRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDataConsumerRef", GoType: "CGDataConsumerRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGFunctionRef", GoType: "CGFunctionRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGShadingRef", GoType: "CGShadingRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGGradientRef", GoType: "CGGradientRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPatternRef", GoType: "CGPatternRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFDocumentRef", GoType: "CGPDFDocumentRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFPageRef", GoType: "CGPDFPageRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGColorConversionInfoRef", GoType: "CGColorConversionInfoRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayConfigRef", GoType: "CGDisplayConfigRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayModeRef", GoType: "CGDisplayModeRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayStreamRef", GoType: "CGDisplayStreamRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayStreamUpdateRef", GoType: "CGDisplayStreamUpdateRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventSourceRef", GoType: "CGEventSourceRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGMutablePathRef", GoType: "CGMutablePathRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFArrayRef", GoType: "CGPDFArrayRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFContentStreamRef", GoType: "CGPDFContentStreamRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFDictionaryRef", GoType: "CGPDFDictionaryRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFObjectRef", GoType: "CGPDFObjectRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFOperatorTableRef", GoType: "CGPDFOperatorTableRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFScannerRef", GoType: "CGPDFScannerRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFStreamRef", GoType: "CGPDFStreamRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFStringRef", GoType: "CGPDFStringRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPSConverterRef", GoType: "CGPSConverterRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGRenderingBufferProviderRef", GoType: "CGRenderingBufferProviderRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventRef", GoType: "CGEventRef", Framework: "CoreGraphics"},
 
 	// ==== Geometry types - AppKit framework ====
 	// AppKit uses CoreGraphics types - import from CoreGraphics package
@@ -40,6 +85,11 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "AppKit"},
 	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "AppKit"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "AppKit"},
+	// CoreGraphics opaque ref types in AppKit
+	{ObjCType: "CGColorSpaceRef", GoType: "coregraphics.CGColorSpaceRef", Framework: "AppKit"},
+	{ObjCType: "CGEventRef", GoType: "coregraphics.CGEventRef", Framework: "AppKit"},
+	{ObjCType: "CGContextRef", GoType: "coregraphics.CGContextRef", Framework: "AppKit"},
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "AppKit"},
 
 	// ==== Geometry types - CoreImage framework ====
 	// CoreImage uses CoreGraphics geometry types
@@ -59,6 +109,14 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "ScreenCaptureKit"},
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "ScreenCaptureKit"},
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "ScreenCaptureKit"},
+
+	// ==== AVFoundation types ====
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "AVFoundation"},
+
+	// ==== CoreML types ====
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "CoreML"},
+	{ObjCType: "Range", GoType: "foundation.Range", Framework: "CoreML"},
+	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "CoreML"},
 
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
@@ -94,12 +152,6 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreVideo"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreVideo"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "QuartzCore"},
-
-	// ==== Event types ====
-	// CGEventRef - proper wrapper type instead of unsafe.Pointer
-	{ObjCType: "CGEventRef", GoType: "CFEventRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGEventRef", GoType: "coregraphics.CGEventRef", Framework: "AppKit"},
-	{ObjCType: "CGEventRef", GoType: "coregraphics.CGEventRef", Framework: "Foundation"},
 
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types

@@ -1,0 +1,83 @@
+// Code generated from Apple documentation for AVFoundation. DO NOT EDIT.
+
+package avfoundation
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [MutableAudioMixInputParameters] class.
+var (
+	MutableAudioMixInputParametersClass     _MutableAudioMixInputParametersClass
+	MutableAudioMixInputParametersClassOnce sync.Once
+)
+
+func getMutableAudioMixInputParametersClass() _MutableAudioMixInputParametersClass {
+	MutableAudioMixInputParametersClassOnce.Do(func() {
+		MutableAudioMixInputParametersClass = _MutableAudioMixInputParametersClass{objc.GetClass("AVMutableAudioMixInputParameters")}
+	})
+	return MutableAudioMixInputParametersClass
+}
+
+type _MutableAudioMixInputParametersClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [MutableAudioMixInputParameters] class.
+type IMutableAudioMixInputParameters interface {
+	IAudioMixInputParameters
+}
+
+// The parameters you use when adding an audio track to a mix.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAudioMixInputParameters
+type MutableAudioMixInputParameters struct {
+	AudioMixInputParameters
+}
+
+// MutableAudioMixInputParametersFrom constructs a [MutableAudioMixInputParameters] from an unsafe.Pointer.
+//
+// The parameters you use when adding an audio track to a mix.
+func MutableAudioMixInputParametersFrom(ptr unsafe.Pointer) MutableAudioMixInputParameters {
+	return MutableAudioMixInputParameters{
+		AudioMixInputParameters: AudioMixInputParametersFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (mc _MutableAudioMixInputParametersClass) Alloc() MutableAudioMixInputParameters {
+	rv := objc.Send[MutableAudioMixInputParameters](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (mc _MutableAudioMixInputParametersClass) New() MutableAudioMixInputParameters {
+	rv := objc.Send[MutableAudioMixInputParameters](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableAudioMixInputParameters) Init() MutableAudioMixInputParameters {
+	rv := objc.Send[MutableAudioMixInputParameters](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableAudioMixInputParameters) Autorelease() MutableAudioMixInputParameters {
+	rv := objc.Send[MutableAudioMixInputParameters](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableAudioMixInputParameters creates a new MutableAudioMixInputParameters instance.
+func NewMutableAudioMixInputParameters() MutableAudioMixInputParameters {
+	return getMutableAudioMixInputParametersClass().New()
+}
+
+
+
+
