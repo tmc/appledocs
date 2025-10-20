@@ -15,3 +15,5 @@ var setAccessibilitySelectedColumnsProtocol *objc.Protocol
 func init() {
 	setAccessibilitySelectedColumnsProtocol = objc.GetProtocol("setAccessibilitySelectedColumns")
 }
+
+

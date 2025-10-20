@@ -75,6 +75,7 @@ func NewLossGradientNode() LossGradientNode {
 	return getLossGradientNodeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:
 func (lc _LossGradientNodeClass) NodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes unsafe.Pointer, gradientState unsafe.Pointer, descriptor unsafe.Pointer, isLabelsGradientFilter bool) unsafe.Pointer {
@@ -95,3 +96,6 @@ func (l_ LossGradientNode) ReductionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("reductionType"))
 	return rv
 }
+
+
+

@@ -15,3 +15,5 @@ var documentVisibleRectProtocol *objc.Protocol
 func init() {
 	documentVisibleRectProtocol = objc.GetProtocol("documentVisibleRect")
 }
+
+

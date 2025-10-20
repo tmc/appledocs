@@ -12,3 +12,5 @@ var CloudSharingServiceDelegateProtocol *objc.Protocol
 func init() {
 	CloudSharingServiceDelegateProtocol = objc.GetProtocol("NSCloudSharingServiceDelegate")
 }
+
+

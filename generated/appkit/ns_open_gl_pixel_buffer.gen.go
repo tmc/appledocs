@@ -78,3 +78,7 @@ func (o_ OpenGLPixelBuffer) Autorelease() OpenGLPixelBuffer {
 func NewOpenGLPixelBuffer() OpenGLPixelBuffer {
 	return getOpenGLPixelBufferClass().New()
 }
+
+
+
+

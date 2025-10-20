@@ -78,3 +78,7 @@ func (a_ AdaptiveImageGlyph) Autorelease() AdaptiveImageGlyph {
 func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 	return getAdaptiveImageGlyphClass().New()
 }
+
+
+
+

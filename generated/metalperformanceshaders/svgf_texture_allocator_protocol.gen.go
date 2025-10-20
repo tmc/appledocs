@@ -20,3 +20,5 @@ var SVGFTextureAllocatorProtocol *objc.Protocol
 func init() {
 	SVGFTextureAllocatorProtocol = objc.GetProtocol("MPSSVGFTextureAllocator")
 }
+
+

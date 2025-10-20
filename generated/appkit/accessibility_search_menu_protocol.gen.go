@@ -15,3 +15,5 @@ var accessibilitySearchMenuProtocol *objc.Protocol
 func init() {
 	accessibilitySearchMenuProtocol = objc.GetProtocol("accessibilitySearchMenu")
 }
+
+

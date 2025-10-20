@@ -77,6 +77,7 @@ func NewAccelerationStructureGroup() AccelerationStructureGroup {
 	return getAccelerationStructureGroupClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureGroup/init(device:)
 func NewAccelerationStructureGroupWithDevice(device objc.ID) AccelerationStructureGroup {
@@ -85,3 +86,6 @@ func NewAccelerationStructureGroupWithDevice(device objc.ID) AccelerationStructu
 	rv.Autorelease()
 	return rv
 }
+
+
+

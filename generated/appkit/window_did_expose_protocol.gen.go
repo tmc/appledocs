@@ -15,3 +15,5 @@ var windowDidExposeProtocol *objc.Protocol
 func init() {
 	windowDidExposeProtocol = objc.GetProtocol("windowDidExpose:")
 }
+
+

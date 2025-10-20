@@ -76,9 +76,13 @@ func NewNDArrayIdentity() NDArrayIdentity {
 	return getNDArrayIdentityClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayIdentity/reshape(with:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)
 func (n_ NDArrayIdentity) ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder objc.ID, cmdBuf objc.ID, sourceArray unsafe.Pointer, numberOfDimensions uint, dimensionSizes unsafe.Pointer, destinationArray unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:"), encoder, cmdBuf, sourceArray, numberOfDimensions, dimensionSizes, destinationArray)
 	return rv
 }
+
+
+

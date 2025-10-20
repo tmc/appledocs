@@ -79,6 +79,7 @@ func NewScrubberArrangedView() ScrubberArrangedView {
 	return getScrubberArrangedViewClass().New()
 }
 
+
 // Updates the layout of the arranged view to respect the provided layout attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/apply(_:)
@@ -94,6 +95,7 @@ func (s_ ScrubberArrangedView) Highlighted() bool {
 	return rv
 }
 
+
 // SetHighlighted sets the value of the highlighted property.
 // A Boolean value that specifies whether the view is currently highlighted.
 
@@ -102,7 +104,6 @@ func (s_ ScrubberArrangedView) Highlighted() bool {
 func (s_ ScrubberArrangedView) SetHighlighted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHighlighted:"), value)
 }
-
 // A Boolean value that specifies whether the current view is selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isSelected
@@ -110,6 +111,7 @@ func (s_ ScrubberArrangedView) Selected() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("selected"))
 	return rv
 }
+
 
 // SetSelected sets the value of the selected property.
 // A Boolean value that specifies whether the current view is selected.
@@ -119,3 +121,5 @@ func (s_ ScrubberArrangedView) Selected() bool {
 func (s_ ScrubberArrangedView) SetSelected(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelected:"), value)
 }
+
+

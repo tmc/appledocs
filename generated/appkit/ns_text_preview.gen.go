@@ -78,3 +78,7 @@ func (t_ TextPreview) Autorelease() TextPreview {
 func NewTextPreview() TextPreview {
 	return getTextPreviewClass().New()
 }
+
+
+
+

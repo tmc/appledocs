@@ -78,3 +78,7 @@ func (a_ AccessibilityCustomRotor) Autorelease() AccessibilityCustomRotor {
 func NewAccessibilityCustomRotor() AccessibilityCustomRotor {
 	return getAccessibilityCustomRotorClass().New()
 }
+
+
+
+

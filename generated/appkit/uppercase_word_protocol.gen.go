@@ -12,3 +12,5 @@ var uppercaseWordProtocol *objc.Protocol
 func init() {
 	uppercaseWordProtocol = objc.GetProtocol("uppercaseWord:")
 }
+
+

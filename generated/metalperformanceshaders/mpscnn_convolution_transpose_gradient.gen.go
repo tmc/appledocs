@@ -75,8 +75,12 @@ func NewCNNConvolutionTransposeGradient() CNNConvolutionTransposeGradient {
 	return getCNNConvolutionTransposeGradientClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradient/reloadWeightsAndBiasesFromDataSource()
 func (c_ CNNConvolutionTransposeGradient) ReloadWeightsAndBiasesFromDataSource() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadWeightsAndBiasesFromDataSource"))
 }
+
+
+

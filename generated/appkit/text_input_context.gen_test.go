@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewTextInputContext
 
+
 // ExampleNewTextInputContextWithClient demonstrates how to create a TextInputContext instance using NewTextInputContextWithClient.
 // The designated initializer
 func ExampleNewTextInputContextWithClient() {
@@ -17,3 +18,5 @@ func ExampleNewTextInputContextWithClient() {
 	)
 	// Output:
 }
+
+

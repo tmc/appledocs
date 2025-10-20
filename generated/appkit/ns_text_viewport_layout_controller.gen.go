@@ -78,3 +78,7 @@ func (t_ TextViewportLayoutController) Autorelease() TextViewportLayoutControlle
 func NewTextViewportLayoutController() TextViewportLayoutController {
 	return getTextViewportLayoutControllerClass().New()
 }
+
+
+
+

@@ -15,3 +15,5 @@ var accessibilityRTFForRangeProtocol *objc.Protocol
 func init() {
 	accessibilityRTFForRangeProtocol = objc.GetProtocol("accessibilityRTFForRange:")
 }
+
+

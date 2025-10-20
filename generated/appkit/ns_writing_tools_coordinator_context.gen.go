@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WritingToolsCoordinatorContext] class.
@@ -80,6 +80,7 @@ func NewWritingToolsCoordinatorContext() WritingToolsCoordinatorContext {
 	return getWritingToolsCoordinatorContextClass().New()
 }
 
+
 // The unique identifier of the context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/range
@@ -87,3 +88,6 @@ func (w_ WritingToolsCoordinatorContext) Range() foundation.Range {
 	rv := objc.Send[foundation.Range](w_.ID, objc.Sel("range"))
 	return rv
 }
+
+
+

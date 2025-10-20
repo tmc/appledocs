@@ -12,3 +12,5 @@ var TextViewDelegateProtocol *objc.Protocol
 func init() {
 	TextViewDelegateProtocol = objc.GetProtocol("NSTextViewDelegate")
 }
+
+

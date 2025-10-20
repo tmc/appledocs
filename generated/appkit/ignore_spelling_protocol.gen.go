@@ -12,3 +12,5 @@ var ignoreSpellingProtocol *objc.Protocol
 func init() {
 	ignoreSpellingProtocol = objc.GetProtocol("ignoreSpelling:")
 }
+
+

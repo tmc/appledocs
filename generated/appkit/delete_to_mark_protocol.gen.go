@@ -12,3 +12,5 @@ var deleteToMarkProtocol *objc.Protocol
 func init() {
 	deleteToMarkProtocol = objc.GetProtocol("deleteToMark:")
 }
+
+

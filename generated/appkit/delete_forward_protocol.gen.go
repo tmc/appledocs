@@ -12,3 +12,5 @@ var deleteForwardProtocol *objc.Protocol
 func init() {
 	deleteForwardProtocol = objc.GetProtocol("deleteForward:")
 }
+
+

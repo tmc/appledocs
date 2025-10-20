@@ -82,6 +82,7 @@ func NewUnaryImageKernel() UnaryImageKernel {
 	return getUnaryImageKernelClass().New()
 }
 
+
 // Encodes a kernel into a command buffer, out of place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode
@@ -96,3 +97,6 @@ func (u_ UnaryImageKernel) SourceRegionForDestinationSize(destinationSize unsafe
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sourceRegionForDestinationSize:"), destinationSize)
 	return rv
 }
+
+
+

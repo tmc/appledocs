@@ -74,6 +74,7 @@ func NewPolygonBuffer() PolygonBuffer {
 	return getPolygonBufferClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonBuffer/indexBufferOffset
 func (p_ PolygonBuffer) IndexBufferOffset() uint {
@@ -81,9 +82,12 @@ func (p_ PolygonBuffer) IndexBufferOffset() uint {
 	return rv
 }
 
+
 // SetIndexBufferOffset sets the value of the indexBufferOffset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonBuffer/indexBufferOffset
 func (p_ PolygonBuffer) SetIndexBufferOffset(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexBufferOffset:"), value)
 }
+
+

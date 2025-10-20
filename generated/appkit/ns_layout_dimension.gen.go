@@ -81,6 +81,7 @@ func NewLayoutDimension() LayoutDimension {
 	return getLayoutDimensionClass().New()
 }
 
+
 // Returns a constraint that defines the anchor’s size attribute as greater than or equal to the specified anchor multiplied by the constant plus an offset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutDimension/constraint(lessThanOrEqualTo:multiplier:constant:)
@@ -88,3 +89,6 @@ func (l_ LayoutDimension) ConstraintLessThanOrEqualToAnchorMultiplierConstant(an
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintLessThanOrEqualToAnchor:multiplier:constant:"), anchor, m, c)
 	return rv
 }
+
+
+

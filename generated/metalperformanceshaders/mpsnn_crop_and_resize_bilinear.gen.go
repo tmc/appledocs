@@ -77,6 +77,7 @@ func NewCropAndResizeBilinear() CropAndResizeBilinear {
 	return getCropAndResizeBilinearClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/init(coder:device:)
 func NewCropAndResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) CropAndResizeBilinear {
@@ -85,6 +86,7 @@ func NewCropAndResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device obj
 	rv.Autorelease()
 	return rv
 }
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
@@ -99,3 +101,5 @@ func (c_ CropAndResizeBilinear) ResizeHeight() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("resizeHeight"))
 	return rv
 }
+
+

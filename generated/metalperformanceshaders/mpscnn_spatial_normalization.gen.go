@@ -78,3 +78,7 @@ func (c_ CNNSpatialNormalization) Autorelease() CNNSpatialNormalization {
 func NewCNNSpatialNormalization() CNNSpatialNormalization {
 	return getCNNSpatialNormalizationClass().New()
 }
+
+
+
+

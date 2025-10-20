@@ -15,3 +15,5 @@ var windowWillReturnUndoManagerProtocol *objc.Protocol
 func init() {
 	windowWillReturnUndoManagerProtocol = objc.GetProtocol("windowWillReturnUndoManager:")
 }
+
+

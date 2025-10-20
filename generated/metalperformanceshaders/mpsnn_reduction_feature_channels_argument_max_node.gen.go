@@ -74,3 +74,7 @@ func (r_ ReductionFeatureChannelsArgumentMaxNode) Autorelease() ReductionFeature
 func NewReductionFeatureChannelsArgumentMaxNode() ReductionFeatureChannelsArgumentMaxNode {
 	return getReductionFeatureChannelsArgumentMaxNodeClass().New()
 }
+
+
+
+

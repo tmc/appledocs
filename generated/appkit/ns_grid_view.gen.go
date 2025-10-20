@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [GridView] class.
@@ -97,6 +97,17 @@ func NewGridView() GridView {
 	return getGridViewClass().New()
 }
 
+
+// Creates a newly allocated grid view object from the coder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
+func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
+	instance := getGridViewClass().Alloc()
+	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a newly allocated grid view object with the specified frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(frame:)
@@ -123,15 +134,6 @@ func NewGridViewWithViews(rows unsafe.Pointer) GridView {
 	return rv
 }
 
-// Creates a newly allocated grid view object from the coder.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
-	instance := getGridViewClass().Alloc()
-	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 
 // Creates a newly allocated grid view object with the specified number of columns and rows.
 //
@@ -272,6 +274,7 @@ func (g_ GridView) ColumnSpacing() float64 {
 	return rv
 }
 
+
 // SetColumnSpacing sets the value of the columnSpacing property.
 // The column spacing for the grid view.
 
@@ -280,7 +283,6 @@ func (g_ GridView) ColumnSpacing() float64 {
 func (g_ GridView) SetColumnSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColumnSpacing:"), value)
 }
-
 // The number of columns in the grid view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/numberOfColumns
@@ -305,6 +307,7 @@ func (g_ GridView) RowAlignment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetRowAlignment sets the value of the rowAlignment property.
 // The row alignment for the grid view.
 
@@ -313,7 +316,6 @@ func (g_ GridView) RowAlignment() unsafe.Pointer {
 func (g_ GridView) SetRowAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRowAlignment:"), value)
 }
-
 // The row spacing for the grid view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/rowSpacing
@@ -321,6 +323,7 @@ func (g_ GridView) RowSpacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("rowSpacing"))
 	return rv
 }
+
 
 // SetRowSpacing sets the value of the rowSpacing property.
 // The row spacing for the grid view.
@@ -330,7 +333,6 @@ func (g_ GridView) RowSpacing() float64 {
 func (g_ GridView) SetRowSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRowSpacing:"), value)
 }
-
 // The placement of the cell within the grid column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/xPlacement
@@ -338,6 +340,7 @@ func (g_ GridView) XPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xPlacement"))
 	return rv
 }
+
 
 // SetXPlacement sets the value of the xPlacement property.
 // The placement of the cell within the grid column.
@@ -347,7 +350,6 @@ func (g_ GridView) XPlacement() unsafe.Pointer {
 func (g_ GridView) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
-
 // The placement of the cell within the grid row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/yPlacement
@@ -355,6 +357,7 @@ func (g_ GridView) YPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("yPlacement"))
 	return rv
 }
+
 
 // SetYPlacement sets the value of the yPlacement property.
 // The placement of the cell within the grid row.
@@ -364,3 +367,4 @@ func (g_ GridView) YPlacement() unsafe.Pointer {
 func (g_ GridView) SetYPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYPlacement:"), value)
 }
+

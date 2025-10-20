@@ -15,3 +15,5 @@ var windowDidExitFullScreenProtocol *objc.Protocol
 func init() {
 	windowDidExitFullScreenProtocol = objc.GetProtocol("windowDidExitFullScreen:")
 }
+
+

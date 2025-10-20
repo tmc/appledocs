@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Gradient] class.
@@ -84,6 +84,7 @@ func NewGradient() Gradient {
 	return getGradientClass().New()
 }
 
+
 // Initializes a newly allocated gradient object with the specified colors, color locations, and color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(colors:atLocations:colorSpace:)
@@ -93,6 +94,7 @@ func NewGradientWithColorsAtLocationsColorSpace(colorArray unsafe.Pointer, locat
 	rv.Autorelease()
 	return rv
 }
+
 
 // Draws a linear gradient between the specified start and end points.
 //
@@ -129,3 +131,5 @@ func (g_ Gradient) NumberOfColorStops() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfColorStops"))
 	return rv
 }
+
+

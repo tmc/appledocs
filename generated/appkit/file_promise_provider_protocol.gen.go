@@ -15,3 +15,5 @@ var filePromiseProviderProtocol *objc.Protocol
 func init() {
 	filePromiseProviderProtocol = objc.GetProtocol("filePromiseProvider:")
 }
+
+

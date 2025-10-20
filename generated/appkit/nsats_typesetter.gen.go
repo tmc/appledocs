@@ -79,3 +79,7 @@ func (a_ ATSTypesetter) Autorelease() ATSTypesetter {
 func NewATSTypesetter() ATSTypesetter {
 	return getATSTypesetterClass().New()
 }
+
+
+
+

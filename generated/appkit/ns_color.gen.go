@@ -91,6 +91,7 @@ func NewColor() Color {
 	return getColorClass().New()
 }
 
+
 // Creates a color object from the specified components of the given color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(colorSpace:components:count:)
@@ -114,6 +115,7 @@ func NewColorWithCatalogNameColorName(listName unsafe.Pointer, colorName unsafe.
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
 	return rv
 }
+
 
 // Creates a color object using the specified asset catalog and color names.
 //
@@ -341,3 +343,5 @@ func (c_ Color) YellowComponent() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("yellowComponent"))
 	return rv
 }
+
+

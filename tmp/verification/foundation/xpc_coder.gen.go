@@ -1,0 +1,33 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+var xPCCoderClass _XPCCoderClass
+
+func init() {
+	xPCCoderClass = _XPCCoderClass{objc.GetClass("NSXPCCoder")}
+}
+
+type _XPCCoderClass struct {
+	class objc.Class
+}
+
+type XPCCoder struct {
+	objc.ID
+}
+
+func XPCCoderFrom(ptr unsafe.Pointer) XPCCoder {
+	return XPCCoder{
+		ID: objc.ID(ptr),
+	}
+}
+
+
+
+

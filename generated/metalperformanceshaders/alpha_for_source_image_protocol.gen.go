@@ -20,3 +20,5 @@ var alphaForSourceImageProtocol *objc.Protocol
 func init() {
 	alphaForSourceImageProtocol = objc.GetProtocol("alphaForSourceImage:")
 }
+
+

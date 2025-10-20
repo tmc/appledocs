@@ -75,6 +75,7 @@ func NewNDArrayBinarySecondaryGradientKernel() NDArrayBinarySecondaryGradientKer
 	return getNDArrayBinarySecondaryGradientKernelClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinarySecondaryGradientKernel/init(device:)
 func NewNDArrayBinarySecondaryGradientKernelWithDevice(device objc.ID) NDArrayBinarySecondaryGradientKernel {
@@ -83,3 +84,6 @@ func NewNDArrayBinarySecondaryGradientKernelWithDevice(device objc.ID) NDArrayBi
 	rv.Autorelease()
 	return rv
 }
+
+
+

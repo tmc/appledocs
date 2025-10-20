@@ -15,3 +15,5 @@ var setAccessibilityRowCountProtocol *objc.Protocol
 func init() {
 	setAccessibilityRowCountProtocol = objc.GetProtocol("setAccessibilityRowCount")
 }
+
+

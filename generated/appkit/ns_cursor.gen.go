@@ -80,9 +80,13 @@ func NewCursor() Cursor {
 	return getCursorClass().New()
 }
 
+
 // Makes the receiver the current cursor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/set()
 func (c_ Cursor) Set() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("set"))
 }
+
+
+

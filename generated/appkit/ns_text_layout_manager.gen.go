@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TextLayoutManager] class.
@@ -84,6 +84,7 @@ func NewTextLayoutManager() TextLayoutManager {
 	return getTextLayoutManagerClass().New()
 }
 
+
 // Enumerates text segments of a specific type and in the text range you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/enumerateTextSegments(in:type:options:using:)
@@ -120,6 +121,7 @@ func (t_ TextLayoutManager) TextContainer() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTextContainer sets the value of the textContainer property.
 // The text container object that provides geometric information for the layout destination.
 
@@ -128,7 +130,6 @@ func (t_ TextLayoutManager) TextContainer() unsafe.Pointer {
 func (t_ TextLayoutManager) SetTextContainer(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
 }
-
 // Returns the text content manager associated with this text layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContentManager
@@ -145,6 +146,7 @@ func (t_ TextLayoutManager) TextSelectionNavigation() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTextSelectionNavigation sets the value of the textSelectionNavigation property.
 // Returns a text selection manager configured to have the text layout manager as its data source.
 
@@ -153,7 +155,6 @@ func (t_ TextLayoutManager) TextSelectionNavigation() unsafe.Pointer {
 func (t_ TextLayoutManager) SetTextSelectionNavigation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionNavigation:"), value)
 }
-
 // An array of text selections associated by the text layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelections
@@ -161,6 +162,7 @@ func (t_ TextLayoutManager) TextSelections() []TextSelection {
 	rv := objc.Send[[]TextSelection](t_.ID, objc.Sel("textSelections"))
 	return rv
 }
+
 
 // SetTextSelections sets the value of the textSelections property.
 // An array of text selections associated by the text layout manager.
@@ -170,7 +172,6 @@ func (t_ TextLayoutManager) TextSelections() []TextSelection {
 func (t_ TextLayoutManager) SetTextSelections(value []TextSelection) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), value)
 }
-
 // Returns the usage bounds for the text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/usageBoundsForTextContainer
@@ -178,3 +179,6 @@ func (t_ TextLayoutManager) UsageBoundsForTextContainer() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
 	return rv
 }
+
+
+

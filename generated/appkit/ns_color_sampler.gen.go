@@ -80,9 +80,13 @@ func NewColorSampler() ColorSampler {
 	return getColorSamplerClass().New()
 }
 
+
 // Displays the system color-sampling interface asynchronously and reports the selected color back to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler/show(selectionHandler:)
 func (c_ ColorSampler) ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showSamplerWithSelectionHandler:"), selectionHandler)
 }
+
+
+

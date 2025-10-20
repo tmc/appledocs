@@ -15,3 +15,5 @@ var applicationProtocol *objc.Protocol
 func init() {
 	applicationProtocol = objc.GetProtocol("application:")
 }
+
+

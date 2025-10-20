@@ -12,3 +12,5 @@ var setColorProtocol *objc.Protocol
 func init() {
 	setColorProtocol = objc.GetProtocol("setColor:")
 }
+
+

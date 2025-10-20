@@ -79,6 +79,7 @@ func NewTableColumn() TableColumn {
 	return getTableColumnClass().New()
 }
 
+
 // The cell prototype used by the table column to draw individual cells.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/dataCell
@@ -86,6 +87,7 @@ func (t_ TableColumn) DataCell() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("dataCell"))
 	return rv
 }
+
 
 // SetDataCell sets the value of the dataCell property.
 // The cell prototype used by the table column to draw individual cells.
@@ -95,7 +97,6 @@ func (t_ TableColumn) DataCell() objc.ID {
 func (t_ TableColumn) SetDataCell(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDataCell:"), value)
 }
-
 // A Boolean that indicates whether a cell-based table’s column cells are user editable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/isEditable
@@ -103,6 +104,7 @@ func (t_ TableColumn) Editable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
 }
+
 
 // SetEditable sets the value of the editable property.
 // A Boolean that indicates whether a cell-based table’s column cells are user editable.
@@ -112,3 +114,5 @@ func (t_ TableColumn) Editable() bool {
 func (t_ TableColumn) SetEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
+
+

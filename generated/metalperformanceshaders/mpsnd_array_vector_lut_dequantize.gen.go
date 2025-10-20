@@ -75,6 +75,7 @@ func NewNDArrayVectorLUTDequantize() NDArrayVectorLUTDequantize {
 	return getNDArrayVectorLUTDequantizeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/init(device:axis:)
 func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device objc.ID, axis uint) NDArrayVectorLUTDequantize {
@@ -84,6 +85,7 @@ func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device objc.ID, axis uint) NDAr
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/vectorAxis
 func (n_ NDArrayVectorLUTDequantize) VectorAxis() uint {
@@ -91,9 +93,11 @@ func (n_ NDArrayVectorLUTDequantize) VectorAxis() uint {
 	return rv
 }
 
+
 // SetVectorAxis sets the value of the vectorAxis property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/vectorAxis
 func (n_ NDArrayVectorLUTDequantize) SetVectorAxis(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setVectorAxis:"), value)
 }
+

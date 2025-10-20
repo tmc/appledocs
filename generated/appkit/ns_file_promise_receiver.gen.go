@@ -79,6 +79,7 @@ func NewFilePromiseReceiver() FilePromiseReceiver {
 	return getFilePromiseReceiverClass().New()
 }
 
+
 // An array containing names of the promised files being written to the destination location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileNames
@@ -94,3 +95,6 @@ func (f_ FilePromiseReceiver) FileTypes() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("fileTypes"))
 	return rv
 }
+
+
+

@@ -78,6 +78,7 @@ func NewStateResourceList() StateResourceList {
 	return getStateResourceListClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSStateResourceList/resourceListWithTextureDescriptors:
 func (sc _StateResourceListClass) ResourceListWithTextureDescriptors(d unsafe.Pointer) unsafe.Pointer {
@@ -90,3 +91,6 @@ func (sc _StateResourceListClass) ResourceListWithTextureDescriptors(d unsafe.Po
 func (s_ StateResourceList) AppendBuffer(size uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("appendBuffer:"), size)
 }
+
+
+

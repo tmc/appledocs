@@ -12,3 +12,5 @@ var TextCheckingClientProtocol *objc.Protocol
 func init() {
 	TextCheckingClientProtocol = objc.GetProtocol("NSTextCheckingClient")
 }
+
+

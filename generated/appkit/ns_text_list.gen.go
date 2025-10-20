@@ -78,3 +78,7 @@ func (t_ TextList) Autorelease() TextList {
 func NewTextList() TextList {
 	return getTextListClass().New()
 }
+
+
+
+

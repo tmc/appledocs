@@ -15,3 +15,5 @@ var isAccessibilitySelectorAllowedProtocol *objc.Protocol
 func init() {
 	isAccessibilitySelectorAllowedProtocol = objc.GetProtocol("isAccessibilitySelectorAllowed:")
 }
+
+

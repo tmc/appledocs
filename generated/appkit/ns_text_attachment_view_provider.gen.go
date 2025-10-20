@@ -78,3 +78,7 @@ func (t_ TextAttachmentViewProvider) Autorelease() TextAttachmentViewProvider {
 func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 	return getTextAttachmentViewProviderClass().New()
 }
+
+
+
+

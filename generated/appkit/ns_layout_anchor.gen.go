@@ -79,6 +79,7 @@ func NewLayoutAnchor() LayoutAnchor {
 	return getLayoutAnchorClass().New()
 }
 
+
 // A Boolean value indicating whether the constraints impacting the anchor specify its location ambiguously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout
@@ -86,3 +87,6 @@ func (l_ LayoutAnchor) HasAmbiguousLayout() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("hasAmbiguousLayout"))
 	return rv
 }
+
+
+

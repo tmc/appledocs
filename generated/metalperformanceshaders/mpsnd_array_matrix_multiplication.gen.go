@@ -75,6 +75,7 @@ func NewNDArrayMatrixMultiplication() NDArrayMatrixMultiplication {
 	return getNDArrayMatrixMultiplicationClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/alpha
 func (n_ NDArrayMatrixMultiplication) Alpha() unsafe.Pointer {
@@ -82,13 +83,13 @@ func (n_ NDArrayMatrixMultiplication) Alpha() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAlpha sets the value of the alpha property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/alpha
 func (n_ NDArrayMatrixMultiplication) SetAlpha(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAlpha:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
 func (n_ NDArrayMatrixMultiplication) Beta() unsafe.Pointer {
@@ -96,9 +97,12 @@ func (n_ NDArrayMatrixMultiplication) Beta() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBeta sets the value of the beta property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
 func (n_ NDArrayMatrixMultiplication) SetBeta(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setBeta:"), value)
 }
+
+

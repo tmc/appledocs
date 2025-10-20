@@ -1,0 +1,33 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+var outputStreamClass _OutputStreamClass
+
+func init() {
+	outputStreamClass = _OutputStreamClass{objc.GetClass("NSOutputStream")}
+}
+
+type _OutputStreamClass struct {
+	class objc.Class
+}
+
+type OutputStream struct {
+	objc.ID
+}
+
+func OutputStreamFrom(ptr unsafe.Pointer) OutputStream {
+	return OutputStream{
+		ID: objc.ID(ptr),
+	}
+}
+
+
+
+

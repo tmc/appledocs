@@ -74,3 +74,7 @@ func (r_ ReductionFeatureChannelsMeanNode) Autorelease() ReductionFeatureChannel
 func NewReductionFeatureChannelsMeanNode() ReductionFeatureChannelsMeanNode {
 	return getReductionFeatureChannelsMeanNodeClass().New()
 }
+
+
+
+

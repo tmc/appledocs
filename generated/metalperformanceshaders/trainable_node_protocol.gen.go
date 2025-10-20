@@ -12,3 +12,5 @@ var TrainableNodeProtocol *objc.Protocol
 func init() {
 	TrainableNodeProtocol = objc.GetProtocol("MPSNNTrainableNode")
 }
+
+

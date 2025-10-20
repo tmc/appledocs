@@ -78,6 +78,7 @@ func NewRayIntersector() RayIntersector {
 	return getRayIntersectorClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayIntersector/boundingBoxIntersectionTestType
 func (r_ RayIntersector) BoundingBoxIntersectionTestType() unsafe.Pointer {
@@ -85,9 +86,12 @@ func (r_ RayIntersector) BoundingBoxIntersectionTestType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBoundingBoxIntersectionTestType sets the value of the boundingBoxIntersectionTestType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayIntersector/boundingBoxIntersectionTestType
 func (r_ RayIntersector) SetBoundingBoxIntersectionTestType(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBoundingBoxIntersectionTestType:"), value)
 }
+
+

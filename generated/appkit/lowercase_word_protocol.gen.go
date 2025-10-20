@@ -12,3 +12,5 @@ var lowercaseWordProtocol *objc.Protocol
 func init() {
 	lowercaseWordProtocol = objc.GetProtocol("lowercaseWord:")
 }
+
+

@@ -81,6 +81,7 @@ func NewCachedImageRep() CachedImageRep {
 	return getCachedImageRepClass().New()
 }
 
+
 // Returns the window where the representation is cached.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep/window
@@ -88,3 +89,6 @@ func (c_ CachedImageRep) Window() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("window"))
 	return rv
 }
+
+
+

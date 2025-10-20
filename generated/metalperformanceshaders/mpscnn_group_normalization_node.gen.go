@@ -75,6 +75,7 @@ func NewCNNGroupNormalizationNode() CNNGroupNormalizationNode {
 	return getCNNGroupNormalizationNodeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/init(source:dataSource:)
 func NewCNNGroupNormalizationNodeWithSourceDataSource(source unsafe.Pointer, dataSource objc.ID) CNNGroupNormalizationNode {
@@ -83,6 +84,7 @@ func NewCNNGroupNormalizationNodeWithSourceDataSource(source unsafe.Pointer, dat
 	rv.Autorelease()
 	return rv
 }
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/nodeWithSource:dataSource:
@@ -98,9 +100,11 @@ func (c_ CNNGroupNormalizationNode) TrainingStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTrainingStyle sets the value of the trainingStyle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/trainingStyle
 func (c_ CNNGroupNormalizationNode) SetTrainingStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTrainingStyle:"), value)
 }
+

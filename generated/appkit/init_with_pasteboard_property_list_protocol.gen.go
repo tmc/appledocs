@@ -12,3 +12,5 @@ var initWithPasteboardPropertyListProtocol *objc.Protocol
 func init() {
 	initWithPasteboardPropertyListProtocol = objc.GetProtocol("initWithPasteboardPropertyList:")
 }
+
+

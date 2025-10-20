@@ -80,6 +80,7 @@ func NewSpeechRecognizer() SpeechRecognizer {
 	return getSpeechRecognizerClass().New()
 }
 
+
 // Tells the speech recognition engine to suspend listening for commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/stopListening()
@@ -95,6 +96,7 @@ func (s_ SpeechRecognizer) Commands() []string {
 	return rv
 }
 
+
 // SetCommands sets the value of the commands property.
 // An array of strings defining the commands for which the speech recognizer object should listen.
 
@@ -103,3 +105,5 @@ func (s_ SpeechRecognizer) Commands() []string {
 func (s_ SpeechRecognizer) SetCommands(value []string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCommands:"), value)
 }
+
+

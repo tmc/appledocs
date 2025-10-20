@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewScrubberLayoutAttributes
 
+
 // ExampleNewScrubberLayoutAttributesForItemAtIndex demonstrates how to create a ScrubberLayoutAttributes instance using NewScrubberLayoutAttributesForItemAtIndex.
 // Creates a new layout attributes object for the specified scrubber item index.
 func ExampleNewScrubberLayoutAttributesForItemAtIndex() {
@@ -17,3 +18,5 @@ func ExampleNewScrubberLayoutAttributesForItemAtIndex() {
 	)
 	// Output:
 }
+
+

@@ -73,3 +73,7 @@ func (c_ CNNGroupNormalizationGradient) Autorelease() CNNGroupNormalizationGradi
 func NewCNNGroupNormalizationGradient() CNNGroupNormalizationGradient {
 	return getCNNGroupNormalizationGradientClass().New()
 }
+
+
+
+

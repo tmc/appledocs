@@ -12,3 +12,5 @@ var pasteboardChangedOwnerProtocol *objc.Protocol
 func init() {
 	pasteboardChangedOwnerProtocol = objc.GetProtocol("pasteboardChangedOwner:")
 }
+
+

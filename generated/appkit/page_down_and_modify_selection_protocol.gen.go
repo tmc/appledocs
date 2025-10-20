@@ -12,3 +12,5 @@ var pageDownAndModifySelectionProtocol *objc.Protocol
 func init() {
 	pageDownAndModifySelectionProtocol = objc.GetProtocol("pageDownAndModifySelection:")
 }
+
+

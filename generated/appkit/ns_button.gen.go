@@ -31,7 +31,7 @@ type IButton interface {
 	IControl
 	CompressWithPrioritizedCompressionOptions(prioritizedOptions unsafe.Pointer)
 	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
-	SetPeriodicDelayInterval(delay float32, interval float32)
+	SetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
 }
 
 // A control that defines an area on the screen that a user clicks to trigger an action.
@@ -83,13 +83,6 @@ func NewButton() Button {
 	return getButtonClass().New()
 }
 
-// Creates a standard push button with the title you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
-	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
-	return rv
-}
 
 // Creates a standard checkbox with the title you specify.
 //
@@ -122,6 +115,15 @@ func NewButtonWithTitleImageTargetAction(title string, image unsafe.Pointer, tar
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
+
+// Creates a standard push button with the title you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
+func NewButtonWithTitleTargetAction(title string, target objc.ID, action objc.SEL) Button {
+	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
+	return rv
+}
+
 
 // Creates a standard checkbox with the title you specify.
 //
@@ -180,7 +182,7 @@ func (b_ Button) GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.
 // Sets the message delay and interval periods for a continuous button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)
-func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
+func (b_ Button) SetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
 
@@ -200,6 +202,7 @@ func (b_ Button) AttributedTitle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAttributedTitle sets the value of the attributedTitle property.
 // The title that the button displays in an off state, as an attributed string.
 
@@ -208,7 +211,6 @@ func (b_ Button) AttributedTitle() unsafe.Pointer {
 func (b_ Button) SetAttributedTitle(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedTitle:"), value)
 }
-
 // The color of the button’s bezel, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/bezelColor
@@ -216,6 +218,7 @@ func (b_ Button) BezelColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bezelColor"))
 	return rv
 }
+
 
 // SetBezelColor sets the value of the bezelColor property.
 // The color of the button’s bezel, in appearances that support it.
@@ -225,7 +228,6 @@ func (b_ Button) BezelColor() unsafe.Pointer {
 func (b_ Button) SetBezelColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelColor:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/borderShape
 func (b_ Button) BorderShape() unsafe.Pointer {
@@ -233,13 +235,13 @@ func (b_ Button) BorderShape() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBorderShape sets the value of the borderShape property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/borderShape
 func (b_ Button) SetBorderShape(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderShape:"), value)
 }
-
 // A tint color to use for the template image and text content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/contentTintColor
@@ -247,6 +249,7 @@ func (b_ Button) ContentTintColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("contentTintColor"))
 	return rv
 }
+
 
 // SetContentTintColor sets the value of the contentTintColor property.
 // A tint color to use for the template image and text content.
@@ -256,7 +259,6 @@ func (b_ Button) ContentTintColor() unsafe.Pointer {
 func (b_ Button) SetContentTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentTintColor:"), value)
 }
-
 // A Boolean value that determines whether the button has a border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
@@ -264,6 +266,7 @@ func (b_ Button) Bordered() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("bordered"))
 	return rv
 }
+
 
 // SetBordered sets the value of the bordered property.
 // A Boolean value that determines whether the button has a border.
@@ -273,7 +276,6 @@ func (b_ Button) Bordered() bool {
 func (b_ Button) SetBordered(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBordered:"), value)
 }
-
 // A Boolean value that indicates whether the button is transparent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
@@ -281,6 +283,7 @@ func (b_ Button) Transparent() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("transparent"))
 	return rv
 }
+
 
 // SetTransparent sets the value of the transparent property.
 // A Boolean value that indicates whether the button is transparent.
@@ -290,7 +293,6 @@ func (b_ Button) Transparent() bool {
 func (b_ Button) SetTransparent(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTransparent:"), value)
 }
-
 // The key-equivalent character of the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalent
@@ -298,6 +300,7 @@ func (b_ Button) KeyEquivalent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
+
 
 // SetKeyEquivalent sets the value of the keyEquivalent property.
 // The key-equivalent character of the button.
@@ -307,7 +310,6 @@ func (b_ Button) KeyEquivalent() unsafe.Pointer {
 func (b_ Button) SetKeyEquivalent(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), value)
 }
-
 // A Boolean value that determines whether the button displays its border only when the pointer is over it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside
@@ -315,6 +317,7 @@ func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("showsBorderOnlyWhileMouseInside"))
 	return rv
 }
+
 
 // SetShowsBorderOnlyWhileMouseInside sets the value of the showsBorderOnlyWhileMouseInside property.
 // A Boolean value that determines whether the button displays its border only when the pointer is over it.
@@ -324,7 +327,6 @@ func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
 func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setShowsBorderOnlyWhileMouseInside:"), value)
 }
-
 // The sound that plays when the user clicks the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/sound
@@ -332,6 +334,7 @@ func (b_ Button) Sound() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sound"))
 	return rv
 }
+
 
 // SetSound sets the value of the sound property.
 // The sound that plays when the user clicks the button.
@@ -341,3 +344,4 @@ func (b_ Button) Sound() unsafe.Pointer {
 func (b_ Button) SetSound(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSound:"), value)
 }
+

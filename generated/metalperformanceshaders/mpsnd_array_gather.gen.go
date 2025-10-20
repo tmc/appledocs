@@ -74,3 +74,7 @@ func (n_ NDArrayGather) Autorelease() NDArrayGather {
 func NewNDArrayGather() NDArrayGather {
 	return getNDArrayGatherClass().New()
 }
+
+
+
+

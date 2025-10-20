@@ -74,6 +74,7 @@ func NewNDArrayQuantizationDescriptor() NDArrayQuantizationDescriptor {
 	return getNDArrayQuantizationDescriptorClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizationDescriptor/quantizationDataType
 func (n_ NDArrayQuantizationDescriptor) QuantizationDataType() unsafe.Pointer {
@@ -87,3 +88,6 @@ func (n_ NDArrayQuantizationDescriptor) QuantizationScheme() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("quantizationScheme"))
 	return rv
 }
+
+
+

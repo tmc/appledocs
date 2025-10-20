@@ -77,3 +77,7 @@ func (c_ CNNNeuronNode) Autorelease() CNNNeuronNode {
 func NewCNNNeuronNode() CNNNeuronNode {
 	return getCNNNeuronNodeClass().New()
 }
+
+
+
+

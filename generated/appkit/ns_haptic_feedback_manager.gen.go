@@ -76,3 +76,7 @@ func (h_ HapticFeedbackManager) Autorelease() HapticFeedbackManager {
 func NewHapticFeedbackManager() HapticFeedbackManager {
 	return getHapticFeedbackManagerClass().New()
 }
+
+
+
+

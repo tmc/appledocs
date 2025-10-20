@@ -81,6 +81,7 @@ func NewLayoutYAxisAnchor() LayoutYAxisAnchor {
 	return getLayoutYAxisAnchorClass().New()
 }
 
+
 // Returns a constraint that defines the specific distance at which the current anchor is positioned below the specified anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor/constraint(equalToSystemSpacingBelow:multiplier:)
@@ -88,3 +89,6 @@ func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
+
+
+

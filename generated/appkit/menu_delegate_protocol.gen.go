@@ -12,3 +12,5 @@ var MenuDelegateProtocol *objc.Protocol
 func init() {
 	MenuDelegateProtocol = objc.GetProtocol("NSMenuDelegate")
 }
+
+

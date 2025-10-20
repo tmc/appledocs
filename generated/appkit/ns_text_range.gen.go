@@ -78,3 +78,7 @@ func (t_ TextRange) Autorelease() TextRange {
 func NewTextRange() TextRange {
 	return getTextRangeClass().New()
 }
+
+
+
+

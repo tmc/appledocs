@@ -17,3 +17,5 @@ var TouchBarDelegateProtocol *objc.Protocol
 func init() {
 	TouchBarDelegateProtocol = objc.GetProtocol("NSTouchBarDelegate")
 }
+
+

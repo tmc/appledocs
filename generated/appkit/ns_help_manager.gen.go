@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [HelpManager] class.
@@ -87,6 +87,7 @@ func NewHelpManager() HelpManager {
 	return getHelpManagerClass().New()
 }
 
+
 // Returns context-sensitive help for an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
@@ -138,3 +139,6 @@ func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objc.ID, pt co
 	rv := objc.Send[bool](h_.ID, objc.Sel("showContextHelpForObject:locationHint:"), object, pt)
 	return rv
 }
+
+
+

@@ -15,3 +15,5 @@ var windowDidFailToEnterFullScreenProtocol *objc.Protocol
 func init() {
 	windowDidFailToEnterFullScreenProtocol = objc.GetProtocol("windowDidFailToEnterFullScreen:")
 }
+
+

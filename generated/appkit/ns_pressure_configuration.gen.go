@@ -80,9 +80,13 @@ func NewPressureConfiguration() PressureConfiguration {
 	return getPressureConfigurationClass().New()
 }
 
+
 // Changes the pressure configuration of the trackpad to the initialized pressure configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration/set()
 func (p_ PressureConfiguration) Set() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("set"))
 }
+
+
+

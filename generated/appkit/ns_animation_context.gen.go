@@ -79,6 +79,7 @@ func NewAnimationContext() AnimationContext {
 	return getAnimationContextClass().New()
 }
 
+
 // Ends the current animation grouping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/endGrouping()
@@ -92,3 +93,6 @@ func (ac _AnimationContextClass) EndGrouping() {
 func (ac _AnimationContextClass) RunAnimationGroupCompletionHandler(changes unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runAnimationGroup:completionHandler:"), changes, completionHandler)
 }
+
+
+

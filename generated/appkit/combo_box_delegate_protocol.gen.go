@@ -12,3 +12,5 @@ var ComboBoxDelegateProtocol *objc.Protocol
 func init() {
 	ComboBoxDelegateProtocol = objc.GetProtocol("NSComboBoxDelegate")
 }
+
+

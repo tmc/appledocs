@@ -78,3 +78,7 @@ func (d_ DraggingSession) Autorelease() DraggingSession {
 func NewDraggingSession() DraggingSession {
 	return getDraggingSessionClass().New()
 }
+
+
+
+

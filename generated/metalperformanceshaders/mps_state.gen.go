@@ -78,3 +78,7 @@ func (s_ State) Autorelease() State {
 func NewState() State {
 	return getStateClass().New()
 }
+
+
+
+

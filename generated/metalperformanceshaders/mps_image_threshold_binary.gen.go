@@ -79,3 +79,7 @@ func (i_ ImageThresholdBinary) Autorelease() ImageThresholdBinary {
 func NewImageThresholdBinary() ImageThresholdBinary {
 	return getImageThresholdBinaryClass().New()
 }
+
+
+
+

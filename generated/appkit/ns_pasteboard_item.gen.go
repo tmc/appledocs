@@ -80,6 +80,7 @@ func NewPasteboardItem() PasteboardItem {
 	return getPasteboardItemClass().New()
 }
 
+
 // Returns the value for the specified type as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/string(forType:)
@@ -96,6 +97,7 @@ func (p_ PasteboardItem) CollaborationMetadata() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCollaborationMetadata sets the value of the collaborationMetadata property.
 // A model object you use for conveying data during a collaboration.
 
@@ -104,3 +106,5 @@ func (p_ PasteboardItem) CollaborationMetadata() unsafe.Pointer {
 func (p_ PasteboardItem) SetCollaborationMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollaborationMetadata:"), value)
 }
+
+

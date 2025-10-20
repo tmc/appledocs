@@ -15,3 +15,5 @@ var setAccessibilityZoomButtonProtocol *objc.Protocol
 func init() {
 	setAccessibilityZoomButtonProtocol = objc.GetProtocol("setAccessibilityZoomButton")
 }
+
+

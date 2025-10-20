@@ -74,6 +74,7 @@ func NewPad() Pad {
 	return getPadClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/init(coder:device:)
 func NewPadWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) Pad {
@@ -83,6 +84,7 @@ func NewPadWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) Pad {
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeBefore
 func (p_ Pad) PaddingSizeBefore() unsafe.Pointer {
@@ -90,9 +92,11 @@ func (p_ Pad) PaddingSizeBefore() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPaddingSizeBefore sets the value of the paddingSizeBefore property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeBefore
 func (p_ Pad) SetPaddingSizeBefore(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaddingSizeBefore:"), value)
 }
+

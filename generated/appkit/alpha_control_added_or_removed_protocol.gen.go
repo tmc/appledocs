@@ -12,3 +12,5 @@ var alphaControlAddedOrRemovedProtocol *objc.Protocol
 func init() {
 	alphaControlAddedOrRemovedProtocol = objc.GetProtocol("alphaControlAddedOrRemoved:")
 }
+
+

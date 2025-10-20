@@ -78,3 +78,7 @@ func (c_ CollectionLayoutEdgeSpacing) Autorelease() CollectionLayoutEdgeSpacing 
 func NewCollectionLayoutEdgeSpacing() CollectionLayoutEdgeSpacing {
 	return getCollectionLayoutEdgeSpacingClass().New()
 }
+
+
+
+

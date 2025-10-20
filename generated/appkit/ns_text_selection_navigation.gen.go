@@ -76,3 +76,7 @@ func (t_ TextSelectionNavigation) Autorelease() TextSelectionNavigation {
 func NewTextSelectionNavigation() TextSelectionNavigation {
 	return getTextSelectionNavigationClass().New()
 }
+
+
+
+

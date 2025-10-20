@@ -80,6 +80,7 @@ func NewTokenField() TokenField {
 	return getTokenFieldClass().New()
 }
 
+
 // The recevier’s tokenizing character set to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet
@@ -87,6 +88,7 @@ func (t_ TokenField) TokenizingCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
 }
+
 
 // SetTokenizingCharacterSet sets the value of the tokenizingCharacterSet property.
 // The recevier’s tokenizing character set to .
@@ -96,3 +98,5 @@ func (t_ TokenField) TokenizingCharacterSet() unsafe.Pointer {
 func (t_ TokenField) SetTokenizingCharacterSet(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
+
+

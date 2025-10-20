@@ -76,8 +76,12 @@ func NewTemporalAA() TemporalAA {
 	return getTemporalAAClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporalAA/encode(to:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:)
 func (t_ TemporalAA) EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objc.ID, sourceTexture objc.ID, previousTexture objc.ID, destinationTexture objc.ID, motionVectorTexture objc.ID, depthTexture objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:"), commandBuffer, sourceTexture, previousTexture, destinationTexture, motionVectorTexture, depthTexture)
 }
+
+
+

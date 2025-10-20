@@ -12,3 +12,5 @@ var AccessibilityTableProtocol *objc.Protocol
 func init() {
 	AccessibilityTableProtocol = objc.GetProtocol("NSAccessibilityTable")
 }
+
+

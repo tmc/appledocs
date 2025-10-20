@@ -12,3 +12,5 @@ var objectDidBeginEditingProtocol *objc.Protocol
 func init() {
 	objectDidBeginEditingProtocol = objc.GetProtocol("objectDidBeginEditing:")
 }
+
+

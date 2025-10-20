@@ -1,0 +1,67 @@
+=== ScreenCaptureKit Async Enumeration Example ===
+
+This example demonstrates async SCShareableContent enumeration
+using objc.NewBlock() with proper TCC permission handling.
+and screen recording with SCStream.
+
+⚠️  Requires Screen Recording permission
+
+📋 Enumerating shareable content...
+✓ Found SCShareableContent class
+⏳ Requesting shareable content with retry logic...
+=== Results ===
+✓ Found 3 display(s)
+   Display 0: ID=4, 1920x1080
+   Display 1: ID=1, 2294x1490
+   Display 2: ID=3, 3840x2160
+
+✓ Found 382 window(s)
+   (showing first 5, use -all to show all):
+   - Window 10914: (no title) (app: )
+   - Window 11071: (no title) (app: Brave Browser)
+   - Window 11070: (no title) (app: Brave Browser)
+   - Window 11051: computer-use-agent-139219883 (app: Finder)
+   - Window 11069: (no title) (app: Brave Browser)
+
+✓ Found 27 running application(s)
+   (showing first 5):
+   - Dock (pid: 810)
+   - Little Snitch Network Monitor (pid: 11793)
+   - Privacy & Security (System Settings) (pid: 53089)
+   - CursorUIViewService (pid: 961)
+   -  (pid: 503)
+
+=== ✅ Async Enumeration Complete ===
+
+Successfully demonstrated:
+   ✓ Async SCShareableContent enumeration with objc.NewBlock()
+   ✓ TCC permission handling with retry logic
+   ✓ Display, window, and application enumeration
+
+=== Starting Screen Recording ===
+
+Recording display 0: ID=4, 1920x1080
+Duration: 2s
+
+⏺  Setting up SCStream...
+✓ Created SCStreamOutput delegate using objc.RegisterClass!
+
+   ✓ Permission granted!                                        
+
+✓ Added delegate to SCStream
+
+⏺  Starting capture...
+✓ Capture started! Recording for 2s...
+   (Frames will be logged every 30 frames)
+
+   📹 Received frame 30   📹 Received frame 60   📹 Received frame 90
+⏹  Stopping capture...
+
+✓ Capture stopped!
+   Total frames received: 92
+   Frame rate: 46.0 FPS
+   Resolution: 1920x1080
+
+✅ Recording complete!
+
+Compare with Objective-C reference: sc_async_enum.m

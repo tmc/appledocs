@@ -85,6 +85,7 @@ func NewComboBoxCell() ComboBoxCell {
 	return getComboBoxCellClass().New()
 }
 
+
 // Adds multiple objects to the internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/addItems(withObjectValues:)
@@ -129,6 +130,7 @@ func (c_ ComboBoxCell) DataSource() objc.ID {
 	return rv
 }
 
+
 // SetDataSource sets the value of the dataSource property.
 // The object that provides the data displayed in the combo box’s pop-up list.
 
@@ -137,7 +139,6 @@ func (c_ ComboBoxCell) DataSource() objc.ID {
 func (c_ ComboBoxCell) SetDataSource(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
 }
-
 // The index of the last item selected from the pop-up list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/indexOfSelectedItem
@@ -154,6 +155,7 @@ func (c_ ComboBoxCell) ButtonBordered() bool {
 	return rv
 }
 
+
 // SetButtonBordered sets the value of the buttonBordered property.
 // A Boolean value that indicates whether the combo box button displays a border.
 
@@ -162,7 +164,6 @@ func (c_ ComboBoxCell) ButtonBordered() bool {
 func (c_ ComboBoxCell) SetButtonBordered(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonBordered:"), value)
 }
-
 // The maximum number of items visible in the pop-up list at any one time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/numberOfVisibleItems
@@ -170,6 +171,7 @@ func (c_ ComboBoxCell) NumberOfVisibleItems() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfVisibleItems"))
 	return rv
 }
+
 
 // SetNumberOfVisibleItems sets the value of the numberOfVisibleItems property.
 // The maximum number of items visible in the pop-up list at any one time.
@@ -179,3 +181,5 @@ func (c_ ComboBoxCell) NumberOfVisibleItems() int {
 func (c_ ComboBoxCell) SetNumberOfVisibleItems(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }
+
+

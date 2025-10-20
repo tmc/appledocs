@@ -80,6 +80,7 @@ func NewColorList() ColorList {
 	return getColorListClass().New()
 }
 
+
 // Saves the color list to the file at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/write(to:)
@@ -95,3 +96,6 @@ func (c_ ColorList) Editable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("editable"))
 	return rv
 }
+
+
+

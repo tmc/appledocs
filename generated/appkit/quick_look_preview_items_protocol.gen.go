@@ -15,3 +15,5 @@ var quickLookPreviewItemsProtocol *objc.Protocol
 func init() {
 	quickLookPreviewItemsProtocol = objc.GetProtocol("quickLookPreviewItems:")
 }
+
+

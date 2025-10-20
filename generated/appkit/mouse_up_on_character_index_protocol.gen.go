@@ -15,3 +15,5 @@ var mouseUpOnCharacterIndexProtocol *objc.Protocol
 func init() {
 	mouseUpOnCharacterIndexProtocol = objc.GetProtocol("mouseUpOnCharacterIndex:")
 }
+
+

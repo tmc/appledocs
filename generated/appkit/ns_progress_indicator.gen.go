@@ -31,7 +31,7 @@ type IProgressIndicator interface {
 	IView
 	Animate(sender objc.ID)
 	AnimationDelay() float64
-	IncrementBy(delta float64)
+	IncrementBy(delta unsafe.Pointer)
 	SetAnimationDelay(delay float64)
 	SizeToFit()
 	StartAnimation(sender objc.ID)
@@ -87,6 +87,7 @@ func NewProgressIndicator() ProgressIndicator {
 	return getProgressIndicatorClass().New()
 }
 
+
 // This action method advances the progress animation of an indeterminate progress animator by one step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/animate:
@@ -105,7 +106,7 @@ func (p_ ProgressIndicator) AnimationDelay() float64 {
 // Advances the progress bar of a determinate progress indicator by the specified amount.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/increment(by:)
-func (p_ ProgressIndicator) IncrementBy(delta float64) {
+func (p_ ProgressIndicator) IncrementBy(delta unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("incrementBy:"), delta)
 }
 
@@ -145,6 +146,7 @@ func (p_ ProgressIndicator) ControlSize() unsafe.Pointer {
 	return rv
 }
 
+
 // SetControlSize sets the value of the controlSize property.
 // The size of the progress indicator.
 
@@ -153,7 +155,6 @@ func (p_ ProgressIndicator) ControlSize() unsafe.Pointer {
 func (p_ ProgressIndicator) SetControlSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlSize:"), value)
 }
-
 // The progress indicator’s control tint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlTint
@@ -161,6 +162,7 @@ func (p_ ProgressIndicator) ControlTint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlTint"))
 	return rv
 }
+
 
 // SetControlTint sets the value of the controlTint property.
 // The progress indicator’s control tint.
@@ -170,24 +172,23 @@ func (p_ ProgressIndicator) ControlTint() unsafe.Pointer {
 func (p_ ProgressIndicator) SetControlTint(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlTint:"), value)
 }
-
 // The value that indicates the current extent of the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/doubleValue
-func (p_ ProgressIndicator) DoubleValue() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("doubleValue"))
+func (p_ ProgressIndicator) DoubleValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("doubleValue"))
 	return rv
 }
+
 
 // SetDoubleValue sets the value of the doubleValue property.
 // The value that indicates the current extent of the progress indicator.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/doubleValue
-func (p_ ProgressIndicator) SetDoubleValue(value float64) {
+func (p_ ProgressIndicator) SetDoubleValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleValue:"), value)
 }
-
 // A Boolean that indicates whether the progress indicator’s frame has a three-dimensional bezel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isBezeled
@@ -195,6 +196,7 @@ func (p_ ProgressIndicator) Bezeled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("bezeled"))
 	return rv
 }
+
 
 // SetBezeled sets the value of the bezeled property.
 // A Boolean that indicates whether the progress indicator’s frame has a three-dimensional bezel.
@@ -204,7 +206,6 @@ func (p_ ProgressIndicator) Bezeled() bool {
 func (p_ ProgressIndicator) SetBezeled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBezeled:"), value)
 }
-
 // A Boolean that indicates whether the progress indicator hides itself when it isn’t animating.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isDisplayedWhenStopped
@@ -212,6 +213,7 @@ func (p_ ProgressIndicator) DisplayedWhenStopped() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("displayedWhenStopped"))
 	return rv
 }
+
 
 // SetDisplayedWhenStopped sets the value of the displayedWhenStopped property.
 // A Boolean that indicates whether the progress indicator hides itself when it isn’t animating.
@@ -221,7 +223,6 @@ func (p_ ProgressIndicator) DisplayedWhenStopped() bool {
 func (p_ ProgressIndicator) SetDisplayedWhenStopped(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayedWhenStopped:"), value)
 }
-
 // A Boolean that indicates whether the progress indicator is indeterminate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isIndeterminate
@@ -229,6 +230,7 @@ func (p_ ProgressIndicator) Indeterminate() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("indeterminate"))
 	return rv
 }
+
 
 // SetIndeterminate sets the value of the indeterminate property.
 // A Boolean that indicates whether the progress indicator is indeterminate.
@@ -238,41 +240,40 @@ func (p_ ProgressIndicator) Indeterminate() bool {
 func (p_ ProgressIndicator) SetIndeterminate(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndeterminate:"), value)
 }
-
 // The maximum value for the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/maxValue
-func (p_ ProgressIndicator) MaxValue() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("maxValue"))
+func (p_ ProgressIndicator) MaxValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maxValue"))
 	return rv
 }
+
 
 // SetMaxValue sets the value of the maxValue property.
 // The maximum value for the progress indicator.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/maxValue
-func (p_ ProgressIndicator) SetMaxValue(value float64) {
+func (p_ ProgressIndicator) SetMaxValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaxValue:"), value)
 }
-
 // The minimum value for the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/minValue
-func (p_ ProgressIndicator) MinValue() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("minValue"))
+func (p_ ProgressIndicator) MinValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("minValue"))
 	return rv
 }
+
 
 // SetMinValue sets the value of the minValue property.
 // The minimum value for the progress indicator.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/minValue
-func (p_ ProgressIndicator) SetMinValue(value float64) {
+func (p_ ProgressIndicator) SetMinValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinValue:"), value)
 }
-
 // The progress object to use for updating the progress view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
@@ -280,6 +281,7 @@ func (p_ ProgressIndicator) ObservedProgress() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("observedProgress"))
 	return rv
 }
+
 
 // SetObservedProgress sets the value of the observedProgress property.
 // The progress object to use for updating the progress view.
@@ -289,7 +291,6 @@ func (p_ ProgressIndicator) ObservedProgress() unsafe.Pointer {
 func (p_ ProgressIndicator) SetObservedProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedProgress:"), value)
 }
-
 // The style of the progress indicator (bar or spinning).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/style-swift.property
@@ -297,6 +298,7 @@ func (p_ ProgressIndicator) Style() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
 	return rv
 }
+
 
 // SetStyle sets the value of the style property.
 // The style of the progress indicator (bar or spinning).
@@ -306,7 +308,6 @@ func (p_ ProgressIndicator) Style() unsafe.Pointer {
 func (p_ ProgressIndicator) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
-
 // A Boolean that indicates whether the progress indicator implements animation in a separate thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/usesThreadedAnimation
@@ -314,6 +315,7 @@ func (p_ ProgressIndicator) UsesThreadedAnimation() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesThreadedAnimation"))
 	return rv
 }
+
 
 // SetUsesThreadedAnimation sets the value of the usesThreadedAnimation property.
 // A Boolean that indicates whether the progress indicator implements animation in a separate thread.
@@ -323,3 +325,5 @@ func (p_ ProgressIndicator) UsesThreadedAnimation() bool {
 func (p_ ProgressIndicator) SetUsesThreadedAnimation(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesThreadedAnimation:"), value)
 }
+
+

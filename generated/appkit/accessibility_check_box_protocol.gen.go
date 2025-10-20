@@ -12,3 +12,5 @@ var AccessibilityCheckBoxProtocol *objc.Protocol
 func init() {
 	AccessibilityCheckBoxProtocol = objc.GetProtocol("NSAccessibilityCheckBox")
 }
+
+

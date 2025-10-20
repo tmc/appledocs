@@ -12,3 +12,5 @@ var capitalizeWordProtocol *objc.Protocol
 func init() {
 	capitalizeWordProtocol = objc.GetProtocol("capitalizeWord:")
 }
+
+

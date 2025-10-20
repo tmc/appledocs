@@ -75,6 +75,7 @@ func NewCNNNeuronGeLUNode() CNNNeuronGeLUNode {
 	return getCNNNeuronGeLUNodeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode/init(source:)
 func NewCNNNeuronGeLUNodeWithSource(sourceNode unsafe.Pointer) CNNNeuronGeLUNode {
@@ -84,9 +85,12 @@ func NewCNNNeuronGeLUNodeWithSource(sourceNode unsafe.Pointer) CNNNeuronGeLUNode
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode/nodeWithSource:
 func (cc _CNNNeuronGeLUNodeClass) NodeWithSource(sourceNode unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSource:"), sourceNode)
 	return rv
 }
+
+

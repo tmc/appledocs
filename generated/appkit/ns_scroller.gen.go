@@ -79,3 +79,7 @@ func (s_ Scroller) Autorelease() Scroller {
 func NewScroller() Scroller {
 	return getScrollerClass().New()
 }
+
+
+
+

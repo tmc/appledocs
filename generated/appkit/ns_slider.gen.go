@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Slider] class.
@@ -31,7 +31,6 @@ type _SliderClass struct {
 type ISlider interface {
 	IControl
 	IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int
-	SetKnobThickness(thickness float64)
 	SetTitleFont(fontObj unsafe.Pointer)
 }
 
@@ -84,18 +83,13 @@ func NewSlider() Slider {
 	return getSliderClass().New()
 }
 
+
 // Returns the index of the tick mark closest to the location of the slider represented by the given point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/indexOfTickMark(at:)
 func (s_ Slider) IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("indexOfTickMarkAtPoint:"), point)
 	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/setKnobThickness:
-func (s_ Slider) SetKnobThickness(thickness float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobThickness:"), thickness)
 }
 
 // Sets the font used to draw the slider’s title.
@@ -113,6 +107,7 @@ func (s_ Slider) Vertical() bool {
 	return rv
 }
 
+
 // SetVertical sets the value of the vertical property.
 // An integer indicating the orientation (horizontal or vertical) of the slider.
 
@@ -121,7 +116,6 @@ func (s_ Slider) Vertical() bool {
 func (s_ Slider) SetVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
 }
-
 // The knob’s thickness, in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/knobThickness
@@ -133,20 +127,20 @@ func (s_ Slider) KnobThickness() float64 {
 // The maximum value the slider can send to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/maxValue
-func (s_ Slider) MaxValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
+func (s_ Slider) MaxValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
 	return rv
 }
+
 
 // SetMaxValue sets the value of the maxValue property.
 // The maximum value the slider can send to its target.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/maxValue
-func (s_ Slider) SetMaxValue(value float64) {
+func (s_ Slider) SetMaxValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
-
 // The color of the filled portion of the slider track, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
@@ -154,6 +148,7 @@ func (s_ Slider) TrackFillColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
+
 
 // SetTrackFillColor sets the value of the trackFillColor property.
 // The color of the filled portion of the slider track, in appearances that support it.
@@ -163,3 +158,5 @@ func (s_ Slider) TrackFillColor() unsafe.Pointer {
 func (s_ Slider) SetTrackFillColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackFillColor:"), value)
 }
+
+

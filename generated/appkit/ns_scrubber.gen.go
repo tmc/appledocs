@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Scrubber] class.
@@ -92,6 +92,7 @@ func NewScrubber() Scrubber {
 	return getScrubberClass().New()
 }
 
+
 // Initializes and returns a newly allocated scrubber object from a storyboard or nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
@@ -111,6 +112,7 @@ func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Inserts new items at the specified indexes into the scrubber.
 //
@@ -199,6 +201,7 @@ func (s_ Scrubber) BackgroundColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color displayed behind the scrubber content.
 
@@ -207,7 +210,6 @@ func (s_ Scrubber) BackgroundColor() unsafe.Pointer {
 func (s_ Scrubber) SetBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundColor:"), value)
 }
-
 // A view that is displayed behind the scrubber content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundView
@@ -215,6 +217,7 @@ func (s_ Scrubber) BackgroundView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("backgroundView"))
 	return rv
 }
+
 
 // SetBackgroundView sets the value of the backgroundView property.
 // A view that is displayed behind the scrubber content.
@@ -224,7 +227,6 @@ func (s_ Scrubber) BackgroundView() unsafe.Pointer {
 func (s_ Scrubber) SetBackgroundView(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundView:"), value)
 }
-
 // The object that provides the data for the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/dataSource
@@ -232,6 +234,7 @@ func (s_ Scrubber) DataSource() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("dataSource"))
 	return rv
 }
+
 
 // SetDataSource sets the value of the dataSource property.
 // The object that provides the data for the scrubber.
@@ -241,7 +244,6 @@ func (s_ Scrubber) DataSource() objc.ID {
 func (s_ Scrubber) SetDataSource(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDataSource:"), value)
 }
-
 // The object that acts as the delegate of the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/delegate
@@ -249,6 +251,7 @@ func (s_ Scrubber) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The object that acts as the delegate of the scrubber.
@@ -258,7 +261,6 @@ func (s_ Scrubber) Delegate() objc.ID {
 func (s_ Scrubber) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
-
 // A Boolean value that determines the behavior of the item selection decorations as the scrubber’s selection changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/floatsSelectionViews
@@ -266,6 +268,7 @@ func (s_ Scrubber) FloatsSelectionViews() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("floatsSelectionViews"))
 	return rv
 }
+
 
 // SetFloatsSelectionViews sets the value of the floatsSelectionViews property.
 // A Boolean value that determines the behavior of the item selection decorations as the scrubber’s selection changes.
@@ -275,7 +278,6 @@ func (s_ Scrubber) FloatsSelectionViews() bool {
 func (s_ Scrubber) SetFloatsSelectionViews(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFloatsSelectionViews:"), value)
 }
-
 // The index of the highlighted item in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/highlightedIndex
@@ -292,6 +294,7 @@ func (s_ Scrubber) Continuous() bool {
 	return rv
 }
 
+
 // SetContinuous sets the value of the continuous property.
 // A Boolean value that, together with the property, determines scrubber interaction style.
 
@@ -300,7 +303,6 @@ func (s_ Scrubber) Continuous() bool {
 func (s_ Scrubber) SetContinuous(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContinuous:"), value)
 }
-
 // A setting that specifies the snapping behavior of items in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
@@ -308,6 +310,7 @@ func (s_ Scrubber) ItemAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("itemAlignment"))
 	return rv
 }
+
 
 // SetItemAlignment sets the value of the itemAlignment property.
 // A setting that specifies the snapping behavior of items in the scrubber.
@@ -317,7 +320,6 @@ func (s_ Scrubber) ItemAlignment() unsafe.Pointer {
 func (s_ Scrubber) SetItemAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemAlignment:"), value)
 }
-
 // A setting that determines whether interaction with the scrubber is fixed or free.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
@@ -325,6 +327,7 @@ func (s_ Scrubber) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mode"))
 	return rv
 }
+
 
 // SetMode sets the value of the mode property.
 // A setting that determines whether interaction with the scrubber is fixed or free.
@@ -334,7 +337,6 @@ func (s_ Scrubber) Mode() unsafe.Pointer {
 func (s_ Scrubber) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMode:"), value)
 }
-
 // The number of items represented by the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/numberOfItems
@@ -351,6 +353,7 @@ func (s_ Scrubber) ScrubberLayout() unsafe.Pointer {
 	return rv
 }
 
+
 // SetScrubberLayout sets the value of the scrubberLayout property.
 // An object used to describe the layout of items within the scrubber.
 
@@ -359,7 +362,6 @@ func (s_ Scrubber) ScrubberLayout() unsafe.Pointer {
 func (s_ Scrubber) SetScrubberLayout(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberLayout:"), value)
 }
-
 // The index of the selected item in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectedIndex
@@ -367,6 +369,7 @@ func (s_ Scrubber) SelectedIndex() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedIndex"))
 	return rv
 }
+
 
 // SetSelectedIndex sets the value of the selectedIndex property.
 // The index of the selected item in the scrubber.
@@ -376,7 +379,6 @@ func (s_ Scrubber) SelectedIndex() int {
 func (s_ Scrubber) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedIndex:"), value)
 }
-
 // The style applied to the background of selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
@@ -384,6 +386,7 @@ func (s_ Scrubber) SelectionBackgroundStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("selectionBackgroundStyle"))
 	return rv
 }
+
 
 // SetSelectionBackgroundStyle sets the value of the selectionBackgroundStyle property.
 // The style applied to the background of selected items.
@@ -393,7 +396,6 @@ func (s_ Scrubber) SelectionBackgroundStyle() unsafe.Pointer {
 func (s_ Scrubber) SetSelectionBackgroundStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionBackgroundStyle:"), value)
 }
-
 // The style overlaid on selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
@@ -401,6 +403,7 @@ func (s_ Scrubber) SelectionOverlayStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("selectionOverlayStyle"))
 	return rv
 }
+
 
 // SetSelectionOverlayStyle sets the value of the selectionOverlayStyle property.
 // The style overlaid on selected items.
@@ -410,7 +413,6 @@ func (s_ Scrubber) SelectionOverlayStyle() unsafe.Pointer {
 func (s_ Scrubber) SetSelectionOverlayStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionOverlayStyle:"), value)
 }
-
 // A Boolean value that specifies whether the scrubber should display the existence of additional items beyond the leading and trailing edges.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/showsAdditionalContentIndicators
@@ -418,6 +420,7 @@ func (s_ Scrubber) ShowsAdditionalContentIndicators() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsAdditionalContentIndicators"))
 	return rv
 }
+
 
 // SetShowsAdditionalContentIndicators sets the value of the showsAdditionalContentIndicators property.
 // A Boolean value that specifies whether the scrubber should display the existence of additional items beyond the leading and trailing edges.
@@ -427,7 +430,6 @@ func (s_ Scrubber) ShowsAdditionalContentIndicators() bool {
 func (s_ Scrubber) SetShowsAdditionalContentIndicators(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsAdditionalContentIndicators:"), value)
 }
-
 // A Boolean value that specifies whether arrow buttons should be displayed at the leading and trailing edges of the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/showsArrowButtons
@@ -435,6 +437,7 @@ func (s_ Scrubber) ShowsArrowButtons() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsArrowButtons"))
 	return rv
 }
+
 
 // SetShowsArrowButtons sets the value of the showsArrowButtons property.
 // A Boolean value that specifies whether arrow buttons should be displayed at the leading and trailing edges of the scrubber.
@@ -444,3 +447,4 @@ func (s_ Scrubber) ShowsArrowButtons() bool {
 func (s_ Scrubber) SetShowsArrowButtons(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsArrowButtons:"), value)
 }
+

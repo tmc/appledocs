@@ -74,3 +74,7 @@ func (r_ ReductionColumnMinNode) Autorelease() ReductionColumnMinNode {
 func NewReductionColumnMinNode() ReductionColumnMinNode {
 	return getReductionColumnMinNodeClass().New()
 }
+
+
+
+

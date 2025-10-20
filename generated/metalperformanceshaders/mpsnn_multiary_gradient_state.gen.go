@@ -74,3 +74,7 @@ func (m_ MultiaryGradientState) Autorelease() MultiaryGradientState {
 func NewMultiaryGradientState() MultiaryGradientState {
 	return getMultiaryGradientStateClass().New()
 }
+
+
+
+

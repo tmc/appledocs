@@ -85,6 +85,7 @@ func NewWorkspace() Workspace {
 	return getWorkspaceClass().New()
 }
 
+
 // Hides all applications other than the sender.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/hideOtherApplications()
@@ -144,3 +145,6 @@ func (w_ Workspace) RunningApplications() []RunningApplication {
 	rv := objc.Send[[]RunningApplication](w_.ID, objc.Sel("runningApplications"))
 	return rv
 }
+
+
+

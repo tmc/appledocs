@@ -12,3 +12,5 @@ var scrollToEndOfDocumentProtocol *objc.Protocol
 func init() {
 	scrollToEndOfDocumentProtocol = objc.GetProtocol("scrollToEndOfDocument:")
 }
+
+

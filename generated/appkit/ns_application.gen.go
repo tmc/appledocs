@@ -119,6 +119,7 @@ func NewApplication() Application {
 	return getApplicationClass().New()
 }
 
+
 // Makes the receiver the active app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/activate(ignoringOtherApps:)
@@ -408,6 +409,7 @@ func (a_ Application) Appearance() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAppearance sets the value of the appearance property.
 // The appearance associated with the app’s windows.
 
@@ -416,7 +418,6 @@ func (a_ Application) Appearance() unsafe.Pointer {
 func (a_ Application) SetAppearance(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAppearance:"), value)
 }
-
 // The last event object that the app retrieved from the event queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/currentEvent
@@ -449,6 +450,7 @@ func (a_ Application) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 	return rv
 }
 
+
 // SetAutomaticCustomizeTouchBarMenuItemEnabled sets the value of the automaticCustomizeTouchBarMenuItemEnabled property.
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
 
@@ -457,7 +459,6 @@ func (a_ Application) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 func (a_ Application) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
 }
-
 // A Boolean value indicating whether the app is registered with Apple Push Notification service (APNs).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isRegisteredForRemoteNotifications
@@ -474,6 +475,7 @@ func (a_ Application) ServicesMenu() unsafe.Pointer {
 	return rv
 }
 
+
 // SetServicesMenu sets the value of the servicesMenu property.
 // The app’s Services menu.
 
@@ -482,7 +484,6 @@ func (a_ Application) ServicesMenu() unsafe.Pointer {
 func (a_ Application) SetServicesMenu(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setServicesMenu:"), value)
 }
-
 // The object that provides the services the current app advertises in the Services menu of other apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/servicesProvider
@@ -490,6 +491,7 @@ func (a_ Application) ServicesProvider() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("servicesProvider"))
 	return rv
 }
+
 
 // SetServicesProvider sets the value of the servicesProvider property.
 // The object that provides the services the current app advertises in the Services menu of other apps.
@@ -499,3 +501,5 @@ func (a_ Application) ServicesProvider() objc.ID {
 func (a_ Application) SetServicesProvider(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setServicesProvider:"), value)
 }
+
+

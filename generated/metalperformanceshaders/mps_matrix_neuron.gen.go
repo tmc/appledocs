@@ -76,3 +76,7 @@ func (m_ MatrixNeuron) Autorelease() MatrixNeuron {
 func NewMatrixNeuron() MatrixNeuron {
 	return getMatrixNeuronClass().New()
 }
+
+
+
+

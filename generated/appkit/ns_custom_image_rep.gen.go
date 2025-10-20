@@ -80,6 +80,7 @@ func NewCustomImageRep() CustomImageRep {
 	return getCustomImageRepClass().New()
 }
 
+
 // Returns a representation of an image initialized with the specified delegate information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/init(draw:delegate:)
@@ -90,6 +91,7 @@ func NewCustomImageRepWithDrawSelectorDelegate(selector objc.SEL, delegate objc.
 	return rv
 }
 
+
 // The delegate object that renders the image for the image representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/delegate
@@ -97,3 +99,5 @@ func (c_ CustomImageRep) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
+
+

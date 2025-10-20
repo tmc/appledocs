@@ -75,9 +75,13 @@ func NewGramMatrixCalculationGradientNode() GramMatrixCalculationGradientNode {
 	return getGramMatrixCalculationGradientNodeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradientNode/alpha
 func (g_ GramMatrixCalculationGradientNode) Alpha() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alpha"))
 	return rv
 }
+
+
+

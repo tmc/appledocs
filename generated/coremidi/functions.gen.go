@@ -44,7 +44,7 @@ var (
 	_MIDIEntityGetNumberOfSources func(unsafe.Pointer) unsafe.Pointer
 	_MIDIEntityGetSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIEventListAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEventListForEachEvent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_MIDIEventListForEachEvent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIEventListInit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIExternalDeviceCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIFlushOutput func(unsafe.Pointer) unsafe.Pointer
@@ -85,7 +85,7 @@ var (
 	_MIDIThruConnectionDispose func(unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionFind func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionGetParams func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIThruConnectionParamsInitialize func(unsafe.Pointer)
+	_MIDIThruConnectionParamsInitialize func(unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionSetParams func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
 

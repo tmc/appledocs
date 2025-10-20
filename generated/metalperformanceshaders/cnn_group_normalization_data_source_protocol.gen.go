@@ -20,3 +20,5 @@ var CNNGroupNormalizationDataSourceProtocol *objc.Protocol
 func init() {
 	CNNGroupNormalizationDataSourceProtocol = objc.GetProtocol("MPSCNNGroupNormalizationDataSource")
 }
+
+

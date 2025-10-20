@@ -80,6 +80,7 @@ func NewActionCell() ActionCell {
 	return getActionCellClass().New()
 }
 
+
 // Returns the receiver’s action-message selector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
@@ -87,6 +88,7 @@ func (a_ ActionCell) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](a_.ID, objc.Sel("action"))
 	return rv
 }
+
 
 // SetAction sets the value of the action property.
 // Returns the receiver’s action-message selector.
@@ -96,7 +98,6 @@ func (a_ ActionCell) Action() objc.SEL {
 func (a_ ActionCell) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAction:"), value)
 }
-
 // Returns the receiver’s tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
@@ -104,6 +105,7 @@ func (a_ ActionCell) Tag() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("tag"))
 	return rv
 }
+
 
 // SetTag sets the value of the tag property.
 // Returns the receiver’s tag.
@@ -113,7 +115,6 @@ func (a_ ActionCell) Tag() int {
 func (a_ ActionCell) SetTag(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTag:"), value)
 }
-
 // Returns the receiver’s target object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
@@ -121,6 +122,7 @@ func (a_ ActionCell) Target() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
 	return rv
 }
+
 
 // SetTarget sets the value of the target property.
 // Returns the receiver’s target object.
@@ -130,3 +132,5 @@ func (a_ ActionCell) Target() objc.ID {
 func (a_ ActionCell) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
 }
+
+

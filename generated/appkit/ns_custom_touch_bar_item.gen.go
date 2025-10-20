@@ -78,6 +78,7 @@ func NewCustomTouchBarItem() CustomTouchBarItem {
 	return getCustomTouchBarItemClass().New()
 }
 
+
 // A view controller whose view is displayed in the bar to represent this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
@@ -85,6 +86,7 @@ func (c_ CustomTouchBarItem) ViewController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("viewController"))
 	return rv
 }
+
 
 // SetViewController sets the value of the viewController property.
 // A view controller whose view is displayed in the bar to represent this item.
@@ -94,3 +96,5 @@ func (c_ CustomTouchBarItem) ViewController() unsafe.Pointer {
 func (c_ CustomTouchBarItem) SetViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setViewController:"), value)
 }
+
+

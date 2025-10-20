@@ -78,3 +78,7 @@ func (t_ Typesetter) Autorelease() Typesetter {
 func NewTypesetter() Typesetter {
 	return getTypesetterClass().New()
 }
+
+
+
+

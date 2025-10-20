@@ -15,3 +15,5 @@ var processEditingForTextStorageProtocol *objc.Protocol
 func init() {
 	processEditingForTextStorageProtocol = objc.GetProtocol("processEditingForTextStorage:")
 }
+
+

@@ -15,3 +15,5 @@ var customWindowsToExitFullScreenForWindowProtocol *objc.Protocol
 func init() {
 	customWindowsToExitFullScreenForWindowProtocol = objc.GetProtocol("customWindowsToExitFullScreenForWindow:")
 }
+
+

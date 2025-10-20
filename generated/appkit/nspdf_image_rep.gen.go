@@ -78,6 +78,7 @@ func NewPDFImageRep() PDFImageRep {
 	return getPDFImageRepClass().New()
 }
 
+
 // Returns a representation of an image initialized with the specified PDF data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/init(data:)
@@ -87,3 +88,6 @@ func NewPDFImageRepWithData(pdfData unsafe.Pointer) PDFImageRep {
 	rv.Autorelease()
 	return rv
 }
+
+
+

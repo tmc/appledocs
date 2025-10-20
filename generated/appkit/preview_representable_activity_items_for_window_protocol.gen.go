@@ -15,3 +15,5 @@ var previewRepresentableActivityItemsForWindowProtocol *objc.Protocol
 func init() {
 	previewRepresentableActivityItemsForWindowProtocol = objc.GetProtocol("previewRepresentableActivityItemsForWindow:")
 }
+
+

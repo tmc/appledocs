@@ -79,6 +79,7 @@ func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
 	return getPreviewRepresentingActivityItemClass().New()
 }
 
+
 // Creates a metadata object with the title, image, and icon for a shareable item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
@@ -98,3 +99,6 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(it
 	rv.Autorelease()
 	return rv
 }
+
+
+

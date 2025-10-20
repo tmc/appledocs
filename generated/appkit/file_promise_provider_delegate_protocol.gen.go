@@ -12,3 +12,5 @@ var FilePromiseProviderDelegateProtocol *objc.Protocol
 func init() {
 	FilePromiseProviderDelegateProtocol = objc.GetProtocol("NSFilePromiseProviderDelegate")
 }
+
+

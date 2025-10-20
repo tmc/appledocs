@@ -80,6 +80,7 @@ func NewSharingServicePickerToolbarItem() SharingServicePickerToolbarItem {
 	return getSharingServicePickerToolbarItemClass().New()
 }
 
+
 // The custom object from an app built with Mac Catalyst that provides the items to share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/activityItemsConfiguration
@@ -87,6 +88,7 @@ func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
+
 
 // SetActivityItemsConfiguration sets the value of the activityItemsConfiguration property.
 // The custom object from an app built with Mac Catalyst that provides the items to share.
@@ -96,7 +98,6 @@ func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() objc.ID {
 func (s_ SharingServicePickerToolbarItem) SetActivityItemsConfiguration(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
-
 // The custom object from your app that provides the items to share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
@@ -104,6 +105,7 @@ func (s_ SharingServicePickerToolbarItem) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The custom object from your app that provides the items to share.
@@ -113,3 +115,5 @@ func (s_ SharingServicePickerToolbarItem) Delegate() objc.ID {
 func (s_ SharingServicePickerToolbarItem) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
+
+

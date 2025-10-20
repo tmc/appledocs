@@ -76,9 +76,13 @@ func NewNDArrayMultiaryBase() NDArrayMultiaryBase {
 	return getNDArrayMultiaryBaseClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryBase/copy(with:device:)
 func (n_ NDArrayMultiaryBase) CopyWithZoneDevice(zone unsafe.Pointer, device objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("copyWithZone:device:"), zone, device)
 	return rv
 }
+
+
+

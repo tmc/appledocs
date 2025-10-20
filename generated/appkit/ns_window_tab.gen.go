@@ -79,6 +79,7 @@ func NewWindowTab() WindowTab {
 	return getWindowTabClass().New()
 }
 
+
 // An optional accessory view for the tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
@@ -86,6 +87,7 @@ func (w_ WindowTab) AccessoryView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("accessoryView"))
 	return rv
 }
+
 
 // SetAccessoryView sets the value of the accessoryView property.
 // An optional accessory view for the tab.
@@ -95,7 +97,6 @@ func (w_ WindowTab) AccessoryView() unsafe.Pointer {
 func (w_ WindowTab) SetAccessoryView(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
 }
-
 // The title for the window tab, specified as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
@@ -103,6 +104,7 @@ func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
+
 
 // SetAttributedTitle sets the value of the attributedTitle property.
 // The title for the window tab, specified as an attributed string.
@@ -112,7 +114,6 @@ func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
 func (w_ WindowTab) SetAttributedTitle(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
 }
-
 // The title for the window tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
@@ -120,6 +121,7 @@ func (w_ WindowTab) Title() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("title"))
 	return rv
 }
+
 
 // SetTitle sets the value of the title property.
 // The title for the window tab.
@@ -129,7 +131,6 @@ func (w_ WindowTab) Title() unsafe.Pointer {
 func (w_ WindowTab) SetTitle(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
 }
-
 // The tooltip for this window tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
@@ -137,6 +138,7 @@ func (w_ WindowTab) ToolTip() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolTip"))
 	return rv
 }
+
 
 // SetToolTip sets the value of the toolTip property.
 // The tooltip for this window tab.
@@ -146,3 +148,5 @@ func (w_ WindowTab) ToolTip() unsafe.Pointer {
 func (w_ WindowTab) SetToolTip(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), value)
 }
+
+

@@ -75,6 +75,7 @@ func NewNDArrayLUTQuantizationDescriptor() NDArrayLUTQuantizationDescriptor {
 	return getNDArrayLUTQuantizationDescriptorClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTQuantizationDescriptor/init(dataType:)
 func NewNDArrayLUTQuantizationDescriptorWithDataType(quantizationDataType unsafe.Pointer) NDArrayLUTQuantizationDescriptor {
@@ -92,3 +93,6 @@ func NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis(quantizationDataT
 	rv.Autorelease()
 	return rv
 }
+
+
+

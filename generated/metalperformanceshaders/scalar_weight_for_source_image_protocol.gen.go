@@ -20,3 +20,5 @@ var scalarWeightForSourceImageProtocol *objc.Protocol
 func init() {
 	scalarWeightForSourceImageProtocol = objc.GetProtocol("scalarWeightForSourceImage:")
 }
+
+

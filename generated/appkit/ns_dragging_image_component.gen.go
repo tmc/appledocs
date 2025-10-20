@@ -78,3 +78,7 @@ func (d_ DraggingImageComponent) Autorelease() DraggingImageComponent {
 func NewDraggingImageComponent() DraggingImageComponent {
 	return getDraggingImageComponentClass().New()
 }
+
+
+
+

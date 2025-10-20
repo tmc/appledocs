@@ -12,3 +12,5 @@ var cloudShareForUserInterfaceItemProtocol *objc.Protocol
 func init() {
 	cloudShareForUserInterfaceItemProtocol = objc.GetProtocol("cloudShareForUserInterfaceItem:")
 }
+
+

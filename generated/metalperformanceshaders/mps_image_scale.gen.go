@@ -77,3 +77,7 @@ func (i_ ImageScale) Autorelease() ImageScale {
 func NewImageScale() ImageScale {
 	return getImageScaleClass().New()
 }
+
+
+
+

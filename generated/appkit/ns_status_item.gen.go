@@ -79,6 +79,7 @@ func NewStatusItem() StatusItem {
 	return getStatusItemClass().New()
 }
 
+
 // The alternate image to be displayed when a status bar item is highlighted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/alternateImage
@@ -86,6 +87,7 @@ func (s_ StatusItem) AlternateImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("alternateImage"))
 	return rv
 }
+
 
 // SetAlternateImage sets the value of the alternateImage property.
 // The alternate image to be displayed when a status bar item is highlighted.
@@ -95,3 +97,5 @@ func (s_ StatusItem) AlternateImage() unsafe.Pointer {
 func (s_ StatusItem) SetAlternateImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
 }
+
+

@@ -15,3 +15,5 @@ var setAccessibilityProtectedContentProtocol *objc.Protocol
 func init() {
 	setAccessibilityProtectedContentProtocol = objc.GetProtocol("setAccessibilityProtectedContent")
 }
+
+

@@ -16,3 +16,5 @@ var AccessibilityColorProtocol *objc.Protocol
 func init() {
 	AccessibilityColorProtocol = objc.GetProtocol("NSAccessibilityColor")
 }
+
+

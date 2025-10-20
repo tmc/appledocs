@@ -78,3 +78,7 @@ func (k_ Kernel) Autorelease() Kernel {
 func NewKernel() Kernel {
 	return getKernelClass().New()
 }
+
+
+
+

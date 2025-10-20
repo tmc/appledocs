@@ -12,3 +12,5 @@ var pageDownProtocol *objc.Protocol
 func init() {
 	pageDownProtocol = objc.GetProtocol("pageDown:")
 }
+
+

@@ -1,0 +1,99 @@
+// Code generated from Apple documentation for CloudKit. DO NOT EDIT.
+
+package cloudkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [CKFetchRecordZoneChangesOptions] class.
+var (
+	CKFetchRecordZoneChangesOptionsClass     _CKFetchRecordZoneChangesOptionsClass
+	CKFetchRecordZoneChangesOptionsClassOnce sync.Once
+)
+
+func getCKFetchRecordZoneChangesOptionsClass() _CKFetchRecordZoneChangesOptionsClass {
+	CKFetchRecordZoneChangesOptionsClassOnce.Do(func() {
+		CKFetchRecordZoneChangesOptionsClass = _CKFetchRecordZoneChangesOptionsClass{objc.GetClass("CKFetchRecordZoneChangesOptions")}
+	})
+	return CKFetchRecordZoneChangesOptionsClass
+}
+
+type _CKFetchRecordZoneChangesOptionsClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [CKFetchRecordZoneChangesOptions] class.
+type ICKFetchRecordZoneChangesOptions interface {
+	objectivec.IObject
+}
+
+// A configuration object that describes the information to fetch from a record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions
+type CKFetchRecordZoneChangesOptions struct {
+	objectivec.Object
+}
+
+// CKFetchRecordZoneChangesOptionsFrom constructs a [CKFetchRecordZoneChangesOptions] from an unsafe.Pointer.
+//
+// A configuration object that describes the information to fetch from a record zone.
+func CKFetchRecordZoneChangesOptionsFrom(ptr unsafe.Pointer) CKFetchRecordZoneChangesOptions {
+	return CKFetchRecordZoneChangesOptions{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (cc _CKFetchRecordZoneChangesOptionsClass) Alloc() CKFetchRecordZoneChangesOptions {
+	rv := objc.Send[CKFetchRecordZoneChangesOptions](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (cc _CKFetchRecordZoneChangesOptionsClass) New() CKFetchRecordZoneChangesOptions {
+	rv := objc.Send[CKFetchRecordZoneChangesOptions](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CKFetchRecordZoneChangesOptions) Init() CKFetchRecordZoneChangesOptions {
+	rv := objc.Send[CKFetchRecordZoneChangesOptions](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CKFetchRecordZoneChangesOptions) Autorelease() CKFetchRecordZoneChangesOptions {
+	rv := objc.Send[CKFetchRecordZoneChangesOptions](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCKFetchRecordZoneChangesOptions creates a new CKFetchRecordZoneChangesOptions instance.
+func NewCKFetchRecordZoneChangesOptions() CKFetchRecordZoneChangesOptions {
+	return getCKFetchRecordZoneChangesOptionsClass().New()
+}
+
+
+// The fields to fetch for the requested records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys
+func (c_ CKFetchRecordZoneChangesOptions) DesiredKeys() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
+	return rv
+}
+
+
+// SetDesiredKeys sets the value of the desiredKeys property.
+// The fields to fetch for the requested records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys
+func (c_ CKFetchRecordZoneChangesOptions) SetDesiredKeys(value []string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
+}
+
+

@@ -12,3 +12,5 @@ var GramMatrixCallbackProtocol *objc.Protocol
 func init() {
 	GramMatrixCallbackProtocol = objc.GetProtocol("MPSNNGramMatrixCallback")
 }
+
+

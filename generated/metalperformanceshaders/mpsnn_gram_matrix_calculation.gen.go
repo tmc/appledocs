@@ -74,6 +74,7 @@ func NewGramMatrixCalculation() GramMatrixCalculation {
 	return getGramMatrixCalculationClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculation/init(coder:device:)
 func NewGramMatrixCalculationWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) GramMatrixCalculation {
@@ -82,3 +83,6 @@ func NewGramMatrixCalculationWithCoderDevice(aDecoder unsafe.Pointer, device obj
 	rv.Autorelease()
 	return rv
 }
+
+
+

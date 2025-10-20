@@ -77,3 +77,7 @@ func (t_ TextTableBlock) Autorelease() TextTableBlock {
 func NewTextTableBlock() TextTableBlock {
 	return getTextTableBlockClass().New()
 }
+
+
+
+

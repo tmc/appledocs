@@ -79,6 +79,7 @@ func NewMenuItem() MenuItem {
 	return getMenuItemClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
 func (m_ MenuItem) Badge() unsafe.Pointer {
@@ -86,13 +87,13 @@ func (m_ MenuItem) Badge() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBadge sets the value of the badge property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
 func (m_ MenuItem) SetBadge(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
 }
-
 // A Boolean value that indicates whether the menu item has a submenu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/hasSubmenu
@@ -100,3 +101,6 @@ func (m_ MenuItem) HasSubmenu() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasSubmenu"))
 	return rv
 }
+
+
+

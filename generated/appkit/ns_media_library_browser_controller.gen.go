@@ -80,9 +80,13 @@ func NewMediaLibraryBrowserController() MediaLibraryBrowserController {
 	return getMediaLibraryBrowserControllerClass().New()
 }
 
+
 // Toggles the visibility of the Media Library Browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/togglePanel(_:)
 func (m_ MediaLibraryBrowserController) TogglePanel(sender objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("togglePanel:"), sender)
 }
+
+
+

@@ -21,16 +21,5 @@ func ExampleNewNetServiceWithDomainTypeName() {
 	// Output:
 }
 
-// ExampleNewNetServiceWithDomainTypeNamePort demonstrates how to create a NetService instance using NewNetServiceWithDomainTypeNamePort.
-// Initializes the receiver for publishing a network service of type   at the socket location specified by  ,  , and  .
-func ExampleNewNetServiceWithDomainTypeNamePort() {
-	_ = foundation.NewNetServiceWithDomainTypeNamePort(
-		"domain", // domain string
-		"type", // type string
-		"name", // name string
-		0, // port int
-	)
-	// Output:
-}
 
 

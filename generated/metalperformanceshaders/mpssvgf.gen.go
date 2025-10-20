@@ -75,6 +75,7 @@ func NewSVGF() SVGF {
 	return getSVGFClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGF/variancePrefilterRadius
 func (s_ SVGF) VariancePrefilterRadius() uint {
@@ -82,9 +83,12 @@ func (s_ SVGF) VariancePrefilterRadius() uint {
 	return rv
 }
 
+
 // SetVariancePrefilterRadius sets the value of the variancePrefilterRadius property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGF/variancePrefilterRadius
 func (s_ SVGF) SetVariancePrefilterRadius(value uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVariancePrefilterRadius:"), value)
 }
+
+

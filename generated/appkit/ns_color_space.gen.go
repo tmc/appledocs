@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ColorSpace] class.
@@ -80,6 +80,7 @@ func NewColorSpace() ColorSpace {
 	return getColorSpaceClass().New()
 }
 
+
 // Initializes and returns a color space object initialized from a Core Graphics color-space object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(cgColorSpace:)
@@ -110,6 +111,7 @@ func NewColorSpaceWithICCProfileData(iccData unsafe.Pointer) ColorSpace {
 	return rv
 }
 
+
 // Returns the list of color spaces available on the system that are displayed in the color panel, in the order they are displayed in the color panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/availableColorSpaces(with:)
@@ -117,3 +119,5 @@ func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model unsafe.Pointer) [
 	rv := objc.Send[[]ColorSpace](objc.ID(cc.class), objc.Sel("availableColorSpacesWithModel:"), model)
 	return rv
 }
+
+

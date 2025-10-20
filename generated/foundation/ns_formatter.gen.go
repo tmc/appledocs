@@ -1,0 +1,120 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [Formatter] class.
+var (
+	FormatterClass     _FormatterClass
+	FormatterClassOnce sync.Once
+)
+
+func getFormatterClass() _FormatterClass {
+	FormatterClassOnce.Do(func() {
+		FormatterClass = _FormatterClass{objc.GetClass("NSFormatter")}
+	})
+	return FormatterClass
+}
+
+type _FormatterClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [Formatter] class.
+type IFormatter interface {
+	objectivec.IObject
+	AttributedStringForObjectValueWithDefaultAttributes(obj objc.ID, attrs unsafe.Pointer) unsafe.Pointer
+	GetObjectValueForStringErrorDescription(obj objc.ID, string string, error string) bool
+	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr unsafe.Pointer, origString string, origSelRange Range, error string) bool
+	StringForObjectValue(obj objc.ID) unsafe.Pointer
+}
+
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
+//
+// The Foundation framework provides several concrete subclasses of , including , , , , , , and .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
+type Formatter struct {
+	objectivec.Object
+}
+
+// FormatterFrom constructs a [Formatter] from an unsafe.Pointer.
+//
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
+func FormatterFrom(ptr unsafe.Pointer) Formatter {
+	return Formatter{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (fc _FormatterClass) Alloc() Formatter {
+	rv := objc.Send[Formatter](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (fc _FormatterClass) New() Formatter {
+	rv := objc.Send[Formatter](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ Formatter) Init() Formatter {
+	rv := objc.Send[Formatter](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ Formatter) Autorelease() Formatter {
+	rv := objc.Send[Formatter](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFormatter creates a new Formatter instance.
+func NewFormatter() Formatter {
+	return getFormatterClass().New()
+}
+
+
+// The default implementation returns to indicate that the formatter object does not provide an attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/attributedString(for:withDefaultAttributes:)
+func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objc.ID, attrs unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributedStringForObjectValue:withDefaultAttributes:"), obj, attrs)
+	return rv
+}
+
+// The default implementation of this method raises an exception.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/getObjectValue(_:for:errorDescription:)
+func (f_ Formatter) GetObjectValueForStringErrorDescription(obj objc.ID, string string, error string) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, objc.String(string), objc.String(error))
+	return rv
+}
+
+// This method should be implemented in subclasses that want to validate user changes to a string in a field, where the user changes are not necessarily at the end of the string, and preserve the selection (or set a different one, such as selecting the erroneous part of the string the user has typed).
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)
+func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr unsafe.Pointer, origString string, origSelRange Range, error string) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:"), objc.String(partialStringPtr), proposedSelRangePtr, objc.String(origString), origSelRange, objc.String(error))
+	return rv
+}
+
+// The default implementation of this method raises an exception.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
+func (f_ Formatter) StringForObjectValue(obj objc.ID) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stringForObjectValue:"), obj)
+	return rv
+}
+
+
+

@@ -10,7 +10,6 @@ import (
 var _ = foundation.NewDictionary
 
 
-
 // ExampleNewDictionaryWithContentsOfFile demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfFile.
 // Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
 func ExampleNewDictionaryWithContentsOfFile() {
@@ -19,6 +18,7 @@ func ExampleNewDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
+
 
 
 

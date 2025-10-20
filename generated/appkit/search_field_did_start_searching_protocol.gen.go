@@ -15,3 +15,5 @@ var searchFieldDidStartSearchingProtocol *objc.Protocol
 func init() {
 	searchFieldDidStartSearchingProtocol = objc.GetProtocol("searchFieldDidStartSearching:")
 }
+
+

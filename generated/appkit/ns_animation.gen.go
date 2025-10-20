@@ -79,6 +79,7 @@ func NewAnimation() Animation {
 	return getAnimationClass().New()
 }
 
+
 // The current progress of the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
@@ -86,6 +87,7 @@ func (a_ Animation) CurrentProgress() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentProgress"))
 	return rv
 }
+
 
 // SetCurrentProgress sets the value of the currentProgress property.
 // The current progress of the animation.
@@ -95,3 +97,5 @@ func (a_ Animation) CurrentProgress() unsafe.Pointer {
 func (a_ Animation) SetCurrentProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
 }
+
+

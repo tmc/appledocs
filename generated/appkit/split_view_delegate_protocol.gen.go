@@ -12,3 +12,5 @@ var SplitViewDelegateProtocol *objc.Protocol
 func init() {
 	SplitViewDelegateProtocol = objc.GetProtocol("NSSplitViewDelegate")
 }
+
+

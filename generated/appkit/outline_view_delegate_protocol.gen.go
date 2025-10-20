@@ -12,3 +12,5 @@ var OutlineViewDelegateProtocol *objc.Protocol
 func init() {
 	OutlineViewDelegateProtocol = objc.GetProtocol("NSOutlineViewDelegate")
 }
+
+

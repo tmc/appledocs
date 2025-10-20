@@ -74,6 +74,7 @@ func NewReshapeGradient() ReshapeGradient {
 	return getReshapeGradientClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradient/init(coder:device:)
 func NewReshapeGradientWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ReshapeGradient {
@@ -91,3 +92,6 @@ func NewReshapeGradientWithDevice(device objc.ID) ReshapeGradient {
 	rv.Autorelease()
 	return rv
 }
+
+
+

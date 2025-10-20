@@ -15,3 +15,5 @@ var isAccessibilityMainProtocol *objc.Protocol
 func init() {
 	isAccessibilityMainProtocol = objc.GetProtocol("isAccessibilityMain")
 }
+
+

@@ -79,3 +79,7 @@ func (t_ TemporaryImage) Autorelease() TemporaryImage {
 func NewTemporaryImage() TemporaryImage {
 	return getTemporaryImageClass().New()
 }
+
+
+
+

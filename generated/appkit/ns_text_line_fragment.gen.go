@@ -76,3 +76,7 @@ func (t_ TextLineFragment) Autorelease() TextLineFragment {
 func NewTextLineFragment() TextLineFragment {
 	return getTextLineFragmentClass().New()
 }
+
+
+
+

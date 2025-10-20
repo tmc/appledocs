@@ -80,9 +80,13 @@ func NewStoryboard() Storyboard {
 	return getStoryboardClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateControllerWithIdentifier:creator:
 func (s_ Storyboard) InstantiateControllerWithIdentifierCreator(identifier unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateControllerWithIdentifier:creator:"), identifier, block)
 	return rv
 }
+
+
+

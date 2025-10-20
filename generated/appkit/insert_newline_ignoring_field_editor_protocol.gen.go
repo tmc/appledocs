@@ -12,3 +12,5 @@ var insertNewlineIgnoringFieldEditorProtocol *objc.Protocol
 func init() {
 	insertNewlineIgnoringFieldEditorProtocol = objc.GetProtocol("insertNewlineIgnoringFieldEditor:")
 }
+
+

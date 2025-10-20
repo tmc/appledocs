@@ -78,3 +78,7 @@ func (c_ CollectionViewUpdateItem) Autorelease() CollectionViewUpdateItem {
 func NewCollectionViewUpdateItem() CollectionViewUpdateItem {
 	return getCollectionViewUpdateItemClass().New()
 }
+
+
+
+

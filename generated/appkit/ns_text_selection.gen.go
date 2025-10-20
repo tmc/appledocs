@@ -76,3 +76,7 @@ func (t_ TextSelection) Autorelease() TextSelection {
 func NewTextSelection() TextSelection {
 	return getTextSelectionClass().New()
 }
+
+
+
+

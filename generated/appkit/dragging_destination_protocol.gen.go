@@ -12,3 +12,5 @@ var DraggingDestinationProtocol *objc.Protocol
 func init() {
 	DraggingDestinationProtocol = objc.GetProtocol("NSDraggingDestination")
 }
+
+

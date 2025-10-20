@@ -15,3 +15,5 @@ var accessibilityActivationPointProtocol *objc.Protocol
 func init() {
 	accessibilityActivationPointProtocol = objc.GetProtocol("accessibilityActivationPoint")
 }
+
+

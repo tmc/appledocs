@@ -75,14 +75,6 @@ func NewForwardLoss() ForwardLoss {
 	return getForwardLossClass().New()
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(device:lossDescriptor:)
-func NewForwardLossWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsafe.Pointer) ForwardLoss {
-	instance := getForwardLossClass().Alloc()
-	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithDevice:lossDescriptor:"), device, lossDescriptor)
-	rv.Autorelease()
-	return rv
-}
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(coder:device:)
@@ -92,6 +84,16 @@ func NewForwardLossWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) Forw
 	rv.Autorelease()
 	return rv
 }
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(device:lossDescriptor:)
+func NewForwardLossWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsafe.Pointer) ForwardLoss {
+	instance := getForwardLossClass().Alloc()
+	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithDevice:lossDescriptor:"), device, lossDescriptor)
+	rv.Autorelease()
+	return rv
+}
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/encodeBatch(commandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:)
@@ -106,13 +108,13 @@ func (f_ ForwardLoss) Delta() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDelta sets the value of the delta property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/delta
 func (f_ ForwardLoss) SetDelta(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
 func (f_ ForwardLoss) Epsilon() unsafe.Pointer {
@@ -120,13 +122,13 @@ func (f_ ForwardLoss) Epsilon() unsafe.Pointer {
 	return rv
 }
 
+
 // SetEpsilon sets the value of the epsilon property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
 func (f_ ForwardLoss) SetEpsilon(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/reduceAcrossBatch
 func (f_ ForwardLoss) ReduceAcrossBatch() bool {
@@ -140,3 +142,5 @@ func (f_ ForwardLoss) ReductionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reductionType"))
 	return rv
 }
+
+

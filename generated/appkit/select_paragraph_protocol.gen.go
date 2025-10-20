@@ -12,3 +12,5 @@ var selectParagraphProtocol *objc.Protocol
 func init() {
 	selectParagraphProtocol = objc.GetProtocol("selectParagraph:")
 }
+
+

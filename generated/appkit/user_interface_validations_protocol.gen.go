@@ -12,3 +12,5 @@ var UserInterfaceValidationsProtocol *objc.Protocol
 func init() {
 	UserInterfaceValidationsProtocol = objc.GetProtocol("NSUserInterfaceValidations")
 }
+
+

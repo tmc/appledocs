@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewCustomImageRep
 
+
 // ExampleNewCustomImageRepWithDrawSelectorDelegate demonstrates how to create a CustomImageRep instance using NewCustomImageRepWithDrawSelectorDelegate.
 // Returns a representation of an image initialized with the specified delegate information.
 func ExampleNewCustomImageRepWithDrawSelectorDelegate() {
@@ -18,3 +19,5 @@ func ExampleNewCustomImageRepWithDrawSelectorDelegate() {
 	)
 	// Output:
 }
+
+

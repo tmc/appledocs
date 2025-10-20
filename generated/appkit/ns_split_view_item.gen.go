@@ -80,6 +80,7 @@ func NewSplitViewItem() SplitViewItem {
 	return getSplitViewItemClass().New()
 }
 
+
 // Creates a split view item that represents a content list for the specified view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(contentListWithViewController:)
@@ -94,6 +95,7 @@ func NewSplitViewItemInspectorWithViewController(viewController unsafe.Pointer) 
 	rv := objc.Send[SplitViewItem](objc.ID(getSplitViewItemClass().class), objc.Sel("inspectorWithViewController:"), viewController)
 	return rv
 }
+
 
 // Creates a split view item that represents a content list for the specified view controller.
 //
@@ -124,6 +126,7 @@ func (s_ SplitViewItem) AllowsFullHeightLayout() bool {
 	return rv
 }
 
+
 // SetAllowsFullHeightLayout sets the value of the allowsFullHeightLayout property.
 // A Boolean value that indicates whether full-height sidebars appear in the window after you set a style mask.
 
@@ -132,7 +135,6 @@ func (s_ SplitViewItem) AllowsFullHeightLayout() bool {
 func (s_ SplitViewItem) SetAllowsFullHeightLayout(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsFullHeightLayout:"), value)
 }
-
 // The standard behavior type of the split view item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/behavior-swift.property
@@ -148,13 +150,13 @@ func (s_ SplitViewItem) BottomAlignedAccessoryViewControllers() []SplitViewItemA
 	return rv
 }
 
+
 // SetBottomAlignedAccessoryViewControllers sets the value of the bottomAlignedAccessoryViewControllers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/bottomAlignedAccessoryViewControllers
 func (s_ SplitViewItem) SetBottomAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBottomAlignedAccessoryViewControllers:"), value)
 }
-
 // The minimum thickness of the split view item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/minimumThickness
@@ -162,6 +164,7 @@ func (s_ SplitViewItem) MinimumThickness() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumThickness"))
 	return rv
 }
+
 
 // SetMinimumThickness sets the value of the minimumThickness property.
 // The minimum thickness of the split view item.
@@ -171,7 +174,6 @@ func (s_ SplitViewItem) MinimumThickness() float64 {
 func (s_ SplitViewItem) SetMinimumThickness(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumThickness:"), value)
 }
-
 // The type of separator that the app displays between the title bar and content of a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/titlebarSeparatorStyle
@@ -179,6 +181,7 @@ func (s_ SplitViewItem) TitlebarSeparatorStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
+
 
 // SetTitlebarSeparatorStyle sets the value of the titlebarSeparatorStyle property.
 // The type of separator that the app displays between the title bar and content of a window.
@@ -188,7 +191,6 @@ func (s_ SplitViewItem) TitlebarSeparatorStyle() unsafe.Pointer {
 func (s_ SplitViewItem) SetTitlebarSeparatorStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitlebarSeparatorStyle:"), value)
 }
-
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See for more details.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/topAlignedAccessoryViewControllers
@@ -196,6 +198,7 @@ func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() []SplitViewItemAcce
 	rv := objc.Send[[]SplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
 	return rv
 }
+
 
 // SetTopAlignedAccessoryViewControllers sets the value of the topAlignedAccessoryViewControllers property.
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See for more details.
@@ -205,7 +208,6 @@ func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() []SplitViewItemAcce
 func (s_ SplitViewItem) SetTopAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopAlignedAccessoryViewControllers:"), value)
 }
-
 // The view controller that the split view item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/viewController
@@ -213,6 +215,7 @@ func (s_ SplitViewItem) ViewController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("viewController"))
 	return rv
 }
+
 
 // SetViewController sets the value of the viewController property.
 // The view controller that the split view item represents.
@@ -222,3 +225,4 @@ func (s_ SplitViewItem) ViewController() unsafe.Pointer {
 func (s_ SplitViewItem) SetViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setViewController:"), value)
 }
+

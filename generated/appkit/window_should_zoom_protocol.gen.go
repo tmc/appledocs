@@ -12,3 +12,5 @@ var windowShouldZoomProtocol *objc.Protocol
 func init() {
 	windowShouldZoomProtocol = objc.GetProtocol("windowShouldZoom:")
 }
+
+

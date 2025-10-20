@@ -80,6 +80,7 @@ func NewSound() Sound {
 	return getSoundClass().New()
 }
 
+
 // Provides the list of file types the class understands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound/soundUnfilteredFileTypes
@@ -95,3 +96,6 @@ func (s_ Sound) Play() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("play"))
 	return rv
 }
+
+
+

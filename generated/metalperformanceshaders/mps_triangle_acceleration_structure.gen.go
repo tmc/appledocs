@@ -78,6 +78,7 @@ func NewTriangleAccelerationStructure() TriangleAccelerationStructure {
 	return getTriangleAccelerationStructureClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTriangleAccelerationStructure/triangleCount
 func (t_ TriangleAccelerationStructure) TriangleCount() uint {
@@ -85,9 +86,12 @@ func (t_ TriangleAccelerationStructure) TriangleCount() uint {
 	return rv
 }
 
+
 // SetTriangleCount sets the value of the triangleCount property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTriangleAccelerationStructure/triangleCount
 func (t_ TriangleAccelerationStructure) SetTriangleCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTriangleCount:"), value)
 }
+
+

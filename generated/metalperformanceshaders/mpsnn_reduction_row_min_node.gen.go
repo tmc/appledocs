@@ -74,3 +74,7 @@ func (r_ ReductionRowMinNode) Autorelease() ReductionRowMinNode {
 func NewReductionRowMinNode() ReductionRowMinNode {
 	return getReductionRowMinNodeClass().New()
 }
+
+
+
+

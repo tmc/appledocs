@@ -78,3 +78,7 @@ func (f_ FontCollection) Autorelease() FontCollection {
 func NewFontCollection() FontCollection {
 	return getFontCollectionClass().New()
 }
+
+
+
+

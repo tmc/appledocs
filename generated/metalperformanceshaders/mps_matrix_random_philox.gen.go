@@ -75,6 +75,7 @@ func NewMatrixRandomPhilox() MatrixRandomPhilox {
 	return getMatrixRandomPhiloxClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomPhilox/init(device:destinationDataType:seed:distributionDescriptor:)
 func NewMatrixRandomPhiloxWithDeviceDestinationDataTypeSeedDistributionDescriptor(device objc.ID, destinationDataType unsafe.Pointer, seed uint, distributionDescriptor unsafe.Pointer) MatrixRandomPhilox {
@@ -83,3 +84,6 @@ func NewMatrixRandomPhiloxWithDeviceDestinationDataTypeSeedDistributionDescripto
 	rv.Autorelease()
 	return rv
 }
+
+
+

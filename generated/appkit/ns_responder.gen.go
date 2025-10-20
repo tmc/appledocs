@@ -142,6 +142,7 @@ func NewResponder() Responder {
 	return getResponderClass().New()
 }
 
+
 // Creates a new responder object with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/init(coder:)
@@ -151,6 +152,7 @@ func NewResponderWithCoder(coder unsafe.Pointer) Responder {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns the classes that support secure coding.
 //
@@ -629,6 +631,7 @@ func (r_ Responder) Menu() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMenu sets the value of the menu property.
 // Returns the responder’s menu.
 
@@ -637,7 +640,6 @@ func (r_ Responder) Menu() unsafe.Pointer {
 func (r_ Responder) SetMenu(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMenu:"), value)
 }
-
 // The next responder after this one, or if it has none.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/nextResponder
@@ -645,6 +647,7 @@ func (r_ Responder) NextResponder() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("nextResponder"))
 	return rv
 }
+
 
 // SetNextResponder sets the value of the nextResponder property.
 // The next responder after this one, or if it has none.
@@ -654,7 +657,6 @@ func (r_ Responder) NextResponder() unsafe.Pointer {
 func (r_ Responder) SetNextResponder(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNextResponder:"), value)
 }
-
 // The object associated with the responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/touchBar
@@ -662,6 +664,7 @@ func (r_ Responder) TouchBar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("touchBar"))
 	return rv
 }
+
 
 // SetTouchBar sets the value of the touchBar property.
 // The object associated with the responder.
@@ -671,7 +674,6 @@ func (r_ Responder) TouchBar() unsafe.Pointer {
 func (r_ Responder) SetTouchBar(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTouchBar:"), value)
 }
-
 // The undo manager for this responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/undoManager
@@ -688,6 +690,7 @@ func (r_ Responder) UserActivity() unsafe.Pointer {
 	return rv
 }
 
+
 // SetUserActivity sets the value of the userActivity property.
 // An object encapsulating a user activity supported by this responder.
 
@@ -696,3 +699,4 @@ func (r_ Responder) UserActivity() unsafe.Pointer {
 func (r_ Responder) SetUserActivity(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUserActivity:"), value)
 }
+

@@ -12,3 +12,5 @@ var centerSelectionInVisibleAreaProtocol *objc.Protocol
 func init() {
 	centerSelectionInVisibleAreaProtocol = objc.GetProtocol("centerSelectionInVisibleArea:")
 }
+
+

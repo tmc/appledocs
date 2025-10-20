@@ -79,6 +79,7 @@ func NewGlyphInfo() GlyphInfo {
 	return getGlyphInfoClass().New()
 }
 
+
 // The receiver’s character identifier (CID).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/characterIdentifier
@@ -86,3 +87,6 @@ func (g_ GlyphInfo) CharacterIdentifier() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("characterIdentifier"))
 	return rv
 }
+
+
+

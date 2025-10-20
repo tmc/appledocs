@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Screen] class.
@@ -82,6 +82,7 @@ func (s_ Screen) Autorelease() Screen {
 func NewScreen() Screen {
 	return getScreenClass().New()
 }
+
 
 // A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut.
 //
@@ -217,3 +218,6 @@ func (s_ Screen) SupportedWindowDepths() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("supportedWindowDepths"))
 	return rv
 }
+
+
+

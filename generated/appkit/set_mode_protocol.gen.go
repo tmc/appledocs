@@ -12,3 +12,5 @@ var setModeProtocol *objc.Protocol
 func init() {
 	setModeProtocol = objc.GetProtocol("setMode:")
 }
+
+

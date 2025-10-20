@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [ViewAnimation] class.
@@ -29,7 +28,7 @@ type _ViewAnimationClass struct {
 
 // An interface definition for the [ViewAnimation] class.
 type IViewAnimation interface {
-	quartzcore.IAnimation
+	IAnimation
 }
 
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
@@ -38,7 +37,7 @@ type IViewAnimation interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation
 type ViewAnimation struct {
-	quartzcore.Animation
+	Animation
 }
 
 // ViewAnimationFrom constructs a [ViewAnimation] from an unsafe.Pointer.
@@ -46,7 +45,7 @@ type ViewAnimation struct {
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
 func ViewAnimationFrom(ptr unsafe.Pointer) ViewAnimation {
 	return ViewAnimation{
-		Animation: quartzcore.AnimationFrom(ptr),
+		Animation: AnimationFrom(ptr),
 	}
 }
 
@@ -80,3 +79,7 @@ func (v_ ViewAnimation) Autorelease() ViewAnimation {
 func NewViewAnimation() ViewAnimation {
 	return getViewAnimationClass().New()
 }
+
+
+
+

@@ -12,3 +12,5 @@ var accessibilityPerformIncrementProtocol *objc.Protocol
 func init() {
 	accessibilityPerformIncrementProtocol = objc.GetProtocol("accessibilityPerformIncrement")
 }
+
+

@@ -12,3 +12,5 @@ var applicationOpenUntitledFileProtocol *objc.Protocol
 func init() {
 	applicationOpenUntitledFileProtocol = objc.GetProtocol("applicationOpenUntitledFile:")
 }
+
+

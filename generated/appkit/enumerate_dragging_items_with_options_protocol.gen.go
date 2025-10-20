@@ -15,3 +15,5 @@ var enumerateDraggingItemsWithOptionsProtocol *objc.Protocol
 func init() {
 	enumerateDraggingItemsWithOptionsProtocol = objc.GetProtocol("enumerateDraggingItemsWithOptions:")
 }
+
+

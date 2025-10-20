@@ -74,6 +74,7 @@ func NewPredicate() Predicate {
 	return getPredicateClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate/init(device:)
 func NewPredicateWithDevice(device objc.ID) Predicate {
@@ -82,3 +83,6 @@ func NewPredicateWithDevice(device objc.ID) Predicate {
 	rv.Autorelease()
 	return rv
 }
+
+
+

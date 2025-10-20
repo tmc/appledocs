@@ -81,6 +81,7 @@ func NewImageView() ImageView {
 	return getImageViewClass().New()
 }
 
+
 // Adds a symbol effect to the image view with the specified options and default animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/addSymbolEffect:options:
@@ -96,6 +97,7 @@ func (i_ ImageView) Animates() bool {
 	return rv
 }
 
+
 // SetAnimates sets the value of the animates property.
 // A Boolean value indicating whether the image view automatically plays animated images.
 
@@ -104,7 +106,6 @@ func (i_ ImageView) Animates() bool {
 func (i_ ImageView) SetAnimates(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAnimates:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/symbolConfiguration
 func (i_ ImageView) SymbolConfiguration() unsafe.Pointer {
@@ -112,9 +113,12 @@ func (i_ ImageView) SymbolConfiguration() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSymbolConfiguration sets the value of the symbolConfiguration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/symbolConfiguration
 func (i_ ImageView) SetSymbolConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
 }
+
+

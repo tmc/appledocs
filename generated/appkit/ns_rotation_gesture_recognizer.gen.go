@@ -79,3 +79,7 @@ func (r_ RotationGestureRecognizer) Autorelease() RotationGestureRecognizer {
 func NewRotationGestureRecognizer() RotationGestureRecognizer {
 	return getRotationGestureRecognizerClass().New()
 }
+
+
+
+

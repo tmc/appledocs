@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ClipView] class.
@@ -87,6 +87,7 @@ func NewClipView() ClipView {
 	return getClipViewClass().New()
 }
 
+
 // Scrolls the clip view proportionally to ’s distance outside of it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/autoscroll(with:)
@@ -140,6 +141,7 @@ func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool {
 	return rv
 }
 
+
 // SetAutomaticallyAdjustsContentInsets sets the value of the automaticallyAdjustsContentInsets property.
 // A Boolean value that indicates if the clip view automatically accounts for other scroll view subviews.
 
@@ -148,7 +150,6 @@ func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool {
 func (c_ ClipView) SetAutomaticallyAdjustsContentInsets(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyAdjustsContentInsets:"), value)
 }
-
 // The color of the clip view’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/backgroundColor
@@ -156,6 +157,7 @@ func (c_ ClipView) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
+
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color of the clip view’s background.
@@ -165,7 +167,6 @@ func (c_ ClipView) BackgroundColor() unsafe.Pointer {
 func (c_ ClipView) SetBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColor:"), value)
 }
-
 // The distance that the content view is inset from the enclosing scroll view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/contentInsets
@@ -173,6 +174,7 @@ func (c_ ClipView) ContentInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentInsets"))
 	return rv
 }
+
 
 // SetContentInsets sets the value of the contentInsets property.
 // The distance that the content view is inset from the enclosing scroll view.
@@ -182,7 +184,6 @@ func (c_ ClipView) ContentInsets() unsafe.Pointer {
 func (c_ ClipView) SetContentInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentInsets:"), value)
 }
-
 // A Boolean value that indicates if the clip view copies rendered images while scrolling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/copiesOnScroll
@@ -190,6 +191,7 @@ func (c_ ClipView) CopiesOnScroll() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("copiesOnScroll"))
 	return rv
 }
+
 
 // SetCopiesOnScroll sets the value of the copiesOnScroll property.
 // A Boolean value that indicates if the clip view copies rendered images while scrolling.
@@ -199,7 +201,6 @@ func (c_ ClipView) CopiesOnScroll() bool {
 func (c_ ClipView) SetCopiesOnScroll(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCopiesOnScroll:"), value)
 }
-
 // The cursor object used when the pointer lies over the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentCursor
@@ -207,6 +208,7 @@ func (c_ ClipView) DocumentCursor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("documentCursor"))
 	return rv
 }
+
 
 // SetDocumentCursor sets the value of the documentCursor property.
 // The cursor object used when the pointer lies over the view.
@@ -216,7 +218,6 @@ func (c_ ClipView) DocumentCursor() unsafe.Pointer {
 func (c_ ClipView) SetDocumentCursor(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDocumentCursor:"), value)
 }
-
 // The rectangle defining the document view’s frame, adjusted to the size of the clip view if the document view is smaller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentRect
@@ -233,6 +234,7 @@ func (c_ ClipView) DocumentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDocumentView sets the value of the documentView property.
 // The clip view’s document view.
 
@@ -241,7 +243,6 @@ func (c_ ClipView) DocumentView() unsafe.Pointer {
 func (c_ ClipView) SetDocumentView(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDocumentView:"), value)
 }
-
 // The exposed rectangle of the clip view’s document view, in the document view’s own coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentVisibleRect
@@ -258,6 +259,7 @@ func (c_ ClipView) DrawsBackground() bool {
 	return rv
 }
 
+
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean value that indicates if the clip view draws its background color.
 
@@ -266,3 +268,5 @@ func (c_ ClipView) DrawsBackground() bool {
 func (c_ ClipView) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawsBackground:"), value)
 }
+
+

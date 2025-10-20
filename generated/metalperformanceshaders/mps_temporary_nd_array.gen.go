@@ -75,6 +75,7 @@ func NewTemporaryNDArray() TemporaryNDArray {
 	return getTemporaryNDArrayClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporaryNDArray/readCount
 func (t_ TemporaryNDArray) ReadCount() uint {
@@ -82,9 +83,12 @@ func (t_ TemporaryNDArray) ReadCount() uint {
 	return rv
 }
 
+
 // SetReadCount sets the value of the readCount property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporaryNDArray/readCount
 func (t_ TemporaryNDArray) SetReadCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReadCount:"), value)
 }
+
+

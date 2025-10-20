@@ -15,3 +15,5 @@ var isAccessibilityAlternateUIVisibleProtocol *objc.Protocol
 func init() {
 	isAccessibilityAlternateUIVisibleProtocol = objc.GetProtocol("isAccessibilityAlternateUIVisible")
 }
+
+

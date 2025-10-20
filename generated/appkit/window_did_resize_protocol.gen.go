@@ -15,3 +15,5 @@ var windowDidResizeProtocol *objc.Protocol
 func init() {
 	windowDidResizeProtocol = objc.GetProtocol("windowDidResize:")
 }
+
+

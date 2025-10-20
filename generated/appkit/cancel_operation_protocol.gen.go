@@ -12,3 +12,5 @@ var cancelOperationProtocol *objc.Protocol
 func init() {
 	cancelOperationProtocol = objc.GetProtocol("cancelOperation:")
 }
+
+

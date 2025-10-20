@@ -15,3 +15,5 @@ var restoreWindowWithIdentifierProtocol *objc.Protocol
 func init() {
 	restoreWindowWithIdentifierProtocol = objc.GetProtocol("restoreWindowWithIdentifier:")
 }
+
+

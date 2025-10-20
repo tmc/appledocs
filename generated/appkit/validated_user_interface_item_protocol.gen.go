@@ -12,3 +12,5 @@ var ValidatedUserInterfaceItemProtocol *objc.Protocol
 func init() {
 	ValidatedUserInterfaceItemProtocol = objc.GetProtocol("NSValidatedUserInterfaceItem")
 }
+
+

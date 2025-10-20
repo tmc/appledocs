@@ -15,3 +15,5 @@ var insertSingleQuoteIgnoringSubstitutionProtocol *objc.Protocol
 func init() {
 	insertSingleQuoteIgnoringSubstitutionProtocol = objc.GetProtocol("insertSingleQuoteIgnoringSubstitution:")
 }
+
+

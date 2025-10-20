@@ -81,6 +81,7 @@ func NewSegmentedControl() SegmentedControl {
 	return getSegmentedControlClass().New()
 }
 
+
 // Selects the segment with the specified tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectSegment(withTag:)
@@ -97,6 +98,7 @@ func (s_ SegmentedControl) SelectedSegmentBezelColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSelectedSegmentBezelColor sets the value of the selectedSegmentBezelColor property.
 // The color of the selected segment’s bezel, in appearances that support it.
 
@@ -105,3 +107,5 @@ func (s_ SegmentedControl) SelectedSegmentBezelColor() unsafe.Pointer {
 func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
+
+

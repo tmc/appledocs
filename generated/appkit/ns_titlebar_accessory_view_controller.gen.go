@@ -81,6 +81,7 @@ func NewTitlebarAccessoryViewController() TitlebarAccessoryViewController {
 	return getTitlebarAccessoryViewControllerClass().New()
 }
 
+
 // Called after the title bar accessory view controller’s view has been loaded into memory is about to be added to the view hierarchy in the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/viewWillAppear()
@@ -96,6 +97,7 @@ func (t_ TitlebarAccessoryViewController) LayoutAttribute() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLayoutAttribute sets the value of the layoutAttribute property.
 // The location of the accessory view, in relation to the window’s title bar.
 
@@ -104,3 +106,5 @@ func (t_ TitlebarAccessoryViewController) LayoutAttribute() unsafe.Pointer {
 func (t_ TitlebarAccessoryViewController) SetLayoutAttribute(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAttribute:"), value)
 }
+
+

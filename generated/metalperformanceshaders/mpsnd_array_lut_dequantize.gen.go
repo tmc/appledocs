@@ -75,6 +75,7 @@ func NewNDArrayLUTDequantize() NDArrayLUTDequantize {
 	return getNDArrayLUTDequantizeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTDequantize/init(device:)
 func NewNDArrayLUTDequantizeWithDevice(device objc.ID) NDArrayLUTDequantize {
@@ -83,3 +84,6 @@ func NewNDArrayLUTDequantizeWithDevice(device objc.ID) NDArrayLUTDequantize {
 	rv.Autorelease()
 	return rv
 }
+
+
+

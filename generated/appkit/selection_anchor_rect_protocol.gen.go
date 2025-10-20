@@ -15,3 +15,5 @@ var selectionAnchorRectProtocol *objc.Protocol
 func init() {
 	selectionAnchorRectProtocol = objc.GetProtocol("selectionAnchorRect")
 }
+
+

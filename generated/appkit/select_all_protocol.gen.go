@@ -12,3 +12,5 @@ var selectAllProtocol *objc.Protocol
 func init() {
 	selectAllProtocol = objc.GetProtocol("selectAll:")
 }
+
+

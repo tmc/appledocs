@@ -80,6 +80,7 @@ func NewPanel() Panel {
 	return getPanelClass().New()
 }
 
+
 // A Boolean value that indicates whether the receiver becomes the key window only when needed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
@@ -87,6 +88,7 @@ func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("becomesKeyOnlyIfNeeded"))
 	return rv
 }
+
 
 // SetBecomesKeyOnlyIfNeeded sets the value of the becomesKeyOnlyIfNeeded property.
 // A Boolean value that indicates whether the receiver becomes the key window only when needed.
@@ -96,7 +98,6 @@ func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBecomesKeyOnlyIfNeeded:"), value)
 }
-
 // A Boolean value that indicates whether the receiver is a floating panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
@@ -104,6 +105,7 @@ func (p_ Panel) FloatingPanel() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("floatingPanel"))
 	return rv
 }
+
 
 // SetFloatingPanel sets the value of the floatingPanel property.
 // A Boolean value that indicates whether the receiver is a floating panel.
@@ -113,7 +115,6 @@ func (p_ Panel) FloatingPanel() bool {
 func (p_ Panel) SetFloatingPanel(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFloatingPanel:"), value)
 }
-
 // A Boolean value that indicates whether the panel receives keyboard and mouse events even when some other window is being run modally.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
@@ -121,6 +122,7 @@ func (p_ Panel) WorksWhenModal() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
+
 
 // SetWorksWhenModal sets the value of the worksWhenModal property.
 // A Boolean value that indicates whether the panel receives keyboard and mouse events even when some other window is being run modally.
@@ -130,3 +132,5 @@ func (p_ Panel) WorksWhenModal() bool {
 func (p_ Panel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
+
+

@@ -78,3 +78,7 @@ func (t_ TextTab) Autorelease() TextTab {
 func NewTextTab() TextTab {
 	return getTextTabClass().New()
 }
+
+
+
+

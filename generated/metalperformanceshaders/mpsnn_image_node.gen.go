@@ -76,3 +76,7 @@ func (i_ ImageNode) Autorelease() ImageNode {
 func NewImageNode() ImageNode {
 	return getImageNodeClass().New()
 }
+
+
+
+

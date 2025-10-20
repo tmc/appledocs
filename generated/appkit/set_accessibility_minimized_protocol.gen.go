@@ -15,3 +15,5 @@ var setAccessibilityMinimizedProtocol *objc.Protocol
 func init() {
 	setAccessibilityMinimizedProtocol = objc.GetProtocol("setAccessibilityMinimized")
 }
+
+

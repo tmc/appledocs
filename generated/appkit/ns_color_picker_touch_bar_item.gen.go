@@ -80,6 +80,7 @@ func NewColorPickerTouchBarItem() ColorPickerTouchBarItem {
 	return getColorPickerTouchBarItemClass().New()
 }
 
+
 // Creates a bar item with the standard color picker icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:)
@@ -104,6 +105,7 @@ func (c_ ColorPickerTouchBarItem) AllowedColorSpaces() []ColorSpace {
 	return rv
 }
 
+
 // SetAllowedColorSpaces sets the value of the allowedColorSpaces property.
 // Controls the color spaces that the color picker can produce.
 
@@ -112,7 +114,6 @@ func (c_ ColorPickerTouchBarItem) AllowedColorSpaces() []ColorSpace {
 func (c_ ColorPickerTouchBarItem) SetAllowedColorSpaces(value []ColorSpace) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedColorSpaces:"), value)
 }
-
 // The list of colors displayed in the color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
@@ -120,6 +121,7 @@ func (c_ ColorPickerTouchBarItem) ColorList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorList"))
 	return rv
 }
+
 
 // SetColorList sets the value of the colorList property.
 // The list of colors displayed in the color picker.
@@ -129,7 +131,6 @@ func (c_ ColorPickerTouchBarItem) ColorList() unsafe.Pointer {
 func (c_ ColorPickerTouchBarItem) SetColorList(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorList:"), value)
 }
-
 // A Boolean value that determines whether the color picker is enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/isEnabled
@@ -137,6 +138,7 @@ func (c_ ColorPickerTouchBarItem) Enabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
 }
+
 
 // SetEnabled sets the value of the enabled property.
 // A Boolean value that determines whether the color picker is enabled.
@@ -146,3 +148,5 @@ func (c_ ColorPickerTouchBarItem) Enabled() bool {
 func (c_ ColorPickerTouchBarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
+
+

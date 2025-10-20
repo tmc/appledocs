@@ -76,6 +76,7 @@ func NewNDArrayUnaryGradientKernel() NDArrayUnaryGradientKernel {
 	return getNDArrayUnaryGradientKernelClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryGradientKernel/init(device:)
 func NewNDArrayUnaryGradientKernelWithDevice(device objc.ID) NDArrayUnaryGradientKernel {
@@ -85,8 +86,11 @@ func NewNDArrayUnaryGradientKernelWithDevice(device objc.ID) NDArrayUnaryGradien
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryGradientKernel/encode(to:sourceArray:sourceGradient:gradientState:destinationArray:)
 func (n_ NDArrayUnaryGradientKernel) EncodeToCommandBufferSourceArraySourceGradientGradientStateDestinationArray(cmdBuf objc.ID, sourceArray unsafe.Pointer, gradient unsafe.Pointer, state unsafe.Pointer, destination unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:destinationArray:"), cmdBuf, sourceArray, gradient, state, destination)
 }
+
+

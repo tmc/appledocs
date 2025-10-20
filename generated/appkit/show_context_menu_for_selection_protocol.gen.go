@@ -15,3 +15,5 @@ var showContextMenuForSelectionProtocol *objc.Protocol
 func init() {
 	showContextMenuForSelectionProtocol = objc.GetProtocol("showContextMenuForSelection:")
 }
+
+

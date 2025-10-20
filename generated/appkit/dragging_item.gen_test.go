@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewDraggingItem
 
+
 // ExampleNewDraggingItemWithPasteboardWriter demonstrates how to create a DraggingItem instance using NewDraggingItemWithPasteboardWriter.
 // Creates and returns a dragging item using the specified content.
 func ExampleNewDraggingItemWithPasteboardWriter() {
@@ -17,3 +18,5 @@ func ExampleNewDraggingItemWithPasteboardWriter() {
 	)
 	// Output:
 }
+
+

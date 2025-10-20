@@ -1,0 +1,89 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+var sortDescriptorClass _SortDescriptorClass
+
+func init() {
+	sortDescriptorClass = _SortDescriptorClass{objc.GetClass("NSSortDescriptor")}
+}
+
+type _SortDescriptorClass struct {
+	class objc.Class
+}
+
+type SortDescriptor struct {
+	objc.ID
+}
+
+func SortDescriptorFrom(ptr unsafe.Pointer) SortDescriptor {
+	return SortDescriptor{
+		ID: objc.ID(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (sc _SortDescriptorClass) Alloc() SortDescriptor {
+	rv := objc.Send[SortDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SortDescriptorClass) New() SortDescriptor {
+	rv := objc.Send[SortDescriptor](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SortDescriptor) Init() SortDescriptor {
+	rv := objc.Send[SortDescriptor](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SortDescriptor) Autorelease() SortDescriptor {
+	rv := objc.Send[SortDescriptor](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSortDescriptor creates a new SortDescriptor instance.
+func NewSortDescriptor() SortDescriptor {
+	return sortDescriptorClass.New()
+}
+// Creates a sort descriptor with a specified string key path and sort order. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
+func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescriptor {
+	instance := sortDescriptorClass.Alloc()
+	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:"), key, ascending)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
+func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmptr unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), key, ascending, cmptr)
+	return rv
+}
+// Returns a comparison result value that indicates the sort order of two objects. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/compare(_:to:)
+func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compareObject:toObject:"), object1, object2)
+	return rv
+}
+
+

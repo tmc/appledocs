@@ -79,3 +79,7 @@ func (s_ ScrubberSelectionView) Autorelease() ScrubberSelectionView {
 func NewScrubberSelectionView() ScrubberSelectionView {
 	return getScrubberSelectionViewClass().New()
 }
+
+
+
+

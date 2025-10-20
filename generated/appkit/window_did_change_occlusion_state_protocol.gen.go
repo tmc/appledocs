@@ -15,3 +15,5 @@ var windowDidChangeOcclusionStateProtocol *objc.Protocol
 func init() {
 	windowDidChangeOcclusionStateProtocol = objc.GetProtocol("windowDidChangeOcclusionState:")
 }
+
+

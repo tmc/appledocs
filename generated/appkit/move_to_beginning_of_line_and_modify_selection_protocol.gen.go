@@ -12,3 +12,5 @@ var moveToBeginningOfLineAndModifySelectionProtocol *objc.Protocol
 func init() {
 	moveToBeginningOfLineAndModifySelectionProtocol = objc.GetProtocol("moveToBeginningOfLineAndModifySelection:")
 }
+
+

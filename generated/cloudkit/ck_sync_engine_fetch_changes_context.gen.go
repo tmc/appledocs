@@ -1,0 +1,93 @@
+// Code generated from Apple documentation for CloudKit. DO NOT EDIT.
+
+package cloudkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [CKSyncEngineFetchChangesContext] class.
+var (
+	CKSyncEngineFetchChangesContextClass     _CKSyncEngineFetchChangesContextClass
+	CKSyncEngineFetchChangesContextClassOnce sync.Once
+)
+
+func getCKSyncEngineFetchChangesContextClass() _CKSyncEngineFetchChangesContextClass {
+	CKSyncEngineFetchChangesContextClassOnce.Do(func() {
+		CKSyncEngineFetchChangesContextClass = _CKSyncEngineFetchChangesContextClass{objc.GetClass("CKSyncEngineFetchChangesContext")}
+	})
+	return CKSyncEngineFetchChangesContextClass
+}
+
+type _CKSyncEngineFetchChangesContextClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [CKSyncEngineFetchChangesContext] class.
+type ICKSyncEngineFetchChangesContext interface {
+	objectivec.IObject
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext
+type CKSyncEngineFetchChangesContext struct {
+	objectivec.Object
+}
+
+// CKSyncEngineFetchChangesContextFrom constructs a [CKSyncEngineFetchChangesContext] from an unsafe.Pointer.
+func CKSyncEngineFetchChangesContextFrom(ptr unsafe.Pointer) CKSyncEngineFetchChangesContext {
+	return CKSyncEngineFetchChangesContext{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (cc _CKSyncEngineFetchChangesContextClass) Alloc() CKSyncEngineFetchChangesContext {
+	rv := objc.Send[CKSyncEngineFetchChangesContext](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (cc _CKSyncEngineFetchChangesContextClass) New() CKSyncEngineFetchChangesContext {
+	rv := objc.Send[CKSyncEngineFetchChangesContext](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CKSyncEngineFetchChangesContext) Init() CKSyncEngineFetchChangesContext {
+	rv := objc.Send[CKSyncEngineFetchChangesContext](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CKSyncEngineFetchChangesContext) Autorelease() CKSyncEngineFetchChangesContext {
+	rv := objc.Send[CKSyncEngineFetchChangesContext](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCKSyncEngineFetchChangesContext creates a new CKSyncEngineFetchChangesContext instance.
+func NewCKSyncEngineFetchChangesContext() CKSyncEngineFetchChangesContext {
+	return getCKSyncEngineFetchChangesContextClass().New()
+}
+
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/options
+func (c_ CKSyncEngineFetchChangesContext) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/reason
+func (c_ CKSyncEngineFetchChangesContext) Reason() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reason"))
+	return rv
+}
+
+
+

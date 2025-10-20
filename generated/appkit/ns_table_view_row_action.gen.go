@@ -78,3 +78,7 @@ func (t_ TableViewRowAction) Autorelease() TableViewRowAction {
 func NewTableViewRowAction() TableViewRowAction {
 	return getTableViewRowActionClass().New()
 }
+
+
+
+

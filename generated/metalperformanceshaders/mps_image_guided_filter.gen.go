@@ -77,3 +77,7 @@ func (i_ ImageGuidedFilter) Autorelease() ImageGuidedFilter {
 func NewImageGuidedFilter() ImageGuidedFilter {
 	return getImageGuidedFilterClass().New()
 }
+
+
+
+

@@ -78,6 +78,7 @@ func NewNibConnector() NibConnector {
 	return getNibConnectorClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/replaceObject:withObject:
 func (n_ NibConnector) ReplaceObjectWithObject(oldObject objc.ID, newObject objc.ID) {
@@ -91,9 +92,12 @@ func (n_ NibConnector) Source() objc.ID {
 	return rv
 }
 
+
 // SetSource sets the value of the source property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/source
 func (n_ NibConnector) SetSource(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSource:"), value)
 }
+
+

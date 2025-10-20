@@ -74,3 +74,7 @@ func (r_ ReductionRowMaxNode) Autorelease() ReductionRowMaxNode {
 func NewReductionRowMaxNode() ReductionRowMaxNode {
 	return getReductionRowMaxNodeClass().New()
 }
+
+
+
+

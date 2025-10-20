@@ -12,3 +12,5 @@ var DeviceProviderProtocol *objc.Protocol
 func init() {
 	DeviceProviderProtocol = objc.GetProtocol("MPSDeviceProvider")
 }
+
+

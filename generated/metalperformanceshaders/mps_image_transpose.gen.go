@@ -79,3 +79,7 @@ func (i_ ImageTranspose) Autorelease() ImageTranspose {
 func NewImageTranspose() ImageTranspose {
 	return getImageTransposeClass().New()
 }
+
+
+
+

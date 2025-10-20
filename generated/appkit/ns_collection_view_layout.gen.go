@@ -78,3 +78,7 @@ func (c_ CollectionViewLayout) Autorelease() CollectionViewLayout {
 func NewCollectionViewLayout() CollectionViewLayout {
 	return getCollectionViewLayoutClass().New()
 }
+
+
+
+

@@ -75,9 +75,13 @@ func NewNDArray() NDArray {
 	return getNDArrayClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArray/arrayView(withShape:strides:)
 func (n_ NDArray) ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("arrayViewWithShape:strides:"), shape, strides)
 	return rv
 }
+
+
+

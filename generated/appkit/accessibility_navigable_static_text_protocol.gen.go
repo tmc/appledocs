@@ -12,3 +12,5 @@ var AccessibilityNavigableStaticTextProtocol *objc.Protocol
 func init() {
 	AccessibilityNavigableStaticTextProtocol = objc.GetProtocol("NSAccessibilityNavigableStaticText")
 }
+
+

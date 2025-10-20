@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SliderCell] class.
@@ -82,6 +82,7 @@ func NewSliderCell() SliderCell {
 	return getSliderCellClass().New()
 }
 
+
 // Returns the rectangle in which the slider knob is drawn.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/knobRect(flipped:)
@@ -98,6 +99,7 @@ func (s_ SliderCell) SliderType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSliderType sets the value of the sliderType property.
 // The slider type, either linear or circular.
 
@@ -106,3 +108,5 @@ func (s_ SliderCell) SliderType() unsafe.Pointer {
 func (s_ SliderCell) SetSliderType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
 }
+
+

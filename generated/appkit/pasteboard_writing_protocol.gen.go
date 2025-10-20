@@ -12,3 +12,5 @@ var PasteboardWritingProtocol *objc.Protocol
 func init() {
 	PasteboardWritingProtocol = objc.GetProtocol("NSPasteboardWriting")
 }
+
+

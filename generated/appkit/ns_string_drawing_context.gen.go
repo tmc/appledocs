@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [StringDrawingContext] class.
@@ -80,6 +80,7 @@ func NewStringDrawingContext() StringDrawingContext {
 	return getStringDrawingContextClass().New()
 }
 
+
 // The scale factor that determines the smallest font size to use during drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
@@ -87,6 +88,7 @@ func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumScaleFactor"))
 	return rv
 }
+
 
 // SetMinimumScaleFactor sets the value of the minimumScaleFactor property.
 // The scale factor that determines the smallest font size to use during drawing.
@@ -96,7 +98,6 @@ func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
 func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumScaleFactor:"), value)
 }
-
 // The most recent bounding rectangle that the system used to draw the string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/totalBounds
@@ -104,3 +105,6 @@ func (s_ StringDrawingContext) TotalBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("totalBounds"))
 	return rv
 }
+
+
+

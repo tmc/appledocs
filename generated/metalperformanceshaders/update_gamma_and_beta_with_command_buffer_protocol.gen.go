@@ -20,3 +20,5 @@ var updateGammaAndBetaWithCommandBufferProtocol *objc.Protocol
 func init() {
 	updateGammaAndBetaWithCommandBufferProtocol = objc.GetProtocol("updateGammaAndBetaWithCommandBuffer:")
 }
+
+

@@ -15,3 +15,5 @@ var accessibilityInsertionPointLineNumberProtocol *objc.Protocol
 func init() {
 	accessibilityInsertionPointLineNumberProtocol = objc.GetProtocol("accessibilityInsertionPointLineNumber")
 }
+
+

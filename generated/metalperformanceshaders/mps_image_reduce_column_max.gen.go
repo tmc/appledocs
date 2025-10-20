@@ -76,3 +76,7 @@ func (i_ ImageReduceColumnMax) Autorelease() ImageReduceColumnMax {
 func NewImageReduceColumnMax() ImageReduceColumnMax {
 	return getImageReduceColumnMaxClass().New()
 }
+
+
+
+

@@ -15,3 +15,5 @@ var setAccessibilityRulerMarkerTypeProtocol *objc.Protocol
 func init() {
 	setAccessibilityRulerMarkerTypeProtocol = objc.GetProtocol("setAccessibilityRulerMarkerType")
 }
+
+

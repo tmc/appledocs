@@ -80,6 +80,7 @@ func NewTokenFieldCell() TokenFieldCell {
 	return getTokenFieldCellClass().New()
 }
 
+
 // The token style of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenStyle
@@ -87,6 +88,7 @@ func (t_ TokenFieldCell) TokenStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenStyle"))
 	return rv
 }
+
 
 // SetTokenStyle sets the value of the tokenStyle property.
 // The token style of the receiver.
@@ -96,3 +98,5 @@ func (t_ TokenFieldCell) TokenStyle() unsafe.Pointer {
 func (t_ TokenFieldCell) SetTokenStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
+
+

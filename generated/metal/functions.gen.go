@@ -9,18 +9,20 @@ import (
 )
 
 
-// Metal Functions (6 total)
+// Metal Functions (8 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
 	_MTLCopyAllDevices func() unsafe.Pointer
+	_MTLCopyAllDevicesWithObserver func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MTLCreateSystemDefaultDevice func() unsafe.Pointer
-	_MTLIOCompressionContextAppendData func(unsafe.Pointer, unsafe.Pointer, uintptr)
-	_MTLIOCompressionContextDefaultChunkSize func() uintptr
-	_MTLIOCreateCompressionContext func(unsafe.Pointer, unsafe.Pointer, uintptr) unsafe.Pointer
+	_MTLIOCompressionContextAppendData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MTLIOCompressionContextDefaultChunkSize func() unsafe.Pointer
+	_MTLIOCreateCompressionContext func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MTLIOFlushAndDestroyCompressionContext func(unsafe.Pointer) unsafe.Pointer
+	_MTLRemoveDeviceObserver func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -29,11 +31,13 @@ func init() {
 		panic(err)
 	}
 	tryRegister(&_MTLCopyAllDevices, lib, "MTLCopyAllDevices")
+	tryRegister(&_MTLCopyAllDevicesWithObserver, lib, "MTLCopyAllDevicesWithObserver")
 	tryRegister(&_MTLCreateSystemDefaultDevice, lib, "MTLCreateSystemDefaultDevice")
 	tryRegister(&_MTLIOCompressionContextAppendData, lib, "MTLIOCompressionContextAppendData")
 	tryRegister(&_MTLIOCompressionContextDefaultChunkSize, lib, "MTLIOCompressionContextDefaultChunkSize")
 	tryRegister(&_MTLIOCreateCompressionContext, lib, "MTLIOCreateCompressionContext")
 	tryRegister(&_MTLIOFlushAndDestroyCompressionContext, lib, "MTLIOFlushAndDestroyCompressionContext")
+	tryRegister(&_MTLRemoveDeviceObserver, lib, "MTLRemoveDeviceObserver")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -60,6 +64,16 @@ func MTLCopyAllDevices() unsafe.Pointer {
 	}
 
 
+// Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes. [Full Topic]
+//
+// Added in macOS 10.13.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCopyAllDevicesWithObserver
+func MTLCopyAllDevicesWithObserver(observer unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
+	return _MTLCopyAllDevicesWithObserver(observer, handler)
+	}
+
+
 // Returns the device instance Metal selects as the default. [Full Topic]
 //
 // Added in macOS 10.11.
@@ -75,7 +89,7 @@ func MTLCreateSystemDefaultDevice() unsafe.Pointer {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)
-func MTLIOCompressionContextAppendData(context unsafe.Pointer, data unsafe.Pointer, size uintptr) {
+func MTLIOCompressionContextAppendData(context unsafe.Pointer, data unsafe.Pointer, size unsafe.Pointer) {
 	_MTLIOCompressionContextAppendData(context, data, size)
 	}
 
@@ -83,7 +97,7 @@ func MTLIOCompressionContextAppendData(context unsafe.Pointer, data unsafe.Point
 // Returns a compression chunk size you can use as a default for creating a compression context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()
-func MTLIOCompressionContextDefaultChunkSize() uintptr {
+func MTLIOCompressionContextDefaultChunkSize() unsafe.Pointer {
 	return _MTLIOCompressionContextDefaultChunkSize()
 	}
 
@@ -93,7 +107,7 @@ func MTLIOCompressionContextDefaultChunkSize() uintptr {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCreateCompressionContext
-func MTLIOCreateCompressionContext(path unsafe.Pointer, type_ unsafe.Pointer, chunkSize uintptr) unsafe.Pointer {
+func MTLIOCreateCompressionContext(path unsafe.Pointer, type_ unsafe.Pointer, chunkSize unsafe.Pointer) unsafe.Pointer {
 	return _MTLIOCreateCompressionContext(path, type_, chunkSize)
 	}
 
@@ -105,6 +119,16 @@ func MTLIOCreateCompressionContext(path unsafe.Pointer, type_ unsafe.Pointer, ch
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)
 func MTLIOFlushAndDestroyCompressionContext(context unsafe.Pointer) unsafe.Pointer {
 	return _MTLIOFlushAndDestroyCompressionContext(context)
+	}
+
+
+// Removes a registered observer of device notifications. [Full Topic]
+//
+// Added in macOS 10.13.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRemoveDeviceObserver(_:)
+func MTLRemoveDeviceObserver(observer unsafe.Pointer) {
+	_MTLRemoveDeviceObserver(observer)
 	}
 
 

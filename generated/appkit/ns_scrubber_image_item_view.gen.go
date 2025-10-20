@@ -80,6 +80,7 @@ func NewScrubberImageItemView() ScrubberImageItemView {
 	return getScrubberImageItemViewClass().New()
 }
 
+
 // The alignment of the image within the scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
@@ -87,6 +88,7 @@ func (s_ ScrubberImageItemView) ImageAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageAlignment"))
 	return rv
 }
+
 
 // SetImageAlignment sets the value of the imageAlignment property.
 // The alignment of the image within the scrubber item.
@@ -96,7 +98,6 @@ func (s_ ScrubberImageItemView) ImageAlignment() unsafe.Pointer {
 func (s_ ScrubberImageItemView) SetImageAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageAlignment:"), value)
 }
-
 // The image view that the scrubber item uses to display its image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageView
@@ -104,3 +105,6 @@ func (s_ ScrubberImageItemView) ImageView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageView"))
 	return rv
 }
+
+
+

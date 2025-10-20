@@ -74,3 +74,7 @@ func (r_ ReductionFeatureChannelsArgumentMinNode) Autorelease() ReductionFeature
 func NewReductionFeatureChannelsArgumentMinNode() ReductionFeatureChannelsArgumentMinNode {
 	return getReductionFeatureChannelsArgumentMinNodeClass().New()
 }
+
+
+
+

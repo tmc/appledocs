@@ -12,3 +12,5 @@ var ColorChangingProtocol *objc.Protocol
 func init() {
 	ColorChangingProtocol = objc.GetProtocol("NSColorChanging")
 }
+
+

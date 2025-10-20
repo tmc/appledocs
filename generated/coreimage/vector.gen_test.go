@@ -4,18 +4,18 @@ package coreimage_test
 
 import (
 	"github.com/tmc/appledocs/generated/coreimage"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // Suppress unused import errors
 var _ = coreimage.NewVector
 
 
-// ExampleNewVectorWithXY demonstrates how to create a Vector instance using NewVectorWithXY.
-// Initialize a Core Image vector object with two values.
-func ExampleNewVectorWithXY() {
-	_ = coreimage.NewVectorWithXY(
+// ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
+// Initialize a Core Image vector object with one value.
+func ExampleNewVectorWithX() {
+	_ = coreimage.NewVectorWithX(
 		0.0, // x float64
-		0.0, // y float64
 	)
 	// Output:
 }
@@ -27,6 +27,27 @@ func ExampleNewVectorWithXYZ() {
 		0.0, // x float64
 		0.0, // y float64
 		0.0, // z float64
+	)
+	// Output:
+}
+
+
+// ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
+// Initialize a Core Image vector object with values provided in a string representation.
+func ExampleNewVectorWithString() {
+	_ = coreimage.NewVectorWithString(
+		"representation", // representation string
+	)
+	// Output:
+}
+
+
+// ExampleNewVectorWithXY demonstrates how to create a Vector instance using NewVectorWithXY.
+// Initialize a Core Image vector object with two values.
+func ExampleNewVectorWithXY() {
+	_ = coreimage.NewVectorWithXY(
+		0.0, // x float64
+		0.0, // y float64
 	)
 	// Output:
 }
@@ -43,26 +64,6 @@ func ExampleNewVectorWithXYZW() {
 	// Output:
 }
 
-
-
-
-// ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
-// Initialize a Core Image vector object with one value.
-func ExampleNewVectorWithX() {
-	_ = coreimage.NewVectorWithX(
-		0.0, // x float64
-	)
-	// Output:
-}
-
-// ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
-// Initialize a Core Image vector object with values provided in a string representation.
-func ExampleNewVectorWithString() {
-	_ = coreimage.NewVectorWithString(
-		"representation", // representation string
-	)
-	// Output:
-}
 
 
 

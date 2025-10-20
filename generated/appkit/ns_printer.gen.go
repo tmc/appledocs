@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Printer] class.
@@ -87,6 +87,7 @@ func (p_ Printer) Autorelease() Printer {
 func NewPrinter() Printer {
 	return getPrinterClass().New()
 }
+
 
 // Returns the Boolean value associated with the specified key.
 //
@@ -175,3 +176,6 @@ func (p_ Printer) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
 	return rv
 }
+
+
+

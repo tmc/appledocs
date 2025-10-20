@@ -80,9 +80,13 @@ func NewStatusBar() StatusBar {
 	return getStatusBarClass().New()
 }
 
+
 // Removes the specified status item from the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/removeStatusItem(_:)
 func (s_ StatusBar) RemoveStatusItem(item unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeStatusItem:"), item)
 }
+
+
+

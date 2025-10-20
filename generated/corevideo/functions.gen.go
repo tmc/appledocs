@@ -6,7 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
@@ -21,27 +21,27 @@ var (
 	_CVBufferGetAttachment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVBufferGetAttachments func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVBufferHasAttachment func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVBufferPropagateAttachments func(unsafe.Pointer, unsafe.Pointer)
-	_CVBufferRelease func(unsafe.Pointer)
-	_CVBufferRemoveAllAttachments func(unsafe.Pointer)
-	_CVBufferRemoveAttachment func(unsafe.Pointer, unsafe.Pointer)
+	_CVBufferPropagateAttachments func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVBufferRelease func(unsafe.Pointer) unsafe.Pointer
+	_CVBufferRemoveAllAttachments func(unsafe.Pointer) unsafe.Pointer
+	_CVBufferRemoveAttachment func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVBufferRetain func(unsafe.Pointer) unsafe.Pointer
-	_CVBufferSetAttachment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CVBufferSetAttachments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CVColorPrimariesGetIntegerCodePointForString func(unsafe.Pointer) int
-	_CVColorPrimariesGetStringForIntegerCodePoint func(int) unsafe.Pointer
+	_CVBufferSetAttachment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVBufferSetAttachments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVColorPrimariesGetIntegerCodePointForString func(unsafe.Pointer) unsafe.Pointer
+	_CVColorPrimariesGetStringForIntegerCodePoint func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkCreateWithActiveCGDisplays func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkCreateWithCGDisplay func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkCreateWithCGDisplays func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkCreateWithOpenGLDisplayMask func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVDisplayLinkGetActualOutputVideoRefreshPeriod func(unsafe.Pointer) float64
+	_CVDisplayLinkGetActualOutputVideoRefreshPeriod func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkGetCurrentCGDisplay func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkGetCurrentTime func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkGetNominalOutputVideoRefreshPeriod func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkGetOutputVideoLatency func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkGetTypeID func() unsafe.Pointer
 	_CVDisplayLinkIsRunning func(unsafe.Pointer) unsafe.Pointer
-	_CVDisplayLinkRelease func(unsafe.Pointer)
+	_CVDisplayLinkRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkRetain func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkSetCurrentCGDisplay func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -50,32 +50,32 @@ var (
 	_CVDisplayLinkStart func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkStop func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkTranslateTime func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVGetCurrentHostTime func() uint64
-	_CVGetHostClockFrequency func() float64
-	_CVGetHostClockMinimumTimeDelta func() uint32
-	_CVImageBufferCreateColorSpaceFromAttachments func(unsafe.Pointer) CGColorSpaceRef
+	_CVGetCurrentHostTime func() unsafe.Pointer
+	_CVGetHostClockFrequency func() unsafe.Pointer
+	_CVGetHostClockMinimumTimeDelta func() unsafe.Pointer
+	_CVImageBufferCreateColorSpaceFromAttachments func(unsafe.Pointer) coregraphics.CGColorSpaceRef
 	_CVImageBufferGetCleanRect func(unsafe.Pointer) coregraphics.CGRect
-	_CVImageBufferGetColorSpace func(unsafe.Pointer) CGColorSpaceRef
+	_CVImageBufferGetColorSpace func(unsafe.Pointer) coregraphics.CGColorSpaceRef
 	_CVImageBufferGetDisplaySize func(unsafe.Pointer) coregraphics.CGSize
 	_CVImageBufferGetEncodedSize func(unsafe.Pointer) coregraphics.CGSize
 	_CVImageBufferIsFlipped func(unsafe.Pointer) unsafe.Pointer
 	_CVIsCompressedPixelFormatAvailable func(unsafe.Pointer) unsafe.Pointer
 	_CVMetalBufferCacheCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVMetalBufferCacheCreateBufferFromImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVMetalBufferCacheFlush func(unsafe.Pointer, unsafe.Pointer)
+	_CVMetalBufferCacheFlush func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVMetalBufferCacheGetTypeID func() unsafe.Pointer
 	_CVMetalBufferGetBuffer func(unsafe.Pointer) unsafe.Pointer
 	_CVMetalBufferGetTypeID func() unsafe.Pointer
 	_CVMetalTextureCacheCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVMetalTextureCacheCreateTextureFromImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, uintptr, uintptr, unsafe.Pointer) unsafe.Pointer
-	_CVMetalTextureCacheFlush func(unsafe.Pointer, unsafe.Pointer)
+	_CVMetalTextureCacheCreateTextureFromImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVMetalTextureCacheFlush func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVMetalTextureCacheGetTypeID func() unsafe.Pointer
-	_CVMetalTextureGetCleanTexCoords func(unsafe.Pointer, float32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CVMetalTextureGetCleanTexCoords func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVMetalTextureGetTexture func(unsafe.Pointer) unsafe.Pointer
 	_CVMetalTextureGetTypeID func() unsafe.Pointer
 	_CVMetalTextureIsFlipped func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferAttach func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLBufferCreate func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVOpenGLBufferCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferGetAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferGetTypeID func() unsafe.Pointer
 	_CVOpenGLBufferPoolCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -83,73 +83,73 @@ var (
 	_CVOpenGLBufferPoolGetAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferPoolGetOpenGLBufferAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferPoolGetTypeID func() unsafe.Pointer
-	_CVOpenGLBufferPoolRelease func(unsafe.Pointer)
+	_CVOpenGLBufferPoolRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferPoolRetain func(unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLBufferRelease func(unsafe.Pointer)
+	_CVOpenGLBufferRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLBufferRetain func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLESTextureCacheCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLESTextureCacheCreateTextureFromImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLESTextureCacheFlush func(unsafe.Pointer, unsafe.Pointer)
+	_CVOpenGLESTextureCacheCreateTextureFromImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVOpenGLESTextureCacheFlush func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLESTextureCacheGetTypeID func() unsafe.Pointer
-	_CVOpenGLESTextureGetCleanTexCoords func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CVOpenGLESTextureGetCleanTexCoords func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLESTextureGetName func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLESTextureGetTarget func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLESTextureGetTypeID func() unsafe.Pointer
 	_CVOpenGLESTextureIsFlipped func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureCacheCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureCacheCreateTextureFromImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLTextureCacheFlush func(unsafe.Pointer, unsafe.Pointer)
+	_CVOpenGLTextureCacheFlush func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureCacheGetTypeID func() unsafe.Pointer
-	_CVOpenGLTextureCacheRelease func(unsafe.Pointer)
+	_CVOpenGLTextureCacheRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureCacheRetain func(unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLTextureGetCleanTexCoords func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CVOpenGLTextureGetCleanTexCoords func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureGetName func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureGetTarget func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureGetTypeID func() unsafe.Pointer
 	_CVOpenGLTextureIsFlipped func(unsafe.Pointer) unsafe.Pointer
-	_CVOpenGLTextureRelease func(unsafe.Pointer)
+	_CVOpenGLTextureRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVOpenGLTextureRetain func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferCopyCreationAttributes func(unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferCreate func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferCreateResolvedAttributesDictionary func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferCreateWithBytes func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferCreateWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferCreateWithIOSurface func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferCreateWithPlanarBytes func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, uintptr, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferCreateWithPlanarBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferFillExtendedPixels func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferGetBaseAddress func(unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferGetBaseAddressOfPlane func(unsafe.Pointer, uintptr) unsafe.Pointer
-	_CVPixelBufferGetBytesPerRow func(unsafe.Pointer) uintptr
-	_CVPixelBufferGetBytesPerRowOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_CVPixelBufferGetDataSize func(unsafe.Pointer) uintptr
-	_CVPixelBufferGetExtendedPixels func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CVPixelBufferGetHeight func(unsafe.Pointer) uintptr
-	_CVPixelBufferGetHeightOfPlane func(unsafe.Pointer, uintptr) uintptr
+	_CVPixelBufferGetBaseAddressOfPlane func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetBytesPerRow func(unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetBytesPerRowOfPlane func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetDataSize func(unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetExtendedPixels func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetHeight func(unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetHeightOfPlane func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferGetIOSurface func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferGetPixelFormatType func(unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferGetPlaneCount func(unsafe.Pointer) uintptr
+	_CVPixelBufferGetPlaneCount func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferGetTypeID func() unsafe.Pointer
-	_CVPixelBufferGetWidth func(unsafe.Pointer) uintptr
-	_CVPixelBufferGetWidthOfPlane func(unsafe.Pointer, uintptr) uintptr
+	_CVPixelBufferGetWidth func(unsafe.Pointer) unsafe.Pointer
+	_CVPixelBufferGetWidthOfPlane func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferIsCompatibleWithAttributes func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferIsPlanar func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferLockBaseAddress func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolCreatePixelBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolCreatePixelBufferWithAuxAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferPoolFlush func(unsafe.Pointer, unsafe.Pointer)
+	_CVPixelBufferPoolFlush func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolGetAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolGetPixelBufferAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolGetTypeID func() unsafe.Pointer
-	_CVPixelBufferPoolRelease func(unsafe.Pointer)
+	_CVPixelBufferPoolRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferPoolRetain func(unsafe.Pointer) unsafe.Pointer
-	_CVPixelBufferRelease func(unsafe.Pointer)
+	_CVPixelBufferRelease func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferRetain func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferUnlockBaseAddress func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelFormatTypeCopyFourCharCodeString func(unsafe.Pointer) unsafe.Pointer
-	_CVTransferFunctionGetIntegerCodePointForString func(unsafe.Pointer) int
-	_CVTransferFunctionGetStringForIntegerCodePoint func(int) unsafe.Pointer
-	_CVYCbCrMatrixGetIntegerCodePointForString func(unsafe.Pointer) int
-	_CVYCbCrMatrixGetStringForIntegerCodePoint func(int) unsafe.Pointer
+	_CVTransferFunctionGetIntegerCodePointForString func(unsafe.Pointer) unsafe.Pointer
+	_CVTransferFunctionGetStringForIntegerCodePoint func(unsafe.Pointer) unsafe.Pointer
+	_CVYCbCrMatrixGetIntegerCodePointForString func(unsafe.Pointer) unsafe.Pointer
+	_CVYCbCrMatrixGetStringForIntegerCodePoint func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -436,7 +436,7 @@ func CVBufferSetAttachments(buffer unsafe.Pointer, theAttachments unsafe.Pointer
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVColorPrimariesGetIntegerCodePointForString(_:)
-func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Pointer) int {
+func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Pointer) unsafe.Pointer {
 	return _CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString)
 	}
 
@@ -446,7 +446,7 @@ func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Po
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVColorPrimariesGetStringForIntegerCodePoint(_:)
-func CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint int) unsafe.Pointer {
+func CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint unsafe.Pointer) unsafe.Pointer {
 	return _CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint)
 	}
 
@@ -506,7 +506,7 @@ func CVDisplayLinkCreateWithOpenGLDisplayMask(mask unsafe.Pointer, displayLinkOu
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)
-func CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink unsafe.Pointer) float64 {
+func CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink)
 	}
 
@@ -696,7 +696,7 @@ func CVDisplayLinkTranslateTime(displayLink unsafe.Pointer, inTime unsafe.Pointe
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVGetCurrentHostTime()
-func CVGetCurrentHostTime() uint64 {
+func CVGetCurrentHostTime() unsafe.Pointer {
 	return _CVGetCurrentHostTime()
 	}
 
@@ -706,7 +706,7 @@ func CVGetCurrentHostTime() uint64 {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVGetHostClockFrequency()
-func CVGetHostClockFrequency() float64 {
+func CVGetHostClockFrequency() unsafe.Pointer {
 	return _CVGetHostClockFrequency()
 	}
 
@@ -716,7 +716,7 @@ func CVGetHostClockFrequency() float64 {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVGetHostClockMinimumTimeDelta()
-func CVGetHostClockMinimumTimeDelta() uint32 {
+func CVGetHostClockMinimumTimeDelta() unsafe.Pointer {
 	return _CVGetHostClockMinimumTimeDelta()
 	}
 
@@ -726,7 +726,7 @@ func CVGetHostClockMinimumTimeDelta() uint32 {
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferCreateColorSpaceFromAttachments(_:)
-func CVImageBufferCreateColorSpaceFromAttachments(attachments unsafe.Pointer) CGColorSpaceRef {
+func CVImageBufferCreateColorSpaceFromAttachments(attachments unsafe.Pointer) coregraphics.CGColorSpaceRef {
 	return _CVImageBufferCreateColorSpaceFromAttachments(attachments)
 	}
 
@@ -746,7 +746,7 @@ func CVImageBufferGetCleanRect(imageBuffer unsafe.Pointer) coregraphics.CGRect {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferGetColorSpace(_:)
-func CVImageBufferGetColorSpace(imageBuffer unsafe.Pointer) CGColorSpaceRef {
+func CVImageBufferGetColorSpace(imageBuffer unsafe.Pointer) coregraphics.CGColorSpaceRef {
 	return _CVImageBufferGetColorSpace(imageBuffer)
 	}
 
@@ -866,7 +866,7 @@ func CVMetalTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.
 // Added in macOS 10.11.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureCacheCreateTextureFromImage(_:_:_:_:_:_:_:_:_:)
-func CVMetalTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, textureAttributes unsafe.Pointer, pixelFormat unsafe.Pointer, width uintptr, height uintptr, planeIndex uintptr, textureOut unsafe.Pointer) unsafe.Pointer {
+func CVMetalTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, textureAttributes unsafe.Pointer, pixelFormat unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, planeIndex unsafe.Pointer, textureOut unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalTextureCacheCreateTextureFromImage(allocator, textureCache, sourceImage, textureAttributes, pixelFormat, width, height, planeIndex, textureOut)
 	}
 
@@ -896,7 +896,7 @@ func CVMetalTextureCacheGetTypeID() unsafe.Pointer {
 // Added in macOS 10.11.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureGetCleanTexCoords(_:_:_:_:_:)
-func CVMetalTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft float32, lowerRight unsafe.Pointer, upperRight unsafe.Pointer, upperLeft unsafe.Pointer, p5 unsafe.Pointer) {
+func CVMetalTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.Pointer, lowerRight unsafe.Pointer, upperRight unsafe.Pointer, upperLeft unsafe.Pointer, p5 unsafe.Pointer) {
 	_CVMetalTextureGetCleanTexCoords(image, lowerLeft, lowerRight, upperRight, upperLeft, p5)
 	}
 
@@ -950,7 +950,7 @@ func CVOpenGLBufferAttach(openGLBuffer unsafe.Pointer, cglContext unsafe.Pointer
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferCreate(_:_:_:_:_:)
-func CVOpenGLBufferCreate(allocator unsafe.Pointer, width uintptr, height uintptr, attributes unsafe.Pointer, bufferOut unsafe.Pointer) unsafe.Pointer {
+func CVOpenGLBufferCreate(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, attributes unsafe.Pointer, bufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferCreate(allocator, width, height, attributes, bufferOut)
 	}
 
@@ -1098,7 +1098,7 @@ func CVOpenGLESTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsa
 // Creates a object from an existing . [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureCacheCreateTextureFromImage(_:_:_:_:_:_:_:_:_:_:_:_:)
-func CVOpenGLESTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, textureAttributes unsafe.Pointer, target unsafe.Pointer, internalFormat unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, format unsafe.Pointer, type_ unsafe.Pointer, planeIndex uintptr, textureOut unsafe.Pointer) unsafe.Pointer {
+func CVOpenGLESTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, textureAttributes unsafe.Pointer, target unsafe.Pointer, internalFormat unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, format unsafe.Pointer, type_ unsafe.Pointer, planeIndex unsafe.Pointer, textureOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLESTextureCacheCreateTextureFromImage(allocator, textureCache, sourceImage, textureAttributes, target, internalFormat, width, height, format, type_, planeIndex, textureOut)
 	}
 
@@ -1330,7 +1330,7 @@ func CVPixelBufferCopyCreationAttributes(pixelBuffer unsafe.Pointer) unsafe.Poin
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreate(_:_:_:_:_:_:)
-func CVPixelBufferCreate(allocator unsafe.Pointer, width uintptr, height uintptr, pixelFormatType unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
+func CVPixelBufferCreate(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, pixelFormatType unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreate(allocator, width, height, pixelFormatType, pixelBufferAttributes, pixelBufferOut)
 	}
 
@@ -1350,7 +1350,7 @@ func CVPixelBufferCreateResolvedAttributesDictionary(allocator unsafe.Pointer, a
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreateWithBytes(_:_:_:_:_:_:_:_:_:_:)
-func CVPixelBufferCreateWithBytes(allocator unsafe.Pointer, width uintptr, height uintptr, pixelFormatType unsafe.Pointer, baseAddress unsafe.Pointer, bytesPerRow uintptr, releaseCallback unsafe.Pointer, releaseRefCon unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
+func CVPixelBufferCreateWithBytes(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, pixelFormatType unsafe.Pointer, baseAddress unsafe.Pointer, bytesPerRow unsafe.Pointer, releaseCallback unsafe.Pointer, releaseRefCon unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreateWithBytes(allocator, width, height, pixelFormatType, baseAddress, bytesPerRow, releaseCallback, releaseRefCon, pixelBufferAttributes, pixelBufferOut)
 	}
 
@@ -1370,7 +1370,7 @@ func CVPixelBufferCreateWithIOSurface(allocator unsafe.Pointer, surface unsafe.P
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreateWithPlanarBytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
-func CVPixelBufferCreateWithPlanarBytes(allocator unsafe.Pointer, width uintptr, height uintptr, pixelFormatType unsafe.Pointer, dataPtr unsafe.Pointer, dataSize uintptr, numberOfPlanes uintptr, planeBaseAddress unsafe.Pointer, planeWidth uintptr, planeHeight uintptr, planeBytesPerRow uintptr, releaseCallback unsafe.Pointer, releaseRefCon unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
+func CVPixelBufferCreateWithPlanarBytes(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, pixelFormatType unsafe.Pointer, dataPtr unsafe.Pointer, dataSize unsafe.Pointer, numberOfPlanes unsafe.Pointer, planeBaseAddress unsafe.Pointer, planeWidth unsafe.Pointer, planeHeight unsafe.Pointer, planeBytesPerRow unsafe.Pointer, releaseCallback unsafe.Pointer, releaseRefCon unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreateWithPlanarBytes(allocator, width, height, pixelFormatType, dataPtr, dataSize, numberOfPlanes, planeBaseAddress, planeWidth, planeHeight, planeBytesPerRow, releaseCallback, releaseRefCon, pixelBufferAttributes, pixelBufferOut)
 	}
 
@@ -1400,7 +1400,7 @@ func CVPixelBufferGetBaseAddress(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBaseAddressOfPlane(_:_:)
-func CVPixelBufferGetBaseAddressOfPlane(pixelBuffer unsafe.Pointer, planeIndex uintptr) unsafe.Pointer {
+func CVPixelBufferGetBaseAddressOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, planeIndex)
 	}
 
@@ -1410,7 +1410,7 @@ func CVPixelBufferGetBaseAddressOfPlane(pixelBuffer unsafe.Pointer, planeIndex u
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBytesPerRow(_:)
-func CVPixelBufferGetBytesPerRow(pixelBuffer unsafe.Pointer) uintptr {
+func CVPixelBufferGetBytesPerRow(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBytesPerRow(pixelBuffer)
 	}
 
@@ -1420,7 +1420,7 @@ func CVPixelBufferGetBytesPerRow(pixelBuffer unsafe.Pointer) uintptr {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBytesPerRowOfPlane(_:_:)
-func CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, planeIndex)
 	}
 
@@ -1430,7 +1430,7 @@ func CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer unsafe.Pointer, planeIndex u
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetDataSize(_:)
-func CVPixelBufferGetDataSize(pixelBuffer unsafe.Pointer) uintptr {
+func CVPixelBufferGetDataSize(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetDataSize(pixelBuffer)
 	}
 
@@ -1450,7 +1450,7 @@ func CVPixelBufferGetExtendedPixels(pixelBuffer unsafe.Pointer, extraColumnsOnLe
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetHeight(_:)
-func CVPixelBufferGetHeight(pixelBuffer unsafe.Pointer) uintptr {
+func CVPixelBufferGetHeight(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetHeight(pixelBuffer)
 	}
 
@@ -1460,7 +1460,7 @@ func CVPixelBufferGetHeight(pixelBuffer unsafe.Pointer) uintptr {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetHeightOfPlane(_:_:)
-func CVPixelBufferGetHeightOfPlane(pixelBuffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func CVPixelBufferGetHeightOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetHeightOfPlane(pixelBuffer, planeIndex)
 	}
 
@@ -1490,7 +1490,7 @@ func CVPixelBufferGetPixelFormatType(pixelBuffer unsafe.Pointer) unsafe.Pointer 
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetPlaneCount(_:)
-func CVPixelBufferGetPlaneCount(pixelBuffer unsafe.Pointer) uintptr {
+func CVPixelBufferGetPlaneCount(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetPlaneCount(pixelBuffer)
 	}
 
@@ -1510,7 +1510,7 @@ func CVPixelBufferGetTypeID() unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetWidth(_:)
-func CVPixelBufferGetWidth(pixelBuffer unsafe.Pointer) uintptr {
+func CVPixelBufferGetWidth(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetWidth(pixelBuffer)
 	}
 
@@ -1520,7 +1520,7 @@ func CVPixelBufferGetWidth(pixelBuffer unsafe.Pointer) uintptr {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetWidthOfPlane(_:_:)
-func CVPixelBufferGetWidthOfPlane(pixelBuffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func CVPixelBufferGetWidthOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetWidthOfPlane(pixelBuffer, planeIndex)
 	}
 
@@ -1690,7 +1690,7 @@ func CVPixelFormatTypeCopyFourCharCodeString(pixelFormat unsafe.Pointer) unsafe.
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTransferFunctionGetIntegerCodePointForString(_:)
-func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsafe.Pointer) int {
+func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsafe.Pointer) unsafe.Pointer {
 	return _CVTransferFunctionGetIntegerCodePointForString(transferFunctionString)
 	}
 
@@ -1700,7 +1700,7 @@ func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsaf
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTransferFunctionGetStringForIntegerCodePoint(_:)
-func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint int) unsafe.Pointer {
+func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint unsafe.Pointer) unsafe.Pointer {
 	return _CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint)
 	}
 
@@ -1710,7 +1710,7 @@ func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint in
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVYCbCrMatrixGetIntegerCodePointForString(_:)
-func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer) int {
+func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer) unsafe.Pointer {
 	return _CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString)
 	}
 
@@ -1720,7 +1720,7 @@ func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer)
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVYCbCrMatrixGetStringForIntegerCodePoint(_:)
-func CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint int) unsafe.Pointer {
+func CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint unsafe.Pointer) unsafe.Pointer {
 	return _CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint)
 	}
 

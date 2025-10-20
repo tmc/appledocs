@@ -12,3 +12,5 @@ var moveForwardAndModifySelectionProtocol *objc.Protocol
 func init() {
 	moveForwardAndModifySelectionProtocol = objc.GetProtocol("moveForwardAndModifySelection:")
 }
+
+

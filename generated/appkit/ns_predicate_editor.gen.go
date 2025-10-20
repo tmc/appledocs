@@ -80,6 +80,7 @@ func NewPredicateEditor() PredicateEditor {
 	return getPredicateEditorClass().New()
 }
 
+
 // The row templates for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
@@ -87,6 +88,7 @@ func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("rowTemplates"))
 	return rv
 }
+
 
 // SetRowTemplates sets the value of the rowTemplates property.
 // The row templates for the receiver.
@@ -96,3 +98,5 @@ func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
 func (p_ PredicateEditor) SetRowTemplates(value []unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
 }
+
+

@@ -15,3 +15,5 @@ var setAccessibilityWindowProtocol *objc.Protocol
 func init() {
 	setAccessibilityWindowProtocol = objc.GetProtocol("setAccessibilityWindow")
 }
+
+

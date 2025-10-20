@@ -15,3 +15,5 @@ var accessibilityFocusedWindowProtocol *objc.Protocol
 func init() {
 	accessibilityFocusedWindowProtocol = objc.GetProtocol("accessibilityFocusedWindow")
 }
+
+

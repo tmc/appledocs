@@ -73,3 +73,7 @@ func (b_ BindingSelectionMarker) Autorelease() BindingSelectionMarker {
 func NewBindingSelectionMarker() BindingSelectionMarker {
 	return getBindingSelectionMarkerClass().New()
 }
+
+
+
+

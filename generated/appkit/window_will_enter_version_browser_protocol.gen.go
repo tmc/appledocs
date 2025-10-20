@@ -15,3 +15,5 @@ var windowWillEnterVersionBrowserProtocol *objc.Protocol
 func init() {
 	windowWillEnterVersionBrowserProtocol = objc.GetProtocol("windowWillEnterVersionBrowser:")
 }
+
+

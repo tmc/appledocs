@@ -78,3 +78,7 @@ func (t_ TrackingArea) Autorelease() TrackingArea {
 func NewTrackingArea() TrackingArea {
 	return getTrackingAreaClass().New()
 }
+
+
+
+

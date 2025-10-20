@@ -79,3 +79,7 @@ func (s_ SplitViewController) Autorelease() SplitViewController {
 func NewSplitViewController() SplitViewController {
 	return getSplitViewControllerClass().New()
 }
+
+
+
+

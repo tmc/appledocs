@@ -76,9 +76,13 @@ func NewForwardLossNode() ForwardLossNode {
 	return getForwardLossNodeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLossNode/gradientFilters(withSources:)
 func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient unsafe.Pointer) []LossGradientNode {
 	rv := objc.Send[[]LossGradientNode](f_.ID, objc.Sel("gradientFiltersWithSources:"), sourceGradient)
 	return rv
 }
+
+
+

@@ -79,3 +79,7 @@ func (t_ TreeController) Autorelease() TreeController {
 func NewTreeController() TreeController {
 	return getTreeControllerClass().New()
 }
+
+
+
+

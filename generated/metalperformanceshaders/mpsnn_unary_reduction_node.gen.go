@@ -75,6 +75,7 @@ func NewUnaryReductionNode() UnaryReductionNode {
 	return getUnaryReductionNodeClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNUnaryReductionNode/init(source:)
 func NewUnaryReductionNodeWithSource(sourceNode unsafe.Pointer) UnaryReductionNode {
@@ -83,3 +84,6 @@ func NewUnaryReductionNodeWithSource(sourceNode unsafe.Pointer) UnaryReductionNo
 	rv.Autorelease()
 	return rv
 }
+
+
+

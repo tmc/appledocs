@@ -15,3 +15,5 @@ var windowWillEnterFullScreenProtocol *objc.Protocol
 func init() {
 	windowWillEnterFullScreenProtocol = objc.GetProtocol("windowWillEnterFullScreen:")
 }
+
+

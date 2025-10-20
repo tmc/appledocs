@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextStorage] class.
@@ -81,6 +81,7 @@ func NewTextStorage() TextStorage {
 	return getTextStorageClass().New()
 }
 
+
 // The text storage contents as an array of characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/characters
@@ -88,6 +89,7 @@ func (t_ TextStorage) Characters() []TextStorage {
 	rv := objc.Send[[]TextStorage](t_.ID, objc.Sel("characters"))
 	return rv
 }
+
 
 // SetCharacters sets the value of the characters property.
 // The text storage contents as an array of characters.
@@ -97,7 +99,6 @@ func (t_ TextStorage) Characters() []TextStorage {
 func (t_ TextStorage) SetCharacters(value []TextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacters:"), value)
 }
-
 // The observer for the text storage object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/textStorageObserver
@@ -105,6 +106,7 @@ func (t_ TextStorage) TextStorageObserver() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("textStorageObserver"))
 	return rv
 }
+
 
 // SetTextStorageObserver sets the value of the textStorageObserver property.
 // The observer for the text storage object.
@@ -114,3 +116,5 @@ func (t_ TextStorage) TextStorageObserver() objc.ID {
 func (t_ TextStorage) SetTextStorageObserver(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStorageObserver:"), value)
 }
+
+

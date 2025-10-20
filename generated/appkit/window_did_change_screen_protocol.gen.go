@@ -15,3 +15,5 @@ var windowDidChangeScreenProtocol *objc.Protocol
 func init() {
 	windowDidChangeScreenProtocol = objc.GetProtocol("windowDidChangeScreen:")
 }
+
+

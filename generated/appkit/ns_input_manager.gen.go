@@ -73,3 +73,7 @@ func (i_ InputManager) Autorelease() InputManager {
 func NewInputManager() InputManager {
 	return getInputManagerClass().New()
 }
+
+
+
+

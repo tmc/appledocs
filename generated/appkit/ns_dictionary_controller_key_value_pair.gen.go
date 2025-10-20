@@ -79,6 +79,7 @@ func NewDictionaryControllerKeyValuePair() DictionaryControllerKeyValuePair {
 	return getDictionaryControllerKeyValuePairClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
 func (d_ DictionaryControllerKeyValuePair) Key() unsafe.Pointer {
@@ -86,13 +87,13 @@ func (d_ DictionaryControllerKeyValuePair) Key() unsafe.Pointer {
 	return rv
 }
 
+
 // SetKey sets the value of the key property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
 func (d_ DictionaryControllerKeyValuePair) SetKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKey:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
 func (d_ DictionaryControllerKeyValuePair) Value() objc.ID {
@@ -100,9 +101,12 @@ func (d_ DictionaryControllerKeyValuePair) Value() objc.ID {
 	return rv
 }
 
+
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
 func (d_ DictionaryControllerKeyValuePair) SetValue(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:"), value)
 }
+
+

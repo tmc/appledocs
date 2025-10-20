@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ImageRep] class.
@@ -84,13 +84,6 @@ func NewImageRep() ImageRep {
 	return getImageRepClass().New()
 }
 
-// Creates and returns an image representation object using the contents of the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
-func NewImageRepWithPasteboard(pasteboard unsafe.Pointer) ImageRep {
-	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
-	return rv
-}
 
 // Creates and returns an image representation object from data in an unarchiver.
 //
@@ -101,6 +94,15 @@ func NewImageRepWithCoder(coder unsafe.Pointer) ImageRep {
 	rv.Autorelease()
 	return rv
 }
+
+// Creates and returns an image representation object using the contents of the specified pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
+func NewImageRepWithPasteboard(pasteboard unsafe.Pointer) ImageRep {
+	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
+	return rv
+}
+
 
 // Returns the image representation subclass that handles the specified type of data.
 //
@@ -149,3 +151,5 @@ func (i_ ImageRep) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpa
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
 	return rv
 }
+
+

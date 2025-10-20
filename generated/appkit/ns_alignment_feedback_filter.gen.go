@@ -80,9 +80,13 @@ func NewAlignmentFeedbackFilter() AlignmentFeedbackFilter {
 	return getAlignmentFeedbackFilterClass().New()
 }
 
+
 // Informs the feedback filter about a new event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)
 func (a_ AlignmentFeedbackFilter) UpdateWithEvent(event unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithEvent:"), event)
 }
+
+
+

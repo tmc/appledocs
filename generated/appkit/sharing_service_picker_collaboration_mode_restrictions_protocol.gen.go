@@ -15,3 +15,5 @@ var sharingServicePickerCollaborationModeRestrictionsProtocol *objc.Protocol
 func init() {
 	sharingServicePickerCollaborationModeRestrictionsProtocol = objc.GetProtocol("sharingServicePickerCollaborationModeRestrictions:")
 }
+
+

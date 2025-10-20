@@ -75,6 +75,7 @@ func NewGridSample() GridSample {
 	return getGridSampleClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGridSample/init(device:)
 func NewGridSampleWithDevice(device objc.ID) GridSample {
@@ -83,3 +84,6 @@ func NewGridSampleWithDevice(device objc.ID) GridSample {
 	rv.Autorelease()
 	return rv
 }
+
+
+

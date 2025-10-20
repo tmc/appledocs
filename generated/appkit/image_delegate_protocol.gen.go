@@ -12,3 +12,5 @@ var ImageDelegateProtocol *objc.Protocol
 func init() {
 	ImageDelegateProtocol = objc.GetProtocol("NSImageDelegate")
 }
+
+

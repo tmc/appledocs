@@ -12,3 +12,5 @@ var accessibilityFocusedUIElementProtocol *objc.Protocol
 func init() {
 	accessibilityFocusedUIElementProtocol = objc.GetProtocol("accessibilityFocusedUIElement")
 }
+
+

@@ -78,12 +78,14 @@ func NewPickerTouchBarItem() PickerTouchBarItem {
 	return getPickerTouchBarItemClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/init(identifier:labels:selectionMode:target:action:)
 func NewPickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier unsafe.Pointer, labels unsafe.Pointer, selectionMode unsafe.Pointer, target objc.ID, action objc.SEL) PickerTouchBarItem {
 	rv := objc.Send[PickerTouchBarItem](objc.ID(getPickerTouchBarItemClass().class), objc.Sel("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), identifier, labels, selectionMode, target, action)
 	return rv
 }
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/init(identifier:labels:selectionMode:target:action:)
@@ -99,13 +101,13 @@ func (p_ PickerTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCollapsedRepresentationImage sets the value of the collapsedRepresentationImage property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationImage
 func (p_ PickerTouchBarItem) SetCollapsedRepresentationImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationLabel
 func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() unsafe.Pointer {
@@ -113,9 +115,11 @@ func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCollapsedRepresentationLabel sets the value of the collapsedRepresentationLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationLabel
 func (p_ PickerTouchBarItem) SetCollapsedRepresentationLabel(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), value)
 }
+

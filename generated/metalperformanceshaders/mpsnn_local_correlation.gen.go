@@ -74,6 +74,7 @@ func NewLocalCorrelation() LocalCorrelation {
 	return getLocalCorrelationClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/init(coder:device:)
 func NewLocalCorrelationWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) LocalCorrelation {
@@ -83,6 +84,7 @@ func NewLocalCorrelationWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID)
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
 func (l_ LocalCorrelation) StrideInY() uint {
@@ -90,9 +92,11 @@ func (l_ LocalCorrelation) StrideInY() uint {
 	return rv
 }
 
+
 // SetStrideInY sets the value of the strideInY property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
 func (l_ LocalCorrelation) SetStrideInY(value uint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setStrideInY:"), value)
 }
+

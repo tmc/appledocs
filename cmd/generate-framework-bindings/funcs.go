@@ -1948,8 +1948,14 @@ func canGenerateTestValue(args ...string) bool {
 	case "string", "int", "int8", "int16", "int32", "int64",
 		"uint", "uint8", "uint16", "uint32", "uint64",
 		"float32", "float64", "bool",
-		"objc.ID", "objc.SEL", "objc.Class":
+		"objc.ID", "objc.SEL":
 		return true
+	}
+
+	// objc.Class cannot be tested with 0/nil as it causes crashes in many Foundation APIs
+	// that expect valid class pointers
+	if goType == "objc.Class" {
+		return false
 	}
 
 	// We can handle Foundation geometry types

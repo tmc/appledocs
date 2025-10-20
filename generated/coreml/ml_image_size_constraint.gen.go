@@ -7,21 +7,21 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ImageSizeConstraint] class.
 var (
-	imageSizeConstraintClass     _ImageSizeConstraintClass
-	imageSizeConstraintClassOnce sync.Once
+	ImageSizeConstraintClass     _ImageSizeConstraintClass
+	ImageSizeConstraintClassOnce sync.Once
 )
 
 func getImageSizeConstraintClass() _ImageSizeConstraintClass {
-	imageSizeConstraintClassOnce.Do(func() {
-		imageSizeConstraintClass = _ImageSizeConstraintClass{objc.GetClass("MLImageSizeConstraint")}
+	ImageSizeConstraintClassOnce.Do(func() {
+		ImageSizeConstraintClass = _ImageSizeConstraintClass{objc.GetClass("MLImageSizeConstraint")}
 	})
-	return imageSizeConstraintClass
+	return ImageSizeConstraintClass
 }
 
 type _ImageSizeConstraintClass struct {
@@ -91,17 +91,17 @@ func (i_ ImageSizeConstraint) EnumeratedImageSizes() []ImageSize {
 
 // The range of heights a model’s image feature accepts as input or produces as output.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsHighfoundation.Range
-func (i_ ImageSizeConstraint) PixelsHighfoundation.Range() foundation.Range {
-	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsHighfoundation.Range"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsHighRange
+func (i_ ImageSizeConstraint) PixelsHighRange() foundation.Range {
+	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsHighRange"))
 	return rv
 }
 
 // The range of widths a model’s image feature accepts as input or produces as output.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsWidefoundation.Range
-func (i_ ImageSizeConstraint) PixelsWidefoundation.Range() foundation.Range {
-	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsWidefoundation.Range"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsWideRange
+func (i_ ImageSizeConstraint) PixelsWideRange() foundation.Range {
+	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsWideRange"))
 	return rv
 }
 
