@@ -31,6 +31,9 @@ type Document struct {
 
 	// Variants lists available language/platform combinations
 	Variants []Variant `json:"variants,omitempty"`
+
+	// RelationshipsSections contains information about relationships (inheritance, conformance)
+	RelationshipsSections []RelationshipsSection `json:"relationshipsSections,omitempty"`
 }
 
 // VariantOverride contains JSON Patch operations for a specific language variant.
@@ -169,4 +172,19 @@ type Token struct {
 	Kind       string `json:"kind"`
 	Text       string `json:"text"`
 	Identifier string `json:"identifier,omitempty"`
+}
+
+// RelationshipsSection describes a type of relationship (inheritance, protocol conformance, etc).
+type RelationshipsSection struct {
+	// Identifiers lists the related symbols
+	Identifiers []string `json:"identifiers,omitempty"`
+
+	// Type describes the relationship type (e.g., "inheritsFrom", "conformsTo")
+	Type string `json:"type,omitempty"`
+
+	// Title is the human-readable section title
+	Title string `json:"title,omitempty"`
+
+	// Kind is typically "relationships"
+	Kind string `json:"kind,omitempty"`
 }

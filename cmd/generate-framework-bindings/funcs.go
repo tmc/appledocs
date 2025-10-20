@@ -459,32 +459,30 @@ func stripObjCPrefix(className string) string {
 	// First strip colons and other invalid identifier characters
 	className = strings.ReplaceAll(className, ":", "")
 
-	// Algorithmic prefix stripping: remove 2-4 uppercase letters at start if followed by uppercase
-	// This matches Apple's naming convention: NSWindow, SCDisplay, UIView, etc.
-	// Try from longest to shortest prefix length for correctness
-	for prefixLen := 4; prefixLen >= 2; prefixLen-- {
-		if len(className) > prefixLen {
-			prefix := className[:prefixLen]
-			// Check if prefix is all uppercase
-			allUpper := true
-			for _, c := range prefix {
-				if c < 'A' || c > 'Z' {
-					allUpper = false
-					break
-				}
-			}
+	// Known Apple framework prefixes
+	// Order matters: try longer prefixes first (e.g., "MPSNN" before "MPS")
+	knownPrefixes := []string{
+		// 4-letter prefixes
+		"MPSNN",
+		// 3-letter prefixes
+		"MPS", "MTL", "MTK",
+		// 2-letter prefixes (most common)
+		"NS", "CG", "CF", "CA", "CI", "CL", "CM", "CV", "CT", "SC", "AV", "UI", "WK", "SK",
+		"PK", "AR", "ML", "VN", "NL", "AS", "LA", "MP", "HC", "HM", "GK", "QL", "AU", "IO",
+	}
 
-			if allUpper {
-				// Check if next character is uppercase (start of actual name)
-				nextChar := className[prefixLen]
-				if nextChar >= 'A' && nextChar <= 'Z' {
-					name := className[prefixLen:]
-					// Check if result is a Go keyword and escape it
-					if isGoKeyword(strings.ToLower(name)) {
-						return name + "_"
-					}
-					return name
+	// Try each known prefix
+	for _, prefix := range knownPrefixes {
+		if len(className) > len(prefix) && strings.HasPrefix(className, prefix) {
+			// Check if next character is uppercase (start of actual name)
+			nextChar := className[len(prefix)]
+			if nextChar >= 'A' && nextChar <= 'Z' {
+				name := className[len(prefix):]
+				// Check if result is a Go keyword and escape it
+				if isGoKeyword(strings.ToLower(name)) {
+					return name + "_"
 				}
+				return name
 			}
 		}
 	}
@@ -780,6 +778,23 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// __kindof is an Objective-C type qualifier meaning "this type or any subclass"
 	// In Go, we just use the base type
 	objcType = strings.TrimPrefix(objcType, "__kindof ")
+
+	// Handle array types with __kindof in element type (e.g., "[]__kindof AVCaptureControl" -> "[]AVCaptureControl")
+	// This can occur when occ2go parser has already converted NSArray<__kindof T> to []__kindof T
+	if strings.HasPrefix(objcType, "[]__kindof ") {
+		objcType = "[]" + strings.TrimPrefix(objcType, "[]__kindof ")
+	}
+
+	// Handle id<Protocol> pattern (e.g., "id<NSFetchRequestResult>" -> "objc.ID")
+	// This is Objective-C's protocol conformance syntax
+	if strings.HasPrefix(objcType, "id<") && strings.Contains(objcType, ">") {
+		return "objc.ID"
+	}
+
+	// Handle []id<Protocol> pattern (e.g., "[]id<NSFetchRequestResult>" -> "[]objc.ID")
+	if strings.HasPrefix(objcType, "[]id<") && strings.Contains(objcType, ">") {
+		return "[]objc.ID"
+	}
 
 	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)
 	if strings.Contains(objcType, "<") {
@@ -1811,6 +1826,7 @@ func resolveType(framework, typeName string) string {
 		"Enumerator":              true, // For OSLog.OSLogEnumerator
 		"Operation":               true,
 		"OperationQueue":          true,
+		"Expression":              true, // NSExpression - used by CoreData
 	}
 
 	// QuartzCore types used by other frameworks

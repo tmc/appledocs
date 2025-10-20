@@ -71,6 +71,13 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		cls.DocURL = docURL
 		cls.Abstract = abstract
 		cls.Overview = ExtractOverview(doc)
+
+		// Extract superclass from relationshipsSections if not found in tokens
+		// This is the authoritative source for inheritance information
+		if superClass := ExtractSuperClass(doc); superClass != "" {
+			cls.SuperClass = superClass
+		}
+
 		return nil, cls, nil, nil
 
 	case strings.HasPrefix(externalID, "c:objc(pl)"):
@@ -207,6 +214,36 @@ func ExtractOverview(doc *appledocs.Document) string {
 
 		if len(overviewParts) > 0 {
 			return strings.Join(overviewParts, " ")
+		}
+	}
+
+	return ""
+}
+
+// ExtractSuperClass extracts the superclass name from relationshipsSections.
+// This parses the "inheritsFrom" relationship to determine the parent class.
+// Returns the class name without the "NS" prefix (e.g., "NSURLSessionTask" -> "URLSessionTask").
+func ExtractSuperClass(doc *appledocs.Document) string {
+	if doc == nil {
+		return ""
+	}
+
+	// Look through relationshipsSections for "inheritsFrom" type
+	for _, section := range doc.RelationshipsSections {
+		if section.Type == "inheritsFrom" && len(section.Identifiers) > 0 {
+			// Extract class name from identifier
+			// Format: "doc://com.externally.resolved.symbol/c:objc(cs)NSURLSessionTask"
+			identifier := section.Identifiers[0]
+
+			// Look for c:objc(cs) prefix which indicates an Objective-C class
+			if idx := strings.Index(identifier, "c:objc(cs)"); idx != -1 {
+				className := identifier[idx+len("c:objc(cs)"):]
+				// Remove any trailing content after parentheses (method/property markers)
+				if parenIdx := strings.Index(className, "("); parenIdx != -1 {
+					className = className[:parenIdx]
+				}
+				return className
+			}
 		}
 	}
 
