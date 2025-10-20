@@ -12,5 +12,3 @@ var moveToEndOfDocumentProtocol *objc.Protocol
 func init() {
 	moveToEndOfDocumentProtocol = objc.GetProtocol("moveToEndOfDocument:")
 }
-
-

@@ -15,5 +15,3 @@ var windowDidBecomeKeyProtocol *objc.Protocol
 func init() {
 	windowDidBecomeKeyProtocol = objc.GetProtocol("windowDidBecomeKey:")
 }
-
-

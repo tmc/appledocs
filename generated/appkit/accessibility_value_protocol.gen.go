@@ -12,5 +12,3 @@ var accessibilityValueProtocol *objc.Protocol
 func init() {
 	accessibilityValueProtocol = objc.GetProtocol("accessibilityValue")
 }
-
-

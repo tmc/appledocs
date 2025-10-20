@@ -15,5 +15,3 @@ var accessibilityIndexProtocol *objc.Protocol
 func init() {
 	accessibilityIndexProtocol = objc.GetProtocol("accessibilityIndex")
 }
-
-

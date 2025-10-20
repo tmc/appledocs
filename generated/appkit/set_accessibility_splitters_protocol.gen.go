@@ -15,5 +15,3 @@ var setAccessibilitySplittersProtocol *objc.Protocol
 func init() {
 	setAccessibilitySplittersProtocol = objc.GetProtocol("setAccessibilitySplitters")
 }
-
-

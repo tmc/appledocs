@@ -15,5 +15,3 @@ var accessibilityColumnCountProtocol *objc.Protocol
 func init() {
 	accessibilityColumnCountProtocol = objc.GetProtocol("accessibilityColumnCount")
 }
-
-

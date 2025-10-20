@@ -12,5 +12,3 @@ var draggingUpdatedProtocol *objc.Protocol
 func init() {
 	draggingUpdatedProtocol = objc.GetProtocol("draggingUpdated:")
 }
-
-

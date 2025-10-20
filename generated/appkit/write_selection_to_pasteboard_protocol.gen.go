@@ -12,5 +12,3 @@ var writeSelectionToPasteboardProtocol *objc.Protocol
 func init() {
 	writeSelectionToPasteboardProtocol = objc.GetProtocol("writeSelectionToPasteboard:")
 }
-
-

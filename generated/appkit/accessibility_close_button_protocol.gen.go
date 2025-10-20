@@ -15,5 +15,3 @@ var accessibilityCloseButtonProtocol *objc.Protocol
 func init() {
 	accessibilityCloseButtonProtocol = objc.GetProtocol("accessibilityCloseButton")
 }
-
-

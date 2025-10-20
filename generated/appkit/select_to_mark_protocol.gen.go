@@ -12,5 +12,3 @@ var selectToMarkProtocol *objc.Protocol
 func init() {
 	selectToMarkProtocol = objc.GetProtocol("selectToMark:")
 }
-
-

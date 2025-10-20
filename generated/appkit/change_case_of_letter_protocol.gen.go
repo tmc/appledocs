@@ -12,5 +12,3 @@ var changeCaseOfLetterProtocol *objc.Protocol
 func init() {
 	changeCaseOfLetterProtocol = objc.GetProtocol("changeCaseOfLetter:")
 }
-
-

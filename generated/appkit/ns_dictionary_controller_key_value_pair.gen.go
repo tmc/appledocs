@@ -1,0 +1,108 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [DictionaryControllerKeyValuePair] class.
+var (
+	DictionaryControllerKeyValuePairClass     _DictionaryControllerKeyValuePairClass
+	DictionaryControllerKeyValuePairClassOnce sync.Once
+)
+
+func getDictionaryControllerKeyValuePairClass() _DictionaryControllerKeyValuePairClass {
+	DictionaryControllerKeyValuePairClassOnce.Do(func() {
+		DictionaryControllerKeyValuePairClass = _DictionaryControllerKeyValuePairClass{objc.GetClass("NSDictionaryControllerKeyValuePair")}
+	})
+	return DictionaryControllerKeyValuePairClass
+}
+
+type _DictionaryControllerKeyValuePairClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [DictionaryControllerKeyValuePair] class.
+type IDictionaryControllerKeyValuePair interface {
+	objectivec.IObject
+}
+
+// A set of methods implemented by arranged objects to give access to information about those objects.
+//
+// is an informal protocol that is implemented by objects returned by the method arrangedObjects. See for more information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair
+type DictionaryControllerKeyValuePair struct {
+	objectivec.Object
+}
+
+// DictionaryControllerKeyValuePairFrom constructs a [DictionaryControllerKeyValuePair] from an unsafe.Pointer.
+//
+// A set of methods implemented by arranged objects to give access to information about those objects.
+func DictionaryControllerKeyValuePairFrom(ptr unsafe.Pointer) DictionaryControllerKeyValuePair {
+	return DictionaryControllerKeyValuePair{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (dc _DictionaryControllerKeyValuePairClass) Alloc() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (dc _DictionaryControllerKeyValuePairClass) New() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DictionaryControllerKeyValuePair) Init() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DictionaryControllerKeyValuePair) Autorelease() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDictionaryControllerKeyValuePair creates a new DictionaryControllerKeyValuePair instance.
+func NewDictionaryControllerKeyValuePair() DictionaryControllerKeyValuePair {
+	return getDictionaryControllerKeyValuePairClass().New()
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
+func (d_ DictionaryControllerKeyValuePair) Key() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("key"))
+	return rv
+}
+
+// SetKey sets the value of the key property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
+func (d_ DictionaryControllerKeyValuePair) SetKey(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setKey:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
+func (d_ DictionaryControllerKeyValuePair) Value() objc.ID {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("value"))
+	return rv
+}
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
+func (d_ DictionaryControllerKeyValuePair) SetValue(value objc.ID) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:"), value)
+}

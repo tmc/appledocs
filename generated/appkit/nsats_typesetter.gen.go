@@ -1,0 +1,81 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [ATSTypesetter] class.
+var (
+	ATSTypesetterClass     _ATSTypesetterClass
+	ATSTypesetterClassOnce sync.Once
+)
+
+func getATSTypesetterClass() _ATSTypesetterClass {
+	ATSTypesetterClassOnce.Do(func() {
+		ATSTypesetterClass = _ATSTypesetterClass{objc.GetClass("NSATSTypesetter")}
+	})
+	return ATSTypesetterClass
+}
+
+type _ATSTypesetterClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [ATSTypesetter] class.
+type IATSTypesetter interface {
+	ITypesetter
+}
+
+// A concrete typesetter object that places glyphs during the text layout process.
+//
+// An object creates line fragment rectangles, positions glyphs within the line fragments, determines line breaks by word wrapping and hyphenation, and handles tab positioning. This object encapsulates the advanced typesetting capabilities of Core Text. provides line and character spacing accuracy and supports many languages, including bidirectional languages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter
+type ATSTypesetter struct {
+	Typesetter
+}
+
+// ATSTypesetterFrom constructs a [ATSTypesetter] from an unsafe.Pointer.
+//
+// A concrete typesetter object that places glyphs during the text layout process.
+func ATSTypesetterFrom(ptr unsafe.Pointer) ATSTypesetter {
+	return ATSTypesetter{
+		Typesetter: TypesetterFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (ac _ATSTypesetterClass) Alloc() ATSTypesetter {
+	rv := objc.Send[ATSTypesetter](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ac _ATSTypesetterClass) New() ATSTypesetter {
+	rv := objc.Send[ATSTypesetter](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ ATSTypesetter) Init() ATSTypesetter {
+	rv := objc.Send[ATSTypesetter](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ ATSTypesetter) Autorelease() ATSTypesetter {
+	rv := objc.Send[ATSTypesetter](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewATSTypesetter creates a new ATSTypesetter instance.
+func NewATSTypesetter() ATSTypesetter {
+	return getATSTypesetterClass().New()
+}

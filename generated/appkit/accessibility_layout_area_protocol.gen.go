@@ -12,5 +12,3 @@ var AccessibilityLayoutAreaProtocol *objc.Protocol
 func init() {
 	AccessibilityLayoutAreaProtocol = objc.GetProtocol("NSAccessibilityLayoutArea")
 }
-
-

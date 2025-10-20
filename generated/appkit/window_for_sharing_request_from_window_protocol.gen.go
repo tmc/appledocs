@@ -15,5 +15,3 @@ var windowForSharingRequestFromWindowProtocol *objc.Protocol
 func init() {
 	windowForSharingRequestFromWindowProtocol = objc.GetProtocol("windowForSharingRequestFromWindow:")
 }
-
-

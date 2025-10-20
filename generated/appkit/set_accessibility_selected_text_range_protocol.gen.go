@@ -15,5 +15,3 @@ var setAccessibilitySelectedTextRangeProtocol *objc.Protocol
 func init() {
 	setAccessibilitySelectedTextRangeProtocol = objc.GetProtocol("setAccessibilitySelectedTextRange")
 }
-
-

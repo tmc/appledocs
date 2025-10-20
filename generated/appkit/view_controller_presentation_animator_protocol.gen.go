@@ -12,5 +12,3 @@ var ViewControllerPresentationAnimatorProtocol *objc.Protocol
 func init() {
 	ViewControllerPresentationAnimatorProtocol = objc.GetProtocol("NSViewControllerPresentationAnimator")
 }
-
-

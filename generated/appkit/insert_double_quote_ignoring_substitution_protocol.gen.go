@@ -15,5 +15,3 @@ var insertDoubleQuoteIgnoringSubstitutionProtocol *objc.Protocol
 func init() {
 	insertDoubleQuoteIgnoringSubstitutionProtocol = objc.GetProtocol("insertDoubleQuoteIgnoringSubstitution:")
 }
-
-

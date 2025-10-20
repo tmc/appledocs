@@ -12,5 +12,3 @@ var deleteToEndOfLineProtocol *objc.Protocol
 func init() {
 	deleteToEndOfLineProtocol = objc.GetProtocol("deleteToEndOfLine:")
 }
-
-

@@ -12,5 +12,3 @@ var DockTilePlugInProtocol *objc.Protocol
 func init() {
 	DockTilePlugInProtocol = objc.GetProtocol("NSDockTilePlugIn")
 }
-
-

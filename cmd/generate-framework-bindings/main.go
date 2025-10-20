@@ -645,6 +645,35 @@ func discoverFrameworks(inputDir, pattern string) ([]string, error) {
 	return frameworks, nil
 }
 
+// classbelongsToFramework checks if a class belongs to the specified framework
+// by examining the metadata.modules field in the document.
+func classbelongsToFramework(doc *appledocs.Document, framework string) bool {
+	if doc == nil || doc.Metadata.Modules == nil || len(doc.Metadata.Modules) == 0 {
+		// If no module info, default to including it (backward compatibility)
+		return true
+	}
+
+	// Normalize framework name for comparison (handle variations)
+	normalizedFramework := strings.ToLower(strings.ReplaceAll(framework, " ", ""))
+
+	for _, module := range doc.Metadata.Modules {
+		normalizedModule := strings.ToLower(strings.ReplaceAll(module.Name, " ", ""))
+		if normalizedModule == normalizedFramework {
+			return true
+		}
+	}
+
+	return false
+}
+
+// getClassFramework returns the framework name from the document's metadata.
+func getClassFramework(doc *appledocs.Document) string {
+	if doc == nil || doc.Metadata.Modules == nil || len(doc.Metadata.Modules) == 0 {
+		return "unknown"
+	}
+	return doc.Metadata.Modules[0].Name
+}
+
 // generateFramework generates bindings for a single framework.
 func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples bool) error {
 	// Check if this is an iOS-only framework and skip if so
@@ -683,7 +712,12 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				functions = append(functions, fn)
 			}
 			if cls != nil {
-				classes = append(classes, cls)
+				// Only include classes that actually belong to this framework
+				if classbelongsToFramework(doc, framework) {
+					classes = append(classes, cls)
+				} else if verbose {
+					fmt.Fprintf(os.Stderr, "Skipping class %s (belongs to different framework: %s)\n", cls.Name, getClassFramework(doc))
+				}
 			}
 			if proto != nil {
 				protocols = append(protocols, proto)
@@ -724,7 +758,12 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				functions = append(functions, fn)
 			}
 			if cls != nil {
-				classes = append(classes, cls)
+				// Only include classes that actually belong to this framework
+				if classbelongsToFramework(doc, framework) {
+					classes = append(classes, cls)
+				} else if verbose {
+					fmt.Fprintf(os.Stderr, "Skipping class %s (belongs to different framework: %s)\n", cls.Name, getClassFramework(doc))
+				}
 			}
 			if proto != nil {
 				protocols = append(protocols, proto)

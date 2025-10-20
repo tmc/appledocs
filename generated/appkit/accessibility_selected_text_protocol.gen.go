@@ -15,5 +15,3 @@ var accessibilitySelectedTextProtocol *objc.Protocol
 func init() {
 	accessibilitySelectedTextProtocol = objc.GetProtocol("accessibilitySelectedText")
 }
-
-

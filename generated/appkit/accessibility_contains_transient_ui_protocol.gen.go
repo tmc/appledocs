@@ -12,5 +12,3 @@ var AccessibilityContainsTransientUIProtocol *objc.Protocol
 func init() {
 	AccessibilityContainsTransientUIProtocol = objc.GetProtocol("NSAccessibilityContainsTransientUI")
 }
-
-

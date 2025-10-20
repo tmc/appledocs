@@ -15,5 +15,3 @@ var windowWillExitVersionBrowserProtocol *objc.Protocol
 func init() {
 	windowWillExitVersionBrowserProtocol = objc.GetProtocol("windowWillExitVersionBrowser:")
 }
-
-

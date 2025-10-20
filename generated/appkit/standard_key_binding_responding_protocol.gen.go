@@ -12,5 +12,3 @@ var StandardKeyBindingRespondingProtocol *objc.Protocol
 func init() {
 	StandardKeyBindingRespondingProtocol = objc.GetProtocol("NSStandardKeyBindingResponding")
 }
-
-

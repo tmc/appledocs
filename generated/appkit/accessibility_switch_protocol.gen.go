@@ -12,5 +12,3 @@ var AccessibilitySwitchProtocol *objc.Protocol
 func init() {
 	AccessibilitySwitchProtocol = objc.GetProtocol("NSAccessibilitySwitch")
 }
-
-

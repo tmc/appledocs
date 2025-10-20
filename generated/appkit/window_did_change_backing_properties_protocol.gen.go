@@ -15,5 +15,3 @@ var windowDidChangeBackingPropertiesProtocol *objc.Protocol
 func init() {
 	windowDidChangeBackingPropertiesProtocol = objc.GetProtocol("windowDidChangeBackingProperties:")
 }
-
-

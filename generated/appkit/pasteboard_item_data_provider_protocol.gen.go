@@ -12,5 +12,3 @@ var PasteboardItemDataProviderProtocol *objc.Protocol
 func init() {
 	PasteboardItemDataProviderProtocol = objc.GetProtocol("NSPasteboardItemDataProvider")
 }
-
-

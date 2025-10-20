@@ -15,5 +15,3 @@ var setAccessibilityRowsProtocol *objc.Protocol
 func init() {
 	setAccessibilityRowsProtocol = objc.GetProtocol("setAccessibilityRows")
 }
-
-

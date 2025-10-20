@@ -15,5 +15,3 @@ var setAccessibilitySharedCharacterRangeProtocol *objc.Protocol
 func init() {
 	setAccessibilitySharedCharacterRangeProtocol = objc.GetProtocol("setAccessibilitySharedCharacterRange")
 }
-
-

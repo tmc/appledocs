@@ -12,5 +12,3 @@ var moveLeftProtocol *objc.Protocol
 func init() {
 	moveLeftProtocol = objc.GetProtocol("moveLeft:")
 }
-
-

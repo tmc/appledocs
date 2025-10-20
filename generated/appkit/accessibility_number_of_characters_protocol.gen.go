@@ -15,5 +15,3 @@ var accessibilityNumberOfCharactersProtocol *objc.Protocol
 func init() {
 	accessibilityNumberOfCharactersProtocol = objc.GetProtocol("accessibilityNumberOfCharacters")
 }
-
-

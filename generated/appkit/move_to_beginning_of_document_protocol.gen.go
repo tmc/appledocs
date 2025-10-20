@@ -12,5 +12,3 @@ var moveToBeginningOfDocumentProtocol *objc.Protocol
 func init() {
 	moveToBeginningOfDocumentProtocol = objc.GetProtocol("moveToBeginningOfDocument:")
 }
-
-

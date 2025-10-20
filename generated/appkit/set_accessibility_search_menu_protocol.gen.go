@@ -15,5 +15,3 @@ var setAccessibilitySearchMenuProtocol *objc.Protocol
 func init() {
 	setAccessibilitySearchMenuProtocol = objc.GetProtocol("setAccessibilitySearchMenu")
 }
-
-

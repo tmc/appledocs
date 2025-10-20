@@ -12,5 +12,3 @@ var ControlTextEditingDelegateProtocol *objc.Protocol
 func init() {
 	ControlTextEditingDelegateProtocol = objc.GetProtocol("NSControlTextEditingDelegate")
 }
-
-

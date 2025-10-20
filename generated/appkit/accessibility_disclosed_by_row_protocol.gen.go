@@ -15,5 +15,3 @@ var accessibilityDisclosedByRowProtocol *objc.Protocol
 func init() {
 	accessibilityDisclosedByRowProtocol = objc.GetProtocol("accessibilityDisclosedByRow")
 }
-
-

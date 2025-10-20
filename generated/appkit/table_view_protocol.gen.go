@@ -15,5 +15,3 @@ var tableViewProtocol *objc.Protocol
 func init() {
 	tableViewProtocol = objc.GetProtocol("tableView:")
 }
-
-

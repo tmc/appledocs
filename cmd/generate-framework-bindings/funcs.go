@@ -1934,6 +1934,9 @@ func resolveType(framework, typeName string) string {
 		"OperationQueue":          true,
 		"Expression":              true, // NSExpression - used by CoreData
 		"ExtensionContext":        true, // NSExtensionContext - used by AuthenticationServices
+		"Coder":                   true, // NSCoder - base class for archiving
+		"KeyedArchiver":           true, // NSKeyedArchiver
+		"KeyedUnarchiver":         true, // NSKeyedUnarchiver - used by MetalPerformanceShaders
 	}
 
 	// QuartzCore types used by other frameworks
@@ -1943,6 +1946,7 @@ func resolveType(framework, typeName string) string {
 		"MediaTiming":    true, // CAMediaTiming protocol
 		"Transaction":    true, // CATransaction
 		"TransformLayer": true, // CATransformLayer
+		"OpenGLLayer":    true, // CAOpenGLLayer - used by NSOpenGLLayer in AppKit
 	}
 
 	// AppKit types used by other frameworks (common base classes)

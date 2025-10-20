@@ -15,5 +15,3 @@ var applicationWillFinishLaunchingProtocol *objc.Protocol
 func init() {
 	applicationWillFinishLaunchingProtocol = objc.GetProtocol("applicationWillFinishLaunching:")
 }
-
-

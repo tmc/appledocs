@@ -15,5 +15,3 @@ var setAccessibilityCriticalValueProtocol *objc.Protocol
 func init() {
 	setAccessibilityCriticalValueProtocol = objc.GetProtocol("setAccessibilityCriticalValue")
 }
-
-

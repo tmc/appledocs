@@ -12,5 +12,3 @@ var InputServerMouseTrackerProtocol *objc.Protocol
 func init() {
 	InputServerMouseTrackerProtocol = objc.GetProtocol("NSInputServerMouseTracker")
 }
-
-

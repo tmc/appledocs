@@ -15,5 +15,3 @@ var setAccessibilityPreviousContentsProtocol *objc.Protocol
 func init() {
 	setAccessibilityPreviousContentsProtocol = objc.GetProtocol("setAccessibilityPreviousContents")
 }
-
-

@@ -15,5 +15,3 @@ var scrubberProtocol *objc.Protocol
 func init() {
 	scrubberProtocol = objc.GetProtocol("scrubber:")
 }
-
-

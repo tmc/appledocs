@@ -12,5 +12,3 @@ var moveToEndOfParagraphProtocol *objc.Protocol
 func init() {
 	moveToEndOfParagraphProtocol = objc.GetProtocol("moveToEndOfParagraph:")
 }
-
-

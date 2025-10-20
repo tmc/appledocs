@@ -15,5 +15,3 @@ var accessibilityDecrementButtonProtocol *objc.Protocol
 func init() {
 	accessibilityDecrementButtonProtocol = objc.GetProtocol("accessibilityDecrementButton")
 }
-
-

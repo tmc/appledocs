@@ -15,5 +15,3 @@ var setAccessibilityCustomActionsProtocol *objc.Protocol
 func init() {
 	setAccessibilityCustomActionsProtocol = objc.GetProtocol("setAccessibilityCustomActions")
 }
-
-

@@ -1,0 +1,161 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [SpellChecker] class.
+var (
+	SpellCheckerClass     _SpellCheckerClass
+	SpellCheckerClassOnce sync.Once
+)
+
+func getSpellCheckerClass() _SpellCheckerClass {
+	SpellCheckerClassOnce.Do(func() {
+		SpellCheckerClass = _SpellCheckerClass{objc.GetClass("NSSpellChecker")}
+	})
+	return SpellCheckerClass
+}
+
+type _SpellCheckerClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [SpellChecker] class.
+type ISpellChecker interface {
+	objectivec.IObject
+	CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []unsafe.Pointer
+	CheckGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, details unsafe.Pointer) foundation.Range
+	CheckSpellingOfStringStartingAt(stringToCheck string, startingOffset int) foundation.Range
+	CheckSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, wordCount unsafe.Pointer) foundation.Range
+	CountWordsInStringLanguage(stringToCount string, language string) int
+	GuessesForWordRangeInStringLanguageInSpellDocumentWithTag(range_ foundation.Range, string string, language string, tag int) []string
+	GuessesForWord(word string) unsafe.Pointer
+	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange foundation.Range, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
+	RequestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
+}
+
+// An interface to the Cocoa spell-checking service.
+//
+// To handle all its spell checking, an app needs only one instance of , known as the spell checker. Using the spell checker you manage the Spelling panel, in which the user can specify decisions about words that are suspect. The spell checker also offers the ability to provide word completions to augment the text completion system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker
+type SpellChecker struct {
+	objectivec.Object
+}
+
+// SpellCheckerFrom constructs a [SpellChecker] from an unsafe.Pointer.
+//
+// An interface to the Cocoa spell-checking service.
+func SpellCheckerFrom(ptr unsafe.Pointer) SpellChecker {
+	return SpellChecker{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (sc _SpellCheckerClass) Alloc() SpellChecker {
+	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (sc _SpellCheckerClass) New() SpellChecker {
+	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SpellChecker) Init() SpellChecker {
+	rv := objc.Send[SpellChecker](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SpellChecker) Autorelease() SpellChecker {
+	rv := objc.Send[SpellChecker](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSpellChecker creates a new SpellChecker instance.
+func NewSpellChecker() SpellChecker {
+	return getSpellCheckerClass().New()
+}
+
+// Requests unified text checking for the given range of the given string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/check(_:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)
+func (s_ SpellChecker) CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, orthography, wordCount)
+	return rv
+}
+
+// Initiates a grammatical analysis of a given string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/checkGrammar(of:startingAt:language:wrap:inSpellDocumentWithTag:details:)
+func (s_ SpellChecker) CheckGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, details unsafe.Pointer) foundation.Range {
+	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:"), objc.String(stringToCheck), startingOffset, objc.String(language), wrapFlag, tag, details)
+	return rv
+}
+
+// Starts the search for a misspelled word in starting at within the string object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/checkSpelling(of:startingAt:)
+func (s_ SpellChecker) CheckSpellingOfStringStartingAt(stringToCheck string, startingOffset int) foundation.Range {
+	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("checkSpellingOfString:startingAt:"), objc.String(stringToCheck), startingOffset)
+	return rv
+}
+
+// Starts the search for a misspelled word in a string starting at specified offset within the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/checkSpelling(of:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:)
+func (s_ SpellChecker) CheckSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, wordCount unsafe.Pointer) foundation.Range {
+	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:"), objc.String(stringToCheck), startingOffset, objc.String(language), wrapFlag, tag, wordCount)
+	return rv
+}
+
+// Returns the number of words in the specified string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/countWords(in:language:)
+func (s_ SpellChecker) CountWordsInStringLanguage(stringToCount string, language string) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("countWordsInString:language:"), objc.String(stringToCount), objc.String(language))
+	return rv
+}
+
+// Returns an array of possible substitutions for the specified string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/guesses(forWordRange:in:language:inSpellDocumentWithTag:)
+func (s_ SpellChecker) GuessesForWordRangeInStringLanguageInSpellDocumentWithTag(range_ foundation.Range, string string, language string, tag int) []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("guessesForWordRange:inString:language:inSpellDocumentWithTag:"), range_, objc.String(string), objc.String(language), tag)
+	return rv
+}
+
+// Returns an array of suggested spellings for the misspelled word.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/guessesForWord:
+func (s_ SpellChecker) GuessesForWord(word string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("guessesForWord:"), objc.String(word))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/requestCandidates(forSelectedRange:in:types:options:inSpellDocumentWithTag:completionHandler:)
+func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange foundation.Range, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), selectedRange, objc.String(stringToCheck), checkingTypes, options, tag, completionHandler)
+	return rv
+}
+
+// Requests that the string be checked in the background.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/requestChecking(of:range:types:options:inSpellDocumentWithTag:completionHandler:)
+func (s_ SpellChecker) RequestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, completionHandler)
+	return rv
+}

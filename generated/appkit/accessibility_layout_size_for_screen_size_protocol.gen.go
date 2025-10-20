@@ -15,5 +15,3 @@ var accessibilityLayoutSizeForScreenSizeProtocol *objc.Protocol
 func init() {
 	accessibilityLayoutSizeForScreenSizeProtocol = objc.GetProtocol("accessibilityLayoutSizeForScreenSize:")
 }
-
-

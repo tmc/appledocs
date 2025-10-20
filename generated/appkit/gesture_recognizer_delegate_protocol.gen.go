@@ -12,5 +12,3 @@ var GestureRecognizerDelegateProtocol *objc.Protocol
 func init() {
 	GestureRecognizerDelegateProtocol = objc.GetProtocol("NSGestureRecognizerDelegate")
 }
-
-

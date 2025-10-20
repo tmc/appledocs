@@ -12,5 +12,3 @@ var deleteBackwardByDecomposingPreviousCharacterProtocol *objc.Protocol
 func init() {
 	deleteBackwardByDecomposingPreviousCharacterProtocol = objc.GetProtocol("deleteBackwardByDecomposingPreviousCharacter:")
 }
-
-

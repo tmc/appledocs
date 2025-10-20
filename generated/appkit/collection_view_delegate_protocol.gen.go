@@ -12,5 +12,3 @@ var CollectionViewDelegateProtocol *objc.Protocol
 func init() {
 	CollectionViewDelegateProtocol = objc.GetProtocol("NSCollectionViewDelegate")
 }
-
-

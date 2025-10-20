@@ -12,5 +12,3 @@ var StackViewDelegateProtocol *objc.Protocol
 func init() {
 	StackViewDelegateProtocol = objc.GetProtocol("NSStackViewDelegate")
 }
-
-

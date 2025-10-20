@@ -12,5 +12,3 @@ var ViewToolTipOwnerProtocol *objc.Protocol
 func init() {
 	ViewToolTipOwnerProtocol = objc.GetProtocol("NSViewToolTipOwner")
 }
-
-

@@ -12,5 +12,3 @@ var AccessibilityButtonProtocol *objc.Protocol
 func init() {
 	AccessibilityButtonProtocol = objc.GetProtocol("NSAccessibilityButton")
 }
-
-

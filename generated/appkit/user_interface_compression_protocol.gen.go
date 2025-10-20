@@ -12,5 +12,3 @@ var UserInterfaceCompressionProtocol *objc.Protocol
 func init() {
 	UserInterfaceCompressionProtocol = objc.GetProtocol("NSUserInterfaceCompression")
 }
-
-

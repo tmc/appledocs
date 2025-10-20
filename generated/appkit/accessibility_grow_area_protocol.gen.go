@@ -15,5 +15,3 @@ var accessibilityGrowAreaProtocol *objc.Protocol
 func init() {
 	accessibilityGrowAreaProtocol = objc.GetProtocol("accessibilityGrowArea")
 }
-
-

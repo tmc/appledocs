@@ -12,5 +12,3 @@ var OpenSavePanelDelegateProtocol *objc.Protocol
 func init() {
 	OpenSavePanelDelegateProtocol = objc.GetProtocol("NSOpenSavePanelDelegate")
 }
-
-

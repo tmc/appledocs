@@ -12,5 +12,3 @@ var windowWillReturnFieldEditorProtocol *objc.Protocol
 func init() {
 	windowWillReturnFieldEditorProtocol = objc.GetProtocol("windowWillReturnFieldEditor:")
 }
-
-

@@ -15,5 +15,3 @@ var setAccessibilityPlaceholderValueProtocol *objc.Protocol
 func init() {
 	setAccessibilityPlaceholderValueProtocol = objc.GetProtocol("setAccessibilityPlaceholderValue")
 }
-
-

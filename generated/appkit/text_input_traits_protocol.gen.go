@@ -12,5 +12,3 @@ var TextInputTraitsProtocol *objc.Protocol
 func init() {
 	TextInputTraitsProtocol = objc.GetProtocol("NSTextInputTraits")
 }
-
-

@@ -12,5 +12,3 @@ var CollectionViewElementProtocol *objc.Protocol
 func init() {
 	CollectionViewElementProtocol = objc.GetProtocol("NSCollectionViewElement")
 }
-
-

@@ -15,5 +15,3 @@ var setAccessibilityOrientationProtocol *objc.Protocol
 func init() {
 	setAccessibilityOrientationProtocol = objc.GetProtocol("setAccessibilityOrientation")
 }
-
-

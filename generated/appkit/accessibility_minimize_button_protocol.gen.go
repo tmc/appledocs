@@ -15,5 +15,3 @@ var accessibilityMinimizeButtonProtocol *objc.Protocol
 func init() {
 	accessibilityMinimizeButtonProtocol = objc.GetProtocol("accessibilityMinimizeButton")
 }
-
-

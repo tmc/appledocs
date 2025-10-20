@@ -15,5 +15,3 @@ var accessibilityColumnIndexRangeProtocol *objc.Protocol
 func init() {
 	accessibilityColumnIndexRangeProtocol = objc.GetProtocol("accessibilityColumnIndexRange")
 }
-
-

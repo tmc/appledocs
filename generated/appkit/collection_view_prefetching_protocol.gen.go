@@ -12,5 +12,3 @@ var CollectionViewPrefetchingProtocol *objc.Protocol
 func init() {
 	CollectionViewPrefetchingProtocol = objc.GetProtocol("NSCollectionViewPrefetching")
 }
-
-

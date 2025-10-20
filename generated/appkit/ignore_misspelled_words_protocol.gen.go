@@ -12,5 +12,3 @@ var IgnoreMisspelledWordsProtocol *objc.Protocol
 func init() {
 	IgnoreMisspelledWordsProtocol = objc.GetProtocol("NSIgnoreMisspelledWords")
 }
-
-

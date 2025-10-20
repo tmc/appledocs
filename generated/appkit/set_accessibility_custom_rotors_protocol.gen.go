@@ -15,5 +15,3 @@ var setAccessibilityCustomRotorsProtocol *objc.Protocol
 func init() {
 	setAccessibilityCustomRotorsProtocol = objc.GetProtocol("setAccessibilityCustomRotors")
 }
-
-

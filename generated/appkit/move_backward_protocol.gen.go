@@ -12,5 +12,3 @@ var moveBackwardProtocol *objc.Protocol
 func init() {
 	moveBackwardProtocol = objc.GetProtocol("moveBackward:")
 }
-
-

@@ -15,5 +15,3 @@ var accessibilityColumnHeaderUIElementsProtocol *objc.Protocol
 func init() {
 	accessibilityColumnHeaderUIElementsProtocol = objc.GetProtocol("accessibilityColumnHeaderUIElements")
 }
-
-

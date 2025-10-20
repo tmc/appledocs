@@ -15,5 +15,3 @@ var contentTypeProtocol *objc.Protocol
 func init() {
 	contentTypeProtocol = objc.GetProtocol("contentType")
 }
-
-

@@ -12,5 +12,3 @@ var changeSpellingProtocol *objc.Protocol
 func init() {
 	changeSpellingProtocol = objc.GetProtocol("changeSpelling:")
 }
-
-

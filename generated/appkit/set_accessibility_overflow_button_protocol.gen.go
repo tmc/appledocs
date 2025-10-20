@@ -15,5 +15,3 @@ var setAccessibilityOverflowButtonProtocol *objc.Protocol
 func init() {
 	setAccessibilityOverflowButtonProtocol = objc.GetProtocol("setAccessibilityOverflowButton")
 }
-
-

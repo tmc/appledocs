@@ -15,5 +15,3 @@ var windowDidMoveProtocol *objc.Protocol
 func init() {
 	windowDidMoveProtocol = objc.GetProtocol("windowDidMove:")
 }
-
-
