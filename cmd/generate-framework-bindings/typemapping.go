@@ -207,6 +207,30 @@ var typeRegistry = []TypeMapping{
 	// Foundation edge enum for AppKit - as int (no darwinkit imports)
 	{ObjCType: "NSRectEdge", GoType: "int", Framework: "AppKit"},
 
+	// ==== Foundation geometry types for other frameworks ====
+	// FileProvider uses Foundation's Range type
+	{ObjCType: "Range", GoType: "foundation.Range", Framework: "FileProvider"},
+	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "FileProvider"},
+	// MediaPlayer uses Foundation's Range type
+	{ObjCType: "Range", GoType: "foundation.Range", Framework: "MediaPlayer"},
+	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "MediaPlayer"},
+	// ContactsUI uses Foundation geometry types
+	{ObjCType: "Rect", GoType: "foundation.Rect", Framework: "ContactsUI"},
+	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "ContactsUI"},
+	{ObjCType: "RectEdge", GoType: "foundation.RectEdge", Framework: "ContactsUI"},
+	{ObjCType: "NSRectEdge", GoType: "foundation.RectEdge", Framework: "ContactsUI"},
+	// AVKit uses Foundation's Rect type
+	{ObjCType: "Rect", GoType: "foundation.Rect", Framework: "AVKit"},
+	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "AVKit"},
+	// Quartz uses Foundation geometry types
+	{ObjCType: "Rect", GoType: "foundation.Rect", Framework: "Quartz"},
+	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "Quartz"},
+	{ObjCType: "Size", GoType: "foundation.Size", Framework: "Quartz"},
+	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "Quartz"},
+	// WebKit uses Foundation's Point type
+	{ObjCType: "Point", GoType: "foundation.Point", Framework: "WebKit"},
+	{ObjCType: "NSPoint", GoType: "foundation.Point", Framework: "WebKit"},
+
 	// AppKit event types
 	{ObjCType: "NSEventType", GoType: "EventType", Framework: "AppKit"},
 	{ObjCType: "NSEventModifierFlags", GoType: "EventModifierFlags", Framework: "AppKit"},
