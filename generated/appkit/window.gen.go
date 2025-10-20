@@ -219,6 +219,16 @@ func NewWindow() Window {
 }
 
 
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes the window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
@@ -244,16 +254,6 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
 func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
 	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
-	return rv
-}
-
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
 	return rv
 }
 
@@ -1583,8 +1583,8 @@ func (w_ Window) CascadingReferenceFrame() coregraphics.CGRect {
 // An array of the window’s attached child windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/childWindows
-func (w_ Window) ChildWindows() []__kindof NSWindow {
-	rv := objc.Send[[]__kindof NSWindow](w_.ID, objc.Sel("childWindows"))
+func (w_ Window) ChildWindows() []Window {
+	rv := objc.Send[[]Window](w_.ID, objc.Sel("childWindows"))
 	return rv
 }
 
@@ -2592,8 +2592,8 @@ func (w_ Window) SheetParent() unsafe.Pointer {
 // An array of the sheets currently attached to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sheets
-func (w_ Window) Sheets() []__kindof NSWindow {
-	rv := objc.Send[[]__kindof NSWindow](w_.ID, objc.Sel("sheets"))
+func (w_ Window) Sheets() []Window {
+	rv := objc.Send[[]Window](w_.ID, objc.Sel("sheets"))
 	return rv
 }
 
@@ -2760,8 +2760,8 @@ func (w_ Window) SetTitleVisibility(value unsafe.Pointer) {
 // An array of title bar accessory view controllers that are currently added to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
-func (w_ Window) TitlebarAccessoryViewControllers() []__kindof NSTitlebarAccessoryViewController {
-	rv := objc.Send[[]__kindof NSTitlebarAccessoryViewController](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
+func (w_ Window) TitlebarAccessoryViewControllers() []TitlebarAccessoryViewController {
+	rv := objc.Send[[]TitlebarAccessoryViewController](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
 	return rv
 }
 
@@ -2771,7 +2771,7 @@ func (w_ Window) TitlebarAccessoryViewControllers() []__kindof NSTitlebarAccesso
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
-func (w_ Window) SetTitlebarAccessoryViewControllers(value []__kindof NSTitlebarAccessoryViewController) {
+func (w_ Window) SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryViewController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAccessoryViewControllers:"), value)
 }
 // A Boolean value that indicates whether the title bar draws its background.

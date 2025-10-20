@@ -11,6 +11,8 @@ var _ = coreimage.NewVector
 
 
 
+
+
 // ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
 // Initialize a Core Image vector object with values provided in a string representation.
 func ExampleNewVectorWithString() {
@@ -19,6 +21,7 @@ func ExampleNewVectorWithString() {
 	)
 	// Output:
 }
+
 
 // ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
 // Initialize a Core Image vector object with one value.
@@ -39,17 +42,6 @@ func ExampleNewVectorWithXY() {
 	// Output:
 }
 
-// ExampleNewVectorWithXYZ demonstrates how to create a Vector instance using NewVectorWithXYZ.
-// Initialize a Core Image vector object with three values.
-func ExampleNewVectorWithXYZ() {
-	_ = coreimage.NewVectorWithXYZ(
-		0.0, // x float64
-		0.0, // y float64
-		0.0, // z float64
-	)
-	// Output:
-}
-
 // ExampleNewVectorWithXYZW demonstrates how to create a Vector instance using NewVectorWithXYZW.
 // Initialize a Core Image vector object with four values.
 func ExampleNewVectorWithXYZW() {
@@ -62,7 +54,15 @@ func ExampleNewVectorWithXYZW() {
 	// Output:
 }
 
-
-
+// ExampleNewVectorWithXYZ demonstrates how to create a Vector instance using NewVectorWithXYZ.
+// Initialize a Core Image vector object with three values.
+func ExampleNewVectorWithXYZ() {
+	_ = coreimage.NewVectorWithXYZ(
+		0.0, // x float64
+		0.0, // y float64
+		0.0, // z float64
+	)
+	// Output:
+}
 
 

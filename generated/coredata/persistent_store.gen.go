@@ -30,6 +30,7 @@ type _PersistentStoreClass struct {
 // An interface definition for the [PersistentStore] class.
 type IPersistentStore interface {
 	objectivec.IObject
+	LoadMetadata(error unsafe.Pointer) bool
 }
 
 // The abstract base class for all Core Data persistent stores.
@@ -91,6 +92,55 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 }
 
 
+// Returns the metadata from the persistent store at the given URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadataForPersistentStore(with:)
+func (pc _PersistentStoreClass) MetadataForPersistentStoreWithURLError(url unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreWithURL:error:"), url, error)
+	return rv
+}
+
+// Returns the migration manager class for this store class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/migrationManagerClass()
+func (pc _PersistentStoreClass) MigrationManagerClass() objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(pc.class), objc.Sel("migrationManagerClass"))
+	return rv
+}
+
+// Sets the metadata for the store at a given URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/setMetadata(_:forPersistentStoreAt:)
+func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metadata unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreWithURL:error:"), metadata, url, error)
+	return rv
+}
+
+// Instructs the persistent store to load its metadata.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/loadMetadata()
+func (p_ PersistentStore) LoadMetadata(error unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("loadMetadata:"), error)
+	return rv
+}
+
+// A Boolean value that indicates whether the persistent store is read-only.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/isReadOnly
+func (p_ PersistentStore) ReadOnly() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("readOnly"))
+	return rv
+}
+
+
+// SetReadOnly sets the value of the readOnly property.
+// A Boolean value that indicates whether the persistent store is read-only.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/isReadOnly
+func (p_ PersistentStore) SetReadOnly(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setReadOnly:"), value)
+}
 // The metadata for the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
@@ -108,6 +158,22 @@ func (p_ PersistentStore) Metadata() unsafe.Pointer {
 func (p_ PersistentStore) SetMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:"), value)
 }
+// The options that Core Data uses to create the store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/options
+func (p_ PersistentStore) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
+	return rv
+}
+
+// The persistent store coordinator that loads the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/persistentStoreCoordinator
+func (p_ PersistentStore) PersistentStoreCoordinator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("persistentStoreCoordinator"))
+	return rv
+}
+
 // The type string of the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/type

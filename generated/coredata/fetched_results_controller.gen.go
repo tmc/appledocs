@@ -154,8 +154,8 @@ func (f_ FetchedResultsController) CacheName() unsafe.Pointer {
 // The object that is notified when the fetched results changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/delegate
-func (f_ FetchedResultsController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
+func (f_ FetchedResultsController) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (f_ FetchedResultsController) Delegate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/delegate
-func (f_ FetchedResultsController) SetDelegate(value unsafe.Pointer) {
+func (f_ FetchedResultsController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
 // The fetch request used to do the fetching.
@@ -179,8 +179,8 @@ func (f_ FetchedResultsController) FetchRequest() unsafe.Pointer {
 // The results of the fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/fetchedObjects
-func (f_ FetchedResultsController) FetchedObjects() []id<NSFetchRequestResult> {
-	rv := objc.Send[[]id<NSFetchRequestResult>](f_.ID, objc.Sel("fetchedObjects"))
+func (f_ FetchedResultsController) FetchedObjects() []objc.ID {
+	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("fetchedObjects"))
 	return rv
 }
 
@@ -211,8 +211,8 @@ func (f_ FetchedResultsController) SectionNameKeyPath() unsafe.Pointer {
 // The sections for the fetch results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sections
-func (f_ FetchedResultsController) Sections() []id<NSFetchedResultsSectionInfo> {
-	rv := objc.Send[[]id<NSFetchedResultsSectionInfo>](f_.ID, objc.Sel("sections"))
+func (f_ FetchedResultsController) Sections() []objc.ID {
+	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("sections"))
 	return rv
 }
 

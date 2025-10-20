@@ -93,6 +93,40 @@ func NewPersistentContainerWithName(name string) PersistentContainer {
 	return rv
 }
 
+// Create a container with the specified name and managed object model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:managedObjectModel:)
+func NewPersistentContainerWithNameManagedObjectModel(name string, model unsafe.Pointer) PersistentContainer {
+	instance := getPersistentContainerClass().Alloc()
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:managedObjectModel:"), objc.String(name), model)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns the location of the directory that contains the persistent stores.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/defaultDirectoryURL()
+func (pc _PersistentContainerClass) DefaultDirectoryURL() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("defaultDirectoryURL"))
+	return rv
+}
+
+// Initializes a new persistent container using the provided name for the container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:
+func (pc _PersistentContainerClass) PersistentContainerWithName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:"), objc.String(name))
+	return rv
+}
+
+// Initializes a new persistent container using the provided name and managed object model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:managedObjectModel:
+func (pc _PersistentContainerClass) PersistentContainerWithNameManagedObjectModel(name string, model unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:managedObjectModel:"), objc.String(name), model)
+	return rv
+}
 
 // Loads the persistent stores.
 //
@@ -124,6 +158,14 @@ func (p_ PersistentContainer) ManagedObjectModel() unsafe.Pointer {
 	return rv
 }
 
+// The container’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/name
+func (p_ PersistentContainer) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+	return rv
+}
+
 // The container’s persistent store coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreCoordinator
@@ -132,6 +174,23 @@ func (p_ PersistentContainer) PersistentStoreCoordinator() unsafe.Pointer {
 	return rv
 }
 
+// The descriptions of the container’s persistent stores.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreDescriptions
+func (p_ PersistentContainer) PersistentStoreDescriptions() []PersistentStoreDescription {
+	rv := objc.Send[[]PersistentStoreDescription](p_.ID, objc.Sel("persistentStoreDescriptions"))
+	return rv
+}
+
+
+// SetPersistentStoreDescriptions sets the value of the persistentStoreDescriptions property.
+// The descriptions of the container’s persistent stores.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreDescriptions
+func (p_ PersistentContainer) SetPersistentStoreDescriptions(value []PersistentStoreDescription) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStoreDescriptions:"), value)
+}
 // The main queue’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/viewContext

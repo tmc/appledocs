@@ -30,6 +30,8 @@ type _MergePolicyClass struct {
 // An interface definition for the [MergePolicy] class.
 type IMergePolicy interface {
 	objectivec.IObject
+	ResolveConstraintConflictsError(list unsafe.Pointer, error unsafe.Pointer) bool
+	ResolveOptimisticLockingVersionConflictsError(list unsafe.Pointer, error unsafe.Pointer) bool
 }
 
 // A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
@@ -80,6 +82,33 @@ func NewMergePolicy() MergePolicy {
 }
 
 
+// Returns a merge policy initialized with a given policy type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/init(merge:)
+func NewMergePolicyWithMergeType(ty unsafe.Pointer) MergePolicy {
+	instance := getMergePolicyClass().Alloc()
+	rv := objc.Send[MergePolicy](instance.ID, objc.Sel("initWithMergeType:"), ty)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Resolves the conflicts in a given list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(constraintConflicts:)
+func (m_ MergePolicy) ResolveConstraintConflictsError(list unsafe.Pointer, error unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("resolveConstraintConflicts:error:"), list, error)
+	return rv
+}
+
+// Resolves the conflicts in a given list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(optimisticLockingConflicts:)
+func (m_ MergePolicy) ResolveOptimisticLockingVersionConflictsError(list unsafe.Pointer, error unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("resolveOptimisticLockingVersionConflicts:error:"), list, error)
+	return rv
+}
+
 // The merge type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeType
@@ -87,6 +116,5 @@ func (m_ MergePolicy) MergeType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mergeType"))
 	return rv
 }
-
 
 

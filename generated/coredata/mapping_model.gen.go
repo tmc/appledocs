@@ -78,6 +78,16 @@ func NewMappingModel() MappingModel {
 }
 
 
+// Returns a mapping model initialized from a given URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(contentsOf:)
+func NewMappingModelWithContentsOfURL(url unsafe.Pointer) MappingModel {
+	instance := getMappingModelClass().Alloc()
+	rv := objc.Send[MappingModel](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
 // Returns the mapping model that will translate data from the source to the destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
@@ -100,6 +110,14 @@ func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelE
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
 func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
+	return rv
+}
+
+// The entity mappings for the mapping model, keyed by name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/entityMappingsByName
+func (m_ MappingModel) EntityMappingsByName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entityMappingsByName"))
 	return rv
 }
 

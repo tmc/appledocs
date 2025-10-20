@@ -143,5 +143,29 @@ func (p_ PersistentHistoryTransaction) StoreID() unsafe.Pointer {
 	return rv
 }
 
+// The date of the persistent history change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/timestamp
+func (p_ PersistentHistoryTransaction) Timestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timestamp"))
+	return rv
+}
+
+// The token that represents this transaction in the persistent history.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/token
+func (p_ PersistentHistoryTransaction) Token() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("token"))
+	return rv
+}
+
+// The transaction’s numeric identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/transactionNumber
+func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionNumber"))
+	return rv
+}
+
 
 

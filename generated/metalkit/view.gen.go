@@ -96,7 +96,7 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 // Initializes a view with the specified frame rectangle and Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(frame:device:)
-func NewViewWithFrameDevice(frameRect coregraphics.CGRect, device unsafe.Pointer) View {
+func NewViewWithFrameDevice(frameRect coregraphics.CGRect, device objc.ID) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:device:"), frameRect, device)
 	rv.Autorelease()
@@ -223,8 +223,8 @@ func (v_ View) SetColorspace(value coregraphics.CGColorSpaceRef) {
 // The drawable to use for the current frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/currentDrawable
-func (v_ View) CurrentDrawable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("currentDrawable"))
+func (v_ View) CurrentDrawable() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("currentDrawable"))
 	return rv
 }
 
@@ -246,8 +246,8 @@ func (v_ View) CurrentRenderPassDescriptor() unsafe.Pointer {
 // The view’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/delegate
-func (v_ View) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("delegate"))
+func (v_ View) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -257,7 +257,7 @@ func (v_ View) Delegate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/delegate
-func (v_ View) SetDelegate(value unsafe.Pointer) {
+func (v_ View) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
 // The texture usage characteristics that the view uses when creating the depth and stencil textures.
@@ -314,16 +314,16 @@ func (v_ View) SetDepthStencilStorageMode(value unsafe.Pointer) {
 // A packed depth and stencil texture associated with the current drawable object’s texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/depthStencilTexture
-func (v_ View) DepthStencilTexture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("depthStencilTexture"))
+func (v_ View) DepthStencilTexture() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("depthStencilTexture"))
 	return rv
 }
 
 // The device object the view uses to create its Metal objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/device
-func (v_ View) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("device"))
+func (v_ View) Device() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -333,7 +333,7 @@ func (v_ View) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/device
-func (v_ View) SetDevice(value unsafe.Pointer) {
+func (v_ View) SetDevice(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDevice:"), value)
 }
 // The current size of drawable textures.
@@ -424,16 +424,16 @@ func (v_ View) SetMultisampleColorAttachmentTextureUsage(value unsafe.Pointer) {
 // The multisample color sample texture to render into.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/multisampleColorTexture
-func (v_ View) MultisampleColorTexture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("multisampleColorTexture"))
+func (v_ View) MultisampleColorTexture() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("multisampleColorTexture"))
 	return rv
 }
 
 // The device object that the system recommends using for this view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/preferredDevice
-func (v_ View) PreferredDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("preferredDevice"))
+func (v_ View) PreferredDevice() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("preferredDevice"))
 	return rv
 }
 

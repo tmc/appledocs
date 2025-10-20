@@ -80,6 +80,13 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 }
 
 
+// Sets the value for the given key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/setValue(_:forKey:)
+func (a_ AtomicStoreCacheNode) SetValueForKey(value objc.ID, key string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
+}
+
 // Returns the value for a given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/value(forKey:)

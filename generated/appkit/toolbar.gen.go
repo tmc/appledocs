@@ -387,8 +387,8 @@ func (t_ Toolbar) SetItemIdentifiers(value []string) {
 // An array containing the toolbar’s current items, in order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/items
-func (t_ Toolbar) Items() []__kindof NSToolbarItem {
-	rv := objc.Send[[]__kindof NSToolbarItem](t_.ID, objc.Sel("items"))
+func (t_ Toolbar) Items() []ToolbarItem {
+	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("items"))
 	return rv
 }
 
@@ -446,8 +446,8 @@ func (t_ Toolbar) SetSizeMode(value unsafe.Pointer) {
 // An array containing the toolbar’s currently visible items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/visibleItems
-func (t_ Toolbar) VisibleItems() []__kindof NSToolbarItem {
-	rv := objc.Send[[]__kindof NSToolbarItem](t_.ID, objc.Sel("visibleItems"))
+func (t_ Toolbar) VisibleItems() []ToolbarItem {
+	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("visibleItems"))
 	return rv
 }
 

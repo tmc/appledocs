@@ -98,6 +98,23 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
 }
+// A Boolean value that indicates whether the attribute allows external binary storage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
+func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
+	return rv
+}
+
+
+// SetAllowsExternalBinaryDataStorage sets the value of the allowsExternalBinaryDataStorage property.
+// A Boolean value that indicates whether the attribute allows external binary storage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
+func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
+}
 // The attribute’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property

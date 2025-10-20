@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchRequestExpression] class.
@@ -28,7 +29,7 @@ type _FetchRequestExpressionClass struct {
 
 // An interface definition for the [FetchRequestExpression] class.
 type IFetchRequestExpression interface {
-	IExpression
+	foundation.IExpression
 }
 
 // An expression that evaluates the result of a fetch request on a managed object context.
@@ -37,7 +38,7 @@ type IFetchRequestExpression interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression
 type FetchRequestExpression struct {
-	unsafe.Pointer
+	foundation.Expression
 }
 
 // FetchRequestExpressionFrom constructs a [FetchRequestExpression] from an unsafe.Pointer.
@@ -45,7 +46,7 @@ type FetchRequestExpression struct {
 // An expression that evaluates the result of a fetch request on a managed object context.
 func FetchRequestExpressionFrom(ptr unsafe.Pointer) FetchRequestExpression {
 	return FetchRequestExpression{
-		Expression: unsafe.PointerFrom(ptr),
+		Expression: foundation.ExpressionFrom(ptr),
 	}
 }
 

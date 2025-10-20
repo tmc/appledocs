@@ -45,11 +45,11 @@ func (c *ParsedClass) HasInitMethods() bool {
 
 // ParsedMethod represents an Objective-C method declaration.
 type ParsedMethod struct {
-	Name          string   // Go-style method name (e.g., "InitWithFrame")
-	Selector      string   // Objective-C selector (e.g., "initWithFrame:")
-	IsClassMethod bool     // true for class methods (+), false for instance methods (-)
-	IsInitializer bool     // true if this is an initializer (symbolKind == "init" in docs)
-	ReturnType    string   // Objective-C return type
+	Name          string // Go-style method name (e.g., "InitWithFrame")
+	Selector      string // Objective-C selector (e.g., "initWithFrame:")
+	IsClassMethod bool   // true for class methods (+), false for instance methods (-)
+	IsInitializer bool   // true if this is an initializer (symbolKind == "init" in docs)
+	ReturnType    string // Objective-C return type
 	Parameters    []Parameter
 	Comment       string
 	Availability  Availability

@@ -30,6 +30,8 @@ type _ManagedObjectModelClass struct {
 // An interface definition for the [ManagedObjectModel] class.
 type IManagedObjectModel interface {
 	objectivec.IObject
+	FetchRequestFromTemplateWithNameSubstitutionVariables(name string, variables unsafe.Pointer) unsafe.Pointer
+	FetchRequestTemplateForName(name string) unsafe.Pointer
 	IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool
 	SetFetchRequestTemplateForName(fetchRequestTemplate unsafe.Pointer, name string)
 }
@@ -81,6 +83,22 @@ func NewManagedObjectModel() ManagedObjectModel {
 	return getManagedObjectModelClass().New()
 }
 
+
+// Returns a copy of the fetch request template with the variables substituted by values from the substitutions dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/fetchRequestFromTemplate(withName:substitutionVariables:)
+func (m_ ManagedObjectModel) FetchRequestFromTemplateWithNameSubstitutionVariables(name string, variables unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fetchRequestFromTemplateWithName:substitutionVariables:"), objc.String(name), variables)
+	return rv
+}
+
+// Returns the fetch request with a specified name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/fetchRequestTemplate(forName:)
+func (m_ ManagedObjectModel) FetchRequestTemplateForName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fetchRequestTemplateForName:"), objc.String(name))
+	return rv
+}
 
 // Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store.
 //

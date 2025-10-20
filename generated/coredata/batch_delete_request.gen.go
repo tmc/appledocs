@@ -81,6 +81,35 @@ func NewBatchDeleteRequest() BatchDeleteRequest {
 }
 
 
+// Creates a request that deletes the results of the specified fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(fetchRequest:)
+func NewBatchDeleteRequestWithFetchRequest(fetch unsafe.Pointer) BatchDeleteRequest {
+	instance := getBatchDeleteRequestClass().Alloc()
+	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithFetchRequest:"), fetch)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a request that deletes the managed objects with the specified identifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(objectIDs:)
+func NewBatchDeleteRequestWithObjectIDs(objects unsafe.Pointer) BatchDeleteRequest {
+	instance := getBatchDeleteRequestClass().Alloc()
+	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithObjectIDs:"), objects)
+	rv.Autorelease()
+	return rv
+}
+
+
+// The fetch request that identifies the managed objects to delete.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/fetchRequest
+func (b_ BatchDeleteRequest) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("fetchRequest"))
+	return rv
+}
+
 // The type of result the request provides when it executes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
@@ -98,5 +127,4 @@ func (b_ BatchDeleteRequest) ResultType() unsafe.Pointer {
 func (b_ BatchDeleteRequest) SetResultType(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
-
 

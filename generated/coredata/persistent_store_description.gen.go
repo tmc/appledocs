@@ -113,6 +113,23 @@ func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value unsafe.Pointer
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, objc.String(name))
 }
 
+// Options that customize how this store description aligns with a CloudKit database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
+func (p_ PersistentStoreDescription) CloudKitContainerOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cloudKitContainerOptions"))
+	return rv
+}
+
+
+// SetCloudKitContainerOptions sets the value of the cloudKitContainerOptions property.
+// Options that customize how this store description aligns with a CloudKit database.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
+func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudKitContainerOptions:"), value)
+}
 // The name of the configuration used by this store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/configuration
@@ -230,5 +247,22 @@ func (p_ PersistentStoreDescription) Timeout() TimeInterval {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
 func (p_ PersistentStoreDescription) SetTimeout(value TimeInterval) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeout:"), value)
+}
+// The URL that the store will use for its location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
+func (p_ PersistentStoreDescription) URL() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("URL"))
+	return rv
+}
+
+
+// SetURL sets the value of the URL property.
+// The URL that the store will use for its location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
+func (p_ PersistentStoreDescription) SetURL(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
 }
 

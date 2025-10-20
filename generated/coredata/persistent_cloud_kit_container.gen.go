@@ -31,6 +31,7 @@ type IPersistentCloudKitContainer interface {
 	IPersistentContainer
 	AcceptShareInvitations()
 	FetchParticipants()
+	FetchShares()
 	PersistUpdatedShare()
 	Share()
 	AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
@@ -38,7 +39,7 @@ type IPersistentCloudKitContainer interface {
 	CanModifyManagedObjectsInStore(store unsafe.Pointer) bool
 	CanUpdateRecordForManagedObjectWithID(objectID unsafe.Pointer) bool
 	FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
-	FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error unsafe.Pointer) []unsafe.Pointer
+	FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error unsafe.Pointer) []CKShare
 	FetchSharesMatchingObjectIDsError(objectIDs unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
 	PersistUpdatedShareInPersistentStoreCompletion(share unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
 	PurgeObjectsAndRecordsInZoneWithIDInPersistentStoreCompletion(zoneID unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
@@ -124,6 +125,13 @@ func (p_ PersistentCloudKitContainer) FetchParticipants() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fetchParticipants"))
 }
 
+// Returns an array that contains all share records in the specified persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746830-fetchshares
+func (p_ PersistentCloudKitContainer) FetchShares() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("fetchShares"))
+}
+
 // Saves the share record and schedules it for export to iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746832-persistupdatedshare
@@ -179,8 +187,8 @@ func (p_ PersistentCloudKitContainer) FetchParticipantsMatchingLookupInfosIntoPe
 // Returns an array that contains all share records in the specified persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesInPersistentStore:error:
-func (p_ PersistentCloudKitContainer) FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error unsafe.Pointer) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("fetchSharesInPersistentStore:error:"), persistentStore, error)
+func (p_ PersistentCloudKitContainer) FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error unsafe.Pointer) []CKShare {
+	rv := objc.Send[[]CKShare](p_.ID, objc.Sel("fetchSharesInPersistentStore:error:"), persistentStore, error)
 	return rv
 }
 

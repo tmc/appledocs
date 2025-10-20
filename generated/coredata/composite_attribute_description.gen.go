@@ -84,8 +84,8 @@ func NewCompositeAttributeDescription() CompositeAttributeDescription {
 // The composed attribute descriptions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
-func (c_ CompositeAttributeDescription) Elements() []__kindof NSAttributeDescription {
-	rv := objc.Send[[]__kindof NSAttributeDescription](c_.ID, objc.Sel("elements"))
+func (c_ CompositeAttributeDescription) Elements() []AttributeDescription {
+	rv := objc.Send[[]AttributeDescription](c_.ID, objc.Sel("elements"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (c_ CompositeAttributeDescription) Elements() []__kindof NSAttributeDescrip
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
-func (c_ CompositeAttributeDescription) SetElements(value []__kindof NSAttributeDescription) {
+func (c_ CompositeAttributeDescription) SetElements(value []AttributeDescription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setElements:"), value)
 }
 

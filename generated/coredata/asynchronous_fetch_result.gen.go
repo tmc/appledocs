@@ -90,8 +90,8 @@ func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 // The results that were received from the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/finalResult
-func (a_ AsynchronousFetchResult) FinalResult() []id<NSFetchRequestResult> {
-	rv := objc.Send[[]id<NSFetchRequestResult>](a_.ID, objc.Sel("finalResult"))
+func (a_ AsynchronousFetchResult) FinalResult() []objc.ID {
+	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("finalResult"))
 	return rv
 }
 

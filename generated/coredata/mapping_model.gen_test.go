@@ -12,3 +12,4 @@ var _ = coredata.NewMappingModel
 
 
 
+

@@ -84,8 +84,8 @@ func NewEvent() Event {
 // The Core Graphics event object corresponding to this event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/cgEvent
-func (e_ Event) CGEvent() coregraphics.EventRef {
-	rv := objc.Send[coregraphics.EventRef](e_.ID, objc.Sel("CGEvent"))
+func (e_ Event) CGEvent() coregraphics.CGEventRef {
+	rv := objc.Send[coregraphics.CGEventRef](e_.ID, objc.Sel("CGEvent"))
 	return rv
 }
 

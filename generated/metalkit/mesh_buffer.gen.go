@@ -30,7 +30,6 @@ type _MeshBufferClass struct {
 // An interface definition for the [MeshBuffer] class.
 type IMeshBuffer interface {
 	objectivec.IObject
-	Zone() objc.ID
 }
 
 // A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
@@ -77,7 +76,6 @@ func (m_ MeshBuffer) Autorelease() MeshBuffer {
 func NewMeshBuffer() MeshBuffer {
 	return getMeshBufferClass().New()
 }
-
 
 // The allocator object used to create this mesh buffer.
 //

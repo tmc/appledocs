@@ -89,21 +89,21 @@ func NewRulerView() RulerView {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
-	instance := getRulerViewClass().Alloc()
-	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a newly allocated NSRulerView to have ( or ) within .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
 func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
+func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+	instance := getRulerViewClass().Alloc()
+	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

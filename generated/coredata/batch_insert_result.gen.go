@@ -79,5 +79,21 @@ func NewBatchInsertResult() BatchInsertResult {
 }
 
 
+// The result of a batch-insertion request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/result
+func (b_ BatchInsertResult) Result() objc.ID {
+	rv := objc.Send[objc.ID](b_.ID, objc.Sel("result"))
+	return rv
+}
+
+// The type of result that Core Data returns from this request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/resultType
+func (b_ BatchInsertResult) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+	return rv
+}
+
 
 

@@ -7,11 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // newBufferWithLengthProtocol is the newBufferWithLength: protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+
-//   - iOS 8.0+
-//   - iPadOS 8.0+
-//   - macOS 10.11+
-//   - visionOS 1.0+
+//   - Mac Catalyst 26.0+
+//   - iOS 26.0+
+//   - iPadOS 26.0+
+//   - macOS 26.0+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
 //
 // Use this protocol when registering custom classes that conform to newBufferWithLength:.
 var newBufferWithLengthProtocol *objc.Protocol

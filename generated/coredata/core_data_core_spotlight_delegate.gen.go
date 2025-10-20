@@ -30,6 +30,14 @@ type _CoreDataCoreSpotlightDelegateClass struct {
 // An interface definition for the [CoreDataCoreSpotlightDelegate] class.
 type ICoreDataCoreSpotlightDelegate interface {
 	objectivec.IObject
+	AttributeSetForObject(object unsafe.Pointer) unsafe.Pointer
+	DeleteSpotlightIndexWithCompletionHandler(completionHandler unsafe.Pointer)
+	DomainIdentifier() unsafe.Pointer
+	IndexName() unsafe.Pointer
+	SearchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(searchableIndex unsafe.Pointer, acknowledgementHandler unsafe.Pointer)
+	SearchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex unsafe.Pointer, identifiers unsafe.Pointer, acknowledgementHandler unsafe.Pointer)
+	StartSpotlightIndexing()
+	StopSpotlightIndexing()
 }
 
 // A set of methods that enable integration with Core Spotlight.
@@ -78,5 +86,92 @@ func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
 }
 
 
+// Creates a Core Spotlight delegate with the specified store description and coordinator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/init(forStoreWith:coordinator:)
+func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionCoordinator(description unsafe.Pointer, psc unsafe.Pointer) CoreDataCoreSpotlightDelegate {
+	instance := getCoreDataCoreSpotlightDelegateClass().Alloc()
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](instance.ID, objc.Sel("initForStoreWithDescription:coordinator:"), description, psc)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a Core Spotlight delegate with the specified store description and managed object model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/init(forStoreWith:model:)
+func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionModel(description unsafe.Pointer, model unsafe.Pointer) CoreDataCoreSpotlightDelegate {
+	instance := getCoreDataCoreSpotlightDelegateClass().Alloc()
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](instance.ID, objc.Sel("initForStoreWithDescription:model:"), description, model)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns the searchable attributes for the specified managed object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/attributeSet(for:)
+func (c_ CoreDataCoreSpotlightDelegate) AttributeSetForObject(object unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributeSetForObject:"), object)
+	return rv
+}
+
+// Deletes all searchable items from the configured index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/deleteSpotlightIndex(completionHandler:)
+func (c_ CoreDataCoreSpotlightDelegate) DeleteSpotlightIndexWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSpotlightIndexWithCompletionHandler:"), completionHandler)
+}
+
+// Returns the domain identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/domainIdentifier()
+func (c_ CoreDataCoreSpotlightDelegate) DomainIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("domainIdentifier"))
+	return rv
+}
+
+// Returns the index’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/indexName()
+func (c_ CoreDataCoreSpotlightDelegate) IndexName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexName"))
+	return rv
+}
+
+// Reindexes all searchable items and clears any local state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/searchableIndex(_:reindexAllSearchableItemsWithAcknowledgementHandler:)
+func (c_ CoreDataCoreSpotlightDelegate) SearchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(searchableIndex unsafe.Pointer, acknowledgementHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:"), searchableIndex, acknowledgementHandler)
+}
+
+// Reindexes the searchable items for the specified identifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/searchableIndex(_:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:)
+func (c_ CoreDataCoreSpotlightDelegate) SearchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex unsafe.Pointer, identifiers unsafe.Pointer, acknowledgementHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("searchableIndex:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:"), searchableIndex, identifiers, acknowledgementHandler)
+}
+
+// Starts the indexing of the store’s entities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/startSpotlightIndexing()
+func (c_ CoreDataCoreSpotlightDelegate) StartSpotlightIndexing() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("startSpotlightIndexing"))
+}
+
+// Stops the indexing of the store’s entities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/stopSpotlightIndexing()
+func (c_ CoreDataCoreSpotlightDelegate) StopSpotlightIndexing() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("stopSpotlightIndexing"))
+}
+
+// A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/isIndexingEnabled
+func (c_ CoreDataCoreSpotlightDelegate) IndexingEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("indexingEnabled"))
+	return rv
+}
 
 

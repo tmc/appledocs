@@ -90,19 +90,19 @@ func NewScrollView() ScrollView {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(frame:)
-func NewScrollViewWithFrame(frameRect coregraphics.CGRect) ScrollView {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
+func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
 	instance := getScrollViewClass().Alloc()
-	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
-func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(frame:)
+func NewScrollViewWithFrame(frameRect coregraphics.CGRect) ScrollView {
 	instance := getScrollViewClass().Alloc()
-	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv
 }

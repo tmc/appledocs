@@ -79,6 +79,41 @@ func NewSaveChangesRequest() SaveChangesRequest {
 }
 
 
+// Initializes a save changes request with collections of given changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/init(inserted:updated:deleted:locked:)
+func NewSaveChangesRequestWithInsertedObjectsUpdatedObjectsDeletedObjectsLockedObjects(insertedObjects unsafe.Pointer, updatedObjects unsafe.Pointer, deletedObjects unsafe.Pointer, lockedObjects unsafe.Pointer) SaveChangesRequest {
+	instance := getSaveChangesRequestClass().Alloc()
+	rv := objc.Send[SaveChangesRequest](instance.ID, objc.Sel("initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:"), insertedObjects, updatedObjects, deletedObjects, lockedObjects)
+	rv.Autorelease()
+	return rv
+}
+
+
+// The objects that were deleted in the calling context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/deletedObjects
+func (s_ SaveChangesRequest) DeletedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("deletedObjects"))
+	return rv
+}
+
+// The objects that were inserted into the calling context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/insertedObjects
+func (s_ SaveChangesRequest) InsertedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("insertedObjects"))
+	return rv
+}
+
+// The objects that were flagged for optimistic locking on the calling context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/lockedObjects
+func (s_ SaveChangesRequest) LockedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lockedObjects"))
+	return rv
+}
+
 // The objects that were modified in the calling context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/updatedObjects
@@ -86,6 +121,5 @@ func (s_ SaveChangesRequest) UpdatedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("updatedObjects"))
 	return rv
 }
-
 
 

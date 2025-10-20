@@ -83,16 +83,6 @@ func NewColor() Color {
 
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
-func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) Color {
-	instance := getColorClass().Alloc()
-	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
-	rv.Autorelease()
-	return rv
-}
-
-// Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
-//
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
 func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace coregraphics.CGColorSpaceRef) Color {
 	instance := getColorClass().Alloc()
@@ -144,6 +134,16 @@ func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
 func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alpha float64) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:"), red, green, blue, alpha)
+	rv.Autorelease()
+	return rv
+}
+
+// Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
+func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) Color {
+	instance := getColorClass().Alloc()
+	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	rv.Autorelease()
 	return rv
 }

@@ -116,7 +116,7 @@ func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex un
 // Override this class method to implement your Core Image Processor Kernel subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:output:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs unsafe.Pointer, arguments unsafe.Pointer, output unsafe.Pointer, error unsafe.Pointer) bool {
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs unsafe.Pointer, arguments unsafe.Pointer, output objc.ID, error unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error)
 	return rv
 }

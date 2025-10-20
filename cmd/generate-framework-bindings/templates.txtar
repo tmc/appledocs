@@ -9,15 +9,15 @@
 # Classes: {{.ClassCount}}
 # Protocols: {{.ProtocolCount}}
 
-#-- gen.go --
-{{template "gen.go" .}}
+#-- generate.go --
+{{template "generate.go" .}}
 #-- doc.gen.go --
 {{template "doc.gen.go" .}}
 #-- types.gen.go --
 {{template "types.gen.go" .}}
 #-- functions.gen.go --
 {{template "functions.gen.go" .}}
-{{if or (gt .ClassCount 0) .GenerateTests .GenerateExamples -}}
+{{if or (gt .ClassCount 0) (gt .FunctionCount 0) .GenerateTests .GenerateExamples -}}
 #-- main_test.go --
 {{template "main_test.go" .}}
 {{end -}}
@@ -50,13 +50,13 @@
 {{template "examples_test.gen.go" .}}
 {{end -}}
 
--- gen.go --
+-- generate.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}
 
-//go:generate rm -f *.gen.go
-//go:generate generate-framework-bindings -framework {{.Framework}}{{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output .
+//go:generate rm -f *.gen.go *.gen_test.go
+//go:generate go run ../../cmd/generate-framework-bindings -framework {{.Framework}}{{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output ..
 
 -- doc.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
@@ -369,6 +369,8 @@ type I{{$structName}} interface {
 	{{- $superResolved := resolveType $.Framework $superStructName}}
 	{{- if hasPrefix $superResolved "foundation."}}
 	foundation.I{{trimPrefix $superResolved "foundation."}}
+	{{- else if hasPrefix $superResolved "appkit."}}
+	appkit.I{{trimPrefix $superResolved "appkit."}}
 	{{- else if hasPrefix $superResolved "quartzcore."}}
 	quartzcore.I{{trimPrefix $superResolved "quartzcore."}}
 	{{- else if hasPrefix $superResolved "objectivec."}}
@@ -585,6 +587,9 @@ import (
 {{- end}}
 {{- if $imports.NeedsCoreGraphics}}
 	"{{.OutputModule}}/coregraphics"
+{{- end}}
+{{- if $imports.NeedsAppKit}}
+	"{{.OutputModule}}/appkit"
 {{- end}}
 )
 

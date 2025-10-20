@@ -1827,6 +1827,7 @@ func resolveType(framework, typeName string) string {
 		"Operation":               true,
 		"OperationQueue":          true,
 		"Expression":              true, // NSExpression - used by CoreData
+		"ExtensionContext":        true, // NSExtensionContext - used by AuthenticationServices
 	}
 
 	// QuartzCore types used by other frameworks
@@ -1839,7 +1840,7 @@ func resolveType(framework, typeName string) string {
 	}
 
 	// AppKit types used by other frameworks (common base classes)
-	_ = map[string]bool{
+	appKitTypes := map[string]bool{
 		"Responder":            true, // NSResponder
 		"View":                 true, // NSView
 		"Control":              true, // NSControl
@@ -1915,6 +1916,16 @@ func resolveType(framework, typeName string) string {
 	// If this is a known Foundation type and we're not in Foundation, qualify it
 	if foundationTypes[typeName] {
 		return "foundation." + typeName
+	}
+
+	// If we're in AppKit framework, all types are local
+	if framework == "AppKit" {
+		return typeName
+	}
+
+	// If this is a known AppKit type and we're not in AppKit, qualify it
+	if appKitTypes[typeName] {
+		return "appkit." + typeName
 	}
 
 	// Check if the type exists in the current framework
@@ -2071,6 +2082,7 @@ type ClassImports struct {
 	NeedsFoundation   bool
 	NeedsQuartzCore   bool
 	NeedsCoreGraphics bool
+	NeedsAppKit       bool
 }
 
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
@@ -2097,6 +2109,8 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 			imports.NeedsFoundation = true
 		} else if strings.HasPrefix(superResolved, "quartzcore.") {
 			imports.NeedsQuartzCore = true
+		} else if strings.HasPrefix(superResolved, "appkit.") {
+			imports.NeedsAppKit = true
 		} else if class.SuperClass == "NSObject" || superStructName == "Object" || isSelfReferential {
 			imports.NeedsObjectiveC = true
 		}
@@ -2189,6 +2203,12 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 		// Resolve superclass to its qualified type
 		superResolved := resolveType(framework, superStructName)
 
+		// If superclass resolves to unsafe.Pointer, it means the parent class doesn't exist
+		// Fall back to objectivec.IObject instead
+		if superResolved == "unsafe.Pointer" {
+			return "objectivec.IObject"
+		}
+
 		// Build interface name based on resolved framework
 		if strings.HasPrefix(superResolved, "foundation.") {
 			typeName := strings.TrimPrefix(superResolved, "foundation.")
@@ -2198,6 +2218,11 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 		if strings.HasPrefix(superResolved, "quartzcore.") {
 			typeName := strings.TrimPrefix(superResolved, "quartzcore.")
 			return "quartzcore.I" + typeName
+		}
+
+		if strings.HasPrefix(superResolved, "appkit.") {
+			typeName := strings.TrimPrefix(superResolved, "appkit.")
+			return "appkit.I" + typeName
 		}
 
 		if strings.HasPrefix(superResolved, "objectivec.") {
@@ -2251,6 +2276,16 @@ func getStructEmbeddedField(class *occ2go.ParsedClass, framework string) string 
 
 		// Resolve superclass to its qualified type
 		superResolved := resolveType(framework, superStructName)
+
+		// If superclass resolves to unsafe.Pointer, it means the parent class doesn't exist
+		// Fall back to objectivec.Object instead
+		if superResolved == "unsafe.Pointer" {
+			if framework == "ObjectiveC" {
+				return "Object"
+			}
+			return "objectivec.Object"
+		}
+
 		return superResolved
 	}
 
@@ -2299,6 +2334,16 @@ func getFromConstructorBody(class *occ2go.ParsedClass, framework string) string 
 
 		// Has a non-NSObject superclass - need to construct with named field
 		superResolved := resolveType(framework, superStructName)
+
+		// If superclass resolves to unsafe.Pointer, it means the parent class doesn't exist
+		// Fall back to objectivec.Object instead
+		if superResolved == "unsafe.Pointer" {
+			if framework == "ObjectiveC" {
+				return fmt.Sprintf("return %s{Object{objc.ID(ptr)}}", structName)
+			}
+			return fmt.Sprintf("return %s{objectivec.Object{objc.ID(ptr)}}", structName)
+		}
+
 		return fmt.Sprintf("return %s{\n\t\t%s: %sFrom(ptr),\n\t}", structName, superStructName, superResolved)
 	}
 

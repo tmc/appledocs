@@ -421,8 +421,8 @@ func ParseFunctionDeclaration(tokens []appledocs.Token) (*ParsedFunction, error)
 			text := tokens[i].Text
 			// Skip attributes and other noise
 			if !strings.Contains(text, "__attribute__") &&
-			   !strings.Contains(text, "__OSX_AVAILABLE") &&
-			   !strings.Contains(text, "API_") {
+				!strings.Contains(text, "__OSX_AVAILABLE") &&
+				!strings.Contains(text, "API_") {
 				returnTypeParts = append(returnTypeParts, text)
 			}
 		}
@@ -679,7 +679,7 @@ func ParseMethod(doc *appledocs.Document) (*ParsedMethod, error) {
 // ParseMethodDeclaration parses an Objective-C method declaration from tokens.
 // Objective-C method syntax:
 //   - (ReturnType)methodName:(Type1)param1 withArg:(Type2)param2
-//   + (ReturnType)classMethod:(Type)param
+//   - (ReturnType)classMethod:(Type)param
 func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*ParsedMethod, error) {
 	method := &ParsedMethod{
 		IsClassMethod: isClassMethod,
@@ -773,48 +773,48 @@ func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*Pars
 						i++
 					}
 
-				// Collect parameter type
-				// Need to handle nested parentheses for blocks like: void (^)(NSModalResponse)
-				paramTypeParts := []string{}
-				parenDepth := 0
+					// Collect parameter type
+					// Need to handle nested parentheses for blocks like: void (^)(NSModalResponse)
+					paramTypeParts := []string{}
+					parenDepth := 0
 
-				for i < len(tokens) {
-					text := tokens[i].Text
+					for i < len(tokens) {
+						text := tokens[i].Text
 
-					// Count opening and closing parens in this token
-					for _, ch := range text {
-						if ch == '(' {
-							parenDepth++
-						} else if ch == ')'{
-							parenDepth--
-							// If we go negative, we've hit the closing paren for the parameter type
-							if parenDepth < 0 {
-								break
+						// Count opening and closing parens in this token
+						for _, ch := range text {
+							if ch == '(' {
+								parenDepth++
+							} else if ch == ')' {
+								parenDepth--
+								// If we go negative, we've hit the closing paren for the parameter type
+								if parenDepth < 0 {
+									break
+								}
 							}
 						}
-					}
 
-					// If we've closed all parens, check if there's content before the closing paren
-					if parenDepth < 0 {
-						// Extract any content before the closing paren
-						if idx := strings.Index(text, ")"); idx > 0 {
-							beforeParen := strings.TrimSpace(text[:idx])
-							if beforeParen != "" {
-								paramTypeParts = append(paramTypeParts, beforeParen)
+						// If we've closed all parens, check if there's content before the closing paren
+						if parenDepth < 0 {
+							// Extract any content before the closing paren
+							if idx := strings.Index(text, ")"); idx > 0 {
+								beforeParen := strings.TrimSpace(text[:idx])
+								if beforeParen != "" {
+									paramTypeParts = append(paramTypeParts, beforeParen)
+								}
 							}
+							break
 						}
-						break
+
+						// Add token text if non-empty
+						if text != "" && strings.TrimSpace(text) != "" {
+							paramTypeParts = append(paramTypeParts, text)
+						}
+
+						i++
 					}
 
-					// Add token text if non-empty
-					if text != "" && strings.TrimSpace(text) != "" {
-						paramTypeParts = append(paramTypeParts, text)
-					}
-
-					i++
-				}
-
-				param.Type = strings.Join(paramTypeParts, " ")
+					param.Type = strings.Join(paramTypeParts, " ")
 
 					// Skip closing paren
 					if i < len(tokens) && strings.Contains(tokens[i].Text, ")") {

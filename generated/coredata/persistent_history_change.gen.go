@@ -86,11 +86,35 @@ func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
 	return rv
 }
 
+// The type of change to the managed object in the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeType
+func (p_ PersistentHistoryChange) ChangeType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeType"))
+	return rv
+}
+
+// The identifier of the managed object that changed. (swift) Declaration: @property(readonly, copy) NSManagedObjectID *changedObjectID; (objc) Availability: iOS: 11.0 — iPadOS: 11.0 — Mac Catalyst: 13.1 — macOS: 10.13 — tvOS: 11.0 — visionOS: 1.0 — watchOS: 4.0 (objc,swift) }
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changedObjectID
+func (p_ PersistentHistoryChange) ChangedObjectID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedObjectID"))
+	return rv
+}
+
 // A dictionary of attributes marked for preservation after deletion, and their values when deleted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/tombstone
 func (p_ PersistentHistoryChange) Tombstone() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tombstone"))
+	return rv
+}
+
+// The persistent history transaction containing this change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/transaction
+func (p_ PersistentHistoryChange) Transaction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transaction"))
 	return rv
 }
 

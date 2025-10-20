@@ -80,6 +80,31 @@ func NewEntityDescription() EntityDescription {
 }
 
 
+// Creates, configures, and returns an instance of the class for the entity with a given name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/insertNewObject(forEntityName:into:)
+func (ec _EntityDescriptionClass) InsertNewObjectForEntityForNameInManagedObjectContext(entityName string, context unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("insertNewObjectForEntityForName:inManagedObjectContext:"), objc.String(entityName), context)
+	return rv
+}
+
+// The entity name of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
+func (e_ EntityDescription) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The entity name of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
+func (e_ EntityDescription) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
+}
 // The version hash for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/versionHash

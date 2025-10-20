@@ -80,6 +80,41 @@ func NewMergeConflict() MergeConflict {
 }
 
 
+// Initializes a merge conflict.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/init(source:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)
+func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapshot(srcObject unsafe.Pointer, newvers uint, oldvers uint, cachesnap unsafe.Pointer, persnap unsafe.Pointer) MergeConflict {
+	instance := getMergeConflictClass().Alloc()
+	rv := objc.Send[MergeConflict](instance.ID, objc.Sel("initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:"), srcObject, newvers, oldvers, cachesnap, persnap)
+	rv.Autorelease()
+	return rv
+}
+
+
+// A dictionary containing the values of the source object held in the persistent store coordinator layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/cachedSnapshot
+func (m_ MergeConflict) CachedSnapshot() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cachedSnapshot"))
+	return rv
+}
+
+// The new version number for the change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/newVersionNumber
+func (m_ MergeConflict) NewVersionNumber() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("newVersionNumber"))
+	return rv
+}
+
+// A dictionary containing the values of the source object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/objectSnapshot
+func (m_ MergeConflict) ObjectSnapshot() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectSnapshot"))
+	return rv
+}
+
 // The old version number for the change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/oldVersionNumber
@@ -88,5 +123,20 @@ func (m_ MergeConflict) OldVersionNumber() uint {
 	return rv
 }
 
+// A dictionary containing the values of the source object held in the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/persistedSnapshot
+func (m_ MergeConflict) PersistedSnapshot() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistedSnapshot"))
+	return rv
+}
+
+// The source object for the conflict.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/sourceObject
+func (m_ MergeConflict) SourceObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sourceObject"))
+	return rv
+}
 
 

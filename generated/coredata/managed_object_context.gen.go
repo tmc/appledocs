@@ -31,14 +31,30 @@ type _ManagedObjectContextClass struct {
 type IManagedObjectContext interface {
 	objectivec.IObject
 	AssignObjectToPersistentStore(object objc.ID, store unsafe.Pointer)
+	CountForFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) uint
+	DetectConflictsForObject(object unsafe.Pointer)
+	ExecuteRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	ExecuteFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	InsertObject(object unsafe.Pointer)
+	Lock()
 	MergeChangesFromContextDidSaveNotification(notification unsafe.Pointer)
+	ObjectWithID(objectID unsafe.Pointer) unsafe.Pointer
+	ObtainPermanentIDsForObjectsError(objects unsafe.Pointer, error unsafe.Pointer) bool
 	PerformBlock(block unsafe.Pointer)
 	PerformBlockAndWait(block unsafe.Pointer)
 	ProcessPendingChanges()
+	Redo()
+	RefreshObjectMergeChanges(object unsafe.Pointer, flag bool)
 	RefreshAllObjects()
+	ObjectRegisteredForID(objectID unsafe.Pointer) unsafe.Pointer
 	Reset()
+	Rollback()
 	Save(error unsafe.Pointer) bool
 	SetQueryGenerationFromTokenError(generation unsafe.Pointer, error unsafe.Pointer) bool
+	ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault unsafe.Pointer, oid unsafe.Pointer, property unsafe.Pointer) bool
+	TryLock() bool
+	Undo()
+	Unlock()
 }
 
 // An object space to manipulate and track changes to managed objects.
@@ -114,6 +130,51 @@ func (m_ ManagedObjectContext) AssignObjectToPersistentStore(object objc.ID, sto
 	objc.Send[objc.ID](m_.ID, objc.Sel("assignObject:toPersistentStore:"), object, store)
 }
 
+// Returns the number of objects the specified request fetches when it executes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/count(for:)-93zbm
+func (m_ ManagedObjectContext) CountForFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("countForFetchRequest:error:"), request, error)
+	return rv
+}
+
+// Marks an object for conflict detection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/detectConflicts(for:)
+func (m_ ManagedObjectContext) DetectConflictsForObject(object unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("detectConflictsForObject:"), object)
+}
+
+// Passes a request to the persistent store without affecting the contents of the managed object context, and returns a persistent store result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/execute(_:)
+func (m_ ManagedObjectContext) ExecuteRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("executeRequest:error:"), request, error)
+	return rv
+}
+
+// Returns an array of objects that meet the criteria of the specified fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/executeFetchRequest:error:
+func (m_ ManagedObjectContext) ExecuteFetchRequestError(request unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("executeFetchRequest:error:"), request, error)
+	return rv
+}
+
+// Registers an object to be inserted in the context’s persistent store the next time changes are saved.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/insert(_:)
+func (m_ ManagedObjectContext) InsertObject(object unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("insertObject:"), object)
+}
+
+// Attempts to acquire a lock on the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/lock()
+func (m_ ManagedObjectContext) Lock() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("lock"))
+}
+
 // Merges the changes specified in a given notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)
@@ -121,11 +182,27 @@ func (m_ ManagedObjectContext) MergeChangesFromContextDidSaveNotification(notifi
 	objc.Send[objc.ID](m_.ID, objc.Sel("mergeChangesFromContextDidSaveNotification:"), notification)
 }
 
+// Returns either an existing object from the context or a fault that represents that object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/object(with:)
+func (m_ ManagedObjectContext) ObjectWithID(objectID unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectWithID:"), objectID)
+	return rv
+}
+
 // Allows a context that has registered as an observer of a value to be notified of a change to that value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/observeValue(forKeyPath:of:change:context:)
 func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath string, object objc.ID, change unsafe.Pointer, context unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), objc.String(keyPath), object, change, context)
+}
+
+// Converts to permanent IDs the object IDs of the objects in a given array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/obtainPermanentIDs(for:)
+func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects unsafe.Pointer, error unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("obtainPermanentIDsForObjects:error:"), objects, error)
+	return rv
 }
 
 // Asynchronously performs the specified closure on the context’s queue.
@@ -149,6 +226,20 @@ func (m_ ManagedObjectContext) ProcessPendingChanges() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("processPendingChanges"))
 }
 
+// Sends a redo message to the context’s undo manager, asking it to reverse the latest undo operation applied to objects in the object graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/redo()
+func (m_ ManagedObjectContext) Redo() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("redo"))
+}
+
+// Updates the persistent properties of a managed object to use the latest values from the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/refresh(_:mergeChanges:)
+func (m_ ManagedObjectContext) RefreshObjectMergeChanges(object unsafe.Pointer, flag bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("refreshObject:mergeChanges:"), object, flag)
+}
+
 // Refreshes all of the registered managed objects in the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/refreshAllObjects()
@@ -156,11 +247,26 @@ func (m_ ManagedObjectContext) RefreshAllObjects() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("refreshAllObjects"))
 }
 
+// Returns an object that exists in the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/registeredObject(for:)
+func (m_ ManagedObjectContext) ObjectRegisteredForID(objectID unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectRegisteredForID:"), objectID)
+	return rv
+}
+
 // Returns the context to its base state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/reset()
 func (m_ ManagedObjectContext) Reset() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("reset"))
+}
+
+// Removes everything from the undo stack, discards all insertions and deletions, and restores updated objects to their last committed values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/rollback()
+func (m_ ManagedObjectContext) Rollback() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("rollback"))
 }
 
 // Attempts to commit unsaved changes to registered objects to the context’s parent store.
@@ -177,6 +283,36 @@ func (m_ ManagedObjectContext) Save(error unsafe.Pointer) bool {
 func (m_ ManagedObjectContext) SetQueryGenerationFromTokenError(generation unsafe.Pointer, error unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setQueryGenerationFromToken:error:"), generation, error)
 	return rv
+}
+
+// Creates a log of the inaccessible fault.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldHandleInaccessibleFault(_:for:triggeredByProperty:)
+func (m_ ManagedObjectContext) ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault unsafe.Pointer, oid unsafe.Pointer, property unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:"), fault, oid, property)
+	return rv
+}
+
+// Attempts to acquire a lock.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/tryLock()
+func (m_ ManagedObjectContext) TryLock() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("tryLock"))
+	return rv
+}
+
+// Sends an undo message to the context’s undo manager, asking it to reverse the latest uncommitted changes applied to objects in the object graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/undo()
+func (m_ ManagedObjectContext) Undo() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("undo"))
+}
+
+// Relinquishes a previously acquired lock.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/unlock()
+func (m_ ManagedObjectContext) Unlock() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("unlock"))
 }
 
 // A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
@@ -196,6 +332,14 @@ func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
 func (m_ ManagedObjectContext) SetAutomaticallyMergesChangesFromParent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyMergesChangesFromParent:"), value)
 }
+// The concurrency type for the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/concurrencyType-swift.property
+func (m_ ManagedObjectContext) ConcurrencyType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("concurrencyType"))
+	return rv
+}
+
 // The set of objects that will be removed from their persistent store during the next save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/deletedObjects
@@ -204,6 +348,31 @@ func (m_ ManagedObjectContext) DeletedObjects() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether the context has uncommitted changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/hasChanges
+func (m_ ManagedObjectContext) HasChanges() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasChanges"))
+	return rv
+}
+
+// The merge policy of the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/mergePolicy
+func (m_ ManagedObjectContext) MergePolicy() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("mergePolicy"))
+	return rv
+}
+
+
+// SetMergePolicy sets the value of the mergePolicy property.
+// The merge policy of the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/mergePolicy
+func (m_ ManagedObjectContext) SetMergePolicy(value objc.ID) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMergePolicy:"), value)
+}
 // The developer-provided name of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
@@ -221,6 +390,40 @@ func (m_ ManagedObjectContext) Name() unsafe.Pointer {
 func (m_ ManagedObjectContext) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
+// The persistent store coordinator of the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/persistentStoreCoordinator
+func (m_ ManagedObjectContext) PersistentStoreCoordinator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistentStoreCoordinator"))
+	return rv
+}
+
+
+// SetPersistentStoreCoordinator sets the value of the persistentStoreCoordinator property.
+// The persistent store coordinator of the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/persistentStoreCoordinator
+func (m_ ManagedObjectContext) SetPersistentStoreCoordinator(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPersistentStoreCoordinator:"), value)
+}
+// A Boolean value that indicates whether the context propagates deletes at the end of the event in which a change was made.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/propagatesDeletesAtEndOfEvent
+func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("propagatesDeletesAtEndOfEvent"))
+	return rv
+}
+
+
+// SetPropagatesDeletesAtEndOfEvent sets the value of the propagatesDeletesAtEndOfEvent property.
+// A Boolean value that indicates whether the context propagates deletes at the end of the event in which a change was made.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/propagatesDeletesAtEndOfEvent
+func (m_ ManagedObjectContext) SetPropagatesDeletesAtEndOfEvent(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPropagatesDeletesAtEndOfEvent:"), value)
+}
 // Returns the token associated with the query generation currently in use by this context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/queryGenerationToken
@@ -229,6 +432,65 @@ func (m_ ManagedObjectContext) QueryGenerationToken() unsafe.Pointer {
 	return rv
 }
 
+// The set of registered managed objects in the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/registeredObjects
+func (m_ ManagedObjectContext) RegisteredObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("registeredObjects"))
+	return rv
+}
+
+// A Boolean value that indicates whether the context keeps strong references to all registered managed objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/retainsRegisteredObjects
+func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("retainsRegisteredObjects"))
+	return rv
+}
+
+
+// SetRetainsRegisteredObjects sets the value of the retainsRegisteredObjects property.
+// A Boolean value that indicates whether the context keeps strong references to all registered managed objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/retainsRegisteredObjects
+func (m_ ManagedObjectContext) SetRetainsRegisteredObjects(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRetainsRegisteredObjects:"), value)
+}
+// A Boolean value that determines whether the context turns inaccessible faults into deleted objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldDeleteInaccessibleFaults
+func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldDeleteInaccessibleFaults"))
+	return rv
+}
+
+
+// SetShouldDeleteInaccessibleFaults sets the value of the shouldDeleteInaccessibleFaults property.
+// A Boolean value that determines whether the context turns inaccessible faults into deleted objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldDeleteInaccessibleFaults
+func (m_ ManagedObjectContext) SetShouldDeleteInaccessibleFaults(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldDeleteInaccessibleFaults:"), value)
+}
+// The maximum length of time that may have elapsed since the store previously fetched data before fulfilling a fault issues a new fetch.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/stalenessInterval
+func (m_ ManagedObjectContext) StalenessInterval() TimeInterval {
+	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("stalenessInterval"))
+	return rv
+}
+
+
+// SetStalenessInterval sets the value of the stalenessInterval property.
+// The maximum length of time that may have elapsed since the store previously fetched data before fulfilling a fault issues a new fetch.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/stalenessInterval
+func (m_ ManagedObjectContext) SetStalenessInterval(value TimeInterval) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStalenessInterval:"), value)
+}
 // The author for the context that is used as an identifier in persistent history transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
@@ -246,4 +508,20 @@ func (m_ ManagedObjectContext) TransactionAuthor() unsafe.Pointer {
 func (m_ ManagedObjectContext) SetTransactionAuthor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), value)
 }
+// The set of objects registered with the context that have uncommitted changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/updatedObjects
+func (m_ ManagedObjectContext) UpdatedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("updatedObjects"))
+	return rv
+}
+
+// The user information for the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/userInfo
+func (m_ ManagedObjectContext) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
 
