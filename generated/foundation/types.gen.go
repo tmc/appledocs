@@ -2,18 +2,31 @@
 
 package foundation
 
-import "github.com/tmc/appledocs/generated/objectivec"
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
 // Foundation-specific types
 
-// Foundation geometry types - aliases to objectivec base types
-// This avoids circular imports while maintaining API compatibility
-type Point = objectivec.Point
-type Size = objectivec.Size
-type Rect = objectivec.Rect
-type Range = objectivec.Range
+// Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
+type Point struct {
+	X float64
+	Y float64
+}
+
+type Size struct {
+	Width  float64
+	Height float64
+}
+
+type Rect struct {
+	Origin Point
+	Size   Size
+}
+
+type Range struct {
+	Location int
+	Length   int
+}
 
 // RectEdge defines which edge of a rectangle.
 type RectEdge int

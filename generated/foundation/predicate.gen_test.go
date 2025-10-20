@@ -10,13 +10,11 @@ import (
 var _ = foundation.NewPredicate
 
 
-
-// ExampleNewPredicateWithFormatArgumentArray demonstrates how to create a Predicate instance using NewPredicateWithFormatArgumentArray.
-// Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
-func ExampleNewPredicateWithFormatArgumentArray() {
-	_ = foundation.NewPredicateWithFormatArgumentArray(
-		"predicateFormat", // predicateFormat string
-		0, // arguments objc.ID
+// ExampleNewPredicateWithValue demonstrates how to create a Predicate instance using NewPredicateWithValue.
+// Creates and returns a predicate that always evaluates to a specified Boolean value.
+func ExampleNewPredicateWithValue() {
+	_ = foundation.NewPredicateWithValue(
+		false, // value bool
 	)
 	// Output:
 }
@@ -27,15 +25,6 @@ func ExampleNewPredicateWithFormatArgumentArray() {
 func ExampleNewPredicateFromMetadataQueryString() {
 	_ = foundation.NewPredicateFromMetadataQueryString(
 		"kMDItemFSName == '*.txt'", // queryString string
-	)
-	// Output:
-}
-
-// ExampleNewPredicateWithValue demonstrates how to create a Predicate instance using NewPredicateWithValue.
-// Creates and returns a predicate that always evaluates to a specified Boolean value.
-func ExampleNewPredicateWithValue() {
-	_ = foundation.NewPredicateWithValue(
-		false, // value bool
 	)
 	// Output:
 }
