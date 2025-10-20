@@ -2098,7 +2098,20 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 	// Determine struct name for self-referential check
 	structName := classToStructName(class.Name)
 
-	// Check superclass for import needs
+	// Check struct embedding for import needs by using getStructEmbeddedField
+	// This ensures we catch all cases where objectivec.Object is embedded
+	embeddedField := getStructEmbeddedField(class, framework)
+	if strings.HasPrefix(embeddedField, "objectivec.") {
+		imports.NeedsObjectiveC = true
+	} else if strings.HasPrefix(embeddedField, "foundation.") {
+		imports.NeedsFoundation = true
+	} else if strings.HasPrefix(embeddedField, "quartzcore.") {
+		imports.NeedsQuartzCore = true
+	} else if strings.HasPrefix(embeddedField, "appkit.") {
+		imports.NeedsAppKit = true
+	}
+
+	// Also check superclass for import needs (for interface embedding)
 	if framework != "ObjectiveC" && class.SuperClass != "" {
 		superStructName := classToStructName(class.SuperClass)
 		superResolved := resolveType(framework, superStructName)
@@ -2111,6 +2124,8 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 			imports.NeedsQuartzCore = true
 		} else if strings.HasPrefix(superResolved, "appkit.") {
 			imports.NeedsAppKit = true
+		} else if strings.HasPrefix(superResolved, "objectivec.") {
+			imports.NeedsObjectiveC = true
 		} else if class.SuperClass == "NSObject" || superStructName == "Object" || isSelfReferential {
 			imports.NeedsObjectiveC = true
 		}
