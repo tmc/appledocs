@@ -17,7 +17,14 @@ frameworks:
   CloudKit:
     exclude_test_patterns:
       - "^ExampleNewCKContainerWithIdentifier$"  # CKContainer requires CloudKit entitlements and container configuration
+      - "^ExampleNewCKOperation$"  # CKOperation is an abstract class that cannot be instantiated directly
+  CoreImage:
+    exclude_test_patterns:
+      - "^ExampleNewContextWithMTLCommandQueue$"  # Requires Metal command queue which needs GPU access
   QuartzCore:
     exclude_test_examples:
       - CAAnimation  # Causes crash with nil keyPath parameter
       - CAPropertyAnimation  # Causes crash with keyPath parameter
+  UserNotifications:
+    exclude_test_examples:
+      - UNTimeIntervalNotificationTrigger  # Requires timeInterval > 0, default value of 0 causes crash
