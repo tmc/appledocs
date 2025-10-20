@@ -645,6 +645,15 @@ func discoverFrameworks(inputDir, pattern string) ([]string, error) {
 	return frameworks, nil
 }
 
+// frameworkModuleNames maps framework directory names to their Apple documentation module names.
+// Apple's documentation uses different names than the actual framework names on disk.
+var frameworkModuleNames = map[string][]string{
+	"QuartzCore": {"Core Animation", "QuartzCore"},
+	"AppKit":     {"AppKit", "App Kit"},
+	"Foundation": {"Foundation"},
+	// Add more mappings as needed
+}
+
 // classbelongsToFramework checks if a class belongs to the specified framework
 // by examining the metadata.modules field in the document.
 func classbelongsToFramework(doc *appledocs.Document, framework string) bool {
@@ -653,13 +662,21 @@ func classbelongsToFramework(doc *appledocs.Document, framework string) bool {
 		return true
 	}
 
-	// Normalize framework name for comparison (handle variations)
-	normalizedFramework := strings.ToLower(strings.ReplaceAll(framework, " ", ""))
+	// Get the possible module names for this framework
+	possibleNames := frameworkModuleNames[framework]
+	if len(possibleNames) == 0 {
+		// If no mapping exists, use the framework name itself
+		possibleNames = []string{framework}
+	}
 
+	// Normalize and check each possible name
 	for _, module := range doc.Metadata.Modules {
 		normalizedModule := strings.ToLower(strings.ReplaceAll(module.Name, " ", ""))
-		if normalizedModule == normalizedFramework {
-			return true
+		for _, possible := range possibleNames {
+			normalizedPossible := strings.ToLower(strings.ReplaceAll(possible, " ", ""))
+			if normalizedModule == normalizedPossible {
+				return true
+			}
 		}
 	}
 
@@ -702,6 +719,8 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Keep track of properties separately so we can attach them to classes later
 	classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
+	// Track seen property names per class to prevent duplicates from documentation
+	classSeenProperties := make(map[string]map[string]bool)
 
 	// Process regular symbols
 	for path, doc := range appledocs.Symbols(fsys, framework) {
@@ -737,7 +756,17 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					parts := strings.Split(externalID, "(")
 					if len(parts) >= 2 {
 						className := strings.TrimPrefix(parts[1], "cs)")
-						classPropertiesMap[className] = append(classPropertiesMap[className], property)
+
+						// Initialize property tracking for this class if needed
+						if classSeenProperties[className] == nil {
+							classSeenProperties[className] = make(map[string]bool)
+						}
+
+						// Only add if we haven't seen this property name before
+						if !classSeenProperties[className][property.Name] {
+							classPropertiesMap[className] = append(classPropertiesMap[className], property)
+							classSeenProperties[className][property.Name] = true
+						}
 					}
 				}
 			}
