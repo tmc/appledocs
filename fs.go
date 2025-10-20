@@ -41,12 +41,26 @@ func (f *FS) Open(name string) (fs.File, error) {
 
 // ReadFile reads the named file from the documentation filesystem.
 func (f *FS) ReadFile(name string) ([]byte, error) {
+	// Try the exact path first
 	file, err := f.fsys.Open(name)
-	if err != nil {
-		return nil, err
+	if err == nil {
+		defer file.Close()
+		return io.ReadAll(file)
 	}
-	defer file.Close()
-	return io.ReadAll(file)
+
+	// If the path ends with .json and doesn't exist, try with .json.language%3Dobjc suffix
+	// This handles files that were cached with their language parameter
+	if strings.HasSuffix(name, ".json") {
+		langPath := name + ".language%3Dobjc"
+		file, langErr := f.fsys.Open(langPath)
+		if langErr == nil {
+			defer file.Close()
+			return io.ReadAll(file)
+		}
+	}
+
+	// Return the original error if neither worked
+	return nil, err
 }
 
 // Stat returns file info for the named file.
@@ -150,7 +164,8 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 		return nil, fmt.Errorf("list symbols for %s: %w", framework, err)
 	}
 
-	var symbols []string
+	// Use a map to deduplicate symbols (in case both .json and .json.language%3Dobjc exist)
+	symbolsMap := make(map[string]bool)
 	err := fs.WalkDir(fsys, framework, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
@@ -158,11 +173,14 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 		if d.IsDir() {
 			return nil
 		}
-		if strings.HasSuffix(path, ".json") {
-			// Remove framework prefix and .json suffix
+		// Match both .json files and .json.language%3Dobjc files (URL-encoded .json.language=objc)
+		if strings.HasSuffix(path, ".json") || strings.HasSuffix(path, ".json.language%3Dobjc") {
+			// Remove framework prefix
 			symbol := strings.TrimPrefix(path, framework+string(filepath.Separator))
+			// Remove .json suffix and any language suffix
+			symbol = strings.TrimSuffix(symbol, ".json.language%3Dobjc")
 			symbol = strings.TrimSuffix(symbol, ".json")
-			symbols = append(symbols, symbol)
+			symbolsMap[symbol] = true
 		}
 		return nil
 	})
@@ -170,6 +188,11 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 		return nil, fmt.Errorf("list symbols for %s: %w", framework, err)
 	}
 
+	// Convert map to sorted slice
+	symbols := make([]string, 0, len(symbolsMap))
+	for symbol := range symbolsMap {
+		symbols = append(symbols, symbol)
+	}
 	sort.Strings(symbols)
 	return symbols, nil
 }
