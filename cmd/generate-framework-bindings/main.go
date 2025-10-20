@@ -187,8 +187,20 @@ func (g *Generator) GenerateMissingParentStubs() []*occ2go.ParsedClass {
 	for _, cls := range g.Classes {
 		if cls.SuperClass != "" && cls.SuperClass != "NSObject" {
 			if !existing[cls.SuperClass] {
-				// Check if it's a cross-framework type
-				resolvedType := resolveType(g.Framework, classToStructName(cls.SuperClass))
+				// Check if it's a cross-framework type by checking the type registry
+				// IMPORTANT: We need to temporarily clear currentFrameworkClasses to prevent
+				// false matches. For example, in MetalKit, MTKView strips to "View", but
+				// NSView (the parent class) also strips to "View". We don't want resolveType
+				// to think NSView is a local type just because MTKView exists.
+				savedClasses := currentFrameworkClasses
+				currentFrameworkClasses = make(map[string]bool)
+
+				structName := classToStructName(cls.SuperClass)
+				resolvedType := resolveType(g.Framework, structName)
+
+				// Restore the original map
+				currentFrameworkClasses = savedClasses
+
 				// Only create stub if it's not from another framework
 				if !strings.Contains(resolvedType, ".") {
 					missing[cls.SuperClass] = true

@@ -135,6 +135,10 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "Range", GoType: "foundation.Range", Framework: "CoreML"},
 	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "CoreML"},
 
+	// ==== MetalKit types ====
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "MetalKit"},
+	{ObjCType: "CGColorSpaceRef", GoType: "coregraphics.CGColorSpaceRef", Framework: "MetalKit"},
+
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
 	{ObjCType: "NSBackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"},
