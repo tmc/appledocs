@@ -73,6 +73,7 @@ var templateFuncs = template.FuncMap{
 	"needsQuartzCoreImport":    needsQuartzCoreImport,
 	"needsCustomImports":       needsCustomImports,
 	"getRequiredImports":       getRequiredImports,
+	"getFunctionRequiredImports": getFunctionRequiredImports,
 	"sortedImportPaths":        sortedImportPaths,
 	"prepareClassMethods":         prepareClassMethods,
 	"prepareInstanceMethods":      prepareInstanceMethods,
@@ -1536,11 +1537,17 @@ func getGoTypeImportPath(goType string) string {
 	return ""
 }
 
+// ImportInfo holds information about an import for template rendering
+type ImportInfo struct {
+	PackageName string
+	ImportPath  string
+}
+
 // sortedImportPaths returns a sorted slice of import paths for template iteration.
 // This makes it easy for templates to range over imports in a consistent order.
-func sortedImportPaths(imports map[string]bool) []string {
+func sortedImportPaths(imports map[string]bool) []ImportInfo {
 	if imports == nil || len(imports) == 0 {
-		return []string{}
+		return []ImportInfo{}
 	}
 
 	// Convert map keys to slice
@@ -1558,7 +1565,27 @@ func sortedImportPaths(imports map[string]bool) []string {
 		}
 	}
 
-	return paths
+	// Convert paths to ImportInfo structs
+	result := make([]ImportInfo, 0, len(paths))
+	for _, path := range paths {
+		packageName := extractPackageNameFromImportPath(path)
+		result = append(result, ImportInfo{
+			PackageName: packageName,
+			ImportPath:  path,
+		})
+	}
+
+	return result
+}
+
+// extractPackageNameFromImportPath extracts the package name from an import path.
+// For example: "github.com/tmc/appledocs/generated/coregraphics" -> "coregraphics"
+func extractPackageNameFromImportPath(importPath string) string {
+	parts := strings.Split(importPath, "/")
+	if len(parts) > 0 {
+		return parts[len(parts)-1]
+	}
+	return importPath
 }
 
 // getClassRequiredImports returns a sorted slice of all required imports for a class (including both methods and properties).
@@ -1567,6 +1594,33 @@ func getClassRequiredImports(class interface{}, framework string) []string {
 	// This is a bit of a hack, but we need to work with the parsed class data
 	// For now, we return an empty slice - this would need proper type handling
 	return []string{}
+}
+
+// getFunctionRequiredImports analyzes standalone functions to collect required import paths.
+// It examines each function's return type and parameters, applying type mappings and extracting
+// import paths from qualified type names (e.g., "coregraphics.CGAffineTransform").
+func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework string) map[string]bool {
+	imports := make(map[string]bool)
+
+	for _, fn := range functions {
+		// Check return type
+		if fn.ReturnType != "" && fn.ReturnType != "void" {
+			goType := mapObjCTypeToGo(fn.ReturnType, framework)
+			if importPath := getGoTypeImportPath(goType); importPath != "" {
+				imports[importPath] = true
+			}
+		}
+
+		// Check all parameters
+		for _, param := range fn.Parameters {
+			goType := mapObjCTypeToGo(param.Type, framework)
+			if importPath := getGoTypeImportPath(goType); importPath != "" {
+				imports[importPath] = true
+			}
+		}
+	}
+
+	return imports
 }
 
 // mergeImports merges two import maps into a single deduplicated map.

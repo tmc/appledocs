@@ -229,10 +229,15 @@ type CGFloat = float64
 package {{.PackageName}}
 
 {{if gt (len .Functions) 0 -}}
+{{- $funcImports := getFunctionRequiredImports .Functions .Framework -}}
+{{- $sortedImports := sortedImportPaths $funcImports -}}
 import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
+{{- range $sortedImports}}
+	{{.PackageName}} "{{.ImportPath}}"
+{{- end}}
 )
 {{else -}}
 import (
