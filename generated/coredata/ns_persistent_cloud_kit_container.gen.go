@@ -40,15 +40,15 @@ type IPersistentCloudKitContainer interface {
 	CanModifyManagedObjectsInStore(store unsafe.Pointer) bool
 	CanUpdateRecordForManagedObjectWithID(objectID unsafe.Pointer) bool
 	FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
-	FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error_ unsafe.Pointer) []cloudkit.Share
+	FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error_ unsafe.Pointer) []cloudkit.CKShare
 	FetchSharesMatchingObjectIDsError(objectIDs unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	PersistUpdatedShareInPersistentStoreCompletion(share cloudkit.Share, persistentStore unsafe.Pointer, completion unsafe.Pointer)
+	PersistUpdatedShareInPersistentStoreCompletion(share cloudkit.CKShare, persistentStore unsafe.Pointer, completion unsafe.Pointer)
 	PurgeObjectsAndRecordsInZoneWithIDInPersistentStoreCompletion(zoneID unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
 	RecordForManagedObjectID(managedObjectID unsafe.Pointer) unsafe.Pointer
 	RecordIDForManagedObjectID(managedObjectID unsafe.Pointer) unsafe.Pointer
 	RecordIDsForManagedObjectIDs(managedObjectIDs unsafe.Pointer) unsafe.Pointer
 	RecordsForManagedObjectIDs(managedObjectIDs unsafe.Pointer) unsafe.Pointer
-	ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share cloudkit.Share, completion unsafe.Pointer)
+	ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share cloudkit.CKShare, completion unsafe.Pointer)
 }
 
 // A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.
@@ -188,8 +188,8 @@ func (p_ PersistentCloudKitContainer) FetchParticipantsMatchingLookupInfosIntoPe
 // Returns an array that contains all share records in the specified persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesInPersistentStore:error:
-func (p_ PersistentCloudKitContainer) FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error_ unsafe.Pointer) []cloudkit.Share {
-	rv := objc.Send[[]cloudkit.Share](p_.ID, objc.Sel("fetchSharesInPersistentStore:error:"), persistentStore, error_)
+func (p_ PersistentCloudKitContainer) FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error_ unsafe.Pointer) []cloudkit.CKShare {
+	rv := objc.Send[[]cloudkit.CKShare](p_.ID, objc.Sel("fetchSharesInPersistentStore:error:"), persistentStore, error_)
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (p_ PersistentCloudKitContainer) FetchSharesMatchingObjectIDsError(objectID
 // Saves the share record and schedules it for export to iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/persistUpdatedShare:inPersistentStore:completion:
-func (p_ PersistentCloudKitContainer) PersistUpdatedShareInPersistentStoreCompletion(share cloudkit.Share, persistentStore unsafe.Pointer, completion unsafe.Pointer) {
+func (p_ PersistentCloudKitContainer) PersistUpdatedShareInPersistentStoreCompletion(share cloudkit.CKShare, persistentStore unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("persistUpdatedShare:inPersistentStore:completion:"), share, persistentStore, completion)
 }
 
@@ -250,7 +250,7 @@ func (p_ PersistentCloudKitContainer) RecordsForManagedObjectIDs(managedObjectID
 // Associates the specified managed objects with a new or existing share record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/shareManagedObjects:toShare:completion:
-func (p_ PersistentCloudKitContainer) ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share cloudkit.Share, completion unsafe.Pointer) {
+func (p_ PersistentCloudKitContainer) ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share cloudkit.CKShare, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("shareManagedObjects:toShare:completion:"), managedObjects, share, completion)
 }
 

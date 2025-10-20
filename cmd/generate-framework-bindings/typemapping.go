@@ -202,7 +202,7 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "ScreenCaptureKit"},
 
 	// ==== CloudKit types in CoreData ====
-	{ObjCType: "CKShare", GoType: "cloudkit.Share", Framework: "CoreData"},
+	{ObjCType: "CKShare", GoType: "cloudkit.CKShare", Framework: "CoreData"},
 
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
