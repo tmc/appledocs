@@ -77,6 +77,7 @@ func NewKeyedUnarchiver() KeyedUnarchiver {
 	return getKeyedUnarchiverClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKeyedUnarchiver/init(forReadingFrom:device:error:)
 func NewKeyedUnarchiverForReadingFromDataDeviceError(data unsafe.Pointer, device objc.ID, error unsafe.Pointer) KeyedUnarchiver {
@@ -86,9 +87,12 @@ func NewKeyedUnarchiverForReadingFromDataDeviceError(data unsafe.Pointer, device
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKeyedUnarchiver/unarchivedObject(ofClasses:from:device:)
 func (kc _KeyedUnarchiverClass) UnarchivedObjectOfClassesFromDataDeviceError(classes unsafe.Pointer, data unsafe.Pointer, device objc.ID, error unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchivedObjectOfClasses:fromData:device:error:"), classes, data, device, error)
 	return rv
 }
+
+
