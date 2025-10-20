@@ -131,6 +131,11 @@ type CGAffineTransform struct {
 	Ty CGFloat
 }
 
+type CGVector struct {
+	Dx CGFloat
+	Dy CGFloat
+}
+
 // Common type aliases
 type Range = CGPoint  // NSRange
 type Size = CGSize    // NSSize
