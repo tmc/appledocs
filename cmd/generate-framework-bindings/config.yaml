@@ -10,7 +10,8 @@ frameworks:
       - NSUserActivity  # Requires activityType parameter
       - NSPredicate  # Crashes with invalid format string parameter
   AppKit:
-    exclude_test_examples: []
+    exclude_test_examples:
+      - NSFilePromiseProvider  # Requires valid NSFilePromiseProviderDelegate implementation with writePromiseToURL: method
   ObjectiveC:
     exclude_test_examples: []
   QuartzCore:
