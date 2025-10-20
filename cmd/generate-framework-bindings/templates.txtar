@@ -825,7 +825,7 @@ func Example{{$constructorName}}() {
 		{{- range $i, $p := .Parameters}}
 		{{- $goType := mapObjCTypeToGo $p.Type $framework}}
 		{{- $testValue := generateTestValue $goType $framework $p.Name}}
-		{{- if and (not (hasPrefix $goType "foundation.")) (not (hasPrefix $goType "objc.")) (not (hasPrefix $goType "unsafe.")) (ne $goType "string") (ne $goType "int") (ne $goType "uint") (ne $goType "bool") (ne $goType "float32") (ne $goType "float64") (ne $goType "int64") (ne $goType "uint64")}}
+		{{- if and (not (hasPrefix $goType "foundation.")) (not (hasPrefix $goType "objc.")) (not (hasPrefix $goType "unsafe.")) (ne $goType "string") (ne $goType "int") (ne $goType "int8") (ne $goType "int16") (ne $goType "int32") (ne $goType "int64") (ne $goType "uint") (ne $goType "uint8") (ne $goType "uint16") (ne $goType "uint32") (ne $goType "uint64") (ne $goType "bool") (ne $goType "float32") (ne $goType "float64")}}
 		{{$packageName}}.{{$testValue}}, // {{$p.Name}} {{$goType}}
 		{{- else}}
 		{{$testValue}}, // {{$p.Name}} {{$goType}}

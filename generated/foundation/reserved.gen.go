@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [reserved] class.
 var (
-	reservedClass     _reservedClass
-	reservedClassOnce sync.Once
+	ReservedClass     _reservedClass
+	ReservedClassOnce sync.Once
 )
 
 func getreservedClass() _reservedClass {
-	reservedClassOnce.Do(func() {
-		reservedClass = _reservedClass{objc.GetClass("reserved")}
+	ReservedClassOnce.Do(func() {
+		ReservedClass = _reservedClass{objc.GetClass("reserved")}
 	})
-	return reservedClass
+	return ReservedClass
 }
 
 type _reservedClass struct {

@@ -12,15 +12,15 @@ import (
 
 // The class instance for the [numBytes] class.
 var (
-	numBytesClass     _numBytesClass
-	numBytesClassOnce sync.Once
+	NumBytesClass     _numBytesClass
+	NumBytesClassOnce sync.Once
 )
 
 func getnumBytesClass() _numBytesClass {
-	numBytesClassOnce.Do(func() {
-		numBytesClass = _numBytesClass{objc.GetClass("numBytes")}
+	NumBytesClassOnce.Do(func() {
+		NumBytesClass = _numBytesClass{objc.GetClass("numBytes")}
 	})
-	return numBytesClass
+	return NumBytesClass
 }
 
 type _numBytesClass struct {

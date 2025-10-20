@@ -775,7 +775,20 @@ func disambiguateMethodName(method *occ2go.ParsedMethod) string {
 //   NSRect -> foundation.Rect
 //   NSWindowStyleMask -> WindowStyleMask
 func mapObjCTypeToGo(objcType, framework string) string {
+	originalType := objcType
 	objcType = strings.TrimSpace(objcType)
+
+	// Debug logging for problematic types
+	if strings.Contains(objcType, "^") && strings.HasPrefix(objcType, "[]") {
+		defer func() {
+			if strings.HasPrefix(originalType, "[]") {
+				elementType := strings.TrimPrefix(originalType, "[]")
+				if strings.Contains(elementType, "^") {
+					fmt.Fprintf(os.Stderr, "DEBUG: Mapping array of blocks: %q\n", originalType)
+				}
+			}
+		}()
+	}
 
 	// Strip __kindof qualifier (e.g., "__kindof NSView *" -> "NSView *")
 	// __kindof is an Objective-C type qualifier meaning "this type or any subclass"
@@ -797,6 +810,15 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// Handle []id<Protocol> pattern (e.g., "[]id<NSFetchRequestResult>" -> "[]objc.ID")
 	if strings.HasPrefix(objcType, "[]id<") && strings.Contains(objcType, ">") {
 		return "[]objc.ID"
+	}
+
+	// Handle array types that are already converted by occ2go (e.g., "[]void (^)(void)" -> "[]unsafe.Pointer")
+	// This handles cases where occ2go has already converted NSArray<T> to []T
+	// We need to recursively map the element type
+	if strings.HasPrefix(objcType, "[]") {
+		elementType := strings.TrimPrefix(objcType, "[]")
+		goElementType := mapObjCTypeToGo(elementType, framework)
+		return "[]" + goElementType
 	}
 
 	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)

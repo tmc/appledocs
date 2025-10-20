@@ -10,6 +10,9 @@ import (
 var _ = foundation.NewTimer
 
 
+
+
+
 // ExampleNewTimerWithTimeIntervalTargetSelectorUserInfoRepeats demonstrates how to create a Timer instance using NewTimerWithTimeIntervalTargetSelectorUserInfoRepeats.
 // Initializes a timer object with the specified object and selector.
 func ExampleNewTimerWithTimeIntervalTargetSelectorUserInfoRepeats() {
@@ -22,9 +25,6 @@ func ExampleNewTimerWithTimeIntervalTargetSelectorUserInfoRepeats() {
 	)
 	// Output:
 }
-
-
-
 
 
 

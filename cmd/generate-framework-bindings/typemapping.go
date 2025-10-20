@@ -85,6 +85,7 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "CoreVideo"},
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreVideo"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreVideo"},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "QuartzCore"},
 
 	// ==== Event types ====
 	// CGEventRef - proper wrapper type instead of unsafe.Pointer
