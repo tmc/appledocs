@@ -152,8 +152,8 @@ func (m_ MetalDisplayLink) SetPaused(value bool) {
 // The amount of time, in frames, your app requests to render a frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameLatency
-func (m_ MetalDisplayLink) PreferredFrameLatency() float32 {
-	rv := objc.Send[float32](m_.ID, objc.Sel("preferredFrameLatency"))
+func (m_ MetalDisplayLink) PreferredFrameLatency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredFrameLatency"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (m_ MetalDisplayLink) PreferredFrameLatency() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameLatency
-func (m_ MetalDisplayLink) SetPreferredFrameLatency(value float32) {
+func (m_ MetalDisplayLink) SetPreferredFrameLatency(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredFrameLatency:"), value)
 }
 // A range of frequencies your app allows for frame updates, affecting how often the system invokes your delegate’s callback.

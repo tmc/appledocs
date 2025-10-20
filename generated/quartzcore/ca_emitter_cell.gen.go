@@ -109,8 +109,8 @@ func (e_ EmitterCell) ShouldArchiveValueForKey(key string) bool {
 // The amount by which the alpha component of the cell can vary. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/alphaRange
-func (e_ EmitterCell) AlphaRange() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("alphaRange"))
+func (e_ EmitterCell) AlphaRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("alphaRange"))
 	return rv
 }
 
@@ -120,14 +120,14 @@ func (e_ EmitterCell) AlphaRange() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/alphaRange
-func (e_ EmitterCell) SetAlphaRange(value float32) {
+func (e_ EmitterCell) SetAlphaRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAlphaRange:"), value)
 }
 // The speed, in seconds, at which the alpha component changes over the lifetime of the cell. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/alphaSpeed
-func (e_ EmitterCell) AlphaSpeed() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("alphaSpeed"))
+func (e_ EmitterCell) AlphaSpeed() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("alphaSpeed"))
 	return rv
 }
 
@@ -137,14 +137,14 @@ func (e_ EmitterCell) AlphaSpeed() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/alphaSpeed
-func (e_ EmitterCell) SetAlphaSpeed(value float32) {
+func (e_ EmitterCell) SetAlphaSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAlphaSpeed:"), value)
 }
 // The number of emitted objects created every second. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/birthRate
-func (e_ EmitterCell) BirthRate() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("birthRate"))
+func (e_ EmitterCell) BirthRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("birthRate"))
 	return rv
 }
 
@@ -154,14 +154,14 @@ func (e_ EmitterCell) BirthRate() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/birthRate
-func (e_ EmitterCell) SetBirthRate(value float32) {
+func (e_ EmitterCell) SetBirthRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBirthRate:"), value)
 }
 // The amount by which the blue color component of the cell can vary. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/blueRange
-func (e_ EmitterCell) BlueRange() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("blueRange"))
+func (e_ EmitterCell) BlueRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("blueRange"))
 	return rv
 }
 
@@ -171,14 +171,14 @@ func (e_ EmitterCell) BlueRange() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/blueRange
-func (e_ EmitterCell) SetBlueRange(value float32) {
+func (e_ EmitterCell) SetBlueRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBlueRange:"), value)
 }
 // The speed, in seconds, at which the blue color component changes over the lifetime of the cell. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/blueSpeed
-func (e_ EmitterCell) BlueSpeed() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("blueSpeed"))
+func (e_ EmitterCell) BlueSpeed() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("blueSpeed"))
 	return rv
 }
 
@@ -188,7 +188,7 @@ func (e_ EmitterCell) BlueSpeed() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/blueSpeed
-func (e_ EmitterCell) SetBlueSpeed(value float32) {
+func (e_ EmitterCell) SetBlueSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBlueSpeed:"), value)
 }
 // The color of each emitted object. Animatable.
@@ -330,8 +330,8 @@ func (e_ EmitterCell) SetEmitterCells(value []EmitterCell) {
 // The amount by which the green color component of the cell can vary. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/greenRange
-func (e_ EmitterCell) GreenRange() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("greenRange"))
+func (e_ EmitterCell) GreenRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("greenRange"))
 	return rv
 }
 
@@ -341,14 +341,14 @@ func (e_ EmitterCell) GreenRange() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/greenRange
-func (e_ EmitterCell) SetGreenRange(value float32) {
+func (e_ EmitterCell) SetGreenRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setGreenRange:"), value)
 }
 // The speed, in seconds, at which the green color component changes over the lifetime of the cell. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/greenSpeed
-func (e_ EmitterCell) GreenSpeed() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("greenSpeed"))
+func (e_ EmitterCell) GreenSpeed() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("greenSpeed"))
 	return rv
 }
 
@@ -358,7 +358,7 @@ func (e_ EmitterCell) GreenSpeed() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/greenSpeed
-func (e_ EmitterCell) SetGreenSpeed(value float32) {
+func (e_ EmitterCell) SetGreenSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setGreenSpeed:"), value)
 }
 // A Boolean value indicating whether or not cells from this emitter are rendered.
@@ -381,8 +381,8 @@ func (e_ EmitterCell) SetEnabled(value bool) {
 // The lifetime of the cell, in seconds. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/lifetime
-func (e_ EmitterCell) Lifetime() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("lifetime"))
+func (e_ EmitterCell) Lifetime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("lifetime"))
 	return rv
 }
 
@@ -392,14 +392,14 @@ func (e_ EmitterCell) Lifetime() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/lifetime
-func (e_ EmitterCell) SetLifetime(value float32) {
+func (e_ EmitterCell) SetLifetime(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLifetime:"), value)
 }
 // The mean value by which the of the cell can vary. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/lifetimeRange
-func (e_ EmitterCell) LifetimeRange() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("lifetimeRange"))
+func (e_ EmitterCell) LifetimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("lifetimeRange"))
 	return rv
 }
 
@@ -409,7 +409,7 @@ func (e_ EmitterCell) LifetimeRange() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/lifetimeRange
-func (e_ EmitterCell) SetLifetimeRange(value float32) {
+func (e_ EmitterCell) SetLifetimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLifetimeRange:"), value)
 }
 // The filter used when increasing the size of the content.
@@ -449,8 +449,8 @@ func (e_ EmitterCell) SetMinificationFilter(value unsafe.Pointer) {
 // The bias factor used by the minification filter to determine the levels of detail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/minificationFilterBias
-func (e_ EmitterCell) MinificationFilterBias() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("minificationFilterBias"))
+func (e_ EmitterCell) MinificationFilterBias() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("minificationFilterBias"))
 	return rv
 }
 
@@ -460,7 +460,7 @@ func (e_ EmitterCell) MinificationFilterBias() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/minificationFilterBias
-func (e_ EmitterCell) SetMinificationFilterBias(value float32) {
+func (e_ EmitterCell) SetMinificationFilterBias(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMinificationFilterBias:"), value)
 }
 // The name of the cell.
@@ -483,8 +483,8 @@ func (e_ EmitterCell) SetName(value unsafe.Pointer) {
 // The amount by which the red color component of the cell can vary. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/redRange
-func (e_ EmitterCell) RedRange() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("redRange"))
+func (e_ EmitterCell) RedRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("redRange"))
 	return rv
 }
 
@@ -494,14 +494,14 @@ func (e_ EmitterCell) RedRange() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/redRange
-func (e_ EmitterCell) SetRedRange(value float32) {
+func (e_ EmitterCell) SetRedRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRedRange:"), value)
 }
 // The speed, in seconds, at which the red color component changes over the lifetime of the cell. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/redSpeed
-func (e_ EmitterCell) RedSpeed() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("redSpeed"))
+func (e_ EmitterCell) RedSpeed() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("redSpeed"))
 	return rv
 }
 
@@ -511,7 +511,7 @@ func (e_ EmitterCell) RedSpeed() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/redSpeed
-func (e_ EmitterCell) SetRedSpeed(value float32) {
+func (e_ EmitterCell) SetRedSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRedSpeed:"), value)
 }
 // Specifies the scale factor applied to the cell. Animatable.

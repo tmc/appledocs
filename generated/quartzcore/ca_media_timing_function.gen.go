@@ -30,7 +30,7 @@ type _MediaTimingFunctionClass struct {
 // An interface definition for the [MediaTimingFunction] class.
 type IMediaTimingFunction interface {
 	objectivec.IObject
-	GetControlPointAtIndexValues(idx uintptr, ptr unsafe.Pointer)
+	GetControlPointAtIndexValues(idx unsafe.Pointer, ptr unsafe.Pointer)
 }
 
 // A function that defines the pacing of an animation as a timing curve.
@@ -84,7 +84,7 @@ func NewMediaTimingFunction() MediaTimingFunction {
 // Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(controlPoints:_:_:_:)
-func NewMediaTimingFunctionWithControlPoints(c1x float32, c1y float32, c2x float32, c2y float32) MediaTimingFunction {
+func NewMediaTimingFunctionWithControlPoints(c1x unsafe.Pointer, c1y unsafe.Pointer, c2x unsafe.Pointer, c2y unsafe.Pointer) MediaTimingFunction {
 	instance := getMediaTimingFunctionClass().Alloc()
 	rv := objc.Send[MediaTimingFunction](instance.ID, objc.Sel("initWithControlPoints::::"), c1x, c1y, c2x, c2y)
 	rv.Autorelease()
@@ -103,7 +103,7 @@ func NewMediaTimingFunctionWithName(name unsafe.Pointer) MediaTimingFunction {
 // Creates and returns a new instance of timing function modeled as a cubic Bézier curve using the specified control points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/functionWithControlPoints::::
-func (mc _MediaTimingFunctionClass) FunctionWithControlPoints(c1x float32, c1y float32, c2x float32, c2y float32) unsafe.Pointer {
+func (mc _MediaTimingFunctionClass) FunctionWithControlPoints(c1x unsafe.Pointer, c1y unsafe.Pointer, c2x unsafe.Pointer, c2y unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("functionWithControlPoints::::"), c1x, c1y, c2x, c2y)
 	return rv
 }
@@ -119,7 +119,7 @@ func (mc _MediaTimingFunctionClass) FunctionWithName(name unsafe.Pointer) unsafe
 // Returns the control point for the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/getControlPoint(at:values:)
-func (m_ MediaTimingFunction) GetControlPointAtIndexValues(idx uintptr, ptr unsafe.Pointer) {
+func (m_ MediaTimingFunction) GetControlPointAtIndexValues(idx unsafe.Pointer, ptr unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getControlPointAtIndex:values:"), idx, ptr)
 }
 

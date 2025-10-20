@@ -93,8 +93,8 @@ func (tc _TiledLayerClass) FadeDuration() unsafe.Pointer {
 // The number of levels of detail maintained by this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail
-func (t_ TiledLayer) LevelsOfDetail() uintptr {
-	rv := objc.Send[uintptr](t_.ID, objc.Sel("levelsOfDetail"))
+func (t_ TiledLayer) LevelsOfDetail() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("levelsOfDetail"))
 	return rv
 }
 
@@ -104,14 +104,14 @@ func (t_ TiledLayer) LevelsOfDetail() uintptr {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail
-func (t_ TiledLayer) SetLevelsOfDetail(value uintptr) {
+func (t_ TiledLayer) SetLevelsOfDetail(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetail:"), value)
 }
 // The number of magnified levels of detail for this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
-func (t_ TiledLayer) LevelsOfDetailBias() uintptr {
-	rv := objc.Send[uintptr](t_.ID, objc.Sel("levelsOfDetailBias"))
+func (t_ TiledLayer) LevelsOfDetailBias() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("levelsOfDetailBias"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (t_ TiledLayer) LevelsOfDetailBias() uintptr {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
-func (t_ TiledLayer) SetLevelsOfDetailBias(value uintptr) {
+func (t_ TiledLayer) SetLevelsOfDetailBias(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetailBias:"), value)
 }
 // The maximum size of each tile used to create the layer’s content.

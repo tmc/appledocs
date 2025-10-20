@@ -85,8 +85,8 @@ func NewReplicatorLayer() ReplicatorLayer {
 // Defines the offset added to the alpha component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceAlphaOffset
-func (r_ ReplicatorLayer) InstanceAlphaOffset() float32 {
-	rv := objc.Send[float32](r_.ID, objc.Sel("instanceAlphaOffset"))
+func (r_ ReplicatorLayer) InstanceAlphaOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceAlphaOffset"))
 	return rv
 }
 
@@ -96,14 +96,14 @@ func (r_ ReplicatorLayer) InstanceAlphaOffset() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceAlphaOffset
-func (r_ ReplicatorLayer) SetInstanceAlphaOffset(value float32) {
+func (r_ ReplicatorLayer) SetInstanceAlphaOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceAlphaOffset:"), value)
 }
 // Defines the offset added to the blue component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceBlueOffset
-func (r_ ReplicatorLayer) InstanceBlueOffset() float32 {
-	rv := objc.Send[float32](r_.ID, objc.Sel("instanceBlueOffset"))
+func (r_ ReplicatorLayer) InstanceBlueOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceBlueOffset"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (r_ ReplicatorLayer) InstanceBlueOffset() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceBlueOffset
-func (r_ ReplicatorLayer) SetInstanceBlueOffset(value float32) {
+func (r_ ReplicatorLayer) SetInstanceBlueOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceBlueOffset:"), value)
 }
 // Defines the color used to multiply the source object. Animatable.
@@ -170,8 +170,8 @@ func (r_ ReplicatorLayer) SetInstanceDelay(value unsafe.Pointer) {
 // Defines the offset added to the green component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceGreenOffset
-func (r_ ReplicatorLayer) InstanceGreenOffset() float32 {
-	rv := objc.Send[float32](r_.ID, objc.Sel("instanceGreenOffset"))
+func (r_ ReplicatorLayer) InstanceGreenOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceGreenOffset"))
 	return rv
 }
 
@@ -181,14 +181,14 @@ func (r_ ReplicatorLayer) InstanceGreenOffset() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceGreenOffset
-func (r_ ReplicatorLayer) SetInstanceGreenOffset(value float32) {
+func (r_ ReplicatorLayer) SetInstanceGreenOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceGreenOffset:"), value)
 }
 // Defines the offset added to the red component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceRedOffset
-func (r_ ReplicatorLayer) InstanceRedOffset() float32 {
-	rv := objc.Send[float32](r_.ID, objc.Sel("instanceRedOffset"))
+func (r_ ReplicatorLayer) InstanceRedOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceRedOffset"))
 	return rv
 }
 
@@ -198,7 +198,7 @@ func (r_ ReplicatorLayer) InstanceRedOffset() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceRedOffset
-func (r_ ReplicatorLayer) SetInstanceRedOffset(value float32) {
+func (r_ ReplicatorLayer) SetInstanceRedOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceRedOffset:"), value)
 }
 // The transform matrix applied to the previous instance to produce the current instance. Animatable.

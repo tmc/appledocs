@@ -184,6 +184,17 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreVideo"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "QuartzCore"},
 
+	// ==== CoreGraphics opaque ref types in QuartzCore ====
+	// QuartzCore (Core Animation) frequently uses CG types
+	{ObjCType: "CGColorRef", GoType: "coregraphics.CGColorRef", Framework: "QuartzCore"},
+	{ObjCType: "CGColorSpaceRef", GoType: "coregraphics.CGColorSpaceRef", Framework: "QuartzCore"},
+	{ObjCType: "CGContextRef", GoType: "coregraphics.CGContextRef", Framework: "QuartzCore"},
+	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "QuartzCore"},
+	{ObjCType: "CGPathRef", GoType: "coregraphics.CGPathRef", Framework: "QuartzCore"},
+	{ObjCType: "CGMutablePathRef", GoType: "coregraphics.CGMutablePathRef", Framework: "QuartzCore"},
+	{ObjCType: "CGLayerRef", GoType: "coregraphics.CGLayerRef", Framework: "QuartzCore"},
+	{ObjCType: "CGFontRef", GoType: "coregraphics.CGFontRef", Framework: "QuartzCore"},
+
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
 	// Generic completion handler: void (^)(NSError *)

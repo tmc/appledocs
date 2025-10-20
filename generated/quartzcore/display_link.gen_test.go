@@ -10,14 +10,5 @@ import (
 var _ = quartzcore.NewDisplayLink
 
 
-// ExampleNewDisplayLinkWithTargetSelector demonstrates how to create a DisplayLink instance using NewDisplayLinkWithTargetSelector.
-// Creates a display link for a target that calls its selector.
-func ExampleNewDisplayLinkWithTargetSelector() {
-	_ = quartzcore.NewDisplayLinkWithTargetSelector(
-		0, // target objc.ID
-		0, // sel objc.SEL
-	)
-	// Output:
-}
 
 

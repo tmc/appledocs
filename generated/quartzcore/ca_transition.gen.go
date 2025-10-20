@@ -84,8 +84,8 @@ func NewTransition() Transition {
 // Indicates the end point of the receiver as a fraction of the entire transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/endProgress
-func (t_ Transition) EndProgress() float32 {
-	rv := objc.Send[float32](t_.ID, objc.Sel("endProgress"))
+func (t_ Transition) EndProgress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("endProgress"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (t_ Transition) EndProgress() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/endProgress
-func (t_ Transition) SetEndProgress(value float32) {
+func (t_ Transition) SetEndProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEndProgress:"), value)
 }
 // An optional Core Image filter object that provides the transition.
@@ -118,8 +118,8 @@ func (t_ Transition) SetFilter(value objc.ID) {
 // Indicates the start point of the receiver as a fraction of the entire transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/startProgress
-func (t_ Transition) StartProgress() float32 {
-	rv := objc.Send[float32](t_.ID, objc.Sel("startProgress"))
+func (t_ Transition) StartProgress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("startProgress"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (t_ Transition) StartProgress() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/startProgress
-func (t_ Transition) SetStartProgress(value float32) {
+func (t_ Transition) SetStartProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStartProgress:"), value)
 }
 // Specifies an optional subtype that indicates the direction for the predefined motion-based transitions.

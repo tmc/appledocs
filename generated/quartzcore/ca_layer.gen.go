@@ -137,7 +137,7 @@ func NewLayerWithLayer(layer objc.ID) Layer {
 // Initializes a layer with a remote client ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func NewLayerWithRemoteClientId(client_id uint32) Layer {
+func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
 	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
@@ -169,7 +169,7 @@ func (lc _LayerClass) DefaultValueForKey(key string) objc.ID {
 // Initializes a layer with a remote client ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func (lc _LayerClass) LayerWithRemoteClientId(client_id uint32) unsafe.Pointer {
+func (lc _LayerClass) LayerWithRemoteClientId(client_id unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
@@ -1133,8 +1133,8 @@ func (l_ Layer) SetMinificationFilter(value unsafe.Pointer) {
 // The bias factor used by the minification filter to determine the levels of detail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilterBias
-func (l_ Layer) MinificationFilterBias() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("minificationFilterBias"))
+func (l_ Layer) MinificationFilterBias() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("minificationFilterBias"))
 	return rv
 }
 
@@ -1144,7 +1144,7 @@ func (l_ Layer) MinificationFilterBias() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilterBias
-func (l_ Layer) SetMinificationFilterBias(value float32) {
+func (l_ Layer) SetMinificationFilterBias(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinificationFilterBias:"), value)
 }
 // The name of the receiver.
@@ -1184,8 +1184,8 @@ func (l_ Layer) SetNeedsDisplayOnBoundsChange(value bool) {
 // The opacity of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
-func (l_ Layer) Opacity() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("opacity"))
+func (l_ Layer) Opacity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("opacity"))
 	return rv
 }
 
@@ -1195,7 +1195,7 @@ func (l_ Layer) Opacity() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
-func (l_ Layer) SetOpacity(value float32) {
+func (l_ Layer) SetOpacity(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOpacity:"), value)
 }
 // The layer’s position in its superlayer’s coordinate space. Animatable.
@@ -1283,8 +1283,8 @@ func (l_ Layer) SetShadowOffset(value coregraphics.CGSize) {
 // The opacity of the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowOpacity
-func (l_ Layer) ShadowOpacity() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("shadowOpacity"))
+func (l_ Layer) ShadowOpacity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("shadowOpacity"))
 	return rv
 }
 
@@ -1294,7 +1294,7 @@ func (l_ Layer) ShadowOpacity() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowOpacity
-func (l_ Layer) SetShadowOpacity(value float32) {
+func (l_ Layer) SetShadowOpacity(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowOpacity:"), value)
 }
 // The shape of the layer’s shadow. Animatable.

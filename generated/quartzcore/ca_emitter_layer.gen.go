@@ -85,8 +85,8 @@ func NewEmitterLayer() EmitterLayer {
 // Defines a multiplier that is applied to the cell-defined birth rate. Animatable
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/birthRate
-func (e_ EmitterLayer) BirthRate() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("birthRate"))
+func (e_ EmitterLayer) BirthRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("birthRate"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (e_ EmitterLayer) BirthRate() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/birthRate
-func (e_ EmitterLayer) SetBirthRate(value float32) {
+func (e_ EmitterLayer) SetBirthRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBirthRate:"), value)
 }
 // The array emitter cells attached to the layer.
@@ -221,8 +221,8 @@ func (e_ EmitterLayer) SetEmitterZPosition(value float64) {
 // Defines a multiplier applied to the cell-defined lifetime range when particles are created. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/lifetime
-func (e_ EmitterLayer) Lifetime() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("lifetime"))
+func (e_ EmitterLayer) Lifetime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("lifetime"))
 	return rv
 }
 
@@ -232,7 +232,7 @@ func (e_ EmitterLayer) Lifetime() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/lifetime
-func (e_ EmitterLayer) SetLifetime(value float32) {
+func (e_ EmitterLayer) SetLifetime(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLifetime:"), value)
 }
 // Defines whether the layer flattens the particles into its plane.
@@ -272,8 +272,8 @@ func (e_ EmitterLayer) SetRenderMode(value unsafe.Pointer) {
 // Defines a multiplier applied to the cell-defined particle scale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/scale
-func (e_ EmitterLayer) Scale() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("scale"))
+func (e_ EmitterLayer) Scale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("scale"))
 	return rv
 }
 
@@ -283,7 +283,7 @@ func (e_ EmitterLayer) Scale() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/scale
-func (e_ EmitterLayer) SetScale(value float32) {
+func (e_ EmitterLayer) SetScale(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setScale:"), value)
 }
 // Specifies the seed used to initialize the random number generator.
@@ -306,8 +306,8 @@ func (e_ EmitterLayer) SetSeed(value unsafe.Pointer) {
 // Defines a multiplier applied to the cell-defined particle spin. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/spin
-func (e_ EmitterLayer) Spin() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("spin"))
+func (e_ EmitterLayer) Spin() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("spin"))
 	return rv
 }
 
@@ -317,14 +317,14 @@ func (e_ EmitterLayer) Spin() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/spin
-func (e_ EmitterLayer) SetSpin(value float32) {
+func (e_ EmitterLayer) SetSpin(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSpin:"), value)
 }
 // Defines a multiplier applied to the cell-defined particle velocity. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/velocity
-func (e_ EmitterLayer) Velocity() float32 {
-	rv := objc.Send[float32](e_.ID, objc.Sel("velocity"))
+func (e_ EmitterLayer) Velocity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("velocity"))
 	return rv
 }
 
@@ -334,7 +334,7 @@ func (e_ EmitterLayer) Velocity() float32 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/velocity
-func (e_ EmitterLayer) SetVelocity(value float32) {
+func (e_ EmitterLayer) SetVelocity(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVelocity:"), value)
 }
 

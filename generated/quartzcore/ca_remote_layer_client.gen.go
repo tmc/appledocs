@@ -102,8 +102,8 @@ func (r_ RemoteLayerClient) Invalidate() {
 // The ID of the remote layer client.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/clientId
-func (r_ RemoteLayerClient) ClientId() uint32 {
-	rv := objc.Send[uint32](r_.ID, objc.Sel("clientId"))
+func (r_ RemoteLayerClient) ClientId() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("clientId"))
 	return rv
 }
 

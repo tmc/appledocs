@@ -83,7 +83,7 @@ func NewEDRMetadata() EDRMetadata {
 // Creates EDR metadata for HDR10 content based on mastering display color information and content light levels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hdr10(displayInfo:contentInfo:opticalOutputScale:)
-func (ec _EDRMetadataClass) HDR10MetadataWithDisplayInfoContentInfoOpticalOutputScale(displayData unsafe.Pointer, contentData unsafe.Pointer, scale float32) unsafe.Pointer {
+func (ec _EDRMetadataClass) HDR10MetadataWithDisplayInfoContentInfoOpticalOutputScale(displayData unsafe.Pointer, contentData unsafe.Pointer, scale unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:"), displayData, contentData, scale)
 	return rv
 }
@@ -91,7 +91,7 @@ func (ec _EDRMetadataClass) HDR10MetadataWithDisplayInfoContentInfoOpticalOutput
 // Creates EDR metadata for HDR10 content based on the luminance characteristics of a mastering display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hdr10(minLuminance:maxLuminance:opticalOutputScale:)
-func (ec _EDRMetadataClass) HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(minNits float32, maxNits float32, scale float32) unsafe.Pointer {
+func (ec _EDRMetadataClass) HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(minNits unsafe.Pointer, maxNits unsafe.Pointer, scale unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:"), minNits, maxNits, scale)
 	return rv
 }
