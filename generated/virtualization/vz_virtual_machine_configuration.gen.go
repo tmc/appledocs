@@ -63,6 +63,38 @@ func (vc _VZVirtualMachineConfigurationClass) New() VZVirtualMachineConfiguratio
 	return rv
 }
 
+// MinimumAllowedCPUCount returns the minimum number of CPUs for the virtual machine configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedCPUCount
+func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedCPUCount() uint {
+	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("minimumAllowedCPUCount"))
+	return rv
+}
+
+// MaximumAllowedCPUCount returns the maximum number of CPUs for the virtual machine configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedCPUCount
+func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedCPUCount() uint {
+	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumAllowedCPUCount"))
+	return rv
+}
+
+// MinimumAllowedMemorySize returns the minimum memory size for the virtual machine configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedMemorySize
+func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedMemorySize() uint64 {
+	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("minimumAllowedMemorySize"))
+	return rv
+}
+
+// MaximumAllowedMemorySize returns the maximum memory size for the virtual machine configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedMemorySize
+func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedMemorySize() uint64 {
+	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("maximumAllowedMemorySize"))
+	return rv
+}
+
 // Init initializes the instance.
 func (v_ VZVirtualMachineConfiguration) Init() VZVirtualMachineConfiguration {
 	rv := objc.Send[VZVirtualMachineConfiguration](v_.ID, objc.Sel("init"))

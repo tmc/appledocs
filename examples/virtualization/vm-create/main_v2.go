@@ -123,11 +123,8 @@ func startVMWithUI() error {
 
 	// Check if virtualization is supported
 	fmt.Println("\n1. Checking virtualization support...")
-	// Use objc.Send to call class method
-	supported := objc.Send[bool](
-		objc.ID(objc.GetClass("VZVirtualMachine")),
-		objc.RegisterName("isVirtualizationSupported"),
-	)
+	// Use generated class method - type-safe!
+	supported := virtualization.VZVirtualMachineClass.IsSupported()
 	if !supported {
 		return fmt.Errorf("virtualization is not supported on this system")
 	}
@@ -416,16 +413,9 @@ func computeCPUCount() uint {
 		virtualCPUCount = 1
 	}
 
-	// Get max/min allowed using objc.Send
-	configClass := objc.GetClass("VZVirtualMachineConfiguration")
-	maxAllowed := objc.Send[uint](
-		objc.ID(configClass),
-		objc.RegisterName("maximumAllowedCPUCount"),
-	)
-	minAllowed := objc.Send[uint](
-		objc.ID(configClass),
-		objc.RegisterName("minimumAllowedCPUCount"),
-	)
+	// Get max/min allowed using generated class methods - type-safe!
+	maxAllowed := virtualization.VZVirtualMachineConfigurationClass.MaximumAllowedCPUCount()
+	minAllowed := virtualization.VZVirtualMachineConfigurationClass.MinimumAllowedCPUCount()
 
 	if virtualCPUCount > maxAllowed {
 		virtualCPUCount = maxAllowed
@@ -441,16 +431,9 @@ func computeMemorySize() uint64 {
 	// We arbitrarily choose 4GB
 	memorySize := uint64(4 * 1024 * 1024 * 1024)
 
-	// Get max/min allowed using objc.Send
-	configClass := objc.GetClass("VZVirtualMachineConfiguration")
-	maxAllowed := objc.Send[uint64](
-		objc.ID(configClass),
-		objc.RegisterName("maximumAllowedMemorySize"),
-	)
-	minAllowed := objc.Send[uint64](
-		objc.ID(configClass),
-		objc.RegisterName("minimumAllowedMemorySize"),
-	)
+	// Get max/min allowed using generated class methods - type-safe!
+	maxAllowed := virtualization.VZVirtualMachineConfigurationClass.MaximumAllowedMemorySize()
+	minAllowed := virtualization.VZVirtualMachineConfigurationClass.MinimumAllowedMemorySize()
 
 	if memorySize > maxAllowed {
 		memorySize = maxAllowed

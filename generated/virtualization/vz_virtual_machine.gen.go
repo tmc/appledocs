@@ -64,6 +64,14 @@ func (vc _VZVirtualMachineClass) New() VZVirtualMachine {
 	return rv
 }
 
+// IsSupported returns a Boolean value that indicates whether the Virtualization framework is available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/isVirtualizationSupported
+func (vc _VZVirtualMachineClass) IsSupported() bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("isVirtualizationSupported"))
+	return rv
+}
+
 // Init initializes the instance.
 func (v_ VZVirtualMachine) Init() VZVirtualMachine {
 	rv := objc.Send[VZVirtualMachine](v_.ID, objc.Sel("init"))
