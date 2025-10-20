@@ -117,9 +117,9 @@ flowchart TD
 
     GenSections --> Constructors[Constructors<br/>- Alloc/Init pattern<br/>- Convenience constructors<br/>- Autorelease calls]
 
-    GenSections --> MethodsOut[Instance Methods<br/>{{range prepareInstanceMethods}}<br/>- Selector calls via objc.Send<br/>- Type-safe parameters<br/>- Return value handling]
+    GenSections --> MethodsOut[Instance Methods<br/>range prepareInstanceMethods<br/>- Selector calls via objc.Send<br/>- Type-safe parameters<br/>- Return value handling]
 
-    GenSections --> PropsOut[Property Accessors<br/>{{range prepareProperties}}<br/>- Getter methods<br/>- Setter methods if read-write<br/>- Proper naming conventions]
+    GenSections --> PropsOut[Property Accessors<br/>range prepareProperties<br/>- Getter methods<br/>- Setter methods if read-write<br/>- Proper naming conventions]
 
     Header --> WriteFile[Write to generated/framework/<br/>classname.gen.go]
     ClassDef --> WriteFile
