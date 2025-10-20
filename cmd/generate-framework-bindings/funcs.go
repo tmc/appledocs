@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"regexp"
+	"sort"
 	"strings"
 	"text/template"
 
@@ -1218,12 +1220,6 @@ func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 		// E.g., property "accessibilityFrameInParentSpace" -> method "setAccessibilityFrameInParentSpace"
 		setterMethodName := "set" + capitalizedName
 		propertySetterMethods[setterMethodName] = true
-
-		// Debug output for NSAccessibilityElement
-		if class.Name == "NSAccessibilityElement" && strings.Contains(prop.Name, "FrameInParentSpace") {
-			fmt.Fprintf(os.Stderr, "DEBUG: Property %s -> getter=%s, setter=%s, methodName=%s\n",
-				prop.Name, prop.Name, setterSelector, setterMethodName)
-		}
 	}
 
 	// Filter methods, excluding those that match property selectors
@@ -1236,21 +1232,12 @@ func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 	}
 
 	for _, m := range class.Methods {
-		// Debug output for NSAccessibilityElement
-		if class.Name == "NSAccessibilityElement" && strings.Contains(m.Selector, "FrameInParentSpace") {
-			fmt.Fprintf(os.Stderr, "DEBUG: Method selector=%s, params=%d, isClass=%v, inPropertySelectors=%v, wouldCollide=%v\n",
-				m.Selector, len(m.Parameters), m.IsClassMethod, propertySelectors[m.Selector], propertySetterMethods[m.Selector])
-		}
-
 		if !m.IsClassMethod && !propertySelectors[m.Selector] {
 			// Skip parameterless set* methods that would collide with property setters
 			// Example: method setAccessibilityFrameInParentSpace() collides with property accessibilityFrameInParentSpace's setter
 			if strings.HasPrefix(m.Selector, "set") && len(m.Parameters) == 0 && !strings.HasSuffix(m.Selector, ":") {
 				if propertySetterMethods[m.Selector] {
 					// Skip this method because it collides with a generated property setter
-					if class.Name == "NSAccessibilityElement" && strings.Contains(m.Selector, "FrameInParentSpace") {
-						fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s because property setter would collide\n", m.Selector)
-					}
 					continue
 				}
 
@@ -1258,9 +1245,6 @@ func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 				setterVersion := m.Selector + ":"
 				if setterMethod, exists := methodSelectors[setterVersion]; exists && len(setterMethod.Parameters) > 0 {
 					// Skip this parameterless version as it collides with the parameterized method
-					if class.Name == "NSAccessibilityElement" && strings.Contains(m.Selector, "FrameInParentSpace") {
-						fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s because %s method exists\n", m.Selector, setterVersion)
-					}
 					continue
 				}
 			}
@@ -2350,12 +2334,13 @@ func isInheritedFromNSObject(selector string) bool {
 
 // ClassImports holds the import paths needed for a class
 type ClassImports struct {
-	NeedsObjectiveC      bool
-	NeedsFoundation      bool
-	NeedsQuartzCore      bool
-	NeedsCoreGraphics    bool
-	NeedsAppKit          bool
-	NeedsUserNotifications bool
+	NeedsObjectiveC             bool
+	NeedsFoundation             bool
+	NeedsQuartzCore             bool
+	NeedsCoreGraphics           bool
+	NeedsAppKit                 bool
+	NeedsUserNotifications      bool
+	NeedsUniformTypeIdentifiers bool
 }
 
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
@@ -2486,6 +2471,40 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 			goType := mapObjCTypeToGo(prop.Type, framework)
 			if strings.Contains(goType, "usernotifications.") {
 				imports.NeedsUserNotifications = true
+				break
+			}
+		}
+	}
+
+	// Check method parameters and return types for UniformTypeIdentifiers dependencies
+	if !imports.NeedsUniformTypeIdentifiers {
+		for _, method := range class.Methods {
+			// Check return type
+			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
+			if strings.Contains(goReturnType, "uniformtypeidentifiers.") {
+				imports.NeedsUniformTypeIdentifiers = true
+				break
+			}
+			// Check parameter types
+			for _, param := range method.Parameters {
+				goParamType := mapObjCTypeToGo(param.Type, framework)
+				if strings.Contains(goParamType, "uniformtypeidentifiers.") {
+					imports.NeedsUniformTypeIdentifiers = true
+					break
+				}
+			}
+			if imports.NeedsUniformTypeIdentifiers {
+				break
+			}
+		}
+	}
+
+	// Check properties for UniformTypeIdentifiers dependencies
+	if !imports.NeedsUniformTypeIdentifiers {
+		for _, prop := range class.Properties {
+			goType := mapObjCTypeToGo(prop.Type, framework)
+			if strings.Contains(goType, "uniformtypeidentifiers.") {
+				imports.NeedsUniformTypeIdentifiers = true
 				break
 			}
 		}
