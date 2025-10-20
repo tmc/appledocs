@@ -6,7 +6,6 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 )
 
@@ -79,26 +78,6 @@ func (v_ VZDiskImageStorageDeviceAttachment) Autorelease() VZDiskImageStorageDev
 // NewVZDiskImageStorageDeviceAttachment creates a new VZDiskImageStorageDeviceAttachment instance.
 func NewVZDiskImageStorageDeviceAttachment() VZDiskImageStorageDeviceAttachment {
 	return getVZDiskImageStorageDeviceAttachmentClass().New()
-}
-
-// NewVZDiskImageStorageDeviceAttachmentWithURLReadOnlyError initializes a disk image storage device attachment with a URL, read-only flag, and error parameter.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDiskImageStorageDeviceAttachment/init(url:readOnly:error:)
-func NewVZDiskImageStorageDeviceAttachmentWithURLReadOnlyError(
-	diskImageURL foundation.URL,
-	readOnly bool,
-	error_ unsafe.Pointer,
-) VZDiskImageStorageDeviceAttachment {
-	class := getVZDiskImageStorageDeviceAttachmentClass()
-	alloc := objc.Send[VZDiskImageStorageDeviceAttachment](objc.ID(class.class), objc.Sel("alloc"))
-	inst := objc.Send[VZDiskImageStorageDeviceAttachment](
-		alloc.ID,
-		objc.Sel("initWithURL:readOnly:error:"),
-		unsafe.Pointer(diskImageURL.ID),
-		readOnly,
-		error_,
-	)
-	return inst
 }
 
 

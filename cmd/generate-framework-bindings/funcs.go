@@ -897,14 +897,16 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "objc.SEL"
 	case "BOOL":
 		return "bool"
-	case "NSInteger":
+	case "NSInteger", "Int":
 		return "int"
-	case "NSUInteger":
+	case "NSUInteger", "UInt":
 		return "uint"
-	case "unsigned long long":
+	case "unsigned long long", "UInt64":
 		return "uint64"
-	case "CGFloat":
+	case "CGFloat", "Double":
 		return "float64"
+	case "Float":
+		return "float32"
 	case "void":
 		return ""
 	}

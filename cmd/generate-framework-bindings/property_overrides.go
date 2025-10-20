@@ -64,15 +64,27 @@ func MergePropertyOverrides(framework, className string, class *occ2go.ParsedCla
 		return
 	}
 
-	// Check if properties already exist (don't override documented properties)
-	existingProps := make(map[string]bool)
-	for _, prop := range class.Properties {
-		existingProps[prop.Name] = true
-	}
-
-	// Add override properties that don't exist
+	// Apply overrides - replace existing properties or add new ones
 	for _, override := range classOverrides {
-		if !existingProps[override.Name] {
+		found := false
+		for i, prop := range class.Properties {
+			if prop.Name == override.Name {
+				// Replace existing property with override
+				class.Properties[i] = &occ2go.ParsedProperty{
+					Name:         override.Name,
+					Type:         override.Type,
+					Attributes:   override.Attributes,
+					Comment:      override.Comment,
+					Availability: override.Availability,
+					DocURL:       prop.DocURL, // Preserve doc URL if it exists
+					Abstract:     override.Comment,
+				}
+				found = true
+				break
+			}
+		}
+		// Add new property if it doesn't exist
+		if !found {
 			class.Properties = append(class.Properties, &occ2go.ParsedProperty{
 				Name:         override.Name,
 				Type:         override.Type,

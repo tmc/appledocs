@@ -207,6 +207,9 @@ var typeRegistry = []TypeMapping{
 	// ==== Foundation geometry types in ParavirtualizedGraphics ====
 	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "ParavirtualizedGraphics"},
 
+	// ==== Foundation geometry types in Virtualization ====
+	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "Virtualization"},
+
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
 	// Generic completion handler: void (^)(NSError *)

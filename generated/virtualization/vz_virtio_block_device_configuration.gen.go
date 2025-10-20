@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZVirtioBlockDeviceConfiguration] class.
@@ -29,7 +28,7 @@ type _VZVirtioBlockDeviceConfigurationClass struct {
 
 // An interface definition for the [VZVirtioBlockDeviceConfiguration] class.
 type IVZVirtioBlockDeviceConfiguration interface {
-	objectivec.IObject
+	IVZStorageDeviceConfiguration
 }
 
 // The configuration object that requests the creation of a virtual storage device in the guest system.
@@ -38,14 +37,16 @@ type IVZVirtioBlockDeviceConfiguration interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration
 type VZVirtioBlockDeviceConfiguration struct {
-	objectivec.Object
+	VZStorageDeviceConfiguration
 }
 
 // VZVirtioBlockDeviceConfigurationFrom constructs a [VZVirtioBlockDeviceConfiguration] from an unsafe.Pointer.
 //
 // The configuration object that requests the creation of a virtual storage device in the guest system.
 func VZVirtioBlockDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioBlockDeviceConfiguration {
-	return VZVirtioBlockDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
+	return VZVirtioBlockDeviceConfiguration{
+		VZStorageDeviceConfiguration: VZStorageDeviceConfigurationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -79,21 +80,6 @@ func NewVZVirtioBlockDeviceConfiguration() VZVirtioBlockDeviceConfiguration {
 	return getVZVirtioBlockDeviceConfigurationClass().New()
 }
 
-// The storage device attachment for this block device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/attachment
-func (v_ VZVirtioBlockDeviceConfiguration) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
-	return rv
-}
-
-// SetAttachment sets the value of the attachment property.
-// The storage device attachment for this block device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/attachment
-func (v_ VZVirtioBlockDeviceConfiguration) SetAttachment(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-}
 
 // Checks the validity of a block device identifier.
 //

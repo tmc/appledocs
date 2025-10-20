@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZMacGraphicsDeviceConfiguration] class.
@@ -29,7 +28,7 @@ type _VZMacGraphicsDeviceConfigurationClass struct {
 
 // An interface definition for the [VZMacGraphicsDeviceConfiguration] class.
 type IVZMacGraphicsDeviceConfiguration interface {
-	objectivec.IObject
+	IVZGraphicsDeviceConfiguration
 }
 
 // Configuration for a display attached to a Mac graphics device.
@@ -38,14 +37,16 @@ type IVZMacGraphicsDeviceConfiguration interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDeviceConfiguration
 type VZMacGraphicsDeviceConfiguration struct {
-	objectivec.Object
+	VZGraphicsDeviceConfiguration
 }
 
 // VZMacGraphicsDeviceConfigurationFrom constructs a [VZMacGraphicsDeviceConfiguration] from an unsafe.Pointer.
 //
 // Configuration for a display attached to a Mac graphics device.
 func VZMacGraphicsDeviceConfigurationFrom(ptr unsafe.Pointer) VZMacGraphicsDeviceConfiguration {
-	return VZMacGraphicsDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
+	return VZMacGraphicsDeviceConfiguration{
+		VZGraphicsDeviceConfiguration: VZGraphicsDeviceConfigurationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

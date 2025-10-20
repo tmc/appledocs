@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZLinuxRosettaDirectoryShare] class.
@@ -29,7 +28,7 @@ type _VZLinuxRosettaDirectoryShareClass struct {
 
 // An interface definition for the [VZLinuxRosettaDirectoryShare] class.
 type IVZLinuxRosettaDirectoryShare interface {
-	objectivec.IObject
+	IVZDirectoryShare
 }
 
 // The Linux directory share for Rosetta.
@@ -38,14 +37,16 @@ type IVZLinuxRosettaDirectoryShare interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare
 type VZLinuxRosettaDirectoryShare struct {
-	objectivec.Object
+	VZDirectoryShare
 }
 
 // VZLinuxRosettaDirectoryShareFrom constructs a [VZLinuxRosettaDirectoryShare] from an unsafe.Pointer.
 //
 // The Linux directory share for Rosetta.
 func VZLinuxRosettaDirectoryShareFrom(ptr unsafe.Pointer) VZLinuxRosettaDirectoryShare {
-	return VZLinuxRosettaDirectoryShare{objectivec.Object{objc.ID(ptr)}}
+	return VZLinuxRosettaDirectoryShare{
+		VZDirectoryShare: VZDirectoryShareFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -80,5 +81,39 @@ func NewVZLinuxRosettaDirectoryShare() VZLinuxRosettaDirectoryShare {
 }
 
 
+// Creates a new Rosetta directory share, or returns an error if Rosetta isn’t installed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/init()
+func NewVZLinuxRosettaDirectoryShareWithError(error_ unsafe.Pointer) VZLinuxRosettaDirectoryShare {
+	instance := getVZLinuxRosettaDirectoryShareClass().Alloc()
+	rv := objc.Send[VZLinuxRosettaDirectoryShare](instance.ID, objc.Sel("initWithError:"), error_)
+	rv.Autorelease()
+	return rv
+}
 
+
+// Starts the installation of Rosetta.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/installRosetta(completionHandler:)
+func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("installRosettaWithCompletionHandler:"), completionHandler)
+}
+
+// The value that enables translation caching and configures the socket communication type for Rosetta.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
+func (v_ VZLinuxRosettaDirectoryShare) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// The value that enables translation caching and configures the socket communication type for Rosetta.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
+func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setOptions:"), value)
+}
 

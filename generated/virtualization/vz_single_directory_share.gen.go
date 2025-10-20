@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZSingleDirectoryShare] class.
@@ -29,7 +28,7 @@ type _VZSingleDirectoryShareClass struct {
 
 // An interface definition for the [VZSingleDirectoryShare] class.
 type IVZSingleDirectoryShare interface {
-	objectivec.IObject
+	IVZDirectoryShare
 }
 
 // An object that defines the directory share for a single directory.
@@ -38,14 +37,16 @@ type IVZSingleDirectoryShare interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare
 type VZSingleDirectoryShare struct {
-	objectivec.Object
+	VZDirectoryShare
 }
 
 // VZSingleDirectoryShareFrom constructs a [VZSingleDirectoryShare] from an unsafe.Pointer.
 //
 // An object that defines the directory share for a single directory.
 func VZSingleDirectoryShareFrom(ptr unsafe.Pointer) VZSingleDirectoryShare {
-	return VZSingleDirectoryShare{objectivec.Object{objc.ID(ptr)}}
+	return VZSingleDirectoryShare{
+		VZDirectoryShare: VZDirectoryShareFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -80,5 +81,23 @@ func NewVZSingleDirectoryShare() VZSingleDirectoryShare {
 }
 
 
+// Creates a directory share with a directory that you specify on the host.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/init(directory:)
+func NewVZSingleDirectoryShareWithDirectory(directory unsafe.Pointer) VZSingleDirectoryShare {
+	instance := getVZSingleDirectoryShareClass().Alloc()
+	rv := objc.Send[VZSingleDirectoryShare](instance.ID, objc.Sel("initWithDirectory:"), directory)
+	rv.Autorelease()
+	return rv
+}
+
+
+// The directory on the host to share with the guest VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/directory
+func (v_ VZSingleDirectoryShare) Directory() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("directory"))
+	return rv
+}
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZLinuxRosettaUnixSocketCachingOptions] class.
@@ -29,7 +28,7 @@ type _VZLinuxRosettaUnixSocketCachingOptionsClass struct {
 
 // An interface definition for the [VZLinuxRosettaUnixSocketCachingOptions] class.
 type IVZLinuxRosettaUnixSocketCachingOptions interface {
-	objectivec.IObject
+	IVZLinuxRosettaCachingOptions
 }
 
 // An object that represents caching options for a UNIX domain socket.
@@ -38,14 +37,16 @@ type IVZLinuxRosettaUnixSocketCachingOptions interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions
 type VZLinuxRosettaUnixSocketCachingOptions struct {
-	objectivec.Object
+	VZLinuxRosettaCachingOptions
 }
 
 // VZLinuxRosettaUnixSocketCachingOptionsFrom constructs a [VZLinuxRosettaUnixSocketCachingOptions] from an unsafe.Pointer.
 //
 // An object that represents caching options for a UNIX domain socket.
 func VZLinuxRosettaUnixSocketCachingOptionsFrom(ptr unsafe.Pointer) VZLinuxRosettaUnixSocketCachingOptions {
-	return VZLinuxRosettaUnixSocketCachingOptions{objectivec.Object{objc.ID(ptr)}}
+	return VZLinuxRosettaUnixSocketCachingOptions{
+		VZLinuxRosettaCachingOptions: VZLinuxRosettaCachingOptionsFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -80,5 +81,23 @@ func NewVZLinuxRosettaUnixSocketCachingOptions() VZLinuxRosettaUnixSocketCaching
 }
 
 
+// Creates a new Rosetta caching options object for a UNIX domain socket with the path you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/initWithPath:error:
+func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path string, error_ unsafe.Pointer) VZLinuxRosettaUnixSocketCachingOptions {
+	instance := getVZLinuxRosettaUnixSocketCachingOptionsClass().Alloc()
+	rv := objc.Send[VZLinuxRosettaUnixSocketCachingOptions](instance.ID, objc.Sel("initWithPath:error:"), objc.String(path), error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// The path to the UNIX domain socket that Rosetta uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/path
+func (v_ VZLinuxRosettaUnixSocketCachingOptions) Path() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("path"))
+	return rv
+}
 
 

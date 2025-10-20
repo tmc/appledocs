@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZHostAudioOutputStreamSink] class.
@@ -29,7 +28,7 @@ type _VZHostAudioOutputStreamSinkClass struct {
 
 // An interface definition for the [VZHostAudioOutputStreamSink] class.
 type IVZHostAudioOutputStreamSink interface {
-	objectivec.IObject
+	IVZAudioOutputStreamSink
 }
 
 // Host audio output stream sink plays audio to the host system’s default output device.
@@ -38,14 +37,16 @@ type IVZHostAudioOutputStreamSink interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZHostAudioOutputStreamSink
 type VZHostAudioOutputStreamSink struct {
-	objectivec.Object
+	VZAudioOutputStreamSink
 }
 
 // VZHostAudioOutputStreamSinkFrom constructs a [VZHostAudioOutputStreamSink] from an unsafe.Pointer.
 //
 // Host audio output stream sink plays audio to the host system’s default output device.
 func VZHostAudioOutputStreamSinkFrom(ptr unsafe.Pointer) VZHostAudioOutputStreamSink {
-	return VZHostAudioOutputStreamSink{objectivec.Object{objc.ID(ptr)}}
+	return VZHostAudioOutputStreamSink{
+		VZAudioOutputStreamSink: VZAudioOutputStreamSinkFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

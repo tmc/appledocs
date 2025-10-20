@@ -81,6 +81,7 @@ func NewVZVirtioConsoleDeviceConfiguration() VZVirtioConsoleDeviceConfiguration 
 }
 
 
+
 // The list of Virtio port configurations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration/ports
@@ -88,6 +89,5 @@ func (v_ VZVirtioConsoleDeviceConfiguration) Ports() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ports"))
 	return rv
 }
-
 
 

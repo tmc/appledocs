@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZVirtioGraphicsScanoutConfiguration] class.
@@ -29,7 +28,7 @@ type _VZVirtioGraphicsScanoutConfigurationClass struct {
 
 // An interface definition for the [VZVirtioGraphicsScanoutConfiguration] class.
 type IVZVirtioGraphicsScanoutConfiguration interface {
-	objectivec.IObject
+	IVZGraphicsDisplayConfiguration
 }
 
 // The configuration for a Virtio graphics device that configures the dimensions of the graphics device for a Linux VM.
@@ -38,14 +37,16 @@ type IVZVirtioGraphicsScanoutConfiguration interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanoutConfiguration
 type VZVirtioGraphicsScanoutConfiguration struct {
-	objectivec.Object
+	VZGraphicsDisplayConfiguration
 }
 
 // VZVirtioGraphicsScanoutConfigurationFrom constructs a [VZVirtioGraphicsScanoutConfiguration] from an unsafe.Pointer.
 //
 // The configuration for a Virtio graphics device that configures the dimensions of the graphics device for a Linux VM.
 func VZVirtioGraphicsScanoutConfigurationFrom(ptr unsafe.Pointer) VZVirtioGraphicsScanoutConfiguration {
-	return VZVirtioGraphicsScanoutConfiguration{objectivec.Object{objc.ID(ptr)}}
+	return VZVirtioGraphicsScanoutConfiguration{
+		VZGraphicsDisplayConfiguration: VZGraphicsDisplayConfigurationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

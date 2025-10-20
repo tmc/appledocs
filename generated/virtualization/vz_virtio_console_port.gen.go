@@ -80,5 +80,30 @@ func NewVZVirtioConsolePort() VZVirtioConsolePort {
 }
 
 
+// An array of serial port attachments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
+func (v_ VZVirtioConsolePort) Attachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+
+// SetAttachment sets the value of the attachment property.
+// An array of serial port attachments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
+func (v_ VZVirtioConsolePort) SetAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
+// The name of the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/name
+func (v_ VZVirtioConsolePort) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
+	return rv
+}
+
 
 

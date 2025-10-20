@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZNATNetworkDeviceAttachment] class.
@@ -29,7 +28,7 @@ type _VZNATNetworkDeviceAttachmentClass struct {
 
 // An interface definition for the [VZNATNetworkDeviceAttachment] class.
 type IVZNATNetworkDeviceAttachment interface {
-	objectivec.IObject
+	IVZNetworkDeviceAttachment
 }
 
 // A device that routes network requests through the host computer and performs network address translation on the resulting packets.
@@ -38,14 +37,16 @@ type IVZNATNetworkDeviceAttachment interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNATNetworkDeviceAttachment
 type VZNATNetworkDeviceAttachment struct {
-	objectivec.Object
+	VZNetworkDeviceAttachment
 }
 
 // VZNATNetworkDeviceAttachmentFrom constructs a [VZNATNetworkDeviceAttachment] from an unsafe.Pointer.
 //
 // A device that routes network requests through the host computer and performs network address translation on the resulting packets.
 func VZNATNetworkDeviceAttachmentFrom(ptr unsafe.Pointer) VZNATNetworkDeviceAttachment {
-	return VZNATNetworkDeviceAttachment{objectivec.Object{objc.ID(ptr)}}
+	return VZNATNetworkDeviceAttachment{
+		VZNetworkDeviceAttachment: VZNetworkDeviceAttachmentFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

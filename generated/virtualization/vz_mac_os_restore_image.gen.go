@@ -126,5 +126,13 @@ func (v_ VZMacOSRestoreImage) OperatingSystemVersion() unsafe.Pointer {
 	return rv
 }
 
+// The URL of this restore image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/url
+func (v_ VZMacOSRestoreImage) URL() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("URL"))
+	return rv
+}
+
 
 

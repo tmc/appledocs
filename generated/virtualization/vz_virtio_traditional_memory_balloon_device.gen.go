@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZVirtioTraditionalMemoryBalloonDevice] class.
@@ -29,7 +28,7 @@ type _VZVirtioTraditionalMemoryBalloonDeviceClass struct {
 
 // An interface definition for the [VZVirtioTraditionalMemoryBalloonDevice] class.
 type IVZVirtioTraditionalMemoryBalloonDevice interface {
-	objectivec.IObject
+	IVZMemoryBalloonDevice
 }
 
 // The object you use to change the amount of memory allocated to the guest system.
@@ -38,14 +37,16 @@ type IVZVirtioTraditionalMemoryBalloonDevice interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDevice
 type VZVirtioTraditionalMemoryBalloonDevice struct {
-	objectivec.Object
+	VZMemoryBalloonDevice
 }
 
 // VZVirtioTraditionalMemoryBalloonDeviceFrom constructs a [VZVirtioTraditionalMemoryBalloonDevice] from an unsafe.Pointer.
 //
 // The object you use to change the amount of memory allocated to the guest system.
 func VZVirtioTraditionalMemoryBalloonDeviceFrom(ptr unsafe.Pointer) VZVirtioTraditionalMemoryBalloonDevice {
-	return VZVirtioTraditionalMemoryBalloonDevice{objectivec.Object{objc.ID(ptr)}}
+	return VZVirtioTraditionalMemoryBalloonDevice{
+		VZMemoryBalloonDevice: VZMemoryBalloonDeviceFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZFileHandleNetworkDeviceAttachment] class.
@@ -29,7 +28,7 @@ type _VZFileHandleNetworkDeviceAttachmentClass struct {
 
 // An interface definition for the [VZFileHandleNetworkDeviceAttachment] class.
 type IVZFileHandleNetworkDeviceAttachment interface {
-	objectivec.IObject
+	IVZNetworkDeviceAttachment
 }
 
 // A network device that transmits raw network packets and frames using a datagram socket.
@@ -38,14 +37,16 @@ type IVZFileHandleNetworkDeviceAttachment interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment
 type VZFileHandleNetworkDeviceAttachment struct {
-	objectivec.Object
+	VZNetworkDeviceAttachment
 }
 
 // VZFileHandleNetworkDeviceAttachmentFrom constructs a [VZFileHandleNetworkDeviceAttachment] from an unsafe.Pointer.
 //
 // A network device that transmits raw network packets and frames using a datagram socket.
 func VZFileHandleNetworkDeviceAttachmentFrom(ptr unsafe.Pointer) VZFileHandleNetworkDeviceAttachment {
-	return VZFileHandleNetworkDeviceAttachment{objectivec.Object{objc.ID(ptr)}}
+	return VZFileHandleNetworkDeviceAttachment{
+		VZNetworkDeviceAttachment: VZNetworkDeviceAttachmentFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

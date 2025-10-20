@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZVirtioSocketDevice] class.
@@ -29,7 +28,7 @@ type _VZVirtioSocketDeviceClass struct {
 
 // An interface definition for the [VZVirtioSocketDevice] class.
 type IVZVirtioSocketDevice interface {
-	objectivec.IObject
+	IVZSocketDevice
 	ConnectToPortCompletionHandler(port unsafe.Pointer, completionHandler unsafe.Pointer)
 	RemoveSocketListenerForPort(port unsafe.Pointer)
 	SetSocketListenerForPort(listener unsafe.Pointer, port unsafe.Pointer)
@@ -41,14 +40,16 @@ type IVZVirtioSocketDevice interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice
 type VZVirtioSocketDevice struct {
-	objectivec.Object
+	VZSocketDevice
 }
 
 // VZVirtioSocketDeviceFrom constructs a [VZVirtioSocketDevice] from an unsafe.Pointer.
 //
 // A device that manages port-based connections between the guest system and the host computer.
 func VZVirtioSocketDeviceFrom(ptr unsafe.Pointer) VZVirtioSocketDevice {
-	return VZVirtioSocketDevice{objectivec.Object{objc.ID(ptr)}}
+	return VZVirtioSocketDevice{
+		VZSocketDevice: VZSocketDeviceFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

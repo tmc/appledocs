@@ -31,6 +31,7 @@ type _VZVirtualMachineConfigurationClass struct {
 type IVZVirtualMachineConfiguration interface {
 	objectivec.IObject
 	ValidateWithError(error_ unsafe.Pointer) bool
+	ValidateSaveRestoreSupportWithError(error_ unsafe.Pointer) bool
 }
 
 // The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.
@@ -63,38 +64,6 @@ func (vc _VZVirtualMachineConfigurationClass) New() VZVirtualMachineConfiguratio
 	return rv
 }
 
-// MinimumAllowedCPUCount returns the minimum number of CPUs for the virtual machine configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedCPUCount
-func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedCPUCount() uint {
-	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("minimumAllowedCPUCount"))
-	return rv
-}
-
-// MaximumAllowedCPUCount returns the maximum number of CPUs for the virtual machine configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedCPUCount
-func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedCPUCount() uint {
-	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumAllowedCPUCount"))
-	return rv
-}
-
-// MinimumAllowedMemorySize returns the minimum memory size for the virtual machine configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedMemorySize
-func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedMemorySize() uint64 {
-	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("minimumAllowedMemorySize"))
-	return rv
-}
-
-// MaximumAllowedMemorySize returns the maximum memory size for the virtual machine configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedMemorySize
-func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedMemorySize() uint64 {
-	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("maximumAllowedMemorySize"))
-	return rv
-}
-
 // Init initializes the instance.
 func (v_ VZVirtualMachineConfiguration) Init() VZVirtualMachineConfiguration {
 	rv := objc.Send[VZVirtualMachineConfiguration](v_.ID, objc.Sel("init"))
@@ -118,6 +87,14 @@ func NewVZVirtualMachineConfiguration() VZVirtualMachineConfiguration {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/validate()
 func (v_ VZVirtualMachineConfiguration) ValidateWithError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("validateWithError:"), error_)
+	return rv
+}
+
+// Determines whether the framework can save or restore the VM’s current configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/validateSaveRestoreSupport()
+func (v_ VZVirtualMachineConfiguration) ValidateSaveRestoreSupportWithError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("validateSaveRestoreSupportWithError:"), error_)
 	return rv
 }
 
@@ -172,6 +149,23 @@ func (v_ VZVirtualMachineConfiguration) ConsoleDevices() []VZConsoleDeviceConfig
 func (v_ VZVirtualMachineConfiguration) SetConsoleDevices(value []VZConsoleDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
 }
+// The number of CPUs you make available to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/cpuCount
+func (v_ VZVirtualMachineConfiguration) CPUCount() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("CPUCount"))
+	return rv
+}
+
+
+// SetCPUCount sets the value of the CPUCount property.
+// The number of CPUs you make available to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/cpuCount
+func (v_ VZVirtualMachineConfiguration) SetCPUCount(value uint) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setCPUCount:"), value)
+}
 // The list of directory sharing devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/directorySharingDevices
@@ -206,6 +200,23 @@ func (v_ VZVirtualMachineConfiguration) EntropyDevices() []VZEntropyDeviceConfig
 func (v_ VZVirtualMachineConfiguration) SetEntropyDevices(value []VZEntropyDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), value)
 }
+// The list of graphics devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/graphicsDevices
+func (v_ VZVirtualMachineConfiguration) GraphicsDevices() []VZGraphicsDeviceConfiguration {
+	rv := objc.Send[[]VZGraphicsDeviceConfiguration](v_.ID, objc.Sel("graphicsDevices"))
+	return rv
+}
+
+
+// SetGraphicsDevices sets the value of the graphicsDevices property.
+// The list of graphics devices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/graphicsDevices
+func (v_ VZVirtualMachineConfiguration) SetGraphicsDevices(value []VZGraphicsDeviceConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setGraphicsDevices:"), value)
+}
 // The list of keyboards.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/keyboards
@@ -222,6 +233,40 @@ func (v_ VZVirtualMachineConfiguration) Keyboards() []VZKeyboardConfiguration {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/keyboards
 func (v_ VZVirtualMachineConfiguration) SetKeyboards(value []VZKeyboardConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKeyboards:"), value)
+}
+// An array that you configure with a memory balloon device, used to update the memory in the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memoryBalloonDevices
+func (v_ VZVirtualMachineConfiguration) MemoryBalloonDevices() []VZMemoryBalloonDeviceConfiguration {
+	rv := objc.Send[[]VZMemoryBalloonDeviceConfiguration](v_.ID, objc.Sel("memoryBalloonDevices"))
+	return rv
+}
+
+
+// SetMemoryBalloonDevices sets the value of the memoryBalloonDevices property.
+// An array that you configure with a memory balloon device, used to update the memory in the VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memoryBalloonDevices
+func (v_ VZVirtualMachineConfiguration) SetMemoryBalloonDevices(value []VZMemoryBalloonDeviceConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)
+}
+// The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memorySize
+func (v_ VZVirtualMachineConfiguration) MemorySize() uint64 {
+	rv := objc.Send[uint64](v_.ID, objc.Sel("memorySize"))
+	return rv
+}
+
+
+// SetMemorySize sets the value of the memorySize property.
+// The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memorySize
+func (v_ VZVirtualMachineConfiguration) SetMemorySize(value uint64) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMemorySize:"), value)
 }
 // The array of network devices that you expose to the guest operating system.
 //
@@ -257,6 +302,91 @@ func (v_ VZVirtualMachineConfiguration) Platform() unsafe.Pointer {
 func (v_ VZVirtualMachineConfiguration) SetPlatform(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
 }
+// The list of pointing devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/pointingDevices
+func (v_ VZVirtualMachineConfiguration) PointingDevices() []VZPointingDeviceConfiguration {
+	rv := objc.Send[[]VZPointingDeviceConfiguration](v_.ID, objc.Sel("pointingDevices"))
+	return rv
+}
+
+
+// SetPointingDevices sets the value of the pointingDevices property.
+// The list of pointing devices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/pointingDevices
+func (v_ VZVirtualMachineConfiguration) SetPointingDevices(value []VZPointingDeviceConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPointingDevices:"), value)
+}
+// The array of serial ports that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/serialPorts
+func (v_ VZVirtualMachineConfiguration) SerialPorts() []VZSerialPortConfiguration {
+	rv := objc.Send[[]VZSerialPortConfiguration](v_.ID, objc.Sel("serialPorts"))
+	return rv
+}
+
+
+// SetSerialPorts sets the value of the serialPorts property.
+// The array of serial ports that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/serialPorts
+func (v_ VZVirtualMachineConfiguration) SetSerialPorts(value []VZSerialPortConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSerialPorts:"), value)
+}
+// The socket device that you use to implement port-based communication with the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/socketDevices
+func (v_ VZVirtualMachineConfiguration) SocketDevices() []VZSocketDeviceConfiguration {
+	rv := objc.Send[[]VZSocketDeviceConfiguration](v_.ID, objc.Sel("socketDevices"))
+	return rv
+}
+
+
+// SetSocketDevices sets the value of the socketDevices property.
+// The socket device that you use to implement port-based communication with the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/socketDevices
+func (v_ VZVirtualMachineConfiguration) SetSocketDevices(value []VZSocketDeviceConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
+}
+// The array of storage devices that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/storageDevices
+func (v_ VZVirtualMachineConfiguration) StorageDevices() []VZStorageDeviceConfiguration {
+	rv := objc.Send[[]VZStorageDeviceConfiguration](v_.ID, objc.Sel("storageDevices"))
+	return rv
+}
+
+
+// SetStorageDevices sets the value of the storageDevices property.
+// The array of storage devices that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/storageDevices
+func (v_ VZVirtualMachineConfiguration) SetStorageDevices(value []VZStorageDeviceConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setStorageDevices:"), value)
+}
+// The list of configured USB controllers for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/usbControllers
+func (v_ VZVirtualMachineConfiguration) UsbControllers() []VZUSBControllerConfiguration {
+	rv := objc.Send[[]VZUSBControllerConfiguration](v_.ID, objc.Sel("usbControllers"))
+	return rv
+}
+
+
+// SetUsbControllers sets the value of the usbControllers property.
+// The list of configured USB controllers for the VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/usbControllers
+func (v_ VZVirtualMachineConfiguration) SetUsbControllers(value []VZUSBControllerConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)
+}
 // The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount. [Full Topic]
 func (v_ VZVirtualMachineConfiguration) CpuCount() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("cpuCount"))
@@ -268,18 +398,6 @@ func (v_ VZVirtualMachineConfiguration) CpuCount() uint {
 // The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount.
 func (v_ VZVirtualMachineConfiguration) SetCpuCount(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCpuCount:"), value)
-}
-// The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize. [Full Topic]
-func (v_ VZVirtualMachineConfiguration) MemorySize() uint64 {
-	rv := objc.Send[uint64](v_.ID, objc.Sel("memorySize"))
-	return rv
-}
-
-
-// SetMemorySize sets the value of the memorySize property.
-// The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
-func (v_ VZVirtualMachineConfiguration) SetMemorySize(value uint64) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMemorySize:"), value)
 }
 
 

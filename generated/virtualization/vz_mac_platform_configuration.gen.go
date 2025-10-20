@@ -82,6 +82,23 @@ func NewVZMacPlatformConfiguration() VZMacPlatformConfiguration {
 
 
 
+// The Mac auxiliary storage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage
+func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("auxiliaryStorage"))
+	return rv
+}
+
+
+// SetAuxiliaryStorage sets the value of the auxiliaryStorage property.
+// The Mac auxiliary storage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage
+func (v_ VZMacPlatformConfiguration) SetAuxiliaryStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
+}
 // The Mac hardware model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [VZVirtioGraphicsDeviceConfiguration] class.
@@ -29,21 +28,23 @@ type _VZVirtioGraphicsDeviceConfigurationClass struct {
 
 // An interface definition for the [VZVirtioGraphicsDeviceConfiguration] class.
 type IVZVirtioGraphicsDeviceConfiguration interface {
-	objectivec.IObject
+	IVZGraphicsDeviceConfiguration
 }
 
 // Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration
 type VZVirtioGraphicsDeviceConfiguration struct {
-	objectivec.Object
+	VZGraphicsDeviceConfiguration
 }
 
 // VZVirtioGraphicsDeviceConfigurationFrom constructs a [VZVirtioGraphicsDeviceConfiguration] from an unsafe.Pointer.
 //
 // Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
 func VZVirtioGraphicsDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioGraphicsDeviceConfiguration {
-	return VZVirtioGraphicsDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
+	return VZVirtioGraphicsDeviceConfiguration{
+		VZGraphicsDeviceConfiguration: VZGraphicsDeviceConfigurationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -77,7 +78,9 @@ func NewVZVirtioGraphicsDeviceConfiguration() VZVirtioGraphicsDeviceConfiguratio
 	return getVZVirtioGraphicsDeviceConfigurationClass().New()
 }
 
-// The array of graphics scanout configurations.
+
+
+// The array of output devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration/scanouts
 func (v_ VZVirtioGraphicsDeviceConfiguration) Scanouts() []VZVirtioGraphicsScanoutConfiguration {
@@ -85,13 +88,13 @@ func (v_ VZVirtioGraphicsDeviceConfiguration) Scanouts() []VZVirtioGraphicsScano
 	return rv
 }
 
+
 // SetScanouts sets the value of the scanouts property.
-// The array of graphics scanout configurations.
+// The array of output devices.
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration/scanouts
 func (v_ VZVirtioGraphicsDeviceConfiguration) SetScanouts(value []VZVirtioGraphicsScanoutConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), value)
 }
-
-
 

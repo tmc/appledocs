@@ -80,5 +80,13 @@ func NewVZGraphicsDevice() VZGraphicsDevice {
 }
 
 
+// The list of graphics displays configured for this graphics device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDevice/displays
+func (v_ VZGraphicsDevice) Displays() []VZGraphicsDisplay {
+	rv := objc.Send[[]VZGraphicsDisplay](v_.ID, objc.Sel("displays"))
+	return rv
+}
+
 
 

@@ -80,5 +80,22 @@ func NewVZSerialPortConfiguration() VZSerialPortConfiguration {
 }
 
 
+// The object that defines how the configuration of the virtual machine’s serial port interfaces.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSerialPortConfiguration/attachment
+func (v_ VZSerialPortConfiguration) Attachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+
+// SetAttachment sets the value of the attachment property.
+// The object that defines how the configuration of the virtual machine’s serial port interfaces.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSerialPortConfiguration/attachment
+func (v_ VZSerialPortConfiguration) SetAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
 
 
