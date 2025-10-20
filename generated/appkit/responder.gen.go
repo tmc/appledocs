@@ -622,6 +622,7 @@ func (r_ Responder) AcceptsFirstResponder() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("acceptsFirstResponder"))
 	return rv
 }
+
 // Returns the responder’s menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/menu
@@ -629,6 +630,7 @@ func (r_ Responder) Menu() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("menu"))
 	return rv
 }
+
 
 // SetMenu sets the value of the menu property.
 // Returns the responder’s menu.
@@ -646,6 +648,7 @@ func (r_ Responder) NextResponder() unsafe.Pointer {
 	return rv
 }
 
+
 // SetNextResponder sets the value of the nextResponder property.
 // The next responder after this one, or if it has none.
 
@@ -662,6 +665,7 @@ func (r_ Responder) TouchBar() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTouchBar sets the value of the touchBar property.
 // The object associated with the responder.
 
@@ -677,6 +681,7 @@ func (r_ Responder) UndoManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("undoManager"))
 	return rv
 }
+
 // An object encapsulating a user activity supported by this responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/userActivity
@@ -684,6 +689,7 @@ func (r_ Responder) UserActivity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("userActivity"))
 	return rv
 }
+
 
 // SetUserActivity sets the value of the userActivity property.
 // An object encapsulating a user activity supported by this responder.

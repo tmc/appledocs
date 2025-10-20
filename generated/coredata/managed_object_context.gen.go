@@ -103,7 +103,7 @@ func NewManagedObjectContextWithConcurrencyType(ct unsafe.Pointer) ManagedObject
 // Handles changes from other processes or from a serialized state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromRemoteContextSave:into:)
-func (mc _ManagedObjectContextClass) MergeChangesFromRemoteContextSaveIntoContexts(changeNotificationData unsafe.Pointer, contexts unsafe.Pointer) {
+func (mc _ManagedObjectContextClass) MergeChangesFromRemoteContextSaveIntoContexts(changeNotificationData objc.ID, contexts unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mergeChangesFromRemoteContextSave:intoContexts:"), changeNotificationData, contexts)
 }
 
@@ -187,6 +187,7 @@ func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
 	return rv
 }
 
+
 // SetAutomaticallyMergesChangesFromParent sets the value of the automaticallyMergesChangesFromParent property.
 // A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
 
@@ -202,6 +203,7 @@ func (m_ ManagedObjectContext) DeletedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deletedObjects"))
 	return rv
 }
+
 // The developer-provided name of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
@@ -209,6 +211,7 @@ func (m_ ManagedObjectContext) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
 	return rv
 }
+
 
 // SetName sets the value of the name property.
 // The developer-provided name of the context.
@@ -225,6 +228,7 @@ func (m_ ManagedObjectContext) QueryGenerationToken() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("queryGenerationToken"))
 	return rv
 }
+
 // The author for the context that is used as an identifier in persistent history transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
@@ -232,6 +236,7 @@ func (m_ ManagedObjectContext) TransactionAuthor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
+
 
 // SetTransactionAuthor sets the value of the transactionAuthor property.
 // The author for the context that is used as an identifier in persistent history transactions.

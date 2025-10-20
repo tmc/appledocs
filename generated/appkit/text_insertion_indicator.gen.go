@@ -89,6 +89,7 @@ func (t_ TextInsertionIndicator) AutomaticModeOptions() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAutomaticModeOptions sets the value of the automaticModeOptions property.
 // Options that affect the automatic display mode.
 
@@ -105,6 +106,7 @@ func (t_ TextInsertionIndicator) Color() unsafe.Pointer {
 	return rv
 }
 
+
 // SetColor sets the value of the color property.
 // The color of this indicator.
 
@@ -120,6 +122,7 @@ func (t_ TextInsertionIndicator) DisplayMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("displayMode"))
 	return rv
 }
+
 
 // SetDisplayMode sets the value of the displayMode property.
 // A value that describes the display mode of an indicator.

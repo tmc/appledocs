@@ -107,6 +107,7 @@ func (t_ TableHeaderView) DraggedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("draggedColumn"))
 	return rv
 }
+
 // The horizontal distance that the user has dragged a column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedDistance
@@ -114,6 +115,7 @@ func (t_ TableHeaderView) DraggedDistance() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("draggedDistance"))
 	return rv
 }
+
 // The index of the column that the user is resizing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/resizedColumn
@@ -121,6 +123,7 @@ func (t_ TableHeaderView) ResizedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("resizedColumn"))
 	return rv
 }
+
 // The instance that this table header view belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
@@ -128,6 +131,7 @@ func (t_ TableHeaderView) TableView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tableView"))
 	return rv
 }
+
 
 // SetTableView sets the value of the tableView property.
 // The instance that this table header view belongs to.

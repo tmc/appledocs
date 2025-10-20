@@ -87,6 +87,7 @@ func (v_ Visit) ArrivalDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("arrivalDate"))
 	return rv
 }
+
 // The geographical coordinate information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/coordinate
@@ -94,6 +95,7 @@ func (v_ Visit) Coordinate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("coordinate"))
 	return rv
 }
+
 // The approximate time at which the user left the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/departureDate
@@ -101,6 +103,7 @@ func (v_ Visit) DepartureDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("departureDate"))
 	return rv
 }
+
 // The horizontal accuracy (in meters) of the specified coordinate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/horizontalAccuracy
@@ -108,5 +111,6 @@ func (v_ Visit) HorizontalAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("horizontalAccuracy"))
 	return rv
 }
+
 
 

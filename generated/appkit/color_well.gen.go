@@ -89,6 +89,7 @@ func (c_ ColorWell) Bordered() bool {
 	return rv
 }
 
+
 // SetBordered sets the value of the bordered property.
 // A Boolean value that determines whether the color well has a border.
 
@@ -104,6 +105,7 @@ func (c_ ColorWell) PulldownTarget() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("pulldownTarget"))
 	return rv
 }
+
 
 // SetPulldownTarget sets the value of the pulldownTarget property.
 // The target object that defines the action you want to perform when someone interacts with the color well.

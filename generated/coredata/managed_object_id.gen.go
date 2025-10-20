@@ -96,6 +96,7 @@ func (m_ ManagedObjectID) Entity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entity"))
 	return rv
 }
+
 // A Boolean value that indicates whether the object ID is temporary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/isTemporaryID
@@ -103,6 +104,7 @@ func (m_ ManagedObjectID) TemporaryID() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("temporaryID"))
 	return rv
 }
+
 // The persistent store that fetched the object for the object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/persistentStore
@@ -110,5 +112,6 @@ func (m_ ManagedObjectID) PersistentStore() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistentStore"))
 	return rv
 }
+
 
 

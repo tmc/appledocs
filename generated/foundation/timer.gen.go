@@ -198,7 +198,6 @@ func (t_ Timer) FireDate() unsafe.Pointer {
 }
 
 
-
 // SetFireDate sets the value of the fireDate property.
 // The date at which the timer will fire.
 
@@ -215,7 +214,6 @@ func (t_ Timer) Valid() bool {
 	return rv
 }
 
-
 // The timer’s time interval, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/timeInterval
@@ -224,7 +222,6 @@ func (t_ Timer) TimeInterval() TimeInterval {
 	return rv
 }
 
-
 // The amount of time after the scheduled fire date that the timer may fire.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/tolerance
@@ -232,7 +229,6 @@ func (t_ Timer) Tolerance() TimeInterval {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("tolerance"))
 	return rv
 }
-
 
 
 // SetTolerance sets the value of the tolerance property.
@@ -250,6 +246,5 @@ func (t_ Timer) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("userInfo"))
 	return rv
 }
-
 
 

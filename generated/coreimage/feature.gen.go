@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Feature] class.
@@ -83,10 +84,11 @@ func NewFeature() Feature {
 // The rectangle that holds discovered feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
-func (f_ Feature) Bounds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bounds"))
+func (f_ Feature) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
 }
+
 // The type of feature that was discovered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
@@ -94,5 +96,6 @@ func (f_ Feature) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
 	return rv
 }
+
 
 

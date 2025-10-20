@@ -87,6 +87,7 @@ func (p_ PopoverTouchBarItem) PopoverTouchBar() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPopoverTouchBar sets the value of the popoverTouchBar property.
 // The bar displayed when this item is “popped.”
 
@@ -102,6 +103,7 @@ func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
+
 
 // SetPressAndHoldTouchBar sets the value of the pressAndHoldTouchBar property.
 // The bar that is displayed when a user press-and-holds on the popover item.

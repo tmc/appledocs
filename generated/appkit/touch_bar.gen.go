@@ -108,6 +108,7 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string {
 	return rv
 }
 
+
 // SetCustomizationAllowedItemIdentifiers sets the value of the customizationAllowedItemIdentifiers property.
 // A list of identifiers for items to show in the Touch Bar’s customization UI.
 
@@ -123,6 +124,7 @@ func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationIdentifier"))
 	return rv
 }
+
 
 // SetCustomizationIdentifier sets the value of the customizationIdentifier property.
 // A globally unique string that makes the Touch Bar eligible for user customization.
@@ -140,6 +142,7 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string {
 	return rv
 }
 
+
 // SetCustomizationRequiredItemIdentifiers sets the value of the customizationRequiredItemIdentifiers property.
 // An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
 
@@ -155,6 +158,7 @@ func (t_ TouchBar) DefaultItemIdentifiers() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("defaultItemIdentifiers"))
 	return rv
 }
+
 
 // SetDefaultItemIdentifiers sets the value of the defaultItemIdentifiers property.
 // A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
@@ -172,6 +176,7 @@ func (t_ TouchBar) Delegate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The delegate that provides items to the Touch Bar.
 
@@ -188,6 +193,7 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetEscapeKeyReplacementItemIdentifier sets the value of the escapeKeyReplacementItemIdentifier property.
 // The identifier of an item that replaces the system-provided button in the Touch Bar.
 
@@ -203,6 +209,7 @@ func (t_ TouchBar) Visible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
 	return rv
 }
+
 // The list of identifiers for the current items in the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/itemIdentifiers
@@ -210,6 +217,7 @@ func (t_ TouchBar) ItemIdentifiers() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("itemIdentifiers"))
 	return rv
 }
+
 // The identifier of an item you want the system to center in the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
@@ -217,6 +225,7 @@ func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("principalItemIdentifier"))
 	return rv
 }
+
 
 // SetPrincipalItemIdentifier sets the value of the principalItemIdentifier property.
 // The identifier of an item you want the system to center in the Touch Bar.
@@ -233,6 +242,7 @@ func (t_ TouchBar) TemplateItems() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("templateItems"))
 	return rv
 }
+
 
 // SetTemplateItems sets the value of the templateItems property.
 // The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.

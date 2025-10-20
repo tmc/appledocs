@@ -81,26 +81,6 @@ func NewRenderDestination() RenderDestination {
 }
 
 
-// Creates a render destination based on a client-managed buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
-func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format unsafe.Pointer) RenderDestination {
-	instance := getRenderDestinationClass().Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a render destination based on an OpenGL texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(glTexture:target:width:height:)
-func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, target unsafe.Pointer, width uint, height uint) RenderDestination {
-	instance := getRenderDestinationClass().Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithGLTexture:target:width:height:"), texture, target, width, height)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a render destination based on an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(ioSurface:)
@@ -141,6 +121,26 @@ func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvid
 	return rv
 }
 
+// Creates a render destination based on a client-managed buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
+func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format unsafe.Pointer) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a render destination based on an OpenGL texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(glTexture:target:width:height:)
+func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, target unsafe.Pointer, width uint, height uint) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithGLTexture:target:width:height:"), texture, target, width, height)
+	rv.Autorelease()
+	return rv
+}
+
 
 // The render destination’s representation of alpha (transparency) values.
 //
@@ -149,6 +149,7 @@ func (r_ RenderDestination) AlphaMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("alphaMode"))
 	return rv
 }
+
 
 // SetAlphaMode sets the value of the alphaMode property.
 // The render destination’s representation of alpha (transparency) values.
@@ -166,6 +167,7 @@ func (r_ RenderDestination) BlendKernel() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBlendKernel sets the value of the blendKernel property.
 // The destination’s blend kernel.
 
@@ -181,6 +183,7 @@ func (r_ RenderDestination) BlendsInDestinationColorSpace() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("blendsInDestinationColorSpace"))
 	return rv
 }
+
 
 // SetBlendsInDestinationColorSpace sets the value of the blendsInDestinationColorSpace property.
 // Indicator of whether to blend in the destination’s color space.
@@ -198,6 +201,7 @@ func (r_ RenderDestination) CaptureTraceURL() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCaptureTraceURL sets the value of the captureTraceURL property.
 // Tell the next render using this destination to capture a Metal trace.
 
@@ -214,6 +218,7 @@ func (r_ RenderDestination) ColorSpace() coregraphics.CGColorSpaceRef {
 	return rv
 }
 
+
 // SetColorSpace sets the value of the colorSpace property.
 // The destination’s color space.
 
@@ -229,6 +234,7 @@ func (r_ RenderDestination) Height() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("height"))
 	return rv
 }
+
 // Indicator of whether or not the destination clamps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isClamped
@@ -236,6 +242,7 @@ func (r_ RenderDestination) Clamped() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("clamped"))
 	return rv
 }
+
 
 // SetClamped sets the value of the clamped property.
 // Indicator of whether or not the destination clamps.
@@ -253,6 +260,7 @@ func (r_ RenderDestination) Dithered() bool {
 	return rv
 }
 
+
 // SetDithered sets the value of the dithered property.
 // Indicator of whether or not the destination dithers.
 
@@ -269,6 +277,7 @@ func (r_ RenderDestination) Flipped() bool {
 	return rv
 }
 
+
 // SetFlipped sets the value of the flipped property.
 // Indicator of whether the destination is flipped.
 
@@ -284,4 +293,5 @@ func (r_ RenderDestination) Width() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("width"))
 	return rv
 }
+
 

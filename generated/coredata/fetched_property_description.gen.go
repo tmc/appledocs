@@ -89,6 +89,7 @@ func (f_ FetchedPropertyDescription) FetchRequest() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFetchRequest sets the value of the fetchRequest property.
 // The fetch request of the receiver.
 

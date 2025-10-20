@@ -89,6 +89,7 @@ func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
 	return rv
 }
 
+
 // SetAutomaticallyPlacesContentView sets the value of the automaticallyPlacesContentView property.
 // Controls the automatic safe area placement of the within the container.
 
@@ -104,6 +105,7 @@ func (b_ BackgroundExtensionView) ContentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("contentView"))
 	return rv
 }
+
 
 // SetContentView sets the value of the contentView property.
 // The content view to extend to fill the .

@@ -86,6 +86,7 @@ func (p_ PersistentHistoryResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("result"))
 	return rv
 }
+
 // The type of result that the persistent history change request returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult/resultType
@@ -93,5 +94,6 @@ func (p_ PersistentHistoryResult) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resultType"))
 	return rv
 }
+
 
 

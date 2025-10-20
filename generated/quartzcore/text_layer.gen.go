@@ -89,6 +89,7 @@ func (t_ TextLayer) TruncationMode() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTruncationMode sets the value of the truncationMode property.
 // Determines how the text is truncated to fit within the receiver’s bounds.
 

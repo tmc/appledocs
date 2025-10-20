@@ -115,6 +115,7 @@ func (b_ BatchUpdateRequest) Entity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("entity"))
 	return rv
 }
+
 // The name of the managed entity to update data for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entityName
@@ -122,6 +123,7 @@ func (b_ BatchUpdateRequest) EntityName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("entityName"))
 	return rv
 }
+
 // A Boolean value that indicates whether to update subentities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/includesSubentities
@@ -129,6 +131,7 @@ func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesSubentities"))
 	return rv
 }
+
 
 // SetIncludesSubentities sets the value of the includesSubentities property.
 // A Boolean value that indicates whether to update subentities.
@@ -146,6 +149,7 @@ func (b_ BatchUpdateRequest) Predicate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPredicate sets the value of the predicate property.
 // A predicate that identifies the objects to update.
 
@@ -162,6 +166,7 @@ func (b_ BatchUpdateRequest) PropertiesToUpdate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPropertiesToUpdate sets the value of the propertiesToUpdate property.
 // A dictionary of property description pairs that describe the updates.
 
@@ -177,6 +182,7 @@ func (b_ BatchUpdateRequest) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
 	return rv
 }
+
 
 // SetResultType sets the value of the resultType property.
 // The type of result that Core Data returns from the request.

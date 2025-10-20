@@ -106,6 +106,7 @@ func (s_ Screen) ColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("colorSpace"))
 	return rv
 }
+
 // The current bit depth and colorspace information of the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/depth
@@ -113,6 +114,7 @@ func (s_ Screen) Depth() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("depth"))
 	return rv
 }
+
 // The device dictionary for the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deviceDescription
@@ -120,6 +122,7 @@ func (s_ Screen) DeviceDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("deviceDescription"))
 	return rv
 }
+
 // The dimensions and location of the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/frame
@@ -127,6 +130,7 @@ func (s_ Screen) Frame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("frame"))
 	return rv
 }
+
 // The localized name of the display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/localizedName
@@ -134,6 +138,7 @@ func (s_ Screen) LocalizedName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedName"))
 	return rv
 }
+
 // The maximum possible color component value for the screen when it’s in extended dynamic range (EDR) mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumPotentialExtendedDynamicRangeColorComponentValue
@@ -141,6 +146,7 @@ func (s_ Screen) MaximumPotentialExtendedDynamicRangeColorComponentValue() float
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumPotentialExtendedDynamicRangeColorComponentValue"))
 	return rv
 }
+
 // A zero-terminated array of the window depths supported by the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/supportedWindowDepths
@@ -148,5 +154,6 @@ func (s_ Screen) SupportedWindowDepths() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("supportedWindowDepths"))
 	return rv
 }
+
 
 

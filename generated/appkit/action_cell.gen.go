@@ -89,6 +89,7 @@ func (a_ ActionCell) Action() objc.SEL {
 	return rv
 }
 
+
 // SetAction sets the value of the action property.
 // Returns the receiver’s action-message selector.
 
@@ -105,6 +106,7 @@ func (a_ ActionCell) Tag() int {
 	return rv
 }
 
+
 // SetTag sets the value of the tag property.
 // Returns the receiver’s tag.
 
@@ -120,6 +122,7 @@ func (a_ ActionCell) Target() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
 	return rv
 }
+
 
 // SetTarget sets the value of the target property.
 // Returns the receiver’s target object.

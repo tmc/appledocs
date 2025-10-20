@@ -89,6 +89,7 @@ func (t_ TableCellView) BackgroundStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBackgroundStyle sets the value of the backgroundStyle property.
 // This property is automatically set by the enclosing row view to let this view know what its background looks like.
 
@@ -104,6 +105,7 @@ func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
+
 // Image displayed by the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
@@ -111,6 +113,7 @@ func (t_ TableCellView) ImageView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("imageView"))
 	return rv
 }
+
 
 // SetImageView sets the value of the imageView property.
 // Image displayed by the cell.
@@ -128,6 +131,7 @@ func (t_ TableCellView) ObjectValue() objc.ID {
 	return rv
 }
 
+
 // SetObjectValue sets the value of the objectValue property.
 // The object that represents the cell data.
 
@@ -144,6 +148,7 @@ func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetRowSizeStyle sets the value of the rowSizeStyle property.
 // Returns the row size style.
 
@@ -159,6 +164,7 @@ func (t_ TableCellView) TextField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textField"))
 	return rv
 }
+
 
 // SetTextField sets the value of the textField property.
 // Text displayed by the cell.

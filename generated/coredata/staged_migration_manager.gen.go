@@ -87,6 +87,7 @@ func (s_ StagedMigrationManager) Container() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("container"))
 	return rv
 }
+
 // The migration stages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/stages
@@ -94,5 +95,6 @@ func (s_ StagedMigrationManager) Stages() []__kindof NSMigrationStage {
 	rv := objc.Send[[]__kindof NSMigrationStage](s_.ID, objc.Sel("stages"))
 	return rv
 }
+
 
 

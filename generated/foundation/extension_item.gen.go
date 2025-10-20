@@ -87,7 +87,6 @@ func (e_ ExtensionItem) Attachments() []ItemProvider {
 }
 
 
-
 // SetAttachments sets the value of the attachments property.
 // An optional array of media data associated with the extension item.
 

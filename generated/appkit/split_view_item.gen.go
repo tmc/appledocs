@@ -103,6 +103,7 @@ func (s_ SplitViewItem) AllowsFullHeightLayout() bool {
 	return rv
 }
 
+
 // SetAllowsFullHeightLayout sets the value of the allowsFullHeightLayout property.
 // A Boolean value that indicates whether full-height sidebars appear in the window after you set a style mask.
 
@@ -118,6 +119,7 @@ func (s_ SplitViewItem) BottomAlignedAccessoryViewControllers() []SplitViewItemA
 	return rv
 }
 
+
 // SetBottomAlignedAccessoryViewControllers sets the value of the bottomAlignedAccessoryViewControllers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/bottomAlignedAccessoryViewControllers
@@ -131,6 +133,7 @@ func (s_ SplitViewItem) TitlebarSeparatorStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
+
 
 // SetTitlebarSeparatorStyle sets the value of the titlebarSeparatorStyle property.
 // The type of separator that the app displays between the title bar and content of a window.
@@ -147,6 +150,7 @@ func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() []SplitViewItemAcce
 	rv := objc.Send[[]SplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
 	return rv
 }
+
 
 // SetTopAlignedAccessoryViewControllers sets the value of the topAlignedAccessoryViewControllers property.
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See for more details.

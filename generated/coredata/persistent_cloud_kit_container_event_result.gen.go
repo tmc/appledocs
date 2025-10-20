@@ -86,6 +86,7 @@ func (p_ PersistentCloudKitContainerEventResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("result"))
 	return rv
 }
+
 // The type of result that the CloudKit container event fetch request returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/resultType-swift.property
@@ -93,5 +94,6 @@ func (p_ PersistentCloudKitContainerEventResult) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resultType"))
 	return rv
 }
+
 
 

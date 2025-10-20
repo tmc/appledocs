@@ -86,6 +86,7 @@ func (m_ MigrationStage) Label() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLabel sets the value of the label property.
 // The textual description of the migration stage’s purpose.
 

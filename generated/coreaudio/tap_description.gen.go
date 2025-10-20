@@ -82,6 +82,7 @@ func (t_ TapDescription) Name() unsafe.Pointer {
 	return rv
 }
 
+
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name

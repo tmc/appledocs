@@ -153,7 +153,6 @@ func (u_ UserActivity) ActivityType() unsafe.Pointer {
 	return rv
 }
 
-
 // An object containing the payload information that launches an App Clip.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/appClipActivationPayload
@@ -162,7 +161,6 @@ func (u_ UserActivity) AppClipActivationPayload() unsafe.Pointer {
 	return rv
 }
 
-
 // A set of properties that describe the activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contentAttributeSet
@@ -170,7 +168,6 @@ func (u_ UserActivity) ContentAttributeSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("contentAttributeSet"))
 	return rv
 }
-
 
 
 // SetContentAttributeSet sets the value of the contentAttributeSet property.
@@ -189,7 +186,6 @@ func (u_ UserActivity) ContextIdentifierPath() []string {
 	return rv
 }
 
-
 // The user activity object’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/delegate
@@ -197,7 +193,6 @@ func (u_ UserActivity) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 
 // SetDelegate sets the value of the delegate property.
@@ -216,7 +211,6 @@ func (u_ UserActivity) DetectedBarcodeDescriptor() unsafe.Pointer {
 	return rv
 }
 
-
 // The date after which the activity is no longer eligible for Handoff or indexing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
@@ -224,7 +218,6 @@ func (u_ UserActivity) ExpirationDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("expirationDate"))
 	return rv
 }
-
 
 
 // SetExpirationDate sets the value of the expirationDate property.
@@ -244,7 +237,6 @@ func (u_ UserActivity) ExternalMediaContentIdentifier() unsafe.Pointer {
 }
 
 
-
 // SetExternalMediaContentIdentifier sets the value of the externalMediaContentIdentifier property.
 // A unique identifier from the app’s media content catalog for the currently displayed media item.
 
@@ -261,7 +253,6 @@ func (u_ UserActivity) Interaction() unsafe.Pointer {
 	return rv
 }
 
-
 // A Boolean value that indicates whether a user activity represents a ClassKit context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isClassKitDeepLink
@@ -270,7 +261,6 @@ func (u_ UserActivity) IsClassKitDeepLink() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the activity can be continued on another device using Handoff.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
@@ -278,7 +268,6 @@ func (u_ UserActivity) EligibleForHandoff() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForHandoff"))
 	return rv
 }
-
 
 
 // SetEligibleForHandoff sets the value of the eligibleForHandoff property.
@@ -298,7 +287,6 @@ func (u_ UserActivity) EligibleForPrediction() bool {
 }
 
 
-
 // SetEligibleForPrediction sets the value of the eligibleForPrediction property.
 // A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user.
 
@@ -314,7 +302,6 @@ func (u_ UserActivity) EligibleForPublicIndexing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPublicIndexing"))
 	return rv
 }
-
 
 
 // SetEligibleForPublicIndexing sets the value of the eligibleForPublicIndexing property.
@@ -334,7 +321,6 @@ func (u_ UserActivity) EligibleForSearch() bool {
 }
 
 
-
 // SetEligibleForSearch sets the value of the eligibleForSearch property.
 // A Boolean value that indicates whether the activity should be added to the on-device index.
 
@@ -350,7 +336,6 @@ func (u_ UserActivity) Keywords() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("keywords"))
 	return rv
 }
-
 
 
 // SetKeywords sets the value of the keywords property.
@@ -370,7 +355,6 @@ func (u_ UserActivity) MapItem() unsafe.Pointer {
 }
 
 
-
 // SetMapItem sets the value of the mapItem property.
 // Attaches the specified map item to a user activity object.
 
@@ -387,7 +371,6 @@ func (u_ UserActivity) NdefMessagePayload() unsafe.Pointer {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the state of the activity needs to be updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
@@ -395,7 +378,6 @@ func (u_ UserActivity) NeedsSave() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("needsSave"))
 	return rv
 }
-
 
 
 // SetNeedsSave sets the value of the needsSave property.
@@ -415,7 +397,6 @@ func (u_ UserActivity) PersistentIdentifier() unsafe.Pointer {
 }
 
 
-
 // SetPersistentIdentifier sets the value of the persistentIdentifier property.
 // A value used to identify the user activity.
 
@@ -431,7 +412,6 @@ func (u_ UserActivity) ReferrerURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("referrerURL"))
 	return rv
 }
-
 
 
 // SetReferrerURL sets the value of the referrerURL property.
@@ -451,7 +431,6 @@ func (u_ UserActivity) RequiredUserInfoKeys() unsafe.Pointer {
 }
 
 
-
 // SetRequiredUserInfoKeys sets the value of the requiredUserInfoKeys property.
 // A set of keys that represent the minimal information about the activity that should be stored for later restoration.
 
@@ -467,7 +446,6 @@ func (u_ UserActivity) ShortcutAvailability() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("shortcutAvailability"))
 	return rv
 }
-
 
 
 // SetShortcutAvailability sets the value of the shortcutAvailability property.
@@ -487,7 +465,6 @@ func (u_ UserActivity) SuggestedInvocationPhrase() unsafe.Pointer {
 }
 
 
-
 // SetSuggestedInvocationPhrase sets the value of the suggestedInvocationPhrase property.
 // A phrase suggested to the user when they create a shortcut.
 
@@ -503,7 +480,6 @@ func (u_ UserActivity) SupportsContinuationStreams() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContinuationStreams"))
 	return rv
 }
-
 
 
 // SetSupportsContinuationStreams sets the value of the supportsContinuationStreams property.
@@ -523,7 +499,6 @@ func (u_ UserActivity) TargetContentIdentifier() unsafe.Pointer {
 }
 
 
-
 // SetTargetContentIdentifier sets the value of the targetContentIdentifier property.
 // A string that identifies the user activity’s content.
 
@@ -539,7 +514,6 @@ func (u_ UserActivity) Title() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
 	return rv
 }
-
 
 
 // SetTitle sets the value of the title property.
@@ -559,7 +533,6 @@ func (u_ UserActivity) UserInfo() unsafe.Pointer {
 }
 
 
-
 // SetUserInfo sets the value of the userInfo property.
 // A dictionary containing app-specific state information needed to continue an activity on another device.
 
@@ -575,7 +548,6 @@ func (u_ UserActivity) WebpageURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("webpageURL"))
 	return rv
 }
-
 
 
 // SetWebpageURL sets the value of the webpageURL property.

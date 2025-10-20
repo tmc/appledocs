@@ -88,6 +88,7 @@ func (w_ WindowTab) AccessoryView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessoryView sets the value of the accessoryView property.
 // An optional accessory view for the tab.
 
@@ -103,6 +104,7 @@ func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
+
 
 // SetAttributedTitle sets the value of the attributedTitle property.
 // The title for the window tab, specified as an attributed string.
@@ -120,6 +122,7 @@ func (w_ WindowTab) Title() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTitle sets the value of the title property.
 // The title for the window tab.
 
@@ -135,6 +138,7 @@ func (w_ WindowTab) ToolTip() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolTip"))
 	return rv
 }
+
 
 // SetToolTip sets the value of the toolTip property.
 // The tooltip for this window tab.

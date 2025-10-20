@@ -119,6 +119,7 @@ func (p_ PersistentHistoryChangeRequest) FetchRequest() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFetchRequest sets the value of the fetchRequest property.
 // The specified fetch request, when retrieving history.
 
@@ -134,6 +135,7 @@ func (p_ PersistentHistoryChangeRequest) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resultType"))
 	return rv
 }
+
 
 // SetResultType sets the value of the resultType property.
 // The type of result that this request returns.

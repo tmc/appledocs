@@ -92,17 +92,18 @@ func (s_ Slider) SetTitleFont(fontObj unsafe.Pointer) {
 // The maximum value the slider can send to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/maxValue
-func (s_ Slider) MaxValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
+func (s_ Slider) MaxValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
 	return rv
 }
+
 
 // SetMaxValue sets the value of the maxValue property.
 // The maximum value the slider can send to its target.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/maxValue
-func (s_ Slider) SetMaxValue(value float64) {
+func (s_ Slider) SetMaxValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
 // The color of the filled portion of the slider track, in appearances that support it.
@@ -112,6 +113,7 @@ func (s_ Slider) TrackFillColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
+
 
 // SetTrackFillColor sets the value of the trackFillColor property.
 // The color of the filled portion of the slider track, in appearances that support it.

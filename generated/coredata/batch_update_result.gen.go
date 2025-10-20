@@ -88,3 +88,4 @@ func (b_ BatchUpdateResult) ResultType() unsafe.Pointer {
 }
 
 
+

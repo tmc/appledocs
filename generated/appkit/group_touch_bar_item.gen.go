@@ -87,6 +87,7 @@ func (g_ GroupTouchBarItem) GroupTouchBar() unsafe.Pointer {
 	return rv
 }
 
+
 // SetGroupTouchBar sets the value of the groupTouchBar property.
 // A bar that holds this group’s items.
 

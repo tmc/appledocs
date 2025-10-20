@@ -170,7 +170,6 @@ func (u_ UndoManager) GroupingLevel() int {
 	return rv
 }
 
-
 // The name identifying the undo action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName
@@ -178,7 +177,6 @@ func (u_ UndoManager) UndoActionName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("undoActionName"))
 	return rv
 }
-
 
 
 

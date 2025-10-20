@@ -95,6 +95,7 @@ func (s_ ScrubberArrangedView) Highlighted() bool {
 	return rv
 }
 
+
 // SetHighlighted sets the value of the highlighted property.
 // A Boolean value that specifies whether the view is currently highlighted.
 
@@ -110,6 +111,7 @@ func (s_ ScrubberArrangedView) Selected() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("selected"))
 	return rv
 }
+
 
 // SetSelected sets the value of the selected property.
 // A Boolean value that specifies whether the current view is selected.

@@ -89,6 +89,7 @@ func (c_ CompositeAttributeDescription) Elements() []__kindof NSAttributeDescrip
 	return rv
 }
 
+
 // SetElements sets the value of the elements property.
 // The composed attribute descriptions.
 

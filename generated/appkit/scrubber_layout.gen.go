@@ -131,6 +131,7 @@ func (s_ ScrubberLayout) ScrubberContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("scrubberContentSize"))
 	return rv
 }
+
 // Determines whether the scrubber should refresh its layout when an item is highlighted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/shouldInvalidateLayoutForHighlightChange
@@ -138,6 +139,7 @@ func (s_ ScrubberLayout) ShouldInvalidateLayoutForHighlightChange() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForHighlightChange"))
 	return rv
 }
+
 // Determines whether the scrubber should refresh its layout when the selection changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/shouldInvalidateLayoutForSelectionChange
@@ -145,5 +147,6 @@ func (s_ ScrubberLayout) ShouldInvalidateLayoutForSelectionChange() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForSelectionChange"))
 	return rv
 }
+
 
 

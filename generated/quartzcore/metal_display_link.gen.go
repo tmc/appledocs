@@ -88,6 +88,7 @@ func (m_ MetalDisplayLink) Delegate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // An instance of a type your app implements that responds to the system’s callbacks.
 
@@ -103,6 +104,7 @@ func (m_ MetalDisplayLink) PreferredFrameRateRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredFrameRateRange"))
 	return rv
 }
+
 
 // SetPreferredFrameRateRange sets the value of the preferredFrameRateRange property.
 // A range of frequencies your app allows for frame updates, affecting how often the system invokes your delegate’s callback.

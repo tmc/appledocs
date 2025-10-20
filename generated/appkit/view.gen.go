@@ -186,7 +186,7 @@ type IView interface {
 	ShouldDelayWindowOrderingForEvent(event unsafe.Pointer) bool
 	ShouldDrawColor() bool
 	ShowDefinitionForAttributedStringAtPoint(attrString unsafe.Pointer, textBaselineOrigin coregraphics.CGPoint)
-	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange coregraphics.CGPoint, options unsafe.Pointer, originProvider unsafe.Pointer)
+	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange foundation.Range, options unsafe.Pointer, originProvider unsafe.Pointer)
 	SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	TranslateOriginToPoint(translation coregraphics.CGPoint)
 	TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize)
@@ -1447,7 +1447,7 @@ func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString unsafe.Pointe
 // Shows a window displaying the definition of the specified range of the attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:range:options:baselineOriginProvider:)
-func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange coregraphics.CGPoint, options unsafe.Pointer, originProvider unsafe.Pointer) {
+func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange foundation.Range, options unsafe.Pointer, originProvider unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:range:options:baselineOriginProvider:"), attrString, targetRange, options, originProvider)
 }
 
@@ -1635,6 +1635,7 @@ func (v_ View) AcceptsTouchEvents() bool {
 	return rv
 }
 
+
 // SetAcceptsTouchEvents sets the value of the acceptsTouchEvents property.
 // A Boolean value indicating whether the view accepts touch events.
 
@@ -1651,6 +1652,7 @@ func (v_ View) AdditionalSafeAreaInsets() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAdditionalSafeAreaInsets sets the value of the additionalSafeAreaInsets property.
 // Custom insets that you specify to modify your view’s safe area
 
@@ -1666,6 +1668,7 @@ func (v_ View) AlignmentRectInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("alignmentRectInsets"))
 	return rv
 }
+
 // The types of touch interactions the view allows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allowedTouchTypes
@@ -1673,6 +1676,7 @@ func (v_ View) AllowedTouchTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
+
 
 // SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
 // The types of touch interactions the view allows.
@@ -1689,6 +1693,7 @@ func (v_ View) AllowsVibrancy() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("allowsVibrancy"))
 	return rv
 }
+
 // The opacity of the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/alphaValue
@@ -1696,6 +1701,7 @@ func (v_ View) AlphaValue() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("alphaValue"))
 	return rv
 }
+
 
 // SetAlphaValue sets the value of the alphaValue property.
 // The opacity of the view.
@@ -1713,6 +1719,7 @@ func (v_ View) AutoresizesSubviews() bool {
 	return rv
 }
 
+
 // SetAutoresizesSubviews sets the value of the autoresizesSubviews property.
 // A Boolean value indicating whether the view applies the autoresizing behavior to its subviews when its frame size changes.
 
@@ -1728,6 +1735,7 @@ func (v_ View) AutoresizingMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("autoresizingMask"))
 	return rv
 }
+
 
 // SetAutoresizingMask sets the value of the autoresizingMask property.
 // The options that determine how the view is resized relative to its superview.
@@ -1745,6 +1753,7 @@ func (v_ View) BackgroundFilters() []__kindof CIFilter {
 	return rv
 }
 
+
 // SetBackgroundFilters sets the value of the backgroundFilters property.
 // An array of Core Image filters to apply to the view’s background.
 
@@ -1760,6 +1769,7 @@ func (v_ View) BaselineOffsetFromBottom() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("baselineOffsetFromBottom"))
 	return rv
 }
+
 // A layout anchor representing the bottom edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bottomAnchor
@@ -1767,6 +1777,7 @@ func (v_ View) BottomAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("bottomAnchor"))
 	return rv
 }
+
 // The view’s bounds rectangle, which expresses its location and size in its own coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bounds
@@ -1774,6 +1785,7 @@ func (v_ View) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("bounds"))
 	return rv
 }
+
 
 // SetBounds sets the value of the bounds property.
 // The view’s bounds rectangle, which expresses its location and size in its own coordinate system.
@@ -1791,6 +1803,7 @@ func (v_ View) BoundsRotation() float64 {
 	return rv
 }
 
+
 // SetBoundsRotation sets the value of the boundsRotation property.
 // The angle of rotation, measured in degrees, applied to the view’s bounds rectangle relative to its frame rectangle.
 
@@ -1806,6 +1819,7 @@ func (v_ View) CanBecomeKeyView() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canBecomeKeyView"))
 	return rv
 }
+
 // A Boolean value indicating whether drawing commands will produce any results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDraw
@@ -1813,6 +1827,7 @@ func (v_ View) CanDraw() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canDraw"))
 	return rv
 }
+
 // A Boolean value indicating whether the view can draw its contents on a background thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDrawConcurrently
@@ -1820,6 +1835,7 @@ func (v_ View) CanDrawConcurrently() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canDrawConcurrently"))
 	return rv
 }
+
 
 // SetCanDrawConcurrently sets the value of the canDrawConcurrently property.
 // A Boolean value indicating whether the view can draw its contents on a background thread.
@@ -1837,6 +1853,7 @@ func (v_ View) CanDrawSubviewsIntoLayer() bool {
 	return rv
 }
 
+
 // SetCanDrawSubviewsIntoLayer sets the value of the canDrawSubviewsIntoLayer property.
 // A Boolean value indicating whether the view incorporates content from its subviews into its own layer.
 
@@ -1851,6 +1868,7 @@ func (v_ View) CandidateListTouchBarItem() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("candidateListTouchBarItem"))
 	return rv
 }
+
 // A layout anchor representing the horizontal center of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/centerXAnchor
@@ -1858,6 +1876,7 @@ func (v_ View) CenterXAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("centerXAnchor"))
 	return rv
 }
+
 // A layout anchor representing the vertical center of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/centerYAnchor
@@ -1865,6 +1884,7 @@ func (v_ View) CenterYAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("centerYAnchor"))
 	return rv
 }
+
 // A Boolean value that indicates whether the view, and its subviews, confine their drawing areas to the bounds of the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/clipsToBounds
@@ -1872,6 +1892,7 @@ func (v_ View) ClipsToBounds() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("clipsToBounds"))
 	return rv
 }
+
 
 // SetClipsToBounds sets the value of the clipsToBounds property.
 // A Boolean value that indicates whether the view, and its subviews, confine their drawing areas to the bounds of the view.
@@ -1889,6 +1910,7 @@ func (v_ View) CompositingFilter() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCompositingFilter sets the value of the compositingFilter property.
 // The Core Image filter used to composite the view’s contents with its background.
 
@@ -1904,6 +1926,7 @@ func (v_ View) Constraints() []LayoutConstraint {
 	rv := objc.Send[[]LayoutConstraint](v_.ID, objc.Sel("constraints"))
 	return rv
 }
+
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
@@ -1911,6 +1934,7 @@ func (v_ View) ContentFilters() []__kindof CIFilter {
 	rv := objc.Send[[]__kindof CIFilter](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
+
 
 // SetContentFilters sets the value of the contentFilters property.
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
@@ -1927,6 +1951,7 @@ func (v_ View) EnclosingMenuItem() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("enclosingMenuItem"))
 	return rv
 }
+
 // The nearest ancestor scroll view that contains the current view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enclosingScrollView
@@ -1934,6 +1959,7 @@ func (v_ View) EnclosingScrollView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("enclosingScrollView"))
 	return rv
 }
+
 // A layout anchor representing the baseline for the topmost line of text in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/firstBaselineAnchor
@@ -1941,6 +1967,7 @@ func (v_ View) FirstBaselineAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("firstBaselineAnchor"))
 	return rv
 }
+
 // The distance (in points) between the top of the view’s alignment rectangle and its topmost baseline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/firstBaselineOffsetFromTop
@@ -1948,6 +1975,7 @@ func (v_ View) FirstBaselineOffsetFromTop() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("firstBaselineOffsetFromTop"))
 	return rv
 }
+
 // The minimum size of the view that satisfies the constraints it holds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/fittingSize
@@ -1955,6 +1983,7 @@ func (v_ View) FittingSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("fittingSize"))
 	return rv
 }
+
 // The focus ring mask bounds, specified in the view’s coordinate space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingMaskBounds
@@ -1962,6 +1991,7 @@ func (v_ View) FocusRingMaskBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("focusRingMaskBounds"))
 	return rv
 }
+
 // The type of focus ring drawn around the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingType
@@ -1969,6 +1999,7 @@ func (v_ View) FocusRingType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("focusRingType"))
 	return rv
 }
+
 
 // SetFocusRingType sets the value of the focusRingType property.
 // The type of focus ring drawn around the view.
@@ -1986,6 +2017,7 @@ func (v_ View) Frame() coregraphics.CGRect {
 	return rv
 }
 
+
 // SetFrame sets the value of the frame property.
 // The view’s frame rectangle, which defines its position and size in its superview’s coordinate system.
 
@@ -2001,6 +2033,7 @@ func (v_ View) FrameCenterRotation() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("frameCenterRotation"))
 	return rv
 }
+
 
 // SetFrameCenterRotation sets the value of the frameCenterRotation property.
 // The rotation angle of the view around the center of its layer.
@@ -2018,6 +2051,7 @@ func (v_ View) FrameRotation() float64 {
 	return rv
 }
 
+
 // SetFrameRotation sets the value of the frameRotation property.
 // The angle of rotation, measured in degrees, applied to the view’s frame rectangle relative to its superview’s coordinate system.
 
@@ -2034,6 +2068,7 @@ func (v_ View) GestureRecognizers() []__kindof NSGestureRecognizer {
 	return rv
 }
 
+
 // SetGestureRecognizers sets the value of the gestureRecognizers property.
 // The gesture recognize objects currently attached to the view.
 
@@ -2049,6 +2084,7 @@ func (v_ View) HasAmbiguousLayout() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("hasAmbiguousLayout"))
 	return rv
 }
+
 // The fraction of the page that can be pushed onto the next page during automatic pagination to prevent items such as lines of text from being divided across pages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/heightAdjustLimit
@@ -2056,6 +2092,7 @@ func (v_ View) HeightAdjustLimit() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("heightAdjustLimit"))
 	return rv
 }
+
 // A layout anchor representing the height of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/heightAnchor
@@ -2063,6 +2100,7 @@ func (v_ View) HeightAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("heightAnchor"))
 	return rv
 }
+
 // A Boolean value indicating whether the view is being rendered as part of a live resizing operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/inLiveResize
@@ -2070,6 +2108,7 @@ func (v_ View) InLiveResize() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("inLiveResize"))
 	return rv
 }
+
 // The text input context object for the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/inputContext
@@ -2077,6 +2116,7 @@ func (v_ View) InputContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("inputContext"))
 	return rv
 }
+
 // The natural size for the receiving view, considering only properties of the view itself.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/intrinsicContentSize
@@ -2084,6 +2124,7 @@ func (v_ View) IntrinsicContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("intrinsicContentSize"))
 	return rv
 }
+
 // A Boolean value indicating whether the view or one of its ancestors is being drawn for a find indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isDrawingFindIndicator
@@ -2091,6 +2132,7 @@ func (v_ View) DrawingFindIndicator() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("drawingFindIndicator"))
 	return rv
 }
+
 // A Boolean value indicating whether the view uses a flipped coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isFlipped
@@ -2098,6 +2140,7 @@ func (v_ View) Flipped() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("flipped"))
 	return rv
 }
+
 // A Boolean value indicating whether the view is hidden.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHidden
@@ -2105,6 +2148,7 @@ func (v_ View) Hidden() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("hidden"))
 	return rv
 }
+
 
 // SetHidden sets the value of the hidden property.
 // A Boolean value indicating whether the view is hidden.
@@ -2121,6 +2165,7 @@ func (v_ View) HiddenOrHasHiddenAncestor() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("hiddenOrHasHiddenAncestor"))
 	return rv
 }
+
 // A Boolean value that indicates whether the view’s horizontal size constraints are active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHorizontalContentSizeConstraintActive
@@ -2128,6 +2173,7 @@ func (v_ View) HorizontalContentSizeConstraintActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("horizontalContentSizeConstraintActive"))
 	return rv
 }
+
 
 // SetHorizontalContentSizeConstraintActive sets the value of the horizontalContentSizeConstraintActive property.
 // A Boolean value that indicates whether the view’s horizontal size constraints are active.
@@ -2144,6 +2190,7 @@ func (v_ View) InFullScreenMode() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("inFullScreenMode"))
 	return rv
 }
+
 // A Boolean value indicating whether the view fills its frame rectangle with opaque content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isOpaque
@@ -2151,6 +2198,7 @@ func (v_ View) Opaque() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("opaque"))
 	return rv
 }
+
 // A Boolean value indicating whether the view or any of its ancestors has ever had a rotation factor applied to its frame or bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isRotatedFromBase
@@ -2158,6 +2206,7 @@ func (v_ View) RotatedFromBase() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rotatedFromBase"))
 	return rv
 }
+
 // A Boolean value indicating whether the view or any of its ancestors has ever had a rotation factor applied to its frame or bounds, or has been scaled from the window’s base coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isRotatedOrScaledFromBase
@@ -2165,6 +2214,7 @@ func (v_ View) RotatedOrScaledFromBase() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rotatedOrScaledFromBase"))
 	return rv
 }
+
 // A Boolean value that indicates whether the view’s vertical size constraints are active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isVerticalContentSizeConstraintActive
@@ -2172,6 +2222,7 @@ func (v_ View) VerticalContentSizeConstraintActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("verticalContentSizeConstraintActive"))
 	return rv
 }
+
 
 // SetVerticalContentSizeConstraintActive sets the value of the verticalContentSizeConstraintActive property.
 // A Boolean value that indicates whether the view’s vertical size constraints are active.
@@ -2188,6 +2239,7 @@ func (v_ View) LastBaselineAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("lastBaselineAnchor"))
 	return rv
 }
+
 // The distance (in points) between the bottom of the view’s alignment rectangle and its bottommost baseline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lastBaselineOffsetFromBottom
@@ -2195,6 +2247,7 @@ func (v_ View) LastBaselineOffsetFromBottom() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("lastBaselineOffsetFromBottom"))
 	return rv
 }
+
 // The Core Animation layer that the view uses as its backing store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layer
@@ -2202,6 +2255,7 @@ func (v_ View) Layer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layer"))
 	return rv
 }
+
 
 // SetLayer sets the value of the layer property.
 // The Core Animation layer that the view uses as its backing store.
@@ -2219,6 +2273,7 @@ func (v_ View) LayerContentsPlacement() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLayerContentsPlacement sets the value of the layerContentsPlacement property.
 // The current layer contents placement policy.
 
@@ -2234,6 +2289,7 @@ func (v_ View) LayerContentsRedrawPolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layerContentsRedrawPolicy"))
 	return rv
 }
+
 
 // SetLayerContentsRedrawPolicy sets the value of the layerContentsRedrawPolicy property.
 // The contents redraw policy for the view’s layer.
@@ -2251,6 +2307,7 @@ func (v_ View) LayerUsesCoreImageFilters() bool {
 	return rv
 }
 
+
 // SetLayerUsesCoreImageFilters sets the value of the layerUsesCoreImageFilters property.
 // A Boolean value indicating whether the view’s layer uses Core Image filters and needs in-process rendering.
 
@@ -2266,6 +2323,7 @@ func (v_ View) LayoutGuides() []LayoutGuide {
 	rv := objc.Send[[]LayoutGuide](v_.ID, objc.Sel("layoutGuides"))
 	return rv
 }
+
 // A layout guide that provides the recommended amount of padding for content inside of a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layoutMarginsGuide
@@ -2273,6 +2331,7 @@ func (v_ View) LayoutMarginsGuide() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layoutMarginsGuide"))
 	return rv
 }
+
 // A layout anchor representing the leading edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/leadingAnchor
@@ -2280,6 +2339,7 @@ func (v_ View) LeadingAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("leadingAnchor"))
 	return rv
 }
+
 // A layout anchor representing the left edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/leftAnchor
@@ -2287,6 +2347,7 @@ func (v_ View) LeftAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("leftAnchor"))
 	return rv
 }
+
 // A Boolean value indicating whether the view can pass mouse down events through to its superviews.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/mouseDownCanMoveWindow
@@ -2294,6 +2355,7 @@ func (v_ View) MouseDownCanMoveWindow() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("mouseDownCanMoveWindow"))
 	return rv
 }
+
 // A Boolean value that determines whether the view needs to be redrawn before being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsDisplay
@@ -2301,6 +2363,7 @@ func (v_ View) NeedsDisplay() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsDisplay"))
 	return rv
 }
+
 
 // SetNeedsDisplay sets the value of the needsDisplay property.
 // A Boolean value that determines whether the view needs to be redrawn before being displayed.
@@ -2318,6 +2381,7 @@ func (v_ View) NeedsLayout() bool {
 	return rv
 }
 
+
 // SetNeedsLayout sets the value of the needsLayout property.
 // A Boolean value indicating whether the view needs a layout pass before it can be drawn.
 
@@ -2333,6 +2397,7 @@ func (v_ View) NeedsPanelToBecomeKey() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsPanelToBecomeKey"))
 	return rv
 }
+
 // A Boolean value indicating whether the view’s constraints need to be updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsUpdateConstraints
@@ -2340,6 +2405,7 @@ func (v_ View) NeedsUpdateConstraints() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsUpdateConstraints"))
 	return rv
 }
+
 
 // SetNeedsUpdateConstraints sets the value of the needsUpdateConstraints property.
 // A Boolean value indicating whether the view’s constraints need to be updated.
@@ -2357,6 +2423,7 @@ func (v_ View) NextKeyView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetNextKeyView sets the value of the nextKeyView property.
 // The view object that follows the current view in the key view loop.
 
@@ -2372,6 +2439,7 @@ func (v_ View) NextValidKeyView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("nextValidKeyView"))
 	return rv
 }
+
 // The view’s closest opaque ancestor, which might be the view itself.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/opaqueAncestor
@@ -2379,6 +2447,7 @@ func (v_ View) OpaqueAncestor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("opaqueAncestor"))
 	return rv
 }
+
 // A default footer string that includes the current page number and page count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pageFooter
@@ -2386,6 +2455,7 @@ func (v_ View) PageFooter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("pageFooter"))
 	return rv
 }
+
 // A default header string that includes the print job title and date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pageHeader
@@ -2393,6 +2463,7 @@ func (v_ View) PageHeader() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("pageHeader"))
 	return rv
 }
+
 // A Boolean value indicating whether the view posts notifications when its bounds rectangle changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/postsBoundsChangedNotifications
@@ -2400,6 +2471,7 @@ func (v_ View) PostsBoundsChangedNotifications() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("postsBoundsChangedNotifications"))
 	return rv
 }
+
 
 // SetPostsBoundsChangedNotifications sets the value of the postsBoundsChangedNotifications property.
 // A Boolean value indicating whether the view posts notifications when its bounds rectangle changes.
@@ -2417,6 +2489,7 @@ func (v_ View) PostsFrameChangedNotifications() bool {
 	return rv
 }
 
+
 // SetPostsFrameChangedNotifications sets the value of the postsFrameChangedNotifications property.
 // A Boolean value indicating whether the view posts notifications when its frame rectangle changes.
 
@@ -2432,6 +2505,7 @@ func (v_ View) PrefersCompactControlSizeMetrics() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("prefersCompactControlSizeMetrics"))
 	return rv
 }
+
 
 // SetPrefersCompactControlSizeMetrics sets the value of the prefersCompactControlSizeMetrics property.
 // When this property is true, any NSControls in the view or its descendants will be sized with compact metrics compatible with macOS 15 and earlier. Defaults to false
@@ -2449,6 +2523,7 @@ func (v_ View) PreparedContentRect() coregraphics.CGRect {
 	return rv
 }
 
+
 // SetPreparedContentRect sets the value of the preparedContentRect property.
 // The portion of the view that has been rendered and is available for responsive scrolling.
 
@@ -2464,6 +2539,7 @@ func (v_ View) PreservesContentDuringLiveResize() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("preservesContentDuringLiveResize"))
 	return rv
 }
+
 // Configures the behavior and progression of the Force Touch trackpad when responding to touch input produced by the user when the cursor is over the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pressureConfiguration
@@ -2471,6 +2547,7 @@ func (v_ View) PressureConfiguration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("pressureConfiguration"))
 	return rv
 }
+
 
 // SetPressureConfiguration sets the value of the pressureConfiguration property.
 // Configures the behavior and progression of the Force Touch trackpad when responding to touch input produced by the user when the cursor is over the view.
@@ -2487,6 +2564,7 @@ func (v_ View) PreviousKeyView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("previousKeyView"))
 	return rv
 }
+
 // The closest view object in the key view loop that precedes the current view and accepts first responder status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/previousValidKeyView
@@ -2494,6 +2572,7 @@ func (v_ View) PreviousValidKeyView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("previousValidKeyView"))
 	return rv
 }
+
 // The view’s print job title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/printJobTitle
@@ -2501,6 +2580,7 @@ func (v_ View) PrintJobTitle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("printJobTitle"))
 	return rv
 }
+
 // The rectangle identifying the portion of your view that did not change during a live resize operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rectPreservedDuringLiveResize
@@ -2508,6 +2588,7 @@ func (v_ View) RectPreservedDuringLiveResize() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("rectPreservedDuringLiveResize"))
 	return rv
 }
+
 // The array of pasteboard drag types that the view can accept.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/registeredDraggedTypes
@@ -2515,6 +2596,7 @@ func (v_ View) RegisteredDraggedTypes() []string {
 	rv := objc.Send[[]string](v_.ID, objc.Sel("registeredDraggedTypes"))
 	return rv
 }
+
 // A layout anchor representing the right edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rightAnchor
@@ -2522,6 +2604,7 @@ func (v_ View) RightAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("rightAnchor"))
 	return rv
 }
+
 // The distances from the edges of your view that define the safe area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaInsets
@@ -2529,6 +2612,7 @@ func (v_ View) SafeAreaInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("safeAreaInsets"))
 	return rv
 }
+
 // The layout guide you use to position content inside your view’s safe area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaLayoutGuide
@@ -2536,6 +2620,7 @@ func (v_ View) SafeAreaLayoutGuide() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("safeAreaLayoutGuide"))
 	return rv
 }
+
 // A rectangle in the view’s coordinate system that contains the unobscured portion of the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaRect
@@ -2543,6 +2628,7 @@ func (v_ View) SafeAreaRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("safeAreaRect"))
 	return rv
 }
+
 // The shadow displayed underneath the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/shadow
@@ -2550,6 +2636,7 @@ func (v_ View) Shadow() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("shadow"))
 	return rv
 }
+
 
 // SetShadow sets the value of the shadow property.
 // The shadow displayed underneath the view.
@@ -2567,6 +2654,7 @@ func (v_ View) Subviews() []__kindof NSView {
 	return rv
 }
 
+
 // SetSubviews sets the value of the subviews property.
 // The array of views embedded in the current view.
 
@@ -2582,6 +2670,7 @@ func (v_ View) Superview() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("superview"))
 	return rv
 }
+
 // The view’s tag, which is an integer that you use to identify the view within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/tag
@@ -2589,6 +2678,7 @@ func (v_ View) Tag() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("tag"))
 	return rv
 }
+
 // The text for the view’s tooltip.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
@@ -2596,6 +2686,7 @@ func (v_ View) ToolTip() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("toolTip"))
 	return rv
 }
+
 
 // SetToolTip sets the value of the toolTip property.
 // The text for the view’s tooltip.
@@ -2612,6 +2703,7 @@ func (v_ View) TopAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("topAnchor"))
 	return rv
 }
+
 // An array of the view’s tracking areas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/trackingAreas
@@ -2619,6 +2711,7 @@ func (v_ View) TrackingAreas() []TrackingArea {
 	rv := objc.Send[[]TrackingArea](v_.ID, objc.Sel("trackingAreas"))
 	return rv
 }
+
 // A layout anchor representing the trailing edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/trailingAnchor
@@ -2626,6 +2719,7 @@ func (v_ View) TrailingAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("trailingAnchor"))
 	return rv
 }
+
 // A Boolean value indicating whether the view’s autoresizing mask is translated into constraints for the constraint-based layout system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/translatesAutoresizingMaskIntoConstraints
@@ -2633,6 +2727,7 @@ func (v_ View) TranslatesAutoresizingMaskIntoConstraints() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("translatesAutoresizingMaskIntoConstraints"))
 	return rv
 }
+
 
 // SetTranslatesAutoresizingMaskIntoConstraints sets the value of the translatesAutoresizingMaskIntoConstraints property.
 // A Boolean value indicating whether the view’s autoresizing mask is translated into constraints for the constraint-based layout system.
@@ -2650,6 +2745,7 @@ func (v_ View) UserInterfaceLayoutDirection() unsafe.Pointer {
 	return rv
 }
 
+
 // SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
 // The layout direction for content in the view.
 
@@ -2665,6 +2761,7 @@ func (v_ View) VisibleRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("visibleRect"))
 	return rv
 }
+
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsBestResolutionOpenGLSurface
@@ -2672,6 +2769,7 @@ func (v_ View) WantsBestResolutionOpenGLSurface() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsBestResolutionOpenGLSurface"))
 	return rv
 }
+
 
 // SetWantsBestResolutionOpenGLSurface sets the value of the wantsBestResolutionOpenGLSurface property.
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
@@ -2688,12 +2786,14 @@ func (v_ View) WantsDefaultClipping() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsDefaultClipping"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsExtendedDynamicRangeOpenGLSurface
 func (v_ View) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
 }
+
 
 // SetWantsExtendedDynamicRangeOpenGLSurface sets the value of the wantsExtendedDynamicRangeOpenGLSurface property.
 //
@@ -2708,6 +2808,7 @@ func (v_ View) WantsLayer() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsLayer"))
 	return rv
 }
+
 
 // SetWantsLayer sets the value of the wantsLayer property.
 // A Boolean value indicating whether the view uses a layer as its backing store.
@@ -2725,6 +2826,7 @@ func (v_ View) WantsRestingTouches() bool {
 	return rv
 }
 
+
 // SetWantsRestingTouches sets the value of the wantsRestingTouches property.
 // A Boolean value indicating whether the view wants resting touches.
 
@@ -2740,6 +2842,7 @@ func (v_ View) WantsUpdateLayer() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsUpdateLayer"))
 	return rv
 }
+
 // The fraction of the page that can be pushed onto the next page during automatic pagination to prevent items such as small images or text columns from being divided across pages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/widthAdjustLimit
@@ -2747,6 +2850,7 @@ func (v_ View) WidthAdjustLimit() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("widthAdjustLimit"))
 	return rv
 }
+
 // A layout anchor representing the width of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/widthAnchor
@@ -2754,6 +2858,7 @@ func (v_ View) WidthAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("widthAnchor"))
 	return rv
 }
+
 // The view’s window object, if it is installed in a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/window
@@ -2761,12 +2866,14 @@ func (v_ View) Window() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("window"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writingToolsCoordinator
 func (v_ View) WritingToolsCoordinator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("writingToolsCoordinator"))
 	return rv
 }
+
 
 // SetWritingToolsCoordinator sets the value of the writingToolsCoordinator property.
 //

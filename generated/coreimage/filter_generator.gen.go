@@ -36,7 +36,7 @@ type IFilterGenerator interface {
 	Filter() unsafe.Pointer
 	RegisterFilterName(name string)
 	RemoveExportedKey(exportedKeyName string)
-	SetAttributesForExportedKey(attributes unsafe.Pointer, key string)
+	SetAttributesForExportedKey(attributes objc.ID, key string)
 	WriteToURLAtomically(aURL unsafe.Pointer, flag bool) bool
 }
 
@@ -161,7 +161,7 @@ func (f_ FilterGenerator) RemoveExportedKey(exportedKeyName string) {
 // Sets a dictionary of attributes for an exported key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/setAttributes(_:forExportedKey:)
-func (f_ FilterGenerator) SetAttributesForExportedKey(attributes unsafe.Pointer, key string) {
+func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objc.ID, key string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:forExportedKey:"), attributes, objc.String(key))
 }
 
@@ -181,6 +181,7 @@ func (f_ FilterGenerator) ClassAttributes() unsafe.Pointer {
 	return rv
 }
 
+
 // SetClassAttributes sets the value of the classAttributes property.
 // The class attributes associated with the filter.
 
@@ -196,4 +197,5 @@ func (f_ FilterGenerator) ExportedKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("exportedKeys"))
 	return rv
 }
+
 

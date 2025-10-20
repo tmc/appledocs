@@ -167,7 +167,6 @@ func (e_ ExtensionContext) HostedViewMaximumAllowedSize() coregraphics.CGSize {
 	return rv
 }
 
-
 // The minimum size for a Siri hosted view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/hostedViewMinimumAllowedSize
@@ -175,7 +174,6 @@ func (e_ ExtensionContext) HostedViewMinimumAllowedSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](e_.ID, objc.Sel("hostedViewMinimumAllowedSize"))
 	return rv
 }
-
 
 // Metadata for populating your share extensions interface.
 //
@@ -185,14 +183,12 @@ func (e_ ExtensionContext) Intent() unsafe.Pointer {
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
 func (e_ ExtensionContext) NotificationActions() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](e_.ID, objc.Sel("notificationActions"))
 	return rv
 }
-
 
 
 // SetNotificationActions sets the value of the notificationActions property.
@@ -209,7 +205,6 @@ func (e_ ExtensionContext) WidgetActiveDisplayMode() unsafe.Pointer {
 	return rv
 }
 
-
 // The largest display mode the widget supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetLargestAvailableDisplayMode
@@ -217,7 +212,6 @@ func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("widgetLargestAvailableDisplayMode"))
 	return rv
 }
-
 
 
 // SetWidgetLargestAvailableDisplayMode sets the value of the widgetLargestAvailableDisplayMode property.

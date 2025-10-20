@@ -89,6 +89,7 @@ func (s_ ScrubberLayoutAttributes) Alpha() float64 {
 	return rv
 }
 
+
 // SetAlpha sets the value of the alpha property.
 // The item’s alpha value.
 
@@ -105,6 +106,7 @@ func (s_ ScrubberLayoutAttributes) Frame() coregraphics.CGRect {
 	return rv
 }
 
+
 // SetFrame sets the value of the frame property.
 // The frame of the scrubber item.
 
@@ -120,6 +122,7 @@ func (s_ ScrubberLayoutAttributes) ItemIndex() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("itemIndex"))
 	return rv
 }
+
 
 // SetItemIndex sets the value of the itemIndex property.
 // The index of the scrubber item that is represented by the item’s layout attributes.

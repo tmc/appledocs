@@ -146,6 +146,7 @@ func (s_ SavePanel) AccessoryView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessoryView sets the value of the accessoryView property.
 // The custom accessory view for the current app.
 
@@ -157,17 +158,18 @@ func (s_ SavePanel) SetAccessoryView(value unsafe.Pointer) {
 // An array of types that specify the files types to which you can save.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) AllowedContentTypes() []UTType {
-	rv := objc.Send[[]UTType](s_.ID, objc.Sel("allowedContentTypes"))
+func (s_ SavePanel) AllowedContentTypes() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
 }
+
 
 // SetAllowedContentTypes sets the value of the allowedContentTypes property.
 // An array of types that specify the files types to which you can save.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) SetAllowedContentTypes(value []UTType) {
+func (s_ SavePanel) SetAllowedContentTypes(value []unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedContentTypes:"), value)
 }
 // A Boolean value that indicates whether the panel allows the user to save files with a filename extension that’s not in the list of allowed types.
@@ -177,6 +179,7 @@ func (s_ SavePanel) AllowsOtherFileTypes() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsOtherFileTypes"))
 	return rv
 }
+
 
 // SetAllowsOtherFileTypes sets the value of the allowsOtherFileTypes property.
 // A Boolean value that indicates whether the panel allows the user to save files with a filename extension that’s not in the list of allowed types.
@@ -194,6 +197,7 @@ func (s_ SavePanel) CanCreateDirectories() bool {
 	return rv
 }
 
+
 // SetCanCreateDirectories sets the value of the canCreateDirectories property.
 // A Boolean value that indicates whether the panel displays UI for creating directories.
 
@@ -209,6 +213,7 @@ func (s_ SavePanel) CanSelectHiddenExtension() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canSelectHiddenExtension"))
 	return rv
 }
+
 
 // SetCanSelectHiddenExtension sets the value of the canSelectHiddenExtension property.
 // A Boolean value that indicates whether the panel displays UI for hiding or showing filename extensions.
@@ -226,6 +231,7 @@ func (s_ SavePanel) CurrentContentType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCurrentContentType sets the value of the currentContentType property.
 // :The current type. If set to , resets to the first allowed content type. Returns if is empty. : Not used.
 
@@ -241,6 +247,7 @@ func (s_ SavePanel) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // A custom object you use to manage interactions with an open or save panel.
@@ -258,6 +265,7 @@ func (s_ SavePanel) DirectoryURL() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDirectoryURL sets the value of the directoryURL property.
 // The current directory shown in the panel.
 
@@ -273,6 +281,7 @@ func (s_ SavePanel) Identifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
@@ -286,6 +295,7 @@ func (s_ SavePanel) Expanded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("expanded"))
 	return rv
 }
+
 // A Boolean value that indicates whether to display filename extensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExtensionHidden
@@ -293,6 +303,7 @@ func (s_ SavePanel) ExtensionHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("extensionHidden"))
 	return rv
 }
+
 
 // SetExtensionHidden sets the value of the extensionHidden property.
 // A Boolean value that indicates whether to display filename extensions.
@@ -310,6 +321,7 @@ func (s_ SavePanel) Message() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMessage sets the value of the message property.
 // The message text displayed in the panel.
 
@@ -325,6 +337,7 @@ func (s_ SavePanel) NameFieldLabel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("nameFieldLabel"))
 	return rv
 }
+
 
 // SetNameFieldLabel sets the value of the nameFieldLabel property.
 // The label text displayed in front of the filename text field.
@@ -342,6 +355,7 @@ func (s_ SavePanel) NameFieldStringValue() unsafe.Pointer {
 	return rv
 }
 
+
 // SetNameFieldStringValue sets the value of the nameFieldStringValue property.
 // The user-editable filename currently shown in the name field.
 
@@ -357,6 +371,7 @@ func (s_ SavePanel) Prompt() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("prompt"))
 	return rv
 }
+
 
 // SetPrompt sets the value of the prompt property.
 // The text to display in the default button.
@@ -374,6 +389,7 @@ func (s_ SavePanel) ShowsContentTypes() bool {
 	return rv
 }
 
+
 // SetShowsContentTypes sets the value of the showsContentTypes property.
 // : Whether or not to show a control for selecting the type of the saved file. The control shows the types in . Default is . : Not used.
 
@@ -389,6 +405,7 @@ func (s_ SavePanel) ShowsHiddenFiles() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsHiddenFiles"))
 	return rv
 }
+
 
 // SetShowsHiddenFiles sets the value of the showsHiddenFiles property.
 // A Boolean value that indicates whether the panel displays files that are normally hidden from the user.
@@ -406,6 +423,7 @@ func (s_ SavePanel) ShowsTagField() bool {
 	return rv
 }
 
+
 // SetShowsTagField sets the value of the showsTagField property.
 // A Boolean value that indicates whether the panel displays the Tags field.
 
@@ -421,6 +439,7 @@ func (s_ SavePanel) TagNames() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("tagNames"))
 	return rv
 }
+
 
 // SetTagNames sets the value of the tagNames property.
 // The tag names that you want to include on a saved file.
@@ -438,6 +457,7 @@ func (s_ SavePanel) Title() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTitle sets the value of the title property.
 // The title of the panel.
 
@@ -454,6 +474,7 @@ func (s_ SavePanel) TreatsFilePackagesAsDirectories() bool {
 	return rv
 }
 
+
 // SetTreatsFilePackagesAsDirectories sets the value of the treatsFilePackagesAsDirectories property.
 // A Boolean value that indicates whether the panel displays file packages as directories.
 
@@ -469,5 +490,6 @@ func (s_ SavePanel) URL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("URL"))
 	return rv
 }
+
 
 

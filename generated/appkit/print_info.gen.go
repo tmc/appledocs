@@ -88,6 +88,7 @@ func (p_ PrintInfo) JobDisposition() unsafe.Pointer {
 	return rv
 }
 
+
 // SetJobDisposition sets the value of the jobDisposition property.
 // The action specified for the job.
 

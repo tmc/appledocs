@@ -88,6 +88,7 @@ func (a_ Animation) FadeInDuration() float64 {
 	return rv
 }
 
+
 // SetFadeInDuration sets the value of the fadeInDuration property.
 // For animations attached to SceneKit objects, the duration for transitioning into the animation’s effect as it begins.
 

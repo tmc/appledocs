@@ -86,6 +86,7 @@ func (r_ RenderInfo) KernelCompileTime() TimeInterval {
 	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
 	return rv
 }
+
 // The amount of time a render spent executing kernels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelExecutionTime
@@ -93,6 +94,7 @@ func (r_ RenderInfo) KernelExecutionTime() TimeInterval {
 	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
 	return rv
 }
+
 // The number of passes the render took.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/passCount
@@ -100,6 +102,7 @@ func (r_ RenderInfo) PassCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("passCount"))
 	return rv
 }
+
 // The number of pixels the render produced executing kernels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/pixelsProcessed
@@ -107,5 +110,6 @@ func (r_ RenderInfo) PixelsProcessed() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("pixelsProcessed"))
 	return rv
 }
+
 
 

@@ -87,6 +87,7 @@ func (b_ Beacon) Accuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("accuracy"))
 	return rv
 }
+
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/major
@@ -94,6 +95,7 @@ func (b_ Beacon) Major() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("major"))
 	return rv
 }
+
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/minor
@@ -101,6 +103,7 @@ func (b_ Beacon) Minor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minor"))
 	return rv
 }
+
 // The relative distance to the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximity
@@ -108,6 +111,7 @@ func (b_ Beacon) Proximity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("proximity"))
 	return rv
 }
+
 // The proximity ID of the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximityUUID
@@ -115,6 +119,7 @@ func (b_ Beacon) ProximityUUID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
+
 // The received signal strength of the beacon, measured in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/rssi
@@ -122,6 +127,7 @@ func (b_ Beacon) Rssi() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("rssi"))
 	return rv
 }
+
 // A timestamp representing when the beacon was observed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/timestamp
@@ -129,6 +135,7 @@ func (b_ Beacon) Timestamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("timestamp"))
 	return rv
 }
+
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/uuid
@@ -136,5 +143,6 @@ func (b_ Beacon) UUID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("UUID"))
 	return rv
 }
+
 
 

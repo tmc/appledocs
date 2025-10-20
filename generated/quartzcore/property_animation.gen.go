@@ -106,6 +106,7 @@ func (p_ PropertyAnimation) Cumulative() bool {
 	return rv
 }
 
+
 // SetCumulative sets the value of the cumulative property.
 // Determines if the value of the property is the value at the end of the previous repeat cycle, plus the value of the current repeat cycle.
 

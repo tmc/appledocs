@@ -107,6 +107,7 @@ func (r_ Region) Center() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("center"))
 	return rv
 }
+
 // The identifier for the region object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
@@ -114,6 +115,7 @@ func (r_ Region) Identifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("identifier"))
 	return rv
 }
+
 // A Boolean indicating that notifications are generated upon entry into the region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
@@ -121,6 +123,7 @@ func (r_ Region) NotifyOnEntry() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnEntry"))
 	return rv
 }
+
 
 // SetNotifyOnEntry sets the value of the notifyOnEntry property.
 // A Boolean indicating that notifications are generated upon entry into the region.
@@ -138,6 +141,7 @@ func (r_ Region) NotifyOnExit() bool {
 	return rv
 }
 
+
 // SetNotifyOnExit sets the value of the notifyOnExit property.
 // A Boolean indicating that notifications are generated upon exit from the region.
 
@@ -153,4 +157,5 @@ func (r_ Region) Radius() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("radius"))
 	return rv
 }
+
 

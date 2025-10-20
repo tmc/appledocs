@@ -224,7 +224,6 @@ func (n_ NetService) Addresses() []Data {
 	return rv
 }
 
-
 // The delegate for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
@@ -232,7 +231,6 @@ func (n_ NetService) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 
 // SetDelegate sets the value of the delegate property.
@@ -251,7 +249,6 @@ func (n_ NetService) Domain() unsafe.Pointer {
 	return rv
 }
 
-
 // A string containing the DNS hostname for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/hostName
@@ -260,7 +257,6 @@ func (n_ NetService) HostName() unsafe.Pointer {
 	return rv
 }
 
-
 // Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
@@ -268,7 +264,6 @@ func (n_ NetService) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
-
 
 
 // SetIncludesPeerToPeer sets the value of the includesPeerToPeer property.
@@ -287,7 +282,6 @@ func (n_ NetService) Name() unsafe.Pointer {
 	return rv
 }
 
-
 // The port on which the service is listening for connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/port
@@ -296,7 +290,6 @@ func (n_ NetService) Port() int {
 	return rv
 }
 
-
 // The type of the published service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
@@ -304,6 +297,5 @@ func (n_ NetService) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("type"))
 	return rv
 }
-
 
 

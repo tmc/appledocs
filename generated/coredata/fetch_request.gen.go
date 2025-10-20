@@ -117,6 +117,7 @@ func (f_ FetchRequest) AffectedStores() []PersistentStore {
 	return rv
 }
 
+
 // SetAffectedStores sets the value of the affectedStores property.
 // An array of persistent stores specified for the fetch request.
 
@@ -133,6 +134,7 @@ func (f_ FetchRequest) Entity() unsafe.Pointer {
 	return rv
 }
 
+
 // SetEntity sets the value of the entity property.
 // The entity specified for the fetch request.
 
@@ -148,6 +150,7 @@ func (f_ FetchRequest) EntityName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("entityName"))
 	return rv
 }
+
 // The batch size of the objects specified in the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchBatchSize
@@ -155,6 +158,7 @@ func (f_ FetchRequest) FetchBatchSize() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
+
 
 // SetFetchBatchSize sets the value of the fetchBatchSize property.
 // The batch size of the objects specified in the fetch request.
@@ -172,6 +176,7 @@ func (f_ FetchRequest) FetchLimit() uint {
 	return rv
 }
 
+
 // SetFetchLimit sets the value of the fetchLimit property.
 // The fetch limit of the fetch request.
 
@@ -187,6 +192,7 @@ func (f_ FetchRequest) FetchOffset() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
+
 
 // SetFetchOffset sets the value of the fetchOffset property.
 // The fetch offset of the fetch request.
@@ -204,6 +210,7 @@ func (f_ FetchRequest) HavingPredicate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetHavingPredicate sets the value of the havingPredicate property.
 // The predicate used to filter rows being returned by a query containing a GROUP BY directive.
 
@@ -219,6 +226,7 @@ func (f_ FetchRequest) IncludesPendingChanges() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesPendingChanges"))
 	return rv
 }
+
 
 // SetIncludesPendingChanges sets the value of the includesPendingChanges property.
 // A Boolean value that indicates whether, when the fetch is executed, it matches against currently unsaved changes in the managed object context.
@@ -236,6 +244,7 @@ func (f_ FetchRequest) IncludesPropertyValues() bool {
 	return rv
 }
 
+
 // SetIncludesPropertyValues sets the value of the includesPropertyValues property.
 // A Boolean value that indicates whether, when the fetch is executed, property data is obtained from the persistent store.
 
@@ -251,6 +260,7 @@ func (f_ FetchRequest) IncludesSubentities() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesSubentities"))
 	return rv
 }
+
 
 // SetIncludesSubentities sets the value of the includesSubentities property.
 // A Boolean value that indicates whether the fetch request includes subentities in the results.
@@ -268,6 +278,7 @@ func (f_ FetchRequest) Predicate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPredicate sets the value of the predicate property.
 // The predicate of the fetch request.
 
@@ -283,6 +294,7 @@ func (f_ FetchRequest) PropertiesToFetch() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("propertiesToFetch"))
 	return rv
 }
+
 
 // SetPropertiesToFetch sets the value of the propertiesToFetch property.
 // A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
@@ -300,6 +312,7 @@ func (f_ FetchRequest) PropertiesToGroupBy() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPropertiesToGroupBy sets the value of the propertiesToGroupBy property.
 // An array of objects that indicates how data should be grouped before a select statement is run in a SQL database.
 
@@ -315,6 +328,7 @@ func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("relationshipKeyPathsForPrefetching"))
 	return rv
 }
+
 
 // SetRelationshipKeyPathsForPrefetching sets the value of the relationshipKeyPathsForPrefetching property.
 // The relationship key paths to prefetch along with the entity for the request.
@@ -332,6 +346,7 @@ func (f_ FetchRequest) ResultType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetResultType sets the value of the resultType property.
 // The result type of the fetch request.
 
@@ -347,6 +362,7 @@ func (f_ FetchRequest) ReturnsDistinctResults() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("returnsDistinctResults"))
 	return rv
 }
+
 
 // SetReturnsDistinctResults sets the value of the returnsDistinctResults property.
 // A Boolean value that indicates whether the fetch request returns only distinct values for the fields specified by .
@@ -364,6 +380,7 @@ func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
 	return rv
 }
 
+
 // SetReturnsObjectsAsFaults sets the value of the returnsObjectsAsFaults property.
 // A Boolean value that indicates whether the objects resulting from a fetch request are faults.
 
@@ -380,6 +397,7 @@ func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
 	return rv
 }
 
+
 // SetShouldRefreshRefetchedObjects sets the value of the shouldRefreshRefetchedObjects property.
 // A Boolean value that indicates whether the property values of fetched objects will be updated with the current values in the persistent store.
 
@@ -391,17 +409,18 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 // The sort descriptors of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SortDescriptors() []SortDescriptor {
-	rv := objc.Send[[]SortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
+func (f_ FetchRequest) SortDescriptors() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
+
 
 // SetSortDescriptors sets the value of the sortDescriptors property.
 // The sort descriptors of the fetch request.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []SortDescriptor) {
+func (f_ FetchRequest) SetSortDescriptors(value []unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

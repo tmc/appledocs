@@ -89,6 +89,7 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 	return rv
 }
 
+
 // SetAllowsCloudEncryption sets the value of the allowsCloudEncryption property.
 // A Boolean value that determines whether to encrypt the attribute’s value.
 
@@ -104,6 +105,7 @@ func (a_ AttributeDescription) AttributeType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributeType"))
 	return rv
 }
+
 
 // SetAttributeType sets the value of the attributeType property.
 // The attribute’s type.

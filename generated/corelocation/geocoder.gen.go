@@ -31,7 +31,7 @@ type _GeocoderClass struct {
 type IGeocoder interface {
 	objectivec.IObject
 	CancelGeocode()
-	GeocodeAddressDictionaryCompletionHandler(addressDictionary unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodeAddressDictionaryCompletionHandler(addressDictionary objc.ID, completionHandler unsafe.Pointer)
 	GeocodeAddressStringCompletionHandler(addressString string, completionHandler unsafe.Pointer)
 	GeocodeAddressStringInRegionCompletionHandler(addressString string, region unsafe.Pointer, completionHandler unsafe.Pointer)
 	GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString string, region unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -100,7 +100,7 @@ func (g_ Geocoder) CancelGeocode() {
 // Submits a forward-geocoding request using the specified address dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressDictionary(_:completionHandler:)
-func (g_ Geocoder) GeocodeAddressDictionaryCompletionHandler(addressDictionary unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (g_ Geocoder) GeocodeAddressDictionaryCompletionHandler(addressDictionary objc.ID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressDictionary:completionHandler:"), addressDictionary, completionHandler)
 }
 
@@ -166,5 +166,6 @@ func (g_ Geocoder) Geocoding() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("geocoding"))
 	return rv
 }
+
 
 

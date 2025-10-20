@@ -294,6 +294,7 @@ func (l_ LocationManager) AccuracyAuthorization() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("accuracyAuthorization"))
 	return rv
 }
+
 // The type of activity the app expects the user to typically perform while in the app’s location session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/activityType
@@ -301,6 +302,7 @@ func (l_ LocationManager) ActivityType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("activityType"))
 	return rv
 }
+
 
 // SetActivityType sets the value of the activityType property.
 // The type of activity the app expects the user to typically perform while in the app’s location session.
@@ -318,6 +320,7 @@ func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool {
 	return rv
 }
 
+
 // SetAllowsBackgroundLocationUpdates sets the value of the allowsBackgroundLocationUpdates property.
 // A Boolean value that indicates whether the app receives location updates when running in the background.
 
@@ -333,6 +336,7 @@ func (l_ LocationManager) AuthorizationStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
+
 // The delegate object to receive update events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/delegate
@@ -340,6 +344,7 @@ func (l_ LocationManager) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The delegate object to receive update events.
@@ -357,6 +362,7 @@ func (l_ LocationManager) DesiredAccuracy() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDesiredAccuracy sets the value of the desiredAccuracy property.
 // The accuracy of the location data that your app wants to receive.
 
@@ -373,6 +379,7 @@ func (l_ LocationManager) DistanceFilter() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDistanceFilter sets the value of the distanceFilter property.
 // The minimum distance in meters the device must move horizontally before an update event is generated.
 
@@ -388,6 +395,7 @@ func (l_ LocationManager) Heading() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("heading"))
 	return rv
 }
+
 // The minimum angular change in degrees required to generate new heading events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingFilter
@@ -395,6 +403,7 @@ func (l_ LocationManager) HeadingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("headingFilter"))
 	return rv
 }
+
 
 // SetHeadingFilter sets the value of the headingFilter property.
 // The minimum angular change in degrees required to generate new heading events.
@@ -412,6 +421,7 @@ func (l_ LocationManager) HeadingOrientation() unsafe.Pointer {
 	return rv
 }
 
+
 // SetHeadingOrientation sets the value of the headingOrientation property.
 // The device orientation to use when computing heading values.
 
@@ -427,6 +437,7 @@ func (l_ LocationManager) AuthorizedForWidgetUpdates() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("authorizedForWidgetUpdates"))
 	return rv
 }
+
 // The most recently retrieved user location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/location
@@ -434,6 +445,7 @@ func (l_ LocationManager) Location() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("location"))
 	return rv
 }
+
 // The largest boundary distance that can be assigned to a region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/maximumRegionMonitoringDistance
@@ -441,6 +453,7 @@ func (l_ LocationManager) MaximumRegionMonitoringDistance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("maximumRegionMonitoringDistance"))
 	return rv
 }
+
 // The set of shared regions monitored by all location-manager objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/monitoredRegions
@@ -448,6 +461,7 @@ func (l_ LocationManager) MonitoredRegions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("monitoredRegions"))
 	return rv
 }
+
 // A Boolean value that indicates whether the location-manager object may pause location updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/pausesLocationUpdatesAutomatically
@@ -455,6 +469,7 @@ func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("pausesLocationUpdatesAutomatically"))
 	return rv
 }
+
 
 // SetPausesLocationUpdatesAutomatically sets the value of the pausesLocationUpdatesAutomatically property.
 // A Boolean value that indicates whether the location-manager object may pause location updates.
@@ -471,6 +486,7 @@ func (l_ LocationManager) RangedBeaconConstraints() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("rangedBeaconConstraints"))
 	return rv
 }
+
 // A Boolean value that indicates whether the status bar changes its appearance when an app uses location services in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator
@@ -478,6 +494,7 @@ func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("showsBackgroundLocationIndicator"))
 	return rv
 }
+
 
 // SetShowsBackgroundLocationIndicator sets the value of the showsBackgroundLocationIndicator property.
 // A Boolean value that indicates whether the status bar changes its appearance when an app uses location services in the background.

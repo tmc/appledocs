@@ -89,6 +89,7 @@ func (r_ ReplicatorLayer) InstanceTransform() unsafe.Pointer {
 	return rv
 }
 
+
 // SetInstanceTransform sets the value of the instanceTransform property.
 // The transform matrix applied to the previous instance to produce the current instance. Animatable.
 

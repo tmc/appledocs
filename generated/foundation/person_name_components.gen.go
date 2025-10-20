@@ -89,7 +89,6 @@ func (p_ PersonNameComponents) GivenName() unsafe.Pointer {
 }
 
 
-
 // SetGivenName sets the value of the givenName property.
 // Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
 

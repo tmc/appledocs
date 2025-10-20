@@ -89,6 +89,7 @@ func (s_ SegmentedControl) SelectedSegmentBezelColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSelectedSegmentBezelColor sets the value of the selectedSegmentBezelColor property.
 // The color of the selected segment’s bezel, in appearances that support it.
 

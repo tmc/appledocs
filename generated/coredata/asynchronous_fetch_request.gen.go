@@ -97,6 +97,7 @@ func (a_ AsynchronousFetchRequest) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("completionBlock"))
 	return rv
 }
+
 // A configuration parameter that assists Core Data with scheduling the asynchronous fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
@@ -104,6 +105,7 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("estimatedResultCount"))
 	return rv
 }
+
 
 // SetEstimatedResultCount sets the value of the estimatedResultCount property.
 // A configuration parameter that assists Core Data with scheduling the asynchronous fetch request.
@@ -120,4 +122,5 @@ func (a_ AsynchronousFetchRequest) FetchRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
+
 

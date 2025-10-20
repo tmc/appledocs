@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Kernel] class.
@@ -30,7 +31,7 @@ type _KernelClass struct {
 // An interface definition for the [Kernel] class.
 type IKernel interface {
 	objectivec.IObject
-	ApplyWithExtentRoiCallbackArguments(extent unsafe.Pointer, callback unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+	ApplyWithExtentRoiCallbackArguments(extent coregraphics.CGRect, callback unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
 	SetROISelector(method objc.SEL)
 }
 
@@ -82,6 +83,14 @@ func NewKernel() Kernel {
 }
 
 
+// Creates a single kernel object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
+func NewKernelWithString(string string) Kernel {
+	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
+	return rv
+}
+
 // Creates a single kernel object using a Metal Shading Language (MSL) kernel function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:)
@@ -95,14 +104,6 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
 func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
-	return rv
-}
-
-// Creates a single kernel object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
-func NewKernelWithString(string string) Kernel {
-	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
 
@@ -158,7 +159,7 @@ func (kc _KernelClass) KernelsWithString(string string) []Kernel {
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/apply(extent:roiCallback:arguments:)
-func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent unsafe.Pointer, callback unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
+func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent coregraphics.CGRect, callback unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("applyWithExtent:roiCallback:arguments:"), extent, callback, args)
 	return rv
 }
@@ -177,4 +178,5 @@ func (k_ Kernel) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("name"))
 	return rv
 }
+
 

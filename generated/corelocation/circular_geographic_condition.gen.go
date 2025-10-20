@@ -99,6 +99,7 @@ func (c_ CircularGeographicCondition) Center() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
 	return rv
 }
+
 // The radius of the circular geographic condition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/radius
@@ -106,4 +107,5 @@ func (c_ CircularGeographicCondition) Radius() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
 	return rv
 }
+
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [WarpKernel] class.
@@ -29,7 +30,7 @@ type _WarpKernelClass struct {
 // An interface definition for the [WarpKernel] class.
 type IWarpKernel interface {
 	IKernel
-	ApplyWithExtentRoiCallbackInputImageArguments(extent unsafe.Pointer, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
 }
 
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
@@ -102,7 +103,7 @@ func (wc _WarpKernelClass) KernelWithString(string string) unsafe.Pointer {
 // Creates a new image using the kernel and the specified input image and arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
-func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent unsafe.Pointer, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
+func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
 	return rv
 }

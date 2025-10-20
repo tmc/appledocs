@@ -141,6 +141,7 @@ func (o_ OpenGLView) OpenGLContext() unsafe.Pointer {
 	return rv
 }
 
+
 // SetOpenGLContext sets the value of the openGLContext property.
 // The object associated with the receiver.
 
@@ -156,6 +157,7 @@ func (o_ OpenGLView) PixelFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
+
 
 // SetPixelFormat sets the value of the pixelFormat property.
 // The object associated with the receiver.
@@ -173,6 +175,7 @@ func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 	return rv
 }
 
+
 // SetWantsBestResolutionOpenGLSurface sets the value of the wantsBestResolutionOpenGLSurface property.
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
 
@@ -188,6 +191,7 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
 }
+
 
 // SetWantsExtendedDynamicRangeOpenGLSurface sets the value of the wantsExtendedDynamicRangeOpenGLSurface property.
 // Enables extended dynamic range values on the screen.

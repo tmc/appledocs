@@ -215,6 +215,7 @@ func (a_ Application) Appearance() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAppearance sets the value of the appearance property.
 // The appearance associated with the app’s windows.
 
@@ -230,6 +231,7 @@ func (a_ Application) CurrentEvent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentEvent"))
 	return rv
 }
+
 // The appearance that AppKit uses to draw the app’s interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/effectiveAppearance
@@ -237,6 +239,7 @@ func (a_ Application) EffectiveAppearance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("effectiveAppearance"))
 	return rv
 }
+
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isAutomaticCustomizeTouchBarMenuItemEnabled
@@ -244,6 +247,7 @@ func (a_ Application) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
+
 
 // SetAutomaticCustomizeTouchBarMenuItemEnabled sets the value of the automaticCustomizeTouchBarMenuItemEnabled property.
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.

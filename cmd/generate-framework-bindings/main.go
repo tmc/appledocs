@@ -1457,6 +1457,12 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 		Identifier struct {
 			URL string `json:"url"`
 		} `json:"identifier"`
+		Metadata struct {
+			Platforms []struct {
+				Name         string `json:"name"`
+				IntroducedAt string `json:"introducedAt"`
+			} `json:"platforms"`
+		} `json:"metadata"`
 		PrimaryContentSections []struct {
 			Kind    string `json:"kind"`
 			Content []struct {
@@ -1483,6 +1489,36 @@ func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL 
 		if item.Type == "text" && item.Text != "" {
 			abstract = item.Text
 			break
+		}
+	}
+
+	// Check if this is an iOS-only framework (no macOS support)
+	hasMacOS := false
+	for _, platform := range doc.Metadata.Platforms {
+		if platform.Name == "macOS" {
+			hasMacOS = true
+			break
+		}
+	}
+
+	if !hasMacOS && len(doc.Metadata.Platforms) > 0 {
+		// iOS-only framework - mark as deprecated for macOS bindings
+		platformNames := make([]string, 0, len(doc.Metadata.Platforms))
+		for _, p := range doc.Metadata.Platforms {
+			platformNames = append(platformNames, p.Name)
+		}
+		iosOnlyReason := fmt.Sprintf("iOS-only framework (platforms: %s). Not available on macOS.",
+			strings.Join(platformNames, ", "))
+
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Framework %s is iOS-only: %s\n", framework, iosOnlyReason)
+		}
+
+		if config != nil {
+			fwConfig := config.Frameworks[framework]
+			fwConfig.Deprecated = true
+			fwConfig.DeprecationReason = iosOnlyReason
+			config.Frameworks[framework] = fwConfig
 		}
 	}
 

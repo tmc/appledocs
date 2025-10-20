@@ -136,7 +136,6 @@ func (o_ Operation) Dependencies() []Operation {
 	return rv
 }
 
-
 // A Boolean value indicating whether the operation executes its task asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isAsynchronous
@@ -144,7 +143,6 @@ func (o_ Operation) Asynchronous() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("asynchronous"))
 	return rv
 }
-
 
 // A Boolean value indicating whether the operation has been cancelled
 //
@@ -154,7 +152,6 @@ func (o_ Operation) Cancelled() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the operation executes its task asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isConcurrent
@@ -162,7 +159,6 @@ func (o_ Operation) Concurrent() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("concurrent"))
 	return rv
 }
-
 
 // A Boolean value indicating whether the operation is currently executing.
 //
@@ -172,7 +168,6 @@ func (o_ Operation) Executing() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the operation has finished executing its task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isFinished
@@ -180,7 +175,6 @@ func (o_ Operation) Finished() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("finished"))
 	return rv
 }
-
 
 // A Boolean value indicating whether the operation can be performed now.
 //
@@ -190,7 +184,6 @@ func (o_ Operation) Ready() bool {
 	return rv
 }
 
-
 // The name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
@@ -198,7 +191,6 @@ func (o_ Operation) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("name"))
 	return rv
 }
-
 
 
 // SetName sets the value of the name property.
@@ -218,7 +210,6 @@ func (o_ Operation) QualityOfService() unsafe.Pointer {
 }
 
 
-
 // SetQualityOfService sets the value of the qualityOfService property.
 // The relative amount of importance for granting system resources to the operation.
 
@@ -236,7 +227,6 @@ func (o_ Operation) QueuePriority() unsafe.Pointer {
 }
 
 
-
 // SetQueuePriority sets the value of the queuePriority property.
 // The execution priority of the operation in an operation queue.
 
@@ -252,7 +242,6 @@ func (o_ Operation) ThreadPriority() float64 {
 	rv := objc.Send[float64](o_.ID, objc.Sel("threadPriority"))
 	return rv
 }
-
 
 
 // SetThreadPriority sets the value of the threadPriority property.

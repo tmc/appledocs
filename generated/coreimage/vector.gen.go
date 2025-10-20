@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Vector] class.
@@ -30,7 +31,7 @@ type _VectorClass struct {
 // An interface definition for the [Vector] class.
 type IVector interface {
 	objectivec.IObject
-	ValueAtIndex(index uintptr) float64
+	ValueAtIndex(index unsafe.Pointer) float64
 }
 
 // The Core Image class that defines a vector object.
@@ -84,7 +85,7 @@ func NewVector() Vector {
 // Initialize a Core Image vector object with six values provided by a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgAffineTransform:)
-func NewVectorWithCGAffineTransform(t unsafe.Pointer) Vector {
+func NewVectorWithCGAffineTransform(t coregraphics.CGAffineTransform) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGAffineTransform:"), t)
 	rv.Autorelease()
@@ -94,7 +95,7 @@ func NewVectorWithCGAffineTransform(t unsafe.Pointer) Vector {
 // Initialize a Core Image vector object with two values provided by a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgPoint:)
-func NewVectorWithCGPoint(p unsafe.Pointer) Vector {
+func NewVectorWithCGPoint(p coregraphics.CGPoint) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGPoint:"), p)
 	rv.Autorelease()
@@ -104,19 +105,19 @@ func NewVectorWithCGPoint(p unsafe.Pointer) Vector {
 // Initialize a Core Image vector object with four values provided by a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgRect:)
-func NewVectorWithCGRect(r unsafe.Pointer) Vector {
+func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGRect:"), r)
 	rv.Autorelease()
 	return rv
 }
 
-// Initialize a Core Image vector object with values provided in a string representation.
+// Initialize a Core Image vector object with the specified the values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(string:)
-func NewVectorWithString(representation string) Vector {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(values:count:)
+func NewVectorWithValuesCount(values unsafe.Pointer, count unsafe.Pointer) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), objc.String(representation))
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithValues:count:"), values, count)
 	rv.Autorelease()
 	return rv
 }
@@ -131,12 +132,12 @@ func NewVectorWithX(x float64) Vector {
 	return rv
 }
 
-// Initialize a Core Image vector object with two values.
+// Initialize a Core Image vector object with three values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:)
-func NewVectorWithXY(x float64, y float64) Vector {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:)
+func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:"), x, y)
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:"), x, y, z)
 	rv.Autorelease()
 	return rv
 }
@@ -151,22 +152,22 @@ func NewVectorWithXYZW(x float64, y float64, z float64, w float64) Vector {
 	return rv
 }
 
-// Initialize a Core Image vector object with the specified the values.
+// Initialize a Core Image vector object with values provided in a string representation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(values:count:)
-func NewVectorWithValuesCount(values unsafe.Pointer, count uintptr) Vector {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(string:)
+func NewVectorWithString(representation string) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithValues:count:"), values, count)
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), objc.String(representation))
 	rv.Autorelease()
 	return rv
 }
 
-// Initialize a Core Image vector object with three values.
+// Initialize a Core Image vector object with two values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:)
-func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:)
+func NewVectorWithXY(x float64, y float64) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:"), x, y, z)
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:"), x, y)
 	rv.Autorelease()
 	return rv
 }
@@ -175,7 +176,7 @@ func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
 // Create a Core Image vector object that is initialized with six values provided by a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithCGAffineTransform:
-func (vc _VectorClass) VectorWithCGAffineTransform(t unsafe.Pointer) unsafe.Pointer {
+func (vc _VectorClass) VectorWithCGAffineTransform(t coregraphics.CGAffineTransform) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithCGAffineTransform:"), t)
 	return rv
 }
@@ -183,7 +184,7 @@ func (vc _VectorClass) VectorWithCGAffineTransform(t unsafe.Pointer) unsafe.Poin
 // Create a Core Image vector object that is initialized with two values provided by a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithCGPoint:
-func (vc _VectorClass) VectorWithCGPoint(p unsafe.Pointer) unsafe.Pointer {
+func (vc _VectorClass) VectorWithCGPoint(p coregraphics.CGPoint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithCGPoint:"), p)
 	return rv
 }
@@ -191,7 +192,7 @@ func (vc _VectorClass) VectorWithCGPoint(p unsafe.Pointer) unsafe.Pointer {
 // Create a Core Image vector object that is initialized with four values provided by a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithCGRect:
-func (vc _VectorClass) VectorWithCGRect(r unsafe.Pointer) unsafe.Pointer {
+func (vc _VectorClass) VectorWithCGRect(r coregraphics.CGRect) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithCGRect:"), r)
 	return rv
 }
@@ -207,7 +208,7 @@ func (vc _VectorClass) VectorWithString(representation string) unsafe.Pointer {
 // Create a Core Image vector object that is initialized with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithValues:count:
-func (vc _VectorClass) VectorWithValuesCount(values unsafe.Pointer, count uintptr) unsafe.Pointer {
+func (vc _VectorClass) VectorWithValuesCount(values unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithValues:count:"), values, count)
 	return rv
 }
@@ -247,7 +248,7 @@ func (vc _VectorClass) VectorWithXYZW(x float64, y float64, z float64, w float64
 // Returns a value from a specific position in the vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/value(at:)
-func (v_ Vector) ValueAtIndex(index uintptr) float64 {
+func (v_ Vector) ValueAtIndex(index unsafe.Pointer) float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("valueAtIndex:"), index)
 	return rv
 }
@@ -255,31 +256,35 @@ func (v_ Vector) ValueAtIndex(index uintptr) float64 {
 // Returns the values in the vector as a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/cgAffineTransformValue
-func (v_ Vector) CGAffineTransformValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("CGAffineTransformValue"))
+func (v_ Vector) CGAffineTransformValue() coregraphics.CGAffineTransform {
+	rv := objc.Send[coregraphics.CGAffineTransform](v_.ID, objc.Sel("CGAffineTransformValue"))
 	return rv
 }
+
 // Returns the values in the vector as a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/cgPointValue
-func (v_ Vector) CGPointValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("CGPointValue"))
+func (v_ Vector) CGPointValue() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("CGPointValue"))
 	return rv
 }
+
 // Returns the values in the vector as a structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/cgRectValue
-func (v_ Vector) CGRectValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("CGRectValue"))
+func (v_ Vector) CGRectValue() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("CGRectValue"))
 	return rv
 }
+
 // The number of items in the vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/count
-func (v_ Vector) Count() uintptr {
-	rv := objc.Send[uintptr](v_.ID, objc.Sel("count"))
+func (v_ Vector) Count() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("count"))
 	return rv
 }
+
 // Returns a formatted string with all the values of a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/stringRepresentation
@@ -287,6 +292,7 @@ func (v_ Vector) StringRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
+
 // The value located in the forth position in the vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/w
@@ -294,6 +300,7 @@ func (v_ Vector) W() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("W"))
 	return rv
 }
+
 // The value located in the first position in the vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/x
@@ -301,6 +308,7 @@ func (v_ Vector) X() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("X"))
 	return rv
 }
+
 // The value located in the second position in the vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/y
@@ -308,6 +316,7 @@ func (v_ Vector) Y() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("Y"))
 	return rv
 }
+
 // The value located in the third position in the vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/z
@@ -315,4 +324,5 @@ func (v_ Vector) Z() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("Z"))
 	return rv
 }
+
 

@@ -99,7 +99,6 @@ func (n_ Notification) Name() unsafe.Pointer {
 	return rv
 }
 
-
 // The object associated with the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/object
@@ -108,7 +107,6 @@ func (n_ Notification) GetObject() objc.ID {
 	return rv
 }
 
-
 // The user information dictionary associated with the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/userInfo
@@ -116,6 +114,5 @@ func (n_ Notification) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("userInfo"))
 	return rv
 }
-
 
 

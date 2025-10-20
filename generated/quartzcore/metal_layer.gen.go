@@ -90,6 +90,7 @@ func (m_ MetalLayer) Colorspace() coregraphics.CGColorSpaceRef {
 	return rv
 }
 
+
 // SetColorspace sets the value of the colorspace property.
 // The color space of the rendered content.
 
@@ -105,6 +106,7 @@ func (m_ MetalLayer) FramebufferOnly() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("framebufferOnly"))
 	return rv
 }
+
 
 // SetFramebufferOnly sets the value of the framebufferOnly property.
 // A Boolean value that determines whether the layer’s textures are used only for rendering.
@@ -122,6 +124,7 @@ func (m_ MetalLayer) PixelFormat() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPixelFormat sets the value of the pixelFormat property.
 // The pixel format of the layer’s textures.
 
@@ -137,6 +140,7 @@ func (m_ MetalLayer) WantsExtendedDynamicRangeContent() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("wantsExtendedDynamicRangeContent"))
 	return rv
 }
+
 
 // SetWantsExtendedDynamicRangeContent sets the value of the wantsExtendedDynamicRangeContent property.
 // Enables extended dynamic range values onscreen.

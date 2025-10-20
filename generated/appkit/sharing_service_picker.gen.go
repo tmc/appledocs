@@ -97,6 +97,7 @@ func (s_ SharingServicePicker) Delegate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The object for managing the sharing service picker.
 

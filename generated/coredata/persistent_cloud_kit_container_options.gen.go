@@ -98,6 +98,7 @@ func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() unsafe.Pointe
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
+
 // The database scope — public, private, or shared — to use for a specified store in a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/databaseScope-2784h
@@ -105,6 +106,7 @@ func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("databaseScope"))
 	return rv
 }
+
 
 // SetDatabaseScope sets the value of the databaseScope property.
 // The database scope — public, private, or shared — to use for a specified store in a persistent CloudKit container.

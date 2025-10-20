@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [WritingToolsCoordinator] class.
@@ -32,7 +31,7 @@ type _WritingToolsCoordinatorClass struct {
 type IWritingToolsCoordinator interface {
 	objectivec.IObject
 	UpdateForReflowedTextInContextWithIdentifier(contextID unsafe.Pointer)
-	UpdateRangeWithTextReasonForContextWithIdentifier(range_ coregraphics.CGPoint, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer)
+	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer)
 }
 
 // An object that manages interactions between Writing Tools and your custom text view.
@@ -93,7 +92,7 @@ func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(c
 // Informs the coordinator about changes your app made to the text in the specified context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ coregraphics.CGPoint, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
 
@@ -104,6 +103,7 @@ func (w_ WritingToolsCoordinator) PreferredBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredBehavior"))
 	return rv
 }
+
 
 // SetPreferredBehavior sets the value of the preferredBehavior property.
 // The level of Writing Tools support you want the system to provide for your view.
@@ -120,6 +120,7 @@ func (w_ WritingToolsCoordinator) PreferredResultOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredResultOptions"))
 	return rv
 }
+
 
 // SetPreferredResultOptions sets the value of the preferredResultOptions property.
 // The type of content you allow Writing Tools to generate for your custom text view.

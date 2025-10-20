@@ -98,6 +98,7 @@ func (m_ ManagedObject) Entity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entity"))
 	return rv
 }
+
 // A Boolean value that indicates whether the managed object has been inserted in a managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isInserted
@@ -105,6 +106,7 @@ func (m_ ManagedObject) Inserted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("inserted"))
 	return rv
 }
+
 // The managed object context with which the managed object is registered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/managedObjectContext
@@ -112,6 +114,7 @@ func (m_ ManagedObject) ManagedObjectContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
+
 // The object ID of the managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectID
@@ -119,4 +122,5 @@ func (m_ ManagedObject) ObjectID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectID"))
 	return rv
 }
+
 

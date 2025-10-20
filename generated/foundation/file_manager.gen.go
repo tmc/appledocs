@@ -711,7 +711,6 @@ func (f_ FileManager) CurrentDirectoryPath() unsafe.Pointer {
 	return rv
 }
 
-
 // The delegate of the file manager object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/delegate
@@ -719,7 +718,6 @@ func (f_ FileManager) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 
 // SetDelegate sets the value of the delegate property.
@@ -738,7 +736,6 @@ func (f_ FileManager) HomeDirectoryForCurrentUser() unsafe.Pointer {
 	return rv
 }
 
-
 // The temporary directory for the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/temporaryDirectory
@@ -747,7 +744,6 @@ func (f_ FileManager) TemporaryDirectory() unsafe.Pointer {
 	return rv
 }
 
-
 // An opaque token that represents the current user’s iCloud Drive Documents identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ubiquityIdentityToken
@@ -755,6 +751,5 @@ func (f_ FileManager) UbiquityIdentityToken() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("ubiquityIdentityToken"))
 	return rv
 }
-
 
 

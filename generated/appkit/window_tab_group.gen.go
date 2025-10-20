@@ -111,6 +111,7 @@ func (w_ WindowTabGroup) Identifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("identifier"))
 	return rv
 }
+
 // A Boolean value indicating if the tab overview is currently displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isOverviewVisible
@@ -118,6 +119,7 @@ func (w_ WindowTabGroup) OverviewVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("overviewVisible"))
 	return rv
 }
+
 
 // SetOverviewVisible sets the value of the overviewVisible property.
 // A Boolean value indicating if the tab overview is currently displayed.
@@ -134,6 +136,7 @@ func (w_ WindowTabGroup) TabBarVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("tabBarVisible"))
 	return rv
 }
+
 // The selected, or frontmost, window in the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/selectedWindow
@@ -141,6 +144,7 @@ func (w_ WindowTabGroup) SelectedWindow() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectedWindow"))
 	return rv
 }
+
 
 // SetSelectedWindow sets the value of the selectedWindow property.
 // The selected, or frontmost, window in the tab group.
@@ -157,5 +161,6 @@ func (w_ WindowTabGroup) Windows() []Window {
 	rv := objc.Send[[]Window](w_.ID, objc.Sel("windows"))
 	return rv
 }
+
 
 

@@ -141,6 +141,7 @@ func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool {
 	return rv
 }
 
+
 // SetAutomaticallyAdjustsContentInsets sets the value of the automaticallyAdjustsContentInsets property.
 // A Boolean value that indicates if the clip view automatically accounts for other scroll view subviews.
 
@@ -156,6 +157,7 @@ func (c_ ClipView) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
+
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color of the clip view’s background.
@@ -173,6 +175,7 @@ func (c_ ClipView) ContentInsets() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentInsets sets the value of the contentInsets property.
 // The distance that the content view is inset from the enclosing scroll view.
 
@@ -188,6 +191,7 @@ func (c_ ClipView) CopiesOnScroll() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("copiesOnScroll"))
 	return rv
 }
+
 
 // SetCopiesOnScroll sets the value of the copiesOnScroll property.
 // A Boolean value that indicates if the clip view copies rendered images while scrolling.
@@ -205,6 +209,7 @@ func (c_ ClipView) DocumentCursor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDocumentCursor sets the value of the documentCursor property.
 // The cursor object used when the pointer lies over the view.
 
@@ -220,6 +225,7 @@ func (c_ ClipView) DocumentRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("documentRect"))
 	return rv
 }
+
 // The clip view’s document view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentView
@@ -227,6 +233,7 @@ func (c_ ClipView) DocumentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("documentView"))
 	return rv
 }
+
 
 // SetDocumentView sets the value of the documentView property.
 // The clip view’s document view.
@@ -243,6 +250,7 @@ func (c_ ClipView) DocumentVisibleRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("documentVisibleRect"))
 	return rv
 }
+
 // A Boolean value that indicates if the clip view draws its background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/drawsBackground
@@ -250,6 +258,7 @@ func (c_ ClipView) DrawsBackground() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
+
 
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean value that indicates if the clip view draws its background color.

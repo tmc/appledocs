@@ -123,6 +123,7 @@ func (p_ PersistentContainer) ManagedObjectModel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
+
 // The container’s persistent store coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreCoordinator
@@ -130,6 +131,7 @@ func (p_ PersistentContainer) PersistentStoreCoordinator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("persistentStoreCoordinator"))
 	return rv
 }
+
 // The main queue’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/viewContext
@@ -137,4 +139,5 @@ func (p_ PersistentContainer) ViewContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("viewContext"))
 	return rv
 }
+
 

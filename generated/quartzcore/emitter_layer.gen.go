@@ -89,6 +89,7 @@ func (e_ EmitterLayer) EmitterShape() unsafe.Pointer {
 	return rv
 }
 
+
 // SetEmitterShape sets the value of the emitterShape property.
 // Specifies the emitter shape.
 

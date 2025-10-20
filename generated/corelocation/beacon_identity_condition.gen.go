@@ -119,6 +119,7 @@ func (b_ BeaconIdentityCondition) UUID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("UUID"))
 	return rv
 }
+
 // The most significant value associated with the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/major
@@ -126,6 +127,7 @@ func (b_ BeaconIdentityCondition) Major() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("major"))
 	return rv
 }
+
 // The least significant value associated with the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/minor
@@ -133,4 +135,5 @@ func (b_ BeaconIdentityCondition) Minor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minor"))
 	return rv
 }
+
 

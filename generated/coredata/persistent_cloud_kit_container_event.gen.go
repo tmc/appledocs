@@ -85,6 +85,7 @@ func (p_ PersistentCloudKitContainerEvent) Error() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
 	return rv
 }
+
 // A Boolean value that indicates whether the operation the event represents is successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/succeeded
@@ -92,5 +93,6 @@ func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("succeeded"))
 	return rv
 }
+
 
 

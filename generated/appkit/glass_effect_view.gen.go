@@ -87,6 +87,7 @@ func (g_ GlassEffectView) ContentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentView sets the value of the contentView property.
 // The view to embed in glass.
 
@@ -102,6 +103,7 @@ func (g_ GlassEffectView) CornerRadius() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
+
 
 // SetCornerRadius sets the value of the cornerRadius property.
 // The amount of curvature for all corners of the glass.
@@ -119,6 +121,7 @@ func (g_ GlassEffectView) Style() unsafe.Pointer {
 	return rv
 }
 
+
 // SetStyle sets the value of the style property.
 // The style of glass this view uses.
 
@@ -134,6 +137,7 @@ func (g_ GlassEffectView) TintColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("tintColor"))
 	return rv
 }
+
 
 // SetTintColor sets the value of the tintColor property.
 // The color the glass effect view uses to tint the background and glass effect toward.

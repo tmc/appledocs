@@ -132,7 +132,6 @@ func (p_ Progress) CompletedUnitCount() unsafe.Pointer {
 }
 
 
-
 // SetCompletedUnitCount sets the value of the completedUnitCount property.
 // The number of completed units of work for the current job.
 
@@ -149,7 +148,6 @@ func (p_ Progress) FractionCompleted() float64 {
 	return rv
 }
 
-
 // A Boolean value that indicates the progress object is complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isFinished
@@ -158,7 +156,6 @@ func (p_ Progress) Finished() bool {
 	return rv
 }
 
-
 // The total number of tracked units of work for the current progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/totalUnitCount
@@ -166,7 +163,6 @@ func (p_ Progress) TotalUnitCount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("totalUnitCount"))
 	return rv
 }
-
 
 
 // SetTotalUnitCount sets the value of the totalUnitCount property.

@@ -89,6 +89,7 @@ func (r_ RelationshipDescription) DeleteRule() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDeleteRule sets the value of the deleteRule property.
 // The rule to apply when you delete the relationship’s owning managed object.
 

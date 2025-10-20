@@ -114,6 +114,7 @@ func (l_ Layer) Contents() objc.ID {
 	return rv
 }
 
+
 // SetContents sets the value of the contents property.
 // An object that provides the contents of the layer. Animatable.
 
@@ -129,6 +130,7 @@ func (l_ Layer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The layer’s delegate object.
@@ -146,6 +148,7 @@ func (l_ Layer) LayoutManager() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLayoutManager sets the value of the layoutManager property.
 // The object responsible for laying out the layer’s sublayers.
 
@@ -161,6 +164,7 @@ func (l_ Layer) Opacity() float32 {
 	rv := objc.Send[float32](l_.ID, objc.Sel("opacity"))
 	return rv
 }
+
 
 // SetOpacity sets the value of the opacity property.
 // The opacity of the receiver. Animatable.
@@ -178,6 +182,7 @@ func (l_ Layer) Transform() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTransform sets the value of the transform property.
 // The transform applied to the layer’s contents. Animatable.
 
@@ -192,6 +197,7 @@ func (l_ Layer) WantsDynamicContentScaling() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("wantsDynamicContentScaling"))
 	return rv
 }
+
 
 // SetWantsDynamicContentScaling sets the value of the wantsDynamicContentScaling property.
 //

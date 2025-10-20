@@ -89,6 +89,7 @@ func (a_ AnimationGroup) Animations() []Animation {
 	return rv
 }
 
+
 // SetAnimations sets the value of the animations property.
 // An array of objects to be evaluated in the time space of the receiver.
 

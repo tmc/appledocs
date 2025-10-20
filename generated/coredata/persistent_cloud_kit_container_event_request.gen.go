@@ -119,6 +119,7 @@ func (p_ PersistentCloudKitContainerEventRequest) ResultType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetResultType sets the value of the resultType property.
 // The type of result that the request returns.
 

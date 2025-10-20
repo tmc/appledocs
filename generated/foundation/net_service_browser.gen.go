@@ -138,7 +138,6 @@ func (n_ NetServiceBrowser) Delegate() unsafe.Pointer {
 }
 
 
-
 // SetDelegate sets the value of the delegate property.
 // The delegate object for this instance.
 
@@ -154,7 +153,6 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
-
 
 
 // SetIncludesPeerToPeer sets the value of the includesPeerToPeer property.

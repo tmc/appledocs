@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [View] class.
@@ -30,12 +31,12 @@ type _ViewClass struct {
 // An interface definition for the [View] class.
 type IView interface {
 	objectivec.IObject
-	ConvertPointFromScene(point unsafe.Pointer, scene unsafe.Pointer) unsafe.Pointer
-	ConvertPointToScene(point unsafe.Pointer, scene unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromScene(point coregraphics.CGPoint, scene unsafe.Pointer) coregraphics.CGPoint
+	ConvertPointToScene(point coregraphics.CGPoint, scene unsafe.Pointer) coregraphics.CGPoint
 	PresentScene(scene unsafe.Pointer)
 	PresentSceneTransition(scene unsafe.Pointer, transition unsafe.Pointer)
 	TextureFromNode(node unsafe.Pointer) unsafe.Pointer
-	TextureFromNodeCrop(node unsafe.Pointer, crop unsafe.Pointer) unsafe.Pointer
+	TextureFromNodeCrop(node unsafe.Pointer, crop coregraphics.CGRect) unsafe.Pointer
 }
 
 // A view subclass that renders a SpriteKit scene.
@@ -89,16 +90,16 @@ func NewView() View {
 // Converts a point from scene coordinates to view coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/convert(_:from:)
-func (v_ View) ConvertPointFromScene(point unsafe.Pointer, scene unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("convertPoint:fromScene:"), point, scene)
+func (v_ View) ConvertPointFromScene(point coregraphics.CGPoint, scene unsafe.Pointer) coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPoint:fromScene:"), point, scene)
 	return rv
 }
 
 // Converts a point from view coordinates to scene coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/convert(_:to:)
-func (v_ View) ConvertPointToScene(point unsafe.Pointer, scene unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("convertPoint:toScene:"), point, scene)
+func (v_ View) ConvertPointToScene(point coregraphics.CGPoint, scene unsafe.Pointer) coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPoint:toScene:"), point, scene)
 	return rv
 }
 
@@ -127,7 +128,7 @@ func (v_ View) TextureFromNode(node unsafe.Pointer) unsafe.Pointer {
 // Renders a portion of a node’s contents and returns the rendered image as a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/texture(from:crop:)
-func (v_ View) TextureFromNodeCrop(node unsafe.Pointer, crop unsafe.Pointer) unsafe.Pointer {
+func (v_ View) TextureFromNodeCrop(node unsafe.Pointer, crop coregraphics.CGRect) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("textureFromNode:crop:"), node, crop)
 	return rv
 }
@@ -139,6 +140,7 @@ func (v_ View) AllowsTransparency() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("allowsTransparency"))
 	return rv
 }
+
 
 // SetAllowsTransparency sets the value of the allowsTransparency property.
 // A Boolean property that indicates whether the view is rendered using transparency.
@@ -156,6 +158,7 @@ func (v_ View) Delegate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // A delegate that allows dynamic control of the view’s render rate.
 
@@ -171,6 +174,7 @@ func (v_ View) DisableDepthStencilBuffer() bool {
 	return rv
 }
 
+
 // SetDisableDepthStencilBuffer sets the value of the disableDepthStencilBuffer property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/disableDepthStencilBuffer
@@ -184,6 +188,7 @@ func (v_ View) FrameInterval() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("frameInterval"))
 	return rv
 }
+
 
 // SetFrameInterval sets the value of the frameInterval property.
 // The number of frames that must pass before the scene is called to update its contents.
@@ -201,6 +206,7 @@ func (v_ View) IgnoresSiblingOrder() bool {
 	return rv
 }
 
+
 // SetIgnoresSiblingOrder sets the value of the ignoresSiblingOrder property.
 // A Boolean value that indicates whether parent-child and sibling relationships affect the rendering order of nodes in the scene.
 
@@ -216,6 +222,7 @@ func (v_ View) Asynchronous() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("asynchronous"))
 	return rv
 }
+
 
 // SetAsynchronous sets the value of the asynchronous property.
 // A Boolean value that indicates whether the content is rendered asynchronously.
@@ -233,6 +240,7 @@ func (v_ View) Paused() bool {
 	return rv
 }
 
+
 // SetPaused sets the value of the paused property.
 // A Boolean value that indicates whether the view’s scene animations are paused.
 
@@ -243,15 +251,16 @@ func (v_ View) SetPaused(value bool) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/preferredFrameRate
-func (v_ View) PreferredFrameRate() float32 {
-	rv := objc.Send[float32](v_.ID, objc.Sel("preferredFrameRate"))
+func (v_ View) PreferredFrameRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("preferredFrameRate"))
 	return rv
 }
+
 
 // SetPreferredFrameRate sets the value of the preferredFrameRate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/preferredFrameRate
-func (v_ View) SetPreferredFrameRate(value float32) {
+func (v_ View) SetPreferredFrameRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredFrameRate:"), value)
 }
 // The animation frame rate that the view uses to render its scene.
@@ -261,6 +270,7 @@ func (v_ View) PreferredFramesPerSecond() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("preferredFramesPerSecond"))
 	return rv
 }
+
 
 // SetPreferredFramesPerSecond sets the value of the preferredFramesPerSecond property.
 // The animation frame rate that the view uses to render its scene.
@@ -277,6 +287,7 @@ func (v_ View) Scene() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("scene"))
 	return rv
 }
+
 // A Boolean value that indicates whether the view automatically culls non-visible nodes from the rendering tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/shouldCullNonVisibleNodes
@@ -284,6 +295,7 @@ func (v_ View) ShouldCullNonVisibleNodes() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("shouldCullNonVisibleNodes"))
 	return rv
 }
+
 
 // SetShouldCullNonVisibleNodes sets the value of the shouldCullNonVisibleNodes property.
 // A Boolean value that indicates whether the view automatically culls non-visible nodes from the rendering tree.
@@ -301,6 +313,7 @@ func (v_ View) ShowsDrawCount() bool {
 	return rv
 }
 
+
 // SetShowsDrawCount sets the value of the showsDrawCount property.
 // A Boolean value that indicates whether the view displays the number of drawing passes it needed to render the view.
 
@@ -316,6 +329,7 @@ func (v_ View) ShowsFPS() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("showsFPS"))
 	return rv
 }
+
 
 // SetShowsFPS sets the value of the showsFPS property.
 // A Boolean value that indicates whether the view displays a frame rate indicator.
@@ -333,6 +347,7 @@ func (v_ View) ShowsFields() bool {
 	return rv
 }
 
+
 // SetShowsFields sets the value of the showsFields property.
 // A Boolean value that indicates whether the view displays information about physics fields in the scene.
 
@@ -348,6 +363,7 @@ func (v_ View) ShowsNodeCount() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("showsNodeCount"))
 	return rv
 }
+
 
 // SetShowsNodeCount sets the value of the showsNodeCount property.
 // A Boolean value that indicates whether the view displays an overlay that shows physics bodies that are visible in the scene.
@@ -365,6 +381,7 @@ func (v_ View) ShowsPhysics() bool {
 	return rv
 }
 
+
 // SetShowsPhysics sets the value of the showsPhysics property.
 // A Boolean value that indicates whether the view displays physics-related debugging information.
 
@@ -380,6 +397,7 @@ func (v_ View) ShowsQuadCount() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("showsQuadCount"))
 	return rv
 }
+
 
 // SetShowsQuadCount sets the value of the showsQuadCount property.
 // A Boolean value that indicates whether the view displays the number of rectangles used to render the scene.

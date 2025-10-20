@@ -86,6 +86,7 @@ func (b_ BatchDeleteResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("result"))
 	return rv
 }
+
 // The data type of the request’s result value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteResult/resultType
@@ -93,5 +94,6 @@ func (b_ BatchDeleteResult) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
 	return rv
 }
+
 
 

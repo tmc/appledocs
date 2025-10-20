@@ -127,6 +127,7 @@ func (m_ Monitor) MonitoredIdentifiers() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("monitoredIdentifiers"))
 	return rv
 }
+
 // The name associated with the location monitor instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/name
@@ -134,5 +135,6 @@ func (m_ Monitor) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
 	return rv
 }
+
 
 

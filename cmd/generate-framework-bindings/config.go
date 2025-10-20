@@ -14,6 +14,8 @@ type Config struct {
 // FrameworkConfig represents configuration for a specific framework.
 type FrameworkConfig struct {
 	ExcludeTestExamples []string `yaml:"exclude_test_examples"`
+	Deprecated          bool     `yaml:"deprecated"`
+	DeprecationReason   string   `yaml:"deprecation_reason"`
 }
 
 var config *Config
@@ -39,6 +41,20 @@ func loadConfig() error {
 	}
 
 	return nil
+}
+
+// isFrameworkDeprecated checks if a framework is marked as deprecated.
+func isFrameworkDeprecated(framework string) bool {
+	if config == nil {
+		return false
+	}
+
+	frameworkConfig, ok := config.Frameworks[framework]
+	if !ok {
+		return false
+	}
+
+	return frameworkConfig.Deprecated
 }
 
 // shouldExcludeTestExample checks if a class should be excluded from test example generation.

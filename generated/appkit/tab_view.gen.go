@@ -214,6 +214,7 @@ func (t_ TabView) AllowsTruncatedLabels() bool {
 	return rv
 }
 
+
 // SetAllowsTruncatedLabels sets the value of the allowsTruncatedLabels property.
 // A Boolean value that indicates if the tab view allows truncating for labels that don’t fit on a tab.
 
@@ -229,6 +230,7 @@ func (t_ TabView) ContentRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("contentRect"))
 	return rv
 }
+
 // The size of the tab view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/controlSize
@@ -236,6 +238,7 @@ func (t_ TabView) ControlSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("controlSize"))
 	return rv
 }
+
 
 // SetControlSize sets the value of the controlSize property.
 // The size of the tab view.
@@ -253,6 +256,7 @@ func (t_ TabView) ControlTint() unsafe.Pointer {
 	return rv
 }
 
+
 // SetControlTint sets the value of the controlTint property.
 // The tab view’s control tint.
 
@@ -268,6 +272,7 @@ func (t_ TabView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The tab view’s delegate.
@@ -285,6 +290,7 @@ func (t_ TabView) DrawsBackground() bool {
 	return rv
 }
 
+
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean value that indicates if the tab view draws a background color when its type is .
 
@@ -301,6 +307,7 @@ func (t_ TabView) Font() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFont sets the value of the font property.
 // The font used for the tab view’s label text.
 
@@ -316,6 +323,7 @@ func (t_ TabView) MinimumSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("minimumSize"))
 	return rv
 }
+
 // The number of items in the tab view’s array of tab view items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/numberOfTabViewItems
@@ -323,6 +331,7 @@ func (t_ TabView) NumberOfTabViewItems() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfTabViewItems"))
 	return rv
 }
+
 // The tab view item for the currently selected tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectedTabViewItem
@@ -330,12 +339,14 @@ func (t_ TabView) SelectedTabViewItem() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedTabViewItem"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabPosition-swift.property
 func (t_ TabView) TabPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabPosition"))
 	return rv
 }
+
 
 // SetTabPosition sets the value of the tabPosition property.
 //
@@ -350,6 +361,7 @@ func (t_ TabView) TabViewBorderType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTabViewBorderType sets the value of the tabViewBorderType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewBorderType-swift.property
@@ -363,6 +375,7 @@ func (t_ TabView) TabViewItems() []__kindof NSTabViewItem {
 	rv := objc.Send[[]__kindof NSTabViewItem](t_.ID, objc.Sel("tabViewItems"))
 	return rv
 }
+
 
 // SetTabViewItems sets the value of the tabViewItems property.
 // The tab view’s array of tab view items.
@@ -379,6 +392,7 @@ func (t_ TabView) TabViewType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewType"))
 	return rv
 }
+
 
 // SetTabViewType sets the value of the tabViewType property.
 // The tab type to display the tabs.

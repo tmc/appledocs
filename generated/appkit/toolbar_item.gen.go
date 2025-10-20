@@ -87,6 +87,7 @@ func (t_ ToolbarItem) BackgroundTintColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBackgroundTintColor sets the value of the backgroundTintColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
@@ -99,6 +100,7 @@ func (t_ ToolbarItem) Hidden() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hidden"))
 	return rv
 }
+
 
 // SetHidden sets the value of the hidden property.
 //
@@ -113,6 +115,7 @@ func (t_ ToolbarItem) Navigational() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("navigational"))
 	return rv
 }
+
 
 // SetNavigational sets the value of the navigational property.
 // A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.

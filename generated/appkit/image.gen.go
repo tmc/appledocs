@@ -30,7 +30,7 @@ type _ImageClass struct {
 // An interface definition for the [Image] class.
 type IImage interface {
 	objectivec.IObject
-	BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer
+	BestRepresentationForDevice(deviceDescription objc.ID) unsafe.Pointer
 }
 
 // A high-level interface for manipulating image data.
@@ -84,7 +84,7 @@ func NewImage() Image {
 // Returns the best representation for the device with the specified characteristics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentationForDevice:
-func (i_ Image) BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer {
+func (i_ Image) BestRepresentationForDevice(deviceDescription objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
 	return rv
 }

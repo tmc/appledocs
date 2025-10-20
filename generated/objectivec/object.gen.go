@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Object] class.
@@ -40,20 +41,20 @@ type IObject interface {
 	AccessibilityElementAtIndex(index int) objc.ID
 	AccessibilityElementCount() int
 	AccessibilityElementIsFocused() bool
-	AccessibilityHitTest(point unsafe.Pointer) objc.ID
-	AccessibilityHitTestWithEvent(point unsafe.Pointer, event unsafe.Pointer) objc.ID
+	AccessibilityHitTest(point Point) objc.ID
+	AccessibilityHitTestWithEvent(point coregraphics.CGPoint, event unsafe.Pointer) objc.ID
 	AccessibilityIncrement()
 	AccessibilityLineEndPositionFromCurrentSelection() int
-	AccessibilityLineRangeForPosition(position int) unsafe.Pointer
+	AccessibilityLineRangeForPosition(position int) Range
 	AccessibilityLineStartPositionFromCurrentSelection() int
-	AccessibilityZoomInAtPoint(point unsafe.Pointer) bool
-	AccessibilityZoomOutAtPoint(point unsafe.Pointer) bool
+	AccessibilityZoomInAtPoint(point coregraphics.CGPoint) bool
+	AccessibilityZoomOutAtPoint(point coregraphics.CGPoint) bool
 	ActionProperty() unsafe.Pointer
 	ApplicationDelegateHandlesKey(sender unsafe.Pointer, key string) bool
 	AttemptRecoveryFromErrorOptionIndex(error unsafe.Pointer, recoveryOptionIndex uint) bool
 	AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error unsafe.Pointer, recoveryOptionIndex uint, delegate objc.ID, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer)
-	AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames unsafe.Pointer, record unsafe.Pointer, comparisonRecords unsafe.Pointer, firstLineAttributes unsafe.Pointer, secondLineAttributes unsafe.Pointer) unsafe.Pointer
-	AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames unsafe.Pointer, record unsafe.Pointer, comparisonRecords unsafe.Pointer, defaultAttributes unsafe.Pointer) unsafe.Pointer
+	AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, firstLineAttributes objc.ID, secondLineAttributes objc.ID) unsafe.Pointer
+	AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, defaultAttributes objc.ID) unsafe.Pointer
 	AuthorizationViewCreatedAuthorization(view unsafe.Pointer)
 	AuthorizationViewDidAuthorize(view unsafe.Pointer)
 	AuthorizationViewDidDeauthorize(view unsafe.Pointer)
@@ -62,12 +63,12 @@ type IObject interface {
 	AuthorizationViewShouldDeauthorize(view unsafe.Pointer) bool
 	AwakeFromNib()
 	BeginPreviewPanelControl(panel unsafe.Pointer)
-	BrowserAccessibilityAttributedValueInRange(range_ unsafe.Pointer) unsafe.Pointer
+	BrowserAccessibilityAttributedValueInRange(range_ Range) unsafe.Pointer
 	BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int)
 	BrowserAccessibilityInsertTextAtCursor(text string)
-	BrowserAccessibilitySelectedTextRange() unsafe.Pointer
-	BrowserAccessibilitySetSelectedTextRange(range_ unsafe.Pointer)
-	BrowserAccessibilityValueInRange(range_ unsafe.Pointer) unsafe.Pointer
+	BrowserAccessibilitySelectedTextRange() Range
+	BrowserAccessibilitySetSelectedTextRange(range_ Range)
+	BrowserAccessibilityValueInRange(range_ Range) unsafe.Pointer
 	BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool
 	BurnProgressPanelDidFinish(aNotification unsafe.Pointer)
 	BurnProgressPanelWillBegin(aNotification unsafe.Pointer)
@@ -82,7 +83,7 @@ type IObject interface {
 	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.ID, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
 	ComposedString(sender objc.ID) objc.ID
 	CompositionParameterViewDidChangeParameterWithKey(parameterView unsafe.Pointer, portKey string)
-	CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes unsafe.Pointer) bool
+	CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes objc.ID) bool
 	CompositionPickerViewDidSelectComposition(pickerView unsafe.Pointer, composition unsafe.Pointer)
 	CompositionPickerViewDidStartAnimating(pickerView unsafe.Pointer)
 	CompositionPickerViewWillStopAnimating(pickerView unsafe.Pointer)
@@ -94,10 +95,10 @@ type IObject interface {
 	DidCommandBySelectorClient(aSelector objc.SEL, sender objc.ID) bool
 	DiscardEditing()
 	DoesContain(object objc.ID) bool
-	DraggedImageBeganAt(image unsafe.Pointer, screenPoint unsafe.Pointer)
-	DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint unsafe.Pointer, flag bool)
-	DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint unsafe.Pointer, operation unsafe.Pointer)
-	DraggedImageMovedTo(image unsafe.Pointer, screenPoint unsafe.Pointer)
+	DraggedImageBeganAt(image unsafe.Pointer, screenPoint Point)
+	DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint Point, flag bool)
+	DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint Point, operation unsafe.Pointer)
+	DraggedImageMovedTo(image unsafe.Pointer, screenPoint Point)
 	DraggingSourceOperationMaskForLocal(flag bool) unsafe.Pointer
 	EndPreviewPanelControl(panel unsafe.Pointer)
 	EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool
@@ -105,20 +106,20 @@ type IObject interface {
 	EraseProgressPanelWillBegin(aNotification unsafe.Pointer)
 	ExceptionHandlerShouldHandleExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool
 	ExceptionHandlerShouldLogExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool
-	FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo unsafe.Pointer) bool
+	FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo objc.ID) bool
 	FileManagerWillProcessPath(fm unsafe.Pointer, path string)
 	FileTransferServicesAbortCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
 	FileTransferServicesConnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
 	FileTransferServicesCopyRemoteFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID)
 	FileTransferServicesCreateFolderCompleteErrorFolder(inServices unsafe.Pointer, inError unsafe.Pointer, inFolderName string)
 	FileTransferServicesDisconnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
 	FileTransferServicesFilePreparationCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
 	FileTransferServicesPathChangeCompleteErrorFinalPath(inServices unsafe.Pointer, inError unsafe.Pointer, inPath string)
 	FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices unsafe.Pointer, inError unsafe.Pointer, inItemName string)
-	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing unsafe.Pointer)
+	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing objc.ID)
 	FileTransferServicesSendFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer)
+	FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID)
 	GetL2CAPChannelRef() unsafe.Pointer
 	GetOpenGLBufferContextPixelFormat(contextOut unsafe.Pointer, pixelFormatOut unsafe.Pointer)
 	GetPixelBufferPixelFormat(pixelFormatOut unsafe.Pointer)
@@ -204,12 +205,12 @@ type IObject interface {
 	SetupPanelDeviceSelectionChanged(aNotification unsafe.Pointer)
 	SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool
 	ShouldEnableActionForPersonIdentifier(person unsafe.Pointer, identifier string) bool
-	TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows unsafe.Pointer, pboard unsafe.Pointer) bool
+	TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows objc.ID, pboard unsafe.Pointer) bool
 	TitleForPersonIdentifier(person unsafe.Pointer, identifier string) unsafe.Pointer
 	ValidModesForFontPanel(fontPanel unsafe.Pointer) unsafe.Pointer
 	ValidateMenuItem(menuItem unsafe.Pointer) bool
 	ValidateToolbarItem(item unsafe.Pointer) bool
-	ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
+	ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point Point, data unsafe.Pointer) unsafe.Pointer
 	WorkflowControllerDidError(controller unsafe.Pointer, error unsafe.Pointer)
 	WorkflowControllerDidRunAction(controller unsafe.Pointer, action unsafe.Pointer)
 	WorkflowControllerWillRunAction(controller unsafe.Pointer, action unsafe.Pointer)
@@ -513,14 +514,14 @@ func (o_ Object) AccessibilityElementIsFocused() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHitTest(_:)
-func (o_ Object) AccessibilityHitTest(point unsafe.Pointer) objc.ID {
+func (o_ Object) AccessibilityHitTest(point Point) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:"), point)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHitTest(_:event:)
-func (o_ Object) AccessibilityHitTestWithEvent(point unsafe.Pointer, event unsafe.Pointer) objc.ID {
+func (o_ Object) AccessibilityHitTestWithEvent(point coregraphics.CGPoint, event unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:withEvent:"), point, event)
 	return rv
 }
@@ -541,8 +542,8 @@ func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineRange(forPosition:)
-func (o_ Object) AccessibilityLineRangeForPosition(position int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
+func (o_ Object) AccessibilityLineRangeForPosition(position int) Range {
+	rv := objc.Send[Range](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
 	return rv
 }
 
@@ -556,7 +557,7 @@ func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() int {
 // Zooms in on the content at the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityZoomIn(at:)
-func (o_ Object) AccessibilityZoomInAtPoint(point unsafe.Pointer) bool {
+func (o_ Object) AccessibilityZoomInAtPoint(point coregraphics.CGPoint) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityZoomInAtPoint:"), point)
 	return rv
 }
@@ -564,7 +565,7 @@ func (o_ Object) AccessibilityZoomInAtPoint(point unsafe.Pointer) bool {
 // Zooms out from the content at the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityZoomOut(at:)
-func (o_ Object) AccessibilityZoomOutAtPoint(point unsafe.Pointer) bool {
+func (o_ Object) AccessibilityZoomOutAtPoint(point coregraphics.CGPoint) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityZoomOutAtPoint:"), point)
 	return rv
 }
@@ -602,14 +603,14 @@ func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorCo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attributedStringForIdentityPropertiesWithNames:inRecord:comparisonRecords:firstLineAttributes:secondLineAttributes:
-func (o_ Object) AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames unsafe.Pointer, record unsafe.Pointer, comparisonRecords unsafe.Pointer, firstLineAttributes unsafe.Pointer, secondLineAttributes unsafe.Pointer) unsafe.Pointer {
+func (o_ Object) AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, firstLineAttributes objc.ID, secondLineAttributes objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("attributedStringForIdentityPropertiesWithNames:inRecord:comparisonRecords:firstLineAttributes:secondLineAttributes:"), propertyNames, record, comparisonRecords, firstLineAttributes, secondLineAttributes)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attributedStringForPropertiesWithNames:inRecord:comparisonRecords:defaultAttributes:
-func (o_ Object) AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames unsafe.Pointer, record unsafe.Pointer, comparisonRecords unsafe.Pointer, defaultAttributes unsafe.Pointer) unsafe.Pointer {
+func (o_ Object) AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, defaultAttributes objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("attributedStringForPropertiesWithNames:inRecord:comparisonRecords:defaultAttributes:"), propertyNames, record, comparisonRecords, defaultAttributes)
 	return rv
 }
@@ -681,7 +682,7 @@ func (o_ Object) BeginPreviewPanelControl(panel unsafe.Pointer) {
 // Returns the value for this element within the given range, as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityAttributedValue(in:)
-func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ unsafe.Pointer) unsafe.Pointer {
+func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ Range) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityAttributedValueInRange:"), range_)
 	return rv
 }
@@ -703,22 +704,22 @@ func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text string) {
 // Returns the range of selected text in the element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySelectedTextRange()
-func (o_ Object) BrowserAccessibilitySelectedTextRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
+func (o_ Object) BrowserAccessibilitySelectedTextRange() Range {
+	rv := objc.Send[Range](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
 	return rv
 }
 
 // Updates the element’s selected text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySetSelectedTextRange(_:)
-func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ unsafe.Pointer) {
+func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ Range) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySetSelectedTextRange:"), range_)
 }
 
 // Returns this element’s value in the given range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityValue(in:)
-func (o_ Object) BrowserAccessibilityValueInRange(range_ unsafe.Pointer) unsafe.Pointer {
+func (o_ Object) BrowserAccessibilityValueInRange(range_ Range) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityValueInRange:"), range_)
 	return rv
 }
@@ -831,7 +832,7 @@ func (o_ Object) CompositionParameterViewDidChangeParameterWithKey(parameterView
 // Allows you to define which composition parameters are visible in the user interface when the composition parameter view refreshes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionParameterView(_:shouldDisplayParameterWithKey:attributes:)
-func (o_ Object) CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes unsafe.Pointer) bool {
+func (o_ Object) CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes objc.ID) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("compositionParameterView:shouldDisplayParameterWithKey:attributes:"), parameterView, objc.String(portKey), portAttributes)
 	return rv
 }
@@ -925,25 +926,25 @@ func (o_ Object) DoesNotRecognizeSelector(aSelector objc.SEL) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:beganAt:
-func (o_ Object) DraggedImageBeganAt(image unsafe.Pointer, screenPoint unsafe.Pointer) {
+func (o_ Object) DraggedImageBeganAt(image unsafe.Pointer, screenPoint Point) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:beganAt:"), image, screenPoint)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:endedAt:deposited:
-func (o_ Object) DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint unsafe.Pointer, flag bool) {
+func (o_ Object) DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint Point, flag bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:endedAt:deposited:"), image, screenPoint, flag)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:endedAt:operation:
-func (o_ Object) DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint unsafe.Pointer, operation unsafe.Pointer) {
+func (o_ Object) DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint Point, operation unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:endedAt:operation:"), image, screenPoint, operation)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:movedTo:
-func (o_ Object) DraggedImageMovedTo(image unsafe.Pointer, screenPoint unsafe.Pointer) {
+func (o_ Object) DraggedImageMovedTo(image unsafe.Pointer, screenPoint Point) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:movedTo:"), image, screenPoint)
 }
 
@@ -1001,7 +1002,7 @@ func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender unsafe.Pointer, e
 // An object sends this message to its handler for each error it encounters when copying, moving, removing, or linking files or directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileManager(_:shouldProceedAfterError:)
-func (o_ Object) FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo unsafe.Pointer) bool {
+func (o_ Object) FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo objc.ID) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("fileManager:shouldProceedAfterError:"), fm, errorInfo)
 	return rv
 }
@@ -1033,7 +1034,7 @@ func (o_ Object) FileTransferServicesCopyRemoteFileCompleteError(inServices unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileProgress(_:transferProgress:)
-func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer) {
+func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileProgress:transferProgress:"), inServices, inProgressDescription)
 }
 
@@ -1069,7 +1070,7 @@ func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServic
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRetrieveFolderListingComplete(_:error:listing:)
-func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing unsafe.Pointer) {
+func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRetrieveFolderListingComplete:error:listing:"), inServices, inError, inListing)
 }
 
@@ -1081,7 +1082,7 @@ func (o_ Object) FileTransferServicesSendFileCompleteError(inServices unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileProgress(_:transferProgress:)
-func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer) {
+func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileProgress:transferProgress:"), inServices, inProgressDescription)
 }
 
@@ -1800,7 +1801,7 @@ func (o_ Object) ShouldEnableActionForPersonIdentifier(person unsafe.Pointer, id
 // Writes the specified rows to the specified pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/tableView:writeRows:toPasteboard:
-func (o_ Object) TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows unsafe.Pointer, pboard unsafe.Pointer) bool {
+func (o_ Object) TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows objc.ID, pboard unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("tableView:writeRows:toPasteboard:"), tableView, rows, pboard)
 	return rv
 }
@@ -1856,7 +1857,7 @@ func (o_ Object) ValueForKeyPath(keyPath string) objc.ID {
 // Returns the tool tip string to be displayed due to the cursor pausing at location within the tool tip rectangle identified by in the view .
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/view:stringForToolTip:point:userData:
-func (o_ Object) ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
+func (o_ Object) ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point Point, data unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("view:stringForToolTip:point:userData:"), view, tag, point, data)
 	return rv
 }
@@ -1917,6 +1918,7 @@ func (o_ Object) AccessibilityActivateBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityActivateBlock sets the value of the accessibilityActivateBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivateBlock
@@ -1925,15 +1927,16 @@ func (o_ Object) SetAccessibilityActivateBlock(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPoint
-func (o_ Object) AccessibilityActivationPoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityActivationPoint"))
+func (o_ Object) AccessibilityActivationPoint() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](o_.ID, objc.Sel("accessibilityActivationPoint"))
 	return rv
 }
+
 
 // SetAccessibilityActivationPoint sets the value of the accessibilityActivationPoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPoint
-func (o_ Object) SetAccessibilityActivationPoint(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityActivationPoint(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityActivationPoint:"), value)
 }
 //
@@ -1942,6 +1945,7 @@ func (o_ Object) AccessibilityActivationPointBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityActivationPointBlock"))
 	return rv
 }
+
 
 // SetAccessibilityActivationPointBlock sets the value of the accessibilityActivationPointBlock property.
 //
@@ -1956,6 +1960,7 @@ func (o_ Object) AccessibilityAttributedHint() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityAttributedHint sets the value of the accessibilityAttributedHint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHint
@@ -1968,6 +1973,7 @@ func (o_ Object) AccessibilityAttributedHintBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedHintBlock"))
 	return rv
 }
+
 
 // SetAccessibilityAttributedHintBlock sets the value of the accessibilityAttributedHintBlock property.
 //
@@ -1982,6 +1988,7 @@ func (o_ Object) AccessibilityAttributedLabel() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityAttributedLabel sets the value of the accessibilityAttributedLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabel
@@ -1994,6 +2001,7 @@ func (o_ Object) AccessibilityAttributedLabelBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedLabelBlock"))
 	return rv
 }
+
 
 // SetAccessibilityAttributedLabelBlock sets the value of the accessibilityAttributedLabelBlock property.
 //
@@ -2008,6 +2016,7 @@ func (o_ Object) AccessibilityAttributedUserInputLabels() []unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityAttributedUserInputLabels sets the value of the accessibilityAttributedUserInputLabels property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabels
@@ -2020,6 +2029,7 @@ func (o_ Object) AccessibilityAttributedUserInputLabelsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedUserInputLabelsBlock"))
 	return rv
 }
+
 
 // SetAccessibilityAttributedUserInputLabelsBlock sets the value of the accessibilityAttributedUserInputLabelsBlock property.
 //
@@ -2034,6 +2044,7 @@ func (o_ Object) AccessibilityAttributedValue() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityAttributedValue sets the value of the accessibilityAttributedValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValue
@@ -2046,6 +2057,7 @@ func (o_ Object) AccessibilityAttributedValueBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedValueBlock"))
 	return rv
 }
+
 
 // SetAccessibilityAttributedValueBlock sets the value of the accessibilityAttributedValueBlock property.
 //
@@ -2060,6 +2072,7 @@ func (o_ Object) AccessibilityContainerType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityContainerType sets the value of the accessibilityContainerType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityContainerType
@@ -2072,6 +2085,7 @@ func (o_ Object) AccessibilityContainerTypeBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityContainerTypeBlock"))
 	return rv
 }
+
 
 // SetAccessibilityContainerTypeBlock sets the value of the accessibilityContainerTypeBlock property.
 //
@@ -2086,6 +2100,7 @@ func (o_ Object) AccessibilityCustomActions() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomActions"))
 	return rv
 }
+
 
 // SetAccessibilityCustomActions sets the value of the accessibilityCustomActions property.
 // An array of custom actions to display along with the built-in actions.
@@ -2102,6 +2117,7 @@ func (o_ Object) AccessibilityCustomActionsBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityCustomActionsBlock sets the value of the accessibilityCustomActionsBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActionsBlock
@@ -2114,6 +2130,7 @@ func (o_ Object) AccessibilityCustomRotors() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomRotors"))
 	return rv
 }
+
 
 // SetAccessibilityCustomRotors sets the value of the accessibilityCustomRotors property.
 //
@@ -2128,6 +2145,7 @@ func (o_ Object) AccessibilityCustomRotorsBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityCustomRotorsBlock sets the value of the accessibilityCustomRotorsBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotorsBlock
@@ -2140,6 +2158,7 @@ func (o_ Object) AccessibilityDecrementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityDecrementBlock"))
 	return rv
 }
+
 
 // SetAccessibilityDecrementBlock sets the value of the accessibilityDecrementBlock property.
 //
@@ -2154,6 +2173,7 @@ func (o_ Object) AccessibilityDirectTouchOptions() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityDirectTouchOptions sets the value of the accessibilityDirectTouchOptions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDirectTouchOptions
@@ -2166,6 +2186,7 @@ func (o_ Object) AccessibilityElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElements"))
 	return rv
 }
+
 
 // SetAccessibilityElements sets the value of the accessibilityElements property.
 //
@@ -2180,6 +2201,7 @@ func (o_ Object) AccessibilityElementsBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityElementsBlock sets the value of the accessibilityElementsBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsBlock
@@ -2192,6 +2214,7 @@ func (o_ Object) AccessibilityElementsHidden() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityElementsHidden"))
 	return rv
 }
+
 
 // SetAccessibilityElementsHidden sets the value of the accessibilityElementsHidden property.
 //
@@ -2206,6 +2229,7 @@ func (o_ Object) AccessibilityElementsHiddenBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityElementsHiddenBlock sets the value of the accessibilityElementsHiddenBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsHiddenBlock
@@ -2218,6 +2242,7 @@ func (o_ Object) AccessibilityExpandedStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityExpandedStatus"))
 	return rv
 }
+
 
 // SetAccessibilityExpandedStatus sets the value of the accessibilityExpandedStatus property.
 //
@@ -2232,6 +2257,7 @@ func (o_ Object) AccessibilityExpandedStatusBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityExpandedStatusBlock sets the value of the accessibilityExpandedStatusBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatusBlock
@@ -2244,17 +2270,19 @@ func (o_ Object) AccessibilityFocusedUIElement() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityFocusedUIElement"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrame
-func (o_ Object) AccessibilityFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityFrame"))
+func (o_ Object) AccessibilityFrame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](o_.ID, objc.Sel("accessibilityFrame"))
 	return rv
 }
+
 
 // SetAccessibilityFrame sets the value of the accessibilityFrame property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrame
-func (o_ Object) SetAccessibilityFrame(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityFrame:"), value)
 }
 //
@@ -2263,6 +2291,7 @@ func (o_ Object) AccessibilityFrameBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityFrameBlock"))
 	return rv
 }
+
 
 // SetAccessibilityFrameBlock sets the value of the accessibilityFrameBlock property.
 //
@@ -2277,6 +2306,7 @@ func (o_ Object) AccessibilityHeaderElements() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityHeaderElements sets the value of the accessibilityHeaderElements property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElements
@@ -2289,6 +2319,7 @@ func (o_ Object) AccessibilityHeaderElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHeaderElementsBlock"))
 	return rv
 }
+
 
 // SetAccessibilityHeaderElementsBlock sets the value of the accessibilityHeaderElementsBlock property.
 //
@@ -2303,6 +2334,7 @@ func (o_ Object) AccessibilityHint() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityHint sets the value of the accessibilityHint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHint
@@ -2315,6 +2347,7 @@ func (o_ Object) AccessibilityHintBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHintBlock"))
 	return rv
 }
+
 
 // SetAccessibilityHintBlock sets the value of the accessibilityHintBlock property.
 //
@@ -2329,6 +2362,7 @@ func (o_ Object) AccessibilityIdentifierBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityIdentifierBlock sets the value of the accessibilityIdentifierBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIdentifierBlock
@@ -2341,6 +2375,7 @@ func (o_ Object) AccessibilityIncrementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityIncrementBlock"))
 	return rv
 }
+
 
 // SetAccessibilityIncrementBlock sets the value of the accessibilityIncrementBlock property.
 //
@@ -2355,6 +2390,7 @@ func (o_ Object) AccessibilityLabel() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityLabel sets the value of the accessibilityLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabel
@@ -2367,6 +2403,7 @@ func (o_ Object) AccessibilityLabelBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLabelBlock"))
 	return rv
 }
+
 
 // SetAccessibilityLabelBlock sets the value of the accessibilityLabelBlock property.
 //
@@ -2381,6 +2418,7 @@ func (o_ Object) AccessibilityLanguage() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityLanguage sets the value of the accessibilityLanguage property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguage
@@ -2393,6 +2431,7 @@ func (o_ Object) AccessibilityLanguageBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLanguageBlock"))
 	return rv
 }
+
 
 // SetAccessibilityLanguageBlock sets the value of the accessibilityLanguageBlock property.
 //
@@ -2407,6 +2446,7 @@ func (o_ Object) AccessibilityMagicTapBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityMagicTapBlock sets the value of the accessibilityMagicTapBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityMagicTapBlock
@@ -2419,6 +2459,7 @@ func (o_ Object) AccessibilityNavigationStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNavigationStyle"))
 	return rv
 }
+
 
 // SetAccessibilityNavigationStyle sets the value of the accessibilityNavigationStyle property.
 //
@@ -2433,6 +2474,7 @@ func (o_ Object) AccessibilityNavigationStyleBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityNavigationStyleBlock sets the value of the accessibilityNavigationStyleBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNavigationStyleBlock
@@ -2445,6 +2487,7 @@ func (o_ Object) AccessibilityNextTextNavigationElement() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityNextTextNavigationElement"))
 	return rv
 }
+
 
 // SetAccessibilityNextTextNavigationElement sets the value of the accessibilityNextTextNavigationElement property.
 //
@@ -2459,6 +2502,7 @@ func (o_ Object) AccessibilityNextTextNavigationElementBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityNextTextNavigationElementBlock sets the value of the accessibilityNextTextNavigationElementBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElementBlock
@@ -2472,12 +2516,14 @@ func (o_ Object) AccessibilityNotifiesWhenDestroyed() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityNotifiesWhenDestroyed"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPath
 func (o_ Object) AccessibilityPath() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPath"))
 	return rv
 }
+
 
 // SetAccessibilityPath sets the value of the accessibilityPath property.
 //
@@ -2492,6 +2538,7 @@ func (o_ Object) AccessibilityPathBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityPathBlock sets the value of the accessibilityPathBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPathBlock
@@ -2504,6 +2551,7 @@ func (o_ Object) AccessibilityPerformEscapeBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPerformEscapeBlock"))
 	return rv
 }
+
 
 // SetAccessibilityPerformEscapeBlock sets the value of the accessibilityPerformEscapeBlock property.
 //
@@ -2518,6 +2566,7 @@ func (o_ Object) AccessibilityPreviousTextNavigationElement() objc.ID {
 	return rv
 }
 
+
 // SetAccessibilityPreviousTextNavigationElement sets the value of the accessibilityPreviousTextNavigationElement property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElement
@@ -2530,6 +2579,7 @@ func (o_ Object) AccessibilityPreviousTextNavigationElementBlock() unsafe.Pointe
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElementBlock"))
 	return rv
 }
+
 
 // SetAccessibilityPreviousTextNavigationElementBlock sets the value of the accessibilityPreviousTextNavigationElementBlock property.
 //
@@ -2544,6 +2594,7 @@ func (o_ Object) AccessibilityRespondsToUserInteraction() bool {
 	return rv
 }
 
+
 // SetAccessibilityRespondsToUserInteraction sets the value of the accessibilityRespondsToUserInteraction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityRespondsToUserInteraction
@@ -2556,6 +2607,7 @@ func (o_ Object) AccessibilityRespondsToUserInteractionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityRespondsToUserInteractionBlock"))
 	return rv
 }
+
 
 // SetAccessibilityRespondsToUserInteractionBlock sets the value of the accessibilityRespondsToUserInteractionBlock property.
 //
@@ -2570,6 +2622,7 @@ func (o_ Object) AccessibilityShouldGroupAccessibilityChildrenBlock() unsafe.Poi
 	return rv
 }
 
+
 // SetAccessibilityShouldGroupAccessibilityChildrenBlock sets the value of the accessibilityShouldGroupAccessibilityChildrenBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityShouldGroupAccessibilityChildrenBlock
@@ -2582,6 +2635,7 @@ func (o_ Object) AccessibilityTextInputResponder() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextInputResponder"))
 	return rv
 }
+
 
 // SetAccessibilityTextInputResponder sets the value of the accessibilityTextInputResponder property.
 //
@@ -2596,6 +2650,7 @@ func (o_ Object) AccessibilityTextInputResponderBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityTextInputResponderBlock sets the value of the accessibilityTextInputResponderBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponderBlock
@@ -2608,6 +2663,7 @@ func (o_ Object) AccessibilityTextualContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextualContext"))
 	return rv
 }
+
 
 // SetAccessibilityTextualContext sets the value of the accessibilityTextualContext property.
 //
@@ -2622,6 +2678,7 @@ func (o_ Object) AccessibilityTextualContextBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityTextualContextBlock sets the value of the accessibilityTextualContextBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextualContextBlock
@@ -2634,6 +2691,7 @@ func (o_ Object) AccessibilityTraits() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTraits"))
 	return rv
 }
+
 
 // SetAccessibilityTraits sets the value of the accessibilityTraits property.
 //
@@ -2648,6 +2706,7 @@ func (o_ Object) AccessibilityTraitsBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityTraitsBlock sets the value of the accessibilityTraitsBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraitsBlock
@@ -2660,6 +2719,7 @@ func (o_ Object) AccessibilityUserInputLabels() []string {
 	rv := objc.Send[[]string](o_.ID, objc.Sel("accessibilityUserInputLabels"))
 	return rv
 }
+
 
 // SetAccessibilityUserInputLabels sets the value of the accessibilityUserInputLabels property.
 //
@@ -2674,6 +2734,7 @@ func (o_ Object) AccessibilityUserInputLabelsBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityUserInputLabelsBlock sets the value of the accessibilityUserInputLabelsBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityUserInputLabelsBlock
@@ -2686,6 +2747,7 @@ func (o_ Object) AccessibilityValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityValue"))
 	return rv
 }
+
 
 // SetAccessibilityValue sets the value of the accessibilityValue property.
 //
@@ -2700,6 +2762,7 @@ func (o_ Object) AccessibilityValueBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityValueBlock sets the value of the accessibilityValueBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValueBlock
@@ -2712,6 +2775,7 @@ func (o_ Object) AccessibilityViewIsModal() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityViewIsModal"))
 	return rv
 }
+
 
 // SetAccessibilityViewIsModal sets the value of the accessibilityViewIsModal property.
 //
@@ -2726,6 +2790,7 @@ func (o_ Object) AccessibilityViewIsModalBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessibilityViewIsModalBlock sets the value of the accessibilityViewIsModalBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityViewIsModalBlock
@@ -2739,6 +2804,7 @@ func (o_ Object) AttributeKeys() []string {
 	rv := objc.Send[[]string](o_.ID, objc.Sel("attributeKeys"))
 	return rv
 }
+
 // A proxy for the receiving object
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/autoContentAccessingProxy
@@ -2746,12 +2812,14 @@ func (o_ Object) AutoContentAccessingProxy() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("autoContentAccessingProxy"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElements
 func (o_ Object) AutomationElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("automationElements"))
 	return rv
 }
+
 
 // SetAutomationElements sets the value of the automationElements property.
 //
@@ -2766,6 +2834,7 @@ func (o_ Object) AutomationElementsBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAutomationElementsBlock sets the value of the automationElementsBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElementsBlock
@@ -2779,6 +2848,7 @@ func (o_ Object) BrowserAccessibilityContainerType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityContainerType"))
 	return rv
 }
+
 
 // SetBrowserAccessibilityContainerType sets the value of the browserAccessibilityContainerType property.
 // The kind of container that contains this element.
@@ -2796,6 +2866,7 @@ func (o_ Object) BrowserAccessibilityCurrentStatus() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBrowserAccessibilityCurrentStatus sets the value of the browserAccessibilityCurrentStatus property.
 // A string that’s the element’s value for aria-current.
 
@@ -2811,6 +2882,7 @@ func (o_ Object) BrowserAccessibilityHasDOMFocus() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityHasDOMFocus"))
 	return rv
 }
+
 
 // SetBrowserAccessibilityHasDOMFocus sets the value of the browserAccessibilityHasDOMFocus property.
 // A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
@@ -2828,6 +2900,7 @@ func (o_ Object) BrowserAccessibilityIsRequired() bool {
 	return rv
 }
 
+
 // SetBrowserAccessibilityIsRequired sets the value of the browserAccessibilityIsRequired property.
 // A Boolean value that’s the element’s value for aria-required.
 
@@ -2843,6 +2916,7 @@ func (o_ Object) BrowserAccessibilityPressedState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityPressedState"))
 	return rv
 }
+
 
 // SetBrowserAccessibilityPressedState sets the value of the browserAccessibilityPressedState property.
 // The element’s value for aria-pressed.
@@ -2860,6 +2934,7 @@ func (o_ Object) BrowserAccessibilityRoleDescription() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBrowserAccessibilityRoleDescription sets the value of the browserAccessibilityRoleDescription property.
 // A string that describes the element’s role for assistive technologies.
 
@@ -2876,6 +2951,7 @@ func (o_ Object) BrowserAccessibilitySortDirection() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBrowserAccessibilitySortDirection sets the value of the browserAccessibilitySortDirection property.
 // A string that’s the element’s value for aria-sort.
 
@@ -2891,6 +2967,7 @@ func (o_ Object) ClassCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("classCode"))
 	return rv
 }
+
 // An object containing information about the attributes and relationships of the receiver’s class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classDescription
@@ -2898,6 +2975,7 @@ func (o_ Object) ClassDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("classDescription"))
 	return rv
 }
+
 // The class to substitute for the receiver’s own class during archiving.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForArchiver
@@ -2905,6 +2983,7 @@ func (o_ Object) ClassForArchiver() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForArchiver"))
 	return rv
 }
+
 // Overridden by subclasses to substitute a class other than its own during coding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForCoder
@@ -2912,6 +2991,7 @@ func (o_ Object) ClassForCoder() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForCoder"))
 	return rv
 }
+
 // Subclasses to substitute a new class for instances during keyed archiving.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForKeyedArchiver
@@ -2919,6 +2999,7 @@ func (o_ Object) ClassForKeyedArchiver() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForKeyedArchiver"))
 	return rv
 }
+
 // Class to substitute for the receiver in distribution encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForPortCoder
@@ -2926,6 +3007,7 @@ func (o_ Object) ClassForPortCoder() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForPortCoder"))
 	return rv
 }
+
 // A string containing the name of the class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/className
@@ -2933,12 +3015,14 @@ func (o_ Object) ClassName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("className"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElement
 func (o_ Object) IsAccessibilityElement() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAccessibilityElement"))
 	return rv
 }
+
 
 // SetIsAccessibilityElement sets the value of the isAccessibilityElement property.
 //
@@ -2953,6 +3037,7 @@ func (o_ Object) IsAccessibilityElementBlock() unsafe.Pointer {
 	return rv
 }
 
+
 // SetIsAccessibilityElementBlock sets the value of the isAccessibilityElementBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElementBlock
@@ -2965,6 +3050,7 @@ func (o_ Object) Selectable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("selectable"))
 	return rv
 }
+
 // Returns an object specifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectSpecifier
@@ -2972,6 +3058,7 @@ func (o_ Object) ObjectSpecifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("objectSpecifier"))
 	return rv
 }
+
 // An -keyed dictionary of the receiver’s scriptable properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingProperties
@@ -2979,6 +3066,7 @@ func (o_ Object) ScriptingProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("scriptingProperties"))
 	return rv
 }
+
 
 // SetScriptingProperties sets the value of the scriptingProperties property.
 // An -keyed dictionary of the receiver’s scriptable properties.
@@ -2995,6 +3083,7 @@ func (o_ Object) ShouldGroupAccessibilityChildren() bool {
 	return rv
 }
 
+
 // SetShouldGroupAccessibilityChildren sets the value of the shouldGroupAccessibilityChildren property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/shouldGroupAccessibilityChildren
@@ -3008,6 +3097,7 @@ func (o_ Object) ToManyRelationshipKeys() []string {
 	rv := objc.Send[[]string](o_.ID, objc.Sel("toManyRelationshipKeys"))
 	return rv
 }
+
 // The keys for the to-one relationship properties of the receiver, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/toOneRelationshipKeys
@@ -3015,4 +3105,5 @@ func (o_ Object) ToOneRelationshipKeys() []string {
 	rv := objc.Send[[]string](o_.ID, objc.Sel("toOneRelationshipKeys"))
 	return rv
 }
+
 

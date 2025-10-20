@@ -89,6 +89,7 @@ func (w_ WindowController) Window() unsafe.Pointer {
 	return rv
 }
 
+
 // SetWindow sets the value of the window property.
 // The window owned by the receiver.
 

@@ -107,6 +107,7 @@ func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("columnCount"))
 	return rv
 }
+
 // The error correction version of the Data Matrix code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-swift.property
@@ -114,6 +115,7 @@ func (d_ DataMatrixCodeDescriptor) EccVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("eccVersion"))
 	return rv
 }
+
 // The error-corrected payload containing the data encoded in the Data Matrix code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/errorCorrectedPayload-swift.property
@@ -121,6 +123,7 @@ func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
+
 // The number of rows in the Data Matrix code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/rowCount-swift.property
@@ -128,4 +131,5 @@ func (d_ DataMatrixCodeDescriptor) RowCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("rowCount"))
 	return rv
 }
+
 

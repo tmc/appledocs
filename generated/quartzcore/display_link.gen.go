@@ -96,6 +96,7 @@ func (d_ DisplayLink) PreferredFrameRateRange() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPreferredFrameRateRange sets the value of the preferredFrameRateRange property.
 // A range of frequencies your app allows for frame updates, affecting how often the system invokes your delegate’s callback.
 

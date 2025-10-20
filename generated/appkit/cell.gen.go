@@ -516,6 +516,7 @@ func (c_ Cell) AcceptsFirstResponder() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("acceptsFirstResponder"))
 	return rv
 }
+
 // The action performed by the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/action
@@ -523,6 +524,7 @@ func (c_ Cell) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](c_.ID, objc.Sel("action"))
 	return rv
 }
+
 
 // SetAction sets the value of the action property.
 // The action performed by the cell.
@@ -540,6 +542,7 @@ func (c_ Cell) Alignment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAlignment sets the value of the alignment property.
 // The alignment of the cell’s text.
 
@@ -555,6 +558,7 @@ func (c_ Cell) AllowsEditingTextAttributes() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsEditingTextAttributes"))
 	return rv
 }
+
 
 // SetAllowsEditingTextAttributes sets the value of the allowsEditingTextAttributes property.
 // A Boolean value indicating whether the cell allows the editing of its content’s text attributes by the user.
@@ -572,6 +576,7 @@ func (c_ Cell) AllowsMixedState() bool {
 	return rv
 }
 
+
 // SetAllowsMixedState sets the value of the allowsMixedState property.
 // A Boolean value indicating whether the cell supports three states instead of two.
 
@@ -587,6 +592,7 @@ func (c_ Cell) AllowsUndo() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsUndo"))
 	return rv
 }
+
 
 // SetAllowsUndo sets the value of the allowsUndo property.
 // A Boolean value indicating whether the cell assumes responsibility for undo operations.
@@ -604,6 +610,7 @@ func (c_ Cell) AttributedStringValue() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAttributedStringValue sets the value of the attributedStringValue property.
 // The cell’s value as an attributed string.
 
@@ -619,6 +626,7 @@ func (c_ Cell) BackgroundStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
+
 
 // SetBackgroundStyle sets the value of the backgroundStyle property.
 // The cell’s background style.
@@ -636,6 +644,7 @@ func (c_ Cell) BaseWritingDirection() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBaseWritingDirection sets the value of the baseWritingDirection property.
 // The initial writing direction used to determine the actual writing direction for text.
 
@@ -651,6 +660,7 @@ func (c_ Cell) CellSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("cellSize"))
 	return rv
 }
+
 // The size of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
@@ -658,6 +668,7 @@ func (c_ Cell) ControlSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
+
 
 // SetControlSize sets the value of the controlSize property.
 // The size of the cell.
@@ -675,6 +686,7 @@ func (c_ Cell) ControlTint() unsafe.Pointer {
 	return rv
 }
 
+
 // SetControlTint sets the value of the controlTint property.
 // The cell’s control tint.
 
@@ -691,6 +703,7 @@ func (c_ Cell) ControlView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetControlView sets the value of the controlView property.
 // The view associated with the cell.
 
@@ -702,33 +715,35 @@ func (c_ Cell) SetControlView(value unsafe.Pointer) {
 // The cell’s value as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
-func (c_ Cell) DoubleValue() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("doubleValue"))
+func (c_ Cell) DoubleValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("doubleValue"))
 	return rv
 }
+
 
 // SetDoubleValue sets the value of the doubleValue property.
 // The cell’s value as a double-precision floating-point number.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
-func (c_ Cell) SetDoubleValue(value float64) {
+func (c_ Cell) SetDoubleValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDoubleValue:"), value)
 }
 // The cell’s value as a single-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/floatValue
-func (c_ Cell) FloatValue() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("floatValue"))
+func (c_ Cell) FloatValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("floatValue"))
 	return rv
 }
+
 
 // SetFloatValue sets the value of the floatValue property.
 // The cell’s value as a single-precision floating-point number.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/floatValue
-func (c_ Cell) SetFloatValue(value float32) {
+func (c_ Cell) SetFloatValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatValue:"), value)
 }
 // The type of focus ring to use with the associated view.
@@ -738,6 +753,7 @@ func (c_ Cell) FocusRingType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("focusRingType"))
 	return rv
 }
+
 
 // SetFocusRingType sets the value of the focusRingType property.
 // The type of focus ring to use with the associated view.
@@ -755,6 +771,7 @@ func (c_ Cell) Font() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFont sets the value of the font property.
 // The font that the cell uses to display text.
 
@@ -771,6 +788,7 @@ func (c_ Cell) Formatter() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFormatter sets the value of the formatter property.
 // The cell’s formatter object.
 
@@ -786,6 +804,7 @@ func (c_ Cell) HasValidObjectValue() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasValidObjectValue"))
 	return rv
 }
+
 // The image displayed by the cell, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/image
@@ -793,6 +812,7 @@ func (c_ Cell) Image() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
 	return rv
 }
+
 
 // SetImage sets the value of the image property.
 // The image displayed by the cell, if any.
@@ -810,6 +830,7 @@ func (c_ Cell) ImportsGraphics() bool {
 	return rv
 }
 
+
 // SetImportsGraphics sets the value of the importsGraphics property.
 // A Boolean value indicating whether the cell supports the importation of images into its text.
 
@@ -821,17 +842,18 @@ func (c_ Cell) SetImportsGraphics(value bool) {
 // The cell’s value as an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/intValue
-func (c_ Cell) IntValue() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("intValue"))
+func (c_ Cell) IntValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("intValue"))
 	return rv
 }
+
 
 // SetIntValue sets the value of the intValue property.
 // The cell’s value as an integer.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/intValue
-func (c_ Cell) SetIntValue(value int) {
+func (c_ Cell) SetIntValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntValue:"), value)
 }
 // The cell’s value as an type.
@@ -841,6 +863,7 @@ func (c_ Cell) IntegerValue() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("integerValue"))
 	return rv
 }
+
 
 // SetIntegerValue sets the value of the integerValue property.
 // The cell’s value as an type.
@@ -857,6 +880,7 @@ func (c_ Cell) InteriorBackgroundStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
+
 // A Boolean value indicating whether the cell has a bezeled border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isBezeled
@@ -864,6 +888,7 @@ func (c_ Cell) Bezeled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bezeled"))
 	return rv
 }
+
 
 // SetBezeled sets the value of the bezeled property.
 // A Boolean value indicating whether the cell has a bezeled border.
@@ -881,6 +906,7 @@ func (c_ Cell) Bordered() bool {
 	return rv
 }
 
+
 // SetBordered sets the value of the bordered property.
 // A Boolean value indicating whether the cell draws itself outlined with a plain border.
 
@@ -896,6 +922,7 @@ func (c_ Cell) Continuous() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
 	return rv
 }
+
 
 // SetContinuous sets the value of the continuous property.
 // A Boolean value indicating whether the cell sends its action message continuously during mouse tracking.
@@ -913,6 +940,7 @@ func (c_ Cell) Editable() bool {
 	return rv
 }
 
+
 // SetEditable sets the value of the editable property.
 // A Boolean value indicating whether the cell is editable.
 
@@ -928,6 +956,7 @@ func (c_ Cell) Enabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
 }
+
 
 // SetEnabled sets the value of the enabled property.
 // A Boolean value indicating whether the cell is currently enabled.
@@ -945,6 +974,7 @@ func (c_ Cell) Highlighted() bool {
 	return rv
 }
 
+
 // SetHighlighted sets the value of the highlighted property.
 // A Boolean value indicating whether the cell has a highlighted appearance.
 
@@ -960,6 +990,7 @@ func (c_ Cell) Opaque() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("opaque"))
 	return rv
 }
+
 // A Boolean value indicating whether excess text scrolls past the cell’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isScrollable
@@ -967,6 +998,7 @@ func (c_ Cell) Scrollable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("scrollable"))
 	return rv
 }
+
 
 // SetScrollable sets the value of the scrollable property.
 // A Boolean value indicating whether excess text scrolls past the cell’s bounds.
@@ -984,6 +1016,7 @@ func (c_ Cell) Selectable() bool {
 	return rv
 }
 
+
 // SetSelectable sets the value of the selectable property.
 // A Boolean value indicating whether the cell’s text can be selected.
 
@@ -999,6 +1032,7 @@ func (c_ Cell) KeyEquivalent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
+
 // The line break mode to use when drawing text in the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
@@ -1006,6 +1040,7 @@ func (c_ Cell) LineBreakMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
+
 
 // SetLineBreakMode sets the value of the lineBreakMode property.
 // The line break mode to use when drawing text in the cell.
@@ -1023,6 +1058,7 @@ func (c_ Cell) Menu() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMenu sets the value of the menu property.
 // The cell’s contextual menu.
 
@@ -1038,6 +1074,7 @@ func (c_ Cell) MouseDownFlags() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("mouseDownFlags"))
 	return rv
 }
+
 // The cell’s next state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/nextState
@@ -1045,6 +1082,7 @@ func (c_ Cell) NextState() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("nextState"))
 	return rv
 }
+
 // The cell’s value as an Objective-C object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/objectValue
@@ -1052,6 +1090,7 @@ func (c_ Cell) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("objectValue"))
 	return rv
 }
+
 
 // SetObjectValue sets the value of the objectValue property.
 // The cell’s value as an Objective-C object.
@@ -1069,6 +1108,7 @@ func (c_ Cell) RefusesFirstResponder() bool {
 	return rv
 }
 
+
 // SetRefusesFirstResponder sets the value of the refusesFirstResponder property.
 // A Boolean value indicating whether the cell refuses the first responder status.
 
@@ -1084,6 +1124,7 @@ func (c_ Cell) RepresentedObject() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("representedObject"))
 	return rv
 }
+
 
 // SetRepresentedObject sets the value of the representedObject property.
 // The object represented by the cell.
@@ -1101,6 +1142,7 @@ func (c_ Cell) SendsActionOnEndEditing() bool {
 	return rv
 }
 
+
 // SetSendsActionOnEndEditing sets the value of the sendsActionOnEndEditing property.
 // A Boolean value indicating whether the cell’s control object sends its action message when the user finishes editing the cell’s text.
 
@@ -1116,6 +1158,7 @@ func (c_ Cell) ShowsFirstResponder() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("showsFirstResponder"))
 	return rv
 }
+
 
 // SetShowsFirstResponder sets the value of the showsFirstResponder property.
 // A Boolean value indicating whether the cell provides a visual indication that it is the first responder.
@@ -1133,6 +1176,7 @@ func (c_ Cell) State() unsafe.Pointer {
 	return rv
 }
 
+
 // SetState sets the value of the state property.
 // The cell’s current state.
 
@@ -1148,6 +1192,7 @@ func (c_ Cell) StringValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
+
 
 // SetStringValue sets the value of the stringValue property.
 // The cell’s value as a string.
@@ -1165,6 +1210,7 @@ func (c_ Cell) Tag() int {
 	return rv
 }
 
+
 // SetTag sets the value of the tag property.
 // A tag for identifying the cell.
 
@@ -1180,6 +1226,7 @@ func (c_ Cell) Target() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("target"))
 	return rv
 }
+
 
 // SetTarget sets the value of the target property.
 // The object that receives the cell’s action messages.
@@ -1197,6 +1244,7 @@ func (c_ Cell) Title() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTitle sets the value of the title property.
 // The cell’s title text.
 
@@ -1212,6 +1260,7 @@ func (c_ Cell) TruncatesLastVisibleLine() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("truncatesLastVisibleLine"))
 	return rv
 }
+
 
 // SetTruncatesLastVisibleLine sets the value of the truncatesLastVisibleLine property.
 // A Boolean value indicating whether the cell truncates text that does not fit within the cell’s bounds.
@@ -1229,6 +1278,7 @@ func (c_ Cell) Type() unsafe.Pointer {
 	return rv
 }
 
+
 // SetType sets the value of the type property.
 // The type of the cell.
 
@@ -1244,6 +1294,7 @@ func (c_ Cell) UserInterfaceLayoutDirection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
+
 
 // SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
 // The layout direction of the user interface.
@@ -1261,6 +1312,7 @@ func (c_ Cell) UsesSingleLineMode() bool {
 	return rv
 }
 
+
 // SetUsesSingleLineMode sets the value of the usesSingleLineMode property.
 // A Boolean value indicating whether the cell restricts layout and rendering of text to a single line.
 
@@ -1276,6 +1328,7 @@ func (c_ Cell) WantsNotificationForMarkedText() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("wantsNotificationForMarkedText"))
 	return rv
 }
+
 // A Boolean value indicating whether the cell wraps text whose length that exceeds the cell’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/wraps
@@ -1283,6 +1336,7 @@ func (c_ Cell) Wraps() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("wraps"))
 	return rv
 }
+
 
 // SetWraps sets the value of the wraps property.
 // A Boolean value indicating whether the cell wraps text whose length that exceeds the cell’s frame.

@@ -129,6 +129,7 @@ func (g_ GestureRecognizer) AllowedTouchTypes() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes

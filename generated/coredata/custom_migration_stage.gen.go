@@ -99,6 +99,7 @@ func (c_ CustomMigrationStage) CurrentModel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentModel"))
 	return rv
 }
+
 // The handler to execute after the stage runs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
@@ -106,6 +107,7 @@ func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didMigrateHandler"))
 	return rv
 }
+
 
 // SetDidMigrateHandler sets the value of the didMigrateHandler property.
 // The handler to execute after the stage runs.
@@ -122,6 +124,7 @@ func (c_ CustomMigrationStage) NextModel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nextModel"))
 	return rv
 }
+
 // The handler to execute before the stage runs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
@@ -129,6 +132,7 @@ func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willMigrateHandler"))
 	return rv
 }
+
 
 // SetWillMigrateHandler sets the value of the willMigrateHandler property.
 // The handler to execute before the stage runs.

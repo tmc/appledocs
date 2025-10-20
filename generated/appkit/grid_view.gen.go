@@ -39,7 +39,7 @@ type IGridView interface {
 	IndexOfRow(row unsafe.Pointer) int
 	InsertColumnAtIndexWithViews(index int, views unsafe.Pointer) unsafe.Pointer
 	InsertRowAtIndexWithViews(index int, views unsafe.Pointer) unsafe.Pointer
-	MergeCellsInHorizontalRangeVerticalRange(hRange coregraphics.CGPoint, vRange coregraphics.CGPoint)
+	MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range)
 	MoveColumnAtIndexToIndex(fromIndex int, toIndex int)
 	MoveRowAtIndexToIndex(fromIndex int, toIndex int)
 	RemoveColumnAtIndex(index int)
@@ -225,7 +225,7 @@ func (g_ GridView) InsertRowAtIndexWithViews(index int, views unsafe.Pointer) un
 // Expands the cell at the top-leading corner of the horizontal and vertical range to cover the entire area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/mergeCells(inHorizontalRange:verticalRange:)
-func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange coregraphics.CGPoint, vRange coregraphics.CGPoint) {
+func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("mergeCellsInHorizontalRange:verticalRange:"), hRange, vRange)
 }
 
@@ -273,6 +273,7 @@ func (g_ GridView) ColumnSpacing() float64 {
 	return rv
 }
 
+
 // SetColumnSpacing sets the value of the columnSpacing property.
 // The column spacing for the grid view.
 
@@ -288,6 +289,7 @@ func (g_ GridView) NumberOfColumns() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfColumns"))
 	return rv
 }
+
 // The number of rows in the grid view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/numberOfRows
@@ -295,6 +297,7 @@ func (g_ GridView) NumberOfRows() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfRows"))
 	return rv
 }
+
 // The row alignment for the grid view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/rowAlignment
@@ -302,6 +305,7 @@ func (g_ GridView) RowAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rowAlignment"))
 	return rv
 }
+
 
 // SetRowAlignment sets the value of the rowAlignment property.
 // The row alignment for the grid view.
@@ -319,6 +323,7 @@ func (g_ GridView) RowSpacing() float64 {
 	return rv
 }
 
+
 // SetRowSpacing sets the value of the rowSpacing property.
 // The row spacing for the grid view.
 
@@ -335,6 +340,7 @@ func (g_ GridView) XPlacement() unsafe.Pointer {
 	return rv
 }
 
+
 // SetXPlacement sets the value of the xPlacement property.
 // The placement of the cell within the grid column.
 
@@ -350,6 +356,7 @@ func (g_ GridView) YPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("yPlacement"))
 	return rv
 }
+
 
 // SetYPlacement sets the value of the yPlacement property.
 // The placement of the cell within the grid row.

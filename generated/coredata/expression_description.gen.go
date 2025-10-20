@@ -89,6 +89,7 @@ func (e_ ExpressionDescription) Expression() unsafe.Pointer {
 	return rv
 }
 
+
 // SetExpression sets the value of the expression property.
 // The expression to evaluate.
 
@@ -104,6 +105,7 @@ func (e_ ExpressionDescription) ExpressionResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionResultType"))
 	return rv
 }
+
 
 // SetExpressionResultType sets the value of the expressionResultType property.
 // The attribute type of the expression’s result.

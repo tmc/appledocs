@@ -86,6 +86,7 @@ func (e_ EntityMapping) MappingType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMappingType sets the value of the mappingType property.
 // The mapping type for the entity mapping.
 

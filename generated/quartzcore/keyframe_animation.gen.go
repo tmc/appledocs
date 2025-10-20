@@ -89,6 +89,7 @@ func (k_ KeyframeAnimation) TimingFunctions() []MediaTimingFunction {
 	return rv
 }
 
+
 // SetTimingFunctions sets the value of the timingFunctions property.
 // An optional array of objects that define the pacing for each keyframe segment.
 

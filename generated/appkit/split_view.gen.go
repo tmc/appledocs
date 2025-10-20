@@ -198,6 +198,7 @@ func (s_ SplitView) ArrangedSubviews() []__kindof NSView {
 	rv := objc.Send[[]__kindof NSView](s_.ID, objc.Sel("arrangedSubviews"))
 	return rv
 }
+
 // A Boolean value that determines whether the split view arranges all of its subviews as split panes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/arrangesAllSubviews
@@ -205,6 +206,7 @@ func (s_ SplitView) ArrangesAllSubviews() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("arrangesAllSubviews"))
 	return rv
 }
+
 
 // SetArrangesAllSubviews sets the value of the arrangesAllSubviews property.
 // A Boolean value that determines whether the split view arranges all of its subviews as split panes.
@@ -222,6 +224,7 @@ func (s_ SplitView) AutosaveName() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAutosaveName sets the value of the autosaveName property.
 // The name to use when the system automatically saves the split view’s divider configuration.
 
@@ -238,6 +241,7 @@ func (s_ SplitView) Delegate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The split view’s delegate.
 
@@ -253,6 +257,7 @@ func (s_ SplitView) DividerColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dividerColor"))
 	return rv
 }
+
 // The style of divider between views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/dividerStyle-swift.property
@@ -260,6 +265,7 @@ func (s_ SplitView) DividerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dividerStyle"))
 	return rv
 }
+
 
 // SetDividerStyle sets the value of the dividerStyle property.
 // The style of divider between views.
@@ -276,6 +282,7 @@ func (s_ SplitView) DividerThickness() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("dividerThickness"))
 	return rv
 }
+
 // A Boolean value that determines the geometric orientation of the split view’s dividers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/isVertical
@@ -283,6 +290,7 @@ func (s_ SplitView) Vertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("vertical"))
 	return rv
 }
+
 
 // SetVertical sets the value of the vertical property.
 // A Boolean value that determines the geometric orientation of the split view’s dividers.

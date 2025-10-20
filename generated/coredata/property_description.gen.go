@@ -88,6 +88,7 @@ func (p_ PropertyDescription) Name() unsafe.Pointer {
 	return rv
 }
 
+
 // SetName sets the value of the name property.
 // The name of the receiver.
 

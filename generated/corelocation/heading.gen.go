@@ -87,6 +87,7 @@ func (h_ Heading) HeadingAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("headingAccuracy"))
 	return rv
 }
+
 // The heading (measured in degrees) relative to magnetic north.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/magneticHeading
@@ -94,6 +95,7 @@ func (h_ Heading) MagneticHeading() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("magneticHeading"))
 	return rv
 }
+
 // The time at which this heading was determined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
@@ -101,6 +103,7 @@ func (h_ Heading) Timestamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("timestamp"))
 	return rv
 }
+
 // The heading (measured in degrees) relative to true north.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/trueHeading
@@ -108,6 +111,7 @@ func (h_ Heading) TrueHeading() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("trueHeading"))
 	return rv
 }
+
 // The geomagnetic data (measured in microteslas) for the x-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/x
@@ -115,6 +119,7 @@ func (h_ Heading) X() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("x"))
 	return rv
 }
+
 // The geomagnetic data (measured in microteslas) for the y-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/y
@@ -122,6 +127,7 @@ func (h_ Heading) Y() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("y"))
 	return rv
 }
+
 // The geomagnetic data (measured in microteslas) for the z-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/z
@@ -129,5 +135,6 @@ func (h_ Heading) Z() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("z"))
 	return rv
 }
+
 
 

@@ -114,7 +114,6 @@ func (b_ Bundle) AppStoreReceiptURL() unsafe.Pointer {
 	return rv
 }
 
-
 // The receiver’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/bundleIdentifier
@@ -123,7 +122,6 @@ func (b_ Bundle) BundleIdentifier() unsafe.Pointer {
 	return rv
 }
 
-
 // The bundle’s principal class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/principalClass
@@ -131,6 +129,5 @@ func (b_ Bundle) PrincipalClass() objc.Class {
 	rv := objc.Send[objc.Class](b_.ID, objc.Sel("principalClass"))
 	return rv
 }
-
 
 

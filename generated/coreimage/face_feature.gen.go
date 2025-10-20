@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [FaceFeature] class.
@@ -84,17 +85,19 @@ func NewFaceFeature() FaceFeature {
 // A rectangle indicating the position and extent of the face feature in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/bounds-swift.property
-func (f_ FaceFeature) Bounds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bounds"))
+func (f_ FaceFeature) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
 }
+
 // The rotation of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/faceAngle-swift.property
-func (f_ FaceFeature) FaceAngle() float32 {
-	rv := objc.Send[float32](f_.ID, objc.Sel("faceAngle"))
+func (f_ FaceFeature) FaceAngle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("faceAngle"))
 	return rv
 }
+
 // A Boolean value that indicates whether information about face rotation is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasFaceAngle-swift.property
@@ -102,6 +105,7 @@ func (f_ FaceFeature) HasFaceAngle() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasFaceAngle"))
 	return rv
 }
+
 // A Boolean value that indicates whether the detector found the face’s left eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasLeftEyePosition-swift.property
@@ -109,6 +113,7 @@ func (f_ FaceFeature) HasLeftEyePosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLeftEyePosition"))
 	return rv
 }
+
 // A Boolean value that indicates whether the detector found the face’s mouth.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasMouthPosition-swift.property
@@ -116,6 +121,7 @@ func (f_ FaceFeature) HasMouthPosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasMouthPosition"))
 	return rv
 }
+
 // A Boolean value that indicates whether the detector found the face’s right eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasRightEyePosition-swift.property
@@ -123,6 +129,7 @@ func (f_ FaceFeature) HasRightEyePosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasRightEyePosition"))
 	return rv
 }
+
 // A Boolean value that indicates whether a smile is detected in the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasSmile-swift.property
@@ -130,6 +137,7 @@ func (f_ FaceFeature) HasSmile() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasSmile"))
 	return rv
 }
+
 // A Boolean value that indicates the face object has a tracking frame count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingFrameCount-swift.property
@@ -137,6 +145,7 @@ func (f_ FaceFeature) HasTrackingFrameCount() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingFrameCount"))
 	return rv
 }
+
 // A Boolean value that indicates whether the face object has a tracking ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingID-swift.property
@@ -144,6 +153,7 @@ func (f_ FaceFeature) HasTrackingID() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingID"))
 	return rv
 }
+
 // A Boolean value that indicates whether a closed left eye is detected in the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-swift.property
@@ -151,20 +161,23 @@ func (f_ FaceFeature) LeftEyeClosed() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("leftEyeClosed"))
 	return rv
 }
+
 // The image coordinate of the center of the left eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyePosition-swift.property
-func (f_ FaceFeature) LeftEyePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("leftEyePosition"))
+func (f_ FaceFeature) LeftEyePosition() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](f_.ID, objc.Sel("leftEyePosition"))
 	return rv
 }
+
 // The image coordinate of the center of the mouth.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/mouthPosition-swift.property
-func (f_ FaceFeature) MouthPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mouthPosition"))
+func (f_ FaceFeature) MouthPosition() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](f_.ID, objc.Sel("mouthPosition"))
 	return rv
 }
+
 // A Boolean value that indicates whether a closed right eye is detected in the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyeClosed-swift.property
@@ -172,26 +185,30 @@ func (f_ FaceFeature) RightEyeClosed() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("rightEyeClosed"))
 	return rv
 }
+
 // The image coordinate of the center of the right eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyePosition-swift.property
-func (f_ FaceFeature) RightEyePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("rightEyePosition"))
+func (f_ FaceFeature) RightEyePosition() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](f_.ID, objc.Sel("rightEyePosition"))
 	return rv
 }
+
 // The tracking frame count of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingFrameCount-swift.property
-func (f_ FaceFeature) TrackingFrameCount() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("trackingFrameCount"))
+func (f_ FaceFeature) TrackingFrameCount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("trackingFrameCount"))
 	return rv
 }
+
 // The tracking identifier of the face object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingID-swift.property
-func (f_ FaceFeature) TrackingID() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("trackingID"))
+func (f_ FaceFeature) TrackingID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("trackingID"))
 	return rv
 }
+
 
 

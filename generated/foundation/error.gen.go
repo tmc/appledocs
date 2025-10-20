@@ -143,7 +143,6 @@ func (e_ Error) Code() int {
 	return rv
 }
 
-
 // A string containing the error domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/domain
@@ -151,7 +150,6 @@ func (e_ Error) Domain() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("domain"))
 	return rv
 }
-
 
 // A string to display in response to an alert panel help anchor button being pressed.
 //
@@ -161,7 +159,6 @@ func (e_ Error) HelpAnchor() unsafe.Pointer {
 	return rv
 }
 
-
 // A string containing the localized description of the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedDescription
@@ -169,7 +166,6 @@ func (e_ Error) LocalizedDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
-
 
 // A string containing the localized explanation of the reason for the error.
 //
@@ -179,7 +175,6 @@ func (e_ Error) LocalizedFailureReason() unsafe.Pointer {
 	return rv
 }
 
-
 // An array containing the localized titles of buttons appropriate for displaying in an alert panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoveryOptions
@@ -187,7 +182,6 @@ func (e_ Error) LocalizedRecoveryOptions() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("localizedRecoveryOptions"))
 	return rv
 }
-
 
 // A string containing the localized recovery suggestion for the error.
 //
@@ -197,7 +191,6 @@ func (e_ Error) LocalizedRecoverySuggestion() unsafe.Pointer {
 	return rv
 }
 
-
 // The object in the user info dictionary corresponding to the key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/recoveryAttempter
@@ -206,14 +199,12 @@ func (e_ Error) RecoveryAttempter() objc.ID {
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/underlyingErrors
 func (e_ Error) UnderlyingErrors() []Error {
 	rv := objc.Send[[]Error](e_.ID, objc.Sel("underlyingErrors"))
 	return rv
 }
-
 
 // The user info dictionary.
 //
@@ -222,6 +213,5 @@ func (e_ Error) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
-
 
 

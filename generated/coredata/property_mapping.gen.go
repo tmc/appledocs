@@ -86,6 +86,7 @@ func (p_ PropertyMapping) Name() unsafe.Pointer {
 	return rv
 }
 
+
 // SetName sets the value of the name property.
 // The name of the property in the destination entity for the property mapping.
 

@@ -89,6 +89,7 @@ func (d_ DerivedAttributeDescription) DerivationExpression() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDerivationExpression sets the value of the derivationExpression property.
 // An expression for generating derived data.
 

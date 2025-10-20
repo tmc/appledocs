@@ -89,6 +89,7 @@ func (s_ ShapeLayer) FillRule() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFillRule sets the value of the fillRule property.
 // The fill rule used when filling the shape’s path.
 

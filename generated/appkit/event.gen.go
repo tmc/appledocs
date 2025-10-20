@@ -84,10 +84,11 @@ func NewEvent() Event {
 // The Core Graphics event object corresponding to this event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/cgEvent
-func (e_ Event) CGEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("CGEvent"))
+func (e_ Event) CGEvent() coregraphics.EventRef {
+	rv := objc.Send[coregraphics.EventRef](e_.ID, objc.Sel("CGEvent"))
 	return rv
 }
+
 // An opaque Carbon type associated with this event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/eventRef
@@ -95,6 +96,7 @@ func (e_ Event) EventRef() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("eventRef"))
 	return rv
 }
+
 // The event location in the base coordinate system of the associated window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/locationInWindow
@@ -102,6 +104,7 @@ func (e_ Event) LocationInWindow() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("locationInWindow"))
 	return rv
 }
+
 // An integer bit field that indicates the pressed modifier keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/modifierFlags-swift.property
@@ -109,6 +112,7 @@ func (e_ Event) ModifierFlags() EventModifierFlags {
 	rv := objc.Send[EventModifierFlags](e_.ID, objc.Sel("modifierFlags"))
 	return rv
 }
+
 // The time when the event occurred in seconds since system startup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/timestamp
@@ -116,6 +120,7 @@ func (e_ Event) Timestamp() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("timestamp"))
 	return rv
 }
+
 // The window object associated with the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/window
@@ -123,6 +128,7 @@ func (e_ Event) Window() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("window"))
 	return rv
 }
+
 // The identifier for the window device associated with the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/windowNumber
@@ -130,5 +136,6 @@ func (e_ Event) WindowNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("windowNumber"))
 	return rv
 }
+
 
 

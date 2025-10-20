@@ -89,6 +89,7 @@ func (b_ BatchDeleteRequest) ResultType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetResultType sets the value of the resultType property.
 // The type of result the request provides when it executes.
 

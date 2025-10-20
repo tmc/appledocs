@@ -776,6 +776,11 @@ func disambiguateMethodName(method *occ2go.ParsedMethod) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
+	// Strip __kindof qualifier (e.g., "__kindof NSView *" -> "NSView *")
+	// __kindof is an Objective-C type qualifier meaning "this type or any subclass"
+	// In Go, we just use the base type
+	objcType = strings.TrimPrefix(objcType, "__kindof ")
+
 	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)
 	if strings.Contains(objcType, "<") {
 		// Extract NSArray element type: NSArray<ElementType *> -> []ElementType
@@ -785,6 +790,8 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			end := strings.LastIndex(objcType, ">")
 			if start > 0 && end > start {
 				elementType := strings.TrimSpace(objcType[start:end])
+				// Strip __kindof qualifier from element type
+				elementType = strings.TrimPrefix(elementType, "__kindof ")
 				// Remove trailing * from pointer types
 				elementType = strings.TrimSpace(strings.TrimSuffix(elementType, "*"))
 

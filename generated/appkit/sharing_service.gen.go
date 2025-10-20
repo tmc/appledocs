@@ -83,7 +83,7 @@ func NewSharingService() SharingService {
 // Returns a list of sharing services which could share all the provided items together.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/sharingServices(forItems:)
-func (sc _SharingServiceClass) SharingServicesForItems(items unsafe.Pointer) []SharingService {
+func (sc _SharingServiceClass) SharingServicesForItems(items objc.ID) []SharingService {
 	rv := objc.Send[[]SharingService](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
 }

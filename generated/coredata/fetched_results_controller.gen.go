@@ -150,6 +150,7 @@ func (f_ FetchedResultsController) CacheName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("cacheName"))
 	return rv
 }
+
 // The object that is notified when the fetched results changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/delegate
@@ -157,6 +158,7 @@ func (f_ FetchedResultsController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The object that is notified when the fetched results changed.
@@ -173,6 +175,7 @@ func (f_ FetchedResultsController) FetchRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
+
 // The results of the fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/fetchedObjects
@@ -180,6 +183,7 @@ func (f_ FetchedResultsController) FetchedObjects() []id<NSFetchRequestResult> {
 	rv := objc.Send[[]id<NSFetchRequestResult>](f_.ID, objc.Sel("fetchedObjects"))
 	return rv
 }
+
 // The managed object context used to fetch objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/managedObjectContext
@@ -187,6 +191,7 @@ func (f_ FetchedResultsController) ManagedObjectContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
+
 // The array of section index titles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionIndexTitles
@@ -194,6 +199,7 @@ func (f_ FetchedResultsController) SectionIndexTitles() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("sectionIndexTitles"))
 	return rv
 }
+
 // The key path of the attribute that determines which section the fetched entity belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionNameKeyPath
@@ -201,6 +207,7 @@ func (f_ FetchedResultsController) SectionNameKeyPath() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("sectionNameKeyPath"))
 	return rv
 }
+
 // The sections for the fetch results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sections
@@ -208,4 +215,5 @@ func (f_ FetchedResultsController) Sections() []id<NSFetchedResultsSectionInfo> 
 	rv := objc.Send[[]id<NSFetchedResultsSectionInfo>](f_.ID, objc.Sel("sections"))
 	return rv
 }
+
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [RectangleFeature] class.
@@ -84,37 +85,42 @@ func NewRectangleFeature() RectangleFeature {
 // The lower-left corner of the detected rectangle, in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-swift.property
-func (r_ RectangleFeature) BottomLeft() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("bottomLeft"))
+func (r_ RectangleFeature) BottomLeft() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
+
 // The lower-right corner of the detected rectangle, in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomRight-swift.property
-func (r_ RectangleFeature) BottomRight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("bottomRight"))
+func (r_ RectangleFeature) BottomRight() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomRight"))
 	return rv
 }
+
 // A rectangle indicating the position and extent of the feature in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bounds-swift.property
-func (r_ RectangleFeature) Bounds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("bounds"))
+func (r_ RectangleFeature) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("bounds"))
 	return rv
 }
+
 // The upper-left corner of the detected rectangle, in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topLeft-swift.property
-func (r_ RectangleFeature) TopLeft() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("topLeft"))
+func (r_ RectangleFeature) TopLeft() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topLeft"))
 	return rv
 }
+
 // The upper-right corner of the detected rectangle, in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topRight-swift.property
-func (r_ RectangleFeature) TopRight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("topRight"))
+func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topRight"))
 	return rv
 }
+
 
 

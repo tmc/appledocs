@@ -86,6 +86,7 @@ func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
 	return rv
 }
 
+
 // SetAffectedStores sets the value of the affectedStores property.
 // The stores the request should be sent to.
 
@@ -101,5 +102,6 @@ func (p_ PersistentStoreRequest) RequestType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestType"))
 	return rv
 }
+
 
 

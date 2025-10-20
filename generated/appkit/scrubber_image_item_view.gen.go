@@ -89,6 +89,7 @@ func (s_ ScrubberImageItemView) ImageAlignment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetImageAlignment sets the value of the imageAlignment property.
 // The alignment of the image within the scrubber item.
 
@@ -104,5 +105,6 @@ func (s_ ScrubberImageItemView) ImageView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageView"))
 	return rv
 }
+
 
 

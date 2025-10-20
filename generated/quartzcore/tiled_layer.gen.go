@@ -90,6 +90,7 @@ func (t_ TiledLayer) TileSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetTileSize sets the value of the tileSize property.
 // The maximum size of each tile used to create the layer’s content.
 

@@ -87,6 +87,7 @@ func (g_ GlassEffectContainerView) ContentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentView sets the value of the contentView property.
 // The view that contains descendant views to merge together when in proximity to each other.
 
@@ -102,6 +103,7 @@ func (g_ GlassEffectContainerView) Spacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("spacing"))
 	return rv
 }
+
 
 // SetSpacing sets the value of the spacing property.
 // The proximity at which the glass effect container view begins merging eligible descendent glass effect views.

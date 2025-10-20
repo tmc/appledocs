@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TextFeature] class.
@@ -84,24 +85,27 @@ func NewTextFeature() TextFeature {
 // The image coordinate of the lower-left corner of the detected text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomLeft
-func (t_ TextFeature) BottomLeft() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bottomLeft"))
+func (t_ TextFeature) BottomLeft() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
+
 // The image coordinate of the lower-right corner of the detected text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomRight
-func (t_ TextFeature) BottomRight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bottomRight"))
+func (t_ TextFeature) BottomRight() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("bottomRight"))
 	return rv
 }
+
 // A rectangle that indicates the position and extent of the text feature in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bounds
-func (t_ TextFeature) Bounds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bounds"))
+func (t_ TextFeature) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("bounds"))
 	return rv
 }
+
 // An array containing additional features detected within the feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/subFeatures
@@ -109,19 +113,22 @@ func (t_ TextFeature) SubFeatures() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("subFeatures"))
 	return rv
 }
+
 // The image coordinate of the upper-left corner of the detected text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/topLeft
-func (t_ TextFeature) TopLeft() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("topLeft"))
+func (t_ TextFeature) TopLeft() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("topLeft"))
 	return rv
 }
+
 // The image coordinate of the upper-right corner of the detected text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/topRight
-func (t_ TextFeature) TopRight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("topRight"))
+func (t_ TextFeature) TopRight() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("topRight"))
 	return rv
 }
+
 
 

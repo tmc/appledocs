@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ColorKernel] class.
@@ -29,7 +30,7 @@ type _ColorKernelClass struct {
 // An interface definition for the [ColorKernel] class.
 type IColorKernel interface {
 	IKernel
-	ApplyWithExtentArguments(extent unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+	ApplyWithExtentArguments(extent coregraphics.CGRect, args unsafe.Pointer) unsafe.Pointer
 }
 
 // A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
@@ -102,7 +103,7 @@ func (cc _ColorKernelClass) KernelWithString(string string) unsafe.Pointer {
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
-func (c_ ColorKernel) ApplyWithExtentArguments(extent unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
+func (c_ ColorKernel) ApplyWithExtentArguments(extent coregraphics.CGRect, args unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
 	return rv
 }

@@ -89,6 +89,7 @@ func (o_ OpenPanel) CanChooseFiles() bool {
 	return rv
 }
 
+
 // SetCanChooseFiles sets the value of the canChooseFiles property.
 // A Boolean that indicates whether the user can choose files in the panel.
 

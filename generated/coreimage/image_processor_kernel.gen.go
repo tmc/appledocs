@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ImageProcessorKernel] class.
@@ -83,7 +84,7 @@ func NewImageProcessorKernel() ImageProcessorKernel {
 // Call this method on your Core Image Processor Kernel subclass to create a new image of the specified extent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtent:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent unsafe.Pointer, inputs unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs unsafe.Pointer, arguments unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error)
 	return rv
 }
@@ -99,7 +100,7 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extent
 // Override this class method if you want your any of the inputs to be in a specific pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/formatForInput(at:)
-func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) unsafe.Pointer {
+func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("formatForInputAtIndex:"), inputIndex)
 	return rv
 }
@@ -107,7 +108,7 @@ func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) unsaf
 // Override this class method if your processor has more than one output and you want your processor’s output to be in a specific supported .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat(at:arguments:)
-func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex int, arguments unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex unsafe.Pointer, arguments unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("outputFormatAtIndex:arguments:"), outputIndex, arguments)
 	return rv
 }
@@ -131,15 +132,15 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inpu
 // Override this class method to implement your processor’s ROI callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roi(forInput:arguments:outputRect:)
-func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex int, arguments unsafe.Pointer, outputRect unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("roiForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
+func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex unsafe.Pointer, arguments unsafe.Pointer, outputRect coregraphics.CGRect) coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](objc.ID(ic.class), objc.Sel("roiForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
 }
 
 // Override this class method to implement your processor’s tiled ROI callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roiTileArray(forInput:arguments:outputRect:)
-func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex int, arguments unsafe.Pointer, outputRect unsafe.Pointer) []Vector {
+func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex unsafe.Pointer, arguments unsafe.Pointer, outputRect coregraphics.CGRect) []Vector {
 	rv := objc.Send[[]Vector](objc.ID(ic.class), objc.Sel("roiTileArrayForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
 }

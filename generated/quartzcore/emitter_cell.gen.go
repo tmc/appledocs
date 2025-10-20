@@ -88,6 +88,7 @@ func (e_ EmitterCell) EmissionLatitude() float64 {
 	return rv
 }
 
+
 // SetEmissionLatitude sets the value of the emissionLatitude property.
 // The latitudinal orientation of the emission angle. Animatable.
 

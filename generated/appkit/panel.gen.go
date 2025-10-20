@@ -89,6 +89,7 @@ func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 	return rv
 }
 
+
 // SetBecomesKeyOnlyIfNeeded sets the value of the becomesKeyOnlyIfNeeded property.
 // A Boolean value that indicates whether the receiver becomes the key window only when needed.
 
@@ -105,6 +106,7 @@ func (p_ Panel) FloatingPanel() bool {
 	return rv
 }
 
+
 // SetFloatingPanel sets the value of the floatingPanel property.
 // A Boolean value that indicates whether the receiver is a floating panel.
 
@@ -120,6 +122,7 @@ func (p_ Panel) WorksWhenModal() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
+
 
 // SetWorksWhenModal sets the value of the worksWhenModal property.
 // A Boolean value that indicates whether the panel receives keyboard and mouse events even when some other window is being run modally.

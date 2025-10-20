@@ -121,6 +121,7 @@ func (p_ PersistentStoreDescription) Configuration() unsafe.Pointer {
 	return rv
 }
 
+
 // SetConfiguration sets the value of the configuration property.
 // The name of the configuration used by this store.
 
@@ -137,6 +138,7 @@ func (p_ PersistentStoreDescription) ReadOnly() bool {
 	return rv
 }
 
+
 // SetReadOnly sets the value of the readOnly property.
 // A flag that indicates whether this store will be read-only.
 
@@ -152,6 +154,7 @@ func (p_ PersistentStoreDescription) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
 	return rv
 }
+
 // A flag that determines whether the store is added asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldAddStoreAsynchronously
@@ -159,6 +162,7 @@ func (p_ PersistentStoreDescription) ShouldAddStoreAsynchronously() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shouldAddStoreAsynchronously"))
 	return rv
 }
+
 
 // SetShouldAddStoreAsynchronously sets the value of the shouldAddStoreAsynchronously property.
 // A flag that determines whether the store is added asynchronously.
@@ -176,6 +180,7 @@ func (p_ PersistentStoreDescription) ShouldInferMappingModelAutomatically() bool
 	return rv
 }
 
+
 // SetShouldInferMappingModelAutomatically sets the value of the shouldInferMappingModelAutomatically property.
 // A flag indicating whether a mapping model should be created automatically.
 
@@ -192,6 +197,7 @@ func (p_ PersistentStoreDescription) ShouldMigrateStoreAutomatically() bool {
 	return rv
 }
 
+
 // SetShouldMigrateStoreAutomatically sets the value of the shouldMigrateStoreAutomatically property.
 // A flag indicating whether the associated persistent store should be migrated automatically.
 
@@ -207,6 +213,7 @@ func (p_ PersistentStoreDescription) SqlitePragmas() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sqlitePragmas"))
 	return rv
 }
+
 // The connection timeout for the associated store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
@@ -214,6 +221,7 @@ func (p_ PersistentStoreDescription) Timeout() TimeInterval {
 	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("timeout"))
 	return rv
 }
+
 
 // SetTimeout sets the value of the timeout property.
 // The connection timeout for the associated store.

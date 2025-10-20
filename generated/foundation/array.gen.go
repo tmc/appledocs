@@ -132,12 +132,50 @@ func NewArray() Array {
 }
 
 
+// Initializes a newly allocated array by placing in it the objects in the argument list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
+func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly allocated array by placing in it the objects contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
 func NewArrayWithArray(array unsafe.Pointer) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a newly allocated array with the contents of the location specified by a given URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
+func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates and returns an array containing a given object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
+func NewArrayWithObject(anObject unsafe.Pointer) Array {
+	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
+	return rv
+}
+
+// Initializes a newly allocated array to include a given number of objects from a given C array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
+func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
 	return rv
 }
@@ -171,49 +209,11 @@ func NewArrayWithContentsOfFile(path string) Array {
 	return rv
 }
 
-// Initializes a newly allocated array with the contents of the location specified by a given URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
-func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
-	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
-	rv.Autorelease()
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
 func NewArrayWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates and returns an array containing a given object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
-func NewArrayWithObject(anObject unsafe.Pointer) Array {
-	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
-	return rv
-}
-
-// Initializes a newly allocated array to include a given number of objects from a given C array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
-func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
-	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a newly allocated array by placing in it the objects in the argument list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
-func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
-	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
 }
@@ -731,7 +731,6 @@ func (a_ Array) Count() uint {
 	return rv
 }
 
-
 // A string that represents the contents of the array, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description
@@ -739,7 +738,6 @@ func (a_ Array) Description() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("description"))
 	return rv
 }
-
 
 // The first object in the array.
 //
@@ -749,7 +747,6 @@ func (a_ Array) FirstObject() unsafe.Pointer {
 	return rv
 }
 
-
 // The last object in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/lastObject
@@ -758,7 +755,6 @@ func (a_ Array) LastObject() unsafe.Pointer {
 	return rv
 }
 
-
 // Analyzes the array and returns a “hint” that speeds the sorting of the array when the hint is supplied to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArrayHint
@@ -766,6 +762,5 @@ func (a_ Array) SortedArrayHint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sortedArrayHint"))
 	return rv
 }
-
 
 

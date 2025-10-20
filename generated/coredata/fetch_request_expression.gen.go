@@ -37,7 +37,7 @@ type IFetchRequestExpression interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression
 type FetchRequestExpression struct {
-	Expression
+	unsafe.Pointer
 }
 
 // FetchRequestExpressionFrom constructs a [FetchRequestExpression] from an unsafe.Pointer.
@@ -45,7 +45,7 @@ type FetchRequestExpression struct {
 // An expression that evaluates the result of a fetch request on a managed object context.
 func FetchRequestExpressionFrom(ptr unsafe.Pointer) FetchRequestExpression {
 	return FetchRequestExpression{
-		Expression: ExpressionFrom(ptr),
+		Expression: unsafe.PointerFrom(ptr),
 	}
 }
 
@@ -96,6 +96,7 @@ func (f_ FetchRequestExpression) ContextExpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contextExpression"))
 	return rv
 }
+
 // Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/isCountOnlyRequest
@@ -103,6 +104,7 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("countOnlyRequest"))
 	return rv
 }
+
 // The expression for the receiver’s fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/requestExpression
@@ -110,5 +112,6 @@ func (f_ FetchRequestExpression) RequestExpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("requestExpression"))
 	return rv
 }
+
 
 

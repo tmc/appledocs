@@ -105,6 +105,7 @@ func (v_ VisualEffectView) BlendingMode() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBlendingMode sets the value of the blendingMode property.
 // A value indicating how the view’s contents blend with the surrounding content.
 
@@ -120,6 +121,7 @@ func (v_ VisualEffectView) InteriorBackgroundStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
+
 // A Boolean value indicating whether to emphasize the look of the material.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/isEmphasized
@@ -127,6 +129,7 @@ func (v_ VisualEffectView) Emphasized() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("emphasized"))
 	return rv
 }
+
 
 // SetEmphasized sets the value of the emphasized property.
 // A Boolean value indicating whether to emphasize the look of the material.
@@ -144,6 +147,7 @@ func (v_ VisualEffectView) MaskImage() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMaskImage sets the value of the maskImage property.
 // An image whose alpha channel masks the visual effect view’s material.
 
@@ -160,6 +164,7 @@ func (v_ VisualEffectView) Material() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMaterial sets the value of the material property.
 // The material shown by the visual effect view.
 
@@ -175,6 +180,7 @@ func (v_ VisualEffectView) State() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("state"))
 	return rv
 }
+
 
 // SetState sets the value of the state property.
 // A value that indicates whether a view has a visual effect applied.

@@ -83,7 +83,7 @@ func NewPersistentStore() PersistentStore {
 // Returns a store initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
-func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root unsafe.Pointer, name string, url unsafe.Pointer, options unsafe.Pointer) PersistentStore {
+func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root unsafe.Pointer, name string, url unsafe.Pointer, options objc.ID) PersistentStore {
 	instance := getPersistentStoreClass().Alloc()
 	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, objc.String(name), url, options)
 	rv.Autorelease()
@@ -98,6 +98,7 @@ func (p_ PersistentStore) Metadata() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("metadata"))
 	return rv
 }
+
 
 // SetMetadata sets the value of the metadata property.
 // The metadata for the persistent store.
@@ -114,4 +115,5 @@ func (p_ PersistentStore) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
 	return rv
 }
+
 

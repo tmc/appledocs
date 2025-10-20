@@ -107,6 +107,7 @@ func (a_ AztecCodeDescriptor) DataCodewordCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("dataCodewordCount"))
 	return rv
 }
+
 // The error-corrected payload that comprises the the Aztec code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-swift.property
@@ -114,6 +115,7 @@ func (a_ AztecCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
+
 // A Boolean value telling if the Aztec code is compact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/isCompact-swift.property
@@ -121,6 +123,7 @@ func (a_ AztecCodeDescriptor) IsCompact() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompact"))
 	return rv
 }
+
 // The number of data layers in the Aztec code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/layerCount-swift.property
@@ -128,4 +131,5 @@ func (a_ AztecCodeDescriptor) LayerCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("layerCount"))
 	return rv
 }
+
 

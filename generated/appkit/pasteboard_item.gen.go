@@ -88,6 +88,7 @@ func (p_ PasteboardItem) CollaborationMetadata() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCollaborationMetadata sets the value of the collaborationMetadata property.
 // A model object you use for conveying data during a collaboration.
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Filter] class.
@@ -30,10 +31,10 @@ type _FilterClass struct {
 // An interface definition for the [Filter] class.
 type IFilter interface {
 	objectivec.IObject
-	ApplyArgumentsOptions(k unsafe.Pointer, args unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer
+	ApplyArgumentsOptions(k unsafe.Pointer, args objc.ID, dict unsafe.Pointer) unsafe.Pointer
 	Apply(k unsafe.Pointer) unsafe.Pointer
 	SetDefaults()
-	ViewForUIConfigurationExcludedKeys(inUIConfiguration unsafe.Pointer, inKeys unsafe.Pointer) unsafe.Pointer
+	ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.ID, inKeys objc.ID) unsafe.Pointer
 }
 
 // An image processor that produces an image by manipulating one or more input images or by generating new image data.
@@ -84,6 +85,22 @@ func NewFilter() Filter {
 }
 
 
+// Creates a filter from a Core Video pixel buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
+func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objc.ID, options unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
+	return rv
+}
+
+// Creates a filter that allows the processing of RAW images.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
+func NewFilterWithImageDataOptions(data unsafe.Pointer, options unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageData:options:"), data, options)
+	return rv
+}
+
 // Creates a filter that allows the processing of RAW images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
@@ -105,22 +122,6 @@ func NewFilterWithName(name string) Filter {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
 func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
-	return rv
-}
-
-// Creates a filter from a Core Video pixel buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties unsafe.Pointer, options unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
-	return rv
-}
-
-// Creates a filter that allows the processing of RAW images.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
-func NewFilterWithImageDataOptions(data unsafe.Pointer, options unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
 }
 
@@ -899,7 +900,7 @@ func (fc _FilterClass) FalseColorFilter() unsafe.Pointer {
 // Returns an array of filter objects de-serialized from XMP data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterArray(fromSerializedXMP:inputImageExtent:error:)
-func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData unsafe.Pointer, extent unsafe.Pointer, outError unsafe.Pointer) []Filter {
+func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData unsafe.Pointer, extent coregraphics.CGRect, outError unsafe.Pointer) []Filter {
 	rv := objc.Send[[]Filter](objc.ID(fc.class), objc.Sel("filterArrayFromSerializedXMP:inputImageExtent:error:"), xmpData, extent, outError)
 	return rv
 }
@@ -1107,7 +1108,7 @@ func (fc _FilterClass) HueSaturationValueGradientFilter() unsafe.Pointer {
 // Creates a filter from a Core Video pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objc.ID, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
 }
@@ -1816,7 +1817,7 @@ func (fc _FilterClass) SepiaToneFilter() unsafe.Pointer {
 // Serializes filter parameters into XMP form that is suitable for embedding in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/serializedXMP(from:inputImageExtent:)
-func (fc _FilterClass) SerializedXMPFromFiltersInputImageExtent(filters unsafe.Pointer, extent unsafe.Pointer) unsafe.Pointer {
+func (fc _FilterClass) SerializedXMPFromFiltersInputImageExtent(filters unsafe.Pointer, extent coregraphics.CGRect) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("serializedXMPFromFilters:inputImageExtent:"), filters, extent)
 	return rv
 }
@@ -2156,7 +2157,7 @@ func (fc _FilterClass) ZoomBlurFilter() unsafe.Pointer {
 // Produces a object by applying arguments to a kernel function and using options to control how the kernel function is evaluated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/apply(_:arguments:options:)
-func (f_ Filter) ApplyArgumentsOptions(k unsafe.Pointer, args unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer {
+func (f_ Filter) ApplyArgumentsOptions(k unsafe.Pointer, args objc.ID, dict unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("apply:arguments:options:"), k, args, dict)
 	return rv
 }
@@ -2179,7 +2180,7 @@ func (f_ Filter) SetDefaults() {
 // Returns a filter view for the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/view(forUIConfiguration:excludedKeys:)
-func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration unsafe.Pointer, inKeys unsafe.Pointer) unsafe.Pointer {
+func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.ID, inKeys objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("viewForUIConfiguration:excludedKeys:"), inUIConfiguration, inKeys)
 	return rv
 }
@@ -2191,6 +2192,7 @@ func (f_ Filter) Attributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributes"))
 	return rv
 }
+
 // The names of all input parameters to the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/inputKeys
@@ -2198,6 +2200,7 @@ func (f_ Filter) InputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("inputKeys"))
 	return rv
 }
+
 // A Boolean value that determines whether the filter is enabled. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/isEnabled
@@ -2205,6 +2208,7 @@ func (f_ Filter) Enabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("enabled"))
 	return rv
 }
+
 
 // SetEnabled sets the value of the enabled property.
 // A Boolean value that determines whether the filter is enabled. Animatable.
@@ -2222,6 +2226,7 @@ func (f_ Filter) Name() unsafe.Pointer {
 	return rv
 }
 
+
 // SetName sets the value of the name property.
 // A name associated with a filter.
 
@@ -2237,6 +2242,7 @@ func (f_ Filter) OutputImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("outputImage"))
 	return rv
 }
+
 // The names of all output parameters from the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/outputKeys
@@ -2244,4 +2250,5 @@ func (f_ Filter) OutputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("outputKeys"))
 	return rv
 }
+
 
