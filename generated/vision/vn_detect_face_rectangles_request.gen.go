@@ -1,0 +1,85 @@
+// Code generated from Apple documentation for Vision. DO NOT EDIT.
+
+package vision
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [DetectFaceRectanglesRequest] class.
+var (
+	DetectFaceRectanglesRequestClass     _DetectFaceRectanglesRequestClass
+	DetectFaceRectanglesRequestClassOnce sync.Once
+)
+
+func getDetectFaceRectanglesRequestClass() _DetectFaceRectanglesRequestClass {
+	DetectFaceRectanglesRequestClassOnce.Do(func() {
+		DetectFaceRectanglesRequestClass = _DetectFaceRectanglesRequestClass{objc.GetClass("VNDetectFaceRectanglesRequest")}
+	})
+	return DetectFaceRectanglesRequestClass
+}
+
+type _DetectFaceRectanglesRequestClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [DetectFaceRectanglesRequest] class.
+type IDetectFaceRectanglesRequest interface {
+	IImageBasedRequest
+}
+
+// A request that finds faces within an image.
+//
+// This request returns faces as rectangular bounding boxes with origin and size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceRectanglesRequest
+type DetectFaceRectanglesRequest struct {
+	ImageBasedRequest
+}
+
+// DetectFaceRectanglesRequestFrom constructs a [DetectFaceRectanglesRequest] from an unsafe.Pointer.
+//
+// A request that finds faces within an image.
+func DetectFaceRectanglesRequestFrom(ptr unsafe.Pointer) DetectFaceRectanglesRequest {
+	return DetectFaceRectanglesRequest{
+		ImageBasedRequest: ImageBasedRequestFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (dc _DetectFaceRectanglesRequestClass) Alloc() DetectFaceRectanglesRequest {
+	rv := objc.Send[DetectFaceRectanglesRequest](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (dc _DetectFaceRectanglesRequestClass) New() DetectFaceRectanglesRequest {
+	rv := objc.Send[DetectFaceRectanglesRequest](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DetectFaceRectanglesRequest) Init() DetectFaceRectanglesRequest {
+	rv := objc.Send[DetectFaceRectanglesRequest](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DetectFaceRectanglesRequest) Autorelease() DetectFaceRectanglesRequest {
+	rv := objc.Send[DetectFaceRectanglesRequest](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDetectFaceRectanglesRequest creates a new DetectFaceRectanglesRequest instance.
+func NewDetectFaceRectanglesRequest() DetectFaceRectanglesRequest {
+	return getDetectFaceRectanglesRequestClass().New()
+}
+
+
+
+

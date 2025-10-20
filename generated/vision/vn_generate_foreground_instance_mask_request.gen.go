@@ -1,0 +1,83 @@
+// Code generated from Apple documentation for Vision. DO NOT EDIT.
+
+package vision
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [GenerateForegroundInstanceMaskRequest] class.
+var (
+	GenerateForegroundInstanceMaskRequestClass     _GenerateForegroundInstanceMaskRequestClass
+	GenerateForegroundInstanceMaskRequestClassOnce sync.Once
+)
+
+func getGenerateForegroundInstanceMaskRequestClass() _GenerateForegroundInstanceMaskRequestClass {
+	GenerateForegroundInstanceMaskRequestClassOnce.Do(func() {
+		GenerateForegroundInstanceMaskRequestClass = _GenerateForegroundInstanceMaskRequestClass{objc.GetClass("VNGenerateForegroundInstanceMaskRequest")}
+	})
+	return GenerateForegroundInstanceMaskRequestClass
+}
+
+type _GenerateForegroundInstanceMaskRequestClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [GenerateForegroundInstanceMaskRequest] class.
+type IGenerateForegroundInstanceMaskRequest interface {
+	IImageBasedRequest
+}
+
+// A request that generates an instance mask of noticable objects to separate from the background.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateForegroundInstanceMaskRequest
+type GenerateForegroundInstanceMaskRequest struct {
+	ImageBasedRequest
+}
+
+// GenerateForegroundInstanceMaskRequestFrom constructs a [GenerateForegroundInstanceMaskRequest] from an unsafe.Pointer.
+//
+// A request that generates an instance mask of noticable objects to separate from the background.
+func GenerateForegroundInstanceMaskRequestFrom(ptr unsafe.Pointer) GenerateForegroundInstanceMaskRequest {
+	return GenerateForegroundInstanceMaskRequest{
+		ImageBasedRequest: ImageBasedRequestFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (gc _GenerateForegroundInstanceMaskRequestClass) Alloc() GenerateForegroundInstanceMaskRequest {
+	rv := objc.Send[GenerateForegroundInstanceMaskRequest](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (gc _GenerateForegroundInstanceMaskRequestClass) New() GenerateForegroundInstanceMaskRequest {
+	rv := objc.Send[GenerateForegroundInstanceMaskRequest](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GenerateForegroundInstanceMaskRequest) Init() GenerateForegroundInstanceMaskRequest {
+	rv := objc.Send[GenerateForegroundInstanceMaskRequest](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GenerateForegroundInstanceMaskRequest) Autorelease() GenerateForegroundInstanceMaskRequest {
+	rv := objc.Send[GenerateForegroundInstanceMaskRequest](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGenerateForegroundInstanceMaskRequest creates a new GenerateForegroundInstanceMaskRequest instance.
+func NewGenerateForegroundInstanceMaskRequest() GenerateForegroundInstanceMaskRequest {
+	return getGenerateForegroundInstanceMaskRequestClass().New()
+}
+
+
+
+

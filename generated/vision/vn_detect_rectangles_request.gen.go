@@ -1,0 +1,170 @@
+// Code generated from Apple documentation for Vision. DO NOT EDIT.
+
+package vision
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [DetectRectanglesRequest] class.
+var (
+	DetectRectanglesRequestClass     _DetectRectanglesRequestClass
+	DetectRectanglesRequestClassOnce sync.Once
+)
+
+func getDetectRectanglesRequestClass() _DetectRectanglesRequestClass {
+	DetectRectanglesRequestClassOnce.Do(func() {
+		DetectRectanglesRequestClass = _DetectRectanglesRequestClass{objc.GetClass("VNDetectRectanglesRequest")}
+	})
+	return DetectRectanglesRequestClass
+}
+
+type _DetectRectanglesRequestClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [DetectRectanglesRequest] class.
+type IDetectRectanglesRequest interface {
+	IImageBasedRequest
+}
+
+// An image-analysis request that finds projected rectangular regions in an image.
+//
+// A rectangle detection request locates regions of an image with rectangular shape, like credit cards, business cards, documents, and signs. The request returns its observations in the form of objects, which contain normalized coordinates of bounding boxes containing the rectangle. Use this type of request to find the bounding boxes of rectangles in an image. Vision returns observations for rectangles found in all orientations and sizes, along with a confidence level to indicate how likely it’s that the observation contains an actual rectangle. To further configure or restrict the types of rectangles found, set properties on the request specifying a range of aspect ratios, sizes, and quadrature tolerance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest
+type DetectRectanglesRequest struct {
+	ImageBasedRequest
+}
+
+// DetectRectanglesRequestFrom constructs a [DetectRectanglesRequest] from an unsafe.Pointer.
+//
+// An image-analysis request that finds projected rectangular regions in an image.
+func DetectRectanglesRequestFrom(ptr unsafe.Pointer) DetectRectanglesRequest {
+	return DetectRectanglesRequest{
+		ImageBasedRequest: ImageBasedRequestFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (dc _DetectRectanglesRequestClass) Alloc() DetectRectanglesRequest {
+	rv := objc.Send[DetectRectanglesRequest](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (dc _DetectRectanglesRequestClass) New() DetectRectanglesRequest {
+	rv := objc.Send[DetectRectanglesRequest](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DetectRectanglesRequest) Init() DetectRectanglesRequest {
+	rv := objc.Send[DetectRectanglesRequest](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DetectRectanglesRequest) Autorelease() DetectRectanglesRequest {
+	rv := objc.Send[DetectRectanglesRequest](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDetectRectanglesRequest creates a new DetectRectanglesRequest instance.
+func NewDetectRectanglesRequest() DetectRectanglesRequest {
+	return getDetectRectanglesRequestClass().New()
+}
+
+
+// A specifying the maximum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
+func (d_ DetectRectanglesRequest) MaximumAspectRatio() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("maximumAspectRatio"))
+	return rv
+}
+
+
+// SetMaximumAspectRatio sets the value of the maximumAspectRatio property.
+// A specifying the maximum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
+func (d_ DetectRectanglesRequest) SetMaximumAspectRatio(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumAspectRatio:"), value)
+}
+// An integer specifying the maximum number of rectangles Vision returns.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumObservations
+func (d_ DetectRectanglesRequest) MaximumObservations() uint {
+	rv := objc.Send[uint](d_.ID, objc.Sel("maximumObservations"))
+	return rv
+}
+
+
+// SetMaximumObservations sets the value of the maximumObservations property.
+// An integer specifying the maximum number of rectangles Vision returns.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumObservations
+func (d_ DetectRectanglesRequest) SetMaximumObservations(value uint) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumObservations:"), value)
+}
+// A specifying the minimum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
+func (d_ DetectRectanglesRequest) MinimumAspectRatio() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumAspectRatio"))
+	return rv
+}
+
+
+// SetMinimumAspectRatio sets the value of the minimumAspectRatio property.
+// A specifying the minimum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
+func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumAspectRatio:"), value)
+}
+// A value specifying the minimum acceptable confidence level.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
+func (d_ DetectRectanglesRequest) MinimumConfidence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumConfidence"))
+	return rv
+}
+
+
+// SetMinimumConfidence sets the value of the minimumConfidence property.
+// A value specifying the minimum acceptable confidence level.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
+func (d_ DetectRectanglesRequest) SetMinimumConfidence(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumConfidence:"), value)
+}
+// The minimum size of a rectangle to detect, as a proportion of the smallest dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumSize
+func (d_ DetectRectanglesRequest) MinimumSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumSize"))
+	return rv
+}
+
+
+// SetMinimumSize sets the value of the minimumSize property.
+// The minimum size of a rectangle to detect, as a proportion of the smallest dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumSize
+func (d_ DetectRectanglesRequest) SetMinimumSize(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumSize:"), value)
+}
+
+

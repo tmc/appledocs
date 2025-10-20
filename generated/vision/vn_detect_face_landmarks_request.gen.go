@@ -1,0 +1,85 @@
+// Code generated from Apple documentation for Vision. DO NOT EDIT.
+
+package vision
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [DetectFaceLandmarksRequest] class.
+var (
+	DetectFaceLandmarksRequestClass     _DetectFaceLandmarksRequestClass
+	DetectFaceLandmarksRequestClassOnce sync.Once
+)
+
+func getDetectFaceLandmarksRequestClass() _DetectFaceLandmarksRequestClass {
+	DetectFaceLandmarksRequestClassOnce.Do(func() {
+		DetectFaceLandmarksRequestClass = _DetectFaceLandmarksRequestClass{objc.GetClass("VNDetectFaceLandmarksRequest")}
+	})
+	return DetectFaceLandmarksRequestClass
+}
+
+type _DetectFaceLandmarksRequestClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [DetectFaceLandmarksRequest] class.
+type IDetectFaceLandmarksRequest interface {
+	IImageBasedRequest
+}
+
+// An image-analysis request that finds facial features like eyes and mouth in an image.
+//
+// By default, a face landmarks request first locates all faces in the input image, then analyzes each to detect facial features. If you’ve already located all the faces in an image, or want to detect landmarks in only a subset of the faces in the image, set the property to an array of objects representing the faces you want to analyze. You can either use face observations output by a or manually create instances with the bounding boxes of the faces you want to analyze.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceLandmarksRequest
+type DetectFaceLandmarksRequest struct {
+	ImageBasedRequest
+}
+
+// DetectFaceLandmarksRequestFrom constructs a [DetectFaceLandmarksRequest] from an unsafe.Pointer.
+//
+// An image-analysis request that finds facial features like eyes and mouth in an image.
+func DetectFaceLandmarksRequestFrom(ptr unsafe.Pointer) DetectFaceLandmarksRequest {
+	return DetectFaceLandmarksRequest{
+		ImageBasedRequest: ImageBasedRequestFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (dc _DetectFaceLandmarksRequestClass) Alloc() DetectFaceLandmarksRequest {
+	rv := objc.Send[DetectFaceLandmarksRequest](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (dc _DetectFaceLandmarksRequestClass) New() DetectFaceLandmarksRequest {
+	rv := objc.Send[DetectFaceLandmarksRequest](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DetectFaceLandmarksRequest) Init() DetectFaceLandmarksRequest {
+	rv := objc.Send[DetectFaceLandmarksRequest](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DetectFaceLandmarksRequest) Autorelease() DetectFaceLandmarksRequest {
+	rv := objc.Send[DetectFaceLandmarksRequest](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDetectFaceLandmarksRequest creates a new DetectFaceLandmarksRequest instance.
+func NewDetectFaceLandmarksRequest() DetectFaceLandmarksRequest {
+	return getDetectFaceLandmarksRequestClass().New()
+}
+
+
+
+

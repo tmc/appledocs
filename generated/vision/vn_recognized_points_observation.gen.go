@@ -1,0 +1,126 @@
+// Code generated from Apple documentation for Vision. DO NOT EDIT.
+
+package vision
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [RecognizedPointsObservation] class.
+var (
+	RecognizedPointsObservationClass     _RecognizedPointsObservationClass
+	RecognizedPointsObservationClassOnce sync.Once
+)
+
+func getRecognizedPointsObservationClass() _RecognizedPointsObservationClass {
+	RecognizedPointsObservationClassOnce.Do(func() {
+		RecognizedPointsObservationClass = _RecognizedPointsObservationClass{objc.GetClass("VNRecognizedPointsObservation")}
+	})
+	return RecognizedPointsObservationClass
+}
+
+type _RecognizedPointsObservationClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [RecognizedPointsObservation] class.
+type IRecognizedPointsObservation interface {
+	IObservation
+	KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
+	RecognizedPointForKeyError(pointKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	RecognizedPointsForGroupKeyError(groupKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+}
+
+// An observation that provides the points the analysis recognized.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation
+type RecognizedPointsObservation struct {
+	Observation
+}
+
+// RecognizedPointsObservationFrom constructs a [RecognizedPointsObservation] from an unsafe.Pointer.
+//
+// An observation that provides the points the analysis recognized.
+func RecognizedPointsObservationFrom(ptr unsafe.Pointer) RecognizedPointsObservation {
+	return RecognizedPointsObservation{
+		Observation: ObservationFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (rc _RecognizedPointsObservationClass) Alloc() RecognizedPointsObservation {
+	rv := objc.Send[RecognizedPointsObservation](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (rc _RecognizedPointsObservationClass) New() RecognizedPointsObservation {
+	rv := objc.Send[RecognizedPointsObservation](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RecognizedPointsObservation) Init() RecognizedPointsObservation {
+	rv := objc.Send[RecognizedPointsObservation](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RecognizedPointsObservation) Autorelease() RecognizedPointsObservation {
+	rv := objc.Send[RecognizedPointsObservation](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRecognizedPointsObservation creates a new RecognizedPointsObservation instance.
+func NewRecognizedPointsObservation() RecognizedPointsObservation {
+	return getRecognizedPointsObservationClass().New()
+}
+
+
+// Retrieves the grouping of normalized point coordinates and confidence scores in a format compatible with Core ML.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()
+func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("keypointsMultiArrayAndReturnError:"), error_)
+	return rv
+}
+
+// Retrieves a recognized point for a key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoint(forKey:)
+func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
+	return rv
+}
+
+// Retrieves the recognized points for a key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoints(forGroupKey:)
+func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
+	return rv
+}
+
+// The available point group keys in the observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/availableGroupKeys
+func (r_ RecognizedPointsObservation) AvailableGroupKeys() []string {
+	rv := objc.Send[[]string](r_.ID, objc.Sel("availableGroupKeys"))
+	return rv
+}
+
+// The available point keys in the observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/availableKeys
+func (r_ RecognizedPointsObservation) AvailableKeys() []string {
+	rv := objc.Send[[]string](r_.ID, objc.Sel("availableKeys"))
+	return rv
+}
+
+
+
