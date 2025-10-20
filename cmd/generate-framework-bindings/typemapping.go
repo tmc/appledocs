@@ -81,6 +81,7 @@ var typeRegistry = []TypeMapping{
 	// ==== CoreVideo types ====
 	// CoreVideo uses CoreGraphics types
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreVideo"},
+	{ObjCType: "CGFloat", GoType: "float64", Framework: "QuartzCore"},
 	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "CoreVideo"},
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "CoreVideo"},
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreVideo"},

@@ -32,8 +32,8 @@ var templateFuncs = template.FuncMap{
 	"commentLine": commentLine,
 	"dict":        dict,
 
-	// occ2go type mapping
-	"mapCTypeToGo": occ2go.MapCTypeToGo,
+	// occ2go type mapping (wrapped to apply framework-specific mappings)
+	"mapCTypeToGo": mapCTypeToGoWithFramework,
 
 	// Parameter processing helpers
 	"isGoKeyword":   isGoKeyword,
@@ -174,7 +174,7 @@ func prepareParams(params []occ2go.Parameter, framework string) []ParameterData 
 		// Clean and map parameter type
 		paramType := strings.TrimRight(p.Type, ",;)")
 		paramType = strings.TrimSpace(paramType)
-		paramType = occ2go.MapCTypeToGo(paramType, framework)
+		paramType = mapCTypeToGoWithFramework(paramType, framework)
 
 		// Generate parameter name if missing
 		paramName := p.Name
@@ -765,6 +765,18 @@ func disambiguateMethodName(method *occ2go.ParsedMethod) string {
 	// For multi-parameter methods, the selector already contains the labels
 	// Just use the standard conversion which will include all parts
 	return selectorToGoName(selector)
+}
+
+// mapCTypeToGoWithFramework wraps occ2go.MapCTypeToGo and applies framework-specific type mappings.
+// This ensures C types like CGAffineTransform are properly qualified with their framework package.
+func mapCTypeToGoWithFramework(cType, framework string) string {
+	// First apply occ2go's basic C type mapping
+	goType := occ2go.MapCTypeToGo(cType, framework)
+
+	// Then apply our framework-specific mapping to add package qualifiers
+	// For example, CGAffineTransform -> coregraphics.CGAffineTransform
+	mapped := mapObjCTypeToGo(goType, framework)
+	return mapped
 }
 
 // mapObjCTypeToGo maps Objective-C types to Go types for darwinkit style.
