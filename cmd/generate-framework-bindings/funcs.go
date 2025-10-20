@@ -1826,16 +1826,15 @@ func generateTestValue(goType, framework, paramName string) string {
 		return "nil"
 	}
 
-	// Handle AppKit/CoreGraphics geometry types
-	// When the type is from another package (coregraphics), return the fully qualified name
-	// The template will NOT add a prefix because it checks hasPrefix for known packages
-	if goType == "CGRect" || goType == "Rect" || goType == "coregraphics.CGRect" {
+	// Handle CoreGraphics geometry types - only when explicitly qualified
+	// These are cross-framework types that need full qualification
+	if goType == "coregraphics.CGRect" || goType == "CGRect" && framework != "Foundation" {
 		return "coregraphics.CGRect{}"
 	}
-	if goType == "CGSize" || goType == "Size" || goType == "coregraphics.CGSize" {
+	if goType == "coregraphics.CGSize" || goType == "CGSize" && framework != "Foundation" {
 		return "coregraphics.CGSize{}"
 	}
-	if goType == "CGPoint" || goType == "Point" || goType == "coregraphics.CGPoint" {
+	if goType == "coregraphics.CGPoint" || goType == "CGPoint" && framework != "Foundation" {
 		return "coregraphics.CGPoint{}"
 	}
 
