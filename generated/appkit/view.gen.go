@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -1748,8 +1749,8 @@ func (v_ View) SetAutoresizingMask(value unsafe.Pointer) {
 // An array of Core Image filters to apply to the view’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) BackgroundFilters() []__kindof CIFilter {
-	rv := objc.Send[[]__kindof CIFilter](v_.ID, objc.Sel("backgroundFilters"))
+func (v_ View) BackgroundFilters() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
 
@@ -1759,7 +1760,7 @@ func (v_ View) BackgroundFilters() []__kindof CIFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value []__kindof CIFilter) {
+func (v_ View) SetBackgroundFilters(value []unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBackgroundFilters:"), value)
 }
 // The distance (in points) between the bottom of the view’s alignment rectangle and its baseline.
@@ -1930,8 +1931,8 @@ func (v_ View) Constraints() []LayoutConstraint {
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) ContentFilters() []__kindof CIFilter {
-	rv := objc.Send[[]__kindof CIFilter](v_.ID, objc.Sel("contentFilters"))
+func (v_ View) ContentFilters() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
 
@@ -1941,7 +1942,7 @@ func (v_ View) ContentFilters() []__kindof CIFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value []__kindof CIFilter) {
+func (v_ View) SetContentFilters(value []unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setContentFilters:"), value)
 }
 // The menu item containing the view or any of its superviews in the view hierarchy.
@@ -2063,8 +2064,8 @@ func (v_ View) SetFrameRotation(value float64) {
 // The gesture recognize objects currently attached to the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
-func (v_ View) GestureRecognizers() []__kindof NSGestureRecognizer {
-	rv := objc.Send[[]__kindof NSGestureRecognizer](v_.ID, objc.Sel("gestureRecognizers"))
+func (v_ View) GestureRecognizers() []GestureRecognizer {
+	rv := objc.Send[[]GestureRecognizer](v_.ID, objc.Sel("gestureRecognizers"))
 	return rv
 }
 
@@ -2074,7 +2075,7 @@ func (v_ View) GestureRecognizers() []__kindof NSGestureRecognizer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
-func (v_ View) SetGestureRecognizers(value []__kindof NSGestureRecognizer) {
+func (v_ View) SetGestureRecognizers(value []GestureRecognizer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setGestureRecognizers:"), value)
 }
 // A Boolean value indicating whether the constraints impacting the layout of the view incompletely specify the location of the view.
@@ -2649,8 +2650,8 @@ func (v_ View) SetShadow(value unsafe.Pointer) {
 // The array of views embedded in the current view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
-func (v_ View) Subviews() []__kindof NSView {
-	rv := objc.Send[[]__kindof NSView](v_.ID, objc.Sel("subviews"))
+func (v_ View) Subviews() []View {
+	rv := objc.Send[[]View](v_.ID, objc.Sel("subviews"))
 	return rv
 }
 
@@ -2660,7 +2661,7 @@ func (v_ View) Subviews() []__kindof NSView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
-func (v_ View) SetSubviews(value []__kindof NSView) {
+func (v_ View) SetSubviews(value []View) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSubviews:"), value)
 }
 // The view that is the parent of the current view.

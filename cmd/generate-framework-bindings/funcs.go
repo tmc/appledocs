@@ -2105,6 +2105,40 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		}
 	}
 
+	// Check method parameters and return types for Foundation dependencies
+	if !imports.NeedsFoundation {
+		for _, method := range class.Methods {
+			// Check return type
+			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
+			if strings.HasPrefix(goReturnType, "foundation.") {
+				imports.NeedsFoundation = true
+				break
+			}
+			// Check parameter types
+			for _, param := range method.Parameters {
+				goParamType := mapObjCTypeToGo(param.Type, framework)
+				if strings.HasPrefix(goParamType, "foundation.") {
+					imports.NeedsFoundation = true
+					break
+				}
+			}
+			if imports.NeedsFoundation {
+				break
+			}
+		}
+	}
+
+	// Check properties for Foundation dependencies
+	if !imports.NeedsFoundation {
+		for _, prop := range class.Properties {
+			goType := mapObjCTypeToGo(prop.Type, framework)
+			if strings.HasPrefix(goType, "foundation.") {
+				imports.NeedsFoundation = true
+				break
+			}
+		}
+	}
+
 	return imports
 }
 
