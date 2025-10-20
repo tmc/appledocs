@@ -489,19 +489,9 @@ func stripObjCPrefix(className string) string {
 			// Check if next character is uppercase (start of actual name)
 			nextChar := className[len(prefix)]
 			if nextChar >= 'A' && nextChar <= 'Z' {
-				name := className[len(prefix):]
-				// Check if result is a Go keyword and escape it
-				if isGoKeyword(strings.ToLower(name)) {
-					return name + "_"
-				}
-				return name
+				return className[len(prefix):]
 			}
 		}
-	}
-
-	// Check if the className (after stripping invalid chars) is a Go keyword
-	if isGoKeyword(strings.ToLower(className)) {
-		return className + "_"
 	}
 
 	return className
@@ -1671,9 +1661,69 @@ func extractPackageNameFromImportPath(importPath string) string {
 // getClassRequiredImports returns a sorted slice of all required imports for a class (including both methods and properties).
 // This is a convenience function for templates to get all imports at once.
 func getClassRequiredImports(class interface{}, framework string) []string {
-	// This is a bit of a hack, but we need to work with the parsed class data
-	// For now, we return an empty slice - this would need proper type handling
-	return []string{}
+	imports := make(map[string]bool)
+	currentFrameworkImportPath := "github.com/tmc/appledocs/generated/" + strings.ToLower(framework)
+
+	// Try to extract class data using reflection
+	classVal := reflect.ValueOf(class)
+	if classVal.Kind() == reflect.Ptr {
+		classVal = classVal.Elem()
+	}
+
+	// Try to access Methods field
+	if classVal.Kind() == reflect.Struct {
+		methodsField := classVal.FieldByName("Methods")
+		if methodsField.IsValid() && methodsField.Kind() == reflect.Slice {
+			for i := 0; i < methodsField.Len(); i++ {
+				method := methodsField.Index(i).Interface()
+				if parsedMethod, ok := method.(*occ2go.ParsedMethod); ok {
+					// Check return type
+					if parsedMethod.ReturnType != "" {
+						goType := mapObjCTypeToGo(parsedMethod.ReturnType, framework)
+						if importPath := getGoTypeImportPath(goType); importPath != "" {
+							if importPath != currentFrameworkImportPath {
+								imports[importPath] = true
+							}
+						}
+					}
+
+					// Check parameters
+					for _, param := range parsedMethod.Parameters {
+						goType := mapObjCTypeToGo(param.Type, framework)
+						if importPath := getGoTypeImportPath(goType); importPath != "" {
+							if importPath != currentFrameworkImportPath {
+								imports[importPath] = true
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Try to access Properties field
+		propertiesField := classVal.FieldByName("Properties")
+		if propertiesField.IsValid() && propertiesField.Kind() == reflect.Slice {
+			for i := 0; i < propertiesField.Len(); i++ {
+				property := propertiesField.Index(i).Interface()
+				if parsedProp, ok := property.(*occ2go.ParsedProperty); ok {
+					goType := mapObjCTypeToGo(parsedProp.Type, framework)
+					if importPath := getGoTypeImportPath(goType); importPath != "" {
+						if importPath != currentFrameworkImportPath {
+							imports[importPath] = true
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Convert map to sorted slice
+	result := make([]string, 0, len(imports))
+	for imp := range imports {
+		result = append(result, imp)
+	}
+	sort.Strings(result)
+	return result
 }
 
 // getFunctionRequiredImports analyzes standalone functions to collect required import paths.
