@@ -167,16 +167,9 @@ func startVMWithUI() error {
 	}
 	fmt.Println("   ✓ Configuration is valid")
 
-	// Create VM instance using initWithConfiguration:
+	// Create VM instance using generated constructor - type-safe!
 	fmt.Println("\n5. Creating VM instance...")
-	vmClass := objc.GetClass("VZVirtualMachine")
-	vmAlloc := objc.Send[objc.ID](objc.ID(vmClass), objc.RegisterName("alloc"))
-	vmID := objc.Send[objc.ID](
-		vmAlloc,
-		objc.RegisterName("initWithConfiguration:"),
-		unsafe.Pointer(config.ID),
-	)
-	vm := virtualization.VZVirtualMachineFrom(unsafe.Pointer(vmID))
+	vm := virtualization.NewVZVirtualMachineWithConfiguration(config)
 	if vm.ID == 0 {
 		return fmt.Errorf("failed to create VM")
 	}
@@ -281,25 +274,21 @@ func addStorageDevice(config virtualization.VZVirtualMachineConfiguration) error
 	// Create disk image storage attachment
 	diskURL := stringToNSURL(*diskPath)
 
-	// Use objc.Send to create attachment with URL and read-only flag
-	attachClass := objc.GetClass("VZDiskImageStorageDeviceAttachment")
-	attachAlloc := objc.Send[objc.ID](objc.ID(attachClass), objc.RegisterName("alloc"))
-	attachID := objc.Send[objc.ID](
-		attachAlloc,
-		objc.RegisterName("initWithURL:readOnly:error:"),
-		unsafe.Pointer(diskURL.ID),
+	// Create disk attachment using generated constructor - type-safe!
+	diskAttachment := virtualization.NewVZDiskImageStorageDeviceAttachmentWithURLReadOnlyError(
+		diskURL,
 		false,
-		unsafe.Pointer(uintptr(0)), // nil error pointer
+		nil,
 	)
 
 	// Create VirtIO block device
 	blockDevice := virtualization.NewVZVirtioBlockDeviceConfiguration()
 
-	// Set attachment using objc.Send
+	// Set attachment (Priority 3 will make this type-safe)
 	objc.Send[bool](
 		blockDevice.ID,
 		objc.RegisterName("setAttachment:"),
-		unsafe.Pointer(attachID),
+		unsafe.Pointer(diskAttachment.ID),
 	)
 
 	// Create array and set storage devices using objc.Send
@@ -360,17 +349,10 @@ func addGraphicsDevice(config virtualization.VZVirtualMachineConfiguration) erro
 	// Create graphics device
 	graphicsDevice := virtualization.NewVZVirtioGraphicsDeviceConfiguration()
 
-	// Create scanout configuration using objc.Send
-	scanoutClass := objc.GetClass("VZVirtioGraphicsScanoutConfiguration")
-	scanoutAlloc := objc.Send[objc.ID](objc.ID(scanoutClass), objc.RegisterName("alloc"))
-	scanoutID := objc.Send[objc.ID](
-		scanoutAlloc,
-		objc.RegisterName("initWithWidthInPixels:heightInPixels:"),
-		int64(1920),
-		int64(1200),
-	)
+	// Create scanout configuration using generated constructor - type-safe!
+	scanout := virtualization.NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(1920, 1200)
 
-	// Set scanouts using objc.Send
+	// Set scanouts using objc.Send (for now - Priority 3 will fix this)
 	arrayClass := objc.GetClass("NSMutableArray")
 	arrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
 	arrayID := objc.Send[objc.ID](arrayAlloc, objc.RegisterName("init"))
@@ -378,7 +360,7 @@ func addGraphicsDevice(config virtualization.VZVirtualMachineConfiguration) erro
 	objc.Send[bool](
 		arrayID,
 		objc.RegisterName("addObject:"),
-		unsafe.Pointer(scanoutID),
+		unsafe.Pointer(scanout.ID),
 	)
 
 	objc.Send[bool](

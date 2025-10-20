@@ -89,6 +89,19 @@ func NewVZVirtualMachine() VZVirtualMachine {
 	return getVZVirtualMachineClass().New()
 }
 
+// NewVZVirtualMachineWithConfiguration initializes a virtual machine with a configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/init(configuration:)
+func NewVZVirtualMachineWithConfiguration(configuration VZVirtualMachineConfiguration) VZVirtualMachine {
+	class := getVZVirtualMachineClass()
+	alloc := objc.Send[VZVirtualMachine](objc.ID(class.class), objc.Sel("alloc"))
+	inst := objc.Send[VZVirtualMachine](
+		alloc.ID,
+		objc.Sel("initWithConfiguration:"),
+		unsafe.Pointer(configuration.ID),
+	)
+	return inst
+}
 
 // Restores a VM from a previously saved state.
 //
