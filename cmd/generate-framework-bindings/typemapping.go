@@ -70,11 +70,27 @@ var typeRegistry = []TypeMapping{
 	// ==== CoreGraphics types ====
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
 
+	// ==== CoreText types ====
+	// CoreText uses CoreGraphics types
+	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreText"},
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "CoreText"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "CoreText"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreText"},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreText"},
+
+	// ==== CoreVideo types ====
+	// CoreVideo uses CoreGraphics types
+	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreVideo"},
+	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "CoreVideo"},
+	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "CoreVideo"},
+	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "CoreVideo"},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.CGAffineTransform", Framework: "CoreVideo"},
+
 	// ==== Event types ====
 	// CGEventRef - proper wrapper type instead of unsafe.Pointer
-	{ObjCType: "CGEventRef", GoType: "EventRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGEventRef", GoType: "coregraphics.EventRef", Framework: "AppKit"},
-	{ObjCType: "CGEventRef", GoType: "coregraphics.EventRef", Framework: "Foundation"},
+	{ObjCType: "CGEventRef", GoType: "CFEventRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventRef", GoType: "coregraphics.CGEventRef", Framework: "AppKit"},
+	{ObjCType: "CGEventRef", GoType: "coregraphics.CGEventRef", Framework: "Foundation"},
 
 	// ==== Block/Closure types ====
 	// Completion handlers and callbacks - map to proper function types
@@ -90,8 +106,8 @@ var typeRegistry = []TypeMapping{
 	// NSArray element type - use objc.ID for element access
 	{ObjCType: "id", GoType: "objc.ID", Framework: ""},
 	{ObjCType: "id _Nullable", GoType: "objc.ID", Framework: ""},
-	{ObjCType: "NSArray *", GoType: "objc.ID", Framework: ""},  // Will be wrapped with typed accessors
-	{ObjCType: "NSDictionary *", GoType: "objc.ID", Framework: ""},  // Will be wrapped with typed accessors
+	{ObjCType: "NSArray *", GoType: "objc.ID", Framework: ""},      // Will be wrapped with typed accessors
+	{ObjCType: "NSDictionary *", GoType: "objc.ID", Framework: ""}, // Will be wrapped with typed accessors
 	{ObjCType: "NSSet *", GoType: "objc.ID", Framework: ""},
 
 	// Foundation edge enum - unqualified within Foundation
