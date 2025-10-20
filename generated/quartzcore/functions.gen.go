@@ -6,6 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
+	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
@@ -20,17 +21,17 @@ var (
 	_CAFrameRateRangeMake func(float32, float32, float32) unsafe.Pointer
 	_CATransform3DConcat func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CATransform3DEqualToTransform func(unsafe.Pointer, unsafe.Pointer) bool
-	_CATransform3DGetAffineTransform func(unsafe.Pointer) CGAffineTransform
+	_CATransform3DGetAffineTransform func(unsafe.Pointer) coregraphics.CGAffineTransform
 	_CATransform3DInvert func(unsafe.Pointer) unsafe.Pointer
 	_CATransform3DIsAffine func(unsafe.Pointer) bool
 	_CATransform3DIsIdentity func(unsafe.Pointer) bool
-	_CATransform3DMakeAffineTransform func(CGAffineTransform) unsafe.Pointer
-	_CATransform3DMakeRotation func(CGFloat, CGFloat, CGFloat, CGFloat) unsafe.Pointer
-	_CATransform3DMakeScale func(CGFloat, CGFloat, CGFloat) unsafe.Pointer
-	_CATransform3DMakeTranslation func(CGFloat, CGFloat, CGFloat) unsafe.Pointer
-	_CATransform3DRotate func(unsafe.Pointer, CGFloat, CGFloat, CGFloat, CGFloat) unsafe.Pointer
-	_CATransform3DScale func(unsafe.Pointer, CGFloat, CGFloat, CGFloat) unsafe.Pointer
-	_CATransform3DTranslate func(unsafe.Pointer, CGFloat, CGFloat, CGFloat) unsafe.Pointer
+	_CATransform3DMakeAffineTransform func(coregraphics.CGAffineTransform) unsafe.Pointer
+	_CATransform3DMakeRotation func(float64, float64, float64, float64) unsafe.Pointer
+	_CATransform3DMakeScale func(float64, float64, float64) unsafe.Pointer
+	_CATransform3DMakeTranslation func(float64, float64, float64) unsafe.Pointer
+	_CATransform3DRotate func(unsafe.Pointer, float64, float64, float64, float64) unsafe.Pointer
+	_CATransform3DScale func(unsafe.Pointer, float64, float64, float64) unsafe.Pointer
+	_CATransform3DTranslate func(unsafe.Pointer, float64, float64, float64) unsafe.Pointer
 )
 
 func init() {
@@ -125,7 +126,7 @@ func CATransform3DEqualToTransform(a unsafe.Pointer, b unsafe.Pointer) bool {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DGetAffineTransform(_:)
-func CATransform3DGetAffineTransform(t unsafe.Pointer) CGAffineTransform {
+func CATransform3DGetAffineTransform(t unsafe.Pointer) coregraphics.CGAffineTransform {
 	return _CATransform3DGetAffineTransform(t)
 	}
 
@@ -165,7 +166,7 @@ func CATransform3DIsIdentity(t unsafe.Pointer) bool {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeAffineTransform(_:)
-func CATransform3DMakeAffineTransform(m CGAffineTransform) unsafe.Pointer {
+func CATransform3DMakeAffineTransform(m coregraphics.CGAffineTransform) unsafe.Pointer {
 	return _CATransform3DMakeAffineTransform(m)
 	}
 
