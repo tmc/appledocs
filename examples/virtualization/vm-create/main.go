@@ -19,8 +19,12 @@ func main() {
 	fmt.Println("Virtualization Framework Example")
 	fmt.Println("================================")
 
-	// Prevent unused import error
-	_ = virtualization.NewVZVirtualMachine
+	// Example 0: Test framework availability by creating a VM instance
+	fmt.Println("\n0. Testing Framework Availability:")
+	vm := virtualization.NewVZVirtualMachine()
+	fmt.Printf("   Created VZVirtualMachine: %v\n", vm.ID != 0)
+	fmt.Printf("   VM Object ID: 0x%x (non-zero indicates valid object)\n", vm.ID)
+	fmt.Println("   Note: Calling methods like CanStart() requires proper VM configuration")
 
 	// Example 1: Framework Overview
 	fmt.Println("\n1. Framework Overview:")

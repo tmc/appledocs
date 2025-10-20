@@ -74,22 +74,30 @@ func main() {
 
 	context := localauthentication.NewContext()
 	fmt.Printf("   Created LAContext: %v\n", context.ID != 0)
+	fmt.Printf("   Context ID: 0x%x (non-zero indicates valid object)\n", context.ID)
 
-	// Example 4: Check biometric availability
-	fmt.Println("\n4. Checking Biometric Availability:")
+	// Example 4: Check biometric availability and context properties
+	fmt.Println("\n4. Checking LAContext Properties:")
+	fmt.Println("   Attempting to query available biometry information...")
 
-	// Note: CanEvaluatePolicyError requires proper Objective-C method signature handling
-	// The policy parameter expects NSInteger (int) as an Objective-C boxed type
-	// For now, we'll show the API without calling it to avoid crashes
+	// Get biometry type to see what authentication methods are available
+	biometryTypeID := context.BiometryType()
+	biometryName := "Unknown"
+	fmt.Printf("   Biometry Type ID pointer: %v\n", biometryTypeID)
 
-	fmt.Println("   API: context.CanEvaluatePolicyError(policy, error)")
-	fmt.Println("   Note: Proper invocation requires correct Objective-C type marshaling")
-	fmt.Println("   ")
-	fmt.Println("   In production, you would:")
-	fmt.Println("   1. Create an NSError** pointer for the error parameter")
-	fmt.Println("   2. Pass the policy as an NSInteger (int) value")
-	fmt.Println("   3. Check the boolean return value")
-	fmt.Println("   4. Inspect the NSError if canEvaluate returns false")
+	// Note: BiometryType returns unsafe.Pointer that needs to be dereferenced
+	// Different frameworks may have different ways to extract the actual integer value
+	if biometryTypeID == nil {
+		biometryName = "None"
+	} else {
+		biometryName = "Available (requires pointer dereferencing)"
+	}
+	fmt.Printf("   Biometry Status: %s\n", biometryName)
+
+	// Example 5: Query LAContext state
+	fmt.Println("\n5. LAContext State Information:")
+	fmt.Println("   API: context.BiometryType() - returns available biometry")
+	fmt.Println("   Note: CanEvaluatePolicyError requires proper Objective-C method signature handling")
 	fmt.Println("   ")
 	fmt.Println("   Reasons biometric authentication may not be available:")
 	fmt.Println("   - No TouchID or FaceID hardware")
@@ -97,8 +105,8 @@ func main() {
 	fmt.Println("   - Biometrics locked out (too many failed attempts)")
 	fmt.Println("   - Running in unsupported environment (VM, CI, etc.)")
 
-	// Example 5: LAContext properties
-	fmt.Println("\n5. LAContext Properties:")
+	// Example 6: LAContext properties
+	fmt.Println("\n6. LAContext Properties:")
 	properties := []string{
 		"localizedReason - User-facing explanation for authentication",
 		"localizedFallbackTitle - Custom fallback button title",
@@ -112,8 +120,8 @@ func main() {
 		fmt.Printf("   %d. %s\n", i+1, property)
 	}
 
-	// Example 6: Error codes
-	fmt.Println("\n6. Common Error Codes:")
+	// Example 7: Error codes
+	fmt.Println("\n7. Common Error Codes:")
 	errors := map[int]string{
 		LAErrorAuthenticationFailed: "Authentication was not successful",
 		LAErrorUserCancel:           "User cancelled authentication",
@@ -129,8 +137,8 @@ func main() {
 		fmt.Printf("   %d: %s\n", code, description)
 	}
 
-	// Example 7: Authentication workflow
-	fmt.Println("\n7. Authentication Workflow:")
+	// Example 8: Authentication workflow
+	fmt.Println("\n8. Authentication Workflow:")
 	workflow := []string{
 		"1. Create LAContext instance",
 		"2. Check if policy can be evaluated (canEvaluatePolicy:error:)",
@@ -144,8 +152,8 @@ func main() {
 		fmt.Printf("   %s\n", step)
 	}
 
-	// Example 8: Use cases
-	fmt.Println("\n8. Use Cases:")
+	// Example 9: Use cases
+	fmt.Println("\n9. Use Cases:")
 	useCases := map[string]string{
 		"Secure Login":        "Authenticate user before app access",
 		"Payment Auth":        "Confirm purchases or transactions",
@@ -161,8 +169,8 @@ func main() {
 		fmt.Printf("   %-20s: %s\n", useCase, description)
 	}
 
-	// Example 9: Biometry types
-	fmt.Println("\n9. Biometry Types:")
+	// Example 10: Biometry types
+	fmt.Println("\n10. Biometry Types:")
 	biometryTypes := []string{
 		"LABiometryTypeNone (0) - No biometry available",
 		"LABiometryTypeTouchID (1) - TouchID sensor present",
@@ -174,28 +182,30 @@ func main() {
 		fmt.Printf("   %d. %s\n", i+1, biometryType)
 	}
 
-	// Example 10: Code example
-	fmt.Println("\n10. Example Code Structure:")
+	// Example 11: Code example
+	fmt.Println("\n11. Example Code Structure:")
 	fmt.Println("   // Create context")
 	fmt.Println("   context := localauthentication.NewContext()")
+	fmt.Println("   ")
+	fmt.Println("   // Check biometry type")
+	fmt.Println("   biometryType := context.BiometryType()")
+	fmt.Println("   if biometryType == 0 {")
+	fmt.Println("       fmt.Println(\"No biometry available\")")
+	fmt.Println("       return")
+	fmt.Println("   }")
 	fmt.Println("   ")
 	fmt.Println("   // Check if biometric authentication is available")
 	fmt.Println("   var errorPtr unsafe.Pointer")
 	fmt.Println("   policy := LAPolicyDeviceOwnerAuthenticationWithBiometrics")
 	fmt.Println("   canEval := context.CanEvaluatePolicyError(unsafe.Pointer(&policy), errorPtr)")
 	fmt.Println("   ")
-	fmt.Println("   if !canEval {")
-	fmt.Println("       fmt.Println(\"Biometric auth not available\")")
-	fmt.Println("       return")
-	fmt.Println("   }")
-	fmt.Println("   ")
 	fmt.Println("   // Evaluate authentication")
 	fmt.Println("   // Note: Callback requires proper Objective-C block handling")
 	fmt.Println("   // context.EvaluatePolicyLocalizedReasonReply(...)")
 
-	// Example 11: Interactive authentication demo
+	// Example 12: Interactive authentication demo
 	if *authenticate {
-		fmt.Println("\n11. Attempting Interactive Authentication:")
+		fmt.Println("\n12. Attempting Interactive Authentication:")
 		fmt.Println("   Starting biometric authentication...")
 		fmt.Println("   ")
 		fmt.Println("   Note: Interactive authentication requires proper block callback handling")
@@ -209,13 +219,13 @@ func main() {
 		fmt.Println("   - Creating a helper library for block handling")
 		fmt.Println("   - Using Apple's C APIs for authentication")
 	} else {
-		fmt.Println("\n11. Interactive Authentication:")
+		fmt.Println("\n12. Interactive Authentication:")
 		fmt.Println("   Run with -auth flag to see authentication notes")
 		fmt.Println("   Example: go run main.go -auth")
 	}
 
-	// Example 12: Best practices
-	fmt.Println("\n12. Best Practices:")
+	// Example 13: Best practices
+	fmt.Println("\n13. Best Practices:")
 	bestPractices := []string{
 		"Always check canEvaluatePolicy before attempting authentication",
 		"Provide clear, user-friendly localizedReason messages",
@@ -231,8 +241,8 @@ func main() {
 		fmt.Printf("   %d. %s\n", i+1, practice)
 	}
 
-	// Example 13: Platform requirements
-	fmt.Println("\n13. Platform Requirements:")
+	// Example 14: Platform requirements
+	fmt.Println("\n14. Platform Requirements:")
 	requirements := []string{
 		"macOS 10.10+ for basic LocalAuthentication",
 		"TouchID: MacBook Pro (2016+), MacBook Air (2018+)",
@@ -246,8 +256,8 @@ func main() {
 		fmt.Printf("   %d. %s\n", i+1, requirement)
 	}
 
-	// Example 14: Security considerations
-	fmt.Println("\n14. Security Considerations:")
+	// Example 15: Security considerations
+	fmt.Println("\n15. Security Considerations:")
 	securityNotes := []string{
 		"Biometric data never leaves the Secure Enclave",
 		"App receives only success/failure, not biometric data",
@@ -262,8 +272,8 @@ func main() {
 		fmt.Printf("   %d. %s\n", i+1, note)
 	}
 
-	// Example 15: Troubleshooting
-	fmt.Println("\n15. Common Issues:")
+	// Example 16: Troubleshooting
+	fmt.Println("\n16. Common Issues:")
 	issues := map[string]string{
 		"kLAErrorBiometryNotAvailable": "No TouchID/FaceID hardware or disabled",
 		"kLAErrorBiometryNotEnrolled":  "User hasn't enrolled fingerprints/face",
