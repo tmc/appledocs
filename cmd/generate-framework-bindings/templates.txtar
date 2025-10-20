@@ -789,16 +789,26 @@ import (
 	"{{.OutputModule}}/{{.PackageName}}"
 {{- $needsFoundation := false}}
 {{- $needsCoreGraphics := false}}
+{{- $framework := $.Framework}}
 {{- range prepareInitMethodsWithClassName .Class.Name .Class.Methods}}
+{{- $canGenerateAllParams := true}}
 {{- range .Parameters}}
-{{- $goType := mapObjCTypeToGo .Type $.Framework}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- if not (canGenerateTestValue $goType .Name)}}
+{{- $canGenerateAllParams = false}}
+{{- end}}
+{{- end}}
+{{- if $canGenerateAllParams}}
+{{- range .Parameters}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
 {{- if hasPrefix $goType "foundation."}}
 {{- $needsFoundation = true}}
 {{- end}}
 {{- if hasPrefix $goType "coregraphics."}}
 {{- $needsCoreGraphics = true}}
-{{- else if and (or (eq $goType "CGRect") (eq $goType "CGSize") (eq $goType "CGPoint")) (ne $.Framework "Foundation")}}
+{{- else if and (or (eq $goType "CGRect") (eq $goType "CGSize") (eq $goType "CGPoint")) (ne $framework "Foundation")}}
 {{- $needsCoreGraphics = true}}
+{{- end}}
 {{- end}}
 {{- end}}
 {{- end}}
