@@ -3,10 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
+	"sync"
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/screencapturekit"
 )
 
 // nsArrayCount returns the count of an NSArray (works for any objc.ID that responds to count)
@@ -71,4 +73,63 @@ func awaitCompletion(done <-chan error, operation string) error {
 		return fmt.Errorf("%s: %w", operation, err)
 	}
 	return nil
+}
+
+// StreamOutputHandler defines the interface for SCStreamOutput delegate callbacks
+type StreamOutputHandler interface {
+	StreamDidOutputSampleBuffer(stream screencapturekit.Stream, sampleBuffer uintptr, outputType int)
+}
+
+var (
+	delegateCounter     uint64
+	delegateCounterLock sync.Mutex
+)
+
+// NewStreamOutputDelegate creates an SCStreamOutput delegate that forwards callbacks to the provided handler
+// Each call creates a unique delegate class to avoid handler conflicts
+func NewStreamOutputDelegate(handler StreamOutputHandler) (objc.ID, error) {
+	// Generate unique class name for each delegate
+	delegateCounterLock.Lock()
+	delegateCounter++
+	className := fmt.Sprintf("GoStreamOutputDelegate_%d", delegateCounter)
+	delegateCounterLock.Unlock()
+
+	// Get SCStreamOutput protocol
+	protocol := objc.GetProtocol("SCStreamOutput")
+	var protocols []*objc.Protocol
+	if protocol != nil {
+		protocols = []*objc.Protocol{protocol}
+	}
+
+	// Create callback that captures the handler
+	callback := func(self objc.ID, cmd objc.SEL, stream objc.ID, sampleBuffer uintptr, outputType int) {
+		handler.StreamDidOutputSampleBuffer(
+			screencapturekit.StreamFrom(unsafe.Pointer(stream)),
+			sampleBuffer,
+			outputType,
+		)
+	}
+
+	// Register the delegate class
+	class, err := objc.RegisterClass(
+		className,
+		objc.GetClass("NSObject"),
+		protocols,
+		nil, // no fields
+		[]objc.MethodDef{{
+			Cmd: objc.RegisterName("stream:didOutputSampleBuffer:ofType:"),
+			Fn:  callback,
+		}},
+	)
+	if err != nil {
+		return 0, fmt.Errorf("failed to register delegate class: %w", err)
+	}
+
+	// Create instance
+	delegate := objc.ID(class).Send(objc.RegisterName("alloc")).Send(objc.RegisterName("init"))
+	if delegate == 0 {
+		return 0, fmt.Errorf("failed to allocate delegate instance")
+	}
+
+	return delegate, nil
 }

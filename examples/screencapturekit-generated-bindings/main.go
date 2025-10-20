@@ -237,14 +237,16 @@ func main() {
 			fmt.Println("   (showing all):")
 		}
 		for _, window := range windows[:maxToShow] {
-			// Use generated property accessors
-			id := window.WindowID()
-			title := window.Title()
+			// Get window properties (property accessors not yet generated)
+			id := objc.Send[uint32](window.ID, objc.RegisterName("windowID"))
+			titleID := window.ID.Send(objc.RegisterName("title"))
+			title := nsStringToGo(titleID)
 			if title == "" {
 				title = "(no title)"
 			}
-			app := window.OwningApplication()
-			appName := nsStringPtrToGo(app.ApplicationName())
+			appID := window.ID.Send(objc.RegisterName("owningApplication"))
+			appNameID := appID.Send(objc.RegisterName("applicationName"))
+			appName := nsStringToGo(appNameID)
 			fmt.Printf("   - Window %d: %s (app: %s)\n", id, title, appName)
 		}
 	}
@@ -368,34 +370,11 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 		fmt.Printf("📁 Output directory: %s\n", handler.outputDir)
 	}
 
-	// Create delegate using objc.RegisterClass
-	delegateClassName := "FrameOutputDelegate"
-	callback := func(self objc.ID, cmd objc.SEL, stream objc.ID, sampleBuffer uintptr, outputType int) {
-		handler.StreamDidOutputSampleBuffer(screencapturekit.StreamFrom(unsafe.Pointer(stream)), sampleBuffer, outputType)
-	}
-
-	// Get SCStreamOutput protocol
-	protocol := objc.GetProtocol("SCStreamOutput")
-	var protocols []*objc.Protocol
-	if protocol != nil {
-		protocols = []*objc.Protocol{protocol}
-	}
-
-	class, err := objc.RegisterClass(
-		delegateClassName,
-		objc.GetClass("NSObject"),
-		protocols,
-		nil, // no fields
-		[]objc.MethodDef{{
-			Cmd: objc.RegisterName("stream:didOutputSampleBuffer:ofType:"),
-			Fn:  callback,
-		}},
-	)
+	// Create delegate using helper
+	delegate, err := NewStreamOutputDelegate(handler)
 	if err != nil {
-		return fmt.Errorf("failed to register delegate class: %v", err)
+		return fmt.Errorf("failed to create delegate: %w", err)
 	}
-
-	delegate := objc.ID(class).Send(objc.RegisterName("alloc")).Send(objc.RegisterName("init"))
 	defer delegate.Send(objc.RegisterName("release"))
 
 	fmt.Println("✓ Created SCStreamOutput delegate!")
