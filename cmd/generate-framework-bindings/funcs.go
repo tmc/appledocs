@@ -652,13 +652,16 @@ func isPropertySetter(method MethodInfo) bool {
 }
 
 // classFileName converts a class name to a file name (snake_case).
+// Uses the FULL class name including ObjC prefix to prevent duplicate files.
 // Examples:
-//   NSButton -> button.gen.go
-//   NSTableView -> table_view.gen.go
-//   NSURLRequest -> url_request.gen.go
+//   NSButton -> ns_button.gen.go
+//   NSTableView -> ns_table_view.gen.go
+//   ICCameraDevice -> ic_camera_device.gen.go
 func classFileName(className string) string {
-	name := stripObjCPrefix(className)
-	return toSnakeCase(name) + ".gen.go"
+	// Use the full class name (e.g., ICCameraDevice -> ic_camera_device.gen.go)
+	// NOT stripped prefix (CameraDevice -> camera_device.gen.go)
+	// This prevents duplicate file generation - see appledocs-227
+	return toSnakeCase(className) + ".gen.go"
 }
 
 // protocolFileName converts a protocol name to a file name (snake_case).
