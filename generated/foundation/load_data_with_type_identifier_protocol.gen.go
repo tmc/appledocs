@@ -21,4 +21,3 @@ var loadDataWithTypeIdentifierProtocol *objc.Protocol
 func init() {
 	loadDataWithTypeIdentifierProtocol = objc.GetProtocol("loadDataWithTypeIdentifier:")
 }
-

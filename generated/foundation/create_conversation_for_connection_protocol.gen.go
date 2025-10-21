@@ -16,4 +16,3 @@ var createConversationForConnectionProtocol *objc.Protocol
 func init() {
 	createConversationForConnectionProtocol = objc.GetProtocol("createConversationForConnection:")
 }
-

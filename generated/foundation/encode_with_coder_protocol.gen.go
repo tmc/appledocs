@@ -21,4 +21,3 @@ var encodeWithCoderProtocol *objc.Protocol
 func init() {
 	encodeWithCoderProtocol = objc.GetProtocol("encodeWithCoder:")
 }
-

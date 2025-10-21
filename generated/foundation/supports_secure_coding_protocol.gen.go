@@ -21,4 +21,3 @@ var supportsSecureCodingProtocol *objc.Protocol
 func init() {
 	supportsSecureCodingProtocol = objc.GetProtocol("supportsSecureCoding")
 }
-

@@ -21,4 +21,3 @@ var fileManagerProtocol *objc.Protocol
 func init() {
 	fileManagerProtocol = objc.GetProtocol("fileManager:")
 }
-

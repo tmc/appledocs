@@ -21,4 +21,3 @@ var CopyingProtocol *objc.Protocol
 func init() {
 	CopyingProtocol = objc.GetProtocol("NSCopying")
 }
-

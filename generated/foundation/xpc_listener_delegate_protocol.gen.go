@@ -21,4 +21,3 @@ var XPCListenerDelegateProtocol *objc.Protocol
 func init() {
 	XPCListenerDelegateProtocol = objc.GetProtocol("NSXPCListenerDelegate")
 }
-

@@ -21,4 +21,3 @@ var accommodatePresentedSubitemDeletionAtURLProtocol *objc.Protocol
 func init() {
 	accommodatePresentedSubitemDeletionAtURLProtocol = objc.GetProtocol("accommodatePresentedSubitemDeletionAtURL:")
 }
-

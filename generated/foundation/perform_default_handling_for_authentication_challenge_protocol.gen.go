@@ -21,4 +21,3 @@ var performDefaultHandlingForAuthenticationChallengeProtocol *objc.Protocol
 func init() {
 	performDefaultHandlingForAuthenticationChallengeProtocol = objc.GetProtocol("performDefaultHandlingForAuthenticationChallenge:")
 }
-

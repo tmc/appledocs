@@ -21,4 +21,3 @@ var beginRequestWithExtensionContextProtocol *objc.Protocol
 func init() {
 	beginRequestWithExtensionContextProtocol = objc.GetProtocol("beginRequestWithExtensionContext:")
 }
-

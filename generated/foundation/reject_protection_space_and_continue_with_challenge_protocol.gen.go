@@ -21,4 +21,3 @@ var rejectProtectionSpaceAndContinueWithChallengeProtocol *objc.Protocol
 func init() {
 	rejectProtectionSpaceAndContinueWithChallengeProtocol = objc.GetProtocol("rejectProtectionSpaceAndContinueWithChallenge:")
 }
-

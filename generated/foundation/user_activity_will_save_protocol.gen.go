@@ -21,4 +21,3 @@ var userActivityWillSaveProtocol *objc.Protocol
 func init() {
 	userActivityWillSaveProtocol = objc.GetProtocol("userActivityWillSave:")
 }
-

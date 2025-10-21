@@ -21,4 +21,3 @@ var connectionDidResumeDownloadingProtocol *objc.Protocol
 func init() {
 	connectionDidResumeDownloadingProtocol = objc.GetProtocol("connectionDidResumeDownloading:")
 }
-

@@ -21,4 +21,3 @@ var beginContentAccessProtocol *objc.Protocol
 func init() {
 	beginContentAccessProtocol = objc.GetProtocol("beginContentAccess")
 }
-

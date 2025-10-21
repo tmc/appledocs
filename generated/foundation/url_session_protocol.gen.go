@@ -21,4 +21,3 @@ var URLSessionProtocol *objc.Protocol
 func init() {
 	URLSessionProtocol = objc.GetProtocol("URLSession:")
 }
-

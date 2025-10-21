@@ -21,4 +21,3 @@ var UserActivityDelegateProtocol *objc.Protocol
 func init() {
 	UserActivityDelegateProtocol = objc.GetProtocol("NSUserActivityDelegate")
 }
-

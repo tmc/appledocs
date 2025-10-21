@@ -21,4 +21,3 @@ var readableTypeIdentifiersForItemProviderProtocol *objc.Protocol
 func init() {
 	readableTypeIdentifiersForItemProviderProtocol = objc.GetProtocol("readableTypeIdentifiersForItemProvider")
 }
-

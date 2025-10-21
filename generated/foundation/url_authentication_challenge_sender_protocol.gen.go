@@ -21,4 +21,3 @@ var URLAuthenticationChallengeSenderProtocol *objc.Protocol
 func init() {
 	URLAuthenticationChallengeSenderProtocol = objc.GetProtocol("NSURLAuthenticationChallengeSender")
 }
-
