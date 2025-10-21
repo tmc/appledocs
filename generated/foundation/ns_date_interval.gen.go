@@ -102,6 +102,42 @@ func (d_ DateInterval) Compare(dateInterval unsafe.Pointer) unsafe.Pointer {
 	return rv
 }
 
+// The duration of the date interval.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
+func (d_ DateInterval) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration of the date interval.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
+func (d_ DateInterval) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
+}
+
+// The end date of the date interval.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
+func (d_ DateInterval) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The end date of the date interval.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
+func (d_ DateInterval) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
+}
+
 // The start date of the date interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/startDate

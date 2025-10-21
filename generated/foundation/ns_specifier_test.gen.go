@@ -94,4 +94,22 @@ func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 unsafe
 }
 
 
+// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
+	return rv
+}
+
+
+// SetContainerIsObjectBeingTested sets the value of the containerIsObjectBeingTested property.
+// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+func (s_ SpecifierTest) SetContainerIsObjectBeingTested(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
+}
+
 

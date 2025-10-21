@@ -33,3 +33,11 @@ func ExampleNewDataWithContentsOfMappedFile() {
 	)
 	// Output:
 }
+// ExampleNewDataWithContentsOfURL demonstrates how to create a Data instance using NewDataWithContentsOfURL.
+// Creates a data object from the data at the specified file URL, or returns   if the system can’t create one.
+func ExampleNewDataWithContentsOfURL() {
+	_ = foundation.NewDataWithContentsOfURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}

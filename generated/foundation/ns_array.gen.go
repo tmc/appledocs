@@ -79,8 +79,8 @@ type IArray interface {
 	SortedArrayUsingSelector(comparator objc.SEL) []objc.ID
 	SubarrayWithRange(range_ Range) []objc.ID
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
-	WriteToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
-	WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool
+	WriteToURLError(url URL, error_ unsafe.Pointer) bool
+	WriteToURLAtomically(url URL, atomically bool) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 }
 
@@ -182,7 +182,7 @@ func NewArrayWithContentsOfFile(path string) Array {
 // Initializes a newly allocated array with the contents of the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
-func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
+func NewArrayWithContentsOfURL(url URL) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -191,7 +191,7 @@ func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
-func NewArrayWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Array {
+func NewArrayWithContentsOfURLError(url URL, error_ unsafe.Pointer) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
@@ -259,7 +259,7 @@ func (ac _ArrayClass) ArrayWithContentsOfFile(path string) []objc.ID {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfURL:error:
-func (ac _ArrayClass) ArrayWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) []objc.ID {
+func (ac _ArrayClass) ArrayWithContentsOfURLError(url URL, error_ unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -275,7 +275,7 @@ func (ac _ArrayClass) ArrayWithObjects(firstObj unsafe.Pointer) unsafe.Pointer {
 // Creates and returns an array containing the contents specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-fk8x
-func (ac _ArrayClass) ArrayWithContentsOfURL(url unsafe.Pointer) []objc.ID {
+func (ac _ArrayClass) ArrayWithContentsOfURL(url URL) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv
 }
@@ -716,7 +716,7 @@ func (a_ Array) ValueForKey(key string) objc.ID {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(to:)
-func (a_ Array) WriteToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (a_ Array) WriteToURLError(url URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
 }
@@ -724,7 +724,7 @@ func (a_ Array) WriteToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool 
 // Writes the contents of the array to the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(to:atomically:)
-func (a_ Array) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool {
+func (a_ Array) WriteToURLAtomically(url URL, atomically bool) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }

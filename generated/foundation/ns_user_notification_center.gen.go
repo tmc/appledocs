@@ -88,6 +88,96 @@ func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification unsafe
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
 }
 
+// Specifies when the notification should be delivered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
+func (u_ UserNotificationCenter) DeliveryDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryDate"))
+	return rv
+}
+
+
+// SetDeliveryDate sets the value of the deliveryDate property.
+// Specifies when the notification should be delivered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
+func (u_ UserNotificationCenter) SetDeliveryDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
+}
+
+// The date this notification was actually delivered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
+func (u_ UserNotificationCenter) ActualDeliveryDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("actualDeliveryDate"))
+	return rv
+}
+
+
+// SetActualDeliveryDate sets the value of the actualDeliveryDate property.
+// The date this notification was actually delivered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
+func (u_ UserNotificationCenter) SetActualDeliveryDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setActualDeliveryDate:"), value)
+}
+
+// Specifies an array of scheduled user notifications that have not yet been delivered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
+func (u_ UserNotificationCenter) ScheduledNotifications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scheduledNotifications"))
+	return rv
+}
+
+
+// SetScheduledNotifications sets the value of the scheduledNotifications property.
+// Specifies an array of scheduled user notifications that have not yet been delivered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
+func (u_ UserNotificationCenter) SetScheduledNotifications(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), value)
+}
+
+// Specifies whether the user notification has been presented.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
+func (u_ UserNotificationCenter) IsPresented() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isPresented"))
+	return rv
+}
+
+
+// SetIsPresented sets the value of the isPresented property.
+// Specifies whether the user notification has been presented.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
+func (u_ UserNotificationCenter) SetIsPresented(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
+}
+
+// An array of all user notifications delivered to the notification center.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
+func (u_ UserNotificationCenter) DeliveredNotifications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveredNotifications"))
+	return rv
+}
+
+
+// SetDeliveredNotifications sets the value of the deliveredNotifications property.
+// An array of all user notifications delivered to the notification center.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
+func (u_ UserNotificationCenter) SetDeliveredNotifications(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveredNotifications:"), value)
+}
+
 // Specifies the notification center delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate

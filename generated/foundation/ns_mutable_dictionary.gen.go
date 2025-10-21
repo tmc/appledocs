@@ -141,7 +141,7 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
-func NewMutableDictionaryWithContentsOfURL(url unsafe.Pointer) MutableDictionary {
+func NewMutableDictionaryWithContentsOfURL(url URL) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -204,7 +204,7 @@ func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersDataHeadersDataSize(i
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(contentsOfURL:)
-func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer {
+func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }

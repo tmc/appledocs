@@ -81,5 +81,95 @@ func NewRelativeDateTimeFormatter() RelativeDateTimeFormatter {
 }
 
 
+// A description of where the formatted string will appear, allowing the formatter to capitalize the output appropriately.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
+func (r_ RelativeDateTimeFormatter) FormattingContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("formattingContext"))
+	return rv
+}
+
+
+// SetFormattingContext sets the value of the formattingContext property.
+// A description of where the formatted string will appear, allowing the formatter to capitalize the output appropriately.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
+func (r_ RelativeDateTimeFormatter) SetFormattingContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingContext:"), value)
+}
+
+// The calendar to use for formatting values that don’t have an inherent calendar of their own.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
+func (r_ RelativeDateTimeFormatter) Calendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("calendar"))
+	return rv
+}
+
+
+// SetCalendar sets the value of the calendar property.
+// The calendar to use for formatting values that don’t have an inherent calendar of their own.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
+func (r_ RelativeDateTimeFormatter) SetCalendar(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setCalendar:"), value)
+}
+
+// The style to use when describing a relative date, for example “yesterday” or “1 day ago”.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.property
+func (r_ RelativeDateTimeFormatter) DateTimeStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("dateTimeStyle"))
+	return rv
+}
+
+
+// SetDateTimeStyle sets the value of the dateTimeStyle property.
+// The style to use when describing a relative date, for example “yesterday” or “1 day ago”.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.property
+func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setDateTimeStyle:"), value)
+}
+
+// The locale to use when formatting the date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
+func (r_ RelativeDateTimeFormatter) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+// The locale to use when formatting the date.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
+func (r_ RelativeDateTimeFormatter) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLocale:"), value)
+}
+
+// The style to use when formatting the quantity or the name of the unit, such as “1 day ago” or “one day ago”.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.property
+func (r_ RelativeDateTimeFormatter) UnitsStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("unitsStyle"))
+	return rv
+}
+
+
+// SetUnitsStyle sets the value of the unitsStyle property.
+// The style to use when formatting the quantity or the name of the unit, such as “1 day ago” or “one day ago”.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.property
+func (r_ RelativeDateTimeFormatter) SetUnitsStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setUnitsStyle:"), value)
+}
+
 
 

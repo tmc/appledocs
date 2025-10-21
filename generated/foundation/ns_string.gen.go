@@ -131,8 +131,8 @@ type IString interface {
 	StringByTrimmingCharactersInSet(set unsafe.Pointer) string
 	UppercaseStringWithLocale(locale unsafe.Pointer) string
 	VariantFittingPresentationWidth(width int) string
-	WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool
-	WriteToURLAtomicallyEncodingError(url unsafe.Pointer, useAuxiliaryFile bool, enc unsafe.Pointer, error_ unsafe.Pointer) bool
+	WriteToURLAtomically(url URL, atomically bool) bool
+	WriteToURLAtomicallyEncodingError(url URL, useAuxiliaryFile bool, enc unsafe.Pointer, error_ unsafe.Pointer) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc unsafe.Pointer, error_ unsafe.Pointer) bool
 }
@@ -190,18 +190,18 @@ func NewString() String {
 // Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
-func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer) String {
+func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len, encoding)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len_, encoding)
 	rv.Autorelease()
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
-func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
+func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len_ uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len, encoding, deallocator)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len_, encoding, deallocator)
 	rv.Autorelease()
 	return rv
 }
@@ -211,9 +211,9 @@ func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len
 // Returns an initialized object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
-func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, freeBuffer bool) String {
+func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len_ uint, encoding unsafe.Pointer, freeBuffer bool) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len, encoding, freeBuffer)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len_, encoding, freeBuffer)
 	rv.Autorelease()
 	return rv
 }
@@ -280,9 +280,9 @@ func NewStringWithCharactersLength(characters unsafe.Pointer, length uint) Strin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
-func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len uint, deallocator unsafe.Pointer) String {
+func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len_ uint, deallocator unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len, deallocator)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len_, deallocator)
 	rv.Autorelease()
 	return rv
 }
@@ -349,7 +349,7 @@ func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointe
 // Initializes the receiver, a newly allocated object, by reading data from the location named by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:)
-func NewStringWithContentsOfURL(url unsafe.Pointer) String {
+func NewStringWithContentsOfURL(url URL) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -361,7 +361,7 @@ func NewStringWithContentsOfURL(url unsafe.Pointer) String {
 // Returns an object initialized by reading data from a given URL interpreted using a given encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-715fw
-func NewStringWithContentsOfURLEncodingError(url unsafe.Pointer, enc unsafe.Pointer, error_ unsafe.Pointer) String {
+func NewStringWithContentsOfURLEncodingError(url URL, enc unsafe.Pointer, error_ unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:encoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -373,7 +373,7 @@ func NewStringWithContentsOfURLEncodingError(url unsafe.Pointer, enc unsafe.Poin
 // Returns an object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-2c72d
-func NewStringWithContentsOfURLUsedEncodingError(url unsafe.Pointer, enc unsafe.Pointer, error_ unsafe.Pointer) String {
+func NewStringWithContentsOfURLUsedEncodingError(url URL, enc unsafe.Pointer, error_ unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -541,7 +541,7 @@ func (sc _StringClass) StringWithUTF8String(nullTerminatedCString unsafe.Pointer
 // Returns a string created by reading data from a given URL interpreted using a given encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-x6cv
-func (sc _StringClass) StringWithContentsOfURLEncodingError(url unsafe.Pointer, enc unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLEncodingError(url URL, enc unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:encoding:error:"), url, enc, error_)
 	return rv
 }
@@ -549,7 +549,7 @@ func (sc _StringClass) StringWithContentsOfURLEncodingError(url unsafe.Pointer, 
 // Returns a string created by reading data from a given URL and returns by reference the encoding used to interpret the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-9jrum
-func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url unsafe.Pointer, enc unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url URL, enc unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	return rv
 }
@@ -620,7 +620,7 @@ func (sc _StringClass) StringWithCStringLength(bytes unsafe.Pointer, length uint
 // Returns a string created by reading data from the file named by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string(withContentsOf:)
-func (sc _StringClass) StringWithContentsOfURL(url unsafe.Pointer) objc.ID {
+func (sc _StringClass) StringWithContentsOfURL(url URL) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:"), url)
 	return rv
 }
@@ -1488,7 +1488,7 @@ func (s_ String) VariantFittingPresentationWidth(width int) string {
 // Writes the contents of the receiver to the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:)
-func (s_ String) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool {
+func (s_ String) WriteToURLAtomically(url URL, atomically bool) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
@@ -1496,7 +1496,7 @@ func (s_ String) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool 
 // Writes the contents of the receiver to the URL specified by using the specified encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:encoding:)
-func (s_ String) WriteToURLAtomicallyEncodingError(url unsafe.Pointer, useAuxiliaryFile bool, enc unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (s_ String) WriteToURLAtomicallyEncodingError(url URL, useAuxiliaryFile bool, enc unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -1515,6 +1515,273 @@ func (s_ String) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool 
 func (s_ String) WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), objc.String(path), useAuxiliaryFile, enc, error_)
 	return rv
+}
+
+// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
+func (s_ String) LocalizedLowercase() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedLowercase"))
+	return rv
+}
+
+
+// SetLocalizedLowercase sets the value of the localizedLowercase property.
+// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
+func (s_ String) SetLocalizedLowercase(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedLowercase:"), objc.String(value))
+}
+
+// A lowercase representation of the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
+func (s_ String) Lowercased() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("lowercased"))
+	return rv
+}
+
+
+// SetLowercased sets the value of the lowercased property.
+// A lowercase representation of the string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
+func (s_ String) SetLowercased(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLowercased:"), objc.String(value))
+}
+
+// Returns a capitalized representation of the receiver using the current locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
+func (s_ String) LocalizedCapitalized() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedCapitalized"))
+	return rv
+}
+
+
+// SetLocalizedCapitalized sets the value of the localizedCapitalized property.
+// Returns a capitalized representation of the receiver using the current locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
+func (s_ String) SetLocalizedCapitalized(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedCapitalized:"), objc.String(value))
+}
+
+// A new string made from the receiver by resolving all symbolic links and standardizing path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
+func (s_ String) ResolvingSymlinksInPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("resolvingSymlinksInPath"))
+	return rv
+}
+
+
+// SetResolvingSymlinksInPath sets the value of the resolvingSymlinksInPath property.
+// A new string made from the receiver by resolving all symbolic links and standardizing path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
+func (s_ String) SetResolvingSymlinksInPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResolvingSymlinksInPath:"), objc.String(value))
+}
+
+// A new string that replaces the current home directory portion of the current path with a tilde (
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
+func (s_ String) AbbreviatingWithTildeInPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("abbreviatingWithTildeInPath"))
+	return rv
+}
+
+
+// SetAbbreviatingWithTildeInPath sets the value of the abbreviatingWithTildeInPath property.
+// A new string that replaces the current home directory portion of the current path with a tilde (
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
+func (s_ String) SetAbbreviatingWithTildeInPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAbbreviatingWithTildeInPath:"), objc.String(value))
+}
+
+// A new string made by deleting the extension (if any, and only the last) from the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
+func (s_ String) DeletingPathExtension() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("deletingPathExtension"))
+	return rv
+}
+
+
+// SetDeletingPathExtension sets the value of the deletingPathExtension property.
+// A new string made by deleting the extension (if any, and only the last) from the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
+func (s_ String) SetDeletingPathExtension(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingPathExtension:"), objc.String(value))
+}
+
+// A capitalized representation of the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
+func (s_ String) Capitalized() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("capitalized"))
+	return rv
+}
+
+
+// SetCapitalized sets the value of the capitalized property.
+// A capitalized representation of the string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
+func (s_ String) SetCapitalized(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCapitalized:"), objc.String(value))
+}
+
+// Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
+func (s_ String) RemovingPercentEncoding() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("removingPercentEncoding"))
+	return rv
+}
+
+
+// SetRemovingPercentEncoding sets the value of the removingPercentEncoding property.
+// Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
+func (s_ String) SetRemovingPercentEncoding(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRemovingPercentEncoding:"), objc.String(value))
+}
+
+// A new string made by expanding the initial component of the receiver to its full path value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
+func (s_ String) ExpandingTildeInPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("expandingTildeInPath"))
+	return rv
+}
+
+
+// SetExpandingTildeInPath sets the value of the expandingTildeInPath property.
+// A new string made by expanding the initial component of the receiver to its full path value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
+func (s_ String) SetExpandingTildeInPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setExpandingTildeInPath:"), objc.String(value))
+}
+
+// A new string made by removing extraneous path components from the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
+func (s_ String) StandardizingPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("standardizingPath"))
+	return rv
+}
+
+
+// SetStandardizingPath sets the value of the standardizingPath property.
+// A new string made by removing extraneous path components from the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
+func (s_ String) SetStandardizingPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardizingPath:"), objc.String(value))
+}
+
+// An uppercase representation of the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
+func (s_ String) Uppercased() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("uppercased"))
+	return rv
+}
+
+
+// SetUppercased sets the value of the uppercased property.
+// An uppercase representation of the string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
+func (s_ String) SetUppercased(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUppercased:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the receiver represents an absolute path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
+func (s_ String) IsAbsolutePath() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isAbsolutePath"))
+	return rv
+}
+
+
+// SetIsAbsolutePath sets the value of the isAbsolutePath property.
+// A Boolean value that indicates whether the receiver represents an absolute path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
+func (s_ String) SetIsAbsolutePath(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAbsolutePath:"), value)
+}
+
+// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
+func (s_ String) LocalizedUppercase() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedUppercase"))
+	return rv
+}
+
+
+// SetLocalizedUppercase sets the value of the localizedUppercase property.
+// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
+func (s_ String) SetLocalizedUppercase(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedUppercase:"), objc.String(value))
+}
+
+// A new string made by deleting the last path component from the receiver, along with any final path separator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
+func (s_ String) DeletingLastPathComponent() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("deletingLastPathComponent"))
+	return rv
+}
+
+
+// SetDeletingLastPathComponent sets the value of the deletingLastPathComponent property.
+// A new string made by deleting the last path component from the receiver, along with any final path separator.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
+func (s_ String) SetDeletingLastPathComponent(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingLastPathComponent:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
+func (s_ String) CustomPlaygroundQuickLook() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customPlaygroundQuickLook"))
+	return rv
+}
+
+
+// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
+func (s_ String) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
 }
 
 // A new string that replaces the current home directory portion of the current path with a tilde ( ) character.

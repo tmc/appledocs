@@ -30,14 +30,14 @@ type _URLSessionClass struct {
 // An interface definition for the [URLSession] class.
 type IURLSession interface {
 	objectivec.IObject
-	DataTaskWithURL(url unsafe.Pointer) unsafe.Pointer
+	DataTaskWithURL(url URL) unsafe.Pointer
 	DataTaskWithRequest(request unsafe.Pointer) unsafe.Pointer
-	DataTaskWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	DataTaskWithURLCompletionHandler(url URL, completionHandler unsafe.Pointer) unsafe.Pointer
 	DataTaskWithRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	DownloadTaskWithURL(url unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithURL(url URL) unsafe.Pointer
 	DownloadTaskWithRequest(request unsafe.Pointer) unsafe.Pointer
 	DownloadTaskWithRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	DownloadTaskWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithURLCompletionHandler(url URL, completionHandler unsafe.Pointer) unsafe.Pointer
 	DownloadTaskWithResumeData(resumeData unsafe.Pointer) unsafe.Pointer
 	DownloadTaskWithResumeDataCompletionHandler(resumeData unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
 	FinishTasksAndInvalidate()
@@ -50,14 +50,14 @@ type IURLSession interface {
 	StreamTaskWithHostNamePort(hostname string, port int) unsafe.Pointer
 	UploadTaskWithRequestFromData(request unsafe.Pointer, bodyData unsafe.Pointer) unsafe.Pointer
 	UploadTaskWithRequestFromDataCompletionHandler(request unsafe.Pointer, bodyData unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	UploadTaskWithRequestFromFile(request unsafe.Pointer, fileURL unsafe.Pointer) unsafe.Pointer
-	UploadTaskWithRequestFromFileCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithRequestFromFile(request unsafe.Pointer, fileURL URL) unsafe.Pointer
+	UploadTaskWithRequestFromFileCompletionHandler(request unsafe.Pointer, fileURL URL, completionHandler unsafe.Pointer) unsafe.Pointer
 	UploadTaskWithResumeData(resumeData unsafe.Pointer) unsafe.Pointer
 	UploadTaskWithResumeDataCompletionHandler(resumeData unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
 	UploadTaskWithStreamedRequest(request unsafe.Pointer) unsafe.Pointer
-	WebSocketTaskWithURL(url unsafe.Pointer) unsafe.Pointer
+	WebSocketTaskWithURL(url URL) unsafe.Pointer
 	WebSocketTaskWithRequest(request unsafe.Pointer) unsafe.Pointer
-	WebSocketTaskWithURLProtocols(url unsafe.Pointer, protocols unsafe.Pointer) unsafe.Pointer
+	WebSocketTaskWithURLProtocols(url URL, protocols unsafe.Pointer) unsafe.Pointer
 }
 
 // An object that coordinates a group of related, network data transfer tasks.
@@ -155,7 +155,7 @@ func (uc _URLSessionClass) SharedSession() unsafe.Pointer {
 // Creates a task that retrieves the contents of the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/dataTask(with:)-10dy7
-func (u_ URLSession) DataTaskWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) DataTaskWithURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("dataTaskWithURL:"), url)
 	return rv
 }
@@ -171,7 +171,7 @@ func (u_ URLSession) DataTaskWithRequest(request unsafe.Pointer) unsafe.Pointer 
 // Creates a task that retrieves the contents of the specified URL, then calls a handler upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/dataTask(with:completionHandler:)-52wk8
-func (u_ URLSession) DataTaskWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) DataTaskWithURLCompletionHandler(url URL, completionHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("dataTaskWithURL:completionHandler:"), url, completionHandler)
 	return rv
 }
@@ -187,7 +187,7 @@ func (u_ URLSession) DataTaskWithRequestCompletionHandler(request unsafe.Pointer
 // Creates a download task that retrieves the contents of the specified URL and saves the results to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/downloadTask(with:)-1onj
-func (u_ URLSession) DownloadTaskWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) DownloadTaskWithURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("downloadTaskWithURL:"), url)
 	return rv
 }
@@ -211,7 +211,7 @@ func (u_ URLSession) DownloadTaskWithRequestCompletionHandler(request unsafe.Poi
 // Creates a download task that retrieves the contents of the specified URL, saves the results to a file, and calls a handler upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/downloadTask(with:completionHandler:)-7cuje
-func (u_ URLSession) DownloadTaskWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) DownloadTaskWithURLCompletionHandler(url URL, completionHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("downloadTaskWithURL:completionHandler:"), url, completionHandler)
 	return rv
 }
@@ -309,7 +309,7 @@ func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request unsa
 // Creates a task that performs an HTTP request for uploading the specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(with:fromFile:)
-func (u_ URLSession) UploadTaskWithRequestFromFile(request unsafe.Pointer, fileURL unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) UploadTaskWithRequestFromFile(request unsafe.Pointer, fileURL URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uploadTaskWithRequest:fromFile:"), request, fileURL)
 	return rv
 }
@@ -317,7 +317,7 @@ func (u_ URLSession) UploadTaskWithRequestFromFile(request unsafe.Pointer, fileU
 // Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(with:fromFile:completionHandler:)
-func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request unsafe.Pointer, fileURL URL, completionHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uploadTaskWithRequest:fromFile:completionHandler:"), request, fileURL, completionHandler)
 	return rv
 }
@@ -347,7 +347,7 @@ func (u_ URLSession) UploadTaskWithStreamedRequest(request unsafe.Pointer) unsaf
 // Creates a WebSocket task for the provided URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/webSocketTask(with:)-87ipz
-func (u_ URLSession) WebSocketTaskWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) WebSocketTaskWithURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("webSocketTaskWithURL:"), url)
 	return rv
 }
@@ -363,7 +363,7 @@ func (u_ URLSession) WebSocketTaskWithRequest(request unsafe.Pointer) unsafe.Poi
 // Creates a WebSocket task given a URL and an array of protocols.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/webSocketTask(with:protocols:)
-func (u_ URLSession) WebSocketTaskWithURLProtocols(url unsafe.Pointer, protocols unsafe.Pointer) unsafe.Pointer {
+func (u_ URLSession) WebSocketTaskWithURLProtocols(url URL, protocols unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("webSocketTaskWithURL:protocols:"), url, protocols)
 	return rv
 }

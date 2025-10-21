@@ -99,4 +99,58 @@ func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) uns
 	return rv
 }
 
+// Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
+func (c_ ClassDescription) ToManyRelationshipKeys() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("toManyRelationshipKeys"))
+	return rv
+}
+
+
+// SetToManyRelationshipKeys sets the value of the toManyRelationshipKeys property.
+// Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
+func (c_ ClassDescription) SetToManyRelationshipKeys(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setToManyRelationshipKeys:"), objc.String(value))
+}
+
+// Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
+func (c_ ClassDescription) ToOneRelationshipKeys() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("toOneRelationshipKeys"))
+	return rv
+}
+
+
+// SetToOneRelationshipKeys sets the value of the toOneRelationshipKeys property.
+// Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
+func (c_ ClassDescription) SetToOneRelationshipKeys(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setToOneRelationshipKeys:"), objc.String(value))
+}
+
+// Overridden by subclasses to return the names of attributes of instances of the described class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
+func (c_ ClassDescription) AttributeKeys() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("attributeKeys"))
+	return rv
+}
+
+
+// SetAttributeKeys sets the value of the attributeKeys property.
+// Overridden by subclasses to return the names of attributes of instances of the described class.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
+func (c_ ClassDescription) SetAttributeKeys(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributeKeys:"), objc.String(value))
+}
+
 

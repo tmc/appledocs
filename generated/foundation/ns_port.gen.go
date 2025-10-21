@@ -114,5 +114,41 @@ func (p_ Port) SendBeforeDateComponentsFromReserved(limitDate unsafe.Pointer, co
 	return rv
 }
 
+// A Boolean value that indicates whether the receiver is valid.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/port/isvalid
+func (p_ Port) IsValid() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isValid"))
+	return rv
+}
+
+
+// SetIsValid sets the value of the isValid property.
+// A Boolean value that indicates whether the receiver is valid.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/port/isvalid
+func (p_ Port) SetIsValid(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsValid:"), value)
+}
+
+// The number of bytes of space reserved by the receiver for sending data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/port/reservedspacelength
+func (p_ Port) ReservedSpaceLength() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("reservedSpaceLength"))
+	return rv
+}
+
+
+// SetReservedSpaceLength sets the value of the reservedSpaceLength property.
+// The number of bytes of space reserved by the receiver for sending data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/port/reservedspacelength
+func (p_ Port) SetReservedSpaceLength(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setReservedSpaceLength:"), value)
+}
+
 
 

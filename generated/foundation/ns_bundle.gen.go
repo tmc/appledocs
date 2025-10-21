@@ -52,11 +52,11 @@ type IBundle interface {
 	PreservationPriorityForTag(tag string) unsafe.Pointer
 	SetPreservationPriorityForTags(priority unsafe.Pointer, tags unsafe.Pointer)
 	Unload() bool
-	URLForAuxiliaryExecutable(executableName string) unsafe.Pointer
-	URLForResourceWithExtension(name string, ext string) unsafe.Pointer
-	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) unsafe.Pointer
-	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) unsafe.Pointer
-	URLForImageResource(name unsafe.Pointer) unsafe.Pointer
+	URLForAuxiliaryExecutable(executableName string) URL
+	URLForResourceWithExtension(name string, ext string) URL
+	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) URL
+	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) URL
+	URLForImageResource(name unsafe.Pointer) URL
 	URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL
 	URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL
 	LoadNibFileExternalNameTableWithZone(fileName string, context objc.ID, zone unsafe.Pointer) bool
@@ -149,7 +149,7 @@ func NewBundleWithPath(path string) Bundle {
 // Returns an object initialized to correspond to the specified file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(url:)
-func NewBundleWithURL(url unsafe.Pointer) Bundle {
+func NewBundleWithURL(url URL) Bundle {
 	instance := getBundleClass().Alloc()
 	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -208,15 +208,15 @@ func (bc _BundleClass) PreferredLocalizationsFromArrayForPreferences(localizatio
 // Creates and returns a file URL for the resource with the specified name and extension in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:in:)
-func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), objc.String(name), objc.String(ext), objc.String(subpath), bundleURL)
+func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL URL) URL {
+	rv := objc.Send[URL](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), objc.String(name), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
 
 // Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, within the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:in:)
-func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext string, subpath string, bundleURL unsafe.Pointer) []URL {
+func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext string, subpath string, bundleURL URL) []URL {
 	rv := objc.Send[[]URL](objc.ID(bc.class), objc.Sel("URLsForResourcesWithExtension:subdirectory:inBundleWithURL:"), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
@@ -232,7 +232,7 @@ func (bc _BundleClass) BundleWithPath(path string) unsafe.Pointer {
 // Returns an object that corresponds to the specified file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/bundleWithURL:
-func (bc _BundleClass) BundleWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (bc _BundleClass) BundleWithURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleWithURL:"), url)
 	return rv
 }
@@ -450,40 +450,40 @@ func (b_ Bundle) Unload() bool {
 // Returns the file URL of the executable with the specified name in the receiver’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forAuxiliaryExecutable:)
-func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URLForAuxiliaryExecutable:"), objc.String(executableName))
+func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForAuxiliaryExecutable:"), objc.String(executableName))
 	return rv
 }
 
 // Returns the file URL for the resource identified by the specified name and file extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:)
-func (b_ Bundle) URLForResourceWithExtension(name string, ext string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URLForResource:withExtension:"), objc.String(name), objc.String(ext))
+func (b_ Bundle) URLForResourceWithExtension(name string, ext string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:"), objc.String(name), objc.String(ext))
 	return rv
 }
 
 // Returns the file URL for the resource file identified by the specified name and extension and residing in a given bundle directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:)
-func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
+func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
 	return rv
 }
 
 // Returns the file URL for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:localization:)
-func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:localization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
+func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:localization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
 
 // Returns the location of the specified image resource as an NSURL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urlForImageResource(_:)
-func (b_ Bundle) URLForImageResource(name unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URLForImageResource:"), name)
+func (b_ Bundle) URLForImageResource(name unsafe.Pointer) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForImageResource:"), name)
 	return rv
 }
 
@@ -526,6 +526,158 @@ func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key string, value 
 	return rv
 }
 
+// Executable cannot be loaded for an otherwise-unspecified reason.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
+func (b_ Bundle) NSExecutableLoadError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLoadError"))
+	return rv
+}
+
+
+// SetNSExecutableLoadError sets the value of the NSExecutableLoadError property.
+// Executable cannot be loaded for an otherwise-unspecified reason.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
+func (b_ Bundle) SetNSExecutableLoadError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLoadError:"), value)
+}
+
+// The executable doesn’t provide an architecture compatible with the current process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
+func (b_ Bundle) NSExecutableArchitectureMismatchError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableArchitectureMismatchError"))
+	return rv
+}
+
+
+// SetNSExecutableArchitectureMismatchError sets the value of the NSExecutableArchitectureMismatchError property.
+// The executable doesn’t provide an architecture compatible with the current process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
+func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableArchitectureMismatchError:"), value)
+}
+
+// The executable type isn’t loadable in the current process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
+func (b_ Bundle) NSExecutableNotLoadableError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableNotLoadableError"))
+	return rv
+}
+
+
+// SetNSExecutableNotLoadableError sets the value of the NSExecutableNotLoadableError property.
+// The executable type isn’t loadable in the current process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
+func (b_ Bundle) SetNSExecutableNotLoadableError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableNotLoadableError:"), value)
+}
+
+// The end of the range of error codes reserved for errors related to executable files.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
+func (b_ Bundle) NSExecutableErrorMaximum() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMaximum"))
+	return rv
+}
+
+
+// SetNSExecutableErrorMaximum sets the value of the NSExecutableErrorMaximum property.
+// The end of the range of error codes reserved for errors related to executable files.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
+func (b_ Bundle) SetNSExecutableErrorMaximum(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMaximum:"), value)
+}
+
+// The load status of a bundle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
+func (b_ Bundle) IsLoaded() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
+	return rv
+}
+
+
+// SetIsLoaded sets the value of the isLoaded property.
+// The load status of a bundle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
+func (b_ Bundle) SetIsLoaded(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
+}
+
+// The beginning of the range of error codes reserved for errors related to executable files.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
+func (b_ Bundle) NSExecutableErrorMinimum() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMinimum"))
+	return rv
+}
+
+
+// SetNSExecutableErrorMinimum sets the value of the NSExecutableErrorMinimum property.
+// The beginning of the range of error codes reserved for errors related to executable files.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
+func (b_ Bundle) SetNSExecutableErrorMinimum(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMinimum:"), value)
+}
+
+// The executable has Objective-C runtime information that’s incompatible with the current process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
+func (b_ Bundle) NSExecutableRuntimeMismatchError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableRuntimeMismatchError"))
+	return rv
+}
+
+
+// SetNSExecutableRuntimeMismatchError sets the value of the NSExecutableRuntimeMismatchError property.
+// The executable has Objective-C runtime information that’s incompatible with the current process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
+func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableRuntimeMismatchError:"), value)
+}
+
+// The executable failed due to linking issues.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
+func (b_ Bundle) NSExecutableLinkError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLinkError"))
+	return rv
+}
+
+
+// SetNSExecutableLinkError sets the value of the NSExecutableLinkError property.
+// The executable failed due to linking issues.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
+func (b_ Bundle) SetNSExecutableLinkError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLinkError:"), value)
+}
+
+// A constant used as a key for the
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsloadedclasses
+func (b_ Bundle) NSLoadedClasses() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("NSLoadedClasses"))
+	return rv
+}
+
 // Returns an array of all the application’s non-framework bundles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allBundles
@@ -545,8 +697,8 @@ func (b_ Bundle) AllFrameworks() []Bundle {
 // The file URL for the bundle’s App Store receipt.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/appStoreReceiptURL
-func (b_ Bundle) AppStoreReceiptURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("appStoreReceiptURL"))
+func (b_ Bundle) AppStoreReceiptURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("appStoreReceiptURL"))
 	return rv
 }
 
@@ -561,8 +713,8 @@ func (b_ Bundle) BuiltInPlugInsPath() string {
 // The file URL of the receiver’s subdirectory containing plug-ins.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/builtInPlugInsURL
-func (b_ Bundle) BuiltInPlugInsURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("builtInPlugInsURL"))
+func (b_ Bundle) BuiltInPlugInsURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("builtInPlugInsURL"))
 	return rv
 }
 
@@ -585,8 +737,8 @@ func (b_ Bundle) BundlePath() string {
 // The full URL of the receiver’s bundle directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/bundleURL
-func (b_ Bundle) BundleURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bundleURL"))
+func (b_ Bundle) BundleURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("bundleURL"))
 	return rv
 }
 
@@ -617,8 +769,8 @@ func (b_ Bundle) ExecutablePath() string {
 // The file URL of the receiver’s executable file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/executableURL
-func (b_ Bundle) ExecutableURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("executableURL"))
+func (b_ Bundle) ExecutableURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("executableURL"))
 	return rv
 }
 
@@ -689,8 +841,8 @@ func (b_ Bundle) PrivateFrameworksPath() string {
 // The file URL of the bundle’s subdirectory containing private frameworks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/privateFrameworksURL
-func (b_ Bundle) PrivateFrameworksURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("privateFrameworksURL"))
+func (b_ Bundle) PrivateFrameworksURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("privateFrameworksURL"))
 	return rv
 }
 
@@ -705,8 +857,8 @@ func (b_ Bundle) ResourcePath() string {
 // The file URL of the bundle’s subdirectory containing resource files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/resourceURL
-func (b_ Bundle) ResourceURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resourceURL"))
+func (b_ Bundle) ResourceURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("resourceURL"))
 	return rv
 }
 
@@ -721,8 +873,8 @@ func (b_ Bundle) SharedFrameworksPath() string {
 // The file URL of the receiver’s subdirectory containing shared frameworks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedFrameworksURL
-func (b_ Bundle) SharedFrameworksURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedFrameworksURL"))
+func (b_ Bundle) SharedFrameworksURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("sharedFrameworksURL"))
 	return rv
 }
 
@@ -737,8 +889,8 @@ func (b_ Bundle) SharedSupportPath() string {
 // The file URL of the bundle’s subdirectory containing shared support files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedSupportURL
-func (b_ Bundle) SharedSupportURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedSupportURL"))
+func (b_ Bundle) SharedSupportURL() URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("sharedSupportURL"))
 	return rv
 }
 

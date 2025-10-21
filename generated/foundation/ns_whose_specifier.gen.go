@@ -81,5 +81,95 @@ func NewWhoseSpecifier() WhoseSpecifier {
 }
 
 
+// Sets the index position of the last sub-element within the range of objects being tested that pass the specifier’s test.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementindex
+func (w_ WhoseSpecifier) EndSubelementIndex() int {
+	rv := objc.Send[int](w_.ID, objc.Sel("endSubelementIndex"))
+	return rv
+}
+
+
+// SetEndSubelementIndex sets the value of the endSubelementIndex property.
+// Sets the index position of the last sub-element within the range of objects being tested that pass the specifier’s test.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementindex
+func (w_ WhoseSpecifier) SetEndSubelementIndex(value int) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIndex:"), value)
+}
+
+// Returns the test object encapsulated by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/test
+func (w_ WhoseSpecifier) Test() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("test"))
+	return rv
+}
+
+
+// SetTest sets the value of the test property.
+// Returns the test object encapsulated by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/test
+func (w_ WhoseSpecifier) SetTest(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTest:"), value)
+}
+
+// Returns the index position of the first sub-element within the range of objects being tested that pass the receiver’s test.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementindex
+func (w_ WhoseSpecifier) StartSubelementIndex() int {
+	rv := objc.Send[int](w_.ID, objc.Sel("startSubelementIndex"))
+	return rv
+}
+
+
+// SetStartSubelementIndex sets the value of the startSubelementIndex property.
+// Returns the index position of the first sub-element within the range of objects being tested that pass the receiver’s test.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementindex
+func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIndex:"), value)
+}
+
+// Returns the start sub-element identifier for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementidentifier
+func (w_ WhoseSpecifier) StartSubelementIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("startSubelementIdentifier"))
+	return rv
+}
+
+
+// SetStartSubelementIdentifier sets the value of the startSubelementIdentifier property.
+// Returns the start sub-element identifier for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementidentifier
+func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIdentifier:"), value)
+}
+
+// Sets the end sub-element identifier for the specifier to the value of a given sub-element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementidentifier
+func (w_ WhoseSpecifier) EndSubelementIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("endSubelementIdentifier"))
+	return rv
+}
+
+
+// SetEndSubelementIdentifier sets the value of the endSubelementIdentifier property.
+// Sets the end sub-element identifier for the specifier to the value of a given sub-element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementidentifier
+func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIdentifier:"), value)
+}
+
 
 

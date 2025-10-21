@@ -88,5 +88,59 @@ func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Ra
 	objc.Send[objc.ID](l_.ID, objc.Sel("enumerateTagsInRange:scheme:options:usingBlock:"), range_, tagScheme, opts, block)
 }
 
+// Returns the dominant language of the string set for the linguistic tagger.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
+func (l_ LinguisticTagger) DominantLanguage() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("dominantLanguage"))
+	return rv
+}
+
+
+// SetDominantLanguage sets the value of the dominantLanguage property.
+// Returns the dominant language of the string set for the linguistic tagger.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
+func (l_ LinguisticTagger) SetDominantLanguage(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setDominantLanguage:"), objc.String(value))
+}
+
+// Returns the tag schemes configured for this linguistic tagger. For possible values, see
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
+func (l_ LinguisticTagger) TagSchemes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("tagSchemes"))
+	return rv
+}
+
+
+// SetTagSchemes sets the value of the tagSchemes property.
+// Returns the tag schemes configured for this linguistic tagger. For possible values, see
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
+func (l_ LinguisticTagger) SetTagSchemes(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTagSchemes:"), value)
+}
+
+// The string being analyzed by the linguistic tagger.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
+func (l_ LinguisticTagger) String_() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// SetString_ sets the value of the string property.
+// The string being analyzed by the linguistic tagger.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
+func (l_ LinguisticTagger) SetString_(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setString_:"), objc.String(value))
+}
+
 
 

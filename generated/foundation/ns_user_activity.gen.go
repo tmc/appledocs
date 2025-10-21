@@ -147,6 +147,238 @@ func (u_ UserActivity) ResignCurrent() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resignCurrent"))
 }
 
+// A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforprediction
+func (u_ UserActivity) IsEligibleForPrediction() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForPrediction"))
+	return rv
+}
+
+
+// SetIsEligibleForPrediction sets the value of the isEligibleForPrediction property.
+// A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforprediction
+func (u_ UserActivity) SetIsEligibleForPrediction(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForPrediction:"), value)
+}
+
+// The end of the range of error codes reserved for user activity errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-swift.var
+func (u_ UserActivity) NSUserActivityErrorMaximum() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityErrorMaximum"))
+	return rv
+}
+
+
+// SetNSUserActivityErrorMaximum sets the value of the NSUserActivityErrorMaximum property.
+// The end of the range of error codes reserved for user activity errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-swift.var
+func (u_ UserActivity) SetNSUserActivityErrorMaximum(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityErrorMaximum:"), value)
+}
+
+// The data for the user activity wasn’t available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-swift.var
+func (u_ UserActivity) NSUserActivityHandoffFailedError() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityHandoffFailedError"))
+	return rv
+}
+
+
+// SetNSUserActivityHandoffFailedError sets the value of the NSUserActivityHandoffFailedError property.
+// The data for the user activity wasn’t available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-swift.var
+func (u_ UserActivity) SetNSUserActivityHandoffFailedError(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityHandoffFailedError:"), value)
+}
+
+// The identifier of an app entity that you associate with the user activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/appentityidentifier
+func (u_ UserActivity) AppEntityIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("appEntityIdentifier"))
+	return rv
+}
+
+
+// SetAppEntityIdentifier sets the value of the appEntityIdentifier property.
+// The identifier of an app entity that you associate with the user activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/appentityidentifier
+func (u_ UserActivity) SetAppEntityIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAppEntityIdentifier:"), value)
+}
+
+// An activity that continues from Handoff or a universal link.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb
+func (u_ UserActivity) NSUserActivityTypeBrowsingWeb() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("NSUserActivityTypeBrowsingWeb"))
+	return rv
+}
+
+// The start of the range of error codes reserved for user activity errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-swift.var
+func (u_ UserActivity) NSUserActivityErrorMinimum() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityErrorMinimum"))
+	return rv
+}
+
+
+// SetNSUserActivityErrorMinimum sets the value of the NSUserActivityErrorMinimum property.
+// The start of the range of error codes reserved for user activity errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-swift.var
+func (u_ UserActivity) SetNSUserActivityErrorMinimum(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityErrorMinimum:"), value)
+}
+
+// A Boolean value that indicates whether the activity can be publicly accessed by all iOS users.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing
+func (u_ UserActivity) IsEligibleForPublicIndexing() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForPublicIndexing"))
+	return rv
+}
+
+
+// SetIsEligibleForPublicIndexing sets the value of the isEligibleForPublicIndexing property.
+// A Boolean value that indicates whether the activity can be publicly accessed by all iOS users.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing
+func (u_ UserActivity) SetIsEligibleForPublicIndexing(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForPublicIndexing:"), value)
+}
+
+// An object or value that specifies items to share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIActivityItemsConfigurationProviding/activityItemsConfiguration
+func (u_ UserActivity) ActivityItemsConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("activityItemsConfiguration"))
+	return rv
+}
+
+
+// SetActivityItemsConfiguration sets the value of the activityItemsConfiguration property.
+// An object or value that specifies items to share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIActivityItemsConfigurationProviding/activityItemsConfiguration
+func (u_ UserActivity) SetActivityItemsConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
+}
+
+// A Boolean value that indicates whether the activity can be continued on another device using Handoff.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforhandoff
+func (u_ UserActivity) IsEligibleForHandoff() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForHandoff"))
+	return rv
+}
+
+
+// SetIsEligibleForHandoff sets the value of the isEligibleForHandoff property.
+// A Boolean value that indicates whether the activity can be continued on another device using Handoff.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforhandoff
+func (u_ UserActivity) SetIsEligibleForHandoff(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForHandoff:"), value)
+}
+
+// The user activity couldn’t be continued because a required connection wasn’t available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-swift.var
+func (u_ UserActivity) NSUserActivityConnectionUnavailableError() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityConnectionUnavailableError"))
+	return rv
+}
+
+
+// SetNSUserActivityConnectionUnavailableError sets the value of the NSUserActivityConnectionUnavailableError property.
+// The user activity couldn’t be continued because a required connection wasn’t available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-swift.var
+func (u_ UserActivity) SetNSUserActivityConnectionUnavailableError(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityConnectionUnavailableError:"), value)
+}
+
+// A Boolean value that indicates whether the activity should be added to the on-device index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch
+func (u_ UserActivity) IsEligibleForSearch() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForSearch"))
+	return rv
+}
+
+
+// SetIsEligibleForSearch sets the value of the isEligibleForSearch property.
+// A Boolean value that indicates whether the activity should be added to the on-device index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch
+func (u_ UserActivity) SetIsEligibleForSearch(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForSearch:"), value)
+}
+
+// The user info dictionary was too large to receive.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-swift.var
+func (u_ UserActivity) NSUserActivityHandoffUserInfoTooLargeError() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityHandoffUserInfoTooLargeError"))
+	return rv
+}
+
+
+// SetNSUserActivityHandoffUserInfoTooLargeError sets the value of the NSUserActivityHandoffUserInfoTooLargeError property.
+// The user info dictionary was too large to receive.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-swift.var
+func (u_ UserActivity) SetNSUserActivityHandoffUserInfoTooLargeError(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityHandoffUserInfoTooLargeError:"), value)
+}
+
+// The remote application failed to send data within the specified time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-swift.var
+func (u_ UserActivity) NSUserActivityRemoteApplicationTimedOutError() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityRemoteApplicationTimedOutError"))
+	return rv
+}
+
+
+// SetNSUserActivityRemoteApplicationTimedOutError sets the value of the NSUserActivityRemoteApplicationTimedOutError property.
+// The remote application failed to send data within the specified time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-swift.var
+func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityRemoteApplicationTimedOutError:"), value)
+}
+
+// An activity for viewing your app’s channel guide.
+//
+// [Full Topic]: https://developer.apple.com/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide
+func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("TVUserActivityTypeBrowsingChannelGuide"))
+	return rv
+}
+
 // The user activity object’s activity type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/activityType
@@ -422,8 +654,8 @@ func (u_ UserActivity) SetPersistentIdentifier(value unsafe.Pointer) {
 // The URL of the webpage that linked to the webpage URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
-func (u_ UserActivity) ReferrerURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("referrerURL"))
+func (u_ UserActivity) ReferrerURL() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("referrerURL"))
 	return rv
 }
 
@@ -433,7 +665,7 @@ func (u_ UserActivity) ReferrerURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
-func (u_ UserActivity) SetReferrerURL(value unsafe.Pointer) {
+func (u_ UserActivity) SetReferrerURL(value URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReferrerURL:"), value)
 }
 
@@ -566,8 +798,8 @@ func (u_ UserActivity) SetUserInfo(value unsafe.Pointer) {
 // The URL of the webpage to load in a browser to continue the activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
-func (u_ UserActivity) WebpageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("webpageURL"))
+func (u_ UserActivity) WebpageURL() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("webpageURL"))
 	return rv
 }
 
@@ -577,7 +809,7 @@ func (u_ UserActivity) WebpageURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
-func (u_ UserActivity) SetWebpageURL(value unsafe.Pointer) {
+func (u_ UserActivity) SetWebpageURL(value URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setWebpageURL:"), value)
 }
 

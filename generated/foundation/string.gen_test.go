@@ -23,6 +23,14 @@ func ExampleNewStringWithContentsOfFile() {
 	)
 	// Output:
 }
+// ExampleNewStringWithContentsOfURL demonstrates how to create a String instance using NewStringWithContentsOfURL.
+// Initializes the receiver, a newly allocated   object, by reading data from the location named by a given URL.
+func ExampleNewStringWithContentsOfURL() {
+	_ = foundation.NewStringWithContentsOfURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}
 // ExampleNewStringWithFormat demonstrates how to create a String instance using NewStringWithFormat.
 // Returns an   object initialized by using a given format string as a template into which the remaining argument values are substituted.
 func ExampleNewStringWithFormat() {

@@ -24,3 +24,12 @@ func ExampleNewOutputStreamToMemory() {
 	_ = foundation.NewOutputStreamToMemory()
 	// Output:
 }
+// ExampleNewOutputStreamWithURLAppend demonstrates how to create a OutputStream instance using NewOutputStreamWithURLAppend.
+// Returns an initialized output stream for writing to a specified URL.
+func ExampleNewOutputStreamWithURLAppend() {
+	_ = foundation.NewOutputStreamWithURLAppend(
+		foundation.URL{}, // url URL
+		false, // shouldAppend bool
+	)
+	// Output:
+}

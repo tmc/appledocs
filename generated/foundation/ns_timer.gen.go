@@ -199,6 +199,24 @@ func (t_ Timer) Invalidate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("invalidate"))
 }
 
+// A Boolean value that indicates whether the timer is currently valid.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/isvalid
+func (t_ Timer) IsValid() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
+	return rv
+}
+
+
+// SetIsValid sets the value of the isValid property.
+// A Boolean value that indicates whether the timer is currently valid.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/isvalid
+func (t_ Timer) SetIsValid(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
+}
+
 // The date at which the timer will fire.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fireDate

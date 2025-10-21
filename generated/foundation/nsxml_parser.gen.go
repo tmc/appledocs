@@ -114,6 +114,111 @@ func (x_ XMLParser) Parse() bool {
 	return rv
 }
 
+// A Boolean value that determines whether the parser reports declarations of external entities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
+func (x_ XMLParser) ShouldResolveExternalEntities() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("shouldResolveExternalEntities"))
+	return rv
+}
+
+
+// SetShouldResolveExternalEntities sets the value of the shouldResolveExternalEntities property.
+// A Boolean value that determines whether the parser reports declarations of external entities.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
+func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldResolveExternalEntities:"), value)
+}
+
+// The system identifier of the external entity referenced in the XML document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
+func (x_ XMLParser) SystemID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
+	return rv
+}
+
+
+// SetSystemID sets the value of the systemID property.
+// The system identifier of the external entity referenced in the XML document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
+func (x_ XMLParser) SetSystemID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
+}
+
+// A delegate object that receives messages about the parsing process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
+func (x_ XMLParser) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate object that receives messages about the parsing process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
+func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The column number of the XML document being processed by the parser.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
+func (x_ XMLParser) ColumnNumber() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
+	return rv
+}
+
+
+// SetColumnNumber sets the value of the columnNumber property.
+// The column number of the XML document being processed by the parser.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
+func (x_ XMLParser) SetColumnNumber(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setColumnNumber:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
+func (x_ XMLParser) ExternalEntityResolvingPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("externalEntityResolvingPolicy"))
+	return rv
+}
+
+
+// SetExternalEntityResolvingPolicy sets the value of the externalEntityResolvingPolicy property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
+func (x_ XMLParser) SetExternalEntityResolvingPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setExternalEntityResolvingPolicy:"), value)
+}
+
+// A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
+func (x_ XMLParser) ShouldProcessNamespaces() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("shouldProcessNamespaces"))
+	return rv
+}
+
+
+// SetShouldProcessNamespaces sets the value of the shouldProcessNamespaces property.
+// A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
+func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldProcessNamespaces:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
 func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {

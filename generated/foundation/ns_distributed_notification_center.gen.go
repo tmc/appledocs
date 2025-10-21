@@ -96,5 +96,23 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDelive
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:deliverImmediately:"), name, objc.String(object), userInfo, deliverImmediately)
 }
 
+// Suspends or resumes notification delivery.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended
+func (d_ DistributedNotificationCenter) Suspended() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("suspended"))
+	return rv
+}
+
+
+// SetSuspended sets the value of the suspended property.
+// Suspends or resumes notification delivery.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended
+func (d_ DistributedNotificationCenter) SetSuspended(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSuspended:"), value)
+}
+
 
 

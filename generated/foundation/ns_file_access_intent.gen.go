@@ -83,7 +83,7 @@ func NewFileAccessIntent() FileAccessIntent {
 // Returns a file access intent object for reading the given URL with the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/readingIntent(with:options:)
-func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url URL, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("readingIntentWithURL:options:"), url, options)
 	return rv
 }
@@ -91,8 +91,8 @@ func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url unsafe.Pointer,
 // The current URL for the item managed by the file access intent instance. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/url
-func (f_ FileAccessIntent) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URL"))
+func (f_ FileAccessIntent) URL() URL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
 	return rv
 }
 

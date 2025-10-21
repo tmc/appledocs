@@ -111,11 +111,218 @@ func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() unsafe.P
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("ephemeralSessionConfiguration"))
 	return rv
 }
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
+func (u_ URLSessionConfiguration) AllowsUltraConstrainedNetworkAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
+	return rv
+}
+
+
+// SetAllowsUltraConstrainedNetworkAccess sets the value of the allowsUltraConstrainedNetworkAccess property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
+func (u_ URLSessionConfiguration) SetAllowsUltraConstrainedNetworkAccess(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
+func (u_ URLSessionConfiguration) RequiresDNSSECValidation() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("requiresDNSSECValidation"))
+	return rv
+}
+
+
+// SetRequiresDNSSECValidation sets the value of the requiresDNSSECValidation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
+func (u_ URLSessionConfiguration) SetRequiresDNSSECValidation(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
+}
+
+// A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/isdiscretionary
+func (u_ URLSessionConfiguration) IsDiscretionary() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isDiscretionary"))
+	return rv
+}
+
+
+// SetIsDiscretionary sets the value of the isDiscretionary property.
+// A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/isdiscretionary
+func (u_ URLSessionConfiguration) SetIsDiscretionary(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDiscretionary:"), value)
+}
+
+// The minimum TLS protocol to accept during protocol negotiation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocol
+func (u_ URLSessionConfiguration) TlsMinimumSupportedProtocol() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("tlsMinimumSupportedProtocol"))
+	return rv
+}
+
+
+// SetTlsMinimumSupportedProtocol sets the value of the tlsMinimumSupportedProtocol property.
+// The minimum TLS protocol to accept during protocol negotiation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocol
+func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocol(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTlsMinimumSupportedProtocol:"), value)
+}
+
+// The URL cache for providing cached responses to requests within the session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcache
+func (u_ URLSessionConfiguration) UrlCache() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("urlCache"))
+	return rv
+}
+
+
+// SetUrlCache sets the value of the urlCache property.
+// The URL cache for providing cached responses to requests within the session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcache
+func (u_ URLSessionConfiguration) SetUrlCache(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUrlCache:"), value)
+}
+
+// The maximum TLS protocol version that the client should request when making connections in this session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsmaximumsupportedprotocolversion
+func (u_ URLSessionConfiguration) TlsMaximumSupportedProtocolVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("tlsMaximumSupportedProtocolVersion"))
+	return rv
+}
+
+
+// SetTlsMaximumSupportedProtocolVersion sets the value of the tlsMaximumSupportedProtocolVersion property.
+// The maximum TLS protocol version that the client should request when making connections in this session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsmaximumsupportedprotocolversion
+func (u_ URLSessionConfiguration) SetTlsMaximumSupportedProtocolVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTlsMaximumSupportedProtocolVersion:"), value)
+}
+
+// The minimum TLS protocol version that the client should accept when making connections in this session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocolversion
+func (u_ URLSessionConfiguration) TlsMinimumSupportedProtocolVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("tlsMinimumSupportedProtocolVersion"))
+	return rv
+}
+
+
+// SetTlsMinimumSupportedProtocolVersion sets the value of the tlsMinimumSupportedProtocolVersion property.
+// The minimum TLS protocol version that the client should accept when making connections in this session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocolversion
+func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocolVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTlsMinimumSupportedProtocolVersion:"), value)
+}
+
+// A copy of the configuration object for this session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
+func (u_ URLSessionConfiguration) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// A copy of the configuration object for this session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
+func (u_ URLSessionConfiguration) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setConfiguration:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/enablesearlydata
+func (u_ URLSessionConfiguration) EnablesEarlyData() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("enablesEarlyData"))
+	return rv
+}
+
+
+// SetEnablesEarlyData sets the value of the enablesEarlyData property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/enablesearlydata
+func (u_ URLSessionConfiguration) SetEnablesEarlyData(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEnablesEarlyData:"), value)
+}
+
+// A predefined constant that determines when to return a response from the cache.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requestcachepolicy
+func (u_ URLSessionConfiguration) RequestCachePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("requestCachePolicy"))
+	return rv
+}
+
+
+// SetRequestCachePolicy sets the value of the requestCachePolicy property.
+// A predefined constant that determines when to return a response from the cache.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requestcachepolicy
+func (u_ URLSessionConfiguration) SetRequestCachePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRequestCachePolicy:"), value)
+}
+
+// An array of extra protocol subclasses that handle requests in a session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
+func (u_ URLSessionConfiguration) ProtocolClasses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protocolClasses"))
+	return rv
+}
+
+
+// SetProtocolClasses sets the value of the protocolClasses property.
+// An array of extra protocol subclasses that handle requests in a session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
+func (u_ URLSessionConfiguration) SetProtocolClasses(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
+}
+
+// A credential store that provides credentials for authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcredentialstorage
+func (u_ URLSessionConfiguration) UrlCredentialStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("urlCredentialStorage"))
+	return rv
+}
+
+
+// SetUrlCredentialStorage sets the value of the urlCredentialStorage property.
+// A credential store that provides credentials for authentication.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcredentialstorage
+func (u_ URLSessionConfiguration) SetUrlCredentialStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUrlCredentialStorage:"), value)
+}
+
 // An array of proxy configuration objects containing information about the proxies to use within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) ProxyConfigurations() []NSObject {
-	rv := objc.Send[[]NSObject](u_.ID, objc.Sel("proxyConfigurations"))
+func (u_ URLSessionConfiguration) ProxyConfigurations() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](u_.ID, objc.Sel("proxyConfigurations"))
 	return rv
 }
 
@@ -125,7 +332,7 @@ func (u_ URLSessionConfiguration) ProxyConfigurations() []NSObject {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) SetProxyConfigurations(value []NSObject) {
+func (u_ URLSessionConfiguration) SetProxyConfigurations(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

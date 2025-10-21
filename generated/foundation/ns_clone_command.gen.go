@@ -89,5 +89,23 @@ func (c_ CloneCommand) SetReceiversSpecifier(receiversRef unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
 
+// Returns a specifier for the object or objects to be cloned.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
+func (c_ CloneCommand) KeySpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keySpecifier"))
+	return rv
+}
+
+
+// SetKeySpecifier sets the value of the keySpecifier property.
+// Returns a specifier for the object or objects to be cloned.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
+func (c_ CloneCommand) SetKeySpecifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySpecifier:"), value)
+}
+
 
 

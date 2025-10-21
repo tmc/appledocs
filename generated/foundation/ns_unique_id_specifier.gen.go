@@ -94,4 +94,22 @@ func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqu
 }
 
 
+// Returns the ID encapsulated by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuniqueidspecifier/uniqueid
+func (u_ UniqueIDSpecifier) UniqueID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uniqueID"))
+	return rv
+}
+
+
+// SetUniqueID sets the value of the uniqueID property.
+// Returns the ID encapsulated by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuniqueidspecifier/uniqueid
+func (u_ UniqueIDSpecifier) SetUniqueID(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUniqueID:"), value)
+}
+
 

@@ -120,5 +120,23 @@ func (m_ MutableAttributedString) SetAttributedString(attrString unsafe.Pointer)
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedString:"), attrString)
 }
 
+// The character contents of the receiver as a mutable string object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
+func (m_ MutableAttributedString) MutableString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableString"))
+	return rv
+}
+
+
+// SetMutableString sets the value of the mutableString property.
+// The character contents of the receiver as a mutable string object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
+func (m_ MutableAttributedString) SetMutableString(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableString:"), value)
+}
+
 
 

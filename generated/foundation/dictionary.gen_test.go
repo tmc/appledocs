@@ -23,3 +23,11 @@ func ExampleNewDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
+// ExampleNewDictionaryWithContentsOfURL demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfURL.
+// Initializes a newly allocated dictionary using the keys and values found at a given URL.
+func ExampleNewDictionaryWithContentsOfURL() {
+	_ = foundation.NewDictionaryWithContentsOfURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}

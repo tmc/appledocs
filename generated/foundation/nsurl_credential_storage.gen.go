@@ -97,5 +97,23 @@ func (u_ URLCredentialStorage) SetDefaultCredentialForProtectionSpace(credential
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaultCredential:forProtectionSpace:"), credential, space)
 }
 
+// The credentials for all available protection spaces.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
+func (u_ URLCredentialStorage) AllCredentials() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("allCredentials"))
+	return rv
+}
+
+
+// SetAllCredentials sets the value of the allCredentials property.
+// The credentials for all available protection spaces.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
+func (u_ URLCredentialStorage) SetAllCredentials(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllCredentials:"), value)
+}
+
 
 

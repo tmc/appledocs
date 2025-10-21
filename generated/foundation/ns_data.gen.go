@@ -42,8 +42,8 @@ type IData interface {
 	IsEqualToData(other unsafe.Pointer) bool
 	RangeOfDataOptionsRange(dataToFind unsafe.Pointer, mask unsafe.Pointer, searchRange Range) Range
 	SubdataWithRange(range_ Range) unsafe.Pointer
-	WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool
-	WriteToURLOptionsError(url unsafe.Pointer, writeOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteToURLAtomically(url URL, atomically bool) bool
+	WriteToURLOptionsError(url URL, writeOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	WriteToFileOptionsError(path string, writeOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) bool
 }
@@ -221,7 +221,7 @@ func NewDataWithContentsOfMappedFile(path string) Data {
 // Creates a data object from the data at the specified file URL, or returns if the system can’t create one.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:)-6rrnr
-func NewDataWithContentsOfURL(url unsafe.Pointer) Data {
+func NewDataWithContentsOfURL(url URL) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -233,7 +233,7 @@ func NewDataWithContentsOfURL(url unsafe.Pointer) Data {
 // Creates a data object from the data at the provided file URL using specific reading options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-5abi3
-func NewDataWithContentsOfURLOptionsError(url unsafe.Pointer, readOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) Data {
+func NewDataWithContentsOfURLOptionsError(url URL, readOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
 	rv.Autorelease()
@@ -320,7 +320,7 @@ func (dc _DataClass) DataWithData(data unsafe.Pointer) unsafe.Pointer {
 // Creates a data object from the data at the specified file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:)-6foqd
-func (dc _DataClass) DataWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer {
+func (dc _DataClass) DataWithContentsOfURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfURL:"), url)
 	return rv
 }
@@ -328,7 +328,7 @@ func (dc _DataClass) DataWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer {
 // Creates a data object from the data at the provided file URL using specific reading options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-95rht
-func (dc _DataClass) DataWithContentsOfURLOptionsError(url unsafe.Pointer, readOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer {
+func (dc _DataClass) DataWithContentsOfURLOptionsError(url URL, readOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
 	return rv
 }
@@ -428,7 +428,7 @@ func (d_ Data) SubdataWithRange(range_ Range) unsafe.Pointer {
 // Writes the data object’s bytes to the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:atomically:)
-func (d_ Data) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool {
+func (d_ Data) WriteToURLAtomically(url URL, atomically bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
@@ -436,7 +436,7 @@ func (d_ Data) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool {
 // Writes the data object’s bytes to the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:options:)
-func (d_ Data) WriteToURLOptionsError(url unsafe.Pointer, writeOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (d_ Data) WriteToURLOptionsError(url URL, writeOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:options:error:"), url, writeOptionsMask, errorPtr)
 	return rv
 }
@@ -455,6 +455,78 @@ func (d_ Data) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
 func (d_ Data) WriteToFileOptionsError(path string, writeOptionsMask unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:options:error:"), objc.String(path), writeOptionsMask, errorPtr)
 	return rv
+}
+
+// The end of the range of error codes reserved for compression errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
+func (d_ Data) NSCompressionErrorMaximum() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMaximum"))
+	return rv
+}
+
+
+// SetNSCompressionErrorMaximum sets the value of the NSCompressionErrorMaximum property.
+// The end of the range of error codes reserved for compression errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
+func (d_ Data) SetNSCompressionErrorMaximum(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
+}
+
+// An error code value that indicates a failure to compress data using the provided algorithm.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
+func (d_ Data) NSCompressionFailedError() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionFailedError"))
+	return rv
+}
+
+
+// SetNSCompressionFailedError sets the value of the NSCompressionFailedError property.
+// An error code value that indicates a failure to compress data using the provided algorithm.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
+func (d_ Data) SetNSCompressionFailedError(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionFailedError:"), value)
+}
+
+// The start of the range of error codes reserved for compression errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (d_ Data) NSCompressionErrorMinimum() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMinimum"))
+	return rv
+}
+
+
+// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
+// The start of the range of error codes reserved for compression errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (d_ Data) SetNSCompressionErrorMinimum(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
+}
+
+// An error code value that indicates a failure to decompress data using the provided algorithm.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
+func (d_ Data) NSDecompressionFailedError() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSDecompressionFailedError"))
+	return rv
+}
+
+
+// SetNSDecompressionFailedError sets the value of the NSDecompressionFailedError property.
+// An error code value that indicates a failure to decompress data using the provided algorithm.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
+func (d_ Data) SetNSDecompressionFailedError(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
 
 // A pointer to the data object’s contents.

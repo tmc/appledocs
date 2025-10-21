@@ -88,5 +88,12 @@ func (nc _NullClass) Null() unsafe.Pointer {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-9t5v2
+func (n_ Null) NSNotFound() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("NSNotFound"))
+	return rv
+}
+
 
 

@@ -96,5 +96,23 @@ func (c_ Condition) Wait() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("wait"))
 }
 
+// The name of the condition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
+func (c_ Condition) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the condition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
+func (c_ Condition) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 
 

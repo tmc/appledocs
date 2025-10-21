@@ -153,6 +153,96 @@ func (x_ XMLDocument) SetRootElement(root unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRootElement:"), root)
 }
 
+// Sets the character encoding of the receiver to
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
+func (x_ XMLDocument) CharacterEncoding() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
+	return rv
+}
+
+
+// SetCharacterEncoding sets the value of the characterEncoding property.
+// Sets the character encoding of the receiver to
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
+func (x_ XMLDocument) SetCharacterEncoding(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
+}
+
+// Sets the kind of output content for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/documentcontentkind
+func (x_ XMLDocument) DocumentContentKind() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("documentContentKind"))
+	return rv
+}
+
+
+// SetDocumentContentKind sets the value of the documentContentKind property.
+// Sets the kind of output content for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/documentcontentkind
+func (x_ XMLDocument) SetDocumentContentKind(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDocumentContentKind:"), value)
+}
+
+// Sets a Boolean value that specifies whether the receiver represents a standalone XML document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
+func (x_ XMLDocument) IsStandalone() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("isStandalone"))
+	return rv
+}
+
+
+// SetIsStandalone sets the value of the isStandalone property.
+// Sets a Boolean value that specifies whether the receiver represents a standalone XML document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
+func (x_ XMLDocument) SetIsStandalone(value bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
+}
+
+// Sets the version of the receiver’s XML.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
+func (x_ XMLDocument) Version() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// SetVersion sets the value of the version property.
+// Sets the version of the receiver’s XML.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
+func (x_ XMLDocument) SetVersion(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
+}
+
+// Returns an
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+func (x_ XMLDocument) Dtd() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("dtd"))
+	return rv
+}
+
+
+// SetDtd sets the value of the dtd property.
+// Returns an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+func (x_ XMLDocument) SetDtd(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
+}
+
 // Returns the MIME type for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType

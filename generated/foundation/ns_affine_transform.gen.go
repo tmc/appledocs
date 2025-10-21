@@ -97,5 +97,23 @@ func (a_ AffineTransform) TranslateXByYBy(deltaX float64, deltaY float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("translateXBy:yBy:"), deltaX, deltaY)
 }
 
+// The matrix coefficients stored as the transformation matrix.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
+func (a_ AffineTransform) TransformStruct() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transformStruct"))
+	return rv
+}
+
+
+// SetTransformStruct sets the value of the transformStruct property.
+// The matrix coefficients stored as the transformation matrix.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
+func (a_ AffineTransform) SetTransformStruct(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
+}
+
 
 

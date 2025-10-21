@@ -118,6 +118,384 @@ func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate st
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedDateFormatFromTemplate:"), objc.String(dateFormatTemplate))
 }
 
+// The earliest date that can be denoted by a two-digit year specifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/twodigitstartdate
+func (d_ DateFormatter) TwoDigitStartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("twoDigitStartDate"))
+	return rv
+}
+
+
+// SetTwoDigitStartDate sets the value of the twoDigitStartDate property.
+// The earliest date that can be denoted by a two-digit year specifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/twodigitstartdate
+func (d_ DateFormatter) SetTwoDigitStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTwoDigitStartDate:"), value)
+}
+
+// The array of very short weekday symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortweekdaysymbols
+func (d_ DateFormatter) VeryShortWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("veryShortWeekdaySymbols"))
+	return rv
+}
+
+
+// SetVeryShortWeekdaySymbols sets the value of the veryShortWeekdaySymbols property.
+// The array of very short weekday symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortweekdaysymbols
+func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
+}
+
+// The short quarter symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortquartersymbols
+func (d_ DateFormatter) ShortQuarterSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortQuarterSymbols"))
+	return rv
+}
+
+
+// SetShortQuarterSymbols sets the value of the shortQuarterSymbols property.
+// The short quarter symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortquartersymbols
+func (d_ DateFormatter) SetShortQuarterSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
+}
+
+// The array of weekday symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/weekdaysymbols
+func (d_ DateFormatter) WeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("weekdaySymbols"))
+	return rv
+}
+
+
+// SetWeekdaySymbols sets the value of the weekdaySymbols property.
+// The array of weekday symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/weekdaysymbols
+func (d_ DateFormatter) SetWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
+}
+
+// The default date for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/defaultdate
+func (d_ DateFormatter) DefaultDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("defaultDate"))
+	return rv
+}
+
+
+// SetDefaultDate sets the value of the defaultDate property.
+// The default date for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/defaultdate
+func (d_ DateFormatter) SetDefaultDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultDate:"), value)
+}
+
+// Indicates whether the formatter generates the deprecated calendar date type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/generatescalendardates
+func (d_ DateFormatter) GeneratesCalendarDates() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("generatesCalendarDates"))
+	return rv
+}
+
+
+// SetGeneratesCalendarDates sets the value of the generatesCalendarDates property.
+// Indicates whether the formatter generates the deprecated calendar date type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/generatescalendardates
+func (d_ DateFormatter) SetGeneratesCalendarDates(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setGeneratesCalendarDates:"), value)
+}
+
+// The short standalone quarter symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonequartersymbols
+func (d_ DateFormatter) ShortStandaloneQuarterSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
+	return rv
+}
+
+
+// SetShortStandaloneQuarterSymbols sets the value of the shortStandaloneQuarterSymbols property.
+// The short standalone quarter symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonequartersymbols
+func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneQuarterSymbols:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the receiver uses heuristics when parsing a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/islenient
+func (d_ DateFormatter) IsLenient() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isLenient"))
+	return rv
+}
+
+
+// SetIsLenient sets the value of the isLenient property.
+// A Boolean value that indicates whether the receiver uses heuristics when parsing a string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/islenient
+func (d_ DateFormatter) SetIsLenient(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLenient:"), value)
+}
+
+// The standalone month symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonemonthsymbols
+func (d_ DateFormatter) StandaloneMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("standaloneMonthSymbols"))
+	return rv
+}
+
+
+// SetStandaloneMonthSymbols sets the value of the standaloneMonthSymbols property.
+// The standalone month symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonemonthsymbols
+func (d_ DateFormatter) SetStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the receiver uses phrases such as “today” and “tomorrow” for the date component.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/doesrelativedateformatting
+func (d_ DateFormatter) DoesRelativeDateFormatting() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("doesRelativeDateFormatting"))
+	return rv
+}
+
+
+// SetDoesRelativeDateFormatting sets the value of the doesRelativeDateFormatting property.
+// A Boolean value that indicates whether the receiver uses phrases such as “today” and “tomorrow” for the date component.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/doesrelativedateformatting
+func (d_ DateFormatter) SetDoesRelativeDateFormatting(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDoesRelativeDateFormatting:"), value)
+}
+
+// The AM symbol for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/amsymbol
+func (d_ DateFormatter) AmSymbol() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("amSymbol"))
+	return rv
+}
+
+
+// SetAmSymbol sets the value of the amSymbol property.
+// The AM symbol for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/amsymbol
+func (d_ DateFormatter) SetAmSymbol(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
+}
+
+// The long era symbols for the receiver
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/longerasymbols
+func (d_ DateFormatter) LongEraSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("longEraSymbols"))
+	return rv
+}
+
+
+// SetLongEraSymbols sets the value of the longEraSymbols property.
+// The long era symbols for the receiver
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/longerasymbols
+func (d_ DateFormatter) SetLongEraSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
+}
+
+// The standalone quarter symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonequartersymbols
+func (d_ DateFormatter) StandaloneQuarterSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("standaloneQuarterSymbols"))
+	return rv
+}
+
+
+// SetStandaloneQuarterSymbols sets the value of the standaloneQuarterSymbols property.
+// The standalone quarter symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonequartersymbols
+func (d_ DateFormatter) SetStandaloneQuarterSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneQuarterSymbols:"), objc.String(value))
+}
+
+// The very short month symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandalonemonthsymbols
+func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
+	return rv
+}
+
+
+// SetVeryShortStandaloneMonthSymbols sets the value of the veryShortStandaloneMonthSymbols property.
+// The very short month symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandalonemonthsymbols
+func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), objc.String(value))
+}
+
+// The array of short weekday symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortweekdaysymbols
+func (d_ DateFormatter) ShortWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortWeekdaySymbols"))
+	return rv
+}
+
+
+// SetShortWeekdaySymbols sets the value of the shortWeekdaySymbols property.
+// The array of short weekday symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortweekdaysymbols
+func (d_ DateFormatter) SetShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
+}
+
+// The short standalone month symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonemonthsymbols
+func (d_ DateFormatter) ShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+	return rv
+}
+
+
+// SetShortStandaloneMonthSymbols sets the value of the shortStandaloneMonthSymbols property.
+// The short standalone month symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonemonthsymbols
+func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
+}
+
+// The array of very short standalone weekday symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandaloneweekdaysymbols
+func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
+	return rv
+}
+
+
+// SetVeryShortStandaloneWeekdaySymbols sets the value of the veryShortStandaloneWeekdaySymbols property.
+// The array of very short standalone weekday symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandaloneweekdaysymbols
+func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
+}
+
+// The PM symbol for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/pmsymbol
+func (d_ DateFormatter) PmSymbol() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("pmSymbol"))
+	return rv
+}
+
+
+// SetPmSymbol sets the value of the pmSymbol property.
+// The PM symbol for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/pmsymbol
+func (d_ DateFormatter) SetPmSymbol(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
+}
+
+// The array of short standalone weekday symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandaloneweekdaysymbols
+func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
+	return rv
+}
+
+
+// SetShortStandaloneWeekdaySymbols sets the value of the shortStandaloneWeekdaySymbols property.
+// The array of short standalone weekday symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandaloneweekdaysymbols
+func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneWeekdaySymbols:"), objc.String(value))
+}
+
+// The array of short month symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortmonthsymbols
+func (d_ DateFormatter) ShortMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortMonthSymbols"))
+	return rv
+}
+
+
+// SetShortMonthSymbols sets the value of the shortMonthSymbols property.
+// The array of short month symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortmonthsymbols
+func (d_ DateFormatter) SetShortMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
+}
+
+// The month symbols for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/monthsymbols
+func (d_ DateFormatter) MonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("monthSymbols"))
+	return rv
+}
+
+
+// SetMonthSymbols sets the value of the monthSymbols property.
+// The month symbols for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/monthsymbols
+func (d_ DateFormatter) SetMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMonthSymbols:"), objc.String(value))
+}
+
 // The calendar for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/calendar

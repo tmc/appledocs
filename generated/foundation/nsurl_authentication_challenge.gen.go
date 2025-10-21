@@ -80,6 +80,42 @@ func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
 }
 
 
+// The error object representing the last authentication failure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+func (u_ URLAuthenticationChallenge) Error_() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError_ sets the value of the error property.
+// The error object representing the last authentication failure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+func (u_ URLAuthenticationChallenge) SetError_(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setError_:"), value)
+}
+
+// The receiver’s protection space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
+func (u_ URLAuthenticationChallenge) ProtectionSpace() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protectionSpace"))
+	return rv
+}
+
+
+// SetProtectionSpace sets the value of the protectionSpace property.
+// The receiver’s protection space.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
+func (u_ URLAuthenticationChallenge) SetProtectionSpace(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProtectionSpace:"), value)
+}
+
 // The URL response object representing the last authentication failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/failureResponse

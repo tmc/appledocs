@@ -80,5 +80,77 @@ func NewURLCache() URLCache {
 }
 
 
+// The current size of the in-memory cache, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+func (u_ URLCache) CurrentMemoryUsage() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("currentMemoryUsage"))
+	return rv
+}
+
+
+// SetCurrentMemoryUsage sets the value of the currentMemoryUsage property.
+// The current size of the in-memory cache, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+func (u_ URLCache) SetCurrentMemoryUsage(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentMemoryUsage:"), value)
+}
+
+// The current size of the on-disk cache, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
+func (u_ URLCache) CurrentDiskUsage() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("currentDiskUsage"))
+	return rv
+}
+
+
+// SetCurrentDiskUsage sets the value of the currentDiskUsage property.
+// The current size of the on-disk cache, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
+func (u_ URLCache) SetCurrentDiskUsage(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentDiskUsage:"), value)
+}
+
+// The capacity of the in-memory cache, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
+func (u_ URLCache) MemoryCapacity() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("memoryCapacity"))
+	return rv
+}
+
+
+// SetMemoryCapacity sets the value of the memoryCapacity property.
+// The capacity of the in-memory cache, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
+func (u_ URLCache) SetMemoryCapacity(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMemoryCapacity:"), value)
+}
+
+// The capacity of the on-disk cache, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/diskcapacity
+func (u_ URLCache) DiskCapacity() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("diskCapacity"))
+	return rv
+}
+
+
+// SetDiskCapacity sets the value of the diskCapacity property.
+// The capacity of the on-disk cache, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/diskcapacity
+func (u_ URLCache) SetDiskCapacity(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDiskCapacity:"), value)
+}
+
 
 

@@ -105,4 +105,202 @@ func NewScriptObjectSpecifierWithContainerSpecifierKey(container unsafe.Pointer,
 }
 
 
+// Sets the value of the evaluation error.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerrornumber
+func (s_ ScriptObjectSpecifier) EvaluationErrorNumber() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("evaluationErrorNumber"))
+	return rv
+}
+
+
+// SetEvaluationErrorNumber sets the value of the evaluationErrorNumber property.
+// Sets the value of the evaluation error.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerrornumber
+func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationErrorNumber:"), value)
+}
+
+// Returns the actual object represented by the nested series of object specifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/objectsbyevaluatingspecifier
+func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingSpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectsByEvaluatingSpecifier"))
+	return rv
+}
+
+
+// SetObjectsByEvaluatingSpecifier sets the value of the objectsByEvaluatingSpecifier property.
+// Returns the actual object represented by the nested series of object specifiers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/objectsbyevaluatingspecifier
+func (s_ ScriptObjectSpecifier) SetObjectsByEvaluatingSpecifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setObjectsByEvaluatingSpecifier:"), value)
+}
+
+// Returns the class description of the objects specified by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
+func (s_ ScriptObjectSpecifier) KeyClassDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("keyClassDescription"))
+	return rv
+}
+
+
+// SetKeyClassDescription sets the value of the keyClassDescription property.
+// Returns the class description of the objects specified by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
+func (s_ ScriptObjectSpecifier) SetKeyClassDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyClassDescription:"), value)
+}
+
+// Returns an Apple event descriptor that represents the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/descriptor
+func (s_ ScriptObjectSpecifier) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("descriptor"))
+	return rv
+}
+
+
+// SetDescriptor sets the value of the descriptor property.
+// Returns an Apple event descriptor that represents the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/descriptor
+func (s_ ScriptObjectSpecifier) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDescriptor:"), value)
+}
+
+// Sets the key of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
+func (s_ ScriptObjectSpecifier) Key() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("key"))
+	return rv
+}
+
+
+// SetKey sets the value of the key property.
+// Sets the key of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
+func (s_ ScriptObjectSpecifier) SetKey(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), objc.String(value))
+}
+
+// Returns the object specifier in which an evaluation error occurred.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerror
+func (s_ ScriptObjectSpecifier) EvaluationError() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("evaluationError"))
+	return rv
+}
+
+
+// SetEvaluationError sets the value of the evaluationError property.
+// Returns the object specifier in which an evaluation error occurred.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerror
+func (s_ ScriptObjectSpecifier) SetEvaluationError(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationError:"), value)
+}
+
+// Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisrangecontainerobject
+func (s_ ScriptObjectSpecifier) ContainerIsRangeContainerObject() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsRangeContainerObject"))
+	return rv
+}
+
+
+// SetContainerIsRangeContainerObject sets the value of the containerIsRangeContainerObject property.
+// Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisrangecontainerobject
+func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsRangeContainerObject:"), value)
+}
+
+// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+func (s_ ScriptObjectSpecifier) ContainerIsObjectBeingTested() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
+	return rv
+}
+
+
+// SetContainerIsObjectBeingTested sets the value of the containerIsObjectBeingTested property.
+// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+func (s_ ScriptObjectSpecifier) SetContainerIsObjectBeingTested(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
+}
+
+// Sets the class description of the receiver’s container specifier to a given specifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerclassdescription
+func (s_ ScriptObjectSpecifier) ContainerClassDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("containerClassDescription"))
+	return rv
+}
+
+
+// SetContainerClassDescription sets the value of the containerClassDescription property.
+// Sets the class description of the receiver’s container specifier to a given specifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerclassdescription
+func (s_ ScriptObjectSpecifier) SetContainerClassDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerClassDescription:"), value)
+}
+
+// Sets the receiver’s child reference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/child
+func (s_ ScriptObjectSpecifier) Child() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("child"))
+	return rv
+}
+
+
+// SetChild sets the value of the child property.
+// Sets the receiver’s child reference.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/child
+func (s_ ScriptObjectSpecifier) SetChild(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setChild:"), value)
+}
+
+// Sets the container specifier of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/container
+func (s_ ScriptObjectSpecifier) Container() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("container"))
+	return rv
+}
+
+
+// SetContainer sets the value of the container property.
+// Sets the container specifier of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/container
+func (s_ ScriptObjectSpecifier) SetContainer(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainer:"), value)
+}
+
 

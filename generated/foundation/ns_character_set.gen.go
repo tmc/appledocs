@@ -136,6 +136,42 @@ func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("whitespaceAndNewlineCharacterSet"))
 	return rv
 }
+// An
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
+func (c_ CharacterSet) BitmapRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bitmapRepresentation"))
+	return rv
+}
+
+
+// SetBitmapRepresentation sets the value of the bitmapRepresentation property.
+// An
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
+func (c_ CharacterSet) SetBitmapRepresentation(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBitmapRepresentation:"), value)
+}
+
+// A character set containing only characters that don’t exist in the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/inverted
+func (c_ CharacterSet) Inverted() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inverted"))
+	return rv
+}
+
+
+// SetInverted sets the value of the inverted property.
+// A character set containing only characters that don’t exist in the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/inverted
+func (c_ CharacterSet) SetInverted(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInverted:"), value)
+}
+
 // A character set containing the characters in Unicode General Category Cc and Cf.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters

@@ -89,4 +89,22 @@ func (u_ UUID) Compare(otherUUID unsafe.Pointer) unsafe.Pointer {
 	return rv
 }
 
+// The UUID as a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
+func (u_ UUID) UuidString() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("uuidString"))
+	return rv
+}
+
+
+// SetUuidString sets the value of the uuidString property.
+// The UUID as a string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
+func (u_ UUID) SetUuidString(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
+}
+
 

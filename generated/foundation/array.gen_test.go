@@ -23,3 +23,11 @@ func ExampleNewArrayWithContentsOfFile() {
 	)
 	// Output:
 }
+// ExampleNewArrayWithContentsOfURL demonstrates how to create a Array instance using NewArrayWithContentsOfURL.
+// Initializes a newly allocated array with the contents of the location specified by a given URL.
+func ExampleNewArrayWithContentsOfURL() {
+	_ = foundation.NewArrayWithContentsOfURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}

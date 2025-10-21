@@ -152,4 +152,22 @@ func (c_ CountedSet) RemoveObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeObject:"), object)
 }
 
+// The number of members in the set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
+func (c_ CountedSet) Count() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// SetCount sets the value of the count property.
+// The number of members in the set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
+func (c_ CountedSet) SetCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCount:"), value)
+}
+
 

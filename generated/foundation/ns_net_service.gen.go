@@ -299,7 +299,7 @@ func (n_ NetService) Port() int {
 // The type of the published service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
-func (n_ NetService) Type() string {
+func (n_ NetService) Type_() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv
 }

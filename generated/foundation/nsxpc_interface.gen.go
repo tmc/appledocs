@@ -90,8 +90,8 @@ func NewXPCInterface() XPCInterface {
 // Returns an NSXPCInterface instance for a given protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
-func NewXPCInterfaceWithProtocol(protocol unsafe.Pointer) XPCInterface {
-	rv := objc.Send[XPCInterface](objc.ID(getXPCInterfaceClass().class), objc.Sel("interfaceWithProtocol:"), protocol)
+func NewXPCInterfaceWithProtocol(protocol_ unsafe.Pointer) XPCInterface {
+	rv := objc.Send[XPCInterface](objc.ID(getXPCInterfaceClass().class), objc.Sel("interfaceWithProtocol:"), protocol_)
 	return rv
 }
 
@@ -99,8 +99,8 @@ func NewXPCInterfaceWithProtocol(protocol unsafe.Pointer) XPCInterface {
 // Returns an NSXPCInterface instance for a given protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
-func (xc _XPCInterfaceClass) InterfaceWithProtocol(protocol unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(xc.class), objc.Sel("interfaceWithProtocol:"), protocol)
+func (xc _XPCInterfaceClass) InterfaceWithProtocol(protocol_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(xc.class), objc.Sel("interfaceWithProtocol:"), protocol_)
 	return rv
 }
 
@@ -142,20 +142,38 @@ func (x_ XPCInterface) SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Po
 
 // The Objective-C protocol that this interface is based on.
 //
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcinterface/protocol
+func (x_ XPCInterface) `protocol`() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("`protocol`"))
+	return rv
+}
+
+
+// Set`protocol` sets the value of the `protocol` property.
+// The Objective-C protocol that this interface is based on.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcinterface/protocol
+func (x_ XPCInterface) Set`protocol`(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("set`protocol`:"), value)
+}
+
+// The Objective-C protocol that this interface is based on.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/protocol
-func (x_ XPCInterface) Protocol() unsafe.Pointer {
+func (x_ XPCInterface) Protocol_() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("protocol"))
 	return rv
 }
 
 
-// SetProtocol sets the value of the protocol property.
+// SetProtocol_ sets the value of the protocol property.
 // The Objective-C protocol that this interface is based on.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/protocol
-func (x_ XPCInterface) SetProtocol(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setProtocol:"), value)
+func (x_ XPCInterface) SetProtocol_(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setProtocol_:"), value)
 }
 
 

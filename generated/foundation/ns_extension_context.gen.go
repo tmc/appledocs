@@ -33,14 +33,14 @@ type IExtensionContext interface {
 	objectivec.IObject
 	CancelRequestWithError(error_ unsafe.Pointer)
 	CompleteRequestReturningItemsCompletionHandler(items objc.ID, completionHandler unsafe.Pointer)
-	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL unsafe.Pointer, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer)
-	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL unsafe.Pointer, setupInfo unsafe.Pointer)
+	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL URL, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer)
+	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL URL, setupInfo unsafe.Pointer)
 	DismissNotificationContentExtension()
 	InterfaceParametersDescription() string
 	LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer)
 	MediaPlayingPaused()
 	MediaPlayingStarted()
-	OpenURLCompletionHandler(URL unsafe.Pointer, completionHandler unsafe.Pointer)
+	OpenURLCompletionHandler(URL URL, completionHandler unsafe.Pointer)
 	PerformNotificationDefaultAction()
 	WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) coregraphics.CGSize
 }
@@ -110,13 +110,13 @@ func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items 
 // Tells the host app to complete the app extension request with the specified broadcast information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:broadcastConfiguration:setupInfo:)
-func (e_ ExtensionContext) CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL unsafe.Pointer, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer) {
+func (e_ ExtensionContext) CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL URL, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestWithBroadcastURL:broadcastConfiguration:setupInfo:"), broadcastURL, broadcastConfiguration, setupInfo)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:setupInfo:)
-func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL unsafe.Pointer, setupInfo unsafe.Pointer) {
+func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL URL, setupInfo unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestWithBroadcastURL:setupInfo:"), broadcastURL, setupInfo)
 }
 
@@ -157,7 +157,7 @@ func (e_ ExtensionContext) MediaPlayingStarted() {
 // Asks the system to open a URL on behalf of the currently running app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/open(_:completionHandler:)
-func (e_ ExtensionContext) OpenURLCompletionHandler(URL unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (e_ ExtensionContext) OpenURLCompletionHandler(URL URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("openURL:completionHandler:"), URL, completionHandler)
 }
 
@@ -172,6 +172,14 @@ func (e_ ExtensionContext) PerformNotificationDefaultAction() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetMaximumSize(for:)
 func (e_ ExtensionContext) WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](e_.ID, objc.Sel("widgetMaximumSizeForDisplayMode:"), displayMode)
+	return rv
+}
+
+// The extension items and errors key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey
+func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
 	return rv
 }
 

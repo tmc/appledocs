@@ -96,7 +96,7 @@ func NewXMLDTD() XMLDTD {
 // Initializes and returns an object created from the DTD declarations in a URL-referenced source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(contentsOf:options:)
-func NewXMLDTDWithContentsOfURLOptionsError(url unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDTD {
+func NewXMLDTDWithContentsOfURLOptionsError(url URL, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, mask, error_)
 	rv.Autorelease()
@@ -205,6 +205,24 @@ func (x_ XMLDTD) ReplaceChildAtIndexWithNode(index uint, node unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/setChildren(_:)
 func (x_ XMLDTD) SetChildren(children unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
+}
+
+// Returns an
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+func (x_ XMLDTD) Dtd() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("dtd"))
+	return rv
+}
+
+
+// SetDtd sets the value of the dtd property.
+// Returns an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+func (x_ XMLDTD) SetDtd(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 
 // Returns the receiver’s public identifier.

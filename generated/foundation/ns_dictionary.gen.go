@@ -31,21 +31,21 @@ type _DictionaryClass struct {
 type IDictionary interface {
 	objectivec.IObject
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
-	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len uint) uint
+	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len_ uint) uint
 	DescriptionWithLocale(locale objc.ID) string
 	DescriptionWithLocaleIndent(locale objc.ID, level uint) string
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
 	FileCreationDate() unsafe.Pointer
 	FileExtensionHidden() bool
-	FileGroupOwnerAccountID() unsafe.Pointer
+	FileGroupOwnerAccountID() Number
 	FileGroupOwnerAccountName() string
 	FileHFSCreatorCode() unsafe.Pointer
 	FileHFSTypeCode() unsafe.Pointer
 	FileIsAppendOnly() bool
 	FileIsImmutable() bool
 	FileModificationDate() unsafe.Pointer
-	FileOwnerAccountID() unsafe.Pointer
+	FileOwnerAccountID() Number
 	FileOwnerAccountName() string
 	FilePosixPermissions() uint
 	FileSize() uint64
@@ -65,8 +65,8 @@ type IDictionary interface {
 	ObjectEnumerator() unsafe.Pointer
 	ObjectsForKeysNotFoundMarker(keys unsafe.Pointer, marker unsafe.Pointer) []objc.ID
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
-	WriteToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
-	WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool
+	WriteToURLError(url URL, error_ unsafe.Pointer) bool
+	WriteToURLAtomically(url URL, atomically bool) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 }
 
@@ -147,7 +147,7 @@ func NewDictionaryWithContentsOfFile(path string) Dictionary {
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
-func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
+func NewDictionaryWithContentsOfURL(url URL) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -159,7 +159,7 @@ func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
-func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Dictionary {
+func NewDictionaryWithContentsOfURLError(url URL, error_ unsafe.Pointer) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
@@ -256,7 +256,7 @@ func (dc _DictionaryClass) DictionaryWithContentsOfFile(path string) unsafe.Poin
 // Creates a dictionary using the keys and values found in a resource specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfURL:error:
-func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -296,7 +296,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objc.ID) uns
 // Creates a dictionary using the keys and values found in a resource specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-98pl3
-func (dc _DictionaryClass) DictionaryWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithContentsOfURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
@@ -328,8 +328,8 @@ func (d_ Dictionary) AllKeysForObject(anObject unsafe.Pointer) []objc.ID {
 // Returns by reference a C array of objects over which the sender should iterate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/countByEnumeratingWithState:objects:count:
-func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len uint) uint {
-	rv := objc.Send[uint](d_.ID, objc.Sel("countByEnumeratingWithState:objects:count:"), state, buffer, len)
+func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len_ uint) uint {
+	rv := objc.Send[uint](d_.ID, objc.Sel("countByEnumeratingWithState:objects:count:"), state, buffer, len_)
 	return rv
 }
 
@@ -382,8 +382,8 @@ func (d_ Dictionary) FileExtensionHidden() bool {
 // Returns file’s group owner account ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileGroupOwnerAccountID()
-func (d_ Dictionary) FileGroupOwnerAccountID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileGroupOwnerAccountID"))
+func (d_ Dictionary) FileGroupOwnerAccountID() Number {
+	rv := objc.Send[Number](d_.ID, objc.Sel("fileGroupOwnerAccountID"))
 	return rv
 }
 
@@ -438,8 +438,8 @@ func (d_ Dictionary) FileModificationDate() unsafe.Pointer {
 // Returns the file’s owner account ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileOwnerAccountID()
-func (d_ Dictionary) FileOwnerAccountID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileOwnerAccountID"))
+func (d_ Dictionary) FileOwnerAccountID() Number {
+	rv := objc.Send[Number](d_.ID, objc.Sel("fileOwnerAccountID"))
 	return rv
 }
 
@@ -604,7 +604,7 @@ func (d_ Dictionary) ValueForKey(key string) unsafe.Pointer {
 // Writes a property list representation of the contents of the dictionary to a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:)
-func (d_ Dictionary) WriteToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (d_ Dictionary) WriteToURLError(url URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
 }
@@ -612,7 +612,7 @@ func (d_ Dictionary) WriteToURLError(url unsafe.Pointer, error_ unsafe.Pointer) 
 // Writes a property list representation of the contents of the dictionary to a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:atomically:)
-func (d_ Dictionary) WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool {
+func (d_ Dictionary) WriteToURLAtomically(url URL, atomically bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }

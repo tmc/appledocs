@@ -26,6 +26,23 @@ func ExampleNewURLFileURLWithPathIsDirectory() {
 	)
 	// Output:
 }
+// ExampleNewURLFileURLWithPathIsDirectoryRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectoryRelativeToURL.
+func ExampleNewURLFileURLWithPathIsDirectoryRelativeToURL() {
+	_ = foundation.NewURLFileURLWithPathIsDirectoryRelativeToURL(
+		"/tmp/test", // path string
+		false, // isDir bool
+		foundation.URL{}, // baseURL URL
+	)
+	// Output:
+}
+// ExampleNewURLFileURLWithPathRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithPathRelativeToURL.
+func ExampleNewURLFileURLWithPathRelativeToURL() {
+	_ = foundation.NewURLFileURLWithPathRelativeToURL(
+		"/tmp/test", // path string
+		foundation.URL{}, // baseURL URL
+	)
+	// Output:
+}
 // ExampleNewURLWithSchemeHostPath demonstrates how to create a URL instance using NewURLWithSchemeHostPath.
 // Initializes a newly created NSURL with a specified scheme, host, and path.
 func ExampleNewURLWithSchemeHostPath() {
@@ -50,6 +67,15 @@ func ExampleNewURLWithStringEncodingInvalidCharacters() {
 	_ = foundation.NewURLWithStringEncodingInvalidCharacters(
 		"https://example.com", // URLString string
 		false, // encodingInvalidCharacters bool
+	)
+	// Output:
+}
+// ExampleNewURLWithStringRelativeToURL demonstrates how to create a URL instance using NewURLWithStringRelativeToURL.
+// Initializes an NSURL object with a base URL and a relative string.
+func ExampleNewURLWithStringRelativeToURL() {
+	_ = foundation.NewURLWithStringRelativeToURL(
+		"https://example.com", // URLString string
+		foundation.URL{}, // baseURL URL
 	)
 	// Output:
 }

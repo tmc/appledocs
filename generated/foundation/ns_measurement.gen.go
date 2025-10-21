@@ -102,6 +102,24 @@ func (m_ Measurement) CanBeConvertedToUnit(unit unsafe.Pointer) bool {
 	return rv
 }
 
+// The measurement value, represented as a double-precision floating-point number.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
+func (m_ Measurement) DoubleValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("doubleValue"))
+	return rv
+}
+
+
+// SetDoubleValue sets the value of the doubleValue property.
+// The measurement value, represented as a double-precision floating-point number.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
+func (m_ Measurement) SetDoubleValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDoubleValue:"), value)
+}
+
 // The unit of measure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/unit

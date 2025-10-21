@@ -25,3 +25,11 @@ func ExampleNewBundleWithPath() {
 	)
 	// Output:
 }
+// ExampleNewBundleWithURL demonstrates how to create a Bundle instance using NewBundleWithURL.
+// Returns an   object initialized to correspond to the specified file URL.
+func ExampleNewBundleWithURL() {
+	_ = foundation.NewBundleWithURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}

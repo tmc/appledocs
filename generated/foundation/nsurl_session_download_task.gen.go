@@ -89,5 +89,23 @@ func (u_ URLSessionDownloadTask) CancelByProducingResumeData(completionHandler u
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
 }
 
+// The server’s response to the currently active request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
+func (u_ URLSessionDownloadTask) Response() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("response"))
+	return rv
+}
+
+
+// SetResponse sets the value of the response property.
+// The server’s response to the currently active request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
+func (u_ URLSessionDownloadTask) SetResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
+}
+
 
 

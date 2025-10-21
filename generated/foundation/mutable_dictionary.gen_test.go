@@ -30,3 +30,10 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
+// ExampleNewMutableDictionaryWithContentsOfURL demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfURL.
+func ExampleNewMutableDictionaryWithContentsOfURL() {
+	_ = foundation.NewMutableDictionaryWithContentsOfURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}

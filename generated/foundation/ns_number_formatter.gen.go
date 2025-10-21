@@ -30,8 +30,8 @@ type _NumberFormatterClass struct {
 type INumberFormatter interface {
 	IFormatter
 	GetObjectValueForStringRangeError(obj objc.ID, string_ string, rangep Range, error_ unsafe.Pointer) bool
-	NumberFromString(string_ string) unsafe.Pointer
-	StringFromNumber(number unsafe.Pointer) string
+	NumberFromString(string_ string) Number
+	StringFromNumber(number Number) string
 }
 
 // A formatter that converts between numeric values and their textual representations.
@@ -95,7 +95,7 @@ func (nc _NumberFormatterClass) DefaultFormatterBehavior() unsafe.Pointer {
 // Returns a localized number string with the specified style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizedString(from:number:)
-func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num unsafe.Pointer, nstyle unsafe.Pointer) string {
+func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num Number, nstyle unsafe.Pointer) string {
 	rv := objc.Send[string](objc.ID(nc.class), objc.Sel("localizedStringFromNumber:numberStyle:"), num, nstyle)
 	return rv
 }
@@ -118,17 +118,107 @@ func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objc.ID, string_
 // Returns an object created by parsing a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/number(from:)
-func (n_ NumberFormatter) NumberFromString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
+func (n_ NumberFormatter) NumberFromString(string_ string) Number {
+	rv := objc.Send[Number](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
 	return rv
 }
 
 // Returns a string containing the formatted value of the provided number object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/string(from:)
-func (n_ NumberFormatter) StringFromNumber(number unsafe.Pointer) string {
+func (n_ NumberFormatter) StringFromNumber(number Number) string {
 	rv := objc.Send[string](n_.ID, objc.Sel("stringFromNumber:"), number)
 	return rv
+}
+
+// Determines whether the receiver creates instances of
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
+func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
+	return rv
+}
+
+
+// SetGeneratesDecimalNumbers sets the value of the generatesDecimalNumbers property.
+// Determines whether the receiver creates instances of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
+func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
+}
+
+// Determines whether partial string validation is enabled for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
+func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isPartialStringValidationEnabled"))
+	return rv
+}
+
+
+// SetIsPartialStringValidationEnabled sets the value of the isPartialStringValidationEnabled property.
+// Determines whether partial string validation is enabled for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
+func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
+}
+
+// The text attributes used to display the NaN (“not a number”) string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) TextAttributesForNotANumber() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
+	return rv
+}
+
+
+// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
+// The text attributes used to display the NaN (“not a number”) string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
+}
+
+// The string the receiver uses as the prefix for positive values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
+func (n_ NumberFormatter) PositivePrefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
+	return rv
+}
+
+
+// SetPositivePrefix sets the value of the positivePrefix property.
+// The string the receiver uses as the prefix for positive values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
+func (n_ NumberFormatter) SetPositivePrefix(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
+}
+
+// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
+func (n_ NumberFormatter) IsLenient() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isLenient"))
+	return rv
+}
+
+
+// SetIsLenient sets the value of the isLenient property.
+// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
+func (n_ NumberFormatter) SetIsLenient(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsLenient:"), value)
 }
 
 // Determines whether the receiver allows as input floating-point values (that is, values that include the period character [ ]).
@@ -548,8 +638,8 @@ func (n_ NumberFormatter) SetLocalizesFormat(value bool) {
 // The highest number allowed as input by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) Maximum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("maximum"))
+func (n_ NumberFormatter) Maximum() Number {
+	rv := objc.Send[Number](n_.ID, objc.Sel("maximum"))
 	return rv
 }
 
@@ -559,7 +649,7 @@ func (n_ NumberFormatter) Maximum() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) SetMaximum(value unsafe.Pointer) {
+func (n_ NumberFormatter) SetMaximum(value Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximum:"), value)
 }
 
@@ -620,8 +710,8 @@ func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint) {
 // The lowest number allowed as input by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) Minimum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("minimum"))
+func (n_ NumberFormatter) Minimum() Number {
+	rv := objc.Send[Number](n_.ID, objc.Sel("minimum"))
 	return rv
 }
 
@@ -631,7 +721,7 @@ func (n_ NumberFormatter) Minimum() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) SetMinimum(value unsafe.Pointer) {
+func (n_ NumberFormatter) SetMinimum(value Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimum:"), value)
 }
 
@@ -725,8 +815,8 @@ func (n_ NumberFormatter) SetMinusSign(value string) {
 // The multiplier of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) Multiplier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("multiplier"))
+func (n_ NumberFormatter) Multiplier() Number {
+	rv := objc.Send[Number](n_.ID, objc.Sel("multiplier"))
 	return rv
 }
 
@@ -736,7 +826,7 @@ func (n_ NumberFormatter) Multiplier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) SetMultiplier(value unsafe.Pointer) {
+func (n_ NumberFormatter) SetMultiplier(value Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMultiplier:"), value)
 }
 
@@ -1031,8 +1121,8 @@ func (n_ NumberFormatter) SetRoundingBehavior(value unsafe.Pointer) {
 // The rounding increment used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) RoundingIncrement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("roundingIncrement"))
+func (n_ NumberFormatter) RoundingIncrement() Number {
+	rv := objc.Send[Number](n_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
 
@@ -1042,7 +1132,7 @@ func (n_ NumberFormatter) RoundingIncrement() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) SetRoundingIncrement(value unsafe.Pointer) {
+func (n_ NumberFormatter) SetRoundingIncrement(value Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 

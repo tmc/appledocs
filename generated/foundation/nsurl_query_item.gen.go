@@ -80,6 +80,42 @@ func NewURLQueryItem() URLQueryItem {
 }
 
 
+// The query URL component as an array of name/value pairs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
+func (u_ URLQueryItem) QueryItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queryItems"))
+	return rv
+}
+
+
+// SetQueryItems sets the value of the queryItems property.
+// The query URL component as an array of name/value pairs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
+func (u_ URLQueryItem) SetQueryItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
+}
+
+// The name of the query item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
+func (u_ URLQueryItem) Name() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the query item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
+func (u_ URLQueryItem) SetName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 // The value for the query item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value

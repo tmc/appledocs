@@ -115,5 +115,136 @@ func (s_ Scanner) ScanInt(result unsafe.Pointer) bool {
 	return rv
 }
 
+// The string the scanner will scan.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
+func (s_ Scanner) String_() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// SetString_ sets the value of the string property.
+// The string the scanner will scan.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
+func (s_ Scanner) SetString_(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setString_:"), objc.String(value))
+}
+
+// Flag that indicates whether the receiver distinguishes case in the characters it scans.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
+func (s_ Scanner) CaseSensitive() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("caseSensitive"))
+	return rv
+}
+
+
+// SetCaseSensitive sets the value of the caseSensitive property.
+// Flag that indicates whether the receiver distinguishes case in the characters it scans.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
+func (s_ Scanner) SetCaseSensitive(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCaseSensitive:"), value)
+}
+
+// The locale to use when scanning.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/locale
+func (s_ Scanner) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+// The locale to use when scanning.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/locale
+func (s_ Scanner) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
+func (s_ Scanner) CurrentIndex() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("currentIndex"))
+	return rv
+}
+
+
+// SetCurrentIndex sets the value of the currentIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
+func (s_ Scanner) SetCurrentIndex(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), objc.String(value))
+}
+
+// The character position at which the receiver will begin its next scanning operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
+func (s_ Scanner) ScanLocation() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("scanLocation"))
+	return rv
+}
+
+
+// SetScanLocation sets the value of the scanLocation property.
+// The character position at which the receiver will begin its next scanning operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
+func (s_ Scanner) SetScanLocation(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
+}
+
+// Flag that indicates whether the receiver has exhausted all significant characters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
+func (s_ Scanner) IsAtEnd() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isAtEnd"))
+	return rv
+}
+
+
+// SetIsAtEnd sets the value of the isAtEnd property.
+// Flag that indicates whether the receiver has exhausted all significant characters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
+func (s_ Scanner) SetIsAtEnd(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAtEnd:"), value)
+}
+
+// Character set containing the characters the scanner ignores when looking for a scannable element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
+func (s_ Scanner) CharactersToBeSkipped() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("charactersToBeSkipped"))
+	return rv
+}
+
+
+// SetCharactersToBeSkipped sets the value of the charactersToBeSkipped property.
+// Character set containing the characters the scanner ignores when looking for a scannable element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
+func (s_ Scanner) SetCharactersToBeSkipped(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCharactersToBeSkipped:"), value)
+}
+
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (s_ Scanner) NSNotFound() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
+	return rv
+}
+
 
 

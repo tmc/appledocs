@@ -30,7 +30,7 @@ type _UserDefaultsClass struct {
 // An interface definition for the [UserDefaults] class.
 type IUserDefaults interface {
 	objectivec.IObject
-	SetURLForKey(url unsafe.Pointer, defaultName string)
+	SetURLForKey(url URL, defaultName string)
 	SetObjectForKey(value objc.ID, defaultName string)
 	StringForKey(defaultName string) string
 }
@@ -106,7 +106,7 @@ func (uc _UserDefaultsClass) StandardUserDefaults() unsafe.Pointer {
 // Sets the value of the specified default key to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
-func (u_ UserDefaults) SetURLForKey(url unsafe.Pointer, defaultName string) {
+func (u_ UserDefaults) SetURLForKey(url URL, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, objc.String(defaultName))
 }
 
@@ -123,6 +123,24 @@ func (u_ UserDefaults) SetObjectForKey(value objc.ID, defaultName string) {
 func (u_ UserDefaults) StringForKey(defaultName string) string {
 	rv := objc.Send[string](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
+}
+
+// The current volatile domain names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
+func (u_ UserDefaults) VolatileDomainNames() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("volatileDomainNames"))
+	return rv
+}
+
+
+// SetVolatileDomainNames sets the value of the volatileDomainNames property.
+// The current volatile domain names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
+func (u_ UserDefaults) SetVolatileDomainNames(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setVolatileDomainNames:"), objc.String(value))
 }
 
 // Returns the shared defaults object.

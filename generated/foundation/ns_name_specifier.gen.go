@@ -94,4 +94,22 @@ func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(clas
 }
 
 
+// Sets the name encapsulated with the receiver for the specified object in the container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnamespecifier/name
+func (n_ NameSpecifier) Name() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// Sets the name encapsulated with the receiver for the specified object in the container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnamespecifier/name
+func (n_ NameSpecifier) SetName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 

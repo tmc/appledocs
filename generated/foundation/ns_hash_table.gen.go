@@ -115,6 +115,78 @@ func (h_ HashTable) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
 }
 
+// One of the objects in the hash table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
+func (h_ HashTable) AnyObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anyObject"))
+	return rv
+}
+
+
+// SetAnyObject sets the value of the anyObject property.
+// One of the objects in the hash table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
+func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAnyObject:"), value)
+}
+
+// The hash table’s members.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
+func (h_ HashTable) AllObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allObjects"))
+	return rv
+}
+
+
+// SetAllObjects sets the value of the allObjects property.
+// The hash table’s members.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
+func (h_ HashTable) SetAllObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAllObjects:"), value)
+}
+
+// A set that contains the hash table’s members.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
+func (h_ HashTable) SetRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("setRepresentation"))
+	return rv
+}
+
+
+// SetSetRepresentation sets the value of the setRepresentation property.
+// A set that contains the hash table’s members.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
+func (h_ HashTable) SetSetRepresentation(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSetRepresentation:"), value)
+}
+
+// The pointer functions for the hash table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
+func (h_ HashTable) PointerFunctions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("pointerFunctions"))
+	return rv
+}
+
+
+// SetPointerFunctions sets the value of the pointerFunctions property.
+// The pointer functions for the hash table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
+func (h_ HashTable) SetPointerFunctions(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPointerFunctions:"), value)
+}
+
 // The number of elements in the hash table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count

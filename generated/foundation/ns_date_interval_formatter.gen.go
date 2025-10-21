@@ -90,5 +90,113 @@ func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate unsafe.Pointer, to
 	return rv
 }
 
+// The locale to use when formatting date and time values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
+func (d_ DateIntervalFormatter) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+// The locale to use when formatting date and time values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
+func (d_ DateIntervalFormatter) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
+}
+
+// The style to use when formatting day, month, and year information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle
+func (d_ DateIntervalFormatter) DateStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateStyle"))
+	return rv
+}
+
+
+// SetDateStyle sets the value of the dateStyle property.
+// The style to use when formatting day, month, and year information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle
+func (d_ DateIntervalFormatter) SetDateStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
+}
+
+// The calendar to use for date values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/calendar
+func (d_ DateIntervalFormatter) Calendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("calendar"))
+	return rv
+}
+
+
+// SetCalendar sets the value of the calendar property.
+// The calendar to use for date values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/calendar
+func (d_ DateIntervalFormatter) SetCalendar(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
+}
+
+// The time zone with which to specify time values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timezone
+func (d_ DateIntervalFormatter) TimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeZone"))
+	return rv
+}
+
+
+// SetTimeZone sets the value of the timeZone property.
+// The time zone with which to specify time values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timezone
+func (d_ DateIntervalFormatter) SetTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
+}
+
+// The template for formatting one date and time value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datetemplate
+func (d_ DateIntervalFormatter) DateTemplate() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("dateTemplate"))
+	return rv
+}
+
+
+// SetDateTemplate sets the value of the dateTemplate property.
+// The template for formatting one date and time value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datetemplate
+func (d_ DateIntervalFormatter) SetDateTemplate(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), objc.String(value))
+}
+
+// The style to use when formatting hour, minute, and second information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle
+func (d_ DateIntervalFormatter) TimeStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeStyle"))
+	return rv
+}
+
+
+// SetTimeStyle sets the value of the timeStyle property.
+// The style to use when formatting hour, minute, and second information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle
+func (d_ DateIntervalFormatter) SetTimeStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
+}
+
 
 

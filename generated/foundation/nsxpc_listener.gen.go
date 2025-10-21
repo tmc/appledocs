@@ -117,6 +117,24 @@ func (x_ XPCListener) Suspend() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("suspend"))
 }
 
+// The delegate for the listener.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/delegate
+func (x_ XPCListener) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the listener.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/delegate
+func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
+}
+
 // Returns an endpoint object that may be sent over an existing connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/endpoint

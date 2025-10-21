@@ -97,5 +97,23 @@ func (s_ SpellServer) Run() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
 }
 
+// Returns the receiver’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
+func (s_ SpellServer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Returns the receiver’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
+func (s_ SpellServer) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
 
 

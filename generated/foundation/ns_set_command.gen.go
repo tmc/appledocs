@@ -81,5 +81,23 @@ func NewSetCommand() SetCommand {
 }
 
 
+// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
+func (s_ SetCommand) KeySpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("keySpecifier"))
+	return rv
+}
+
+
+// SetKeySpecifier sets the value of the keySpecifier property.
+// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
+func (s_ SetCommand) SetKeySpecifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKeySpecifier:"), value)
+}
+
 
 

@@ -81,5 +81,103 @@ func NewDataDetector() DataDetector {
 }
 
 
+// The date component of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
+func (d_ DataDetector) Date() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("date"))
+	return rv
+}
+
+
+// SetDate sets the value of the date property.
+// The date component of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
+func (d_ DataDetector) SetDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDate:"), value)
+}
+
+// The URL of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+func (d_ DataDetector) Url() URL {
+	rv := objc.Send[URL](d_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+func (d_ DataDetector) SetUrl(value URL) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
+}
+
+// The duration component of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
+func (d_ DataDetector) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration component of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
+func (d_ DataDetector) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
+}
+
+// Returns the checking types for the data detector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
+func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("checkingTypes"))
+	return rv
+}
+
+
+// SetCheckingTypes sets the value of the checkingTypes property.
+// Returns the checking types for the data detector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
+func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCheckingTypes:"), value)
+}
+
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (d_ DataDetector) NSNotFound() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
+	return rv
+}
+
+// The time zone component of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
+func (d_ DataDetector) TimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeZone"))
+	return rv
+}
+
+
+// SetTimeZone sets the value of the timeZone property.
+// The time zone component of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
+func (d_ DataDetector) SetTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
+}
+
 
 

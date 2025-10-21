@@ -117,4 +117,58 @@ func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts unsafe.Pointer, bl
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesWithOptions:usingBlock:"), opts, block)
 }
 
+// The number of indexes in the index set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
+func (i_ IndexSet) Count() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// SetCount sets the value of the count property.
+// The number of indexes in the index set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
+func (i_ IndexSet) SetCount(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCount:"), value)
+}
+
+// The last index in the index set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/lastindex
+func (i_ IndexSet) LastIndex() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("lastIndex"))
+	return rv
+}
+
+
+// SetLastIndex sets the value of the lastIndex property.
+// The last index in the index set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/lastindex
+func (i_ IndexSet) SetLastIndex(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLastIndex:"), value)
+}
+
+// The first index in the index set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
+func (i_ IndexSet) FirstIndex() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("firstIndex"))
+	return rv
+}
+
+
+// SetFirstIndex sets the value of the firstIndex property.
+// The first index in the index set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
+func (i_ IndexSet) SetFirstIndex(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstIndex:"), value)
+}
+
 

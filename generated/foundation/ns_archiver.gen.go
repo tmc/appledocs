@@ -97,5 +97,23 @@ func (a_ Archiver) EncodeRootObject(rootObject objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("encodeRootObject:"), rootObject)
 }
 
+// The receiver’s archive data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
+func (a_ Archiver) ArchiverData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("archiverData"))
+	return rv
+}
+
+
+// SetArchiverData sets the value of the archiverData property.
+// The receiver’s archive data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
+func (a_ Archiver) SetArchiverData(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setArchiverData:"), value)
+}
+
 
 

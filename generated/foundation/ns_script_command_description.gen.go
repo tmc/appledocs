@@ -80,5 +80,149 @@ func NewScriptCommandDescription() ScriptCommandDescription {
 }
 
 
+// Returns the Apple event code that identifies the command’s return type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcodeforreturntype
+func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForReturnType"))
+	return rv
+}
+
+
+// SetAppleEventCodeForReturnType sets the value of the appleEventCodeForReturnType property.
+// Returns the Apple event code that identifies the command’s return type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcodeforreturntype
+func (s_ ScriptCommandDescription) SetAppleEventCodeForReturnType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCodeForReturnType:"), value)
+}
+
+// Returns the name of the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
+func (s_ ScriptCommandDescription) CommandName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("commandName"))
+	return rv
+}
+
+
+// SetCommandName sets the value of the commandName property.
+// Returns the name of the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
+func (s_ ScriptCommandDescription) SetCommandName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandName:"), objc.String(value))
+}
+
+// Returns the four-character code for the Apple event ID of the receiver’s command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcode
+func (s_ ScriptCommandDescription) AppleEventCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
+	return rv
+}
+
+
+// SetAppleEventCode sets the value of the appleEventCode property.
+// Returns the four-character code for the Apple event ID of the receiver’s command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcode
+func (s_ ScriptCommandDescription) SetAppleEventCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
+}
+
+// Returns the four-character code for the Apple event class of the receiver’s command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventclasscode
+func (s_ ScriptCommandDescription) AppleEventClassCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventClassCode"))
+	return rv
+}
+
+
+// SetAppleEventClassCode sets the value of the appleEventClassCode property.
+// Returns the four-character code for the Apple event class of the receiver’s command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventclasscode
+func (s_ ScriptCommandDescription) SetAppleEventClassCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventClassCode:"), value)
+}
+
+// Returns the name of the class that will be instantiated to handle the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
+func (s_ ScriptCommandDescription) CommandClassName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("commandClassName"))
+	return rv
+}
+
+
+// SetCommandClassName sets the value of the commandClassName property.
+// Returns the name of the class that will be instantiated to handle the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
+func (s_ ScriptCommandDescription) SetCommandClassName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandClassName:"), objc.String(value))
+}
+
+// Returns the names (or keys) for all arguments of the receiver’s command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
+func (s_ ScriptCommandDescription) ArgumentNames() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("argumentNames"))
+	return rv
+}
+
+
+// SetArgumentNames sets the value of the argumentNames property.
+// Returns the names (or keys) for all arguments of the receiver’s command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
+func (s_ ScriptCommandDescription) SetArgumentNames(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setArgumentNames:"), objc.String(value))
+}
+
+// Returns the name of the suite that contains the command described by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
+func (s_ ScriptCommandDescription) SuiteName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
+	return rv
+}
+
+
+// SetSuiteName sets the value of the suiteName property.
+// Returns the name of the suite that contains the command described by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
+func (s_ ScriptCommandDescription) SetSuiteName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
+}
+
+// Returns the return type of the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
+func (s_ ScriptCommandDescription) ReturnType() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("returnType"))
+	return rv
+}
+
+
+// SetReturnType sets the value of the returnType property.
+// Returns the return type of the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
+func (s_ ScriptCommandDescription) SetReturnType(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReturnType:"), objc.String(value))
+}
+
 
 

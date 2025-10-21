@@ -31,7 +31,7 @@ type IDecimalNumber interface {
 	INumber
 	DecimalNumberByAdding(decimalNumber unsafe.Pointer) unsafe.Pointer
 	DecimalNumberByAddingWithBehavior(decimalNumber unsafe.Pointer, behavior objc.ID) unsafe.Pointer
-	Compare(decimalNumber unsafe.Pointer) unsafe.Pointer
+	Compare(decimalNumber Number) unsafe.Pointer
 	DescriptionWithLocale(locale objc.ID) string
 	DecimalNumberByDividingBy(decimalNumber unsafe.Pointer) unsafe.Pointer
 	DecimalNumberByDividingByWithBehavior(decimalNumber unsafe.Pointer, behavior objc.ID) unsafe.Pointer
@@ -238,7 +238,7 @@ func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber unsafe.P
 // Compares this decimal number and another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/compare(_:)
-func (d_ DecimalNumber) Compare(decimalNumber unsafe.Pointer) unsafe.Pointer {
+func (d_ DecimalNumber) Compare(decimalNumber Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("compare:"), decimalNumber)
 	return rv
 }
@@ -337,6 +337,24 @@ func (d_ DecimalNumber) DecimalNumberBySubtracting(decimalNumber unsafe.Pointer)
 func (d_ DecimalNumber) DecimalNumberBySubtractingWithBehavior(decimalNumber unsafe.Pointer, behavior objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("decimalNumberBySubtracting:withBehavior:"), decimalNumber, behavior)
 	return rv
+}
+
+// A C string containing the Objective-C type for the data contained in the decimal number object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
+func (d_ DecimalNumber) ObjCType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objCType"))
+	return rv
+}
+
+
+// SetObjCType sets the value of the objCType property.
+// A C string containing the Objective-C type for the data contained in the decimal number object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
+func (d_ DecimalNumber) SetObjCType(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setObjCType:"), value)
 }
 
 // The decimal number’s value, expressed as an structure.

@@ -146,6 +146,96 @@ func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID)
 	return rv
 }
 
+// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/ascending
+func (s_ SortDescriptor) Ascending() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("ascending"))
+	return rv
+}
+
+
+// SetAscending sets the value of the ascending property.
+// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/ascending
+func (s_ SortDescriptor) SetAscending(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAscending:"), value)
+}
+
+// Returns a sort descriptor that reverses the sort order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
+func (s_ SortDescriptor) ReversedSortDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("reversedSortDescriptor"))
+	return rv
+}
+
+
+// SetReversedSortDescriptor sets the value of the reversedSortDescriptor property.
+// Returns a sort descriptor that reverses the sort order.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
+func (s_ SortDescriptor) SetReversedSortDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReversedSortDescriptor:"), value)
+}
+
+// The comparator for the sort descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/comparator
+func (s_ SortDescriptor) Comparator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("comparator"))
+	return rv
+}
+
+
+// SetComparator sets the value of the comparator property.
+// The comparator for the sort descriptor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/comparator
+func (s_ SortDescriptor) SetComparator(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setComparator:"), value)
+}
+
+// The key path that specifies the property to compare during sorting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/keypath
+func (s_ SortDescriptor) KeyPath() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("keyPath"))
+	return rv
+}
+
+
+// SetKeyPath sets the value of the keyPath property.
+// The key path that specifies the property to compare during sorting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/keypath
+func (s_ SortDescriptor) SetKeyPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyPath:"), value)
+}
+
+// The sort descriptors of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
+func (s_ SortDescriptor) SortDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sortDescriptors"))
+	return rv
+}
+
+
+// SetSortDescriptors sets the value of the sortDescriptors property.
+// The sort descriptors of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
+func (s_ SortDescriptor) SetSortDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSortDescriptors:"), value)
+}
+
 // The key that specifies the property to compare during sorting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/key

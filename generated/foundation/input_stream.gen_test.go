@@ -17,3 +17,11 @@ func ExampleNewInputStreamWithFileAtPath() {
 	)
 	// Output:
 }
+// ExampleNewInputStreamWithURL demonstrates how to create a InputStream instance using NewInputStreamWithURL.
+// Initializes and returns an   object that reads data from the file at a given URL.
+func ExampleNewInputStreamWithURL() {
+	_ = foundation.NewInputStreamWithURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}

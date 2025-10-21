@@ -29,8 +29,8 @@ type _InputStreamClass struct {
 // An interface definition for the [InputStream] class.
 type IInputStream interface {
 	IStream
-	GetBufferLength(buffer unsafe.Pointer, len unsafe.Pointer) bool
-	ReadMaxLength(buffer unsafe.Pointer, len uint) int
+	GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool
+	ReadMaxLength(buffer unsafe.Pointer, len_ uint) int
 }
 
 // A stream that provides read-only stream functionality.
@@ -112,7 +112,7 @@ func NewInputStreamWithFileAtPath(path string) InputStream {
 // Initializes and returns an object that reads data from the file at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
-func NewInputStreamWithURL(url unsafe.Pointer) InputStream {
+func NewInputStreamWithURL(url URL) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -123,7 +123,7 @@ func NewInputStreamWithURL(url unsafe.Pointer) InputStream {
 // Creates and returns an initialized object that reads data from the file at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(URL:)-y5k
-func (ic _InputStreamClass) InputStreamWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (ic _InputStreamClass) InputStreamWithURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithURL:"), url)
 	return rv
 }
@@ -147,16 +147,16 @@ func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointe
 // Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/getBuffer(_:length:)
-func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len unsafe.Pointer) bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len)
+func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len_)
 	return rv
 }
 
 // Reads up to a given number of bytes into a given buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/read(_:maxLength:)
-func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len uint) int {
-	rv := objc.Send[int](i_.ID, objc.Sel("read:maxLength:"), buffer, len)
+func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
+	rv := objc.Send[int](i_.ID, objc.Sel("read:maxLength:"), buffer, len_)
 	return rv
 }
 

@@ -81,5 +81,41 @@ func NewListFormatter() ListFormatter {
 }
 
 
+// An object that formats each item in the list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/itemformatter
+func (l_ ListFormatter) ItemFormatter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("itemFormatter"))
+	return rv
+}
+
+
+// SetItemFormatter sets the value of the itemFormatter property.
+// An object that formats each item in the list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/itemformatter
+func (l_ ListFormatter) SetItemFormatter(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setItemFormatter:"), value)
+}
+
+// The locale to use when formatting items in the list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/locale
+func (l_ ListFormatter) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+// The locale to use when formatting items in the list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/locale
+func (l_ ListFormatter) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLocale:"), value)
+}
+
 
 

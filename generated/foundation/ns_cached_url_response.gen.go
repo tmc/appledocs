@@ -80,5 +80,77 @@ func NewCachedURLResponse() CachedURLResponse {
 }
 
 
+// The cached response’s data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
+func (c_ CachedURLResponse) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+// The cached response’s data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
+func (c_ CachedURLResponse) SetData(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setData:"), value)
+}
+
+// The URL response object associated with the instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
+func (c_ CachedURLResponse) Response() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("response"))
+	return rv
+}
+
+
+// SetResponse sets the value of the response property.
+// The URL response object associated with the instance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
+func (c_ CachedURLResponse) SetResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResponse:"), value)
+}
+
+// The cached response’s storage policy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/storagepolicy
+func (c_ CachedURLResponse) StoragePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("storagePolicy"))
+	return rv
+}
+
+
+// SetStoragePolicy sets the value of the storagePolicy property.
+// The cached response’s storage policy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/storagepolicy
+func (c_ CachedURLResponse) SetStoragePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStoragePolicy:"), value)
+}
+
+// The cached response’s user info dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/userinfo
+func (c_ CachedURLResponse) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// SetUserInfo sets the value of the userInfo property.
+// The cached response’s user info dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/userinfo
+func (c_ CachedURLResponse) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), value)
+}
+
 
 

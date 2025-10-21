@@ -80,5 +80,85 @@ func NewRegularExpression() RegularExpression {
 }
 
 
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (r_ RegularExpression) NSNotFound() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
+	return rv
+}
+
+// Returns the number of capture groups in the regular expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
+func (r_ RegularExpression) NumberOfCaptureGroups() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("numberOfCaptureGroups"))
+	return rv
+}
+
+
+// SetNumberOfCaptureGroups sets the value of the numberOfCaptureGroups property.
+// Returns the number of capture groups in the regular expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
+func (r_ RegularExpression) SetNumberOfCaptureGroups(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfCaptureGroups:"), value)
+}
+
+// Returns the regular expression pattern.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
+func (r_ RegularExpression) Pattern() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
+	return rv
+}
+
+
+// SetPattern sets the value of the pattern property.
+// Returns the regular expression pattern.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
+func (r_ RegularExpression) SetPattern(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), objc.String(value))
+}
+
+// Returns the options used when the regular expression option was created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
+func (r_ RegularExpression) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// Returns the options used when the regular expression option was created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
+func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setOptions:"), value)
+}
+
+// Returns the range of the result that the receiver represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
+func (r_ RegularExpression) Range_() Range {
+	rv := objc.Send[Range](r_.ID, objc.Sel("range"))
+	return rv
+}
+
+
+// SetRange_ sets the value of the range property.
+// Returns the range of the result that the receiver represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
+func (r_ RegularExpression) SetRange_(value Range) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRange_:"), value)
+}
+
 
 

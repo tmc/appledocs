@@ -79,5 +79,59 @@ func NewEnergyFormatter() EnergyFormatter {
 }
 
 
+// The number formatter used to format the numbers in energy strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
+func (e_ EnergyFormatter) NumberFormatter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("numberFormatter"))
+	return rv
+}
+
+
+// SetNumberFormatter sets the value of the numberFormatter property.
+// The number formatter used to format the numbers in energy strings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
+func (e_ EnergyFormatter) SetNumberFormatter(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNumberFormatter:"), value)
+}
+
+// A Boolean value that indicates whether the energy value is used to measure food energy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
+func (e_ EnergyFormatter) IsForFoodEnergyUse() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isForFoodEnergyUse"))
+	return rv
+}
+
+
+// SetIsForFoodEnergyUse sets the value of the isForFoodEnergyUse property.
+// A Boolean value that indicates whether the energy value is used to measure food energy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
+func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsForFoodEnergyUse:"), value)
+}
+
+// The unit style used by this formatter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/unitstyle
+func (e_ EnergyFormatter) UnitStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("unitStyle"))
+	return rv
+}
+
+
+// SetUnitStyle sets the value of the unitStyle property.
+// The unit style used by this formatter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/unitstyle
+func (e_ EnergyFormatter) SetUnitStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUnitStyle:"), value)
+}
+
 
 

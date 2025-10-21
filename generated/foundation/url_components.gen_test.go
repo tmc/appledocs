@@ -32,3 +32,12 @@ func ExampleNewURLComponentsWithStringEncodingInvalidCharacters() {
 	)
 	// Output:
 }
+// ExampleNewURLComponentsWithURLResolvingAgainstBaseURL demonstrates how to create a URLComponents instance using NewURLComponentsWithURLResolvingAgainstBaseURL.
+// Creates a URL components object by parsing the URL from an   object.
+func ExampleNewURLComponentsWithURLResolvingAgainstBaseURL() {
+	_ = foundation.NewURLComponentsWithURLResolvingAgainstBaseURL(
+		foundation.URL{}, // url URL
+		false, // resolve bool
+	)
+	// Output:
+}

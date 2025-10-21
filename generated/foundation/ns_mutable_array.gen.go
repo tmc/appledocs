@@ -114,7 +114,7 @@ func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 // Initialized a newly allocated mutable array with the contents of the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfURL:
-func NewMutableArrayWithContentsOfURL(url unsafe.Pointer) MutableArray {
+func NewMutableArrayWithContentsOfURL(url URL) MutableArray {
 	instance := getMutableArrayClass().Alloc()
 	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -125,7 +125,7 @@ func NewMutableArrayWithContentsOfURL(url unsafe.Pointer) MutableArray {
 // Creates and returns a mutable array containing the contents specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/init(contentsOfURL:)
-func (mc _MutableArrayClass) ArrayWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer {
+func (mc _MutableArrayClass) ArrayWithContentsOfURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv
 }

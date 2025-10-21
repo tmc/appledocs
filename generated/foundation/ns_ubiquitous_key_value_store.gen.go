@@ -147,5 +147,45 @@ func (u_ UbiquitousKeyValueStore) Synchronize() bool {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey
+func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreChangeReasonKey() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("NSUbiquitousKeyValueStoreChangeReasonKey"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
+func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreQuotaViolationChange() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUbiquitousKeyValueStoreQuotaViolationChange"))
+	return rv
+}
+
+
+// SetNSUbiquitousKeyValueStoreQuotaViolationChange sets the value of the NSUbiquitousKeyValueStoreQuotaViolationChange property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
+func (u_ UbiquitousKeyValueStore) SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUbiquitousKeyValueStoreQuotaViolationChange:"), value)
+}
+
+// A dictionary containing all of the key-value pairs in the key-value store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/dictionaryrepresentation
+func (u_ UbiquitousKeyValueStore) DictionaryRepresentation() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("dictionaryRepresentation"))
+	return rv
+}
+
+
+// SetDictionaryRepresentation sets the value of the dictionaryRepresentation property.
+// A dictionary containing all of the key-value pairs in the key-value store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/dictionaryrepresentation
+func (u_ UbiquitousKeyValueStore) SetDictionaryRepresentation(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDictionaryRepresentation:"), objc.String(value))
+}
+
 
 

@@ -88,5 +88,59 @@ func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
+// The pointer functions the map table uses to manage keys.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
+func (m_ MapTable) KeyPointerFunctions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("keyPointerFunctions"))
+	return rv
+}
+
+
+// SetKeyPointerFunctions sets the value of the keyPointerFunctions property.
+// The pointer functions the map table uses to manage keys.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
+func (m_ MapTable) SetKeyPointerFunctions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyPointerFunctions:"), value)
+}
+
+// The number of key-value pairs in the map table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
+func (m_ MapTable) Count() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// SetCount sets the value of the count property.
+// The number of key-value pairs in the map table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
+func (m_ MapTable) SetCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
+}
+
+// The pointer functions the map table uses to manage values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+func (m_ MapTable) ValuePointerFunctions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valuePointerFunctions"))
+	return rv
+}
+
+
+// SetValuePointerFunctions sets the value of the valuePointerFunctions property.
+// The pointer functions the map table uses to manage values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+func (m_ MapTable) SetValuePointerFunctions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
+}
+
 
 

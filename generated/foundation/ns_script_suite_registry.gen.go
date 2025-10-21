@@ -130,5 +130,23 @@ func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Point
 	return rv
 }
 
+// Returns the names of the suite definitions currently loaded by the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry/suitenames
+func (s_ ScriptSuiteRegistry) SuiteNames() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("suiteNames"))
+	return rv
+}
+
+
+// SetSuiteNames sets the value of the suiteNames property.
+// Returns the names of the suite definitions currently loaded by the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry/suitenames
+func (s_ ScriptSuiteRegistry) SetSuiteNames(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteNames:"), objc.String(value))
+}
+
 
 

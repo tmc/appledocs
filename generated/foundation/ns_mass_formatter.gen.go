@@ -79,5 +79,59 @@ func NewMassFormatter() MassFormatter {
 }
 
 
+// A Boolean value that indicates whether the resulting string represents a person’s mass.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
+func (m_ MassFormatter) IsForPersonMassUse() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isForPersonMassUse"))
+	return rv
+}
+
+
+// SetIsForPersonMassUse sets the value of the isForPersonMassUse property.
+// A Boolean value that indicates whether the resulting string represents a person’s mass.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
+func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsForPersonMassUse:"), value)
+}
+
+// The unit style used by this formatter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
+func (m_ MassFormatter) UnitStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
+	return rv
+}
+
+
+// SetUnitStyle sets the value of the unitStyle property.
+// The unit style used by this formatter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
+func (m_ MassFormatter) SetUnitStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
+}
+
+// The number formatter used to format the numbers in a mass strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
+func (m_ MassFormatter) NumberFormatter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
+	return rv
+}
+
+
+// SetNumberFormatter sets the value of the numberFormatter property.
+// The number formatter used to format the numbers in a mass strings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
+func (m_ MassFormatter) SetNumberFormatter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
+}
+
 
 

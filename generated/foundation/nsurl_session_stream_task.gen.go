@@ -138,4 +138,22 @@ func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data unsafe.Poi
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
 }
 
+// A Boolean value that determines whether the session should use HTTP pipelining.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
+func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
+	return rv
+}
+
+
+// SetHttpShouldUsePipelining sets the value of the httpShouldUsePipelining property.
+// A Boolean value that determines whether the session should use HTTP pipelining.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
+func (u_ URLSessionStreamTask) SetHttpShouldUsePipelining(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
+}
+
 

@@ -29,7 +29,7 @@ type _OutputStreamClass struct {
 // An interface definition for the [OutputStream] class.
 type IOutputStream interface {
 	IStream
-	WriteMaxLength(buffer unsafe.Pointer, len uint) int
+	WriteMaxLength(buffer unsafe.Pointer, len_ uint) int
 }
 
 // A stream that provides write-only stream functionality.
@@ -123,7 +123,7 @@ func NewOutputStreamToMemory() OutputStream {
 // Returns an initialized output stream for writing to a specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(url:append:)-5soau
-func NewOutputStreamWithURLAppend(url unsafe.Pointer, shouldAppend bool) OutputStream {
+func NewOutputStreamWithURLAppend(url URL, shouldAppend bool) OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initWithURL:append:"), url, shouldAppend)
 	rv.Autorelease()
@@ -150,7 +150,7 @@ func (oc _OutputStreamClass) OutputStreamToFileAtPathAppend(path string, shouldA
 // Creates and returns an initialized output stream for writing to a specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(URL:append:)-8e5le
-func (oc _OutputStreamClass) OutputStreamWithURLAppend(url unsafe.Pointer, shouldAppend bool) unsafe.Pointer {
+func (oc _OutputStreamClass) OutputStreamWithURLAppend(url URL, shouldAppend bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamWithURL:append:"), url, shouldAppend)
 	return rv
 }
@@ -166,8 +166,8 @@ func (oc _OutputStreamClass) OutputStreamToMemory() unsafe.Pointer {
 // Writes the contents of a provided data buffer to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/write(_:maxLength:)
-func (o_ OutputStream) WriteMaxLength(buffer unsafe.Pointer, len uint) int {
-	rv := objc.Send[int](o_.ID, objc.Sel("write:maxLength:"), buffer, len)
+func (o_ OutputStream) WriteMaxLength(buffer unsafe.Pointer, len_ uint) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("write:maxLength:"), buffer, len_)
 	return rv
 }
 
