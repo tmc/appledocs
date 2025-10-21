@@ -25,7 +25,6 @@ func ExampleNewMutableDictionaryWithCapacity() {
 	// Output:
 }
 
-
 // ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
 func ExampleNewMutableDictionaryWithContentsOfFile() {
 	_ = foundation.NewMutableDictionaryWithContentsOfFile(
@@ -33,10 +32,6 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
-
-
-
-
 
 
 

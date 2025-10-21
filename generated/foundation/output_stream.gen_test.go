@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewOutputStream
 
-
 // ExampleNewOutputStreamToFileAtPathAppend demonstrates how to create a OutputStream instance using NewOutputStreamToFileAtPathAppend.
 // Returns an initialized output stream for writing to a specified file.
 func ExampleNewOutputStreamToFileAtPathAppend() {
@@ -26,7 +25,6 @@ func ExampleNewOutputStreamToMemory() {
 	_ = foundation.NewOutputStreamToMemory()
 	// Output:
 }
-
 
 
 

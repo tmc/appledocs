@@ -18,6 +18,3 @@ func ExampleNewXMLDTD() {
 
 
 
-
-
-
