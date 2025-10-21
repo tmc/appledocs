@@ -85,6 +85,8 @@ func NewXPCInterface() XPCInterface {
 }
 
 
+
+
 // Returns an NSXPCInterface instance for a given protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)

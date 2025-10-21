@@ -80,6 +80,8 @@ func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
 }
 
 
+
+
 // Initializes a background activity scheduler object with a specified unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/init(identifier:)

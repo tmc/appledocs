@@ -81,6 +81,8 @@ func NewXMLParser() XMLParser {
 }
 
 
+
+
 // Initializes a parser with the XML contents encapsulated in a given data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(data:)
@@ -90,6 +92,8 @@ func NewXMLParserWithData(data unsafe.Pointer) XMLParser {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a parser with the XML contents from the specified stream and parses it.
 //

@@ -81,6 +81,8 @@ func NewCompoundPredicate() CompoundPredicate {
 }
 
 
+
+
 // Returns a new predicate that you form using an AND operation on the predicates in a specified array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(andPredicateWithSubpredicates:)
@@ -89,6 +91,8 @@ func NewCompoundPredicateAndPredicateWithSubpredicates(subpredicates unsafe.Poin
 	return rv
 }
 
+
+
 // Returns a new predicate that you form using a NOT operation on a specified predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(notPredicateWithSubpredicate:)
@@ -96,6 +100,8 @@ func NewCompoundPredicateNotPredicateWithSubpredicate(predicate unsafe.Pointer) 
 	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
 	return rv
 }
+
+
 
 // Returns the receiver that a specified type initializes using predicates from a specified array.
 //

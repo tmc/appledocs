@@ -91,6 +91,8 @@ func NewXMLDTD() XMLDTD {
 }
 
 
+
+
 // Initializes and returns an object created from the DTD declarations in a URL-referenced source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(contentsOf:options:)
@@ -100,6 +102,8 @@ func NewXMLDTDWithContentsOfURLOptionsError(url unsafe.Pointer, mask unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns an object created from the DTD declarations encapsulated in an object
 //

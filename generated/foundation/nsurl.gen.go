@@ -118,6 +118,8 @@ func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, b
 	return rv
 }
 
+
+
 // Returns a new URL made by resolving the alias file at .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
@@ -125,6 +127,8 @@ func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options uns
 	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
 	return rv
 }
+
+
 
 // Initializes a newly created NSURL that points to a location specified by resolving bookmark data.
 //
@@ -136,6 +140,8 @@ func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(b
 	return rv
 }
 
+
+
 // Initializes a URL object with a C string representing a local file system path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithFileSystemRepresentation:isDirectory:relativeTo:)
@@ -146,6 +152,8 @@ func NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsa
 	return rv
 }
 
+
+
 // Initializes a newly created NSURL referencing the local file or directory at .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:)
@@ -155,6 +163,8 @@ func NewURLFileURLWithPath(path string) URL {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly created NSURL referencing the local file or directory at .
 //
@@ -184,6 +194,8 @@ func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL
 	return rv
 }
 
+
+
 // Reads an NSURL object off of the specified pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
@@ -201,6 +213,8 @@ func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsa
 	return rv
 }
 
+
+
 // Initializes a newly created NSURL with a specified scheme, host, and path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(scheme:host:path:)
@@ -210,6 +224,8 @@ func NewURLWithSchemeHostPath(scheme string, host string, path string) URL {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes an NSURL object with a provided URL string.
 //
@@ -221,6 +237,8 @@ func NewURLWithString(URLString string) URL {
 	return rv
 }
 
+
+
 // Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
@@ -230,6 +248,8 @@ func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalid
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes an NSURL object with a base URL and a relative string.
 //

@@ -78,6 +78,8 @@ func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourceP
 }
 
 
+
+
 // Creates a Markdown source position instance from its start and end line and column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/initWithStartLine:startColumn:endLine:endColumn:

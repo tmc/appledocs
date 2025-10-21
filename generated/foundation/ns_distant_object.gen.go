@@ -91,6 +91,8 @@ func NewDistantObjectWithCoder(inCoder unsafe.Pointer) DistantObject {
 	return rv
 }
 
+
+
 // Initializes an object as a local proxy for a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithLocal:connection:
@@ -100,6 +102,8 @@ func NewDistantObjectWithLocalConnection(target objc.ID, connection unsafe.Point
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly allocated NSDistantObject as a remote proxy for , which is an id in another thread or another application’s address space.
 //

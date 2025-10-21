@@ -88,6 +88,8 @@ func NewXPCConnection() XPCConnection {
 }
 
 
+
+
 // Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
@@ -98,6 +100,8 @@ func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection
 	return rv
 }
 
+
+
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
@@ -107,6 +111,8 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes an object to connect to an object in an XPC service, identified by a service name.
 //

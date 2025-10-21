@@ -18,9 +18,6 @@ func ExampleNewArray() {
 }
 
 
-
-
-
 // ExampleNewArrayWithContentsOfFile demonstrates how to create a Array instance using NewArrayWithContentsOfFile.
 // Initializes a newly allocated array with the contents of the file specified by a given path.
 func ExampleNewArrayWithContentsOfFile() {
@@ -29,9 +26,6 @@ func ExampleNewArrayWithContentsOfFile() {
 	)
 	// Output:
 }
-
-
-
 
 
 

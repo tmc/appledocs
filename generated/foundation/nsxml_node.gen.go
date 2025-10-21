@@ -83,6 +83,8 @@ func NewXMLNode() XMLNode {
 }
 
 
+
+
 // Returns an instance initialized with the constant indicating node kind.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:)
@@ -92,6 +94,8 @@ func NewXMLNodeWithKind(kind unsafe.Pointer) XMLNode {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an instance initialized with the constant indicating node kind and one or more initialization options.
 //

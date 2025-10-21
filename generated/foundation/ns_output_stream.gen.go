@@ -82,6 +82,8 @@ func NewOutputStream() OutputStream {
 }
 
 
+
+
 // Returns an initialized output stream that can write to a provided buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toBuffer:capacity:)
@@ -91,6 +93,8 @@ func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) Outpu
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an initialized output stream for writing to a specified file.
 //
@@ -102,6 +106,8 @@ func NewOutputStreamToFileAtPathAppend(path string, shouldAppend bool) OutputStr
 	return rv
 }
 
+
+
 // Returns an initialized output stream that will write to memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toMemory:)
@@ -111,6 +117,8 @@ func NewOutputStreamToMemory() OutputStream {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an initialized output stream for writing to a specified URL.
 //

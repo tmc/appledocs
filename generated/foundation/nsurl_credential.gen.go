@@ -80,6 +80,8 @@ func NewURLCredential() URLCredential {
 }
 
 
+
+
 // Creates a URL credential instance for server trust authentication with a given accepted trust.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(forTrust:)
@@ -87,6 +89,8 @@ func NewURLCredentialForTrust(trust unsafe.Pointer) URLCredential {
 	rv := objc.Send[URLCredential](objc.ID(getURLCredentialClass().class), objc.Sel("credentialForTrust:"), trust)
 	return rv
 }
+
+
 
 // Creates a URL credential instance for resolving a client certificate authentication challenge.
 //
@@ -98,6 +102,8 @@ func NewURLCredentialWithIdentityCertificatesPersistence(identity unsafe.Pointer
 	return rv
 }
 
+
+
 // Creates a URL credential instance for server trust authentication, initialized with a accepted trust.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(trust:)
@@ -107,6 +113,8 @@ func NewURLCredentialWithTrust(trust unsafe.Pointer) URLCredential {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a URL credential instance initialized with a given user name and password, using a given persistence setting.
 //

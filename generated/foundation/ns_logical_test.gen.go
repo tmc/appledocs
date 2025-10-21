@@ -81,6 +81,8 @@ func NewLogicalTest() LogicalTest {
 }
 
 
+
+
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
@@ -90,6 +92,8 @@ func NewLogicalTestAndTestWithTests(subTests unsafe.Pointer) LogicalTest {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to perform an operation with the objects in a given array.
 //

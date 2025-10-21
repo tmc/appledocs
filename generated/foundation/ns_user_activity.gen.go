@@ -85,6 +85,8 @@ func NewUserActivity() UserActivity {
 }
 
 
+
+
 // Creates a user activity object with the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)

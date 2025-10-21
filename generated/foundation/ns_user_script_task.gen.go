@@ -81,6 +81,8 @@ func NewUserScriptTask() UserScriptTask {
 }
 
 
+
+
 // Return a user script task instance given a URL for a script file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/init(url:)

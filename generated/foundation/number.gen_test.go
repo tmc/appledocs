@@ -20,11 +20,6 @@ func ExampleNewNumberWithBool() {
 }
 
 
-
-
-
-
-
 // ExampleNewNumberWithInteger demonstrates how to create a Number instance using NewNumberWithInteger.
 // Returns an   object initialized to contain a given value, treated as an  .
 func ExampleNewNumberWithInteger() {
@@ -33,11 +28,6 @@ func ExampleNewNumberWithInteger() {
 	)
 	// Output:
 }
-
-
-
-
-
 
 
 // ExampleNewNumberWithUnsignedInteger demonstrates how to create a Number instance using NewNumberWithUnsignedInteger.
@@ -50,7 +40,6 @@ func ExampleNewNumberWithUnsignedInteger() {
 }
 
 
-
 // ExampleNewNumberWithUnsignedLongLong demonstrates how to create a Number instance using NewNumberWithUnsignedLongLong.
 // Returns an   object initialized to contain a given value, treated as an  .
 func ExampleNewNumberWithUnsignedLongLong() {
@@ -59,6 +48,7 @@ func ExampleNewNumberWithUnsignedLongLong() {
 	)
 	// Output:
 }
+
 
 
 

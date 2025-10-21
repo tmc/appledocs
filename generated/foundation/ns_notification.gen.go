@@ -80,6 +80,8 @@ func NewNotification() Notification {
 }
 
 
+
+
 // Initializes a notification with the data from an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
@@ -90,6 +92,8 @@ func NewNotificationWithCoder(coder unsafe.Pointer) Notification {
 	return rv
 }
 
+
+
 // Returns a new notification object with a specified name and object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
@@ -97,6 +101,8 @@ func NewNotificationWithNameObject(aName unsafe.Pointer, anObject objc.ID) Notif
 	rv := objc.Send[Notification](objc.ID(getNotificationClass().class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
+
+
 
 // Initializes a notification with a specified name, object, and user information.
 //

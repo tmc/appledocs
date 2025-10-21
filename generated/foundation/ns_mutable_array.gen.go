@@ -97,6 +97,8 @@ func NewMutableArray() MutableArray {
 }
 
 
+
+
 // Initializes a newly allocated mutable array with the contents of the file specified by a given path
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfFile:
@@ -106,6 +108,8 @@ func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initialized a newly allocated mutable array with the contents of the location specified by a given URL.
 //

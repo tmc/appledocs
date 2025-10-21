@@ -82,6 +82,8 @@ func NewTimer() Timer {
 }
 
 
+
+
 // Initializes a timer for the specified date and time interval with the specified block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fire:interval:repeats:block:)
@@ -91,6 +93,8 @@ func NewTimerWithFireDateIntervalRepeatsBlock(date unsafe.Pointer, interval Time
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a timer using the specified object and selector.
 //
@@ -102,6 +106,8 @@ func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date unsafe.Point
 	return rv
 }
 
+
+
 // Initializes a timer object with the specified invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:invocation:repeats:)
@@ -110,6 +116,8 @@ func NewTimerWithTimeIntervalInvocationRepeats(ti TimeInterval, invocation unsaf
 	return rv
 }
 
+
+
 // Initializes a timer object with the specified time interval and block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:repeats:block:)
@@ -117,6 +125,8 @@ func NewTimerWithTimeIntervalRepeatsBlock(interval TimeInterval, repeats bool, b
 	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:repeats:block:"), interval, repeats, block)
 	return rv
 }
+
+
 
 // Initializes a timer object with the specified object and selector.
 //

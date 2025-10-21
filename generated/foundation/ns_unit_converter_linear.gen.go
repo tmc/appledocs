@@ -81,6 +81,8 @@ func NewUnitConverterLinear() UnitConverterLinear {
 }
 
 
+
+
 // Initializes the unit converter with the coefficient you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:)

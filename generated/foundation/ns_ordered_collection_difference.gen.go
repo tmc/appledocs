@@ -81,6 +81,8 @@ func NewOrderedCollectionDifference() OrderedCollectionDifference {
 }
 
 
+
+
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:)
@@ -90,6 +92,8 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
 //

@@ -112,6 +112,8 @@ func NewBundle() Bundle {
 }
 
 
+
+
 // Returns the object with which the specified class is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
@@ -120,6 +122,8 @@ func NewBundleForClass(aClass objc.Class) Bundle {
 	return rv
 }
 
+
+
 // Returns the instance that has the specified bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
@@ -127,6 +131,8 @@ func NewBundleWithIdentifier(identifier string) Bundle {
 	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
+
+
 
 // Returns an object initialized to correspond to the specified directory.
 //
@@ -137,6 +143,8 @@ func NewBundleWithPath(path string) Bundle {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to correspond to the specified file URL.
 //

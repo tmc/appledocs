@@ -81,6 +81,8 @@ func NewFileCoordinator() FileCoordinator {
 }
 
 
+
+
 // Initializes and returns a file coordinator object using the specified file presenter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/init(filePresenter:)

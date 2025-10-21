@@ -87,6 +87,8 @@ func NewProgress() Progress {
 }
 
 
+
+
 // Creates a new progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
@@ -96,6 +98,8 @@ func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoO
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates and returns a progress instance.
 //

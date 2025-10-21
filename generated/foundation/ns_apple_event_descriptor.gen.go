@@ -84,6 +84,8 @@ func NewAppleEventDescriptor() AppleEventDescriptor {
 }
 
 
+
+
 // Initializes a newly allocated instance as a descriptor for the specified Carbon structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(aeDescNoCopy:)

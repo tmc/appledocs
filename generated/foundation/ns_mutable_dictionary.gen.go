@@ -109,6 +109,8 @@ func NewMutableDictionary() MutableDictionary {
 }
 
 
+
+
 // Initializes a newly allocated mutable dictionary, allocating enough memory to hold entries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(capacity:)
@@ -159,6 +161,8 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
 	return rv
 }
+
+
 
 // Creates a mutable dictionary which is optimized for dealing with a known set of keys.
 //

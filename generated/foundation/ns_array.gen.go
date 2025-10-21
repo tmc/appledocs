@@ -132,6 +132,8 @@ func NewArray() Array {
 }
 
 
+
+
 // Initializes a newly allocated array by placing in it the objects contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
@@ -141,6 +143,8 @@ func NewArrayWithArray(array unsafe.Pointer) Array {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly allocated array using as the source of data objects for the array.
 //
@@ -161,6 +165,8 @@ func NewArrayWithCoder(coder unsafe.Pointer) Array {
 	return rv
 }
 
+
+
 // Initializes a newly allocated array with the contents of the file specified by a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
@@ -170,6 +176,8 @@ func NewArrayWithContentsOfFile(path string) Array {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly allocated array with the contents of the location specified by a given URL.
 //
@@ -190,6 +198,8 @@ func NewArrayWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) A
 	return rv
 }
 
+
+
 // Creates and returns an array containing a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
@@ -197,6 +207,8 @@ func NewArrayWithObject(anObject unsafe.Pointer) Array {
 	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
 	return rv
 }
+
+
 
 // Initializes a newly allocated array by placing in it the objects in the argument list.
 //
@@ -207,6 +219,8 @@ func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly allocated array to include a given number of objects from a given C array.
 //

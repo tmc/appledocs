@@ -81,6 +81,8 @@ func NewXMLDTDNode() XMLDTDNode {
 }
 
 
+
+
 // Returns an object initialized with the DTD declaration in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(xmlString:)

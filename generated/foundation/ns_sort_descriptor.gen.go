@@ -81,6 +81,8 @@ func NewSortDescriptor() SortDescriptor {
 }
 
 
+
+
 // Creates a sort descriptor by decoding from the coder you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(coder:)
@@ -90,6 +92,8 @@ func NewSortDescriptorWithCoder(coder unsafe.Pointer) SortDescriptor {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a sort descriptor with a specified string key path and sort order.
 //
@@ -101,6 +105,8 @@ func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescripto
 	return rv
 }
 
+
+
 // Creates a sort descriptor with a specified string key path and ordering, and a comparator block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:comparator:)
@@ -110,6 +116,8 @@ func NewSortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmp
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
 //

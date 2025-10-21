@@ -100,6 +100,8 @@ func NewSet() Set {
 }
 
 
+
+
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(array:)
@@ -133,6 +135,8 @@ func NewSetWithCollectionViewIndexPaths(indexPaths unsafe.Pointer) Set {
 	return rv
 }
 
+
+
 // Creates and returns a set that contains a single given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(object:)
@@ -140,6 +144,8 @@ func NewSetWithObject(object unsafe.Pointer) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithObject:"), object)
 	return rv
 }
+
+
 
 // Initializes a newly allocated set with members taken from the specified list of objects.
 //
@@ -151,6 +157,8 @@ func NewSetWithObjects(firstObj unsafe.Pointer) Set {
 	return rv
 }
 
+
+
 // Initializes a newly allocated set with a specified number of objects from a given C array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(objects:count:)-7kift
@@ -161,6 +169,8 @@ func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint) Set {
 	return rv
 }
 
+
+
 // Initializes a newly allocated set and adds to it objects from another given set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:)-1xovx
@@ -170,6 +180,8 @@ func NewSetWithSet(set unsafe.Pointer) Set {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly allocated set and adds to it members of another given set.
 //

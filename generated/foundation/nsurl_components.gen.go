@@ -81,6 +81,8 @@ func NewURLComponents() URLComponents {
 }
 
 
+
+
 // Creates a URL components object by parsing a URL in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
@@ -91,6 +93,8 @@ func NewURLComponentsWithString(URLString string) URLComponents {
 	return rv
 }
 
+
+
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:encodingInvalidCharacters:)
@@ -100,6 +104,8 @@ func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encod
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a URL components object by parsing the URL from an object.
 //

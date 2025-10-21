@@ -85,6 +85,8 @@ func NewLocale() Locale {
 }
 
 
+
+
 // Returns a locale initialized from data in the given unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
@@ -94,6 +96,8 @@ func NewLocaleWithCoder(coder unsafe.Pointer) Locale {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a locale using a given locale identifier.
 //

@@ -83,6 +83,8 @@ func NewInputStream() InputStream {
 }
 
 
+
+
 // Initializes and returns an object for reading from a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
@@ -93,6 +95,8 @@ func NewInputStreamWithData(data unsafe.Pointer) InputStream {
 	return rv
 }
 
+
+
 // Initializes and returns an object that reads data from the file at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(fileAtPath:)
@@ -102,6 +106,8 @@ func NewInputStreamWithFileAtPath(path string) InputStream {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns an object that reads data from the file at a given URL.
 //

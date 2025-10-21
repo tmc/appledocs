@@ -89,6 +89,8 @@ func NewCalendar() Calendar {
 }
 
 
+
+
 // Initializes a calendar according to a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(calendarIdentifier:)
@@ -98,6 +100,8 @@ func NewCalendarWithCalendarIdentifier(ident unsafe.Pointer) Calendar {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new calendar specified by a given identifier.
 //

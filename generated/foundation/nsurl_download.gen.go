@@ -82,6 +82,8 @@ func NewURLDownload() URLDownload {
 }
 
 
+
+
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
@@ -91,6 +93,8 @@ func NewURLDownloadWithRequestDelegate(request unsafe.Pointer, delegate objc.ID)
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
 //

@@ -80,6 +80,8 @@ func NewError() Error {
 }
 
 
+
+
 // Returns an object initialized for a given domain and code with a given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)

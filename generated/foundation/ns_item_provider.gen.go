@@ -87,6 +87,8 @@ func NewItemProvider() ItemProvider {
 }
 
 
+
+
 // Creates a new item provider, employing a specified object’s type identifiers to specify the data representations eligible for the provider to load.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/init(object:)

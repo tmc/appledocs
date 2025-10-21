@@ -81,6 +81,8 @@ func NewInvocationOperation() InvocationOperation {
 }
 
 
+
+
 // Returns an object initialized with the specified invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
@@ -90,6 +92,8 @@ func NewInvocationOperationWithInvocation(inv unsafe.Pointer) InvocationOperatio
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized with the specified target and selector.
 //

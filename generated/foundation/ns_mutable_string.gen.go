@@ -89,6 +89,8 @@ func NewMutableString() MutableString {
 }
 
 
+
+
 // Returns an object initialized with initial storage for a given number of characters,
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/init(capacity:)

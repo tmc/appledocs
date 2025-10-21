@@ -85,6 +85,8 @@ func NewCountedSet() CountedSet {
 }
 
 
+
+
 // Returns a counted set object initialized with the contents of a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(array:)
@@ -95,6 +97,8 @@ func NewCountedSetWithArray(array unsafe.Pointer) CountedSet {
 	return rv
 }
 
+
+
 // Returns a counted set object initialized with enough memory to hold a given number of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(capacity:)
@@ -104,6 +108,8 @@ func NewCountedSetWithCapacity(numItems uint) CountedSet {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns a counted set object initialized with the contents of a given set.
 //

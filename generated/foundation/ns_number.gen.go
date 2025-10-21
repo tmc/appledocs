@@ -84,6 +84,8 @@ func NewNumber() Number {
 }
 
 
+
+
 // Returns an object initialized to contain a given value, treated as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-1ojz2
@@ -93,6 +95,8 @@ func NewNumberWithBool(value bool) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain a given value, treated as a signed .
 //
@@ -113,6 +117,8 @@ func NewNumberWithCoder(coder unsafe.Pointer) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain , treated as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-15chk
@@ -122,6 +128,8 @@ func NewNumberWithDouble(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain a given value, treated as a .
 //
@@ -133,6 +141,8 @@ func NewNumberWithFloat(value unsafe.Pointer) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain a given value, treated as a signed .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-7jvmg
@@ -142,6 +152,8 @@ func NewNumberWithInt(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain a given value, treated as an .
 //
@@ -153,6 +165,8 @@ func NewNumberWithInteger(value int) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain a given value, treated as a signed .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/initWithLong:
@@ -162,6 +176,8 @@ func NewNumberWithLong(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain , treated as a signed .
 //
@@ -173,6 +189,8 @@ func NewNumberWithLongLong(value unsafe.Pointer) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain a given value, treated as a signed .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-16drx
@@ -182,6 +200,8 @@ func NewNumberWithShort(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain a given value, treated as an .
 //
@@ -193,6 +213,8 @@ func NewNumberWithUnsignedChar(value unsafe.Pointer) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-47coa
@@ -202,6 +224,8 @@ func NewNumberWithUnsignedInt(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain a given value, treated as an .
 //
@@ -213,6 +237,8 @@ func NewNumberWithUnsignedInteger(value uint) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/initWithUnsignedLong:
@@ -223,6 +249,8 @@ func NewNumberWithUnsignedLong(value unsafe.Pointer) Number {
 	return rv
 }
 
+
+
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-43lc7
@@ -232,6 +260,8 @@ func NewNumberWithUnsignedLongLong(value uint64) Number {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized to contain a given value, treated as an .
 //

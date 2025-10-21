@@ -80,6 +80,8 @@ func NewScriptObjectSpecifier() ScriptObjectSpecifier {
 }
 
 
+
+
 // Returns an object initialized with the given attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerClassDescription:containerSpecifier:key:)
@@ -89,6 +91,8 @@ func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an object initialized with a given container specifier and key.
 //

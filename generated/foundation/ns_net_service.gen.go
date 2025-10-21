@@ -92,6 +92,8 @@ func NewNetService() NetService {
 }
 
 
+
+
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
@@ -101,6 +103,8 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
 //

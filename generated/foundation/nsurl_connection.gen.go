@@ -85,6 +85,8 @@ func NewURLConnection() URLConnection {
 }
 
 
+
+
 // Returns an initialized URL connection and begins to load the data for the URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:)
@@ -94,6 +96,8 @@ func NewURLConnectionWithRequestDelegate(request unsafe.Pointer, delegate objc.I
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an initialized URL connection and begins to load the data for the URL request, if specified.
 //

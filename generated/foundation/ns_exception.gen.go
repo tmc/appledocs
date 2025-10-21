@@ -81,6 +81,8 @@ func NewException() Exception {
 }
 
 
+
+
 // Initializes and returns a newly allocated exception object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)

@@ -12,5 +12,3 @@ var _ = foundation.NewURLCredential
 
 
 
-
-

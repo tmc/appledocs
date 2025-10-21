@@ -83,6 +83,8 @@ func NewBundleResourceRequest() BundleResourceRequest {
 }
 
 
+
+
 // Initializes a resource request for managing the on-demand resources marked with any of the set of specified tags. The managed resources are loaded into the main bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/init(tags:)
