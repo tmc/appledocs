@@ -122,7 +122,8 @@ var templateFuncs = template.FuncMap{
 	"getConstructorBody":     getConstructorBody,
 
 	// Utility functions for template generation
-	"sortedKeys": sortedKeys,
+	"sortedKeys":      sortedKeys,
+	"stripObjCPrefix": stripObjCPrefix,
 }
 
 // FunctionData represents data for function template rendering.

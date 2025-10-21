@@ -865,7 +865,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 {{- end}}
 
 {{- range .Properties}}
-{{- $typeToMap := if .ObjCType .ObjCType .Type}}
+{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
 {{- $goType := mapObjCTypeToGo $typeToMap $framework}}
 {{- $capitalizedName := capitalize .Name}}
 {{- if ne $goType ""}}
