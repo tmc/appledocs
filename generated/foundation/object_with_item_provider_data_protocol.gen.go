@@ -21,5 +21,3 @@ var objectWithItemProviderDataProtocol *objc.Protocol
 func init() {
 	objectWithItemProviderDataProtocol = objc.GetProtocol("objectWithItemProviderData:")
 }
-
-

@@ -78,7 +78,3 @@ func (s_ ScriptCommandDescription) Autorelease() ScriptCommandDescription {
 func NewScriptCommandDescription() ScriptCommandDescription {
 	return getScriptCommandDescriptionClass().New()
 }
-
-
-
-

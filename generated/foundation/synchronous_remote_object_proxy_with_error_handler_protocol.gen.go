@@ -21,5 +21,3 @@ var synchronousRemoteObjectProxyWithErrorHandlerProtocol *objc.Protocol
 func init() {
 	synchronousRemoteObjectProxyWithErrorHandlerProtocol = objc.GetProtocol("synchronousRemoteObjectProxyWithErrorHandler:")
 }
-
-

@@ -90,7 +90,6 @@ func NewXMLDTD() XMLDTD {
 	return getXMLDTDClass().New()
 }
 
-
 // Initializes and returns an object created from the DTD declarations in a URL-referenced source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(contentsOf:options:)
@@ -119,7 +118,6 @@ func NewXMLDTDWithKindOptions(kind unsafe.Pointer, options unsafe.Pointer) XMLDT
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns a DTD node representing the predefined entity declaration with the specified name.
 //
@@ -211,7 +209,6 @@ func (x_ XMLDTD) PublicID() string {
 	return rv
 }
 
-
 // SetPublicID sets the value of the publicID property.
 // Returns the receiver’s public identifier.
 
@@ -220,6 +217,7 @@ func (x_ XMLDTD) PublicID() string {
 func (x_ XMLDTD) SetPublicID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), objc.String(value))
 }
+
 // Returns the receiver’s system identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
@@ -227,7 +225,6 @@ func (x_ XMLDTD) SystemID() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
 	return rv
 }
-
 
 // SetSystemID sets the value of the systemID property.
 // Returns the receiver’s system identifier.
@@ -237,4 +234,3 @@ func (x_ XMLDTD) SystemID() string {
 func (x_ XMLDTD) SetSystemID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
-

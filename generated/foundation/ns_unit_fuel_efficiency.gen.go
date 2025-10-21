@@ -80,7 +80,6 @@ func NewUnitFuelEfficiency() UnitFuelEfficiency {
 	return getUnitFuelEfficiencyClass().New()
 }
 
-
 // The miles per gallon unit of fuel efficiency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
@@ -88,6 +87,7 @@ func (uc _UnitFuelEfficiencyClass) MilesPerGallon() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("milesPerGallon"))
 	return rv
 }
+
 // The miles per imperial gallon unit of fuel efficiency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
@@ -95,6 +95,7 @@ func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("milesPerImperialGallon"))
 	return rv
 }
+
 // The miles per gallon unit of fuel efficiency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
@@ -110,6 +111,3 @@ func (u_ UnitFuelEfficiency) MilesPerImperialGallon() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("milesPerImperialGallon"))
 	return rv
 }
-
-
-

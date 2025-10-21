@@ -81,7 +81,6 @@ func NewDistantObject() DistantObject {
 	return getDistantObjectClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
 func NewDistantObjectWithCoder(inCoder unsafe.Pointer) DistantObject {
@@ -110,7 +109,6 @@ func NewDistantObjectWithTargetConnection(target objc.ID, connection unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns a local proxy for a given object and connection, creating the proxy if necessary.
 //
@@ -142,5 +140,3 @@ func (d_ DistantObject) ConnectionForProxy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("connectionForProxy"))
 	return rv
 }
-
-

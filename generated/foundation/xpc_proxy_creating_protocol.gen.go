@@ -21,5 +21,3 @@ var XPCProxyCreatingProtocol *objc.Protocol
 func init() {
 	XPCProxyCreatingProtocol = objc.GetProtocol("NSXPCProxyCreating")
 }
-
-

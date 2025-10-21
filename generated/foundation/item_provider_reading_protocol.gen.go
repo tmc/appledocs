@@ -21,5 +21,3 @@ var ItemProviderReadingProtocol *objc.Protocol
 func init() {
 	ItemProviderReadingProtocol = objc.GetProtocol("NSItemProviderReading")
 }
-
-

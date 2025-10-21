@@ -82,7 +82,6 @@ func NewScanner() Scanner {
 	return getScannerClass().New()
 }
 
-
 // Returns an object that scans a given string according to the user’s default locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
@@ -114,6 +113,3 @@ func (s_ Scanner) ScanInt(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInt:"), result)
 	return rv
 }
-
-
-

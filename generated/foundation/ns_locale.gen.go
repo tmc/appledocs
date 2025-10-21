@@ -84,7 +84,6 @@ func NewLocale() Locale {
 	return getLocaleClass().New()
 }
 
-
 // Returns a locale initialized from data in the given unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
@@ -104,7 +103,6 @@ func NewLocaleWithLocaleIdentifier(string_ string) Locale {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns the canonical identifier for a given locale identification string.
 //
@@ -145,6 +143,7 @@ func (lc _LocaleClass) AvailableLocaleIdentifiers() []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("availableLocaleIdentifiers"))
 	return rv
 }
+
 // A list of commonly encountered currency codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/commonISOCurrencyCodes
@@ -152,6 +151,7 @@ func (lc _LocaleClass) CommonISOCurrencyCodes() []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("commonISOCurrencyCodes"))
 	return rv
 }
+
 // A locale that represents the user’s region settings at the time the property is read.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/current
@@ -159,6 +159,7 @@ func (lc _LocaleClass) CurrentLocale() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("currentLocale"))
 	return rv
 }
+
 // An ordered list of the user’s preferred languages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/preferredLanguages
@@ -166,6 +167,7 @@ func (lc _LocaleClass) PreferredLanguages() []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("preferredLanguages"))
 	return rv
 }
+
 // A locale representing the generic root values with little localization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/system
@@ -173,6 +175,7 @@ func (lc _LocaleClass) SystemLocale() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("systemLocale"))
 	return rv
 }
+
 // Returns the display name for the given locale component value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/displayName(forKey:value:)
@@ -362,5 +365,3 @@ func (l_ Locale) UsesMetricSystem() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("usesMetricSystem"))
 	return rv
 }
-
-

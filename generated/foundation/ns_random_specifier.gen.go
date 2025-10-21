@@ -77,7 +77,3 @@ func (r_ RandomSpecifier) Autorelease() RandomSpecifier {
 func NewRandomSpecifier() RandomSpecifier {
 	return getRandomSpecifierClass().New()
 }
-
-
-
-

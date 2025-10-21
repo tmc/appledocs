@@ -1,13 +1,13 @@
 // Code generated from Apple documentation for Foundation. DO NOT EDIT.
 
 package foundation
+
 import (
 	"unsafe"
 )
 
-
 // TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
+type TimeInterval = float64 // NSTimeInterval
 // Foundation-specific types
 
 // Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
@@ -40,7 +40,6 @@ const (
 	RectEdgeMaxX RectEdge = 2
 	RectEdgeMaxY RectEdge = 3
 )
-
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -436,6 +435,3 @@ type UNNotificationAction unsafe.Pointer
 type UTType unsafe.Pointer
 
 type UnitType unsafe.Pointer
-
-
-

@@ -83,7 +83,6 @@ func NewOrderedSet() OrderedSet {
 	return getOrderedSetClass().New()
 }
 
-
 // Returns a string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
@@ -122,6 +121,3 @@ func (o_ OrderedSet) LastObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("lastObject"))
 	return rv
 }
-
-
-

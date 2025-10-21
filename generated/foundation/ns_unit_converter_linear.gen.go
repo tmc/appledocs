@@ -80,7 +80,6 @@ func NewUnitConverterLinear() UnitConverterLinear {
 	return getUnitConverterLinearClass().New()
 }
 
-
 // Initializes the unit converter with the coefficient you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:)
@@ -90,6 +89,3 @@ func NewUnitConverterLinearWithCoefficient(coefficient unsafe.Pointer) UnitConve
 	rv.Autorelease()
 	return rv
 }
-
-
-

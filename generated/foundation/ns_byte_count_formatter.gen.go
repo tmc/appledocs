@@ -77,7 +77,3 @@ func (b_ ByteCountFormatter) Autorelease() ByteCountFormatter {
 func NewByteCountFormatter() ByteCountFormatter {
 	return getByteCountFormatterClass().New()
 }
-
-
-
-

@@ -81,13 +81,9 @@ func NewKeyedArchiver() KeyedArchiver {
 	return getKeyedArchiverClass().New()
 }
 
-
 // Encodes a given value and associates it with a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
 func (k_ KeyedArchiver) EncodeDoubleForKey(value unsafe.Pointer, key string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
 }
-
-
-

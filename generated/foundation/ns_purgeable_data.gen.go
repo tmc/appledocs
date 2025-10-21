@@ -79,7 +79,3 @@ func (p_ PurgeableData) Autorelease() PurgeableData {
 func NewPurgeableData() PurgeableData {
 	return getPurgeableDataClass().New()
 }
-
-
-
-

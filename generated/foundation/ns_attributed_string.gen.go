@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [AttributedString] class.
@@ -112,7 +112,6 @@ func NewAttributedString() AttributedString {
 	return getAttributedStringClass().New()
 }
 
-
 // An array of UTI strings that identify the file types that attributed strings support, either directly or through a user-installed filter service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/textTypes
@@ -120,6 +119,7 @@ func (ac _AttributedStringClass) TextTypes() []string {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("textTypes"))
 	return rv
 }
+
 // An array of UTI strings that identify the file types that attributed strings support directly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/textUnfilteredTypes
@@ -127,6 +127,7 @@ func (ac _AttributedStringClass) TextUnfilteredTypes() []string {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("textUnfilteredTypes"))
 	return rv
 }
+
 // Returns the value for an attribute with the specified name of the character at the specified index and, by reference, the range where the attribute applies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attribute(_:at:effectiveRange:)
@@ -408,6 +409,3 @@ func (a_ AttributedString) TextUnfilteredTypes() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("textUnfilteredTypes"))
 	return rv
 }
-
-
-

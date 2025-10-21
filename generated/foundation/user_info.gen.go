@@ -73,7 +73,3 @@ func (u_ userInfo) Autorelease() userInfo {
 func NewuserInfo() userInfo {
 	return getuserInfoClass().New()
 }
-
-
-
-

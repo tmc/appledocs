@@ -73,7 +73,3 @@ func (r_ remotePort) Autorelease() remotePort {
 func NewremotePort() remotePort {
 	return getremotePortClass().New()
 }
-
-
-
-

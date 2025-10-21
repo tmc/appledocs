@@ -80,13 +80,9 @@ func NewConditionLock() ConditionLock {
 	return getConditionLockClass().New()
 }
 
-
 // Attempts to acquire a lock.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(whenCondition:)
 func (c_ ConditionLock) LockWhenCondition(condition int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("lockWhenCondition:"), condition)
 }
-
-
-

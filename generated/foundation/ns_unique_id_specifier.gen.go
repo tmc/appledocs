@@ -80,7 +80,6 @@ func NewUniqueIDSpecifier() UniqueIDSpecifier {
 	return getUniqueIDSpecifierClass().New()
 }
 
-
 // Returns an object, initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(containerClassDescription:containerSpecifier:key:uniqueID:)
@@ -90,6 +89,3 @@ func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqu
 	rv.Autorelease()
 	return rv
 }
-
-
-

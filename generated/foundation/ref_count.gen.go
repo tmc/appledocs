@@ -73,7 +73,3 @@ func (r_ refCount) Autorelease() refCount {
 func NewrefCount() refCount {
 	return getrefCountClass().New()
 }
-
-
-
-

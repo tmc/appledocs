@@ -79,7 +79,3 @@ func (s_ SocketPortNameServer) Autorelease() SocketPortNameServer {
 func NewSocketPortNameServer() SocketPortNameServer {
 	return getSocketPortNameServerClass().New()
 }
-
-
-
-

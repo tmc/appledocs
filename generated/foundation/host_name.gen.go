@@ -73,7 +73,3 @@ func (h_ hostName) Autorelease() hostName {
 func NewhostName() hostName {
 	return gethostNameClass().New()
 }
-
-
-
-

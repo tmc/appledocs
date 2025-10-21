@@ -80,7 +80,6 @@ func NewUserScriptTask() UserScriptTask {
 	return getUserScriptTaskClass().New()
 }
 
-
 // Return a user script task instance given a URL for a script file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/init(url:)
@@ -90,7 +89,6 @@ func NewUserScriptTaskWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) Us
 	rv.Autorelease()
 	return rv
 }
-
 
 // Executes the script with no input and ignoring any result.
 //
@@ -106,5 +104,3 @@ func (u_ UserScriptTask) ScriptURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scriptURL"))
 	return rv
 }
-
-

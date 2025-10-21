@@ -81,7 +81,6 @@ func NewLock() Lock {
 	return getLockClass().New()
 }
 
-
 // Attempts to acquire a lock before a given time and returns a Boolean value indicating whether the attempt was successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/lock(before:)
@@ -106,7 +105,6 @@ func (l_ Lock) Name() string {
 	return rv
 }
 
-
 // SetName sets the value of the name property.
 // The name associated with the receiver.
 
@@ -115,5 +113,3 @@ func (l_ Lock) Name() string {
 func (l_ Lock) SetName(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
-
-

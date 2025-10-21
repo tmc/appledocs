@@ -78,7 +78,3 @@ func (d_ DecimalNumberHandler) Autorelease() DecimalNumberHandler {
 func NewDecimalNumberHandler() DecimalNumberHandler {
 	return getDecimalNumberHandlerClass().New()
 }
-
-
-
-

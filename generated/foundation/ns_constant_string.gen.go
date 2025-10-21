@@ -74,7 +74,3 @@ func (c_ ConstantString) Autorelease() ConstantString {
 func NewConstantString() ConstantString {
 	return getConstantStringClass().New()
 }
-
-
-
-

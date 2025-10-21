@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewInputStream
 
-
-
 // ExampleNewInputStreamWithFileAtPath demonstrates how to create a InputStream instance using NewInputStreamWithFileAtPath.
 // Initializes and returns an   object that reads data from the file at a given path.
 func ExampleNewInputStreamWithFileAtPath() {
@@ -19,6 +17,3 @@ func ExampleNewInputStreamWithFileAtPath() {
 	)
 	// Output:
 }
-
-
-

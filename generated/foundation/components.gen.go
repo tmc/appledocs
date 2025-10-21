@@ -73,7 +73,3 @@ func (c_ components) Autorelease() components {
 func Newcomponents() components {
 	return getcomponentsClass().New()
 }
-
-
-
-

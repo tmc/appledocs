@@ -84,7 +84,6 @@ func NewXPCInterface() XPCInterface {
 	return getXPCInterfaceClass().New()
 }
 
-
 // Returns an NSXPCInterface instance for a given protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
@@ -92,7 +91,6 @@ func NewXPCInterfaceWithProtocol(protocol unsafe.Pointer) XPCInterface {
 	rv := objc.Send[XPCInterface](objc.ID(getXPCInterfaceClass().class), objc.Sel("interfaceWithProtocol:"), protocol)
 	return rv
 }
-
 
 // Returns an NSXPCInterface instance for a given protocol.
 //
@@ -146,7 +144,6 @@ func (x_ XPCInterface) Protocol() unsafe.Pointer {
 	return rv
 }
 
-
 // SetProtocol sets the value of the protocol property.
 // The Objective-C protocol that this interface is based on.
 
@@ -155,4 +152,3 @@ func (x_ XPCInterface) Protocol() unsafe.Pointer {
 func (x_ XPCInterface) SetProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setProtocol:"), value)
 }
-

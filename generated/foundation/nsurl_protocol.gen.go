@@ -79,7 +79,6 @@ func NewURLProtocol() URLProtocol {
 	return getURLProtocolClass().New()
 }
 
-
 // Determines whether the protocol subclass can handle the specified request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canInit(with:)-76brg
@@ -132,6 +131,3 @@ func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objc.ID, key string
 func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
 }
-
-
-

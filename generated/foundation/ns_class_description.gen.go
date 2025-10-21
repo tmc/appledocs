@@ -79,7 +79,6 @@ func NewClassDescription() ClassDescription {
 	return getClassDescriptionClass().New()
 }
 
-
 // Returns the class description for a given class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
@@ -88,7 +87,6 @@ func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
 	return rv
 }
 
-
 // Returns the class description for a given class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
@@ -96,5 +94,3 @@ func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) uns
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
 }
-
-

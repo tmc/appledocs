@@ -80,7 +80,6 @@ func NewUnitFrequency() UnitFrequency {
 	return getUnitFrequencyClass().New()
 }
 
-
 // The hertz unit of frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/hertz
@@ -88,6 +87,7 @@ func (uc _UnitFrequencyClass) Hertz() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("hertz"))
 	return rv
 }
+
 // The hertz unit of frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/hertz
@@ -95,6 +95,3 @@ func (u_ UnitFrequency) Hertz() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("hertz"))
 	return rv
 }
-
-
-

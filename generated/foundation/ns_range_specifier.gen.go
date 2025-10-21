@@ -80,7 +80,6 @@ func NewRangeSpecifier() RangeSpecifier {
 	return getRangeSpecifierClass().New()
 }
 
-
 // Returns the object specifier representing the first object of the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
@@ -88,7 +87,6 @@ func (r_ RangeSpecifier) StartSpecifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startSpecifier"))
 	return rv
 }
-
 
 // SetStartSpecifier sets the value of the startSpecifier property.
 // Returns the object specifier representing the first object of the range.
@@ -98,5 +96,3 @@ func (r_ RangeSpecifier) StartSpecifier() unsafe.Pointer {
 func (r_ RangeSpecifier) SetStartSpecifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartSpecifier:"), value)
 }
-
-

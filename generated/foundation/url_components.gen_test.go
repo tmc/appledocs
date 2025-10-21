@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewURLComponents
 
-
 // ExampleNewURLComponents demonstrates how to create a URLComponents instance.
 // Creates a URL components object with all components left undefined.
 func ExampleNewURLComponents() {
@@ -31,10 +30,7 @@ func ExampleNewURLComponentsWithString() {
 func ExampleNewURLComponentsWithStringEncodingInvalidCharacters() {
 	_ = foundation.NewURLComponentsWithStringEncodingInvalidCharacters(
 		"https://example.com", // URLString string
-		false, // encodingInvalidCharacters bool
+		false,                 // encodingInvalidCharacters bool
 	)
 	// Output:
 }
-
-
-

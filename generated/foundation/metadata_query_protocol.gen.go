@@ -21,5 +21,3 @@ var metadataQueryProtocol *objc.Protocol
 func init() {
 	metadataQueryProtocol = objc.GetProtocol("metadataQuery:")
 }
-
-

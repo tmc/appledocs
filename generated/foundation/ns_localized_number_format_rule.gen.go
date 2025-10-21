@@ -73,7 +73,3 @@ func (l_ LocalizedNumberFormatRule) Autorelease() LocalizedNumberFormatRule {
 func NewLocalizedNumberFormatRule() LocalizedNumberFormatRule {
 	return getLocalizedNumberFormatRuleClass().New()
 }
-
-
-
-

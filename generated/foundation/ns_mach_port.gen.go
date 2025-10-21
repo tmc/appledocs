@@ -84,7 +84,6 @@ func NewMachPort() MachPort {
 	return getMachPortClass().New()
 }
 
-
 // Initializes a newly allocated object with a given Mach port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:)
@@ -104,7 +103,6 @@ func NewMachPortWithMachPortOptions(machPort unsafe.Pointer, f unsafe.Pointer) M
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates and returns a port object configured with the given Mach port.
 //
@@ -158,5 +156,3 @@ func (m_ MachPort) MachPort() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("machPort"))
 	return rv
 }
-
-

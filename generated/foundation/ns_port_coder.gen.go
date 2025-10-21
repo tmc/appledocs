@@ -79,7 +79,3 @@ func (p_ PortCoder) Autorelease() PortCoder {
 func NewPortCoder() PortCoder {
 	return getPortCoderClass().New()
 }
-
-
-
-

@@ -80,7 +80,6 @@ func NewUnarchiver() Unarchiver {
 	return getUnarchiverClass().New()
 }
 
-
 // Returns an object initialized to read an archive from a given data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/init(forReadingWith:)
@@ -90,7 +89,6 @@ func NewUnarchiverForReadingWithData(data unsafe.Pointer) Unarchiver {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Instructs instances of to use the class with a given name when instantiating objects whose ostensible class, according to the archived data, is another given name.
 //
@@ -106,5 +104,3 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data unsafe.Pointer) objc.ID 
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithData:"), data)
 	return rv
 }
-
-

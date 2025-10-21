@@ -79,7 +79,6 @@ func NewFileVersion() FileVersion {
 	return getFileVersionClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
 func (f_ FileVersion) HasLocalContents() bool {
@@ -102,6 +101,3 @@ func (f_ FileVersion) URL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URL"))
 	return rv
 }
-
-
-

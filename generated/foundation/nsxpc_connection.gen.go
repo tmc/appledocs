@@ -87,7 +87,6 @@ func NewXPCConnection() XPCConnection {
 	return getXPCConnectionClass().New()
 }
 
-
 // Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
@@ -117,7 +116,6 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns the current connection, in the context of a call to a method on your exported object.
 //
@@ -224,7 +222,6 @@ func (x_ XPCConnection) ExportedInterface() unsafe.Pointer {
 	return rv
 }
 
-
 // SetExportedInterface sets the value of the exportedInterface property.
 // The object that describes the protocol for the exported object on this connection.
 
@@ -233,6 +230,7 @@ func (x_ XPCConnection) ExportedInterface() unsafe.Pointer {
 func (x_ XPCConnection) SetExportedInterface(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedInterface:"), value)
 }
+
 // An exported object for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedObject
@@ -240,7 +238,6 @@ func (x_ XPCConnection) ExportedObject() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("exportedObject"))
 	return rv
 }
-
 
 // SetExportedObject sets the value of the exportedObject property.
 // An exported object for the connection.
@@ -250,6 +247,7 @@ func (x_ XPCConnection) ExportedObject() objc.ID {
 func (x_ XPCConnection) SetExportedObject(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedObject:"), value)
 }
+
 // The process ID (PID) of the connecting process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/processIdentifier
@@ -266,7 +264,6 @@ func (x_ XPCConnection) RemoteObjectInterface() unsafe.Pointer {
 	return rv
 }
 
-
 // SetRemoteObjectInterface sets the value of the remoteObjectInterface property.
 // Defines the object that describes the protocol for the object represented by the .
 
@@ -275,6 +272,7 @@ func (x_ XPCConnection) RemoteObjectInterface() unsafe.Pointer {
 func (x_ XPCConnection) SetRemoteObjectInterface(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRemoteObjectInterface:"), value)
 }
+
 // Returns a proxy for the remote object (that is, the from the other side of this connection).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxy
@@ -290,5 +288,3 @@ func (x_ XPCConnection) ServiceName() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("serviceName"))
 	return rv
 }
-
-

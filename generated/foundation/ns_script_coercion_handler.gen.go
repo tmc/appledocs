@@ -80,13 +80,9 @@ func NewScriptCoercionHandler() ScriptCoercionHandler {
 	return getScriptCoercionHandlerClass().New()
 }
 
-
 // Registers a given object (typically a class) to handle coercions (conversions) from one given class to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler/registerCoercer(_:selector:toConvertFrom:to:)
 func (s_ ScriptCoercionHandler) RegisterCoercerSelectorToConvertFromClassToClass(coercer objc.ID, selector objc.SEL, fromClass objc.Class, toClass objc.Class) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerCoercer:selector:toConvertFromClass:toClass:"), coercer, selector, fromClass, toClass)
 }
-
-
-

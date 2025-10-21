@@ -80,7 +80,6 @@ func NewScriptWhoseTest() ScriptWhoseTest {
 	return getScriptWhoseTestClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/init(coder:)
 func NewScriptWhoseTestWithCoder(inCoder unsafe.Pointer) ScriptWhoseTest {
@@ -90,7 +89,6 @@ func NewScriptWhoseTestWithCoder(inCoder unsafe.Pointer) ScriptWhoseTest {
 	return rv
 }
 
-
 // Returns a Boolean value that indicates whether the test represented by the receiver evaluates to true.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/isTrue()
@@ -98,5 +96,3 @@ func (s_ ScriptWhoseTest) IsTrue() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isTrue"))
 	return rv
 }
-
-

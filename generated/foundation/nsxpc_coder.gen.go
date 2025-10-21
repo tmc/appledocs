@@ -81,7 +81,6 @@ func NewXPCCoder() XPCCoder {
 	return getXPCCoderClass().New()
 }
 
-
 // Encodes an object to send over an XPC connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/encodeXPCObject(_:forKey:)
@@ -105,7 +104,6 @@ func (x_ XPCCoder) UserInfo() objc.ID {
 	return rv
 }
 
-
 // SetUserInfo sets the value of the userInfo property.
 // An optional user information object associated with the coder.
 
@@ -114,5 +112,3 @@ func (x_ XPCCoder) UserInfo() objc.ID {
 func (x_ XPCCoder) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setUserInfo:"), value)
 }
-
-

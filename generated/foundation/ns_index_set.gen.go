@@ -82,7 +82,6 @@ func NewIndexSet() IndexSet {
 	return getIndexSetClass().New()
 }
 
-
 // Initializes an allocated object with an index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/init(index:)
@@ -92,7 +91,6 @@ func NewIndexSetWithIndex(value uint) IndexSet {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Executes a given Block using each object in the index set.
 //
@@ -114,5 +112,3 @@ func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts u
 func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesWithOptions:usingBlock:"), opts, block)
 }
-
-

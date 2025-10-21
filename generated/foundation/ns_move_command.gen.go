@@ -81,7 +81,6 @@ func NewMoveCommand() MoveCommand {
 	return getMoveCommandClass().New()
 }
 
-
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/setReceiversSpecifier(_:)
@@ -96,6 +95,3 @@ func (m_ MoveCommand) KeySpecifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
-
-
-

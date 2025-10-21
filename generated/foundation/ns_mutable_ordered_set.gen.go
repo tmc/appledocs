@@ -82,7 +82,6 @@ func NewMutableOrderedSet() MutableOrderedSet {
 	return getMutableOrderedSetClass().New()
 }
 
-
 // Removes from the mutable ordered set each of the objects within a given range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-9jkis
@@ -96,6 +95,3 @@ func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range) {
 func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes unsafe.Pointer, objects unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
 }
-
-
-

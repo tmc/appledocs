@@ -15,5 +15,3 @@ var primaryPresentedItemURLProtocol *objc.Protocol
 func init() {
 	primaryPresentedItemURLProtocol = objc.GetProtocol("primaryPresentedItemURL")
 }
-
-

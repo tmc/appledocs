@@ -21,5 +21,3 @@ var mutableCopyWithZoneProtocol *objc.Protocol
 func init() {
 	mutableCopyWithZoneProtocol = objc.GetProtocol("mutableCopyWithZone:")
 }
-
-

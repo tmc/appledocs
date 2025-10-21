@@ -80,7 +80,6 @@ func NewUnitElectricCharge() UnitElectricCharge {
 	return getUnitElectricChargeClass().New()
 }
 
-
 // The coulombs unit of electric charge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
@@ -88,6 +87,7 @@ func (uc _UnitElectricChargeClass) Coulombs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("coulombs"))
 	return rv
 }
+
 // The coulombs unit of electric charge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
@@ -95,6 +95,3 @@ func (u_ UnitElectricCharge) Coulombs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("coulombs"))
 	return rv
 }
-
-
-

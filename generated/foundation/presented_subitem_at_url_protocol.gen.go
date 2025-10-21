@@ -21,5 +21,3 @@ var presentedSubitemAtURLProtocol *objc.Protocol
 func init() {
 	presentedSubitemAtURLProtocol = objc.GetProtocol("presentedSubitemAtURL:")
 }
-
-

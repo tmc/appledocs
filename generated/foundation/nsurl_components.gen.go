@@ -80,7 +80,6 @@ func NewURLComponents() URLComponents {
 	return getURLComponentsClass().New()
 }
 
-
 // Creates a URL components object by parsing a URL in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
@@ -110,7 +109,6 @@ func NewURLComponentsWithURLResolvingAgainstBaseURL(url unsafe.Pointer, resolve 
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns a URL components object by parsing a URL in string form.
 //
@@ -152,7 +150,6 @@ func (u_ URLComponents) PercentEncodedHost() string {
 	return rv
 }
 
-
 // SetPercentEncodedHost sets the value of the percentEncodedHost property.
 // The host URL subcomponent expressed as a URL-encoded string, or if not present.
 
@@ -161,6 +158,7 @@ func (u_ URLComponents) PercentEncodedHost() string {
 func (u_ URLComponents) SetPercentEncodedHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
 }
+
 // A URL derived from the components object, in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
@@ -176,5 +174,3 @@ func (u_ URLComponents) URL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URL"))
 	return rv
 }
-
-

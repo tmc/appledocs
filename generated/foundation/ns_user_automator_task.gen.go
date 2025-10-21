@@ -81,13 +81,9 @@ func NewUserAutomatorTask() UserAutomatorTask {
 	return getUserAutomatorTaskClass().New()
 }
 
-
 // Execute the Automator workflow by providing it as securely coded input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
 func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objc.ID, handler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
 }
-
-
-

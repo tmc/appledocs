@@ -80,7 +80,6 @@ func NewHashTable() HashTable {
 	return getHashTableClass().New()
 }
 
-
 // Returns a hash table with given pointer functions options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
@@ -88,7 +87,6 @@ func NewHashTableWithOptions(options unsafe.Pointer) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
-
 
 // Returns a new hash table for storing weak references to its contents.
 //
@@ -120,5 +118,3 @@ func (h_ HashTable) Count() uint {
 	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
 	return rv
 }
-
-

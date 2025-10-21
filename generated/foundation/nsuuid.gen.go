@@ -80,13 +80,9 @@ func NewUUID() UUID {
 	return getUUIDClass().New()
 }
 
-
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
 func (u_ UUID) Compare(otherUUID unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("compare:"), otherUUID)
 	return rv
 }
-
-

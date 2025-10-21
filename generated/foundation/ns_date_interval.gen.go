@@ -80,7 +80,6 @@ func NewDateInterval() DateInterval {
 	return getDateIntervalClass().New()
 }
 
-
 // Initializes a date interval with a given start date and duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
@@ -90,7 +89,6 @@ func NewDateIntervalWithStartDateDuration(startDate unsafe.Pointer, duration Tim
 	rv.Autorelease()
 	return rv
 }
-
 
 // Compares the receiver with the specified date interval.
 //
@@ -107,5 +105,3 @@ func (d_ DateInterval) StartDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startDate"))
 	return rv
 }
-
-

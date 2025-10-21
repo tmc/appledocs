@@ -85,8 +85,6 @@ func NewNetServiceBrowser() NetServiceBrowser {
 	return getNetServiceBrowserClass().New()
 }
 
-
-
 // Removes the receiver from the specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/remove(from:forMode:)
@@ -137,7 +135,6 @@ func (n_ NetServiceBrowser) Delegate() objc.ID {
 	return rv
 }
 
-
 // SetDelegate sets the value of the delegate property.
 // The delegate object for this instance.
 
@@ -146,6 +143,7 @@ func (n_ NetServiceBrowser) Delegate() objc.ID {
 func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
@@ -153,7 +151,6 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
-
 
 // SetIncludesPeerToPeer sets the value of the includesPeerToPeer property.
 // Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available.
@@ -163,4 +160,3 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
-

@@ -77,7 +77,3 @@ func (m_ MassFormatter) Autorelease() MassFormatter {
 func NewMassFormatter() MassFormatter {
 	return getMassFormatterClass().New()
 }
-
-
-
-

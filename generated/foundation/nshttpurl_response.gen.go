@@ -80,7 +80,6 @@ func NewHTTPURLResponse() HTTPURLResponse {
 	return getHTTPURLResponseClass().New()
 }
 
-
 // Returns a localized string corresponding to a specified HTTP status code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
@@ -104,6 +103,3 @@ func (h_ HTTPURLResponse) StatusCode() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
 	return rv
 }
-
-
-

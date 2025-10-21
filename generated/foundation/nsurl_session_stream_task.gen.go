@@ -87,8 +87,6 @@ func NewURLSessionStreamTask() URLSessionStreamTask {
 	return getURLSessionStreamTaskClass().New()
 }
 
-
-
 // Completes any already enqueued reads and writes, and then invokes the delegate message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/captureStreams()
@@ -137,5 +135,3 @@ func (u_ URLSessionStreamTask) StopSecureConnection() {
 func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
 }
-
-

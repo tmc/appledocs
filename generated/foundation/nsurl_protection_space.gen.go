@@ -79,7 +79,6 @@ func NewURLProtectionSpace() URLProtectionSpace {
 	return getURLProtectionSpaceClass().New()
 }
 
-
 // The authentication method used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
@@ -103,6 +102,3 @@ func (u_ URLProtectionSpace) ProxyType() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
 	return rv
 }
-
-
-

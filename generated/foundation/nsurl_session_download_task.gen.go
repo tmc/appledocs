@@ -81,13 +81,9 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 	return getURLSessionDownloadTaskClass().New()
 }
 
-
 // Cancels a download and calls a callback with resume data for later use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask/cancel(byProducingResumeData:)
 func (u_ URLSessionDownloadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
 }
-
-
-

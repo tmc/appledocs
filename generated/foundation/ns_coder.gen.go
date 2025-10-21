@@ -108,7 +108,6 @@ func NewCoder() Coder {
 	return getCoderClass().New()
 }
 
-
 // Decodes an array of items, whose Objective-C type is given by .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeArray(ofObjCType:count:at:)
@@ -349,6 +348,3 @@ func (c_ Coder) RequiresSecureCoding() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
 }
-
-
-

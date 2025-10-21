@@ -80,7 +80,6 @@ func NewSortDescriptor() SortDescriptor {
 	return getSortDescriptorClass().New()
 }
 
-
 // Creates a sort descriptor by decoding from the coder you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(coder:)
@@ -121,7 +120,6 @@ func NewSortDescriptorWithKeyAscendingSelector(key string, ascending bool, selec
 	return rv
 }
 
-
 // Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
@@ -153,5 +151,3 @@ func (s_ SortDescriptor) Selector() objc.SEL {
 	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("selector"))
 	return rv
 }
-
-

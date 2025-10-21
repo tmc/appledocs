@@ -108,7 +108,6 @@ func NewURL() URL {
 	return getURLClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
 func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
@@ -240,7 +239,6 @@ func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns a new URL made by resolving bookmark data.
 //
@@ -822,5 +820,3 @@ func (u_ URL) User() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
-
-

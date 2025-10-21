@@ -78,7 +78,3 @@ func (f_ FileProviderService) Autorelease() FileProviderService {
 func NewFileProviderService() FileProviderService {
 	return getFileProviderServiceClass().New()
 }
-
-
-
-

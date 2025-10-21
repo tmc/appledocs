@@ -131,7 +131,6 @@ func NewArray() Array {
 	return getArrayClass().New()
 }
 
-
 // Initializes a newly allocated array by placing in it the objects contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
@@ -217,7 +216,6 @@ func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates and returns an empty array.
 //
@@ -762,5 +760,3 @@ func (a_ Array) SortedArrayHint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sortedArrayHint"))
 	return rv
 }
-
-

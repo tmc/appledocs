@@ -79,7 +79,3 @@ func (r_ RelativeSpecifier) Autorelease() RelativeSpecifier {
 func NewRelativeSpecifier() RelativeSpecifier {
 	return getRelativeSpecifierClass().New()
 }
-
-
-
-

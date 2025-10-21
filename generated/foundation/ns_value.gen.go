@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Value] class.
@@ -82,7 +82,6 @@ func (v_ Value) Autorelease() Value {
 func NewValue() Value {
 	return getValueClass().New()
 }
-
 
 // Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.
 //
@@ -314,7 +313,6 @@ func NewValueWithUIOffset(insets unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithUIOffset:"), insets)
 	return rv
 }
-
 
 // Creates a new value object containing the specified CoreAnimation transform structure.
 //
@@ -760,5 +758,3 @@ func (v_ Value) CMVideoDimensionsValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("CMVideoDimensionsValue"))
 	return rv
 }
-
-

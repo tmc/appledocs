@@ -95,7 +95,6 @@ func NewDecimalNumber() DecimalNumber {
 	return getDecimalNumberClass().New()
 }
 
-
 // Initializes a decimal number to represent a given decimal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
@@ -136,7 +135,6 @@ func NewDecimalNumberWithStringLocale(numberValue string, locale objc.ID) Decima
 	return rv
 }
 
-
 // Creates and returns a decimal number equivalent to a given decimal structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithDecimal:
@@ -176,6 +174,7 @@ func (dc _DecimalNumberClass) DefaultBehavior() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("defaultBehavior"))
 	return rv
 }
+
 // Returns the largest possible value of a decimal number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/maximum
@@ -183,6 +182,7 @@ func (dc _DecimalNumberClass) MaximumDecimalNumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("maximumDecimalNumber"))
 	return rv
 }
+
 // Returns the smallest possible value of a decimal number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/minimum
@@ -190,6 +190,7 @@ func (dc _DecimalNumberClass) MinimumDecimalNumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("minimumDecimalNumber"))
 	return rv
 }
+
 // A decimal number that specifies no number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/notANumber
@@ -197,6 +198,7 @@ func (dc _DecimalNumberClass) NotANumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("notANumber"))
 	return rv
 }
+
 // A decimal number equivalent to the number 1.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/one
@@ -204,6 +206,7 @@ func (dc _DecimalNumberClass) One() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("one"))
 	return rv
 }
+
 // A decimal number equivalent to the number 0.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/zero
@@ -211,6 +214,7 @@ func (dc _DecimalNumberClass) Zero() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("zero"))
 	return rv
 }
+
 // Adds this number to another given number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/adding(_:)
@@ -347,7 +351,6 @@ func (d_ DecimalNumber) DefaultBehavior() objc.ID {
 	return rv
 }
 
-
 // SetDefaultBehavior sets the value of the defaultBehavior property.
 // The way arithmetic methods round off and handle error conditions.
 
@@ -356,6 +359,7 @@ func (d_ DecimalNumber) DefaultBehavior() objc.ID {
 func (d_ DecimalNumber) SetDefaultBehavior(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultBehavior:"), value)
 }
+
 // The decimal number’s closest approximate value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/doubleValue
@@ -403,5 +407,3 @@ func (d_ DecimalNumber) Zero() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("zero"))
 	return rv
 }
-
-

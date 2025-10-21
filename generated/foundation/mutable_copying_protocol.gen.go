@@ -21,5 +21,3 @@ var MutableCopyingProtocol *objc.Protocol
 func init() {
 	MutableCopyingProtocol = objc.GetProtocol("NSMutableCopying")
 }
-
-

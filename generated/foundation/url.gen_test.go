@@ -9,11 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewURL
 
-
-
-
-
-
 // ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
 // Initializes a newly created NSURL referencing the local file or directory at  .
 func ExampleNewURLFileURLWithPath() {
@@ -28,21 +23,17 @@ func ExampleNewURLFileURLWithPath() {
 func ExampleNewURLFileURLWithPathIsDirectory() {
 	_ = foundation.NewURLFileURLWithPathIsDirectory(
 		"/tmp/test", // path string
-		false, // isDir bool
+		false,       // isDir bool
 	)
 	// Output:
 }
-
-
-
-
 
 // ExampleNewURLWithSchemeHostPath demonstrates how to create a URL instance using NewURLWithSchemeHostPath.
 // Initializes a newly created NSURL with a specified scheme, host, and path.
 func ExampleNewURLWithSchemeHostPath() {
 	_ = foundation.NewURLWithSchemeHostPath(
-		"scheme", // scheme string
-		"host", // host string
+		"scheme",    // scheme string
+		"host",      // host string
 		"/tmp/test", // path string
 	)
 	// Output:
@@ -62,10 +53,7 @@ func ExampleNewURLWithString() {
 func ExampleNewURLWithStringEncodingInvalidCharacters() {
 	_ = foundation.NewURLWithStringEncodingInvalidCharacters(
 		"https://example.com", // URLString string
-		false, // encodingInvalidCharacters bool
+		false,                 // encodingInvalidCharacters bool
 	)
 	// Output:
 }
-
-
-

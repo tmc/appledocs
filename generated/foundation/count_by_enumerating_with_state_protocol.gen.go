@@ -21,5 +21,3 @@ var countByEnumeratingWithStateProtocol *objc.Protocol
 func init() {
 	countByEnumeratingWithStateProtocol = objc.GetProtocol("countByEnumeratingWithState:")
 }
-
-

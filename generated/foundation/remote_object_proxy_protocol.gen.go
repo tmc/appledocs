@@ -21,5 +21,3 @@ var remoteObjectProxyProtocol *objc.Protocol
 func init() {
 	remoteObjectProxyProtocol = objc.GetProtocol("remoteObjectProxy")
 }
-
-

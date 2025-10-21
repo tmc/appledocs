@@ -84,7 +84,6 @@ func NewCountedSet() CountedSet {
 	return getCountedSetClass().New()
 }
 
-
 // Returns a counted set object initialized with the contents of a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(array:)
@@ -115,7 +114,6 @@ func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
 	return rv
 }
 
-
 // Adds a given object to the set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/add(_:)
@@ -145,5 +143,3 @@ func (c_ CountedSet) ObjectEnumerator() unsafe.Pointer {
 func (c_ CountedSet) RemoveObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeObject:"), object)
 }
-
-

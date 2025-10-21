@@ -79,7 +79,3 @@ func (e_ ExistsCommand) Autorelease() ExistsCommand {
 func NewExistsCommand() ExistsCommand {
 	return getExistsCommandClass().New()
 }
-
-
-
-

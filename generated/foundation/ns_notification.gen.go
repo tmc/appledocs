@@ -79,7 +79,6 @@ func NewNotification() Notification {
 	return getNotificationClass().New()
 }
 
-
 // Initializes a notification with the data from an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
@@ -107,7 +106,6 @@ func NewNotificationWithNameObjectUserInfo(name unsafe.Pointer, object objc.ID, 
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns a new notification object with a specified name and object.
 //
@@ -148,5 +146,3 @@ func (n_ Notification) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("userInfo"))
 	return rv
 }
-
-

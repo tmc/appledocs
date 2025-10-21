@@ -82,7 +82,6 @@ func NewXMLNode() XMLNode {
 	return getXMLNodeClass().New()
 }
 
-
 // Returns an instance initialized with the constant indicating node kind.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:)
@@ -102,7 +101,6 @@ func NewXMLNodeWithKindOptions(kind unsafe.Pointer, options unsafe.Pointer) XMLN
 	rv.Autorelease()
 	return rv
 }
-
 
 // Returns an object representing an attribute node with a given name and string.
 //
@@ -271,7 +269,6 @@ func (x_ XMLNode) Name() string {
 	return rv
 }
 
-
 // SetName sets the value of the name property.
 // Returns the name of the receiver.
 
@@ -280,6 +277,7 @@ func (x_ XMLNode) Name() string {
 func (x_ XMLNode) SetName(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // Returns the object value of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
@@ -287,7 +285,6 @@ func (x_ XMLNode) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectValue"))
 	return rv
 }
-
 
 // SetObjectValue sets the value of the objectValue property.
 // Returns the object value of the receiver.
@@ -297,6 +294,7 @@ func (x_ XMLNode) ObjectValue() objc.ID {
 func (x_ XMLNode) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
 }
+
 // Returns the parent node of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
@@ -313,7 +311,6 @@ func (x_ XMLNode) StringValue() string {
 	return rv
 }
 
-
 // SetStringValue sets the value of the stringValue property.
 // Returns the content of the receiver as a string value.
 
@@ -322,6 +319,7 @@ func (x_ XMLNode) StringValue() string {
 func (x_ XMLNode) SetStringValue(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
+
 // Returns the URI associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
@@ -329,7 +327,6 @@ func (x_ XMLNode) URI() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("URI"))
 	return rv
 }
-
 
 // SetURI sets the value of the URI property.
 // Returns the URI associated with the receiver.
@@ -339,4 +336,3 @@ func (x_ XMLNode) URI() string {
 func (x_ XMLNode) SetURI(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
 }
-

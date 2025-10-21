@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewMutableDictionary
 
-
 // ExampleNewMutableDictionary demonstrates how to create a MutableDictionary instance.
 // Initializes a newly allocated mutable dictionary.
 func ExampleNewMutableDictionary() {
@@ -26,7 +25,6 @@ func ExampleNewMutableDictionaryWithCapacity() {
 	// Output:
 }
 
-
 // ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
 func ExampleNewMutableDictionaryWithContentsOfFile() {
 	_ = foundation.NewMutableDictionaryWithContentsOfFile(
@@ -34,9 +32,3 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
-
-
-
-
-
-

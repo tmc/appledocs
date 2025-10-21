@@ -21,5 +21,3 @@ var itemProviderVisibilityForRepresentationWithTypeIdentifierProtocol *objc.Prot
 func init() {
 	itemProviderVisibilityForRepresentationWithTypeIdentifierProtocol = objc.GetProtocol("itemProviderVisibilityForRepresentationWithTypeIdentifier:")
 }
-
-

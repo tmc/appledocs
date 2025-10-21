@@ -79,7 +79,3 @@ func (w_ WhoseSpecifier) Autorelease() WhoseSpecifier {
 func NewWhoseSpecifier() WhoseSpecifier {
 	return getWhoseSpecifierClass().New()
 }
-
-
-
-

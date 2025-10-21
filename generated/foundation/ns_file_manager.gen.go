@@ -147,7 +147,6 @@ func NewFileManager() FileManager {
 	return getFileManagerClass().New()
 }
 
-
 // Initializes a file manager object that is authorized to perform privileged file system operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/init(authorization:)
@@ -155,7 +154,6 @@ func NewFileManagerWithAuthorization(authorization unsafe.Pointer) FileManager {
 	rv := objc.Send[FileManager](objc.ID(getFileManagerClass().class), objc.Sel("fileManagerWithAuthorization:"), authorization)
 	return rv
 }
-
 
 // Initializes a file manager object that is authorized to perform privileged file system operations.
 //
@@ -172,6 +170,7 @@ func (fc _FileManagerClass) DefaultManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("defaultManager"))
 	return rv
 }
+
 // Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfFileSystem(forPath:)
@@ -734,7 +733,6 @@ func (f_ FileManager) Delegate() objc.ID {
 	return rv
 }
 
-
 // SetDelegate sets the value of the delegate property.
 // The delegate of the file manager object.
 
@@ -743,6 +741,7 @@ func (f_ FileManager) Delegate() objc.ID {
 func (f_ FileManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The home directory for the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/homeDirectoryForCurrentUser
@@ -766,5 +765,3 @@ func (f_ FileManager) UbiquityIdentityToken() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("ubiquityIdentityToken"))
 	return rv
 }
-
-

@@ -73,7 +73,3 @@ func (s_ streamerVersion) Autorelease() streamerVersion {
 func NewstreamerVersion() streamerVersion {
 	return getstreamerVersionClass().New()
 }
-
-
-
-

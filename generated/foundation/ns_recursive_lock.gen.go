@@ -80,7 +80,6 @@ func NewRecursiveLock() RecursiveLock {
 	return getRecursiveLockClass().New()
 }
 
-
 // Attempts to acquire a lock, and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/try()
@@ -97,7 +96,6 @@ func (r_ RecursiveLock) Name() string {
 	return rv
 }
 
-
 // SetName sets the value of the name property.
 // The name associated with the receiver.
 
@@ -106,5 +104,3 @@ func (r_ RecursiveLock) Name() string {
 func (r_ RecursiveLock) SetName(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), objc.String(value))
 }
-
-

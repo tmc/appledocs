@@ -9,13 +9,8 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewURLSession
 
-
 // ExampleNewURLSession demonstrates how to create a URLSession instance.
 func ExampleNewURLSession() {
 	_ = foundation.NewURLSession()
 	// Output:
 }
-
-
-
-

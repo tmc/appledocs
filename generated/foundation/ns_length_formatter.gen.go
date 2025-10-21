@@ -79,7 +79,6 @@ func NewLengthFormatter() LengthFormatter {
 	return getLengthFormatterClass().New()
 }
 
-
 // Returns the unit string based on the provided value and unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromValue:unit:)
@@ -96,7 +95,6 @@ func (l_ LengthFormatter) NumberFormatter() unsafe.Pointer {
 	return rv
 }
 
-
 // SetNumberFormatter sets the value of the numberFormatter property.
 // The number formatter used to format the numbers in length strings.
 
@@ -105,5 +103,3 @@ func (l_ LengthFormatter) NumberFormatter() unsafe.Pointer {
 func (l_ LengthFormatter) SetNumberFormatter(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberFormatter:"), value)
 }
-
-

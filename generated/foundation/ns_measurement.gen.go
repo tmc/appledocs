@@ -80,7 +80,6 @@ func NewMeasurement() Measurement {
 	return getMeasurementClass().New()
 }
 
-
 // Initializes a new measurement with a specified double-precision floating-point value and unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/init(doubleValue:unit:)
@@ -90,7 +89,6 @@ func NewMeasurementWithDoubleValueUnit(doubleValue unsafe.Pointer, unit unsafe.P
 	rv.Autorelease()
 	return rv
 }
-
 
 // Indicates whether the measurement can be converted to the given unit.
 //
@@ -107,5 +105,3 @@ func (m_ Measurement) Unit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unit"))
 	return rv
 }
-
-

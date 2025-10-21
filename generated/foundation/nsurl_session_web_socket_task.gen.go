@@ -84,7 +84,6 @@ func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
 	return getURLSessionWebSocketTaskClass().New()
 }
 
-
 // Reads a WebSocket message once all the frames of the message are available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketTask/receiveMessageWithCompletionHandler:
@@ -137,7 +136,6 @@ func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
 	return rv
 }
 
-
 // SetMaximumMessageSize sets the value of the maximumMessageSize property.
 // The maximum number of bytes to buffer before the receive call fails with an error.
 
@@ -146,5 +144,3 @@ func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
 func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
 }
-
-

@@ -80,7 +80,6 @@ func NewXMLDTDNode() XMLDTDNode {
 	return getXMLDTDNodeClass().New()
 }
 
-
 // Returns an object initialized with the DTD declaration in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(xmlString:)
@@ -90,6 +89,3 @@ func NewXMLDTDNodeWithXMLString(string_ string) XMLDTDNode {
 	rv.Autorelease()
 	return rv
 }
-
-
-

@@ -80,7 +80,6 @@ func NewAppleScript() AppleScript {
 	return getAppleScriptClass().New()
 }
 
-
 // Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
@@ -88,6 +87,3 @@ func (a_ AppleScript) ExecuteAppleEventError(event unsafe.Pointer, errorInfo uns
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
 	return rv
 }
-
-
-

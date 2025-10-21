@@ -81,7 +81,6 @@ func NewValueTransformer() ValueTransformer {
 	return getValueTransformerClass().New()
 }
 
-
 // Returns the value transformer identified by a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/init(forName:)
@@ -89,7 +88,6 @@ func NewValueTransformerForName(name unsafe.Pointer) ValueTransformer {
 	rv := objc.Send[ValueTransformer](objc.ID(getValueTransformerClass().class), objc.Sel("valueTransformerForName:"), name)
 	return rv
 }
-
 
 // Returns a Boolean value that indicates whether the receiver can reverse a transformation.
 //
@@ -145,5 +143,3 @@ func (v_ ValueTransformer) TransformedValue(value objc.ID) objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("transformedValue:"), value)
 	return rv
 }
-
-

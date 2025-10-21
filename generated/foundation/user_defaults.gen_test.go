@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewUserDefaults
 
-
 // ExampleNewUserDefaults demonstrates how to create a UserDefaults instance.
 // Creates a user defaults object initialized with the defaults for the app and current user.
 func ExampleNewUserDefaults() {
@@ -25,5 +24,3 @@ func ExampleNewUserDefaultsWithSuiteName() {
 	)
 	// Output:
 }
-
-

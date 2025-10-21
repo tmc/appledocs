@@ -81,7 +81,6 @@ func NewOrthography() Orthography {
 	return getOrthographyClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(coder:)
 func NewOrthographyWithCoder(coder unsafe.Pointer) Orthography {
@@ -100,7 +99,6 @@ func NewOrthographyWithDominantScriptLanguageMap(script string, map_ unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates and returns an orthography object with the default language map for the specified language.
 //
@@ -173,5 +171,3 @@ func (o_ Orthography) LanguageMap() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("languageMap"))
 	return rv
 }
-
-

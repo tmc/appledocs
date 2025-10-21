@@ -82,7 +82,6 @@ func NewThread() Thread {
 	return getThreadClass().New()
 }
 
-
 // Returns an object initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/init(target:selector:object:)
@@ -92,7 +91,6 @@ func NewThreadWithTargetSelectorObject(target objc.ID, selector objc.SEL, argume
 	rv.Autorelease()
 	return rv
 }
-
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/detachNewThread(_:)
@@ -159,6 +157,7 @@ func (tc _ThreadClass) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](objc.ID(tc.class), objc.Sel("callStackReturnAddresses"))
 	return rv
 }
+
 // Returns an array containing the call stack symbols.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackSymbols
@@ -166,6 +165,7 @@ func (tc _ThreadClass) CallStackSymbols() []string {
 	rv := objc.Send[[]string](objc.ID(tc.class), objc.Sel("callStackSymbols"))
 	return rv
 }
+
 // Returns the thread object representing the current thread of execution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
@@ -173,6 +173,7 @@ func (tc _ThreadClass) CurrentThread() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("currentThread"))
 	return rv
 }
+
 // Returns the object representing the main thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
@@ -180,6 +181,7 @@ func (tc _ThreadClass) MainThread() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("mainThread"))
 	return rv
 }
+
 // Changes the cancelled state of the receiver to indicate that it should exit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/cancel()
@@ -273,7 +275,6 @@ func (t_ Thread) Name() string {
 	return rv
 }
 
-
 // SetName sets the value of the name property.
 // The name of the receiver.
 
@@ -282,6 +283,7 @@ func (t_ Thread) Name() string {
 func (t_ Thread) SetName(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
 func (t_ Thread) QualityOfService() unsafe.Pointer {
@@ -289,13 +291,13 @@ func (t_ Thread) QualityOfService() unsafe.Pointer {
 	return rv
 }
 
-
 // SetQualityOfService sets the value of the qualityOfService property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
 func (t_ Thread) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
+
 // The stack size of the receiver, in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/stackSize
@@ -303,7 +305,6 @@ func (t_ Thread) StackSize() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("stackSize"))
 	return rv
 }
-
 
 // SetStackSize sets the value of the stackSize property.
 // The stack size of the receiver, in bytes.
@@ -313,6 +314,7 @@ func (t_ Thread) StackSize() uint {
 func (t_ Thread) SetStackSize(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStackSize:"), value)
 }
+
 // The receiver’s priority
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
@@ -320,7 +322,6 @@ func (t_ Thread) ThreadPriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadPriority"))
 	return rv
 }
-
 
 // SetThreadPriority sets the value of the threadPriority property.
 // The receiver’s priority
@@ -330,4 +331,3 @@ func (t_ Thread) ThreadPriority() unsafe.Pointer {
 func (t_ Thread) SetThreadPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadPriority:"), value)
 }
-

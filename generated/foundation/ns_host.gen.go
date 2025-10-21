@@ -79,7 +79,6 @@ func NewHost() Host {
 	return getHostClass().New()
 }
 
-
 // Returns the with the Internet address .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
@@ -95,7 +94,6 @@ func NewHostWithName(name string) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
 }
-
 
 // Returns an object representing the host the process is running on.
 //
@@ -151,5 +149,3 @@ func (h_ Host) Name() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
-
-

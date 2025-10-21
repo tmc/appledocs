@@ -99,7 +99,6 @@ func NewSet() Set {
 	return getSetClass().New()
 }
 
-
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(array:)
@@ -180,7 +179,6 @@ func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
 	rv.Autorelease()
 	return rv
 }
-
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
@@ -457,5 +455,3 @@ func (s_ Set) Description() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("description"))
 	return rv
 }
-
-

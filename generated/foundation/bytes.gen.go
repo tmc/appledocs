@@ -73,7 +73,3 @@ func (b_ bytes) Autorelease() bytes {
 func Newbytes() bytes {
 	return getbytesClass().New()
 }
-
-
-
-

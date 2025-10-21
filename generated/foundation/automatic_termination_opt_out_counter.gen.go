@@ -73,7 +73,3 @@ func (a_ automaticTerminationOptOutCounter) Autorelease() automaticTerminationOp
 func NewautomaticTerminationOptOutCounter() automaticTerminationOptOutCounter {
 	return getautomaticTerminationOptOutCounterClass().New()
 }
-
-
-
-

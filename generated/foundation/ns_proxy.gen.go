@@ -78,7 +78,3 @@ func (p_ Proxy) Autorelease() Proxy {
 func NewProxy() Proxy {
 	return getProxyClass().New()
 }
-
-
-
-

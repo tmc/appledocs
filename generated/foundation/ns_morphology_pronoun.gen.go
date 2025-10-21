@@ -79,7 +79,6 @@ func NewMorphologyPronoun() MorphologyPronoun {
 	return getMorphologyPronounClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
 func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string, morphology unsafe.Pointer, dependentMorphology unsafe.Pointer) MorphologyPronoun {
@@ -89,12 +88,9 @@ func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string
 	return rv
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
 func (m_ MorphologyPronoun) Morphology() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("morphology"))
 	return rv
 }
-
-

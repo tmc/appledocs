@@ -81,7 +81,6 @@ func NewAffineTransform() AffineTransform {
 	return getAffineTransformClass().New()
 }
 
-
 // Applies the receiver’s transform to the specified point and returns the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
@@ -96,6 +95,3 @@ func (a_ AffineTransform) TransformPoint(aPoint Point) Point {
 func (a_ AffineTransform) TranslateXByYBy(deltaX float64, deltaY float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("translateXBy:yBy:"), deltaX, deltaY)
 }
-
-
-

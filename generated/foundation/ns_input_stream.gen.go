@@ -82,7 +82,6 @@ func NewInputStream() InputStream {
 	return getInputStreamClass().New()
 }
 
-
 // Initializes and returns an object for reading from a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
@@ -112,7 +111,6 @@ func NewInputStreamWithURL(url unsafe.Pointer) InputStream {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates and returns an initialized object that reads data from the file at a given URL.
 //
@@ -161,5 +159,3 @@ func (i_ InputStream) HasBytesAvailable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
 	return rv
 }
-
-

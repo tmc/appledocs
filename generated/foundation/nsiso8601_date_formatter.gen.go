@@ -80,8 +80,6 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 	return getISO8601DateFormatterClass().New()
 }
 
-
-
 // Creates a representation of the specified date with a given time zone and format options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
@@ -98,7 +96,6 @@ func (i_ ISO8601DateFormatter) FormatOptions() unsafe.Pointer {
 	return rv
 }
 
-
 // SetFormatOptions sets the value of the formatOptions property.
 // Options for generating and parsing ISO 8601 date representations. See for possible values.
 
@@ -107,4 +104,3 @@ func (i_ ISO8601DateFormatter) FormatOptions() unsafe.Pointer {
 func (i_ ISO8601DateFormatter) SetFormatOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFormatOptions:"), value)
 }
-

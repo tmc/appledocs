@@ -21,5 +21,3 @@ var URLSessionDelegateProtocol *objc.Protocol
 func init() {
 	URLSessionDelegateProtocol = objc.GetProtocol("NSURLSessionDelegate")
 }
-
-

@@ -89,7 +89,6 @@ func NewMutableSet() MutableSet {
 	return getMutableSetClass().New()
 }
 
-
 // Returns an initialized mutable set with a given initial capacity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(capacity:)
@@ -108,7 +107,6 @@ func NewMutableSetWithCoder(coder unsafe.Pointer) MutableSet {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates and returns a mutable set with a given initial capacity.
 //
@@ -180,5 +178,3 @@ func (m_ MutableSet) SetSet(otherSet unsafe.Pointer) {
 func (m_ MutableSet) UnionSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("unionSet:"), otherSet)
 }
-
-

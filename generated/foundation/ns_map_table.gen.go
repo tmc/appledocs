@@ -80,13 +80,9 @@ func NewMapTable() MapTable {
 	return getMapTableClass().New()
 }
 
-
 // Adds a given key-value pair to the map table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/setObject(_:forKey:)
 func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
-
-
-

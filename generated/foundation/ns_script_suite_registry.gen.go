@@ -85,7 +85,6 @@ func NewScriptSuiteRegistry() ScriptSuiteRegistry {
 	return getScriptSuiteRegistryClass().New()
 }
 
-
 // Returns the command description identified by a suite’s four-character Apple event code of the class ( ) and the four-character Apple event code of the command ( ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/commandDescription(withAppleEventClass:andAppleEventCode:)
@@ -129,6 +128,3 @@ func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Point
 	rv := objc.Send[string](s_.ID, objc.Sel("suiteForAppleEventCode:"), appleEventCode)
 	return rv
 }
-
-
-

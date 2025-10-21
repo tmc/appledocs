@@ -78,7 +78,3 @@ func (x_ XPCListenerEndpoint) Autorelease() XPCListenerEndpoint {
 func NewXPCListenerEndpoint() XPCListenerEndpoint {
 	return getXPCListenerEndpointClass().New()
 }
-
-
-
-

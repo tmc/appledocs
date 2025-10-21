@@ -84,7 +84,6 @@ func NewMutableIndexSet() MutableIndexSet {
 	return getMutableIndexSetClass().New()
 }
 
-
 // Adds an index to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(_:)-6dtkj
@@ -112,6 +111,3 @@ func (m_ MutableIndexSet) RemoveIndex(value uint) {
 func (m_ MutableIndexSet) RemoveIndexesInRange(range_ Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexesInRange:"), range_)
 }
-
-
-

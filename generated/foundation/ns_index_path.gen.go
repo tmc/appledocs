@@ -79,7 +79,6 @@ func NewIndexPath() IndexPath {
 	return getIndexPathClass().New()
 }
 
-
 // An index number identifying a row in a section of a table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/row
@@ -95,6 +94,3 @@ func (i_ IndexPath) Section() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("section"))
 	return rv
 }
-
-
-

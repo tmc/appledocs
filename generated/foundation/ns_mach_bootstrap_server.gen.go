@@ -79,7 +79,3 @@ func (m_ MachBootstrapServer) Autorelease() MachBootstrapServer {
 func NewMachBootstrapServer() MachBootstrapServer {
 	return getMachBootstrapServerClass().New()
 }
-
-
-
-

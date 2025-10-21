@@ -80,7 +80,6 @@ func NewNameSpecifier() NameSpecifier {
 	return getNameSpecifierClass().New()
 }
 
-
 // Invokes the super class’s method and then sets the name instance variable to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/init(containerClassDescription:containerSpecifier:key:name:)
@@ -90,6 +89,3 @@ func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(clas
 	rv.Autorelease()
 	return rv
 }
-
-
-

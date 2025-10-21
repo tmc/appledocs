@@ -79,7 +79,6 @@ func NewUnit() Unit {
 	return getUnitClass().New()
 }
 
-
 // Initializes a new unit with the specified symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/init(symbol:)
@@ -90,7 +89,6 @@ func NewUnitWithSymbol(symbol string) Unit {
 	return rv
 }
 
-
 // The symbolic representation of the unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/symbol
@@ -98,5 +96,3 @@ func (u_ Unit) Symbol() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("symbol"))
 	return rv
 }
-
-

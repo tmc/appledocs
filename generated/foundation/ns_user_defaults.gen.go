@@ -82,7 +82,6 @@ func NewUserDefaults() UserDefaults {
 	return getUserDefaultsClass().New()
 }
 
-
 // Creates a user defaults object initialized with the defaults for the specified database name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/init(suiteName:)
@@ -93,7 +92,6 @@ func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 	return rv
 }
 
-
 // Returns the shared defaults object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
@@ -101,6 +99,7 @@ func (uc _UserDefaultsClass) StandardUserDefaults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("standardUserDefaults"))
 	return rv
 }
+
 // Sets the value of the specified default key to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
@@ -130,5 +129,3 @@ func (u_ UserDefaults) StandardUserDefaults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardUserDefaults"))
 	return rv
 }
-
-

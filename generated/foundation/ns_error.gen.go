@@ -79,7 +79,6 @@ func NewError() Error {
 	return getErrorClass().New()
 }
 
-
 // Returns an object initialized for a given domain and code with a given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
@@ -89,7 +88,6 @@ func NewErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates and initializes an object for a given domain and code with a given dictionary.
 //
@@ -213,5 +211,3 @@ func (e_ Error) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
-
-

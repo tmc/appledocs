@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewMutableCharacterSet
 
-
 // ExampleNewMutableCharacterSetWithContentsOfFile demonstrates how to create a MutableCharacterSet instance using NewMutableCharacterSetWithContentsOfFile.
 // Returns a character set read from the bitmap representation stored in the file a given path.
 func ExampleNewMutableCharacterSetWithContentsOfFile() {
@@ -27,5 +26,3 @@ func ExampleNewMutableCharacterSetWithRange() {
 	)
 	// Output:
 }
-
-

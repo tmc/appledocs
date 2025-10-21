@@ -78,7 +78,3 @@ func (a_ AutoreleasePool) Autorelease() AutoreleasePool {
 func NewAutoreleasePool() AutoreleasePool {
 	return getAutoreleasePoolClass().New()
 }
-
-
-
-

@@ -96,7 +96,6 @@ func NewFileHandle() FileHandle {
 	return getFileHandleClass().New()
 }
 
-
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
@@ -175,7 +174,6 @@ func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt b
 	return rv
 }
 
-
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
@@ -231,6 +229,7 @@ func (fc _FileHandleClass) FileHandleWithNullDevice() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleWithNullDevice"))
 	return rv
 }
+
 // The file handle associated with the standard error file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
@@ -238,6 +237,7 @@ func (fc _FileHandleClass) FileHandleWithStandardError() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleWithStandardError"))
 	return rv
 }
+
 // The file handle associated with the standard input file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
@@ -245,6 +245,7 @@ func (fc _FileHandleClass) FileHandleWithStandardInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleWithStandardInput"))
 	return rv
 }
+
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/close()
@@ -406,5 +407,3 @@ func (f_ FileHandle) FileHandleWithStandardInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardInput"))
 	return rv
 }
-
-

@@ -79,7 +79,3 @@ func (l_ ListFormatter) Autorelease() ListFormatter {
 func NewListFormatter() ListFormatter {
 	return getListFormatterClass().New()
 }
-
-
-
-

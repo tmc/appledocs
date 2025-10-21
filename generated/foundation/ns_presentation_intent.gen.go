@@ -78,7 +78,3 @@ func (p_ PresentationIntent) Autorelease() PresentationIntent {
 func NewPresentationIntent() PresentationIntent {
 	return getPresentationIntentClass().New()
 }
-
-
-
-

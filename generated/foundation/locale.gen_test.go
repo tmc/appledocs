@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewLocale
 
-
-
 // ExampleNewLocaleWithLocaleIdentifier demonstrates how to create a Locale instance using NewLocaleWithLocaleIdentifier.
 // Initializes a locale using a given locale identifier.
 func ExampleNewLocaleWithLocaleIdentifier() {
@@ -19,5 +17,3 @@ func ExampleNewLocaleWithLocaleIdentifier() {
 	)
 	// Output:
 }
-
-

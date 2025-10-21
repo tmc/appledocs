@@ -78,7 +78,3 @@ func (d_ DistantObjectRequest) Autorelease() DistantObjectRequest {
 func NewDistantObjectRequest() DistantObjectRequest {
 	return getDistantObjectRequestClass().New()
 }
-
-
-
-

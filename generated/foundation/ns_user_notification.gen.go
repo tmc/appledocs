@@ -79,7 +79,6 @@ func NewUserNotification() UserNotification {
 	return getUserNotificationClass().New()
 }
 
-
 // Specifies the title of the action button displayed in the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
@@ -87,7 +86,6 @@ func (u_ UserNotification) ActionButtonTitle() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("actionButtonTitle"))
 	return rv
 }
-
 
 // SetActionButtonTitle sets the value of the actionButtonTitle property.
 // Specifies the title of the action button displayed in the notification.
@@ -97,6 +95,7 @@ func (u_ UserNotification) ActionButtonTitle() string {
 func (u_ UserNotification) SetActionButtonTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), objc.String(value))
 }
+
 // Specifies what caused a user notification to occur.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/activationType-swift.property
@@ -112,7 +111,6 @@ func (u_ UserNotification) AdditionalActions() []UserNotificationAction {
 	rv := objc.Send[[]UserNotificationAction](u_.ID, objc.Sel("additionalActions"))
 	return rv
 }
-
 
 // SetAdditionalActions sets the value of the additionalActions property.
 // The actions that can be taken on a notification in addition to the default action.
@@ -132,6 +130,7 @@ func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) 
 	}
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), nsArray)
 }
+
 // An additional action selected by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActivationAction
@@ -148,7 +147,6 @@ func (u_ UserNotification) ContentImage() unsafe.Pointer {
 	return rv
 }
 
-
 // SetContentImage sets the value of the contentImage property.
 // Image shown in the content of the notification.
 
@@ -157,6 +155,7 @@ func (u_ UserNotification) ContentImage() unsafe.Pointer {
 func (u_ UserNotification) SetContentImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setContentImage:"), value)
 }
+
 // Specifies when the notification should be delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryDate
@@ -164,7 +163,6 @@ func (u_ UserNotification) DeliveryDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryDate"))
 	return rv
 }
-
 
 // SetDeliveryDate sets the value of the deliveryDate property.
 // Specifies when the notification should be delivered.
@@ -174,6 +172,7 @@ func (u_ UserNotification) DeliveryDate() unsafe.Pointer {
 func (u_ UserNotification) SetDeliveryDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
 }
+
 // The body text of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
@@ -181,7 +180,6 @@ func (u_ UserNotification) InformativeText() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("informativeText"))
 	return rv
 }
-
 
 // SetInformativeText sets the value of the informativeText property.
 // The body text of the notification.
@@ -191,6 +189,7 @@ func (u_ UserNotification) InformativeText() string {
 func (u_ UserNotification) SetInformativeText(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), objc.String(value))
 }
+
 // Specifies whether the user notification has been presented.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/isPresented
@@ -215,7 +214,6 @@ func (u_ UserNotification) OtherButtonTitle() string {
 	return rv
 }
 
-
 // SetOtherButtonTitle sets the value of the otherButtonTitle property.
 // Specifies a custom title for the close button in an alert-style notification.
 
@@ -224,6 +222,7 @@ func (u_ UserNotification) OtherButtonTitle() string {
 func (u_ UserNotification) SetOtherButtonTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), objc.String(value))
 }
+
 // The response with which the user responded to a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/response
@@ -240,7 +239,6 @@ func (u_ UserNotification) Title() string {
 	return rv
 }
 
-
 // SetTitle sets the value of the title property.
 // Specifies the title of the notification.
 
@@ -249,5 +247,3 @@ func (u_ UserNotification) Title() string {
 func (u_ UserNotification) SetTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
-
-

@@ -73,7 +73,3 @@ func (r_ reason) Autorelease() reason {
 func Newreason() reason {
 	return getreasonClass().New()
 }
-
-
-
-

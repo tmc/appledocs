@@ -79,7 +79,6 @@ func NewFileSecurity() FileSecurity {
 	return getFileSecurityClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity/init(coder:)
 func NewFileSecurityWithCoder(coder unsafe.Pointer) FileSecurity {
@@ -88,6 +87,3 @@ func NewFileSecurityWithCoder(coder unsafe.Pointer) FileSecurity {
 	rv.Autorelease()
 	return rv
 }
-
-
-

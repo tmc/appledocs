@@ -79,7 +79,3 @@ func (c_ CountCommand) Autorelease() CountCommand {
 func NewCountCommand() CountCommand {
 	return getCountCommandClass().New()
 }
-
-
-
-
