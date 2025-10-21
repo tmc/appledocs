@@ -32,4 +32,3 @@ func ExampleNewURLComponentsWithStringEncodingInvalidCharacters() {
 	)
 	// Output:
 }
-

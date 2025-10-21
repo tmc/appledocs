@@ -28,4 +28,3 @@ func ExampleNewSortDescriptorWithKeyAscendingSelector() {
 	)
 	// Output:
 }
-

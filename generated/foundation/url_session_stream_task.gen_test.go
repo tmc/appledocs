@@ -14,4 +14,3 @@ func ExampleNewURLSessionStreamTask() {
 	_ = foundation.NewURLSessionStreamTask()
 	// Output:
 }
-

@@ -41,4 +41,3 @@ func ExampleNewValueWithSize() {
 	)
 	// Output:
 }
-

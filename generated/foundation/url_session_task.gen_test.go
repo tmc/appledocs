@@ -15,4 +15,3 @@ func ExampleNewURLSessionTask() {
 	_ = foundation.NewURLSessionTask()
 	// Output:
 }
-

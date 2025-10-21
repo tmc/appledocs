@@ -24,4 +24,3 @@ func ExampleNewOutputStreamToMemory() {
 	_ = foundation.NewOutputStreamToMemory()
 	// Output:
 }
-

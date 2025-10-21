@@ -25,4 +25,3 @@ func ExampleNewMutableCharacterSetWithRange() {
 	)
 	// Output:
 }
-

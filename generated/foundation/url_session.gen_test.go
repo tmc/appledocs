@@ -14,4 +14,3 @@ func ExampleNewURLSession() {
 	_ = foundation.NewURLSession()
 	// Output:
 }
-

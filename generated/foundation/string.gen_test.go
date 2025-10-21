@@ -39,4 +39,3 @@ func ExampleNewStringWithString() {
 	)
 	// Output:
 }
-

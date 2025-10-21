@@ -25,4 +25,3 @@ func ExampleNewHostWithName() {
 	)
 	// Output:
 }
-

@@ -41,4 +41,3 @@ func ExampleNewNumberWithUnsignedLongLong() {
 	)
 	// Output:
 }
-

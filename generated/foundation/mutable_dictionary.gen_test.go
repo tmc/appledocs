@@ -30,4 +30,3 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
-

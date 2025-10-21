@@ -25,4 +25,3 @@ func ExampleNewBundleWithPath() {
 	)
 	// Output:
 }
-

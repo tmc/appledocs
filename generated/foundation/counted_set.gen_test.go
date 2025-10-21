@@ -17,4 +17,3 @@ func ExampleNewCountedSetWithCapacity() {
 	)
 	// Output:
 }
-

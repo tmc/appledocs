@@ -15,4 +15,3 @@ func ExampleNewISO8601DateFormatter() {
 	_ = foundation.NewISO8601DateFormatter()
 	// Output:
 }
-

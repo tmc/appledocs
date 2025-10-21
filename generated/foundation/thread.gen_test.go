@@ -15,4 +15,3 @@ func ExampleNewThread() {
 	_ = foundation.NewThread()
 	// Output:
 }
-

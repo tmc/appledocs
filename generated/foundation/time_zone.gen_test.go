@@ -33,4 +33,3 @@ func ExampleNewTimeZoneWithName() {
 	)
 	// Output:
 }
-

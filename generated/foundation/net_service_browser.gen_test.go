@@ -15,4 +15,3 @@ func ExampleNewNetServiceBrowser() {
 	_ = foundation.NewNetServiceBrowser()
 	// Output:
 }
-

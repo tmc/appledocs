@@ -15,4 +15,3 @@ func ExampleNewUUID() {
 	_ = foundation.NewUUID()
 	// Output:
 }
-

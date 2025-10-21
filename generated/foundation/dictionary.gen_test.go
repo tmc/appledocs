@@ -23,4 +23,3 @@ func ExampleNewDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
-

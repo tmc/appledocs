@@ -15,4 +15,3 @@ func ExampleNewTask() {
 	_ = foundation.NewTask()
 	// Output:
 }
-

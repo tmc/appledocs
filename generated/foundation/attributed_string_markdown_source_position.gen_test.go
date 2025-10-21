@@ -20,4 +20,3 @@ func ExampleNewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEnd
 	)
 	// Output:
 }
-

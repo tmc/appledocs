@@ -15,4 +15,3 @@ func ExampleNewURLSessionTaskMetrics() {
 	_ = foundation.NewURLSessionTaskMetrics()
 	// Output:
 }
-

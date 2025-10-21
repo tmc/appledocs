@@ -23,4 +23,3 @@ func ExampleNewMutableSetWithCapacity() {
 	)
 	// Output:
 }
-

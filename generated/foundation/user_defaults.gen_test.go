@@ -23,4 +23,3 @@ func ExampleNewUserDefaultsWithSuiteName() {
 	)
 	// Output:
 }
-

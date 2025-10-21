@@ -14,4 +14,3 @@ func ExampleNewXMLDTD() {
 	_ = foundation.NewXMLDTD()
 	// Output:
 }
-

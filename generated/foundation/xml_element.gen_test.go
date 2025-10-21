@@ -27,4 +27,3 @@ func ExampleNewXMLElementWithNameURI() {
 	)
 	// Output:
 }
-

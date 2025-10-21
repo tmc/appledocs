@@ -15,4 +15,3 @@ func ExampleNewSet() {
 	_ = foundation.NewSet()
 	// Output:
 }
-
