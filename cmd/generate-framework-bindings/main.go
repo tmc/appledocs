@@ -404,6 +404,16 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		}
 	}
 
+	// Build type registry from parsed data (source of truth)
+	// This populates crossFrameworkTypeRegistry with mappings like:
+	//   NSImageScaling → appkit.ImageScaling
+	//   NSWindow → appkit.Window
+	buildTypeRegistryFromParsedData(framework, classes, enums, typedefs)
+	if verbose {
+		fmt.Fprintf(os.Stderr, "Built type registry from parsed data: %d classes, %d enums, %d typedefs\n",
+			len(classes), len(enums), len(typedefs))
+	}
+
 	// Fail if no symbols were found and no filter was applied
 	if len(functions) == 0 && len(classes) == 0 && len(protocols) == 0 && filterRegexp == "" && processedFiles == 0 {
 		return fmt.Errorf("no symbols found for framework %s", framework)

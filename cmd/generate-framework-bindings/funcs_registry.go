@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/tmc/appledocs/occ2go"
 )
 
 // buildCrossFrameworkTypeRegistry scans generated frameworks and populates the type registry.
@@ -96,4 +98,54 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 	}
 
 	return nil
+}
+
+// buildTypeRegistryFromParsedData populates the type registry from parsed documentation data.
+// This is the preferred approach - using the source of truth (parsed docs) rather than
+// scanning generated code artifacts.
+//
+// It extracts type mappings from:
+//   - Enums: NSImageScaling → ImageScaling
+//   - Classes: NSWindow → Window
+//   - Typedefs: NSTimeInterval → TimeInterval
+//
+// The registry is used during type resolution to avoid unsafe.Pointer fallbacks.
+func buildTypeRegistryFromParsedData(framework string, classes []*occ2go.ParsedClass, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef) {
+	frameworkLower := strings.ToLower(framework)
+
+	// Register enum types: both NSImageScaling→appkit and ImageScaling→appkit
+	for _, enum := range enums {
+		if enum.Name == "" {
+			continue
+		}
+		// Strip NS/CG/CA prefix to get Go type name
+		goTypeName := occ2go.StripObjCPrefix(enum.Name)
+		// Register both ObjC name and Go name for lookup
+		crossFrameworkTypeRegistry[enum.Name] = frameworkLower
+		crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+	}
+
+	// Register class types: both NSWindow→appkit and Window→appkit
+	for _, class := range classes {
+		if class.Name == "" {
+			continue
+		}
+		// Strip NS/CG/CA prefix to get Go type name
+		goTypeName := occ2go.StripObjCPrefix(class.Name)
+		// Register both ObjC name and Go name for lookup
+		crossFrameworkTypeRegistry[class.Name] = frameworkLower
+		crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+	}
+
+	// Register typedef types: both NSTimeInterval→foundation and TimeInterval→foundation
+	for _, typedef := range typedefs {
+		if typedef.Name == "" {
+			continue
+		}
+		// Strip NS/CG/CA prefix to get Go type name
+		goTypeName := occ2go.StripObjCPrefix(typedef.Name)
+		// Register both ObjC name and Go name for lookup
+		crossFrameworkTypeRegistry[typedef.Name] = frameworkLower
+		crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+	}
 }
