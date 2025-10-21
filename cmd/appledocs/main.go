@@ -71,7 +71,7 @@ var (
 	exportMetrics      = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
 	validateCache      = flag.Bool("validate-cache", false, "validate cache integrity on startup")
 	checksumValidation = flag.Bool("checksum-validation", false, "enable enhanced checksum-based cache validation")
-	fetchBothLanguages = flag.Bool("fetch-both-languages", true, "fetch both Swift and Objective-C variants")
+	fetchBothLanguages = flag.Bool("fetch-both-languages", false, "fetch both Swift and Objective-C variants (disabled by default as they return identical content)")
 
 	// Mode selection
 	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, gentypes, analyze, list-demos, or all")
