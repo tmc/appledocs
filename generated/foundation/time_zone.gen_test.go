@@ -17,6 +17,8 @@ func ExampleNewTimeZoneForSecondsFromGMT() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewTimeZoneWithAbbreviation demonstrates how to create a TimeZone instance using NewTimeZoneWithAbbreviation.
 // Returns the time zone object identified by a given abbreviation.
@@ -26,6 +28,8 @@ func ExampleNewTimeZoneWithAbbreviation() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewTimeZoneWithName demonstrates how to create a TimeZone instance using NewTimeZoneWithName.
 // Returns a time zone initialized with a given identifier.
@@ -35,6 +39,11 @@ func ExampleNewTimeZoneWithName() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

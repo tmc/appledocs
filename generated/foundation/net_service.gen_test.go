@@ -19,6 +19,12 @@ func ExampleNewNetServiceWithDomainTypeName() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

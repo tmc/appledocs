@@ -8,6 +8,10 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewURL
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
 
 // ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
 // Initializes a newly created NSURL referencing the local file or directory at  .
@@ -17,6 +21,8 @@ func ExampleNewURLFileURLWithPath() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
 // Initializes a newly created NSURL referencing the local file or directory at  .
@@ -27,6 +33,12 @@ func ExampleNewURLFileURLWithPathIsDirectory() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
 
 // ExampleNewURLWithSchemeHostPath demonstrates how to create a URL instance using NewURLWithSchemeHostPath.
 // Initializes a newly created NSURL with a specified scheme, host, and path.
@@ -38,6 +50,8 @@ func ExampleNewURLWithSchemeHostPath() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
 // Initializes an NSURL object with a provided URL string.
@@ -47,6 +61,8 @@ func ExampleNewURLWithString() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewURLWithStringEncodingInvalidCharacters demonstrates how to create a URL instance using NewURLWithStringEncodingInvalidCharacters.
 // Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
@@ -57,6 +73,12 @@ func ExampleNewURLWithStringEncodingInvalidCharacters() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

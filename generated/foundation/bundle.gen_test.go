@@ -8,6 +8,7 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewBundle
+// end of if canGenerateAllParams
 
 // ExampleNewBundleWithIdentifier demonstrates how to create a Bundle instance using NewBundleWithIdentifier.
 // Returns the   instance that has the specified bundle identifier.
@@ -17,6 +18,8 @@ func ExampleNewBundleWithIdentifier() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewBundleWithPath demonstrates how to create a Bundle instance using NewBundleWithPath.
 // Returns an   object initialized to correspond to the specified directory.
@@ -26,6 +29,12 @@ func ExampleNewBundleWithPath() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

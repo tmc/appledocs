@@ -15,6 +15,11 @@ func ExampleNewArray() {
 	_ = foundation.NewArray()
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
 
 // ExampleNewArrayWithContentsOfFile demonstrates how to create a Array instance using NewArrayWithContentsOfFile.
 // Initializes a newly allocated array with the contents of the file specified by a given path.
@@ -24,6 +29,16 @@ func ExampleNewArrayWithContentsOfFile() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

@@ -18,6 +18,8 @@ func ExampleNewXMLElementWithNameStringValue() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewXMLElementWithNameURI demonstrates how to create a XMLElement instance using NewXMLElementWithNameURI.
 // Returns an   object initialized with the specified name and URI.
@@ -28,6 +30,11 @@ func ExampleNewXMLElementWithNameURI() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

@@ -15,6 +15,8 @@ func ExampleNewMutableDictionary() {
 	_ = foundation.NewMutableDictionary()
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewMutableDictionaryWithCapacity demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithCapacity.
 // Initializes a newly allocated mutable dictionary, allocating enough memory to hold   entries.
@@ -24,6 +26,9 @@ func ExampleNewMutableDictionaryWithCapacity() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
 
 // ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
 func ExampleNewMutableDictionaryWithContentsOfFile() {
@@ -32,6 +37,15 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

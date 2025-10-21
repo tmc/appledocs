@@ -8,6 +8,7 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewInputStream
+// end of if canGenerateAllParams
 
 // ExampleNewInputStreamWithFileAtPath demonstrates how to create a InputStream instance using NewInputStreamWithFileAtPath.
 // Initializes and returns an   object that reads data from the file at a given path.
@@ -17,6 +18,12 @@ func ExampleNewInputStreamWithFileAtPath() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

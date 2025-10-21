@@ -8,6 +8,13 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewURLCredential
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

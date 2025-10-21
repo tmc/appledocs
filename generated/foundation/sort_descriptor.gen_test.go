@@ -8,6 +8,7 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewSortDescriptor
+// end of if canGenerateAllParams
 
 // ExampleNewSortDescriptorWithKeyAscending demonstrates how to create a SortDescriptor instance using NewSortDescriptorWithKeyAscending.
 // Creates a sort descriptor with a specified string key path and sort order.
@@ -18,6 +19,9 @@ func ExampleNewSortDescriptorWithKeyAscending() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of if canGenerateAllParams
 
 // ExampleNewSortDescriptorWithKeyAscendingSelector demonstrates how to create a SortDescriptor instance using NewSortDescriptorWithKeyAscendingSelector.
 // Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
@@ -29,6 +33,11 @@ func ExampleNewSortDescriptorWithKeyAscendingSelector() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 

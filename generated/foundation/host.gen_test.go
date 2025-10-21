@@ -17,6 +17,8 @@ func ExampleNewHostWithAddress() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
 
 // ExampleNewHostWithName demonstrates how to create a Host instance using NewHostWithName.
 // Returns a host with a specific name.
@@ -26,6 +28,11 @@ func ExampleNewHostWithName() {
 	)
 	// Output:
 }
+// end of example function
+// end of if canGenerateAllParams
+// end of range prepareInitMethodsWithClassName
+// end of if HasInitMethods
 
+// end of with .Class
 
 
