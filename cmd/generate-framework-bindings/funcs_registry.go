@@ -105,7 +105,9 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		"NSData", "Data",
 		"NSDate", "Date",
 		"NSSet", "Set",
-		"NSErrorDomain", // typedef to String - used across all frameworks for error domains
+		"NSErrorDomain",        // typedef to String - used across all frameworks for error domains
+		"NSExtensionContext",   // Foundation class, not CallKit/FileProviderUI/PhotosUI
+		"ExtensionContext",     // stripped name
 	}
 	for _, typeName := range foundationCoreTypes {
 		crossFrameworkTypeRegistry[typeName] = "foundation"
