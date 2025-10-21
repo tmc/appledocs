@@ -98,6 +98,14 @@ func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOptions:"), value)
 }
 
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (r_ RegularExpression) NSNotFound() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
+	return rv
+}
+
 // Returns the range of the result that the receiver represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
@@ -132,14 +140,6 @@ func (r_ RegularExpression) NumberOfCaptureGroups() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
 func (r_ RegularExpression) SetNumberOfCaptureGroups(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfCaptureGroups:"), value)
-}
-
-// A value indicating that a requested item couldn’t be found or doesn’t exist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (r_ RegularExpression) NSNotFound() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
-	return rv
 }
 
 // Returns the regular expression pattern.

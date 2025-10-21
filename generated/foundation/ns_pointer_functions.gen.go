@@ -80,40 +80,40 @@ func NewPointerFunctions() PointerFunctions {
 }
 
 
-// The function used to compare pointers.
+// The function used to describe elements.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/isequalfunction
-func (p_ PointerFunctions) IsEqualFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("isEqualFunction"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
+func (p_ PointerFunctions) DescriptionFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("descriptionFunction"))
 	return rv
 }
 
 
-// SetIsEqualFunction sets the value of the isEqualFunction property.
-// The function used to compare pointers.
+// SetDescriptionFunction sets the value of the descriptionFunction property.
+// The function used to describe elements.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/isequalfunction
-func (p_ PointerFunctions) SetIsEqualFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEqualFunction:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
+func (p_ PointerFunctions) SetDescriptionFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDescriptionFunction:"), value)
 }
 
-// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
-func (p_ PointerFunctions) UsesStrongWriteBarrier() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("usesStrongWriteBarrier"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
+func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("usesWeakReadAndWriteBarriers"))
 	return rv
 }
 
 
-// SetUsesStrongWriteBarrier sets the value of the usesStrongWriteBarrier property.
-// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+// SetUsesWeakReadAndWriteBarriers sets the value of the usesWeakReadAndWriteBarriers property.
+// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
-func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesStrongWriteBarrier:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
+func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesWeakReadAndWriteBarriers:"), value)
 }
 
 // The pointer functions for the hash table.
@@ -152,42 +152,6 @@ func (p_ PointerFunctions) SetHashFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHashFunction:"), value)
 }
 
-// The function used to describe elements.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) DescriptionFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("descriptionFunction"))
-	return rv
-}
-
-
-// SetDescriptionFunction sets the value of the descriptionFunction property.
-// The function used to describe elements.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) SetDescriptionFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDescriptionFunction:"), value)
-}
-
-// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
-func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("usesWeakReadAndWriteBarriers"))
-	return rv
-}
-
-
-// SetUsesWeakReadAndWriteBarriers sets the value of the usesWeakReadAndWriteBarriers property.
-// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
-func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesWeakReadAndWriteBarriers:"), value)
-}
-
 // The function used to relinquish memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/relinquishfunction
@@ -204,6 +168,42 @@ func (p_ PointerFunctions) RelinquishFunction() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/relinquishfunction
 func (p_ PointerFunctions) SetRelinquishFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRelinquishFunction:"), value)
+}
+
+// The function used to compare pointers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/isequalfunction
+func (p_ PointerFunctions) IsEqualFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("isEqualFunction"))
+	return rv
+}
+
+
+// SetIsEqualFunction sets the value of the isEqualFunction property.
+// The function used to compare pointers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/isequalfunction
+func (p_ PointerFunctions) SetIsEqualFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEqualFunction:"), value)
+}
+
+// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
+func (p_ PointerFunctions) UsesStrongWriteBarrier() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("usesStrongWriteBarrier"))
+	return rv
+}
+
+
+// SetUsesStrongWriteBarrier sets the value of the usesStrongWriteBarrier property.
+// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
+func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesStrongWriteBarrier:"), value)
 }
 
 

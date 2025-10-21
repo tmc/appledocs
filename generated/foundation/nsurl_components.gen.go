@@ -150,94 +150,76 @@ func (u_ URLComponents) URLRelativeToURL(baseURL URL) URL {
 	return rv
 }
 
-// The query URL component as a string, or nil if not present.
+// The password URL subcomponent expressed as a URL-encoded string, or
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
-func (u_ URLComponents) Query() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("query"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
+func (u_ URLComponents) PercentEncodedPassword() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPassword"))
 	return rv
 }
 
 
-// SetQuery sets the value of the query property.
-// The query URL component as a string, or nil if not present.
+// SetPercentEncodedPassword sets the value of the percentEncodedPassword property.
+// The password URL subcomponent expressed as a URL-encoded string, or
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
-func (u_ URLComponents) SetQuery(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setQuery:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
+func (u_ URLComponents) SetPercentEncodedPassword(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPassword:"), objc.String(value))
 }
 
-// Returns the character range of the scheme in the string returned by the string property.
+// The username URL subcomponent expressed as a URL-encoded string, or
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
-func (u_ URLComponents) RangeOfScheme() Range {
-	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfScheme"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
+func (u_ URLComponents) PercentEncodedUser() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedUser"))
 	return rv
 }
 
 
-// SetRangeOfScheme sets the value of the rangeOfScheme property.
-// Returns the character range of the scheme in the string returned by the string property.
+// SetPercentEncodedUser sets the value of the percentEncodedUser property.
+// The username URL subcomponent expressed as a URL-encoded string, or
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
-func (u_ URLComponents) SetRangeOfScheme(value Range) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfScheme:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
+func (u_ URLComponents) SetPercentEncodedUser(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedUser:"), objc.String(value))
 }
 
-// The query URL component as an array of name/value pairs.
+// The host URL subcomponent, or nil if not present.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-func (u_ URLComponents) QueryItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queryItems"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
+func (u_ URLComponents) Host() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
 }
 
 
-// SetQueryItems sets the value of the queryItems property.
-// The query URL component as an array of name/value pairs.
+// SetHost sets the value of the host property.
+// The host URL subcomponent, or nil if not present.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-func (u_ URLComponents) SetQueryItems(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
+func (u_ URLComponents) SetHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
 
-// The port number URL component, or nil if not present.
+// Returns the character range of the port in the string returned by the string property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
-func (u_ URLComponents) Port() Number {
-	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
+func (u_ URLComponents) RangeOfPort() Range {
+	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPort"))
 	return rv
 }
 
 
-// SetPort sets the value of the port property.
-// The port number URL component, or nil if not present.
+// SetRangeOfPort sets the value of the rangeOfPort property.
+// Returns the character range of the port in the string returned by the string property.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
-func (u_ URLComponents) SetPort(value Number) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
-}
-
-// The password URL subcomponent, or nil if not present.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
-func (u_ URLComponents) Password() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("password"))
-	return rv
-}
-
-
-// SetPassword sets the value of the password property.
-// The password URL subcomponent, or nil if not present.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
-func (u_ URLComponents) SetPassword(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPassword:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
+func (u_ URLComponents) SetRangeOfPort(value Range) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPort:"), value)
 }
 
 // Returns the character range of the host in the string returned by the string property.
@@ -276,55 +258,22 @@ func (u_ URLComponents) SetPercentEncodedFragment(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedFragment:"), objc.String(value))
 }
 
+// The password URL subcomponent, or nil if not present.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
-func (u_ URLComponents) PercentEncodedQueryItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("percentEncodedQueryItems"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
+func (u_ URLComponents) Password() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
 
-// SetPercentEncodedQueryItems sets the value of the percentEncodedQueryItems property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
-func (u_ URLComponents) SetPercentEncodedQueryItems(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQueryItems:"), value)
-}
-
-// The host subcomponent, percent-encoded.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
-func (u_ URLComponents) EncodedHost() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("encodedHost"))
-	return rv
-}
-
-
-// SetEncodedHost sets the value of the encodedHost property.
-// The host subcomponent, percent-encoded.
+// SetPassword sets the value of the password property.
+// The password URL subcomponent, or nil if not present.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
-func (u_ URLComponents) SetEncodedHost(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setEncodedHost:"), objc.String(value))
-}
-
-// The username URL subcomponent expressed as a URL-encoded string, or
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
-func (u_ URLComponents) PercentEncodedUser() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedUser"))
-	return rv
-}
-
-
-// SetPercentEncodedUser sets the value of the percentEncodedUser property.
-// The username URL subcomponent expressed as a URL-encoded string, or
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
-func (u_ URLComponents) SetPercentEncodedUser(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedUser:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
+func (u_ URLComponents) SetPassword(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPassword:"), objc.String(value))
 }
 
 // The fragment URL component (the part after a
@@ -345,24 +294,6 @@ func (u_ URLComponents) SetFragment(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setFragment:"), objc.String(value))
 }
 
-// The path URL component expressed as a URL-encoded string, or
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
-func (u_ URLComponents) PercentEncodedPath() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPath"))
-	return rv
-}
-
-
-// SetPercentEncodedPath sets the value of the percentEncodedPath property.
-// The path URL component expressed as a URL-encoded string, or
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
-func (u_ URLComponents) SetPercentEncodedPath(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPath:"), objc.String(value))
-}
-
 // Returns the character range of the path in the string returned by the string property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpath
@@ -381,58 +312,58 @@ func (u_ URLComponents) SetRangeOfPath(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPath:"), value)
 }
 
-// Returns the character range of the password in the string returned by the string property.
+// The port number URL component, or nil if not present.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
-func (u_ URLComponents) RangeOfPassword() Range {
-	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPassword"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
+func (u_ URLComponents) Port() Number {
+	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
 	return rv
 }
 
 
-// SetRangeOfPassword sets the value of the rangeOfPassword property.
-// Returns the character range of the password in the string returned by the string property.
+// SetPort sets the value of the port property.
+// The port number URL component, or nil if not present.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
-func (u_ URLComponents) SetRangeOfPassword(value Range) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPassword:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
+func (u_ URLComponents) SetPort(value Number) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
 
-// Returns the character range of the query in the string returned by the string property.
+// The query URL component as a string, or nil if not present.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
-func (u_ URLComponents) RangeOfQuery() Range {
-	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfQuery"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
+func (u_ URLComponents) Query() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("query"))
 	return rv
 }
 
 
-// SetRangeOfQuery sets the value of the rangeOfQuery property.
-// Returns the character range of the query in the string returned by the string property.
+// SetQuery sets the value of the query property.
+// The query URL component as a string, or nil if not present.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
-func (u_ URLComponents) SetRangeOfQuery(value Range) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfQuery:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
+func (u_ URLComponents) SetQuery(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setQuery:"), objc.String(value))
 }
 
-// The host URL subcomponent, or nil if not present.
+// Returns the character range of the scheme in the string returned by the string property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
-func (u_ URLComponents) Host() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("host"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
+func (u_ URLComponents) RangeOfScheme() Range {
+	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfScheme"))
 	return rv
 }
 
 
-// SetHost sets the value of the host property.
-// The host URL subcomponent, or nil if not present.
+// SetRangeOfScheme sets the value of the rangeOfScheme property.
+// Returns the character range of the scheme in the string returned by the string property.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
-func (u_ URLComponents) SetHost(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
+func (u_ URLComponents) SetRangeOfScheme(value Range) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfScheme:"), value)
 }
 
 // The scheme URL component, or nil if not present.
@@ -453,6 +384,24 @@ func (u_ URLComponents) SetScheme(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setScheme:"), objc.String(value))
 }
 
+// The query URL component as an array of name/value pairs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
+func (u_ URLComponents) QueryItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queryItems"))
+	return rv
+}
+
+
+// SetQueryItems sets the value of the queryItems property.
+// The query URL component as an array of name/value pairs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
+func (u_ URLComponents) SetQueryItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
+}
+
 // Returns the character range of the user in the string returned by the string property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofuser
@@ -471,40 +420,22 @@ func (u_ URLComponents) SetRangeOfUser(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfUser:"), value)
 }
 
-// Returns the character range of the fragment in the string returned by the string property.
+// Returns the character range of the query in the string returned by the string property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
-func (u_ URLComponents) RangeOfFragment() Range {
-	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfFragment"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
+func (u_ URLComponents) RangeOfQuery() Range {
+	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfQuery"))
 	return rv
 }
 
 
-// SetRangeOfFragment sets the value of the rangeOfFragment property.
-// Returns the character range of the fragment in the string returned by the string property.
+// SetRangeOfQuery sets the value of the rangeOfQuery property.
+// Returns the character range of the query in the string returned by the string property.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
-func (u_ URLComponents) SetRangeOfFragment(value Range) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfFragment:"), value)
-}
-
-// The path URL component, or nil if not present.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
-func (u_ URLComponents) Path() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("path"))
-	return rv
-}
-
-
-// SetPath sets the value of the path property.
-// The path URL component, or nil if not present.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
-func (u_ URLComponents) SetPath(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPath:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
+func (u_ URLComponents) SetRangeOfQuery(value Range) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfQuery:"), value)
 }
 
 // The query URL component expressed as a URL-encoded string, or
@@ -525,6 +456,42 @@ func (u_ URLComponents) SetPercentEncodedQuery(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQuery:"), objc.String(value))
 }
 
+// The path URL component expressed as a URL-encoded string, or
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
+func (u_ URLComponents) PercentEncodedPath() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPath"))
+	return rv
+}
+
+
+// SetPercentEncodedPath sets the value of the percentEncodedPath property.
+// The path URL component expressed as a URL-encoded string, or
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
+func (u_ URLComponents) SetPercentEncodedPath(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPath:"), objc.String(value))
+}
+
+// The path URL component, or nil if not present.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
+func (u_ URLComponents) Path() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("path"))
+	return rv
+}
+
+
+// SetPath sets the value of the path property.
+// The path URL component, or nil if not present.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
+func (u_ URLComponents) SetPath(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPath:"), objc.String(value))
+}
+
 // The username URL subcomponent, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/user
@@ -543,40 +510,73 @@ func (u_ URLComponents) SetUser(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), objc.String(value))
 }
 
-// Returns the character range of the port in the string returned by the string property.
+// Returns the character range of the password in the string returned by the string property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
-func (u_ URLComponents) RangeOfPort() Range {
-	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPort"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
+func (u_ URLComponents) RangeOfPassword() Range {
+	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPassword"))
 	return rv
 }
 
 
-// SetRangeOfPort sets the value of the rangeOfPort property.
-// Returns the character range of the port in the string returned by the string property.
+// SetRangeOfPassword sets the value of the rangeOfPassword property.
+// Returns the character range of the password in the string returned by the string property.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
-func (u_ URLComponents) SetRangeOfPort(value Range) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPort:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
+func (u_ URLComponents) SetRangeOfPassword(value Range) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPassword:"), value)
 }
 
-// The password URL subcomponent expressed as a URL-encoded string, or
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
-func (u_ URLComponents) PercentEncodedPassword() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPassword"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
+func (u_ URLComponents) PercentEncodedQueryItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("percentEncodedQueryItems"))
 	return rv
 }
 
 
-// SetPercentEncodedPassword sets the value of the percentEncodedPassword property.
-// The password URL subcomponent expressed as a URL-encoded string, or
+// SetPercentEncodedQueryItems sets the value of the percentEncodedQueryItems property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
+func (u_ URLComponents) SetPercentEncodedQueryItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQueryItems:"), value)
+}
+
+// Returns the character range of the fragment in the string returned by the string property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
+func (u_ URLComponents) RangeOfFragment() Range {
+	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfFragment"))
+	return rv
+}
+
+
+// SetRangeOfFragment sets the value of the rangeOfFragment property.
+// Returns the character range of the fragment in the string returned by the string property.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
-func (u_ URLComponents) SetPercentEncodedPassword(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPassword:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
+func (u_ URLComponents) SetRangeOfFragment(value Range) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfFragment:"), value)
+}
+
+// The host subcomponent, percent-encoded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
+func (u_ URLComponents) EncodedHost() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("encodedHost"))
+	return rv
+}
+
+
+// SetEncodedHost sets the value of the encodedHost property.
+// The host subcomponent, percent-encoded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
+func (u_ URLComponents) SetEncodedHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEncodedHost:"), objc.String(value))
 }
 
 // The host URL subcomponent expressed as a URL-encoded string, or if not present.

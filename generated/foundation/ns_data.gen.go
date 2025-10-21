@@ -475,24 +475,6 @@ func (d_ Data) SetNSCompressionFailedError(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionFailedError:"), value)
 }
 
-// The start of the range of error codes reserved for compression errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (d_ Data) NSCompressionErrorMinimum() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMinimum"))
-	return rv
-}
-
-
-// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
-// The start of the range of error codes reserved for compression errors.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (d_ Data) SetNSCompressionErrorMinimum(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
-}
-
 // An error code value that indicates a failure to decompress data using the provided algorithm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
@@ -509,6 +491,24 @@ func (d_ Data) NSDecompressionFailedError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
 func (d_ Data) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
+}
+
+// The start of the range of error codes reserved for compression errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (d_ Data) NSCompressionErrorMinimum() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMinimum"))
+	return rv
+}
+
+
+// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
+// The start of the range of error codes reserved for compression errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (d_ Data) SetNSCompressionErrorMinimum(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
 
 // The end of the range of error codes reserved for compression errors.

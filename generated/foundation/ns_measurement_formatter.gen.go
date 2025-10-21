@@ -81,24 +81,6 @@ func NewMeasurementFormatter() MeasurementFormatter {
 }
 
 
-// The unit style.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
-func (m_ MeasurementFormatter) UnitStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
-	return rv
-}
-
-
-// SetUnitStyle sets the value of the unitStyle property.
-// The unit style.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
-func (m_ MeasurementFormatter) SetUnitStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
-}
-
 // The locale of the formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
@@ -115,6 +97,24 @@ func (m_ MeasurementFormatter) Locale() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
 func (m_ MeasurementFormatter) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
+}
+
+// The options for how the unit is formatted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
+func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitOptions"))
+	return rv
+}
+
+
+// SetUnitOptions sets the value of the unitOptions property.
+// The options for how the unit is formatted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
+func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
 }
 
 // The number formatter used to format the quantity of a measurement.
@@ -135,22 +135,22 @@ func (m_ MeasurementFormatter) SetNumberFormatter(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 
-// The options for how the unit is formatted.
+// The unit style.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
-func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitOptions"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
+func (m_ MeasurementFormatter) UnitStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
 	return rv
 }
 
 
-// SetUnitOptions sets the value of the unitOptions property.
-// The options for how the unit is formatted.
+// SetUnitStyle sets the value of the unitStyle property.
+// The unit style.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
-func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
+func (m_ MeasurementFormatter) SetUnitStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }
 
 

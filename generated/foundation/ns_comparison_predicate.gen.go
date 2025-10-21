@@ -81,22 +81,22 @@ func NewComparisonPredicate() ComparisonPredicate {
 }
 
 
-// The predicate type for the receiver.
+// The left expression for the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
-func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateOperatorType"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
+func (c_ ComparisonPredicate) LeftExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leftExpression"))
 	return rv
 }
 
 
-// SetPredicateOperatorType sets the value of the predicateOperatorType property.
-// The predicate type for the receiver.
+// SetLeftExpression sets the value of the leftExpression property.
+// The left expression for the receiver.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
-func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateOperatorType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
+func (c_ ComparisonPredicate) SetLeftExpression(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
 }
 
 // The selector for the receiver.
@@ -117,6 +117,24 @@ func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomSelector:"), value)
 }
 
+// The options to use for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
+func (c_ ComparisonPredicate) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// The options to use for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
+func (c_ ComparisonPredicate) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
+}
+
 // The comparison predicate modifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
@@ -135,40 +153,22 @@ func (c_ ComparisonPredicate) SetComparisonPredicateModifier(value unsafe.Pointe
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonPredicateModifier:"), value)
 }
 
-// The left expression for the receiver.
+// The predicate type for the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) LeftExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leftExpression"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
+func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateOperatorType"))
 	return rv
 }
 
 
-// SetLeftExpression sets the value of the leftExpression property.
-// The left expression for the receiver.
+// SetPredicateOperatorType sets the value of the predicateOperatorType property.
+// The predicate type for the receiver.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) SetLeftExpression(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
-}
-
-// The options to use for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
-func (c_ ComparisonPredicate) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
-	return rv
-}
-
-
-// SetOptions sets the value of the options property.
-// The options to use for the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
-func (c_ ComparisonPredicate) SetOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
+func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateOperatorType:"), value)
 }
 
 // The right expression for the receiver.

@@ -80,22 +80,22 @@ func NewURLProtectionSpace() URLProtectionSpace {
 }
 
 
-// The receiver’s host.
+// The receiver’s port.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-func (u_ URLProtectionSpace) Host() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("host"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
+func (u_ URLProtectionSpace) Port() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("port"))
 	return rv
 }
 
 
-// SetHost sets the value of the host property.
-// The receiver’s host.
+// SetPort sets the value of the port property.
+// The receiver’s port.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-func (u_ URLProtectionSpace) SetHost(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
+func (u_ URLProtectionSpace) SetPort(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
 
 // The receiver’s authentication realm
@@ -116,6 +116,24 @@ func (u_ URLProtectionSpace) SetRealm(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRealm:"), objc.String(value))
 }
 
+// The receiver’s host.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
+func (u_ URLProtectionSpace) Host() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("host"))
+	return rv
+}
+
+
+// SetHost sets the value of the host property.
+// The receiver’s host.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
+func (u_ URLProtectionSpace) SetHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
+}
+
 // A Boolean value that indicates whether the credentials for the protection space can be sent securely.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
@@ -132,24 +150,6 @@ func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
 func (u_ URLProtectionSpace) SetReceivesCredentialSecurely(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReceivesCredentialSecurely:"), value)
-}
-
-// The receiver’s protocol.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) `protocol`() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("`protocol`"))
-	return rv
-}
-
-
-// Set`protocol` sets the value of the `protocol` property.
-// The receiver’s protocol.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) Set`protocol`(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("set`protocol`:"), objc.String(value))
 }
 
 // A representation of the server’s SSL transaction state.
@@ -170,22 +170,22 @@ func (u_ URLProtectionSpace) SetServerTrust(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setServerTrust:"), value)
 }
 
-// The receiver’s port.
+// The receiver’s protocol.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
-func (u_ URLProtectionSpace) Port() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("port"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
+func (u_ URLProtectionSpace) `protocol`() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("`protocol`"))
 	return rv
 }
 
 
-// SetPort sets the value of the port property.
-// The receiver’s port.
+// Set`protocol` sets the value of the `protocol` property.
+// The receiver’s protocol.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
-func (u_ URLProtectionSpace) SetPort(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
+func (u_ URLProtectionSpace) Set`protocol`(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("set`protocol`:"), objc.String(value))
 }
 
 // The authentication method used by the receiver.

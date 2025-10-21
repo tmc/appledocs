@@ -105,24 +105,6 @@ func (p_ PersonNameComponentsFormatter) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocale:"), value)
 }
 
-// A Boolean value that specifies whether the receiver should use only the phonetic representations of name components.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
-func (p_ PersonNameComponentsFormatter) IsPhonetic() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isPhonetic"))
-	return rv
-}
-
-
-// SetIsPhonetic sets the value of the isPhonetic property.
-// A Boolean value that specifies whether the receiver should use only the phonetic representations of name components.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
-func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPhonetic:"), value)
-}
-
 // The formatting style of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.property
@@ -139,6 +121,24 @@ func (p_ PersonNameComponentsFormatter) Style() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.property
 func (p_ PersonNameComponentsFormatter) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
+}
+
+// A Boolean value that specifies whether the receiver should use only the phonetic representations of name components.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
+func (p_ PersonNameComponentsFormatter) IsPhonetic() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isPhonetic"))
+	return rv
+}
+
+
+// SetIsPhonetic sets the value of the isPhonetic property.
+// A Boolean value that specifies whether the receiver should use only the phonetic representations of name components.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
+func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPhonetic:"), value)
 }
 
 

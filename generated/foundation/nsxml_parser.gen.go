@@ -114,6 +114,24 @@ func (x_ XMLParser) Parse() bool {
 	return rv
 }
 
+// A delegate object that receives messages about the parsing process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
+func (x_ XMLParser) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate object that receives messages about the parsing process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
+func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
 func (x_ XMLParser) ExternalEntityResolvingPolicy() unsafe.Pointer {
@@ -127,6 +145,24 @@ func (x_ XMLParser) ExternalEntityResolvingPolicy() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
 func (x_ XMLParser) SetExternalEntityResolvingPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExternalEntityResolvingPolicy:"), value)
+}
+
+// The system identifier of the external entity referenced in the XML document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
+func (x_ XMLParser) SystemID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
+	return rv
+}
+
+
+// SetSystemID sets the value of the systemID property.
+// The system identifier of the external entity referenced in the XML document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
+func (x_ XMLParser) SetSystemID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 
 // A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
@@ -165,24 +201,6 @@ func (x_ XMLParser) SetColumnNumber(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setColumnNumber:"), value)
 }
 
-// A delegate object that receives messages about the parsing process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
-func (x_ XMLParser) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// A delegate object that receives messages about the parsing process.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
-func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
-}
-
 // A Boolean value that determines whether the parser reports declarations of external entities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
@@ -199,24 +217,6 @@ func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
 func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldResolveExternalEntities:"), value)
-}
-
-// The system identifier of the external entity referenced in the XML document.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SystemID() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
-	return rv
-}
-
-
-// SetSystemID sets the value of the systemID property.
-// The system identifier of the external entity referenced in the XML document.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SetSystemID(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 
 //

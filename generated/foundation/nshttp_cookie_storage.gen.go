@@ -87,24 +87,6 @@ func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("sharedHTTPCookieStorage"))
 	return rv
 }
-// A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-func (h_ HTTPCookieStorage) IsSessionOnly() bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
-	return rv
-}
-
-
-// SetIsSessionOnly sets the value of the isSessionOnly property.
-// A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-func (h_ HTTPCookieStorage) SetIsSessionOnly(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
-}
-
 // The cookie storage’s cookies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies
@@ -139,6 +121,24 @@ func (h_ HTTPCookieStorage) CookieAcceptPolicy() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookieacceptpolicy
 func (h_ HTTPCookieStorage) SetCookieAcceptPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCookieAcceptPolicy:"), value)
+}
+
+// A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
+func (h_ HTTPCookieStorage) IsSessionOnly() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
+	return rv
+}
+
+
+// SetIsSessionOnly sets the value of the isSessionOnly property.
+// A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
+func (h_ HTTPCookieStorage) SetIsSessionOnly(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
 }
 
 // The shared cookie storage instance.

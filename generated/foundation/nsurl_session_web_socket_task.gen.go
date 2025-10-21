@@ -113,24 +113,6 @@ func (u_ URLSessionWebSocketTask) SendPingWithPongReceiveHandler(pongReceiveHand
 	objc.Send[objc.ID](u_.ID, objc.Sel("sendPingWithPongReceiveHandler:"), pongReceiveHandler)
 }
 
-// The cookie store for storing cookies within this session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-func (u_ URLSessionWebSocketTask) HttpCookieStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpCookieStorage"))
-	return rv
-}
-
-
-// SetHttpCookieStorage sets the value of the httpCookieStorage property.
-// The cookie store for storing cookies within this session.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-func (u_ URLSessionWebSocketTask) SetHttpCookieStorage(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpCookieStorage:"), value)
-}
-
 // The delegate assigned when this object was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
@@ -147,6 +129,24 @@ func (u_ URLSessionWebSocketTask) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
 func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The cookie store for storing cookies within this session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
+func (u_ URLSessionWebSocketTask) HttpCookieStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpCookieStorage"))
+	return rv
+}
+
+
+// SetHttpCookieStorage sets the value of the httpCookieStorage property.
+// The cookie store for storing cookies within this session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
+func (u_ URLSessionWebSocketTask) SetHttpCookieStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpCookieStorage:"), value)
 }
 
 // A code that indicates the reason a connection closed.

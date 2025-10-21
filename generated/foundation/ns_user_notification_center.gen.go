@@ -88,22 +88,40 @@ func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification unsafe
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
 }
 
-// Specifies an array of scheduled user notifications that have not yet been delivered.
+// An array of all user notifications delivered to the notification center.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
-func (u_ UserNotificationCenter) ScheduledNotifications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scheduledNotifications"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
+func (u_ UserNotificationCenter) DeliveredNotifications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveredNotifications"))
 	return rv
 }
 
 
-// SetScheduledNotifications sets the value of the scheduledNotifications property.
-// Specifies an array of scheduled user notifications that have not yet been delivered.
+// SetDeliveredNotifications sets the value of the deliveredNotifications property.
+// An array of all user notifications delivered to the notification center.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
-func (u_ UserNotificationCenter) SetScheduledNotifications(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
+func (u_ UserNotificationCenter) SetDeliveredNotifications(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveredNotifications:"), value)
+}
+
+// Specifies when the notification should be delivered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
+func (u_ UserNotificationCenter) DeliveryDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryDate"))
+	return rv
+}
+
+
+// SetDeliveryDate sets the value of the deliveryDate property.
+// Specifies when the notification should be delivered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
+func (u_ UserNotificationCenter) SetDeliveryDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
 }
 
 // Specifies whether the user notification has been presented.
@@ -124,24 +142,6 @@ func (u_ UserNotificationCenter) SetIsPresented(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
 }
 
-// An array of all user notifications delivered to the notification center.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
-func (u_ UserNotificationCenter) DeliveredNotifications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveredNotifications"))
-	return rv
-}
-
-
-// SetDeliveredNotifications sets the value of the deliveredNotifications property.
-// An array of all user notifications delivered to the notification center.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
-func (u_ UserNotificationCenter) SetDeliveredNotifications(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveredNotifications:"), value)
-}
-
 // The date this notification was actually delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
@@ -160,22 +160,22 @@ func (u_ UserNotificationCenter) SetActualDeliveryDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActualDeliveryDate:"), value)
 }
 
-// Specifies when the notification should be delivered.
+// Specifies an array of scheduled user notifications that have not yet been delivered.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-func (u_ UserNotificationCenter) DeliveryDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryDate"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
+func (u_ UserNotificationCenter) ScheduledNotifications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scheduledNotifications"))
 	return rv
 }
 
 
-// SetDeliveryDate sets the value of the deliveryDate property.
-// Specifies when the notification should be delivered.
+// SetScheduledNotifications sets the value of the scheduledNotifications property.
+// Specifies an array of scheduled user notifications that have not yet been delivered.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-func (u_ UserNotificationCenter) SetDeliveryDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
+func (u_ UserNotificationCenter) SetScheduledNotifications(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), value)
 }
 
 // Specifies the notification center delegate.

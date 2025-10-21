@@ -88,6 +88,24 @@ func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g ui
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
 
+// The cache’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
+func (c_ Cache) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The cache’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
+func (c_ Cache) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
 // The name of the cache.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
@@ -140,24 +158,6 @@ func (c_ Cache) TotalCostLimit() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/totalcostlimit
 func (c_ Cache) SetTotalCostLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalCostLimit:"), value)
-}
-
-// The cache’s delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
-func (c_ Cache) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The cache’s delegate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
-func (c_ Cache) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 // Whether the cache will automatically evict discardable-content objects whose content has been discarded.

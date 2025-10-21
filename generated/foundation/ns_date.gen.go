@@ -101,57 +101,6 @@ func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
 	rv := objc.Send[TimeInterval](objc.ID(dc.class), objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
-// A custom playground Quick Look for this object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
-func (d_ Date) CustomPlaygroundQuickLook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("customPlaygroundQuickLook"))
-	return rv
-}
-
-
-// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
-// A custom playground Quick Look for this object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
-func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
-func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("srAbsoluteTime"))
-	return rv
-}
-
-
-// SetSrAbsoluteTime sets the value of the srAbsoluteTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
-func (d_ Date) SetSrAbsoluteTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setSrAbsoluteTime:"), value)
-}
-
-// The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-func (d_ Date) NSTimeIntervalSince1970() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
-	return rv
-}
-
-
-// SetNSTimeIntervalSince1970 sets the value of the NSTimeIntervalSince1970 property.
-// The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-func (d_ Date) SetNSTimeIntervalSince1970(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
-}
-
 // The interval between the date object and 00:00:00 UTC on 1 January 1970.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
@@ -188,6 +137,39 @@ func (d_ Date) SetTimeIntervalSinceNow(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceNow:"), value)
 }
 
+// A custom playground Quick Look for this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
+func (d_ Date) CustomPlaygroundQuickLook() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("customPlaygroundQuickLook"))
+	return rv
+}
+
+
+// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
+// A custom playground Quick Look for this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
+func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
+func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("srAbsoluteTime"))
+	return rv
+}
+
+
+// SetSrAbsoluteTime sets the value of the srAbsoluteTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
+func (d_ Date) SetSrAbsoluteTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSrAbsoluteTime:"), value)
+}
+
 // A string representation of the date object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
@@ -204,6 +186,24 @@ func (d_ Date) Description() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
 func (d_ Date) SetDescription(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
+}
+
+// The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
+func (d_ Date) NSTimeIntervalSince1970() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
+	return rv
+}
+
+
+// SetNSTimeIntervalSince1970 sets the value of the NSTimeIntervalSince1970 property.
+// The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
+func (d_ Date) SetNSTimeIntervalSince1970(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
 }
 
 // A date object representing a date in the distant future.

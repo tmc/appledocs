@@ -112,32 +112,6 @@ func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range) un
 	return rv
 }
 
-// A value indicating that a requested item couldn’t be found or doesn’t exist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (t_ TextCheckingResult) NSNotFound() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("NSNotFound"))
-	return rv
-}
-
-// The time zone component of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-func (t_ TextCheckingResult) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeZone"))
-	return rv
-}
-
-
-// SetTimeZone sets the value of the timeZone property.
-// The time zone component of a type checking result.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-func (t_ TextCheckingResult) SetTimeZone(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeZone:"), value)
-}
-
 // A dictionary containing the components of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
@@ -154,93 +128,6 @@ func (t_ TextCheckingResult) Components() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
 func (t_ TextCheckingResult) SetComponents(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setComponents:"), value)
-}
-
-// The address dictionary of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-func (t_ TextCheckingResult) AddressComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("addressComponents"))
-	return rv
-}
-
-
-// SetAddressComponents sets the value of the addressComponents property.
-// The address dictionary of a type checking result.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-func (t_ TextCheckingResult) SetAddressComponents(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAddressComponents:"), value)
-}
-
-// A replacement string from one of a number of replacement checking results.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-func (t_ TextCheckingResult) ReplacementString() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("replacementString"))
-	return rv
-}
-
-
-// SetReplacementString sets the value of the replacementString property.
-// A replacement string from one of a number of replacement checking results.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-func (t_ TextCheckingResult) SetReplacementString(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), objc.String(value))
-}
-
-// The URL of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-func (t_ TextCheckingResult) Url() URL {
-	rv := objc.Send[URL](t_.ID, objc.Sel("url"))
-	return rv
-}
-
-
-// SetUrl sets the value of the url property.
-// The URL of a type checking result.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-func (t_ TextCheckingResult) SetUrl(value URL) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setUrl:"), value)
-}
-
-// Returns the number of ranges.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
-func (t_ TextCheckingResult) NumberOfRanges() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("numberOfRanges"))
-	return rv
-}
-
-
-// SetNumberOfRanges sets the value of the numberOfRanges property.
-// Returns the number of ranges.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
-func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfRanges:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-func (t_ TextCheckingResult) AlternativeStrings() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
-	return rv
-}
-
-
-// SetAlternativeStrings sets the value of the alternativeStrings property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
 }
 
 // The details of a located grammatical type checking result.
@@ -261,6 +148,86 @@ func (t_ TextCheckingResult) SetGrammarDetails(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGrammarDetails:"), objc.String(value))
 }
 
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (t_ TextCheckingResult) NSNotFound() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("NSNotFound"))
+	return rv
+}
+
+// The address dictionary of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
+func (t_ TextCheckingResult) AddressComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("addressComponents"))
+	return rv
+}
+
+
+// SetAddressComponents sets the value of the addressComponents property.
+// The address dictionary of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
+func (t_ TextCheckingResult) SetAddressComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAddressComponents:"), value)
+}
+
+// The URL of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+func (t_ TextCheckingResult) Url() URL {
+	rv := objc.Send[URL](t_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+func (t_ TextCheckingResult) SetUrl(value URL) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUrl:"), value)
+}
+
+// A replacement string from one of a number of replacement checking results.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
+func (t_ TextCheckingResult) ReplacementString() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("replacementString"))
+	return rv
+}
+
+
+// SetReplacementString sets the value of the replacementString property.
+// A replacement string from one of a number of replacement checking results.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
+func (t_ TextCheckingResult) SetReplacementString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), objc.String(value))
+}
+
+// Returns the number of ranges.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
+func (t_ TextCheckingResult) NumberOfRanges() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("numberOfRanges"))
+	return rv
+}
+
+
+// SetNumberOfRanges sets the value of the numberOfRanges property.
+// Returns the number of ranges.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
+func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfRanges:"), value)
+}
+
 // The detected orthography of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/orthography
@@ -277,6 +244,39 @@ func (t_ TextCheckingResult) Orthography() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/orthography
 func (t_ TextCheckingResult) SetOrthography(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setOrthography:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
+func (t_ TextCheckingResult) AlternativeStrings() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
+	return rv
+}
+
+
+// SetAlternativeStrings sets the value of the alternativeStrings property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
+func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
+}
+
+// The time zone component of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
+func (t_ TextCheckingResult) TimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeZone"))
+	return rv
+}
+
+
+// SetTimeZone sets the value of the timeZone property.
+// The time zone component of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
+func (t_ TextCheckingResult) SetTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeZone:"), value)
 }
 
 // The date component of a type checking result.

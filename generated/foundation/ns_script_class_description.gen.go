@@ -90,6 +90,24 @@ func (s_ ScriptClassDescription) TypeForKey(key string) string {
 	return rv
 }
 
+// Returns the Apple event code associated with the receiver’s class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
+func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
+	return rv
+}
+
+
+// SetAppleEventCode sets the value of the appleEventCode property.
+// Returns the Apple event code associated with the receiver’s class.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
+func (s_ ScriptClassDescription) SetAppleEventCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
+}
+
 // Returns the name of the class the receiver describes, as provided at initialization time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
@@ -108,22 +126,22 @@ func (s_ ScriptClassDescription) SetClassName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), objc.String(value))
 }
 
-// Returns the Apple event code associated with the receiver’s class.
+// Returns the class description instance for the superclass of the receiver’s class.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
-func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
+func (s_ ScriptClassDescription) Superclass() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("superclass"))
 	return rv
 }
 
 
-// SetAppleEventCode sets the value of the appleEventCode property.
-// Returns the Apple event code associated with the receiver’s class.
+// SetSuperclass sets the value of the superclass property.
+// Returns the class description instance for the superclass of the receiver’s class.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
-func (s_ ScriptClassDescription) SetAppleEventCode(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
+func (s_ ScriptClassDescription) SetSuperclass(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }
 
 // Returns the name of the Objective-C class instantiated to implement the scripting class.
@@ -160,24 +178,6 @@ func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
 func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), objc.String(value))
-}
-
-// Returns the class description instance for the superclass of the receiver’s class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) Superclass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("superclass"))
-	return rv
-}
-
-
-// SetSuperclass sets the value of the superclass property.
-// Returns the class description instance for the superclass of the receiver’s class.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) SetSuperclass(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }
 
 // Returns the name of the receiver’s suite.

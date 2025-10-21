@@ -79,6 +79,24 @@ func NewMassFormatter() MassFormatter {
 }
 
 
+// The number formatter used to format the numbers in a mass strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
+func (m_ MassFormatter) NumberFormatter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
+	return rv
+}
+
+
+// SetNumberFormatter sets the value of the numberFormatter property.
+// The number formatter used to format the numbers in a mass strings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
+func (m_ MassFormatter) SetNumberFormatter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
+}
+
 // A Boolean value that indicates whether the resulting string represents a person’s mass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
@@ -113,24 +131,6 @@ func (m_ MassFormatter) UnitStyle() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
 func (m_ MassFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
-}
-
-// The number formatter used to format the numbers in a mass strings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-func (m_ MassFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
-	return rv
-}
-
-
-// SetNumberFormatter sets the value of the numberFormatter property.
-// The number formatter used to format the numbers in a mass strings.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-func (m_ MassFormatter) SetNumberFormatter(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 
 

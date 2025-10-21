@@ -94,24 +94,6 @@ func NewUnitConverterLinearWithCoefficient(coefficient unsafe.Pointer) UnitConve
 }
 
 
-// The constant to use in the linear unit conversion calculation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) Constant() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("constant"))
-	return rv
-}
-
-
-// SetConstant sets the value of the constant property.
-// The constant to use in the linear unit conversion calculation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) SetConstant(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setConstant:"), value)
-}
-
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
@@ -128,6 +110,24 @@ func (u_ UnitConverterLinear) Coefficient() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
 func (u_ UnitConverterLinear) SetCoefficient(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCoefficient:"), value)
+}
+
+// The constant to use in the linear unit conversion calculation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
+func (u_ UnitConverterLinear) Constant() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("constant"))
+	return rv
+}
+
+
+// SetConstant sets the value of the constant property.
+// The constant to use in the linear unit conversion calculation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
+func (u_ UnitConverterLinear) SetConstant(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setConstant:"), value)
 }
 
 

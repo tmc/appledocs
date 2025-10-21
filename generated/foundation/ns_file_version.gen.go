@@ -98,73 +98,19 @@ func (f_ FileVersion) SetIsConflict(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsConflict:"), value)
 }
 
-// The string containing the user-presentable name of the file version.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-func (f_ FileVersion) LocalizedName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
+func (f_ FileVersion) OriginatorNameComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("originatorNameComponents"))
 	return rv
 }
 
 
-// SetLocalizedName sets the value of the localizedName property.
-// The string containing the user-presentable name of the file version.
-
+// SetOriginatorNameComponents sets the value of the originatorNameComponents property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-func (f_ FileVersion) SetLocalizedName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
-func (f_ FileVersion) HasThumbnail() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
-	return rv
-}
-
-
-// SetHasThumbnail sets the value of the hasThumbnail property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
-func (f_ FileVersion) SetHasThumbnail(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setHasThumbnail:"), value)
-}
-
-// The user-presentable name of the computer on which the revision was saved.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
-	return rv
-}
-
-
-// SetLocalizedNameOfSavingComputer sets the value of the localizedNameOfSavingComputer property.
-// The user-presentable name of the computer on which the revision was saved.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), objc.String(value))
-}
-
-// A Boolean value that specifies whether the system can delete the associated file at some future time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-func (f_ FileVersion) IsDiscardable() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isDiscardable"))
-	return rv
-}
-
-
-// SetIsDiscardable sets the value of the isDiscardable property.
-// A Boolean value that specifies whether the system can delete the associated file at some future time.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-func (f_ FileVersion) SetIsDiscardable(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDiscardable:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
+func (f_ FileVersion) SetOriginatorNameComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
 }
 
 // The modification date of the version.
@@ -185,19 +131,22 @@ func (f_ FileVersion) SetModificationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setModificationDate:"), value)
 }
 
+// The user-presentable name of the computer on which the revision was saved.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-func (f_ FileVersion) OriginatorNameComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("originatorNameComponents"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
+func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
 	return rv
 }
 
 
-// SetOriginatorNameComponents sets the value of the originatorNameComponents property.
+// SetLocalizedNameOfSavingComputer sets the value of the localizedNameOfSavingComputer property.
+// The user-presentable name of the computer on which the revision was saved.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-func (f_ FileVersion) SetOriginatorNameComponents(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
+func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), objc.String(value))
 }
 
 // A Boolean value that indicates if the version object is in conflict or not.
@@ -216,6 +165,57 @@ func (f_ FileVersion) IsResolved() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
 func (f_ FileVersion) SetIsResolved(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsResolved:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
+func (f_ FileVersion) HasThumbnail() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
+	return rv
+}
+
+
+// SetHasThumbnail sets the value of the hasThumbnail property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
+func (f_ FileVersion) SetHasThumbnail(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setHasThumbnail:"), value)
+}
+
+// A Boolean value that specifies whether the system can delete the associated file at some future time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
+func (f_ FileVersion) IsDiscardable() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isDiscardable"))
+	return rv
+}
+
+
+// SetIsDiscardable sets the value of the isDiscardable property.
+// A Boolean value that specifies whether the system can delete the associated file at some future time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
+func (f_ FileVersion) SetIsDiscardable(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDiscardable:"), value)
+}
+
+// The string containing the user-presentable name of the file version.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
+func (f_ FileVersion) LocalizedName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+
+// SetLocalizedName sets the value of the localizedName property.
+// The string containing the user-presentable name of the file version.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
+func (f_ FileVersion) SetLocalizedName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 
 //

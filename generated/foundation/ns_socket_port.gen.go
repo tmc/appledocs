@@ -94,24 +94,6 @@ func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Poin
 }
 
 
-// The receiver’s socket type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/sockettype
-func (s_ SocketPort) SocketType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("socketType"))
-	return rv
-}
-
-
-// SetSocketType sets the value of the socketType property.
-// The receiver’s socket type.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/sockettype
-func (s_ SocketPort) SetSocketType(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSocketType:"), value)
-}
-
 // The protocol family that the receiver uses for communication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/protocolfamily
@@ -128,6 +110,24 @@ func (s_ SocketPort) ProtocolFamily() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/protocolfamily
 func (s_ SocketPort) SetProtocolFamily(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProtocolFamily:"), value)
+}
+
+// The receiver’s socket type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/sockettype
+func (s_ SocketPort) SocketType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("socketType"))
+	return rv
+}
+
+
+// SetSocketType sets the value of the socketType property.
+// The receiver’s socket type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/sockettype
+func (s_ SocketPort) SetSocketType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSocketType:"), value)
 }
 
 // The protocol that the receiver uses for communication.

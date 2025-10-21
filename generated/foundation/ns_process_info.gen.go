@@ -171,40 +171,55 @@ func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason string,
 	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), objc.String(reason), block)
 }
 
-// Returns the account name of the current user.
+// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
-func (p_ ProcessInfo) UserName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
+func (p_ ProcessInfo) IsMacCatalystApp() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isMacCatalystApp"))
 	return rv
 }
 
 
-// SetUserName sets the value of the userName property.
-// Returns the account name of the current user.
+// SetIsMacCatalystApp sets the value of the isMacCatalystApp property.
+// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
-func (p_ ProcessInfo) SetUserName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
+func (p_ ProcessInfo) SetIsMacCatalystApp(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMacCatalystApp:"), value)
 }
 
-// The name of the host computer on which the process is executing.
+// The number of processing cores available on the computer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/hostname
-func (p_ ProcessInfo) HostName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("hostName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/processorcount
+func (p_ ProcessInfo) ProcessorCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("processorCount"))
 	return rv
 }
 
 
-// SetHostName sets the value of the hostName property.
-// The name of the host computer on which the process is executing.
+// SetProcessorCount sets the value of the processorCount property.
+// The number of processing cores available on the computer.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/hostname
-func (p_ ProcessInfo) SetHostName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setHostName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/processorcount
+func (p_ ProcessInfo) SetProcessorCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessorCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
+func (p_ ProcessInfo) IsiOSAppOnVision() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isiOSAppOnVision"))
+	return rv
+}
+
+
+// SetIsiOSAppOnVision sets the value of the isiOSAppOnVision property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
+func (p_ ProcessInfo) SetIsiOSAppOnVision(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnVision:"), value)
 }
 
 // The current thermal state of the system.
@@ -243,24 +258,6 @@ func (p_ ProcessInfo) SetIsLowPowerModeEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsLowPowerModeEnabled:"), value)
 }
 
-// A Boolean value indicating whether the app supports automatic termination.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/automaticterminationsupportenabled
-func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("automaticTerminationSupportEnabled"))
-	return rv
-}
-
-
-// SetAutomaticTerminationSupportEnabled sets the value of the automaticTerminationSupportEnabled property.
-// A Boolean value indicating whether the app supports automatic termination.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/automaticterminationsupportenabled
-func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticTerminationSupportEnabled:"), value)
-}
-
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponmac
@@ -279,37 +276,22 @@ func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnMac:"), value)
 }
 
+// Returns the account name of the current user.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
-func (p_ ProcessInfo) IsiOSAppOnVision() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isiOSAppOnVision"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
+func (p_ ProcessInfo) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
 
-// SetIsiOSAppOnVision sets the value of the isiOSAppOnVision property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
-func (p_ ProcessInfo) SetIsiOSAppOnVision(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnVision:"), value)
-}
-
-// The number of processing cores available on the computer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/processorcount
-func (p_ ProcessInfo) ProcessorCount() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("processorCount"))
-	return rv
-}
-
-
-// SetProcessorCount sets the value of the processorCount property.
-// The number of processing cores available on the computer.
+// SetUserName sets the value of the userName property.
+// Returns the account name of the current user.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/processorcount
-func (p_ ProcessInfo) SetProcessorCount(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessorCount:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
+func (p_ ProcessInfo) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 // The version of the operating system on which the process is executing.
@@ -330,22 +312,40 @@ func (p_ ProcessInfo) SetOperatingSystemVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOperatingSystemVersion:"), value)
 }
 
-// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
+// A Boolean value indicating whether the app supports automatic termination.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
-func (p_ ProcessInfo) IsMacCatalystApp() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isMacCatalystApp"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/automaticterminationsupportenabled
+func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("automaticTerminationSupportEnabled"))
 	return rv
 }
 
 
-// SetIsMacCatalystApp sets the value of the isMacCatalystApp property.
-// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
+// SetAutomaticTerminationSupportEnabled sets the value of the automaticTerminationSupportEnabled property.
+// A Boolean value indicating whether the app supports automatic termination.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
-func (p_ ProcessInfo) SetIsMacCatalystApp(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMacCatalystApp:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/automaticterminationsupportenabled
+func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticTerminationSupportEnabled:"), value)
+}
+
+// The name of the host computer on which the process is executing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/hostname
+func (p_ ProcessInfo) HostName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("hostName"))
+	return rv
+}
+
+
+// SetHostName sets the value of the hostName property.
+// The name of the host computer on which the process is executing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/hostname
+func (p_ ProcessInfo) SetHostName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHostName:"), objc.String(value))
 }
 
 // The number of active processing cores available on the computer.

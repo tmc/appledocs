@@ -88,24 +88,6 @@ func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
-// The pointer functions the map table uses to manage values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-func (m_ MapTable) ValuePointerFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valuePointerFunctions"))
-	return rv
-}
-
-
-// SetValuePointerFunctions sets the value of the valuePointerFunctions property.
-// The pointer functions the map table uses to manage values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-func (m_ MapTable) SetValuePointerFunctions(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
-}
-
 // The number of key-value pairs in the map table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
@@ -140,6 +122,24 @@ func (m_ MapTable) KeyPointerFunctions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
 func (m_ MapTable) SetKeyPointerFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyPointerFunctions:"), value)
+}
+
+// The pointer functions the map table uses to manage values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+func (m_ MapTable) ValuePointerFunctions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valuePointerFunctions"))
+	return rv
+}
+
+
+// SetValuePointerFunctions sets the value of the valuePointerFunctions property.
+// The pointer functions the map table uses to manage values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+func (m_ MapTable) SetValuePointerFunctions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
 }
 
 

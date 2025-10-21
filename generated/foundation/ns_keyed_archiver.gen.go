@@ -107,22 +107,22 @@ func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 
-// The archiver’s delegate.
+// The format in which the receiver encodes its data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/delegate
-func (k_ KeyedArchiver) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
+func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("outputFormat"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
-// The archiver’s delegate.
+// SetOutputFormat sets the value of the outputFormat property.
+// The format in which the receiver encodes its data.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/delegate
-func (k_ KeyedArchiver) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
+func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
 }
 
 // The encoded data for the archiver.
@@ -143,22 +143,22 @@ func (k_ KeyedArchiver) SetEncodedData(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setEncodedData:"), value)
 }
 
-// The format in which the receiver encodes its data.
+// The archiver’s delegate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("outputFormat"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/delegate
+func (k_ KeyedArchiver) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetOutputFormat sets the value of the outputFormat property.
-// The format in which the receiver encodes its data.
+// SetDelegate sets the value of the delegate property.
+// The archiver’s delegate.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/delegate
+func (k_ KeyedArchiver) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

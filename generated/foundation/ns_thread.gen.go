@@ -203,22 +203,22 @@ func (t_ Thread) Start() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("start"))
 }
 
-// A Boolean value that indicates whether the receiver has finished execution.
+// The thread object’s dictionary.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
-func (t_ Thread) IsFinished() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isFinished"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+func (t_ Thread) ThreadDictionary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
 	return rv
 }
 
 
-// SetIsFinished sets the value of the isFinished property.
-// A Boolean value that indicates whether the receiver has finished execution.
+// SetThreadDictionary sets the value of the threadDictionary property.
+// The thread object’s dictionary.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
-func (t_ Thread) SetIsFinished(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }
 
 // A key with a corresponding value in the thread dictionary.
@@ -227,24 +227,6 @@ func (t_ Thread) SetIsFinished(value bool) {
 func (t_ Thread) NSAssertionHandlerKey() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
 	return rv
-}
-
-// A Boolean value that indicates whether the receiver is cancelled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
-func (t_ Thread) IsCancelled() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isCancelled"))
-	return rv
-}
-
-
-// SetIsCancelled sets the value of the isCancelled property.
-// A Boolean value that indicates whether the receiver is cancelled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
-func (t_ Thread) SetIsCancelled(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
 // A Boolean value that indicates whether the receiver is executing.
@@ -265,22 +247,40 @@ func (t_ Thread) SetIsExecuting(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExecuting:"), value)
 }
 
-// The thread object’s dictionary.
+// A Boolean value that indicates whether the receiver is cancelled.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) ThreadDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
+func (t_ Thread) IsCancelled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isCancelled"))
 	return rv
 }
 
 
-// SetThreadDictionary sets the value of the threadDictionary property.
-// The thread object’s dictionary.
+// SetIsCancelled sets the value of the isCancelled property.
+// A Boolean value that indicates whether the receiver is cancelled.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
+func (t_ Thread) SetIsCancelled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCancelled:"), value)
+}
+
+// A Boolean value that indicates whether the receiver has finished execution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
+func (t_ Thread) IsFinished() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isFinished"))
+	return rv
+}
+
+
+// SetIsFinished sets the value of the isFinished property.
+// A Boolean value that indicates whether the receiver has finished execution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
+func (t_ Thread) SetIsFinished(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
 }
 
 // Returns an array containing the call stack return addresses.

@@ -217,22 +217,22 @@ func (l_ Locale) ObjectForKey(key unsafe.Pointer) objc.ID {
 	return rv
 }
 
-// The variant code for the locale.
+// The exemplar character set for the locale.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/variantcode
-func (l_ Locale) VariantCode() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("variantCode"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/exemplarcharacterset
+func (l_ Locale) ExemplarCharacterSet() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("exemplarCharacterSet"))
 	return rv
 }
 
 
-// SetVariantCode sets the value of the variantCode property.
-// The variant code for the locale.
+// SetExemplarCharacterSet sets the value of the exemplarCharacterSet property.
+// The exemplar character set for the locale.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/variantcode
-func (l_ Locale) SetVariantCode(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setVariantCode:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/exemplarcharacterset
+func (l_ Locale) SetExemplarCharacterSet(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setExemplarCharacterSet:"), value)
 }
 
 // The locale for the receiver.
@@ -271,22 +271,40 @@ func (l_ Locale) SetLocaleIdentifier(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLocaleIdentifier:"), objc.String(value))
 }
 
-// The alternate begin quotation symbol for the locale.
+// The country or region code for the locale.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/alternatequotationbegindelimiter
-func (l_ Locale) AlternateQuotationBeginDelimiter() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("alternateQuotationBeginDelimiter"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/countrycode
+func (l_ Locale) CountryCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
 
-// SetAlternateQuotationBeginDelimiter sets the value of the alternateQuotationBeginDelimiter property.
-// The alternate begin quotation symbol for the locale.
+// SetCountryCode sets the value of the countryCode property.
+// The country or region code for the locale.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/alternatequotationbegindelimiter
-func (l_ Locale) SetAlternateQuotationBeginDelimiter(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setAlternateQuotationBeginDelimiter:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/countrycode
+func (l_ Locale) SetCountryCode(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+}
+
+// The variant code for the locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/variantcode
+func (l_ Locale) VariantCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("variantCode"))
+	return rv
+}
+
+
+// SetVariantCode sets the value of the variantCode property.
+// The variant code for the locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/variantcode
+func (l_ Locale) SetVariantCode(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setVariantCode:"), objc.String(value))
 }
 
 // The currency symbol for the locale.
@@ -307,40 +325,22 @@ func (l_ Locale) SetCurrencySymbol(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCurrencySymbol:"), objc.String(value))
 }
 
-// The country or region code for the locale.
+// The alternate begin quotation symbol for the locale.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/countrycode
-func (l_ Locale) CountryCode() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("countryCode"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/alternatequotationbegindelimiter
+func (l_ Locale) AlternateQuotationBeginDelimiter() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("alternateQuotationBeginDelimiter"))
 	return rv
 }
 
 
-// SetCountryCode sets the value of the countryCode property.
-// The country or region code for the locale.
+// SetAlternateQuotationBeginDelimiter sets the value of the alternateQuotationBeginDelimiter property.
+// The alternate begin quotation symbol for the locale.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/countrycode
-func (l_ Locale) SetCountryCode(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setCountryCode:"), objc.String(value))
-}
-
-// The exemplar character set for the locale.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/exemplarcharacterset
-func (l_ Locale) ExemplarCharacterSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("exemplarCharacterSet"))
-	return rv
-}
-
-
-// SetExemplarCharacterSet sets the value of the exemplarCharacterSet property.
-// The exemplar character set for the locale.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/exemplarcharacterset
-func (l_ Locale) SetExemplarCharacterSet(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setExemplarCharacterSet:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/alternatequotationbegindelimiter
+func (l_ Locale) SetAlternateQuotationBeginDelimiter(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setAlternateQuotationBeginDelimiter:"), objc.String(value))
 }
 
 // The alternate end quotation symbol for the locale.

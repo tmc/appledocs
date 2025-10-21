@@ -393,14 +393,6 @@ func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, 
 	return rv
 }
 
-// Currently unused.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes
-func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
-	return rv
-}
-
 // The file’s contents, as an asynchronous sequence of bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
@@ -435,6 +427,14 @@ func (f_ FileHandle) FileDescriptor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/filedescriptor
 func (f_ FileHandle) SetFileDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileDescriptor:"), value)
+}
+
+// Currently unused.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes
+func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
+	return rv
 }
 
 // The data currently available in the receiver.

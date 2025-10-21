@@ -93,6 +93,42 @@ func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundA
 }
 
 
+// A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
+func (b_ BackgroundActivityScheduler) ShouldDefer() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("shouldDefer"))
+	return rv
+}
+
+
+// SetShouldDefer sets the value of the shouldDefer property.
+// A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
+func (b_ BackgroundActivityScheduler) SetShouldDefer(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setShouldDefer:"), value)
+}
+
+// A value of type
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
+func (b_ BackgroundActivityScheduler) Tolerance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tolerance"))
+	return rv
+}
+
+
+// SetTolerance sets the value of the tolerance property.
+// A value of type
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
+func (b_ BackgroundActivityScheduler) SetTolerance(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)
+}
+
 // A Boolean value indicating whether the activity should be rescheduled after it completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
@@ -109,6 +145,24 @@ func (b_ BackgroundActivityScheduler) Repeats() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
 func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setRepeats:"), value)
+}
+
+// A value of type
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
+func (b_ BackgroundActivityScheduler) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// A value of type
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
+func (b_ BackgroundActivityScheduler) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
 // An integer providing a suggested interval between scheduling and invoking the activity.
@@ -145,60 +199,6 @@ func (b_ BackgroundActivityScheduler) Identifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
 func (b_ BackgroundActivityScheduler) SetIdentifier(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-// A value of type
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
-func (b_ BackgroundActivityScheduler) Tolerance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tolerance"))
-	return rv
-}
-
-
-// SetTolerance sets the value of the tolerance property.
-// A value of type
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
-func (b_ BackgroundActivityScheduler) SetTolerance(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)
-}
-
-// A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
-func (b_ BackgroundActivityScheduler) ShouldDefer() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("shouldDefer"))
-	return rv
-}
-
-
-// SetShouldDefer sets the value of the shouldDefer property.
-// A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
-func (b_ BackgroundActivityScheduler) SetShouldDefer(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setShouldDefer:"), value)
-}
-
-// A value of type
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
-func (b_ BackgroundActivityScheduler) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("qualityOfService"))
-	return rv
-}
-
-
-// SetQualityOfService sets the value of the qualityOfService property.
-// A value of type
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
-func (b_ BackgroundActivityScheduler) SetQualityOfService(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
 

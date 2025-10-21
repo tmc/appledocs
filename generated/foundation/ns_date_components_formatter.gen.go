@@ -90,40 +90,19 @@ func (d_ DateComponentsFormatter) StringForObjectValue(obj objc.ID) string {
 	return rv
 }
 
-// A Boolean value indicating whether to collapse the largest unit into smaller units when a certain threshold is met.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/collapseslargestunit
-func (d_ DateComponentsFormatter) CollapsesLargestUnit() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("collapsesLargestUnit"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
+func (d_ DateComponentsFormatter) FormattingContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
 
-// SetCollapsesLargestUnit sets the value of the collapsesLargestUnit property.
-// A Boolean value indicating whether to collapse the largest unit into smaller units when a certain threshold is met.
-
+// SetFormattingContext sets the value of the formattingContext property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/collapseslargestunit
-func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCollapsesLargestUnit:"), value)
-}
-
-// A Boolean value indicating whether output strings reflect the amount of time remaining.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includestimeremainingphrase
-func (d_ DateComponentsFormatter) IncludesTimeRemainingPhrase() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("includesTimeRemainingPhrase"))
-	return rv
-}
-
-
-// SetIncludesTimeRemainingPhrase sets the value of the includesTimeRemainingPhrase property.
-// A Boolean value indicating whether output strings reflect the amount of time remaining.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includestimeremainingphrase
-func (d_ DateComponentsFormatter) SetIncludesTimeRemainingPhrase(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesTimeRemainingPhrase:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
+func (d_ DateComponentsFormatter) SetFormattingContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
 // The bitmask of calendrical units such as day and month to include in the output string.
@@ -180,22 +159,40 @@ func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumUnitCount:"), value)
 }
 
-// A Boolean value indicating whether the resulting phrase reflects an inexact time value.
+// A Boolean value indicating whether to collapse the largest unit into smaller units when a certain threshold is met.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includesapproximationphrase
-func (d_ DateComponentsFormatter) IncludesApproximationPhrase() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("includesApproximationPhrase"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/collapseslargestunit
+func (d_ DateComponentsFormatter) CollapsesLargestUnit() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("collapsesLargestUnit"))
 	return rv
 }
 
 
-// SetIncludesApproximationPhrase sets the value of the includesApproximationPhrase property.
-// A Boolean value indicating whether the resulting phrase reflects an inexact time value.
+// SetCollapsesLargestUnit sets the value of the collapsesLargestUnit property.
+// A Boolean value indicating whether to collapse the largest unit into smaller units when a certain threshold is met.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includesapproximationphrase
-func (d_ DateComponentsFormatter) SetIncludesApproximationPhrase(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesApproximationPhrase:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/collapseslargestunit
+func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCollapsesLargestUnit:"), value)
+}
+
+// The formatting style for unit names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
+func (d_ DateComponentsFormatter) UnitsStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("unitsStyle"))
+	return rv
+}
+
+
+// SetUnitsStyle sets the value of the unitsStyle property.
+// The formatting style for unit names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
+func (d_ DateComponentsFormatter) SetUnitsStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUnitsStyle:"), value)
 }
 
 //
@@ -231,37 +228,40 @@ func (d_ DateComponentsFormatter) SetCalendar(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
+// A Boolean value indicating whether the resulting phrase reflects an inexact time value.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
-func (d_ DateComponentsFormatter) FormattingContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("formattingContext"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includesapproximationphrase
+func (d_ DateComponentsFormatter) IncludesApproximationPhrase() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("includesApproximationPhrase"))
 	return rv
 }
 
 
-// SetFormattingContext sets the value of the formattingContext property.
+// SetIncludesApproximationPhrase sets the value of the includesApproximationPhrase property.
+// A Boolean value indicating whether the resulting phrase reflects an inexact time value.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
-func (d_ DateComponentsFormatter) SetFormattingContext(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includesapproximationphrase
+func (d_ DateComponentsFormatter) SetIncludesApproximationPhrase(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesApproximationPhrase:"), value)
 }
 
-// The formatting style for unit names.
+// A Boolean value indicating whether output strings reflect the amount of time remaining.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
-func (d_ DateComponentsFormatter) UnitsStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("unitsStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includestimeremainingphrase
+func (d_ DateComponentsFormatter) IncludesTimeRemainingPhrase() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("includesTimeRemainingPhrase"))
 	return rv
 }
 
 
-// SetUnitsStyle sets the value of the unitsStyle property.
-// The formatting style for unit names.
+// SetIncludesTimeRemainingPhrase sets the value of the includesTimeRemainingPhrase property.
+// A Boolean value indicating whether output strings reflect the amount of time remaining.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
-func (d_ DateComponentsFormatter) SetUnitsStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setUnitsStyle:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includestimeremainingphrase
+func (d_ DateComponentsFormatter) SetIncludesTimeRemainingPhrase(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesTimeRemainingPhrase:"), value)
 }
 
 // The formatting style for units whose value is 0.

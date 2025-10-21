@@ -135,24 +135,6 @@ func (i_ IndexSet) SetLastIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLastIndex:"), value)
 }
 
-// The number of indexes in the index set.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
-func (i_ IndexSet) Count() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("count"))
-	return rv
-}
-
-
-// SetCount sets the value of the count property.
-// The number of indexes in the index set.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
-func (i_ IndexSet) SetCount(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCount:"), value)
-}
-
 // The first index in the index set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
@@ -169,6 +151,24 @@ func (i_ IndexSet) FirstIndex() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
 func (i_ IndexSet) SetFirstIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstIndex:"), value)
+}
+
+// The number of indexes in the index set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
+func (i_ IndexSet) Count() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// SetCount sets the value of the count property.
+// The number of indexes in the index set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
+func (i_ IndexSet) SetCount(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCount:"), value)
 }
 
 

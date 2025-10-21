@@ -81,6 +81,42 @@ func NewMutableData() MutableData {
 }
 
 
+// The start of the range of error codes reserved for compression errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (m_ MutableData) NSCompressionErrorMinimum() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
+	return rv
+}
+
+
+// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
+// The start of the range of error codes reserved for compression errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
+}
+
+// The number of bytes contained in the mutable data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
+func (m_ MutableData) Length() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("length"))
+	return rv
+}
+
+
+// SetLength sets the value of the length property.
+// The number of bytes contained in the mutable data object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
+func (m_ MutableData) SetLength(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
+}
+
 // The end of the range of error codes reserved for compression errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
@@ -99,22 +135,22 @@ func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
 
-// The start of the range of error codes reserved for compression errors.
+// An error code value that indicates a failure to decompress data using the provided algorithm.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) NSCompressionErrorMinimum() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
+func (m_ MutableData) NSDecompressionFailedError() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("NSDecompressionFailedError"))
 	return rv
 }
 
 
-// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
-// The start of the range of error codes reserved for compression errors.
+// SetNSDecompressionFailedError sets the value of the NSDecompressionFailedError property.
+// An error code value that indicates a failure to decompress data using the provided algorithm.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
+func (m_ MutableData) SetNSDecompressionFailedError(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
 
 // A pointer to the data contained by the mutable data object.
@@ -151,42 +187,6 @@ func (m_ MutableData) NSCompressionFailedError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
 func (m_ MutableData) SetNSCompressionFailedError(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionFailedError:"), value)
-}
-
-// An error code value that indicates a failure to decompress data using the provided algorithm.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) NSDecompressionFailedError() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("NSDecompressionFailedError"))
-	return rv
-}
-
-
-// SetNSDecompressionFailedError sets the value of the NSDecompressionFailedError property.
-// An error code value that indicates a failure to decompress data using the provided algorithm.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) SetNSDecompressionFailedError(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
-}
-
-// The number of bytes contained in the mutable data object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-func (m_ MutableData) Length() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("length"))
-	return rv
-}
-
-
-// SetLength sets the value of the length property.
-// The number of bytes contained in the mutable data object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-func (m_ MutableData) SetLength(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
 }
 
 

@@ -108,60 +108,6 @@ func (d_ DateIntervalFormatter) SetDateTemplate(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), objc.String(value))
 }
 
-// The locale to use when formatting date and time values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
-func (d_ DateIntervalFormatter) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("locale"))
-	return rv
-}
-
-
-// SetLocale sets the value of the locale property.
-// The locale to use when formatting date and time values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
-func (d_ DateIntervalFormatter) SetLocale(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
-}
-
-// The style to use when formatting hour, minute, and second information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle
-func (d_ DateIntervalFormatter) TimeStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeStyle"))
-	return rv
-}
-
-
-// SetTimeStyle sets the value of the timeStyle property.
-// The style to use when formatting hour, minute, and second information.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle
-func (d_ DateIntervalFormatter) SetTimeStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
-}
-
-// The style to use when formatting day, month, and year information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle
-func (d_ DateIntervalFormatter) DateStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateStyle"))
-	return rv
-}
-
-
-// SetDateStyle sets the value of the dateStyle property.
-// The style to use when formatting day, month, and year information.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle
-func (d_ DateIntervalFormatter) SetDateStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
-}
-
 // The time zone with which to specify time values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timezone
@@ -196,6 +142,60 @@ func (d_ DateIntervalFormatter) Calendar() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/calendar
 func (d_ DateIntervalFormatter) SetCalendar(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
+}
+
+// The style to use when formatting hour, minute, and second information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle
+func (d_ DateIntervalFormatter) TimeStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeStyle"))
+	return rv
+}
+
+
+// SetTimeStyle sets the value of the timeStyle property.
+// The style to use when formatting hour, minute, and second information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle
+func (d_ DateIntervalFormatter) SetTimeStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
+}
+
+// The locale to use when formatting date and time values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
+func (d_ DateIntervalFormatter) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+// The locale to use when formatting date and time values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
+func (d_ DateIntervalFormatter) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
+}
+
+// The style to use when formatting day, month, and year information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle
+func (d_ DateIntervalFormatter) DateStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateStyle"))
+	return rv
+}
+
+
+// SetDateStyle sets the value of the dateStyle property.
+// The style to use when formatting day, month, and year information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle
+func (d_ DateIntervalFormatter) SetDateStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
 }
 
 

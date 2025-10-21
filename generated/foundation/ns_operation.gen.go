@@ -200,24 +200,6 @@ func (o_ Operation) SetIsFinished(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsFinished:"), value)
 }
 
-// A Boolean value indicating whether the operation executes its task asynchronously.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
-func (o_ Operation) IsConcurrent() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isConcurrent"))
-	return rv
-}
-
-
-// SetIsConcurrent sets the value of the isConcurrent property.
-// A Boolean value indicating whether the operation executes its task asynchronously.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
-func (o_ Operation) SetIsConcurrent(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsConcurrent:"), value)
-}
-
 // A Boolean value indicating whether the operation is currently executing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
@@ -234,6 +216,24 @@ func (o_ Operation) IsExecuting() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
 func (o_ Operation) SetIsExecuting(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsExecuting:"), value)
+}
+
+// A Boolean value indicating whether the operation executes its task asynchronously.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
+func (o_ Operation) IsConcurrent() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isConcurrent"))
+	return rv
+}
+
+
+// SetIsConcurrent sets the value of the isConcurrent property.
+// A Boolean value indicating whether the operation executes its task asynchronously.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
+func (o_ Operation) SetIsConcurrent(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsConcurrent:"), value)
 }
 
 // An array of the operation objects that must finish executing before the current object can begin executing.

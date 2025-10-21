@@ -145,17 +145,17 @@ func (s_ Stream) SetPropertyForKey(property objc.ID, key unsafe.Pointer) bool {
 
 // The error domain used by
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-func (s_ Stream) NSStreamSocketSSLErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
+func (s_ Stream) NSStreamSOCKSErrorDomain() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
 }
 
 // The error domain used by
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (s_ Stream) NSStreamSOCKSErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
+func (s_ Stream) NSStreamSocketSSLErrorDomain() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
 
