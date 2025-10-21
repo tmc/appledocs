@@ -17,5 +17,3 @@ func ExampleNewThread() {
 }
 
 
-
-

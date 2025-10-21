@@ -28,5 +28,3 @@ func ExampleNewBundleWithPath() {
 }
 
 
-
-

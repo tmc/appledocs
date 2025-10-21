@@ -19,5 +19,3 @@ func ExampleNewUnitWithSymbol() {
 }
 
 
-
-

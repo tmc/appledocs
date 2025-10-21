@@ -27,5 +27,3 @@ func ExampleNewOutputStreamToMemory() {
 }
 
 
-
-

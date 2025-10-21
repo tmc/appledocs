@@ -44,5 +44,3 @@ func ExampleNewStringWithString() {
 }
 
 
-
-
