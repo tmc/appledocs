@@ -60,7 +60,7 @@
 package {{.PackageName}}
 
 //go:generate rm -f *.gen.go *.gen_test.go
-//go:generate go run ../../cmd/generate-framework-bindings -framework {{.Framework}}{{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output ..
+//go:generate go run ../../cmd/generate-framework-bindings -framework ^{{.Framework}}${{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output ..
 
 -- doc.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
@@ -1293,7 +1293,7 @@ package {{.PackageName}}
 //
 // [Full Topic]: {{convertDocURL $enum.DocURL}}
 {{end -}}
-type {{stripObjCPrefix $enum.Name}} {{if $enum.IsOptions}}uint{{else}}int{{end}}
+type {{stripObjCPrefix $enum.Name}} uint
 
 {{if gt (len $enum.Cases) 0 -}}
 const (
