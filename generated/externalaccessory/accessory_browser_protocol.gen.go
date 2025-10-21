@@ -18,4 +18,3 @@ var accessoryBrowserProtocol *objc.Protocol
 func init() {
 	accessoryBrowserProtocol = objc.GetProtocol("accessoryBrowser:")
 }
-

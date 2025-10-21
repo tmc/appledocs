@@ -12,5 +12,3 @@ var TwirlDistortionProtocol *objc.Protocol
 func init() {
 	TwirlDistortionProtocol = objc.GetProtocol("CITwirlDistortion")
 }
-
-

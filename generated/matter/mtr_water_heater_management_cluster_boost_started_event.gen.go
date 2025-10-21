@@ -92,3 +92,4 @@ func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) SetBoostInfo(value un
 }
 
 
+

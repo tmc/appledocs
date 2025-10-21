@@ -18,5 +18,3 @@ var downloadingErrorProtocol *objc.Protocol
 func init() {
 	downloadingErrorProtocol = objc.GetProtocol("downloadingError")
 }
-
-

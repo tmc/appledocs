@@ -19,5 +19,3 @@ var ParallelRenderCommandEncoderProtocol *objc.Protocol
 func init() {
 	ParallelRenderCommandEncoderProtocol = objc.GetProtocol("MTLParallelRenderCommandEncoder")
 }
-
-

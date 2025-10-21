@@ -12,5 +12,3 @@ var AffineTileProtocol *objc.Protocol
 func init() {
 	AffineTileProtocol = objc.GetProtocol("CIAffineTile")
 }
-
-

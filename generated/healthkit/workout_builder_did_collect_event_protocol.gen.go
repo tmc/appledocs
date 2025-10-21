@@ -18,5 +18,3 @@ var workoutBuilderDidCollectEventProtocol *objc.Protocol
 func init() {
 	workoutBuilderDidCollectEventProtocol = objc.GetProtocol("workoutBuilderDidCollectEvent:")
 }
-
-

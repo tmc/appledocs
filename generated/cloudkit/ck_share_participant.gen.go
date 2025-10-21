@@ -106,6 +106,7 @@ func (c_ CKShareParticipant) Permission() unsafe.Pointer {
 func (c_ CKShareParticipant) SetPermission(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPermission:"), value)
 }
+
 // The participant’s role for the share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/role-swift.property
@@ -123,6 +124,7 @@ func (c_ CKShareParticipant) Role() unsafe.Pointer {
 func (c_ CKShareParticipant) SetRole(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRole:"), value)
 }
+
 // The participant type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/type
@@ -140,6 +142,7 @@ func (c_ CKShareParticipant) Type() unsafe.Pointer {
 func (c_ CKShareParticipant) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
+
 // The identity of the participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/userIdentity

@@ -20,5 +20,3 @@ var visitDeleteContactEventProtocol *objc.Protocol
 func init() {
 	visitDeleteContactEventProtocol = objc.GetProtocol("visitDeleteContactEvent:")
 }
-
-

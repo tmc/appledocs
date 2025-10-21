@@ -15,5 +15,3 @@ var FSVolumeItemDeactivationProtocol *objc.Protocol
 func init() {
 	FSVolumeItemDeactivationProtocol = objc.GetProtocol("FSVolumeItemDeactivation")
 }
-
-

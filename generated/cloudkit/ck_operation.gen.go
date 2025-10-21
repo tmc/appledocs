@@ -99,6 +99,7 @@ func (c_ CKOperation) AllowsCellularAccess() bool {
 func (c_ CKOperation) SetAllowsCellularAccess(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
+
 // The operation’s configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/configuration-swift.property
@@ -116,6 +117,7 @@ func (c_ CKOperation) Configuration() unsafe.Pointer {
 func (c_ CKOperation) SetConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
+
 // The operation’s container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/container
@@ -133,6 +135,7 @@ func (c_ CKOperation) Container() unsafe.Pointer {
 func (c_ CKOperation) SetContainer(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
+
 // The operation’s group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/group
@@ -150,6 +153,7 @@ func (c_ CKOperation) Group() unsafe.Pointer {
 func (c_ CKOperation) SetGroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
 }
+
 // A Boolean value that indicates whether the operation is long-lived.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/isLongLived
@@ -167,6 +171,7 @@ func (c_ CKOperation) LongLived() bool {
 func (c_ CKOperation) SetLongLived(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLived:"), value)
 }
+
 // A unique identifier for a long-lived operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/operationID-3eujz
@@ -192,6 +197,7 @@ func (c_ CKOperation) TimeoutIntervalForRequest() TimeInterval {
 func (c_ CKOperation) SetTimeoutIntervalForRequest(value TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
+
 // The maximum amount of time that a resource request can use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
@@ -209,4 +215,5 @@ func (c_ CKOperation) TimeoutIntervalForResource() TimeInterval {
 func (c_ CKOperation) SetTimeoutIntervalForResource(value TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
+
 

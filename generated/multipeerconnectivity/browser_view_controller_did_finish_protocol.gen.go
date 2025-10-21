@@ -20,5 +20,3 @@ var browserViewControllerDidFinishProtocol *objc.Protocol
 func init() {
 	browserViewControllerDidFinishProtocol = objc.GetProtocol("browserViewControllerDidFinish:")
 }
-
-

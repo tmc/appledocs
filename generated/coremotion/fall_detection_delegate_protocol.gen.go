@@ -15,5 +15,3 @@ var FallDetectionDelegateProtocol *objc.Protocol
 func init() {
 	FallDetectionDelegateProtocol = objc.GetProtocol("CMFallDetectionDelegate")
 }
-
-

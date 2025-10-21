@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZMultipleDirectoryShare
 
-
 // ExampleNewVZMultipleDirectoryShare demonstrates how to create a VZMultipleDirectoryShare instance.
 // Initializes the directory share with an empty set of directories.
 func ExampleNewVZMultipleDirectoryShare() {
 	_ = virtualization.NewVZMultipleDirectoryShare()
 	// Output:
 }
-
-
-

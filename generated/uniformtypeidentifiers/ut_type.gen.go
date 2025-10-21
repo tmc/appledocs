@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UTType] class.
@@ -82,45 +83,8 @@ func NewUTType() UTType {
 	return getUTTypeClass().New()
 }
 
-// Creates a type that represents the specified filename extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:)
-func NewUTTypeWithFilenameExtension(filenameExtension string) UTType {
-	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithFilenameExtension:"), objc.String(filenameExtension))
-	return rv
-}
 
-// Creates a type that represents the specified filename extension and conforms to an existing type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:conformingTo:)
-func NewUTTypeWithFilenameExtensionConformingToType(filenameExtension string, supertype unsafe.Pointer) UTType {
-	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithFilenameExtension:conformingToType:"), objc.String(filenameExtension), supertype)
-	return rv
-}
 
-// Creates a type your app uses, but doesn’t own, based on an identifier and a supertype that it conforms to.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(importedAs:conformingTo:)
-func NewUTTypeImportedTypeWithIdentifierConformingToType(identifier string, parentType unsafe.Pointer) UTType {
-	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("importedTypeWithIdentifier:conformingToType:"), objc.String(identifier), parentType)
-	return rv
-}
-
-// Creates a type based on a MIME type and a supertype that it conforms to.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:conformingTo:)
-func NewUTTypeWithMIMETypeConformingToType(mimeType string, supertype unsafe.Pointer) UTType {
-	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithMIMEType:conformingToType:"), objc.String(mimeType), supertype)
-	return rv
-}
-
-// Creates a type that represents the specified tag and tag class and which conforms to an existing type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(tag:tagClass:conformingToType:)
-func NewUTTypeWithTagTagClassConformingToType(tag string, tagClass string, supertype unsafe.Pointer) UTType {
-	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithTag:tagClass:conformingToType:"), objc.String(tag), objc.String(tagClass), supertype)
-	return rv
-}
 
 // Creates a type your app owns based on an identifier.
 //
@@ -130,6 +94,8 @@ func NewUTTypeExportedTypeWithIdentifier(identifier string) UTType {
 	return rv
 }
 
+
+
 // Creates a type your app owns based on an identifier and a supertype that it conforms to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(exportedAs:conformingTo:)
@@ -137,6 +103,8 @@ func NewUTTypeExportedTypeWithIdentifierConformingToType(identifier string, pare
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("exportedTypeWithIdentifier:conformingToType:"), objc.String(identifier), parentType)
 	return rv
 }
+
+
 
 // Creates a type your app uses, but doesn’t own, based on an identifier.
 //
@@ -146,13 +114,37 @@ func NewUTTypeImportedTypeWithIdentifier(identifier string) UTType {
 	return rv
 }
 
-// Creates a type based on a MIME type.
+
+
+// Creates a type your app uses, but doesn’t own, based on an identifier and a supertype that it conforms to.
 //
-// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:)
-func NewUTTypeWithMIMEType(mimeType string) UTType {
-	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithMIMEType:"), objc.String(mimeType))
+// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(importedAs:conformingTo:)
+func NewUTTypeImportedTypeWithIdentifierConformingToType(identifier string, parentType unsafe.Pointer) UTType {
+	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("importedTypeWithIdentifier:conformingToType:"), objc.String(identifier), parentType)
 	return rv
 }
+
+
+
+// Creates a type that represents the specified filename extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:)
+func NewUTTypeWithFilenameExtension(filenameExtension string) UTType {
+	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithFilenameExtension:"), objc.String(filenameExtension))
+	return rv
+}
+
+
+
+// Creates a type that represents the specified filename extension and conforms to an existing type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:conformingTo:)
+func NewUTTypeWithFilenameExtensionConformingToType(filenameExtension string, supertype unsafe.Pointer) UTType {
+	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithFilenameExtension:conformingToType:"), objc.String(filenameExtension), supertype)
+	return rv
+}
+
+
 
 // Creates a type based on an identifier.
 //
@@ -161,6 +153,37 @@ func NewUTTypeWithIdentifier(identifier string) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithIdentifier:"), objc.String(identifier))
 	return rv
 }
+
+
+
+// Creates a type based on a MIME type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:)
+func NewUTTypeWithMIMEType(mimeType string) UTType {
+	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithMIMEType:"), objc.String(mimeType))
+	return rv
+}
+
+
+
+// Creates a type based on a MIME type and a supertype that it conforms to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:conformingTo:)
+func NewUTTypeWithMIMETypeConformingToType(mimeType string, supertype unsafe.Pointer) UTType {
+	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithMIMEType:conformingToType:"), objc.String(mimeType), supertype)
+	return rv
+}
+
+
+
+// Creates a type that represents the specified tag and tag class and which conforms to an existing type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(tag:tagClass:conformingToType:)
+func NewUTTypeWithTagTagClassConformingToType(tag string, tagClass string, supertype unsafe.Pointer) UTType {
+	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithTag:tagClass:conformingToType:"), objc.String(tag), objc.String(tagClass), supertype)
+	return rv
+}
+
 
 // Creates a type based on an identifier.
 //
@@ -257,7 +280,6 @@ func (uc _UTTypeClass) SHCustomCatalogContentType() UTType {
 	rv := objc.Send[UTType](objc.ID(uc.class), objc.Sel("SHCustomCatalogContentType"))
 	return rv
 }
-
 // A type representing the @c SHSignature file format with the .shazamsignature extension
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTType-c.class/SHSignatureContentType
@@ -265,7 +287,6 @@ func (uc _UTTypeClass) SHSignatureContentType() UTType {
 	rv := objc.Send[UTType](objc.ID(uc.class), objc.Sel("SHSignatureContentType"))
 	return rv
 }
-
 // Returns a Boolean value that indicates whether a type conforms to the type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/conforms(to:)
@@ -393,3 +414,5 @@ func (u_ UTType) Version() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("version"))
 	return rv
 }
+
+

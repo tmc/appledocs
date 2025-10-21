@@ -20,5 +20,3 @@ var backgroundDownloadProtocol *objc.Protocol
 func init() {
 	backgroundDownloadProtocol = objc.GetProtocol("backgroundDownload:")
 }
-
-

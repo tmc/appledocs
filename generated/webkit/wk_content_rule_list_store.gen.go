@@ -82,6 +82,8 @@ func NewContentRuleListStore() ContentRuleListStore {
 }
 
 
+
+
 // Creates a new content rule list store in the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)

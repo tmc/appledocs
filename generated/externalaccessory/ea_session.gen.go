@@ -81,6 +81,8 @@ func NewEASession() EASession {
 }
 
 
+
+
 // Initializes the session for the specified accessory and protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)

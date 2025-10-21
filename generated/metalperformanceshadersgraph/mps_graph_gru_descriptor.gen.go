@@ -98,6 +98,7 @@ func (g_ GraphGRUDescriptor) Training() bool {
 func (g_ GraphGRUDescriptor) SetTraining(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)
 }
+
 // A parameter that defines the activation function to use with the update-gate of the GRU operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
@@ -115,5 +116,6 @@ func (g_ GraphGRUDescriptor) UpdateGateActivation() unsafe.Pointer {
 func (g_ GraphGRUDescriptor) SetUpdateGateActivation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUpdateGateActivation:"), value)
 }
+
 
 

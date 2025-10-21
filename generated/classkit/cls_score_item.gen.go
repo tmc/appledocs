@@ -81,6 +81,8 @@ func NewSScoreItem() SScoreItem {
 }
 
 
+
+
 // Initializes an activity item that holds a score value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/init(identifier:title:score:maxScore:)
@@ -109,6 +111,7 @@ func (s_ SScoreItem) MaxScore() unsafe.Pointer {
 func (s_ SScoreItem) SetMaxScore(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxScore:"), value)
 }
+
 // The score earned by a user in completing the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
@@ -126,4 +129,5 @@ func (s_ SScoreItem) Score() unsafe.Pointer {
 func (s_ SScoreItem) SetScore(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScore:"), value)
 }
+
 

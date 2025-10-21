@@ -76,6 +76,8 @@ func NewMTROvenModeClusterChangeToModeResponseParams() MTROvenModeClusterChangeT
 }
 
 
+
+
 // Initialize an MTROvenModeClusterChangeToModeResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTROvenModeClusterChangeToModeResponseParams) Status() unsafe.Pointer {
 func (m_ MTROvenModeClusterChangeToModeResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/statusText
 func (m_ MTROvenModeClusterChangeToModeResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTROvenModeClusterChangeToModeResponseParams) StatusText() string {
 func (m_ MTROvenModeClusterChangeToModeResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

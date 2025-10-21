@@ -15,5 +15,3 @@ var toolbarItemImageProtocol *objc.Protocol
 func init() {
 	toolbarItemImageProtocol = objc.GetProtocol("toolbarItemImage")
 }
-
-

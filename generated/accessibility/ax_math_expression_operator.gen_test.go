@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = accessibility.NewAXMathExpressionOperator
 
-
 // ExampleNewAXMathExpressionOperatorWithContent demonstrates how to create a AXMathExpressionOperator instance using NewAXMathExpressionOperatorWithContent.
 func ExampleNewAXMathExpressionOperatorWithContent() {
 	_ = accessibility.NewAXMathExpressionOperatorWithContent(
@@ -17,5 +16,3 @@ func ExampleNewAXMathExpressionOperatorWithContent() {
 	)
 	// Output:
 }
-
-

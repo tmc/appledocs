@@ -12,5 +12,3 @@ var MediaPickerControllerDelegateProtocol *objc.Protocol
 func init() {
 	MediaPickerControllerDelegateProtocol = objc.GetProtocol("MPMediaPickerControllerDelegate")
 }
-
-

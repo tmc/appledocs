@@ -77,3 +77,7 @@ func (s_ ScrubberItemView) Autorelease() ScrubberItemView {
 func NewScrubberItemView() ScrubberItemView {
 	return getScrubberItemViewClass().New()
 }
+
+
+
+

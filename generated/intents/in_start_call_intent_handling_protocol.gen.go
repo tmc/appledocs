@@ -20,5 +20,3 @@ var INStartCallIntentHandlingProtocol *objc.Protocol
 func init() {
 	INStartCallIntentHandlingProtocol = objc.GetProtocol("INStartCallIntentHandling")
 }
-
-

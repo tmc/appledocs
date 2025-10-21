@@ -85,6 +85,8 @@ func NewSTWebHistory() STWebHistory {
 }
 
 
+
+
 // Creates a web history instance to delete web-usage data associated to the bundle identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:)
@@ -95,6 +97,8 @@ func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error_ un
 	return rv
 }
 
+
+
 // Creates a web history instance to delete web-usage data associated to the bundle identifier and profile identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:profileIdentifier:)
@@ -104,6 +108,8 @@ func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier 
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a web history instance to delete web-usage data associated to the profile identifier you specify.
 //

@@ -12,5 +12,3 @@ var HatchedScreenProtocol *objc.Protocol
 func init() {
 	HatchedScreenProtocol = objc.GetProtocol("CIHatchedScreen")
 }
-
-

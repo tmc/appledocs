@@ -100,6 +100,8 @@ func NewPlayer() Player {
 }
 
 
+
+
 // Creates a new player to play the specified player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
@@ -109,6 +111,8 @@ func NewPlayerWithPlayerItem(item unsafe.Pointer) Player {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new player to play a single audiovisual resource referenced by a given URL.
 //
@@ -312,6 +316,7 @@ func (p_ Player) ActionAtItemEnd() unsafe.Pointer {
 func (p_ Player) SetActionAtItemEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionAtItemEnd:"), value)
 }
+
 // A Boolean value that indicates whether the player allows AirPlay video playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsAirPlayVideo
@@ -329,6 +334,7 @@ func (p_ Player) AllowsAirPlayVideo() bool {
 func (p_ Player) SetAllowsAirPlayVideo(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsAirPlayVideo:"), value)
 }
+
 // A Boolean value that indicates whether the player allows switching to external playback mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsExternalPlayback
@@ -346,6 +352,7 @@ func (p_ Player) AllowsExternalPlayback() bool {
 func (p_ Player) SetAllowsExternalPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsExternalPlayback:"), value)
 }
+
 // A Boolean value that indicates whether the receiver should apply the current selection criteria automatically to player items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/appliesMediaSelectionCriteriaAutomatically
@@ -363,6 +370,7 @@ func (p_ Player) AppliesMediaSelectionCriteriaAutomatically() bool {
 func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppliesMediaSelectionCriteriaAutomatically:"), value)
 }
+
 // Specifies the unique ID of the Core Audio output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
@@ -380,6 +388,7 @@ func (p_ Player) AudioOutputDeviceUniqueID() string {
 func (p_ Player) SetAudioOutputDeviceUniqueID(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
 }
+
 // Whether the player’s audio output is suppressed due to being on a non-mixable audio route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputSuppressedDueToNonMixableAudioRoute
@@ -405,6 +414,7 @@ func (p_ Player) AudiovisualBackgroundPlaybackPolicy() unsafe.Pointer {
 func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudiovisualBackgroundPlaybackPolicy:"), value)
 }
+
 // A Boolean value that indicates whether the player should automatically delay playback in order to minimize stalling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/automaticallyWaitsToMinimizeStalling
@@ -422,6 +432,7 @@ func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool {
 func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyWaitsToMinimizeStalling:"), value)
 }
+
 // The HDR modes that are available for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/availableHDRModes
@@ -455,6 +466,7 @@ func (p_ Player) DefaultRate() unsafe.Pointer {
 func (p_ Player) SetDefaultRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRate:"), value)
 }
+
 // A Boolean value that indicates whether the current device can present content to an HDR display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/eligibleForHDRPlayback
@@ -488,6 +500,7 @@ func (p_ Player) ExternalPlaybackVideoGravity() unsafe.Pointer {
 func (p_ Player) SetExternalPlaybackVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalPlaybackVideoGravity:"), value)
 }
+
 // The AVPlayer’s intended spatial audio experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/intendedSpatialAudioExperience-3uy8g
@@ -505,6 +518,7 @@ func (p_ Player) IntendedSpatialAudioExperience() unsafe.Pointer {
 func (p_ Player) SetIntendedSpatialAudioExperience(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntendedSpatialAudioExperience:"), value)
 }
+
 // A Boolean value that indicates whether the player is playing video through AirPlay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isAirPlayVideoActive
@@ -530,6 +544,7 @@ func (p_ Player) ClosedCaptionDisplayEnabled() bool {
 func (p_ Player) SetClosedCaptionDisplayEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClosedCaptionDisplayEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the player is currently playing video in external playback mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isExternalPlaybackActive
@@ -555,6 +570,7 @@ func (p_ Player) Muted() bool {
 func (p_ Player) SetMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMuted:"), value)
 }
+
 // AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
@@ -572,6 +588,7 @@ func (p_ Player) ObservationEnabled() bool {
 func (p_ Player) SetObservationEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservationEnabled:"), value)
 }
+
 // A Boolean value that indicates whether output is being obscured because of insufficient external protection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isOutputObscuredDueToInsufficientExternalProtection
@@ -597,6 +614,7 @@ func (p_ Player) MasterClock() unsafe.Pointer {
 func (p_ Player) SetMasterClock(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMasterClock:"), value)
 }
+
 // Indicates the priority of this player for network bandwidth resource distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/networkResourcePriority-swift.property
@@ -614,6 +632,7 @@ func (p_ Player) NetworkResourcePriority() unsafe.Pointer {
 func (p_ Player) SetNetworkResourcePriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkResourcePriority:"), value)
 }
+
 // The playback coordinator for the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playbackCoordinator
@@ -639,6 +658,7 @@ func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 {
 func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredVideoDecoderGPURegistryID:"), value)
 }
+
 // A Boolean value that indicates whether video playback prevents the system from automatically backgrounding the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsAutomaticBackgroundingDuringVideoPlayback
@@ -656,6 +676,7 @@ func (p_ Player) PreventsAutomaticBackgroundingDuringVideoPlayback() bool {
 func (p_ Player) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreventsAutomaticBackgroundingDuringVideoPlayback:"), value)
 }
+
 // A Boolean value that indicates whether video playback prevents display and device sleep.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsDisplaySleepDuringVideoPlayback
@@ -673,6 +694,7 @@ func (p_ Player) PreventsDisplaySleepDuringVideoPlayback() bool {
 func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreventsDisplaySleepDuringVideoPlayback:"), value)
 }
+
 // The current playback rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/rate
@@ -690,6 +712,7 @@ func (p_ Player) Rate() unsafe.Pointer {
 func (p_ Player) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
+
 // The reason the player is currently waiting for playback to begin or resume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/reasonForWaitingToPlay
@@ -715,6 +738,7 @@ func (p_ Player) SourceClock() unsafe.Pointer {
 func (p_ Player) SetSourceClock(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSourceClock:"), value)
 }
+
 // A value that indicates the readiness of a player object for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/status-swift.property
@@ -748,6 +772,7 @@ func (p_ Player) UsesAirPlayVideoWhileAirPlayScreenIsActive() bool {
 func (p_ Player) SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesAirPlayVideoWhileAirPlayScreenIsActive:"), value)
 }
+
 // A Boolean value that indicates whether the player should automatically switch to external playback mode while the external screen mode is active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/usesExternalPlaybackWhileExternalScreenIsActive
@@ -765,6 +790,7 @@ func (p_ Player) UsesExternalPlaybackWhileExternalScreenIsActive() bool {
 func (p_ Player) SetUsesExternalPlaybackWhileExternalScreenIsActive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesExternalPlaybackWhileExternalScreenIsActive:"), value)
 }
+
 // The video output for this player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/videoOutput
@@ -782,6 +808,7 @@ func (p_ Player) VideoOutput() unsafe.Pointer {
 func (p_ Player) SetVideoOutput(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoOutput:"), value)
 }
+
 // The audio playback volume for the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
@@ -799,4 +826,5 @@ func (p_ Player) Volume() unsafe.Pointer {
 func (p_ Player) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVolume:"), value)
 }
+
 

@@ -12,5 +12,3 @@ var HexagonalPixellateProtocol *objc.Protocol
 func init() {
 	HexagonalPixellateProtocol = objc.GetProtocol("CIHexagonalPixellate")
 }
-
-

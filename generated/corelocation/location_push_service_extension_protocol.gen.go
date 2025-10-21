@@ -16,5 +16,3 @@ var LocationPushServiceExtensionProtocol *objc.Protocol
 func init() {
 	LocationPushServiceExtensionProtocol = objc.GetProtocol("CLLocationPushServiceExtension")
 }
-
-

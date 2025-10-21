@@ -20,5 +20,3 @@ var enqueueBarrierProtocol *objc.Protocol
 func init() {
 	enqueueBarrierProtocol = objc.GetProtocol("enqueueBarrier")
 }
-
-

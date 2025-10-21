@@ -19,5 +19,3 @@ var INUIEditVoiceShortcutViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	INUIEditVoiceShortcutViewControllerDelegateProtocol = objc.GetProtocol("INUIEditVoiceShortcutViewControllerDelegate")
 }
-
-

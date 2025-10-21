@@ -78,6 +78,7 @@ func NewGlassEffectContainerView() GlassEffectContainerView {
 	return getGlassEffectContainerViewClass().New()
 }
 
+
 // The view that contains descendant views to merge together when in proximity to each other.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
@@ -85,6 +86,7 @@ func (g_ GlassEffectContainerView) ContentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("contentView"))
 	return rv
 }
+
 
 // SetContentView sets the value of the contentView property.
 // The view that contains descendant views to merge together when in proximity to each other.
@@ -103,6 +105,7 @@ func (g_ GlassEffectContainerView) Spacing() float64 {
 	return rv
 }
 
+
 // SetSpacing sets the value of the spacing property.
 // The proximity at which the glass effect container view begins merging eligible descendent glass effect views.
 
@@ -111,3 +114,6 @@ func (g_ GlassEffectContainerView) Spacing() float64 {
 func (g_ GlassEffectContainerView) SetSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpacing:"), value)
 }
+
+
+

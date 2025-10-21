@@ -18,5 +18,3 @@ var currentSyncAnchorWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	currentSyncAnchorWithCompletionHandlerProtocol = objc.GetProtocol("currentSyncAnchorWithCompletionHandler:")
 }
-
-

@@ -12,5 +12,3 @@ var CompositeOperationProtocol *objc.Protocol
 func init() {
 	CompositeOperationProtocol = objc.GetProtocol("CICompositeOperation")
 }
-
-

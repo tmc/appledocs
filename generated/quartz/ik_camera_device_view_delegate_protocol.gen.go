@@ -15,5 +15,3 @@ var IKCameraDeviceViewDelegateProtocol *objc.Protocol
 func init() {
 	IKCameraDeviceViewDelegateProtocol = objc.GetProtocol("IKCameraDeviceViewDelegate")
 }
-
-

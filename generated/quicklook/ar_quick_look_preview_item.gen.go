@@ -76,6 +76,8 @@ func NewQuickLookPreviewItem() QuickLookPreviewItem {
 }
 
 
+
+
 // Creates an object representing the 3D content that will be previewed in AR Quick Look.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/init(fileAt:)
@@ -104,6 +106,7 @@ func (q_ QuickLookPreviewItem) AllowsContentScaling() bool {
 func (q_ QuickLookPreviewItem) SetAllowsContentScaling(value bool) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setAllowsContentScaling:"), value)
 }
+
 // An optional canonical web page URL for the 3D content that will be shared.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/canonicalWebPageURL
@@ -121,4 +124,5 @@ func (q_ QuickLookPreviewItem) CanonicalWebPageURL() unsafe.Pointer {
 func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setCanonicalWebPageURL:"), value)
 }
+
 

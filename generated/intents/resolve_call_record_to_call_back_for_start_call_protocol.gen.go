@@ -20,5 +20,3 @@ var resolveCallRecordToCallBackForStartCallProtocol *objc.Protocol
 func init() {
 	resolveCallRecordToCallBackForStartCallProtocol = objc.GetProtocol("resolveCallRecordToCallBackForStartCall:")
 }
-
-

@@ -81,19 +81,23 @@ func NewUNTextInputNotificationAction() UNTextInputNotificationAction {
 }
 
 
-// Creates an action object that accepts text input from the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:textInputButtonTitle:textInputPlaceholder:)
-func NewUNTextInputNotificationActionWithIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) UNTextInputNotificationAction {
-	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
-	return rv
-}
+
 
 // Creates an action object with an icon that accepts text input from the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:)
 func NewUNTextInputNotificationActionWithIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, icon unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) UNTextInputNotificationAction {
 	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, icon, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
+	return rv
+}
+
+
+
+// Creates an action object that accepts text input from the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:textInputButtonTitle:textInputPlaceholder:)
+func NewUNTextInputNotificationActionWithIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) UNTextInputNotificationAction {
+	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
 	return rv
 }
 

@@ -12,5 +12,3 @@ var AreaBoundsRedProtocol *objc.Protocol
 func init() {
 	AreaBoundsRedProtocol = objc.GetProtocol("CIAreaBoundsRed")
 }
-
-

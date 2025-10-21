@@ -19,5 +19,3 @@ var INMessagesDomainHandlingProtocol *objc.Protocol
 func init() {
 	INMessagesDomainHandlingProtocol = objc.GetProtocol("INMessagesDomainHandling")
 }
-
-

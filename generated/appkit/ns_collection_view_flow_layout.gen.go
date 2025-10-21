@@ -79,3 +79,7 @@ func (c_ CollectionViewFlowLayout) Autorelease() CollectionViewFlowLayout {
 func NewCollectionViewFlowLayout() CollectionViewFlowLayout {
 	return getCollectionViewFlowLayoutClass().New()
 }
+
+
+
+

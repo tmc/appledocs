@@ -20,5 +20,3 @@ var displayLayerProtocol *objc.Protocol
 func init() {
 	displayLayerProtocol = objc.GetProtocol("displayLayer:")
 }
-
-

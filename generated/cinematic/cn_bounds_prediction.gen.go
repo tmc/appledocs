@@ -97,6 +97,7 @@ func (c_ CNBoundsPrediction) Confidence() unsafe.Pointer {
 func (c_ CNBoundsPrediction) SetConfidence(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
+
 // The bounds of the detected object in normalized coordinates where (0.0, 0.0) is the upper-left corner, and (1.0, 1.0) is the lower-right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
@@ -114,5 +115,6 @@ func (c_ CNBoundsPrediction) NormalizedBounds() coregraphics.CGRect {
 func (c_ CNBoundsPrediction) SetNormalizedBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedBounds:"), value)
 }
+
 
 

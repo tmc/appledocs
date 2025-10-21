@@ -79,21 +79,23 @@ func NewNENetworkRule() NENetworkRule {
 }
 
 
-// Creates a rule that matches traffic by remote network, local network, protocol, and direction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)
-func NewNENetworkRuleWithRemoteNetworkRemotePrefixLocalNetworkLocalPrefixProtocolDirection(remoteNetwork unsafe.Pointer, remotePrefix uint, localNetwork unsafe.Pointer, localPrefix uint, protocol unsafe.Pointer, direction unsafe.Pointer) NENetworkRule {
-	instance := getNENetworkRuleClass().Alloc()
-	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"), remoteNetwork, remotePrefix, localNetwork, localPrefix, protocol, direction)
-	rv.Autorelease()
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/initWithDestinationHostEndpoint:protocol:
 func NewNENetworkRuleWithDestinationHostEndpointProtocol(hostEndpoint unsafe.Pointer, protocol unsafe.Pointer) NENetworkRule {
 	instance := getNENetworkRuleClass().Alloc()
 	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithDestinationHostEndpoint:protocol:"), hostEndpoint, protocol)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a rule that matches network traffic destined for a host within a specific DNS domain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(destinationHost:protocol:)
+func NewNENetworkRuleWithDestinationHostProtocol(hostEndpoint unsafe.Pointer, protocol unsafe.Pointer) NENetworkRule {
+	instance := getNENetworkRuleClass().Alloc()
+	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithDestinationHost:protocol:"), hostEndpoint, protocol)
 	rv.Autorelease()
 	return rv
 }
@@ -107,6 +109,18 @@ func NewNENetworkRuleWithDestinationNetworkEndpointPrefixProtocol(networkEndpoin
 	return rv
 }
 
+
+
+// Creates a rule that matches network traffic destined for a host within a specific network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(destinationNetwork:prefix:protocol:)
+func NewNENetworkRuleWithDestinationNetworkPrefixProtocol(networkEndpoint unsafe.Pointer, destinationPrefix uint, protocol unsafe.Pointer) NENetworkRule {
+	instance := getNENetworkRuleClass().Alloc()
+	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithDestinationNetwork:prefix:protocol:"), networkEndpoint, destinationPrefix, protocol)
+	rv.Autorelease()
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/initWithRemoteNetworkEndpoint:remotePrefix:localNetworkEndpoint:localPrefix:protocol:direction:
 func NewNENetworkRuleWithRemoteNetworkEndpointRemotePrefixLocalNetworkEndpointLocalPrefixProtocolDirection(remoteNetwork unsafe.Pointer, remotePrefix uint, localNetwork unsafe.Pointer, localPrefix uint, protocol unsafe.Pointer, direction unsafe.Pointer) NENetworkRule {
@@ -116,22 +130,14 @@ func NewNENetworkRuleWithRemoteNetworkEndpointRemotePrefixLocalNetworkEndpointLo
 	return rv
 }
 
-// Creates a rule that matches network traffic destined for a host within a specific DNS domain.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(destinationHost:protocol:)
-func NewNENetworkRuleWithDestinationHostProtocol(hostEndpoint unsafe.Pointer, protocol unsafe.Pointer) NENetworkRule {
-	instance := getNENetworkRuleClass().Alloc()
-	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithDestinationHost:protocol:"), hostEndpoint, protocol)
-	rv.Autorelease()
-	return rv
-}
 
-// Creates a rule that matches network traffic destined for a host within a specific network.
+
+// Creates a rule that matches traffic by remote network, local network, protocol, and direction.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(destinationNetwork:prefix:protocol:)
-func NewNENetworkRuleWithDestinationNetworkPrefixProtocol(networkEndpoint unsafe.Pointer, destinationPrefix uint, protocol unsafe.Pointer) NENetworkRule {
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)
+func NewNENetworkRuleWithRemoteNetworkRemotePrefixLocalNetworkLocalPrefixProtocolDirection(remoteNetwork unsafe.Pointer, remotePrefix uint, localNetwork unsafe.Pointer, localPrefix uint, protocol unsafe.Pointer, direction unsafe.Pointer) NENetworkRule {
 	instance := getNENetworkRuleClass().Alloc()
-	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithDestinationNetwork:prefix:protocol:"), networkEndpoint, destinationPrefix, protocol)
+	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"), remoteNetwork, remotePrefix, localNetwork, localPrefix, protocol, direction)
 	rv.Autorelease()
 	return rv
 }

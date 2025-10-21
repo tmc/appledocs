@@ -108,6 +108,7 @@ func (n_ NETransparentProxyNetworkSettings) SetExcludedNetworkRules(value []NENe
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedNetworkRules:"), nsArray)
 }
+
 // An array of rules that collectively specify what traffic to route through the transparent proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETransparentProxyNetworkSettings/includedNetworkRules
@@ -135,5 +136,6 @@ func (n_ NETransparentProxyNetworkSettings) SetIncludedNetworkRules(value []NENe
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedNetworkRules:"), nsArray)
 }
+
 
 

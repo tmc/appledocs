@@ -12,5 +12,3 @@ var SunbeamsGeneratorProtocol *objc.Protocol
 func init() {
 	SunbeamsGeneratorProtocol = objc.GetProtocol("CISunbeamsGenerator")
 }
-
-

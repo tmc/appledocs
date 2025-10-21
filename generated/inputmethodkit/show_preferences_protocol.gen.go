@@ -15,5 +15,3 @@ var showPreferencesProtocol *objc.Protocol
 func init() {
 	showPreferencesProtocol = objc.GetProtocol("showPreferences:")
 }
-
-

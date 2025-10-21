@@ -18,5 +18,3 @@ var AEAssessmentSessionDelegateProtocol *objc.Protocol
 func init() {
 	AEAssessmentSessionDelegateProtocol = objc.GetProtocol("AEAssessmentSessionDelegate")
 }
-
-

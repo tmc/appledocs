@@ -79,3 +79,7 @@ func (b_ BitmapImageRep) Autorelease() BitmapImageRep {
 func NewBitmapImageRep() BitmapImageRep {
 	return getBitmapImageRepClass().New()
 }
+
+
+
+

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextInputContext] class.
@@ -79,6 +80,9 @@ func NewTextInputContext() TextInputContext {
 	return getTextInputContextClass().New()
 }
 
+
+
+
 // The designated initializer
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/init(client:)
@@ -88,3 +92,6 @@ func NewTextInputContextWithClient(client objc.ID) TextInputContext {
 	rv.Autorelease()
 	return rv
 }
+
+
+

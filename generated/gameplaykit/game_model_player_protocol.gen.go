@@ -20,5 +20,3 @@ var GameModelPlayerProtocol *objc.Protocol
 func init() {
 	GameModelPlayerProtocol = objc.GetProtocol("GKGameModelPlayer")
 }
-
-

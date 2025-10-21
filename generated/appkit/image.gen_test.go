@@ -13,7 +13,7 @@ var _ = appkit.NewImage
 // Creates a symbol image with the system symbol name and accessibility description you specify.
 func ExampleNewImageWithSystemSymbolNameAccessibilityDescription() {
 	_ = appkit.NewImageWithSystemSymbolNameAccessibilityDescription(
-		"name",        // name string
+		"name", // name string
 		"description", // description string
 	)
 	// Output:

@@ -20,5 +20,3 @@ var waitUntilCompletedProtocol *objc.Protocol
 func init() {
 	waitUntilCompletedProtocol = objc.GetProtocol("waitUntilCompleted")
 }
-
-

@@ -15,5 +15,3 @@ var FileProviderKnownFolderSupportingProtocol *objc.Protocol
 func init() {
 	FileProviderKnownFolderSupportingProtocol = objc.GetProtocol("NSFileProviderKnownFolderSupporting")
 }
-
-

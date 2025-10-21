@@ -134,6 +134,8 @@ func NewBluetoothDevice() BluetoothDevice {
 }
 
 
+
+
 // Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/init(address:)
@@ -141,6 +143,8 @@ func NewBluetoothDeviceWithAddress(address unsafe.Pointer) BluetoothDevice {
 	rv := objc.Send[BluetoothDevice](objc.ID(getBluetoothDeviceClass().class), objc.Sel("deviceWithAddress:"), address)
 	return rv
 }
+
+
 
 // Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
 //

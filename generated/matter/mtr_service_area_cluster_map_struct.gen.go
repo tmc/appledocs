@@ -90,6 +90,7 @@ func (m_ MTRServiceAreaClusterMapStruct) MapID() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
 func (m_ MTRServiceAreaClusterMapStruct) Name() string {
@@ -104,5 +105,6 @@ func (m_ MTRServiceAreaClusterMapStruct) Name() string {
 func (m_ MTRServiceAreaClusterMapStruct) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 
 

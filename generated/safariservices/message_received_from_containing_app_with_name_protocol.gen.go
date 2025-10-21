@@ -15,5 +15,3 @@ var messageReceivedFromContainingAppWithNameProtocol *objc.Protocol
 func init() {
 	messageReceivedFromContainingAppWithNameProtocol = objc.GetProtocol("messageReceivedFromContainingAppWithName:")
 }
-
-

@@ -18,4 +18,3 @@ var CNContactViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	CNContactViewControllerDelegateProtocol = objc.GetProtocol("CNContactViewControllerDelegate")
 }
-

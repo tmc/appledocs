@@ -16,5 +16,3 @@ var InputPickerInteractionDelegateProtocol *objc.Protocol
 func init() {
 	InputPickerInteractionDelegateProtocol = objc.GetProtocol("AVInputPickerInteractionDelegate")
 }
-
-

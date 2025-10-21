@@ -15,5 +15,3 @@ var readSymbolicLinkProtocol *objc.Protocol
 func init() {
 	readSymbolicLinkProtocol = objc.GetProtocol("readSymbolicLink:")
 }
-
-

@@ -19,5 +19,3 @@ var SamplerStateProtocol *objc.Protocol
 func init() {
 	SamplerStateProtocol = objc.GetProtocol("MTLSamplerState")
 }
-
-

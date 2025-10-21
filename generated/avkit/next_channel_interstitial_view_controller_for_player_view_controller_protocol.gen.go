@@ -15,5 +15,3 @@ var nextChannelInterstitialViewControllerForPlayerViewControllerProtocol *objc.P
 func init() {
 	nextChannelInterstitialViewControllerForPlayerViewControllerProtocol = objc.GetProtocol("nextChannelInterstitialViewControllerForPlayerViewController:")
 }
-
-

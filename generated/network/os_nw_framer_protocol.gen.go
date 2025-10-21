@@ -21,5 +21,3 @@ var OS_nw_framerProtocol *objc.Protocol
 func init() {
 	OS_nw_framerProtocol = objc.GetProtocol("OS_nw_framer")
 }
-
-

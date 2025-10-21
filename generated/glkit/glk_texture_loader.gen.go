@@ -89,6 +89,8 @@ func NewGLKTextureLoader() GLKTextureLoader {
 }
 
 
+
+
 // Initializes a new texture loader object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(share:)
@@ -98,6 +100,8 @@ func NewGLKTextureLoaderWithShareContext(context unsafe.Pointer) GLKTextureLoade
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a new texture loader object.
 //

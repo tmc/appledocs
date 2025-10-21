@@ -81,6 +81,8 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 }
 
 
+
+
 // Creates a representation of an app using its bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
@@ -90,6 +92,8 @@ func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEA
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a representation of an app using its bundle and team identifiers.
 //
@@ -127,6 +131,7 @@ func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresSignatureValidation:"), value)
 }
+
 // The team identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/teamIdentifier

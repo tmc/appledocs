@@ -12,5 +12,3 @@ var PerspectiveRotateProtocol *objc.Protocol
 func init() {
 	PerspectiveRotateProtocol = objc.GetProtocol("CIPerspectiveRotate")
 }
-
-

@@ -20,5 +20,3 @@ var removeResidencySetProtocol *objc.Protocol
 func init() {
 	removeResidencySetProtocol = objc.GetProtocol("removeResidencySet:")
 }
-
-

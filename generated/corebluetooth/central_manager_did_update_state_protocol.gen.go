@@ -21,5 +21,3 @@ var centralManagerDidUpdateStateProtocol *objc.Protocol
 func init() {
 	centralManagerDidUpdateStateProtocol = objc.GetProtocol("centralManagerDidUpdateState:")
 }
-
-

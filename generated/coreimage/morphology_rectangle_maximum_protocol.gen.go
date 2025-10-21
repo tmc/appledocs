@@ -12,5 +12,3 @@ var MorphologyRectangleMaximumProtocol *objc.Protocol
 func init() {
 	MorphologyRectangleMaximumProtocol = objc.GetProtocol("CIMorphologyRectangleMaximum")
 }
-
-

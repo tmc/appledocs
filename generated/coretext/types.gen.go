@@ -5,54 +5,6 @@ import (
 	"unsafe"
 )
 
-// ATSFontRef is a CoreGraphics opaque type.
-type ATSFontRef unsafe.Pointer
-
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFAttributedStringRef is a CoreGraphics opaque type.
-type CFAttributedStringRef unsafe.Pointer
-
-// CFBundleRef is a CoreGraphics opaque type.
-type CFBundleRef unsafe.Pointer
-
-// CFCharacterSetRef is a CoreGraphics opaque type.
-type CFCharacterSetRef unsafe.Pointer
-
-// CFDataRef is a CoreGraphics opaque type.
-type CFDataRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFNumberRef is a CoreGraphics opaque type.
-type CFNumberRef unsafe.Pointer
-
-// CFRunLoopSourceRef is a CoreGraphics opaque type.
-type CFRunLoopSourceRef unsafe.Pointer
-
-// CFSetRef is a CoreGraphics opaque type.
-type CFSetRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
-// CFTypeRef is a CoreGraphics opaque type.
-type CFTypeRef unsafe.Pointer
-
-// CFURLRef is a CoreGraphics opaque type.
-type CFURLRef unsafe.Pointer
-
-// CGContextRef is a CoreGraphics opaque type.
-type CGContextRef unsafe.Pointer
-
-// CGFontRef is a CoreGraphics opaque type.
-type CGFontRef unsafe.Pointer
-
-// CGPathRef is a CoreGraphics opaque type.
-type CGPathRef unsafe.Pointer
-
 // CTFontCollectionRef is a CoreGraphics opaque type.
 type CTFontCollectionRef unsafe.Pointer
 
@@ -102,27 +54,59 @@ type TimeInterval = float64  // NSTimeInterval
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
+type ATSFontRef unsafe.Pointer
+
+type CFArrayRef unsafe.Pointer
+
+type CFAttributedStringRef unsafe.Pointer
+
+type CFBundleRef unsafe.Pointer
+
+type CFCharacterSetRef unsafe.Pointer
+
 type CFComparisonResult unsafe.Pointer
+
+type CFDataRef unsafe.Pointer
+
+type CFDictionaryRef unsafe.Pointer
 
 type CFErrorRef unsafe.Pointer
 
 type CFIndex unsafe.Pointer
 
+type CFNumberRef unsafe.Pointer
+
 type CFOptionFlags unsafe.Pointer
 
 type CFRange unsafe.Pointer
 
+type CFRunLoopSourceRef unsafe.Pointer
+
+type CFSetRef unsafe.Pointer
+
 type CFStringEncoding unsafe.Pointer
+
+type CFStringRef unsafe.Pointer
 
 type CFTypeID unsafe.Pointer
 
+type CFTypeRef unsafe.Pointer
+
+type CFURLRef unsafe.Pointer
+
 type CGAffineTransform unsafe.Pointer
+
+type CGContextRef unsafe.Pointer
 
 type CGFloat unsafe.Pointer
 
 type CGFontIndex unsafe.Pointer
 
+type CGFontRef unsafe.Pointer
+
 type CGGlyph unsafe.Pointer
+
+type CGPathRef unsafe.Pointer
 
 type CGPoint unsafe.Pointer
 

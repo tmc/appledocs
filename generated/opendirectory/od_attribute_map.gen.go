@@ -133,6 +133,7 @@ func (o_ ODAttributeMap) CustomAttributes() unsafe.Pointer {
 func (o_ ODAttributeMap) SetCustomAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomAttributes:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customQueryFunction-swift.property
 func (o_ ODAttributeMap) CustomQueryFunction() string {
@@ -147,6 +148,7 @@ func (o_ ODAttributeMap) CustomQueryFunction() string {
 func (o_ ODAttributeMap) SetCustomQueryFunction(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomQueryFunction:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customTranslationFunction-swift.property
 func (o_ ODAttributeMap) CustomTranslationFunction() string {
@@ -161,6 +163,7 @@ func (o_ ODAttributeMap) CustomTranslationFunction() string {
 func (o_ ODAttributeMap) SetCustomTranslationFunction(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomTranslationFunction:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-swift.property
 func (o_ ODAttributeMap) Value() string {
@@ -175,4 +178,5 @@ func (o_ ODAttributeMap) Value() string {
 func (o_ ODAttributeMap) SetValue(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:"), objc.String(value))
 }
+
 

@@ -12,5 +12,3 @@ var NinePartStretchedProtocol *objc.Protocol
 func init() {
 	NinePartStretchedProtocol = objc.GetProtocol("CINinePartStretched")
 }
-
-

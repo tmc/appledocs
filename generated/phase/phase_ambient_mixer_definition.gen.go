@@ -81,6 +81,8 @@ func NewPHASEAmbientMixerDefinition() PHASEAmbientMixerDefinition {
 }
 
 
+
+
 // Creates an ambient mixer with the given channel layout and orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)
@@ -90,6 +92,8 @@ func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientation(layout unsafe.Po
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a named ambient mixer with the given channel layout and orientation.
 //

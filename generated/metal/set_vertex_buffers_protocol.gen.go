@@ -19,5 +19,3 @@ var setVertexBuffersProtocol *objc.Protocol
 func init() {
 	setVertexBuffersProtocol = objc.GetProtocol("setVertexBuffers:")
 }
-
-

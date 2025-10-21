@@ -20,5 +20,3 @@ var dispatchThreadgroupsWithIndirectBufferProtocol *objc.Protocol
 func init() {
 	dispatchThreadgroupsWithIndirectBufferProtocol = objc.GetProtocol("dispatchThreadgroupsWithIndirectBuffer:")
 }
-
-

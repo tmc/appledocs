@@ -18,5 +18,3 @@ var FileProviderThumbnailingProtocol *objc.Protocol
 func init() {
 	FileProviderThumbnailingProtocol = objc.GetProtocol("NSFileProviderThumbnailing")
 }
-
-

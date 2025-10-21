@@ -130,3 +130,5 @@ func (m_ MAMusicHapticsManager) SharedManager() unsafe.Pointer {
 }
 
 
+
+

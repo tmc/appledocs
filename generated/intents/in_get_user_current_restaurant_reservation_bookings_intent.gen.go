@@ -98,6 +98,7 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentif
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), objc.String(value))
 }
+
 // A restaurant to use as a filter when searching for reservations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/restaurant
@@ -115,5 +116,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) Restaurant() unsaf
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
 }
+
 
 

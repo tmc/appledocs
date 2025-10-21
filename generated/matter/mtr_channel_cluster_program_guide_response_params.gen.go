@@ -76,6 +76,8 @@ func NewMTRChannelClusterProgramGuideResponseParams() MTRChannelClusterProgramGu
 }
 
 
+
+
 // Initialize an MTRChannelClusterProgramGuideResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRChannelClusterProgramGuideResponseParams) Paging() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramGuideResponseParams) SetPaging(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaging:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/programList
 func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() unsafe.Pointer {
@@ -115,4 +118,5 @@ func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() unsafe.Point
 func (m_ MTRChannelClusterProgramGuideResponseParams) SetProgramList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramList:"), value)
 }
+
 

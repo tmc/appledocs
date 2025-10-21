@@ -19,5 +19,3 @@ var CaptureSessionControlsDelegateProtocol *objc.Protocol
 func init() {
 	CaptureSessionControlsDelegateProtocol = objc.GetProtocol("AVCaptureSessionControlsDelegate")
 }
-
-

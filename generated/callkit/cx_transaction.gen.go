@@ -80,6 +80,8 @@ func NewCXTransaction() CXTransaction {
 }
 
 
+
+
 // Initializes a new transaction with the specified action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(action:)
@@ -89,6 +91,8 @@ func NewCXTransactionWithAction(action unsafe.Pointer) CXTransaction {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a new transaction with the specified actions.
 //

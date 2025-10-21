@@ -16,5 +16,3 @@ var willResumeWithSuspendStateProtocol *objc.Protocol
 func init() {
 	willResumeWithSuspendStateProtocol = objc.GetProtocol("willResumeWithSuspendState:")
 }
-
-

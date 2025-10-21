@@ -122,6 +122,7 @@ func (w_ WebAuthenticationSession) AdditionalHeaderFields() unsafe.Pointer {
 func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAdditionalHeaderFields:"), value)
 }
+
 // A Boolean indicating whether the session can begin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/canStart
@@ -147,6 +148,7 @@ func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
 func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPrefersEphemeralWebBrowserSession:"), value)
 }
+
 // A delegate that provides a display context in which the system can present an authentication session to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
@@ -164,4 +166,5 @@ func (w_ WebAuthenticationSession) PresentationContextProvider() objc.ID {
 func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
+
 

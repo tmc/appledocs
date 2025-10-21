@@ -83,6 +83,8 @@ func NewCSLocalizedString() CSLocalizedString {
 }
 
 
+
+
 // Initializes a object with the specified dictionary of localized strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/init(localizedStrings:)

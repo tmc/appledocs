@@ -81,6 +81,8 @@ func NewOverlay() Overlay {
 }
 
 
+
+
 // Creates an overlay you use to recommend another app on the App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/init(configuration:)
@@ -117,4 +119,5 @@ func (o_ Overlay) Delegate() objc.ID {
 func (o_ Overlay) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
 }
+
 

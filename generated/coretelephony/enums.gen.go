@@ -14,10 +14,10 @@ type CellularDataRestrictedState uint
 type CellularPlanCapability uint
 
 const (
-// CellularPlanCapabilityDataOnly - The cellular plan is available for data only.
-//
+	// CellularPlanCapabilityDataOnly - The cellular plan is available for data only.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanCapability/dataOnly
-CellularPlanCapabilityDataOnly CellularPlanCapability = 0
+	CellularPlanCapabilityDataOnly CellularPlanCapability = 0
 )
 
 

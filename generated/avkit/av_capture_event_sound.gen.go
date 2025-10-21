@@ -79,6 +79,8 @@ func NewCaptureEventSound() CaptureEventSound {
 }
 
 
+
+
 // Creates a sound object for a capture event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/init(url:)

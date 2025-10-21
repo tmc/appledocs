@@ -20,4 +20,3 @@ var INUpdateMediaAffinityIntentHandlingProtocol *objc.Protocol
 func init() {
 	INUpdateMediaAffinityIntentHandlingProtocol = objc.GetProtocol("INUpdateMediaAffinityIntentHandling")
 }
-

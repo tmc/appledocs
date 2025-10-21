@@ -80,6 +80,8 @@ func NewCWConfiguration() CWConfiguration {
 }
 
 
+
+
 // Creates and returns a CWConfiguration object initialized with the given CWConfiguration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/init(configuration:)

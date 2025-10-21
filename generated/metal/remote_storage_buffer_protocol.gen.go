@@ -15,5 +15,3 @@ var remoteStorageBufferProtocol *objc.Protocol
 func init() {
 	remoteStorageBufferProtocol = objc.GetProtocol("remoteStorageBuffer")
 }
-
-

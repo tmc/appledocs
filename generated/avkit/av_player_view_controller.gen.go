@@ -132,6 +132,7 @@ func (p_ PlayerViewController) SetAllowedSubtitleOptionLanguages(value []string)
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedSubtitleOptionLanguages:"), nsArray)
 }
+
 // A Boolean value that indicates whether the player allows Picture in Picture playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/allowsPictureInPicturePlayback
@@ -149,6 +150,7 @@ func (p_ PlayerViewController) AllowsPictureInPicturePlayback() bool {
 func (p_ PlayerViewController) SetAllowsPictureInPicturePlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsPictureInPicturePlayback:"), value)
 }
+
 // A Boolean value that indicates whether to perform video frame analysis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/allowsVideoFrameAnalysis
@@ -166,6 +168,7 @@ func (p_ PlayerViewController) AllowsVideoFrameAnalysis() bool {
 func (p_ PlayerViewController) SetAllowsVideoFrameAnalysis(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsVideoFrameAnalysis:"), value)
 }
+
 // A Boolean value that indicates whether the view controller automatically sets the screen’s display criteria to match that of the currently playing asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/appliesPreferredDisplayCriteriaAutomatically
@@ -183,6 +186,7 @@ func (p_ PlayerViewController) AppliesPreferredDisplayCriteriaAutomatically() bo
 func (p_ PlayerViewController) SetAppliesPreferredDisplayCriteriaAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppliesPreferredDisplayCriteriaAutomatically:"), value)
 }
+
 // A Boolean value that indicates whether the current media supports trimming.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/canBeginTrimming
@@ -208,6 +212,7 @@ func (p_ PlayerViewController) CanStartPictureInPictureAutomaticallyFromInline()
 func (p_ PlayerViewController) SetCanStartPictureInPictureAutomaticallyFromInline(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanStartPictureInPictureAutomaticallyFromInline:"), value)
 }
+
 // A view that displays between the video content and the playback controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentOverlayView
@@ -233,6 +238,7 @@ func (p_ PlayerViewController) ContentProposalViewController() unsafe.Pointer {
 func (p_ PlayerViewController) SetContentProposalViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentProposalViewController:"), value)
 }
+
 // An array of action controls to present contextually during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
@@ -260,6 +266,7 @@ func (p_ PlayerViewController) SetContextualActions(value []UIAction) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContextualActions:"), nsArray)
 }
+
 // A view the system shows adjacent to the contextual actions that’s suitable for showing related information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsInfoView
@@ -285,6 +292,7 @@ func (p_ PlayerViewController) ContextualActionsPreviewImage() unsafe.Pointer {
 func (p_ PlayerViewController) SetContextualActionsPreviewImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContextualActionsPreviewImage:"), value)
 }
+
 // A view controller that provides client-specific content and controls alongside system-provided information and settings panels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
@@ -302,6 +310,7 @@ func (p_ PlayerViewController) CustomInfoViewController() unsafe.Pointer {
 func (p_ PlayerViewController) SetCustomInfoViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewController:"), value)
 }
+
 // An array of view controllers to display as content tabs in the player user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
@@ -329,6 +338,7 @@ func (p_ PlayerViewController) SetCustomInfoViewControllers(value []UIViewContro
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewControllers:"), nsArray)
 }
+
 // A view controller that presents custom content over the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
@@ -346,6 +356,7 @@ func (p_ PlayerViewController) CustomOverlayViewController() unsafe.Pointer {
 func (p_ PlayerViewController) SetCustomOverlayViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomOverlayViewController:"), value)
 }
+
 // The delegate object for the player view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/delegate
@@ -363,6 +374,7 @@ func (p_ PlayerViewController) Delegate() objc.ID {
 func (p_ PlayerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that determines whether the player automatically displays in full screen when the user taps the play button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/entersFullScreenWhenPlaybackBegins
@@ -380,6 +392,7 @@ func (p_ PlayerViewController) EntersFullScreenWhenPlaybackBegins() bool {
 func (p_ PlayerViewController) SetEntersFullScreenWhenPlaybackBegins(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEntersFullScreenWhenPlaybackBegins:"), value)
 }
+
 // A Boolean value that indicates whether the player exits full-screen mode when playback ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/exitsFullScreenWhenPlaybackEnds
@@ -397,6 +410,7 @@ func (p_ PlayerViewController) ExitsFullScreenWhenPlaybackEnds() bool {
 func (p_ PlayerViewController) SetExitsFullScreenWhenPlaybackEnds(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExitsFullScreenWhenPlaybackEnds:"), value)
 }
+
 // The group experience coordinator for this view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/groupExperienceCoordinator
@@ -432,6 +446,7 @@ func (p_ PlayerViewController) SetInfoViewActions(value []UIAction) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInfoViewActions:"), nsArray)
 }
+
 // A Boolean value that indicates whether the player item’s first video frame is ready for display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/isReadyForDisplay
@@ -457,6 +472,7 @@ func (p_ PlayerViewController) SkipBackwardEnabled() bool {
 func (p_ PlayerViewController) SetSkipBackwardEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipBackwardEnabled:"), value)
 }
+
 // A Boolean value that indicates whether forward-skipping is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/isSkipForwardEnabled
@@ -474,6 +490,7 @@ func (p_ PlayerViewController) SkipForwardEnabled() bool {
 func (p_ PlayerViewController) SetSkipForwardEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipForwardEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/mediaCharacteristicsForSupportedCustomMediaSelectionSchemes
 func (p_ PlayerViewController) MediaCharacteristicsForSupportedCustomMediaSelectionSchemes() []string {
@@ -498,6 +515,7 @@ func (p_ PlayerViewController) PixelBufferAttributes() unsafe.Pointer {
 func (p_ PlayerViewController) SetPixelBufferAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBufferAttributes:"), value)
 }
+
 // A Boolean value that indicates whether the player presents video metadata, navigation markers, and playback settings views when the user requests them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/playbackControlsIncludeInfoViews
@@ -515,6 +533,7 @@ func (p_ PlayerViewController) PlaybackControlsIncludeInfoViews() bool {
 func (p_ PlayerViewController) SetPlaybackControlsIncludeInfoViews(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackControlsIncludeInfoViews:"), value)
 }
+
 // A Boolean value that indicates whether the player shows the transport bar and related controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/playbackControlsIncludeTransportBar
@@ -532,6 +551,7 @@ func (p_ PlayerViewController) PlaybackControlsIncludeTransportBar() bool {
 func (p_ PlayerViewController) SetPlaybackControlsIncludeTransportBar(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackControlsIncludeTransportBar:"), value)
 }
+
 // The player object that provides the media content for the view controller to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/player
@@ -549,6 +569,7 @@ func (p_ PlayerViewController) Player() unsafe.Pointer {
 func (p_ PlayerViewController) SetPlayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
+
 // Describes how High Dynamic Range (HDR) video content renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/preferredDisplayDynamicRange
@@ -566,6 +587,7 @@ func (p_ PlayerViewController) PreferredDisplayDynamicRange() unsafe.Pointer {
 func (p_ PlayerViewController) SetPreferredDisplayDynamicRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredDisplayDynamicRange:"), value)
 }
+
 // A Boolean value that indicates whether the user can disable the display of subtitles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/requiresFullSubtitles
@@ -583,6 +605,7 @@ func (p_ PlayerViewController) RequiresFullSubtitles() bool {
 func (p_ PlayerViewController) SetRequiresFullSubtitles(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRequiresFullSubtitles:"), value)
 }
+
 // A Boolean value that determines whether the player allows the user to skip media content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/requiresLinearPlayback
@@ -600,6 +623,7 @@ func (p_ PlayerViewController) RequiresLinearPlayback() bool {
 func (p_ PlayerViewController) SetRequiresLinearPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRequiresLinearPlayback:"), value)
 }
+
 // A Boolean value that indicates whether to permit playback of 2D video content only.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/requiresMonoscopicViewingMode
@@ -617,6 +641,7 @@ func (p_ PlayerViewController) RequiresMonoscopicViewingMode() bool {
 func (p_ PlayerViewController) SetRequiresMonoscopicViewingMode(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRequiresMonoscopicViewingMode:"), value)
 }
+
 // The currently selected playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/selectedSpeed
@@ -642,6 +667,7 @@ func (p_ PlayerViewController) ShowsPlaybackControls() bool {
 func (p_ PlayerViewController) SetShowsPlaybackControls(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsPlaybackControls:"), value)
 }
+
 // A Boolean value that determines whether the player view displays timecodes, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/showsTimecodes
@@ -659,6 +685,7 @@ func (p_ PlayerViewController) ShowsTimecodes() bool {
 func (p_ PlayerViewController) SetShowsTimecodes(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsTimecodes:"), value)
 }
+
 // The behavior that skipping gestures perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/skippingBehavior
@@ -676,6 +703,7 @@ func (p_ PlayerViewController) SkippingBehavior() unsafe.Pointer {
 func (p_ PlayerViewController) SetSkippingBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSkippingBehavior:"), value)
 }
+
 // A list of user-selectable playback speeds to show in the playback speed control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/speeds
@@ -703,6 +731,7 @@ func (p_ PlayerViewController) SetSpeeds(value []PlaybackSpeed) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), nsArray)
 }
+
 // An action that enables the visual lookup interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/toggleLookupAction
@@ -738,6 +767,7 @@ func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []appkit.UIM
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransportBarCustomMenuItems:"), nsArray)
 }
+
 // A Boolean value that indicates whether the player user interface shows the title view above the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/transportBarIncludesTitleView
@@ -755,6 +785,7 @@ func (p_ PlayerViewController) TransportBarIncludesTitleView() bool {
 func (p_ PlayerViewController) SetTransportBarIncludesTitleView(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransportBarIncludesTitleView:"), value)
 }
+
 // A layout guide that represents an area that fixed-position playback controls don’t obscure when visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/unobscuredContentGuide
@@ -780,6 +811,7 @@ func (p_ PlayerViewController) UpdatesNowPlayingInfoCenter() bool {
 func (p_ PlayerViewController) SetUpdatesNowPlayingInfoCenter(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUpdatesNowPlayingInfoCenter:"), value)
 }
+
 // The size and position of the video image within the bounds of the view controller’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/videoBounds
@@ -805,6 +837,7 @@ func (p_ PlayerViewController) VideoFrameAnalysisTypes() unsafe.Pointer {
 func (p_ PlayerViewController) SetVideoFrameAnalysisTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFrameAnalysisTypes:"), value)
 }
+
 // A string that specifies how the video displays within the bounds of the view controller’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/videoGravity
@@ -822,5 +855,6 @@ func (p_ PlayerViewController) VideoGravity() unsafe.Pointer {
 func (p_ PlayerViewController) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
+
 
 

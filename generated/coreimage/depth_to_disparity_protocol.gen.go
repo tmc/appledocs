@@ -12,5 +12,3 @@ var DepthToDisparityProtocol *objc.Protocol
 func init() {
 	DepthToDisparityProtocol = objc.GetProtocol("CIDepthToDisparity")
 }
-
-

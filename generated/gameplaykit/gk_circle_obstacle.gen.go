@@ -81,6 +81,8 @@ func NewCircleObstacle() CircleObstacle {
 }
 
 
+
+
 // Initializes a circular obstacle with the specified radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/init(radius:)
@@ -117,6 +119,7 @@ func (c_ CircleObstacle) Position() unsafe.Pointer {
 func (c_ CircleObstacle) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPosition:"), value)
 }
+
 // The radius of the obstacle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
@@ -134,4 +137,5 @@ func (c_ CircleObstacle) Radius() unsafe.Pointer {
 func (c_ CircleObstacle) SetRadius(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }
+
 

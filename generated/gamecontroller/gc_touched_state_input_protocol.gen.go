@@ -20,5 +20,3 @@ var GCTouchedStateInputProtocol *objc.Protocol
 func init() {
 	GCTouchedStateInputProtocol = objc.GetProtocol("GCTouchedStateInput")
 }
-
-

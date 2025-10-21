@@ -83,6 +83,8 @@ func NewRule() Rule {
 }
 
 
+
+
 // Creates a rule whose predicate is evaluated and action is executed through the specified blocks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(blockPredicate:action:)
@@ -91,6 +93,8 @@ func NewRuleWithBlockPredicateAction(predicate unsafe.Pointer, action unsafe.Poi
 	return rv
 }
 
+
+
 // Creates a data-driven rule with the specified predicate, whose action asserts a fact in the rule system evaluating the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:assertingFact:grade:)
@@ -98,6 +102,8 @@ func NewRuleWithPredicateAssertingFactGrade(predicate unsafe.Pointer, fact objc.
 	rv := objc.Send[Rule](objc.ID(getRuleClass().class), objc.Sel("ruleWithPredicate:assertingFact:grade:"), predicate, fact, grade)
 	return rv
 }
+
+
 
 // Creates a data-driven rule with the specified predicate, whose action retracts a fact in the rule system evaluating the rule.
 //
@@ -164,4 +170,5 @@ func (r_ Rule) Salience() int {
 func (r_ Rule) SetSalience(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
 }
+
 

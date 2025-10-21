@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TouchBar] class.
@@ -80,6 +81,9 @@ func NewTouchBar() TouchBar {
 	return getTouchBarClass().New()
 }
 
+
+
+
 // Creates a Touch Bar object from a coder object provided by a storyboard or NIB file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
@@ -90,6 +94,7 @@ func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
 	return rv
 }
 
+
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
@@ -97,7 +102,6 @@ func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
-
 // Returns the Touch Bar item that corresponds to a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
@@ -113,6 +117,7 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationAllowedItemIdentifiers"))
 	return rv
 }
+
 
 // SetCustomizationAllowedItemIdentifiers sets the value of the customizationAllowedItemIdentifiers property.
 // A list of identifiers for items to show in the Touch Bar’s customization UI.
@@ -141,6 +146,7 @@ func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCustomizationIdentifier sets the value of the customizationIdentifier property.
 // A globally unique string that makes the Touch Bar eligible for user customization.
 
@@ -157,6 +163,7 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationRequiredItemIdentifiers"))
 	return rv
 }
+
 
 // SetCustomizationRequiredItemIdentifiers sets the value of the customizationRequiredItemIdentifiers property.
 // An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
@@ -185,6 +192,7 @@ func (t_ TouchBar) DefaultItemIdentifiers() []string {
 	return rv
 }
 
+
 // SetDefaultItemIdentifiers sets the value of the defaultItemIdentifiers property.
 // A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
 
@@ -212,6 +220,7 @@ func (t_ TouchBar) Delegate() objc.ID {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The delegate that provides items to the Touch Bar.
 
@@ -229,6 +238,7 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetEscapeKeyReplacementItemIdentifier sets the value of the escapeKeyReplacementItemIdentifier property.
 // The identifier of an item that replaces the system-provided button in the Touch Bar.
 
@@ -245,6 +255,7 @@ func (t_ TouchBar) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
+
 
 // SetAutomaticCustomizeTouchBarMenuItemEnabled sets the value of the automaticCustomizeTouchBarMenuItemEnabled property.
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
@@ -279,6 +290,7 @@ func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPrincipalItemIdentifier sets the value of the principalItemIdentifier property.
 // The identifier of an item you want the system to center in the Touch Bar.
 
@@ -296,6 +308,7 @@ func (t_ TouchBar) TemplateItems() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTemplateItems sets the value of the templateItems property.
 // The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
 
@@ -304,3 +317,5 @@ func (t_ TouchBar) TemplateItems() unsafe.Pointer {
 func (t_ TouchBar) SetTemplateItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTemplateItems:"), value)
 }
+
+

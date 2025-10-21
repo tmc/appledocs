@@ -98,6 +98,7 @@ func (p_ PHContentEditingOutput) AdjustmentData() unsafe.Pointer {
 func (p_ PHContentEditingOutput) SetAdjustmentData(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
 }
+
 // The URL at which to write a file containing edited asset content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/renderedContentURL

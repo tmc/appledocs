@@ -21,5 +21,3 @@ var locationManagerDidChangeAuthorizationProtocol *objc.Protocol
 func init() {
 	locationManagerDidChangeAuthorizationProtocol = objc.GetProtocol("locationManagerDidChangeAuthorization:")
 }
-
-

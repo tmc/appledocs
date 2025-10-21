@@ -18,5 +18,3 @@ var HKLiveWorkoutBuilderDelegateProtocol *objc.Protocol
 func init() {
 	HKLiveWorkoutBuilderDelegateProtocol = objc.GetProtocol("HKLiveWorkoutBuilderDelegate")
 }
-
-

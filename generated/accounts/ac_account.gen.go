@@ -81,6 +81,8 @@ func NewACAccount() ACAccount {
 }
 
 
+
+
 // Initializes a new account of the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/init(accountType:)
@@ -109,6 +111,7 @@ func (a_ ACAccount) AccountDescription() string {
 func (a_ ACAccount) SetAccountDescription(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
 }
+
 // The type of service account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
@@ -126,6 +129,7 @@ func (a_ ACAccount) AccountType() unsafe.Pointer {
 func (a_ ACAccount) SetAccountType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }
+
 // The credential used to authenticate the user of this account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/credential
@@ -143,6 +147,7 @@ func (a_ ACAccount) Credential() unsafe.Pointer {
 func (a_ ACAccount) SetCredential(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCredential:"), value)
 }
+
 // A unique identifier for this account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
@@ -176,4 +181,5 @@ func (a_ ACAccount) Username() string {
 func (a_ ACAccount) SetUsername(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
+
 

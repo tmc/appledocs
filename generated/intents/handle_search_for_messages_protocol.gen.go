@@ -19,5 +19,3 @@ var handleSearchForMessagesProtocol *objc.Protocol
 func init() {
 	handleSearchForMessagesProtocol = objc.GetProtocol("handleSearchForMessages:")
 }
-
-

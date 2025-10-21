@@ -81,6 +81,8 @@ func NewCSPerson() CSPerson {
 }
 
 
+
+
 // Returns a new object initialized with the specified display name and contact attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/init(displayName:handles:handleIdentifier:)
@@ -109,6 +111,7 @@ func (c_ CSPerson) ContactIdentifier() string {
 func (c_ CSPerson) SetContactIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
+
 // A display name for the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName

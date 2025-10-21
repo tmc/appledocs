@@ -18,5 +18,3 @@ var INGetAvailableRestaurantReservationBookingDefaultsIntentHandlingProtocol *ob
 func init() {
 	INGetAvailableRestaurantReservationBookingDefaultsIntentHandlingProtocol = objc.GetProtocol("INGetAvailableRestaurantReservationBookingDefaultsIntentHandling")
 }
-
-

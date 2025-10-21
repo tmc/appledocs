@@ -79,3 +79,7 @@ func (d_ Drawer) Autorelease() Drawer {
 func NewDrawer() Drawer {
 	return getDrawerClass().New()
 }
+
+
+
+

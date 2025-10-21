@@ -19,4 +19,3 @@ var shadingImageProtocol *objc.Protocol
 func init() {
 	shadingImageProtocol = objc.GetProtocol("shadingImage")
 }
-

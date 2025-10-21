@@ -76,6 +76,8 @@ func NewCKShareRequestAccessOperation() CKShareRequestAccessOperation {
 }
 
 
+
+
 // Creates a share request access operation configured with specified share URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/init(shareURLs:)
@@ -104,6 +106,7 @@ func (c_ CKShareRequestAccessOperation) PerShareAccessRequestCompletionBlock() u
 func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareAccessRequestCompletionBlock:"), value)
 }
+
 // A completion block called when the entire operation finishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareRequestAccessCompletionBlock
@@ -121,6 +124,7 @@ func (c_ CKShareRequestAccessOperation) ShareRequestAccessCompletionBlock() func
 func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(value func(error objc.ID)) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareRequestAccessCompletionBlock:"), value)
 }
+
 // The URLs of the shares to request access to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
@@ -148,4 +152,5 @@ func (c_ CKShareRequestAccessOperation) SetShareURLs(value []NSURL) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), nsArray)
 }
+
 

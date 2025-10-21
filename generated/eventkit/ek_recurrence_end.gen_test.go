@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = eventkit.NewEKRecurrenceEnd
 
-
-
 // ExampleNewEKRecurrenceEndWithOccurrenceCount demonstrates how to create a EKRecurrenceEnd instance using NewEKRecurrenceEndWithOccurrenceCount.
 // Initializes and returns a count-based recurrence end with a given maximum occurrence count.
 func ExampleNewEKRecurrenceEndWithOccurrenceCount() {
@@ -19,5 +17,3 @@ func ExampleNewEKRecurrenceEndWithOccurrenceCount() {
 	)
 	// Output:
 }
-
-

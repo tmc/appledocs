@@ -16,5 +16,3 @@ var willSuspendProtocol *objc.Protocol
 func init() {
 	willSuspendProtocol = objc.GetProtocol("willSuspend")
 }
-
-

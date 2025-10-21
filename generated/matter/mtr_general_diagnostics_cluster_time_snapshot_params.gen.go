@@ -93,6 +93,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) ServerSideProcessingTim
 func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) TimedInvokeTimeoutMs() 
 func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

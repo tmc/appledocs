@@ -20,5 +20,3 @@ var reactiveTextureUsageProtocol *objc.Protocol
 func init() {
 	reactiveTextureUsageProtocol = objc.GetProtocol("reactiveTextureUsage")
 }
-
-

@@ -80,6 +80,8 @@ func NewMCBrowserViewController() MCBrowserViewController {
 }
 
 
+
+
 // Initializes a browser view controller with the provided browser and session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/init(browser:session:)
@@ -89,6 +91,8 @@ func NewMCBrowserViewControllerWithBrowserSession(browser unsafe.Pointer, sessio
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a browser view controller using the provided service type and session.
 //
@@ -126,6 +130,7 @@ func (m_ MCBrowserViewController) Delegate() objc.ID {
 func (m_ MCBrowserViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The maximum number of peers allowed in a session, including the local peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/maximumNumberOfPeers
@@ -143,6 +148,7 @@ func (m_ MCBrowserViewController) MaximumNumberOfPeers() uint {
 func (m_ MCBrowserViewController) SetMaximumNumberOfPeers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumNumberOfPeers:"), value)
 }
+
 // The minimum number of peers that need to be in a session, including the local peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/minimumNumberOfPeers
@@ -160,6 +166,7 @@ func (m_ MCBrowserViewController) MinimumNumberOfPeers() uint {
 func (m_ MCBrowserViewController) SetMinimumNumberOfPeers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumNumberOfPeers:"), value)
 }
+
 // The multipeer session to which the invited peers are connected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/session

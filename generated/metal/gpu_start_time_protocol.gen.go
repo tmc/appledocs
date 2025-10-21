@@ -20,5 +20,3 @@ var GPUStartTimeProtocol *objc.Protocol
 func init() {
 	GPUStartTimeProtocol = objc.GetProtocol("GPUStartTime")
 }
-
-

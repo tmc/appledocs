@@ -9,18 +9,18 @@ package security
 type AuthorizationContextFlags uint
 
 const (
-// kAuthorizationContextFlagExtractable - It is possible for the authorization client to use the   function to obtain the value.
-//
+	// kAuthorizationContextFlagExtractable - It is possible for the authorization client to use the   function to obtain the value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationContextFlags/kAuthorizationContextFlagExtractable
-kAuthorizationContextFlagExtractable AuthorizationContextFlags = 0
-// kAuthorizationContextFlagSticky - This data persists through an interrupted or failed evaluation.
-//
+	kAuthorizationContextFlagExtractable AuthorizationContextFlags = 0
+	// kAuthorizationContextFlagSticky - This data persists through an interrupted or failed evaluation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationContextFlags/kAuthorizationContextFlagSticky
-kAuthorizationContextFlagSticky AuthorizationContextFlags = 0
-// kAuthorizationContextFlagVolatile - The value is not saved for the authorization client.
-//
+	kAuthorizationContextFlagSticky AuthorizationContextFlags = 0
+	// kAuthorizationContextFlagVolatile - The value is not saved for the authorization client.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationContextFlags/kAuthorizationContextFlagVolatile
-kAuthorizationContextFlagVolatile AuthorizationContextFlags = 0
+	kAuthorizationContextFlagVolatile AuthorizationContextFlags = 0
 )
 
 // AuthorizationFlags - The flags used to specify authorization options.
@@ -29,37 +29,37 @@ kAuthorizationContextFlagVolatile AuthorizationContextFlags = 0
 type AuthorizationFlags uint
 
 const (
-// kAuthorizationFlagDestroyRights - A flag that instructs the Security Server to revoke authorization.
-//
+	// kAuthorizationFlagDestroyRights - A flag that instructs the Security Server to revoke authorization.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/destroyRights
-kAuthorizationFlagDestroyRights AuthorizationFlags = 0
-// kAuthorizationFlagExtendRights - A flag that permits the Security Server to attempt to grant the rights requested.
-//
+	kAuthorizationFlagDestroyRights AuthorizationFlags = 0
+	// kAuthorizationFlagExtendRights - A flag that permits the Security Server to attempt to grant the rights requested.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/extendRights
-kAuthorizationFlagExtendRights AuthorizationFlags = 0
-// kAuthorizationFlagInteractionAllowed - A flag that permits user interaction as needed.
-//
+	kAuthorizationFlagExtendRights AuthorizationFlags = 0
+	// kAuthorizationFlagInteractionAllowed - A flag that permits user interaction as needed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/interactionAllowed
-kAuthorizationFlagInteractionAllowed AuthorizationFlags = 0
-// kAuthorizationFlagDefaults - An empty flag set that you use as a placeholder when you don’t want any of the other flags.
-//
+	kAuthorizationFlagInteractionAllowed AuthorizationFlags = 0
+	// kAuthorizationFlagDefaults - An empty flag set that you use as a placeholder when you don’t want any of the other flags.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults
-kAuthorizationFlagDefaults AuthorizationFlags = 0
-// kAuthorizationFlagNoData - Private flag. Do not use.
-//
+	kAuthorizationFlagDefaults AuthorizationFlags = 0
+	// kAuthorizationFlagNoData - Private flag. Do not use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/noData
-kAuthorizationFlagNoData AuthorizationFlags = 0
-// kAuthorizationFlagPartialRights - A flag that permits the Security Server to grant rights on an individual basis.
-//
+	kAuthorizationFlagNoData AuthorizationFlags = 0
+	// kAuthorizationFlagPartialRights - A flag that permits the Security Server to grant rights on an individual basis.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/partialRights
-kAuthorizationFlagPartialRights AuthorizationFlags = 0
-// kAuthorizationFlagPreAuthorize - A flag that instructs the Security Server to preauthorize the rights requested.
-//
+	kAuthorizationFlagPartialRights AuthorizationFlags = 0
+	// kAuthorizationFlagPreAuthorize - A flag that instructs the Security Server to preauthorize the rights requested.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/preAuthorize
-kAuthorizationFlagPreAuthorize AuthorizationFlags = 0
-//
+	kAuthorizationFlagPreAuthorize AuthorizationFlags = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags/skipInternalAuth
-kAuthorizationFlagSkipInternalAuth AuthorizationFlags = 0
+	kAuthorizationFlagSkipInternalAuth AuthorizationFlags = 0
 )
 
 // AuthorizationResult - The permissible values for an authorization evaluation result.
@@ -68,22 +68,22 @@ kAuthorizationFlagSkipInternalAuth AuthorizationFlags = 0
 type AuthorizationResult uint
 
 const (
-// kAuthorizationResultAllow - The authorization operation succeeded and authorization should be granted.
-//
+	// kAuthorizationResultAllow - The authorization operation succeeded and authorization should be granted.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationResult/kAuthorizationResultAllow
-kAuthorizationResultAllow AuthorizationResult = 0
-// kAuthorizationResultDeny - The authorization operation succeeded and authorization should be denied.
-//
+	kAuthorizationResultAllow AuthorizationResult = 0
+	// kAuthorizationResultDeny - The authorization operation succeeded and authorization should be denied.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationResult/kAuthorizationResultDeny
-kAuthorizationResultDeny AuthorizationResult = 0
-// kAuthorizationResultUndefined - The authorization operation failed and should not be retried for this session.
-//
+	kAuthorizationResultDeny AuthorizationResult = 0
+	// kAuthorizationResultUndefined - The authorization operation failed and should not be retried for this session.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationResult/kAuthorizationResultUndefined
-kAuthorizationResultUndefined AuthorizationResult = 0
-// kAuthorizationResultUserCanceled - The user has requested that the authorization evaluation be terminated.
-//
+	kAuthorizationResultUndefined AuthorizationResult = 0
+	// kAuthorizationResultUserCanceled - The user has requested that the authorization evaluation be terminated.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationResult/kAuthorizationResultUserCanceled
-kAuthorizationResultUserCanceled AuthorizationResult = 0
+	kAuthorizationResultUserCanceled AuthorizationResult = 0
 )
 
 // __CE_CrlDistributionPointNameType enum type
@@ -92,12 +92,12 @@ kAuthorizationResultUserCanceled AuthorizationResult = 0
 type __CE_CrlDistributionPointNameType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/CE_CDNT_FullName
-CE_CDNT_FullName __CE_CrlDistributionPointNameType = 0
-//
+	CE_CDNT_FullName __CE_CrlDistributionPointNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/CE_CDNT_NameRelativeToCrlIssuer
-CE_CDNT_NameRelativeToCrlIssuer __CE_CrlDistributionPointNameType = 0
+	CE_CDNT_NameRelativeToCrlIssuer __CE_CrlDistributionPointNameType = 0
 )
 
 // __CE_DataType enum type
@@ -106,69 +106,69 @@ CE_CDNT_NameRelativeToCrlIssuer __CE_CrlDistributionPointNameType = 0
 type __CE_DataType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_AuthorityInfoAccess
-DT_AuthorityInfoAccess __CE_DataType = 0
-//
+	DT_AuthorityInfoAccess __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_AuthorityKeyID
-DT_AuthorityKeyID __CE_DataType = 0
-//
+	DT_AuthorityKeyID __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_BasicConstraints
-DT_BasicConstraints __CE_DataType = 0
-//
+	DT_BasicConstraints __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_CertPolicies
-DT_CertPolicies __CE_DataType = 0
-//
+	DT_CertPolicies __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_CrlDistributionPoints
-DT_CrlDistributionPoints __CE_DataType = 0
-//
+	DT_CrlDistributionPoints __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_CrlNumber
-DT_CrlNumber __CE_DataType = 0
-//
+	DT_CrlNumber __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_CrlReason
-DT_CrlReason __CE_DataType = 0
-//
+	DT_CrlReason __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_DeltaCrl
-DT_DeltaCrl __CE_DataType = 0
-//
+	DT_DeltaCrl __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_ExtendedKeyUsage
-DT_ExtendedKeyUsage __CE_DataType = 0
-//
+	DT_ExtendedKeyUsage __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_InhibitAnyPolicy
-DT_InhibitAnyPolicy __CE_DataType = 0
-//
+	DT_InhibitAnyPolicy __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_IssuerAltName
-DT_IssuerAltName __CE_DataType = 0
-//
+	DT_IssuerAltName __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_IssuingDistributionPoint
-DT_IssuingDistributionPoint __CE_DataType = 0
-//
+	DT_IssuingDistributionPoint __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_KeyUsage
-DT_KeyUsage __CE_DataType = 0
-//
+	DT_KeyUsage __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_NameConstraints
-DT_NameConstraints __CE_DataType = 0
-//
+	DT_NameConstraints __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_NetscapeCertType
-DT_NetscapeCertType __CE_DataType = 0
-//
+	DT_NetscapeCertType __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_Other
-DT_Other __CE_DataType = 0
-//
+	DT_Other __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_PolicyConstraints
-DT_PolicyConstraints __CE_DataType = 0
-//
+	DT_PolicyConstraints __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_PolicyMappings
-DT_PolicyMappings __CE_DataType = 0
-//
+	DT_PolicyMappings __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_QC_Statements
-DT_QC_Statements __CE_DataType = 0
-//
+	DT_QC_Statements __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_SubjectAltName
-DT_SubjectAltName __CE_DataType = 0
-//
+	DT_SubjectAltName __CE_DataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/DT_SubjectKeyID
-DT_SubjectKeyID __CE_DataType = 0
+	DT_SubjectKeyID __CE_DataType = 0
 )
 
 // __CE_GeneralNameType enum type
@@ -177,33 +177,33 @@ DT_SubjectKeyID __CE_DataType = 0
 type __CE_GeneralNameType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_DNSName
-GNT_DNSName __CE_GeneralNameType = 0
-//
+	GNT_DNSName __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_DirectoryName
-GNT_DirectoryName __CE_GeneralNameType = 0
-//
+	GNT_DirectoryName __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_EdiPartyName
-GNT_EdiPartyName __CE_GeneralNameType = 0
-//
+	GNT_EdiPartyName __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_IPAddress
-GNT_IPAddress __CE_GeneralNameType = 0
-//
+	GNT_IPAddress __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_OtherName
-GNT_OtherName __CE_GeneralNameType = 0
-//
+	GNT_OtherName __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_RFC822Name
-GNT_RFC822Name __CE_GeneralNameType = 0
-//
+	GNT_RFC822Name __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_RegisteredID
-GNT_RegisteredID __CE_GeneralNameType = 0
-//
+	GNT_RegisteredID __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_URI
-GNT_URI __CE_GeneralNameType = 0
-//
+	GNT_URI __CE_GeneralNameType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/GNT_X400Address
-GNT_X400Address __CE_GeneralNameType = 0
+	GNT_X400Address __CE_GeneralNameType = 0
 )
 
 // CMSCertificateChainMode - Constants that can be set to specify what certificates to include in a signed message.
@@ -272,10 +272,10 @@ type SecCSDigestAlgorithm uint
 type SecCSFlags uint
 
 const (
-// kSecCSDefaultFlags - No flags (use the default behavior).
-//
+	// kSecCSDefaultFlags - No flags (use the default behavior).
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/SecCSFlags/kSecCSDefaultFlags
-kSecCSDefaultFlags SecCSFlags = 0
+	kSecCSDefaultFlags SecCSFlags = 0
 )
 
 // SecCodeSignatureFlags - Specify option flags that can be embedded in a code signature during signing and that govern the use of the signature.
@@ -329,9 +329,9 @@ type SessionCreationFlags uint
 type cssm_appledl_open_parameters_mask uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/kCSSM_APPLEDL_MASK_MODE
-kCSSM_APPLEDL_MASK_MODE cssm_appledl_open_parameters_mask = 0
+	kCSSM_APPLEDL_MASK_MODE cssm_appledl_open_parameters_mask = 0
 )
 
 // extension_data_format enum type
@@ -340,15 +340,15 @@ kCSSM_APPLEDL_MASK_MODE cssm_appledl_open_parameters_mask = 0
 type extension_data_format uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_X509_DATAFORMAT_ENCODED
-CSSM_X509_DATAFORMAT_ENCODED extension_data_format = 0
-//
+	CSSM_X509_DATAFORMAT_ENCODED extension_data_format = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_X509_DATAFORMAT_PAIR
-CSSM_X509_DATAFORMAT_PAIR extension_data_format = 0
-//
+	CSSM_X509_DATAFORMAT_PAIR extension_data_format = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_X509_DATAFORMAT_PARSED
-CSSM_X509_DATAFORMAT_PARSED extension_data_format = 0
+	CSSM_X509_DATAFORMAT_PARSED extension_data_format = 0
 )
 
 // tls_ciphersuite_group_t - Groups that collect ciphersuites of comparable security properties.
@@ -367,30 +367,30 @@ type tls_ciphersuite_t uint
 type tls_protocol_version_t uint
 
 const (
-// tls_protocol_version_DTLSv10 - The DTLS 1.0 protocol.
-//
+	// tls_protocol_version_DTLSv10 - The DTLS 1.0 protocol.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/DTLSv10
-tls_protocol_version_DTLSv10 tls_protocol_version_t = 0
-// tls_protocol_version_DTLSv12 - The DTLS 1.2 protocol.
-//
+	tls_protocol_version_DTLSv10 tls_protocol_version_t = 0
+	// tls_protocol_version_DTLSv12 - The DTLS 1.2 protocol.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/DTLSv12
-tls_protocol_version_DTLSv12 tls_protocol_version_t = 0
-// tls_protocol_version_TLSv10 - The TLS 1.0 protocol.
-//
+	tls_protocol_version_DTLSv12 tls_protocol_version_t = 0
+	// tls_protocol_version_TLSv10 - The TLS 1.0 protocol.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv10
-tls_protocol_version_TLSv10 tls_protocol_version_t = 0
-// tls_protocol_version_TLSv11 - The TLS 1.1 protocol.
-//
+	tls_protocol_version_TLSv10 tls_protocol_version_t = 0
+	// tls_protocol_version_TLSv11 - The TLS 1.1 protocol.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv11
-tls_protocol_version_TLSv11 tls_protocol_version_t = 0
-// tls_protocol_version_TLSv12 - The TLS 1.2 protocol.
-//
+	tls_protocol_version_TLSv11 tls_protocol_version_t = 0
+	// tls_protocol_version_TLSv12 - The TLS 1.2 protocol.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv12
-tls_protocol_version_TLSv12 tls_protocol_version_t = 0
-// tls_protocol_version_TLSv13 - The TLS 1.3 protocol.
-//
+	tls_protocol_version_TLSv12 tls_protocol_version_t = 0
+	// tls_protocol_version_TLSv13 - The TLS 1.3 protocol.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv13
-tls_protocol_version_TLSv13 tls_protocol_version_t = 0
+	tls_protocol_version_TLSv13 tls_protocol_version_t = 0
 )
 
 

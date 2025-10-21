@@ -81,6 +81,8 @@ func NewFSEntityIdentifier() FSEntityIdentifier {
 }
 
 
+
+
 // Creates an entity identifier with the given UUID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:)
@@ -91,6 +93,8 @@ func NewFSEntityIdentifierWithUUID(uuid unsafe.Pointer) FSEntityIdentifier {
 	return rv
 }
 
+
+
 // Creates an entity identifier with the given UUID and qualifier data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:data:)
@@ -100,6 +104,8 @@ func NewFSEntityIdentifierWithUUIDData(uuid unsafe.Pointer, qualifierData unsafe
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an entity identifier with the given UUID and qualifier data as a 64-bit unsigned integer.
 //
@@ -129,6 +135,7 @@ func (f_ FSEntityIdentifier) Qualifier() unsafe.Pointer {
 func (f_ FSEntityIdentifier) SetQualifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQualifier:"), value)
 }
+
 // A UUID to uniquely identify this entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/uuid
@@ -146,4 +153,5 @@ func (f_ FSEntityIdentifier) Uuid() unsafe.Pointer {
 func (f_ FSEntityIdentifier) SetUuid(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUuid:"), value)
 }
+
 

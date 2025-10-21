@@ -19,5 +19,3 @@ var confirmSearchForMessagesProtocol *objc.Protocol
 func init() {
 	confirmSearchForMessagesProtocol = objc.GetProtocol("confirmSearchForMessages:")
 }
-
-

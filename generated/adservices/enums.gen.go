@@ -9,18 +9,18 @@ package adservices
 type AAAttributionErrorCode uint
 
 const (
-// AAAttributionErrorCodeInternalError - The server is unable to provide a token because of an internal error.
-//
+	// AAAttributionErrorCodeInternalError - The server is unable to provide a token because of an internal error.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttributionError/Code/internalError
-AAAttributionErrorCodeInternalError AAAttributionErrorCode = 0
-// AAAttributionErrorCodeNetworkError - The server is unable to provide a token because the internet isn’t available.
-//
+	AAAttributionErrorCodeInternalError AAAttributionErrorCode = 0
+	// AAAttributionErrorCodeNetworkError - The server is unable to provide a token because the internet isn’t available.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttributionError/Code/networkError
-AAAttributionErrorCodeNetworkError AAAttributionErrorCode = 0
-// AAAttributionErrorCodePlatformNotSupported - The server is unable to provide a token because of an unsupported operating system.
-//
+	AAAttributionErrorCodeNetworkError AAAttributionErrorCode = 0
+	// AAAttributionErrorCodePlatformNotSupported - The server is unable to provide a token because of an unsupported operating system.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttributionError/Code/platformNotSupported
-AAAttributionErrorCodePlatformNotSupported AAAttributionErrorCode = 0
+	AAAttributionErrorCodePlatformNotSupported AAAttributionErrorCode = 0
 )
 
 

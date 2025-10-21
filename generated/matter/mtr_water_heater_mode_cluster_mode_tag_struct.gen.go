@@ -90,6 +90,7 @@ func (m_ MTRWaterHeaterModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 func (m_ MTRWaterHeaterModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeTagStruct/value
 func (m_ MTRWaterHeaterModeClusterModeTagStruct) Value() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRWaterHeaterModeClusterModeTagStruct) Value() unsafe.Pointer {
 func (m_ MTRWaterHeaterModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

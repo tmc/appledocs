@@ -90,6 +90,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Active() unsafe.Pointer {
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetActive(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActive:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/inactive
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Inactive() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Inactive() unsafe.Pointer {
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetInactive(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInactive:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/mask
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Mask() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Mask() unsafe.Pointer {
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/state
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) State() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) State() unsafe.Pointer {
 func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
+
 
 

@@ -97,6 +97,7 @@ func (a_ ABPersonView) Editing() bool {
 func (a_ ABPersonView) SetEditing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditing:"), value)
 }
+
 // The contact record being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
@@ -114,6 +115,7 @@ func (a_ ABPersonView) Person() unsafe.Pointer {
 func (a_ ABPersonView) SetPerson(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPerson:"), value)
 }
+
 // Indicates whether the person view should display data from person records that are linked with the person record being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
@@ -131,5 +133,6 @@ func (a_ ABPersonView) ShouldShowLinkedPeople() bool {
 func (a_ ABPersonView) SetShouldShowLinkedPeople(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldShowLinkedPeople:"), value)
 }
+
 
 

@@ -98,6 +98,7 @@ func (m_ MKLocalSearchCompleter) FilterType() unsafe.Pointer {
 func (m_ MKLocalSearchCompleter) SetFilterType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFilterType:"), value)
 }
+
 // The most recently received search completions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearchCompleter/results

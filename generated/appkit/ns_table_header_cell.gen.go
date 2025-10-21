@@ -79,3 +79,7 @@ func (t_ TableHeaderCell) Autorelease() TableHeaderCell {
 func NewTableHeaderCell() TableHeaderCell {
 	return getTableHeaderCellClass().New()
 }
+
+
+
+

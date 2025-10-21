@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextLayoutFragment] class.
@@ -76,3 +77,7 @@ func (t_ TextLayoutFragment) Autorelease() TextLayoutFragment {
 func NewTextLayoutFragment() TextLayoutFragment {
 	return getTextLayoutFragmentClass().New()
 }
+
+
+
+

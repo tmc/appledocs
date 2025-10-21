@@ -19,5 +19,3 @@ var INStartPhotoPlaybackIntentHandlingProtocol *objc.Protocol
 func init() {
 	INStartPhotoPlaybackIntentHandlingProtocol = objc.GetProtocol("INStartPhotoPlaybackIntentHandling")
 }
-
-

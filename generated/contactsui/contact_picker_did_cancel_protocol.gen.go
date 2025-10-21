@@ -18,5 +18,3 @@ var contactPickerDidCancelProtocol *objc.Protocol
 func init() {
 	contactPickerDidCancelProtocol = objc.GetProtocol("contactPickerDidCancel:")
 }
-
-

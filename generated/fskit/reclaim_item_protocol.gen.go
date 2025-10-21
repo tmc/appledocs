@@ -15,5 +15,3 @@ var reclaimItemProtocol *objc.Protocol
 func init() {
 	reclaimItemProtocol = objc.GetProtocol("reclaimItem:")
 }
-
-

@@ -20,5 +20,3 @@ var copyFromTextureProtocol *objc.Protocol
 func init() {
 	copyFromTextureProtocol = objc.GetProtocol("copyFromTexture:")
 }
-
-

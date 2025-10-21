@@ -86,6 +86,8 @@ func NewBluetoothDeviceInquiry() BluetoothDeviceInquiry {
 }
 
 
+
+
 // Initializes an alloc’d inquiry object, and sets the delegate object, as if -setDelegate: were called on it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/init(delegate:)
@@ -157,6 +159,7 @@ func (b_ BluetoothDeviceInquiry) Delegate() objc.ID {
 func (b_ BluetoothDeviceInquiry) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Set the length of the inquiry that is performed each time -start is used on an inquiry object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/inquiryLength
@@ -174,6 +177,7 @@ func (b_ BluetoothDeviceInquiry) InquiryLength() unsafe.Pointer {
 func (b_ BluetoothDeviceInquiry) SetInquiryLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInquiryLength:"), value)
 }
+
 // Set the devices that are found.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/searchType
@@ -191,6 +195,7 @@ func (b_ BluetoothDeviceInquiry) SearchType() unsafe.Pointer {
 func (b_ BluetoothDeviceInquiry) SetSearchType(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchType:"), value)
 }
+
 // Sets whether or not the inquiry object will retrieve the names of devices found during the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/updateNewDeviceNames
@@ -208,4 +213,5 @@ func (b_ BluetoothDeviceInquiry) UpdateNewDeviceNames() bool {
 func (b_ BluetoothDeviceInquiry) SetUpdateNewDeviceNames(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUpdateNewDeviceNames:"), value)
 }
+
 

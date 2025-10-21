@@ -12,5 +12,3 @@ var obstructionProtocol *objc.Protocol
 func init() {
 	obstructionProtocol = objc.GetProtocol("obstruction")
 }
-
-

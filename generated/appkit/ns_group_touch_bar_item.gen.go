@@ -78,6 +78,9 @@ func NewGroupTouchBarItem() GroupTouchBarItem {
 	return getGroupTouchBarItemClass().New()
 }
 
+
+
+
 // Initializes and returns a group item whose bar is constructed from the supplied items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:)
@@ -86,6 +89,8 @@ func NewGroupTouchBarItemGroupItemWithIdentifierItems(identifier unsafe.Pointer,
 	return rv
 }
 
+
+
 // Initializes and returns a group item whose bar is constructed from the supplied items, and with the specified compression options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:allowedCompressionOptions:)
@@ -93,6 +98,7 @@ func NewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions(i
 	rv := objc.Send[GroupTouchBarItem](objc.ID(getGroupTouchBarItemClass().class), objc.Sel("groupItemWithIdentifier:items:allowedCompressionOptions:"), identifier, items, allowedCompressionOptions)
 	return rv
 }
+
 
 // Initializes and returns a group item whose bar is constructed from the supplied items.
 //
@@ -118,6 +124,7 @@ func (g_ GroupTouchBarItem) GroupTouchBar() unsafe.Pointer {
 	return rv
 }
 
+
 // SetGroupTouchBar sets the value of the groupTouchBar property.
 // A bar that holds this group’s items.
 
@@ -126,3 +133,5 @@ func (g_ GroupTouchBarItem) GroupTouchBar() unsafe.Pointer {
 func (g_ GroupTouchBarItem) SetGroupTouchBar(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGroupTouchBar:"), value)
 }
+
+

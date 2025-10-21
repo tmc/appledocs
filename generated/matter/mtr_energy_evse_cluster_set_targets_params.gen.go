@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterSetTargetsParams) ChargingTargetSchedules() unsafe.
 func (m_ MTREnergyEVSEClusterSetTargetsParams) SetChargingTargetSchedules(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingTargetSchedules:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterSetTargetsParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTREnergyEVSEClusterSetTargetsParams) ServerSideProcessingTimeout() uns
 func (m_ MTREnergyEVSEClusterSetTargetsParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterSetTargetsParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTREnergyEVSEClusterSetTargetsParams) TimedInvokeTimeoutMs() unsafe.Poi
 func (m_ MTREnergyEVSEClusterSetTargetsParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

@@ -20,5 +20,3 @@ var inputStateQueueDepthProtocol *objc.Protocol
 func init() {
 	inputStateQueueDepthProtocol = objc.GetProtocol("inputStateQueueDepth")
 }
-
-

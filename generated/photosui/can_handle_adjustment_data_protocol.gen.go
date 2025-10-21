@@ -19,5 +19,3 @@ var canHandleAdjustmentDataProtocol *objc.Protocol
 func init() {
 	canHandleAdjustmentDataProtocol = objc.GetProtocol("canHandleAdjustmentData:")
 }
-
-

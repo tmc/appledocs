@@ -20,5 +20,3 @@ var pictureInPictureControllerWillStartPictureInPictureProtocol *objc.Protocol
 func init() {
 	pictureInPictureControllerWillStartPictureInPictureProtocol = objc.GetProtocol("pictureInPictureControllerWillStartPictureInPicture:")
 }
-
-

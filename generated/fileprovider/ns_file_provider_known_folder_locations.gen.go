@@ -94,6 +94,7 @@ func (f_ FileProviderKnownFolderLocations) DesktopLocation() unsafe.Pointer {
 func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
 func (f_ FileProviderKnownFolderLocations) DocumentsLocation() unsafe.Pointer {
@@ -108,6 +109,7 @@ func (f_ FileProviderKnownFolderLocations) DocumentsLocation() unsafe.Pointer {
 func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/shouldCreateBinaryCompatibilitySymlink
 func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlink() bool {
@@ -122,4 +124,5 @@ func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlin
 func (f_ FileProviderKnownFolderLocations) SetShouldCreateBinaryCompatibilitySymlink(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldCreateBinaryCompatibilitySymlink:"), value)
 }
+
 

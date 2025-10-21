@@ -81,6 +81,8 @@ func NewCKSystemSharingUIObserver() CKSystemSharingUIObserver {
 }
 
 
+
+
 // Creates and initializes an observer using the provided container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/init(container:)
@@ -109,6 +111,7 @@ func (c_ CKSystemSharingUIObserver) SystemSharingUIDidSaveShareBlock() unsafe.Po
 func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidSaveShareBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemSharingUIDidSaveShareBlock:"), value)
 }
+
 // A callback block the system invokes after the success or failure of a system sharing UI delete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidStopSharingBlock-4g5bn
@@ -126,4 +129,5 @@ func (c_ CKSystemSharingUIObserver) SystemSharingUIDidStopSharingBlock() unsafe.
 func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidStopSharingBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemSharingUIDidStopSharingBlock:"), value)
 }
+
 

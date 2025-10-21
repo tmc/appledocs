@@ -98,6 +98,7 @@ func (b_ BasicAnimation) ByValue() objc.ID {
 func (b_ BasicAnimation) SetByValue(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setByValue:"), value)
 }
+
 // Defines the value the receiver uses to start interpolation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation/fromValue
@@ -115,6 +116,7 @@ func (b_ BasicAnimation) FromValue() objc.ID {
 func (b_ BasicAnimation) SetFromValue(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFromValue:"), value)
 }
+
 // Defines the value the receiver uses to end interpolation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation/toValue
@@ -132,5 +134,6 @@ func (b_ BasicAnimation) ToValue() objc.ID {
 func (b_ BasicAnimation) SetToValue(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setToValue:"), value)
 }
+
 
 

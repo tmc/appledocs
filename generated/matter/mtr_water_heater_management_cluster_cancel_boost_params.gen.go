@@ -93,6 +93,7 @@ func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) ServerSideProcessingT
 func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterCancelBoostParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) TimedInvokeTimeoutMs(
 func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

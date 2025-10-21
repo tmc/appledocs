@@ -20,5 +20,3 @@ var ArgumentEncoderProtocol *objc.Protocol
 func init() {
 	ArgumentEncoderProtocol = objc.GetProtocol("MTLArgumentEncoder")
 }
-
-

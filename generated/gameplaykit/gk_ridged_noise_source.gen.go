@@ -81,6 +81,8 @@ func NewRidgedNoiseSource() RidgedNoiseSource {
 }
 
 
+
+
 // Initializes a ridged noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/init(frequency:octaveCount:lacunarity:seed:)

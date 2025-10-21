@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = networkextension.NewNEHotspotConfiguration
 
-
 // ExampleNewNEHotspotConfigurationWithSSID demonstrates how to create a NEHotspotConfiguration instance using NewNEHotspotConfigurationWithSSID.
 // Creates a new hotspot configuration, identified by an SSID, for an open Wi-Fi network.
 func ExampleNewNEHotspotConfigurationWithSSID() {
@@ -18,8 +17,6 @@ func ExampleNewNEHotspotConfigurationWithSSID() {
 	)
 	// Output:
 }
-
-
 // ExampleNewNEHotspotConfigurationWithSSIDPassphraseIsWEP demonstrates how to create a NEHotspotConfiguration instance using NewNEHotspotConfigurationWithSSIDPassphraseIsWEP.
 // Creates a new hotspot configuration, identified by an SSID, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 func ExampleNewNEHotspotConfigurationWithSSIDPassphraseIsWEP() {
@@ -30,7 +27,6 @@ func ExampleNewNEHotspotConfigurationWithSSIDPassphraseIsWEP() {
 	)
 	// Output:
 }
-
 // ExampleNewNEHotspotConfigurationWithSSIDPrefix demonstrates how to create a NEHotspotConfiguration instance using NewNEHotspotConfigurationWithSSIDPrefix.
 // Creates a new hotspot configuration, identified by an SSID prefix string, for an open Wi-Fi network.
 func ExampleNewNEHotspotConfigurationWithSSIDPrefix() {
@@ -39,7 +35,6 @@ func ExampleNewNEHotspotConfigurationWithSSIDPrefix() {
 	)
 	// Output:
 }
-
 // ExampleNewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP demonstrates how to create a NEHotspotConfiguration instance using NewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP.
 // Creates a new hotspot configuration, identified by an SSID prefix string, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 func ExampleNewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP() {
@@ -50,6 +45,3 @@ func ExampleNewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP() {
 	)
 	// Output:
 }
-
-
-

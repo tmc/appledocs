@@ -82,6 +82,8 @@ func NewAnimation() Animation {
 }
 
 
+
+
 // Creates an animation from a SceneKit animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/init(SCNAnimation:)
@@ -150,6 +152,7 @@ func (a_ Animation) SetAnimationEvents(value []SCNAnimationEvent) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationEvents:"), nsArray)
 }
+
 // Specifies the receiver’s delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/delegate
@@ -167,6 +170,7 @@ func (a_ Animation) Delegate() objc.ID {
 func (a_ Animation) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // For animations attached to SceneKit objects, the duration for transitioning into the animation’s effect as it begins.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/fadeInDuration
@@ -184,6 +188,7 @@ func (a_ Animation) FadeInDuration() float64 {
 func (a_ Animation) SetFadeInDuration(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFadeInDuration:"), value)
 }
+
 // For animations attached to SceneKit objects, the duration for transitioning out of the animation’s effect as it ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/fadeOutDuration
@@ -201,6 +206,7 @@ func (a_ Animation) FadeOutDuration() float64 {
 func (a_ Animation) SetFadeOutDuration(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFadeOutDuration:"), value)
 }
+
 // Determines if the animation is removed from the target layer’s animations upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/isRemovedOnCompletion
@@ -218,6 +224,7 @@ func (a_ Animation) RemovedOnCompletion() bool {
 func (a_ Animation) SetRemovedOnCompletion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRemovedOnCompletion:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/preferredFrameRateRange
 func (a_ Animation) PreferredFrameRateRange() unsafe.Pointer {
@@ -232,6 +239,7 @@ func (a_ Animation) PreferredFrameRateRange() unsafe.Pointer {
 func (a_ Animation) SetPreferredFrameRateRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredFrameRateRange:"), value)
 }
+
 // An optional timing function defining the pacing of the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/timingFunction
@@ -249,6 +257,7 @@ func (a_ Animation) TimingFunction() unsafe.Pointer {
 func (a_ Animation) SetTimingFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimingFunction:"), value)
 }
+
 // For animations attached to SceneKit objects, a Boolean value that determines whether the animation is evaluated using the scene time or the system time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/usesSceneTimeBase
@@ -266,5 +275,6 @@ func (a_ Animation) UsesSceneTimeBase() bool {
 func (a_ Animation) SetUsesSceneTimeBase(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUsesSceneTimeBase:"), value)
 }
+
 
 

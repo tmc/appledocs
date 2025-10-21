@@ -101,6 +101,8 @@ func NewODNode() ODNode {
 }
 
 
+
+
 // Creates a node object with a specified session and name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/init(session:name:)
@@ -110,6 +112,8 @@ func NewODNodeWithSessionNameError(inSession unsafe.Pointer, inName string, outE
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a node object with a specified session and type.
 //

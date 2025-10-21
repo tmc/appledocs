@@ -20,5 +20,3 @@ var resolveDestinationTypeForStartCallProtocol *objc.Protocol
 func init() {
 	resolveDestinationTypeForStartCallProtocol = objc.GetProtocol("resolveDestinationTypeForStartCall:")
 }
-
-

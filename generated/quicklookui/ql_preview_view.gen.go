@@ -81,6 +81,8 @@ func NewPreviewView() PreviewView {
 }
 
 
+
+
 // Creates a preview view with the provided frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:)
@@ -90,6 +92,8 @@ func NewPreviewViewWithFrame(frame Rect) PreviewView {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a preview view with the provided frame and style.
 //
@@ -126,4 +130,5 @@ func (p_ PreviewView) Autostarts() bool {
 func (p_ PreviewView) SetAutostarts(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutostarts:"), value)
 }
+
 

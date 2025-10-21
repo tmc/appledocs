@@ -81,6 +81,8 @@ func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 }
 
 
+
+
 // Creates a discovery session that finds devices that match the specified criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)

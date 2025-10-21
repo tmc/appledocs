@@ -21,5 +21,3 @@ var OS_nw_txt_recordProtocol *objc.Protocol
 func init() {
 	OS_nw_txt_recordProtocol = objc.GetProtocol("OS_nw_txt_record")
 }
-
-

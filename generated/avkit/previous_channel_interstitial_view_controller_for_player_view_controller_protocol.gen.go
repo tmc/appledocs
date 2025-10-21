@@ -15,5 +15,3 @@ var previousChannelInterstitialViewControllerForPlayerViewControllerProtocol *ob
 func init() {
 	previousChannelInterstitialViewControllerForPlayerViewControllerProtocol = objc.GetProtocol("previousChannelInterstitialViewControllerForPlayerViewController:")
 }
-
-

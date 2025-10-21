@@ -19,5 +19,3 @@ var INPayBillIntentHandlingProtocol *objc.Protocol
 func init() {
 	INPayBillIntentHandlingProtocol = objc.GetProtocol("INPayBillIntentHandling")
 }
-
-

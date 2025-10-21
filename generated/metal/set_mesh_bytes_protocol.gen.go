@@ -20,5 +20,3 @@ var setMeshBytesProtocol *objc.Protocol
 func init() {
 	setMeshBytesProtocol = objc.GetProtocol("setMeshBytes:")
 }
-
-

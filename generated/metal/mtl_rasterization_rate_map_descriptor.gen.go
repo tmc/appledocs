@@ -139,6 +139,7 @@ func (r_ RasterizationRateMapDescriptor) Label() string {
 func (r_ RasterizationRateMapDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // The number of layers in the rate map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/layerCount
@@ -172,5 +173,6 @@ func (r_ RasterizationRateMapDescriptor) ScreenSize() unsafe.Pointer {
 func (r_ RasterizationRateMapDescriptor) SetScreenSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScreenSize:"), value)
 }
+
 
 

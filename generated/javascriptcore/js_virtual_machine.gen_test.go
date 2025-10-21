@@ -9,12 +9,10 @@ import (
 // Suppress unused import errors
 var _ = javascriptcore.NewJSVirtualMachine
 
-
 // ExampleNewJSVirtualMachine demonstrates how to create a JSVirtualMachine instance.
 // Initializes a JavaScript virtual machine.
 func ExampleNewJSVirtualMachine() {
 	_ = javascriptcore.NewJSVirtualMachine()
 	// Output:
 }
-
 

@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = executionpolicy.NewEPDeveloperTool
 
-
 // ExampleNewEPDeveloperTool demonstrates how to create a EPDeveloperTool instance.
 func ExampleNewEPDeveloperTool() {
 	_ = executionpolicy.NewEPDeveloperTool()
 	// Output:
 }
-
-

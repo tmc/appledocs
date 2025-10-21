@@ -9,9 +9,9 @@ package pcidriverkit
 type PCIBARType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCIBARType/kPCIBARTypeM64PF
-kPCIBARTypeM64PF PCIBARType = 0
+	kPCIBARTypeM64PF PCIBARType = 0
 )
 
 // IOPCILinkSpeed enum type
@@ -20,9 +20,9 @@ kPCIBARTypeM64PF PCIBARType = 0
 type PCILinkSpeed uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCILinkSpeed/kPCILinkSpeed_16_GTs
-kPCILinkSpeed_16_GTs PCILinkSpeed = 0
+	kPCILinkSpeed_16_GTs PCILinkSpeed = 0
 )
 
 // IOPCIMemoryRange enum type
@@ -36,9 +36,9 @@ type PCIMemoryRange uint
 type PCISaveDeviceStateOptions uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCISaveDeviceStateOptions/kPCIConfigShadowPermanent
-kPCIConfigShadowPermanent PCISaveDeviceStateOptions = 0
+	kPCIConfigShadowPermanent PCISaveDeviceStateOptions = 0
 )
 
 // tIOPCIAccessOptions enum type
@@ -62,18 +62,18 @@ type tIOPCIDeviceResetTypes uint
 type tIOPCILinkControlASPMBits uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkControlASPMBits/kIOPCILinkControlASPMBitsDisabled
-kIOPCILinkControlASPMBitsDisabled tIOPCILinkControlASPMBits = 0
-//
+	kIOPCILinkControlASPMBitsDisabled tIOPCILinkControlASPMBits = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkControlASPMBits/kIOPCILinkControlASPMBitsL0s
-kIOPCILinkControlASPMBitsL0s tIOPCILinkControlASPMBits = 0
-//
+	kIOPCILinkControlASPMBitsL0s tIOPCILinkControlASPMBits = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkControlASPMBits/kIOPCILinkControlASPMBitsL0sL1
-kIOPCILinkControlASPMBitsL0sL1 tIOPCILinkControlASPMBits = 0
-//
+	kIOPCILinkControlASPMBitsL0sL1 tIOPCILinkControlASPMBits = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkControlASPMBits/kIOPCILinkControlASPMBitsL1
-kIOPCILinkControlASPMBitsL1 tIOPCILinkControlASPMBits = 0
+	kIOPCILinkControlASPMBitsL1 tIOPCILinkControlASPMBits = 0
 )
 
 // tIOPCILinkSpeed enum type

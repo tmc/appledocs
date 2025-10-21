@@ -20,5 +20,3 @@ var signaledValueProtocol *objc.Protocol
 func init() {
 	signaledValueProtocol = objc.GetProtocol("signaledValue")
 }
-
-

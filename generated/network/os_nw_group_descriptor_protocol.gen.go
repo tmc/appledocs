@@ -21,5 +21,3 @@ var OS_nw_group_descriptorProtocol *objc.Protocol
 func init() {
 	OS_nw_group_descriptorProtocol = objc.GetProtocol("OS_nw_group_descriptor")
 }
-
-

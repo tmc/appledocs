@@ -20,5 +20,3 @@ var newSharedEventProtocol *objc.Protocol
 func init() {
 	newSharedEventProtocol = objc.GetProtocol("newSharedEvent")
 }
-
-

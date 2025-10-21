@@ -19,5 +19,3 @@ var SDataStoreDelegateProtocol *objc.Protocol
 func init() {
 	SDataStoreDelegateProtocol = objc.GetProtocol("CLSDataStoreDelegate")
 }
-
-

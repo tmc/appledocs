@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZEFIBootLoader
 
-
 // ExampleNewVZEFIBootLoader demonstrates how to create a VZEFIBootLoader instance.
 // Creates a new EFI boot loader.
 func ExampleNewVZEFIBootLoader() {
 	_ = virtualization.NewVZEFIBootLoader()
 	// Output:
 }
-
-

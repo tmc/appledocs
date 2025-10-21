@@ -18,5 +18,3 @@ var lastUsedDateProtocol *objc.Protocol
 func init() {
 	lastUsedDateProtocol = objc.GetProtocol("lastUsedDate")
 }
-
-

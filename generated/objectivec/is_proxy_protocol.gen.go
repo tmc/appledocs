@@ -12,5 +12,3 @@ var isProxyProtocol *objc.Protocol
 func init() {
 	isProxyProtocol = objc.GetProtocol("isProxy")
 }
-
-

@@ -19,26 +19,26 @@ type CWChannelWidth uint
 type CWCipherKeyFlags uint
 
 const (
-// kCWCipherKeyFlagsNone - Open System authentication.
-//
+	// kCWCipherKeyFlagsNone - Open System authentication.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWCipherKeyFlags/kCWCipherKeyFlagsNone
-kCWCipherKeyFlagsNone CWCipherKeyFlags = 0
-// kCWCipherKeyFlagsMulticast - A flag that indicates to use the cipher key for multicast packets.
-//
+	kCWCipherKeyFlagsNone CWCipherKeyFlags = 0
+	// kCWCipherKeyFlagsMulticast - A flag that indicates to use the cipher key for multicast packets.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWCipherKeyFlags/multicast
-kCWCipherKeyFlagsMulticast CWCipherKeyFlags = 0
-// kCWCipherKeyFlagsRx - A flag that indicates to use the cipher key for packets received by the interface.
-//
+	kCWCipherKeyFlagsMulticast CWCipherKeyFlags = 0
+	// kCWCipherKeyFlagsRx - A flag that indicates to use the cipher key for packets received by the interface.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWCipherKeyFlags/rx
-kCWCipherKeyFlagsRx CWCipherKeyFlags = 0
-// kCWCipherKeyFlagsTx - A flag that indicates to use the cipher key for packets sent from the interface.
-//
+	kCWCipherKeyFlagsRx CWCipherKeyFlags = 0
+	// kCWCipherKeyFlagsTx - A flag that indicates to use the cipher key for packets sent from the interface.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWCipherKeyFlags/tx
-kCWCipherKeyFlagsTx CWCipherKeyFlags = 0
-// kCWCipherKeyFlagsUnicast - A flag that indicates to use the cipher key for unicast packets.
-//
+	kCWCipherKeyFlagsTx CWCipherKeyFlags = 0
+	// kCWCipherKeyFlagsUnicast - A flag that indicates to use the cipher key for unicast packets.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWCipherKeyFlags/unicast
-kCWCipherKeyFlagsUnicast CWCipherKeyFlags = 0
+	kCWCipherKeyFlagsUnicast CWCipherKeyFlags = 0
 )
 
 // CWErr enum type

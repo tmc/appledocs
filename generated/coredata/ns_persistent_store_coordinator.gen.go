@@ -101,6 +101,8 @@ func NewPersistentStoreCoordinator() PersistentStoreCoordinator {
 }
 
 
+
+
 // Creates a persistent store coordinator with the specified managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/init(managedObjectModel:)
@@ -336,6 +338,7 @@ func (p_ PersistentStoreCoordinator) Name() string {
 func (p_ PersistentStoreCoordinator) SetName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The coordinator’s registered store types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/registeredStoreTypes

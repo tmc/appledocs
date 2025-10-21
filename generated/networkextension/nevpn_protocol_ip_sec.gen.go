@@ -98,6 +98,7 @@ func (n_ NEVPNProtocolIPSec) AuthenticationMethod() unsafe.Pointer {
 func (n_ NEVPNProtocolIPSec) SetAuthenticationMethod(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAuthenticationMethod:"), value)
 }
+
 // A string identifying the iOS or macOS device for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
@@ -115,6 +116,7 @@ func (n_ NEVPNProtocolIPSec) LocalIdentifier() string {
 func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
+
 // A string identifying the IPSec server for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
@@ -132,6 +134,7 @@ func (n_ NEVPNProtocolIPSec) RemoteIdentifier() string {
 func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), objc.String(value))
 }
+
 // A persistent keychain reference to a keychain item containing the IKE shared secret.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/sharedSecretReference
@@ -149,6 +152,7 @@ func (n_ NEVPNProtocolIPSec) SharedSecretReference() unsafe.Pointer {
 func (n_ NEVPNProtocolIPSec) SetSharedSecretReference(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSharedSecretReference:"), value)
 }
+
 // A flag indicating if extended authentication will be negotiated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/useExtendedAuthentication
@@ -166,5 +170,6 @@ func (n_ NEVPNProtocolIPSec) UseExtendedAuthentication() bool {
 func (n_ NEVPNProtocolIPSec) SetUseExtendedAuthentication(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUseExtendedAuthentication:"), value)
 }
+
 
 

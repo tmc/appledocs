@@ -173,6 +173,7 @@ func (c_ Context) InteractionNotAllowed() bool {
 func (c_ Context) SetInteractionNotAllowed(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInteractionNotAllowed:"), value)
 }
+
 // The localized title for the cancel button in the dialog presented to the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
@@ -190,6 +191,7 @@ func (c_ Context) LocalizedCancelTitle() string {
 func (c_ Context) SetLocalizedCancelTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), objc.String(value))
 }
+
 // The localized title for the fallback button in the dialog presented to the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
@@ -207,6 +209,7 @@ func (c_ Context) LocalizedFallbackTitle() string {
 func (c_ Context) SetLocalizedFallbackTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), objc.String(value))
 }
+
 // The localized explanation for authentication shown in the dialog presented to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
@@ -224,6 +227,7 @@ func (c_ Context) LocalizedReason() string {
 func (c_ Context) SetLocalizedReason(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), objc.String(value))
 }
+
 // The number of biometric authentication failures after which the context falls back to another mechanism.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
@@ -241,6 +245,7 @@ func (c_ Context) MaxBiometryFailures() unsafe.Pointer {
 func (c_ Context) SetMaxBiometryFailures(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBiometryFailures:"), value)
 }
+
 // The duration for which Touch ID authentication reuse is allowable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
@@ -258,5 +263,6 @@ func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() TimeInterval {
 func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTouchIDAuthenticationAllowableReuseDuration:"), value)
 }
+
 
 

@@ -20,5 +20,3 @@ var agentDidUpdateProtocol *objc.Protocol
 func init() {
 	agentDidUpdateProtocol = objc.GetProtocol("agentDidUpdate:")
 }
-
-

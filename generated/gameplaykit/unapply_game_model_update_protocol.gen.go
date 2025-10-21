@@ -20,5 +20,3 @@ var unapplyGameModelUpdateProtocol *objc.Protocol
 func init() {
 	unapplyGameModelUpdateProtocol = objc.GetProtocol("unapplyGameModelUpdate:")
 }
-
-

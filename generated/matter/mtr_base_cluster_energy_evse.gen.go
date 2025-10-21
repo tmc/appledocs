@@ -141,6 +141,8 @@ func NewMTRBaseClusterEnergyEVSE() MTRBaseClusterEnergyEVSE {
 }
 
 
+
+
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/init(device:endpointID:queue:)

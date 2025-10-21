@@ -98,6 +98,7 @@ func (a_ AudioUnitPreset) Name() string {
 func (a_ AudioUnitPreset) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The preset’s unique numeric identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
@@ -115,5 +116,6 @@ func (a_ AudioUnitPreset) Number() int {
 func (a_ AudioUnitPreset) SetNumber(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumber:"), value)
 }
+
 
 

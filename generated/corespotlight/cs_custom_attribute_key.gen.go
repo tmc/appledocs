@@ -81,6 +81,8 @@ func NewCSCustomAttributeKey() CSCustomAttributeKey {
 }
 
 
+
+
 // Returns a new custom attribute key with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/init(keyName:)
@@ -90,6 +92,8 @@ func NewCSCustomAttributeKeyWithKeyName(keyName string) CSCustomAttributeKey {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns a new custom attribute key with the specified name and properties.
 //

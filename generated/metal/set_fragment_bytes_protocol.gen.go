@@ -19,5 +19,3 @@ var setFragmentBytesProtocol *objc.Protocol
 func init() {
 	setFragmentBytesProtocol = objc.GetProtocol("setFragmentBytes:")
 }
-
-

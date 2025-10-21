@@ -20,5 +20,3 @@ var setVertexAccelerationStructureProtocol *objc.Protocol
 func init() {
 	setVertexAccelerationStructureProtocol = objc.GetProtocol("setVertexAccelerationStructure:")
 }
-
-

@@ -20,5 +20,3 @@ var playerIdProtocol *objc.Protocol
 func init() {
 	playerIdProtocol = objc.GetProtocol("playerId")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFInfo] class.
@@ -79,6 +80,7 @@ func NewPDFInfo() PDFInfo {
 	return getPDFInfoClass().New()
 }
 
+
 // A Boolean value that indicates whether the file extension should appear after the filename.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
@@ -86,6 +88,7 @@ func (p_ PDFInfo) FileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("fileExtensionHidden"))
 	return rv
 }
+
 
 // SetFileExtensionHidden sets the value of the fileExtensionHidden property.
 // A Boolean value that indicates whether the file extension should appear after the filename.
@@ -104,6 +107,7 @@ func (p_ PDFInfo) Orientation() unsafe.Pointer {
 	return rv
 }
 
+
 // SetOrientation sets the value of the orientation property.
 // The paper orientation to use when exporting content as a PDF file.
 
@@ -120,6 +124,7 @@ func (p_ PDFInfo) TagNames() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("tagNames"))
 	return rv
 }
+
 
 // SetTagNames sets the value of the tagNames property.
 // An array of tag names that should be applied to the PDF file after it’s created.
@@ -139,3 +144,6 @@ func (p_ PDFInfo) SetTagNames(value []string) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), nsArray)
 }
+
+
+

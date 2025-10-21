@@ -16,5 +16,3 @@ var didModifyRangeProtocol *objc.Protocol
 func init() {
 	didModifyRangeProtocol = objc.GetProtocol("didModifyRange:")
 }
-
-

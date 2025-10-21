@@ -100,3 +100,4 @@ func (v_ VZSerialPortConfiguration) SetAttachment(value unsafe.Pointer) {
 }
 
 
+

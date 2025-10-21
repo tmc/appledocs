@@ -19,5 +19,3 @@ var FXSpatialScalerBaseProtocol *objc.Protocol
 func init() {
 	FXSpatialScalerBaseProtocol = objc.GetProtocol("MTLFXSpatialScalerBase")
 }
-
-

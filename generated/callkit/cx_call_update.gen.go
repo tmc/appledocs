@@ -98,6 +98,7 @@ func (c_ CXCallUpdate) HasVideo() bool {
 func (c_ CXCallUpdate) SetHasVideo(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasVideo:"), value)
 }
+
 // The localized name of the caller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
@@ -115,6 +116,7 @@ func (c_ CXCallUpdate) LocalizedCallerName() string {
 func (c_ CXCallUpdate) SetLocalizedCallerName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCallerName:"), objc.String(value))
 }
+
 // The handle for the remote party (for an incoming call, this is the caller; for an outgoing call, this is the callee).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/remoteHandle
@@ -132,6 +134,7 @@ func (c_ CXCallUpdate) RemoteHandle() unsafe.Pointer {
 func (c_ CXCallUpdate) SetRemoteHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRemoteHandle:"), value)
 }
+
 // A Boolean value that indicates whether the call can send DTMF (dual tone multifrequency) tones via hard pause digits or in-call keypad entries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsDTMF
@@ -149,6 +152,7 @@ func (c_ CXCallUpdate) SupportsDTMF() bool {
 func (c_ CXCallUpdate) SetSupportsDTMF(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsDTMF:"), value)
 }
+
 // A Boolean value that indicates whether the call can be grouped with other calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsGrouping
@@ -166,6 +170,7 @@ func (c_ CXCallUpdate) SupportsGrouping() bool {
 func (c_ CXCallUpdate) SetSupportsGrouping(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsGrouping:"), value)
 }
+
 // A Boolean value that indicates whether the call can be placed on hold or removed from hold.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsHolding
@@ -183,6 +188,7 @@ func (c_ CXCallUpdate) SupportsHolding() bool {
 func (c_ CXCallUpdate) SetSupportsHolding(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsHolding:"), value)
 }
+
 // A Boolean value that indicates whether the call can be ungrouped from other calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsUngrouping
@@ -200,5 +206,6 @@ func (c_ CXCallUpdate) SupportsUngrouping() bool {
 func (c_ CXCallUpdate) SetSupportsUngrouping(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsUngrouping:"), value)
 }
+
 
 

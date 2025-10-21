@@ -20,5 +20,3 @@ var installNameProtocol *objc.Protocol
 func init() {
 	installNameProtocol = objc.GetProtocol("installName")
 }
-
-

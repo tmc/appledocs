@@ -20,5 +20,3 @@ var debugSignpostsProtocol *objc.Protocol
 func init() {
 	debugSignpostsProtocol = objc.GetProtocol("debugSignposts")
 }
-
-

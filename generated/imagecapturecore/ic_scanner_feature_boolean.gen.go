@@ -94,3 +94,5 @@ func (i_ ICScannerFeatureBoolean) SetValue(value bool) {
 }
 
 
+
+

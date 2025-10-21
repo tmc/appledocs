@@ -15,5 +15,3 @@ var contextMenuItemSelectedWithCommandProtocol *objc.Protocol
 func init() {
 	contextMenuItemSelectedWithCommandProtocol = objc.GetProtocol("contextMenuItemSelectedWithCommand:")
 }
-
-

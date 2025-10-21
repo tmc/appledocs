@@ -20,5 +20,3 @@ var GCLinearInputProtocol *objc.Protocol
 func init() {
 	GCLinearInputProtocol = objc.GetProtocol("GCLinearInput")
 }
-
-

@@ -89,6 +89,7 @@ func (c_ Compare) ComparisonType() unsafe.Pointer {
 func (c_ Compare) SetComparisonType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonType:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/threshold
 func (c_ Compare) Threshold() unsafe.Pointer {
@@ -103,5 +104,6 @@ func (c_ Compare) Threshold() unsafe.Pointer {
 func (c_ Compare) SetThreshold(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setThreshold:"), value)
 }
+
 
 

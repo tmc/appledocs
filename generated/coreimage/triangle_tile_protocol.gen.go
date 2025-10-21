@@ -12,5 +12,3 @@ var TriangleTileProtocol *objc.Protocol
 func init() {
 	TriangleTileProtocol = objc.GetProtocol("CITriangleTile")
 }
-
-

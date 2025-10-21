@@ -21,4 +21,3 @@ var speechSynthesizerProtocol *objc.Protocol
 func init() {
 	speechSynthesizerProtocol = objc.GetProtocol("speechSynthesizer:")
 }
-

@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = opendirectory.NewODAttributeMap
 
-
 // ExampleNewODAttributeMapWithStaticValue demonstrates how to create a ODAttributeMap instance using NewODAttributeMapWithStaticValue.
 func ExampleNewODAttributeMapWithStaticValue() {
 	_ = opendirectory.NewODAttributeMapWithStaticValue(
@@ -17,7 +16,6 @@ func ExampleNewODAttributeMapWithStaticValue() {
 	)
 	// Output:
 }
-
 // ExampleNewODAttributeMapWithValue demonstrates how to create a ODAttributeMap instance using NewODAttributeMapWithValue.
 func ExampleNewODAttributeMapWithValue() {
 	_ = opendirectory.NewODAttributeMapWithValue(
@@ -25,5 +23,3 @@ func ExampleNewODAttributeMapWithValue() {
 	)
 	// Output:
 }
-
-

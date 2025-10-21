@@ -81,15 +81,7 @@ func NewCNRenderingSessionFrameAttributes() CNRenderingSessionFrameAttributes {
 }
 
 
-// Initializes the rendering frame attributes from a timed metadata group read from a Cinematic metadata track.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
-	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
-	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Initializes the rendering frame attributes from a sample buffer read from a Cinematic metadata track.
 //
@@ -97,6 +89,18 @@ func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes
 func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithSampleBuffer:sessionAttributes:"), sampleBuffer, sessionAttributes)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Initializes the rendering frame attributes from a timed metadata group read from a Cinematic metadata track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
+func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
+	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
+	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
 	rv.Autorelease()
 	return rv
 }
@@ -119,6 +123,7 @@ func (c_ CNRenderingSessionFrameAttributes) FNumber() unsafe.Pointer {
 func (c_ CNRenderingSessionFrameAttributes) SetFNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFNumber:"), value)
 }
+
 // Represents the focus plane at which the rendered image should be in focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
@@ -136,4 +141,5 @@ func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() unsafe.Pointer {
 func (c_ CNRenderingSessionFrameAttributes) SetFocusDisparity(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusDisparity:"), value)
 }
+
 

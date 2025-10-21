@@ -16,5 +16,3 @@ var contentSharingPickerStartDidFailWithErrorProtocol *objc.Protocol
 func init() {
 	contentSharingPickerStartDidFailWithErrorProtocol = objc.GetProtocol("contentSharingPickerStartDidFailWithError:")
 }
-
-

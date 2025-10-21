@@ -16,5 +16,3 @@ var preferredSizeOfLayerProtocol *objc.Protocol
 func init() {
 	preferredSizeOfLayerProtocol = objc.GetProtocol("preferredSizeOfLayer:")
 }
-
-

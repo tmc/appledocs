@@ -20,4 +20,3 @@ var pushRegistryProtocol *objc.Protocol
 func init() {
 	pushRegistryProtocol = objc.GetProtocol("pushRegistry:")
 }
-

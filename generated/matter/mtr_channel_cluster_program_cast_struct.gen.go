@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterProgramCastStruct) Name() string {
 func (m_ MTRChannelClusterProgramCastStruct) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/role
 func (m_ MTRChannelClusterProgramCastStruct) Role() string {
@@ -104,5 +105,6 @@ func (m_ MTRChannelClusterProgramCastStruct) Role() string {
 func (m_ MTRChannelClusterProgramCastStruct) SetRole(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRole:"), objc.String(value))
 }
+
 
 

@@ -84,6 +84,8 @@ func NewBlendKernel() BlendKernel {
 }
 
 
+
+
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)

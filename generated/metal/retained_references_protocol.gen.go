@@ -19,5 +19,3 @@ var retainedReferencesProtocol *objc.Protocol
 func init() {
 	retainedReferencesProtocol = objc.GetProtocol("retainedReferences")
 }
-
-

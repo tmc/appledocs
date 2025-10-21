@@ -93,6 +93,7 @@ func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) ServerSideProcessingTimeout
 func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterStartDiagnosticsParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) TimedInvokeTimeoutMs() unsa
 func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

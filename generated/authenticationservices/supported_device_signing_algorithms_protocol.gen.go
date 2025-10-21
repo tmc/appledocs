@@ -15,5 +15,3 @@ var supportedDeviceSigningAlgorithmsProtocol *objc.Protocol
 func init() {
 	supportedDeviceSigningAlgorithmsProtocol = objc.GetProtocol("supportedDeviceSigningAlgorithms")
 }
-
-

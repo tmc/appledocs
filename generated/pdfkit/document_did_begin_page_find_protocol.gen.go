@@ -20,5 +20,3 @@ var documentDidBeginPageFindProtocol *objc.Protocol
 func init() {
 	documentDidBeginPageFindProtocol = objc.GetProtocol("documentDidBeginPageFind:")
 }
-
-

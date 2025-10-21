@@ -19,5 +19,3 @@ var resolveGroupNamesForSearchForMessagesProtocol *objc.Protocol
 func init() {
 	resolveGroupNamesForSearchForMessagesProtocol = objc.GetProtocol("resolveGroupNamesForSearchForMessages:")
 }
-
-

@@ -466,6 +466,7 @@ func (m_ MKMapView) Camera() unsafe.Pointer {
 func (m_ MKMapView) SetCamera(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCamera:"), value)
 }
+
 // The boundary of the area within which the map view’s center needs to remain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/cameraBoundary-swift.property
@@ -483,6 +484,7 @@ func (m_ MKMapView) CameraBoundary() unsafe.Pointer {
 func (m_ MKMapView) SetCameraBoundary(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraBoundary:"), value)
 }
+
 // The zoom range to apply to the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/cameraZoomRange-swift.property
@@ -500,6 +502,7 @@ func (m_ MKMapView) CameraZoomRange() unsafe.Pointer {
 func (m_ MKMapView) SetCameraZoomRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraZoomRange:"), value)
 }
+
 // The map coordinate at the center of the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/centerCoordinate
@@ -517,6 +520,7 @@ func (m_ MKMapView) CenterCoordinate() unsafe.Pointer {
 func (m_ MKMapView) SetCenterCoordinate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCenterCoordinate:"), value)
 }
+
 // The receiver’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/delegate
@@ -534,6 +538,7 @@ func (m_ MKMapView) Delegate() objc.ID {
 func (m_ MKMapView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the map uses the camera’s pitch information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/isPitchEnabled
@@ -551,6 +556,7 @@ func (m_ MKMapView) PitchEnabled() bool {
 func (m_ MKMapView) SetPitchEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the map uses the camera’s heading information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/isRotateEnabled
@@ -568,6 +574,7 @@ func (m_ MKMapView) RotateEnabled() bool {
 func (m_ MKMapView) SetRotateEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRotateEnabled:"), value)
 }
+
 // A Boolean value that determines whether the user may scroll around the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/isScrollEnabled
@@ -585,6 +592,7 @@ func (m_ MKMapView) ScrollEnabled() bool {
 func (m_ MKMapView) SetScrollEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScrollEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the user’s location is visible in the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/isUserLocationVisible
@@ -610,6 +618,7 @@ func (m_ MKMapView) ZoomEnabled() bool {
 func (m_ MKMapView) SetZoomEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setZoomEnabled:"), value)
 }
+
 // The type of data the map view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/mapType
@@ -627,6 +636,7 @@ func (m_ MKMapView) MapType() unsafe.Pointer {
 func (m_ MKMapView) SetMapType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapType:"), value)
 }
+
 // The overlay objects associated with the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/overlays
@@ -652,6 +662,7 @@ func (m_ MKMapView) PitchButtonVisibility() unsafe.Pointer {
 func (m_ MKMapView) SetPitchButtonVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
 }
+
 // The filter to use for determining the points of interest that appear on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/pointOfInterestFilter
@@ -669,6 +680,7 @@ func (m_ MKMapView) PointOfInterestFilter() unsafe.Pointer {
 func (m_ MKMapView) SetPointOfInterestFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
+
 // The characteristics of the map view, including the map type and features the map displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/preferredConfiguration
@@ -686,6 +698,7 @@ func (m_ MKMapView) PreferredConfiguration() unsafe.Pointer {
 func (m_ MKMapView) SetPreferredConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
+
 // The area the map view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/region
@@ -703,6 +716,7 @@ func (m_ MKMapView) Region() unsafe.Pointer {
 func (m_ MKMapView) SetRegion(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
+
 // The property that describes which selectable features the map responds to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/selectableMapFeatures
@@ -720,6 +734,7 @@ func (m_ MKMapView) SelectableMapFeatures() unsafe.Pointer {
 func (m_ MKMapView) SetSelectableMapFeatures(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectableMapFeatures:"), value)
 }
+
 // The selected annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/selectedAnnotations
@@ -747,6 +762,7 @@ func (m_ MKMapView) SetSelectedAnnotations(value []objc.ID) {
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedAnnotations:"), nsArray)
 }
+
 // A Boolean value that indicates whether the map displays extruded building information on supported map types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsBuildings
@@ -764,6 +780,7 @@ func (m_ MKMapView) ShowsBuildings() bool {
 func (m_ MKMapView) SetShowsBuildings(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsBuildings:"), value)
 }
+
 // A Boolean value that indicates whether the map displays a compass control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsCompass
@@ -781,6 +798,7 @@ func (m_ MKMapView) ShowsCompass() bool {
 func (m_ MKMapView) SetShowsCompass(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsCompass:"), value)
 }
+
 // A Boolean value that indicates whether the map displays the pitch control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsPitchControl
@@ -798,6 +816,7 @@ func (m_ MKMapView) ShowsPitchControl() bool {
 func (m_ MKMapView) SetShowsPitchControl(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsPitchControl:"), value)
 }
+
 // A Boolean value that indicates whether the map displays point-of-interest information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsPointsOfInterest
@@ -815,6 +834,7 @@ func (m_ MKMapView) ShowsPointsOfInterest() bool {
 func (m_ MKMapView) SetShowsPointsOfInterest(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsPointsOfInterest:"), value)
 }
+
 // A Boolean value that indicates whether the map shows scale information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsScale
@@ -832,6 +852,7 @@ func (m_ MKMapView) ShowsScale() bool {
 func (m_ MKMapView) SetShowsScale(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsScale:"), value)
 }
+
 // A Boolean value that indicates whether the map displays traffic information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsTraffic
@@ -849,6 +870,7 @@ func (m_ MKMapView) ShowsTraffic() bool {
 func (m_ MKMapView) SetShowsTraffic(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
 }
+
 // A Boolean value that indicates whether the map tries to display the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsUserLocation
@@ -866,6 +888,7 @@ func (m_ MKMapView) ShowsUserLocation() bool {
 func (m_ MKMapView) SetShowsUserLocation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserLocation:"), value)
 }
+
 // A Boolean value that indicates whether the map displays the user tracking button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsUserTrackingButton
@@ -883,6 +906,7 @@ func (m_ MKMapView) ShowsUserTrackingButton() bool {
 func (m_ MKMapView) SetShowsUserTrackingButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
 }
+
 // A Boolean value that indicates whether the map displays zoom controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsZoomControls
@@ -900,6 +924,7 @@ func (m_ MKMapView) ShowsZoomControls() bool {
 func (m_ MKMapView) SetShowsZoomControls(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsZoomControls:"), value)
 }
+
 // The annotation object that represents the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/userLocation
@@ -925,6 +950,7 @@ func (m_ MKMapView) UserTrackingMode() unsafe.Pointer {
 func (m_ MKMapView) SetUserTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserTrackingMode:"), value)
 }
+
 // The area visible in the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/visibleMapRect
@@ -942,5 +968,6 @@ func (m_ MKMapView) VisibleMapRect() unsafe.Pointer {
 func (m_ MKMapView) SetVisibleMapRect(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVisibleMapRect:"), value)
 }
+
 
 

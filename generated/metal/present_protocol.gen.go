@@ -19,5 +19,3 @@ var presentProtocol *objc.Protocol
 func init() {
 	presentProtocol = objc.GetProtocol("present")
 }
-
-

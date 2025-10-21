@@ -20,5 +20,3 @@ var swizzleProtocol *objc.Protocol
 func init() {
 	swizzleProtocol = objc.GetProtocol("swizzle")
 }
-
-

@@ -91,6 +91,8 @@ func NewSContext() SContext {
 }
 
 
+
+
 // Initializes a new context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/init(type:identifier:title:)
@@ -198,6 +200,7 @@ func (s_ SContext) CustomTypeName() string {
 func (s_ SContext) SetCustomTypeName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomTypeName:"), objc.String(value))
 }
+
 // The position of a context relative to its siblings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/displayOrder
@@ -215,6 +218,7 @@ func (s_ SContext) DisplayOrder() int {
 func (s_ SContext) SetDisplayOrder(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayOrder:"), value)
 }
+
 // A string that uniquely identifies a context among its siblings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/identifier
@@ -256,6 +260,7 @@ func (s_ SContext) Assignable() bool {
 func (s_ SContext) SetAssignable(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAssignable:"), value)
 }
+
 // The child contexts that a user can navigate to from this context in the Schoolwork app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/navigationChildContexts
@@ -297,6 +302,7 @@ func (s_ SContext) SuggestedAge() Range {
 func (s_ SContext) SetSuggestedAge(value Range) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuggestedAge:"), value)
 }
+
 // A suggested time range to complete a task, measured in minutes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/suggestedCompletionTime
@@ -314,6 +320,7 @@ func (s_ SContext) SuggestedCompletionTime() Range {
 func (s_ SContext) SetSuggestedCompletionTime(value Range) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuggestedCompletionTime:"), value)
 }
+
 // An optional, user-visible description of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
@@ -331,6 +338,7 @@ func (s_ SContext) Summary() string {
 func (s_ SContext) SetSummary(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSummary:"), objc.String(value))
 }
+
 // An optional thumbnail image associated with the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/thumbnail
@@ -348,6 +356,7 @@ func (s_ SContext) Thumbnail() CGImageRef {
 func (s_ SContext) SetThumbnail(value CGImageRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setThumbnail:"), value)
 }
+
 // The name of the context as it appears to users.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
@@ -365,6 +374,7 @@ func (s_ SContext) Title() string {
 func (s_ SContext) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 // The area of study to which a context relates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/topic
@@ -382,6 +392,7 @@ func (s_ SContext) Topic() unsafe.Pointer {
 func (s_ SContext) SetTopic(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopic:"), value)
 }
+
 // The kind of content a context represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/type
@@ -407,4 +418,5 @@ func (s_ SContext) UniversalLinkURL() unsafe.Pointer {
 func (s_ SContext) SetUniversalLinkURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUniversalLinkURL:"), value)
 }
+
 

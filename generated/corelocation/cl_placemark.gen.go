@@ -88,6 +88,8 @@ func NewPlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name str
 	return rv
 }
 
+
+
 // Initializes and returns a placemark object from another placemark object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(placemark:)

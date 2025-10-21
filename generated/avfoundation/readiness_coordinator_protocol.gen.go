@@ -19,5 +19,3 @@ var readinessCoordinatorProtocol *objc.Protocol
 func init() {
 	readinessCoordinatorProtocol = objc.GetProtocol("readinessCoordinator:")
 }
-
-

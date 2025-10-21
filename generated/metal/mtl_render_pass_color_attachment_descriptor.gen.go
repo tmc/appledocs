@@ -98,3 +98,4 @@ func (r_ RenderPassColorAttachmentDescriptor) SetClearColor(value unsafe.Pointer
 }
 
 
+

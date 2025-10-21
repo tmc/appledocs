@@ -15,5 +15,3 @@ var supportedDeviceEncryptionAlgorithmsProtocol *objc.Protocol
 func init() {
 	supportedDeviceEncryptionAlgorithmsProtocol = objc.GetProtocol("supportedDeviceEncryptionAlgorithms")
 }
-
-

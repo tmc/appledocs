@@ -95,6 +95,7 @@ func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() unsafe.Pointer {
 func (s_ SFSpeechRecognitionRequest) SetCustomizedLanguageModel(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizedLanguageModel:"), value)
 }
+
 // A Boolean value that determines whether a request must keep its audio data on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/requiresOnDeviceRecognition
@@ -112,6 +113,7 @@ func (s_ SFSpeechRecognitionRequest) RequiresOnDeviceRecognition() bool {
 func (s_ SFSpeechRecognitionRequest) SetRequiresOnDeviceRecognition(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresOnDeviceRecognition:"), value)
 }
+
 // A Boolean value that indicates whether you want intermediate results returned for each utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults
@@ -129,5 +131,6 @@ func (s_ SFSpeechRecognitionRequest) ShouldReportPartialResults() bool {
 func (s_ SFSpeechRecognitionRequest) SetShouldReportPartialResults(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldReportPartialResults:"), value)
 }
+
 
 

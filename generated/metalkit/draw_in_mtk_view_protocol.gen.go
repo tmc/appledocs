@@ -20,5 +20,3 @@ var drawInMTKViewProtocol *objc.Protocol
 func init() {
 	drawInMTKViewProtocol = objc.GetProtocol("drawInMTKView:")
 }
-
-

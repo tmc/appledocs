@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) ChannelList() unsafe.Pointer {
 func (m_ MTRChannelClusterGetProgramGuideParams) SetChannelList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelList:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/data
 func (m_ MTRChannelClusterGetProgramGuideParams) Data() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) Data() unsafe.Pointer {
 func (m_ MTRChannelClusterGetProgramGuideParams) SetData(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/endTime
 func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() unsafe.Pointer {
 func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/pageToken
 func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() unsafe.Pointer {
 func (m_ MTRChannelClusterGetProgramGuideParams) SetPageToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPageToken:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/recordingFlag
 func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() unsafe.Pointer 
 func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecordingFlag:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/serverSideProcessingTimeout
@@ -163,6 +168,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() u
 func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/startTime
 func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() unsafe.Pointer {
@@ -177,6 +183,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() unsafe.Pointer {
 func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/timedInvokeTimeoutMs
@@ -194,5 +201,6 @@ func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() unsafe.P
 func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

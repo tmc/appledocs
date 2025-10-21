@@ -21,5 +21,3 @@ var MTRDeviceControllerStorageDelegateProtocol *objc.Protocol
 func init() {
 	MTRDeviceControllerStorageDelegateProtocol = objc.GetProtocol("MTRDeviceControllerStorageDelegate")
 }
-
-

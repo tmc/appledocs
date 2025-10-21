@@ -81,6 +81,8 @@ func NewGraphNode2D() GraphNode2D {
 }
 
 
+
+
 // Initializes a graph node with the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode2D/init(point:)
@@ -117,4 +119,5 @@ func (g_ GraphNode2D) Position() unsafe.Pointer {
 func (g_ GraphNode2D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPosition:"), value)
 }
+
 

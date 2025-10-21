@@ -12,5 +12,3 @@ var EightfoldReflectedTileProtocol *objc.Protocol
 func init() {
 	EightfoldReflectedTileProtocol = objc.GetProtocol("CIEightfoldReflectedTile")
 }
-
-

@@ -20,5 +20,3 @@ var tailSizeInBytesProtocol *objc.Protocol
 func init() {
 	tailSizeInBytesProtocol = objc.GetProtocol("tailSizeInBytes")
 }
-
-

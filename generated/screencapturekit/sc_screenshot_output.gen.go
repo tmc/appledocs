@@ -91,6 +91,7 @@ func (s_ ScreenshotOutput) FileURL() unsafe.Pointer {
 func (s_ ScreenshotOutput) SetFileURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFileURL:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
 func (s_ ScreenshotOutput) HdrImage() coregraphics.CGImageRef {
@@ -105,5 +106,6 @@ func (s_ ScreenshotOutput) HdrImage() coregraphics.CGImageRef {
 func (s_ ScreenshotOutput) SetHdrImage(value coregraphics.CGImageRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHdrImage:"), value)
 }
+
 
 

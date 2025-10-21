@@ -9,14 +9,14 @@ package photosui
 type PHLivePhotoBadgeOptions uint
 
 const (
-// PHLivePhotoBadgeOptionsLiveOff - Return an icon for identifying assets whose additional Live Photo content is disabled.
-//
+	// PHLivePhotoBadgeOptionsLiveOff - Return an icon for identifying assets whose additional Live Photo content is disabled.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoBadgeOptions/liveOff
-PHLivePhotoBadgeOptionsLiveOff PHLivePhotoBadgeOptions = 0
-// PHLivePhotoBadgeOptionsOverContent - Return a variant icon for use on a variable background such as an animating Live Photo view.
-//
+	PHLivePhotoBadgeOptionsLiveOff PHLivePhotoBadgeOptions = 0
+	// PHLivePhotoBadgeOptionsOverContent - Return a variant icon for use on a variable background such as an animating Live Photo view.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoBadgeOptions/overContent
-PHLivePhotoBadgeOptionsOverContent PHLivePhotoBadgeOptions = 0
+	PHLivePhotoBadgeOptionsOverContent PHLivePhotoBadgeOptions = 0
 )
 
 // PHLivePhotoViewContentMode - The enumerated Live Photo content modes.
@@ -25,14 +25,14 @@ PHLivePhotoBadgeOptionsOverContent PHLivePhotoBadgeOptions = 0
 type PHLivePhotoViewContentMode uint
 
 const (
-// PHLivePhotoViewContentModeAspectFill - A mode that resizes the content to fill its horizontal or vertical dimension.
-//
+	// PHLivePhotoViewContentModeAspectFill - A mode that resizes the content to fill its horizontal or vertical dimension.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoViewContentMode/aspectFill
-PHLivePhotoViewContentModeAspectFill PHLivePhotoViewContentMode = 0
-// PHLivePhotoViewContentModeAspectFit - A mode that resizes the content to fit the view’s bounds, while preserving the content’s aspect ratio.
-//
+	PHLivePhotoViewContentModeAspectFill PHLivePhotoViewContentMode = 0
+	// PHLivePhotoViewContentModeAspectFit - A mode that resizes the content to fit the view’s bounds, while preserving the content’s aspect ratio.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoViewContentMode/aspectFit
-PHLivePhotoViewContentModeAspectFit PHLivePhotoViewContentMode = 0
+	PHLivePhotoViewContentModeAspectFit PHLivePhotoViewContentMode = 0
 )
 
 // PHLivePhotoViewPlaybackStyle - Options for how much of the motion and sound content of a Live Photo to play, used in the 
@@ -41,18 +41,18 @@ PHLivePhotoViewContentModeAspectFit PHLivePhotoViewContentMode = 0
 type PHLivePhotoViewPlaybackStyle uint
 
 const (
-// PHLivePhotoViewPlaybackStyleFull - Plays back the entire motion and sound content of the Live Photo, including transition effects at the start and end.
-//
+	// PHLivePhotoViewPlaybackStyleFull - Plays back the entire motion and sound content of the Live Photo, including transition effects at the start and end.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle/full
-PHLivePhotoViewPlaybackStyleFull PHLivePhotoViewPlaybackStyle = 0
-// PHLivePhotoViewPlaybackStyleHint - Plays back only a brief section of the motion content of the Live Photo, without sound.
-//
+	PHLivePhotoViewPlaybackStyleFull PHLivePhotoViewPlaybackStyle = 0
+	// PHLivePhotoViewPlaybackStyleHint - Plays back only a brief section of the motion content of the Live Photo, without sound.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle/hint
-PHLivePhotoViewPlaybackStyleHint PHLivePhotoViewPlaybackStyle = 0
-// PHLivePhotoViewPlaybackStyleUndefined - This value is invalid for use.
-//
+	PHLivePhotoViewPlaybackStyleHint PHLivePhotoViewPlaybackStyle = 0
+	// PHLivePhotoViewPlaybackStyleUndefined - This value is invalid for use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle/undefined
-PHLivePhotoViewPlaybackStyleUndefined PHLivePhotoViewPlaybackStyle = 0
+	PHLivePhotoViewPlaybackStyleUndefined PHLivePhotoViewPlaybackStyle = 0
 )
 
 // PHPickerCapabilities - Options that customize the look and behavior of the photos picker.
@@ -61,30 +61,30 @@ PHLivePhotoViewPlaybackStyleUndefined PHLivePhotoViewPlaybackStyle = 0
 type PHPickerCapabilities uint
 
 const (
-// PHPickerCapabilitiesNone - An option that represents no capabilities.
-//
+	// PHPickerCapabilitiesNone - An option that represents no capabilities.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerCapabilities/PHPickerCapabilitiesNone
-PHPickerCapabilitiesNone PHPickerCapabilities = 0
-// PHPickerCapabilitiesCollectionNavigation - A capability that corresponds to a sidebar or the Albums tab.
-//
+	PHPickerCapabilitiesNone PHPickerCapabilities = 0
+	// PHPickerCapabilitiesCollectionNavigation - A capability that corresponds to a sidebar or the Albums tab.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerCapabilities/collectionNavigation
-PHPickerCapabilitiesCollectionNavigation PHPickerCapabilities = 0
-// PHPickerCapabilitiesSearch - A capability that corresponds to the search bar.
-//
+	PHPickerCapabilitiesCollectionNavigation PHPickerCapabilities = 0
+	// PHPickerCapabilitiesSearch - A capability that corresponds to the search bar.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerCapabilities/search
-PHPickerCapabilitiesSearch PHPickerCapabilities = 0
-// PHPickerCapabilitiesSelectionActions - A cabability that represents the Cancel and Add buttons.
-//
+	PHPickerCapabilitiesSearch PHPickerCapabilities = 0
+	// PHPickerCapabilitiesSelectionActions - A cabability that represents the Cancel and Add buttons.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerCapabilities/selectionActions
-PHPickerCapabilitiesSelectionActions PHPickerCapabilities = 0
-// PHPickerCapabilitiesSensitivityAnalysisIntervention - A capability that prompts for confirmation if a person selects a photo that contains nudity.
-//
+	PHPickerCapabilitiesSelectionActions PHPickerCapabilities = 0
+	// PHPickerCapabilitiesSensitivityAnalysisIntervention - A capability that prompts for confirmation if a person selects a photo that contains nudity.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerCapabilities/sensitivityAnalysisIntervention
-PHPickerCapabilitiesSensitivityAnalysisIntervention PHPickerCapabilities = 0
-// PHPickerCapabilitiesStagingArea - A capability that corresponds to an area in which the selected photos display.
-//
+	PHPickerCapabilitiesSensitivityAnalysisIntervention PHPickerCapabilities = 0
+	// PHPickerCapabilitiesStagingArea - A capability that corresponds to an area in which the selected photos display.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerCapabilities/stagingArea
-PHPickerCapabilitiesStagingArea PHPickerCapabilities = 0
+	PHPickerCapabilitiesStagingArea PHPickerCapabilities = 0
 )
 
 // PHPickerConfigurationAssetRepresentationMode - Constants identifying the mode the system uses when many representations exist for an asset.
@@ -93,18 +93,18 @@ PHPickerCapabilitiesStagingArea PHPickerCapabilities = 0
 type PHPickerConfigurationAssetRepresentationMode uint
 
 const (
-// PHPickerConfigurationAssetRepresentationModeAutomatic - A mode that indicates that the system chooses the appropriate asset representation.
-//
+	// PHPickerConfigurationAssetRepresentationModeAutomatic - A mode that indicates that the system chooses the appropriate asset representation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationAssetRepresentationMode/automatic
-PHPickerConfigurationAssetRepresentationModeAutomatic PHPickerConfigurationAssetRepresentationMode = 0
-// PHPickerConfigurationAssetRepresentationModeCompatible - A mode that uses the most compatible asset representation.
-//
+	PHPickerConfigurationAssetRepresentationModeAutomatic PHPickerConfigurationAssetRepresentationMode = 0
+	// PHPickerConfigurationAssetRepresentationModeCompatible - A mode that uses the most compatible asset representation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationAssetRepresentationMode/compatible
-PHPickerConfigurationAssetRepresentationModeCompatible PHPickerConfigurationAssetRepresentationMode = 0
-// PHPickerConfigurationAssetRepresentationModeCurrent - A mode that uses the current representation to avoid transcoding, if possible.
-//
+	PHPickerConfigurationAssetRepresentationModeCompatible PHPickerConfigurationAssetRepresentationMode = 0
+	// PHPickerConfigurationAssetRepresentationModeCurrent - A mode that uses the current representation to avoid transcoding, if possible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationAssetRepresentationMode/current
-PHPickerConfigurationAssetRepresentationModeCurrent PHPickerConfigurationAssetRepresentationMode = 0
+	PHPickerConfigurationAssetRepresentationModeCurrent PHPickerConfigurationAssetRepresentationMode = 0
 )
 
 // PHPickerConfigurationSelection - Options that represent differing selection behavior.
@@ -113,22 +113,22 @@ PHPickerConfigurationAssetRepresentationModeCurrent PHPickerConfigurationAssetRe
 type PHPickerConfigurationSelection uint
 
 const (
-// PHPickerConfigurationSelectionContinuous - An option that provides the app a person’s selection immediately.
-//
+	// PHPickerConfigurationSelectionContinuous - An option that provides the app a person’s selection immediately.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationSelection/continuous
-PHPickerConfigurationSelectionContinuous PHPickerConfigurationSelection = 0
-// PHPickerConfigurationSelectionContinuousAndOrdered - An option that provides the app a person’s selection immediately and displays selected photos with a numbered badge.
-//
+	PHPickerConfigurationSelectionContinuous PHPickerConfigurationSelection = 0
+	// PHPickerConfigurationSelectionContinuousAndOrdered - An option that provides the app a person’s selection immediately and displays selected photos with a numbered badge.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationSelection/continuousAndOrdered
-PHPickerConfigurationSelectionContinuousAndOrdered PHPickerConfigurationSelection = 0
-// PHPickerConfigurationSelectionDefault - An option that provides selected photos to the app in the default order after the user confirms the selection.
-//
+	PHPickerConfigurationSelectionContinuousAndOrdered PHPickerConfigurationSelection = 0
+	// PHPickerConfigurationSelectionDefault - An option that provides selected photos to the app in the default order after the user confirms the selection.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationSelection/default
-PHPickerConfigurationSelectionDefault PHPickerConfigurationSelection = 0
-// PHPickerConfigurationSelectionOrdered - An option that provides selected photos to the app in the chosen order after the user confirms the selection.
-//
+	PHPickerConfigurationSelectionDefault PHPickerConfigurationSelection = 0
+	// PHPickerConfigurationSelectionOrdered - An option that provides selected photos to the app in the chosen order after the user confirms the selection.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfigurationSelection/ordered
-PHPickerConfigurationSelectionOrdered PHPickerConfigurationSelection = 0
+	PHPickerConfigurationSelectionOrdered PHPickerConfigurationSelection = 0
 )
 
 // PHPickerMode - Layout options that determine how the picker orders photos visually.
@@ -137,14 +137,14 @@ PHPickerConfigurationSelectionOrdered PHPickerConfigurationSelection = 0
 type PHPickerMode uint
 
 const (
-// PHPickerModeCompact - A linear layout that’s conducive to a smaller area onscreen.
-//
+	// PHPickerModeCompact - A linear layout that’s conducive to a smaller area onscreen.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerMode-c.enum/PHPickerModeCompact
-PHPickerModeCompact PHPickerMode = 0
-// PHPickerModeDefault - A grid-based layout that’s conducive to a larger area onscreen.
-//
+	PHPickerModeCompact PHPickerMode = 0
+	// PHPickerModeDefault - A grid-based layout that’s conducive to a larger area onscreen.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerMode-c.enum/PHPickerModeDefault
-PHPickerModeDefault PHPickerMode = 0
+	PHPickerModeDefault PHPickerMode = 0
 )
 
 // PHProjectSectionType - The intended usage of the section: cover, content, or auxiliary.
@@ -153,22 +153,22 @@ PHPickerModeDefault PHPickerMode = 0
 type PHProjectSectionType uint
 
 const (
-// PHProjectSectionTypeAuxiliary - An auxiliary section.
-//
+	// PHProjectSectionTypeAuxiliary - An auxiliary section.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/SectionType-swift.enum/auxiliary
-PHProjectSectionTypeAuxiliary PHProjectSectionType = 0
-// PHProjectSectionTypeContent - A content section.
-//
+	PHProjectSectionTypeAuxiliary PHProjectSectionType = 0
+	// PHProjectSectionTypeContent - A content section.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/SectionType-swift.enum/content
-PHProjectSectionTypeContent PHProjectSectionType = 0
-// PHProjectSectionTypeCover - A cover section.
-//
+	PHProjectSectionTypeContent PHProjectSectionType = 0
+	// PHProjectSectionTypeCover - A cover section.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/SectionType-swift.enum/cover
-PHProjectSectionTypeCover PHProjectSectionType = 0
-// PHProjectSectionTypeUndefined - A blank or undefined section.
-//
+	PHProjectSectionTypeCover PHProjectSectionType = 0
+	// PHProjectSectionTypeUndefined - A blank or undefined section.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/SectionType-swift.enum/undefined
-PHProjectSectionTypeUndefined PHProjectSectionType = 0
+	PHProjectSectionTypeUndefined PHProjectSectionType = 0
 )
 
 // PHProjectTextElementType - An enumeration of the type of text element.

@@ -130,6 +130,7 @@ func (s_ Submesh) Name() string {
 func (s_ Submesh) SetName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The primitive type with which to draw the submesh object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/primitiveType

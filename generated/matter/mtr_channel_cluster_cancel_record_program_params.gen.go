@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) Data() unsafe.Pointer {
 func (m_ MTRChannelClusterCancelRecordProgramParams) SetData(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/programIdentifier
 func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() string {
@@ -104,6 +105,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() string 
 func (m_ MTRChannelClusterCancelRecordProgramParams) SetProgramIdentifier(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ServerSideProcessingTimeout
 func (m_ MTRChannelClusterCancelRecordProgramParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/shouldRecordSeries
 func (m_ MTRChannelClusterCancelRecordProgramParams) ShouldRecordSeries() unsafe.Pointer {
@@ -135,6 +138,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ShouldRecordSeries() unsafe
 func (m_ MTRChannelClusterCancelRecordProgramParams) SetShouldRecordSeries(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRecordSeries:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/timedInvokeTimeoutMs
@@ -152,5 +156,6 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) TimedInvokeTimeoutMs() unsa
 func (m_ MTRChannelClusterCancelRecordProgramParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

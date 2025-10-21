@@ -12,5 +12,3 @@ var HueAdjustProtocol *objc.Protocol
 func init() {
 	HueAdjustProtocol = objc.GetProtocol("CIHueAdjust")
 }
-
-

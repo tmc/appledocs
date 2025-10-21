@@ -194,6 +194,7 @@ func (p_ PaymentQueue) Delegate() objc.ID {
 func (p_ PaymentQueue) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Returns an array of pending transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/transactions

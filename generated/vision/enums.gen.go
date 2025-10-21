@@ -29,26 +29,26 @@ type GeneratePersonSegmentationRequestQualityLevel uint
 type ImageCropAndScaleOption uint
 
 const (
-// ImageCropAndScaleOptionCenterCrop - An option that scales the image to fit its shorter side within the input dimensions, while preserving its aspect ratio, and center-crops the image.
-//
+	// ImageCropAndScaleOptionCenterCrop - An option that scales the image to fit its shorter side within the input dimensions, while preserving its aspect ratio, and center-crops the image.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageCropAndScaleOption/centerCrop
-ImageCropAndScaleOptionCenterCrop ImageCropAndScaleOption = 0
-// ImageCropAndScaleOptionScaleFill - An option that scales the image to fill the input dimensions, resizing it if necessary.
-//
+	ImageCropAndScaleOptionCenterCrop ImageCropAndScaleOption = 0
+	// ImageCropAndScaleOptionScaleFill - An option that scales the image to fill the input dimensions, resizing it if necessary.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageCropAndScaleOption/scaleFill
-ImageCropAndScaleOptionScaleFill ImageCropAndScaleOption = 0
-// ImageCropAndScaleOptionScaleFillRotate90CCW - An option that rotates the image 90 degrees counterclockwise and then scales it to fill the input dimensions.
-//
+	ImageCropAndScaleOptionScaleFill ImageCropAndScaleOption = 0
+	// ImageCropAndScaleOptionScaleFillRotate90CCW - An option that rotates the image 90 degrees counterclockwise and then scales it to fill the input dimensions.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageCropAndScaleOption/scaleFillRotate90CCW
-ImageCropAndScaleOptionScaleFillRotate90CCW ImageCropAndScaleOption = 0
-// ImageCropAndScaleOptionScaleFit - An option that scales the image to fit its longer side within the input dimensions, while preserving its aspect ratio, and center-crops the image.
-//
+	ImageCropAndScaleOptionScaleFillRotate90CCW ImageCropAndScaleOption = 0
+	// ImageCropAndScaleOptionScaleFit - An option that scales the image to fit its longer side within the input dimensions, while preserving its aspect ratio, and center-crops the image.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageCropAndScaleOption/scaleFit
-ImageCropAndScaleOptionScaleFit ImageCropAndScaleOption = 0
-// ImageCropAndScaleOptionScaleFitRotate90CCW - An option that rotates the image 90 degrees counterclockwise and then scales it, while preserving its aspect ratio, to fit on the long side.
-//
+	ImageCropAndScaleOptionScaleFit ImageCropAndScaleOption = 0
+	// ImageCropAndScaleOptionScaleFitRotate90CCW - An option that rotates the image 90 degrees counterclockwise and then scales it, while preserving its aspect ratio, to fit on the long side.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageCropAndScaleOption/scaleFitRotate90CCW
-ImageCropAndScaleOptionScaleFitRotate90CCW ImageCropAndScaleOption = 0
+	ImageCropAndScaleOptionScaleFitRotate90CCW ImageCropAndScaleOption = 0
 )
 
 // VNRequestTextRecognitionLevel - Constants that identify the performance and accuracy of the text recognition.
@@ -57,14 +57,14 @@ ImageCropAndScaleOptionScaleFitRotate90CCW ImageCropAndScaleOption = 0
 type RequestTextRecognitionLevel uint
 
 const (
-// RequestTextRecognitionLevelAccurate - Accurate text recognition takes more time to produce a more comprehensive result.
-//
+	// RequestTextRecognitionLevelAccurate - Accurate text recognition takes more time to produce a more comprehensive result.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequestTextRecognitionLevel/accurate
-RequestTextRecognitionLevelAccurate RequestTextRecognitionLevel = 0
-// RequestTextRecognitionLevelFast - Fast text recognition returns results more quickly at the expense of accuracy.
-//
+	RequestTextRecognitionLevelAccurate RequestTextRecognitionLevel = 0
+	// RequestTextRecognitionLevelFast - Fast text recognition returns results more quickly at the expense of accuracy.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequestTextRecognitionLevel/fast
-RequestTextRecognitionLevelFast RequestTextRecognitionLevel = 0
+	RequestTextRecognitionLevelFast RequestTextRecognitionLevel = 0
 )
 
 

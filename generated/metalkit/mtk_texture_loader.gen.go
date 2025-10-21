@@ -98,6 +98,8 @@ func NewTextureLoader() TextureLoader {
 }
 
 
+
+
 // Initializes a new texture loader object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/init(device:)

@@ -9,12 +9,3 @@ import (
 // Suppress unused import errors
 var _ = corelocation.NewBeaconRegion
 
-
-
-
-
-
-
-
-
-

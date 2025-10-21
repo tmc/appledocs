@@ -20,5 +20,3 @@ var setTileVisibleFunctionTablesProtocol *objc.Protocol
 func init() {
 	setTileVisibleFunctionTablesProtocol = objc.GetProtocol("setTileVisibleFunctionTables:")
 }
-
-

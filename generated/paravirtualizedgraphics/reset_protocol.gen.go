@@ -16,5 +16,3 @@ var resetProtocol *objc.Protocol
 func init() {
 	resetProtocol = objc.GetProtocol("reset")
 }
-
-

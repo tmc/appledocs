@@ -81,6 +81,8 @@ func NewUNLocationNotificationTrigger() UNLocationNotificationTrigger {
 }
 
 
+
+
 // Creates a location trigger using the region parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/init(region:repeats:)

@@ -20,5 +20,3 @@ var supportsRaytracingFromRenderProtocol *objc.Protocol
 func init() {
 	supportsRaytracingFromRenderProtocol = objc.GetProtocol("supportsRaytracingFromRender")
 }
-
-

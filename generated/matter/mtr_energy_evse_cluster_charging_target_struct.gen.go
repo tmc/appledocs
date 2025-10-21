@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() unsafe.Pointer 
 func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddedEnergy:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetSoC
 func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() unsafe.Pointer {
 func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoC:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetTimeMinutesPastMidnight
 func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight
 func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTimeMinutesPastMidnight:"), value)
 }
+
 
 

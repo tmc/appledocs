@@ -19,5 +19,3 @@ var areBarycentricCoordsSupportedProtocol *objc.Protocol
 func init() {
 	areBarycentricCoordsSupportedProtocol = objc.GetProtocol("areBarycentricCoordsSupported")
 }
-
-

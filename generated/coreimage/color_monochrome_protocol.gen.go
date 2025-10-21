@@ -12,5 +12,3 @@ var ColorMonochromeProtocol *objc.Protocol
 func init() {
 	ColorMonochromeProtocol = objc.GetProtocol("CIColorMonochrome")
 }
-
-

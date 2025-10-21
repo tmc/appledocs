@@ -18,5 +18,3 @@ var isSharedByCurrentUserProtocol *objc.Protocol
 func init() {
 	isSharedByCurrentUserProtocol = objc.GetProtocol("isSharedByCurrentUser")
 }
-
-

@@ -15,5 +15,3 @@ var finishProjectWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	finishProjectWithCompletionHandlerProtocol = objc.GetProtocol("finishProjectWithCompletionHandler:")
 }
-
-

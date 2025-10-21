@@ -21,5 +21,3 @@ var spokenPhraseProtocol *objc.Protocol
 func init() {
 	spokenPhraseProtocol = objc.GetProtocol("spokenPhrase")
 }
-
-

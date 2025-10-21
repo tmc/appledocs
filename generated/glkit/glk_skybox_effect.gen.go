@@ -114,6 +114,7 @@ func (g_ GLKSkyboxEffect) Center() unsafe.Pointer {
 func (g_ GLKSkyboxEffect) SetCenter(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCenter:"), value)
 }
+
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
@@ -131,6 +132,7 @@ func (g_ GLKSkyboxEffect) Label() string {
 func (g_ GLKSkyboxEffect) SetLabel(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // The texture to apply to the skybox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/textureCubeMap
@@ -164,6 +166,7 @@ func (g_ GLKSkyboxEffect) XSize() unsafe.Pointer {
 func (g_ GLKSkyboxEffect) SetXSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXSize:"), value)
 }
+
 // The height of the skybox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/ySize
@@ -181,6 +184,7 @@ func (g_ GLKSkyboxEffect) YSize() unsafe.Pointer {
 func (g_ GLKSkyboxEffect) SetYSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYSize:"), value)
 }
+
 // The depth of the skybox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/zSize
@@ -198,5 +202,6 @@ func (g_ GLKSkyboxEffect) ZSize() unsafe.Pointer {
 func (g_ GLKSkyboxEffect) SetZSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setZSize:"), value)
 }
+
 
 

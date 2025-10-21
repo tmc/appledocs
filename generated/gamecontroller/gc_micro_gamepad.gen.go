@@ -115,6 +115,7 @@ func (g_ GCMicroGamepad) AllowsRotation() bool {
 func (g_ GCMicroGamepad) SetAllowsRotation(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllowsRotation:"), value)
 }
+
 // The button that the user activates by pressing harder on the touchpad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMicroGamepad/buttonA
@@ -172,6 +173,7 @@ func (g_ GCMicroGamepad) ReportsAbsoluteDpadValues() bool {
 func (g_ GCMicroGamepad) SetReportsAbsoluteDpadValues(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReportsAbsoluteDpadValues:"), value)
 }
+
 // The block that this profile calls when an element’s value changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMicroGamepad/valueChangedHandler
@@ -189,5 +191,6 @@ func (g_ GCMicroGamepad) ValueChangedHandler() unsafe.Pointer {
 func (g_ GCMicroGamepad) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }
+
 
 

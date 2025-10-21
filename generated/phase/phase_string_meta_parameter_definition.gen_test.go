@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = phase.NewPHASEStringMetaParameterDefinition
 
-
 // ExampleNewPHASEStringMetaParameterDefinitionWithValue demonstrates how to create a PHASEStringMetaParameterDefinition instance using NewPHASEStringMetaParameterDefinitionWithValue.
 // Creates a specification for a textual metaparameter with the given value.
 func ExampleNewPHASEStringMetaParameterDefinitionWithValue() {
@@ -18,7 +17,6 @@ func ExampleNewPHASEStringMetaParameterDefinitionWithValue() {
 	)
 	// Output:
 }
-
 // ExampleNewPHASEStringMetaParameterDefinitionWithValueIdentifier demonstrates how to create a PHASEStringMetaParameterDefinition instance using NewPHASEStringMetaParameterDefinitionWithValueIdentifier.
 // Creates a specification for a named textual metaparameter with the given value.
 func ExampleNewPHASEStringMetaParameterDefinitionWithValueIdentifier() {
@@ -28,5 +26,3 @@ func ExampleNewPHASEStringMetaParameterDefinitionWithValueIdentifier() {
 	)
 	// Output:
 }
-
-

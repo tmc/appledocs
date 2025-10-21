@@ -20,5 +20,3 @@ var resetCommandsInBufferProtocol *objc.Protocol
 func init() {
 	resetCommandsInBufferProtocol = objc.GetProtocol("resetCommandsInBuffer:")
 }
-
-

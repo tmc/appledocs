@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() unsafe.Poi
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/duration
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() unsafe.
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/energyUse
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() unsafe
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyUse:"), value)
 }
+
 
 

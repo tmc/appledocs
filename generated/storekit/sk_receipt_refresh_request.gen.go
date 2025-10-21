@@ -81,6 +81,8 @@ func NewReceiptRefreshRequest() ReceiptRefreshRequest {
 }
 
 
+
+
 // Creates a receipt refresh request with optional properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKReceiptRefreshRequest/init(receiptProperties:)

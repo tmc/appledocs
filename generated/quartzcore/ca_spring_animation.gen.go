@@ -105,6 +105,7 @@ func (s_ SpringAnimation) AllowsOverdamping() bool {
 func (s_ SpringAnimation) SetAllowsOverdamping(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsOverdamping:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/bounce
 func (s_ SpringAnimation) Bounce() float64 {
@@ -129,6 +130,7 @@ func (s_ SpringAnimation) Damping() float64 {
 func (s_ SpringAnimation) SetDamping(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDamping:"), value)
 }
+
 // The initial velocity of the object attached to the spring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/initialVelocity
@@ -146,6 +148,7 @@ func (s_ SpringAnimation) InitialVelocity() float64 {
 func (s_ SpringAnimation) SetInitialVelocity(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInitialVelocity:"), value)
 }
+
 // The mass of the object attached to the end of the spring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/mass
@@ -163,6 +166,7 @@ func (s_ SpringAnimation) Mass() float64 {
 func (s_ SpringAnimation) SetMass(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMass:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/perceptualDuration
 func (s_ SpringAnimation) PerceptualDuration() unsafe.Pointer {
@@ -195,4 +199,5 @@ func (s_ SpringAnimation) Stiffness() float64 {
 func (s_ SpringAnimation) SetStiffness(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStiffness:"), value)
 }
+
 

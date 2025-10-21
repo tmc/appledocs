@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UserInterfaceCompressionOptions] class.
@@ -79,6 +80,9 @@ func NewUserInterfaceCompressionOptions() UserInterfaceCompressionOptions {
 	return getUserInterfaceCompressionOptionsClass().New()
 }
 
+
+
+
 // Creates an option object with the given identifier string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(identifier:)
@@ -88,3 +92,6 @@ func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInt
 	rv.Autorelease()
 	return rv
 }
+
+
+

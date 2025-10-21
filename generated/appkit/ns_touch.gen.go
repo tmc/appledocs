@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Touch] class.
@@ -82,6 +83,7 @@ func NewTouch() Touch {
 	return getTouchClass().New()
 }
 
+
 // Indicates the location of the touch in the view’s coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/location(in:)
@@ -121,3 +123,6 @@ func (t_ Touch) Phase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("phase"))
 	return rv
 }
+
+
+

@@ -18,5 +18,3 @@ var creationDateProtocol *objc.Protocol
 func init() {
 	creationDateProtocol = objc.GetProtocol("creationDate")
 }
-
-

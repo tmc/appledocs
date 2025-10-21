@@ -21,5 +21,3 @@ var predictionsFromBatchProtocol *objc.Protocol
 func init() {
 	predictionsFromBatchProtocol = objc.GetProtocol("predictionsFromBatch:")
 }
-
-

@@ -20,5 +20,3 @@ var newTextureWithDescriptorProtocol *objc.Protocol
 func init() {
 	newTextureWithDescriptorProtocol = objc.GetProtocol("newTextureWithDescriptor:")
 }
-
-

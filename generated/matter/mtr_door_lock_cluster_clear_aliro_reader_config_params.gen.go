@@ -93,6 +93,7 @@ func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) ServerSideProcessingTim
 func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterClearAliroReaderConfigParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) TimedInvokeTimeoutMs() 
 func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

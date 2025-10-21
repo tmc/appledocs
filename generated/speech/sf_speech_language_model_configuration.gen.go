@@ -81,6 +81,8 @@ func NewSFSpeechLanguageModelConfiguration() SFSpeechLanguageModelConfiguration 
 }
 
 
+
+
 // Creates a configuration with the location of a language model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/init(languageModel:)
@@ -91,6 +93,8 @@ func NewSFSpeechLanguageModelConfigurationWithLanguageModel(languageModel unsafe
 	return rv
 }
 
+
+
 // Creates a configuration with the locations of language model and vocabulary files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/init(languageModel:vocabulary:)
@@ -100,6 +104,8 @@ func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabulary(languageMo
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a configuration with the locations of language model and vocabulary files, and custom weight.
 //

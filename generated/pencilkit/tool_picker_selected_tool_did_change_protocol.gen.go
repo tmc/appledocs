@@ -18,5 +18,3 @@ var toolPickerSelectedToolDidChangeProtocol *objc.Protocol
 func init() {
 	toolPickerSelectedToolDidChangeProtocol = objc.GetProtocol("toolPickerSelectedToolDidChange:")
 }
-
-

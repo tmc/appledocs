@@ -12,5 +12,3 @@ var CocoaUIBaseProtocol *objc.Protocol
 func init() {
 	CocoaUIBaseProtocol = objc.GetProtocol("AUCocoaUIBase")
 }
-
-

@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZMacTrackpadConfiguration
 
-
 // ExampleNewVZMacTrackpadConfiguration demonstrates how to create a VZMacTrackpadConfiguration instance.
 // Creates a new Mac trackpad configuration.
 func ExampleNewVZMacTrackpadConfiguration() {
 	_ = virtualization.NewVZMacTrackpadConfiguration()
 	// Output:
 }
-
-

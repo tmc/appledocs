@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = intents.NewINSendMessageIntentDonationMetadata
 
-
 // ExampleNewINSendMessageIntentDonationMetadata demonstrates how to create a INSendMessageIntentDonationMetadata instance.
 func ExampleNewINSendMessageIntentDonationMetadata() {
 	_ = intents.NewINSendMessageIntentDonationMetadata()
 	// Output:
 }
-
-

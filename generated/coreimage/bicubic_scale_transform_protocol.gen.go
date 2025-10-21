@@ -12,5 +12,3 @@ var BicubicScaleTransformProtocol *objc.Protocol
 func init() {
 	BicubicScaleTransformProtocol = objc.GetProtocol("CIBicubicScaleTransform")
 }
-
-

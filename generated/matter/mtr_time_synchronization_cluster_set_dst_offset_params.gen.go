@@ -90,6 +90,7 @@ func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) DstOffset() unsafe.Poi
 func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetDstOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffset:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) ServerSideProcessingTi
 func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) TimedInvokeTimeoutMs()
 func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

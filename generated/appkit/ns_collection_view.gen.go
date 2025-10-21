@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [CollectionView] class.
@@ -120,6 +120,7 @@ func (c_ CollectionView) Autorelease() CollectionView {
 func NewCollectionView() CollectionView {
 	return getCollectionViewClass().New()
 }
+
 
 // Deletes the items at the specified index paths.
 //
@@ -428,6 +429,7 @@ func (c_ CollectionView) AllowsEmptySelection() bool {
 	return rv
 }
 
+
 // SetAllowsEmptySelection sets the value of the allowsEmptySelection property.
 // A Boolean value indicating whether the collection view may have no selected items.
 
@@ -445,6 +447,7 @@ func (c_ CollectionView) AllowsMultipleSelection() bool {
 	return rv
 }
 
+
 // SetAllowsMultipleSelection sets the value of the allowsMultipleSelection property.
 // A Boolean value that indicates whether the user may select more than one item in the collection view.
 
@@ -461,6 +464,7 @@ func (c_ CollectionView) BackgroundColors() []Color {
 	rv := objc.Send[[]Color](c_.ID, objc.Sel("backgroundColors"))
 	return rv
 }
+
 
 // SetBackgroundColors sets the value of the backgroundColors property.
 // An array containing the collection view’s background colors.
@@ -489,6 +493,7 @@ func (c_ CollectionView) BackgroundView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBackgroundView sets the value of the backgroundView property.
 // The background view placed behind all items and supplementary views.
 
@@ -505,6 +510,7 @@ func (c_ CollectionView) BackgroundViewScrollsWithContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("backgroundViewScrollsWithContent"))
 	return rv
 }
+
 
 // SetBackgroundViewScrollsWithContent sets the value of the backgroundViewScrollsWithContent property.
 // A Boolean value that indicates whether the collection view’s background view scrolls with the items and other content.
@@ -523,6 +529,7 @@ func (c_ CollectionView) CollectionViewLayout() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCollectionViewLayout sets the value of the collectionViewLayout property.
 // The layout object used to organize the collection view’s content.
 
@@ -539,6 +546,7 @@ func (c_ CollectionView) Content() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("content"))
 	return rv
 }
+
 
 // SetContent sets the value of the content property.
 // An array that provides data for the collection view.
@@ -567,6 +575,7 @@ func (c_ CollectionView) DataSource() objc.ID {
 	return rv
 }
 
+
 // SetDataSource sets the value of the dataSource property.
 // An object that provides data for the collection view.
 
@@ -583,6 +592,7 @@ func (c_ CollectionView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The collection view’s delegate object.
@@ -609,6 +619,7 @@ func (c_ CollectionView) Selectable() bool {
 	return rv
 }
 
+
 // SetSelectable sets the value of the selectable property.
 // A Boolean value that indicates whether the user may select items in the collection view.
 
@@ -625,6 +636,7 @@ func (c_ CollectionView) ItemPrototype() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("itemPrototype"))
 	return rv
 }
+
 
 // SetItemPrototype sets the value of the itemPrototype property.
 // The receiver’s collection view item prototype.
@@ -643,6 +655,7 @@ func (c_ CollectionView) MaxItemSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetMaxItemSize sets the value of the maxItemSize property.
 // The maximum size (in points) of items in the collection view grid.
 
@@ -659,6 +672,7 @@ func (c_ CollectionView) MaxNumberOfColumns() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxNumberOfColumns"))
 	return rv
 }
+
 
 // SetMaxNumberOfColumns sets the value of the maxNumberOfColumns property.
 // The maximum number of columns that the collection view displays.
@@ -677,6 +691,7 @@ func (c_ CollectionView) MaxNumberOfRows() uint {
 	return rv
 }
 
+
 // SetMaxNumberOfRows sets the value of the maxNumberOfRows property.
 // The maximum number of rows that the collection view displays.
 
@@ -693,6 +708,7 @@ func (c_ CollectionView) MinItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("minItemSize"))
 	return rv
 }
+
 
 // SetMinItemSize sets the value of the minItemSize property.
 // The minimum size (in points) of items in the collection view grid.
@@ -718,6 +734,7 @@ func (c_ CollectionView) PrefetchDataSource() objc.ID {
 	return rv
 }
 
+
 // SetPrefetchDataSource sets the value of the prefetchDataSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/prefetchDataSource
@@ -732,6 +749,7 @@ func (c_ CollectionView) SelectionIndexPaths() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
 }
+
 
 // SetSelectionIndexPaths sets the value of the selectionIndexPaths property.
 // The set of index paths representing the currently selected items.
@@ -750,6 +768,7 @@ func (c_ CollectionView) SelectionIndexes() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSelectionIndexes sets the value of the selectionIndexes property.
 // The indexes of the currently selected items.
 
@@ -758,3 +777,6 @@ func (c_ CollectionView) SelectionIndexes() unsafe.Pointer {
 func (c_ CollectionView) SetSelectionIndexes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
+
+
+

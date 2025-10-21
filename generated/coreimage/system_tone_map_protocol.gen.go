@@ -12,5 +12,3 @@ var SystemToneMapProtocol *objc.Protocol
 func init() {
 	SystemToneMapProtocol = objc.GetProtocol("CISystemToneMap")
 }
-
-

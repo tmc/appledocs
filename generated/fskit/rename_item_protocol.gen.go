@@ -15,5 +15,3 @@ var renameItemProtocol *objc.Protocol
 func init() {
 	renameItemProtocol = objc.GetProtocol("renameItem:")
 }
-
-

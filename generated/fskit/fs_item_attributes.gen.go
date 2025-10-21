@@ -113,6 +113,7 @@ func (f_ FSItemAttributes) AddedTime() unsafe.Pointer {
 func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAddedTime:"), value)
 }
+
 // The item’s file identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
@@ -130,6 +131,7 @@ func (f_ FSItemAttributes) FileID() unsafe.Pointer {
 func (f_ FSItemAttributes) SetFileID(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileID:"), value)
 }
+
 // The mode of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
@@ -147,6 +149,7 @@ func (f_ FSItemAttributes) Mode() unsafe.Pointer {
 func (f_ FSItemAttributes) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMode:"), value)
 }
+
 // A Boolean value that indicates whether the item supports a limited set of extended attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/supportsLimitedXAttrs
@@ -164,5 +167,6 @@ func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool {
 func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsLimitedXAttrs:"), value)
 }
+
 
 

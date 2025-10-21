@@ -20,5 +20,3 @@ var GameActivityListenerProtocol *objc.Protocol
 func init() {
 	GameActivityListenerProtocol = objc.GetProtocol("GKGameActivityListener")
 }
-
-

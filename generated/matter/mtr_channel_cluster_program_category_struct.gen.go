@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterProgramCategoryStruct) Category() string {
 func (m_ MTRChannelClusterProgramCategoryStruct) SetCategory(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCategory:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/subCategory
 func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() string {
@@ -104,5 +105,6 @@ func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() string {
 func (m_ MTRChannelClusterProgramCategoryStruct) SetSubCategory(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubCategory:"), objc.String(value))
 }
+
 
 

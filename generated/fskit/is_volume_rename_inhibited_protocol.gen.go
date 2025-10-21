@@ -15,5 +15,3 @@ var isVolumeRenameInhibitedProtocol *objc.Protocol
 func init() {
 	isVolumeRenameInhibitedProtocol = objc.GetProtocol("isVolumeRenameInhibited")
 }
-
-

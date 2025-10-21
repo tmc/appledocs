@@ -20,5 +20,3 @@ var isShareableProtocol *objc.Protocol
 func init() {
 	isShareableProtocol = objc.GetProtocol("isShareable")
 }
-
-

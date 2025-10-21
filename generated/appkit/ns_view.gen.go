@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [View] class.
@@ -264,6 +264,9 @@ func NewView() View {
 	return getViewClass().New()
 }
 
+
+
+
 // Initializes a view using from data in the specified coder object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
@@ -273,6 +276,8 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns a newly allocated object with a specified frame rectangle.
 //
@@ -284,6 +289,7 @@ func NewViewWithFrame(frameRect coregraphics.CGRect) View {
 	return rv
 }
 
+
 // Returns the default focus ring type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
@@ -291,7 +297,6 @@ func (vc _ViewClass) DefaultFocusRingType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("defaultFocusRingType"))
 	return rv
 }
-
 // Overridden by subclasses to return the default pop-up menu for instances of the receiving class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultMenu
@@ -299,7 +304,6 @@ func (vc _ViewClass) DefaultMenu() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("defaultMenu"))
 	return rv
 }
-
 // The currently focused view object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusView
@@ -307,7 +311,6 @@ func (vc _ViewClass) FocusView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("focusView"))
 	return rv
 }
-
 // A Boolean value that indicates whether views support responsive scrolling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isCompatibleWithResponsiveScrolling
@@ -315,7 +318,6 @@ func (vc _ViewClass) CompatibleWithResponsiveScrolling() bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("compatibleWithResponsiveScrolling"))
 	return rv
 }
-
 // Returns a Boolean value indicating whether the view depends on the constraint-based layout system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/requiresConstraintBasedLayout
@@ -323,7 +325,6 @@ func (vc _ViewClass) RequiresConstraintBasedLayout() bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("requiresConstraintBasedLayout"))
 	return rv
 }
-
 // Overridden by subclasses to return if the view should be sent a message for an initial mouse-down event, if not.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/acceptsFirstMouse(for:)
@@ -1674,6 +1675,7 @@ func (v_ View) AcceptsTouchEvents() bool {
 	return rv
 }
 
+
 // SetAcceptsTouchEvents sets the value of the acceptsTouchEvents property.
 // A Boolean value indicating whether the view accepts touch events.
 
@@ -1690,6 +1692,7 @@ func (v_ View) AdditionalSafeAreaInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("additionalSafeAreaInsets"))
 	return rv
 }
+
 
 // SetAdditionalSafeAreaInsets sets the value of the additionalSafeAreaInsets property.
 // Custom insets that you specify to modify your view’s safe area
@@ -1716,6 +1719,7 @@ func (v_ View) AllowedTouchTypes() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
 // The types of touch interactions the view allows.
 
@@ -1741,6 +1745,7 @@ func (v_ View) AlphaValue() float64 {
 	return rv
 }
 
+
 // SetAlphaValue sets the value of the alphaValue property.
 // The opacity of the view.
 
@@ -1757,6 +1762,7 @@ func (v_ View) AutoresizesSubviews() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("autoresizesSubviews"))
 	return rv
 }
+
 
 // SetAutoresizesSubviews sets the value of the autoresizesSubviews property.
 // A Boolean value indicating whether the view applies the autoresizing behavior to its subviews when its frame size changes.
@@ -1775,6 +1781,7 @@ func (v_ View) AutoresizingMask() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAutoresizingMask sets the value of the autoresizingMask property.
 // The options that determine how the view is resized relative to its superview.
 
@@ -1791,6 +1798,7 @@ func (v_ View) BackgroundFilters() []CIFilter {
 	rv := objc.Send[[]CIFilter](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
+
 
 // SetBackgroundFilters sets the value of the backgroundFilters property.
 // An array of Core Image filters to apply to the view’s background.
@@ -1835,6 +1843,7 @@ func (v_ View) Bounds() coregraphics.CGRect {
 	return rv
 }
 
+
 // SetBounds sets the value of the bounds property.
 // The view’s bounds rectangle, which expresses its location and size in its own coordinate system.
 
@@ -1851,6 +1860,7 @@ func (v_ View) BoundsRotation() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("boundsRotation"))
 	return rv
 }
+
 
 // SetBoundsRotation sets the value of the boundsRotation property.
 // The angle of rotation, measured in degrees, applied to the view’s bounds rectangle relative to its frame rectangle.
@@ -1885,6 +1895,7 @@ func (v_ View) CanDrawConcurrently() bool {
 	return rv
 }
 
+
 // SetCanDrawConcurrently sets the value of the canDrawConcurrently property.
 // A Boolean value indicating whether the view can draw its contents on a background thread.
 
@@ -1901,6 +1912,7 @@ func (v_ View) CanDrawSubviewsIntoLayer() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canDrawSubviewsIntoLayer"))
 	return rv
 }
+
 
 // SetCanDrawSubviewsIntoLayer sets the value of the canDrawSubviewsIntoLayer property.
 // A Boolean value indicating whether the view incorporates content from its subviews into its own layer.
@@ -1942,6 +1954,7 @@ func (v_ View) ClipsToBounds() bool {
 	return rv
 }
 
+
 // SetClipsToBounds sets the value of the clipsToBounds property.
 // A Boolean value that indicates whether the view, and its subviews, confine their drawing areas to the bounds of the view.
 
@@ -1958,6 +1971,7 @@ func (v_ View) CompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("compositingFilter"))
 	return rv
 }
+
 
 // SetCompositingFilter sets the value of the compositingFilter property.
 // The Core Image filter used to composite the view’s contents with its background.
@@ -1983,6 +1997,7 @@ func (v_ View) ContentFilters() []CIFilter {
 	rv := objc.Send[[]CIFilter](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
+
 
 // SetContentFilters sets the value of the contentFilters property.
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
@@ -2075,6 +2090,7 @@ func (v_ View) FocusRingType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFocusRingType sets the value of the focusRingType property.
 // The type of focus ring drawn around the view.
 
@@ -2100,6 +2116,7 @@ func (v_ View) Frame() coregraphics.CGRect {
 	return rv
 }
 
+
 // SetFrame sets the value of the frame property.
 // The view’s frame rectangle, which defines its position and size in its superview’s coordinate system.
 
@@ -2116,6 +2133,7 @@ func (v_ View) FrameCenterRotation() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("frameCenterRotation"))
 	return rv
 }
+
 
 // SetFrameCenterRotation sets the value of the frameCenterRotation property.
 // The rotation angle of the view around the center of its layer.
@@ -2134,6 +2152,7 @@ func (v_ View) FrameRotation() float64 {
 	return rv
 }
 
+
 // SetFrameRotation sets the value of the frameRotation property.
 // The angle of rotation, measured in degrees, applied to the view’s frame rectangle relative to its superview’s coordinate system.
 
@@ -2150,6 +2169,7 @@ func (v_ View) GestureRecognizers() []GestureRecognizer {
 	rv := objc.Send[[]GestureRecognizer](v_.ID, objc.Sel("gestureRecognizers"))
 	return rv
 }
+
 
 // SetGestureRecognizers sets the value of the gestureRecognizers property.
 // The gesture recognize objects currently attached to the view.
@@ -2250,6 +2270,7 @@ func (v_ View) Hidden() bool {
 	return rv
 }
 
+
 // SetHidden sets the value of the hidden property.
 // A Boolean value indicating whether the view is hidden.
 
@@ -2274,6 +2295,7 @@ func (v_ View) HorizontalContentSizeConstraintActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("horizontalContentSizeConstraintActive"))
 	return rv
 }
+
 
 // SetHorizontalContentSizeConstraintActive sets the value of the horizontalContentSizeConstraintActive property.
 // A Boolean value that indicates whether the view’s horizontal size constraints are active.
@@ -2324,6 +2346,7 @@ func (v_ View) VerticalContentSizeConstraintActive() bool {
 	return rv
 }
 
+
 // SetVerticalContentSizeConstraintActive sets the value of the verticalContentSizeConstraintActive property.
 // A Boolean value that indicates whether the view’s vertical size constraints are active.
 
@@ -2357,6 +2380,7 @@ func (v_ View) Layer() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLayer sets the value of the layer property.
 // The Core Animation layer that the view uses as its backing store.
 
@@ -2373,6 +2397,7 @@ func (v_ View) LayerContentsPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layerContentsPlacement"))
 	return rv
 }
+
 
 // SetLayerContentsPlacement sets the value of the layerContentsPlacement property.
 // The current layer contents placement policy.
@@ -2391,6 +2416,7 @@ func (v_ View) LayerContentsRedrawPolicy() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLayerContentsRedrawPolicy sets the value of the layerContentsRedrawPolicy property.
 // The contents redraw policy for the view’s layer.
 
@@ -2407,6 +2433,7 @@ func (v_ View) LayerUsesCoreImageFilters() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("layerUsesCoreImageFilters"))
 	return rv
 }
+
 
 // SetLayerUsesCoreImageFilters sets the value of the layerUsesCoreImageFilters property.
 // A Boolean value indicating whether the view’s layer uses Core Image filters and needs in-process rendering.
@@ -2465,6 +2492,7 @@ func (v_ View) NeedsDisplay() bool {
 	return rv
 }
 
+
 // SetNeedsDisplay sets the value of the needsDisplay property.
 // A Boolean value that determines whether the view needs to be redrawn before being displayed.
 
@@ -2481,6 +2509,7 @@ func (v_ View) NeedsLayout() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsLayout"))
 	return rv
 }
+
 
 // SetNeedsLayout sets the value of the needsLayout property.
 // A Boolean value indicating whether the view needs a layout pass before it can be drawn.
@@ -2507,6 +2536,7 @@ func (v_ View) NeedsUpdateConstraints() bool {
 	return rv
 }
 
+
 // SetNeedsUpdateConstraints sets the value of the needsUpdateConstraints property.
 // A Boolean value indicating whether the view’s constraints need to be updated.
 
@@ -2523,6 +2553,7 @@ func (v_ View) NextKeyView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("nextKeyView"))
 	return rv
 }
+
 
 // SetNextKeyView sets the value of the nextKeyView property.
 // The view object that follows the current view in the key view loop.
@@ -2573,6 +2604,7 @@ func (v_ View) PostsBoundsChangedNotifications() bool {
 	return rv
 }
 
+
 // SetPostsBoundsChangedNotifications sets the value of the postsBoundsChangedNotifications property.
 // A Boolean value indicating whether the view posts notifications when its bounds rectangle changes.
 
@@ -2589,6 +2621,7 @@ func (v_ View) PostsFrameChangedNotifications() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("postsFrameChangedNotifications"))
 	return rv
 }
+
 
 // SetPostsFrameChangedNotifications sets the value of the postsFrameChangedNotifications property.
 // A Boolean value indicating whether the view posts notifications when its frame rectangle changes.
@@ -2607,6 +2640,7 @@ func (v_ View) PrefersCompactControlSizeMetrics() bool {
 	return rv
 }
 
+
 // SetPrefersCompactControlSizeMetrics sets the value of the prefersCompactControlSizeMetrics property.
 // When this property is true, any NSControls in the view or its descendants will be sized with compact metrics compatible with macOS 15 and earlier. Defaults to false
 
@@ -2623,6 +2657,7 @@ func (v_ View) PreparedContentRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("preparedContentRect"))
 	return rv
 }
+
 
 // SetPreparedContentRect sets the value of the preparedContentRect property.
 // The portion of the view that has been rendered and is available for responsive scrolling.
@@ -2648,6 +2683,7 @@ func (v_ View) PressureConfiguration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("pressureConfiguration"))
 	return rv
 }
+
 
 // SetPressureConfiguration sets the value of the pressureConfiguration property.
 // Configures the behavior and progression of the Force Touch trackpad when responding to touch input produced by the user when the cursor is over the view.
@@ -2746,6 +2782,7 @@ func (v_ View) Shadow() unsafe.Pointer {
 	return rv
 }
 
+
 // SetShadow sets the value of the shadow property.
 // The shadow displayed underneath the view.
 
@@ -2762,6 +2799,7 @@ func (v_ View) Subviews() []View {
 	rv := objc.Send[[]View](v_.ID, objc.Sel("subviews"))
 	return rv
 }
+
 
 // SetSubviews sets the value of the subviews property.
 // The array of views embedded in the current view.
@@ -2806,6 +2844,7 @@ func (v_ View) ToolTip() string {
 	return rv
 }
 
+
 // SetToolTip sets the value of the toolTip property.
 // The text for the view’s tooltip.
 
@@ -2847,6 +2886,7 @@ func (v_ View) TranslatesAutoresizingMaskIntoConstraints() bool {
 	return rv
 }
 
+
 // SetTranslatesAutoresizingMaskIntoConstraints sets the value of the translatesAutoresizingMaskIntoConstraints property.
 // A Boolean value indicating whether the view’s autoresizing mask is translated into constraints for the constraint-based layout system.
 
@@ -2863,6 +2903,7 @@ func (v_ View) UserInterfaceLayoutDirection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
+
 
 // SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
 // The layout direction for content in the view.
@@ -2889,6 +2930,7 @@ func (v_ View) WantsBestResolutionOpenGLSurface() bool {
 	return rv
 }
 
+
 // SetWantsBestResolutionOpenGLSurface sets the value of the wantsBestResolutionOpenGLSurface property.
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
 
@@ -2913,6 +2955,7 @@ func (v_ View) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	return rv
 }
 
+
 // SetWantsExtendedDynamicRangeOpenGLSurface sets the value of the wantsExtendedDynamicRangeOpenGLSurface property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsExtendedDynamicRangeOpenGLSurface
@@ -2927,6 +2970,7 @@ func (v_ View) WantsLayer() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsLayer"))
 	return rv
 }
+
 
 // SetWantsLayer sets the value of the wantsLayer property.
 // A Boolean value indicating whether the view uses a layer as its backing store.
@@ -2944,6 +2988,7 @@ func (v_ View) WantsRestingTouches() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsRestingTouches"))
 	return rv
 }
+
 
 // SetWantsRestingTouches sets the value of the wantsRestingTouches property.
 // A Boolean value indicating whether the view wants resting touches.
@@ -2993,9 +3038,12 @@ func (v_ View) WritingToolsCoordinator() unsafe.Pointer {
 	return rv
 }
 
+
 // SetWritingToolsCoordinator sets the value of the writingToolsCoordinator property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writingToolsCoordinator
 func (v_ View) SetWritingToolsCoordinator(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
 }
+
+

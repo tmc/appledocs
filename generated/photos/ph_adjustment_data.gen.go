@@ -81,6 +81,8 @@ func NewPHAdjustmentData() PHAdjustmentData {
 }
 
 
+
+
 // Initializes an adjustment object with the specified format and data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)

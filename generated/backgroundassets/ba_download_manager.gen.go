@@ -163,6 +163,7 @@ func (b_ BADownloadManager) Delegate() objc.ID {
 func (b_ BADownloadManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The download manager that both the app and the extension share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/shared

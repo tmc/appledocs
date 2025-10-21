@@ -81,6 +81,8 @@ func NewCBMutableCharacteristic() CBMutableCharacteristic {
 }
 
 
+
+
 // Creates a mutable characteristic with specified permissions, properties, and value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/init(type:properties:value:permissions:)
@@ -119,6 +121,7 @@ func (c_ CBMutableCharacteristic) SetDescriptors(value []CBDescriptor) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptors:"), nsArray)
 }
+
 // The permissions of the characteristic value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/permissions
@@ -136,6 +139,7 @@ func (c_ CBMutableCharacteristic) Permissions() unsafe.Pointer {
 func (c_ CBMutableCharacteristic) SetPermissions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPermissions:"), value)
 }
+
 // The properties of the characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/properties
@@ -153,6 +157,7 @@ func (c_ CBMutableCharacteristic) Properties() unsafe.Pointer {
 func (c_ CBMutableCharacteristic) SetProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProperties:"), value)
 }
+
 // A list of centrals that are currently subscribed to the characteristic’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/subscribedCentrals
@@ -178,4 +183,5 @@ func (c_ CBMutableCharacteristic) Value() unsafe.Pointer {
 func (c_ CBMutableCharacteristic) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
+
 

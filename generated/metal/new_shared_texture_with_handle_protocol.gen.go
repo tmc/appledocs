@@ -20,5 +20,3 @@ var newSharedTextureWithHandleProtocol *objc.Protocol
 func init() {
 	newSharedTextureWithHandleProtocol = objc.GetProtocol("newSharedTextureWithHandle:")
 }
-
-

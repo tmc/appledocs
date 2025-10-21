@@ -20,5 +20,3 @@ var metalCommandBufferProtocol *objc.Protocol
 func init() {
 	metalCommandBufferProtocol = objc.GetProtocol("metalCommandBuffer")
 }
-
-

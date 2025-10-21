@@ -12,5 +12,3 @@ var rateProtocol *objc.Protocol
 func init() {
 	rateProtocol = objc.GetProtocol("rate")
 }
-
-

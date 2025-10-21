@@ -81,6 +81,8 @@ func NewSFUniversalLink() SFUniversalLink {
 }
 
 
+
+
 // Creates a universal link object with the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/init(webpageURL:)
@@ -117,6 +119,7 @@ func (s_ SFUniversalLink) Enabled() bool {
 func (s_ SFUniversalLink) SetEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // The URL specified when initializing the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/webpageURL

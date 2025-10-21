@@ -18,5 +18,3 @@ var requestFailedForExtensionContextProtocol *objc.Protocol
 func init() {
 	requestFailedForExtensionContextProtocol = objc.GetProtocol("requestFailedForExtensionContext:")
 }
-
-

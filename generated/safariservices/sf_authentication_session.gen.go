@@ -83,6 +83,8 @@ func NewSFAuthenticationSession() SFAuthenticationSession {
 }
 
 
+
+
 // Initializes the SFAuthenticationSession in an application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFAuthenticationSession/init(url:callbackURLScheme:completionHandler:)

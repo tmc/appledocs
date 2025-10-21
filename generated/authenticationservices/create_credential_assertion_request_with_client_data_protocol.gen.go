@@ -18,5 +18,3 @@ var createCredentialAssertionRequestWithClientDataProtocol *objc.Protocol
 func init() {
 	createCredentialAssertionRequestWithClientDataProtocol = objc.GetProtocol("createCredentialAssertionRequestWithClientData:")
 }
-
-

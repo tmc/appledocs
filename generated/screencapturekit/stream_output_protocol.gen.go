@@ -16,5 +16,3 @@ var StreamOutputProtocol *objc.Protocol
 func init() {
 	StreamOutputProtocol = objc.GetProtocol("SCStreamOutput")
 }
-
-

@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [PrintOperation] class.
@@ -82,6 +83,7 @@ func NewPrintOperation() PrintOperation {
 	return getPrintOperationClass().New()
 }
 
+
 // Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)
@@ -120,6 +122,7 @@ func (p_ PrintOperation) PDFPanel() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPDFPanel sets the value of the PDFPanel property.
 // The PDF panel object to use during the operation.
 
@@ -137,6 +140,7 @@ func (p_ PrintOperation) PrintInfo() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPrintInfo sets the value of the printInfo property.
 // The printing information associated with the print operation.
 
@@ -153,3 +157,6 @@ func (p_ PrintOperation) View() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("view"))
 	return rv
 }
+
+
+

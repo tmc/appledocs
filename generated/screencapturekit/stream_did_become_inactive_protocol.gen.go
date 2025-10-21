@@ -16,5 +16,3 @@ var streamDidBecomeInactiveProtocol *objc.Protocol
 func init() {
 	streamDidBecomeInactiveProtocol = objc.GetProtocol("streamDidBecomeInactive:")
 }
-
-

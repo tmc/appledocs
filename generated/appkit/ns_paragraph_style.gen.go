@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ParagraphStyle] class.
@@ -79,6 +80,7 @@ func NewParagraphStyle() ParagraphStyle {
 	return getParagraphStyleClass().New()
 }
 
+
 // A Boolean value that indicates whether the system tightens character spacing before truncating text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/allowsDefaultTighteningForTruncation
@@ -126,3 +128,6 @@ func (p_ ParagraphStyle) UsesDefaultHyphenation() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesDefaultHyphenation"))
 	return rv
 }
+
+
+

@@ -20,5 +20,3 @@ var TensorBindingProtocol *objc.Protocol
 func init() {
 	TensorBindingProtocol = objc.GetProtocol("MTLTensorBinding")
 }
-
-

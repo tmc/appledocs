@@ -18,5 +18,3 @@ var INCarPlayDomainHandlingProtocol *objc.Protocol
 func init() {
 	INCarPlayDomainHandlingProtocol = objc.GetProtocol("INCarPlayDomainHandling")
 }
-
-

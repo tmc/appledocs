@@ -17,5 +17,3 @@ var getHomeScreenWebAppInfoWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	getHomeScreenWebAppInfoWithCompletionHandlerProtocol = objc.GetProtocol("getHomeScreenWebAppInfoWithCompletionHandler:")
 }
-
-

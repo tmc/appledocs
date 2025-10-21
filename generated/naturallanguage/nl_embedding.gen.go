@@ -93,6 +93,8 @@ func NewEmbedding() Embedding {
 }
 
 
+
+
 // Creates a word embedding from a model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/init(contentsOf:)

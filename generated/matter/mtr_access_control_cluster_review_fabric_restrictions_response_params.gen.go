@@ -76,6 +76,8 @@ func NewMTRAccessControlClusterReviewFabricRestrictionsResponseParams() MTRAcces
 }
 
 
+
+
 // Initialize an MTRAccessControlClusterReviewFabricRestrictionsResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() 
 func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
+
 

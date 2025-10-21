@@ -93,6 +93,7 @@ func (p_ PublicKeyCredentialClientData) CrossOrigin() unsafe.Pointer {
 func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCrossOrigin:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
 func (p_ PublicKeyCredentialClientData) Origin() string {
@@ -107,5 +108,6 @@ func (p_ PublicKeyCredentialClientData) Origin() string {
 func (p_ PublicKeyCredentialClientData) SetOrigin(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
 }
+
 
 

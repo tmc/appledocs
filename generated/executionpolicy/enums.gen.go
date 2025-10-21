@@ -9,18 +9,18 @@ package executionpolicy
 type EPDeveloperToolStatus uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperToolStatus/authorized
-EPDeveloperToolStatusAuthorized EPDeveloperToolStatus = 0
-//
+	EPDeveloperToolStatusAuthorized EPDeveloperToolStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperToolStatus/denied
-EPDeveloperToolStatusDenied EPDeveloperToolStatus = 0
-//
+	EPDeveloperToolStatusDenied EPDeveloperToolStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperToolStatus/notDetermined
-EPDeveloperToolStatusNotDetermined EPDeveloperToolStatus = 0
-//
+	EPDeveloperToolStatusNotDetermined EPDeveloperToolStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperToolStatus/restricted
-EPDeveloperToolStatusRestricted EPDeveloperToolStatus = 0
+	EPDeveloperToolStatusRestricted EPDeveloperToolStatus = 0
 )
 
 // EPError enum type
@@ -29,12 +29,12 @@ EPDeveloperToolStatusRestricted EPDeveloperToolStatus = 0
 type EPError uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPError-swift.struct/Code/generic
-EPErrorGeneric EPError = 0
-//
+	EPErrorGeneric EPError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPError-swift.struct/Code/notADeveloperTool
-EPErrorNotADeveloperTool EPError = 0
+	EPErrorNotADeveloperTool EPError = 0
 )
 
 

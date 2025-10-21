@@ -109,3 +109,4 @@ func (f_ FSItemGetAttributesRequest) SetWantedAttributes(value unsafe.Pointer) {
 }
 
 
+

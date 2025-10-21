@@ -19,5 +19,3 @@ var roughnessTextureProtocol *objc.Protocol
 func init() {
 	roughnessTextureProtocol = objc.GetProtocol("roughnessTexture")
 }
-
-

@@ -21,5 +21,3 @@ var MTRXPCServerProtocolProtocol *objc.Protocol
 func init() {
 	MTRXPCServerProtocolProtocol = objc.GetProtocol("MTRXPCServerProtocol")
 }
-
-

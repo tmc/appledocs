@@ -100,3 +100,4 @@ func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) SetSink(value unsafe.Poin
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSink:"), value)
 }
 
+

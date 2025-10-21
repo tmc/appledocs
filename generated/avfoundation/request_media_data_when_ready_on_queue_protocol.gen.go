@@ -21,5 +21,3 @@ var requestMediaDataWhenReadyOnQueueProtocol *objc.Protocol
 func init() {
 	requestMediaDataWhenReadyOnQueueProtocol = objc.GetProtocol("requestMediaDataWhenReadyOnQueue:")
 }
-
-

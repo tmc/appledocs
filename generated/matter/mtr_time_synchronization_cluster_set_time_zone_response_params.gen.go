@@ -76,6 +76,8 @@ func NewMTRTimeSynchronizationClusterSetTimeZoneResponseParams() MTRTimeSynchron
 }
 
 
+
+
 // Initialize an MTRTimeSynchronizationClusterSetTimeZoneResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequir
 func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetRequired:"), value)
 }
+
 

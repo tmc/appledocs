@@ -95,6 +95,7 @@ func (s_ StreamConfiguration) CaptureDynamicRange() unsafe.Pointer {
 func (s_ StreamConfiguration) SetCaptureDynamicRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCaptureDynamicRange:"), value)
 }
+
 // A Boolean value that indicates if the stream ignores content clipped past the edge of a display, when streaming in window style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamConfiguration/ignoreGlobalClipSingleWindow
@@ -112,6 +113,7 @@ func (s_ StreamConfiguration) IgnoreGlobalClipSingleWindow() bool {
 func (s_ StreamConfiguration) SetIgnoreGlobalClipSingleWindow(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIgnoreGlobalClipSingleWindow:"), value)
 }
+
 // The maximum number of frames for the queue to store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamConfiguration/queueDepth
@@ -129,5 +131,6 @@ func (s_ StreamConfiguration) QueueDepth() int {
 func (s_ StreamConfiguration) SetQueueDepth(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQueueDepth:"), value)
 }
+
 
 

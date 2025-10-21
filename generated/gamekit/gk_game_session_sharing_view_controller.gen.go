@@ -82,6 +82,8 @@ func NewGameSessionSharingViewController() GameSessionSharingViewController {
 }
 
 
+
+
 // Creates a new sharing view controller for a specified session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/init(session:)
@@ -110,6 +112,7 @@ func (g_ GameSessionSharingViewController) Delegate() objc.ID {
 func (g_ GameSessionSharingViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The game session associated with the view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/session

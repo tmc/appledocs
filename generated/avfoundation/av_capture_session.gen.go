@@ -279,6 +279,7 @@ func (c_ CaptureSession) AutomaticallyConfiguresApplicationAudioSession() bool {
 func (c_ CaptureSession) SetAutomaticallyConfiguresApplicationAudioSession(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresApplicationAudioSession:"), value)
 }
+
 // A Boolean value that specifies whether the session should automatically use wide-gamut color where available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresCaptureDeviceForWideColor
@@ -296,6 +297,7 @@ func (c_ CaptureSession) AutomaticallyConfiguresCaptureDeviceForWideColor() bool
 func (c_ CaptureSession) SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresCaptureDeviceForWideColor:"), value)
 }
+
 // A Boolean value that indicates whether deferred start runs automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyRunsDeferredStart
@@ -313,6 +315,7 @@ func (c_ CaptureSession) AutomaticallyRunsDeferredStart() bool {
 func (c_ CaptureSession) SetAutomaticallyRunsDeferredStart(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyRunsDeferredStart:"), value)
 }
+
 // A Boolean value that indicates whether the capture session configures the app’s audio session for bluetooth high-quality recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionForBluetoothHighQualityRecording
@@ -330,6 +333,7 @@ func (c_ CaptureSession) ConfiguresApplicationAudioSessionForBluetoothHighQualit
 func (c_ CaptureSession) SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:"), value)
 }
+
 // A Boolean value that Indicates whether the capture session configures the app’s audio session to mix with others.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionToMixWithOthers
@@ -347,6 +351,7 @@ func (c_ CaptureSession) ConfiguresApplicationAudioSessionToMixWithOthers() bool
 func (c_ CaptureSession) SetConfiguresApplicationAudioSessionToMixWithOthers(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguresApplicationAudioSessionToMixWithOthers:"), value)
 }
+
 // The connections between inputs and outputs that a capture session contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/connections
@@ -444,6 +449,7 @@ func (c_ CaptureSession) MultitaskingCameraAccessEnabled() bool {
 func (c_ CaptureSession) SetMultitaskingCameraAccessEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMultitaskingCameraAccessEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the capture session supports using the camera while multitasking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported
@@ -501,6 +507,7 @@ func (c_ CaptureSession) SessionPreset() unsafe.Pointer {
 func (c_ CaptureSession) SetSessionPreset(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSessionPreset:"), value)
 }
+
 // A Boolean value that indicates whether a capture session supports controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/supportsControls
@@ -534,5 +541,6 @@ func (c_ CaptureSession) UsesApplicationAudioSession() bool {
 func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
 }
+
 
 

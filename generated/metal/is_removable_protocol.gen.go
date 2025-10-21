@@ -16,5 +16,3 @@ var isRemovableProtocol *objc.Protocol
 func init() {
 	isRemovableProtocol = objc.GetProtocol("isRemovable")
 }
-
-

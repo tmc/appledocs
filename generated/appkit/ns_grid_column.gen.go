@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GridColumn] class.
@@ -77,12 +78,14 @@ func NewGridColumn() GridColumn {
 	return getGridColumnClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
 func (g_ GridColumn) LeadingPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("leadingPadding"))
 	return rv
 }
+
 
 // SetLeadingPadding sets the value of the leadingPadding property.
 //
@@ -98,6 +101,7 @@ func (g_ GridColumn) TrailingPadding() float64 {
 	return rv
 }
 
+
 // SetTrailingPadding sets the value of the trailingPadding property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
@@ -112,9 +116,13 @@ func (g_ GridColumn) XPlacement() unsafe.Pointer {
 	return rv
 }
 
+
 // SetXPlacement sets the value of the xPlacement property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
 func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
+
+
+

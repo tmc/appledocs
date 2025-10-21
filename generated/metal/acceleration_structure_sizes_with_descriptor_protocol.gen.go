@@ -20,5 +20,3 @@ var accelerationStructureSizesWithDescriptorProtocol *objc.Protocol
 func init() {
 	accelerationStructureSizesWithDescriptorProtocol = objc.GetProtocol("accelerationStructureSizesWithDescriptor:")
 }
-
-

@@ -76,6 +76,8 @@ func NewMTRGeneralDiagnosticsClusterTimeSnapshotResponseParams() MTRGeneralDiagn
 }
 
 
+
+
 // Initialize an MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() u
 func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosixTimeMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/systemTimeMs
 func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() unsafe.Pointer {
@@ -115,4 +118,5 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() 
 func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemTimeMs:"), value)
 }
+
 

@@ -81,6 +81,8 @@ func NewVZLinuxBootLoader() VZLinuxBootLoader {
 }
 
 
+
+
 // Creates a boot loader that launches the Linux kernel at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/init(kernelURL:)
@@ -109,6 +111,7 @@ func (v_ VZLinuxBootLoader) CommandLine() string {
 func (v_ VZLinuxBootLoader) SetCommandLine(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCommandLine:"), objc.String(value))
 }
+
 // The location of an optional RAM disk, which the boot loader maps into memory before it boots the Linux kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/initialRamdiskURL
@@ -126,6 +129,7 @@ func (v_ VZLinuxBootLoader) InitialRamdiskURL() unsafe.Pointer {
 func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInitialRamdiskURL:"), value)
 }
+
 // The URL of the Linux kernel file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
@@ -143,4 +147,5 @@ func (v_ VZLinuxBootLoader) KernelURL() unsafe.Pointer {
 func (v_ VZLinuxBootLoader) SetKernelURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKernelURL:"), value)
 }
+
 

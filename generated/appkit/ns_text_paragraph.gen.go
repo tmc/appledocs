@@ -77,3 +77,7 @@ func (t_ TextParagraph) Autorelease() TextParagraph {
 func NewTextParagraph() TextParagraph {
 	return getTextParagraphClass().New()
 }
+
+
+
+

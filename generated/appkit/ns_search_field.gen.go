@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SearchField] class.
@@ -84,6 +84,7 @@ func NewSearchField() SearchField {
 	return getSearchFieldClass().New()
 }
 
+
 // The rectangle for the cancel button within the bounds of the search field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForCancelButton(whenCentered:)
@@ -124,6 +125,7 @@ func (s_ SearchField) CentersPlaceholder() bool {
 	return rv
 }
 
+
 // SetCentersPlaceholder sets the value of the centersPlaceholder property.
 // A Boolean value that determines whether the search field’s components are centered within the control.
 
@@ -140,6 +142,7 @@ func (s_ SearchField) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The delegate for the search field, or if the search field doesn’t have a delegate.
@@ -158,6 +161,7 @@ func (s_ SearchField) MaximumRecents() int {
 	return rv
 }
 
+
 // SetMaximumRecents sets the value of the maximumRecents property.
 // The maximum number of search strings that can appear in the search menu.
 
@@ -174,6 +178,7 @@ func (s_ SearchField) RecentSearches() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("recentSearches"))
 	return rv
 }
+
 
 // SetRecentSearches sets the value of the recentSearches property.
 // The list of recent search strings for the control.
@@ -202,6 +207,7 @@ func (s_ SearchField) RecentsAutosaveName() unsafe.Pointer {
 	return rv
 }
 
+
 // SetRecentsAutosaveName sets the value of the recentsAutosaveName property.
 // The name under which the search field automatically archives the list of recent search strings.
 
@@ -226,6 +232,7 @@ func (s_ SearchField) SearchMenuTemplate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
 }
+
 
 // SetSearchMenuTemplate sets the value of the searchMenuTemplate property.
 // The menu object used to dynamically construct the search field’s pop-up icon menu.
@@ -252,6 +259,7 @@ func (s_ SearchField) SendsSearchStringImmediately() bool {
 	return rv
 }
 
+
 // SetSendsSearchStringImmediately sets the value of the sendsSearchStringImmediately property.
 // A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
 
@@ -269,6 +277,7 @@ func (s_ SearchField) SendsWholeSearchString() bool {
 	return rv
 }
 
+
 // SetSendsWholeSearchString sets the value of the sendsWholeSearchString property.
 // A Boolean value indicating whether the cell calls its search action method when the user clicks the search button or presses Return, or after each keystroke.
 
@@ -277,3 +286,6 @@ func (s_ SearchField) SendsWholeSearchString() bool {
 func (s_ SearchField) SetSendsWholeSearchString(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsWholeSearchString:"), value)
 }
+
+
+

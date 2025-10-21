@@ -19,5 +19,3 @@ var WebExtensionTabProtocol *objc.Protocol
 func init() {
 	WebExtensionTabProtocol = objc.GetProtocol("WKWebExtensionTab")
 }
-
-

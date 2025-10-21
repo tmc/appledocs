@@ -15,5 +15,3 @@ var additionalRequestHeadersForURLProtocol *objc.Protocol
 func init() {
 	additionalRequestHeadersForURLProtocol = objc.GetProtocol("additionalRequestHeadersForURL:")
 }
-
-

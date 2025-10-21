@@ -15,4 +15,3 @@ var scannerDeviceProtocol *objc.Protocol
 func init() {
 	scannerDeviceProtocol = objc.GetProtocol("scannerDevice:")
 }
-

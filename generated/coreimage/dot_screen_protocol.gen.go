@@ -12,5 +12,3 @@ var DotScreenProtocol *objc.Protocol
 func init() {
 	DotScreenProtocol = objc.GetProtocol("CIDotScreen")
 }
-
-

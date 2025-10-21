@@ -12,5 +12,3 @@ var SRGBToneCurveToLinearProtocol *objc.Protocol
 func init() {
 	SRGBToneCurveToLinearProtocol = objc.GetProtocol("CISRGBToneCurveToLinear")
 }
-
-

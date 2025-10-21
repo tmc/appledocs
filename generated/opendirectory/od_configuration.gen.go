@@ -135,6 +135,7 @@ func (o_ ODConfiguration) AuthenticationModuleEntries() unsafe.Pointer {
 func (o_ ODConfiguration) SetAuthenticationModuleEntries(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAuthenticationModuleEntries:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
 func (o_ ODConfiguration) Comment() string {
@@ -149,6 +150,7 @@ func (o_ ODConfiguration) Comment() string {
 func (o_ ODConfiguration) SetComment(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionIdleTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) ConnectionIdleTimeoutInSeconds() int {
@@ -163,6 +165,7 @@ func (o_ ODConfiguration) ConnectionIdleTimeoutInSeconds() int {
 func (o_ ODConfiguration) SetConnectionIdleTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConnectionIdleTimeoutInSeconds:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionSetupTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) ConnectionSetupTimeoutInSeconds() int {
@@ -177,6 +180,7 @@ func (o_ ODConfiguration) ConnectionSetupTimeoutInSeconds() int {
 func (o_ ODConfiguration) SetConnectionSetupTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConnectionSetupTimeoutInSeconds:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultMappings-swift.property
 func (o_ ODConfiguration) DefaultMappings() unsafe.Pointer {
@@ -191,6 +195,7 @@ func (o_ ODConfiguration) DefaultMappings() unsafe.Pointer {
 func (o_ ODConfiguration) SetDefaultMappings(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDefaultMappings:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-swift.property
 func (o_ ODConfiguration) DefaultModuleEntries() unsafe.Pointer {
@@ -205,6 +210,7 @@ func (o_ ODConfiguration) DefaultModuleEntries() unsafe.Pointer {
 func (o_ ODConfiguration) SetDefaultModuleEntries(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDefaultModuleEntries:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/discoveryModuleEntries-swift.property
 func (o_ ODConfiguration) DiscoveryModuleEntries() unsafe.Pointer {
@@ -219,6 +225,7 @@ func (o_ ODConfiguration) DiscoveryModuleEntries() unsafe.Pointer {
 func (o_ ODConfiguration) SetDiscoveryModuleEntries(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDiscoveryModuleEntries:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/generalModuleEntries-swift.property
 func (o_ ODConfiguration) GeneralModuleEntries() unsafe.Pointer {
@@ -233,6 +240,7 @@ func (o_ ODConfiguration) GeneralModuleEntries() unsafe.Pointer {
 func (o_ ODConfiguration) SetGeneralModuleEntries(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setGeneralModuleEntries:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/hideRegistration-swift.property
 func (o_ ODConfiguration) HideRegistration() bool {
@@ -247,6 +255,7 @@ func (o_ ODConfiguration) HideRegistration() bool {
 func (o_ ODConfiguration) SetHideRegistration(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setHideRegistration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/manInTheMiddleProtection-swift.property
 func (o_ ODConfiguration) ManInTheMiddleProtection() bool {
@@ -261,6 +270,7 @@ func (o_ ODConfiguration) ManInTheMiddleProtection() bool {
 func (o_ ODConfiguration) SetManInTheMiddleProtection(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManInTheMiddleProtection:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
 func (o_ ODConfiguration) NodeName() string {
@@ -275,6 +285,7 @@ func (o_ ODConfiguration) NodeName() string {
 func (o_ ODConfiguration) SetNodeName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetEncryption-swift.property
 func (o_ ODConfiguration) PacketEncryption() int {
@@ -289,6 +300,7 @@ func (o_ ODConfiguration) PacketEncryption() int {
 func (o_ ODConfiguration) SetPacketEncryption(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPacketEncryption:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetSigning-swift.property
 func (o_ ODConfiguration) PacketSigning() int {
@@ -303,6 +315,7 @@ func (o_ ODConfiguration) PacketSigning() int {
 func (o_ ODConfiguration) SetPacketSigning(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPacketSigning:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
 func (o_ ODConfiguration) PreferredDestinationHostName() string {
@@ -317,6 +330,7 @@ func (o_ ODConfiguration) PreferredDestinationHostName() string {
 func (o_ ODConfiguration) SetPreferredDestinationHostName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostPort-swift.property
 func (o_ ODConfiguration) PreferredDestinationHostPort() unsafe.Pointer {
@@ -331,6 +345,7 @@ func (o_ ODConfiguration) PreferredDestinationHostPort() unsafe.Pointer {
 func (o_ ODConfiguration) SetPreferredDestinationHostPort(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostPort:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/queryTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) QueryTimeoutInSeconds() int {
@@ -345,6 +360,7 @@ func (o_ ODConfiguration) QueryTimeoutInSeconds() int {
 func (o_ ODConfiguration) SetQueryTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueryTimeoutInSeconds:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
 func (o_ ODConfiguration) TemplateName() string {
@@ -359,6 +375,7 @@ func (o_ ODConfiguration) TemplateName() string {
 func (o_ ODConfiguration) SetTemplateName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustAccount-swift.property
 func (o_ ODConfiguration) TrustAccount() string {
@@ -422,5 +439,6 @@ func (o_ ODConfiguration) VirtualSubnodes() unsafe.Pointer {
 func (o_ ODConfiguration) SetVirtualSubnodes(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setVirtualSubnodes:"), value)
 }
+
 
 

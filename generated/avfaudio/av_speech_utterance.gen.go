@@ -114,6 +114,7 @@ func (s_ SpeechUtterance) PitchMultiplier() unsafe.Pointer {
 func (s_ SpeechUtterance) SetPitchMultiplier(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPitchMultiplier:"), value)
 }
+
 // The amount of time the speech synthesizer pauses after speaking an utterance before handling the next utterance in the queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/postUtteranceDelay
@@ -131,6 +132,7 @@ func (s_ SpeechUtterance) PostUtteranceDelay() TimeInterval {
 func (s_ SpeechUtterance) SetPostUtteranceDelay(value TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPostUtteranceDelay:"), value)
 }
+
 // The amount of time the speech synthesizer pauses before speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/preUtteranceDelay
@@ -148,6 +150,7 @@ func (s_ SpeechUtterance) PreUtteranceDelay() TimeInterval {
 func (s_ SpeechUtterance) SetPreUtteranceDelay(value TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
 }
+
 // The rate the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/rate
@@ -165,6 +168,7 @@ func (s_ SpeechUtterance) Rate() unsafe.Pointer {
 func (s_ SpeechUtterance) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
 }
+
 // A string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechString
@@ -190,6 +194,7 @@ func (s_ SpeechUtterance) Voice() unsafe.Pointer {
 func (s_ SpeechUtterance) SetVoice(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }
+
 // The volume the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/volume
@@ -207,5 +212,7 @@ func (s_ SpeechUtterance) Volume() unsafe.Pointer {
 func (s_ SpeechUtterance) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
+
+
 
 

@@ -12,5 +12,3 @@ var extentProtocol *objc.Protocol
 func init() {
 	extentProtocol = objc.GetProtocol("extent")
 }
-
-

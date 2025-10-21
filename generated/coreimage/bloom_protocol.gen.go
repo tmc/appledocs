@@ -12,5 +12,3 @@ var BloomProtocol *objc.Protocol
 func init() {
 	BloomProtocol = objc.GetProtocol("CIBloom")
 }
-
-

@@ -86,6 +86,8 @@ func NewImageAccumulator() ImageAccumulator {
 }
 
 
+
+
 // Initializes an image accumulator with the specified extent and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:)
@@ -95,6 +97,8 @@ func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format unsa
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes an image accumulator with the specified extent, pixel format, and color space.
 //

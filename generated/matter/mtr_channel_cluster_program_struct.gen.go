@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterProgramStruct) AudioLanguages() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetAudioLanguages(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioLanguages:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/castList
 func (m_ MTRChannelClusterProgramStruct) CastList() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRChannelClusterProgramStruct) CastList() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetCastList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCastList:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/categoryList
 func (m_ MTRChannelClusterProgramStruct) CategoryList() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRChannelClusterProgramStruct) CategoryList() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetCategoryList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCategoryList:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/channel
 func (m_ MTRChannelClusterProgramStruct) Channel() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRChannelClusterProgramStruct) Channel() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetChannel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/descriptionString
 func (m_ MTRChannelClusterProgramStruct) DescriptionString() string {
@@ -146,6 +150,7 @@ func (m_ MTRChannelClusterProgramStruct) DescriptionString() string {
 func (m_ MTRChannelClusterProgramStruct) SetDescriptionString(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionString:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/endTime
 func (m_ MTRChannelClusterProgramStruct) EndTime() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRChannelClusterProgramStruct) EndTime() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/identifier
 func (m_ MTRChannelClusterProgramStruct) Identifier() string {
@@ -174,6 +180,7 @@ func (m_ MTRChannelClusterProgramStruct) Identifier() string {
 func (m_ MTRChannelClusterProgramStruct) SetIdentifier(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/parentalGuidanceText
 func (m_ MTRChannelClusterProgramStruct) ParentalGuidanceText() string {
@@ -188,6 +195,7 @@ func (m_ MTRChannelClusterProgramStruct) ParentalGuidanceText() string {
 func (m_ MTRChannelClusterProgramStruct) SetParentalGuidanceText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParentalGuidanceText:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/ratings
 func (m_ MTRChannelClusterProgramStruct) Ratings() unsafe.Pointer {
@@ -202,6 +210,7 @@ func (m_ MTRChannelClusterProgramStruct) Ratings() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetRatings(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRatings:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/recordingFlag
 func (m_ MTRChannelClusterProgramStruct) RecordingFlag() unsafe.Pointer {
@@ -216,6 +225,7 @@ func (m_ MTRChannelClusterProgramStruct) RecordingFlag() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetRecordingFlag(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecordingFlag:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/releaseDate
 func (m_ MTRChannelClusterProgramStruct) ReleaseDate() string {
@@ -230,6 +240,7 @@ func (m_ MTRChannelClusterProgramStruct) ReleaseDate() string {
 func (m_ MTRChannelClusterProgramStruct) SetReleaseDate(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseDate:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/seriesInfo
 func (m_ MTRChannelClusterProgramStruct) SeriesInfo() unsafe.Pointer {
@@ -244,6 +255,7 @@ func (m_ MTRChannelClusterProgramStruct) SeriesInfo() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetSeriesInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeriesInfo:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/startTime
 func (m_ MTRChannelClusterProgramStruct) StartTime() unsafe.Pointer {
@@ -258,6 +270,7 @@ func (m_ MTRChannelClusterProgramStruct) StartTime() unsafe.Pointer {
 func (m_ MTRChannelClusterProgramStruct) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/subtitle
 func (m_ MTRChannelClusterProgramStruct) Subtitle() string {
@@ -272,6 +285,7 @@ func (m_ MTRChannelClusterProgramStruct) Subtitle() string {
 func (m_ MTRChannelClusterProgramStruct) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/title
 func (m_ MTRChannelClusterProgramStruct) Title() string {
@@ -286,5 +300,6 @@ func (m_ MTRChannelClusterProgramStruct) Title() string {
 func (m_ MTRChannelClusterProgramStruct) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 
 

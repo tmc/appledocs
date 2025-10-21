@@ -114,6 +114,7 @@ func (l_ Location) Altitude() unsafe.Pointer {
 func (l_ Location) SetAltitude(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAltitude:"), value)
 }
+
 // The geographical coordinate information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/coordinate
@@ -131,6 +132,7 @@ func (l_ Location) Coordinate() unsafe.Pointer {
 func (l_ Location) SetCoordinate(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCoordinate:"), value)
 }
+
 // The direction in which the device is traveling, measured in degrees and relative to due north.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/course
@@ -148,6 +150,7 @@ func (l_ Location) Course() unsafe.Pointer {
 func (l_ Location) SetCourse(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCourse:"), value)
 }
+
 // The accuracy of the course value, measured in degrees.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/courseAccuracy
@@ -165,6 +168,7 @@ func (l_ Location) CourseAccuracy() unsafe.Pointer {
 func (l_ Location) SetCourseAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCourseAccuracy:"), value)
 }
+
 // The altitude as a height above the World Geodetic System 1984 (WGS84) ellipsoid, measured in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/ellipsoidalAltitude
@@ -182,6 +186,7 @@ func (l_ Location) EllipsoidalAltitude() unsafe.Pointer {
 func (l_ Location) SetEllipsoidalAltitude(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setEllipsoidalAltitude:"), value)
 }
+
 // The radius of uncertainty for the location, measured in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/horizontalAccuracy
@@ -199,6 +204,7 @@ func (l_ Location) HorizontalAccuracy() unsafe.Pointer {
 func (l_ Location) SetHorizontalAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHorizontalAccuracy:"), value)
 }
+
 // Information about the source that provides the location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/sourceInformation
@@ -216,6 +222,7 @@ func (l_ Location) SourceInformation() unsafe.Pointer {
 func (l_ Location) SetSourceInformation(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSourceInformation:"), value)
 }
+
 // The instantaneous speed of the device, measured in meters per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speed
@@ -233,6 +240,7 @@ func (l_ Location) Speed() unsafe.Pointer {
 func (l_ Location) SetSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSpeed:"), value)
 }
+
 // The accuracy of the speed value, measured in meters per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speedAccuracy
@@ -250,6 +258,7 @@ func (l_ Location) SpeedAccuracy() unsafe.Pointer {
 func (l_ Location) SetSpeedAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSpeedAccuracy:"), value)
 }
+
 // The time at which this location was determined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
@@ -267,6 +276,7 @@ func (l_ Location) Timestamp() unsafe.Pointer {
 func (l_ Location) SetTimestamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimestamp:"), value)
 }
+
 // The validity of the altitude values, and their estimated uncertainty, measured in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/verticalAccuracy
@@ -284,5 +294,6 @@ func (l_ Location) VerticalAccuracy() unsafe.Pointer {
 func (l_ Location) SetVerticalAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVerticalAccuracy:"), value)
 }
+
 
 

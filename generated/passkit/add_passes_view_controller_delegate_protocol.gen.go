@@ -12,5 +12,3 @@ var AddPassesViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	AddPassesViewControllerDelegateProtocol = objc.GetProtocol("PKAddPassesViewControllerDelegate")
 }
-
-

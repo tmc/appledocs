@@ -81,6 +81,8 @@ func NewPHASEGroupPresetSetting() PHASEGroupPresetSetting {
 }
 
 
+
+
 // Creates a group preset setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/init(gain:rate:gainCurveType:rateCurveType:)

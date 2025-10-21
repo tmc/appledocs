@@ -12,5 +12,3 @@ var AttributedTextImageGeneratorProtocol *objc.Protocol
 func init() {
 	AttributedTextImageGeneratorProtocol = objc.GetProtocol("CIAttributedTextImageGenerator")
 }
-
-

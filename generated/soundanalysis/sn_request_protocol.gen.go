@@ -21,5 +21,3 @@ var SNRequestProtocol *objc.Protocol
 func init() {
 	SNRequestProtocol = objc.GetProtocol("SNRequest")
 }
-
-

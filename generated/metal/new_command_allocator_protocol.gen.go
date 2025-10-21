@@ -20,5 +20,3 @@ var newCommandAllocatorProtocol *objc.Protocol
 func init() {
 	newCommandAllocatorProtocol = objc.GetProtocol("newCommandAllocator")
 }
-
-

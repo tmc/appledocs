@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ItemBadge] class.
@@ -79,6 +80,7 @@ func NewItemBadge() ItemBadge {
 	return getItemBadgeClass().New()
 }
 
+
 // Creates a badge displaying a localized numerical count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithCount:
@@ -110,3 +112,6 @@ func (i_ ItemBadge) Text() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("text"))
 	return rv
 }
+
+
+

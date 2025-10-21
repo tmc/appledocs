@@ -20,5 +20,3 @@ var newCompilerWithDescriptorProtocol *objc.Protocol
 func init() {
 	newCompilerWithDescriptorProtocol = objc.GetProtocol("newCompilerWithDescriptor:")
 }
-
-

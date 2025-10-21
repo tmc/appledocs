@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) AttributeRequests() unsafe.Poi
 func (m_ MTRThermostatClusterAtomicRequestParams) SetAttributeRequests(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeRequests:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/requestType
 func (m_ MTRThermostatClusterAtomicRequestParams) RequestType() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) RequestType() unsafe.Pointer {
 func (m_ MTRThermostatClusterAtomicRequestParams) SetRequestType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestType:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) ServerSideProcessingTimeout() 
 func (m_ MTRThermostatClusterAtomicRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timedInvokeTimeoutMs
@@ -138,6 +141,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) TimedInvokeTimeoutMs() unsafe.
 func (m_ MTRThermostatClusterAtomicRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timeout
 func (m_ MTRThermostatClusterAtomicRequestParams) Timeout() unsafe.Pointer {
@@ -152,5 +156,6 @@ func (m_ MTRThermostatClusterAtomicRequestParams) Timeout() unsafe.Pointer {
 func (m_ MTRThermostatClusterAtomicRequestParams) SetTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
+
 
 

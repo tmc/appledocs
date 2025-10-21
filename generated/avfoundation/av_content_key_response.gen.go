@@ -79,6 +79,8 @@ func NewContentKeyResponse() ContentKeyResponse {
 }
 
 
+
+
 // Creates a new key response object for key data and initialization vector sent in the clear.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeyResponse/init(clearKeyData:initializationVector:)
@@ -86,6 +88,8 @@ func NewContentKeyResponseWithClearKeyDataInitializationVector(keyData unsafe.Po
 	rv := objc.Send[ContentKeyResponse](objc.ID(getContentKeyResponseClass().class), objc.Sel("contentKeyResponseWithClearKeyData:initializationVector:"), keyData, initializationVector)
 	return rv
 }
+
+
 
 // Creates a content key response with an encrypted key response data blob when FairPlay Streaming is the key delivery method.
 //

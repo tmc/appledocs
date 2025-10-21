@@ -100,3 +100,4 @@ func (f_ FetchedPropertyDescription) SetFetchRequest(value unsafe.Pointer) {
 }
 
 
+

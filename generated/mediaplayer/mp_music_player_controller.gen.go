@@ -254,6 +254,7 @@ func (m_ MusicPlayerController) NowPlayingItem() unsafe.Pointer {
 func (m_ MusicPlayerController) SetNowPlayingItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNowPlayingItem:"), value)
 }
+
 // The current playback state of the music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/playbackState
@@ -279,6 +280,7 @@ func (m_ MusicPlayerController) RepeatMode() unsafe.Pointer {
 func (m_ MusicPlayerController) SetRepeatMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRepeatMode:"), value)
 }
+
 // The current shuffle mode of the music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/shuffleMode
@@ -296,6 +298,7 @@ func (m_ MusicPlayerController) ShuffleMode() unsafe.Pointer {
 func (m_ MusicPlayerController) SetShuffleMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShuffleMode:"), value)
 }
+
 // Returns the system music player, which controls the Music app’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/systemMusicPlayer
@@ -321,5 +324,6 @@ func (m_ MusicPlayerController) Volume() unsafe.Pointer {
 func (m_ MusicPlayerController) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVolume:"), value)
 }
+
 
 

@@ -12,5 +12,3 @@ var ConvertLabProtocol *objc.Protocol
 func init() {
 	ConvertLabProtocol = objc.GetProtocol("CIConvertLab")
 }
-
-

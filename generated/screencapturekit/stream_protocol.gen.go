@@ -16,4 +16,3 @@ var streamProtocol *objc.Protocol
 func init() {
 	streamProtocol = objc.GetProtocol("stream:")
 }
-

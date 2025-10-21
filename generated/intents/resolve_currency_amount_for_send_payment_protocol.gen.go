@@ -19,5 +19,3 @@ var resolveCurrencyAmountForSendPaymentProtocol *objc.Protocol
 func init() {
 	resolveCurrencyAmountForSendPaymentProtocol = objc.GetProtocol("resolveCurrencyAmountForSendPayment:")
 }
-
-

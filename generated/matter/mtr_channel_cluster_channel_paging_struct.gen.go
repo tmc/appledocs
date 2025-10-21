@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterChannelPagingStruct) NextToken() unsafe.Pointer {
 func (m_ MTRChannelClusterChannelPagingStruct) SetNextToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextToken:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
 func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() unsafe.Pointer {
 func (m_ MTRChannelClusterChannelPagingStruct) SetPreviousToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousToken:"), value)
 }
+
 
 

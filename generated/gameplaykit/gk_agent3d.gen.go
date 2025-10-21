@@ -106,6 +106,7 @@ func (a_ Agent3D) Position() unsafe.Pointer {
 func (a_ Agent3D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPosition:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rightHanded
 func (a_ Agent3D) RightHanded() bool {
@@ -120,6 +121,7 @@ func (a_ Agent3D) RightHanded() bool {
 func (a_ Agent3D) SetRightHanded(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRightHanded:"), value)
 }
+
 // The orientation of the agent in 3D space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rotation
@@ -137,6 +139,7 @@ func (a_ Agent3D) Rotation() unsafe.Pointer {
 func (a_ Agent3D) SetRotation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
+
 // The current velocity of the agent in 3D space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/velocity

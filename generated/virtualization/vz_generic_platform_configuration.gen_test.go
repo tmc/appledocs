@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZGenericPlatformConfiguration
 
-
 // ExampleNewVZGenericPlatformConfiguration demonstrates how to create a VZGenericPlatformConfiguration instance.
 // Returns a new generic platform configuration.
 func ExampleNewVZGenericPlatformConfiguration() {
 	_ = virtualization.NewVZGenericPlatformConfiguration()
 	// Output:
 }
-
-

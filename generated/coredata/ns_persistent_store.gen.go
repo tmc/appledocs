@@ -82,6 +82,8 @@ func NewPersistentStore() PersistentStore {
 }
 
 
+
+
 // Returns a store initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
@@ -142,6 +144,7 @@ func (p_ PersistentStore) ReadOnly() bool {
 func (p_ PersistentStore) SetReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReadOnly:"), value)
 }
+
 // The metadata for the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
@@ -159,6 +162,7 @@ func (p_ PersistentStore) Metadata() unsafe.Pointer {
 func (p_ PersistentStore) SetMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:"), value)
 }
+
 // The options that Core Data uses to create the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/options

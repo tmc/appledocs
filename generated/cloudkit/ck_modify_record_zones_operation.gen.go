@@ -81,6 +81,8 @@ func NewCKModifyRecordZonesOperation() CKModifyRecordZonesOperation {
 }
 
 
+
+
 // Creates an operation for modifying the specified record zones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/initWithRecordZonesToSave:recordZoneIDsToDelete:
@@ -106,6 +108,7 @@ func (c_ CKModifyRecordZonesOperation) PerRecordZoneDeleteBlock() unsafe.Pointer
 func (c_ CKModifyRecordZonesOperation) SetPerRecordZoneDeleteBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneDeleteBlock:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/perRecordZoneSaveBlock-3txst
 func (c_ CKModifyRecordZonesOperation) PerRecordZoneSaveBlock() unsafe.Pointer {
@@ -120,6 +123,7 @@ func (c_ CKModifyRecordZonesOperation) PerRecordZoneSaveBlock() unsafe.Pointer {
 func (c_ CKModifyRecordZonesOperation) SetPerRecordZoneSaveBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneSaveBlock:"), value)
 }
+
 // The IDs of the record zones to delete permanently from the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZoneIDsToDelete
@@ -147,6 +151,7 @@ func (c_ CKModifyRecordZonesOperation) SetRecordZoneIDsToDelete(value []CKRecord
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDsToDelete:"), nsArray)
 }
+
 // The record zones to save to the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZonesToSave
@@ -174,4 +179,5 @@ func (c_ CKModifyRecordZonesOperation) SetRecordZonesToSave(value []CKRecordZone
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZonesToSave:"), nsArray)
 }
+
 

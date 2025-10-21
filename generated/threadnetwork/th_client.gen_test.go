@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = threadnetwork.NewTHClient
 
-
 // ExampleNewTHClient demonstrates how to create a THClient instance.
 // Creates the client object.
 func ExampleNewTHClient() {
 	_ = threadnetwork.NewTHClient()
 	// Output:
 }
-
-

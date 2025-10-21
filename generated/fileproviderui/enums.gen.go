@@ -9,14 +9,14 @@ package fileproviderui
 type FPUIExtensionErrorCode uint
 
 const (
-// FPUIExtensionErrorCodeFailed - An error indicating that the action has failed.
-//
+	// FPUIExtensionErrorCodeFailed - An error indicating that the action has failed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIExtensionErrorCode/failed
-FPUIExtensionErrorCodeFailed FPUIExtensionErrorCode = 0
-// FPUIExtensionErrorCodeUserCancelled - An error indicating that the action was canceled by the user.
-//
+	FPUIExtensionErrorCodeFailed FPUIExtensionErrorCode = 0
+	// FPUIExtensionErrorCodeUserCancelled - An error indicating that the action was canceled by the user.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIExtensionErrorCode/userCancelled
-FPUIExtensionErrorCodeUserCancelled FPUIExtensionErrorCode = 0
+	FPUIExtensionErrorCodeUserCancelled FPUIExtensionErrorCode = 0
 )
 
 

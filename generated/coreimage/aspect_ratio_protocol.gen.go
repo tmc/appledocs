@@ -12,5 +12,3 @@ var aspectRatioProtocol *objc.Protocol
 func init() {
 	aspectRatioProtocol = objc.GetProtocol("aspectRatio")
 }
-
-

@@ -81,6 +81,8 @@ func NewPHASESamplerNodeDefinition() PHASESamplerNodeDefinition {
 }
 
 
+
+
 // Creates a sampler node with the given sound asset and mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:)
@@ -90,6 +92,8 @@ func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundA
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a named sampler node with the given sound asset and mixer.
 //
@@ -127,6 +131,7 @@ func (p_ PHASESamplerNodeDefinition) CullOption() unsafe.Pointer {
 func (p_ PHASESamplerNodeDefinition) SetCullOption(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCullOption:"), value)
 }
+
 // An option that determines whether the node’s audio plays in a loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode
@@ -144,4 +149,5 @@ func (p_ PHASESamplerNodeDefinition) PlaybackMode() unsafe.Pointer {
 func (p_ PHASESamplerNodeDefinition) SetPlaybackMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackMode:"), value)
 }
+
 

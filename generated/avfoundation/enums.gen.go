@@ -9,14 +9,14 @@ package avfoundation
 type AssetWriterStatus uint
 
 const (
-// AssetWriterStatusCompleted - The asset writer finishes writing successfully.
-//
+	// AssetWriterStatusCompleted - The asset writer finishes writing successfully.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/Status-swift.enum/completed
-AssetWriterStatusCompleted AssetWriterStatus = 0
-// AssetWriterStatusFailed - The asset writer fails to write the output file.
-//
+	AssetWriterStatusCompleted AssetWriterStatus = 0
+	// AssetWriterStatusFailed - The asset writer fails to write the output file.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/Status-swift.enum/failed
-AssetWriterStatusFailed AssetWriterStatus = 0
+	AssetWriterStatusFailed AssetWriterStatus = 0
 )
 
 // AVAuthorizationStatus - Constants that indicate the status of an app’s authorization to capture media.
@@ -25,22 +25,22 @@ AssetWriterStatusFailed AssetWriterStatus = 0
 type AuthorizationStatus uint
 
 const (
-// AuthorizationStatusAuthorized - A status that indicates the user has explicitly granted an app permission to capture media.
-//
+	// AuthorizationStatusAuthorized - A status that indicates the user has explicitly granted an app permission to capture media.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAuthorizationStatus/authorized
-AuthorizationStatusAuthorized AuthorizationStatus = 0
-// AuthorizationStatusDenied - A status that indicates the user has explicitly denied an app permission to capture media.
-//
+	AuthorizationStatusAuthorized AuthorizationStatus = 0
+	// AuthorizationStatusDenied - A status that indicates the user has explicitly denied an app permission to capture media.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAuthorizationStatus/denied
-AuthorizationStatusDenied AuthorizationStatus = 0
-// AuthorizationStatusNotDetermined - A status that indicates the user hasn’t yet granted or denied authorization.
-//
+	AuthorizationStatusDenied AuthorizationStatus = 0
+	// AuthorizationStatusNotDetermined - A status that indicates the user hasn’t yet granted or denied authorization.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAuthorizationStatus/notDetermined
-AuthorizationStatusNotDetermined AuthorizationStatus = 0
-// AuthorizationStatusRestricted - A status that indicates the app isn’t permitted to use media capture devices.
-//
+	AuthorizationStatusNotDetermined AuthorizationStatus = 0
+	// AuthorizationStatusRestricted - A status that indicates the app isn’t permitted to use media capture devices.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAuthorizationStatus/restricted
-AuthorizationStatusRestricted AuthorizationStatus = 0
+	AuthorizationStatusRestricted AuthorizationStatus = 0
 )
 
 // AVCaptureColorSpace - An enumeration of color spaces a device can support.
@@ -64,14 +64,14 @@ type CaptureLensStabilizationStatus uint
 type CaptureDevicePosition uint
 
 const (
-// CaptureDevicePositionBack - A position on the subject-facing side of an iOS device.
-//
+	// CaptureDevicePositionBack - A position on the subject-facing side of an iOS device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum/back
-CaptureDevicePositionBack CaptureDevicePosition = 0
-// CaptureDevicePositionUnspecified - A position that’s unspecified.
-//
+	CaptureDevicePositionBack CaptureDevicePosition = 0
+	// CaptureDevicePositionUnspecified - A position that’s unspecified.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum/unspecified
-CaptureDevicePositionUnspecified CaptureDevicePosition = 0
+	CaptureDevicePositionUnspecified CaptureDevicePosition = 0
 )
 
 // AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions - A structure that defines the conditions in which to restrict camera switching.
@@ -80,10 +80,10 @@ CaptureDevicePositionUnspecified CaptureDevicePosition = 0
 type CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions uint
 
 const (
-// CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone - Disallow switching to a fallback camera.
-//
+	// CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone - Disallow switching to a fallback camera.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions/AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone
-CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions = 0
+	CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions = 0
 )
 
 // AVCapturePrimaryConstituentDeviceSwitchingBehavior - Constants that control when to allow a virtual device to switch its active primary constituent device.
@@ -92,18 +92,18 @@ CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone CaptureP
 type CapturePrimaryConstituentDeviceSwitchingBehavior uint
 
 const (
-// CapturePrimaryConstituentDeviceSwitchingBehaviorAuto - The device automatically selects the best camera for the current scene.
-//
+	// CapturePrimaryConstituentDeviceSwitchingBehaviorAuto - The device automatically selects the best camera for the current scene.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum/auto
-CapturePrimaryConstituentDeviceSwitchingBehaviorAuto CapturePrimaryConstituentDeviceSwitchingBehavior = 0
-// CapturePrimaryConstituentDeviceSwitchingBehaviorLocked - The device locks camera switching to the active primary constituent device.
-//
+	CapturePrimaryConstituentDeviceSwitchingBehaviorAuto CapturePrimaryConstituentDeviceSwitchingBehavior = 0
+	// CapturePrimaryConstituentDeviceSwitchingBehaviorLocked - The device locks camera switching to the active primary constituent device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum/locked
-CapturePrimaryConstituentDeviceSwitchingBehaviorLocked CapturePrimaryConstituentDeviceSwitchingBehavior = 0
-// CapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported - The device doesn’t support constituent device switching.
-//
+	CapturePrimaryConstituentDeviceSwitchingBehaviorLocked CapturePrimaryConstituentDeviceSwitchingBehavior = 0
+	// CapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported - The device doesn’t support constituent device switching.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum/unsupported
-CapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported CapturePrimaryConstituentDeviceSwitchingBehavior = 0
+	CapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported CapturePrimaryConstituentDeviceSwitchingBehavior = 0
 )
 
 // AVCaptureOutputDataDroppedReason - Constants that define reasons for why the system dropped a frame.
@@ -122,30 +122,30 @@ type CapturePhotoOutputCaptureReadiness uint
 type CaptureSessionInterruptionReason uint
 
 const (
-// CaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient - An interruption caused by the audio hardware temporarily being made unavailable (for example, for a phone call or alarm).
-//
+	// CaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient - An interruption caused by the audio hardware temporarily being made unavailable (for example, for a phone call or alarm).
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/audioDeviceInUseByAnotherClient
-CaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient CaptureSessionInterruptionReason = 0
-// CaptureSessionInterruptionReasonSensitiveContentMitigationActivated - An interruption caused by a   when it detects sensitive content on an associated  .  To resume your capture session, call your analyzer’s   method.
-//
+	CaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonSensitiveContentMitigationActivated - An interruption caused by a   when it detects sensitive content on an associated  .  To resume your capture session, call your analyzer’s   method.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/sensitiveContentMitigationActivated
-CaptureSessionInterruptionReasonSensitiveContentMitigationActivated CaptureSessionInterruptionReason = 0
-// CaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient - An interruption caused by the video device temporarily being made unavailable (for example, when used by another capture session).
-//
+	CaptureSessionInterruptionReasonSensitiveContentMitigationActivated CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient - An interruption caused by the video device temporarily being made unavailable (for example, when used by another capture session).
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceInUseByAnotherClient
-CaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient CaptureSessionInterruptionReason = 0
-// CaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure - An interruption due to system pressure, such as thermal duress.
-//
+	CaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure - An interruption due to system pressure, such as thermal duress.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableDueToSystemPressure
-CaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure CaptureSessionInterruptionReason = 0
-// CaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground - An interruption caused by the app being sent to the background while using a camera.
-//
+	CaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground - An interruption caused by the app being sent to the background while using a camera.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableInBackground
-CaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground CaptureSessionInterruptionReason = 0
-// CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps - An interruption caused when your app is running in Slide Over, Split View, or Picture in Picture mode on iPad.
-//
+	CaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps - An interruption caused when your app is running in Slide Over, Split View, or Picture in Picture mode on iPad.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableWithMultipleForegroundApps
-CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps CaptureSessionInterruptionReason = 0
+	CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps CaptureSessionInterruptionReason = 0
 )
 
 // AVError - An enumeration that defines the errors that framework operations can generate.
@@ -154,30 +154,30 @@ CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApp
 type Error uint
 
 const (
-// ErrorApplicationIsNotAuthorizedToUseDevice - The user denied this app permission to capture media.
-//
+	// ErrorApplicationIsNotAuthorizedToUseDevice - The user denied this app permission to capture media.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/applicationIsNotAuthorizedToUseDevice
-ErrorApplicationIsNotAuthorizedToUseDevice Error = 0
-// ErrorContentIsUnavailable - The captured content is unavailable.
-//
+	ErrorApplicationIsNotAuthorizedToUseDevice Error = 0
+	// ErrorContentIsUnavailable - The captured content is unavailable.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/contentIsUnavailable
-ErrorContentIsUnavailable Error = 0
-// ErrorDeviceAlreadyUsedByAnotherSession - Your app can’t access the device because another session is currently using it.
-//
+	ErrorContentIsUnavailable Error = 0
+	// ErrorDeviceAlreadyUsedByAnotherSession - Your app can’t access the device because another session is currently using it.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/deviceAlreadyUsedByAnotherSession
-ErrorDeviceAlreadyUsedByAnotherSession Error = 0
-// ErrorIncorrectlyConfigured - The system is incorrectly configured for the requested operation.
-//
+	ErrorDeviceAlreadyUsedByAnotherSession Error = 0
+	// ErrorIncorrectlyConfigured - The system is incorrectly configured for the requested operation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/incorrectlyConfigured
-ErrorIncorrectlyConfigured Error = 0
-// ErrorOutOfMemory - The operation couldn’t finish because there isn’t enough memory available to process the media.
-//
+	ErrorIncorrectlyConfigured Error = 0
+	// ErrorOutOfMemory - The operation couldn’t finish because there isn’t enough memory available to process the media.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/outOfMemory
-ErrorOutOfMemory Error = 0
-// ErrorScreenCaptureFailed - An unexpected problem occurred that prevented screen capture.
-//
+	ErrorOutOfMemory Error = 0
+	// ErrorScreenCaptureFailed - An unexpected problem occurred that prevented screen capture.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/screenCaptureFailed
-ErrorScreenCaptureFailed Error = 0
+	ErrorScreenCaptureFailed Error = 0
 )
 
 // AVPlayerActionAtItemEnd - The actions a player can take when it finishes playing.
@@ -206,10 +206,10 @@ type PlayerStatus uint
 type PlayerTimeControlStatus uint
 
 const (
-// PlayerTimeControlStatusPaused - A state that indicates the player paused playback indefinitely.
-//
+	// PlayerTimeControlStatusPaused - A state that indicates the player paused playback indefinitely.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/TimeControlStatus-swift.enum/paused
-PlayerTimeControlStatusPaused PlayerTimeControlStatus = 0
+	PlayerTimeControlStatusPaused PlayerTimeControlStatus = 0
 )
 
 // AVPlayerAudiovisualBackgroundPlaybackPolicy - Policies that describe playback behavior when an app transitions to the background while playing video.
@@ -223,18 +223,18 @@ type PlayerAudiovisualBackgroundPlaybackPolicy uint
 type PlayerItemStatus uint
 
 const (
-// PlayerItemStatusFailed - The item no longer plays due to an error.
-//
+	// PlayerItemStatusFailed - The item no longer plays due to an error.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/failed
-PlayerItemStatusFailed PlayerItemStatus = 0
-// PlayerItemStatusReadyToPlay - The item is ready to play.
-//
+	PlayerItemStatusFailed PlayerItemStatus = 0
+	// PlayerItemStatusReadyToPlay - The item is ready to play.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay
-PlayerItemStatusReadyToPlay PlayerItemStatus = 0
-// PlayerItemStatusUnknown - The item’s status is unknown.
-//
+	PlayerItemStatusReadyToPlay PlayerItemStatus = 0
+	// PlayerItemStatusUnknown - The item’s status is unknown.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown
-PlayerItemStatusUnknown PlayerItemStatus = 0
+	PlayerItemStatusUnknown PlayerItemStatus = 0
 )
 
 

@@ -18,5 +18,3 @@ var isUploadingProtocol *objc.Protocol
 func init() {
 	isUploadingProtocol = objc.GetProtocol("isUploading")
 }
-
-

@@ -79,6 +79,8 @@ func NewFloatRange() FloatRange {
 }
 
 
+
+
 // A utility class used to contain ranges returned by the PKStroke API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKFloatRange/initWithLowerBound:upperBound:

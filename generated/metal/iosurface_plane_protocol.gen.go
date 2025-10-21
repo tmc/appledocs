@@ -20,5 +20,3 @@ var iosurfacePlaneProtocol *objc.Protocol
 func init() {
 	iosurfacePlaneProtocol = objc.GetProtocol("iosurfacePlane")
 }
-
-

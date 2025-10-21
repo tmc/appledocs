@@ -98,6 +98,7 @@ func (g_ GLKEffectPropertyTransform) ModelviewMatrix() unsafe.Pointer {
 func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModelviewMatrix:"), value)
 }
+
 // The matrix used to transform normal coordinates from world space to eye space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/normalMatrix
@@ -123,5 +124,6 @@ func (g_ GLKEffectPropertyTransform) ProjectionMatrix() unsafe.Pointer {
 func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProjectionMatrix:"), value)
 }
+
 
 

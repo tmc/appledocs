@@ -88,6 +88,8 @@ func NewCompositeBehavior() CompositeBehavior {
 }
 
 
+
+
 // Creates a composite behavior from the specified individual behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:)
@@ -95,6 +97,8 @@ func NewCompositeBehaviorWithBehaviors(behaviors unsafe.Pointer) CompositeBehavi
 	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:"), behaviors)
 	return rv
 }
+
+
 
 // Creates a behavior with the specified behaviors and weights.
 //

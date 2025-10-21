@@ -15,5 +15,3 @@ var isOpenCloseInhibitedProtocol *objc.Protocol
 func init() {
 	isOpenCloseInhibitedProtocol = objc.GetProtocol("isOpenCloseInhibited")
 }
-
-

@@ -20,5 +20,3 @@ var confirmShareFocusStatusProtocol *objc.Protocol
 func init() {
 	confirmShareFocusStatusProtocol = objc.GetProtocol("confirmShareFocusStatus:")
 }
-
-

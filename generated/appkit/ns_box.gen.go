@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Box] class.
@@ -84,6 +84,7 @@ func NewBox() Box {
 	return getBoxClass().New()
 }
 
+
 // Places the receiver so its content view lies on the specified frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)
@@ -113,6 +114,7 @@ func (b_ Box) BorderColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBorderColor sets the value of the borderColor property.
 // The color of the receiver’s border when the receiver is a custom box with a simple line border.
 
@@ -138,6 +140,7 @@ func (b_ Box) BorderType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBorderType sets the value of the borderType property.
 // The receiver’s border type.
 
@@ -154,6 +157,7 @@ func (b_ Box) BorderWidth() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("borderWidth"))
 	return rv
 }
+
 
 // SetBorderWidth sets the value of the borderWidth property.
 // The width of the receiver’s border when the receiver is a custom box with a simple line border.
@@ -172,6 +176,7 @@ func (b_ Box) BoxType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBoxType sets the value of the boxType property.
 // The receiver’s box type.
 
@@ -188,6 +193,7 @@ func (b_ Box) ContentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("contentView"))
 	return rv
 }
+
 
 // SetContentView sets the value of the contentView property.
 // The receiver’s content view.
@@ -206,6 +212,7 @@ func (b_ Box) ContentViewMargins() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetContentViewMargins sets the value of the contentViewMargins property.
 // The distances between the border and the content view.
 
@@ -222,6 +229,7 @@ func (b_ Box) CornerRadius() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
+
 
 // SetCornerRadius sets the value of the cornerRadius property.
 // The radius of the receiver’s corners when the receiver is a custom box with a simple line border.
@@ -240,6 +248,7 @@ func (b_ Box) FillColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFillColor sets the value of the fillColor property.
 // The color of the receiver’s background when the receiver is a custom box with a simple line border.
 
@@ -257,6 +266,7 @@ func (b_ Box) Transparent() bool {
 	return rv
 }
 
+
 // SetTransparent sets the value of the transparent property.
 // A Boolean value that indicates whether the receiver is transparent.
 
@@ -273,6 +283,7 @@ func (b_ Box) Title() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("title"))
 	return rv
 }
+
 
 // SetTitle sets the value of the title property.
 // The receiver’s title.
@@ -299,6 +310,7 @@ func (b_ Box) TitleFont() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTitleFont sets the value of the titleFont property.
 // The font object used to draw the receiver’s title.
 
@@ -316,6 +328,7 @@ func (b_ Box) TitlePosition() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTitlePosition sets the value of the titlePosition property.
 // A constant representing the title position.
 
@@ -332,3 +345,6 @@ func (b_ Box) TitleRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](b_.ID, objc.Sel("titleRect"))
 	return rv
 }
+
+
+

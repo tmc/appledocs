@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PreviewReplyAttachment] class.
@@ -82,6 +81,8 @@ func NewPreviewReplyAttachment() PreviewReplyAttachment {
 }
 
 
+
+
 // Creates a preview reply attachment with the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/init(data:contentType:)
@@ -96,8 +97,8 @@ func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentTy
 // The content type of the preview attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/contentType
-func (p_ PreviewReplyAttachment) ContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PreviewReplyAttachment) ContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 

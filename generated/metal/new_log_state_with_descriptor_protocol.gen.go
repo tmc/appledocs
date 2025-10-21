@@ -20,5 +20,3 @@ var newLogStateWithDescriptorProtocol *objc.Protocol
 func init() {
 	newLogStateWithDescriptorProtocol = objc.GetProtocol("newLogStateWithDescriptor:")
 }
-
-

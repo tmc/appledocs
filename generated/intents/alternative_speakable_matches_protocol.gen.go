@@ -21,5 +21,3 @@ var alternativeSpeakableMatchesProtocol *objc.Protocol
 func init() {
 	alternativeSpeakableMatchesProtocol = objc.GetProtocol("alternativeSpeakableMatches")
 }
-
-

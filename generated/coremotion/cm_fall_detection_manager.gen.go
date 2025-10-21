@@ -121,6 +121,7 @@ func (f_ FallDetectionManager) Delegate() objc.ID {
 func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the current device supports fall detection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable

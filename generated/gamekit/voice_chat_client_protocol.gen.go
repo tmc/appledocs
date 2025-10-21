@@ -16,4 +16,3 @@ var VoiceChatClientProtocol *objc.Protocol
 func init() {
 	VoiceChatClientProtocol = objc.GetProtocol("GKVoiceChatClient")
 }
-

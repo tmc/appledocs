@@ -18,5 +18,3 @@ var FileProviderIncrementalContentFetchingProtocol *objc.Protocol
 func init() {
 	FileProviderIncrementalContentFetchingProtocol = objc.GetProtocol("NSFileProviderIncrementalContentFetching")
 }
-
-

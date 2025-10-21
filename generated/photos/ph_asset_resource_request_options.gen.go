@@ -98,6 +98,7 @@ func (p_ PHAssetResourceRequestOptions) NetworkAccessAllowed() bool {
 func (p_ PHAssetResourceRequestOptions) SetNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
 }
+
 // A block that Photos calls periodically while downloading the asset resource data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions/progressHandler
@@ -115,5 +116,6 @@ func (p_ PHAssetResourceRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHAssetResourceRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
+
 
 

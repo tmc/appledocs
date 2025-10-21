@@ -9,10 +9,10 @@ package quicklookthumbnailing
 type ThumbnailError uint
 
 const (
-// ThumbnailErrorNoCloudThumbnail - The thumbnail for a remote file couldn’t be created.
-//
+	// ThumbnailErrorNoCloudThumbnail - The thumbnail for a remote file couldn’t be created.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailError-swift.struct/Code/noCloudThumbnail
-ThumbnailErrorNoCloudThumbnail ThumbnailError = 0
+	ThumbnailErrorNoCloudThumbnail ThumbnailError = 0
 )
 
 // QLThumbnailGenerationRequestRepresentationTypes - The various types of thumbnails that you can request.

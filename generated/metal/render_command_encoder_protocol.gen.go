@@ -19,5 +19,3 @@ var RenderCommandEncoderProtocol *objc.Protocol
 func init() {
 	RenderCommandEncoderProtocol = objc.GetProtocol("MTLRenderCommandEncoder")
 }
-
-

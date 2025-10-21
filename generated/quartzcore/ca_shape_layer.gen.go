@@ -99,6 +99,7 @@ func (s_ ShapeLayer) FillColor() coregraphics.CGColorRef {
 func (s_ ShapeLayer) SetFillColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFillColor:"), value)
 }
+
 // The fill rule used when filling the shape’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/fillRule
@@ -116,6 +117,7 @@ func (s_ ShapeLayer) FillRule() unsafe.Pointer {
 func (s_ ShapeLayer) SetFillRule(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFillRule:"), value)
 }
+
 // Specifies the line cap style for the shape’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineCap
@@ -133,6 +135,7 @@ func (s_ ShapeLayer) LineCap() unsafe.Pointer {
 func (s_ ShapeLayer) SetLineCap(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineCap:"), value)
 }
+
 // The dash pattern applied to the shape’s path when stroked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPattern
@@ -160,6 +163,7 @@ func (s_ ShapeLayer) SetLineDashPattern(value []NSNumber) {
 	}
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineDashPattern:"), nsArray)
 }
+
 // The dash phase applied to the shape’s path when stroked. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPhase
@@ -177,6 +181,7 @@ func (s_ ShapeLayer) LineDashPhase() float64 {
 func (s_ ShapeLayer) SetLineDashPhase(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineDashPhase:"), value)
 }
+
 // Specifies the line join style for the shape’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineJoin
@@ -194,6 +199,7 @@ func (s_ ShapeLayer) LineJoin() unsafe.Pointer {
 func (s_ ShapeLayer) SetLineJoin(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineJoin:"), value)
 }
+
 // Specifies the line width of the shape’s path. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineWidth
@@ -211,6 +217,7 @@ func (s_ ShapeLayer) LineWidth() float64 {
 func (s_ ShapeLayer) SetLineWidth(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineWidth:"), value)
 }
+
 // The miter limit used when stroking the shape’s path. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/miterLimit
@@ -228,6 +235,7 @@ func (s_ ShapeLayer) MiterLimit() float64 {
 func (s_ ShapeLayer) SetMiterLimit(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMiterLimit:"), value)
 }
+
 // The path defining the shape to be rendered. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/path
@@ -245,6 +253,7 @@ func (s_ ShapeLayer) Path() coregraphics.CGPathRef {
 func (s_ ShapeLayer) SetPath(value coregraphics.CGPathRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPath:"), value)
 }
+
 // The color used to stroke the shape’s path. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/strokeColor
@@ -262,6 +271,7 @@ func (s_ ShapeLayer) StrokeColor() coregraphics.CGColorRef {
 func (s_ ShapeLayer) SetStrokeColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStrokeColor:"), value)
 }
+
 // The relative location at which to stop stroking the path. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/strokeEnd
@@ -279,6 +289,7 @@ func (s_ ShapeLayer) StrokeEnd() float64 {
 func (s_ ShapeLayer) SetStrokeEnd(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStrokeEnd:"), value)
 }
+
 // The relative location at which to begin stroking the path. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/strokeStart
@@ -296,5 +307,6 @@ func (s_ ShapeLayer) StrokeStart() float64 {
 func (s_ ShapeLayer) SetStrokeStart(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStrokeStart:"), value)
 }
+
 
 

@@ -81,15 +81,7 @@ func NewCKRecordZone() CKRecordZone {
 }
 
 
-// Creates a record zone object with the specified zone name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/init(zoneName:)
-func NewCKRecordZoneWithZoneName(zoneName string) CKRecordZone {
-	instance := getCKRecordZoneClass().Alloc()
-	rv := objc.Send[CKRecordZone](instance.ID, objc.Sel("initWithZoneName:"), objc.String(zoneName))
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a record zone object with the specified zone ID.
 //
@@ -97,6 +89,18 @@ func NewCKRecordZoneWithZoneName(zoneName string) CKRecordZone {
 func NewCKRecordZoneWithZoneID(zoneID unsafe.Pointer) CKRecordZone {
 	instance := getCKRecordZoneClass().Alloc()
 	rv := objc.Send[CKRecordZone](instance.ID, objc.Sel("initWithZoneID:"), zoneID)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a record zone object with the specified zone name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/init(zoneName:)
+func NewCKRecordZoneWithZoneName(zoneName string) CKRecordZone {
+	instance := getCKRecordZoneClass().Alloc()
+	rv := objc.Send[CKRecordZone](instance.ID, objc.Sel("initWithZoneName:"), objc.String(zoneName))
 	rv.Autorelease()
 	return rv
 }
@@ -135,6 +139,7 @@ func (c_ CKRecordZone) EncryptionScope() unsafe.Pointer {
 func (c_ CKRecordZone) SetEncryptionScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEncryptionScope:"), value)
 }
+
 // A reference to the record zone’s share record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/share

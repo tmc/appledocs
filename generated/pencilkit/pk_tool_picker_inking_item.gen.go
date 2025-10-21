@@ -81,6 +81,8 @@ func NewToolPickerInkingItem() ToolPickerInkingItem {
 }
 
 
+
+
 // Create a new tool picker item with a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:
@@ -99,6 +101,8 @@ func NewToolPickerInkingItemWithInkTypeColor(inkType unsafe.Pointer, color unsaf
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new inking item with the specified ink type, color, and width.
 //
@@ -119,6 +123,8 @@ func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsaf
 	return rv
 }
 
+
+
 // Creates a new inking item with the specified ink type, color, width, and identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:identifier:
@@ -128,6 +134,8 @@ func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Point
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Create a new tool picker item with a .
 //
@@ -157,6 +165,7 @@ func (t_ ToolPickerInkingItem) AllowsColorSelection() bool {
 func (t_ ToolPickerInkingItem) SetAllowsColorSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColorSelection:"), value)
 }
+
 // A tool for drawing on a canvas view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/inkingTool-625y9

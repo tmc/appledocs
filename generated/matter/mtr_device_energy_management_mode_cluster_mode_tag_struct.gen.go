@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeTagStruct) MfgCode() unsafe.Poi
 func (m_ MTRDeviceEnergyManagementModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeTagStruct/value
 func (m_ MTRDeviceEnergyManagementModeClusterModeTagStruct) Value() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeTagStruct) Value() unsafe.Point
 func (m_ MTRDeviceEnergyManagementModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

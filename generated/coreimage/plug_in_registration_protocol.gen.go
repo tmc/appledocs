@@ -12,5 +12,3 @@ var PlugInRegistrationProtocol *objc.Protocol
 func init() {
 	PlugInRegistrationProtocol = objc.GetProtocol("CIPlugInRegistration")
 }
-
-

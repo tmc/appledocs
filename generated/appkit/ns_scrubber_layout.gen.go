@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrubberLayout] class.
@@ -85,6 +86,9 @@ func NewScrubberLayout() ScrubberLayout {
 	return getScrubberLayoutClass().New()
 }
 
+
+
+
 // Initializes and returns a newly allocated scrubber layout object from a storyboard or nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/init(coder:)
@@ -95,6 +99,7 @@ func NewScrubberLayoutWithCoder(coder unsafe.Pointer) ScrubberLayout {
 	return rv
 }
 
+
 // A property containing a class that describes layout attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/layoutAttributesClass
@@ -102,7 +107,6 @@ func (sc _ScrubberLayoutClass) LayoutAttributesClass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(sc.class), objc.Sel("layoutAttributesClass"))
 	return rv
 }
-
 // Signals that the layout has been invalidated, and that the scrubber control should perform a new layout pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/invalidateLayout()
@@ -196,3 +200,5 @@ func (s_ ScrubberLayout) VisibleRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("visibleRect"))
 	return rv
 }
+
+

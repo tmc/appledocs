@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() unsafe.Pointer {
 func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
 func (m_ MTRThermostatClusterScheduleStruct) Name() string {
@@ -104,6 +105,7 @@ func (m_ MTRThermostatClusterScheduleStruct) Name() string {
 func (m_ MTRThermostatClusterScheduleStruct) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/presetHandle
 func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() unsafe.Pointer {
 func (m_ MTRThermostatClusterScheduleStruct) SetPresetHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/scheduleHandle
 func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() unsafe.Pointer {
 func (m_ MTRThermostatClusterScheduleStruct) SetScheduleHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleHandle:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/systemMode
 func (m_ MTRThermostatClusterScheduleStruct) SystemMode() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRThermostatClusterScheduleStruct) SystemMode() unsafe.Pointer {
 func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/transitions
 func (m_ MTRThermostatClusterScheduleStruct) Transitions() unsafe.Pointer {
@@ -160,5 +165,6 @@ func (m_ MTRThermostatClusterScheduleStruct) Transitions() unsafe.Pointer {
 func (m_ MTRThermostatClusterScheduleStruct) SetTransitions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitions:"), value)
 }
+
 
 

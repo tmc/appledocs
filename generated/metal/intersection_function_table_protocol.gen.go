@@ -20,5 +20,3 @@ var IntersectionFunctionTableProtocol *objc.Protocol
 func init() {
 	IntersectionFunctionTableProtocol = objc.GetProtocol("MTLIntersectionFunctionTable")
 }
-
-

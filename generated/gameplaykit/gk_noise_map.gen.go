@@ -84,6 +84,8 @@ func NewNoiseMap() NoiseMap {
 }
 
 
+
+
 // Initializes a noise map by sampling from the specified noise object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/init(_:)
@@ -93,6 +95,8 @@ func NewNoiseMapWithNoise(noise unsafe.Pointer) NoiseMap {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a noise map by sampling from the specified noise object.
 //

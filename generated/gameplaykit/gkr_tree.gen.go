@@ -84,6 +84,8 @@ func NewRTree() RTree {
 }
 
 
+
+
 // Initializes a new R-tree object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/init(maxNumberOfChildren:)
@@ -142,4 +144,5 @@ func (r_ RTree) QueryReserve() uint {
 func (r_ RTree) SetQueryReserve(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setQueryReserve:"), value)
 }
+
 

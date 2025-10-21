@@ -18,5 +18,3 @@ var widgetMarginInsetsForProposedMarginInsetsProtocol *objc.Protocol
 func init() {
 	widgetMarginInsetsForProposedMarginInsetsProtocol = objc.GetProtocol("widgetMarginInsetsForProposedMarginInsets:")
 }
-
-

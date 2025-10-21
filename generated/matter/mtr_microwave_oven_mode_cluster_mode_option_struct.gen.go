@@ -90,6 +90,7 @@ func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) Label() string {
 func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeClusterModeOptionStruct/mode
 func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) Mode() unsafe.Pointer {
 func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeClusterModeOptionStruct/modeTags
 func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) ModeTags() unsafe.Pointer 
 func (m_ MTRMicrowaveOvenModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

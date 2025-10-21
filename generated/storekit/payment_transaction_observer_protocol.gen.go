@@ -21,5 +21,3 @@ var PaymentTransactionObserverProtocol *objc.Protocol
 func init() {
 	PaymentTransactionObserverProtocol = objc.GetProtocol("SKPaymentTransactionObserver")
 }
-
-

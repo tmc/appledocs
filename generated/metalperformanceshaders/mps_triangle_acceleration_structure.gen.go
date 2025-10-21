@@ -95,3 +95,4 @@ func (t_ TriangleAccelerationStructure) SetTriangleCount(value uint) {
 }
 
 
+

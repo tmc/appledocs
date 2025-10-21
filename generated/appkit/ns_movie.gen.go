@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Movie] class.
@@ -75,9 +76,13 @@ func NewMovie() Movie {
 	return getMovieClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie/QTMovie
 func (m_ Movie) QTMovie() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("QTMovie"))
 	return rv
 }
+
+
+

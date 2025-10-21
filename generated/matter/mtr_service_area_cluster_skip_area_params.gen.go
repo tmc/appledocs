@@ -93,6 +93,7 @@ func (m_ MTRServiceAreaClusterSkipAreaParams) ServerSideProcessingTimeout() unsa
 func (m_ MTRServiceAreaClusterSkipAreaParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/skippedArea
 func (m_ MTRServiceAreaClusterSkipAreaParams) SkippedArea() unsafe.Pointer {
@@ -107,6 +108,7 @@ func (m_ MTRServiceAreaClusterSkipAreaParams) SkippedArea() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterSkipAreaParams) SetSkippedArea(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSkippedArea:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRServiceAreaClusterSkipAreaParams) TimedInvokeTimeoutMs() unsafe.Poin
 func (m_ MTRServiceAreaClusterSkipAreaParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

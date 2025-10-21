@@ -81,6 +81,8 @@ func NewCKFetchWebAuthTokenOperation() CKFetchWebAuthTokenOperation {
 }
 
 
+
+
 // Creates a fetch operation for the specified API token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/init(apiToken:)
@@ -109,4 +111,5 @@ func (c_ CKFetchWebAuthTokenOperation) APIToken() string {
 func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), objc.String(value))
 }
+
 

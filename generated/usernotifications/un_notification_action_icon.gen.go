@@ -79,6 +79,8 @@ func NewUNNotificationActionIcon() UNNotificationActionIcon {
 }
 
 
+
+
 // Creates an action icon by using a system symbol image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationActionIcon/init(systemImageName:)
@@ -86,6 +88,8 @@ func NewUNNotificationActionIconWithSystemImageName(systemImageName string) UNNo
 	rv := objc.Send[UNNotificationActionIcon](objc.ID(getUNNotificationActionIconClass().class), objc.Sel("iconWithSystemImageName:"), objc.String(systemImageName))
 	return rv
 }
+
+
 
 // Creates an action icon based on an image in your app’s bundle, preferably in an asset catalog.
 //

@@ -12,5 +12,3 @@ var PaymentAuthorizationControllerDelegateProtocol *objc.Protocol
 func init() {
 	PaymentAuthorizationControllerDelegateProtocol = objc.GetProtocol("PKPaymentAuthorizationControllerDelegate")
 }
-
-

@@ -81,6 +81,8 @@ func NewVoronoiNoiseSource() VoronoiNoiseSource {
 }
 
 
+
+
 // Initializes a Voronoi noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/init(frequency:displacement:distanceEnabled:seed:)
@@ -117,6 +119,7 @@ func (v_ VoronoiNoiseSource) Displacement() unsafe.Pointer {
 func (v_ VoronoiNoiseSource) SetDisplacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplacement:"), value)
 }
+
 // A value that determines the number and size of cells in generated noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/frequency
@@ -134,6 +137,7 @@ func (v_ VoronoiNoiseSource) Frequency() unsafe.Pointer {
 func (v_ VoronoiNoiseSource) SetFrequency(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrequency:"), value)
 }
+
 // A Boolean value that specifies whether generated noise values incorporate the distance from each point to the nearest seed point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/isDistanceEnabled
@@ -151,6 +155,7 @@ func (v_ VoronoiNoiseSource) DistanceEnabled() bool {
 func (v_ VoronoiNoiseSource) SetDistanceEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDistanceEnabled:"), value)
 }
+
 // The value that determines the specific configuration of noise produced by the noise source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/seed
@@ -168,4 +173,5 @@ func (v_ VoronoiNoiseSource) Seed() unsafe.Pointer {
 func (v_ VoronoiNoiseSource) SetSeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSeed:"), value)
 }
+
 

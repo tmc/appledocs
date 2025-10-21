@@ -211,6 +211,7 @@ func (c_ CBPeripheral) Delegate() objc.ID {
 func (c_ CBPeripheral) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The name of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/name

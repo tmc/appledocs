@@ -81,6 +81,8 @@ func NewCKFetchRecordChangesOperation() CKFetchRecordChangesOperation {
 }
 
 
+
+
 // Creates an operation for fetching changes in the specified record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/init(recordZoneID:previousServerChangeToken:)
@@ -119,6 +121,7 @@ func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
+
 // A Boolean value that indicates whether more results are available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/moreComing
@@ -144,6 +147,7 @@ func (c_ CKFetchRecordChangesOperation) PreviousServerChangeToken() unsafe.Point
 func (c_ CKFetchRecordChangesOperation) SetPreviousServerChangeToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
+
 // The ID of the record zone with the records you want to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID
@@ -161,6 +165,7 @@ func (c_ CKFetchRecordChangesOperation) RecordZoneID() unsafe.Pointer {
 func (c_ CKFetchRecordChangesOperation) SetRecordZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneID:"), value)
 }
+
 // The maximum number of changed records to report with this operation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit
@@ -178,4 +183,5 @@ func (c_ CKFetchRecordChangesOperation) ResultsLimit() uint {
 func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
+
 

@@ -21,5 +21,3 @@ var OS_dispatch_queue_concurrentProtocol *objc.Protocol
 func init() {
 	OS_dispatch_queue_concurrentProtocol = objc.GetProtocol("OS_dispatch_queue_concurrent")
 }
-
-

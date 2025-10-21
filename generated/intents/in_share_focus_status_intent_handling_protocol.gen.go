@@ -20,5 +20,3 @@ var INShareFocusStatusIntentHandlingProtocol *objc.Protocol
 func init() {
 	INShareFocusStatusIntentHandlingProtocol = objc.GetProtocol("INShareFocusStatusIntentHandling")
 }
-
-

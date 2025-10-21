@@ -81,6 +81,8 @@ func NewPHASEDistanceModelFadeOutParameters() PHASEDistanceModelFadeOutParameter
 }
 
 
+
+
 // Creates a distance beyond which sound sources stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)

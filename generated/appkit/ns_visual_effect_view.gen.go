@@ -82,6 +82,7 @@ func NewVisualEffectView() VisualEffectView {
 	return getVisualEffectViewClass().New()
 }
 
+
 // Notifies the view that it moved to a new window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/viewDidMoveToWindow()
@@ -103,6 +104,7 @@ func (v_ VisualEffectView) BlendingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("blendingMode"))
 	return rv
 }
+
 
 // SetBlendingMode sets the value of the blendingMode property.
 // A value indicating how the view’s contents blend with the surrounding content.
@@ -129,6 +131,7 @@ func (v_ VisualEffectView) Emphasized() bool {
 	return rv
 }
 
+
 // SetEmphasized sets the value of the emphasized property.
 // A Boolean value indicating whether to emphasize the look of the material.
 
@@ -145,6 +148,7 @@ func (v_ VisualEffectView) MaskImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("maskImage"))
 	return rv
 }
+
 
 // SetMaskImage sets the value of the maskImage property.
 // An image whose alpha channel masks the visual effect view’s material.
@@ -163,6 +167,7 @@ func (v_ VisualEffectView) Material() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMaterial sets the value of the material property.
 // The material shown by the visual effect view.
 
@@ -180,6 +185,7 @@ func (v_ VisualEffectView) State() unsafe.Pointer {
 	return rv
 }
 
+
 // SetState sets the value of the state property.
 // A value that indicates whether a view has a visual effect applied.
 
@@ -188,3 +194,6 @@ func (v_ VisualEffectView) State() unsafe.Pointer {
 func (v_ VisualEffectView) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setState:"), value)
 }
+
+
+

@@ -19,5 +19,3 @@ var newCommandQueueProtocol *objc.Protocol
 func init() {
 	newCommandQueueProtocol = objc.GetProtocol("newCommandQueue")
 }
-
-

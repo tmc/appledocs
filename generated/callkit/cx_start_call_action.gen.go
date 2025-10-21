@@ -82,15 +82,7 @@ func NewCXStartCallAction() CXStartCallAction {
 }
 
 
-// Creates a new action to start a call with data in an unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
-func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
-	instance := getCXStartCallActionClass().Alloc()
-	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Initializes a new action to start a call with the specified UUID to a recipient with the specified handle.
 //
@@ -98,6 +90,18 @@ func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
 func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsafe.Pointer) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a new action to start a call with data in an unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
+func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
+	instance := getCXStartCallActionClass().Alloc()
+	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }
@@ -127,6 +131,7 @@ func (c_ CXStartCallAction) ContactIdentifier() string {
 func (c_ CXStartCallAction) SetContactIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
+
 // The handle of the call recipient.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
@@ -144,6 +149,7 @@ func (c_ CXStartCallAction) Handle() unsafe.Pointer {
 func (c_ CXStartCallAction) SetHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHandle:"), value)
 }
+
 // A Boolean value that indicates whether the call is a video call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/isVideo
@@ -161,4 +167,5 @@ func (c_ CXStartCallAction) Video() bool {
 func (c_ CXStartCallAction) SetVideo(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideo:"), value)
 }
+
 

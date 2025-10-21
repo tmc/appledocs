@@ -12,5 +12,3 @@ var HighlightShadowAdjustProtocol *objc.Protocol
 func init() {
 	HighlightShadowAdjustProtocol = objc.GetProtocol("CIHighlightShadowAdjust")
 }
-
-

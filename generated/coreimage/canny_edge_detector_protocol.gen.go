@@ -12,5 +12,3 @@ var CannyEdgeDetectorProtocol *objc.Protocol
 func init() {
 	CannyEdgeDetectorProtocol = objc.GetProtocol("CICannyEdgeDetector")
 }
-
-

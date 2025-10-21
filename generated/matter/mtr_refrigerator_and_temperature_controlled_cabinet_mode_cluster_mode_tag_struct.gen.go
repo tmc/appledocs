@@ -90,6 +90,7 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct)
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/value
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) Value() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct)
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

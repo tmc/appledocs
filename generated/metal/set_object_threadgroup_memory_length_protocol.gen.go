@@ -20,5 +20,3 @@ var setObjectThreadgroupMemoryLengthProtocol *objc.Protocol
 func init() {
 	setObjectThreadgroupMemoryLengthProtocol = objc.GetProtocol("setObjectThreadgroupMemoryLength:")
 }
-
-

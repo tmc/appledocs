@@ -107,6 +107,7 @@ func (p_ PHASEConeDirectivityModelSubbandParameters) Frequency() unsafe.Pointer 
 func (p_ PHASEConeDirectivityModelSubbandParameters) SetFrequency(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFrequency:"), value)
 }
+
 // An angle, in degrees, that determines the size of the audio emitting area inside the cone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/innerAngle
@@ -140,4 +141,5 @@ func (p_ PHASEConeDirectivityModelSubbandParameters) OuterGain() unsafe.Pointer 
 func (p_ PHASEConeDirectivityModelSubbandParameters) SetOuterGain(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOuterGain:"), value)
 }
+
 

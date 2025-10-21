@@ -20,5 +20,3 @@ var sparseTileSizeWithTextureTypeProtocol *objc.Protocol
 func init() {
 	sparseTileSizeWithTextureTypeProtocol = objc.GetProtocol("sparseTileSizeWithTextureType:")
 }
-
-

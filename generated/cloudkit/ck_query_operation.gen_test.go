@@ -9,14 +9,9 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKQueryOperation
 
-
 // ExampleNewCKQueryOperation demonstrates how to create a CKQueryOperation instance.
 // Creates an empty query operation.
 func ExampleNewCKQueryOperation() {
 	_ = cloudkit.NewCKQueryOperation()
 	// Output:
 }
-
-
-
-

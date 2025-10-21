@@ -19,13 +19,13 @@ type NEDNSSettingsManagerError uint
 type NEHotspotConfigurationError uint
 
 const (
-// NEHotspotConfigurationErrorAlreadyAssociated - The configuration is already associated with the hotspot.
-//
+	// NEHotspotConfigurationErrorAlreadyAssociated - The configuration is already associated with the hotspot.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfigurationError/alreadyAssociated
-NEHotspotConfigurationErrorAlreadyAssociated NEHotspotConfigurationError = 0
-//
+	NEHotspotConfigurationErrorAlreadyAssociated NEHotspotConfigurationError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfigurationError/systemDenied
-NEHotspotConfigurationErrorSystemDenied NEHotspotConfigurationError = 0
+	NEHotspotConfigurationErrorSystemDenied NEHotspotConfigurationError = 0
 )
 
 // NENetworkRuleProtocol - A type to represent network protocols used by routing rules.
@@ -44,36 +44,36 @@ type NEProviderStopReason uint
 type NERelayManagerClientError uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/certificateExpired
-NERelayManagerClientErrorCertificateExpired NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorCertificateExpired NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/certificateInvalid
-NERelayManagerClientErrorCertificateInvalid NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorCertificateInvalid NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/certificateMissing
-NERelayManagerClientErrorCertificateMissing NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorCertificateMissing NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/dnsFailed
-NERelayManagerClientErrorDNSFailed NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorDNSFailed NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/none
-NERelayManagerClientErrorNone NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorNone NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/other
-NERelayManagerClientErrorOther NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorOther NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/serverCertificateExpired
-NERelayManagerClientErrorServerCertificateExpired NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorServerCertificateExpired NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/serverCertificateInvalid
-NERelayManagerClientErrorServerCertificateInvalid NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorServerCertificateInvalid NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/serverDisconnected
-NERelayManagerClientErrorServerDisconnected NERelayManagerClientError = 0
-//
+	NERelayManagerClientErrorServerDisconnected NERelayManagerClientError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError/serverUnreachable
-NERelayManagerClientErrorServerUnreachable NERelayManagerClientError = 0
+	NERelayManagerClientErrorServerUnreachable NERelayManagerClientError = 0
 )
 
 // NERelayManagerError - Error codes specific to relay managers.
@@ -92,18 +92,18 @@ type NETrafficDirection uint
 type NETunnelProviderError uint
 
 const (
-// NETunnelProviderErrorNetworkSettingsCanceled - The request to set or clear the tunnel network settings was canceled.
-//
+	// NETunnelProviderErrorNetworkSettingsCanceled - The request to set or clear the tunnel network settings was canceled.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderError-swift.struct/Code/networkSettingsCanceled
-NETunnelProviderErrorNetworkSettingsCanceled NETunnelProviderError = 0
-// NETunnelProviderErrorNetworkSettingsFailed - The request to set or clear the tunnel network settings failed.
-//
+	NETunnelProviderErrorNetworkSettingsCanceled NETunnelProviderError = 0
+	// NETunnelProviderErrorNetworkSettingsFailed - The request to set or clear the tunnel network settings failed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderError-swift.struct/Code/networkSettingsFailed
-NETunnelProviderErrorNetworkSettingsFailed NETunnelProviderError = 0
-// NETunnelProviderErrorNetworkSettingsInvalid - The provided tunnel network settings are invalid.
-//
+	NETunnelProviderErrorNetworkSettingsFailed NETunnelProviderError = 0
+	// NETunnelProviderErrorNetworkSettingsInvalid - The provided tunnel network settings are invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderError-swift.struct/Code/networkSettingsInvalid
-NETunnelProviderErrorNetworkSettingsInvalid NETunnelProviderError = 0
+	NETunnelProviderErrorNetworkSettingsInvalid NETunnelProviderError = 0
 )
 
 // NETunnelProviderRoutingMethod enum type
@@ -122,30 +122,30 @@ type NEVPNConnectionError uint
 type NEVPNError uint
 
 const (
-// NEVPNErrorConfigurationDisabled - An error code indicating the VPN configuration associated with the VPN manager isn’t enabled.
-//
+	// NEVPNErrorConfigurationDisabled - An error code indicating the VPN configuration associated with the VPN manager isn’t enabled.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code/configurationDisabled
-NEVPNErrorConfigurationDisabled NEVPNError = 0
-// NEVPNErrorConfigurationInvalid - An error code indicating the VPN configuration associated with the VPN manager object is invalid.
-//
+	NEVPNErrorConfigurationDisabled NEVPNError = 0
+	// NEVPNErrorConfigurationInvalid - An error code indicating the VPN configuration associated with the VPN manager object is invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code/configurationInvalid
-NEVPNErrorConfigurationInvalid NEVPNError = 0
-// NEVPNErrorConfigurationReadWriteFailed - An error code that indicates an error occurred while reading or writing the Network Extension preferences.
-//
+	NEVPNErrorConfigurationInvalid NEVPNError = 0
+	// NEVPNErrorConfigurationReadWriteFailed - An error code that indicates an error occurred while reading or writing the Network Extension preferences.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code/configurationReadWriteFailed
-NEVPNErrorConfigurationReadWriteFailed NEVPNError = 0
-// NEVPNErrorConfigurationStale - An error code that indicates another process modfied the VPN configuration since the last time the app loaded the configuration.
-//
+	NEVPNErrorConfigurationReadWriteFailed NEVPNError = 0
+	// NEVPNErrorConfigurationStale - An error code that indicates another process modfied the VPN configuration since the last time the app loaded the configuration.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code/configurationStale
-NEVPNErrorConfigurationStale NEVPNError = 0
-// NEVPNErrorConfigurationUnknown - An error code that indicates that unspecified error occurred.
-//
+	NEVPNErrorConfigurationStale NEVPNError = 0
+	// NEVPNErrorConfigurationUnknown - An error code that indicates that unspecified error occurred.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code/configurationUnknown
-NEVPNErrorConfigurationUnknown NEVPNError = 0
-// NEVPNErrorConnectionFailed - The connection to the VPN server failed.
-//
+	NEVPNErrorConfigurationUnknown NEVPNError = 0
+	// NEVPNErrorConnectionFailed - The connection to the VPN server failed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code/connectionFailed
-NEVPNErrorConnectionFailed NEVPNError = 0
+	NEVPNErrorConnectionFailed NEVPNError = 0
 )
 
 // NEVPNIKEAuthenticationMethod - Internet Key Exchange (IKE) authentication methods used to authenticate with the IPSec server.
@@ -174,14 +174,14 @@ type NEVPNIKEv2TLSVersion uint
 type NEVPNStatus uint
 
 const (
-// NEVPNStatusConnecting - The VPN is in the process of connecting.
-//
+	// NEVPNStatusConnecting - The VPN is in the process of connecting.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNStatus/connecting
-NEVPNStatusConnecting NEVPNStatus = 0
-// NEVPNStatusDisconnected - The VPN is disconnected.
-//
+	NEVPNStatusConnecting NEVPNStatus = 0
+	// NEVPNStatusDisconnected - The VPN is disconnected.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNStatus/disconnected
-NEVPNStatusDisconnected NEVPNStatus = 0
+	NEVPNStatusDisconnected NEVPNStatus = 0
 )
 
 

@@ -91,19 +91,23 @@ func NewModel() Model {
 }
 
 
-// Creates a Core ML model instance from a compiled model file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Model {
-	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
-	return rv
-}
+
 
 // Creates a Core ML model instance from a compiled model file and a custom configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
 func NewModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
+	return rv
+}
+
+
+
+// Creates a Core ML model instance from a compiled model file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
+func NewModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Model {
+	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 

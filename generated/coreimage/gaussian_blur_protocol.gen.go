@@ -12,5 +12,3 @@ var GaussianBlurProtocol *objc.Protocol
 func init() {
 	GaussianBlurProtocol = objc.GetProtocol("CIGaussianBlur")
 }
-
-

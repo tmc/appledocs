@@ -20,5 +20,3 @@ var statusProtocol *objc.Protocol
 func init() {
 	statusProtocol = objc.GetProtocol("status")
 }
-
-

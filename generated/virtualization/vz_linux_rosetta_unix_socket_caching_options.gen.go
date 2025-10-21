@@ -81,6 +81,8 @@ func NewVZLinuxRosettaUnixSocketCachingOptions() VZLinuxRosettaUnixSocketCaching
 }
 
 
+
+
 // Creates a new Rosetta caching options object for a UNIX domain socket with the path you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/initWithPath:error:

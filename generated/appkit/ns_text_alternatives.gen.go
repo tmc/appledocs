@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextAlternatives] class.
@@ -79,6 +80,7 @@ func NewTextAlternatives() TextAlternatives {
 	return getTextAlternativesClass().New()
 }
 
+
 // The text that was initially chosen as the input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/primaryString
@@ -86,3 +88,6 @@ func (t_ TextAlternatives) PrimaryString() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("primaryString"))
 	return rv
 }
+
+
+

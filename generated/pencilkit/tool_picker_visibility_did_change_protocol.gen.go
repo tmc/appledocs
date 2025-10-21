@@ -18,4 +18,3 @@ var toolPickerVisibilityDidChangeProtocol *objc.Protocol
 func init() {
 	toolPickerVisibilityDidChangeProtocol = objc.GetProtocol("toolPickerVisibilityDidChange:")
 }
-

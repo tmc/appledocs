@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = avfaudio.NewAudioTime
 
-
-
 // ExampleNewAudioTimeWithHostTime demonstrates how to create a AudioTime instance using NewAudioTimeWithHostTime.
 // Creates an audio time object with the specified host time.
 func ExampleNewAudioTimeWithHostTime() {
@@ -19,7 +17,3 @@ func ExampleNewAudioTimeWithHostTime() {
 	)
 	// Output:
 }
-
-
-
-

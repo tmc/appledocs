@@ -20,5 +20,3 @@ var executeCommandsInBufferProtocol *objc.Protocol
 func init() {
 	executeCommandsInBufferProtocol = objc.GetProtocol("executeCommandsInBuffer:")
 }
-
-

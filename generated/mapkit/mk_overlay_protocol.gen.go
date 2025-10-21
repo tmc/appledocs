@@ -21,4 +21,3 @@ var MKOverlayProtocol *objc.Protocol
 func init() {
 	MKOverlayProtocol = objc.GetProtocol("MKOverlay")
 }
-

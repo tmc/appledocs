@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() unsafe.Poin
 func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfSchedules:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/scheduleTypeFeatures
 func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() unsafe.P
 func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleTypeFeatures:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/systemMode
 func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() unsafe.Pointer {
 func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
+
 
 

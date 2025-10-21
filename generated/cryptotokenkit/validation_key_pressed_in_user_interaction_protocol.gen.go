@@ -16,5 +16,3 @@ var validationKeyPressedInUserInteractionProtocol *objc.Protocol
 func init() {
 	validationKeyPressedInUserInteractionProtocol = objc.GetProtocol("validationKeyPressedInUserInteraction:")
 }
-
-

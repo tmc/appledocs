@@ -18,4 +18,3 @@ var handleQueryRequestProtocol *objc.Protocol
 func init() {
 	handleQueryRequestProtocol = objc.GetProtocol("handleQueryRequest:")
 }
-

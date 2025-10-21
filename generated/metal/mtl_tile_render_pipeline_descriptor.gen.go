@@ -114,6 +114,7 @@ func (t_ TileRenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBinaryArchives:"), nsArray)
 }
+
 // An array of attachments that store color data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/colorAttachments
@@ -139,6 +140,7 @@ func (t_ TileRenderPipelineDescriptor) Label() string {
 func (t_ TileRenderPipelineDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // Functions that you can specify as function arguments for the tile shader when encoding commands that use the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/linkedFunctions
@@ -156,6 +158,7 @@ func (t_ TileRenderPipelineDescriptor) LinkedFunctions() unsafe.Pointer {
 func (t_ TileRenderPipelineDescriptor) SetLinkedFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkedFunctions:"), value)
 }
+
 // The maximum function call depth from the top-most shader function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/maxCallStackDepth
@@ -173,6 +176,7 @@ func (t_ TileRenderPipelineDescriptor) MaxCallStackDepth() uint {
 func (t_ TileRenderPipelineDescriptor) SetMaxCallStackDepth(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxCallStackDepth:"), value)
 }
+
 // The maximum number of threads in a threadgroup when dispatching a command using the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/maxTotalThreadsPerThreadgroup
@@ -190,6 +194,7 @@ func (t_ TileRenderPipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
 func (t_ TileRenderPipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/preloadedLibraries
 func (t_ TileRenderPipelineDescriptor) PreloadedLibraries() []objc.ID {
@@ -214,6 +219,7 @@ func (t_ TileRenderPipelineDescriptor) SetPreloadedLibraries(value []objc.ID) {
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreloadedLibraries:"), nsArray)
 }
+
 // The number of samples in each fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/rasterSampleCount
@@ -231,6 +237,7 @@ func (t_ TileRenderPipelineDescriptor) RasterSampleCount() uint {
 func (t_ TileRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRasterSampleCount:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
 func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
@@ -245,6 +252,7 @@ func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Po
 func (t_ TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
+
 // A value that enables or disables shader validation for the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/shaderValidation
@@ -262,6 +270,7 @@ func (t_ TileRenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
 func (t_ TileRenderPipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShaderValidation:"), value)
 }
+
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/supportAddingBinaryFunctions
@@ -279,6 +288,7 @@ func (t_ TileRenderPipelineDescriptor) SupportAddingBinaryFunctions() bool {
 func (t_ TileRenderPipelineDescriptor) SetSupportAddingBinaryFunctions(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSupportAddingBinaryFunctions:"), value)
 }
+
 // A Boolean value that indicates whether all threadgroups for this pipeline completely cover tiles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/threadgroupSizeMatchesTileSize
@@ -296,6 +306,7 @@ func (t_ TileRenderPipelineDescriptor) ThreadgroupSizeMatchesTileSize() bool {
 func (t_ TileRenderPipelineDescriptor) SetThreadgroupSizeMatchesTileSize(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadgroupSizeMatchesTileSize:"), value)
 }
+
 // An array that contains the buffer mutability options for a render pipeline’s tile function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/tileBuffers
@@ -321,5 +332,6 @@ func (t_ TileRenderPipelineDescriptor) TileFunction() objc.ID {
 func (t_ TileRenderPipelineDescriptor) SetTileFunction(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTileFunction:"), value)
 }
+
 
 

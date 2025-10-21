@@ -112,13 +112,7 @@ func NewCWInterface() CWInterface {
 }
 
 
-// An instance method for obtaining an CWInterface object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(name:)
-func NewCWInterfaceWithName(name string) CWInterface {
-	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), objc.String(name))
-	return rv
-}
+
 
 // Convenience method for getting an CWInterface object with the specified name.
 //
@@ -127,6 +121,16 @@ func NewCWInterfaceWithInterfaceName(name string) CWInterface {
 	instance := getCWInterfaceClass().Alloc()
 	rv := objc.Send[CWInterface](instance.ID, objc.Sel("initWithInterfaceName:"), objc.String(name))
 	rv.Autorelease()
+	return rv
+}
+
+
+
+// An instance method for obtaining an CWInterface object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(name:)
+func NewCWInterfaceWithName(name string) CWInterface {
+	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), objc.String(name))
 	return rv
 }
 

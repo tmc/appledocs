@@ -81,6 +81,8 @@ func NewSBinaryItem() SBinaryItem {
 }
 
 
+
+
 // Initializes a new binary activity item of the given type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
@@ -109,6 +111,7 @@ func (s_ SBinaryItem) Value() bool {
 func (s_ SBinaryItem) SetValue(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
 }
+
 // The kind of outcome that the binary activity item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/valueType

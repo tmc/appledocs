@@ -79,6 +79,8 @@ func NewMIDINetworkConnection() MIDINetworkConnection {
 }
 
 
+
+
 // Creates a connection to the specified host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/init(host:)

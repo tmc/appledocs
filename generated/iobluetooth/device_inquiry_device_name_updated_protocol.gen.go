@@ -12,5 +12,3 @@ var deviceInquiryDeviceNameUpdatedProtocol *objc.Protocol
 func init() {
 	deviceInquiryDeviceNameUpdatedProtocol = objc.GetProtocol("deviceInquiryDeviceNameUpdated:")
 }
-
-

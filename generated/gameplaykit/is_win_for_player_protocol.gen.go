@@ -20,5 +20,3 @@ var isWinForPlayerProtocol *objc.Protocol
 func init() {
 	isWinForPlayerProtocol = objc.GetProtocol("isWinForPlayer:")
 }
-
-

@@ -84,6 +84,8 @@ func NewPlayerLayer() PlayerLayer {
 }
 
 
+
+
 // Creates a layer object to present the visual contents of a player’s current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/init(player:)
@@ -134,6 +136,7 @@ func (p_ PlayerLayer) PixelBufferAttributes() unsafe.Pointer {
 func (p_ PlayerLayer) SetPixelBufferAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBufferAttributes:"), value)
 }
+
 // The player whose visual content the layer displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/player
@@ -151,6 +154,7 @@ func (p_ PlayerLayer) Player() unsafe.Pointer {
 func (p_ PlayerLayer) SetPlayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
+
 // A value that specifies how the layer displays the player’s visual content within the layer’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/videoGravity
@@ -168,6 +172,7 @@ func (p_ PlayerLayer) VideoGravity() unsafe.Pointer {
 func (p_ PlayerLayer) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
+
 // The current size and position of the video image that displays within the layer’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/videoRect

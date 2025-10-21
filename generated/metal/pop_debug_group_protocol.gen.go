@@ -20,5 +20,3 @@ var popDebugGroupProtocol *objc.Protocol
 func init() {
 	popDebugGroupProtocol = objc.GetProtocol("popDebugGroup")
 }
-
-

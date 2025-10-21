@@ -21,5 +21,3 @@ var OS_sec_objectProtocol *objc.Protocol
 func init() {
 	OS_sec_objectProtocol = objc.GetProtocol("OS_sec_object")
 }
-
-

@@ -76,6 +76,8 @@ func NewMTRContentAppObserverClusterContentAppMessageResponseParams() MTRContent
 }
 
 
+
+
 // Initialize an MTRContentAppObserverClusterContentAppMessageResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Data() str
 func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetData(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/encodingHint
 func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHint() string {
@@ -115,6 +118,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHi
 func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetEncodingHint(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/status
 func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Status() unsafe.Pointer {
@@ -129,4 +133,5 @@ func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Status() u
 func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 

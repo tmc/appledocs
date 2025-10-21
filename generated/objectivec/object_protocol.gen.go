@@ -12,5 +12,3 @@ var ObjectProtocol *objc.Protocol
 func init() {
 	ObjectProtocol = objc.GetProtocol("NSObject")
 }
-
-

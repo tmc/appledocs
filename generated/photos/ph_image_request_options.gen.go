@@ -94,6 +94,7 @@ func (p_ PHImageRequestOptions) AllowSecondaryDegradedImage() bool {
 func (p_ PHImageRequestOptions) SetAllowSecondaryDegradedImage(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowSecondaryDegradedImage:"), value)
 }
+
 // The requested image quality and delivery priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/deliveryMode
@@ -111,6 +112,7 @@ func (p_ PHImageRequestOptions) DeliveryMode() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
+
 // A Boolean value that specifies whether Photos can download the requested image from iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/isNetworkAccessAllowed
@@ -128,6 +130,7 @@ func (p_ PHImageRequestOptions) NetworkAccessAllowed() bool {
 func (p_ PHImageRequestOptions) SetNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
 }
+
 // A Boolean value that determines whether Photos processes the image request synchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/isSynchronous
@@ -145,6 +148,7 @@ func (p_ PHImageRequestOptions) Synchronous() bool {
 func (p_ PHImageRequestOptions) SetSynchronous(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSynchronous:"), value)
 }
+
 // A rectangle for requesting a cropped version of the original image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/normalizedCropRect
@@ -162,6 +166,7 @@ func (p_ PHImageRequestOptions) NormalizedCropRect() coregraphics.CGRect {
 func (p_ PHImageRequestOptions) SetNormalizedCropRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNormalizedCropRect:"), value)
 }
+
 // A block that Photos calls periodically while downloading the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/progressHandler
@@ -179,6 +184,7 @@ func (p_ PHImageRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
+
 // A mode that specifies how to resize the requested image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/resizeMode
@@ -196,6 +202,7 @@ func (p_ PHImageRequestOptions) ResizeMode() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetResizeMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResizeMode:"), value)
 }
+
 // The version of the image to be requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/version
@@ -213,5 +220,6 @@ func (p_ PHImageRequestOptions) Version() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
+
 
 

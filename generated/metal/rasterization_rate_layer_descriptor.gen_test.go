@@ -9,13 +9,8 @@ import (
 // Suppress unused import errors
 var _ = metal.NewRasterizationRateLayerDescriptor
 
-
 // ExampleNewRasterizationRateLayerDescriptor demonstrates how to create a RasterizationRateLayerDescriptor instance.
 func ExampleNewRasterizationRateLayerDescriptor() {
 	_ = metal.NewRasterizationRateLayerDescriptor()
 	// Output:
 }
-
-
-
-

@@ -90,6 +90,7 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStru
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct/mode
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStru
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct/modeTags
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStru
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

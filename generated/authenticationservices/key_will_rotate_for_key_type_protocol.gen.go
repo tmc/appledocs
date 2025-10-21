@@ -15,5 +15,3 @@ var keyWillRotateForKeyTypeProtocol *objc.Protocol
 func init() {
 	keyWillRotateForKeyTypeProtocol = objc.GetProtocol("keyWillRotateForKeyType:")
 }
-
-

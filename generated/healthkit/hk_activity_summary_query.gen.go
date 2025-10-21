@@ -81,6 +81,8 @@ func NewHKActivitySummaryQuery() HKActivitySummaryQuery {
 }
 
 
+
+
 // Initializes a new active summary query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryQuery/init(predicate:resultsHandler:)

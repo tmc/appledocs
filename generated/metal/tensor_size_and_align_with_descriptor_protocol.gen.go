@@ -20,5 +20,3 @@ var tensorSizeAndAlignWithDescriptorProtocol *objc.Protocol
 func init() {
 	tensorSizeAndAlignWithDescriptorProtocol = objc.GetProtocol("tensorSizeAndAlignWithDescriptor:")
 }
-
-

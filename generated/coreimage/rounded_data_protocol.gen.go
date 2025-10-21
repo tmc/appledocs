@@ -12,5 +12,3 @@ var roundedDataProtocol *objc.Protocol
 func init() {
 	roundedDataProtocol = objc.GetProtocol("roundedData")
 }
-
-

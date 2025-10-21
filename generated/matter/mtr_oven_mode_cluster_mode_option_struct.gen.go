@@ -90,6 +90,7 @@ func (m_ MTROvenModeClusterModeOptionStruct) Label() string {
 func (m_ MTROvenModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/mode
 func (m_ MTROvenModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTROvenModeClusterModeOptionStruct) Mode() unsafe.Pointer {
 func (m_ MTROvenModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/modeTags
 func (m_ MTROvenModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTROvenModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 func (m_ MTROvenModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

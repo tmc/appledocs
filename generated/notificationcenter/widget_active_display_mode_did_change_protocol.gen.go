@@ -17,5 +17,3 @@ var widgetActiveDisplayModeDidChangeProtocol *objc.Protocol
 func init() {
 	widgetActiveDisplayModeDidChangeProtocol = objc.GetProtocol("widgetActiveDisplayModeDidChange:")
 }
-
-

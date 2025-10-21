@@ -108,6 +108,7 @@ func (m_ MetalLayer) AllowsNextDrawableTimeout() bool {
 func (m_ MetalLayer) SetAllowsNextDrawableTimeout(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsNextDrawableTimeout:"), value)
 }
+
 // The color space of the rendered content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/colorspace
@@ -125,6 +126,7 @@ func (m_ MetalLayer) Colorspace() coregraphics.CGColorSpaceRef {
 func (m_ MetalLayer) SetColorspace(value coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorspace:"), value)
 }
+
 // The properties of the Metal performance heads-up display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/developerHUDProperties
@@ -142,6 +144,7 @@ func (m_ MetalLayer) DeveloperHUDProperties() unsafe.Pointer {
 func (m_ MetalLayer) SetDeveloperHUDProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeveloperHUDProperties:"), value)
 }
+
 // The Metal device responsible for the layer’s drawable resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/device
@@ -159,6 +162,7 @@ func (m_ MetalLayer) Device() objc.ID {
 func (m_ MetalLayer) SetDevice(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDevice:"), value)
 }
+
 // A Boolean value that determines whether the layer synchronizes its updates to the display’s refresh rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/displaySyncEnabled
@@ -176,6 +180,7 @@ func (m_ MetalLayer) DisplaySyncEnabled() bool {
 func (m_ MetalLayer) SetDisplaySyncEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplaySyncEnabled:"), value)
 }
+
 // The size, in pixels, of textures for rendering layer content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/drawableSize
@@ -193,6 +198,7 @@ func (m_ MetalLayer) DrawableSize() coregraphics.CGSize {
 func (m_ MetalLayer) SetDrawableSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDrawableSize:"), value)
 }
+
 // Metadata describing the tone mapping to apply to the extended dynamic range (EDR) values in the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/edrMetadata
@@ -210,6 +216,7 @@ func (m_ MetalLayer) EDRMetadata() unsafe.Pointer {
 func (m_ MetalLayer) SetEDRMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEDRMetadata:"), value)
 }
+
 // A Boolean value that determines whether the layer’s textures are used only for rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/framebufferOnly
@@ -227,6 +234,7 @@ func (m_ MetalLayer) FramebufferOnly() bool {
 func (m_ MetalLayer) SetFramebufferOnly(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFramebufferOnly:"), value)
 }
+
 // The number of Metal drawables in the resource pool managed by Core Animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount
@@ -244,6 +252,7 @@ func (m_ MetalLayer) MaximumDrawableCount() uint {
 func (m_ MetalLayer) SetMaximumDrawableCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumDrawableCount:"), value)
 }
+
 // The pixel format of the layer’s textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/pixelFormat
@@ -261,6 +270,7 @@ func (m_ MetalLayer) PixelFormat() unsafe.Pointer {
 func (m_ MetalLayer) SetPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPixelFormat:"), value)
 }
+
 // The device object that the system recommends using for this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/preferredDevice
@@ -286,6 +296,7 @@ func (m_ MetalLayer) PresentsWithTransaction() bool {
 func (m_ MetalLayer) SetPresentsWithTransaction(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresentsWithTransaction:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/residencySet
 func (m_ MetalLayer) ResidencySet() objc.ID {
@@ -310,5 +321,6 @@ func (m_ MetalLayer) WantsExtendedDynamicRangeContent() bool {
 func (m_ MetalLayer) SetWantsExtendedDynamicRangeContent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWantsExtendedDynamicRangeContent:"), value)
 }
+
 
 

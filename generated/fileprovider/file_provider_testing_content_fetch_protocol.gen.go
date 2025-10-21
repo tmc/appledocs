@@ -18,5 +18,3 @@ var FileProviderTestingContentFetchProtocol *objc.Protocol
 func init() {
 	FileProviderTestingContentFetchProtocol = objc.GetProtocol("NSFileProviderTestingContentFetch")
 }
-
-

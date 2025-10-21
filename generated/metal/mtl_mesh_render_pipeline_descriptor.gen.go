@@ -110,6 +110,7 @@ func (m_ MeshRenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBinaryArchives:"), nsArray)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/colorAttachments
 func (m_ MeshRenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
@@ -131,6 +132,7 @@ func (m_ MeshRenderPipelineDescriptor) DepthAttachmentPixelFormat() unsafe.Point
 func (m_ MeshRenderPipelineDescriptor) SetDepthAttachmentPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDepthAttachmentPixelFormat:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/fragmentBuffers
 func (m_ MeshRenderPipelineDescriptor) FragmentBuffers() unsafe.Pointer {
@@ -152,6 +154,7 @@ func (m_ MeshRenderPipelineDescriptor) FragmentFunction() objc.ID {
 func (m_ MeshRenderPipelineDescriptor) SetFragmentFunction(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentFunction:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/fragmentLinkedFunctions
 func (m_ MeshRenderPipelineDescriptor) FragmentLinkedFunctions() unsafe.Pointer {
@@ -166,6 +169,7 @@ func (m_ MeshRenderPipelineDescriptor) FragmentLinkedFunctions() unsafe.Pointer 
 func (m_ MeshRenderPipelineDescriptor) SetFragmentLinkedFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentLinkedFunctions:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/isAlphaToCoverageEnabled
 func (m_ MeshRenderPipelineDescriptor) AlphaToCoverageEnabled() bool {
@@ -180,6 +184,7 @@ func (m_ MeshRenderPipelineDescriptor) AlphaToCoverageEnabled() bool {
 func (m_ MeshRenderPipelineDescriptor) SetAlphaToCoverageEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaToCoverageEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/isAlphaToOneEnabled
 func (m_ MeshRenderPipelineDescriptor) AlphaToOneEnabled() bool {
@@ -194,6 +199,7 @@ func (m_ MeshRenderPipelineDescriptor) AlphaToOneEnabled() bool {
 func (m_ MeshRenderPipelineDescriptor) SetAlphaToOneEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaToOneEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/isRasterizationEnabled
 func (m_ MeshRenderPipelineDescriptor) RasterizationEnabled() bool {
@@ -208,6 +214,7 @@ func (m_ MeshRenderPipelineDescriptor) RasterizationEnabled() bool {
 func (m_ MeshRenderPipelineDescriptor) SetRasterizationEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRasterizationEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/label
 func (m_ MeshRenderPipelineDescriptor) Label() string {
@@ -222,6 +229,7 @@ func (m_ MeshRenderPipelineDescriptor) Label() string {
 func (m_ MeshRenderPipelineDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/maxTotalThreadgroupsPerMeshGrid
 func (m_ MeshRenderPipelineDescriptor) MaxTotalThreadgroupsPerMeshGrid() uint {
@@ -236,6 +244,7 @@ func (m_ MeshRenderPipelineDescriptor) MaxTotalThreadgroupsPerMeshGrid() uint {
 func (m_ MeshRenderPipelineDescriptor) SetMaxTotalThreadgroupsPerMeshGrid(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadgroupsPerMeshGrid:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/maxTotalThreadsPerMeshThreadgroup
 func (m_ MeshRenderPipelineDescriptor) MaxTotalThreadsPerMeshThreadgroup() uint {
@@ -250,6 +259,7 @@ func (m_ MeshRenderPipelineDescriptor) MaxTotalThreadsPerMeshThreadgroup() uint 
 func (m_ MeshRenderPipelineDescriptor) SetMaxTotalThreadsPerMeshThreadgroup(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerMeshThreadgroup:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/maxTotalThreadsPerObjectThreadgroup
 func (m_ MeshRenderPipelineDescriptor) MaxTotalThreadsPerObjectThreadgroup() uint {
@@ -264,6 +274,7 @@ func (m_ MeshRenderPipelineDescriptor) MaxTotalThreadsPerObjectThreadgroup() uin
 func (m_ MeshRenderPipelineDescriptor) SetMaxTotalThreadsPerObjectThreadgroup(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerObjectThreadgroup:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/maxVertexAmplificationCount
 func (m_ MeshRenderPipelineDescriptor) MaxVertexAmplificationCount() uint {
@@ -278,6 +289,7 @@ func (m_ MeshRenderPipelineDescriptor) MaxVertexAmplificationCount() uint {
 func (m_ MeshRenderPipelineDescriptor) SetMaxVertexAmplificationCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxVertexAmplificationCount:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/meshBuffers
 func (m_ MeshRenderPipelineDescriptor) MeshBuffers() unsafe.Pointer {
@@ -299,6 +311,7 @@ func (m_ MeshRenderPipelineDescriptor) MeshFunction() objc.ID {
 func (m_ MeshRenderPipelineDescriptor) SetMeshFunction(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshFunction:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/meshLinkedFunctions
 func (m_ MeshRenderPipelineDescriptor) MeshLinkedFunctions() unsafe.Pointer {
@@ -313,6 +326,7 @@ func (m_ MeshRenderPipelineDescriptor) MeshLinkedFunctions() unsafe.Pointer {
 func (m_ MeshRenderPipelineDescriptor) SetMeshLinkedFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshLinkedFunctions:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/meshThreadgroupSizeIsMultipleOfThreadExecutionWidth
 func (m_ MeshRenderPipelineDescriptor) MeshThreadgroupSizeIsMultipleOfThreadExecutionWidth() bool {
@@ -327,6 +341,7 @@ func (m_ MeshRenderPipelineDescriptor) MeshThreadgroupSizeIsMultipleOfThreadExec
 func (m_ MeshRenderPipelineDescriptor) SetMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/objectBuffers
 func (m_ MeshRenderPipelineDescriptor) ObjectBuffers() unsafe.Pointer {
@@ -348,6 +363,7 @@ func (m_ MeshRenderPipelineDescriptor) ObjectFunction() objc.ID {
 func (m_ MeshRenderPipelineDescriptor) SetObjectFunction(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectFunction:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/objectLinkedFunctions
 func (m_ MeshRenderPipelineDescriptor) ObjectLinkedFunctions() unsafe.Pointer {
@@ -362,6 +378,7 @@ func (m_ MeshRenderPipelineDescriptor) ObjectLinkedFunctions() unsafe.Pointer {
 func (m_ MeshRenderPipelineDescriptor) SetObjectLinkedFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectLinkedFunctions:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/objectThreadgroupSizeIsMultipleOfThreadExecutionWidth
 func (m_ MeshRenderPipelineDescriptor) ObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth() bool {
@@ -376,6 +393,7 @@ func (m_ MeshRenderPipelineDescriptor) ObjectThreadgroupSizeIsMultipleOfThreadEx
 func (m_ MeshRenderPipelineDescriptor) SetObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/payloadMemoryLength
 func (m_ MeshRenderPipelineDescriptor) PayloadMemoryLength() uint {
@@ -390,6 +408,7 @@ func (m_ MeshRenderPipelineDescriptor) PayloadMemoryLength() uint {
 func (m_ MeshRenderPipelineDescriptor) SetPayloadMemoryLength(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayloadMemoryLength:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/rasterSampleCount
 func (m_ MeshRenderPipelineDescriptor) RasterSampleCount() uint {
@@ -404,6 +423,7 @@ func (m_ MeshRenderPipelineDescriptor) RasterSampleCount() uint {
 func (m_ MeshRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRasterSampleCount:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/requiredThreadsPerMeshThreadgroup
 func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() unsafe.Pointer {
@@ -418,6 +438,7 @@ func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() unsaf
 func (m_ MeshRenderPipelineDescriptor) SetRequiredThreadsPerMeshThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerMeshThreadgroup:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/requiredThreadsPerObjectThreadgroup
 func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() unsafe.Pointer {
@@ -432,6 +453,7 @@ func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() uns
 func (m_ MeshRenderPipelineDescriptor) SetRequiredThreadsPerObjectThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerObjectThreadgroup:"), value)
 }
+
 // A value that enables or disables shader validation for the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/shaderValidation
@@ -449,6 +471,7 @@ func (m_ MeshRenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
 func (m_ MeshRenderPipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShaderValidation:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/stencilAttachmentPixelFormat
 func (m_ MeshRenderPipelineDescriptor) StencilAttachmentPixelFormat() unsafe.Pointer {
@@ -463,6 +486,7 @@ func (m_ MeshRenderPipelineDescriptor) StencilAttachmentPixelFormat() unsafe.Poi
 func (m_ MeshRenderPipelineDescriptor) SetStencilAttachmentPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStencilAttachmentPixelFormat:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/supportIndirectCommandBuffers
 func (m_ MeshRenderPipelineDescriptor) SupportIndirectCommandBuffers() bool {
@@ -477,5 +501,6 @@ func (m_ MeshRenderPipelineDescriptor) SupportIndirectCommandBuffers() bool {
 func (m_ MeshRenderPipelineDescriptor) SetSupportIndirectCommandBuffers(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportIndirectCommandBuffers:"), value)
 }
+
 
 

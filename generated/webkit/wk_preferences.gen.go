@@ -98,6 +98,7 @@ func (p_ Preferences) InactiveSchedulingPolicy() unsafe.Pointer {
 func (p_ Preferences) SetInactiveSchedulingPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInactiveSchedulingPolicy:"), value)
 }
+
 // A Boolean value that indicates whether a web view can display content full screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/isElementFullscreenEnabled
@@ -115,6 +116,7 @@ func (p_ Preferences) ElementFullscreenEnabled() bool {
 func (p_ Preferences) SetElementFullscreenEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setElementFullscreenEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the web view shows warnings for suspected fraudulent content, such as malware or phishing attemps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/isFraudulentWebsiteWarningEnabled
@@ -132,6 +134,7 @@ func (p_ Preferences) FraudulentWebsiteWarningEnabled() bool {
 func (p_ Preferences) SetFraudulentWebsiteWarningEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFraudulentWebsiteWarningEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/isLookToScrollEnabled
 func (p_ Preferences) IsLookToScrollEnabled() bool {
@@ -146,6 +149,7 @@ func (p_ Preferences) IsLookToScrollEnabled() bool {
 func (p_ Preferences) SetIsLookToScrollEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsLookToScrollEnabled:"), value)
 }
+
 // A Boolean that indicates whether to apply site-specific compatibility workarounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/isSiteSpecificQuirksModeEnabled
@@ -163,6 +167,7 @@ func (p_ Preferences) SiteSpecificQuirksModeEnabled() bool {
 func (p_ Preferences) SetSiteSpecificQuirksModeEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSiteSpecificQuirksModeEnabled:"), value)
 }
+
 // A Boolean value that indicates whether to allow people to select or otherwise interact with text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/isTextInteractionEnabled
@@ -180,6 +185,7 @@ func (p_ Preferences) TextInteractionEnabled() bool {
 func (p_ Preferences) SetTextInteractionEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTextInteractionEnabled:"), value)
 }
+
 // A Boolean value that indicates whether Java is enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/javaEnabled
@@ -197,6 +203,7 @@ func (p_ Preferences) JavaEnabled() bool {
 func (p_ Preferences) SetJavaEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJavaEnabled:"), value)
 }
+
 // A Boolean value that indicates whether JavaScript can open windows without user interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/javaScriptCanOpenWindowsAutomatically
@@ -214,6 +221,7 @@ func (p_ Preferences) JavaScriptCanOpenWindowsAutomatically() bool {
 func (p_ Preferences) SetJavaScriptCanOpenWindowsAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJavaScriptCanOpenWindowsAutomatically:"), value)
 }
+
 // A Boolean value that indicates whether JavaScript is enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/javaScriptEnabled
@@ -231,6 +239,7 @@ func (p_ Preferences) JavaScriptEnabled() bool {
 func (p_ Preferences) SetJavaScriptEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJavaScriptEnabled:"), value)
 }
+
 // The minimum font size, in points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/minimumFontSize
@@ -248,6 +257,7 @@ func (p_ Preferences) MinimumFontSize() float64 {
 func (p_ Preferences) SetMinimumFontSize(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimumFontSize:"), value)
 }
+
 // A Boolean value that indicates whether plug-ins are enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/plugInsEnabled
@@ -265,6 +275,7 @@ func (p_ Preferences) PlugInsEnabled() bool {
 func (p_ Preferences) SetPlugInsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlugInsEnabled:"), value)
 }
+
 // A Boolean value that indicates whether to include any background color or graphics when printing content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/shouldPrintBackgrounds
@@ -282,6 +293,7 @@ func (p_ Preferences) ShouldPrintBackgrounds() bool {
 func (p_ Preferences) SetShouldPrintBackgrounds(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldPrintBackgrounds:"), value)
 }
+
 // A Boolean value that indicates whether pressing the tab key changes the focus to links and form controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/tabFocusesLinks
@@ -299,5 +311,6 @@ func (p_ Preferences) TabFocusesLinks() bool {
 func (p_ Preferences) SetTabFocusesLinks(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTabFocusesLinks:"), value)
 }
+
 
 

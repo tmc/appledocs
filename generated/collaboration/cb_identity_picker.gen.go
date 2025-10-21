@@ -121,6 +121,7 @@ func (c_ CBIdentityPicker) AllowsMultipleSelection() bool {
 func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
+
 // The array of identities (represented by objects) selected using the identity picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/identities
@@ -146,5 +147,6 @@ func (c_ CBIdentityPicker) Title() string {
 func (c_ CBIdentityPicker) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 
 

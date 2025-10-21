@@ -15,5 +15,3 @@ var shouldMaximizeConcurrentCompilationProtocol *objc.Protocol
 func init() {
 	shouldMaximizeConcurrentCompilationProtocol = objc.GetProtocol("shouldMaximizeConcurrentCompilation")
 }
-
-

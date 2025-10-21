@@ -15,4 +15,3 @@ var preallocateSpaceForFileProtocol *objc.Protocol
 func init() {
 	preallocateSpaceForFileProtocol = objc.GetProtocol("preallocateSpaceForFile:")
 }
-

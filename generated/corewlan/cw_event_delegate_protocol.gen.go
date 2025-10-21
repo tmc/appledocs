@@ -16,5 +16,3 @@ var CWEventDelegateProtocol *objc.Protocol
 func init() {
 	CWEventDelegateProtocol = objc.GetProtocol("CWEventDelegate")
 }
-
-

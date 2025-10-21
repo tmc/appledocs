@@ -20,5 +20,3 @@ var newMTL4CommandQueueWithDescriptorProtocol *objc.Protocol
 func init() {
 	newMTL4CommandQueueWithDescriptorProtocol = objc.GetProtocol("newMTL4CommandQueueWithDescriptor:")
 }
-
-

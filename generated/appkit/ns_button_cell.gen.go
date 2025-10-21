@@ -81,6 +81,7 @@ func NewButtonCell() ButtonCell {
 	return getButtonCellClass().New()
 }
 
+
 // Sets by name and size of the font used to draw the key equivalent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/setKeyEquivalentFont(_:size:)
@@ -95,6 +96,7 @@ func (b_ ButtonCell) GradientType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("gradientType"))
 	return rv
 }
+
 
 // SetGradientType sets the value of the gradientType property.
 // The gradient of the button’s border.
@@ -113,6 +115,7 @@ func (b_ ButtonCell) KeyEquivalent() string {
 	return rv
 }
 
+
 // SetKeyEquivalent sets the value of the keyEquivalent property.
 // The button’s key-equivalent character.
 
@@ -129,6 +132,7 @@ func (b_ ButtonCell) KeyEquivalentFont() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("keyEquivalentFont"))
 	return rv
 }
+
 
 // SetKeyEquivalentFont sets the value of the keyEquivalentFont property.
 // The font used to draw the button’s key equivalent.
@@ -147,6 +151,7 @@ func (b_ ButtonCell) KeyEquivalentModifierMask() EventModifierFlags {
 	return rv
 }
 
+
 // SetKeyEquivalentModifierMask sets the value of the keyEquivalentModifierMask property.
 // The mask that identifies the modifier keys for the button’s key equivalent.
 
@@ -155,3 +160,6 @@ func (b_ ButtonCell) KeyEquivalentModifierMask() EventModifierFlags {
 func (b_ ButtonCell) SetKeyEquivalentModifierMask(value EventModifierFlags) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalentModifierMask:"), value)
 }
+
+
+

@@ -84,6 +84,8 @@ func NewPHCollectionListChangeRequest() PHCollectionListChangeRequest {
 }
 
 
+
+
 // Creates a request for modifying the specified collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:)
@@ -92,6 +94,8 @@ func NewPHCollectionListChangeRequestForCollectionList(collectionList unsafe.Poi
 	return rv
 }
 
+
+
 // Creates a request for modifying the specified collection list, with a fetch result for tracking changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:childCollections:)
@@ -99,6 +103,8 @@ func NewPHCollectionListChangeRequestForCollectionListChildCollections(collectio
 	rv := objc.Send[PHCollectionListChangeRequest](objc.ID(getPHCollectionListChangeRequestClass().class), objc.Sel("changeRequestForCollectionList:childCollections:"), collectionList, childCollections)
 	return rv
 }
+
+
 
 // Creates a request to add, remove, or rearrange child collections in the top-level collection list.
 //

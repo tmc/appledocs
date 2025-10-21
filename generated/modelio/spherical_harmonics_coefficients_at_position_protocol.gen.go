@@ -20,5 +20,3 @@ var sphericalHarmonicsCoefficientsAtPositionProtocol *objc.Protocol
 func init() {
 	sphericalHarmonicsCoefficientsAtPositionProtocol = objc.GetProtocol("sphericalHarmonicsCoefficientsAtPosition:")
 }
-
-

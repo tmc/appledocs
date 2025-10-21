@@ -18,5 +18,3 @@ var StoreProductViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	StoreProductViewControllerDelegateProtocol = objc.GetProtocol("SKStoreProductViewControllerDelegate")
 }
-
-

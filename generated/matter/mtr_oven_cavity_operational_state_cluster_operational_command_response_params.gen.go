@@ -76,6 +76,8 @@ func NewMTROvenCavityOperationalStateClusterOperationalCommandResponseParams() M
 }
 
 
+
+
 // Initialize an MTROvenCavityOperationalStateClusterOperationalCommandResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) C
 func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)
 }
+
 

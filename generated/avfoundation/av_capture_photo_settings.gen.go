@@ -100,3 +100,4 @@ func (c_ CapturePhotoSettings) SetPortraitEffectsMatteDeliveryEnabled(value bool
 }
 
 
+

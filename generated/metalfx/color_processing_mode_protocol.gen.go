@@ -20,5 +20,3 @@ var colorProcessingModeProtocol *objc.Protocol
 func init() {
 	colorProcessingModeProtocol = objc.GetProtocol("colorProcessingMode")
 }
-
-

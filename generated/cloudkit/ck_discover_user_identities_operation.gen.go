@@ -81,6 +81,8 @@ func NewCKDiscoverUserIdentitiesOperation() CKDiscoverUserIdentitiesOperation {
 }
 
 
+
+
 // Creates an operation for discovering the user identities of the specified lookup infos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/init(userIdentityLookupInfos:)
@@ -119,4 +121,5 @@ func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value []C
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityLookupInfos:"), nsArray)
 }
+
 

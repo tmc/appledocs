@@ -20,5 +20,3 @@ var handlerQueueProtocol *objc.Protocol
 func init() {
 	handlerQueueProtocol = objc.GetProtocol("handlerQueue")
 }
-
-

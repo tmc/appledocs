@@ -18,5 +18,3 @@ var filenameProtocol *objc.Protocol
 func init() {
 	filenameProtocol = objc.GetProtocol("filename")
 }
-
-

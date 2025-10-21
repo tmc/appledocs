@@ -12,5 +12,3 @@ var uiViewForAudioUnitProtocol *objc.Protocol
 func init() {
 	uiViewForAudioUnitProtocol = objc.GetProtocol("uiViewForAudioUnit:")
 }
-
-

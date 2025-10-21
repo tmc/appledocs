@@ -12,5 +12,3 @@ var CKRecordValueProtocol *objc.Protocol
 func init() {
 	CKRecordValueProtocol = objc.GetProtocol("CKRecordValue")
 }
-
-

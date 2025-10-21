@@ -93,6 +93,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingT
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() unsafe.Pointer {
@@ -107,6 +108,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() u
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperature:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() unsafe.Pointer {
@@ -121,6 +123,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLeve
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperatureLevel:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
@@ -138,5 +141,6 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs(
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

@@ -12,5 +12,3 @@ var targetHeadroomProtocol *objc.Protocol
 func init() {
 	targetHeadroomProtocol = objc.GetProtocol("targetHeadroom")
 }
-
-

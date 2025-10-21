@@ -15,5 +15,3 @@ var supportedUserSecureEnclaveKeySigningAlgorithmsProtocol *objc.Protocol
 func init() {
 	supportedUserSecureEnclaveKeySigningAlgorithmsProtocol = objc.GetProtocol("supportedUserSecureEnclaveKeySigningAlgorithms")
 }
-
-

@@ -211,6 +211,7 @@ func (v_ VolumeView) ShowsRouteButton() bool {
 func (v_ VolumeView) SetShowsRouteButton(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShowsRouteButton:"), value)
 }
+
 // A Boolean value that indicates the volume slider is visible in the volume view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/showsVolumeSlider
@@ -228,6 +229,7 @@ func (v_ VolumeView) ShowsVolumeSlider() bool {
 func (v_ VolumeView) SetShowsVolumeSlider(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShowsVolumeSlider:"), value)
 }
+
 // The image used to designate the European Union volume limit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
@@ -245,5 +247,7 @@ func (v_ VolumeView) VolumeWarningSliderImage() unsafe.Pointer {
 func (v_ VolumeView) SetVolumeWarningSliderImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeWarningSliderImage:"), value)
 }
+
+
 
 

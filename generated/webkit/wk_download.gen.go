@@ -104,6 +104,7 @@ func (d_ Download) Delegate() objc.ID {
 func (d_ Download) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The web view where the download initiated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/webView

@@ -12,5 +12,3 @@ var devicePairingUserConfirmationRequestProtocol *objc.Protocol
 func init() {
 	devicePairingUserConfirmationRequestProtocol = objc.GetProtocol("devicePairingUserConfirmationRequest:")
 }
-
-

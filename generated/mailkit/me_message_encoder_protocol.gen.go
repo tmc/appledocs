@@ -15,5 +15,3 @@ var MEMessageEncoderProtocol *objc.Protocol
 func init() {
 	MEMessageEncoderProtocol = objc.GetProtocol("MEMessageEncoder")
 }
-
-

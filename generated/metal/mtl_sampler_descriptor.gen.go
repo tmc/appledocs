@@ -98,6 +98,7 @@ func (s_ SamplerDescriptor) LodMinClamp() unsafe.Pointer {
 func (s_ SamplerDescriptor) SetLodMinClamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLodMinClamp:"), value)
 }
+
 // The number of samples that can be taken to improve the quality of sample footprints that are anisotropic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/maxAnisotropy
@@ -115,5 +116,6 @@ func (s_ SamplerDescriptor) MaxAnisotropy() uint {
 func (s_ SamplerDescriptor) SetMaxAnisotropy(value uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxAnisotropy:"), value)
 }
+
 
 

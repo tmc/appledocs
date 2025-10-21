@@ -20,5 +20,3 @@ var setTessellationFactorBufferProtocol *objc.Protocol
 func init() {
 	setTessellationFactorBufferProtocol = objc.GetProtocol("setTessellationFactorBuffer:")
 }
-
-

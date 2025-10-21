@@ -161,6 +161,7 @@ func (s_ SDataStore) Delegate() objc.ID {
 func (s_ SDataStore) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The app’s top-level context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/mainAppContext

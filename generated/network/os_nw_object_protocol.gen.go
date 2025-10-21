@@ -21,5 +21,3 @@ var OS_nw_objectProtocol *objc.Protocol
 func init() {
 	OS_nw_objectProtocol = objc.GetProtocol("OS_nw_object")
 }
-
-

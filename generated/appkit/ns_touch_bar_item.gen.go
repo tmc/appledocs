@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TouchBarItem] class.
@@ -79,6 +80,7 @@ func NewTouchBarItem() TouchBarItem {
 	return getTouchBarItemClass().New()
 }
 
+
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/customizationLabel
@@ -111,6 +113,7 @@ func (t_ TouchBarItem) VisibilityPriority() unsafe.Pointer {
 	return rv
 }
 
+
 // SetVisibilityPriority sets the value of the visibilityPriority property.
 // Determines which items are shown in a bar when space is limited.
 
@@ -119,3 +122,6 @@ func (t_ TouchBarItem) VisibilityPriority() unsafe.Pointer {
 func (t_ TouchBarItem) SetVisibilityPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
+
+
+

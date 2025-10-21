@@ -81,6 +81,8 @@ func NewHKVerifiableClinicalRecordQuery() HKVerifiableClinicalRecordQuery {
 }
 
 
+
+
 // Creates a query for one-time access to a verifiable clinical record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordQuery/init(recordTypes:sourceTypes:predicate:resultsHandler:)

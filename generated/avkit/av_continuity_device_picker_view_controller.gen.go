@@ -106,6 +106,7 @@ func (c_ ContinuityDevicePickerViewController) Delegate() objc.ID {
 func (c_ ContinuityDevicePickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the system supports connecting to a continuity device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/isSupported

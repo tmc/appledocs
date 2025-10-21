@@ -12,5 +12,3 @@ var PinchDistortionProtocol *objc.Protocol
 func init() {
 	PinchDistortionProtocol = objc.GetProtocol("CIPinchDistortion")
 }
-
-

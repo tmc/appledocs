@@ -124,6 +124,7 @@ func (c_ CustomRoutingController) SetCustomActionItems(value []CustomRoutingActi
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomActionItems:"), nsArray)
 }
+
 // A delegate object for a routing controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/delegate
@@ -141,5 +142,6 @@ func (c_ CustomRoutingController) Delegate() objc.ID {
 func (c_ CustomRoutingController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 
 

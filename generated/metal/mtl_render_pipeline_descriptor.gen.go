@@ -116,6 +116,7 @@ func (r_ RenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBinaryArchives:"), nsArray)
 }
+
 // An array of attachments that store color data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/colorAttachments
@@ -141,6 +142,7 @@ func (r_ RenderPipelineDescriptor) DepthAttachmentPixelFormat() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetDepthAttachmentPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDepthAttachmentPixelFormat:"), value)
 }
+
 // An array that contains the buffer mutability options for a render pipeline’s fragment function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/fragmentBuffers
@@ -166,6 +168,7 @@ func (r_ RenderPipelineDescriptor) FragmentFunction() objc.ID {
 func (r_ RenderPipelineDescriptor) SetFragmentFunction(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentFunction:"), value)
 }
+
 // Functions that you can specify as function arguments for the fragment shader when encoding commands that use the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/fragmentLinkedFunctions
@@ -183,6 +186,7 @@ func (r_ RenderPipelineDescriptor) FragmentLinkedFunctions() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetFragmentLinkedFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentLinkedFunctions:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/fragmentPreloadedLibraries
 func (r_ RenderPipelineDescriptor) FragmentPreloadedLibraries() []objc.ID {
@@ -207,6 +211,7 @@ func (r_ RenderPipelineDescriptor) SetFragmentPreloadedLibraries(value []objc.ID
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentPreloadedLibraries:"), nsArray)
 }
+
 // The type of primitive topology the pipeline renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/inputPrimitiveTopology
@@ -224,6 +229,7 @@ func (r_ RenderPipelineDescriptor) InputPrimitiveTopology() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetInputPrimitiveTopology(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInputPrimitiveTopology:"), value)
 }
+
 // A Boolean value that indicates whether to read and use the alpha channel fragment output for color attachments to compute a sample coverage mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/isAlphaToCoverageEnabled
@@ -241,6 +247,7 @@ func (r_ RenderPipelineDescriptor) AlphaToCoverageEnabled() bool {
 func (r_ RenderPipelineDescriptor) SetAlphaToCoverageEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAlphaToCoverageEnabled:"), value)
 }
+
 // A Boolean value that indicates whether to force alpha channel values for color attachments to the largest representable value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/isAlphaToOneEnabled
@@ -258,6 +265,7 @@ func (r_ RenderPipelineDescriptor) AlphaToOneEnabled() bool {
 func (r_ RenderPipelineDescriptor) SetAlphaToOneEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAlphaToOneEnabled:"), value)
 }
+
 // A Boolean value that determines whether the pipeline rasterizes primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/isRasterizationEnabled
@@ -275,6 +283,7 @@ func (r_ RenderPipelineDescriptor) RasterizationEnabled() bool {
 func (r_ RenderPipelineDescriptor) SetRasterizationEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRasterizationEnabled:"), value)
 }
+
 // A Boolean value that determines whether the pipeline scales the tessellation factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/isTessellationFactorScaleEnabled
@@ -292,6 +301,7 @@ func (r_ RenderPipelineDescriptor) TessellationFactorScaleEnabled() bool {
 func (r_ RenderPipelineDescriptor) SetTessellationFactorScaleEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTessellationFactorScaleEnabled:"), value)
 }
+
 // A string that identifies the render pipeline descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/label
@@ -309,6 +319,7 @@ func (r_ RenderPipelineDescriptor) Label() string {
 func (r_ RenderPipelineDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // The maximum function call depth from the top-most fragment shader function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/maxFragmentCallStackDepth
@@ -326,6 +337,7 @@ func (r_ RenderPipelineDescriptor) MaxFragmentCallStackDepth() uint {
 func (r_ RenderPipelineDescriptor) SetMaxFragmentCallStackDepth(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxFragmentCallStackDepth:"), value)
 }
+
 // The maximum tessellation factor that the tessellator uses when tessellating patches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/maxTessellationFactor
@@ -343,6 +355,7 @@ func (r_ RenderPipelineDescriptor) MaxTessellationFactor() uint {
 func (r_ RenderPipelineDescriptor) SetMaxTessellationFactor(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxTessellationFactor:"), value)
 }
+
 // The maximum vertex amplification count you can set when encoding render commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount
@@ -360,6 +373,7 @@ func (r_ RenderPipelineDescriptor) MaxVertexAmplificationCount() uint {
 func (r_ RenderPipelineDescriptor) SetMaxVertexAmplificationCount(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxVertexAmplificationCount:"), value)
 }
+
 // The maximum function call depth from the top-most vertex shader function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexCallStackDepth
@@ -377,6 +391,7 @@ func (r_ RenderPipelineDescriptor) MaxVertexCallStackDepth() uint {
 func (r_ RenderPipelineDescriptor) SetMaxVertexCallStackDepth(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxVertexCallStackDepth:"), value)
 }
+
 // The number of samples the pipeline applies for each fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/rasterSampleCount
@@ -394,6 +409,7 @@ func (r_ RenderPipelineDescriptor) RasterSampleCount() uint {
 func (r_ RenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRasterSampleCount:"), value)
 }
+
 // The number of samples the pipeline applies for each fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/sampleCount
@@ -411,6 +427,7 @@ func (r_ RenderPipelineDescriptor) SampleCount() uint {
 func (r_ RenderPipelineDescriptor) SetSampleCount(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSampleCount:"), value)
 }
+
 // A value that enables or disables shader validation for the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/shaderValidation
@@ -428,6 +445,7 @@ func (r_ RenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setShaderValidation:"), value)
 }
+
 // The pixel format of the attachment that stores stencil data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/stencilAttachmentPixelFormat
@@ -445,6 +463,7 @@ func (r_ RenderPipelineDescriptor) StencilAttachmentPixelFormat() unsafe.Pointer
 func (r_ RenderPipelineDescriptor) SetStencilAttachmentPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStencilAttachmentPixelFormat:"), value)
 }
+
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to the fragment shader’s callable functions list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/supportAddingFragmentBinaryFunctions
@@ -462,6 +481,7 @@ func (r_ RenderPipelineDescriptor) SupportAddingFragmentBinaryFunctions() bool {
 func (r_ RenderPipelineDescriptor) SetSupportAddingFragmentBinaryFunctions(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSupportAddingFragmentBinaryFunctions:"), value)
 }
+
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to the vertex shader’s callable functions list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/supportAddingVertexBinaryFunctions
@@ -479,6 +499,7 @@ func (r_ RenderPipelineDescriptor) SupportAddingVertexBinaryFunctions() bool {
 func (r_ RenderPipelineDescriptor) SetSupportAddingVertexBinaryFunctions(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSupportAddingVertexBinaryFunctions:"), value)
 }
+
 // A Boolean value that determines whether you can encode commands into an indirect command buffer using the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/supportIndirectCommandBuffers
@@ -496,6 +517,7 @@ func (r_ RenderPipelineDescriptor) SupportIndirectCommandBuffers() bool {
 func (r_ RenderPipelineDescriptor) SetSupportIndirectCommandBuffers(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSupportIndirectCommandBuffers:"), value)
 }
+
 // The size of the control point indices in a control point index buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/tessellationControlPointIndexType
@@ -513,6 +535,7 @@ func (r_ RenderPipelineDescriptor) TessellationControlPointIndexType() unsafe.Po
 func (r_ RenderPipelineDescriptor) SetTessellationControlPointIndexType(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTessellationControlPointIndexType:"), value)
 }
+
 // The format of the tessellation factors in the tessellation factor buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/tessellationFactorFormat
@@ -530,6 +553,7 @@ func (r_ RenderPipelineDescriptor) TessellationFactorFormat() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetTessellationFactorFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTessellationFactorFormat:"), value)
 }
+
 // The step function for determining the tessellation factors for a patch from the tessellation factor buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/tessellationFactorStepFunction
@@ -547,6 +571,7 @@ func (r_ RenderPipelineDescriptor) TessellationFactorStepFunction() unsafe.Point
 func (r_ RenderPipelineDescriptor) SetTessellationFactorStepFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTessellationFactorStepFunction:"), value)
 }
+
 // The winding order of triangles from the tessellator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/tessellationOutputWindingOrder
@@ -564,6 +589,7 @@ func (r_ RenderPipelineDescriptor) TessellationOutputWindingOrder() unsafe.Point
 func (r_ RenderPipelineDescriptor) SetTessellationOutputWindingOrder(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTessellationOutputWindingOrder:"), value)
 }
+
 // The partitioning mode that the tessellator uses to derive the number and spacing of segments for subdividing a corresponding edge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/tessellationPartitionMode
@@ -581,6 +607,7 @@ func (r_ RenderPipelineDescriptor) TessellationPartitionMode() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetTessellationPartitionMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTessellationPartitionMode:"), value)
 }
+
 // An array that contains the buffer mutability options for a render pipeline’s vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/vertexBuffers
@@ -606,6 +633,7 @@ func (r_ RenderPipelineDescriptor) VertexDescriptor() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetVertexDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexDescriptor:"), value)
 }
+
 // Functions that you can specify as function arguments for the vertex shader when encoding commands that use the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/vertexLinkedFunctions
@@ -623,5 +651,6 @@ func (r_ RenderPipelineDescriptor) VertexLinkedFunctions() unsafe.Pointer {
 func (r_ RenderPipelineDescriptor) SetVertexLinkedFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexLinkedFunctions:"), value)
 }
+
 
 

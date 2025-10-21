@@ -84,6 +84,8 @@ func NewMetalDisplayLink() MetalDisplayLink {
 }
 
 
+
+
 // Creates a display link for Metal from a Core Animation layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/init(metalLayer:)
@@ -133,6 +135,7 @@ func (m_ MetalDisplayLink) Delegate() objc.ID {
 func (m_ MetalDisplayLink) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/isPaused
@@ -150,6 +153,7 @@ func (m_ MetalDisplayLink) Paused() bool {
 func (m_ MetalDisplayLink) SetPaused(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaused:"), value)
 }
+
 // The amount of time, in frames, your app requests to render a frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameLatency
@@ -167,6 +171,7 @@ func (m_ MetalDisplayLink) PreferredFrameLatency() unsafe.Pointer {
 func (m_ MetalDisplayLink) SetPreferredFrameLatency(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredFrameLatency:"), value)
 }
+
 // A range of frequencies your app allows for frame updates, affecting how often the system invokes your delegate’s callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameRateRange
@@ -184,4 +189,5 @@ func (m_ MetalDisplayLink) PreferredFrameRateRange() unsafe.Pointer {
 func (m_ MetalDisplayLink) SetPreferredFrameRateRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredFrameRateRange:"), value)
 }
+
 

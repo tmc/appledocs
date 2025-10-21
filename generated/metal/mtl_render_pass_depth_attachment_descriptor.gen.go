@@ -96,6 +96,7 @@ func (r_ RenderPassDepthAttachmentDescriptor) ClearDepth() unsafe.Pointer {
 func (r_ RenderPassDepthAttachmentDescriptor) SetClearDepth(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setClearDepth:"), value)
 }
+
 // The filter used for an MSAA depth resolve operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor/depthResolveFilter
@@ -113,5 +114,6 @@ func (r_ RenderPassDepthAttachmentDescriptor) DepthResolveFilter() unsafe.Pointe
 func (r_ RenderPassDepthAttachmentDescriptor) SetDepthResolveFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDepthResolveFilter:"), value)
 }
+
 
 

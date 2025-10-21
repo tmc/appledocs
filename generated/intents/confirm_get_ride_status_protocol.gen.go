@@ -19,5 +19,3 @@ var confirmGetRideStatusProtocol *objc.Protocol
 func init() {
 	confirmGetRideStatusProtocol = objc.GetProtocol("confirmGetRideStatus:")
 }
-
-

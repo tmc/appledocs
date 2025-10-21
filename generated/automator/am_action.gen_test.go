@@ -9,7 +9,3 @@ import (
 // Suppress unused import errors
 var _ = automator.NewAMAction
 
-
-
-
-

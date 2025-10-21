@@ -107,6 +107,7 @@ func (t_ TiledLayer) LevelsOfDetail() unsafe.Pointer {
 func (t_ TiledLayer) SetLevelsOfDetail(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetail:"), value)
 }
+
 // The number of magnified levels of detail for this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
@@ -124,6 +125,7 @@ func (t_ TiledLayer) LevelsOfDetailBias() unsafe.Pointer {
 func (t_ TiledLayer) SetLevelsOfDetailBias(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetailBias:"), value)
 }
+
 // The maximum size of each tile used to create the layer’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/tileSize
@@ -141,5 +143,6 @@ func (t_ TiledLayer) TileSize() coregraphics.CGSize {
 func (t_ TiledLayer) SetTileSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTileSize:"), value)
 }
+
 
 

@@ -87,6 +87,20 @@ func NewQCRenderer() QCRenderer {
 }
 
 
+
+
+// Creates an offscreen renderer of a given size with the provided color space and composition object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(offScreenWith:colorSpace:composition:)
+func NewQCRendererOffScreenWithSizeColorSpaceComposition(size foundation.Size, colorSpace coregraphics.CGColorSpaceRef, composition unsafe.Pointer) QCRenderer {
+	instance := getQCRendererClass().Alloc()
+	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initOffScreenWithSize:colorSpace:composition:"), size, colorSpace, composition)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Creates a renderer object with a object, a pixel format, a color space, and a composition object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(cglContext:pixelFormat:colorSpace:composition:)
@@ -96,6 +110,8 @@ func NewQCRendererWithCGLContextPixelFormatColorSpaceComposition(context unsafe.
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a renderer object with a composition object and a color space.
 //
@@ -107,15 +123,7 @@ func NewQCRendererWithCompositionColorSpace(composition unsafe.Pointer, colorSpa
 	return rv
 }
 
-// Creates an offscreen renderer of a given size with the provided color space and composition object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(offScreenWith:colorSpace:composition:)
-func NewQCRendererOffScreenWithSizeColorSpaceComposition(size foundation.Size, colorSpace coregraphics.CGColorSpaceRef, composition unsafe.Pointer) QCRenderer {
-	instance := getQCRendererClass().Alloc()
-	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initOffScreenWithSize:colorSpace:composition:"), size, colorSpace, composition)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a renderer object with an object and a composition file.
 //

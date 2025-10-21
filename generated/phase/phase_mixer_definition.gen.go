@@ -98,6 +98,7 @@ func (p_ PHASEMixerDefinition) Gain() unsafe.Pointer {
 func (p_ PHASEMixerDefinition) SetGain(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
+
 // A template for a parameter that changes the mixer’s volume gradually over a period of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gainMetaParameterDefinition
@@ -115,5 +116,6 @@ func (p_ PHASEMixerDefinition) GainMetaParameterDefinition() unsafe.Pointer {
 func (p_ PHASEMixerDefinition) SetGainMetaParameterDefinition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameterDefinition:"), value)
 }
+
 
 

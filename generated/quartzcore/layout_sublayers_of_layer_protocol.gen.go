@@ -16,5 +16,3 @@ var layoutSublayersOfLayerProtocol *objc.Protocol
 func init() {
 	layoutSublayersOfLayerProtocol = objc.GetProtocol("layoutSublayersOfLayer:")
 }
-
-

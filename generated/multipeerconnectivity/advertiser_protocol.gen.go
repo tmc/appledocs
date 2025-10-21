@@ -20,5 +20,3 @@ var advertiserProtocol *objc.Protocol
 func init() {
 	advertiserProtocol = objc.GetProtocol("advertiser:")
 }
-
-

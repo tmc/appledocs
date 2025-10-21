@@ -19,5 +19,3 @@ var waitUntilScheduledProtocol *objc.Protocol
 func init() {
 	waitUntilScheduledProtocol = objc.GetProtocol("waitUntilScheduled")
 }
-
-

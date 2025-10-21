@@ -20,5 +20,3 @@ var changeForElementProtocol *objc.Protocol
 func init() {
 	changeForElementProtocol = objc.GetProtocol("changeForElement:")
 }
-
-

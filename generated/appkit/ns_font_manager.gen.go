@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FontManager] class.
@@ -80,9 +81,13 @@ func NewFontManager() FontManager {
 	return getFontManagerClass().New()
 }
 
+
 // Records the given menu as the application’s Font menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/setFontMenu(_:)
 func (f_ FontManager) SetFontMenu(newMenu unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFontMenu:"), newMenu)
 }
+
+
+

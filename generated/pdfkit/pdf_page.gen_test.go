@@ -9,13 +9,8 @@ import (
 // Suppress unused import errors
 var _ = pdfkit.NewPDFPage
 
-
-
 // ExampleNewPDFPage demonstrates how to create a PDFPage instance.
 func ExampleNewPDFPage() {
 	_ = pdfkit.NewPDFPage()
 	// Output:
 }
-
-
-

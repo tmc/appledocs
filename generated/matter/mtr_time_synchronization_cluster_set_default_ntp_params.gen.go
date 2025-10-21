@@ -90,6 +90,7 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() string {
 func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetDefaultNTP(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNTP:"), objc.String(value))
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) ServerSideProcessingT
 func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) TimedInvokeTimeoutMs(
 func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

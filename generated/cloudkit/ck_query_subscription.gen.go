@@ -81,15 +81,7 @@ func NewCKQuerySubscription() CKQuerySubscription {
 }
 
 
-// Creates a named query-based subscription that queries records of a specific type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:subscriptionID:options:
-func NewCKQuerySubscriptionWithRecordTypePredicateSubscriptionIDOptions(recordType unsafe.Pointer, predicate unsafe.Pointer, subscriptionID unsafe.Pointer, querySubscriptionOptions unsafe.Pointer) CKQuerySubscription {
-	instance := getCKQuerySubscriptionClass().Alloc()
-	rv := objc.Send[CKQuerySubscription](instance.ID, objc.Sel("initWithRecordType:predicate:subscriptionID:options:"), recordType, predicate, subscriptionID, querySubscriptionOptions)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a query-based subscription from a serialized instance.
 //
@@ -101,12 +93,26 @@ func NewCKQuerySubscriptionWithCoder(aDecoder unsafe.Pointer) CKQuerySubscriptio
 	return rv
 }
 
+
+
 // Creates a query-based subscription that queries records of a specific type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:options:
 func NewCKQuerySubscriptionWithRecordTypePredicateOptions(recordType unsafe.Pointer, predicate unsafe.Pointer, querySubscriptionOptions unsafe.Pointer) CKQuerySubscription {
 	instance := getCKQuerySubscriptionClass().Alloc()
 	rv := objc.Send[CKQuerySubscription](instance.ID, objc.Sel("initWithRecordType:predicate:options:"), recordType, predicate, querySubscriptionOptions)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a named query-based subscription that queries records of a specific type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:subscriptionID:options:
+func NewCKQuerySubscriptionWithRecordTypePredicateSubscriptionIDOptions(recordType unsafe.Pointer, predicate unsafe.Pointer, subscriptionID unsafe.Pointer, querySubscriptionOptions unsafe.Pointer) CKQuerySubscription {
+	instance := getCKQuerySubscriptionClass().Alloc()
+	rv := objc.Send[CKQuerySubscription](instance.ID, objc.Sel("initWithRecordType:predicate:subscriptionID:options:"), recordType, predicate, subscriptionID, querySubscriptionOptions)
 	rv.Autorelease()
 	return rv
 }
@@ -153,4 +159,5 @@ func (c_ CKQuerySubscription) ZoneID() unsafe.Pointer {
 func (c_ CKQuerySubscription) SetZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
 }
+
 

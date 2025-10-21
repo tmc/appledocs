@@ -90,6 +90,7 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Clust
 func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/endpoint
 func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpoint() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpo
 func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/restrictions
 func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restrictions() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restr
 func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetRestrictions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictions:"), value)
 }
+
 
 

@@ -113,6 +113,7 @@ func (n_ NowPlayingInfoCenter) NowPlayingInfo() unsafe.Pointer {
 func (n_ NowPlayingInfoCenter) SetNowPlayingInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNowPlayingInfo:"), value)
 }
+
 // The current playback state of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/playbackState
@@ -130,6 +131,7 @@ func (n_ NowPlayingInfoCenter) PlaybackState() unsafe.Pointer {
 func (n_ NowPlayingInfoCenter) SetPlaybackState(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPlaybackState:"), value)
 }
+
 // Keys related to animated artwork that are supported by the current platform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/supportedAnimatedArtworkKeys

@@ -15,5 +15,3 @@ var previewItemTitleProtocol *objc.Protocol
 func init() {
 	previewItemTitleProtocol = objc.GetProtocol("previewItemTitle")
 }
-
-

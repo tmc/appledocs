@@ -20,5 +20,3 @@ var setDepthTestMinBoundProtocol *objc.Protocol
 func init() {
 	setDepthTestMinBoundProtocol = objc.GetProtocol("setDepthTestMinBound:")
 }
-
-

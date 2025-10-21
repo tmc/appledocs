@@ -20,5 +20,3 @@ var relativeInputProtocol *objc.Protocol
 func init() {
 	relativeInputProtocol = objc.GetProtocol("relativeInput")
 }
-
-

@@ -12,5 +12,3 @@ var descriptionProtocol *objc.Protocol
 func init() {
 	descriptionProtocol = objc.GetProtocol("description")
 }
-
-

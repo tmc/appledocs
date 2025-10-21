@@ -19,4 +19,3 @@ var openToPlayQueueDescriptorProtocol *objc.Protocol
 func init() {
 	openToPlayQueueDescriptorProtocol = objc.GetProtocol("openToPlayQueueDescriptor:")
 }
-

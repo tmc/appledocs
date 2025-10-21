@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKFetchDatabaseChangesOperation
 
-
 // ExampleNewCKFetchDatabaseChangesOperation demonstrates how to create a CKFetchDatabaseChangesOperation instance.
 // Creates an empty fetch database changes operation.
 func ExampleNewCKFetchDatabaseChangesOperation() {
 	_ = cloudkit.NewCKFetchDatabaseChangesOperation()
 	// Output:
 }
-
-
-

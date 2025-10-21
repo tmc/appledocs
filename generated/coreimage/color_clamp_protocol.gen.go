@@ -12,5 +12,3 @@ var ColorClampProtocol *objc.Protocol
 func init() {
 	ColorClampProtocol = objc.GetProtocol("CIColorClamp")
 }
-
-

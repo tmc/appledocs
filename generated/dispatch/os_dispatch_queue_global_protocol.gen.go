@@ -12,5 +12,3 @@ var OS_dispatch_queue_globalProtocol *objc.Protocol
 func init() {
 	OS_dispatch_queue_globalProtocol = objc.GetProtocol("OS_dispatch_queue_global")
 }
-
-

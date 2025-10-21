@@ -20,5 +20,3 @@ var confirmStartCallProtocol *objc.Protocol
 func init() {
 	confirmStartCallProtocol = objc.GetProtocol("confirmStartCall:")
 }
-
-

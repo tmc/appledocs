@@ -12,5 +12,3 @@ var l2capChannelClosedProtocol *objc.Protocol
 func init() {
 	l2capChannelClosedProtocol = objc.GetProtocol("l2capChannelClosed:")
 }
-
-

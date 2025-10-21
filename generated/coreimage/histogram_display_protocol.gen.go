@@ -12,5 +12,3 @@ var HistogramDisplayProtocol *objc.Protocol
 func init() {
 	HistogramDisplayProtocol = objc.GetProtocol("CIHistogramDisplay")
 }
-
-

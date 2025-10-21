@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [LayoutConstraint] class.
@@ -79,6 +80,7 @@ func NewLayoutConstraint() LayoutConstraint {
 	return getLayoutConstraintClass().New()
 }
 
+
 // The second object participating in the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/secondItem
@@ -86,3 +88,6 @@ func (l_ LayoutConstraint) SecondItem() objc.ID {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("secondItem"))
 	return rv
 }
+
+
+

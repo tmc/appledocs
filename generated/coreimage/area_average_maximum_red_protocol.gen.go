@@ -12,5 +12,3 @@ var AreaAverageMaximumRedProtocol *objc.Protocol
 func init() {
 	AreaAverageMaximumRedProtocol = objc.GetProtocol("CIAreaAverageMaximumRed")
 }
-
-

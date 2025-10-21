@@ -80,6 +80,7 @@ func NewCollectionViewItem() CollectionViewItem {
 	return getCollectionViewItemClass().New()
 }
 
+
 // The collection view that owns the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/collectionView
@@ -96,6 +97,7 @@ func (c_ CollectionViewItem) TextField() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTextField sets the value of the textField property.
 // A text field outlet that you can use to display a string.
 
@@ -104,3 +106,6 @@ func (c_ CollectionViewItem) TextField() unsafe.Pointer {
 func (c_ CollectionViewItem) SetTextField(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTextField:"), value)
 }
+
+
+

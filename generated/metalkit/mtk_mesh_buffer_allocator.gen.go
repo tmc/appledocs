@@ -79,6 +79,8 @@ func NewMeshBufferAllocator() MeshBufferAllocator {
 }
 
 
+
+
 // Initializes a new allocator object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBufferAllocator/init(device:)

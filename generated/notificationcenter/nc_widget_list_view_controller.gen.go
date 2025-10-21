@@ -127,6 +127,7 @@ func (n_ NCWidgetListViewController) SetContents(value []objc.ID) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setContents:"), nsArray)
 }
+
 // The list view controller’s delegate or if the receiver doesn’t have a delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/delegate
@@ -144,6 +145,7 @@ func (n_ NCWidgetListViewController) Delegate() objc.ID {
 func (n_ NCWidgetListViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the list is in editing mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/editing
@@ -161,6 +163,7 @@ func (n_ NCWidgetListViewController) Editing() bool {
 func (n_ NCWidgetListViewController) SetEditing(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEditing:"), value)
 }
+
 // A Boolean value that indicates whether list displays divider lines between rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/hasDividerLines
@@ -178,6 +181,7 @@ func (n_ NCWidgetListViewController) HasDividerLines() bool {
 func (n_ NCWidgetListViewController) SetHasDividerLines(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasDividerLines:"), value)
 }
+
 // The minimum number of visible rows to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/minimumVisibleRowCount
@@ -195,6 +199,7 @@ func (n_ NCWidgetListViewController) MinimumVisibleRowCount() uint {
 func (n_ NCWidgetListViewController) SetMinimumVisibleRowCount(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumVisibleRowCount:"), value)
 }
+
 // A Boolean value that indicates whether an Add (+) button is displayed while the list is in editing mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/showsAddButtonWhenEditing
@@ -212,5 +217,6 @@ func (n_ NCWidgetListViewController) ShowsAddButtonWhenEditing() bool {
 func (n_ NCWidgetListViewController) SetShowsAddButtonWhenEditing(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setShowsAddButtonWhenEditing:"), value)
 }
+
 
 

@@ -108,3 +108,4 @@ func (g_ GCControllerTouchpad) SetTouchMoved(value unsafe.Pointer) {
 }
 
 
+

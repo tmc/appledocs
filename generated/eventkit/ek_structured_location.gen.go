@@ -81,6 +81,8 @@ func NewEKStructuredLocation() EKStructuredLocation {
 }
 
 
+
+
 // Creates a new structured location with the specified map item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
@@ -88,6 +90,8 @@ func NewEKStructuredLocationWithMapItem(mapItem unsafe.Pointer) EKStructuredLoca
 	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithMapItem:"), mapItem)
 	return rv
 }
+
+
 
 // Creates a new structured location with the specified title.
 //
@@ -131,6 +135,7 @@ func (e_ EKStructuredLocation) GeoLocation() unsafe.Pointer {
 func (e_ EKStructuredLocation) SetGeoLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setGeoLocation:"), value)
 }
+
 // A minimum distance from the core location that would trigger the alarm or reminder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/radius
@@ -148,6 +153,7 @@ func (e_ EKStructuredLocation) Radius() unsafe.Pointer {
 func (e_ EKStructuredLocation) SetRadius(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRadius:"), value)
 }
+
 // The title of the location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
@@ -165,4 +171,5 @@ func (e_ EKStructuredLocation) Title() string {
 func (e_ EKStructuredLocation) SetTitle(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 

@@ -81,6 +81,8 @@ func NewHKCorrelationQuery() HKCorrelationQuery {
 }
 
 
+
+
 // Instantiates and returns a correlation query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/init(type:predicate:samplePredicates:completion:)

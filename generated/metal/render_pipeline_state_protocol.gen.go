@@ -19,5 +19,3 @@ var RenderPipelineStateProtocol *objc.Protocol
 func init() {
 	RenderPipelineStateProtocol = objc.GetProtocol("MTLRenderPipelineState")
 }
-
-

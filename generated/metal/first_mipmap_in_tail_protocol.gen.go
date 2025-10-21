@@ -20,5 +20,3 @@ var firstMipmapInTailProtocol *objc.Protocol
 func init() {
 	firstMipmapInTailProtocol = objc.GetProtocol("firstMipmapInTail")
 }
-
-

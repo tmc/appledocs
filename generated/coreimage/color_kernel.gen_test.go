@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewColorKernel
 
-
 // ExampleNewColorKernelWithString demonstrates how to create a ColorKernel instance using NewColorKernelWithString.
 // Creates a color kernel object from the specified kernel source code.
 func ExampleNewColorKernelWithString() {
@@ -18,5 +17,3 @@ func ExampleNewColorKernelWithString() {
 	)
 	// Output:
 }
-
-

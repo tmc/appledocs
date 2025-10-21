@@ -162,6 +162,7 @@ func (s_ SActivity) PrimaryActivityItem() unsafe.Pointer {
 func (s_ SActivity) SetPrimaryActivityItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryActivityItem:"), value)
 }
+
 // A measure of progress through the task, given as a fraction in the range [0, 1].
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
@@ -179,5 +180,6 @@ func (s_ SActivity) Progress() unsafe.Pointer {
 func (s_ SActivity) SetProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgress:"), value)
 }
+
 
 

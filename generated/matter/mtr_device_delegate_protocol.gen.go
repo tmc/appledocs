@@ -21,5 +21,3 @@ var MTRDeviceDelegateProtocol *objc.Protocol
 func init() {
 	MTRDeviceDelegateProtocol = objc.GetProtocol("MTRDeviceDelegate")
 }
-
-

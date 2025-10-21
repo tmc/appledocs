@@ -20,5 +20,3 @@ var tileHeightProtocol *objc.Protocol
 func init() {
 	tileHeightProtocol = objc.GetProtocol("tileHeight")
 }
-
-

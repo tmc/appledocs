@@ -90,6 +90,7 @@ func (m_ MTROvenModeClusterChangeToModeParams) NewMode() unsafe.Pointer {
 func (m_ MTROvenModeClusterChangeToModeParams) SetNewMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTROvenModeClusterChangeToModeParams) ServerSideProcessingTimeout() uns
 func (m_ MTROvenModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTROvenModeClusterChangeToModeParams) TimedInvokeTimeoutMs() unsafe.Poi
 func (m_ MTROvenModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

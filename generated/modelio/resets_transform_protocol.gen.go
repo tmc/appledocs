@@ -20,5 +20,3 @@ var resetsTransformProtocol *objc.Protocol
 func init() {
 	resetsTransformProtocol = objc.GetProtocol("resetsTransform")
 }
-
-

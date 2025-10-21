@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZMacGraphicsDisplayConfiguration
 
-
-
 // ExampleNewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch demonstrates how to create a VZMacGraphicsDisplayConfiguration instance using NewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch.
 // Create a display configuration with the specified pixel dimensions and pixel density.
 func ExampleNewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch() {
@@ -21,5 +19,3 @@ func ExampleNewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsP
 	)
 	// Output:
 }
-
-

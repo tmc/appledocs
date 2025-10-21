@@ -20,5 +20,3 @@ var pushDebugGroupProtocol *objc.Protocol
 func init() {
 	pushDebugGroupProtocol = objc.GetProtocol("pushDebugGroup:")
 }
-
-

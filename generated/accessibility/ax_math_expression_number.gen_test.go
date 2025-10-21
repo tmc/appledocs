@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = accessibility.NewAXMathExpressionNumber
 
-
 // ExampleNewAXMathExpressionNumberWithContent demonstrates how to create a AXMathExpressionNumber instance using NewAXMathExpressionNumberWithContent.
 func ExampleNewAXMathExpressionNumberWithContent() {
 	_ = accessibility.NewAXMathExpressionNumberWithContent(
@@ -17,5 +16,3 @@ func ExampleNewAXMathExpressionNumberWithContent() {
 	)
 	// Output:
 }
-
-

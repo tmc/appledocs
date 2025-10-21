@@ -81,6 +81,8 @@ func NewSKNodeComponent() SKNodeComponent {
 }
 
 
+
+
 // Initializes a component to manage the specified SpriteKit node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/init(node:)
@@ -117,4 +119,5 @@ func (n_ SKNodeComponent) Node() unsafe.Pointer {
 func (n_ SKNodeComponent) SetNode(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNode:"), value)
 }
+
 

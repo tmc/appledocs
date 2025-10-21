@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZVirtioConsolePortConfiguration
 
-
 // ExampleNewVZVirtioConsolePortConfiguration demonstrates how to create a VZVirtioConsolePortConfiguration instance.
 // Creates a new Virtio console port configuration.
 func ExampleNewVZVirtioConsolePortConfiguration() {
 	_ = virtualization.NewVZVirtioConsolePortConfiguration()
 	// Output:
 }
-
-

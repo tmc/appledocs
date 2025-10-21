@@ -108,6 +108,7 @@ func (r_ RenderPipelineFunctionsDescriptor) SetFragmentAdditionalBinaryFunctions
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentAdditionalBinaryFunctions:"), nsArray)
 }
+
 // The tile functions to add to the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineFunctionsDescriptor/tileAdditionalBinaryFunctions
@@ -135,6 +136,7 @@ func (r_ RenderPipelineFunctionsDescriptor) SetTileAdditionalBinaryFunctions(val
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTileAdditionalBinaryFunctions:"), nsArray)
 }
+
 // The vertex functions to add to the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineFunctionsDescriptor/vertexAdditionalBinaryFunctions
@@ -162,5 +164,6 @@ func (r_ RenderPipelineFunctionsDescriptor) SetVertexAdditionalBinaryFunctions(v
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexAdditionalBinaryFunctions:"), nsArray)
 }
+
 
 

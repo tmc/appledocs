@@ -12,5 +12,3 @@ var NavigationDelegateProtocol *objc.Protocol
 func init() {
 	NavigationDelegateProtocol = objc.GetProtocol("WKNavigationDelegate")
 }
-
-

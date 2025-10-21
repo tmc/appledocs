@@ -15,5 +15,3 @@ var probeResourceProtocol *objc.Protocol
 func init() {
 	probeResourceProtocol = objc.GetProtocol("probeResource:")
 }
-
-

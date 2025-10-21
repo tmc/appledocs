@@ -12,5 +12,3 @@ var PaletteCentroidProtocol *objc.Protocol
 func init() {
 	PaletteCentroidProtocol = objc.GetProtocol("CIPaletteCentroid")
 }
-
-

@@ -12,5 +12,3 @@ var MorphologyMinimumProtocol *objc.Protocol
 func init() {
 	MorphologyMinimumProtocol = objc.GetProtocol("CIMorphologyMinimum")
 }
-
-

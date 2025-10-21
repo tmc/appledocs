@@ -19,5 +19,3 @@ var reactiveMaskTextureFormatProtocol *objc.Protocol
 func init() {
 	reactiveMaskTextureFormatProtocol = objc.GetProtocol("reactiveMaskTextureFormat")
 }
-
-

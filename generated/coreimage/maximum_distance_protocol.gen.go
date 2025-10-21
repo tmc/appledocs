@@ -12,5 +12,3 @@ var maximumDistanceProtocol *objc.Protocol
 func init() {
 	maximumDistanceProtocol = objc.GetProtocol("maximumDistance")
 }
-
-

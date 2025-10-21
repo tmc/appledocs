@@ -89,6 +89,8 @@ func NewStrokePath() StrokePath {
 }
 
 
+
+
 // Creates a stroke path with the cubic B-spline control points and a date that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/init(controlPoints:creationDate:)

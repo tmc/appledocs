@@ -19,5 +19,3 @@ var setTriangleFillModeProtocol *objc.Protocol
 func init() {
 	setTriangleFillModeProtocol = objc.GetProtocol("setTriangleFillMode:")
 }
-
-

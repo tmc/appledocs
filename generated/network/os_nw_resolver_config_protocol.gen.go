@@ -21,5 +21,3 @@ var OS_nw_resolver_configProtocol *objc.Protocol
 func init() {
 	OS_nw_resolver_configProtocol = objc.GetProtocol("OS_nw_resolver_config")
 }
-
-

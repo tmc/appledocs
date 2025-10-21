@@ -83,6 +83,8 @@ func NewCSSearchQuery() CSSearchQuery {
 }
 
 
+
+
 // Initializes and returns a query object with the specified query string and item attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/init(queryString:attributes:)
@@ -92,6 +94,8 @@ func NewCSSearchQueryWithQueryStringAttributes(queryString string, attributes un
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns a query object with the specified query string and query context.
 //
@@ -161,4 +165,5 @@ func (c_ CSSearchQuery) SetProtectionClasses(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProtectionClasses:"), nsArray)
 }
+
 

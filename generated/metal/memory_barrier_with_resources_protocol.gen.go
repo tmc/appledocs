@@ -20,5 +20,3 @@ var memoryBarrierWithResourcesProtocol *objc.Protocol
 func init() {
 	memoryBarrierWithResourcesProtocol = objc.GetProtocol("memoryBarrierWithResources:")
 }
-
-

@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = corewlan.NewCWConfiguration
 
-
 // ExampleNewCWConfiguration demonstrates how to create a CWConfiguration instance.
 // Creates an empty CWConfiguration object.
 func ExampleNewCWConfiguration() {
 	_ = corewlan.NewCWConfiguration()
 	// Output:
 }
-
-
-

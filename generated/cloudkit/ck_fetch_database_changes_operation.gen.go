@@ -81,6 +81,8 @@ func NewCKFetchDatabaseChangesOperation() CKFetchDatabaseChangesOperation {
 }
 
 
+
+
 // Creates an operation for fetching database changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/init(previousServerChangeToken:)
@@ -109,6 +111,7 @@ func (c_ CKFetchDatabaseChangesOperation) FetchAllChanges() bool {
 func (c_ CKFetchDatabaseChangesOperation) SetFetchAllChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
+
 // The server change token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/previousServerChangeToken
@@ -126,6 +129,7 @@ func (c_ CKFetchDatabaseChangesOperation) PreviousServerChangeToken() unsafe.Poi
 func (c_ CKFetchDatabaseChangesOperation) SetPreviousServerChangeToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
+
 // The maximum number of results that the operation fetches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/resultsLimit
@@ -143,4 +147,5 @@ func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() uint {
 func (c_ CKFetchDatabaseChangesOperation) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
+
 

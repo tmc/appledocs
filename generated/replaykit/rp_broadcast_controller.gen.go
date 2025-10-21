@@ -144,6 +144,7 @@ func (r_ RPBroadcastController) Delegate() objc.ID {
 func (r_ RPBroadcastController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value indicating whether the controller is broadcasting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/isBroadcasting

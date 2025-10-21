@@ -9,19 +9,3 @@ import (
 // Suppress unused import errors
 var _ = vision.NewImageRequestHandler
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

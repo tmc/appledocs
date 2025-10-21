@@ -12,5 +12,3 @@ var SixfoldReflectedTileProtocol *objc.Protocol
 func init() {
 	SixfoldReflectedTileProtocol = objc.GetProtocol("CISixfoldReflectedTile")
 }
-
-

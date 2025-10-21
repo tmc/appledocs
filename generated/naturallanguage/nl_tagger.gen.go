@@ -93,6 +93,8 @@ func NewTagger() Tagger {
 }
 
 
+
+
 // Creates a linguistic tagger instance using the specified tag schemes and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/init(tagSchemes:)
@@ -235,6 +237,7 @@ func (t_ Tagger) String() string {
 func (t_ Tagger) SetString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
+
 // The tag schemes configured for this linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/tagSchemes

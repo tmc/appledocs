@@ -17,5 +17,3 @@ var mediaPickerDidCancelProtocol *objc.Protocol
 func init() {
 	mediaPickerDidCancelProtocol = objc.GetProtocol("mediaPickerDidCancel:")
 }
-
-

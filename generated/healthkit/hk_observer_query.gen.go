@@ -81,6 +81,8 @@ func NewHKObserverQuery() HKObserverQuery {
 }
 
 
+
+
 // Creates a query that monitors the HealthKit store and responds to any changes matching any of the query descriptors you provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObserverQuery/init(queryDescriptors:updateHandler:)
@@ -90,6 +92,8 @@ func NewHKObserverQueryWithQueryDescriptorsUpdateHandler(queryDescriptors unsafe
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Instantiates and returns a query that monitors the HealthKit store and responds to changes.
 //

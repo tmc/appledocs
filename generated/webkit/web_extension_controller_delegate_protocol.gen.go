@@ -19,5 +19,3 @@ var WebExtensionControllerDelegateProtocol *objc.Protocol
 func init() {
 	WebExtensionControllerDelegateProtocol = objc.GetProtocol("WKWebExtensionControllerDelegate")
 }
-
-

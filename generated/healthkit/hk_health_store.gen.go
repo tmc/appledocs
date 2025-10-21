@@ -402,6 +402,7 @@ func (h_ HKHealthStore) AuthorizationViewControllerPresenter() unsafe.Pointer {
 func (h_ HKHealthStore) SetAuthorizationViewControllerPresenter(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAuthorizationViewControllerPresenter:"), value)
 }
+
 // A block that the system calls when it starts a mirrored workout session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/workoutSessionMirroringStartHandler
@@ -419,5 +420,6 @@ func (h_ HKHealthStore) WorkoutSessionMirroringStartHandler() unsafe.Pointer {
 func (h_ HKHealthStore) SetWorkoutSessionMirroringStartHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutSessionMirroringStartHandler:"), value)
 }
+
 
 

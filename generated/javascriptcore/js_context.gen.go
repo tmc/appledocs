@@ -124,6 +124,7 @@ func (j_ JSContext) Exception() unsafe.Pointer {
 func (j_ JSContext) SetException(value unsafe.Pointer) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setException:"), value)
 }
+
 // The JavaScript virtual machine to which the context belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/virtualMachine

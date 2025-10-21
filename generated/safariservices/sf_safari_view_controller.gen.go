@@ -82,6 +82,8 @@ func NewSFSafariViewController() SFSafariViewController {
 }
 
 
+
+
 // Initializes a Safari view controller that loads the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:)
@@ -92,6 +94,8 @@ func NewSFSafariViewControllerWithURL(URL unsafe.Pointer) SFSafariViewController
 	return rv
 }
 
+
+
 // Initializes and configures a Safari view controller that loads the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:configuration:)
@@ -101,6 +105,8 @@ func NewSFSafariViewControllerWithURLConfiguration(URL unsafe.Pointer, configura
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a Safari view controller that will load the specified URL, entering Reader mode if Reader mode is requested and available.
 //
@@ -145,6 +151,7 @@ func (s_ SFSafariViewController) Delegate() objc.ID {
 func (s_ SFSafariViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The style of dismiss button to use in the navigation bar to close the Safari view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/dismissButtonStyle-swift.property
@@ -162,6 +169,7 @@ func (s_ SFSafariViewController) DismissButtonStyle() unsafe.Pointer {
 func (s_ SFSafariViewController) SetDismissButtonStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDismissButtonStyle:"), value)
 }
+
 // The color to tint the background of the navigation bar and the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredBarTintColor
@@ -179,6 +187,7 @@ func (s_ SFSafariViewController) PreferredBarTintColor() unsafe.Pointer {
 func (s_ SFSafariViewController) SetPreferredBarTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredBarTintColor:"), value)
 }
+
 // The color to tint the control buttons on the navigation bar and the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
@@ -196,4 +205,5 @@ func (s_ SFSafariViewController) PreferredControlTintColor() unsafe.Pointer {
 func (s_ SFSafariViewController) SetPreferredControlTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredControlTintColor:"), value)
 }
+
 

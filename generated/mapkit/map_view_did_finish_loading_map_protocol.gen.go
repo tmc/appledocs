@@ -20,5 +20,3 @@ var mapViewDidFinishLoadingMapProtocol *objc.Protocol
 func init() {
 	mapViewDidFinishLoadingMapProtocol = objc.GetProtocol("mapViewDidFinishLoadingMap:")
 }
-
-

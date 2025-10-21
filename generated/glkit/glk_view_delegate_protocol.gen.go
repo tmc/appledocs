@@ -17,5 +17,3 @@ var GLKViewDelegateProtocol *objc.Protocol
 func init() {
 	GLKViewDelegateProtocol = objc.GetProtocol("GLKViewDelegate")
 }
-
-

@@ -21,4 +21,3 @@ var tokenDriverProtocol *objc.Protocol
 func init() {
 	tokenDriverProtocol = objc.GetProtocol("tokenDriver:")
 }
-

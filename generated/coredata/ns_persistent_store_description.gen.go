@@ -81,6 +81,8 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 }
 
 
+
+
 // Initializes the receiver with a URL for the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/init(url:)
@@ -131,6 +133,7 @@ func (p_ PersistentStoreDescription) CloudKitContainerOptions() unsafe.Pointer {
 func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudKitContainerOptions:"), value)
 }
+
 // The name of the configuration used by this store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/configuration
@@ -148,6 +151,7 @@ func (p_ PersistentStoreDescription) Configuration() string {
 func (p_ PersistentStoreDescription) SetConfiguration(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), objc.String(value))
 }
+
 // A flag that indicates whether this store will be read-only.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/isReadOnly
@@ -165,6 +169,7 @@ func (p_ PersistentStoreDescription) ReadOnly() bool {
 func (p_ PersistentStoreDescription) SetReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReadOnly:"), value)
 }
+
 // A dictionary representation of the options set on the associated persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/options
@@ -190,6 +195,7 @@ func (p_ PersistentStoreDescription) ShouldAddStoreAsynchronously() bool {
 func (p_ PersistentStoreDescription) SetShouldAddStoreAsynchronously(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldAddStoreAsynchronously:"), value)
 }
+
 // A flag indicating whether a mapping model should be created automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldInferMappingModelAutomatically
@@ -207,6 +213,7 @@ func (p_ PersistentStoreDescription) ShouldInferMappingModelAutomatically() bool
 func (p_ PersistentStoreDescription) SetShouldInferMappingModelAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldInferMappingModelAutomatically:"), value)
 }
+
 // A flag indicating whether the associated persistent store should be migrated automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldMigrateStoreAutomatically
@@ -224,6 +231,7 @@ func (p_ PersistentStoreDescription) ShouldMigrateStoreAutomatically() bool {
 func (p_ PersistentStoreDescription) SetShouldMigrateStoreAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldMigrateStoreAutomatically:"), value)
 }
+
 // The SQLite pragmas set for the associated persistent store. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/sqlitePragmas
@@ -249,6 +257,7 @@ func (p_ PersistentStoreDescription) Timeout() TimeInterval {
 func (p_ PersistentStoreDescription) SetTimeout(value TimeInterval) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeout:"), value)
 }
+
 // The URL that the store will use for its location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
@@ -266,4 +275,5 @@ func (p_ PersistentStoreDescription) URL() unsafe.Pointer {
 func (p_ PersistentStoreDescription) SetURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
 }
+
 

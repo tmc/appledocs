@@ -15,4 +15,3 @@ var PHProjectTypeDescriptionInvalidatorProtocol *objc.Protocol
 func init() {
 	PHProjectTypeDescriptionInvalidatorProtocol = objc.GetProtocol("PHProjectTypeDescriptionInvalidator")
 }
-

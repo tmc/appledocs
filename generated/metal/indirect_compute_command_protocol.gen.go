@@ -20,5 +20,3 @@ var IndirectComputeCommandProtocol *objc.Protocol
 func init() {
 	IndirectComputeCommandProtocol = objc.GetProtocol("MTLIndirectComputeCommand")
 }
-
-

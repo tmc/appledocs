@@ -19,5 +19,3 @@ var motionVectorScaleXProtocol *objc.Protocol
 func init() {
 	motionVectorScaleXProtocol = objc.GetProtocol("motionVectorScaleX")
 }
-
-

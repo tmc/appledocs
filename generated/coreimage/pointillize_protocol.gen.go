@@ -12,5 +12,3 @@ var PointillizeProtocol *objc.Protocol
 func init() {
 	PointillizeProtocol = objc.GetProtocol("CIPointillize")
 }
-
-

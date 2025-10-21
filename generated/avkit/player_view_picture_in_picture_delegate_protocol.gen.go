@@ -15,5 +15,3 @@ var PlayerViewPictureInPictureDelegateProtocol *objc.Protocol
 func init() {
 	PlayerViewPictureInPictureDelegateProtocol = objc.GetProtocol("AVPlayerViewPictureInPictureDelegate")
 }
-
-

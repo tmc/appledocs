@@ -9,15 +9,8 @@ import (
 // Suppress unused import errors
 var _ = avfaudio.NewAudioFile
 
-
 // ExampleNewAudioFile demonstrates how to create a AudioFile instance.
 func ExampleNewAudioFile() {
 	_ = avfaudio.NewAudioFile()
 	// Output:
 }
-
-
-
-
-
-

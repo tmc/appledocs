@@ -21,5 +21,3 @@ var ContentKeySessionDelegateProtocol *objc.Protocol
 func init() {
 	ContentKeySessionDelegateProtocol = objc.GetProtocol("AVContentKeySessionDelegate")
 }
-
-

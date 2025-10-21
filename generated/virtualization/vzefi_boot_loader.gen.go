@@ -98,3 +98,4 @@ func (v_ VZEFIBootLoader) SetVariableStore(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVariableStore:"), value)
 }
 
+

@@ -81,13 +81,7 @@ func NewUNNotificationCategory() UNNotificationCategory {
 }
 
 
-// Creates a category object containing the specified actions and options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/init(identifier:actions:intentIdentifiers:options:)
-func NewUNNotificationCategoryWithIdentifierActionsIntentIdentifiersOptions(identifier string, actions unsafe.Pointer, intentIdentifiers unsafe.Pointer, options unsafe.Pointer) UNNotificationCategory {
-	rv := objc.Send[UNNotificationCategory](objc.ID(getUNNotificationCategoryClass().class), objc.Sel("categoryWithIdentifier:actions:intentIdentifiers:options:"), objc.String(identifier), actions, intentIdentifiers, options)
-	return rv
-}
+
 
 // Creates a category object containing the specified actions, options, placeholder text used when previews aren’t shown, and summary format string.
 //
@@ -97,11 +91,23 @@ func NewUNNotificationCategoryWithIdentifierActionsIntentIdentifiersHiddenPrevie
 	return rv
 }
 
+
+
 // Creates a category object containing the specified actions, options, and placeholder text used when previews aren’t shown.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/init(identifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:)
 func NewUNNotificationCategoryWithIdentifierActionsIntentIdentifiersHiddenPreviewsBodyPlaceholderOptions(identifier string, actions unsafe.Pointer, intentIdentifiers unsafe.Pointer, hiddenPreviewsBodyPlaceholder string, options unsafe.Pointer) UNNotificationCategory {
 	rv := objc.Send[UNNotificationCategory](objc.ID(getUNNotificationCategoryClass().class), objc.Sel("categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:"), objc.String(identifier), actions, intentIdentifiers, objc.String(hiddenPreviewsBodyPlaceholder), options)
+	return rv
+}
+
+
+
+// Creates a category object containing the specified actions and options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/init(identifier:actions:intentIdentifiers:options:)
+func NewUNNotificationCategoryWithIdentifierActionsIntentIdentifiersOptions(identifier string, actions unsafe.Pointer, intentIdentifiers unsafe.Pointer, options unsafe.Pointer) UNNotificationCategory {
+	rv := objc.Send[UNNotificationCategory](objc.ID(getUNNotificationCategoryClass().class), objc.Sel("categoryWithIdentifier:actions:intentIdentifiers:options:"), objc.String(identifier), actions, intentIdentifiers, options)
 	return rv
 }
 

@@ -12,5 +12,3 @@ var smoothnessProtocol *objc.Protocol
 func init() {
 	smoothnessProtocol = objc.GetProtocol("smoothness")
 }
-
-

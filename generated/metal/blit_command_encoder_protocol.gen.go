@@ -19,5 +19,3 @@ var blitCommandEncoderProtocol *objc.Protocol
 func init() {
 	blitCommandEncoderProtocol = objc.GetProtocol("blitCommandEncoder")
 }
-
-

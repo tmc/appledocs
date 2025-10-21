@@ -20,5 +20,3 @@ var downloadsForRequestProtocol *objc.Protocol
 func init() {
 	downloadsForRequestProtocol = objc.GetProtocol("downloadsForRequest:")
 }
-
-

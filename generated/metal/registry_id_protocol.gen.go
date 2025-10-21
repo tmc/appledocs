@@ -20,5 +20,3 @@ var registryIDProtocol *objc.Protocol
 func init() {
 	registryIDProtocol = objc.GetProtocol("registryID")
 }
-
-

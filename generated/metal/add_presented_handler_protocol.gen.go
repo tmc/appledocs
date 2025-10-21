@@ -20,5 +20,3 @@ var addPresentedHandlerProtocol *objc.Protocol
 func init() {
 	addPresentedHandlerProtocol = objc.GetProtocol("addPresentedHandler:")
 }
-
-

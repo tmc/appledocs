@@ -12,5 +12,3 @@ var DownloadDelegateProtocol *objc.Protocol
 func init() {
 	DownloadDelegateProtocol = objc.GetProtocol("WKDownloadDelegate")
 }
-
-

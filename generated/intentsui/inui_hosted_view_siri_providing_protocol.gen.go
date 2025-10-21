@@ -18,5 +18,3 @@ var INUIHostedViewSiriProvidingProtocol *objc.Protocol
 func init() {
 	INUIHostedViewSiriProvidingProtocol = objc.GetProtocol("INUIHostedViewSiriProviding")
 }
-
-

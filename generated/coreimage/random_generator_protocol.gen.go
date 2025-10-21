@@ -12,5 +12,3 @@ var RandomGeneratorProtocol *objc.Protocol
 func init() {
 	RandomGeneratorProtocol = objc.GetProtocol("CIRandomGenerator")
 }
-
-

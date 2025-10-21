@@ -15,5 +15,3 @@ var MERAWProcessorExtensionProtocol *objc.Protocol
 func init() {
 	MERAWProcessorExtensionProtocol = objc.GetProtocol("MERAWProcessorExtension")
 }
-
-

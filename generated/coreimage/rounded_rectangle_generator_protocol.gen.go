@@ -12,5 +12,3 @@ var RoundedRectangleGeneratorProtocol *objc.Protocol
 func init() {
 	RoundedRectangleGeneratorProtocol = objc.GetProtocol("CIRoundedRectangleGenerator")
 }
-
-

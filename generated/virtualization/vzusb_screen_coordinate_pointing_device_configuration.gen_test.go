@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZUSBScreenCoordinatePointingDeviceConfiguration
 
-
 // ExampleNewVZUSBScreenCoordinatePointingDeviceConfiguration demonstrates how to create a VZUSBScreenCoordinatePointingDeviceConfiguration instance.
 // Creates a new pointing device.
 func ExampleNewVZUSBScreenCoordinatePointingDeviceConfiguration() {
 	_ = virtualization.NewVZUSBScreenCoordinatePointingDeviceConfiguration()
 	// Output:
 }
-
-

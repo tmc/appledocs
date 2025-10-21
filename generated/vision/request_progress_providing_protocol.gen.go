@@ -20,5 +20,3 @@ var RequestProgressProvidingProtocol *objc.Protocol
 func init() {
 	RequestProgressProvidingProtocol = objc.GetProtocol("VNRequestProgressProviding")
 }
-
-

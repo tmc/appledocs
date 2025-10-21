@@ -12,5 +12,3 @@ var parameterBProtocol *objc.Protocol
 func init() {
 	parameterBProtocol = objc.GetProtocol("parameterB")
 }
-
-

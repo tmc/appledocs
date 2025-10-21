@@ -90,6 +90,7 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) FabricIndex(
 func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetFabricIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/instruction
 func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction() string {
@@ -104,6 +105,7 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction(
 func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetInstruction(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInstruction:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/token
 func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() unsa
 func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
+
 
 

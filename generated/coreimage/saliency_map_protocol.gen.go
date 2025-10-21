@@ -12,5 +12,3 @@ var SaliencyMapProtocol *objc.Protocol
 func init() {
 	SaliencyMapProtocol = objc.GetProtocol("CISaliencyMap")
 }
-
-

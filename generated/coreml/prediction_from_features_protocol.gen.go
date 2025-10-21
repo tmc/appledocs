@@ -21,5 +21,3 @@ var predictionFromFeaturesProtocol *objc.Protocol
 func init() {
 	predictionFromFeaturesProtocol = objc.GetProtocol("predictionFromFeatures:")
 }
-
-

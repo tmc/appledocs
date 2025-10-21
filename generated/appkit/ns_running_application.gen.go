@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RunningApplication] class.
@@ -78,3 +79,7 @@ func (r_ RunningApplication) Autorelease() RunningApplication {
 func NewRunningApplication() RunningApplication {
 	return getRunningApplicationClass().New()
 }
+
+
+
+

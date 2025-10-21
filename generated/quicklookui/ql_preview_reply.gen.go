@@ -82,16 +82,6 @@ func NewPreviewReply() PreviewReply {
 }
 
 
-// Creates a preview reply from an existing file URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
-	instance := getPreviewReplyClass().Alloc()
-	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
-	rv.Autorelease()
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/initForPDFWithPageSize:documentCreationBlock:
 func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize coregraphics.CGSize, documentCreationBlock unsafe.Pointer) PreviewReply {
@@ -120,6 +110,18 @@ func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentTyp
 }
 
 
+
+// Creates a preview reply from an existing file URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/init(fileURL:)
+func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
+	instance := getPreviewReplyClass().Alloc()
+	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
+	rv.Autorelease()
+	return rv
+}
+
+
 // The attachments for a preview reply that provide additional data for the system to display the preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/attachments
@@ -137,6 +139,7 @@ func (p_ PreviewReply) Attachments() unsafe.Pointer {
 func (p_ PreviewReply) SetAttachments(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), value)
 }
+
 // String encoding for text or html based previews. Defaults to NSUTF8StringEncoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/stringEncoding-1k9kb
@@ -154,4 +157,5 @@ func (p_ PreviewReply) StringEncoding() unsafe.Pointer {
 func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStringEncoding:"), value)
 }
+
 

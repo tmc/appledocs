@@ -81,6 +81,8 @@ func NewPerlinNoiseSource() PerlinNoiseSource {
 }
 
 
+
+
 // Initializes a Perlin noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/init(frequency:octaveCount:persistence:lacunarity:seed:)
@@ -117,4 +119,5 @@ func (p_ PerlinNoiseSource) Persistence() unsafe.Pointer {
 func (p_ PerlinNoiseSource) SetPersistence(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistence:"), value)
 }
+
 

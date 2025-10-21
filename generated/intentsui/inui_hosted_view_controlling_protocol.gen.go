@@ -18,5 +18,3 @@ var INUIHostedViewControllingProtocol *objc.Protocol
 func init() {
 	INUIHostedViewControllingProtocol = objc.GetProtocol("INUIHostedViewControlling")
 }
-
-

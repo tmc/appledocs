@@ -98,3 +98,4 @@ func (r_ ResourceViewPoolDescriptor) SetLabel(value string) {
 }
 
 
+

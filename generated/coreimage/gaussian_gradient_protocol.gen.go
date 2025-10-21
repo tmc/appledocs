@@ -12,5 +12,3 @@ var GaussianGradientProtocol *objc.Protocol
 func init() {
 	GaussianGradientProtocol = objc.GetProtocol("CIGaussianGradient")
 }
-
-

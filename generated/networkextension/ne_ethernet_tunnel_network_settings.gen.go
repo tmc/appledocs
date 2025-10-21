@@ -81,6 +81,8 @@ func NewNEEthernetTunnelNetworkSettings() NEEthernetTunnelNetworkSettings {
 }
 
 
+
+
 // Creates a settings object with a given tunnel remote address and MAC address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings/init(tunnelRemoteAddress:ethernetAddress:mtu:)

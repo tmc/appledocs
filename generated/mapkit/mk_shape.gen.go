@@ -98,6 +98,7 @@ func (m_ MKShape) Subtitle() string {
 func (m_ MKShape) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
+
 // The title of the shape annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/title
@@ -115,5 +116,6 @@ func (m_ MKShape) Title() string {
 func (m_ MKShape) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 
 

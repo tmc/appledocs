@@ -202,6 +202,7 @@ func (u_ UNUserNotificationCenter) Delegate() objc.ID {
 func (u_ UNUserNotificationCenter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the device supports notification content extensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions
@@ -209,6 +210,7 @@ func (u_ UNUserNotificationCenter) SupportsContentExtensions() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContentExtensions"))
 	return rv
 }
+
 
 
 

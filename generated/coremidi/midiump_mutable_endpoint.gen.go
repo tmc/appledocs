@@ -142,3 +142,4 @@ func (m_ MIDIUMPMutableEndpoint) SetMutableFunctionBlocks(value []MIDIUMPMutable
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableFunctionBlocks:"), nsArray)
 }
 
+

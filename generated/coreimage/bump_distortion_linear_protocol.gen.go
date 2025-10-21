@@ -12,5 +12,3 @@ var BumpDistortionLinearProtocol *objc.Protocol
 func init() {
 	BumpDistortionLinearProtocol = objc.GetProtocol("CIBumpDistortionLinear")
 }
-
-

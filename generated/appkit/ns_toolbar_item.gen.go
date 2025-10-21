@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ToolbarItem] class.
@@ -81,6 +82,9 @@ func NewToolbarItem() ToolbarItem {
 	return getToolbarItemClass().New()
 }
 
+
+
+
 // Creates a toolbar item with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:)
@@ -91,6 +95,8 @@ func NewToolbarItemWithItemIdentifier(itemIdentifier unsafe.Pointer) ToolbarItem
 	return rv
 }
 
+
+
 // Creates a toolbar item with property values from the specified bar button item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
@@ -98,6 +104,7 @@ func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier unsafe.Pointer
 	rv := objc.Send[ToolbarItem](objc.ID(getToolbarItemClass().class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
 }
+
 
 // Creates a toolbar item with property values from the specified bar button item.
 //
@@ -121,6 +128,7 @@ func (t_ ToolbarItem) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](t_.ID, objc.Sel("action"))
 	return rv
 }
+
 
 // SetAction sets the value of the action property.
 // The action method to call when someone clicks on the toolbar item.
@@ -147,6 +155,7 @@ func (t_ ToolbarItem) Autovalidates() bool {
 	return rv
 }
 
+
 // SetAutovalidates sets the value of the autovalidates property.
 // A Boolean value that indicates whether the toolbar automatically validates the item.
 
@@ -163,6 +172,7 @@ func (t_ ToolbarItem) BackgroundTintColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBackgroundTintColor sets the value of the backgroundTintColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
@@ -177,6 +187,7 @@ func (t_ ToolbarItem) Badge() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("badge"))
 	return rv
 }
+
 
 // SetBadge sets the value of the badge property.
 // A badge that can be attached to an NSToolbarItem. This provides a way to display small visual indicators that can be used to highlight important information, such as unread notifications or status indicators.
@@ -195,6 +206,7 @@ func (t_ ToolbarItem) Image() unsafe.Pointer {
 	return rv
 }
 
+
 // SetImage sets the value of the image property.
 // The image to display for the toolbar item.
 
@@ -211,6 +223,7 @@ func (t_ ToolbarItem) Bordered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("bordered"))
 	return rv
 }
+
 
 // SetBordered sets the value of the bordered property.
 // A Boolean value that indicates whether the toolbar item has a bordered style.
@@ -229,6 +242,7 @@ func (t_ ToolbarItem) Enabled() bool {
 	return rv
 }
 
+
 // SetEnabled sets the value of the enabled property.
 // A Boolean value that indicates whether the item is enabled.
 
@@ -245,6 +259,7 @@ func (t_ ToolbarItem) Hidden() bool {
 	return rv
 }
 
+
 // SetHidden sets the value of the hidden property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isHidden
@@ -259,6 +274,7 @@ func (t_ ToolbarItem) Navigational() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("navigational"))
 	return rv
 }
+
 
 // SetNavigational sets the value of the navigational property.
 // A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
@@ -293,6 +309,7 @@ func (t_ ToolbarItem) ItemMenuFormRepresentation() unsafe.Pointer {
 	return rv
 }
 
+
 // SetItemMenuFormRepresentation sets the value of the itemMenuFormRepresentation property.
 // The menu item to use for the toolbar item is in the overflow menu in a Mac app built with Mac Catalyst.
 
@@ -309,6 +326,7 @@ func (t_ ToolbarItem) Label() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("label"))
 	return rv
 }
+
 
 // SetLabel sets the value of the label property.
 // The label that appears for this item in the toolbar.
@@ -327,6 +345,7 @@ func (t_ ToolbarItem) MaxSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetMaxSize sets the value of the maxSize property.
 // The toolbar item’s maximum size.
 
@@ -343,6 +362,7 @@ func (t_ ToolbarItem) MenuFormRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("menuFormRepresentation"))
 	return rv
 }
+
 
 // SetMenuFormRepresentation sets the value of the menuFormRepresentation property.
 // The menu item to use when the toolbar item is in the overflow menu.
@@ -361,6 +381,7 @@ func (t_ ToolbarItem) MinSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetMinSize sets the value of the minSize property.
 // The toolbar item’s minimum size.
 
@@ -377,6 +398,7 @@ func (t_ ToolbarItem) PaletteLabel() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("paletteLabel"))
 	return rv
 }
+
 
 // SetPaletteLabel sets the value of the paletteLabel property.
 // The label that appears when the toolbar item is in the customization palette.
@@ -395,6 +417,7 @@ func (t_ ToolbarItem) PossibleLabels() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPossibleLabels sets the value of the possibleLabels property.
 // The set of labels that the item might display.
 
@@ -411,6 +434,7 @@ func (t_ ToolbarItem) Style() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("style"))
 	return rv
 }
+
 
 // SetStyle sets the value of the style property.
 // Defines the toolbar item’s appearance. The default style is plain. Prominent style tints the background. If a background tint color is set, it uses it; otherwise, it uses the app’s or system’s accent color. If grouped with other items, it moves to its own to avoid tinting other items’ background.
@@ -429,6 +453,7 @@ func (t_ ToolbarItem) Tag() int {
 	return rv
 }
 
+
 // SetTag sets the value of the tag property.
 // An integer tag you can use to identify the toolbar item.
 
@@ -445,6 +470,7 @@ func (t_ ToolbarItem) Target() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("target"))
 	return rv
 }
+
 
 // SetTarget sets the value of the target property.
 // The object that defines the action method the toolbar item calls when clicked.
@@ -463,6 +489,7 @@ func (t_ ToolbarItem) Title() string {
 	return rv
 }
 
+
 // SetTitle sets the value of the title property.
 // The title of the toolbar item.
 
@@ -479,6 +506,7 @@ func (t_ ToolbarItem) ToolTip() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("toolTip"))
 	return rv
 }
+
 
 // SetToolTip sets the value of the toolTip property.
 // The tooltip to display when someone hovers over the item in the toolbar.
@@ -505,6 +533,7 @@ func (t_ ToolbarItem) View() unsafe.Pointer {
 	return rv
 }
 
+
 // SetView sets the value of the view property.
 // The custom view you use to draw the toolbar item.
 
@@ -522,6 +551,7 @@ func (t_ ToolbarItem) VisibilityPriority() unsafe.Pointer {
 	return rv
 }
 
+
 // SetVisibilityPriority sets the value of the visibilityPriority property.
 // The display priority associated with the toolbar item.
 
@@ -530,3 +560,5 @@ func (t_ ToolbarItem) VisibilityPriority() unsafe.Pointer {
 func (t_ ToolbarItem) SetVisibilityPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
+
+

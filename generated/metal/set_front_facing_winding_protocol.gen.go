@@ -19,5 +19,3 @@ var setFrontFacingWindingProtocol *objc.Protocol
 func init() {
 	setFrontFacingWindingProtocol = objc.GetProtocol("setFrontFacingWinding:")
 }
-
-

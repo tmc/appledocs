@@ -114,6 +114,7 @@ func (c_ CNContactPicker) Delegate() objc.ID {
 func (c_ CNContactPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The keys to be displayed when a contact is expanded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
@@ -141,5 +142,6 @@ func (c_ CNContactPicker) SetDisplayedKeys(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayedKeys:"), nsArray)
 }
+
 
 

@@ -84,6 +84,8 @@ func NewPersistentContainer() PersistentContainer {
 }
 
 
+
+
 // Creates a container with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
@@ -93,6 +95,8 @@ func NewPersistentContainerWithName(name string) PersistentContainer {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Create a container with the specified name and managed object model.
 //
@@ -202,6 +206,7 @@ func (p_ PersistentContainer) SetPersistentStoreDescriptions(value []PersistentS
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStoreDescriptions:"), nsArray)
 }
+
 // The main queue’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/viewContext

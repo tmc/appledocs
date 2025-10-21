@@ -81,6 +81,8 @@ func NewVZSharedDirectory() VZSharedDirectory {
 }
 
 
+
+
 // Initialize with a host directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/init(url:readOnly:)

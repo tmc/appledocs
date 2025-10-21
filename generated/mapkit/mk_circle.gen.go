@@ -81,6 +81,8 @@ func NewMKCircle() MKCircle {
 }
 
 
+
+
 // Creates and returns a circle object using the specified coordinate and radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/init(center:radius:)
@@ -88,6 +90,8 @@ func NewMKCircleWithCenterCoordinateRadius(coord unsafe.Pointer, radius unsafe.P
 	rv := objc.Send[MKCircle](objc.ID(getMKCircleClass().class), objc.Sel("circleWithCenterCoordinate:radius:"), coord, radius)
 	return rv
 }
+
+
 
 // Creates and returns a circle object that derives the circular area from the specified rectangle.
 //

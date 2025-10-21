@@ -9,7 +9,11 @@ import (
 // Suppress unused import errors
 var _ = contacts.NewCNPhoneNumber
 
-
+// ExampleNewCNPhoneNumber demonstrates how to create a CNPhoneNumber instance.
+func ExampleNewCNPhoneNumber() {
+	_ = contacts.NewCNPhoneNumber()
+	// Output:
+}
 // ExampleNewCNPhoneNumberWithStringValue demonstrates how to create a CNPhoneNumber instance using NewCNPhoneNumberWithStringValue.
 // Returns a new phone number object initialized with the specified phone number string.
 func ExampleNewCNPhoneNumberWithStringValue() {
@@ -18,11 +22,3 @@ func ExampleNewCNPhoneNumberWithStringValue() {
 	)
 	// Output:
 }
-
-// ExampleNewCNPhoneNumber demonstrates how to create a CNPhoneNumber instance.
-func ExampleNewCNPhoneNumber() {
-	_ = contacts.NewCNPhoneNumber()
-	// Output:
-}
-
-

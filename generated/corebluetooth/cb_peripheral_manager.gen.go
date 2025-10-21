@@ -91,6 +91,8 @@ func NewCBPeripheralManager() CBPeripheralManager {
 }
 
 
+
+
 // Initializes the peripheral manager with a specified delegate and dispatch queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)
@@ -100,6 +102,8 @@ func NewCBPeripheralManagerWithDelegateQueue(delegate objc.ID, queue unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes the peripheral manager with a specified delegate, dispatch queue, and initialization options.
 //
@@ -208,6 +212,7 @@ func (c_ CBPeripheralManager) Delegate() objc.ID {
 func (c_ CBPeripheralManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the peripheral is advertising data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/isAdvertising

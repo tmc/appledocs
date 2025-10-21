@@ -79,6 +79,8 @@ func NewCBGroupIdentity() CBGroupIdentity {
 }
 
 
+
+
 // Returns the group identity with the given POSIX GID in the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/init(posixGID:authority:)

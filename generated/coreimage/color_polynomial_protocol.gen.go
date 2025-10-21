@@ -12,5 +12,3 @@ var ColorPolynomialProtocol *objc.Protocol
 func init() {
 	ColorPolynomialProtocol = objc.GetProtocol("CIColorPolynomial")
 }
-
-

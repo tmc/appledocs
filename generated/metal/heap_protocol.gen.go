@@ -20,5 +20,3 @@ var heapProtocol *objc.Protocol
 func init() {
 	heapProtocol = objc.GetProtocol("heap")
 }
-
-

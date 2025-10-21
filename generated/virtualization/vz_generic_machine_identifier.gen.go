@@ -81,6 +81,8 @@ func NewVZGenericMachineIdentifier() VZGenericMachineIdentifier {
 }
 
 
+
+
 // Creates a new unique identifier for a VM with the provided data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier/init(dataRepresentation:)

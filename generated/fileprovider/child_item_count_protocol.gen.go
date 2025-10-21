@@ -18,5 +18,3 @@ var childItemCountProtocol *objc.Protocol
 func init() {
 	childItemCountProtocol = objc.GetProtocol("childItemCount")
 }
-
-

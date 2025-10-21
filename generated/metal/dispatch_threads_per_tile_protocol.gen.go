@@ -20,5 +20,3 @@ var dispatchThreadsPerTileProtocol *objc.Protocol
 func init() {
 	dispatchThreadsPerTileProtocol = objc.GetProtocol("dispatchThreadsPerTile:")
 }
-
-

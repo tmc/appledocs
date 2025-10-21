@@ -19,5 +19,3 @@ var inputImageProtocol *objc.Protocol
 func init() {
 	inputImageProtocol = objc.GetProtocol("inputImage")
 }
-
-

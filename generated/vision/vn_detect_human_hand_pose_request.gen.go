@@ -132,6 +132,7 @@ func (d_ DetectHumanHandPoseRequest) MaximumHandCount() uint {
 func (d_ DetectHumanHandPoseRequest) SetMaximumHandCount(value uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumHandCount:"), value)
 }
+
 // The observed hand poses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/results

@@ -81,6 +81,8 @@ func NewPHASEMappedMetaParameterDefinition() PHASEMappedMetaParameterDefinition 
 }
 
 
+
+
 // Creates a specification for a named metaparameter that the app plots on a graph defined by the given set of curves.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMappedMetaParameterDefinition/init(inputMetaParameterDefinition:envelope:identifier:)

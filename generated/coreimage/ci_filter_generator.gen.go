@@ -89,6 +89,8 @@ func NewFilterGenerator() FilterGenerator {
 }
 
 
+
+
 // Initializes a filter generator object with the contents of a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/init(contentsOf:)
@@ -191,6 +193,7 @@ func (f_ FilterGenerator) ClassAttributes() unsafe.Pointer {
 func (f_ FilterGenerator) SetClassAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setClassAttributes:"), value)
 }
+
 // Returns an array of the exported keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/exportedKeys

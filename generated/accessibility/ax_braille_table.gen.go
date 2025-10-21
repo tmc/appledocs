@@ -79,6 +79,8 @@ func NewAXBrailleTable() AXBrailleTable {
 }
 
 
+
+
 // Returns nil if there is no table with the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/init(identifier:)

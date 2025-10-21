@@ -12,5 +12,3 @@ var VignetteProtocol *objc.Protocol
 func init() {
 	VignetteProtocol = objc.GetProtocol("CIVignette")
 }
-
-

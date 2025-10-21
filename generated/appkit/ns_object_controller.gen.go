@@ -81,6 +81,7 @@ func NewObjectController() ObjectController {
 	return getObjectControllerClass().New()
 }
 
+
 // Typically overridden by subclasses that require additional control over the creation of new objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/prepareContent()
@@ -95,6 +96,7 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("automaticallyPreparesContent"))
 	return rv
 }
+
 
 // SetAutomaticallyPreparesContent sets the value of the automaticallyPreparesContent property.
 // A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.
@@ -113,6 +115,7 @@ func (o_ ObjectController) Content() objc.ID {
 	return rv
 }
 
+
 // SetContent sets the value of the content property.
 // The receiver’s content object.
 
@@ -130,6 +133,7 @@ func (o_ ObjectController) ObjectClass() objc.Class {
 	return rv
 }
 
+
 // SetObjectClass sets the value of the objectClass property.
 // The object class to use when creating new objects.
 
@@ -138,3 +142,6 @@ func (o_ ObjectController) ObjectClass() objc.Class {
 func (o_ ObjectController) SetObjectClass(value objc.Class) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
 }
+
+
+

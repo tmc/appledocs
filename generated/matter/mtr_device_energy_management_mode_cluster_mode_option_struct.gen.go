@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() string {
 func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/mode
 func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Mode() unsafe.Poi
 func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/modeTags
 func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) ModeTags() unsafe
 func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

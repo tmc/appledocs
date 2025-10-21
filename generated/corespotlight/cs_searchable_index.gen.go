@@ -90,6 +90,8 @@ func NewCSSearchableIndex() CSSearchableIndex {
 }
 
 
+
+
 // Returns an on-device index with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
@@ -99,6 +101,8 @@ func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns an on-device index with the specified name and data protection class.
 //
@@ -207,4 +211,5 @@ func (c_ CSSearchableIndex) IndexDelegate() objc.ID {
 func (c_ CSSearchableIndex) SetIndexDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexDelegate:"), value)
 }
+
 

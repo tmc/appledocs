@@ -81,6 +81,8 @@ func NewDDDeviceEvent() DDDeviceEvent {
 }
 
 
+
+
 // Creates an event object that conveys status for a discovered device of interest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)

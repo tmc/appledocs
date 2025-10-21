@@ -9,30 +9,30 @@ package pdfkit
 type PDFAccessPermissions uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsCommenting
-PDFAllowsCommenting PDFAccessPermissions = 0
-//
+	PDFAllowsCommenting PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsContentAccessibility
-PDFAllowsContentAccessibility PDFAccessPermissions = 0
-//
+	PDFAllowsContentAccessibility PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsContentCopying
-PDFAllowsContentCopying PDFAccessPermissions = 0
-//
+	PDFAllowsContentCopying PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsDocumentAssembly
-PDFAllowsDocumentAssembly PDFAccessPermissions = 0
-//
+	PDFAllowsDocumentAssembly PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsDocumentChanges
-PDFAllowsDocumentChanges PDFAccessPermissions = 0
-//
+	PDFAllowsDocumentChanges PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsFormFieldEntry
-PDFAllowsFormFieldEntry PDFAccessPermissions = 0
-//
+	PDFAllowsFormFieldEntry PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsHighQualityPrinting
-PDFAllowsHighQualityPrinting PDFAccessPermissions = 0
-//
+	PDFAllowsHighQualityPrinting PDFAccessPermissions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsLowQualityPrinting
-PDFAllowsLowQualityPrinting PDFAccessPermissions = 0
+	PDFAllowsLowQualityPrinting PDFAccessPermissions = 0
 )
 
 // PDFActionNamedName enum type
@@ -71,15 +71,15 @@ type PDFMarkupType uint
 type PDFSelectionGranularity uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity/character
-PDFSelectionGranularityCharacter PDFSelectionGranularity = 0
-//
+	PDFSelectionGranularityCharacter PDFSelectionGranularity = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity/line
-PDFSelectionGranularityLine PDFSelectionGranularity = 0
-//
+	PDFSelectionGranularityLine PDFSelectionGranularity = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity/word
-PDFSelectionGranularityWord PDFSelectionGranularity = 0
+	PDFSelectionGranularityWord PDFSelectionGranularity = 0
 )
 
 // PDFTextAnnotationIconType - The types of icons that a text annotation can use.
@@ -103,18 +103,18 @@ type PDFWidgetCellState uint
 type PDFWidgetControlType uint
 
 const (
-// kPDFWidgetCheckBoxControl - Check box control.
-//
+	// kPDFWidgetCheckBoxControl - Check box control.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFWidgetControlType/checkBoxControl
-kPDFWidgetCheckBoxControl PDFWidgetControlType = 0
-// kPDFWidgetPushButtonControl - Push button control.
-//
+	kPDFWidgetCheckBoxControl PDFWidgetControlType = 0
+	// kPDFWidgetPushButtonControl - Push button control.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFWidgetControlType/pushButtonControl
-kPDFWidgetPushButtonControl PDFWidgetControlType = 0
-// kPDFWidgetRadioButtonControl - Radio button control.
-//
+	kPDFWidgetPushButtonControl PDFWidgetControlType = 0
+	// kPDFWidgetRadioButtonControl - Radio button control.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFWidgetControlType/radioButtonControl
-kPDFWidgetRadioButtonControl PDFWidgetControlType = 0
+	kPDFWidgetRadioButtonControl PDFWidgetControlType = 0
 )
 
 

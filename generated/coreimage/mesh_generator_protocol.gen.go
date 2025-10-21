@@ -12,5 +12,3 @@ var MeshGeneratorProtocol *objc.Protocol
 func init() {
 	MeshGeneratorProtocol = objc.GetProtocol("CIMeshGenerator")
 }
-
-

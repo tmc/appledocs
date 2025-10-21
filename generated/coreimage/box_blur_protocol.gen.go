@@ -12,5 +12,3 @@ var BoxBlurProtocol *objc.Protocol
 func init() {
 	BoxBlurProtocol = objc.GetProtocol("CIBoxBlur")
 }
-
-

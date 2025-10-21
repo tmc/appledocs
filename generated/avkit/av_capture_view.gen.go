@@ -105,6 +105,7 @@ func (c_ CaptureView) ControlsStyle() unsafe.Pointer {
 func (c_ CaptureView) SetControlsStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlsStyle:"), value)
 }
+
 // The capture view’s delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/delegate
@@ -122,6 +123,7 @@ func (c_ CaptureView) Delegate() objc.ID {
 func (c_ CaptureView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The capture file output used to record media data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/fileOutput
@@ -155,5 +157,6 @@ func (c_ CaptureView) VideoGravity() unsafe.Pointer {
 func (c_ CaptureView) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoGravity:"), value)
 }
+
 
 

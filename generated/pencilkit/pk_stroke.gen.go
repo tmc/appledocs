@@ -80,6 +80,8 @@ func NewStroke() Stroke {
 }
 
 
+
+
 // Creates a stroke with the line properties, path, transform, and mask that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/init(ink:strokePath:transform:mask:)
@@ -89,6 +91,8 @@ func NewStrokeWithInkStrokePathTransformMask(ink unsafe.Pointer, strokePath unsa
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a stroke with the line properties, path, transform, mask, and random seed that you specify.
 //

@@ -20,5 +20,3 @@ var ViewDelegateProtocol *objc.Protocol
 func init() {
 	ViewDelegateProtocol = objc.GetProtocol("MTKViewDelegate")
 }
-
-

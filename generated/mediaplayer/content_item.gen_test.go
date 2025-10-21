@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = mediaplayer.NewContentItem
 
-
 // ExampleNewContentItemWithIdentifier demonstrates how to create a ContentItem instance using NewContentItemWithIdentifier.
 // Sets the identifier for a media item.
 func ExampleNewContentItemWithIdentifier() {
@@ -18,5 +17,3 @@ func ExampleNewContentItemWithIdentifier() {
 	)
 	// Output:
 }
-
-

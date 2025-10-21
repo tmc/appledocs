@@ -20,5 +20,3 @@ var setIntersectionFunctionTablesProtocol *objc.Protocol
 func init() {
 	setIntersectionFunctionTablesProtocol = objc.GetProtocol("setIntersectionFunctionTables:")
 }
-
-

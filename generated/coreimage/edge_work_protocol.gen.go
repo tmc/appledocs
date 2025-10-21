@@ -12,5 +12,3 @@ var EdgeWorkProtocol *objc.Protocol
 func init() {
 	EdgeWorkProtocol = objc.GetProtocol("CIEdgeWork")
 }
-
-

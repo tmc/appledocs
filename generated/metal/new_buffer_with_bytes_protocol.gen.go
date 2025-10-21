@@ -19,5 +19,3 @@ var newBufferWithBytesProtocol *objc.Protocol
 func init() {
 	newBufferWithBytesProtocol = objc.GetProtocol("newBufferWithBytes:")
 }
-
-

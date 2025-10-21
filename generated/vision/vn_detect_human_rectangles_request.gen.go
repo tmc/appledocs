@@ -98,3 +98,4 @@ func (d_ DetectHumanRectanglesRequest) SetUpperBodyOnly(value bool) {
 }
 
 
+

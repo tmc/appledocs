@@ -86,3 +86,4 @@ func (q_ QuartzFilterView) SizeToFit() {
 
 
 
+

@@ -16,5 +16,3 @@ var encodeCurrentFrameToCommandBufferProtocol *objc.Protocol
 func init() {
 	encodeCurrentFrameToCommandBufferProtocol = objc.GetProtocol("encodeCurrentFrameToCommandBuffer:")
 }
-
-

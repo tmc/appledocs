@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PHAssetResourceCreationOptions] class.
@@ -85,8 +84,8 @@ func NewPHAssetResourceCreationOptions() PHAssetResourceCreationOptions {
 // The type of data being provided for this asset resource. If not specified, one will be inferred from the PHAssetResourceType or file URL extension (if provided).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/contentType
-func (p_ PHAssetResourceCreationOptions) ContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHAssetResourceCreationOptions) ContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -96,9 +95,10 @@ func (p_ PHAssetResourceCreationOptions) ContentType() uniformtypeidentifiers.UT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/contentType
-func (p_ PHAssetResourceCreationOptions) SetContentType(value uniformtypeidentifiers.UTType) {
+func (p_ PHAssetResourceCreationOptions) SetContentType(value UTType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentType:"), value)
 }
+
 // The filename for the asset resource being created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/originalFilename
@@ -116,6 +116,7 @@ func (p_ PHAssetResourceCreationOptions) OriginalFilename() string {
 func (p_ PHAssetResourceCreationOptions) SetOriginalFilename(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), objc.String(value))
 }
+
 // A Boolean value that determines whether Photos moves or duplicates files when creating an asset resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/shouldMoveFile
@@ -133,6 +134,7 @@ func (p_ PHAssetResourceCreationOptions) ShouldMoveFile() bool {
 func (p_ PHAssetResourceCreationOptions) SetShouldMoveFile(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldMoveFile:"), value)
 }
+
 // The uniform type identifier for the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/uniformTypeIdentifier
@@ -150,5 +152,6 @@ func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() string {
 func (p_ PHAssetResourceCreationOptions) SetUniformTypeIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), objc.String(value))
 }
+
 
 

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WritingToolsCoordinator] class.
@@ -82,6 +82,7 @@ func NewWritingToolsCoordinator() WritingToolsCoordinator {
 	return getWritingToolsCoordinatorClass().New()
 }
 
+
 // Informs the coordinator that a change occurred to the view or its text that requires a layout update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)
@@ -112,6 +113,7 @@ func (w_ WritingToolsCoordinator) DecorationContainerView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDecorationContainerView sets the value of the decorationContainerView property.
 // The view that Writing Tools uses to display background decorations such as proofreading marks.
 
@@ -128,6 +130,7 @@ func (w_ WritingToolsCoordinator) EffectContainerView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("effectContainerView"))
 	return rv
 }
+
 
 // SetEffectContainerView sets the value of the effectContainerView property.
 // The view that Writing Tools uses to display visual effects during the text-rewriting process.
@@ -146,6 +149,7 @@ func (w_ WritingToolsCoordinator) PreferredBehavior() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPreferredBehavior sets the value of the preferredBehavior property.
 // The level of Writing Tools support you want the system to provide for your view.
 
@@ -162,6 +166,7 @@ func (w_ WritingToolsCoordinator) PreferredResultOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredResultOptions"))
 	return rv
 }
+
 
 // SetPreferredResultOptions sets the value of the preferredResultOptions property.
 // The type of content you allow Writing Tools to generate for your custom text view.
@@ -187,3 +192,6 @@ func (w_ WritingToolsCoordinator) State() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("state"))
 	return rv
 }
+
+
+

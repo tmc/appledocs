@@ -87,6 +87,8 @@ func NewScreenSaverView() ScreenSaverView {
 }
 
 
+
+
 // Creates a newly allocated screen saver view with the specified frame rectangle and preview information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)
@@ -159,6 +161,7 @@ func (s_ ScreenSaverView) AnimationTimeInterval() TimeInterval {
 func (s_ ScreenSaverView) SetAnimationTimeInterval(value TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAnimationTimeInterval:"), value)
 }
+
 // The window that contains the controls to configure the screen saver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/configureSheet

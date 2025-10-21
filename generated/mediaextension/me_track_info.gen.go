@@ -79,6 +79,8 @@ func NewMETrackInfo() METrackInfo {
 }
 
 
+
+
 // Creates a new track info object with the media type, track ID, and format descriptions that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/initWithMediaType:trackID:formatDescriptions:
@@ -107,6 +109,7 @@ func (m_ METrackInfo) NaturalTimescale() unsafe.Pointer {
 func (m_ METrackInfo) SetNaturalTimescale(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalTimescale:"), value)
 }
+
 // The frame rate of the track in frames per second, as a 32-bit floating point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/nominalFrameRate
@@ -124,6 +127,7 @@ func (m_ METrackInfo) NominalFrameRate() unsafe.Pointer {
 func (m_ METrackInfo) SetNominalFrameRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalFrameRate:"), value)
 }
+
 // An array of edit segments for the given track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
@@ -151,4 +155,5 @@ func (m_ METrackInfo) SetTrackEdits(value []avfoundation.NSValue) {
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackEdits:"), nsArray)
 }
+
 

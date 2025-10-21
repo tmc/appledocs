@@ -98,6 +98,7 @@ func (s_ StencilDescriptor) DepthFailureOperation() unsafe.Pointer {
 func (s_ StencilDescriptor) SetDepthFailureOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDepthFailureOperation:"), value)
 }
+
 // The operation that is performed to update the values in the stencil attachment when both the stencil test and the depth test pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation
@@ -115,6 +116,7 @@ func (s_ StencilDescriptor) DepthStencilPassOperation() unsafe.Pointer {
 func (s_ StencilDescriptor) SetDepthStencilPassOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDepthStencilPassOperation:"), value)
 }
+
 // A bitmask that determines from which bits that stencil comparison tests can read.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/readMask
@@ -132,6 +134,7 @@ func (s_ StencilDescriptor) ReadMask() unsafe.Pointer {
 func (s_ StencilDescriptor) SetReadMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReadMask:"), value)
 }
+
 // The comparison that is performed between the masked reference value and a masked value in the stencil attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/stencilCompareFunction
@@ -149,6 +152,7 @@ func (s_ StencilDescriptor) StencilCompareFunction() unsafe.Pointer {
 func (s_ StencilDescriptor) SetStencilCompareFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStencilCompareFunction:"), value)
 }
+
 // The operation that is performed to update the values in the stencil attachment when the stencil test fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation
@@ -166,6 +170,7 @@ func (s_ StencilDescriptor) StencilFailureOperation() unsafe.Pointer {
 func (s_ StencilDescriptor) SetStencilFailureOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStencilFailureOperation:"), value)
 }
+
 // A bitmask that determines to which bits that stencil operations can write.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/writeMask
@@ -183,5 +188,6 @@ func (s_ StencilDescriptor) WriteMask() unsafe.Pointer {
 func (s_ StencilDescriptor) SetWriteMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setWriteMask:"), value)
 }
+
 
 

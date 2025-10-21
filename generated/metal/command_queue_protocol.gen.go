@@ -19,5 +19,3 @@ var CommandQueueProtocol *objc.Protocol
 func init() {
 	CommandQueueProtocol = objc.GetProtocol("MTLCommandQueue")
 }
-
-

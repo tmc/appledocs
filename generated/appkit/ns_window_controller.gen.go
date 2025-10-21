@@ -80,6 +80,9 @@ func NewWindowController() WindowController {
 	return getWindowControllerClass().New()
 }
 
+
+
+
 // Returns a window controller initialized with a given window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(window:)
@@ -90,6 +93,7 @@ func NewWindowControllerWithWindow(window unsafe.Pointer) WindowController {
 	return rv
 }
 
+
 // The window owned by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/window
@@ -97,6 +101,7 @@ func (w_ WindowController) Window() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("window"))
 	return rv
 }
+
 
 // SetWindow sets the value of the window property.
 // The window owned by the receiver.
@@ -106,3 +111,5 @@ func (w_ WindowController) Window() unsafe.Pointer {
 func (w_ WindowController) SetWindow(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindow:"), value)
 }
+
+

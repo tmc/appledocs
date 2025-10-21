@@ -81,6 +81,8 @@ func NewPHASEEnvelopeDistanceModelParameters() PHASEEnvelopeDistanceModelParamet
 }
 
 
+
+
 // Creates the distance model parameters with an envelope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters/init(envelope:)

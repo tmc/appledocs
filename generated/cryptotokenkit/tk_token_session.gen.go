@@ -81,6 +81,8 @@ func NewTKTokenSession() TKTokenSession {
 }
 
 
+
+
 // Initializes a token session with the specified token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/init(token:)
@@ -109,6 +111,7 @@ func (t_ TKTokenSession) Delegate() objc.ID {
 func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The token to which the session is bound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/token

@@ -12,5 +12,3 @@ var FlashTransitionProtocol *objc.Protocol
 func init() {
 	FlashTransitionProtocol = objc.GetProtocol("CIFlashTransition")
 }
-
-

@@ -102,6 +102,8 @@ func NewFileProviderManager() FileProviderManager {
 }
 
 
+
+
 // Returns a newly created file provider manager for the specified domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/init(for:)

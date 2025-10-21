@@ -81,7 +81,7 @@ type AnimationCurve uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationEffect
 type AnimationEffect uint
 
-// NSApplicationActivationPolicy - Activation policies (used by
+// NSApplicationActivationPolicy - Activation policies (used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/ActivationPolicy-swift.enum
 type ApplicationActivationPolicy uint
@@ -172,7 +172,7 @@ const (
 	BezelStyleToolbar BezelStyle = 0
 )
 
-// NSGradientType - Specify the gradients used by the
+// NSGradientType - Specify the gradients used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/GradientType
 type GradientType uint
@@ -194,7 +194,7 @@ const (
 	TextCellType CellType = 0
 )
 
-// NSCellHitResult - Constants used by the
+// NSCellHitResult - Constants used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/HitResult
 type CellHitResult uint
@@ -204,7 +204,7 @@ type CellHitResult uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/StyleMask
 type CellStyleMask uint
 
-// NSCollectionViewDropOperation - These constants specify if acceptance of a drop should be at the item it is dropped on or before the item. These constants are used by the
+// NSCollectionViewDropOperation - These constants specify if acceptance of a drop should be at the item it is dropped on or before the item. These constants are used by the  
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/DropOperation
 type CollectionViewDropOperation uint
@@ -276,7 +276,7 @@ const (
 	ColorSystemEffectPressed ColorSystemEffect = 0
 )
 
-// NSColorPanelMode - A type defined for the
+// NSColorPanelMode - A type defined for the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/Mode-swift.enum
 type ColorPanelMode uint
@@ -897,7 +897,7 @@ type ProgressIndicatorThickness uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectAlignment
 type RectAlignment uint
 
-// NSRulerOrientation - These constants are defined to specify a ruler’s orientation and are used by
+// NSRulerOrientation - These constants are defined to specify a ruler’s orientation and are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/Orientation-swift.enum
 type RulerOrientation uint
@@ -967,7 +967,7 @@ const (
 	ScrubberModeFree ScrubberMode = 0
 )
 
-// NSSegmentSwitchTracking - The following constants specify the type of tracking behavior a segmented control exhibits. They are used by
+// NSSegmentSwitchTracking - The following constants specify the type of tracking behavior a segmented control exhibits. They are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/SwitchTracking
 type SegmentSwitchTracking uint
@@ -993,7 +993,7 @@ const (
 	SharingCollaborationModeSendCopy SharingCollaborationMode = 0
 )
 
-// NSSliderType - The types of sliders, used by
+// NSSliderType - The types of sliders, used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/SliderType-swift.enum
 type SliderType uint
@@ -1039,7 +1039,7 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/TabPosition-swift.enum
 type TabPosition uint
 
-// NSTabViewType - These constants specify the tab view’s type as used by the
+// NSTabViewType - These constants specify the tab view’s type as used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/TabType
 type TabViewType uint
@@ -1059,12 +1059,12 @@ type TableColumnResizingOptions uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/AnimationOptions
 type TableViewAnimationOptions uint
 
-// NSTableViewColumnAutoresizingStyle - The following constants specify the autoresizing styles. These constants are used by the
+// NSTableViewColumnAutoresizingStyle - The following constants specify the autoresizing styles. These constants are used by the  
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/ColumnAutoresizingStyle-swift.enum
 type TableViewColumnAutoresizingStyle uint
 
-// NSTableViewDraggingDestinationFeedbackStyle - These constants specify the drag styles displayed by the table view. They’re used by
+// NSTableViewDraggingDestinationFeedbackStyle - These constants specify the drag styles displayed by the table view. They’re used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DraggingDestinationFeedbackStyle-swift.enum
 type TableViewDraggingDestinationFeedbackStyle uint
@@ -1088,12 +1088,12 @@ const (
 	TableViewGridNone TableViewGridLineStyle = 0
 )
 
-// NSTableRowActionEdge - These constants define table row edges on which row actions are attached. They are used by the
+// NSTableRowActionEdge - These constants define table row edges on which row actions are attached. They are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/RowActionEdge
 type TableRowActionEdge uint
 
-// NSTableViewRowSizeStyle - The row size style constants define the size of the rows in the table view. They are used by the
+// NSTableViewRowSizeStyle - The row size style constants define the size of the rows in the table view. They are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/RowSizeStyle-swift.enum
 type TableViewRowSizeStyle uint
@@ -1221,7 +1221,7 @@ const (
 	TitlebarSeparatorStyleShadow TitlebarSeparatorStyle = 0
 )
 
-// NSTokenStyle - The NSTokenStyle constants define how tokens are displayed and editable in the
+// NSTokenStyle - The NSTokenStyle constants define how tokens are displayed and editable in the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/TokenStyle-swift.enum
 type TokenStyle uint
@@ -1385,12 +1385,12 @@ type AutoresizingMaskOptions uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/BackgroundStyle
 type BackgroundStyle uint
 
-// NSViewLayerContentsPlacement - These constants specify the location of the layer content when the content is not rerendered in response to view resizing. For more information, see the
+// NSViewLayerContentsPlacement - These constants specify the location of the layer content when the content is not rerendered in response to view resizing. For more information, see the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/LayerContentsPlacement-swift.enum
 type ViewLayerContentsPlacement uint
 
-// NSViewLayerContentsRedrawPolicy - Constants that specify how layer resizing is handled when a view is layer-backed or layer-hosting. For more information, see the
+// NSViewLayerContentsRedrawPolicy - Constants that specify how layer resizing is handled when a view is layer-backed or layer-hosting. For more information, see the  
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/LayerContentsRedrawPolicy-swift.enum
 type ViewLayerContentsRedrawPolicy uint
@@ -1916,3 +1916,5 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsResultOptions
 type WritingToolsResultOptions uint
+
+

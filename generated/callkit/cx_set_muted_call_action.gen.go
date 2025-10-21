@@ -81,6 +81,8 @@ func NewCXSetMutedCallAction() CXSetMutedCallAction {
 }
 
 
+
+
 // Initializes a new action for a call identified by a given UUID, as well as whether the call is muted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(call:muted:)
@@ -90,6 +92,8 @@ func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID unsafe.Pointer, muted boo
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new action for a call with data in an unarchiver.
 //
@@ -119,4 +123,5 @@ func (c_ CXSetMutedCallAction) Muted() bool {
 func (c_ CXSetMutedCallAction) SetMuted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMuted:"), value)
 }
+
 

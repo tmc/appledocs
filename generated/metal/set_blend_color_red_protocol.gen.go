@@ -19,5 +19,3 @@ var setBlendColorRedProtocol *objc.Protocol
 func init() {
 	setBlendColorRedProtocol = objc.GetProtocol("setBlendColorRed:")
 }
-
-

@@ -20,5 +20,3 @@ var IOFileHandleProtocol *objc.Protocol
 func init() {
 	IOFileHandleProtocol = objc.GetProtocol("MTLIOFileHandle")
 }
-
-

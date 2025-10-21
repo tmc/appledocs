@@ -21,5 +21,3 @@ var OS_sec_certificateProtocol *objc.Protocol
 func init() {
 	OS_sec_certificateProtocol = objc.GetProtocol("OS_sec_certificate")
 }
-
-

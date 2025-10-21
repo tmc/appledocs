@@ -20,5 +20,3 @@ var setTextureViewFromBufferProtocol *objc.Protocol
 func init() {
 	setTextureViewFromBufferProtocol = objc.GetProtocol("setTextureViewFromBuffer:")
 }
-
-

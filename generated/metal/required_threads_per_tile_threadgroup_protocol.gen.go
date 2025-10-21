@@ -20,5 +20,3 @@ var requiredThreadsPerTileThreadgroupProtocol *objc.Protocol
 func init() {
 	requiredThreadsPerTileThreadgroupProtocol = objc.GetProtocol("requiredThreadsPerTileThreadgroup")
 }
-
-

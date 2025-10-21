@@ -99,6 +99,7 @@ func (e_ EmitterLayer) BirthRate() unsafe.Pointer {
 func (e_ EmitterLayer) SetBirthRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBirthRate:"), value)
 }
+
 // The array emitter cells attached to the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterCells
@@ -126,6 +127,7 @@ func (e_ EmitterLayer) SetEmitterCells(value []EmitterCell) {
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterCells:"), nsArray)
 }
+
 // Determines the depth of the emitter shape.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterDepth
@@ -143,6 +145,7 @@ func (e_ EmitterLayer) EmitterDepth() float64 {
 func (e_ EmitterLayer) SetEmitterDepth(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterDepth:"), value)
 }
+
 // Specifies the emitter mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterMode
@@ -160,6 +163,7 @@ func (e_ EmitterLayer) EmitterMode() unsafe.Pointer {
 func (e_ EmitterLayer) SetEmitterMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterMode:"), value)
 }
+
 // The position of the center of the particle emitter. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterPosition
@@ -177,6 +181,7 @@ func (e_ EmitterLayer) EmitterPosition() coregraphics.CGPoint {
 func (e_ EmitterLayer) SetEmitterPosition(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterPosition:"), value)
 }
+
 // Specifies the emitter shape.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
@@ -194,6 +199,7 @@ func (e_ EmitterLayer) EmitterShape() unsafe.Pointer {
 func (e_ EmitterLayer) SetEmitterShape(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterShape:"), value)
 }
+
 // Determines the size of the particle emitter shape. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterSize
@@ -211,6 +217,7 @@ func (e_ EmitterLayer) EmitterSize() coregraphics.CGSize {
 func (e_ EmitterLayer) SetEmitterSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterSize:"), value)
 }
+
 // Specifies the center of the particle emitter shape along the z-axis. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterZPosition
@@ -228,6 +235,7 @@ func (e_ EmitterLayer) EmitterZPosition() float64 {
 func (e_ EmitterLayer) SetEmitterZPosition(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterZPosition:"), value)
 }
+
 // Defines a multiplier applied to the cell-defined lifetime range when particles are created. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/lifetime
@@ -245,6 +253,7 @@ func (e_ EmitterLayer) Lifetime() unsafe.Pointer {
 func (e_ EmitterLayer) SetLifetime(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLifetime:"), value)
 }
+
 // Defines whether the layer flattens the particles into its plane.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/preservesDepth
@@ -262,6 +271,7 @@ func (e_ EmitterLayer) PreservesDepth() bool {
 func (e_ EmitterLayer) SetPreservesDepth(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPreservesDepth:"), value)
 }
+
 // Defines how particle cells are rendered into the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/renderMode
@@ -279,6 +289,7 @@ func (e_ EmitterLayer) RenderMode() unsafe.Pointer {
 func (e_ EmitterLayer) SetRenderMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRenderMode:"), value)
 }
+
 // Defines a multiplier applied to the cell-defined particle scale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/scale
@@ -296,6 +307,7 @@ func (e_ EmitterLayer) Scale() unsafe.Pointer {
 func (e_ EmitterLayer) SetScale(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setScale:"), value)
 }
+
 // Specifies the seed used to initialize the random number generator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/seed
@@ -313,6 +325,7 @@ func (e_ EmitterLayer) Seed() unsafe.Pointer {
 func (e_ EmitterLayer) SetSeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSeed:"), value)
 }
+
 // Defines a multiplier applied to the cell-defined particle spin. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/spin
@@ -330,6 +343,7 @@ func (e_ EmitterLayer) Spin() unsafe.Pointer {
 func (e_ EmitterLayer) SetSpin(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSpin:"), value)
 }
+
 // Defines a multiplier applied to the cell-defined particle velocity. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/velocity
@@ -347,5 +361,6 @@ func (e_ EmitterLayer) Velocity() unsafe.Pointer {
 func (e_ EmitterLayer) SetVelocity(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVelocity:"), value)
 }
+
 
 

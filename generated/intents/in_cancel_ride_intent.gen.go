@@ -81,6 +81,8 @@ func NewINCancelRideIntent() INCancelRideIntent {
 }
 
 
+
+
 // Initializes the intent object with the specified ride identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/init(rideIdentifier:)

@@ -19,5 +19,3 @@ var mpsMTLDeviceProtocol *objc.Protocol
 func init() {
 	mpsMTLDeviceProtocol = objc.GetProtocol("mpsMTLDevice")
 }
-
-

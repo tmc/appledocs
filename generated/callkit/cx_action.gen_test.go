@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = callkit.NewCXAction
 
-
 // ExampleNewCXAction demonstrates how to create a CXAction instance.
 // Initializes a new telephony action.
 func ExampleNewCXAction() {
 	_ = callkit.NewCXAction()
 	// Output:
 }
-
-
-

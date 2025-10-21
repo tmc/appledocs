@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterSetActivePresetRequestParams) PresetHandle() unsafe
 func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetPresetHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRThermostatClusterSetActivePresetRequestParams) ServerSideProcessingT
 func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRThermostatClusterSetActivePresetRequestParams) TimedInvokeTimeoutMs(
 func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

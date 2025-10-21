@@ -114,6 +114,7 @@ func (m_ MIDIUMPEndpoint) SetFunctionBlocks(value []MIDIUMPFunctionBlock) {
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionBlocks:"), nsArray)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasJRTSReceiveCapability
 func (m_ MIDIUMPEndpoint) HasJRTSReceiveCapability() bool {

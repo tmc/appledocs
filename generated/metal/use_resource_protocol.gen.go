@@ -20,5 +20,3 @@ var useResourceProtocol *objc.Protocol
 func init() {
 	useResourceProtocol = objc.GetProtocol("useResource:")
 }
-
-

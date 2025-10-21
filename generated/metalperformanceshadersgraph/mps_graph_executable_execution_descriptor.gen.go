@@ -96,6 +96,7 @@ func (g_ GraphExecutableExecutionDescriptor) CompletionHandler() unsafe.Pointer 
 func (g_ GraphExecutableExecutionDescriptor) SetCompletionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompletionHandler:"), value)
 }
+
 // A notification that appears when graph-executable execution is scheduled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableExecutionDescriptor/scheduledHandler
@@ -113,6 +114,7 @@ func (g_ GraphExecutableExecutionDescriptor) ScheduledHandler() unsafe.Pointer {
 func (g_ GraphExecutableExecutionDescriptor) SetScheduledHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScheduledHandler:"), value)
 }
+
 // Flag for the graph executable to wait till the execution has completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableExecutionDescriptor/waitUntilCompleted
@@ -130,5 +132,6 @@ func (g_ GraphExecutableExecutionDescriptor) WaitUntilCompleted() bool {
 func (g_ GraphExecutableExecutionDescriptor) SetWaitUntilCompleted(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitUntilCompleted:"), value)
 }
+
 
 

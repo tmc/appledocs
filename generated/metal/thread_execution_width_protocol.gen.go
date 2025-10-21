@@ -19,5 +19,3 @@ var threadExecutionWidthProtocol *objc.Protocol
 func init() {
 	threadExecutionWidthProtocol = objc.GetProtocol("threadExecutionWidth")
 }
-
-

@@ -18,5 +18,3 @@ var FileProviderTestingLookupProtocol *objc.Protocol
 func init() {
 	FileProviderTestingLookupProtocol = objc.GetProtocol("NSFileProviderTestingLookup")
 }
-
-

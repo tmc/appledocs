@@ -9,22 +9,22 @@ package apptrackingtransparency
 type ATTrackingManagerAuthorizationStatus uint
 
 const (
-// ATTrackingManagerAuthorizationStatusAuthorized - The value that returns if the user authorizes access to app-related data for   tracking the user or the device.
-//
+	// ATTrackingManagerAuthorizationStatusAuthorized - The value that returns if the user authorizes access to app-related data for   tracking the user or the device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/authorized
-ATTrackingManagerAuthorizationStatusAuthorized ATTrackingManagerAuthorizationStatus = 0
-// ATTrackingManagerAuthorizationStatusDenied - The value that returns if the user denies authorization to access   app-related data for tracking the user or the device.
-//
+	ATTrackingManagerAuthorizationStatusAuthorized ATTrackingManagerAuthorizationStatus = 0
+	// ATTrackingManagerAuthorizationStatusDenied - The value that returns if the user denies authorization to access   app-related data for tracking the user or the device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/denied
-ATTrackingManagerAuthorizationStatusDenied ATTrackingManagerAuthorizationStatus = 0
-// ATTrackingManagerAuthorizationStatusNotDetermined - The value that returns when the app can’t determine the user’s   authorization status for access to app-related data for tracking the   user or the device.
-//
+	ATTrackingManagerAuthorizationStatusDenied ATTrackingManagerAuthorizationStatus = 0
+	// ATTrackingManagerAuthorizationStatusNotDetermined - The value that returns when the app can’t determine the user’s   authorization status for access to app-related data for tracking the   user or the device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined
-ATTrackingManagerAuthorizationStatusNotDetermined ATTrackingManagerAuthorizationStatus = 0
-// ATTrackingManagerAuthorizationStatusRestricted - The value that returns if authorization to access app-related data for   tracking the user or the device has a restricted status.
-//
+	ATTrackingManagerAuthorizationStatusNotDetermined ATTrackingManagerAuthorizationStatus = 0
+	// ATTrackingManagerAuthorizationStatusRestricted - The value that returns if authorization to access app-related data for   tracking the user or the device has a restricted status.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted
-ATTrackingManagerAuthorizationStatusRestricted ATTrackingManagerAuthorizationStatus = 0
+	ATTrackingManagerAuthorizationStatusRestricted ATTrackingManagerAuthorizationStatus = 0
 )
 
 

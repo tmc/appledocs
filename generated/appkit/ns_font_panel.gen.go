@@ -80,6 +80,7 @@ func NewFontPanel() FontPanel {
 	return getFontPanelClass().New()
 }
 
+
 // A Boolean that indicates whether the receiver allows fonts to be changed in modal windows and panels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel/worksWhenModal
@@ -87,6 +88,7 @@ func (f_ FontPanel) WorksWhenModal() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
+
 
 // SetWorksWhenModal sets the value of the worksWhenModal property.
 // A Boolean that indicates whether the receiver allows fonts to be changed in modal windows and panels.
@@ -96,3 +98,6 @@ func (f_ FontPanel) WorksWhenModal() bool {
 func (f_ FontPanel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
+
+
+

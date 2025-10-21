@@ -15,5 +15,3 @@ var consumeImageDataProtocol *objc.Protocol
 func init() {
 	consumeImageDataProtocol = objc.GetProtocol("consumeImageData:")
 }
-
-

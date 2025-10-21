@@ -19,5 +19,3 @@ var fileURLForSearchableIndexProtocol *objc.Protocol
 func init() {
 	fileURLForSearchableIndexProtocol = objc.GetProtocol("fileURLForSearchableIndex:")
 }
-
-

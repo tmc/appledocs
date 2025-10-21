@@ -91,3 +91,4 @@ func (s_ SFChooseIdentityTableCellView) SetIssuerTextField(value unsafe.Pointer)
 }
 
 
+

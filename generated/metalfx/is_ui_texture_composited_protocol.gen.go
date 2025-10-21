@@ -19,5 +19,3 @@ var isUITextureCompositedProtocol *objc.Protocol
 func init() {
 	isUITextureCompositedProtocol = objc.GetProtocol("isUITextureComposited")
 }
-
-

@@ -12,5 +12,3 @@ var l2capChannelWriteCompleteProtocol *objc.Protocol
 func init() {
 	l2capChannelWriteCompleteProtocol = objc.GetProtocol("l2capChannelWriteComplete:")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) Arl() unsafe.Poi
 func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetArl(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArl:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProces
 func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeo
 func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

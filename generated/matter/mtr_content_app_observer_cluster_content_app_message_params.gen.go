@@ -90,6 +90,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() string {
 func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
 func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() string {
@@ -104,6 +105,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() str
 func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) ServerSideProcessi
 func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/timedInvokeTimeoutMs
@@ -138,5 +141,6 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) TimedInvokeTimeout
 func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

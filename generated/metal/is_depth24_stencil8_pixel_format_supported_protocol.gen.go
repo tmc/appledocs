@@ -16,5 +16,3 @@ var isDepth24Stencil8PixelFormatSupportedProtocol *objc.Protocol
 func init() {
 	isDepth24Stencil8PixelFormatSupportedProtocol = objc.GetProtocol("isDepth24Stencil8PixelFormatSupported")
 }
-
-

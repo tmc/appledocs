@@ -12,5 +12,3 @@ var rfcommChannelClosedProtocol *objc.Protocol
 func init() {
 	rfcommChannelClosedProtocol = objc.GetProtocol("rfcommChannelClosed:")
 }
-
-

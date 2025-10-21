@@ -179,6 +179,7 @@ func (w_ WebView) Editable() bool {
 func (w_ WebView) SetEditable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEditable:"), value)
 }
+
 // The identifier of the receiver’s preferences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/preferencesIdentifier
@@ -196,5 +197,7 @@ func (w_ WebView) PreferencesIdentifier() string {
 func (w_ WebView) SetPreferencesIdentifier(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferencesIdentifier:"), objc.String(value))
 }
+
+
 
 

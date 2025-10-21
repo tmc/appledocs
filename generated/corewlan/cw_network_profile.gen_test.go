@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = corewlan.NewCWNetworkProfile
 
-
 // ExampleNewCWNetworkProfile demonstrates how to create a CWNetworkProfile instance.
 // Creates and returns a CWNetworkProfile object.
 func ExampleNewCWNetworkProfile() {
 	_ = corewlan.NewCWNetworkProfile()
 	// Output:
 }
-
-
-

@@ -90,6 +90,7 @@ func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) OperationalDataset() 
 func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetOperationalDataset(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) ServerSideProcessingT
 func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) TimedInvokeTimeoutMs(
 func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

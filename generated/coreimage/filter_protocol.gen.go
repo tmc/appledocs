@@ -12,5 +12,3 @@ var FilterProtocol *objc.Protocol
 func init() {
 	FilterProtocol = objc.GetProtocol("CIFilter")
 }
-
-

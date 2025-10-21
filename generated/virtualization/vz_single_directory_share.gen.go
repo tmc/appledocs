@@ -81,6 +81,8 @@ func NewVZSingleDirectoryShare() VZSingleDirectoryShare {
 }
 
 
+
+
 // Creates a directory share with a directory that you specify on the host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/init(directory:)

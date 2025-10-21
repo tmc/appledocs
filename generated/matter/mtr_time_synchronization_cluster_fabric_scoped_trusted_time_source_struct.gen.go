@@ -90,6 +90,7 @@ func (m_ MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) Endpo
 func (m_ MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) SetEndpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct/nodeID
 func (m_ MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) NodeID() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) NodeI
 func (m_ MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) SetNodeID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
+
 
 

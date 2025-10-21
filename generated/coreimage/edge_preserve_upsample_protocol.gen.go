@@ -12,5 +12,3 @@ var EdgePreserveUpsampleProtocol *objc.Protocol
 func init() {
 	EdgePreserveUpsampleProtocol = objc.GetProtocol("CIEdgePreserveUpsample")
 }
-
-

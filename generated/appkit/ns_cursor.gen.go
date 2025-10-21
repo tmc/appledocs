@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Cursor] class.
@@ -80,6 +81,7 @@ func NewCursor() Cursor {
 	return getCursorClass().New()
 }
 
+
 // Returns a cursor indicating that the current operation will result in a link action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/dragLink
@@ -87,7 +89,6 @@ func (cc _CursorClass) DragLinkCursor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("dragLinkCursor"))
 	return rv
 }
-
 // Returns the zoom-out cursor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/zoomOut
@@ -95,7 +96,6 @@ func (cc _CursorClass) ZoomOutCursor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("zoomOutCursor"))
 	return rv
 }
-
 // Makes the receiver the current cursor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/set()
@@ -118,3 +118,6 @@ func (c_ Cursor) ZoomOutCursor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoomOutCursor"))
 	return rv
 }
+
+
+

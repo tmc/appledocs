@@ -19,4 +19,3 @@ var SFSpeechRecognizerDelegateProtocol *objc.Protocol
 func init() {
 	SFSpeechRecognizerDelegateProtocol = objc.GetProtocol("SFSpeechRecognizerDelegate")
 }
-

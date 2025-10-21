@@ -178,3 +178,4 @@ func (c_ CWWiFiClient) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+

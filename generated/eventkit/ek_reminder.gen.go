@@ -81,6 +81,8 @@ func NewEKReminder() EKReminder {
 }
 
 
+
+
 // Creates and returns a new reminder in the given event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/init(eventStore:)
@@ -115,6 +117,7 @@ func (e_ EKReminder) CompletionDate() unsafe.Pointer {
 func (e_ EKReminder) SetCompletionDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompletionDate:"), value)
 }
+
 // The date by which the reminder should be completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
@@ -132,6 +135,7 @@ func (e_ EKReminder) DueDateComponents() unsafe.Pointer {
 func (e_ EKReminder) SetDueDateComponents(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDueDateComponents:"), value)
 }
+
 // A Boolean value determining whether or not the reminder is marked completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/isCompleted
@@ -149,6 +153,7 @@ func (e_ EKReminder) Completed() bool {
 func (e_ EKReminder) SetCompleted(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompleted:"), value)
 }
+
 // The reminder’s priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/priority
@@ -166,6 +171,7 @@ func (e_ EKReminder) Priority() uint {
 func (e_ EKReminder) SetPriority(value uint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPriority:"), value)
 }
+
 // The start date of the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
@@ -183,4 +189,5 @@ func (e_ EKReminder) StartDateComponents() unsafe.Pointer {
 func (e_ EKReminder) SetStartDateComponents(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDateComponents:"), value)
 }
+
 

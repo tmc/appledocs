@@ -85,6 +85,8 @@ func NewPDFDocument() PDFDocument {
 }
 
 
+
+
 // Initializes a object with the passed-in data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocument/init(data:)
@@ -94,6 +96,8 @@ func NewPDFDocumentWithData(data unsafe.Pointer) PDFDocument {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a object with the contents at the specified URL (if the URL is invalid, this method returns ).
 //
@@ -160,4 +164,5 @@ func (p_ PDFDocument) Delegate() objc.ID {
 func (p_ PDFDocument) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 

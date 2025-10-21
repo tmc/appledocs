@@ -12,5 +12,3 @@ var OS_dispatch_groupProtocol *objc.Protocol
 func init() {
 	OS_dispatch_groupProtocol = objc.GetProtocol("OS_dispatch_group")
 }
-
-

@@ -20,5 +20,3 @@ var nextBoolProtocol *objc.Protocol
 func init() {
 	nextBoolProtocol = objc.GetProtocol("nextBool")
 }
-
-

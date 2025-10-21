@@ -20,5 +20,3 @@ var waitForFenceProtocol *objc.Protocol
 func init() {
 	waitForFenceProtocol = objc.GetProtocol("waitForFence:")
 }
-
-

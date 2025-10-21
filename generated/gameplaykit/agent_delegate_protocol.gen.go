@@ -20,5 +20,3 @@ var AgentDelegateProtocol *objc.Protocol
 func init() {
 	AgentDelegateProtocol = objc.GetProtocol("GKAgentDelegate")
 }
-
-

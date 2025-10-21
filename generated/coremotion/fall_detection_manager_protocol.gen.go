@@ -15,5 +15,3 @@ var fallDetectionManagerProtocol *objc.Protocol
 func init() {
 	fallDetectionManagerProtocol = objc.GetProtocol("fallDetectionManager:")
 }
-
-

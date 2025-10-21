@@ -18,5 +18,3 @@ var INCancelRideIntentHandlingProtocol *objc.Protocol
 func init() {
 	INCancelRideIntentHandlingProtocol = objc.GetProtocol("INCancelRideIntentHandling")
 }
-
-

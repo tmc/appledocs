@@ -12,5 +12,3 @@ var DisintegrateWithMaskTransitionProtocol *objc.Protocol
 func init() {
 	DisintegrateWithMaskTransitionProtocol = objc.GetProtocol("CIDisintegrateWithMaskTransition")
 }
-
-

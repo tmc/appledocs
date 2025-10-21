@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrollEdgeEffectStyle] class.
@@ -76,3 +77,7 @@ func (s_ ScrollEdgeEffectStyle) Autorelease() ScrollEdgeEffectStyle {
 func NewScrollEdgeEffectStyle() ScrollEdgeEffectStyle {
 	return getScrollEdgeEffectStyleClass().New()
 }
+
+
+
+

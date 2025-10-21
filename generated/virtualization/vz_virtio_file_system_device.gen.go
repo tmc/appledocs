@@ -98,6 +98,7 @@ func (v_ VZVirtioFileSystemDevice) Share() unsafe.Pointer {
 func (v_ VZVirtioFileSystemDevice) SetShare(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShare:"), value)
 }
+
 // A string that identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/tag

@@ -81,15 +81,7 @@ func NewAXCategoricalDataAxisDescriptor() AXCategoricalDataAxisDescriptor {
 }
 
 
-// Creates a categorical data axis with the specified title and an array of categories in the specified order.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(title:categoryOrder:)
-func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, categoryOrder unsafe.Pointer) AXCategoricalDataAxisDescriptor {
-	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
-	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), objc.String(title), categoryOrder)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a categorical data axis with the specified attributed title and an array of categories in the specified order.
 //
@@ -97,6 +89,18 @@ func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, cate
 func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attributedTitle unsafe.Pointer, categoryOrder unsafe.Pointer) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:categoryOrder:"), attributedTitle, categoryOrder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a categorical data axis with the specified title and an array of categories in the specified order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(title:categoryOrder:)
+func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, categoryOrder unsafe.Pointer) AXCategoricalDataAxisDescriptor {
+	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
+	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), objc.String(title), categoryOrder)
 	rv.Autorelease()
 	return rv
 }
@@ -129,4 +133,5 @@ func (a_ AXCategoricalDataAxisDescriptor) SetCategoryOrder(value []string) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCategoryOrder:"), nsArray)
 }
+
 

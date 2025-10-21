@@ -19,5 +19,3 @@ var startSendingUpdatesForGetRideStatusProtocol *objc.Protocol
 func init() {
 	startSendingUpdatesForGetRideStatusProtocol = objc.GetProtocol("startSendingUpdatesForGetRideStatus:")
 }
-
-

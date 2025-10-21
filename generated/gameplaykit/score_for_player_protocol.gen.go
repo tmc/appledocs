@@ -20,5 +20,3 @@ var scoreForPlayerProtocol *objc.Protocol
 func init() {
 	scoreForPlayerProtocol = objc.GetProtocol("scoreForPlayer:")
 }
-
-

@@ -76,6 +76,8 @@ func NewMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams() MTRTh
 }
 
 
+
+
 // Initialize an MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) Opera
 func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) SetOperationalDataset(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
+
 

@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() unsafe.Pointer 
 func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfPresets:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetScenario
 func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() unsafe.Pointer {
 func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetTypeFeatures
 func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() unsafe.Point
 func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetTypeFeatures:"), value)
 }
+
 
 

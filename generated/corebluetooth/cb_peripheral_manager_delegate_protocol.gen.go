@@ -21,5 +21,3 @@ var CBPeripheralManagerDelegateProtocol *objc.Protocol
 func init() {
 	CBPeripheralManagerDelegateProtocol = objc.GetProtocol("CBPeripheralManagerDelegate")
 }
-
-

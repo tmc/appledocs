@@ -12,5 +12,3 @@ var AffineClampProtocol *objc.Protocol
 func init() {
 	AffineClampProtocol = objc.GetProtocol("CIAffineClamp")
 }
-
-

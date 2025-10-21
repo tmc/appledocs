@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = quartz.NewQCCompositionLayer
 
-
-
 // ExampleNewQCCompositionLayerWithFile demonstrates how to create a QCCompositionLayer instance using NewQCCompositionLayerWithFile.
 // Initializes and returns a composition layer using the Quartz Composer composition in the specified file.
 func ExampleNewQCCompositionLayerWithFile() {
@@ -19,5 +17,3 @@ func ExampleNewQCCompositionLayerWithFile() {
 	)
 	// Output:
 }
-
-

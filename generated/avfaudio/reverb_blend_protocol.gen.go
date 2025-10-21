@@ -12,5 +12,3 @@ var reverbBlendProtocol *objc.Protocol
 func init() {
 	reverbBlendProtocol = objc.GetProtocol("reverbBlend")
 }
-
-

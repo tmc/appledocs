@@ -81,6 +81,8 @@ func NewCKFetchRecordsOperation() CKFetchRecordsOperation {
 }
 
 
+
+
 // Creates a fetch operation for retrieving the records with the specified IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/init(recordIDs:)
@@ -127,6 +129,7 @@ func (c_ CKFetchRecordsOperation) SetDesiredKeys(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
+
 // The record IDs of the records to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
@@ -154,4 +157,5 @@ func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDs:"), nsArray)
 }
+
 

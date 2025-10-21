@@ -12,5 +12,3 @@ var sdpQueryCompleteProtocol *objc.Protocol
 func init() {
 	sdpQueryCompleteProtocol = objc.GetProtocol("sdpQueryComplete:")
 }
-
-

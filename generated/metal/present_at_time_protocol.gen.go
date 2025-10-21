@@ -19,5 +19,3 @@ var presentAtTimeProtocol *objc.Protocol
 func init() {
 	presentAtTimeProtocol = objc.GetProtocol("presentAtTime:")
 }
-
-

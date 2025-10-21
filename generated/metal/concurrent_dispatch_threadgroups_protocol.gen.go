@@ -20,5 +20,3 @@ var concurrentDispatchThreadgroupsProtocol *objc.Protocol
 func init() {
 	concurrentDispatchThreadgroupsProtocol = objc.GetProtocol("concurrentDispatchThreadgroups:")
 }
-
-

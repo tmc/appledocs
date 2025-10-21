@@ -9,9 +9,3 @@ import (
 // Suppress unused import errors
 var _ = quartz.NewQCRenderer
 
-
-
-
-
-
-

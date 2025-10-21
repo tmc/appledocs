@@ -101,3 +101,4 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationInput) SetSupportR
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportRequirement:"), value)
 }
 
+

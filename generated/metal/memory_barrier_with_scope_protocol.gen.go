@@ -20,5 +20,3 @@ var memoryBarrierWithScopeProtocol *objc.Protocol
 func init() {
 	memoryBarrierWithScopeProtocol = objc.GetProtocol("memoryBarrierWithScope:")
 }
-
-

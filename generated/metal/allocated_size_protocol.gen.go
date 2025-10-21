@@ -20,5 +20,3 @@ var allocatedSizeProtocol *objc.Protocol
 func init() {
 	allocatedSizeProtocol = objc.GetProtocol("allocatedSize")
 }
-
-

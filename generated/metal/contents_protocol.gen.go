@@ -19,5 +19,3 @@ var contentsProtocol *objc.Protocol
 func init() {
 	contentsProtocol = objc.GetProtocol("contents")
 }
-
-

@@ -104,6 +104,7 @@ func (v_ VZSpiceAgentPortAttachment) SharesClipboard() bool {
 func (v_ VZSpiceAgentPortAttachment) SetSharesClipboard(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSharesClipboard:"), value)
 }
+
 // The name of the Virtio console port for the Spice guest agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSpiceAgentPortAttachment/spiceAgentPortName

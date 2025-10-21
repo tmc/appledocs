@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrubberSelectionStyle] class.
@@ -80,6 +81,9 @@ func NewScrubberSelectionStyle() ScrubberSelectionStyle {
 	return getScrubberSelectionStyleClass().New()
 }
 
+
+
+
 // Initializes a scrubber selection style when included from a nib or Storyboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/init(coder:)
@@ -90,6 +94,7 @@ func NewScrubberSelectionStyleWithCoder(coder unsafe.Pointer) ScrubberSelectionS
 	return rv
 }
 
+
 // A built-in selection style that draws the outline of the scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
@@ -97,7 +102,6 @@ func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
 	return rv
 }
-
 // Provides an opportunity to create a customized scrubber selection style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/makeSelectionView()
@@ -113,3 +117,5 @@ func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("outlineOverlayStyle"))
 	return rv
 }
+
+

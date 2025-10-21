@@ -19,5 +19,3 @@ var newLibraryWithDataProtocol *objc.Protocol
 func init() {
 	newLibraryWithDataProtocol = objc.GetProtocol("newLibraryWithData:")
 }
-
-

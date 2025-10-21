@@ -87,15 +87,7 @@ func NewDrawing() Drawing {
 }
 
 
-// Creates a drawing object with the strokes you supply.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/init(strokes:)
-func NewDrawingWithStrokes(strokes unsafe.Pointer) Drawing {
-	instance := getDrawingClass().Alloc()
-	rv := objc.Send[Drawing](instance.ID, objc.Sel("initWithStrokes:"), strokes)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a drawing object and populates it with previously drawn content.
 //
@@ -103,6 +95,18 @@ func NewDrawingWithStrokes(strokes unsafe.Pointer) Drawing {
 func NewDrawingWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) Drawing {
 	instance := getDrawingClass().Alloc()
 	rv := objc.Send[Drawing](instance.ID, objc.Sel("initWithData:error:"), data, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a drawing object with the strokes you supply.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/init(strokes:)
+func NewDrawingWithStrokes(strokes unsafe.Pointer) Drawing {
+	instance := getDrawingClass().Alloc()
+	rv := objc.Send[Drawing](instance.ID, objc.Sel("initWithStrokes:"), strokes)
 	rv.Autorelease()
 	return rv
 }

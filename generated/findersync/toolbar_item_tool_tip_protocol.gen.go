@@ -15,5 +15,3 @@ var toolbarItemToolTipProtocol *objc.Protocol
 func init() {
 	toolbarItemToolTipProtocol = objc.GetProtocol("toolbarItemToolTip")
 }
-
-

@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZVirtioGraphicsScanoutConfiguration
 
-
 // ExampleNewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels demonstrates how to create a VZVirtioGraphicsScanoutConfiguration instance using NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels.
 // Creates a Virtio graphics device with the specified dimensions.
 func ExampleNewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels() {
@@ -19,5 +18,3 @@ func ExampleNewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixe
 	)
 	// Output:
 }
-
-

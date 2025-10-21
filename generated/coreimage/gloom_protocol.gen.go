@@ -12,5 +12,3 @@ var GloomProtocol *objc.Protocol
 func init() {
 	GloomProtocol = objc.GetProtocol("CIGloom")
 }
-
-

@@ -15,5 +15,3 @@ var synchronizeWithFlagsProtocol *objc.Protocol
 func init() {
 	synchronizeWithFlagsProtocol = objc.GetProtocol("synchronizeWithFlags:")
 }
-
-

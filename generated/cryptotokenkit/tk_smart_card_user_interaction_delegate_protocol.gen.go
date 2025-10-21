@@ -16,5 +16,3 @@ var TKSmartCardUserInteractionDelegateProtocol *objc.Protocol
 func init() {
 	TKSmartCardUserInteractionDelegateProtocol = objc.GetProtocol("TKSmartCardUserInteractionDelegate")
 }
-
-

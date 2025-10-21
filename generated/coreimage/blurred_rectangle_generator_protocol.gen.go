@@ -12,5 +12,3 @@ var BlurredRectangleGeneratorProtocol *objc.Protocol
 func init() {
 	BlurredRectangleGeneratorProtocol = objc.GetProtocol("CIBlurredRectangleGenerator")
 }
-
-

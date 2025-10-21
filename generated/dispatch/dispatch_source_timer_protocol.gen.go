@@ -12,5 +12,3 @@ var DispatchSourceTimerProtocol *objc.Protocol
 func init() {
 	DispatchSourceTimerProtocol = objc.GetProtocol("DispatchSourceTimer")
 }
-
-

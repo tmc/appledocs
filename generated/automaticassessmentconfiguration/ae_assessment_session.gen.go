@@ -84,6 +84,8 @@ func NewAEAssessmentSession() AEAssessmentSession {
 }
 
 
+
+
 // Creates a new assessment session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)
@@ -155,6 +157,7 @@ func (a_ AEAssessmentSession) Delegate() objc.ID {
 func (a_ AEAssessmentSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean that indicates whether an assessment session is running.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/isActive

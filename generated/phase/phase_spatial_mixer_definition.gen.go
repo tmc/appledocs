@@ -98,6 +98,7 @@ func (p_ PHASESpatialMixerDefinition) DistanceModelParameters() unsafe.Pointer {
 func (p_ PHASESpatialMixerDefinition) SetDistanceModelParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
 }
+
 // A data set that determines how well the listener hears depending on its direction relative to a sound source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/listenerDirectivityModelParameters
@@ -115,6 +116,7 @@ func (p_ PHASESpatialMixerDefinition) ListenerDirectivityModelParameters() unsaf
 func (p_ PHASESpatialMixerDefinition) SetListenerDirectivityModelParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setListenerDirectivityModelParameters:"), value)
 }
+
 // An object that adds sound layers for environmental effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/spatialPipeline

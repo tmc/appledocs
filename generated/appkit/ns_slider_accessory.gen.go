@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SliderAccessory] class.
@@ -73,3 +74,7 @@ func (s_ SliderAccessory) Autorelease() SliderAccessory {
 func NewSliderAccessory() SliderAccessory {
 	return getSliderAccessoryClass().New()
 }
+
+
+
+

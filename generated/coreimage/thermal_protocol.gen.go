@@ -12,5 +12,3 @@ var ThermalProtocol *objc.Protocol
 func init() {
 	ThermalProtocol = objc.GetProtocol("CIThermal")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ActiveSlotNumber() unsa
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetActiveSlotNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveSlotNumber:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/earliestStartTime
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() uns
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEarliestStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEarliestStartTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/endTime
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() unsafe.Pointe
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastID
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() unsafe.Poi
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastUpdateReason
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() 
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastUpdateReason(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastUpdateReason:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/isPausable
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() unsafe.Poi
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetIsPausable(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPausable:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/latestEndTime
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() unsafe.Pointer {
@@ -174,6 +180,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() unsafe.
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetLatestEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestEndTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/slots
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) Slots() unsafe.Pointer {
@@ -188,6 +195,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) Slots() unsafe.Pointer 
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetSlots(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlots:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/startTime
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() unsafe.Pointer {
@@ -202,5 +210,6 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() unsafe.Poin
 func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 
 

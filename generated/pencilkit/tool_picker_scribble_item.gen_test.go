@@ -9,12 +9,10 @@ import (
 // Suppress unused import errors
 var _ = pencilkit.NewToolPickerScribbleItem
 
-
 // ExampleNewToolPickerScribbleItem demonstrates how to create a ToolPickerScribbleItem instance.
 // Create a new Scribble item.
 func ExampleNewToolPickerScribbleItem() {
 	_ = pencilkit.NewToolPickerScribbleItem()
 	// Output:
 }
-
 

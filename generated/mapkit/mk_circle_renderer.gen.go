@@ -81,6 +81,8 @@ func NewMKCircleRenderer() MKCircleRenderer {
 }
 
 
+
+
 // Creates a new overlay view using the specified circle overlay object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/init(circle:)
@@ -117,6 +119,7 @@ func (m_ MKCircleRenderer) StrokeEnd() float64 {
 func (m_ MKCircleRenderer) SetStrokeEnd(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStrokeEnd:"), value)
 }
+
 // The unit distance along the circle where the stroke starts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/strokeStart
@@ -134,4 +137,5 @@ func (m_ MKCircleRenderer) StrokeStart() float64 {
 func (m_ MKCircleRenderer) SetStrokeStart(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStrokeStart:"), value)
 }
+
 

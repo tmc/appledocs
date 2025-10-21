@@ -81,6 +81,8 @@ func NewFileProviderDomain() FileProviderDomain {
 }
 
 
+
+
 // Creates a new file provider domain with the specified URL and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
@@ -91,6 +93,8 @@ func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, u
 	return rv
 }
 
+
+
 // Creates a new file provider domain with the specified identifier and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
@@ -100,6 +104,8 @@ func NewFileProviderDomainWithIdentifierDisplayName(identifier unsafe.Pointer, d
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Returns a newly instantiated domain.
 //
@@ -161,6 +167,7 @@ func (f_ FileProviderDomain) Hidden() bool {
 func (f_ FileProviderDomain) SetHidden(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHidden:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/isReplicated
 func (f_ FileProviderDomain) Replicated() bool {
@@ -201,6 +208,7 @@ func (f_ FileProviderDomain) SupportedKnownFolders() unsafe.Pointer {
 func (f_ FileProviderDomain) SetSupportedKnownFolders(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedKnownFolders:"), value)
 }
+
 // A Boolean value that indicates whether the provider supports search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsStringSearchRequest
@@ -218,6 +226,7 @@ func (f_ FileProviderDomain) SupportsStringSearchRequest() bool {
 func (f_ FileProviderDomain) SetSupportsStringSearchRequest(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsStringSearchRequest:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsSyncingTrash
 func (f_ FileProviderDomain) SupportsSyncingTrash() bool {
@@ -232,6 +241,7 @@ func (f_ FileProviderDomain) SupportsSyncingTrash() bool {
 func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsSyncingTrash:"), value)
 }
+
 // A mode that gives the File Provider extension more control over the system’s behavior during testing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
@@ -249,6 +259,7 @@ func (f_ FileProviderDomain) TestingModes() unsafe.Pointer {
 func (f_ FileProviderDomain) SetTestingModes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTestingModes:"), value)
 }
+
 // A Boolean value that indicates whether the user has enabled or disabled the domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/userEnabled
@@ -271,6 +282,7 @@ func (f_ FileProviderDomain) UserInfo() unsafe.Pointer {
 func (f_ FileProviderDomain) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUserInfo:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/volumeUUID
 func (f_ FileProviderDomain) VolumeUUID() unsafe.Pointer {

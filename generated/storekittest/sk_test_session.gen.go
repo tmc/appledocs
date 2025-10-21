@@ -97,6 +97,8 @@ func NewTestSession() TestSession {
 }
 
 
+
+
 // Initializes the test session with the provided configuration file that you include in your application’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)
@@ -106,6 +108,8 @@ func NewTestSessionWithConfigurationFileNamedError(filename string, error_ unsaf
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes the test session with a configuration file you provide through a URL.
 //
@@ -261,6 +265,7 @@ func (t_ TestSession) AskToBuyEnabled() bool {
 func (t_ TestSession) SetAskToBuyEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAskToBuyEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the test environment simulates a billing grace period for auto-renewable subscriptions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/billingGracePeriodIsEnabled
@@ -278,6 +283,7 @@ func (t_ TestSession) BillingGracePeriodEnabled() bool {
 func (t_ TestSession) SetBillingGracePeriodEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBillingGracePeriodEnabled:"), value)
 }
+
 // A Boolean value that determines whether the testing environment disables dialogs during automated testing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/disableDialogs
@@ -295,6 +301,7 @@ func (t_ TestSession) DisableDialogs() bool {
 func (t_ TestSession) SetDisableDialogs(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisableDialogs:"), value)
 }
+
 // A Boolean value that determines whether transactions fail in the testing environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/failTransactionsEnabled
@@ -312,6 +319,7 @@ func (t_ TestSession) FailTransactionsEnabled() bool {
 func (t_ TestSession) SetFailTransactionsEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFailTransactionsEnabled:"), value)
 }
+
 // The error code that transactions return when you enable failing transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/failureError
@@ -329,6 +337,7 @@ func (t_ TestSession) FailureError() unsafe.Pointer {
 func (t_ TestSession) SetFailureError(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFailureError:"), value)
 }
+
 // A Boolean value that determines whether the test environment simulates an interrupted purchase.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/interruptedPurchasesEnabled
@@ -346,6 +355,7 @@ func (t_ TestSession) InterruptedPurchasesEnabled() bool {
 func (t_ TestSession) SetInterruptedPurchasesEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInterruptedPurchasesEnabled:"), value)
 }
+
 // The value that determines the localization metadata the test environment uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/locale
@@ -363,6 +373,7 @@ func (t_ TestSession) Locale() unsafe.Pointer {
 func (t_ TestSession) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocale:"), value)
 }
+
 // A Boolean value that indicates whether the testing environment enters a billing retry state when an auto-renewable subscription renews.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/shouldEnterBillingRetryOnRenewal
@@ -380,6 +391,7 @@ func (t_ TestSession) BillingRetryOnRenewalEnabled() bool {
 func (t_ TestSession) SetBillingRetryOnRenewalEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBillingRetryOnRenewalEnabled:"), value)
 }
+
 // The three-letter code that represents the region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/storefront
@@ -397,6 +409,7 @@ func (t_ TestSession) Storefront() string {
 func (t_ TestSession) SetStorefront(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStorefront:"), objc.String(value))
 }
+
 // The rate at which time passes for subscriptions in the test environment as compared to real time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/timeRate-swift.property
@@ -414,4 +427,5 @@ func (t_ TestSession) TimeRate() unsafe.Pointer {
 func (t_ TestSession) SetTimeRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeRate:"), value)
 }
+
 

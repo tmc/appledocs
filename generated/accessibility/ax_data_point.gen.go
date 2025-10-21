@@ -79,6 +79,8 @@ func NewAXDataPoint() AXDataPoint {
 }
 
 
+
+
 // Creates a data point with the specified x- and y-values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:
@@ -89,6 +91,8 @@ func NewAXDataPointWithXY(xValue unsafe.Pointer, yValue unsafe.Pointer) AXDataPo
 	return rv
 }
 
+
+
 // Creates a data point with the specified x-value, y-value, and additional values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:
@@ -98,6 +102,8 @@ func NewAXDataPointWithXYAdditionalValues(xValue unsafe.Pointer, yValue unsafe.P
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a data point with the specified x-value, y-value, additional values, and label.
 //
@@ -137,6 +143,7 @@ func (a_ AXDataPoint) SetAdditionalValues(value []AXDataPointValue) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAdditionalValues:"), nsArray)
 }
+
 // An attributed version of the label for the data point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/attributedLabel
@@ -154,6 +161,7 @@ func (a_ AXDataPoint) AttributedLabel() unsafe.Pointer {
 func (a_ AXDataPoint) SetAttributedLabel(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedLabel:"), value)
 }
+
 // The label for the data point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
@@ -171,6 +179,7 @@ func (a_ AXDataPoint) Label() string {
 func (a_ AXDataPoint) SetLabel(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // The value of the x-axis for the data point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/xValue
@@ -188,6 +197,7 @@ func (a_ AXDataPoint) XValue() unsafe.Pointer {
 func (a_ AXDataPoint) SetXValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setXValue:"), value)
 }
+
 // The value of the y-axis for the data point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/yValue
@@ -205,4 +215,5 @@ func (a_ AXDataPoint) YValue() unsafe.Pointer {
 func (a_ AXDataPoint) SetYValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setYValue:"), value)
 }
+
 

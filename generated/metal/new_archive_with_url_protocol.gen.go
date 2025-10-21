@@ -20,5 +20,3 @@ var newArchiveWithURLProtocol *objc.Protocol
 func init() {
 	newArchiveWithURLProtocol = objc.GetProtocol("newArchiveWithURL:")
 }
-
-

@@ -12,5 +12,3 @@ var ColorThresholdOtsuProtocol *objc.Protocol
 func init() {
 	ColorThresholdOtsuProtocol = objc.GetProtocol("CIColorThresholdOtsu")
 }
-
-

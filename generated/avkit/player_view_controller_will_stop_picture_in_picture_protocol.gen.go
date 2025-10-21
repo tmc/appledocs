@@ -19,5 +19,3 @@ var playerViewControllerWillStopPictureInPictureProtocol *objc.Protocol
 func init() {
 	playerViewControllerWillStopPictureInPictureProtocol = objc.GetProtocol("playerViewControllerWillStopPictureInPicture:")
 }
-
-

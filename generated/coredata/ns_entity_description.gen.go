@@ -106,6 +106,7 @@ func (e_ EntityDescription) Name() string {
 func (e_ EntityDescription) SetName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The version hash for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/versionHash

@@ -100,6 +100,7 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() 
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataToWrite:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/operation
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) Operation() unsafe.Pointer {

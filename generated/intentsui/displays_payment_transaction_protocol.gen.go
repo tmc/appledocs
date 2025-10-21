@@ -18,4 +18,3 @@ var displaysPaymentTransactionProtocol *objc.Protocol
 func init() {
 	displaysPaymentTransactionProtocol = objc.GetProtocol("displaysPaymentTransaction")
 }
-

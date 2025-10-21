@@ -82,6 +82,8 @@ func NewMediaTimingFunction() MediaTimingFunction {
 }
 
 
+
+
 // Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(controlPoints:_:_:_:)
@@ -91,6 +93,8 @@ func NewMediaTimingFunctionWithControlPoints(c1x unsafe.Pointer, c1y unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates and returns a new instance of configured with the predefined timing function specified by .
 //

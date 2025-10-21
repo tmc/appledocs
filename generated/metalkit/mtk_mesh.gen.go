@@ -79,6 +79,8 @@ func NewMesh() Mesh {
 }
 
 
+
+
 // Initializes a MetalKit mesh and its submeshes from a Model I/O mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/init(mesh:device:)
@@ -115,6 +117,7 @@ func (m_ Mesh) Name() string {
 func (m_ Mesh) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // An array of submeshes containing index buffers referencing the mesh vertices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/submeshes

@@ -20,5 +20,3 @@ var BAManagedDownloaderExtensionProtocol *objc.Protocol
 func init() {
 	BAManagedDownloaderExtensionProtocol = objc.GetProtocol("BAManagedDownloaderExtension")
 }
-
-

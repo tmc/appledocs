@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FontDescriptor] class.
@@ -80,6 +81,7 @@ func NewFontDescriptor() FontDescriptor {
 	return getFontDescriptorClass().New()
 }
 
+
 // Returns a font descriptor with a dictionary of attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/fontDescriptorWithFontAttributes:
@@ -111,3 +113,6 @@ func (f_ FontDescriptor) SymbolicTraits() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("symbolicTraits"))
 	return rv
 }
+
+
+

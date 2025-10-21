@@ -81,6 +81,8 @@ func NewCustomMigrationStage() CustomMigrationStage {
 }
 
 
+
+
 // Creates a custom migration stage with the specified source and destination model references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:
@@ -117,6 +119,7 @@ func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
 func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDidMigrateHandler:"), value)
 }
+
 // The reference that represents the migration’s destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/nextModel
@@ -142,4 +145,5 @@ func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWillMigrateHandler:"), value)
 }
+
 

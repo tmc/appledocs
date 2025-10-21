@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Control] class.
@@ -106,6 +106,9 @@ func NewControl() Control {
 	return getControlClass().New()
 }
 
+
+
+
 // Initializes a control with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
@@ -116,6 +119,8 @@ func NewControlWithCoder(coder unsafe.Pointer) Control {
 	return rv
 }
 
+
+
 // Initializes a control with the specified frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
@@ -125,6 +130,7 @@ func NewControlWithFrame(frameRect coregraphics.CGRect) Control {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Terminates the current editing operation and discards any edited text.
 //
@@ -316,6 +322,7 @@ func (c_ Control) Action() objc.SEL {
 	return rv
 }
 
+
 // SetAction sets the value of the action property.
 // The default action-message selector associated with the control.
 
@@ -332,6 +339,7 @@ func (c_ Control) Alignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
 	return rv
 }
+
 
 // SetAlignment sets the value of the alignment property.
 // The alignment mode of the text in the receiver’s cell.
@@ -350,6 +358,7 @@ func (c_ Control) AllowsExpansionToolTips() bool {
 	return rv
 }
 
+
 // SetAllowsExpansionToolTips sets the value of the allowsExpansionToolTips property.
 // A Boolean value that indicates whether expansion tool tips are shown when the control is hovered over.
 
@@ -366,6 +375,7 @@ func (c_ Control) AttributedStringValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
+
 
 // SetAttributedStringValue sets the value of the attributedStringValue property.
 // The value of the receiver’s cell as an attributed string.
@@ -384,6 +394,7 @@ func (c_ Control) BaseWritingDirection() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBaseWritingDirection sets the value of the baseWritingDirection property.
 // The initial writing direction used to determine the actual writing direction for text.
 
@@ -400,6 +411,7 @@ func (c_ Control) ControlSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
+
 
 // SetControlSize sets the value of the controlSize property.
 // The size of the control.
@@ -418,6 +430,7 @@ func (c_ Control) DoubleValue() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDoubleValue sets the value of the doubleValue property.
 // The value of the receiver’s cell as a double-precision floating-point number.
 
@@ -434,6 +447,7 @@ func (c_ Control) FloatValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("floatValue"))
 	return rv
 }
+
 
 // SetFloatValue sets the value of the floatValue property.
 // The value of the receiver’s cell as a single-precision floating-point number.
@@ -452,6 +466,7 @@ func (c_ Control) Font() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFont sets the value of the font property.
 // The font used to draw text in the receiver’s cell.
 
@@ -468,6 +483,7 @@ func (c_ Control) Formatter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("formatter"))
 	return rv
 }
+
 
 // SetFormatter sets the value of the formatter property.
 // The receiver’s formatter.
@@ -486,6 +502,7 @@ func (c_ Control) IgnoresMultiClick() bool {
 	return rv
 }
 
+
 // SetIgnoresMultiClick sets the value of the ignoresMultiClick property.
 // A Boolean value indicating whether the receiver ignores multiple clicks made in rapid succession.
 
@@ -502,6 +519,7 @@ func (c_ Control) IntValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("intValue"))
 	return rv
 }
+
 
 // SetIntValue sets the value of the intValue property.
 // The value of the receiver’s cell as an integer.
@@ -520,6 +538,7 @@ func (c_ Control) IntegerValue() int {
 	return rv
 }
 
+
 // SetIntegerValue sets the value of the integerValue property.
 // The value of the receiver’s cell as an value.
 
@@ -536,6 +555,7 @@ func (c_ Control) Continuous() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
 	return rv
 }
+
 
 // SetContinuous sets the value of the continuous property.
 // A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
@@ -554,6 +574,7 @@ func (c_ Control) Enabled() bool {
 	return rv
 }
 
+
 // SetEnabled sets the value of the enabled property.
 // A Boolean value that indicates whether the receiver reacts to mouse events.
 
@@ -570,6 +591,7 @@ func (c_ Control) Highlighted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("highlighted"))
 	return rv
 }
+
 
 // SetHighlighted sets the value of the highlighted property.
 // A Boolean value that indicates whether the cell is highlighted.
@@ -588,6 +610,7 @@ func (c_ Control) LineBreakMode() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLineBreakMode sets the value of the lineBreakMode property.
 // The line break mode to use for text in the control’s cell.
 
@@ -604,6 +627,7 @@ func (c_ Control) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("objectValue"))
 	return rv
 }
+
 
 // SetObjectValue sets the value of the objectValue property.
 // The value of the receiver’s cell as an Objective-C object.
@@ -622,6 +646,7 @@ func (c_ Control) RefusesFirstResponder() bool {
 	return rv
 }
 
+
 // SetRefusesFirstResponder sets the value of the refusesFirstResponder property.
 // A Boolean value indicating whether the receiver refuses the first responder role.
 
@@ -638,6 +663,7 @@ func (c_ Control) StringValue() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
+
 
 // SetStringValue sets the value of the stringValue property.
 // The value of the receiver’s cell as an object.
@@ -656,6 +682,7 @@ func (c_ Control) Tag() int {
 	return rv
 }
 
+
 // SetTag sets the value of the tag property.
 // The tag identifying the receiver (not the tag of the receiver’s cell).
 
@@ -672,6 +699,7 @@ func (c_ Control) Target() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("target"))
 	return rv
 }
+
 
 // SetTarget sets the value of the target property.
 // The target object that receives action messages from the cell.
@@ -690,6 +718,7 @@ func (c_ Control) UsesSingleLineMode() bool {
 	return rv
 }
 
+
 // SetUsesSingleLineMode sets the value of the usesSingleLineMode property.
 // A Boolean value that indicates whether the text in the control’s cell uses single line mode.
 
@@ -698,3 +727,5 @@ func (c_ Control) UsesSingleLineMode() bool {
 func (c_ Control) SetUsesSingleLineMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesSingleLineMode:"), value)
 }
+
+

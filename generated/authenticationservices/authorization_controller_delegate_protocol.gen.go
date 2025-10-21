@@ -21,5 +21,3 @@ var AuthorizationControllerDelegateProtocol *objc.Protocol
 func init() {
 	AuthorizationControllerDelegateProtocol = objc.GetProtocol("ASAuthorizationControllerDelegate")
 }
-
-

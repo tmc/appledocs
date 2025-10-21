@@ -76,6 +76,8 @@ func NewMTRThreadBorderRouterManagementClusterDatasetResponseParams() MTRThreadB
 }
 
 
+
+
 // Initialize an MTRThreadBorderRouterManagementClusterDatasetResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) Dataset() 
 func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) SetDataset(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataset:"), value)
 }
+
 

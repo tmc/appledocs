@@ -15,5 +15,3 @@ var decideActionForMessageProtocol *objc.Protocol
 func init() {
 	decideActionForMessageProtocol = objc.GetProtocol("decideActionForMessage:")
 }
-
-

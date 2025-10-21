@@ -112,6 +112,7 @@ func (a_ ABPersonPicker) Delegate() objc.ID {
 func (a_ ABPersonPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // An array of properties to display in the picker when the user selects a person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
@@ -129,5 +130,6 @@ func (a_ ABPersonPicker) Properties() unsafe.Pointer {
 func (a_ ABPersonPicker) SetProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProperties:"), value)
 }
+
 
 

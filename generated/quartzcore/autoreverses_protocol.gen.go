@@ -20,5 +20,3 @@ var autoreversesProtocol *objc.Protocol
 func init() {
 	autoreversesProtocol = objc.GetProtocol("autoreverses")
 }
-
-

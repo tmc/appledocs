@@ -92,6 +92,8 @@ func NewAudioRecorder() AudioRecorder {
 }
 
 
+
+
 // Creates an audio recorder with an audio format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:format:)
@@ -101,6 +103,8 @@ func NewAudioRecorderWithURLFormatError(url unsafe.Pointer, format unsafe.Pointe
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an audio recorder with settings.
 //
@@ -225,6 +229,7 @@ func (a_ AudioRecorder) SetChannelAssignments(value []AVAudioSessionChannelDescr
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), nsArray)
 }
+
 // The time, in seconds, since the beginning of the recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/currentTime
@@ -250,6 +255,7 @@ func (a_ AudioRecorder) Delegate() objc.ID {
 func (a_ AudioRecorder) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The time, in seconds, of the host audio device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/deviceCurrentTime
@@ -283,6 +289,7 @@ func (a_ AudioRecorder) MeteringEnabled() bool {
 func (a_ AudioRecorder) SetMeteringEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMeteringEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the audio recorder is recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/isRecording

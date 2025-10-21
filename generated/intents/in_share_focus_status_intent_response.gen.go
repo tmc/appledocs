@@ -79,6 +79,8 @@ func NewINShareFocusStatusIntentResponse() INShareFocusStatusIntentResponse {
 }
 
 
+
+
 // Creates a response with the specified response code and user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntentResponse/init(code:userActivity:)

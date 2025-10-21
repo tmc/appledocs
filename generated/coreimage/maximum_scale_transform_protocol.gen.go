@@ -12,5 +12,3 @@ var MaximumScaleTransformProtocol *objc.Protocol
 func init() {
 	MaximumScaleTransformProtocol = objc.GetProtocol("CIMaximumScaleTransform")
 }
-
-

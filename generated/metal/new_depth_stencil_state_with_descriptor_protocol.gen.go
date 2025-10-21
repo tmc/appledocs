@@ -19,5 +19,3 @@ var newDepthStencilStateWithDescriptorProtocol *objc.Protocol
 func init() {
 	newDepthStencilStateWithDescriptorProtocol = objc.GetProtocol("newDepthStencilStateWithDescriptor:")
 }
-
-

@@ -19,5 +19,3 @@ var deviceDidBecomeReadyWithCompleteContentCatalogProtocol *objc.Protocol
 func init() {
 	deviceDidBecomeReadyWithCompleteContentCatalogProtocol = objc.GetProtocol("deviceDidBecomeReadyWithCompleteContentCatalog:")
 }
-
-

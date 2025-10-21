@@ -19,5 +19,3 @@ var SavedGameListenerProtocol *objc.Protocol
 func init() {
 	SavedGameListenerProtocol = objc.GetProtocol("GKSavedGameListener")
 }
-
-

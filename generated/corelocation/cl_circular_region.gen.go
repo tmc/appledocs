@@ -82,6 +82,8 @@ func NewCircularRegion() CircularRegion {
 }
 
 
+
+
 // Creates and returns a region object defining a circular geographic area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion/init(center:radius:identifier:)

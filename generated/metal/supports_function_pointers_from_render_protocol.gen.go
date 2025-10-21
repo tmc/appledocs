@@ -20,5 +20,3 @@ var supportsFunctionPointersFromRenderProtocol *objc.Protocol
 func init() {
 	supportsFunctionPointersFromRenderProtocol = objc.GetProtocol("supportsFunctionPointersFromRender")
 }
-
-

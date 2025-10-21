@@ -15,5 +15,3 @@ var fallDetectionManagerDidChangeAuthorizationProtocol *objc.Protocol
 func init() {
 	fallDetectionManagerDidChangeAuthorizationProtocol = objc.GetProtocol("fallDetectionManagerDidChangeAuthorization:")
 }
-
-

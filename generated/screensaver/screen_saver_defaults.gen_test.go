@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = screensaver.NewScreenSaverDefaults
 
-
 // ExampleNewScreenSaverDefaultsForModuleWithName demonstrates how to create a ScreenSaverDefaults instance using NewScreenSaverDefaultsForModuleWithName.
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 func ExampleNewScreenSaverDefaultsForModuleWithName() {
@@ -18,5 +17,3 @@ func ExampleNewScreenSaverDefaultsForModuleWithName() {
 	)
 	// Output:
 }
-
-

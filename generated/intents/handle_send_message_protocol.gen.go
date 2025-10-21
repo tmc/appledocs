@@ -20,5 +20,3 @@ var handleSendMessageProtocol *objc.Protocol
 func init() {
 	handleSendMessageProtocol = objc.GetProtocol("handleSendMessage:")
 }
-
-

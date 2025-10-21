@@ -12,5 +12,3 @@ var AreaReductionFilterProtocol *objc.Protocol
 func init() {
 	AreaReductionFilterProtocol = objc.GetProtocol("CIAreaReductionFilter")
 }
-
-

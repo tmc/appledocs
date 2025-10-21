@@ -19,5 +19,3 @@ var webExtensionControllerProtocol *objc.Protocol
 func init() {
 	webExtensionControllerProtocol = objc.GetProtocol("webExtensionController:")
 }
-
-

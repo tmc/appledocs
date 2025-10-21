@@ -19,5 +19,3 @@ var TextureProtocol *objc.Protocol
 func init() {
 	TextureProtocol = objc.GetProtocol("MTLTexture")
 }
-
-

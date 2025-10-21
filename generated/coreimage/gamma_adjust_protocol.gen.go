@@ -12,5 +12,3 @@ var GammaAdjustProtocol *objc.Protocol
 func init() {
 	GammaAdjustProtocol = objc.GetProtocol("CIGammaAdjust")
 }
-
-

@@ -79,6 +79,8 @@ func NewNETunnelNetworkSettings() NETunnelNetworkSettings {
 }
 
 
+
+
 // Initialize a object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/init(tunnelRemoteAddress:)
@@ -107,6 +109,7 @@ func (n_ NETunnelNetworkSettings) DNSSettings() unsafe.Pointer {
 func (n_ NETunnelNetworkSettings) SetDNSSettings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDNSSettings:"), value)
 }
+
 // The tunnel HTTP proxy settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/proxySettings
@@ -124,6 +127,7 @@ func (n_ NETunnelNetworkSettings) ProxySettings() unsafe.Pointer {
 func (n_ NETunnelNetworkSettings) SetProxySettings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProxySettings:"), value)
 }
+
 // The IP address of the tunnel server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/tunnelRemoteAddress

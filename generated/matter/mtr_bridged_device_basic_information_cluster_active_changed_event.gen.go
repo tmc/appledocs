@@ -92,3 +92,4 @@ func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedA
 }
 
 
+

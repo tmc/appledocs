@@ -12,4 +12,3 @@ var OS_dispatch_semaphoreProtocol *objc.Protocol
 func init() {
 	OS_dispatch_semaphoreProtocol = objc.GetProtocol("OS_dispatch_semaphore")
 }
-

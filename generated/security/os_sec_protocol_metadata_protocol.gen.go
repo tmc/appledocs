@@ -21,5 +21,3 @@ var OS_sec_protocol_metadataProtocol *objc.Protocol
 func init() {
 	OS_sec_protocol_metadataProtocol = objc.GetProtocol("OS_sec_protocol_metadata")
 }
-
-

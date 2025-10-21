@@ -20,5 +20,3 @@ var MetalDisplayLinkDelegateProtocol *objc.Protocol
 func init() {
 	MetalDisplayLinkDelegateProtocol = objc.GetProtocol("CAMetalDisplayLinkDelegate")
 }
-
-

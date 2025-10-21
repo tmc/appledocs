@@ -12,5 +12,3 @@ var UnsharpMaskProtocol *objc.Protocol
 func init() {
 	UnsharpMaskProtocol = objc.GetProtocol("CIUnsharpMask")
 }
-
-

@@ -20,5 +20,3 @@ var repeatCountProtocol *objc.Protocol
 func init() {
 	repeatCountProtocol = objc.GetProtocol("repeatCount")
 }
-
-

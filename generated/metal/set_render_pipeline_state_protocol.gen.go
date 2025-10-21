@@ -19,5 +19,3 @@ var setRenderPipelineStateProtocol *objc.Protocol
 func init() {
 	setRenderPipelineStateProtocol = objc.GetProtocol("setRenderPipelineState:")
 }
-
-

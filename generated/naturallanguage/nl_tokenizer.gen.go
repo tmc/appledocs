@@ -86,6 +86,8 @@ func NewTokenizer() Tokenizer {
 }
 
 
+
+
 // Creates a tokenizer with the specified unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/init(unit:)
@@ -152,6 +154,7 @@ func (t_ Tokenizer) String() string {
 func (t_ Tokenizer) SetString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
+
 // The linguistic unit that this tokenizer uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/unit

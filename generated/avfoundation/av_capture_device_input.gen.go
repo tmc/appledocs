@@ -82,6 +82,8 @@ func NewCaptureDeviceInput() CaptureDeviceInput {
 }
 
 
+
+
 // Creates an input for the specified capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/init(device:)
@@ -117,6 +119,7 @@ func (c_ CaptureDeviceInput) ActiveLockedVideoFrameDuration() unsafe.Pointer {
 func (c_ CaptureDeviceInput) SetActiveLockedVideoFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveLockedVideoFrameDuration:"), value)
 }
+
 // The external sync device currently being followed by this input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/externalSyncDevice
@@ -158,6 +161,7 @@ func (c_ CaptureDeviceInput) MultichannelAudioMode() unsafe.Pointer {
 func (c_ CaptureDeviceInput) SetMultichannelAudioMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMultichannelAudioMode:"), value)
 }
+
 // A Boolean value that indicates whether the input enables unified auto-exposure defaults.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/unifiedAutoExposureDefaultsEnabled
@@ -175,6 +179,7 @@ func (c_ CaptureDeviceInput) UnifiedAutoExposureDefaultsEnabled() bool {
 func (c_ CaptureDeviceInput) SetUnifiedAutoExposureDefaultsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnifiedAutoExposureDefaultsEnabled:"), value)
 }
+
 // A time value that acts as a modifier to a capture device’s active video minimum frame duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/videoMinFrameDurationOverride
@@ -192,4 +197,5 @@ func (c_ CaptureDeviceInput) VideoMinFrameDurationOverride() unsafe.Pointer {
 func (c_ CaptureDeviceInput) SetVideoMinFrameDurationOverride(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMinFrameDurationOverride:"), value)
 }
+
 

@@ -20,5 +20,3 @@ var bufferProtocol *objc.Protocol
 func init() {
 	bufferProtocol = objc.GetProtocol("buffer")
 }
-
-

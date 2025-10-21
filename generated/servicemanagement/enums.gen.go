@@ -9,22 +9,22 @@ package servicemanagement
 type SMAppServiceStatus uint
 
 const (
-// SMAppServiceStatusEnabled - The service has been successfully registered and is eligible to run.
-//
+	// SMAppServiceStatusEnabled - The service has been successfully registered and is eligible to run.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/Status-swift.enum/enabled
-SMAppServiceStatusEnabled SMAppServiceStatus = 0
-// SMAppServiceStatusNotFound - An error occurred and the framework couldn’t find this service.
-//
+	SMAppServiceStatusEnabled SMAppServiceStatus = 0
+	// SMAppServiceStatusNotFound - An error occurred and the framework couldn’t find this service.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/Status-swift.enum/notFound
-SMAppServiceStatusNotFound SMAppServiceStatus = 0
-// SMAppServiceStatusNotRegistered - The service hasn’t registered with the Service Management framework, or the service attempted to reregister after it was already registered.
-//
+	SMAppServiceStatusNotFound SMAppServiceStatus = 0
+	// SMAppServiceStatusNotRegistered - The service hasn’t registered with the Service Management framework, or the service attempted to reregister after it was already registered.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/Status-swift.enum/notRegistered
-SMAppServiceStatusNotRegistered SMAppServiceStatus = 0
-// SMAppServiceStatusRequiresApproval - The service has been successfully registered, but the user needs to take action in System Preferences.
-//
+	SMAppServiceStatusNotRegistered SMAppServiceStatus = 0
+	// SMAppServiceStatusRequiresApproval - The service has been successfully registered, but the user needs to take action in System Preferences.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/Status-swift.enum/requiresApproval
-SMAppServiceStatusRequiresApproval SMAppServiceStatus = 0
+	SMAppServiceStatusRequiresApproval SMAppServiceStatus = 0
 )
 
 

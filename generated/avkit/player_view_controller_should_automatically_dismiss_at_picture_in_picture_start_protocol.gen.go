@@ -19,5 +19,3 @@ var playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStartProtoco
 func init() {
 	playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStartProtocol = objc.GetProtocol("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart:")
 }
-
-

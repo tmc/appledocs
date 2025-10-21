@@ -84,6 +84,8 @@ func NewPHProjectChangeRequest() PHProjectChangeRequest {
 }
 
 
+
+
 // Creates a change request around the specified project.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/init(project:)
@@ -133,6 +135,7 @@ func (p_ PHProjectChangeRequest) ProjectExtensionData() unsafe.Pointer {
 func (p_ PHProjectChangeRequest) SetProjectExtensionData(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectExtensionData:"), value)
 }
+
 // The title of the change request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
@@ -150,4 +153,5 @@ func (p_ PHProjectChangeRequest) Title() string {
 func (p_ PHProjectChangeRequest) SetTitle(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 

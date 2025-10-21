@@ -12,5 +12,3 @@ var LabDeltaEProtocol *objc.Protocol
 func init() {
 	LabDeltaEProtocol = objc.GetProtocol("CILabDeltaE")
 }
-
-

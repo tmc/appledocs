@@ -81,6 +81,8 @@ func NewCKReference() CKReference {
 }
 
 
+
+
 // Creates a reference object that points to the specified record object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(record:action:)
@@ -90,6 +92,8 @@ func NewCKReferenceWithRecordAction(record unsafe.Pointer, action unsafe.Pointer
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a reference object that points to the record with the specified ID.
 //

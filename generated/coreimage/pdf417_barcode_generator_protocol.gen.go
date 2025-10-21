@@ -12,5 +12,3 @@ var PDF417BarcodeGeneratorProtocol *objc.Protocol
 func init() {
 	PDF417BarcodeGeneratorProtocol = objc.GetProtocol("CIPDF417BarcodeGenerator")
 }
-
-

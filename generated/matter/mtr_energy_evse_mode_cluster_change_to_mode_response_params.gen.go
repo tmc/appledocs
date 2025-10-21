@@ -76,6 +76,8 @@ func NewMTREnergyEVSEModeClusterChangeToModeResponseParams() MTREnergyEVSEModeCl
 }
 
 
+
+
 // Initialize an MTREnergyEVSEModeClusterChangeToModeResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) Status() unsafe.Poi
 func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeResponseParams/statusText
 func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) StatusText() string
 func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

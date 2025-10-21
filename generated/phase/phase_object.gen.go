@@ -84,6 +84,8 @@ func NewPHASEObject() PHASEObject {
 }
 
 
+
+
 // Creates an object in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/init(engine:)
@@ -187,6 +189,7 @@ func (p_ PHASEObject) Transform() unsafe.Pointer {
 func (p_ PHASEObject) SetTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransform:"), value)
 }
+
 // A vector that points up in the local coordinate space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/up
@@ -212,4 +215,5 @@ func (p_ PHASEObject) WorldTransform() unsafe.Pointer {
 func (p_ PHASEObject) SetWorldTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorldTransform:"), value)
 }
+
 

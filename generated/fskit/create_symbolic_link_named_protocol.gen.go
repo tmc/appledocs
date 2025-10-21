@@ -15,5 +15,3 @@ var createSymbolicLinkNamedProtocol *objc.Protocol
 func init() {
 	createSymbolicLinkNamedProtocol = objc.GetProtocol("createSymbolicLinkNamed:")
 }
-
-

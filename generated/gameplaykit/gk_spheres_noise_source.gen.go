@@ -81,6 +81,8 @@ func NewSpheresNoiseSource() SpheresNoiseSource {
 }
 
 
+
+
 // Initializes a sphere noise source with the specified frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/init(frequency:)
@@ -117,4 +119,5 @@ func (s_ SpheresNoiseSource) Frequency() unsafe.Pointer {
 func (s_ SpheresNoiseSource) SetFrequency(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrequency:"), value)
 }
+
 

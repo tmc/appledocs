@@ -12,5 +12,3 @@ var DissolveTransitionProtocol *objc.Protocol
 func init() {
 	DissolveTransitionProtocol = objc.GetProtocol("CIDissolveTransition")
 }
-
-

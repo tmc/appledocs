@@ -128,6 +128,7 @@ func (p_ PersistentHistoryChangeRequest) FetchRequest() unsafe.Pointer {
 func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchRequest:"), value)
 }
+
 // The type of result that this request returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
@@ -145,5 +146,6 @@ func (p_ PersistentHistoryChangeRequest) ResultType() unsafe.Pointer {
 func (p_ PersistentHistoryChangeRequest) SetResultType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
+
 
 

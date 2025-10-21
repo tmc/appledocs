@@ -12,5 +12,3 @@ var HeightFieldFromMaskProtocol *objc.Protocol
 func init() {
 	HeightFieldFromMaskProtocol = objc.GetProtocol("CIHeightFieldFromMask")
 }
-
-

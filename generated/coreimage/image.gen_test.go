@@ -9,36 +9,3 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewImage
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -82,6 +82,8 @@ func NewVZMacOSInstaller() VZMacOSInstaller {
 }
 
 
+
+
 // Creates a macOS installer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSInstaller/init(virtualMachine:restoringFromImageAt:)

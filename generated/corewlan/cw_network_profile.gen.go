@@ -80,6 +80,8 @@ func NewCWNetworkProfile() CWNetworkProfile {
 }
 
 
+
+
 // Creates and returns a CWNetworkProfile object initialized with the given CWNetworkProfile object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/init(networkProfile:)

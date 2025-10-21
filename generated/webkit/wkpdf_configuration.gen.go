@@ -100,3 +100,4 @@ func (p_ PDFConfiguration) SetAllowTransparentBackground(value bool) {
 }
 
 
+

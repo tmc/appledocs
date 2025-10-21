@@ -12,5 +12,3 @@ var FetchRequestResultProtocol *objc.Protocol
 func init() {
 	FetchRequestResultProtocol = objc.GetProtocol("NSFetchRequestResult")
 }
-
-

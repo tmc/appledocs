@@ -79,6 +79,8 @@ func NewPHPickerConfiguration() PHPickerConfiguration {
 }
 
 
+
+
 // Creates a new configuration object for a photo library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/initWithPhotoLibrary:
@@ -107,6 +109,7 @@ func (p_ PHPickerConfiguration) DisabledCapabilities() unsafe.Pointer {
 func (p_ PHPickerConfiguration) SetDisabledCapabilities(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisabledCapabilities:"), value)
 }
+
 // The portions of a photo picker’s perimeter that are borderless.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/edgesWithoutContentMargins
@@ -124,6 +127,7 @@ func (p_ PHPickerConfiguration) EdgesWithoutContentMargins() unsafe.Pointer {
 func (p_ PHPickerConfiguration) SetEdgesWithoutContentMargins(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEdgesWithoutContentMargins:"), value)
 }
+
 // The filter you apply to restrict the asset types the picker displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/filter
@@ -141,6 +145,7 @@ func (p_ PHPickerConfiguration) Filter() unsafe.Pointer {
 func (p_ PHPickerConfiguration) SetFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFilter:"), value)
 }
+
 // A layout type for the photos in the picker’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/mode
@@ -158,6 +163,7 @@ func (p_ PHPickerConfiguration) Mode() unsafe.Pointer {
 func (p_ PHPickerConfiguration) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMode:"), value)
 }
+
 // A mode that determines which representation to use if an asset contains more than one.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/preferredAssetRepresentationMode
@@ -175,6 +181,7 @@ func (p_ PHPickerConfiguration) PreferredAssetRepresentationMode() unsafe.Pointe
 func (p_ PHPickerConfiguration) SetPreferredAssetRepresentationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredAssetRepresentationMode:"), value)
 }
+
 // An array of asset identifiers to preselect in the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/preselectedAssetIdentifiers
@@ -202,6 +209,7 @@ func (p_ PHPickerConfiguration) SetPreselectedAssetIdentifiers(value []string) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreselectedAssetIdentifiers:"), nsArray)
 }
+
 // The selection behavior for the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/selection
@@ -219,6 +227,7 @@ func (p_ PHPickerConfiguration) Selection() unsafe.Pointer {
 func (p_ PHPickerConfiguration) SetSelection(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelection:"), value)
 }
+
 // The maximum number of selections the user can make.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerConfiguration-c.class/selectionLimit
@@ -236,4 +245,5 @@ func (p_ PHPickerConfiguration) SelectionLimit() int {
 func (p_ PHPickerConfiguration) SetSelectionLimit(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionLimit:"), value)
 }
+
 

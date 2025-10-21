@@ -106,6 +106,7 @@ func (g_ GLKReflectionMapEffect) Matrix() unsafe.Pointer {
 func (g_ GLKReflectionMapEffect) SetMatrix(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMatrix:"), value)
 }
+
 // The texture map to apply in the reflection stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/textureCubeMap

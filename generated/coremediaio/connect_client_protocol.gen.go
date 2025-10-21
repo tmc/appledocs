@@ -16,5 +16,3 @@ var connectClientProtocol *objc.Protocol
 func init() {
 	connectClientProtocol = objc.GetProtocol("connectClient:")
 }
-
-

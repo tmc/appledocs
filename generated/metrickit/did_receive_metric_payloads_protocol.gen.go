@@ -19,5 +19,3 @@ var didReceiveMetricPayloadsProtocol *objc.Protocol
 func init() {
 	didReceiveMetricPayloadsProtocol = objc.GetProtocol("didReceiveMetricPayloads:")
 }
-
-

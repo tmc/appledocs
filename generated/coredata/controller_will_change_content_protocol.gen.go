@@ -20,5 +20,3 @@ var controllerWillChangeContentProtocol *objc.Protocol
 func init() {
 	controllerWillChangeContentProtocol = objc.GetProtocol("controllerWillChangeContent:")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WorkspaceOpenConfiguration] class.
@@ -79,6 +80,7 @@ func NewWorkspaceOpenConfiguration() WorkspaceOpenConfiguration {
 	return getWorkspaceOpenConfigurationClass().New()
 }
 
+
 // Creates and returns a new workspace configuration object containing default values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspaceOpenConfiguration/configuration
@@ -94,6 +96,7 @@ func (w_ WorkspaceOpenConfiguration) Activates() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("activates"))
 	return rv
 }
+
 
 // SetActivates sets the value of the activates property.
 // A Boolean value indicating whether the system activates the app and brings it to the foreground.
@@ -112,6 +115,7 @@ func (w_ WorkspaceOpenConfiguration) AddsToRecentItems() bool {
 	return rv
 }
 
+
 // SetAddsToRecentItems sets the value of the addsToRecentItems property.
 // A Boolean value indicating whether to add the app or documents to the Recent Items menu.
 
@@ -128,6 +132,7 @@ func (w_ WorkspaceOpenConfiguration) AllowsRunningApplicationSubstitution() bool
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsRunningApplicationSubstitution"))
 	return rv
 }
+
 
 // SetAllowsRunningApplicationSubstitution sets the value of the allowsRunningApplicationSubstitution property.
 // A Boolean value that indicates whether to use a running instance of an application even if it’s at a different URL.
@@ -146,6 +151,7 @@ func (w_ WorkspaceOpenConfiguration) Architecture() unsafe.Pointer {
 	return rv
 }
 
+
 // SetArchitecture sets the value of the architecture property.
 // The architecture version of the app to launch.
 
@@ -162,6 +168,7 @@ func (w_ WorkspaceOpenConfiguration) Arguments() []string {
 	rv := objc.Send[[]string](w_.ID, objc.Sel("arguments"))
 	return rv
 }
+
 
 // SetArguments sets the value of the arguments property.
 // The set of command-line arguments to pass to a new app instance at launch time.
@@ -190,6 +197,7 @@ func (w_ WorkspaceOpenConfiguration) CreatesNewApplicationInstance() bool {
 	return rv
 }
 
+
 // SetCreatesNewApplicationInstance sets the value of the createsNewApplicationInstance property.
 // A Boolean value indicating whether you want the system to launch a new instance of the app.
 
@@ -206,6 +214,7 @@ func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("environment"))
 	return rv
 }
+
 
 // SetEnvironment sets the value of the environment property.
 // The set of environment variables to set in a new app instance.
@@ -224,6 +233,7 @@ func (w_ WorkspaceOpenConfiguration) Hides() bool {
 	return rv
 }
 
+
 // SetHides sets the value of the hides property.
 // A Boolean value indicating whether you want the app to hide itself after it launches.
 
@@ -240,6 +250,7 @@ func (w_ WorkspaceOpenConfiguration) HidesOthers() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hidesOthers"))
 	return rv
 }
+
 
 // SetHidesOthers sets the value of the hidesOthers property.
 // A Boolean value indicating whether you want to hide all apps except the one that launched.
@@ -258,6 +269,7 @@ func (w_ WorkspaceOpenConfiguration) ForPrinting() bool {
 	return rv
 }
 
+
 // SetForPrinting sets the value of the forPrinting property.
 // A Boolean value indicating whether you want to print the contents of documents and URLs instead of opening them.
 
@@ -275,6 +287,7 @@ func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 	return rv
 }
 
+
 // SetRequiresUniversalLinks sets the value of the requiresUniversalLinks property.
 // A Boolean value indicating whether you require the URL to have an associated universal link.
 
@@ -283,3 +296,6 @@ func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 func (w_ WorkspaceOpenConfiguration) SetRequiresUniversalLinks(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRequiresUniversalLinks:"), value)
 }
+
+
+

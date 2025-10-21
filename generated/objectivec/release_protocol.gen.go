@@ -12,5 +12,3 @@ var releaseProtocol *objc.Protocol
 func init() {
 	releaseProtocol = objc.GetProtocol("release")
 }
-
-

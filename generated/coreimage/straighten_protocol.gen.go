@@ -12,5 +12,3 @@ var StraightenProtocol *objc.Protocol
 func init() {
 	StraightenProtocol = objc.GetProtocol("CIStraighten")
 }
-
-

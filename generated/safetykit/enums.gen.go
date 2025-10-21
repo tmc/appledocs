@@ -14,10 +14,10 @@ type SAAuthorizationStatus uint
 type SACrashDetectionEventResponse uint
 
 const (
-// SACrashDetectionEventResponseDisabled - The system couldn’t contact the Emergency SOS - Call After Severe Crash provider because the feature is off in the Settings app.
-//
+	// SACrashDetectionEventResponseDisabled - The system couldn’t contact the Emergency SOS - Call After Severe Crash provider because the feature is off in the Settings app.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/Response-swift.enum/disabled
-SACrashDetectionEventResponseDisabled SACrashDetectionEventResponse = 0
+	SACrashDetectionEventResponseDisabled SACrashDetectionEventResponse = 0
 )
 
 // SAEmergencyResponseManagerVoiceCallStatus - An enumeration that defines the status of a requested voice call.
@@ -26,22 +26,22 @@ SACrashDetectionEventResponseDisabled SACrashDetectionEventResponse = 0
 type SAEmergencyResponseManagerVoiceCallStatus uint
 
 const (
-// SAEmergencyResponseManagerVoiceCallStatusActive - The system successfully placed a call to the desired contact and that call is currently active.
-//
+	// SAEmergencyResponseManagerVoiceCallStatusActive - The system successfully placed a call to the desired contact and that call is currently active.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/VoiceCallStatus/active
-SAEmergencyResponseManagerVoiceCallStatusActive SAEmergencyResponseManagerVoiceCallStatus = 0
-// SAEmergencyResponseManagerVoiceCallStatusDialing - The system is dialing the desired contact.
-//
+	SAEmergencyResponseManagerVoiceCallStatusActive SAEmergencyResponseManagerVoiceCallStatus = 0
+	// SAEmergencyResponseManagerVoiceCallStatusDialing - The system is dialing the desired contact.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/VoiceCallStatus/dialing
-SAEmergencyResponseManagerVoiceCallStatusDialing SAEmergencyResponseManagerVoiceCallStatus = 0
-// SAEmergencyResponseManagerVoiceCallStatusDisconnected - The voice call to the desired contact disconnected.
-//
+	SAEmergencyResponseManagerVoiceCallStatusDialing SAEmergencyResponseManagerVoiceCallStatus = 0
+	// SAEmergencyResponseManagerVoiceCallStatusDisconnected - The voice call to the desired contact disconnected.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/VoiceCallStatus/disconnected
-SAEmergencyResponseManagerVoiceCallStatusDisconnected SAEmergencyResponseManagerVoiceCallStatus = 0
-// SAEmergencyResponseManagerVoiceCallStatusFailed - The voice call failed to connect to the desired contact.
-//
+	SAEmergencyResponseManagerVoiceCallStatusDisconnected SAEmergencyResponseManagerVoiceCallStatus = 0
+	// SAEmergencyResponseManagerVoiceCallStatusFailed - The voice call failed to connect to the desired contact.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/VoiceCallStatus/failed
-SAEmergencyResponseManagerVoiceCallStatusFailed SAEmergencyResponseManagerVoiceCallStatus = 0
+	SAEmergencyResponseManagerVoiceCallStatusFailed SAEmergencyResponseManagerVoiceCallStatus = 0
 )
 
 // SAErrorCode - Codes for identifying errors in SafetyKit.
@@ -50,14 +50,14 @@ SAEmergencyResponseManagerVoiceCallStatusFailed SAEmergencyResponseManagerVoiceC
 type SAErrorCode uint
 
 const (
-// SAErrorNotAllowed - The system restricts the feature on this iPhone at the current time.
-//
+	// SAErrorNotAllowed - The system restricts the feature on this iPhone at the current time.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAError/Code/notAllowed
-SAErrorNotAllowed SAErrorCode = 0
-// SAErrorOperationFailed - The requested operation failed; retrying may succeed.
-//
+	SAErrorNotAllowed SAErrorCode = 0
+	// SAErrorOperationFailed - The requested operation failed; retrying may succeed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAError/Code/operationFailed
-SAErrorOperationFailed SAErrorCode = 0
+	SAErrorOperationFailed SAErrorCode = 0
 )
 
 

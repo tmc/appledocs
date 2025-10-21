@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) NewMode() unsaf
 func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetNewMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterChangeToModeParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) ServerSideProce
 func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterChangeToModeParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) TimedInvokeTime
 func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

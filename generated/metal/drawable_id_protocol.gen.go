@@ -20,5 +20,3 @@ var drawableIDProtocol *objc.Protocol
 func init() {
 	drawableIDProtocol = objc.GetProtocol("drawableID")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateDetails
 func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateDetails(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateID
 func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateID() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateID() un
 func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateLabel
 func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
@@ -118,5 +120,6 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateLabel()
 func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
 }
+
 
 

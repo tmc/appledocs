@@ -107,6 +107,7 @@ func (p_ PlayerPlaybackCoordinator) Delegate() objc.ID {
 func (p_ PlayerPlaybackCoordinator) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The AVPlaybackCoordinationMedium this playback coordinator is connected to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/playbackCoordinationMedium

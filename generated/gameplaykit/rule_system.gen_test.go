@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewRuleSystem
 
-
 // ExampleNewRuleSystem demonstrates how to create a RuleSystem instance.
 // Initializes a new, empty rule system.
 func ExampleNewRuleSystem() {
 	_ = gameplaykit.NewRuleSystem()
 	// Output:
 }
-
-

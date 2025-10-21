@@ -15,5 +15,3 @@ var MEComposeSessionHandlerProtocol *objc.Protocol
 func init() {
 	MEComposeSessionHandlerProtocol = objc.GetProtocol("MEComposeSessionHandler")
 }
-
-

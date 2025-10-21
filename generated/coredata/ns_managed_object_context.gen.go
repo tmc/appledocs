@@ -106,6 +106,8 @@ func NewManagedObjectContext() ManagedObjectContext {
 }
 
 
+
+
 // Creates a context that uses the specified concurrency type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/init(concurrencyType:)
@@ -333,6 +335,7 @@ func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
 func (m_ ManagedObjectContext) SetAutomaticallyMergesChangesFromParent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyMergesChangesFromParent:"), value)
 }
+
 // The concurrency type for the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/concurrencyType-swift.property
@@ -374,6 +377,7 @@ func (m_ ManagedObjectContext) MergePolicy() objc.ID {
 func (m_ ManagedObjectContext) SetMergePolicy(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMergePolicy:"), value)
 }
+
 // The developer-provided name of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
@@ -391,6 +395,7 @@ func (m_ ManagedObjectContext) Name() string {
 func (m_ ManagedObjectContext) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The persistent store coordinator of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/persistentStoreCoordinator
@@ -408,6 +413,7 @@ func (m_ ManagedObjectContext) PersistentStoreCoordinator() unsafe.Pointer {
 func (m_ ManagedObjectContext) SetPersistentStoreCoordinator(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPersistentStoreCoordinator:"), value)
 }
+
 // A Boolean value that indicates whether the context propagates deletes at the end of the event in which a change was made.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/propagatesDeletesAtEndOfEvent
@@ -425,6 +431,7 @@ func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool {
 func (m_ ManagedObjectContext) SetPropagatesDeletesAtEndOfEvent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPropagatesDeletesAtEndOfEvent:"), value)
 }
+
 // Returns the token associated with the query generation currently in use by this context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/queryGenerationToken
@@ -458,6 +465,7 @@ func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool {
 func (m_ ManagedObjectContext) SetRetainsRegisteredObjects(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRetainsRegisteredObjects:"), value)
 }
+
 // A Boolean value that determines whether the context turns inaccessible faults into deleted objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldDeleteInaccessibleFaults
@@ -475,6 +483,7 @@ func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool {
 func (m_ ManagedObjectContext) SetShouldDeleteInaccessibleFaults(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldDeleteInaccessibleFaults:"), value)
 }
+
 // The maximum length of time that may have elapsed since the store previously fetched data before fulfilling a fault issues a new fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/stalenessInterval
@@ -492,6 +501,7 @@ func (m_ ManagedObjectContext) StalenessInterval() TimeInterval {
 func (m_ ManagedObjectContext) SetStalenessInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStalenessInterval:"), value)
 }
+
 // The author for the context that is used as an identifier in persistent history transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
@@ -509,6 +519,7 @@ func (m_ ManagedObjectContext) TransactionAuthor() string {
 func (m_ ManagedObjectContext) SetTransactionAuthor(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
 }
+
 // The set of objects registered with the context that have uncommitted changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/updatedObjects

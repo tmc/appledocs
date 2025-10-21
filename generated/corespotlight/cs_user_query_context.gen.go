@@ -81,6 +81,8 @@ func NewCSUserQueryContext() CSUserQueryContext {
 }
 
 
+
+
 // Creates a new query context object with an optional suggested search string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/init(currentSuggestion:)
@@ -123,6 +125,7 @@ func (c_ CSUserQueryContext) DisableSemanticSearch() bool {
 func (c_ CSUserQueryContext) SetDisableSemanticSearch(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisableSemanticSearch:"), value)
 }
+
 // A Boolean value that indicates whether the query sorts results by their relevance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/enableRankedResults
@@ -140,6 +143,7 @@ func (c_ CSUserQueryContext) EnableRankedResults() bool {
 func (c_ CSUserQueryContext) SetEnableRankedResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnableRankedResults:"), value)
 }
+
 // The maximum number of ranked results to return during the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxRankedResultCount
@@ -157,6 +161,7 @@ func (c_ CSUserQueryContext) MaxRankedResultCount() int {
 func (c_ CSUserQueryContext) SetMaxRankedResultCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRankedResultCount:"), value)
 }
+
 // The maximum number of search results for the query to return.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxResultCount
@@ -174,6 +179,7 @@ func (c_ CSUserQueryContext) MaxResultCount() int {
 func (c_ CSUserQueryContext) SetMaxResultCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxResultCount:"), value)
 }
+
 // The maximum number of suggested text completions for the query to return.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount
@@ -191,4 +197,5 @@ func (c_ CSUserQueryContext) MaxSuggestionCount() int {
 func (c_ CSUserQueryContext) SetMaxSuggestionCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxSuggestionCount:"), value)
 }
+
 

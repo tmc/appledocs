@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PHAsset] class.
@@ -199,8 +198,8 @@ func (p_ PHAsset) BurstSelectionTypes() unsafe.Pointer {
 // The type of image or video data that is presented for the asset
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/contentType
-func (p_ PHAsset) ContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHAsset) ContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 

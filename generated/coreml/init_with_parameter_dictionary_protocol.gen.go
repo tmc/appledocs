@@ -21,5 +21,3 @@ var initWithParameterDictionaryProtocol *objc.Protocol
 func init() {
 	initWithParameterDictionaryProtocol = objc.GetProtocol("initWithParameterDictionary:")
 }
-
-

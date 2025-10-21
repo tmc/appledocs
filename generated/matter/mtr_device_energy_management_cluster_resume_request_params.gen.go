@@ -93,6 +93,7 @@ func (m_ MTRDeviceEnergyManagementClusterResumeRequestParams) ServerSideProcessi
 func (m_ MTRDeviceEnergyManagementClusterResumeRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumeRequestParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTRDeviceEnergyManagementClusterResumeRequestParams) TimedInvokeTimeout
 func (m_ MTRDeviceEnergyManagementClusterResumeRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

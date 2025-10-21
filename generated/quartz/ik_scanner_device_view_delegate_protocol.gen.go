@@ -15,5 +15,3 @@ var IKScannerDeviceViewDelegateProtocol *objc.Protocol
 func init() {
 	IKScannerDeviceViewDelegateProtocol = objc.GetProtocol("IKScannerDeviceViewDelegate")
 }
-
-

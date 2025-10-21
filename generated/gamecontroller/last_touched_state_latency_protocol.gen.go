@@ -20,5 +20,3 @@ var lastTouchedStateLatencyProtocol *objc.Protocol
 func init() {
 	lastTouchedStateLatencyProtocol = objc.GetProtocol("lastTouchedStateLatency")
 }
-
-

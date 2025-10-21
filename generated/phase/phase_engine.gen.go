@@ -85,15 +85,7 @@ func NewPHASEEngine() PHASEEngine {
 }
 
 
-// Creates a new engine that has both update and rendering modes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:renderingMode:)
-func NewPHASEEngineWithUpdateModeRenderingMode(updateMode unsafe.Pointer, renderingMode unsafe.Pointer) PHASEEngine {
-	instance := getPHASEEngineClass().Alloc()
-	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:renderingMode:"), updateMode, renderingMode)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates an engine updated by the app or framework.
 //
@@ -101,6 +93,18 @@ func NewPHASEEngineWithUpdateModeRenderingMode(updateMode unsafe.Pointer, render
 func NewPHASEEngineWithUpdateMode(updateMode unsafe.Pointer) PHASEEngine {
 	instance := getPHASEEngineClass().Alloc()
 	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:"), updateMode)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a new engine that has both update and rendering modes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:renderingMode:)
+func NewPHASEEngineWithUpdateModeRenderingMode(updateMode unsafe.Pointer, renderingMode unsafe.Pointer) PHASEEngine {
+	instance := getPHASEEngineClass().Alloc()
+	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:renderingMode:"), updateMode, renderingMode)
 	rv.Autorelease()
 	return rv
 }
@@ -168,6 +172,7 @@ func (p_ PHASEEngine) DefaultMedium() unsafe.Pointer {
 func (p_ PHASEEngine) SetDefaultMedium(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultMedium:"), value)
 }
+
 // The environmental surroundings that determine how sound resonates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/defaultReverbPreset
@@ -185,6 +190,7 @@ func (p_ PHASEEngine) DefaultReverbPreset() unsafe.Pointer {
 func (p_ PHASEEngine) SetDefaultReverbPreset(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultReverbPreset:"), value)
 }
+
 // An array of objects that reduce the volume of simultaneously playing sounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/duckers
@@ -225,6 +231,7 @@ func (p_ PHASEEngine) OutputSpatializationMode() unsafe.Pointer {
 func (p_ PHASEEngine) SetOutputSpatializationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputSpatializationMode:"), value)
 }
+
 // The status of the engine’s audio playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/renderingState
@@ -266,6 +273,7 @@ func (p_ PHASEEngine) UnitsPerMeter() unsafe.Pointer {
 func (p_ PHASEEngine) SetUnitsPerMeter(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUnitsPerMeter:"), value)
 }
+
 // A conversion factor from seconds to your app’s preferred unit of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/unitsPerSecond
@@ -283,4 +291,5 @@ func (p_ PHASEEngine) UnitsPerSecond() unsafe.Pointer {
 func (p_ PHASEEngine) SetUnitsPerSecond(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUnitsPerSecond:"), value)
 }
+
 

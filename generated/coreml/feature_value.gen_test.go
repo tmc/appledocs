@@ -9,17 +9,6 @@ import (
 // Suppress unused import errors
 var _ = coreml.NewFeatureValue
 
-
-
-
-
-
-
-
-
-
-
-
 // ExampleNewFeatureValueWithString demonstrates how to create a FeatureValue instance using NewFeatureValueWithString.
 // Creates a feature value that contains a string.
 func ExampleNewFeatureValueWithString() {
@@ -28,10 +17,3 @@ func ExampleNewFeatureValueWithString() {
 	)
 	// Output:
 }
-
-
-
-
-
-
-

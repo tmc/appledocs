@@ -81,6 +81,18 @@ func NewCBUUID() CBUUID {
 }
 
 
+
+
+// Creates a Core Bluetooth UUID object from a Core Foundation UUID object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(cfuuid:)
+func NewCBUUIDWithCFUUID(theUUID unsafe.Pointer) CBUUID {
+	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithCFUUID:"), theUUID)
+	return rv
+}
+
+
+
 // Creates a Core Bluetooth UUID object from a 16-, 32-, or 128-bit UUID data container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(data:)
@@ -88,6 +100,8 @@ func NewCBUUIDWithData(theData unsafe.Pointer) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithData:"), theData)
 	return rv
 }
+
+
 
 // Creates a Core Bluetooth UUID object from a Foundation UUID object.
 //
@@ -97,19 +111,13 @@ func NewCBUUIDWithNSUUID(theUUID unsafe.Pointer) CBUUID {
 	return rv
 }
 
+
+
 // Creates a Core Bluetooth UUID object from a 16-, 32-, or 128-bit UUID string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(string:)
 func NewCBUUIDWithString(theString string) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithString:"), objc.String(theString))
-	return rv
-}
-
-// Creates a Core Bluetooth UUID object from a Core Foundation UUID object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(cfuuid:)
-func NewCBUUIDWithCFUUID(theUUID unsafe.Pointer) CBUUID {
-	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithCFUUID:"), theUUID)
 	return rv
 }
 

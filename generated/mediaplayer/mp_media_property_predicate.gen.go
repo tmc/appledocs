@@ -81,6 +81,8 @@ func NewMediaPropertyPredicate() MediaPropertyPredicate {
 }
 
 
+
+
 // Creates a media property predicate with the default comparison type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/init(value:forProperty:)
@@ -88,6 +90,8 @@ func NewMediaPropertyPredicateWithValueForProperty(value objc.ID, property strin
 	rv := objc.Send[MediaPropertyPredicate](objc.ID(getMediaPropertyPredicateClass().class), objc.Sel("predicateWithValue:forProperty:"), value, objc.String(property))
 	return rv
 }
+
+
 
 // Creates a media property predicate with a specified comparison type.
 //

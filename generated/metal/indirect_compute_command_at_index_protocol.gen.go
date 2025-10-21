@@ -20,5 +20,3 @@ var indirectComputeCommandAtIndexProtocol *objc.Protocol
 func init() {
 	indirectComputeCommandAtIndexProtocol = objc.GetProtocol("indirectComputeCommandAtIndex:")
 }
-
-

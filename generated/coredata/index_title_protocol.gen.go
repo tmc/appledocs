@@ -12,4 +12,3 @@ var indexTitleProtocol *objc.Protocol
 func init() {
 	indexTitleProtocol = objc.GetProtocol("indexTitle")
 }
-

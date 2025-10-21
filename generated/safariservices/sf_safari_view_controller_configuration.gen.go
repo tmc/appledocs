@@ -95,6 +95,7 @@ func (s_ SFSafariViewControllerConfiguration) ActivityButton() unsafe.Pointer {
 func (s_ SFSafariViewControllerConfiguration) SetActivityButton(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityButton:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/Configuration-swift.class/barCollapsingEnabled
 func (s_ SFSafariViewControllerConfiguration) BarCollapsingEnabled() bool {
@@ -109,6 +110,7 @@ func (s_ SFSafariViewControllerConfiguration) BarCollapsingEnabled() bool {
 func (s_ SFSafariViewControllerConfiguration) SetBarCollapsingEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBarCollapsingEnabled:"), value)
 }
+
 // A value that specifies whether Safari should enter Reader mode, if it is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/Configuration-swift.class/entersReaderIfAvailable
@@ -126,6 +128,7 @@ func (s_ SFSafariViewControllerConfiguration) EntersReaderIfAvailable() bool {
 func (s_ SFSafariViewControllerConfiguration) SetEntersReaderIfAvailable(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEntersReaderIfAvailable:"), value)
 }
+
 // An object you use to send tap event attribution data to the browser for Private Click Measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/Configuration-swift.class/eventAttribution
@@ -143,5 +146,6 @@ func (s_ SFSafariViewControllerConfiguration) EventAttribution() unsafe.Pointer 
 func (s_ SFSafariViewControllerConfiguration) SetEventAttribution(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEventAttribution:"), value)
 }
+
 
 

@@ -18,5 +18,3 @@ var FileProviderChangeObserverProtocol *objc.Protocol
 func init() {
 	FileProviderChangeObserverProtocol = objc.GetProtocol("NSFileProviderChangeObserver")
 }
-
-

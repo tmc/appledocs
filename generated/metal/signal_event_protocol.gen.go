@@ -20,5 +20,3 @@ var signalEventProtocol *objc.Protocol
 func init() {
 	signalEventProtocol = objc.GetProtocol("signalEvent:")
 }
-
-

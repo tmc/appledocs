@@ -9,14 +9,12 @@ import (
 // Suppress unused import errors
 var _ = coredata.NewFetchRequest
 
-
 // ExampleNewFetchRequest demonstrates how to create a FetchRequest instance.
 // Creates a new fetch request.
 func ExampleNewFetchRequest() {
 	_ = coredata.NewFetchRequest()
 	// Output:
 }
-
 // ExampleNewFetchRequestWithEntityName demonstrates how to create a FetchRequest instance using NewFetchRequestWithEntityName.
 // Initializes a fetch request configured with a given entity name.
 func ExampleNewFetchRequestWithEntityName() {
@@ -25,5 +23,3 @@ func ExampleNewFetchRequestWithEntityName() {
 	)
 	// Output:
 }
-
-

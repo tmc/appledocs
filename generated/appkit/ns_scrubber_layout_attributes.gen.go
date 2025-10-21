@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrubberLayoutAttributes] class.
@@ -80,6 +81,9 @@ func NewScrubberLayoutAttributes() ScrubberLayoutAttributes {
 	return getScrubberLayoutAttributesClass().New()
 }
 
+
+
+
 // Creates a new layout attributes object for the specified scrubber item index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/init(forItemAt:)
@@ -87,6 +91,7 @@ func NewScrubberLayoutAttributesForItemAtIndex(index int) ScrubberLayoutAttribut
 	rv := objc.Send[ScrubberLayoutAttributes](objc.ID(getScrubberLayoutAttributesClass().class), objc.Sel("layoutAttributesForItemAtIndex:"), index)
 	return rv
 }
+
 
 // Creates a new layout attributes object for the specified scrubber item index.
 //
@@ -103,6 +108,7 @@ func (s_ ScrubberLayoutAttributes) Alpha() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("alpha"))
 	return rv
 }
+
 
 // SetAlpha sets the value of the alpha property.
 // The item’s alpha value.
@@ -121,6 +127,7 @@ func (s_ ScrubberLayoutAttributes) Frame() coregraphics.CGRect {
 	return rv
 }
 
+
 // SetFrame sets the value of the frame property.
 // The frame of the scrubber item.
 
@@ -138,6 +145,7 @@ func (s_ ScrubberLayoutAttributes) ItemIndex() int {
 	return rv
 }
 
+
 // SetItemIndex sets the value of the itemIndex property.
 // The index of the scrubber item that is represented by the item’s layout attributes.
 
@@ -146,3 +154,5 @@ func (s_ ScrubberLayoutAttributes) ItemIndex() int {
 func (s_ ScrubberLayoutAttributes) SetItemIndex(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemIndex:"), value)
 }
+
+

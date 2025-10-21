@@ -81,6 +81,8 @@ func NewCNInstantMessageAddress() CNInstantMessageAddress {
 }
 
 
+
+
 // Returns a object initialized with the specified user name and service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/init(username:service:)

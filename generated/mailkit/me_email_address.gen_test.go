@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = mailkit.NewMEEmailAddress
 
-
 // ExampleNewMEEmailAddressWithRawString demonstrates how to create a MEEmailAddress instance using NewMEEmailAddressWithRawString.
 func ExampleNewMEEmailAddressWithRawString() {
 	_ = mailkit.NewMEEmailAddressWithRawString(
@@ -17,5 +16,3 @@ func ExampleNewMEEmailAddressWithRawString() {
 	)
 	// Output:
 }
-
-

@@ -106,6 +106,7 @@ func (w_ WebViewConfiguration) LimitsNavigationsToAppBoundDomains() bool {
 func (w_ WebViewConfiguration) SetLimitsNavigationsToAppBoundDomains(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setLimitsNavigationsToAppBoundDomains:"), value)
 }
+
 // The object that manages the preference-related settings for the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/preferences
@@ -123,6 +124,7 @@ func (w_ WebViewConfiguration) Preferences() unsafe.Pointer {
 func (w_ WebViewConfiguration) SetPreferences(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferences:"), value)
 }
+
 // The object that coordinates the processes the web view uses to render its web content and execute scripts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/processPool
@@ -140,6 +142,7 @@ func (w_ WebViewConfiguration) ProcessPool() unsafe.Pointer {
 func (w_ WebViewConfiguration) SetProcessPool(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setProcessPool:"), value)
 }
+
 // The object you use to get and set the site’s cookies and to track the cached data objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/websiteDataStore
@@ -157,5 +160,6 @@ func (w_ WebViewConfiguration) WebsiteDataStore() unsafe.Pointer {
 func (w_ WebViewConfiguration) SetWebsiteDataStore(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebsiteDataStore:"), value)
 }
+
 
 

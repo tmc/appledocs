@@ -19,5 +19,3 @@ var beginSeekingForwardProtocol *objc.Protocol
 func init() {
 	beginSeekingForwardProtocol = objc.GetProtocol("beginSeekingForward")
 }
-
-

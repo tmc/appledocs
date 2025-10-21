@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKDiscoverUserIdentitiesOperation
 
-
 // ExampleNewCKDiscoverUserIdentitiesOperation demonstrates how to create a CKDiscoverUserIdentitiesOperation instance.
 // Creates an operation for discovering user identities.
 func ExampleNewCKDiscoverUserIdentitiesOperation() {
 	_ = cloudkit.NewCKDiscoverUserIdentitiesOperation()
 	// Output:
 }
-
-
-

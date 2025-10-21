@@ -81,6 +81,7 @@ func NewPopover() Popover {
 	return getPopoverClass().New()
 }
 
+
 // Attempts to close the popover.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/performClose(_:)
@@ -95,6 +96,7 @@ func (p_ Popover) Behavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("behavior"))
 	return rv
 }
+
 
 // SetBehavior sets the value of the behavior property.
 // Specifies the behavior of the popover.
@@ -112,6 +114,7 @@ func (p_ Popover) ContentViewController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentViewController"))
 	return rv
 }
+
 
 // SetContentViewController sets the value of the contentViewController property.
 // The view controller that manages the content of the popover.
@@ -138,6 +141,7 @@ func (p_ Popover) HasFullSizeContent() bool {
 	return rv
 }
 
+
 // SetHasFullSizeContent sets the value of the hasFullSizeContent property.
 // A Boolean value that indicates whether the content view of the popover extends into the arrow region.
 
@@ -154,3 +158,6 @@ func (p_ Popover) Shown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shown"))
 	return rv
 }
+
+
+

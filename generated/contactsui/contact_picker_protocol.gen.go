@@ -18,5 +18,3 @@ var contactPickerProtocol *objc.Protocol
 func init() {
 	contactPickerProtocol = objc.GetProtocol("contactPicker:")
 }
-
-

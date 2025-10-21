@@ -19,5 +19,3 @@ var setVertexSamplerStatesProtocol *objc.Protocol
 func init() {
 	setVertexSamplerStatesProtocol = objc.GetProtocol("setVertexSamplerStates:")
 }
-
-

@@ -82,19 +82,23 @@ func NewFaceObservation() FaceObservation {
 }
 
 
-// Creates an observation that contains the roll, yaw, and pitch of the face.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer, pitch unsafe.Pointer) FaceObservation {
-	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
-	return rv
-}
+
 
 // Creates an observation that contains the roll and yaw of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
 func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
+	return rv
+}
+
+
+
+// Creates an observation that contains the roll, yaw, and pitch of the face.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer, pitch unsafe.Pointer) FaceObservation {
+	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
 }
 

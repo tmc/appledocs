@@ -20,5 +20,3 @@ var setMeshSamplerStateProtocol *objc.Protocol
 func init() {
 	setMeshSamplerStateProtocol = objc.GetProtocol("setMeshSamplerState:")
 }
-
-

@@ -117,3 +117,4 @@ func (p_ PHASEPullStreamNodeDefinition) SetNormalize(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNormalize:"), value)
 }
 
+

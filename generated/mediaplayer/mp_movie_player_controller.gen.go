@@ -98,6 +98,7 @@ func (m_ MoviePlayerController) ContentURL() unsafe.Pointer {
 func (m_ MoviePlayerController) SetContentURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), value)
 }
+
 // Indicates whether the movie player is currently playing video via AirPlay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerController/isAirPlayVideoActive
@@ -139,6 +140,7 @@ func (m_ MoviePlayerController) RepeatMode() unsafe.Pointer {
 func (m_ MoviePlayerController) SetRepeatMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRepeatMode:"), value)
 }
+
 // A Boolean that indicates whether a movie should begin playback automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerController/shouldAutoplay
@@ -156,6 +158,7 @@ func (m_ MoviePlayerController) ShouldAutoplay() bool {
 func (m_ MoviePlayerController) SetShouldAutoplay(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAutoplay:"), value)
 }
+
 // Obtains the most recent time-based metadata provided by the streamed movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerController/timedMetadata

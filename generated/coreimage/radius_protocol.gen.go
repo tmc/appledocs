@@ -12,5 +12,3 @@ var radiusProtocol *objc.Protocol
 func init() {
 	radiusProtocol = objc.GetProtocol("radius")
 }
-
-

@@ -81,6 +81,8 @@ func NewCaptureEventInteraction() CaptureEventInteraction {
 }
 
 
+
+
 // Creates a capture event interaction with a handler that responds to presses of hardware buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/init(handler:)
@@ -90,6 +92,8 @@ func NewCaptureEventInteractionWithEventHandler(handler unsafe.Pointer) CaptureE
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a capture event interaction with handlers that respond independently to presses of hardware buttons.
 //
@@ -126,6 +130,7 @@ func (c_ CaptureEventInteraction) DefaultCaptureSoundDisabled() bool {
 func (c_ CaptureEventInteraction) SetDefaultCaptureSoundDisabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultCaptureSoundDisabled:"), value)
 }
+
 // A Boolean value that indicates whether this capture event interaction is in an enabled state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled
@@ -143,4 +148,5 @@ func (c_ CaptureEventInteraction) Enabled() bool {
 func (c_ CaptureEventInteraction) SetEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
+
 

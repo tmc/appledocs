@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = coredata.NewBatchUpdateRequest
 
-
-
 // ExampleNewBatchUpdateRequestWithEntityName demonstrates how to create a BatchUpdateRequest instance using NewBatchUpdateRequestWithEntityName.
 // Creates a batch-update request for a named managed entity.
 func ExampleNewBatchUpdateRequestWithEntityName() {
@@ -19,5 +17,3 @@ func ExampleNewBatchUpdateRequestWithEntityName() {
 	)
 	// Output:
 }
-
-

@@ -81,6 +81,8 @@ func NewMediaItemAnimatedArtwork() MediaItemAnimatedArtwork {
 }
 
 
+
+
 // Creates an animated artwork.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemAnimatedArtwork/init(artworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:)-ieue

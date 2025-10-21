@@ -82,6 +82,8 @@ func NewCSSearchableItem() CSSearchableItem {
 }
 
 
+
+
 // Returns a searchable item associated with the specified identifier, domain identifier, and attribute set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)
@@ -118,6 +120,7 @@ func (c_ CSSearchableItem) AttributeSet() unsafe.Pointer {
 func (c_ CSSearchableItem) SetAttributeSet(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributeSet:"), value)
 }
+
 // An optional identifier that represents the domain or owner of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
@@ -135,6 +138,7 @@ func (c_ CSSearchableItem) DomainIdentifier() string {
 func (c_ CSSearchableItem) SetDomainIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), objc.String(value))
 }
+
 // The date after which the searchable item should no longer exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/expirationDate
@@ -152,6 +156,7 @@ func (c_ CSSearchableItem) ExpirationDate() unsafe.Pointer {
 func (c_ CSSearchableItem) SetExpirationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpirationDate:"), value)
 }
+
 // A Boolean value that indicates whether to treat the item as an update instead of a new item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/isUpdate
@@ -169,6 +174,7 @@ func (c_ CSSearchableItem) IsUpdate() bool {
 func (c_ CSSearchableItem) SetIsUpdate(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUpdate:"), value)
 }
+
 // The value that uniquely identifies the searchable item within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
@@ -186,6 +192,7 @@ func (c_ CSSearchableItem) UniqueIdentifier() string {
 func (c_ CSSearchableItem) SetUniqueIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/updateListenerOptions-swift.property
 func (c_ CSSearchableItem) UpdateListenerOptions() unsafe.Pointer {
@@ -200,4 +207,5 @@ func (c_ CSSearchableItem) UpdateListenerOptions() unsafe.Pointer {
 func (c_ CSSearchableItem) SetUpdateListenerOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUpdateListenerOptions:"), value)
 }
+
 

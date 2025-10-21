@@ -20,4 +20,3 @@ var supportsWideColorSourceFramesProtocol *objc.Protocol
 func init() {
 	supportsWideColorSourceFramesProtocol = objc.GetProtocol("supportsWideColorSourceFrames")
 }
-

@@ -98,3 +98,4 @@ func (g_ GCDeviceLight) SetColor(value unsafe.Pointer) {
 }
 
 
+

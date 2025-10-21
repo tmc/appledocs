@@ -20,5 +20,3 @@ var shaderValidationProtocol *objc.Protocol
 func init() {
 	shaderValidationProtocol = objc.GetProtocol("shaderValidation")
 }
-
-

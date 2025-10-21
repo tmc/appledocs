@@ -20,5 +20,3 @@ var captureOutputProtocol *objc.Protocol
 func init() {
 	captureOutputProtocol = objc.GetProtocol("captureOutput:")
 }
-
-

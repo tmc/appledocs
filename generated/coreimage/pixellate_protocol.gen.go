@@ -12,5 +12,3 @@ var PixellateProtocol *objc.Protocol
 func init() {
 	PixellateProtocol = objc.GetProtocol("CIPixellate")
 }
-
-

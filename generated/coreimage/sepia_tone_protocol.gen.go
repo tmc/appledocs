@@ -12,5 +12,3 @@ var SepiaToneProtocol *objc.Protocol
 func init() {
 	SepiaToneProtocol = objc.GetProtocol("CISepiaTone")
 }
-
-

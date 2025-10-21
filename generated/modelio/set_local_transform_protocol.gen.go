@@ -20,5 +20,3 @@ var setLocalTransformProtocol *objc.Protocol
 func init() {
 	setLocalTransformProtocol = objc.GetProtocol("setLocalTransform:")
 }
-
-

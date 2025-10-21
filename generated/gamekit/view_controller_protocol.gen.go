@@ -15,5 +15,3 @@ var ViewControllerProtocol *objc.Protocol
 func init() {
 	ViewControllerProtocol = objc.GetProtocol("GKViewController")
 }
-
-

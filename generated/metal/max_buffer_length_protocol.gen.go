@@ -20,5 +20,3 @@ var maxBufferLengthProtocol *objc.Protocol
 func init() {
 	maxBufferLengthProtocol = objc.GetProtocol("maxBufferLength")
 }
-
-

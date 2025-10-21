@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PrintInfo] class.
@@ -80,6 +81,7 @@ func NewPrintInfo() PrintInfo {
 	return getPrintInfoClass().New()
 }
 
+
 // Returns the print info’s dictionary that contains the printing attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/dictionary()
@@ -95,6 +97,7 @@ func (p_ PrintInfo) HorizontallyCentered() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("horizontallyCentered"))
 	return rv
 }
+
 
 // SetHorizontallyCentered sets the value of the horizontallyCentered property.
 // A Boolean value that indicates whether the image is centered horizontally.
@@ -113,6 +116,7 @@ func (p_ PrintInfo) SelectionOnly() bool {
 	return rv
 }
 
+
 // SetSelectionOnly sets the value of the selectionOnly property.
 // A Boolean value that indicates whether only the currently selected contents should be printed.
 
@@ -130,6 +134,7 @@ func (p_ PrintInfo) JobDisposition() unsafe.Pointer {
 	return rv
 }
 
+
 // SetJobDisposition sets the value of the jobDisposition property.
 // The action specified for the job.
 
@@ -138,3 +143,6 @@ func (p_ PrintInfo) JobDisposition() unsafe.Pointer {
 func (p_ PrintInfo) SetJobDisposition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobDisposition:"), value)
 }
+
+
+

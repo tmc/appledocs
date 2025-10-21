@@ -82,6 +82,8 @@ func NewMediaPickerController() MediaPickerController {
 }
 
 
+
+
 // Initializes a media item picker for specified media types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/init(mediaTypes:)
@@ -110,6 +112,7 @@ func (m_ MediaPickerController) AllowsPickingMultipleItems() bool {
 func (m_ MediaPickerController) SetAllowsPickingMultipleItems(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsPickingMultipleItems:"), value)
 }
+
 // The delegate for a media item picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/delegate
@@ -127,6 +130,7 @@ func (m_ MediaPickerController) Delegate() objc.ID {
 func (m_ MediaPickerController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The media types that media item picker presents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/mediaTypes
@@ -152,6 +156,7 @@ func (m_ MediaPickerController) Prompt() string {
 func (m_ MediaPickerController) SetPrompt(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), objc.String(value))
 }
+
 // A Boolean value specifying whether to display iCloud Media Library items for a media picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/showsCloudItems
@@ -169,6 +174,7 @@ func (m_ MediaPickerController) ShowsCloudItems() bool {
 func (m_ MediaPickerController) SetShowsCloudItems(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsCloudItems:"), value)
 }
+
 // A Boolean value that specifies whether the media item picker displays protected assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/showsItemsWithProtectedAssets
@@ -186,4 +192,5 @@ func (m_ MediaPickerController) ShowsItemsWithProtectedAssets() bool {
 func (m_ MediaPickerController) SetShowsItemsWithProtectedAssets(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsItemsWithProtectedAssets:"), value)
 }
+
 

@@ -98,6 +98,7 @@ func (d_ DetectRectanglesRequest) MaximumAspectRatio() unsafe.Pointer {
 func (d_ DetectRectanglesRequest) SetMaximumAspectRatio(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumAspectRatio:"), value)
 }
+
 // An integer specifying the maximum number of rectangles Vision returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumObservations
@@ -115,6 +116,7 @@ func (d_ DetectRectanglesRequest) MaximumObservations() uint {
 func (d_ DetectRectanglesRequest) SetMaximumObservations(value uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumObservations:"), value)
 }
+
 // A specifying the minimum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
@@ -132,6 +134,7 @@ func (d_ DetectRectanglesRequest) MinimumAspectRatio() unsafe.Pointer {
 func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumAspectRatio:"), value)
 }
+
 // A value specifying the minimum acceptable confidence level.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
@@ -149,6 +152,7 @@ func (d_ DetectRectanglesRequest) MinimumConfidence() unsafe.Pointer {
 func (d_ DetectRectanglesRequest) SetMinimumConfidence(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumConfidence:"), value)
 }
+
 // The minimum size of a rectangle to detect, as a proportion of the smallest dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumSize
@@ -166,5 +170,6 @@ func (d_ DetectRectanglesRequest) MinimumSize() unsafe.Pointer {
 func (d_ DetectRectanglesRequest) SetMinimumSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumSize:"), value)
 }
+
 
 

@@ -12,5 +12,3 @@ var MedianProtocol *objc.Protocol
 func init() {
 	MedianProtocol = objc.GetProtocol("CIMedian")
 }
-
-

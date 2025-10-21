@@ -9,7 +9,14 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewRandomDistribution
 
-
+// ExampleNewRandomDistributionForDieWithSideCount demonstrates how to create a RandomDistribution instance using NewRandomDistributionForDieWithSideCount.
+// Creates a random distribution equivalent to a die with the specified number of sides.
+func ExampleNewRandomDistributionForDieWithSideCount() {
+	_ = gameplaykit.NewRandomDistributionForDieWithSideCount(
+		0, // sideCount int
+	)
+	// Output:
+}
 // ExampleNewRandomDistributionWithLowestValueHighestValue demonstrates how to create a RandomDistribution instance using NewRandomDistributionWithLowestValueHighestValue.
 // Creates a random distribution with the specified lower and upper bounds, using the Arc4 randomizer.
 func ExampleNewRandomDistributionWithLowestValueHighestValue() {
@@ -19,15 +26,3 @@ func ExampleNewRandomDistributionWithLowestValueHighestValue() {
 	)
 	// Output:
 }
-
-
-// ExampleNewRandomDistributionForDieWithSideCount demonstrates how to create a RandomDistribution instance using NewRandomDistributionForDieWithSideCount.
-// Creates a random distribution equivalent to a die with the specified number of sides.
-func ExampleNewRandomDistributionForDieWithSideCount() {
-	_ = gameplaykit.NewRandomDistributionForDieWithSideCount(
-		0, // sideCount int
-	)
-	// Output:
-}
-
-

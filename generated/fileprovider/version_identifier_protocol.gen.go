@@ -17,5 +17,3 @@ var versionIdentifierProtocol *objc.Protocol
 func init() {
 	versionIdentifierProtocol = objc.GetProtocol("versionIdentifier")
 }
-
-

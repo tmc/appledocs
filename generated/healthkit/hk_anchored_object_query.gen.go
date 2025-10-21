@@ -81,6 +81,8 @@ func NewHKAnchoredObjectQuery() HKAnchoredObjectQuery {
 }
 
 
+
+
 // Creates an anchored object query that matches any of the query descriptors you provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(queryDescriptors:anchor:limit:resultsHandler:)
@@ -91,6 +93,8 @@ func NewHKAnchoredObjectQueryWithQueryDescriptorsAnchorLimitResultsHandler(query
 	return rv
 }
 
+
+
 // Initializes a new anchored object query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:completionHandler:)
@@ -100,6 +104,8 @@ func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitCompletionHandler(type_
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a new anchored object query.
 //

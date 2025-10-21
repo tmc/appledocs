@@ -97,6 +97,7 @@ func (m_ MatrixRandomDistributionDescriptor) Minimum() unsafe.Pointer {
 func (m_ MatrixRandomDistributionDescriptor) SetMinimum(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimum:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/standardDeviation
 func (m_ MatrixRandomDistributionDescriptor) StandardDeviation() unsafe.Pointer {
@@ -111,5 +112,6 @@ func (m_ MatrixRandomDistributionDescriptor) StandardDeviation() unsafe.Pointer 
 func (m_ MatrixRandomDistributionDescriptor) SetStandardDeviation(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStandardDeviation:"), value)
 }
+
 
 

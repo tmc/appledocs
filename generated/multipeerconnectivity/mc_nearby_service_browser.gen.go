@@ -82,6 +82,8 @@ func NewMCNearbyServiceBrowser() MCNearbyServiceBrowser {
 }
 
 
+
+
 // Initializes the nearby service browser object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/init(peer:serviceType:)
@@ -131,6 +133,7 @@ func (m_ MCNearbyServiceBrowser) Delegate() objc.ID {
 func (m_ MCNearbyServiceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The local peer ID for this instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/myPeerID

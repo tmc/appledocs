@@ -19,5 +19,3 @@ var endEncodingProtocol *objc.Protocol
 func init() {
 	endEncodingProtocol = objc.GetProtocol("endEncoding")
 }
-
-

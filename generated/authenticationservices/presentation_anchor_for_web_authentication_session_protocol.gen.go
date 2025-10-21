@@ -19,4 +19,3 @@ var presentationAnchorForWebAuthenticationSessionProtocol *objc.Protocol
 func init() {
 	presentationAnchorForWebAuthenticationSessionProtocol = objc.GetProtocol("presentationAnchorForWebAuthenticationSession:")
 }
-

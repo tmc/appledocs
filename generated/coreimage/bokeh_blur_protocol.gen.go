@@ -12,5 +12,3 @@ var BokehBlurProtocol *objc.Protocol
 func init() {
 	BokehBlurProtocol = objc.GetProtocol("CIBokehBlur")
 }
-
-

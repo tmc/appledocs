@@ -20,5 +20,3 @@ var classForAnnotationTypeProtocol *objc.Protocol
 func init() {
 	classForAnnotationTypeProtocol = objc.GetProtocol("classForAnnotationType:")
 }
-
-

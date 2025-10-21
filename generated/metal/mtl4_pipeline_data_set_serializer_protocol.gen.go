@@ -20,5 +20,3 @@ var MTL4PipelineDataSetSerializerProtocol *objc.Protocol
 func init() {
 	MTL4PipelineDataSetSerializerProtocol = objc.GetProtocol("MTL4PipelineDataSetSerializer")
 }
-
-

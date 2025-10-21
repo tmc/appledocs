@@ -106,6 +106,7 @@ func (s_ SpeechSynthesizer) Delegate() objc.ID {
 func (s_ SpeechSynthesizer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the speech synthesizer is speaking or is in a paused state and has utterances to speak.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/isSpeaking

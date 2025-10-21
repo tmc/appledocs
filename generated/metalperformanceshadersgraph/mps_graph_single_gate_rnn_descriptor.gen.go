@@ -108,3 +108,4 @@ func (g_ GraphSingleGateRNNDescriptor) SetBidirectional(value bool) {
 }
 
 
+

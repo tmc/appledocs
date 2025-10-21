@@ -12,5 +12,3 @@ var FetchedResultsControllerDelegateProtocol *objc.Protocol
 func init() {
 	FetchedResultsControllerDelegateProtocol = objc.GetProtocol("NSFetchedResultsControllerDelegate")
 }
-
-

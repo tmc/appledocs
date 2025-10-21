@@ -79,3 +79,7 @@ func (s_ SecureTextFieldCell) Autorelease() SecureTextFieldCell {
 func NewSecureTextFieldCell() SecureTextFieldCell {
 	return getSecureTextFieldCellClass().New()
 }
+
+
+
+

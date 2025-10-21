@@ -12,5 +12,3 @@ var l2capChannelOpenCompleteProtocol *objc.Protocol
 func init() {
 	l2capChannelOpenCompleteProtocol = objc.GetProtocol("l2capChannelOpenComplete:")
 }
-
-

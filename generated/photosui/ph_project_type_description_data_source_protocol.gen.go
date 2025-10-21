@@ -15,5 +15,3 @@ var PHProjectTypeDescriptionDataSourceProtocol *objc.Protocol
 func init() {
 	PHProjectTypeDescriptionDataSourceProtocol = objc.GetProtocol("PHProjectTypeDescriptionDataSource")
 }
-
-

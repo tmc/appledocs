@@ -16,5 +16,3 @@ var startStreamAndReturnErrorProtocol *objc.Protocol
 func init() {
 	startStreamAndReturnErrorProtocol = objc.GetProtocol("startStreamAndReturnError:")
 }
-
-

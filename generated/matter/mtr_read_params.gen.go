@@ -90,6 +90,7 @@ func (m_ MTRReadParams) FabricFiltered() unsafe.Pointer {
 func (m_ MTRReadParams) SetFabricFiltered(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricFiltered:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/minEventNumber
 func (m_ MTRReadParams) MinEventNumber() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRReadParams) MinEventNumber() unsafe.Pointer {
 func (m_ MTRReadParams) SetMinEventNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinEventNumber:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldAssumeUnknownAttributesReportable
 func (m_ MTRReadParams) AssumeUnknownAttributesReportable() bool {
@@ -118,6 +120,7 @@ func (m_ MTRReadParams) AssumeUnknownAttributesReportable() bool {
 func (m_ MTRReadParams) SetAssumeUnknownAttributesReportable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAssumeUnknownAttributesReportable:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldFilterByFabric
 func (m_ MTRReadParams) FilterByFabric() bool {
@@ -132,5 +135,6 @@ func (m_ MTRReadParams) FilterByFabric() bool {
 func (m_ MTRReadParams) SetFilterByFabric(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFilterByFabric:"), value)
 }
+
 
 

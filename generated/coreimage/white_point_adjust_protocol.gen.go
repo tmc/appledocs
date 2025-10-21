@@ -12,5 +12,3 @@ var WhitePointAdjustProtocol *objc.Protocol
 func init() {
 	WhitePointAdjustProtocol = objc.GetProtocol("CIWhitePointAdjust")
 }
-
-

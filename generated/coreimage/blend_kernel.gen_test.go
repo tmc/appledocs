@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewBlendKernel
 
-
 // ExampleNewBlendKernelWithString demonstrates how to create a BlendKernel instance using NewBlendKernelWithString.
 // Creates a custom blend kernel from a program string.
 func ExampleNewBlendKernelWithString() {
@@ -18,5 +17,3 @@ func ExampleNewBlendKernelWithString() {
 	)
 	// Output:
 }
-
-

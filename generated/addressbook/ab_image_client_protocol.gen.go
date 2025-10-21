@@ -12,5 +12,3 @@ var ABImageClientProtocol *objc.Protocol
 func init() {
 	ABImageClientProtocol = objc.GetProtocol("ABImageClient")
 }
-
-

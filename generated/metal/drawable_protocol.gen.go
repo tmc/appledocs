@@ -19,5 +19,3 @@ var DrawableProtocol *objc.Protocol
 func init() {
 	DrawableProtocol = objc.GetProtocol("MTLDrawable")
 }
-
-

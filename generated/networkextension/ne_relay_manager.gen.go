@@ -154,6 +154,7 @@ func (n_ NERelayManager) SetExcludedDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedDomains:"), nsArray)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/excludedFQDNs
 func (n_ NERelayManager) ExcludedFQDNs() []string {
@@ -178,6 +179,7 @@ func (n_ NERelayManager) SetExcludedFQDNs(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedFQDNs:"), nsArray)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/isDNSFailoverAllowed
 func (n_ NERelayManager) AllowDNSFailover() bool {
@@ -192,6 +194,7 @@ func (n_ NERelayManager) AllowDNSFailover() bool {
 func (n_ NERelayManager) SetAllowDNSFailover(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAllowDNSFailover:"), value)
 }
+
 // A Boolean used to toggle the enabled state of the relay configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/isEnabled
@@ -209,6 +212,7 @@ func (n_ NERelayManager) Enabled() bool {
 func (n_ NERelayManager) SetEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/isUIToggleEnabled
 func (n_ NERelayManager) UIToggleEnabled() bool {
@@ -223,6 +227,7 @@ func (n_ NERelayManager) UIToggleEnabled() bool {
 func (n_ NERelayManager) SetUIToggleEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUIToggleEnabled:"), value)
 }
+
 // A string that contains the display name of the relay configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
@@ -240,6 +245,7 @@ func (n_ NERelayManager) LocalizedDescription() string {
 func (n_ NERelayManager) SetLocalizedDescription(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
+
 // A list of domain strings used to determine which connections will use the relay configuration contained in this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/matchDomains
@@ -267,6 +273,7 @@ func (n_ NERelayManager) SetMatchDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), nsArray)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/matchFQDNs
 func (n_ NERelayManager) MatchFQDNs() []string {
@@ -291,6 +298,7 @@ func (n_ NERelayManager) SetMatchFQDNs(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchFQDNs:"), nsArray)
 }
+
 // An array of rules you use to determine which networks the relay uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/onDemandRules
@@ -318,6 +326,7 @@ func (n_ NERelayManager) SetOnDemandRules(value []NEOnDemandRule) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), nsArray)
 }
+
 // An array of one or two relay server configurations. If multiple relays are configured, application traffic routes through both of them in the order they appear in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/relays
@@ -345,5 +354,6 @@ func (n_ NERelayManager) SetRelays(value []NERelay) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRelays:"), nsArray)
 }
+
 
 

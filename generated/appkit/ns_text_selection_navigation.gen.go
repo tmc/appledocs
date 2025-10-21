@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextSelectionNavigation] class.
@@ -76,3 +77,7 @@ func (t_ TextSelectionNavigation) Autorelease() TextSelectionNavigation {
 func NewTextSelectionNavigation() TextSelectionNavigation {
 	return getTextSelectionNavigationClass().New()
 }
+
+
+
+

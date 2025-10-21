@@ -96,6 +96,7 @@ func (m_ MEHEVCDependencyInfo) ConstraintIndicatorFlags() unsafe.Pointer {
 func (m_ MEHEVCDependencyInfo) SetConstraintIndicatorFlags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConstraintIndicatorFlags:"), value)
 }
+
 // A Boolean value that indicates if the sample has an HEVC temporal sublayer access (TSA) picture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/hasTemporalSubLayerAccess
@@ -113,6 +114,7 @@ func (m_ MEHEVCDependencyInfo) TemporalSubLayerAccess() bool {
 func (m_ MEHEVCDependencyInfo) SetTemporalSubLayerAccess(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemporalSubLayerAccess:"), value)
 }
+
 // The HEVC level index, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/levelIndex
@@ -130,6 +132,7 @@ func (m_ MEHEVCDependencyInfo) LevelIndex() unsafe.Pointer {
 func (m_ MEHEVCDependencyInfo) SetLevelIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLevelIndex:"), value)
 }
+
 // The HEVC profile space, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/profileSpace
@@ -147,6 +150,7 @@ func (m_ MEHEVCDependencyInfo) ProfileSpace() unsafe.Pointer {
 func (m_ MEHEVCDependencyInfo) SetProfileSpace(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileSpace:"), value)
 }
+
 // The NAL unit type for HEVC sync sample groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/syncSampleNALUnitType
@@ -164,6 +168,7 @@ func (m_ MEHEVCDependencyInfo) SyncSampleNALUnitType() unsafe.Pointer {
 func (m_ MEHEVCDependencyInfo) SetSyncSampleNALUnitType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSyncSampleNALUnitType:"), value)
 }
+
 // The HEVC temporal level, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/temporalLevel
@@ -181,5 +186,6 @@ func (m_ MEHEVCDependencyInfo) TemporalLevel() unsafe.Pointer {
 func (m_ MEHEVCDependencyInfo) SetTemporalLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemporalLevel:"), value)
 }
+
 
 

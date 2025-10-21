@@ -9,15 +9,8 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewNoise
 
-
-
-
-
-
 // ExampleNewNoise demonstrates how to create a Noise instance.
 func ExampleNewNoise() {
 	_ = gameplaykit.NewNoise()
 	// Output:
 }
-
-

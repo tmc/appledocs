@@ -99,6 +99,7 @@ func (g_ GLKViewController) Delegate() objc.ID {
 func (g_ GLKViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The number of frame updates that have been sent by the view controller since it was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/framesDisplayed
@@ -132,6 +133,7 @@ func (g_ GLKViewController) Paused() bool {
 func (g_ GLKViewController) SetPaused(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaused:"), value)
 }
+
 // A Boolean value that indicates whether the view controller automatically pauses the rendering loop when the application resigns the active state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/pauseOnWillResignActive
@@ -149,6 +151,7 @@ func (g_ GLKViewController) PauseOnWillResignActive() bool {
 func (g_ GLKViewController) SetPauseOnWillResignActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPauseOnWillResignActive:"), value)
 }
+
 // The rate you want the view controller to call the view to update the contents of the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/preferredFramesPerSecond
@@ -166,6 +169,7 @@ func (g_ GLKViewController) PreferredFramesPerSecond() int {
 func (g_ GLKViewController) SetPreferredFramesPerSecond(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPreferredFramesPerSecond:"), value)
 }
+
 // A Boolean value that indicates whether the view controller automatically resumes the rendering loop when the application becomes active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/resumeOnDidBecomeActive
@@ -183,6 +187,7 @@ func (g_ GLKViewController) ResumeOnDidBecomeActive() bool {
 func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResumeOnDidBecomeActive:"), value)
 }
+
 // The amount of time that has passed since first time the view controller resumed sending update events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceFirstResume
@@ -214,6 +219,7 @@ func (g_ GLKViewController) TimeSinceLastUpdate() TimeInterval {
 	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
 	return rv
 }
+
 
 
 

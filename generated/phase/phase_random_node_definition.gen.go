@@ -82,6 +82,8 @@ func NewPHASERandomNodeDefinition() PHASERandomNodeDefinition {
 }
 
 
+
+
 // Creates a random node with the name you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/init(identifier:)
@@ -117,4 +119,5 @@ func (p_ PHASERandomNodeDefinition) UniqueSelectionQueueLength() int {
 func (p_ PHASERandomNodeDefinition) SetUniqueSelectionQueueLength(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUniqueSelectionQueueLength:"), value)
 }
+
 

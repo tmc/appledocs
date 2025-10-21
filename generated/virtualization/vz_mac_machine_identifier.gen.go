@@ -81,6 +81,8 @@ func NewVZMacMachineIdentifier() VZMacMachineIdentifier {
 }
 
 
+
+
 // Create a machine identifier described by the specified data representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacMachineIdentifier/init(dataRepresentation:)

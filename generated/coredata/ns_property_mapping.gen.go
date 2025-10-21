@@ -96,6 +96,7 @@ func (p_ PropertyMapping) Name() string {
 func (p_ PropertyMapping) SetName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The user info for the property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
@@ -113,6 +114,7 @@ func (p_ PropertyMapping) UserInfo() unsafe.Pointer {
 func (p_ PropertyMapping) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
+
 // The value expression for the property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
@@ -130,5 +132,6 @@ func (p_ PropertyMapping) ValueExpression() unsafe.Pointer {
 func (p_ PropertyMapping) SetValueExpression(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }
+
 
 

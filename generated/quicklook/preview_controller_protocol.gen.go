@@ -18,5 +18,3 @@ var previewControllerProtocol *objc.Protocol
 func init() {
 	previewControllerProtocol = objc.GetProtocol("previewController:")
 }
-
-

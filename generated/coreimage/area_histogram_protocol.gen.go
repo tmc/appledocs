@@ -12,5 +12,3 @@ var AreaHistogramProtocol *objc.Protocol
 func init() {
 	AreaHistogramProtocol = objc.GetProtocol("CIAreaHistogram")
 }
-
-

@@ -16,5 +16,3 @@ var ContentSharingPickerObserverProtocol *objc.Protocol
 func init() {
 	ContentSharingPickerObserverProtocol = objc.GetProtocol("SCContentSharingPickerObserver")
 }
-
-

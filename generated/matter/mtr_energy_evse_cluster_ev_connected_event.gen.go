@@ -92,3 +92,4 @@ func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value unsafe.Pointer
 }
 
 
+

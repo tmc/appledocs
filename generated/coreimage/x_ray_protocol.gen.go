@@ -12,5 +12,3 @@ var XRayProtocol *objc.Protocol
 func init() {
 	XRayProtocol = objc.GetProtocol("CIXRay")
 }
-
-

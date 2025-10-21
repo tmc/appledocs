@@ -12,5 +12,3 @@ var remoteNameRequestCompleteProtocol *objc.Protocol
 func init() {
 	remoteNameRequestCompleteProtocol = objc.GetProtocol("remoteNameRequestComplete:")
 }
-
-

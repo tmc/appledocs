@@ -12,5 +12,3 @@ var LineOverlayProtocol *objc.Protocol
 func init() {
 	LineOverlayProtocol = objc.GetProtocol("CILineOverlay")
 }
-
-

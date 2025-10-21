@@ -15,5 +15,3 @@ var OSSystemExtensionRequestDelegateProtocol *objc.Protocol
 func init() {
 	OSSystemExtensionRequestDelegateProtocol = objc.GetProtocol("OSSystemExtensionRequestDelegate")
 }
-
-

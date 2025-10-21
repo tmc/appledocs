@@ -20,5 +20,3 @@ var newComputePipelineStateWithDescriptorProtocol *objc.Protocol
 func init() {
 	newComputePipelineStateWithDescriptorProtocol = objc.GetProtocol("newComputePipelineStateWithDescriptor:")
 }
-
-

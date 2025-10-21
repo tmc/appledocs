@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewRandomSource
 
-
-
 // ExampleNewRandomSource demonstrates how to create a RandomSource instance.
 // Initializes a new random source object.
 func ExampleNewRandomSource() {
 	_ = gameplaykit.NewRandomSource()
 	// Output:
 }
-
-

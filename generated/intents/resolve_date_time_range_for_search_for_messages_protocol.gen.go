@@ -19,5 +19,3 @@ var resolveDateTimeRangeForSearchForMessagesProtocol *objc.Protocol
 func init() {
 	resolveDateTimeRangeForSearchForMessagesProtocol = objc.GetProtocol("resolveDateTimeRangeForSearchForMessages:")
 }
-
-

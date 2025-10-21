@@ -81,6 +81,8 @@ func NewUNNotificationAction() UNNotificationAction {
 }
 
 
+
+
 // Creates an action object by using the specified title and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/init(identifier:title:options:)
@@ -88,6 +90,8 @@ func NewUNNotificationActionWithIdentifierTitleOptions(identifier string, title 
 	rv := objc.Send[UNNotificationAction](objc.ID(getUNNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:"), objc.String(identifier), objc.String(title), options)
 	return rv
 }
+
+
 
 // Creates an action object by using the specified title, options, and icon.
 //

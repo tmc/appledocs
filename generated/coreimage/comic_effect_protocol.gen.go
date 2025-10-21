@@ -12,5 +12,3 @@ var ComicEffectProtocol *objc.Protocol
 func init() {
 	ComicEffectProtocol = objc.GetProtocol("CIComicEffect")
 }
-
-

@@ -20,5 +20,3 @@ var GCButtonElementNameProtocol *objc.Protocol
 func init() {
 	GCButtonElementNameProtocol = objc.GetProtocol("GCButtonElementName")
 }
-
-

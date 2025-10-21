@@ -16,5 +16,3 @@ var supportsDLTDOAMeasurementProtocol *objc.Protocol
 func init() {
 	supportsDLTDOAMeasurementProtocol = objc.GetProtocol("supportsDLTDOAMeasurement")
 }
-
-

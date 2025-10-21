@@ -20,5 +20,3 @@ var setComputePipelineStateProtocol *objc.Protocol
 func init() {
 	setComputePipelineStateProtocol = objc.GetProtocol("setComputePipelineState:")
 }
-
-

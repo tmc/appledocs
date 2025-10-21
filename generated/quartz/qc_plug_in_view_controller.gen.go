@@ -83,6 +83,8 @@ func NewQCPlugInViewController() QCPlugInViewController {
 }
 
 
+
+
 // Creates and initializes a controller for the specified object and nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPlugInViewController/init(plugIn:viewNibName:)

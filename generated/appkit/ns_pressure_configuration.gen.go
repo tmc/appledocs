@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PressureConfiguration] class.
@@ -80,9 +81,13 @@ func NewPressureConfiguration() PressureConfiguration {
 	return getPressureConfigurationClass().New()
 }
 
+
 // Changes the pressure configuration of the trackpad to the initialized pressure configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration/set()
 func (p_ PressureConfiguration) Set() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("set"))
 }
+
+
+

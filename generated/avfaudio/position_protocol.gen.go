@@ -12,5 +12,3 @@ var positionProtocol *objc.Protocol
 func init() {
 	positionProtocol = objc.GetProtocol("position")
 }
-
-

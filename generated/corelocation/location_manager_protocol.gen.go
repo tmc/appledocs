@@ -18,5 +18,3 @@ var locationManagerProtocol *objc.Protocol
 func init() {
 	locationManagerProtocol = objc.GetProtocol("locationManager:")
 }
-
-

@@ -20,5 +20,3 @@ var drawPatchesProtocol *objc.Protocol
 func init() {
 	drawPatchesProtocol = objc.GetProtocol("drawPatches:")
 }
-
-

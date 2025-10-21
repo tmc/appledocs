@@ -19,5 +19,3 @@ var INTransferMoneyIntentHandlingProtocol *objc.Protocol
 func init() {
 	INTransferMoneyIntentHandlingProtocol = objc.GetProtocol("INTransferMoneyIntentHandling")
 }
-
-

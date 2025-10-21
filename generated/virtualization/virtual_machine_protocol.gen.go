@@ -15,4 +15,3 @@ var virtualMachineProtocol *objc.Protocol
 func init() {
 	virtualMachineProtocol = objc.GetProtocol("virtualMachine:")
 }
-

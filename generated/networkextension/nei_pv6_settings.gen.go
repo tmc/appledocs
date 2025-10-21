@@ -108,6 +108,7 @@ func (n_ NEIPv6Settings) SetExcludedRoutes(value []NEIPv6Route) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), nsArray)
 }
+
 // The IPv6 network traffic that the system routes to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/includedRoutes
@@ -135,5 +136,6 @@ func (n_ NEIPv6Settings) SetIncludedRoutes(value []NEIPv6Route) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), nsArray)
 }
+
 
 

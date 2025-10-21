@@ -19,5 +19,3 @@ var setDepthBiasProtocol *objc.Protocol
 func init() {
 	setDepthBiasProtocol = objc.GetProtocol("setDepthBias:")
 }
-
-

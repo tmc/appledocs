@@ -100,3 +100,4 @@ func (c_ CNMutableGroup) SetName(value string) {
 }
 
 
+

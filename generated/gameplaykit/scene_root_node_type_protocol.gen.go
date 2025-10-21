@@ -20,5 +20,3 @@ var SceneRootNodeTypeProtocol *objc.Protocol
 func init() {
 	SceneRootNodeTypeProtocol = objc.GetProtocol("GKSceneRootNodeType")
 }
-
-

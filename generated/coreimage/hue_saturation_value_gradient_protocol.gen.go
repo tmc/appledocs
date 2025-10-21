@@ -12,5 +12,3 @@ var HueSaturationValueGradientProtocol *objc.Protocol
 func init() {
 	HueSaturationValueGradientProtocol = objc.GetProtocol("CIHueSaturationValueGradient")
 }
-
-

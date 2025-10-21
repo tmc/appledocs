@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = corespotlight.NewCSSearchableIndex
 
-
 // ExampleNewCSSearchableIndexWithName demonstrates how to create a CSSearchableIndex instance using NewCSSearchableIndexWithName.
 // Returns an on-device index with the specified name.
 func ExampleNewCSSearchableIndexWithName() {
@@ -18,6 +17,3 @@ func ExampleNewCSSearchableIndexWithName() {
 	)
 	// Output:
 }
-
-
-

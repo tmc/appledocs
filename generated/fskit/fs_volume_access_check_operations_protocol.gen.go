@@ -15,5 +15,3 @@ var FSVolumeAccessCheckOperationsProtocol *objc.Protocol
 func init() {
 	FSVolumeAccessCheckOperationsProtocol = objc.GetProtocol("FSVolumeAccessCheckOperations")
 }
-
-

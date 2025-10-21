@@ -19,5 +19,3 @@ var isFramebufferOnlyProtocol *objc.Protocol
 func init() {
 	isFramebufferOnlyProtocol = objc.GetProtocol("isFramebufferOnly")
 }
-
-

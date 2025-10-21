@@ -81,6 +81,8 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 }
 
 
+
+
 // Initializes container options using the given CloudKit container identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
@@ -117,4 +119,5 @@ func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 func (p_ PersistentCloudKitContainerOptions) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDatabaseScope:"), value)
 }
+
 

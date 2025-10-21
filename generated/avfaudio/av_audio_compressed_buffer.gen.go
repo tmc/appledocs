@@ -79,6 +79,8 @@ func NewAudioCompressedBuffer() AudioCompressedBuffer {
 }
 
 
+
+
 // Creates a buffer that contains constant bytes per packet of audio data in a compressed state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCompressedBuffer/init(format:packetCapacity:)
@@ -88,6 +90,8 @@ func NewAudioCompressedBufferWithFormatPacketCapacity(format unsafe.Pointer, pac
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a buffer that contains audio data in a compressed state.
 //
@@ -125,6 +129,7 @@ func (a_ AudioCompressedBuffer) ByteLength() unsafe.Pointer {
 func (a_ AudioCompressedBuffer) SetByteLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setByteLength:"), value)
 }
+
 // The maximum size of a packet, in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCompressedBuffer/maximumPacketSize
@@ -158,6 +163,7 @@ func (a_ AudioCompressedBuffer) PacketCount() unsafe.Pointer {
 func (a_ AudioCompressedBuffer) SetPacketCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPacketCount:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCompressedBuffer/packetDependencies-5oae6
 func (a_ AudioCompressedBuffer) PacketDependencies() unsafe.Pointer {

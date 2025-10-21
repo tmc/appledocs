@@ -81,6 +81,8 @@ func NewFSMetadataRange() FSMetadataRange {
 }
 
 
+
+
 // Initializes a metadata range with the given properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/init(offset:segmentLength:segmentCount:)

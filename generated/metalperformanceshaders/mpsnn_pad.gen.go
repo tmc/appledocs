@@ -100,3 +100,4 @@ func (p_ Pad) SetPaddingSizeBefore(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaddingSizeBefore:"), value)
 }
 
+

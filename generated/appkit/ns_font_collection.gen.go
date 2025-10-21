@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FontCollection] class.
@@ -78,3 +79,7 @@ func (f_ FontCollection) Autorelease() FontCollection {
 func NewFontCollection() FontCollection {
 	return getFontCollectionClass().New()
 }
+
+
+
+

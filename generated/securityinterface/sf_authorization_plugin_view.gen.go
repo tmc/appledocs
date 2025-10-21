@@ -96,6 +96,8 @@ func NewSFAuthorizationPluginView() SFAuthorizationPluginView {
 }
 
 
+
+
 // Initializes a new authorization plug-in view with the specified callbacks and authorization engine handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/init(callbacks:andEngineRef:)

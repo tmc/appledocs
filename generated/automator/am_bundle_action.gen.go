@@ -122,6 +122,7 @@ func (a_ AMBundleAction) Parameters() unsafe.Pointer {
 func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameters:"), value)
 }
+
 // The action’s view object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/view

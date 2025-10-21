@@ -12,5 +12,3 @@ var TransitionFilterProtocol *objc.Protocol
 func init() {
 	TransitionFilterProtocol = objc.GetProtocol("CITransitionFilter")
 }
-
-

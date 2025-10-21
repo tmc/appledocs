@@ -21,5 +21,3 @@ var respondsToSelectorProtocol *objc.Protocol
 func init() {
 	respondsToSelectorProtocol = objc.GetProtocol("respondsToSelector:")
 }
-
-

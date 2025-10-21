@@ -18,5 +18,3 @@ var canvasViewDidEndUsingToolProtocol *objc.Protocol
 func init() {
 	canvasViewDidEndUsingToolProtocol = objc.GetProtocol("canvasViewDidEndUsingTool:")
 }
-
-

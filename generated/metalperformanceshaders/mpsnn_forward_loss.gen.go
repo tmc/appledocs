@@ -115,6 +115,7 @@ func (f_ ForwardLoss) Delta() unsafe.Pointer {
 func (f_ ForwardLoss) SetDelta(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
 func (f_ ForwardLoss) Epsilon() unsafe.Pointer {
@@ -129,6 +130,7 @@ func (f_ ForwardLoss) Epsilon() unsafe.Pointer {
 func (f_ ForwardLoss) SetEpsilon(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/reduceAcrossBatch
 func (f_ ForwardLoss) ReduceAcrossBatch() bool {

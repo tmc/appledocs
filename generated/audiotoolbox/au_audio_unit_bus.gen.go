@@ -80,6 +80,8 @@ func NewAudioUnitBus() AudioUnitBus {
 }
 
 
+
+
 // Initializes a bus object with a specific format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/init(format:)
@@ -124,6 +126,7 @@ func (a_ AudioUnitBus) ContextPresentationLatency() TimeInterval {
 func (a_ AudioUnitBus) SetContextPresentationLatency(value TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContextPresentationLatency:"), value)
 }
+
 // The audio format and channel layout of audio being transferred on the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/format
@@ -157,6 +160,7 @@ func (a_ AudioUnitBus) Enabled() bool {
 func (a_ AudioUnitBus) SetEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // The maximum number of channels supported for this bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/maximumChannelCount
@@ -174,6 +178,7 @@ func (a_ AudioUnitBus) MaximumChannelCount() unsafe.Pointer {
 func (a_ AudioUnitBus) SetMaximumChannelCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumChannelCount:"), value)
 }
+
 // A name for the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
@@ -191,6 +196,7 @@ func (a_ AudioUnitBus) Name() string {
 func (a_ AudioUnitBus) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The audio unit that owns the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/ownerAudioUnit
@@ -213,6 +219,7 @@ func (a_ AudioUnitBus) ShouldAllocateBuffer() bool {
 func (a_ AudioUnitBus) SetShouldAllocateBuffer(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldAllocateBuffer:"), value)
 }
+
 // An array of numbers indicating the supported number of channels for this bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelCounts
@@ -240,6 +247,7 @@ func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.NSNumber) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportedChannelCounts:"), nsArray)
 }
+
 // An array of audio channel layout tags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelLayoutTags

@@ -12,5 +12,3 @@ var BarcodeGeneratorProtocol *objc.Protocol
 func init() {
 	BarcodeGeneratorProtocol = objc.GetProtocol("CIBarcodeGenerator")
 }
-
-

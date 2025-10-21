@@ -83,6 +83,8 @@ func NewWarpKernel() WarpKernel {
 }
 
 
+
+
 // Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)

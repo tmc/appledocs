@@ -81,6 +81,8 @@ func NewVZMultipleDirectoryShare() VZMultipleDirectoryShare {
 }
 
 
+
+
 // Creates the directory share with a set of directories on the host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/init(directories:)

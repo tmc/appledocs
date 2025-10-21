@@ -99,6 +99,7 @@ func (r_ RPSystemBroadcastPickerView) PreferredExtension() string {
 func (r_ RPSystemBroadcastPickerView) SetPreferredExtension(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredExtension:"), objc.String(value))
 }
+
 // A Boolean value that indicates whether the microphone button is visible in the broadcast picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/showsMicrophoneButton
@@ -116,5 +117,7 @@ func (r_ RPSystemBroadcastPickerView) ShowsMicrophoneButton() bool {
 func (r_ RPSystemBroadcastPickerView) SetShowsMicrophoneButton(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setShowsMicrophoneButton:"), value)
 }
+
+
 
 

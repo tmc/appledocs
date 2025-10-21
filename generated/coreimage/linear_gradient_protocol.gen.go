@@ -12,5 +12,3 @@ var LinearGradientProtocol *objc.Protocol
 func init() {
 	LinearGradientProtocol = objc.GetProtocol("CILinearGradient")
 }
-
-

@@ -21,5 +21,3 @@ var handlerForIntentProtocol *objc.Protocol
 func init() {
 	handlerForIntentProtocol = objc.GetProtocol("handlerForIntent:")
 }
-
-

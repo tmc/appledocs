@@ -20,5 +20,3 @@ var recommendedMaxWorkingSetSizeProtocol *objc.Protocol
 func init() {
 	recommendedMaxWorkingSetSizeProtocol = objc.GetProtocol("recommendedMaxWorkingSetSize")
 }
-
-

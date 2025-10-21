@@ -93,6 +93,8 @@ func NewBluetoothSDPDataElement() BluetoothSDPDataElement {
 }
 
 
+
+
 // Initializes a new IOBluetoothSDPDataElement with the given value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(elementValue:)
@@ -102,6 +104,8 @@ func NewBluetoothSDPDataElementWithElementValue(element unsafe.Pointer) Bluetoot
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a new IOBluetoothSDPDataElement with the given attributes.
 //

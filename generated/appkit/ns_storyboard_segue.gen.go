@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [StoryboardSegue] class.
@@ -80,6 +81,9 @@ func NewStoryboardSegue() StoryboardSegue {
 	return getStoryboardSegueClass().New()
 }
 
+
+
+
 // The designated initializer for a storyboard segue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:)
@@ -89,6 +93,7 @@ func NewStoryboardSegueWithIdentifierSourceDestination(identifier unsafe.Pointer
 	rv.Autorelease()
 	return rv
 }
+
 
 // Performs a visual transition from one controller to another.
 //
@@ -112,3 +117,5 @@ func (s_ StoryboardSegue) SourceController() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sourceController"))
 	return rv
 }
+
+

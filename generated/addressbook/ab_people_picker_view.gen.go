@@ -237,6 +237,7 @@ func (a_ ABPeoplePickerView) AccessoryView() unsafe.Pointer {
 func (a_ ABPeoplePickerView) SetAccessoryView(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessoryView:"), value)
 }
+
 // A Boolean value that specifies whether the user can select entire groups in the group column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsGroupSelection
@@ -254,6 +255,7 @@ func (a_ ABPeoplePickerView) AllowsGroupSelection() bool {
 func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsGroupSelection:"), value)
 }
+
 // A Boolean value that specifies whether multiple groups, records, or values of multivalue properties can be selected at a time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsMultipleSelection
@@ -271,6 +273,7 @@ func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool {
 func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
+
 // The name under which the column positions and the filter selection are saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
@@ -288,6 +291,7 @@ func (a_ ABPeoplePickerView) AutosaveName() string {
 func (a_ ABPeoplePickerView) SetAutosaveName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), objc.String(value))
 }
+
 // The property currently displayed in the record list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
@@ -305,6 +309,7 @@ func (a_ ABPeoplePickerView) DisplayedProperty() string {
 func (a_ ABPeoplePickerView) SetDisplayedProperty(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), objc.String(value))
 }
+
 // The action to be invoked when a group is double-clicked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/groupDoubleAction
@@ -322,6 +327,7 @@ func (a_ ABPeoplePickerView) GroupDoubleAction() objc.SEL {
 func (a_ ABPeoplePickerView) SetGroupDoubleAction(value objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGroupDoubleAction:"), value)
 }
+
 // The action to be invoked when a name is double-clicked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/nameDoubleAction
@@ -339,6 +345,7 @@ func (a_ ABPeoplePickerView) NameDoubleAction() objc.SEL {
 func (a_ ABPeoplePickerView) SetNameDoubleAction(value objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNameDoubleAction:"), value)
 }
+
 // The groups selected in the group list. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedGroups
@@ -372,6 +379,7 @@ func (a_ ABPeoplePickerView) Target() objc.ID {
 func (a_ ABPeoplePickerView) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
 }
+
 // The current selection behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/valueSelectionBehavior
@@ -389,5 +397,6 @@ func (a_ ABPeoplePickerView) ValueSelectionBehavior() unsafe.Pointer {
 func (a_ ABPeoplePickerView) SetValueSelectionBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueSelectionBehavior:"), value)
 }
+
 
 

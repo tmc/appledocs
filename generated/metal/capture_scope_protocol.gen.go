@@ -20,5 +20,3 @@ var CaptureScopeProtocol *objc.Protocol
 func init() {
 	CaptureScopeProtocol = objc.GetProtocol("MTLCaptureScope")
 }
-
-

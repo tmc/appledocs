@@ -12,5 +12,3 @@ var SixfoldRotatedTileProtocol *objc.Protocol
 func init() {
 	SixfoldRotatedTileProtocol = objc.GetProtocol("CISixfoldRotatedTile")
 }
-
-

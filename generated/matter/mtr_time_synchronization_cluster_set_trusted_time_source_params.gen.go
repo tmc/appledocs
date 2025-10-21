@@ -93,6 +93,7 @@ func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) ServerSideProc
 func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/timedInvokeTimeoutMs
@@ -110,6 +111,7 @@ func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TimedInvokeTim
 func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/trustedTimeSource
 func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSource() unsafe.Pointer {
@@ -124,5 +126,6 @@ func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSou
 func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTrustedTimeSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrustedTimeSource:"), value)
 }
+
 
 

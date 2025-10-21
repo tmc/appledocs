@@ -116,6 +116,7 @@ func (l_ LinkedFunctions) SetBinaryFunctions(value []objc.ID) {
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBinaryFunctions:"), nsArray)
 }
+
 // An array of function objects to link to the new function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/functions
@@ -143,6 +144,7 @@ func (l_ LinkedFunctions) SetFunctions(value []objc.ID) {
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFunctions:"), nsArray)
 }
+
 // An optional list of groups specifying which functions your shader can call at each call site.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/groups
@@ -160,6 +162,7 @@ func (l_ LinkedFunctions) Groups() unsafe.Pointer {
 func (l_ LinkedFunctions) SetGroups(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setGroups:"), value)
 }
+
 // An array of function objects to link to the new function, without exporting the functions publicly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/privateFunctions
@@ -187,5 +190,6 @@ func (l_ LinkedFunctions) SetPrivateFunctions(value []objc.ID) {
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPrivateFunctions:"), nsArray)
 }
+
 
 

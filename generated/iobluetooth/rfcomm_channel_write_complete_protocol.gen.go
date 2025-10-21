@@ -12,4 +12,3 @@ var rfcommChannelWriteCompleteProtocol *objc.Protocol
 func init() {
 	rfcommChannelWriteCompleteProtocol = objc.GetProtocol("rfcommChannelWriteComplete:")
 }
-

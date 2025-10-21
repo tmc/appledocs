@@ -15,5 +15,3 @@ var SFSafariExtensionHandlingProtocol *objc.Protocol
 func init() {
 	SFSafariExtensionHandlingProtocol = objc.GetProtocol("SFSafariExtensionHandling")
 }
-
-

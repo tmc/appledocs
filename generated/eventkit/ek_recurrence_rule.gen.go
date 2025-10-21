@@ -81,6 +81,8 @@ func NewEKRecurrenceRule() EKRecurrenceRule {
 }
 
 
+
+
 // Initializes and returns a recurrence rule with a given frequency and additional scheduling information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)
@@ -90,6 +92,8 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMon
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns a simple recurrence rule with a given frequency, interval, and end.
 //
@@ -183,6 +187,7 @@ func (e_ EKRecurrenceRule) RecurrenceEnd() unsafe.Pointer {
 func (e_ EKRecurrenceRule) SetRecurrenceEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRecurrenceEnd:"), value)
 }
+
 // An array of ordinal numbers that filters which recurrences to include in the recurrence rule’s frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/setPositions

@@ -106,6 +106,7 @@ func (u_ USBHostCIPortStateMachine) Overcurrent() bool {
 func (u_ USBHostCIPortStateMachine) SetOvercurrent(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOvercurrent:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/portStatus
 func (u_ USBHostCIPortStateMachine) PortStatus() unsafe.Pointer {

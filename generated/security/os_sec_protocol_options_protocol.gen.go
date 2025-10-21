@@ -21,5 +21,3 @@ var OS_sec_protocol_optionsProtocol *objc.Protocol
 func init() {
 	OS_sec_protocol_optionsProtocol = objc.GetProtocol("OS_sec_protocol_options")
 }
-
-

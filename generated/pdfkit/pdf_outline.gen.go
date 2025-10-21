@@ -124,6 +124,7 @@ func (p_ PDFOutline) Action() unsafe.Pointer {
 func (p_ PDFOutline) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
+
 // Returns the destination associated with the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/destination
@@ -141,6 +142,7 @@ func (p_ PDFOutline) Destination() unsafe.Pointer {
 func (p_ PDFOutline) SetDestination(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDestination:"), value)
 }
+
 // Returns the document with which the outline is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/document
@@ -174,6 +176,7 @@ func (p_ PDFOutline) IsOpen() bool {
 func (p_ PDFOutline) SetIsOpen(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOpen:"), value)
 }
+
 // Returns the label for the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
@@ -191,6 +194,7 @@ func (p_ PDFOutline) Label() string {
 func (p_ PDFOutline) SetLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // Returns the number of child outline objects in the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/numberOfChildren

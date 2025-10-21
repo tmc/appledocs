@@ -18,5 +18,3 @@ var INSetMessageAttributeIntentHandlingProtocol *objc.Protocol
 func init() {
 	INSetMessageAttributeIntentHandlingProtocol = objc.GetProtocol("INSetMessageAttributeIntentHandling")
 }
-
-

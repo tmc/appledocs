@@ -90,6 +90,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Ac
 func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetActiveDataset(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveDataset:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/breadcrumb
 func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Breadcrumb() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Br
 func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Se
 func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/timedInvokeTimeoutMs
@@ -138,5 +141,6 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Ti
 func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

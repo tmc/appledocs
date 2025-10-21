@@ -15,5 +15,3 @@ var volumeStatisticsProtocol *objc.Protocol
 func init() {
 	volumeStatisticsProtocol = objc.GetProtocol("volumeStatistics")
 }
-
-

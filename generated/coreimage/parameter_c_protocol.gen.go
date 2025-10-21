@@ -12,5 +12,3 @@ var parameterCProtocol *objc.Protocol
 func init() {
 	parameterCProtocol = objc.GetProtocol("parameterC")
 }
-
-

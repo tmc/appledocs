@@ -15,5 +15,3 @@ var maxTransferRateProtocol *objc.Protocol
 func init() {
 	maxTransferRateProtocol = objc.GetProtocol("maxTransferRate")
 }
-
-

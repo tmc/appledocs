@@ -83,6 +83,8 @@ func NewPHAssetResourceUploadJobChangeRequest() PHAssetResourceUploadJobChangeRe
 }
 
 
+
+
 // Creates a request for modifying the specified upload job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJobChangeRequest/init(for:)

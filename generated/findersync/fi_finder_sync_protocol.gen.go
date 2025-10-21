@@ -15,5 +15,3 @@ var FIFinderSyncProtocol *objc.Protocol
 func init() {
 	FIFinderSyncProtocol = objc.GetProtocol("FIFinderSync")
 }
-
-

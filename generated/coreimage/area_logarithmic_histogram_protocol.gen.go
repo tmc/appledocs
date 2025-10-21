@@ -12,5 +12,3 @@ var AreaLogarithmicHistogramProtocol *objc.Protocol
 func init() {
 	AreaLogarithmicHistogramProtocol = objc.GetProtocol("CIAreaLogarithmicHistogram")
 }
-
-

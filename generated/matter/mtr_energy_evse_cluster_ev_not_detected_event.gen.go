@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() unsafe.Pointe
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionEnergyCharged
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() unsafe.P
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionEnergyCharged:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionID
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() unsafe.Pointer {
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/state
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() unsafe.Pointer {
 func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
+
 
 

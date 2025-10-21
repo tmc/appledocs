@@ -21,4 +21,3 @@ var OS_sec_trustProtocol *objc.Protocol
 func init() {
 	OS_sec_trustProtocol = objc.GetProtocol("OS_sec_trust")
 }
-

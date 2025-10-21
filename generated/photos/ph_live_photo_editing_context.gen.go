@@ -85,6 +85,8 @@ func NewPHLivePhotoEditingContext() PHLivePhotoEditingContext {
 }
 
 
+
+
 // Creates a Live Photo editing context for the specified editing input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/init(livePhotoEditingInput:)
@@ -134,6 +136,7 @@ func (p_ PHLivePhotoEditingContext) AudioVolume() unsafe.Pointer {
 func (p_ PHLivePhotoEditingContext) SetAudioVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioVolume:"), value)
 }
+
 // The duration, in seconds, of the Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/duration
@@ -159,6 +162,7 @@ func (p_ PHLivePhotoEditingContext) FrameProcessor() unsafe.Pointer {
 func (p_ PHLivePhotoEditingContext) SetFrameProcessor(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFrameProcessor:"), value)
 }
+
 // The unedited still photo content of the Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/fullSizeImage

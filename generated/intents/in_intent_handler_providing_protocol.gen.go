@@ -21,5 +21,3 @@ var INIntentHandlerProvidingProtocol *objc.Protocol
 func init() {
 	INIntentHandlerProvidingProtocol = objc.GetProtocol("INIntentHandlerProviding")
 }
-
-

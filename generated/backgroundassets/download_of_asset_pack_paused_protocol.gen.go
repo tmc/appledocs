@@ -20,5 +20,3 @@ var downloadOfAssetPackPausedProtocol *objc.Protocol
 func init() {
 	downloadOfAssetPackPausedProtocol = objc.GetProtocol("downloadOfAssetPackPaused:")
 }
-
-

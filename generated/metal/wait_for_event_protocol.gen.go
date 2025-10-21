@@ -20,5 +20,3 @@ var waitForEventProtocol *objc.Protocol
 func init() {
 	waitForEventProtocol = objc.GetProtocol("waitForEvent:")
 }
-
-

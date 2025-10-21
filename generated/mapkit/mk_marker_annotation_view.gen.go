@@ -98,6 +98,7 @@ func (m_ MKMarkerAnnotationView) GlyphImage() unsafe.Pointer {
 func (m_ MKMarkerAnnotationView) SetGlyphImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphImage:"), value)
 }
+
 // The color to apply to the glyph text or image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
@@ -115,6 +116,7 @@ func (m_ MKMarkerAnnotationView) GlyphTintColor() unsafe.Pointer {
 func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphTintColor:"), value)
 }
+
 // The background color of the marker balloon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
@@ -132,5 +134,6 @@ func (m_ MKMarkerAnnotationView) MarkerTintColor() unsafe.Pointer {
 func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMarkerTintColor:"), value)
 }
+
 
 

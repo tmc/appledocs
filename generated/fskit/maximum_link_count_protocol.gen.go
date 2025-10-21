@@ -15,5 +15,3 @@ var maximumLinkCountProtocol *objc.Protocol
 func init() {
 	maximumLinkCountProtocol = objc.GetProtocol("maximumLinkCount")
 }
-
-

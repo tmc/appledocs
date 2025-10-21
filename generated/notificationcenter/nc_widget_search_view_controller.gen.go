@@ -99,6 +99,7 @@ func (n_ NCWidgetSearchViewController) Delegate() objc.ID {
 func (n_ NCWidgetSearchViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A localized description of the nature of the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchDescription
@@ -116,6 +117,7 @@ func (n_ NCWidgetSearchViewController) SearchDescription() string {
 func (n_ NCWidgetSearchViewController) SetSearchDescription(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDescription:"), objc.String(value))
 }
+
 // A key path for the string property to display for each object in the search results array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResultKeyPath
@@ -133,6 +135,7 @@ func (n_ NCWidgetSearchViewController) SearchResultKeyPath() string {
 func (n_ NCWidgetSearchViewController) SetSearchResultKeyPath(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResultKeyPath:"), objc.String(value))
 }
+
 // An array of search results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResults
@@ -160,6 +163,7 @@ func (n_ NCWidgetSearchViewController) SetSearchResults(value []objc.ID) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResults:"), nsArray)
 }
+
 // A localized phrase displayed in the results list when no search results are available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResultsPlaceholderString
@@ -177,5 +181,7 @@ func (n_ NCWidgetSearchViewController) SearchResultsPlaceholderString() string {
 func (n_ NCWidgetSearchViewController) SetSearchResultsPlaceholderString(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResultsPlaceholderString:"), objc.String(value))
 }
+
+
 
 

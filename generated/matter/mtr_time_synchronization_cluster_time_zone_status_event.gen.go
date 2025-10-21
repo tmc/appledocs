@@ -90,6 +90,7 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Name() string {
 func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/offset
 func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() unsafe.Point
 func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
+
 
 

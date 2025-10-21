@@ -12,5 +12,3 @@ var GlideReflectedTileProtocol *objc.Protocol
 func init() {
 	GlideReflectedTileProtocol = objc.GetProtocol("CIGlideReflectedTile")
 }
-
-

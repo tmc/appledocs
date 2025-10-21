@@ -20,5 +20,3 @@ var CaptureVideoDataOutputSampleBufferDelegateProtocol *objc.Protocol
 func init() {
 	CaptureVideoDataOutputSampleBufferDelegateProtocol = objc.GetProtocol("AVCaptureVideoDataOutputSampleBufferDelegate")
 }
-
-

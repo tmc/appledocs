@@ -81,6 +81,8 @@ func NewQRCodeDescriptor() QRCodeDescriptor {
 }
 
 
+
+
 // Initializes a QR code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/init(payload:symbolVersion:maskPattern:errorCorrectionLevel:)

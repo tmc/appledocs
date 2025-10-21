@@ -100,3 +100,4 @@ func (c_ CapturePhotoOutputReadinessCoordinator) SetDelegate(value objc.ID) {
 }
 
 
+

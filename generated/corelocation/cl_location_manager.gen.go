@@ -393,6 +393,7 @@ func (l_ LocationManager) ActivityType() unsafe.Pointer {
 func (l_ LocationManager) SetActivityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityType:"), value)
 }
+
 // A Boolean value that indicates whether the app receives location updates when running in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates
@@ -410,6 +411,7 @@ func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool {
 func (l_ LocationManager) SetAllowsBackgroundLocationUpdates(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAllowsBackgroundLocationUpdates:"), value)
 }
+
 // The current authorization status for the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/authorizationStatus-swift.property
@@ -435,6 +437,7 @@ func (l_ LocationManager) Delegate() objc.ID {
 func (l_ LocationManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The accuracy of the location data that your app wants to receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/desiredAccuracy
@@ -452,6 +455,7 @@ func (l_ LocationManager) DesiredAccuracy() unsafe.Pointer {
 func (l_ LocationManager) SetDesiredAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDesiredAccuracy:"), value)
 }
+
 // The minimum distance in meters the device must move horizontally before an update event is generated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/distanceFilter
@@ -469,6 +473,7 @@ func (l_ LocationManager) DistanceFilter() unsafe.Pointer {
 func (l_ LocationManager) SetDistanceFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDistanceFilter:"), value)
 }
+
 // The most recently reported heading.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/heading
@@ -502,6 +507,7 @@ func (l_ LocationManager) HeadingFilter() unsafe.Pointer {
 func (l_ LocationManager) SetHeadingFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingFilter:"), value)
 }
+
 // The device orientation to use when computing heading values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingOrientation
@@ -519,6 +525,7 @@ func (l_ LocationManager) HeadingOrientation() unsafe.Pointer {
 func (l_ LocationManager) SetHeadingOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingOrientation:"), value)
 }
+
 // A Boolean value that indicates whether a widget is eligible to receive location updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/isAuthorizedForWidgetUpdates
@@ -568,6 +575,7 @@ func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool {
 func (l_ LocationManager) SetPausesLocationUpdatesAutomatically(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPausesLocationUpdatesAutomatically:"), value)
 }
+
 // The set of beacon constraints currently being tracked using ranging.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/rangedBeaconConstraints
@@ -593,5 +601,6 @@ func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
 func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShowsBackgroundLocationIndicator:"), value)
 }
+
 
 

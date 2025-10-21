@@ -80,6 +80,7 @@ func NewPanGestureRecognizer() PanGestureRecognizer {
 	return getPanGestureRecognizerClass().New()
 }
 
+
 // A bit mask of the button (or buttons) required to recognize this gesture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/buttonMask
@@ -87,6 +88,7 @@ func (p_ PanGestureRecognizer) ButtonMask() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("buttonMask"))
 	return rv
 }
+
 
 // SetButtonMask sets the value of the buttonMask property.
 // A bit mask of the button (or buttons) required to recognize this gesture.
@@ -105,6 +107,7 @@ func (p_ PanGestureRecognizer) NumberOfTouchesRequired() int {
 	return rv
 }
 
+
 // SetNumberOfTouchesRequired sets the value of the numberOfTouchesRequired property.
 // The number of necessary touches on a Touch Bar for the gesture recognizer to match.
 
@@ -113,3 +116,6 @@ func (p_ PanGestureRecognizer) NumberOfTouchesRequired() int {
 func (p_ PanGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }
+
+
+

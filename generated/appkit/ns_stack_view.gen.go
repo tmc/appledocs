@@ -96,6 +96,9 @@ func NewStackView() StackView {
 	return getStackViewClass().New()
 }
 
+
+
+
 // Creates and returns a stack view with a specified array of views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/init(views:)
@@ -103,6 +106,7 @@ func NewStackViewWithViews(views unsafe.Pointer) StackView {
 	rv := objc.Send[StackView](objc.ID(getStackViewClass().class), objc.Sel("stackViewWithViews:"), views)
 	return rv
 }
+
 
 // Creates and returns a stack view with a specified array of views.
 //
@@ -237,6 +241,7 @@ func (s_ StackView) Alignment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAlignment sets the value of the alignment property.
 // The view alignment within the stack view.
 
@@ -261,6 +266,7 @@ func (s_ StackView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The delegate object for the stack view.
@@ -287,6 +293,7 @@ func (s_ StackView) DetachesHiddenViews() bool {
 	return rv
 }
 
+
 // SetDetachesHiddenViews sets the value of the detachesHiddenViews property.
 // A Boolean value that indicates whether the stack view removes hidden views from its view hierarchy.
 
@@ -303,6 +310,7 @@ func (s_ StackView) Distribution() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDistribution sets the value of the distribution property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/distribution-swift.property
@@ -317,6 +325,7 @@ func (s_ StackView) EdgeInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("edgeInsets"))
 	return rv
 }
+
 
 // SetEdgeInsets sets the value of the edgeInsets property.
 // The geometric padding, in points, inside the stack view, surrounding its views.
@@ -335,6 +344,7 @@ func (s_ StackView) HasEqualSpacing() bool {
 	return rv
 }
 
+
 // SetHasEqualSpacing sets the value of the hasEqualSpacing property.
 // A Boolean value that indicates whether the spacing between adjacent views should be equal to each other.
 
@@ -351,6 +361,7 @@ func (s_ StackView) Orientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("orientation"))
 	return rv
 }
+
 
 // SetOrientation sets the value of the orientation property.
 // The horizontal or vertical layout direction of the stack view.
@@ -369,6 +380,7 @@ func (s_ StackView) Spacing() float64 {
 	return rv
 }
 
+
 // SetSpacing sets the value of the spacing property.
 // The minimum spacing, in points, between adjacent views in the stack view.
 
@@ -385,3 +397,5 @@ func (s_ StackView) Views() []View {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("views"))
 	return rv
 }
+
+

@@ -93,6 +93,7 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) ServerSideProcessingTi
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timeToAdd
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimeToAdd() unsafe.Pointer {
@@ -107,6 +108,7 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimeToAdd() unsafe.Poi
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimeToAdd(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeToAdd:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimedInvokeTimeoutMs()
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

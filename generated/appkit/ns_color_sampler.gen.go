@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ColorSampler] class.
@@ -80,9 +81,13 @@ func NewColorSampler() ColorSampler {
 	return getColorSamplerClass().New()
 }
 
+
 // Displays the system color-sampling interface asynchronously and reports the selected color back to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler/show(selectionHandler:)
 func (c_ ColorSampler) ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showSamplerWithSelectionHandler:"), selectionHandler)
 }
+
+
+

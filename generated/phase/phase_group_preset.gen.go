@@ -85,6 +85,8 @@ func NewPHASEGroupPreset() PHASEGroupPreset {
 }
 
 
+
+
 // Creates a group preset with the designated engine, settings, and fade parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/init(engine:settings:timeToTarget:timeToReset:)

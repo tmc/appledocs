@@ -81,6 +81,7 @@ func NewPageController() PageController {
 	return getPageControllerClass().New()
 }
 
+
 // Navigates to the specific object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/navigateForward(to:)
@@ -95,6 +96,7 @@ func (p_ PageController) ArrangedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("arrangedObjects"))
 	return rv
 }
+
 
 // SetArrangedObjects sets the value of the arrangedObjects property.
 // An array containing the objects displayed in the page controller’s view.
@@ -113,6 +115,7 @@ func (p_ PageController) SelectedIndex() int {
 	return rv
 }
 
+
 // SetSelectedIndex sets the value of the selectedIndex property.
 // The currently selected object in the arranged objects array.
 
@@ -129,3 +132,6 @@ func (p_ PageController) SelectedViewController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedViewController"))
 	return rv
 }
+
+
+

@@ -86,6 +86,8 @@ func NewHKUnit() HKUnit {
 }
 
 
+
+
 // Converts an energy formatter enumeration value into a corresponding HealthKit unit object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-1j1pq
@@ -93,6 +95,8 @@ func NewHKUnitFromEnergyFormatterUnit(energyFormatterUnit unsafe.Pointer) HKUnit
 	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromEnergyFormatterUnit:"), energyFormatterUnit)
 	return rv
 }
+
+
 
 // Converts a length formatter enumeration value into a corresponding HealthKit object.
 //
@@ -102,6 +106,8 @@ func NewHKUnitFromLengthFormatterUnit(lengthFormatterUnit unsafe.Pointer) HKUnit
 	return rv
 }
 
+
+
 // Converts a mass formatter enumeration value into a corresponding HealthKit unit object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-7h2li
@@ -109,6 +115,8 @@ func NewHKUnitFromMassFormatterUnit(massFormatterUnit unsafe.Pointer) HKUnit {
 	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromMassFormatterUnit:"), massFormatterUnit)
 	return rv
 }
+
+
 
 // Returns the unit instance described by the provided string.
 //

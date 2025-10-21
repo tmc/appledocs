@@ -20,5 +20,3 @@ var paymentAuthorizationControllerDidFinishProtocol *objc.Protocol
 func init() {
 	paymentAuthorizationControllerDidFinishProtocol = objc.GetProtocol("paymentAuthorizationControllerDidFinish:")
 }
-
-

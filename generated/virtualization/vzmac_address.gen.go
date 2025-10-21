@@ -81,6 +81,8 @@ func NewVZMACAddress() VZMACAddress {
 }
 
 
+
+
 // Creates a MAC address object from a specially formatted string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress/init(string:)

@@ -82,6 +82,8 @@ func NewRemoteLayerClient() RemoteLayerClient {
 }
 
 
+
+
 // Creates a layer client from a server port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/init(serverPort:)
@@ -125,4 +127,5 @@ func (r_ RemoteLayerClient) Layer() unsafe.Pointer {
 func (r_ RemoteLayerClient) SetLayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:"), value)
 }
+
 

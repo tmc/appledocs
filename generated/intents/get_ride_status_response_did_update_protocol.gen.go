@@ -19,5 +19,3 @@ var getRideStatusResponseDidUpdateProtocol *objc.Protocol
 func init() {
 	getRideStatusResponseDidUpdateProtocol = objc.GetProtocol("getRideStatusResponseDidUpdate:")
 }
-
-

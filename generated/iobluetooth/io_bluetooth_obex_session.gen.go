@@ -90,6 +90,8 @@ func NewBluetoothOBEXSession() BluetoothOBEXSession {
 }
 
 
+
+
 // Initializes a Bluetooth-based OBEX Session using a Bluetooth device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(device:channelID:)
@@ -100,6 +102,8 @@ func NewBluetoothOBEXSessionWithDeviceChannelID(inDevice unsafe.Pointer, inChann
 	return rv
 }
 
+
+
 // Initializes a Bluetooth-based OBEX Session using an incoming RFCOMM channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(incomingRFCOMMChannel:eventSelector:selectorTarget:refCon:)
@@ -109,6 +113,8 @@ func NewBluetoothOBEXSessionWithIncomingRFCOMMChannelEventSelectorSelectorTarget
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a Bluetooth-based OBEX Session using an SDP service record.
 //

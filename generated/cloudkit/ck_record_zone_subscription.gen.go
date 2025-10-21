@@ -81,6 +81,20 @@ func NewCKRecordZoneSubscription() CKRecordZoneSubscription {
 }
 
 
+
+
+// Creates a zone-based subscription from a serialized instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/init(coder:)
+func NewCKRecordZoneSubscriptionWithCoder(aDecoder unsafe.Pointer) CKRecordZoneSubscription {
+	instance := getCKRecordZoneSubscriptionClass().Alloc()
+	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Creates a subscription for all records in the specified record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/init(zoneID:)
@@ -91,22 +105,14 @@ func NewCKRecordZoneSubscriptionWithZoneID(zoneID unsafe.Pointer) CKRecordZoneSu
 	return rv
 }
 
+
+
 // Creates a named subscription for all records in the specified record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/initWithZoneID:subscriptionID:
 func NewCKRecordZoneSubscriptionWithZoneIDSubscriptionID(zoneID unsafe.Pointer, subscriptionID unsafe.Pointer) CKRecordZoneSubscription {
 	instance := getCKRecordZoneSubscriptionClass().Alloc()
 	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithZoneID:subscriptionID:"), zoneID, subscriptionID)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a zone-based subscription from a serialized instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/init(coder:)
-func NewCKRecordZoneSubscriptionWithCoder(aDecoder unsafe.Pointer) CKRecordZoneSubscription {
-	instance := getCKRecordZoneSubscriptionClass().Alloc()
-	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }
@@ -129,6 +135,7 @@ func (c_ CKRecordZoneSubscription) RecordType() unsafe.Pointer {
 func (c_ CKRecordZoneSubscription) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
+
 // The ID of the record zone that the subscription queries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/zoneID

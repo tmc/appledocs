@@ -18,5 +18,3 @@ var titleProtocol *objc.Protocol
 func init() {
 	titleProtocol = objc.GetProtocol("title")
 }
-
-

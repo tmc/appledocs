@@ -90,6 +90,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() unsafe.Po
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() unsaf
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnableKey:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcess
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
@@ -138,6 +141,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeou
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() unsafe.Pointer {
@@ -152,5 +156,6 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() unsafe.Po
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

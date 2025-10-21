@@ -15,5 +15,3 @@ var didFinishLoadingProtocol *objc.Protocol
 func init() {
 	didFinishLoadingProtocol = objc.GetProtocol("didFinishLoading")
 }
-
-

@@ -9,13 +9,8 @@ import (
 // Suppress unused import errors
 var _ = corelocation.NewPlacemark
 
-
 // ExampleNewPlacemark demonstrates how to create a Placemark instance.
 func ExampleNewPlacemark() {
 	_ = corelocation.NewPlacemark()
 	// Output:
 }
-
-
-
-

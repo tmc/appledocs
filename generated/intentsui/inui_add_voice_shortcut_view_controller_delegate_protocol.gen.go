@@ -19,5 +19,3 @@ var INUIAddVoiceShortcutViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	INUIAddVoiceShortcutViewControllerDelegateProtocol = objc.GetProtocol("INUIAddVoiceShortcutViewControllerDelegate")
 }
-
-

@@ -116,6 +116,7 @@ func (r_ RoutePickerView) ActiveTintColor() unsafe.Pointer {
 func (r_ RoutePickerView) SetActiveTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveTintColor:"), value)
 }
+
 // A routing controller that enables connections to non-AirPlay devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
@@ -133,6 +134,7 @@ func (r_ RoutePickerView) CustomRoutingController() unsafe.Pointer {
 func (r_ RoutePickerView) SetCustomRoutingController(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomRoutingController:"), value)
 }
+
 // The delegate object for the route picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/delegate
@@ -150,6 +152,7 @@ func (r_ RoutePickerView) Delegate() objc.ID {
 func (r_ RoutePickerView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the route picker button has a border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/isRoutePickerButtonBordered
@@ -167,6 +170,7 @@ func (r_ RoutePickerView) RoutePickerButtonBordered() bool {
 func (r_ RoutePickerView) SetRoutePickerButtonBordered(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonBordered:"), value)
 }
+
 // The player object to perform routing operations for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/player
@@ -184,6 +188,7 @@ func (r_ RoutePickerView) Player() unsafe.Pointer {
 func (r_ RoutePickerView) SetPlayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPlayer:"), value)
 }
+
 // A Boolean value that indicates whether the route picker sorts video output devices to the top of the list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/prioritizesVideoDevices
@@ -201,6 +206,7 @@ func (r_ RoutePickerView) PrioritizesVideoDevices() bool {
 func (r_ RoutePickerView) SetPrioritizesVideoDevices(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPrioritizesVideoDevices:"), value)
 }
+
 // The button style for the route picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
@@ -218,5 +224,7 @@ func (r_ RoutePickerView) RoutePickerButtonStyle() unsafe.Pointer {
 func (r_ RoutePickerView) SetRoutePickerButtonStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonStyle:"), value)
 }
+
+
 
 

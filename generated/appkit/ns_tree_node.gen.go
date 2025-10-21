@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TreeNode] class.
@@ -79,6 +80,7 @@ func NewTreeNode() TreeNode {
 	return getTreeNodeClass().New()
 }
 
+
 // Creates and returns a tree node that represents the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode/treeNodeWithRepresentedObject:
@@ -94,3 +96,6 @@ func (t_ TreeNode) ChildNodes() []TreeNode {
 	rv := objc.Send[[]TreeNode](t_.ID, objc.Sel("childNodes"))
 	return rv
 }
+
+
+

@@ -91,6 +91,7 @@ func (i_ INSendMessageIntentDonationMetadata) ReplyToCurrentUser() bool {
 func (i_ INSendMessageIntentDonationMetadata) SetReplyToCurrentUser(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReplyToCurrentUser:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser
 func (i_ INSendMessageIntentDonationMetadata) MentionsCurrentUser() bool {
@@ -105,6 +106,7 @@ func (i_ INSendMessageIntentDonationMetadata) MentionsCurrentUser() bool {
 func (i_ INSendMessageIntentDonationMetadata) SetMentionsCurrentUser(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMentionsCurrentUser:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway
 func (i_ INSendMessageIntentDonationMetadata) NotifyRecipientAnyway() bool {
@@ -119,6 +121,7 @@ func (i_ INSendMessageIntentDonationMetadata) NotifyRecipientAnyway() bool {
 func (i_ INSendMessageIntentDonationMetadata) SetNotifyRecipientAnyway(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNotifyRecipientAnyway:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount
 func (i_ INSendMessageIntentDonationMetadata) RecipientCount() uint {
@@ -133,4 +136,5 @@ func (i_ INSendMessageIntentDonationMetadata) RecipientCount() uint {
 func (i_ INSendMessageIntentDonationMetadata) SetRecipientCount(value uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipientCount:"), value)
 }
+
 

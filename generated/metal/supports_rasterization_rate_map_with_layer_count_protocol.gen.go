@@ -20,5 +20,3 @@ var supportsRasterizationRateMapWithLayerCountProtocol *objc.Protocol
 func init() {
 	supportsRasterizationRateMapWithLayerCountProtocol = objc.GetProtocol("supportsRasterizationRateMapWithLayerCount:")
 }
-
-

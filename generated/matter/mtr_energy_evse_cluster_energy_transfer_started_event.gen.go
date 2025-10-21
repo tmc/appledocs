@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() unsafe
 func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumCurrent:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/sessionID
 func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() unsafe.Poin
 func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/state
 func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() unsafe.Pointer 
 func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
+
 
 

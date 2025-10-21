@@ -12,5 +12,3 @@ var BluetoothHandsFreeAudioGatewayDelegateProtocol *objc.Protocol
 func init() {
 	BluetoothHandsFreeAudioGatewayDelegateProtocol = objc.GetProtocol("IOBluetoothHandsFreeAudioGatewayDelegate")
 }
-
-

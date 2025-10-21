@@ -93,6 +93,7 @@ func (m_ MTRRVCOperationalStateClusterGoHomeParams) ServerSideProcessingTimeout(
 func (m_ MTRRVCOperationalStateClusterGoHomeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterGoHomeParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTRRVCOperationalStateClusterGoHomeParams) TimedInvokeTimeoutMs() unsaf
 func (m_ MTRRVCOperationalStateClusterGoHomeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

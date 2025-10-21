@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ClipView] class.
@@ -87,6 +87,7 @@ func NewClipView() ClipView {
 	return getClipViewClass().New()
 }
 
+
 // Scrolls the clip view proportionally to ’s distance outside of it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/autoscroll(with:)
@@ -140,6 +141,7 @@ func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool {
 	return rv
 }
 
+
 // SetAutomaticallyAdjustsContentInsets sets the value of the automaticallyAdjustsContentInsets property.
 // A Boolean value that indicates if the clip view automatically accounts for other scroll view subviews.
 
@@ -156,6 +158,7 @@ func (c_ ClipView) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
+
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color of the clip view’s background.
@@ -174,6 +177,7 @@ func (c_ ClipView) ContentInsets() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentInsets sets the value of the contentInsets property.
 // The distance that the content view is inset from the enclosing scroll view.
 
@@ -191,6 +195,7 @@ func (c_ ClipView) CopiesOnScroll() bool {
 	return rv
 }
 
+
 // SetCopiesOnScroll sets the value of the copiesOnScroll property.
 // A Boolean value that indicates if the clip view copies rendered images while scrolling.
 
@@ -207,6 +212,7 @@ func (c_ ClipView) DocumentCursor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("documentCursor"))
 	return rv
 }
+
 
 // SetDocumentCursor sets the value of the documentCursor property.
 // The cursor object used when the pointer lies over the view.
@@ -233,6 +239,7 @@ func (c_ ClipView) DocumentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDocumentView sets the value of the documentView property.
 // The clip view’s document view.
 
@@ -258,6 +265,7 @@ func (c_ ClipView) DrawsBackground() bool {
 	return rv
 }
 
+
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean value that indicates if the clip view draws its background color.
 
@@ -266,3 +274,6 @@ func (c_ ClipView) DrawsBackground() bool {
 func (c_ ClipView) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawsBackground:"), value)
 }
+
+
+

@@ -92,3 +92,4 @@ func (m_ MTREnergyEVSEClusterRFIDEvent) SetUid(value unsafe.Pointer) {
 }
 
 
+

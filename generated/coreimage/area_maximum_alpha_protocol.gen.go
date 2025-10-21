@@ -12,5 +12,3 @@ var AreaMaximumAlphaProtocol *objc.Protocol
 func init() {
 	AreaMaximumAlphaProtocol = objc.GetProtocol("CIAreaMaximumAlpha")
 }
-
-

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Text] class.
@@ -113,6 +113,7 @@ func NewText() Text {
 	return getTextClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
 func NewTextWithCoder(coder unsafe.Pointer) Text {
@@ -130,6 +131,7 @@ func NewTextWithFrame(frameRect coregraphics.CGRect) Text {
 	rv.Autorelease()
 	return rv
 }
+
 
 // This action method applies center alignment to selected paragraphs (or all text if the receiver is a plain text object).
 //
@@ -360,6 +362,7 @@ func (t_ Text) Alignment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAlignment sets the value of the alignment property.
 // The alignment of all the receiver’s text.
 
@@ -376,6 +379,7 @@ func (t_ Text) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
+
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The receiver’s background color to a given color.
@@ -394,6 +398,7 @@ func (t_ Text) BaseWritingDirection() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBaseWritingDirection sets the value of the baseWritingDirection property.
 // The initial writing direction used to determine the actual writing direction for text.
 
@@ -410,6 +415,7 @@ func (t_ Text) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The receiver’s delegate.
@@ -428,6 +434,7 @@ func (t_ Text) DrawsBackground() bool {
 	return rv
 }
 
+
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean that controls whether the receiver draws its background.
 
@@ -444,6 +451,7 @@ func (t_ Text) Font() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("font"))
 	return rv
 }
+
 
 // SetFont sets the value of the font property.
 // The font of all the receiver’s text.
@@ -462,6 +470,7 @@ func (t_ Text) ImportsGraphics() bool {
 	return rv
 }
 
+
 // SetImportsGraphics sets the value of the importsGraphics property.
 // A Boolean that controls whether the receiver allows the user to import files by dragging.
 
@@ -478,6 +487,7 @@ func (t_ Text) Editable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
 }
+
 
 // SetEditable sets the value of the editable property.
 // A Boolean that controls whether the receiver allows the user to edit its text.
@@ -496,6 +506,7 @@ func (t_ Text) FieldEditor() bool {
 	return rv
 }
 
+
 // SetFieldEditor sets the value of the fieldEditor property.
 // A Boolean that controls whether the receiver interprets Tab, Shift-Tab, and Return (Enter) as cues to end editing and possibly to change the first responder.
 
@@ -513,6 +524,7 @@ func (t_ Text) HorizontallyResizable() bool {
 	return rv
 }
 
+
 // SetHorizontallyResizable sets the value of the horizontallyResizable property.
 // A Boolean that controls whether the receiver changes its width to fit the width of its text.
 
@@ -529,6 +541,7 @@ func (t_ Text) RichText() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("richText"))
 	return rv
 }
+
 
 // SetRichText sets the value of the richText property.
 // A Boolean that controls whether the receiver allows the user to apply attributes to specific ranges of the text.
@@ -555,6 +568,7 @@ func (t_ Text) Selectable() bool {
 	return rv
 }
 
+
 // SetSelectable sets the value of the selectable property.
 // A Boolean that controls whether the receiver allows the user to select its text.
 
@@ -571,6 +585,7 @@ func (t_ Text) VerticallyResizable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("verticallyResizable"))
 	return rv
 }
+
 
 // SetVerticallyResizable sets the value of the verticallyResizable property.
 // A Boolean that controls whether the receiver changes its height to fit the height of its text.
@@ -589,6 +604,7 @@ func (t_ Text) MaxSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetMaxSize sets the value of the maxSize property.
 // The receiver’s maximum size.
 
@@ -605,6 +621,7 @@ func (t_ Text) MinSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("minSize"))
 	return rv
 }
+
 
 // SetMinSize sets the value of the minSize property.
 // The receiver’s minimum size.
@@ -623,6 +640,7 @@ func (t_ Text) SelectedRange() foundation.Range {
 	return rv
 }
 
+
 // SetSelectedRange sets the value of the selectedRange property.
 // The receiver’s characters within .
 
@@ -639,6 +657,7 @@ func (t_ Text) String() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
+
 
 // SetString sets the value of the string property.
 // The characters of the receiver’s text.
@@ -657,6 +676,7 @@ func (t_ Text) TextColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTextColor sets the value of the textColor property.
 // The text color of all characters in the receiver.
 
@@ -674,6 +694,7 @@ func (t_ Text) UsesFontPanel() bool {
 	return rv
 }
 
+
 // SetUsesFontPanel sets the value of the usesFontPanel property.
 // A Boolean that controls whether the receiver uses the Font panel and Font menu.
 
@@ -682,3 +703,5 @@ func (t_ Text) UsesFontPanel() bool {
 func (t_ Text) SetUsesFontPanel(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontPanel:"), value)
 }
+
+

@@ -84,6 +84,8 @@ func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser 
 }
 
 
+
+
 // Creates a browser object that scans for unconfigured accessories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/init(delegate:queue:)
@@ -133,6 +135,7 @@ func (e_ EAWiFiUnconfiguredAccessoryBrowser) Delegate() objc.ID {
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The set of unconfigured accessories that have been discovered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/unconfiguredAccessories

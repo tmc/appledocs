@@ -19,5 +19,3 @@ var outputHeightProtocol *objc.Protocol
 func init() {
 	outputHeightProtocol = objc.GetProtocol("outputHeight")
 }
-
-

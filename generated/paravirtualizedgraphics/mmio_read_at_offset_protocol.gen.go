@@ -16,5 +16,3 @@ var mmioReadAtOffsetProtocol *objc.Protocol
 func init() {
 	mmioReadAtOffsetProtocol = objc.GetProtocol("mmioReadAtOffset:")
 }
-
-

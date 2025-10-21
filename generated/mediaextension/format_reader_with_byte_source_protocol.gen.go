@@ -15,5 +15,3 @@ var formatReaderWithByteSourceProtocol *objc.Protocol
 func init() {
 	formatReaderWithByteSourceProtocol = objc.GetProtocol("formatReaderWithByteSource:")
 }
-
-

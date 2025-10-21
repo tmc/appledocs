@@ -12,5 +12,3 @@ var ColorMatrixProtocol *objc.Protocol
 func init() {
 	ColorMatrixProtocol = objc.GetProtocol("CIColorMatrix")
 }
-
-

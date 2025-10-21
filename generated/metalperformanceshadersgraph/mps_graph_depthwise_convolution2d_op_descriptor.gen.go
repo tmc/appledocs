@@ -98,6 +98,7 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) DilationRateInX() uint {
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDilationRateInX(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInX:"), value)
 }
+
 // The explicit padding value for the x dimension the operation adds before the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingLeft
@@ -115,6 +116,7 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingLeft() uint {
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingLeft(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingLeft:"), value)
 }
+
 // The explicit padding value for the x dimension operation adds after the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingRight
@@ -132,5 +134,6 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingRight() uint {
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingRight(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingRight:"), value)
 }
+
 
 

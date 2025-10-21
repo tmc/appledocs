@@ -79,6 +79,8 @@ func NewMESampleLocation() MESampleLocation {
 }
 
 
+
+
 // Creates a sample location object with the byte source and sample location that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation/init(byteSource:sampleLocation:)

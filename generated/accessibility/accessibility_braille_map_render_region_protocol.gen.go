@@ -21,5 +21,3 @@ var accessibilityBrailleMapRenderRegionProtocol *objc.Protocol
 func init() {
 	accessibilityBrailleMapRenderRegionProtocol = objc.GetProtocol("accessibilityBrailleMapRenderRegion")
 }
-
-

@@ -82,6 +82,8 @@ func NewGazetteer() Gazetteer {
 }
 
 
+
+
 // Creates a Natural Language gazetteer from a model created with the Create ML framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
@@ -92,6 +94,8 @@ func NewGazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointe
 	return rv
 }
 
+
+
 // Creates a gazetteer from a data instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(data:)
@@ -101,6 +105,8 @@ func NewGazetteerWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) Gazet
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a gazetteer from a set of labels for terms represented by a dictionary.
 //

@@ -12,5 +12,3 @@ var BluetoothDeviceInquiryDelegateProtocol *objc.Protocol
 func init() {
 	BluetoothDeviceInquiryDelegateProtocol = objc.GetProtocol("IOBluetoothDeviceInquiryDelegate")
 }
-
-

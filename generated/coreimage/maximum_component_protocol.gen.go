@@ -12,5 +12,3 @@ var MaximumComponentProtocol *objc.Protocol
 func init() {
 	MaximumComponentProtocol = objc.GetProtocol("CIMaximumComponent")
 }
-
-

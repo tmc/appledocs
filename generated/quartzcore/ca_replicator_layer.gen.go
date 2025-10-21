@@ -99,6 +99,7 @@ func (r_ ReplicatorLayer) InstanceAlphaOffset() unsafe.Pointer {
 func (r_ ReplicatorLayer) SetInstanceAlphaOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceAlphaOffset:"), value)
 }
+
 // Defines the offset added to the blue component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceBlueOffset
@@ -116,6 +117,7 @@ func (r_ ReplicatorLayer) InstanceBlueOffset() unsafe.Pointer {
 func (r_ ReplicatorLayer) SetInstanceBlueOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceBlueOffset:"), value)
 }
+
 // Defines the color used to multiply the source object. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceColor
@@ -133,6 +135,7 @@ func (r_ ReplicatorLayer) InstanceColor() coregraphics.CGColorRef {
 func (r_ ReplicatorLayer) SetInstanceColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceColor:"), value)
 }
+
 // The number of copies to create, including the source layers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceCount
@@ -150,6 +153,7 @@ func (r_ ReplicatorLayer) InstanceCount() int {
 func (r_ ReplicatorLayer) SetInstanceCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceCount:"), value)
 }
+
 // Specifies the delay, in seconds, between replicated copies. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceDelay
@@ -167,6 +171,7 @@ func (r_ ReplicatorLayer) InstanceDelay() unsafe.Pointer {
 func (r_ ReplicatorLayer) SetInstanceDelay(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceDelay:"), value)
 }
+
 // Defines the offset added to the green component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceGreenOffset
@@ -184,6 +189,7 @@ func (r_ ReplicatorLayer) InstanceGreenOffset() unsafe.Pointer {
 func (r_ ReplicatorLayer) SetInstanceGreenOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceGreenOffset:"), value)
 }
+
 // Defines the offset added to the red component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceRedOffset
@@ -201,6 +207,7 @@ func (r_ ReplicatorLayer) InstanceRedOffset() unsafe.Pointer {
 func (r_ ReplicatorLayer) SetInstanceRedOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceRedOffset:"), value)
 }
+
 // The transform matrix applied to the previous instance to produce the current instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceTransform
@@ -218,6 +225,7 @@ func (r_ ReplicatorLayer) InstanceTransform() unsafe.Pointer {
 func (r_ ReplicatorLayer) SetInstanceTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceTransform:"), value)
 }
+
 // Defines whether this layer flattens its sublayers into its plane.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/preservesDepth
@@ -235,5 +243,6 @@ func (r_ ReplicatorLayer) PreservesDepth() bool {
 func (r_ ReplicatorLayer) SetPreservesDepth(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreservesDepth:"), value)
 }
+
 
 

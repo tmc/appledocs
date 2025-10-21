@@ -20,5 +20,3 @@ var addResidencySetProtocol *objc.Protocol
 func init() {
 	addResidencySetProtocol = objc.GetProtocol("addResidencySet:")
 }
-
-

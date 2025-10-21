@@ -82,6 +82,8 @@ func NewAssetWriterInput() AssetWriterInput {
 }
 
 
+
+
 // Creates an input to append sample buffers of the specified type to the output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput/init(mediaType:outputSettings:)
@@ -91,6 +93,8 @@ func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType unsafe.Pointer, ou
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an input that appends sample buffers of the specified type and format hint to the output file.
 //

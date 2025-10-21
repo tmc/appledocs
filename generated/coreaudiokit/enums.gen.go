@@ -9,14 +9,14 @@ package coreaudiokit
 type GenericViewDisplayFlags uint
 
 const (
-// ViewParametersDisplayFlag - If set, the generic view displays the audio unit parameters of the audio unit.
-//
+	// ViewParametersDisplayFlag - If set, the generic view displays the audio unit parameters of the audio unit.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewDisplayFlags/viewParametersDisplayFlag
-ViewParametersDisplayFlag GenericViewDisplayFlags = 0
-// ViewTitleDisplayFlag - If set, the generic view displays the title and manufacturer of the audio unit.
-//
+	ViewParametersDisplayFlag GenericViewDisplayFlags = 0
+	// ViewTitleDisplayFlag - If set, the generic view displays the title and manufacturer of the audio unit.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewDisplayFlags/viewTitleDisplayFlag
-ViewTitleDisplayFlag GenericViewDisplayFlags = 0
+	ViewTitleDisplayFlag GenericViewDisplayFlags = 0
 )
 
 

@@ -85,15 +85,7 @@ func NewAudioFile() AudioFile {
 }
 
 
-// Opens a file for reading using the standard, deinterleaved floating point format.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forReading:)
-func NewAudioFileForReadingError(fileURL unsafe.Pointer, outError unsafe.Pointer) AudioFile {
-	instance := getAudioFileClass().Alloc()
-	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForReading:error:"), fileURL, outError)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Opens a file for reading using the specified processing format.
 //
@@ -105,15 +97,19 @@ func NewAudioFileForReadingCommonFormatInterleavedError(fileURL unsafe.Pointer, 
 	return rv
 }
 
-// Opens a file for writing using the specified settings.
+
+
+// Opens a file for reading using the standard, deinterleaved floating point format.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)
-func NewAudioFileForWritingSettingsError(fileURL unsafe.Pointer, settings unsafe.Pointer, outError unsafe.Pointer) AudioFile {
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forReading:)
+func NewAudioFileForReadingError(fileURL unsafe.Pointer, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
-	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:error:"), fileURL, settings, outError)
+	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForReading:error:"), fileURL, outError)
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Opens a file for writing using a specified processing format and settings.
 //
@@ -121,6 +117,18 @@ func NewAudioFileForWritingSettingsError(fileURL unsafe.Pointer, settings unsafe
 func NewAudioFileForWritingSettingsCommonFormatInterleavedError(fileURL unsafe.Pointer, settings unsafe.Pointer, format unsafe.Pointer, interleaved bool, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:commonFormat:interleaved:error:"), fileURL, settings, format, interleaved, outError)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Opens a file for writing using the specified settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)
+func NewAudioFileForWritingSettingsError(fileURL unsafe.Pointer, settings unsafe.Pointer, outError unsafe.Pointer) AudioFile {
+	instance := getAudioFileClass().Alloc()
+	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:error:"), fileURL, settings, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -182,6 +190,7 @@ func (a_ AudioFile) FramePosition() unsafe.Pointer {
 func (a_ AudioFile) SetFramePosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFramePosition:"), value)
 }
+
 // A Boolean value that indicates whether the file is open.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/isOpen

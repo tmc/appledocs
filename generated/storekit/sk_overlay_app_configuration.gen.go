@@ -82,6 +82,8 @@ func NewOverlayAppConfiguration() OverlayAppConfiguration {
 }
 
 
+
+
 // Creates an object that represents the attributes of an overlay you use to recommend another app on the App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/init(appIdentifier:position:)
@@ -131,6 +133,7 @@ func (o_ OverlayAppConfiguration) AppIdentifier() string {
 func (o_ OverlayAppConfiguration) SetAppIdentifier(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAppIdentifier:"), objc.String(value))
 }
+
 // A token you use to represent an ad campaign and measure its effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/campaignToken
@@ -148,6 +151,7 @@ func (o_ OverlayAppConfiguration) CampaignToken() string {
 func (o_ OverlayAppConfiguration) SetCampaignToken(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), objc.String(value))
 }
+
 // An optional identifier for an app’s custom product page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/customProductPageIdentifier
@@ -165,6 +169,7 @@ func (o_ OverlayAppConfiguration) CustomProductPageIdentifier() string {
 func (o_ OverlayAppConfiguration) SetCustomProductPageIdentifier(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), objc.String(value))
 }
+
 // The release ID of the latest version of your app as displayed in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/latestReleaseID
@@ -182,6 +187,7 @@ func (o_ OverlayAppConfiguration) LatestReleaseID() string {
 func (o_ OverlayAppConfiguration) SetLatestReleaseID(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), objc.String(value))
 }
+
 // The position of the overlay on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/position
@@ -199,6 +205,7 @@ func (o_ OverlayAppConfiguration) Position() unsafe.Pointer {
 func (o_ OverlayAppConfiguration) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPosition:"), value)
 }
+
 // A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/providerToken
@@ -216,6 +223,7 @@ func (o_ OverlayAppConfiguration) ProviderToken() string {
 func (o_ OverlayAppConfiguration) SetProviderToken(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), objc.String(value))
 }
+
 // A Boolean value that indicates whether the user can dismiss the overlay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/userDismissible
@@ -233,4 +241,5 @@ func (o_ OverlayAppConfiguration) UserDismissible() bool {
 func (o_ OverlayAppConfiguration) SetUserDismissible(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUserDismissible:"), value)
 }
+
 

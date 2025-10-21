@@ -12,5 +12,3 @@ var ODQueryDelegateProtocol *objc.Protocol
 func init() {
 	ODQueryDelegateProtocol = objc.GetProtocol("ODQueryDelegate")
 }
-
-

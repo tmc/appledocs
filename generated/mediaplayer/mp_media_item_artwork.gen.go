@@ -81,6 +81,8 @@ func NewMediaItemArtwork() MediaItemArtwork {
 }
 
 
+
+
 // Creates a new image from existing artwork with the specified bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(boundsSize:requestHandler:)
@@ -90,6 +92,8 @@ func NewMediaItemArtworkWithBoundsSizeRequestHandler(boundsSize coregraphics.CGS
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a media item artwork instance with a full-size image.
 //

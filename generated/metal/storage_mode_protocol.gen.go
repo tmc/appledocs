@@ -20,5 +20,3 @@ var storageModeProtocol *objc.Protocol
 func init() {
 	storageModeProtocol = objc.GetProtocol("storageMode")
 }
-
-

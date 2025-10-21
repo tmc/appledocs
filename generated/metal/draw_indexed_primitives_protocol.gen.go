@@ -20,5 +20,3 @@ var drawIndexedPrimitivesProtocol *objc.Protocol
 func init() {
 	drawIndexedPrimitivesProtocol = objc.GetProtocol("drawIndexedPrimitives:")
 }
-
-

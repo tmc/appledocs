@@ -150,6 +150,7 @@ func (l_ LanguageRecognizer) SetLanguageConstraints(value []string) {
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLanguageConstraints:"), nsArray)
 }
+
 // A dictionary that maps languages to their probabilities in the language identification process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-3gy00
@@ -167,4 +168,5 @@ func (l_ LanguageRecognizer) LanguageHints() unsafe.Pointer {
 func (l_ LanguageRecognizer) SetLanguageHints(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLanguageHints:"), value)
 }
+
 

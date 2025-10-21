@@ -15,5 +15,3 @@ var uuidProtocol *objc.Protocol
 func init() {
 	uuidProtocol = objc.GetProtocol("uuid")
 }
-
-

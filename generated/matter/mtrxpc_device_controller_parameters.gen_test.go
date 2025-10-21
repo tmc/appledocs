@@ -10,6 +10,3 @@ import (
 var _ = matter.NewMTRXPCDeviceControllerParameters
 
 
-
-
-

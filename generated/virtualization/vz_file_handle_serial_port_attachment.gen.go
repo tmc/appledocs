@@ -81,6 +81,8 @@ func NewVZFileHandleSerialPortAttachment() VZFileHandleSerialPortAttachment {
 }
 
 
+
+
 // Creates a serial port attachment object from the specified file handles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/init(fileHandleForReading:fileHandleForWriting:)

@@ -15,5 +15,3 @@ var validateContextMenuItemWithCommandProtocol *objc.Protocol
 func init() {
 	validateContextMenuItemWithCommandProtocol = objc.GetProtocol("validateContextMenuItemWithCommand:")
 }
-
-

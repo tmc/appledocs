@@ -106,6 +106,7 @@ func (c_ CSSearchQueryContext) SetFetchAttributes(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAttributes:"), nsArray)
 }
+
 // The query string used to filter the results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
@@ -133,6 +134,7 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFilterQueries:"), nsArray)
 }
+
 // The language used for the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
@@ -150,6 +152,7 @@ func (c_ CSSearchQueryContext) KeyboardLanguage() string {
 func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
 }
+
 // The query source options to allow or deny Mail messages in the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/sourceOptions-swift.property
@@ -167,5 +170,6 @@ func (c_ CSSearchQueryContext) SourceOptions() unsafe.Pointer {
 func (c_ CSSearchQueryContext) SetSourceOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceOptions:"), value)
 }
+
 
 

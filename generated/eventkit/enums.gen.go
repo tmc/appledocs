@@ -19,14 +19,14 @@ type EKAlarmType uint
 type EKAuthorizationStatus uint
 
 const (
-// EKAuthorizationStatusFullAccess - The app has both read and write access to the requested entity type.
-//
+	// EKAuthorizationStatusFullAccess - The app has both read and write access to the requested entity type.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAuthorizationStatus/fullAccess
-EKAuthorizationStatusFullAccess EKAuthorizationStatus = 0
-// EKAuthorizationStatusNotDetermined - The person hasn’t chosen whether the app may access the service.
-//
+	EKAuthorizationStatusFullAccess EKAuthorizationStatus = 0
+	// EKAuthorizationStatusNotDetermined - The person hasn’t chosen whether the app may access the service.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAuthorizationStatus/notDetermined
-EKAuthorizationStatusNotDetermined EKAuthorizationStatus = 0
+	EKAuthorizationStatusNotDetermined EKAuthorizationStatus = 0
 )
 
 // EKCalendarEventAvailabilityMask - A bitmask indicating the event availability settings that the calendar can support.
@@ -50,14 +50,14 @@ type EKEntityMask uint
 type EKEntityType uint
 
 const (
-// EKEntityTypeEvent - Represents an event.
-//
+	// EKEntityTypeEvent - Represents an event.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEntityType/event
-EKEntityTypeEvent EKEntityType = 0
-// EKEntityTypeReminder - Represents a reminder.
-//
+	EKEntityTypeEvent EKEntityType = 0
+	// EKEntityTypeReminder - Represents a reminder.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEntityType/reminder
-EKEntityTypeReminder EKEntityType = 0
+	EKEntityTypeReminder EKEntityType = 0
 )
 
 // EKErrorCode - Error codes for EventKit errors.
@@ -66,157 +66,157 @@ EKEntityTypeReminder EKEntityType = 0
 type EKErrorCode uint
 
 const (
-// EKErrorAlarmGreaterThanRecurrence - The alarm interval is greater than the recurrence interval.
-//
+	// EKErrorAlarmGreaterThanRecurrence - The alarm interval is greater than the recurrence interval.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/alarmGreaterThanRecurrence
-EKErrorAlarmGreaterThanRecurrence EKErrorCode = 0
-// EKErrorAlarmProximityNotSupported - The source doesn’t allow geofences on alarms.
-//
+	EKErrorAlarmGreaterThanRecurrence EKErrorCode = 0
+	// EKErrorAlarmProximityNotSupported - The source doesn’t allow geofences on alarms.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/alarmProximityNotSupported
-EKErrorAlarmProximityNotSupported EKErrorCode = 0
-// EKErrorCalendarDoesNotAllowEvents - The calendar doesn’t allow you to add events.
-//
+	EKErrorAlarmProximityNotSupported EKErrorCode = 0
+	// EKErrorCalendarDoesNotAllowEvents - The calendar doesn’t allow you to add events.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/calendarDoesNotAllowEvents
-EKErrorCalendarDoesNotAllowEvents EKErrorCode = 0
-// EKErrorCalendarDoesNotAllowReminders - The calendar doesn’t allow you to add reminders.
-//
+	EKErrorCalendarDoesNotAllowEvents EKErrorCode = 0
+	// EKErrorCalendarDoesNotAllowReminders - The calendar doesn’t allow you to add reminders.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/calendarDoesNotAllowReminders
-EKErrorCalendarDoesNotAllowReminders EKErrorCode = 0
-// EKErrorCalendarHasNoSource - You can’t save the calendar without setting a source first.
-//
+	EKErrorCalendarDoesNotAllowReminders EKErrorCode = 0
+	// EKErrorCalendarHasNoSource - You can’t save the calendar without setting a source first.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/calendarHasNoSource
-EKErrorCalendarHasNoSource EKErrorCode = 0
-// EKErrorCalendarIsImmutable - The calendar is immutable and you can’t modify or delete it.
-//
+	EKErrorCalendarHasNoSource EKErrorCode = 0
+	// EKErrorCalendarIsImmutable - The calendar is immutable and you can’t modify or delete it.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/calendarIsImmutable
-EKErrorCalendarIsImmutable EKErrorCode = 0
-// EKErrorCalendarReadOnly - The calendar is read-only and you can’t add events to it.
-//
+	EKErrorCalendarIsImmutable EKErrorCode = 0
+	// EKErrorCalendarReadOnly - The calendar is read-only and you can’t add events to it.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/calendarReadOnly
-EKErrorCalendarReadOnly EKErrorCode = 0
-// EKErrorCalendarSourceCannotBeModified - You can’t move the calendar to another source.
-//
+	EKErrorCalendarReadOnly EKErrorCode = 0
+	// EKErrorCalendarSourceCannotBeModified - You can’t move the calendar to another source.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/calendarSourceCannotBeModified
-EKErrorCalendarSourceCannotBeModified EKErrorCode = 0
-// EKErrorDatesInverted - The event’s end date occurs before its start date.
-//
+	EKErrorCalendarSourceCannotBeModified EKErrorCode = 0
+	// EKErrorDatesInverted - The event’s end date occurs before its start date.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/datesInverted
-EKErrorDatesInverted EKErrorCode = 0
-// EKErrorDurationGreaterThanRecurrence - The duration of an event is greater than its recurrence interval.
-//
+	EKErrorDatesInverted EKErrorCode = 0
+	// EKErrorDurationGreaterThanRecurrence - The duration of an event is greater than its recurrence interval.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/durationGreaterThanRecurrence
-EKErrorDurationGreaterThanRecurrence EKErrorCode = 0
-// EKErrorEventNotMutable - The event isn’t mutable and you can’t save or delete it.
-//
+	EKErrorDurationGreaterThanRecurrence EKErrorCode = 0
+	// EKErrorEventNotMutable - The event isn’t mutable and you can’t save or delete it.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/eventNotMutable
-EKErrorEventNotMutable EKErrorCode = 0
-// EKErrorEventStoreNotAuthorized - The user hasn’t authorized your app to access events or reminders.
-//
+	EKErrorEventNotMutable EKErrorCode = 0
+	// EKErrorEventStoreNotAuthorized - The user hasn’t authorized your app to access events or reminders.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/eventStoreNotAuthorized
-EKErrorEventStoreNotAuthorized EKErrorCode = 0
-// EKErrorInternalFailure - An internal error occurred.
-//
+	EKErrorEventStoreNotAuthorized EKErrorCode = 0
+	// EKErrorInternalFailure - An internal error occurred.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/internalFailure
-EKErrorInternalFailure EKErrorCode = 0
-// EKErrorInvalidEntityType - The entity type is invalid.
-//
+	EKErrorInternalFailure EKErrorCode = 0
+	// EKErrorInvalidEntityType - The entity type is invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/invalidEntityType
-EKErrorInvalidEntityType EKErrorCode = 0
-// EKErrorInvalidInviteReplyCalendar - The calendar is invalid or nil.
-//
+	EKErrorInvalidEntityType EKErrorCode = 0
+	// EKErrorInvalidInviteReplyCalendar - The calendar is invalid or nil.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/invalidInviteReplyCalendar
-EKErrorInvalidInviteReplyCalendar EKErrorCode = 0
-// EKErrorInvalidSpan - The system encountered an invalid span during a save or deletion.
-//
+	EKErrorInvalidInviteReplyCalendar EKErrorCode = 0
+	// EKErrorInvalidSpan - The system encountered an invalid span during a save or deletion.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/invalidSpan
-EKErrorInvalidSpan EKErrorCode = 0
-// EKErrorInvitesCannotBeMoved - You can’t move the event because it’s an invitation.
-//
+	EKErrorInvalidSpan EKErrorCode = 0
+	// EKErrorInvitesCannotBeMoved - You can’t move the event because it’s an invitation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/invitesCannotBeMoved
-EKErrorInvitesCannotBeMoved EKErrorCode = 0
-// EKErrorLast - This error is for internal use.
-//
+	EKErrorInvitesCannotBeMoved EKErrorCode = 0
+	// EKErrorLast - This error is for internal use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/last
-EKErrorLast EKErrorCode = 0
-// EKErrorNoCalendar - The event isn’t associated with a calendar.
-//
+	EKErrorLast EKErrorCode = 0
+	// EKErrorNoCalendar - The event isn’t associated with a calendar.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/noCalendar
-EKErrorNoCalendar EKErrorCode = 0
-// EKErrorNoEndDate - The event has no end date set.
-//
+	EKErrorNoCalendar EKErrorCode = 0
+	// EKErrorNoEndDate - The event has no end date set.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/noEndDate
-EKErrorNoEndDate EKErrorCode = 0
-// EKErrorNoStartDate - The event has no start date set.
-//
+	EKErrorNoEndDate EKErrorCode = 0
+	// EKErrorNoStartDate - The event has no start date set.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/noStartDate
-EKErrorNoStartDate EKErrorCode = 0
-// EKErrorNotificationCollectionMismatch - The notification collection that contains this notification doesn’t match the collection the system is trying to save.
-//
+	EKErrorNoStartDate EKErrorCode = 0
+	// EKErrorNotificationCollectionMismatch - The notification collection that contains this notification doesn’t match the collection the system is trying to save.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/notificationCollectionMismatch
-EKErrorNotificationCollectionMismatch EKErrorCode = 0
-// EKErrorNotificationSavedWithoutCollection - The notification can’t save because you haven’t added it to a notification collection and saved the collection first.
-//
+	EKErrorNotificationCollectionMismatch EKErrorCode = 0
+	// EKErrorNotificationSavedWithoutCollection - The notification can’t save because you haven’t added it to a notification collection and saved the collection first.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/notificationSavedWithoutCollection
-EKErrorNotificationSavedWithoutCollection EKErrorCode = 0
-// EKErrorNotificationsCollectionFlagNotSet - The notification collection doesn’t have the notifications collection flag.
-//
+	EKErrorNotificationSavedWithoutCollection EKErrorCode = 0
+	// EKErrorNotificationsCollectionFlagNotSet - The notification collection doesn’t have the notifications collection flag.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/notificationsCollectionFlagNotSet
-EKErrorNotificationsCollectionFlagNotSet EKErrorCode = 0
-// EKErrorObjectBelongsToDifferentStore - The object belongs to a different calendar store.
-//
+	EKErrorNotificationsCollectionFlagNotSet EKErrorCode = 0
+	// EKErrorObjectBelongsToDifferentStore - The object belongs to a different calendar store.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/objectBelongsToDifferentStore
-EKErrorObjectBelongsToDifferentStore EKErrorCode = 0
-// EKErrorOSNotSupported - The action isn’t supported on the current operating system.
-//
+	EKErrorObjectBelongsToDifferentStore EKErrorCode = 0
+	// EKErrorOSNotSupported - The action isn’t supported on the current operating system.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/osNotSupported
-EKErrorOSNotSupported EKErrorCode = 0
-// EKErrorPriorityIsInvalid - The priority number for the reminder is invalid.
-//
+	EKErrorOSNotSupported EKErrorCode = 0
+	// EKErrorPriorityIsInvalid - The priority number for the reminder is invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/priorityIsInvalid
-EKErrorPriorityIsInvalid EKErrorCode = 0
-// EKErrorProcedureAlarmsNotMutable - You can’t create or modify procedure alarms.
-//
+	EKErrorPriorityIsInvalid EKErrorCode = 0
+	// EKErrorProcedureAlarmsNotMutable - You can’t create or modify procedure alarms.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/procedureAlarmsNotMutable
-EKErrorProcedureAlarmsNotMutable EKErrorCode = 0
-// EKErrorRecurringReminderRequiresDueDate - The recurring reminder requires a due date.
-//
+	EKErrorProcedureAlarmsNotMutable EKErrorCode = 0
+	// EKErrorRecurringReminderRequiresDueDate - The recurring reminder requires a due date.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/recurringReminderRequiresDueDate
-EKErrorRecurringReminderRequiresDueDate EKErrorCode = 0
-//
+	EKErrorRecurringReminderRequiresDueDate EKErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/reminderAlarmContainsEmailOrUrl
-EKErrorReminderAlarmContainsEmailOrUrl EKErrorCode = 0
-// EKErrorReminderLocationsNotSupported - The source doesn’t support locations on reminders.
-//
+	EKErrorReminderAlarmContainsEmailOrUrl EKErrorCode = 0
+	// EKErrorReminderLocationsNotSupported - The source doesn’t support locations on reminders.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/reminderLocationsNotSupported
-EKErrorReminderLocationsNotSupported EKErrorCode = 0
-// EKErrorSourceDoesNotAllowCalendarAddDelete - The source doesn’t allow you to add or delete calendars.
-//
+	EKErrorReminderLocationsNotSupported EKErrorCode = 0
+	// EKErrorSourceDoesNotAllowCalendarAddDelete - The source doesn’t allow you to add or delete calendars.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/sourceDoesNotAllowCalendarAddDelete
-EKErrorSourceDoesNotAllowCalendarAddDelete EKErrorCode = 0
-// EKErrorSourceDoesNotAllowEvents - The source doesn’t allow calendars supporting event entity types.
-//
+	EKErrorSourceDoesNotAllowCalendarAddDelete EKErrorCode = 0
+	// EKErrorSourceDoesNotAllowEvents - The source doesn’t allow calendars supporting event entity types.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/sourceDoesNotAllowEvents
-EKErrorSourceDoesNotAllowEvents EKErrorCode = 0
-// EKErrorSourceDoesNotAllowReminders - The source doesn’t allow calendars supporting reminder entity types.
-//
+	EKErrorSourceDoesNotAllowEvents EKErrorCode = 0
+	// EKErrorSourceDoesNotAllowReminders - The source doesn’t allow calendars supporting reminder entity types.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/sourceDoesNotAllowReminders
-EKErrorSourceDoesNotAllowReminders EKErrorCode = 0
-// EKErrorSourceMismatch - The object’s source doesn’t match its container’s source.
-//
+	EKErrorSourceDoesNotAllowReminders EKErrorCode = 0
+	// EKErrorSourceMismatch - The object’s source doesn’t match its container’s source.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/sourceMismatch
-EKErrorSourceMismatch EKErrorCode = 0
-// EKErrorStartDateCollidesWithOtherOccurrence - The event’s start date collides with another occurrence of the event.
-//
+	EKErrorSourceMismatch EKErrorCode = 0
+	// EKErrorStartDateCollidesWithOtherOccurrence - The event’s start date collides with another occurrence of the event.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/startDateCollidesWithOtherOccurrence
-EKErrorStartDateCollidesWithOtherOccurrence EKErrorCode = 0
-// EKErrorStartDateTooFarInFuture - The start date is further into the future than the calendar can display.
-//
+	EKErrorStartDateCollidesWithOtherOccurrence EKErrorCode = 0
+	// EKErrorStartDateTooFarInFuture - The start date is further into the future than the calendar can display.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/startDateTooFarInFuture
-EKErrorStartDateTooFarInFuture EKErrorCode = 0
-// EKErrorStructuredLocationsNotSupported - The source to which this calendar belongs doesn’t support structured locations.
-//
+	EKErrorStartDateTooFarInFuture EKErrorCode = 0
+	// EKErrorStructuredLocationsNotSupported - The source to which this calendar belongs doesn’t support structured locations.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKError/Code/structuredLocationsNotSupported
-EKErrorStructuredLocationsNotSupported EKErrorCode = 0
+	EKErrorStructuredLocationsNotSupported EKErrorCode = 0
 )
 
 // EKEventAvailability - The event’s availability setting for scheduling purposes.
@@ -225,10 +225,10 @@ EKErrorStructuredLocationsNotSupported EKErrorCode = 0
 type EKEventAvailability uint
 
 const (
-// EKEventAvailabilityNotSupported - Availability settings are not supported by the event’s calendar.
-//
+	// EKEventAvailabilityNotSupported - Availability settings are not supported by the event’s calendar.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventAvailability/notSupported
-EKEventAvailabilityNotSupported EKEventAvailability = 0
+	EKEventAvailabilityNotSupported EKEventAvailability = 0
 )
 
 // EKEventStatus - The event’s status.
@@ -252,38 +252,38 @@ type EKParticipantScheduleStatus uint
 type EKParticipantStatus uint
 
 const (
-// EKParticipantStatusAccepted - The participant has accepted the event.
-//
+	// EKParticipantStatusAccepted - The participant has accepted the event.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/accepted
-EKParticipantStatusAccepted EKParticipantStatus = 0
-// EKParticipantStatusCompleted - The participant’s event has completed.
-//
+	EKParticipantStatusAccepted EKParticipantStatus = 0
+	// EKParticipantStatusCompleted - The participant’s event has completed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/completed
-EKParticipantStatusCompleted EKParticipantStatus = 0
-// EKParticipantStatusDeclined - The participant has declined the event.
-//
+	EKParticipantStatusCompleted EKParticipantStatus = 0
+	// EKParticipantStatusDeclined - The participant has declined the event.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/declined
-EKParticipantStatusDeclined EKParticipantStatus = 0
-// EKParticipantStatusDelegated - The participant has delegated attendance to another participant.
-//
+	EKParticipantStatusDeclined EKParticipantStatus = 0
+	// EKParticipantStatusDelegated - The participant has delegated attendance to another participant.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/delegated
-EKParticipantStatusDelegated EKParticipantStatus = 0
-// EKParticipantStatusInProcess - The participant’s event is currently in process.
-//
+	EKParticipantStatusDelegated EKParticipantStatus = 0
+	// EKParticipantStatusInProcess - The participant’s event is currently in process.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/inProcess
-EKParticipantStatusInProcess EKParticipantStatus = 0
-// EKParticipantStatusPending - The participant has yet to respond to the event.
-//
+	EKParticipantStatusInProcess EKParticipantStatus = 0
+	// EKParticipantStatusPending - The participant has yet to respond to the event.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/pending
-EKParticipantStatusPending EKParticipantStatus = 0
-// EKParticipantStatusTentative - The participant’s attendance status is tentative.
-//
+	EKParticipantStatusPending EKParticipantStatus = 0
+	// EKParticipantStatusTentative - The participant’s attendance status is tentative.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/tentative
-EKParticipantStatusTentative EKParticipantStatus = 0
-// EKParticipantStatusUnknown - The participant’s attendance status is unknown.
-//
+	EKParticipantStatusTentative EKParticipantStatus = 0
+	// EKParticipantStatusUnknown - The participant’s attendance status is unknown.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/unknown
-EKParticipantStatusUnknown EKParticipantStatus = 0
+	EKParticipantStatusUnknown EKParticipantStatus = 0
 )
 
 // EKParticipantType - The type of participant.
@@ -312,10 +312,10 @@ type EKSourceType uint
 type EKSpan uint
 
 const (
-// EKSpanFutureEvents - Modifications to this event instance should also affect future instances of this event.
-//
+	// EKSpanFutureEvents - Modifications to this event instance should also affect future instances of this event.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSpan/futureEvents
-EKSpanFutureEvents EKSpan = 0
+	EKSpanFutureEvents EKSpan = 0
 )
 
 // EKWeekday - The day of the week.
@@ -324,38 +324,38 @@ EKSpanFutureEvents EKSpan = 0
 type EKWeekday uint
 
 const (
-// EKFriday - The value for Friday.
-//
+	// EKFriday - The value for Friday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKFriday
-EKFriday EKWeekday = 0
-// EKMonday - The value for Monday.
-//
+	EKFriday EKWeekday = 0
+	// EKMonday - The value for Monday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKMonday
-EKMonday EKWeekday = 0
-// EKSaturday - The value for Saturday.
-//
+	EKMonday EKWeekday = 0
+	// EKSaturday - The value for Saturday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKSaturday
-EKSaturday EKWeekday = 0
-// EKSunday - The value for Sunday.
-//
+	EKSaturday EKWeekday = 0
+	// EKSunday - The value for Sunday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKSunday
-EKSunday EKWeekday = 0
-// EKThursday - The value for Thursday.
-//
+	EKSunday EKWeekday = 0
+	// EKThursday - The value for Thursday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKThursday
-EKThursday EKWeekday = 0
-// EKTuesday - The value for Tuesday.
-//
+	EKThursday EKWeekday = 0
+	// EKTuesday - The value for Tuesday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKTuesday
-EKTuesday EKWeekday = 0
-// EKWednesday - The value for Wednesday.
-//
+	EKTuesday EKWeekday = 0
+	// EKWednesday - The value for Wednesday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKWednesday
-EKWednesday EKWeekday = 0
-// EKWeekdayTuesday - The value for Tuesday.
-//
+	EKWednesday EKWeekday = 0
+	// EKWeekdayTuesday - The value for Tuesday.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/tuesday
-EKWeekdayTuesday EKWeekday = 0
+	EKWeekdayTuesday EKWeekday = 0
 )
 
 

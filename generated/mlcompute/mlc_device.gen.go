@@ -79,13 +79,7 @@ func NewCDevice() CDevice {
 }
 
 
-// Creates a device that you can configure to use multiple compute devices.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:selectsMultipleComputeDevices:)
-func NewCDeviceWithTypeSelectsMultipleComputeDevices(type_ unsafe.Pointer, selectsMultipleComputeDevices bool) CDevice {
-	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:selectsMultipleComputeDevices:"), type_, selectsMultipleComputeDevices)
-	return rv
-}
+
 
 // Creates a device using the GPUs you specify.
 //
@@ -95,11 +89,23 @@ func NewCDeviceWithGPUDevices(gpus unsafe.Pointer) CDevice {
 	return rv
 }
 
+
+
 // Creates a device of the type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:)
 func NewCDeviceWithType(type_ unsafe.Pointer) CDevice {
 	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:"), type_)
+	return rv
+}
+
+
+
+// Creates a device that you can configure to use multiple compute devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:selectsMultipleComputeDevices:)
+func NewCDeviceWithTypeSelectsMultipleComputeDevices(type_ unsafe.Pointer, selectsMultipleComputeDevices bool) CDevice {
+	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:selectsMultipleComputeDevices:"), type_, selectsMultipleComputeDevices)
 	return rv
 }
 

@@ -12,5 +12,3 @@ var AudioUnitFactoryProtocol *objc.Protocol
 func init() {
 	AudioUnitFactoryProtocol = objc.GetProtocol("AUAudioUnitFactory")
 }
-
-

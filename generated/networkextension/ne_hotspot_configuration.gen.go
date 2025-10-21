@@ -81,6 +81,8 @@ func NewNEHotspotConfiguration() NEHotspotConfiguration {
 }
 
 
+
+
 // Creates a new hotspot configuration, identified by a domain name, for a Hotspot 2.0 Wi-Fi network with HS 2.0 and EAP settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(hs20Settings:eapSettings:)
@@ -90,6 +92,8 @@ func NewNEHotspotConfigurationWithHS20SettingsEapSettings(hs20Settings unsafe.Po
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new hotspot configuration, identified by an SSID, for an open Wi-Fi network.
 //
@@ -101,6 +105,8 @@ func NewNEHotspotConfigurationWithSSID(SSID string) NEHotspotConfiguration {
 	return rv
 }
 
+
+
 // Creates a new hotspot configuration, identified by an SSID, for a WPA/WPA2 enterprise Wi-Fi network with EAP settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:eapSettings:)
@@ -110,6 +116,8 @@ func NewNEHotspotConfigurationWithSSIDEapSettings(SSID string, eapSettings unsaf
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new hotspot configuration, identified by an SSID, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 //
@@ -121,6 +129,8 @@ func NewNEHotspotConfigurationWithSSIDPassphraseIsWEP(SSID string, passphrase st
 	return rv
 }
 
+
+
 // Creates a new hotspot configuration, identified by an SSID prefix string, for an open Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssidPrefix:)
@@ -130,6 +140,8 @@ func NewNEHotspotConfigurationWithSSIDPrefix(SSIDPrefix string) NEHotspotConfigu
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new hotspot configuration, identified by an SSID prefix string, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 //
@@ -159,6 +171,7 @@ func (n_ NEHotspotConfiguration) Hidden() bool {
 func (n_ NEHotspotConfiguration) SetHidden(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHidden:"), value)
 }
+
 // Restricts the lifetime of a configuration to the operating status of the app that created it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/joinOnce
@@ -176,6 +189,7 @@ func (n_ NEHotspotConfiguration) JoinOnce() bool {
 func (n_ NEHotspotConfiguration) SetJoinOnce(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setJoinOnce:"), value)
 }
+
 // The number of days the network retains the associated configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/lifeTimeInDays
@@ -193,6 +207,7 @@ func (n_ NEHotspotConfiguration) LifeTimeInDays() unsafe.Pointer {
 func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLifeTimeInDays:"), value)
 }
+
 // The SSID of an open, WEP, WPA/WPA2 personal, or WPA/WPA2 enterprise Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssid

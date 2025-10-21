@@ -81,6 +81,8 @@ func NewVZVirtioGraphicsScanoutConfiguration() VZVirtioGraphicsScanoutConfigurat
 }
 
 
+
+
 // Creates a Virtio graphics device with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanoutConfiguration/init(widthInPixels:heightInPixels:)
@@ -109,6 +111,7 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) HeightInPixels() int {
 func (v_ VZVirtioGraphicsScanoutConfiguration) SetHeightInPixels(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHeightInPixels:"), value)
 }
+
 // An integer value that describes the width of the graphics device in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanoutConfiguration/widthInPixels
@@ -126,4 +129,5 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) WidthInPixels() int {
 func (v_ VZVirtioGraphicsScanoutConfiguration) SetWidthInPixels(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWidthInPixels:"), value)
 }
+
 

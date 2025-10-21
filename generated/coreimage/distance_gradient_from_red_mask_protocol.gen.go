@@ -12,5 +12,3 @@ var DistanceGradientFromRedMaskProtocol *objc.Protocol
 func init() {
 	DistanceGradientFromRedMaskProtocol = objc.GetProtocol("CIDistanceGradientFromRedMask")
 }
-
-

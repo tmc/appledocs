@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CaptureVideoDataOutput] class.
@@ -151,6 +152,7 @@ func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool {
 func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlwaysDiscardsLateVideoFrames:"), value)
 }
+
 // A Boolean value that indicates whether the output automatically configures the size of output buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/automaticallyConfiguresOutputBufferDimensions
@@ -168,6 +170,7 @@ func (c_ CaptureVideoDataOutput) AutomaticallyConfiguresOutputBufferDimensions()
 func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimensions(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresOutputBufferDimensions:"), value)
 }
+
 // The video pixel formats the output supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCVPixelFormatTypes
@@ -201,6 +204,7 @@ func (c_ CaptureVideoDataOutput) DeliversPreviewSizedOutputBuffers() bool {
 func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeliversPreviewSizedOutputBuffers:"), value)
 }
+
 // The minimum frame duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/minFrameDuration
@@ -218,6 +222,7 @@ func (c_ CaptureVideoDataOutput) MinFrameDuration() unsafe.Pointer {
 func (c_ CaptureVideoDataOutput) SetMinFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFrameDuration:"), value)
 }
+
 // Indicates whether the receiver should prepare the cellular radio for imminent network activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/preparesCellularRadioForNetworkConnection
@@ -235,6 +240,7 @@ func (c_ CaptureVideoDataOutput) PreparesCellularRadioForNetworkConnection() boo
 func (c_ CaptureVideoDataOutput) SetPreparesCellularRadioForNetworkConnection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparesCellularRadioForNetworkConnection:"), value)
 }
+
 // Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer’s underlying pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/preservesDynamicHDRMetadata
@@ -252,6 +258,7 @@ func (c_ CaptureVideoDataOutput) PreservesDynamicHDRMetadata() bool {
 func (c_ CaptureVideoDataOutput) SetPreservesDynamicHDRMetadata(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesDynamicHDRMetadata:"), value)
 }
+
 // Indicates the recommended media timescale for the video track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedMediaTimeScaleForAssetWriter
@@ -293,5 +300,6 @@ func (c_ CaptureVideoDataOutput) VideoSettings() unsafe.Pointer {
 func (c_ CaptureVideoDataOutput) SetVideoSettings(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoSettings:"), value)
 }
+
 
 

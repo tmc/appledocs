@@ -79,3 +79,7 @@ func (s_ SecureTextField) Autorelease() SecureTextField {
 func NewSecureTextField() SecureTextField {
 	return getSecureTextFieldClass().New()
 }
+
+
+
+

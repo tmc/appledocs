@@ -9,15 +9,9 @@ import (
 // Suppress unused import errors
 var _ = fskit.NewFSEntityIdentifier
 
-
 // ExampleNewFSEntityIdentifier demonstrates how to create a FSEntityIdentifier instance.
 // Creates an entity identifier with a random UUID.
 func ExampleNewFSEntityIdentifier() {
 	_ = fskit.NewFSEntityIdentifier()
 	// Output:
 }
-
-
-
-
-

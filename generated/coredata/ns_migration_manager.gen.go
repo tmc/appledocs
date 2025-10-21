@@ -87,6 +87,8 @@ func NewMigrationManager() MigrationManager {
 }
 
 
+
+
 // Initializes a migration manager instance with given source and destination models.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/init(sourceModel:destinationModel:)
@@ -232,6 +234,7 @@ func (m_ MigrationManager) UserInfo() unsafe.Pointer {
 func (m_ MigrationManager) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInfo:"), value)
 }
+
 // A Boolean value that indicates whether the migration manager tries to use a store specific migration manager to perform the migration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/usesStoreSpecificMigrationManager
@@ -249,4 +252,5 @@ func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
 func (m_ MigrationManager) SetUsesStoreSpecificMigrationManager(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesStoreSpecificMigrationManager:"), value)
 }
+
 

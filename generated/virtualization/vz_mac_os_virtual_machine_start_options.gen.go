@@ -98,3 +98,4 @@ func (v_ VZMacOSVirtualMachineStartOptions) SetStartUpFromMacOSRecovery(value bo
 }
 
 
+

@@ -81,6 +81,8 @@ func NewHKWorkout() HKWorkout {
 }
 
 
+
+
 // Instantiates a workout using a variety of data, including the number of strokes while swimming.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)

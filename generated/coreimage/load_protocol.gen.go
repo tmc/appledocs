@@ -12,5 +12,3 @@ var loadProtocol *objc.Protocol
 func init() {
 	loadProtocol = objc.GetProtocol("load:")
 }
-
-

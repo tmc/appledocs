@@ -86,6 +86,8 @@ func NewGLKView() GLKView {
 }
 
 
+
+
 // Initializes a new view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/init(frame:context:)
@@ -135,6 +137,7 @@ func (g_ GLKView) Context() unsafe.Pointer {
 func (g_ GLKView) SetContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContext:"), value)
 }
+
 // The view’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/delegate
@@ -152,6 +155,7 @@ func (g_ GLKView) Delegate() objc.ID {
 func (g_ GLKView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The format of the color renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
@@ -169,6 +173,7 @@ func (g_ GLKView) DrawableColorFormat() unsafe.Pointer {
 func (g_ GLKView) SetDrawableColorFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableColorFormat:"), value)
 }
+
 // The format of the depth renderbuffer
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
@@ -186,6 +191,7 @@ func (g_ GLKView) DrawableDepthFormat() unsafe.Pointer {
 func (g_ GLKView) SetDrawableDepthFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableDepthFormat:"), value)
 }
+
 // The height, in pixels, of the underlying framebuffer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableHeight
@@ -211,6 +217,7 @@ func (g_ GLKView) DrawableMultisample() unsafe.Pointer {
 func (g_ GLKView) SetDrawableMultisample(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableMultisample:"), value)
 }
+
 // The format of the stencil renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
@@ -228,6 +235,7 @@ func (g_ GLKView) DrawableStencilFormat() unsafe.Pointer {
 func (g_ GLKView) SetDrawableStencilFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableStencilFormat:"), value)
 }
+
 // The width, in pixels, of the underlying framebuffer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableWidth
@@ -253,6 +261,7 @@ func (g_ GLKView) EnableSetNeedsDisplay() bool {
 func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnableSetNeedsDisplay:"), value)
 }
+
 // Draws the contents of the view and returns them as a new image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/snapshot

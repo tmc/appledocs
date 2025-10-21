@@ -20,5 +20,3 @@ var MDLJointAnimationProtocol *objc.Protocol
 func init() {
 	MDLJointAnimationProtocol = objc.GetProtocol("MDLJointAnimation")
 }
-
-

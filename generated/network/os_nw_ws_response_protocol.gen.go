@@ -21,4 +21,3 @@ var OS_nw_ws_responseProtocol *objc.Protocol
 func init() {
 	OS_nw_ws_responseProtocol = objc.GetProtocol("OS_nw_ws_response")
 }
-

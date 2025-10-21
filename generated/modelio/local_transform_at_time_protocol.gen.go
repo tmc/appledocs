@@ -20,5 +20,3 @@ var localTransformAtTimeProtocol *objc.Protocol
 func init() {
 	localTransformAtTimeProtocol = objc.GetProtocol("localTransformAtTime:")
 }
-
-

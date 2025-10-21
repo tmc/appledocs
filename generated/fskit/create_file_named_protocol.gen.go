@@ -15,5 +15,3 @@ var createFileNamedProtocol *objc.Protocol
 func init() {
 	createFileNamedProtocol = objc.GetProtocol("createFileNamed:")
 }
-
-

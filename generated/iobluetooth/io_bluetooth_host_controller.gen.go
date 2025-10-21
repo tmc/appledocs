@@ -139,6 +139,7 @@ func (b_ BluetoothHostController) Delegate() objc.ID {
 func (b_ BluetoothHostController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Gets the controller power state
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/powerState

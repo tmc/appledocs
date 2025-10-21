@@ -12,5 +12,3 @@ var StretchCropProtocol *objc.Protocol
 func init() {
 	StretchCropProtocol = objc.GetProtocol("CIStretchCrop")
 }
-
-

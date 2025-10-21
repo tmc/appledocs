@@ -90,6 +90,7 @@ func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() unsafe.Pointer {
 func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/statusCode
 func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() unsafe.Pointer {
 func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
+
 
 

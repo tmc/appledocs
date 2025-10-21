@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CollectionViewLayoutInvalidationContext] class.
@@ -78,3 +79,7 @@ func (c_ CollectionViewLayoutInvalidationContext) Autorelease() CollectionViewLa
 func NewCollectionViewLayoutInvalidationContext() CollectionViewLayoutInvalidationContext {
 	return getCollectionViewLayoutInvalidationContextClass().New()
 }
+
+
+
+

@@ -109,6 +109,7 @@ func (p_ PDFActionResetForm) SetFields(value []string) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFields:"), nsArray)
 }
+
 // Sets whether the fields associated with the reset action are cleared when the action is performed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionResetForm/fieldsIncludedAreCleared
@@ -126,4 +127,5 @@ func (p_ PDFActionResetForm) FieldsIncludedAreCleared() bool {
 func (p_ PDFActionResetForm) SetFieldsIncludedAreCleared(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldsIncludedAreCleared:"), value)
 }
+
 

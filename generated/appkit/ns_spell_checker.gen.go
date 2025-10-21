@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SpellChecker] class.
@@ -89,6 +89,7 @@ func NewSpellChecker() SpellChecker {
 	return getSpellCheckerClass().New()
 }
 
+
 // Requests unified text checking for the given range of the given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/check(_:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)
@@ -159,3 +160,6 @@ func (s_ SpellChecker) RequestCheckingOfStringRangeTypesOptionsInSpellDocumentWi
 	rv := objc.Send[int](s_.ID, objc.Sel("requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, completionHandler)
 	return rv
 }
+
+
+

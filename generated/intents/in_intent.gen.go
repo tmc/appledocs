@@ -121,6 +121,7 @@ func (i_ INIntent) DonationMetadata() unsafe.Pointer {
 func (i_ INIntent) SetDonationMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDonationMetadata:"), value)
 }
+
 // The unique identifier for this intent object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/identifier
@@ -154,6 +155,7 @@ func (i_ INIntent) ShortcutAvailability() unsafe.Pointer {
 func (i_ INIntent) SetShortcutAvailability(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcutAvailability:"), value)
 }
+
 // The intent’s display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/suggestedInvocationPhrase
@@ -171,5 +173,6 @@ func (i_ INIntent) SuggestedInvocationPhrase() string {
 func (i_ INIntent) SetSuggestedInvocationPhrase(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
 }
+
 
 

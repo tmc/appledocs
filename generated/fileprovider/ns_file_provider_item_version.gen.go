@@ -81,6 +81,8 @@ func NewFileProviderItemVersion() FileProviderItemVersion {
 }
 
 
+
+
 // Creates a new version object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/init(contentVersion:metadataVersion:)

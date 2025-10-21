@@ -12,5 +12,3 @@ var VignetteEffectProtocol *objc.Protocol
 func init() {
 	VignetteEffectProtocol = objc.GetProtocol("CIVignetteEffect")
 }
-
-

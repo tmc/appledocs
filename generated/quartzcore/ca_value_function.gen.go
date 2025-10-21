@@ -81,6 +81,8 @@ func NewValueFunction() ValueFunction {
 }
 
 
+
+
 // Returns the value function object identified by the name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/init(name:)

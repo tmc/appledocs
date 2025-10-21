@@ -16,4 +16,3 @@ var sizeInMillimetersProtocol *objc.Protocol
 func init() {
 	sizeInMillimetersProtocol = objc.GetProtocol("sizeInMillimeters")
 }
-

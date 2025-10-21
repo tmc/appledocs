@@ -82,6 +82,8 @@ func NewToolPickerCustomItem() ToolPickerCustomItem {
 }
 
 
+
+
 // Creates a new custom item with the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/initWithConfiguration:
@@ -117,6 +119,7 @@ func (t_ ToolPickerCustomItem) AllowsColorSelection() bool {
 func (t_ ToolPickerCustomItem) SetAllowsColorSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColorSelection:"), value)
 }
+
 // The current color of the custom tool item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/color
@@ -134,6 +137,7 @@ func (t_ ToolPickerCustomItem) Color() unsafe.Pointer {
 func (t_ ToolPickerCustomItem) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
+
 // The configuration of the custom tool item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/configuration-v7e5
@@ -159,4 +163,5 @@ func (t_ ToolPickerCustomItem) Width() float64 {
 func (t_ ToolPickerCustomItem) SetWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
 }
+
 

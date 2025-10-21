@@ -15,4 +15,3 @@ var queryProtocol *objc.Protocol
 func init() {
 	queryProtocol = objc.GetProtocol("query:")
 }
-

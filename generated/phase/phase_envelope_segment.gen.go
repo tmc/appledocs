@@ -81,6 +81,8 @@ func NewPHASEEnvelopeSegment() PHASEEnvelopeSegment {
 }
 
 
+
+
 // Creates a curved portion of an envelope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/init(endPoint:curveType:)
@@ -109,6 +111,7 @@ func (p_ PHASEEnvelopeSegment) CurveType() unsafe.Pointer {
 func (p_ PHASEEnvelopeSegment) SetCurveType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurveType:"), value)
 }
+
 // A point that identifies the end of the segment along the envelope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/endPoint
@@ -126,4 +129,5 @@ func (p_ PHASEEnvelopeSegment) EndPoint() unsafe.Pointer {
 func (p_ PHASEEnvelopeSegment) SetEndPoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndPoint:"), value)
 }
+
 

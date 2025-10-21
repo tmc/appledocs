@@ -64,42 +64,42 @@ type MIDINoteAttribute uint
 type MIDIObjectType uint
 
 const (
-// kMIDIObjectType_Destination - A MIDI destination.
-//
+	// kMIDIObjectType_Destination - A MIDI destination.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/destination
-kMIDIObjectType_Destination MIDIObjectType = 0
-// kMIDIObjectType_Device - A MIDI device.
-//
+	kMIDIObjectType_Destination MIDIObjectType = 0
+	// kMIDIObjectType_Device - A MIDI device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/device
-kMIDIObjectType_Device MIDIObjectType = 0
-// kMIDIObjectType_Entity - A MIDI entity.
-//
+	kMIDIObjectType_Device MIDIObjectType = 0
+	// kMIDIObjectType_Entity - A MIDI entity.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/entity
-kMIDIObjectType_Entity MIDIObjectType = 0
-// kMIDIObjectType_ExternalDestination - An external destination.
-//
+	kMIDIObjectType_Entity MIDIObjectType = 0
+	// kMIDIObjectType_ExternalDestination - An external destination.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/externalDestination
-kMIDIObjectType_ExternalDestination MIDIObjectType = 0
-// kMIDIObjectType_ExternalDevice - An external device.
-//
+	kMIDIObjectType_ExternalDestination MIDIObjectType = 0
+	// kMIDIObjectType_ExternalDevice - An external device.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/externalDevice
-kMIDIObjectType_ExternalDevice MIDIObjectType = 0
-// kMIDIObjectType_ExternalEntity - An external entity.
-//
+	kMIDIObjectType_ExternalDevice MIDIObjectType = 0
+	// kMIDIObjectType_ExternalEntity - An external entity.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/externalEntity
-kMIDIObjectType_ExternalEntity MIDIObjectType = 0
-// kMIDIObjectType_ExternalSource - An external source.
-//
+	kMIDIObjectType_ExternalEntity MIDIObjectType = 0
+	// kMIDIObjectType_ExternalSource - An external source.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/externalSource
-kMIDIObjectType_ExternalSource MIDIObjectType = 0
-// kMIDIObjectType_Other - A MIDI object with an undefined type.
-//
+	kMIDIObjectType_ExternalSource MIDIObjectType = 0
+	// kMIDIObjectType_Other - A MIDI object with an undefined type.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/other
-kMIDIObjectType_Other MIDIObjectType = 0
-// kMIDIObjectType_Source - A MIDI source.
-//
+	kMIDIObjectType_Other MIDIObjectType = 0
+	// kMIDIObjectType_Source - A MIDI source.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectType/source
-kMIDIObjectType_Source MIDIObjectType = 0
+	kMIDIObjectType_Source MIDIObjectType = 0
 )
 
 // MIDIPerNoteManagementOptions enum type
@@ -163,12 +163,12 @@ type MIDIUMPFunctionBlockUIHint uint
 type MIDIUMPProtocolOptions uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPProtocolOptions/midi1
-kMIDIUMPProtocolOptionsMIDI1 MIDIUMPProtocolOptions = 0
-//
+	kMIDIUMPProtocolOptionsMIDI1 MIDIUMPProtocolOptions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPProtocolOptions/midi2
-kMIDIUMPProtocolOptionsMIDI2 MIDIUMPProtocolOptions = 0
+	kMIDIUMPProtocolOptionsMIDI2 MIDIUMPProtocolOptions = 0
 )
 
 // MIDIUtilityStatus enum type

@@ -20,5 +20,3 @@ var counterSetsProtocol *objc.Protocol
 func init() {
 	counterSetsProtocol = objc.GetProtocol("counterSets")
 }
-
-

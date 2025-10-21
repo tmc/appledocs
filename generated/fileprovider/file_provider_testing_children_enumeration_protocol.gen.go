@@ -18,5 +18,3 @@ var FileProviderTestingChildrenEnumerationProtocol *objc.Protocol
 func init() {
 	FileProviderTestingChildrenEnumerationProtocol = objc.GetProtocol("NSFileProviderTestingChildrenEnumeration")
 }
-
-

@@ -81,15 +81,7 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachment() VZNetworkBlockDeviceStorag
 }
 
 
-// Creates a new network block device storage attachment from an NBD Uniform Resource Indicator (URI) represented as a URL, timeout value, and read-only and synchronization modes that you provide.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)
-func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlySynchronizationModeError(URL unsafe.Pointer, timeout TimeInterval, forcedReadOnly bool, synchronizationMode unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
-	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
-	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"), URL, timeout, forcedReadOnly, synchronizationMode, error_)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a new network block device (NBD) storage attachment from an NDB Uniform Resource Indicator (URI) represented as a URL that you provide.
 //
@@ -97,6 +89,18 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlyS
 func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
 	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:error:"), URL, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a new network block device storage attachment from an NBD Uniform Resource Indicator (URI) represented as a URL, timeout value, and read-only and synchronization modes that you provide.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)
+func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlySynchronizationModeError(URL unsafe.Pointer, timeout TimeInterval, forcedReadOnly bool, synchronizationMode unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
+	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
+	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"), URL, timeout, forcedReadOnly, synchronizationMode, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -127,6 +131,7 @@ func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Delegate() objc.ID {
 func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly

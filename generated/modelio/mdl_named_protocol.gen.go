@@ -20,5 +20,3 @@ var MDLNamedProtocol *objc.Protocol
 func init() {
 	MDLNamedProtocol = objc.GetProtocol("MDLNamed")
 }
-
-

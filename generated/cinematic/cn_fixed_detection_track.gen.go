@@ -79,6 +79,8 @@ func NewCNFixedDetectionTrack() CNFixedDetectionTrack {
 }
 
 
+
+
 // Creates a detection track with fixed focus at the given disparity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/initWithFocusDisparity:
@@ -88,6 +90,8 @@ func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity unsafe.Pointer) C
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a detection track with fixed focus at the disparity of an existing detection.
 //

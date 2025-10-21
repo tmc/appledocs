@@ -76,6 +76,8 @@ func NewMTREnergyEVSEClusterGetTargetsResponseParams() MTREnergyEVSEClusterGetTa
 }
 
 
+
+
 // Initialize an MTREnergyEVSEClusterGetTargetsResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) ChargingTargetSchedules()
 func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) SetChargingTargetSchedules(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingTargetSchedules:"), value)
 }
+
 

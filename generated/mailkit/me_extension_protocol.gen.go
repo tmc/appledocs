@@ -15,5 +15,3 @@ var MEExtensionProtocol *objc.Protocol
 func init() {
 	MEExtensionProtocol = objc.GetProtocol("MEExtension")
 }
-
-

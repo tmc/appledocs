@@ -12,5 +12,3 @@ var CheckerboardGeneratorProtocol *objc.Protocol
 func init() {
 	CheckerboardGeneratorProtocol = objc.GetProtocol("CICheckerboardGenerator")
 }
-
-

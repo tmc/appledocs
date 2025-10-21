@@ -19,5 +19,3 @@ var lengthProtocol *objc.Protocol
 func init() {
 	lengthProtocol = objc.GetProtocol("length")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupIdentifier() unsafe.
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupIdentifier:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupResolvingKey
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() unsaf
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupResolvingKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupResolvingKey:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeo
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/signingKey
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() unsafe.Pointer {
@@ -135,6 +138,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() unsafe.Point
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSigningKey:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/timedInvokeTimeoutMs
@@ -152,6 +156,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() un
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/verificationKey
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() unsafe.Pointer {
@@ -166,5 +171,6 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() unsafe.
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetVerificationKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
 }
+
 
 

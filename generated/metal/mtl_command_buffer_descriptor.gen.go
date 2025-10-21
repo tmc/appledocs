@@ -98,6 +98,7 @@ func (c_ CommandBufferDescriptor) ErrorOptions() unsafe.Pointer {
 func (c_ CommandBufferDescriptor) SetErrorOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setErrorOptions:"), value)
 }
+
 // The shader logging configuration that the command buffer uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/logState
@@ -115,6 +116,7 @@ func (c_ CommandBufferDescriptor) LogState() objc.ID {
 func (c_ CommandBufferDescriptor) SetLogState(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLogState:"), value)
 }
+
 // A Boolean value that indicates whether the command buffer the descriptor creates maintains strong references to the resources it uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/retainedReferences
@@ -132,5 +134,6 @@ func (c_ CommandBufferDescriptor) RetainedReferences() bool {
 func (c_ CommandBufferDescriptor) SetRetainedReferences(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRetainedReferences:"), value)
 }
+
 
 

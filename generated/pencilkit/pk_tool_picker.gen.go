@@ -86,6 +86,8 @@ func NewToolPicker() ToolPicker {
 }
 
 
+
+
 // Creates a new tool picker with the tools you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/init(toolItems:)
@@ -158,6 +160,7 @@ func (t_ ToolPicker) AccessoryItem() unsafe.Pointer {
 func (t_ ToolPicker) SetAccessoryItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAccessoryItem:"), value)
 }
+
 // Maximum linear exposure for the color picker used by the tool picker. Can be used to enable picking HDR colors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/colorMaximumLinearExposure
@@ -175,6 +178,7 @@ func (t_ ToolPicker) ColorMaximumLinearExposure() float64 {
 func (t_ ToolPicker) SetColorMaximumLinearExposure(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColorMaximumLinearExposure:"), value)
 }
+
 // The user interface style for the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/colorUserInterfaceStyle
@@ -192,6 +196,7 @@ func (t_ ToolPicker) ColorUserInterfaceStyle() unsafe.Pointer {
 func (t_ ToolPicker) SetColorUserInterfaceStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColorUserInterfaceStyle:"), value)
 }
+
 // The default tool items for new tool pickers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/defaultToolItems
@@ -217,6 +222,7 @@ func (t_ ToolPicker) Delegate() objc.ID {
 func (t_ ToolPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the ruler is visible on the canvas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/isRulerActive
@@ -234,6 +240,7 @@ func (t_ ToolPicker) RulerActive() bool {
 func (t_ ToolPicker) SetRulerActive(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRulerActive:"), value)
 }
+
 // A Boolean value that indicates whether the tool picker is currently visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/isVisible
@@ -259,6 +266,7 @@ func (t_ ToolPicker) MaximumSupportedContentVersion() unsafe.Pointer {
 func (t_ ToolPicker) SetMaximumSupportedContentVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaximumSupportedContentVersion:"), value)
 }
+
 // The specific user interface style to apply to the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/overrideUserInterfaceStyle
@@ -276,6 +284,7 @@ func (t_ ToolPicker) OverrideUserInterfaceStyle() unsafe.Pointer {
 func (t_ ToolPicker) SetOverrideUserInterfaceStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setOverrideUserInterfaceStyle:"), value)
 }
+
 // If this is true the tool picker may show UI that allows dismissing it. If this is false the tool picker will not show this UI. By default this resigns first responder, but is customizable by ’s method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/prefersDismissControlVisible
@@ -293,6 +302,7 @@ func (t_ ToolPicker) PrefersDismissControlVisible() bool {
 func (t_ ToolPicker) SetPrefersDismissControlVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrefersDismissControlVisible:"), value)
 }
+
 // The currently selected tool in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedTool-93ikc
@@ -310,6 +320,7 @@ func (t_ ToolPicker) SelectedTool() unsafe.Pointer {
 func (t_ ToolPicker) SetSelectedTool(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTool:"), value)
 }
+
 // The currently selected tool item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedToolItem
@@ -327,6 +338,7 @@ func (t_ ToolPicker) SelectedToolItem() unsafe.Pointer {
 func (t_ ToolPicker) SetSelectedToolItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedToolItem:"), value)
 }
+
 // The identifier of the selected tool item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier
@@ -344,6 +356,7 @@ func (t_ ToolPicker) SelectedToolItemIdentifier() string {
 func (t_ ToolPicker) SetSelectedToolItemIdentifier(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedToolItemIdentifier:"), objc.String(value))
 }
+
 // A Boolean value that indicates whether the default drawing policy UI is visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/showsDrawingPolicyControls
@@ -361,6 +374,7 @@ func (t_ ToolPicker) ShowsDrawingPolicyControls() bool {
 func (t_ ToolPicker) SetShowsDrawingPolicyControls(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShowsDrawingPolicyControls:"), value)
 }
+
 // The name used to automatically save the tool picker’s state in the defaults system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/stateAutosaveName
@@ -378,6 +392,7 @@ func (t_ ToolPicker) StateAutosaveName() string {
 func (t_ ToolPicker) SetStateAutosaveName(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStateAutosaveName:"), objc.String(value))
 }
+
 // All tool items in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/toolItems

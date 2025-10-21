@@ -21,5 +21,3 @@ var evaluateOnCPUWithInputsProtocol *objc.Protocol
 func init() {
 	evaluateOnCPUWithInputsProtocol = objc.GetProtocol("evaluateOnCPUWithInputs:")
 }
-
-

@@ -19,5 +19,3 @@ var newSamplerStateWithDescriptorProtocol *objc.Protocol
 func init() {
 	newSamplerStateWithDescriptorProtocol = objc.GetProtocol("newSamplerStateWithDescriptor:")
 }
-
-

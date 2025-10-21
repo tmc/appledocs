@@ -15,4 +15,3 @@ var widgetSearchTermClearedProtocol *objc.Protocol
 func init() {
 	widgetSearchTermClearedProtocol = objc.GetProtocol("widgetSearchTermCleared:")
 }
-

@@ -81,6 +81,8 @@ func NewPaymentDiscount() PaymentDiscount {
 }
 
 
+
+
 // Initializes the payment discount with a signature and the parameters used by the signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/init(identifier:keyIdentifier:nonce:signature:timestamp:)

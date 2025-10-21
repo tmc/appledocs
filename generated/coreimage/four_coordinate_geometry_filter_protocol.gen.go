@@ -12,5 +12,3 @@ var FourCoordinateGeometryFilterProtocol *objc.Protocol
 func init() {
 	FourCoordinateGeometryFilterProtocol = objc.GetProtocol("CIFourCoordinateGeometryFilter")
 }
-
-

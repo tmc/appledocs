@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Label() string {
 func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/mode
 func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Mode() unsafe.Pointer {
 func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/modeTags
 func (m_ MTREnergyEVSEModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTREnergyEVSEModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

@@ -19,5 +19,3 @@ var renderCommandEncoderWithDescriptorProtocol *objc.Protocol
 func init() {
 	renderCommandEncoderWithDescriptorProtocol = objc.GetProtocol("renderCommandEncoderWithDescriptor:")
 }
-
-

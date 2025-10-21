@@ -9,14 +9,9 @@ import (
 // Suppress unused import errors
 var _ = pencilkit.NewDrawing
 
-
-
 // ExampleNewDrawing demonstrates how to create a Drawing instance.
 // Creates an empty drawing object.
 func ExampleNewDrawing() {
 	_ = pencilkit.NewDrawing()
 	// Output:
 }
-
-
-

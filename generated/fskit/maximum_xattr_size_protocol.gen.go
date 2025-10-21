@@ -15,5 +15,3 @@ var maximumXattrSizeProtocol *objc.Protocol
 func init() {
 	maximumXattrSizeProtocol = objc.GetProtocol("maximumXattrSize")
 }
-
-

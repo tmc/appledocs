@@ -20,5 +20,3 @@ var baseAddressProtocol *objc.Protocol
 func init() {
 	baseAddressProtocol = objc.GetProtocol("baseAddress")
 }
-
-

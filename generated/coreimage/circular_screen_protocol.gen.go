@@ -12,5 +12,3 @@ var CircularScreenProtocol *objc.Protocol
 func init() {
 	CircularScreenProtocol = objc.GetProtocol("CICircularScreen")
 }
-
-

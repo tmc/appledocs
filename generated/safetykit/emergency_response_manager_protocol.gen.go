@@ -19,4 +19,3 @@ var emergencyResponseManagerProtocol *objc.Protocol
 func init() {
 	emergencyResponseManagerProtocol = objc.GetProtocol("emergencyResponseManager:")
 }
-

@@ -19,4 +19,3 @@ var providerDidResetProtocol *objc.Protocol
 func init() {
 	providerDidResetProtocol = objc.GetProtocol("providerDidReset:")
 }
-

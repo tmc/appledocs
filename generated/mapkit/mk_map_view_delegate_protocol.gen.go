@@ -12,5 +12,3 @@ var MKMapViewDelegateProtocol *objc.Protocol
 func init() {
 	MKMapViewDelegateProtocol = objc.GetProtocol("MKMapViewDelegate")
 }
-
-

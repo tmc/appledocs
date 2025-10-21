@@ -12,5 +12,3 @@ var MaskToAlphaProtocol *objc.Protocol
 func init() {
 	MaskToAlphaProtocol = objc.GetProtocol("CIMaskToAlpha")
 }
-
-

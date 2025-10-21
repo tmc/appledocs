@@ -20,5 +20,3 @@ var tileWidthProtocol *objc.Protocol
 func init() {
 	tileWidthProtocol = objc.GetProtocol("tileWidth")
 }
-
-

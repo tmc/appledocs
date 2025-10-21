@@ -16,5 +16,3 @@ var invalidateLayoutOfLayerProtocol *objc.Protocol
 func init() {
 	invalidateLayoutOfLayerProtocol = objc.GetProtocol("invalidateLayoutOfLayer:")
 }
-
-

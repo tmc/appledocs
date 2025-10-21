@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrollView] class.
@@ -88,6 +88,7 @@ func NewScrollView() ScrollView {
 	return getScrollViewClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
 func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
@@ -105,6 +106,7 @@ func NewScrollViewWithFrame(frameRect coregraphics.CGRect) ScrollView {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns the content size calculated from the frame size and the specified specifications.
 //
@@ -145,7 +147,6 @@ func (sc _ScrollViewClass) RulerViewClass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(sc.class), objc.Sel("rulerViewClass"))
 	return rv
 }
-
 // Adds a floating subview to the document view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/addFloatingSubview(_:for:)
@@ -203,6 +204,7 @@ func (s_ ScrollView) AllowsMagnification() bool {
 	return rv
 }
 
+
 // SetAllowsMagnification sets the value of the allowsMagnification property.
 // Allows the user to magnify the scroll view.
 
@@ -219,6 +221,7 @@ func (s_ ScrollView) AutohidesScrollers() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("autohidesScrollers"))
 	return rv
 }
+
 
 // SetAutohidesScrollers sets the value of the autohidesScrollers property.
 // A Boolean that indicates whether the scroll view automatically hides its scroll bars when they are not needed.
@@ -237,6 +240,7 @@ func (s_ ScrollView) AutomaticallyAdjustsContentInsets() bool {
 	return rv
 }
 
+
 // SetAutomaticallyAdjustsContentInsets sets the value of the automaticallyAdjustsContentInsets property.
 // A Boolean that indicates whether the scroll view automatically adjusts its content insets.
 
@@ -253,6 +257,7 @@ func (s_ ScrollView) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
+
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color of the content view’s background.
@@ -271,6 +276,7 @@ func (s_ ScrollView) BorderType() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBorderType sets the value of the borderType property.
 // A value that specifies the appearance of the scroll view’s border.
 
@@ -287,6 +293,7 @@ func (s_ ScrollView) ContentInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("contentInsets"))
 	return rv
 }
+
 
 // SetContentInsets sets the value of the contentInsets property.
 // The distance that the scroll view’s subviews are inset from the enclosing scroll view during tiling.
@@ -313,6 +320,7 @@ func (s_ ScrollView) ContentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentView sets the value of the contentView property.
 // The scroll view’s content view, the view that clips the document view.
 
@@ -330,6 +338,7 @@ func (s_ ScrollView) DocumentCursor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDocumentCursor sets the value of the documentCursor property.
 // The content view’s document cursor.
 
@@ -346,6 +355,7 @@ func (s_ ScrollView) DocumentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("documentView"))
 	return rv
 }
+
 
 // SetDocumentView sets the value of the documentView property.
 // The view the scroll view scrolls within its content view.
@@ -372,6 +382,7 @@ func (s_ ScrollView) DrawsBackground() bool {
 	return rv
 }
 
+
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean that indicates whether the scroll view draws its background.
 
@@ -388,6 +399,7 @@ func (s_ ScrollView) FindBarPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("findBarPosition"))
 	return rv
 }
+
 
 // SetFindBarPosition sets the value of the findBarPosition property.
 // The position of the find bar.
@@ -406,6 +418,7 @@ func (s_ ScrollView) HasHorizontalRuler() bool {
 	return rv
 }
 
+
 // SetHasHorizontalRuler sets the value of the hasHorizontalRuler property.
 // A Boolean that indicates whether the scroll view keeps a horizontal ruler object.
 
@@ -422,6 +435,7 @@ func (s_ ScrollView) HasHorizontalScroller() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasHorizontalScroller"))
 	return rv
 }
+
 
 // SetHasHorizontalScroller sets the value of the hasHorizontalScroller property.
 // A Boolean that indicates whether the scroll view has a horizontal scroller.
@@ -440,6 +454,7 @@ func (s_ ScrollView) HasVerticalRuler() bool {
 	return rv
 }
 
+
 // SetHasVerticalRuler sets the value of the hasVerticalRuler property.
 // A Boolean that indicates whether the scroll view keeps a vertical ruler object.
 
@@ -456,6 +471,7 @@ func (s_ ScrollView) HasVerticalScroller() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasVerticalScroller"))
 	return rv
 }
+
 
 // SetHasVerticalScroller sets the value of the hasVerticalScroller property.
 // A Boolean that indicates whether the scroll view has a vertical scroller.
@@ -474,6 +490,7 @@ func (s_ ScrollView) HorizontalLineScroll() float64 {
 	return rv
 }
 
+
 // SetHorizontalLineScroll sets the value of the horizontalLineScroll property.
 // The scroll view’s horizontal line by line scroll amount.
 
@@ -490,6 +507,7 @@ func (s_ ScrollView) HorizontalPageScroll() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("horizontalPageScroll"))
 	return rv
 }
+
 
 // SetHorizontalPageScroll sets the value of the horizontalPageScroll property.
 // The amount of the document view kept visible when scrolling horizontally page by page.
@@ -508,6 +526,7 @@ func (s_ ScrollView) HorizontalRulerView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetHorizontalRulerView sets the value of the horizontalRulerView property.
 // The scroll view’s horizontal ruler view.
 
@@ -524,6 +543,7 @@ func (s_ ScrollView) HorizontalScrollElasticity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("horizontalScrollElasticity"))
 	return rv
 }
+
 
 // SetHorizontalScrollElasticity sets the value of the horizontalScrollElasticity property.
 // The scroll view’s horizontal scrolling elasticity mode.
@@ -542,6 +562,7 @@ func (s_ ScrollView) HorizontalScroller() unsafe.Pointer {
 	return rv
 }
 
+
 // SetHorizontalScroller sets the value of the horizontalScroller property.
 // The scroll view’s horizontal scroller.
 
@@ -558,6 +579,7 @@ func (s_ ScrollView) LineScroll() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("lineScroll"))
 	return rv
 }
+
 
 // SetLineScroll sets the value of the lineScroll property.
 // The scroll view’s line by line scroll amount.
@@ -576,6 +598,7 @@ func (s_ ScrollView) Magnification() float64 {
 	return rv
 }
 
+
 // SetMagnification sets the value of the magnification property.
 // The amount by which the content is currently scaled.
 
@@ -592,6 +615,7 @@ func (s_ ScrollView) MaxMagnification() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxMagnification"))
 	return rv
 }
+
 
 // SetMaxMagnification sets the value of the maxMagnification property.
 // The maximum value to which the content can be magnified.
@@ -610,6 +634,7 @@ func (s_ ScrollView) MinMagnification() float64 {
 	return rv
 }
 
+
 // SetMinMagnification sets the value of the minMagnification property.
 // The minimum value to which the content can be magnified.
 
@@ -626,6 +651,7 @@ func (s_ ScrollView) PageScroll() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("pageScroll"))
 	return rv
 }
+
 
 // SetPageScroll sets the value of the pageScroll property.
 // The amount of the document view kept visible when scrolling page by page.
@@ -644,6 +670,7 @@ func (s_ ScrollView) RulerViewClass() objc.Class {
 	return rv
 }
 
+
 // SetRulerViewClass sets the value of the rulerViewClass property.
 // Returns the default class to be used for ruler objects in NSScrollViews.
 
@@ -660,6 +687,7 @@ func (s_ ScrollView) RulersVisible() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("rulersVisible"))
 	return rv
 }
+
 
 // SetRulersVisible sets the value of the rulersVisible property.
 // A Boolean that indicates whether the scroll view displays its rulers.
@@ -678,6 +706,7 @@ func (s_ ScrollView) ScrollerInsets() unsafe.Pointer {
 	return rv
 }
 
+
 // SetScrollerInsets sets the value of the scrollerInsets property.
 // The distance the scrollers are inset from the edge of the scroll view.
 
@@ -694,6 +723,7 @@ func (s_ ScrollView) ScrollerKnobStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrollerKnobStyle"))
 	return rv
 }
+
 
 // SetScrollerKnobStyle sets the value of the scrollerKnobStyle property.
 // The knob style of scroll views that use the overlay scroller style.
@@ -712,6 +742,7 @@ func (s_ ScrollView) ScrollerStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetScrollerStyle sets the value of the scrollerStyle property.
 // The scroller style used by the scroll view.
 
@@ -728,6 +759,7 @@ func (s_ ScrollView) ScrollsDynamically() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scrollsDynamically"))
 	return rv
 }
+
 
 // SetScrollsDynamically sets the value of the scrollsDynamically property.
 // A Boolean that indicates whether the scroll view redraws its document view while scrolling continuously.
@@ -746,6 +778,7 @@ func (s_ ScrollView) UsesPredominantAxisScrolling() bool {
 	return rv
 }
 
+
 // SetUsesPredominantAxisScrolling sets the value of the usesPredominantAxisScrolling property.
 // A Boolean that indicates whether the scroll view uses a predominant scrolling axis for content.
 
@@ -762,6 +795,7 @@ func (s_ ScrollView) VerticalLineScroll() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("verticalLineScroll"))
 	return rv
 }
+
 
 // SetVerticalLineScroll sets the value of the verticalLineScroll property.
 // The scroll view’s vertical line by line scroll amount.
@@ -780,6 +814,7 @@ func (s_ ScrollView) VerticalPageScroll() float64 {
 	return rv
 }
 
+
 // SetVerticalPageScroll sets the value of the verticalPageScroll property.
 // The amount of the document view kept visible when scrolling vertically page by page.
 
@@ -796,6 +831,7 @@ func (s_ ScrollView) VerticalRulerView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("verticalRulerView"))
 	return rv
 }
+
 
 // SetVerticalRulerView sets the value of the verticalRulerView property.
 // The scroll view’s vertical ruler view.
@@ -814,6 +850,7 @@ func (s_ ScrollView) VerticalScrollElasticity() unsafe.Pointer {
 	return rv
 }
 
+
 // SetVerticalScrollElasticity sets the value of the verticalScrollElasticity property.
 // The scroll view’s vertical scrolling elasticity mode.
 
@@ -831,6 +868,7 @@ func (s_ ScrollView) VerticalScroller() unsafe.Pointer {
 	return rv
 }
 
+
 // SetVerticalScroller sets the value of the verticalScroller property.
 // The scroll view’s vertical scroller.
 
@@ -839,3 +877,5 @@ func (s_ ScrollView) VerticalScroller() unsafe.Pointer {
 func (s_ ScrollView) SetVerticalScroller(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVerticalScroller:"), value)
 }
+
+

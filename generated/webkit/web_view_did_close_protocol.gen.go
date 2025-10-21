@@ -19,5 +19,3 @@ var webViewDidCloseProtocol *objc.Protocol
 func init() {
 	webViewDidCloseProtocol = objc.GetProtocol("webViewDidClose:")
 }
-
-

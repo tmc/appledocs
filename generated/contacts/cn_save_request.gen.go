@@ -178,6 +178,7 @@ func (c_ CNSaveRequest) ShouldRefetchContacts() bool {
 func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldRefetchContacts:"), value)
 }
+
 // A string that identifies the author of the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
@@ -195,5 +196,6 @@ func (c_ CNSaveRequest) TransactionAuthor() string {
 func (c_ CNSaveRequest) SetTransactionAuthor(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
 }
+
 
 

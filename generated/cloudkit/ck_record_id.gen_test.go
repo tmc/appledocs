@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKRecordID
 
-
 // ExampleNewCKRecordIDWithRecordName demonstrates how to create a CKRecordID instance using NewCKRecordIDWithRecordName.
 // Creates a new record ID with the specified name in the default zone.
 func ExampleNewCKRecordIDWithRecordName() {
@@ -18,6 +17,3 @@ func ExampleNewCKRecordIDWithRecordName() {
 	)
 	// Output:
 }
-
-
-

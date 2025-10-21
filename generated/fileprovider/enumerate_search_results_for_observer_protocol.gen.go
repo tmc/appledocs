@@ -15,5 +15,3 @@ var enumerateSearchResultsForObserverProtocol *objc.Protocol
 func init() {
 	enumerateSearchResultsForObserverProtocol = objc.GetProtocol("enumerateSearchResultsForObserver:")
 }
-
-

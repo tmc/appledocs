@@ -18,5 +18,3 @@ var clientDataProtocol *objc.Protocol
 func init() {
 	clientDataProtocol = objc.GetProtocol("clientData")
 }
-
-

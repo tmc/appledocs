@@ -19,5 +19,3 @@ var denoiseStrengthMaskTextureProtocol *objc.Protocol
 func init() {
 	denoiseStrengthMaskTextureProtocol = objc.GetProtocol("denoiseStrengthMaskTexture")
 }
-
-

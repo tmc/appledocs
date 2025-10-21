@@ -81,6 +81,8 @@ func NewCheckerboardNoiseSource() CheckerboardNoiseSource {
 }
 
 
+
+
 // Initializes a checkerboard noise source with the specified square size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCheckerboardNoiseSource/init(squareSize:)
@@ -117,4 +119,5 @@ func (c_ CheckerboardNoiseSource) SquareSize() unsafe.Pointer {
 func (c_ CheckerboardNoiseSource) SetSquareSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSquareSize:"), value)
 }
+
 

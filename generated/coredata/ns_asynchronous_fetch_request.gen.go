@@ -79,6 +79,8 @@ func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
 }
 
 
+
+
 // Initializes a new asynchronous fetch request configured with the provided fetch request and completion block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/init(fetchRequest:completionBlock:)
@@ -115,6 +117,7 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedResultCount:"), value)
 }
+
 // The underlying fetch request that is executed asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/fetchRequest

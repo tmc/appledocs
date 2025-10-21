@@ -82,6 +82,8 @@ func NewUSBHostObject() USBHostObject {
 }
 
 
+
+
 // Creates a USB host object and sets up a communication channel to the kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/initWithIOService:options:queue:error:interestHandler:
@@ -91,6 +93,8 @@ func NewUSBHostObjectWithIOServiceOptionsQueueErrorInterestHandler(ioService uns
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a USB host object and sets up a default communication channel to the kernel.
 //

@@ -20,5 +20,3 @@ var addLogHandlerProtocol *objc.Protocol
 func init() {
 	addLogHandlerProtocol = objc.GetProtocol("addLogHandler:")
 }
-
-

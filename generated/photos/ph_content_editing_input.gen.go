@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PHContentEditingInput] class.
@@ -109,8 +108,8 @@ func (p_ PHContentEditingInput) AvAsset() unsafe.Pointer {
 // The type of data provided as the asset’s content editing input image or video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/contentType
-func (p_ PHContentEditingInput) ContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHContentEditingInput) ContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 

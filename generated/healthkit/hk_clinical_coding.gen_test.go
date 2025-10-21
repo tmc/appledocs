@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = healthkit.NewHKClinicalCoding
 
-
 // ExampleNewHKClinicalCodingWithSystemVersionCode demonstrates how to create a HKClinicalCoding instance using NewHKClinicalCodingWithSystemVersionCode.
 // Creates a clinical coding with the specified system, version, and code.
 func ExampleNewHKClinicalCodingWithSystemVersionCode() {
@@ -20,5 +19,3 @@ func ExampleNewHKClinicalCodingWithSystemVersionCode() {
 	)
 	// Output:
 }
-
-

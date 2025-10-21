@@ -100,3 +100,4 @@ func (p_ PHASECardioidDirectivityModelSubbandParameters) SetFrequency(value unsa
 }
 
 
+

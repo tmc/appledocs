@@ -20,5 +20,3 @@ var commandBufferWithUnretainedReferencesProtocol *objc.Protocol
 func init() {
 	commandBufferWithUnretainedReferencesProtocol = objc.GetProtocol("commandBufferWithUnretainedReferences")
 }
-
-

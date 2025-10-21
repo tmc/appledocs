@@ -12,5 +12,3 @@ var KeystoneCorrectionCombinedProtocol *objc.Protocol
 func init() {
 	KeystoneCorrectionCombinedProtocol = objc.GetProtocol("CIKeystoneCorrectionCombined")
 }
-
-

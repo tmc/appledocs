@@ -80,6 +80,8 @@ func NewThumbnailGenerationRequest() ThumbnailGenerationRequest {
 }
 
 
+
+
 // Creates a new request for a thumbnail with the specified parameters for a file at a provided URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/init(fileAt:size:scale:representationTypes:)
@@ -108,6 +110,7 @@ func (t_ ThumbnailGenerationRequest) MinimumDimension() float64 {
 func (t_ ThumbnailGenerationRequest) SetMinimumDimension(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinimumDimension:"), value)
 }
+
 // The thumbnail sizes that you provide for a thumbnail request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/representationTypes-swift.property

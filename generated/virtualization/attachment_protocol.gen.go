@@ -15,5 +15,3 @@ var attachmentProtocol *objc.Protocol
 func init() {
 	attachmentProtocol = objc.GetProtocol("attachment:")
 }
-
-

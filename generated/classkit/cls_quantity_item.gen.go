@@ -81,6 +81,8 @@ func NewSQuantityItem() SQuantityItem {
 }
 
 
+
+
 // Initializes an activity item that records a discrete quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/init(identifier:title:)
@@ -109,4 +111,5 @@ func (s_ SQuantityItem) Quantity() unsafe.Pointer {
 func (s_ SQuantityItem) SetQuantity(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuantity:"), value)
 }
+
 

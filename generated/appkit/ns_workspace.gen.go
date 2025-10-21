@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Workspace] class.
@@ -85,6 +86,7 @@ func NewWorkspace() Workspace {
 	return getWorkspaceClass().New()
 }
 
+
 // The shared workspace object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/shared
@@ -92,7 +94,6 @@ func (wc _WorkspaceClass) SharedWorkspace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
-
 // Hides all applications other than the sender.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/hideOtherApplications()
@@ -160,3 +161,6 @@ func (w_ Workspace) SharedWorkspace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sharedWorkspace"))
 	return rv
 }
+
+
+

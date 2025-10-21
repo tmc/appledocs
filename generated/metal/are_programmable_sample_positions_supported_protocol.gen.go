@@ -20,5 +20,3 @@ var areProgrammableSamplePositionsSupportedProtocol *objc.Protocol
 func init() {
 	areProgrammableSamplePositionsSupportedProtocol = objc.GetProtocol("areProgrammableSamplePositionsSupported")
 }
-
-

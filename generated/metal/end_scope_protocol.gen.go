@@ -20,5 +20,3 @@ var endScopeProtocol *objc.Protocol
 func init() {
 	endScopeProtocol = objc.GetProtocol("endScope")
 }
-
-

@@ -20,5 +20,3 @@ var newFunctionWithNameProtocol *objc.Protocol
 func init() {
 	newFunctionWithNameProtocol = objc.GetProtocol("newFunctionWithName:")
 }
-
-

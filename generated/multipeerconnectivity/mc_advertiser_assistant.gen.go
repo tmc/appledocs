@@ -83,6 +83,8 @@ func NewMCAdvertiserAssistant() MCAdvertiserAssistant {
 }
 
 
+
+
 // Initializes an advertiser assistant object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)
@@ -125,6 +127,7 @@ func (m_ MCAdvertiserAssistant) Delegate() objc.ID {
 func (m_ MCAdvertiserAssistant) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The dictionary that was passed when this object was initialized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/discoveryInfo

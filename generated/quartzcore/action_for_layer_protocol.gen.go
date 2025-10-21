@@ -20,5 +20,3 @@ var actionForLayerProtocol *objc.Protocol
 func init() {
 	actionForLayerProtocol = objc.GetProtocol("actionForLayer:")
 }
-
-

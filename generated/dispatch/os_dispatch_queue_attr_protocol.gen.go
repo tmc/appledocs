@@ -12,5 +12,3 @@ var OS_dispatch_queue_attrProtocol *objc.Protocol
 func init() {
 	OS_dispatch_queue_attrProtocol = objc.GetProtocol("OS_dispatch_queue_attr")
 }
-
-

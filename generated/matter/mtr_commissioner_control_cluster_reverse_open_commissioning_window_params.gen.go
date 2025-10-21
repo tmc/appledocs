@@ -76,6 +76,8 @@ func NewMTRCommissionerControlClusterReverseOpenCommissioningWindowParams() MTRC
 }
 
 
+
+
 // Initialize an MTRCommissionerControlClusterReverseOpenCommissioningWindowParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Comm
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/discriminator
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Discriminator() unsafe.Pointer {
@@ -115,6 +118,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Disc
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/iterations
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iterations() unsafe.Pointer {
@@ -129,6 +133,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iter
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIterations:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/pakePasscodeVerifier
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) PakePasscodeVerifier() unsafe.Pointer {
@@ -143,6 +148,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Pake
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetPakePasscodeVerifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPakePasscodeVerifier:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/salt
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt() unsafe.Pointer {
@@ -157,4 +163,5 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt
 func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetSalt(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSalt:"), value)
 }
+
 

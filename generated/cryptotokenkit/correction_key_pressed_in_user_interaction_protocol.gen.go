@@ -16,5 +16,3 @@ var correctionKeyPressedInUserInteractionProtocol *objc.Protocol
 func init() {
 	correctionKeyPressedInUserInteractionProtocol = objc.GetProtocol("correctionKeyPressedInUserInteraction:")
 }
-
-

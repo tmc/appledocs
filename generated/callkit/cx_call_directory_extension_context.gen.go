@@ -154,6 +154,7 @@ func (c_ CXCallDirectoryExtensionContext) Delegate() objc.ID {
 func (c_ CXCallDirectoryExtensionContext) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the request provides data incrementally.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/isIncremental

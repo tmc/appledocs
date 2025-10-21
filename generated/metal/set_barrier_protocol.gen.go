@@ -20,5 +20,3 @@ var setBarrierProtocol *objc.Protocol
 func init() {
 	setBarrierProtocol = objc.GetProtocol("setBarrier")
 }
-
-

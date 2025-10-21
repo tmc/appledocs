@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/cloudkit"
 )
 
 // The class instance for the [PHFetchOptions] class.
@@ -98,6 +99,7 @@ func (p_ PHFetchOptions) FetchLimit() uint {
 func (p_ PHFetchOptions) SetFetchLimit(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchLimit:"), value)
 }
+
 // A Boolean value that determines whether the fetch result includes all assets from burst photo sequences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/includeAllBurstAssets
@@ -115,6 +117,7 @@ func (p_ PHFetchOptions) IncludeAllBurstAssets() bool {
 func (p_ PHFetchOptions) SetIncludeAllBurstAssets(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIncludeAllBurstAssets:"), value)
 }
+
 // The set of source types for which to include assets in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/includeAssetSourceTypes
@@ -132,6 +135,7 @@ func (p_ PHFetchOptions) IncludeAssetSourceTypes() unsafe.Pointer {
 func (p_ PHFetchOptions) SetIncludeAssetSourceTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIncludeAssetSourceTypes:"), value)
 }
+
 // A Boolean value that determines whether the fetch result includes assets marked as hidden.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/includeHiddenAssets
@@ -149,6 +153,7 @@ func (p_ PHFetchOptions) IncludeHiddenAssets() bool {
 func (p_ PHFetchOptions) SetIncludeHiddenAssets(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIncludeHiddenAssets:"), value)
 }
+
 // A predicate that specifies which properties to select results by and that also specifies any constraints on selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/predicate
@@ -166,6 +171,7 @@ func (p_ PHFetchOptions) Predicate() unsafe.Pointer {
 func (p_ PHFetchOptions) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicate:"), value)
 }
+
 // A list of sort descriptors, specifying an order for the fetched objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
@@ -193,6 +199,7 @@ func (p_ PHFetchOptions) SetSortDescriptors(value []cloudkit.NSSortDescriptor) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
+
 // A Boolean value that determines whether your app receives detailed change information for the objects in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/wantsIncrementalChangeDetails
@@ -210,5 +217,6 @@ func (p_ PHFetchOptions) WantsIncrementalChangeDetails() bool {
 func (p_ PHFetchOptions) SetWantsIncrementalChangeDetails(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWantsIncrementalChangeDetails:"), value)
 }
+
 
 

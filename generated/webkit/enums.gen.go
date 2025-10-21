@@ -9,10 +9,10 @@ package webkit
 type DialogResult uint
 
 const (
-// DialogResultShowDefault - A result that indicates the delegate didn’t display a message, so the web view should show the default Lockdown Mode message.
-//
+	// DialogResultShowDefault - A result that indicates the delegate didn’t display a message, so the web view should show the default Lockdown Mode message.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDialogResult/showDefault
-DialogResultShowDefault DialogResult = 0
+	DialogResultShowDefault DialogResult = 0
 )
 
 // WKDownloadPlaceholderPolicy enum type
@@ -21,12 +21,12 @@ DialogResultShowDefault DialogResult = 0
 type DownloadPlaceholderPolicy uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/PlaceholderPolicy/disable
-DownloadPlaceholderPolicyDisable DownloadPlaceholderPolicy = 0
-//
+	DownloadPlaceholderPolicyDisable DownloadPlaceholderPolicy = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/PlaceholderPolicy/enable
-DownloadPlaceholderPolicyEnable DownloadPlaceholderPolicy = 0
+	DownloadPlaceholderPolicyEnable DownloadPlaceholderPolicy = 0
 )
 
 // WKErrorCode - Possible error values that WebKit APIs can return.
@@ -35,10 +35,10 @@ DownloadPlaceholderPolicyEnable DownloadPlaceholderPolicy = 0
 type ErrorCode uint
 
 const (
-// ErrorContentRuleListStoreRemoveFailed - An error that indicates a failure to remove a content rule list from the rule list data store object.
-//
+	// ErrorContentRuleListStoreRemoveFailed - An error that indicates a failure to remove a content rule list from the rule list data store object.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKError/Code/contentRuleListStoreRemoveFailed
-ErrorContentRuleListStoreRemoveFailed ErrorCode = 0
+	ErrorContentRuleListStoreRemoveFailed ErrorCode = 0
 )
 
 // WKMediaCaptureState - An enumeration that describes whether a media device, like a camera or microphone, is currently capturing audio or video.
@@ -47,18 +47,18 @@ ErrorContentRuleListStoreRemoveFailed ErrorCode = 0
 type MediaCaptureState uint
 
 const (
-// MediaCaptureStateActive - The media device is actively capturing audio or video.
-//
+	// MediaCaptureStateActive - The media device is actively capturing audio or video.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaCaptureState/active
-MediaCaptureStateActive MediaCaptureState = 0
-// MediaCaptureStateMuted - The media device is muted, and not actively capturing audio or video.
-//
+	MediaCaptureStateActive MediaCaptureState = 0
+	// MediaCaptureStateMuted - The media device is muted, and not actively capturing audio or video.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaCaptureState/muted
-MediaCaptureStateMuted MediaCaptureState = 0
-// MediaCaptureStateNone - The media device is off.
-//
+	MediaCaptureStateMuted MediaCaptureState = 0
+	// MediaCaptureStateNone - The media device is off.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaCaptureState/none
-MediaCaptureStateNone MediaCaptureState = 0
+	MediaCaptureStateNone MediaCaptureState = 0
 )
 
 // WKMediaPlaybackState - An enumeration that describes whether an audio or video presentation is playing, paused, or suspended.
@@ -67,22 +67,22 @@ MediaCaptureStateNone MediaCaptureState = 0
 type MediaPlaybackState uint
 
 const (
-// MediaPlaybackStateNone - There is no media to play back.
-//
+	// MediaPlaybackStateNone - There is no media to play back.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaPlaybackState/none
-MediaPlaybackStateNone MediaPlaybackState = 0
-// MediaPlaybackStatePaused - The media playback is paused.
-//
+	MediaPlaybackStateNone MediaPlaybackState = 0
+	// MediaPlaybackStatePaused - The media playback is paused.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaPlaybackState/paused
-MediaPlaybackStatePaused MediaPlaybackState = 0
-// MediaPlaybackStatePlaying - The media is playing.
-//
+	MediaPlaybackStatePaused MediaPlaybackState = 0
+	// MediaPlaybackStatePlaying - The media is playing.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaPlaybackState/playing
-MediaPlaybackStatePlaying MediaPlaybackState = 0
-// MediaPlaybackStateSuspended - The media is not playing, and cannot be resumed until the user revokes the suspension.
-//
+	MediaPlaybackStatePlaying MediaPlaybackState = 0
+	// MediaPlaybackStateSuspended - The media is not playing, and cannot be resumed until the user revokes the suspension.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKMediaPlaybackState/suspended
-MediaPlaybackStateSuspended MediaPlaybackState = 0
+	MediaPlaybackStateSuspended MediaPlaybackState = 0
 )
 
 // WKNavigationActionPolicy - Constants that indicate whether to allow or cancel navigation to a webpage from an action.
@@ -91,14 +91,14 @@ MediaPlaybackStateSuspended MediaPlaybackState = 0
 type NavigationActionPolicy uint
 
 const (
-// NavigationActionPolicyAllow - Allow the navigation to continue.
-//
+	// NavigationActionPolicyAllow - Allow the navigation to continue.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationActionPolicy/allow
-NavigationActionPolicyAllow NavigationActionPolicy = 0
-// NavigationActionPolicyCancel - Cancel the navigation.
-//
+	NavigationActionPolicyAllow NavigationActionPolicy = 0
+	// NavigationActionPolicyCancel - Cancel the navigation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationActionPolicy/cancel
-NavigationActionPolicyCancel NavigationActionPolicy = 0
+	NavigationActionPolicyCancel NavigationActionPolicy = 0
 )
 
 // WKPermissionDecision - An enumeration of possible permission decisions for device resource access.
@@ -127,18 +127,18 @@ type UserScriptInjectionTime uint
 type FullscreenState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/FullscreenState-swift.enum/enteringFullscreen
-FullscreenStateEnteringFullscreen FullscreenState = 0
-//
+	FullscreenStateEnteringFullscreen FullscreenState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/FullscreenState-swift.enum/exitingFullscreen
-FullscreenStateExitingFullscreen FullscreenState = 0
-//
+	FullscreenStateExitingFullscreen FullscreenState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/FullscreenState-swift.enum/inFullscreen
-FullscreenStateInFullscreen FullscreenState = 0
-//
+	FullscreenStateInFullscreen FullscreenState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/FullscreenState-swift.enum/notInFullscreen
-FullscreenStateNotInFullscreen FullscreenState = 0
+	FullscreenStateNotInFullscreen FullscreenState = 0
 )
 
 // WKWebViewDataType enum type
@@ -147,9 +147,9 @@ FullscreenStateNotInFullscreen FullscreenState = 0
 type WebViewDataType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewDataType/sessionStorage
-WebViewDataTypeSessionStorage WebViewDataType = 0
+	WebViewDataTypeSessionStorage WebViewDataType = 0
 )
 
 // WKContentMode - Constants that indicate how to render web view content.
@@ -163,18 +163,18 @@ type ContentMode uint
 type WebpagePreferencesUpgradeToHTTPSPolicy uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/UpgradeToHTTPSPolicy/automaticFallbackToHTTP
-WebpagePreferencesUpgradeToHTTPSPolicyAutomaticFallbackToHTTP WebpagePreferencesUpgradeToHTTPSPolicy = 0
-//
+	WebpagePreferencesUpgradeToHTTPSPolicyAutomaticFallbackToHTTP WebpagePreferencesUpgradeToHTTPSPolicy = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/UpgradeToHTTPSPolicy/errorOnFailure
-WebpagePreferencesUpgradeToHTTPSPolicyErrorOnFailure WebpagePreferencesUpgradeToHTTPSPolicy = 0
-//
+	WebpagePreferencesUpgradeToHTTPSPolicyErrorOnFailure WebpagePreferencesUpgradeToHTTPSPolicy = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/UpgradeToHTTPSPolicy/keepAsRequested
-WebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested WebpagePreferencesUpgradeToHTTPSPolicy = 0
-//
+	WebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested WebpagePreferencesUpgradeToHTTPSPolicy = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/UpgradeToHTTPSPolicy/userMediatedFallbackToHTTP
-WebpagePreferencesUpgradeToHTTPSPolicyUserMediatedFallbackToHTTP WebpagePreferencesUpgradeToHTTPSPolicy = 0
+	WebpagePreferencesUpgradeToHTTPSPolicyUserMediatedFallbackToHTTP WebpagePreferencesUpgradeToHTTPSPolicy = 0
 )
 
 

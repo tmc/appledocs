@@ -81,6 +81,8 @@ func NewCKOperationGroup() CKOperationGroup {
 }
 
 
+
+
 // Creates an operation group from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/init(coder:)
@@ -109,6 +111,7 @@ func (c_ CKOperationGroup) DefaultConfiguration() unsafe.Pointer {
 func (c_ CKOperationGroup) SetDefaultConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultConfiguration:"), value)
 }
+
 // The estimated size of traffic to download from CloudKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedReceiveSize
@@ -126,6 +129,7 @@ func (c_ CKOperationGroup) ExpectedReceiveSize() unsafe.Pointer {
 func (c_ CKOperationGroup) SetExpectedReceiveSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpectedReceiveSize:"), value)
 }
+
 // The estimated size of traffic to upload to CloudKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedSendSize
@@ -143,6 +147,7 @@ func (c_ CKOperationGroup) ExpectedSendSize() unsafe.Pointer {
 func (c_ CKOperationGroup) SetExpectedSendSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpectedSendSize:"), value)
 }
+
 // The operation group’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/name
@@ -160,6 +165,7 @@ func (c_ CKOperationGroup) Name() string {
 func (c_ CKOperationGroup) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The operation group’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/operationGroupID
@@ -185,4 +191,5 @@ func (c_ CKOperationGroup) Quantity() uint {
 func (c_ CKOperationGroup) SetQuantity(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQuantity:"), value)
 }
+
 

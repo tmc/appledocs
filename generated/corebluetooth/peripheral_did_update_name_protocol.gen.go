@@ -21,5 +21,3 @@ var peripheralDidUpdateNameProtocol *objc.Protocol
 func init() {
 	peripheralDidUpdateNameProtocol = objc.GetProtocol("peripheralDidUpdateName:")
 }
-
-

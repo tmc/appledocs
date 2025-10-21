@@ -82,6 +82,9 @@ func NewTextField() TextField {
 	return getTextFieldClass().New()
 }
 
+
+
+
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
@@ -89,6 +92,7 @@ func NewTextFieldLabelWithAttributedString(attributedStringValue unsafe.Pointer)
 	rv := objc.Send[TextField](objc.ID(getTextFieldClass().class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
 }
+
 
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
@@ -121,6 +125,7 @@ func (t_ TextField) AllowsDefaultTighteningForTruncation() bool {
 	return rv
 }
 
+
 // SetAllowsDefaultTighteningForTruncation sets the value of the allowsDefaultTighteningForTruncation property.
 // A Boolean value that controls whether single-line text fields tighten intercharacter spacing before truncating the text.
 
@@ -137,6 +142,7 @@ func (t_ TextField) AllowsEditingTextAttributes() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsEditingTextAttributes"))
 	return rv
 }
+
 
 // SetAllowsEditingTextAttributes sets the value of the allowsEditingTextAttributes property.
 // A Boolean value that controls whether the user can change font attributes of the text field’s string.
@@ -155,6 +161,7 @@ func (t_ TextField) Delegate() objc.ID {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The text field’s delegate.
 
@@ -171,6 +178,7 @@ func (t_ TextField) DrawsBackground() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
+
 
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean value that controls whether the text field’s cell draws a background color behind the text.
@@ -189,6 +197,7 @@ func (t_ TextField) ImportsGraphics() bool {
 	return rv
 }
 
+
 // SetImportsGraphics sets the value of the importsGraphics property.
 // A Boolean value that controls whether the user can drag image files into the text field.
 
@@ -205,6 +214,7 @@ func (t_ TextField) AutomaticTextCompletionEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticTextCompletionEnabled"))
 	return rv
 }
+
 
 // SetAutomaticTextCompletionEnabled sets the value of the automaticTextCompletionEnabled property.
 // A Boolean value that indicates whether the text field automatically completes text as the user types.
@@ -223,6 +233,7 @@ func (t_ TextField) Bezeled() bool {
 	return rv
 }
 
+
 // SetBezeled sets the value of the bezeled property.
 // A Boolean value that controls whether the text field draws a bezeled background around its contents.
 
@@ -239,6 +250,7 @@ func (t_ TextField) Editable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
 }
+
 
 // SetEditable sets the value of the editable property.
 // A Boolean value that controls whether the user can edit the value in the text field.
@@ -257,6 +269,7 @@ func (t_ TextField) PlaceholderAttributedString() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPlaceholderAttributedString sets the value of the placeholderAttributedString property.
 // The attributed string the text field displays when empty to help the user understand the text field’s purpose.
 
@@ -272,6 +285,7 @@ func (t_ TextField) PlaceholderStrings() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("placeholderStrings"))
 	return rv
 }
+
 
 // SetPlaceholderStrings sets the value of the placeholderStrings property.
 //
@@ -298,6 +312,7 @@ func (t_ TextField) PreferredMaxLayoutWidth() float64 {
 	return rv
 }
 
+
 // SetPreferredMaxLayoutWidth sets the value of the preferredMaxLayoutWidth property.
 // The maximum width of the text field’s intrinsic content size.
 
@@ -306,3 +321,5 @@ func (t_ TextField) PreferredMaxLayoutWidth() float64 {
 func (t_ TextField) SetPreferredMaxLayoutWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreferredMaxLayoutWidth:"), value)
 }
+
+

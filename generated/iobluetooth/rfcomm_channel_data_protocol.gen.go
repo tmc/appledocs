@@ -12,5 +12,3 @@ var rfcommChannelDataProtocol *objc.Protocol
 func init() {
 	rfcommChannelDataProtocol = objc.GetProtocol("rfcommChannelData:")
 }
-
-

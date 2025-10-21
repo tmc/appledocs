@@ -20,5 +20,3 @@ var resolveCallCapabilityForStartCallProtocol *objc.Protocol
 func init() {
 	resolveCallCapabilityForStartCallProtocol = objc.GetProtocol("resolveCallCapabilityForStartCall:")
 }
-
-

@@ -18,5 +18,3 @@ var symlinkTargetPathProtocol *objc.Protocol
 func init() {
 	symlinkTargetPathProtocol = objc.GetProtocol("symlinkTargetPath")
 }
-
-

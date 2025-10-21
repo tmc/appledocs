@@ -81,6 +81,8 @@ func NewMediaLibrary() MediaLibrary {
 }
 
 
+
+
 // Initializes the media library based on the specified load options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaLibrary/init(options:)

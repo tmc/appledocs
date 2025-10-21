@@ -20,5 +20,3 @@ var setFragmentVisibleFunctionTableProtocol *objc.Protocol
 func init() {
 	setFragmentVisibleFunctionTableProtocol = objc.GetProtocol("setFragmentVisibleFunctionTable:")
 }
-
-

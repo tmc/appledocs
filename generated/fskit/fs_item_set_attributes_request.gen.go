@@ -109,3 +109,4 @@ func (f_ FSItemSetAttributesRequest) SetConsumedAttributes(value unsafe.Pointer)
 }
 
 
+

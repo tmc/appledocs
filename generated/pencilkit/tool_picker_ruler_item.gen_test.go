@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = pencilkit.NewToolPickerRulerItem
 
-
 // ExampleNewToolPickerRulerItem demonstrates how to create a ToolPickerRulerItem instance.
 // Creates a new ruler item.
 func ExampleNewToolPickerRulerItem() {
 	_ = pencilkit.NewToolPickerRulerItem()
 	// Output:
 }
-
-

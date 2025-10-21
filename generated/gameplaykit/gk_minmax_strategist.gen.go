@@ -118,3 +118,4 @@ func (m_ MinmaxStrategist) SetMaxLookAheadDepth(value int) {
 }
 
 
+

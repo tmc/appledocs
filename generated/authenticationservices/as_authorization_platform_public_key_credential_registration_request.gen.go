@@ -95,6 +95,7 @@ func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) LargeBlob(
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) SetLargeBlob(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLargeBlob:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/prf-8fus5
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) Prf() unsafe.Pointer {
@@ -109,6 +110,7 @@ func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) Prf() unsa
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) SetPrf(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrf:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/requestStyle-swift.property
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) RequestStyle() unsafe.Pointer {
@@ -123,5 +125,6 @@ func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) RequestSty
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) SetRequestStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestStyle:"), value)
 }
+
 
 

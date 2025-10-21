@@ -83,6 +83,8 @@ func NewMediaQuery() MediaQuery {
 }
 
 
+
+
 // Initializes a media query with a set of media property predicates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/init(filterPredicates:)
@@ -213,6 +215,7 @@ func (m_ MediaQuery) FilterPredicates() unsafe.Pointer {
 func (m_ MediaQuery) SetFilterPredicates(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFilterPredicates:"), value)
 }
+
 // The grouping for collections retrieved with the media query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/groupingType
@@ -230,6 +233,7 @@ func (m_ MediaQuery) GroupingType() unsafe.Pointer {
 func (m_ MediaQuery) SetGroupingType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupingType:"), value)
 }
+
 // An array representing the section grouping of the query’s specified media items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/itemSections

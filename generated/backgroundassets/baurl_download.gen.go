@@ -79,6 +79,8 @@ func NewBAURLDownload() BAURLDownload {
 }
 
 
+
+
 // Creates a download that uses the specified identifier and App Group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:applicationGroupIdentifier:)
@@ -88,6 +90,8 @@ func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifier(identifier 
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a prioritized download that uses the specified identifier and App Group.
 //

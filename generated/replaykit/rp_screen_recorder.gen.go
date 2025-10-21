@@ -187,6 +187,7 @@ func (r_ RPScreenRecorder) CameraPosition() unsafe.Pointer {
 func (r_ RPScreenRecorder) SetCameraPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCameraPosition:"), value)
 }
+
 // A view containing the contents of the front-facing camera.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/cameraPreviewView
@@ -212,6 +213,7 @@ func (r_ RPScreenRecorder) Delegate() objc.ID {
 func (r_ RPScreenRecorder) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the screen recorder is available for recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/isAvailable
@@ -237,6 +239,7 @@ func (r_ RPScreenRecorder) CameraEnabled() bool {
 func (r_ RPScreenRecorder) SetCameraEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCameraEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the microphone is currently enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/isMicrophoneEnabled
@@ -254,6 +257,7 @@ func (r_ RPScreenRecorder) MicrophoneEnabled() bool {
 func (r_ RPScreenRecorder) SetMicrophoneEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMicrophoneEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the app is currently recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/isRecording

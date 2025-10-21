@@ -16,5 +16,3 @@ var setStreamPropertiesProtocol *objc.Protocol
 func init() {
 	setStreamPropertiesProtocol = objc.GetProtocol("setStreamProperties:")
 }
-
-

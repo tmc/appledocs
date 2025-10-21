@@ -12,5 +12,3 @@ var EdgesProtocol *objc.Protocol
 func init() {
 	EdgesProtocol = objc.GetProtocol("CIEdges")
 }
-
-

@@ -20,5 +20,3 @@ var GCPhysicalInputElementProtocol *objc.Protocol
 func init() {
 	GCPhysicalInputElementProtocol = objc.GetProtocol("GCPhysicalInputElement")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SpeechSynthesizer] class.
@@ -78,3 +79,7 @@ func (s_ SpeechSynthesizer) Autorelease() SpeechSynthesizer {
 func NewSpeechSynthesizer() SpeechSynthesizer {
 	return getSpeechSynthesizerClass().New()
 }
+
+
+
+

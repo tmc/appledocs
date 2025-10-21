@@ -20,5 +20,3 @@ var resolveSpeakableGroupNameForSendMessageProtocol *objc.Protocol
 func init() {
 	resolveSpeakableGroupNameForSendMessageProtocol = objc.GetProtocol("resolveSpeakableGroupNameForSendMessage:")
 }
-
-

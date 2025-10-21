@@ -19,5 +19,3 @@ var INSearchForBillsIntentHandlingProtocol *objc.Protocol
 func init() {
 	INSearchForBillsIntentHandlingProtocol = objc.GetProtocol("INSearchForBillsIntentHandling")
 }
-
-

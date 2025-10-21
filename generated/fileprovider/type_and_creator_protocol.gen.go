@@ -18,5 +18,3 @@ var typeAndCreatorProtocol *objc.Protocol
 func init() {
 	typeAndCreatorProtocol = objc.GetProtocol("typeAndCreator")
 }
-
-

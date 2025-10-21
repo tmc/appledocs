@@ -18,5 +18,3 @@ var FileProviderPendingSetEnumeratorProtocol *objc.Protocol
 func init() {
 	FileProviderPendingSetEnumeratorProtocol = objc.GetProtocol("NSFileProviderPendingSetEnumerator")
 }
-
-

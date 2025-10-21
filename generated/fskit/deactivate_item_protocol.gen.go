@@ -15,5 +15,3 @@ var deactivateItemProtocol *objc.Protocol
 func init() {
 	deactivateItemProtocol = objc.GetProtocol("deactivateItem:")
 }
-
-

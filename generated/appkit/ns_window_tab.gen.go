@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WindowTab] class.
@@ -79,6 +80,7 @@ func NewWindowTab() WindowTab {
 	return getWindowTabClass().New()
 }
 
+
 // An optional accessory view for the tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
@@ -86,6 +88,7 @@ func (w_ WindowTab) AccessoryView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("accessoryView"))
 	return rv
 }
+
 
 // SetAccessoryView sets the value of the accessoryView property.
 // An optional accessory view for the tab.
@@ -104,6 +107,7 @@ func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAttributedTitle sets the value of the attributedTitle property.
 // The title for the window tab, specified as an attributed string.
 
@@ -120,6 +124,7 @@ func (w_ WindowTab) Title() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
+
 
 // SetTitle sets the value of the title property.
 // The title for the window tab.
@@ -138,6 +143,7 @@ func (w_ WindowTab) ToolTip() string {
 	return rv
 }
 
+
 // SetToolTip sets the value of the toolTip property.
 // The tooltip for this window tab.
 
@@ -146,3 +152,6 @@ func (w_ WindowTab) ToolTip() string {
 func (w_ WindowTab) SetToolTip(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
+
+
+

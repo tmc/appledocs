@@ -19,5 +19,3 @@ var resolveSendersForSearchForMessagesProtocol *objc.Protocol
 func init() {
 	resolveSendersForSearchForMessagesProtocol = objc.GetProtocol("resolveSendersForSearchForMessages:")
 }
-
-

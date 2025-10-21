@@ -81,6 +81,8 @@ func NewVZVirtioFileSystemDeviceConfiguration() VZVirtioFileSystemDeviceConfigur
 }
 
 
+
+
 // Creates a configuration for a VIRTIO file system device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)
@@ -132,6 +134,7 @@ func (v_ VZVirtioFileSystemDeviceConfiguration) Share() unsafe.Pointer {
 func (v_ VZVirtioFileSystemDeviceConfiguration) SetShare(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShare:"), value)
 }
+
 // A label that identifies this device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
@@ -149,4 +152,5 @@ func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() string {
 func (v_ VZVirtioFileSystemDeviceConfiguration) SetTag(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTag:"), objc.String(value))
 }
+
 

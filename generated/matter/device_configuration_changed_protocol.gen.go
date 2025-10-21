@@ -21,5 +21,3 @@ var deviceConfigurationChangedProtocol *objc.Protocol
 func init() {
 	deviceConfigurationChangedProtocol = objc.GetProtocol("deviceConfigurationChanged:")
 }
-
-

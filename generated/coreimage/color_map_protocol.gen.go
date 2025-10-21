@@ -12,5 +12,3 @@ var ColorMapProtocol *objc.Protocol
 func init() {
 	ColorMapProtocol = objc.GetProtocol("CIColorMap")
 }
-
-

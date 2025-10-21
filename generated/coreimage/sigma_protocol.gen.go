@@ -12,5 +12,3 @@ var sigmaProtocol *objc.Protocol
 func init() {
 	sigmaProtocol = objc.GetProtocol("sigma")
 }
-
-

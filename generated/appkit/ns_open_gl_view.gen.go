@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [OpenGLView] class.
@@ -85,6 +85,9 @@ func NewOpenGLView() OpenGLView {
 	return getOpenGLViewClass().New()
 }
 
+
+
+
 // Returns an object initialized with the specified frame rectangle and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
@@ -94,6 +97,7 @@ func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format uns
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns a default object.
 //
@@ -139,6 +143,7 @@ func (o_ OpenGLView) OpenGLContext() unsafe.Pointer {
 	return rv
 }
 
+
 // SetOpenGLContext sets the value of the openGLContext property.
 // The object associated with the receiver.
 
@@ -155,6 +160,7 @@ func (o_ OpenGLView) PixelFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
+
 
 // SetPixelFormat sets the value of the pixelFormat property.
 // The object associated with the receiver.
@@ -173,6 +179,7 @@ func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 	return rv
 }
 
+
 // SetWantsBestResolutionOpenGLSurface sets the value of the wantsBestResolutionOpenGLSurface property.
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
 
@@ -190,6 +197,7 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	return rv
 }
 
+
 // SetWantsExtendedDynamicRangeOpenGLSurface sets the value of the wantsExtendedDynamicRangeOpenGLSurface property.
 // Enables extended dynamic range values on the screen.
 
@@ -198,3 +206,5 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
 }
+
+

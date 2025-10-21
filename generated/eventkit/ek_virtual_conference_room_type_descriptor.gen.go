@@ -81,6 +81,8 @@ func NewEKVirtualConferenceRoomTypeDescriptor() EKVirtualConferenceRoomTypeDescr
 }
 
 
+
+
 // Creates an object that describes a location where a virtual conference takes place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/init(title:identifier:)

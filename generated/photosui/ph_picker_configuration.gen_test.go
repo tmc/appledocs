@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = photosui.NewPHPickerConfiguration
 
-
 // ExampleNewPHPickerConfiguration demonstrates how to create a PHPickerConfiguration instance.
 // Creates a new configuration object.
 func ExampleNewPHPickerConfiguration() {
 	_ = photosui.NewPHPickerConfiguration()
 	// Output:
 }
-
-
-

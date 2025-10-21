@@ -15,5 +15,3 @@ var getAttributesProtocol *objc.Protocol
 func init() {
 	getAttributesProtocol = objc.GetProtocol("getAttributes:")
 }
-
-

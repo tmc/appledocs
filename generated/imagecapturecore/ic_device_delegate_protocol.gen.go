@@ -12,5 +12,3 @@ var ICDeviceDelegateProtocol *objc.Protocol
 func init() {
 	ICDeviceDelegateProtocol = objc.GetProtocol("ICDeviceDelegate")
 }
-
-

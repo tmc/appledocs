@@ -15,5 +15,3 @@ var VZNetworkBlockDeviceStorageDeviceAttachmentDelegateProtocol *objc.Protocol
 func init() {
 	VZNetworkBlockDeviceStorageDeviceAttachmentDelegateProtocol = objc.GetProtocol("VZNetworkBlockDeviceStorageDeviceAttachmentDelegate")
 }
-
-

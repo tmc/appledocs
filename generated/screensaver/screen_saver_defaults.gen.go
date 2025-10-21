@@ -80,6 +80,8 @@ func NewScreenSaverDefaults() ScreenSaverDefaults {
 }
 
 
+
+
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Responder] class.
@@ -142,6 +143,9 @@ func NewResponder() Responder {
 	return getResponderClass().New()
 }
 
+
+
+
 // Creates a new responder object with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/init(coder:)
@@ -151,6 +155,7 @@ func NewResponderWithCoder(coder unsafe.Pointer) Responder {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns the classes that support secure coding.
 //
@@ -167,7 +172,6 @@ func (rc _ResponderClass) RestorableStateKeyPaths() []string {
 	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("restorableStateKeyPaths"))
 	return rv
 }
-
 // Notifies the receiver that it’s about to become first responder in its .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/becomeFirstResponder()
@@ -637,6 +641,7 @@ func (r_ Responder) Menu() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMenu sets the value of the menu property.
 // Returns the responder’s menu.
 
@@ -653,6 +658,7 @@ func (r_ Responder) NextResponder() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("nextResponder"))
 	return rv
 }
+
 
 // SetNextResponder sets the value of the nextResponder property.
 // The next responder after this one, or if it has none.
@@ -679,6 +685,7 @@ func (r_ Responder) TouchBar() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTouchBar sets the value of the touchBar property.
 // The object associated with the responder.
 
@@ -704,6 +711,7 @@ func (r_ Responder) UserActivity() unsafe.Pointer {
 	return rv
 }
 
+
 // SetUserActivity sets the value of the userActivity property.
 // An object encapsulating a user activity supported by this responder.
 
@@ -712,3 +720,5 @@ func (r_ Responder) UserActivity() unsafe.Pointer {
 func (r_ Responder) SetUserActivity(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUserActivity:"), value)
 }
+
+

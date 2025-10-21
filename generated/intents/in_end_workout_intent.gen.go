@@ -81,6 +81,8 @@ func NewINEndWorkoutIntent() INEndWorkoutIntent {
 }
 
 
+
+
 // Initializes an intent object with the specified workout name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INEndWorkoutIntent/init(workoutName:)

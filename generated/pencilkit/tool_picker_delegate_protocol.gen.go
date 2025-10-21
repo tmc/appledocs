@@ -18,5 +18,3 @@ var ToolPickerDelegateProtocol *objc.Protocol
 func init() {
 	ToolPickerDelegateProtocol = objc.GetProtocol("PKToolPickerDelegate")
 }
-
-

@@ -19,5 +19,3 @@ var functionNamesProtocol *objc.Protocol
 func init() {
 	functionNamesProtocol = objc.GetProtocol("functionNames")
 }
-
-

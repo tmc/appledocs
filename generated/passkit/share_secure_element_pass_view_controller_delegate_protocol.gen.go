@@ -18,5 +18,3 @@ var ShareSecureElementPassViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	ShareSecureElementPassViewControllerDelegateProtocol = objc.GetProtocol("PKShareSecureElementPassViewControllerDelegate")
 }
-
-

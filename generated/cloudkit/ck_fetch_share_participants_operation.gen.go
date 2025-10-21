@@ -81,6 +81,8 @@ func NewCKFetchShareParticipantsOperation() CKFetchShareParticipantsOperation {
 }
 
 
+
+
 // Creates an operation for generating share participants from the specified user data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/init(userIdentityLookupInfos:)
@@ -106,6 +108,7 @@ func (c_ CKFetchShareParticipantsOperation) PerShareParticipantCompletionBlock()
 func (c_ CKFetchShareParticipantsOperation) SetPerShareParticipantCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareParticipantCompletionBlock:"), value)
 }
+
 // The user data for the participants.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/userIdentityLookupInfos
@@ -133,4 +136,5 @@ func (c_ CKFetchShareParticipantsOperation) SetUserIdentityLookupInfos(value []C
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityLookupInfos:"), nsArray)
 }
+
 

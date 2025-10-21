@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Cause() unsaf
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetCause(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/duration
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Duration() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Duration() un
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/power
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Power() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Power() unsaf
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetPower(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPower:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/serverSideProcessingTimeout
@@ -135,6 +138,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) ServerSidePro
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/timedInvokeTimeoutMs
@@ -152,5 +156,6 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) TimedInvokeTi
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

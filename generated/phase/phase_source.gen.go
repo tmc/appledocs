@@ -81,6 +81,8 @@ func NewPHASESource() PHASESource {
 }
 
 
+
+
 // Creates a single point in the environment from which sound emanates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/init(engine:)
@@ -90,6 +92,8 @@ func NewPHASESourceWithEngine(engine unsafe.Pointer) PHASESource {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a voluminous area in the environment from which sound emanates.
 //
@@ -119,6 +123,7 @@ func (p_ PHASESource) Gain() unsafe.Pointer {
 func (p_ PHASESource) SetGain(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
+
 // An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/shapes

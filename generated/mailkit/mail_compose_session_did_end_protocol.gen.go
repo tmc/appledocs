@@ -15,5 +15,3 @@ var mailComposeSessionDidEndProtocol *objc.Protocol
 func init() {
 	mailComposeSessionDidEndProtocol = objc.GetProtocol("mailComposeSessionDidEnd:")
 }
-
-

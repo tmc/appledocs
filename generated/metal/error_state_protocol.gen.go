@@ -20,5 +20,3 @@ var errorStateProtocol *objc.Protocol
 func init() {
 	errorStateProtocol = objc.GetProtocol("errorState")
 }
-
-

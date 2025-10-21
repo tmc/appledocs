@@ -15,5 +15,3 @@ var activateWithOptionsProtocol *objc.Protocol
 func init() {
 	activateWithOptionsProtocol = objc.GetProtocol("activateWithOptions:")
 }
-
-

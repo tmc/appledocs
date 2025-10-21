@@ -12,5 +12,3 @@ var devicePairingConnectingProtocol *objc.Protocol
 func init() {
 	devicePairingConnectingProtocol = objc.GetProtocol("devicePairingConnecting:")
 }
-
-

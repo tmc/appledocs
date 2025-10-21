@@ -20,5 +20,3 @@ var browserProtocol *objc.Protocol
 func init() {
 	browserProtocol = objc.GetProtocol("browser:")
 }
-
-

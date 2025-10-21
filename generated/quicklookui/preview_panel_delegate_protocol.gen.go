@@ -15,5 +15,3 @@ var PreviewPanelDelegateProtocol *objc.Protocol
 func init() {
 	PreviewPanelDelegateProtocol = objc.GetProtocol("QLPreviewPanelDelegate")
 }
-
-

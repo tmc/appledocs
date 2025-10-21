@@ -182,6 +182,7 @@ func (p_ PlayerItem) AllowedAudioSpatializationFormats() unsafe.Pointer {
 func (p_ PlayerItem) SetAllowedAudioSpatializationFormats(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
+
 // A Boolean value that indicates whether the item can play slower than normal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlaySlowForward
@@ -233,6 +234,7 @@ func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalMetadata:"), nsArray)
 }
+
 // The time at which forward playback ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime
@@ -250,6 +252,7 @@ func (p_ PlayerItem) ForwardPlaybackEndTime() unsafe.Pointer {
 func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setForwardPlaybackEndTime:"), value)
 }
+
 // An array of time ranges that identify interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
@@ -275,6 +278,7 @@ func (p_ PlayerItem) AudioSpatializationAllowed() bool {
 func (p_ PlayerItem) SetAudioSpatializationAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioSpatializationAllowed:"), value)
 }
+
 // The time marker groups that provide ways to navigate the player item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
@@ -302,6 +306,7 @@ func (p_ PlayerItem) SetNavigationMarkerGroups(value []AVNavigationMarkersGroup)
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNavigationMarkerGroups:"), nsArray)
 }
+
 // The item proposed to follow the current content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
@@ -319,6 +324,7 @@ func (p_ PlayerItem) NextContentProposal() unsafe.Pointer {
 func (p_ PlayerItem) SetNextContentProposal(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNextContentProposal:"), value)
 }
+
 // The current now playing information for the player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nowPlayingInfo
@@ -336,6 +342,7 @@ func (p_ PlayerItem) NowPlayingInfo() unsafe.Pointer {
 func (p_ PlayerItem) SetNowPlayingInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingInfo:"), value)
 }
+
 // Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
@@ -363,6 +370,7 @@ func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []AVCustomMed
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredCustomMediaSelectionSchemes:"), nsArray)
 }
+
 // The desired limit, in bits per second, of network bandwidth consumption for this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
@@ -380,6 +388,7 @@ func (p_ PlayerItem) PreferredPeakBitRate() unsafe.Pointer {
 func (p_ PlayerItem) SetPreferredPeakBitRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRate:"), value)
 }
+
 // The time at which reverse playback ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime
@@ -397,6 +406,7 @@ func (p_ PlayerItem) ReversePlaybackEndTime() unsafe.Pointer {
 func (p_ PlayerItem) SetReversePlaybackEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReversePlaybackEndTime:"), value)
 }
+
 // The status of the player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/status-swift.property
@@ -422,5 +432,6 @@ func (p_ PlayerItem) TranslatesPlayerInterstitialEvents() bool {
 func (p_ PlayerItem) SetTranslatesPlayerInterstitialEvents(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTranslatesPlayerInterstitialEvents:"), value)
 }
+
 
 

@@ -20,5 +20,3 @@ var documentDidFindMatchProtocol *objc.Protocol
 func init() {
 	documentDidFindMatchProtocol = objc.GetProtocol("documentDidFindMatch:")
 }
-
-

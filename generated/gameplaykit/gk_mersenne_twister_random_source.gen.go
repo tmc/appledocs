@@ -81,6 +81,8 @@ func NewMersenneTwisterRandomSource() MersenneTwisterRandomSource {
 }
 
 
+
+
 // Initializes a random source with the specified seed value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/init(seed:)
@@ -109,4 +111,5 @@ func (m_ MersenneTwisterRandomSource) Seed() uint64 {
 func (m_ MersenneTwisterRandomSource) SetSeed(value uint64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeed:"), value)
 }
+
 

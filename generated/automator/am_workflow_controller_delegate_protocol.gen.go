@@ -16,5 +16,3 @@ var AMWorkflowControllerDelegateProtocol *objc.Protocol
 func init() {
 	AMWorkflowControllerDelegateProtocol = objc.GetProtocol("AMWorkflowControllerDelegate")
 }
-
-

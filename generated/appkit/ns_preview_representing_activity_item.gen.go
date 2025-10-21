@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PreviewRepresentingActivityItem] class.
@@ -79,6 +80,9 @@ func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
 	return getPreviewRepresentingActivityItemClass().New()
 }
 
+
+
+
 // Creates a metadata object with the title, image, and icon for a shareable item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
@@ -89,6 +93,8 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objc.ID, titl
 	return rv
 }
 
+
+
 // Creates a metadata object that provides a title and images for a shareable item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
@@ -98,3 +104,6 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(it
 	rv.Autorelease()
 	return rv
 }
+
+
+

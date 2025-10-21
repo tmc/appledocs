@@ -19,5 +19,3 @@ var PHPickerViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	PHPickerViewControllerDelegateProtocol = objc.GetProtocol("PHPickerViewControllerDelegate")
 }
-
-

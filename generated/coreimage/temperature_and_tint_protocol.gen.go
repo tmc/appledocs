@@ -12,5 +12,3 @@ var TemperatureAndTintProtocol *objc.Protocol
 func init() {
 	TemperatureAndTintProtocol = objc.GetProtocol("CITemperatureAndTint")
 }
-
-

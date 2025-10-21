@@ -77,3 +77,7 @@ func (t_ TextListElement) Autorelease() TextListElement {
 func NewTextListElement() TextListElement {
 	return getTextListElementClass().New()
 }
+
+
+
+

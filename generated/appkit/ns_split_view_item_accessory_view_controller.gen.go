@@ -76,8 +76,12 @@ func NewSplitViewItemAccessoryViewController() SplitViewItemAccessoryViewControl
 	return getSplitViewItemAccessoryViewControllerClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewWillDisappear()
 func (s_ SplitViewItemAccessoryViewController) ViewWillDisappear() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("viewWillDisappear"))
 }
+
+
+

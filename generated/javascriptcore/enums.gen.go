@@ -9,18 +9,18 @@ package javascriptcore
 type JSRelationCondition uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSRelationCondition/equal
-kJSRelationConditionEqual JSRelationCondition = 0
-//
+	kJSRelationConditionEqual JSRelationCondition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSRelationCondition/greaterThan
-kJSRelationConditionGreaterThan JSRelationCondition = 0
-//
+	kJSRelationConditionGreaterThan JSRelationCondition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSRelationCondition/lessThan
-kJSRelationConditionLessThan JSRelationCondition = 0
-//
+	kJSRelationConditionLessThan JSRelationCondition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSRelationCondition/undefined
-kJSRelationConditionUndefined JSRelationCondition = 0
+	kJSRelationConditionUndefined JSRelationCondition = 0
 )
 
 

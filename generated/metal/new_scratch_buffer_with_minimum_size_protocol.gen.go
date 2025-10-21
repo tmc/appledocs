@@ -20,5 +20,3 @@ var newScratchBufferWithMinimumSizeProtocol *objc.Protocol
 func init() {
 	newScratchBufferWithMinimumSizeProtocol = objc.GetProtocol("newScratchBufferWithMinimumSize:")
 }
-
-

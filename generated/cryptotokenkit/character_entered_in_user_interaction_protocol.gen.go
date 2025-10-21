@@ -16,5 +16,3 @@ var characterEnteredInUserInteractionProtocol *objc.Protocol
 func init() {
 	characterEnteredInUserInteractionProtocol = objc.GetProtocol("characterEnteredInUserInteraction:")
 }
-
-

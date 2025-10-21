@@ -88,6 +88,8 @@ func NewPHPickerViewController() PHPickerViewController {
 }
 
 
+
+
 // Creates a new picker view controller with the configuration you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:
@@ -166,4 +168,5 @@ func (p_ PHPickerViewController) Delegate() objc.ID {
 func (p_ PHPickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 

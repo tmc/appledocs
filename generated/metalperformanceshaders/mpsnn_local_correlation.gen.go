@@ -100,3 +100,4 @@ func (l_ LocalCorrelation) SetStrideInY(value uint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setStrideInY:"), value)
 }
 
+

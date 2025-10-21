@@ -19,5 +19,3 @@ var finishContentEditingWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	finishContentEditingWithCompletionHandlerProtocol = objc.GetProtocol("finishContentEditingWithCompletionHandler:")
 }
-
-

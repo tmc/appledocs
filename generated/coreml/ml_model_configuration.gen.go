@@ -98,6 +98,7 @@ func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowLowPrecisionAccumulationOnGPU:"), value)
 }
+
 // The processing unit or units the model uses to make predictions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
@@ -115,6 +116,7 @@ func (m_ ModelConfiguration) ComputeUnits() unsafe.Pointer {
 func (m_ ModelConfiguration) SetComputeUnits(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComputeUnits:"), value)
 }
+
 // Function name that will use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
@@ -132,6 +134,7 @@ func (m_ ModelConfiguration) FunctionName() string {
 func (m_ ModelConfiguration) SetFunctionName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
 }
+
 // A group of hints for CoreML to optimize
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
@@ -149,6 +152,7 @@ func (m_ ModelConfiguration) OptimizationHints() unsafe.Pointer {
 func (m_ ModelConfiguration) SetOptimizationHints(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptimizationHints:"), value)
 }
+
 // A dictionary of configuration settings your app can override when loading a model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/parameters
@@ -166,6 +170,7 @@ func (m_ ModelConfiguration) Parameters() unsafe.Pointer {
 func (m_ ModelConfiguration) SetParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParameters:"), value)
 }
+
 // The metal device you prefer this model use to make predictions (inference) and update the model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
@@ -183,5 +188,6 @@ func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
 func (m_ ModelConfiguration) SetPreferredMetalDevice(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredMetalDevice:"), value)
 }
+
 
 

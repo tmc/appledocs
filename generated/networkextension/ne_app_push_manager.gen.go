@@ -98,6 +98,7 @@ func (n_ NEAppPushManager) Delegate() objc.ID {
 func (n_ NEAppPushManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // An array of Wi-Fi SSID strings that the system matches for local push activation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/matchSSIDs
@@ -125,6 +126,7 @@ func (n_ NEAppPushManager) SetMatchSSIDs(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchSSIDs:"), nsArray)
 }
+
 // A string that contains the bundle identifier of the push provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
@@ -142,5 +144,6 @@ func (n_ NEAppPushManager) ProviderBundleIdentifier() string {
 func (n_ NEAppPushManager) SetProviderBundleIdentifier(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
 }
+
 
 

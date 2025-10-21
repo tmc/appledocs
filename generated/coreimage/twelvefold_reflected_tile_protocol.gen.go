@@ -12,5 +12,3 @@ var TwelvefoldReflectedTileProtocol *objc.Protocol
 func init() {
 	TwelvefoldReflectedTileProtocol = objc.GetProtocol("CITwelvefoldReflectedTile")
 }
-
-

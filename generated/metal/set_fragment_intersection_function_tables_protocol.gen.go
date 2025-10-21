@@ -20,5 +20,3 @@ var setFragmentIntersectionFunctionTablesProtocol *objc.Protocol
 func init() {
 	setFragmentIntersectionFunctionTablesProtocol = objc.GetProtocol("setFragmentIntersectionFunctionTables:")
 }
-
-

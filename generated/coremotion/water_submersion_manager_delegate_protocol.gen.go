@@ -18,5 +18,3 @@ var WaterSubmersionManagerDelegateProtocol *objc.Protocol
 func init() {
 	WaterSubmersionManagerDelegateProtocol = objc.GetProtocol("CMWaterSubmersionManagerDelegate")
 }
-
-

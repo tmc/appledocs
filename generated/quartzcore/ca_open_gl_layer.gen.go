@@ -150,6 +150,7 @@ func (o_ OpenGLLayer) Colorspace() coregraphics.CGColorSpaceRef {
 func (o_ OpenGLLayer) SetColorspace(value coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setColorspace:"), value)
 }
+
 // Determines when the contents of the layer are updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/isAsynchronous
@@ -167,6 +168,7 @@ func (o_ OpenGLLayer) Asynchronous() bool {
 func (o_ OpenGLLayer) SetAsynchronous(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAsynchronous:"), value)
 }
+
 // Tells whether or not the layer supports content with extended dynamic range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/wantsExtendedDynamicRangeContent
@@ -184,5 +186,6 @@ func (o_ OpenGLLayer) WantsExtendedDynamicRangeContent() bool {
 func (o_ OpenGLLayer) SetWantsExtendedDynamicRangeContent(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeContent:"), value)
 }
+
 
 

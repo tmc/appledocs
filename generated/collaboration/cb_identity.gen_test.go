@@ -9,9 +9,3 @@ import (
 // Suppress unused import errors
 var _ = collaboration.NewCBIdentity
 
-
-
-
-
-
-

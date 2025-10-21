@@ -104,6 +104,7 @@ func (d_ DocumentCameraViewController) Delegate() objc.ID {
 func (d_ DocumentCameraViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean variable that indicates whether or not the current device supports document scanning.
 //
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController/isSupported
@@ -111,6 +112,7 @@ func (d_ DocumentCameraViewController) Supported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
 }
+
 
 
 

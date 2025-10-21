@@ -90,6 +90,7 @@ func (m_ MTRServiceAreaClusterProgressStruct) AreaID() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/status
 func (m_ MTRServiceAreaClusterProgressStruct) Status() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRServiceAreaClusterProgressStruct) Status() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/totalOperationalTime
 func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() unsafe.Poin
 func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
+
 
 

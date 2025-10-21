@@ -88,6 +88,8 @@ func NewAssetWriter() AssetWriter {
 }
 
 
+
+
 // Creates an object that outputs segment data in a specified container format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(contentType:)
@@ -177,6 +179,7 @@ func (a_ AssetWriter) Delegate() objc.ID {
 func (a_ AssetWriter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A directory to contain temporary files that the export process generates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/directoryForTemporaryFiles
@@ -194,6 +197,7 @@ func (a_ AssetWriter) DirectoryForTemporaryFiles() unsafe.Pointer {
 func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
+
 // An error object that describes an asset-writing failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/error
@@ -219,6 +223,7 @@ func (a_ AssetWriter) InitialSegmentStartTime() unsafe.Pointer {
 func (a_ AssetWriter) SetInitialSegmentStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialSegmentStartTime:"), value)
 }
+
 // An array of metadata items to write to the output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/metadata
@@ -246,6 +251,7 @@ func (a_ AssetWriter) SetMetadata(value []MetadataItem) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), nsArray)
 }
+
 // The interval at which to write movie fragments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieFragmentInterval
@@ -263,6 +269,7 @@ func (a_ AssetWriter) MovieFragmentInterval() unsafe.Pointer {
 func (a_ AssetWriter) SetMovieFragmentInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMovieFragmentInterval:"), value)
 }
+
 // The time scale of the movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieTimeScale
@@ -280,6 +287,7 @@ func (a_ AssetWriter) MovieTimeScale() unsafe.Pointer {
 func (a_ AssetWriter) SetMovieTimeScale(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMovieTimeScale:"), value)
 }
+
 // The type of container file that the writer outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/outputFileType
@@ -313,6 +321,7 @@ func (a_ AssetWriter) PreferredOutputSegmentInterval() unsafe.Pointer {
 func (a_ AssetWriter) SetPreferredOutputSegmentInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredOutputSegmentInterval:"), value)
 }
+
 // A Boolean value that indicates whether the asset writer outputs movie fragments suitable for combining with others.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/producesCombinableFragments
@@ -330,6 +339,7 @@ func (a_ AssetWriter) ProducesCombinableFragments() bool {
 func (a_ AssetWriter) SetProducesCombinableFragments(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProducesCombinableFragments:"), value)
 }
+
 // A Boolean value that indicates whether to write the output file to make it more suitable for playback over a network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/shouldOptimizeForNetworkUse
@@ -347,6 +357,7 @@ func (a_ AssetWriter) ShouldOptimizeForNetworkUse() bool {
 func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
 }
+
 // The status of writing samples to the output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/status-swift.property

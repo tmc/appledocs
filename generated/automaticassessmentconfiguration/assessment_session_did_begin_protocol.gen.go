@@ -18,5 +18,3 @@ var assessmentSessionDidBeginProtocol *objc.Protocol
 func init() {
 	assessmentSessionDidBeginProtocol = objc.GetProtocol("assessmentSessionDidBegin:")
 }
-
-

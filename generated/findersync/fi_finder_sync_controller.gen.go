@@ -183,12 +183,14 @@ func (f_ FIFinderSyncController) DirectoryURLs() unsafe.Pointer {
 func (f_ FIFinderSyncController) SetDirectoryURLs(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDirectoryURLs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/isExtensionEnabled
 func (f_ FIFinderSyncController) ExtensionEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("extensionEnabled"))
 	return rv
 }
+
 
 
 

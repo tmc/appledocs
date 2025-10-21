@@ -18,5 +18,3 @@ var displaysMapProtocol *objc.Protocol
 func init() {
 	displaysMapProtocol = objc.GetProtocol("displaysMap")
 }
-
-

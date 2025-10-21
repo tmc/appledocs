@@ -12,5 +12,3 @@ var l2capChannelDataProtocol *objc.Protocol
 func init() {
 	l2capChannelDataProtocol = objc.GetProtocol("l2capChannelData:")
 }
-
-

@@ -12,5 +12,3 @@ var GlassLozengeProtocol *objc.Protocol
 func init() {
 	GlassLozengeProtocol = objc.GetProtocol("CIGlassLozenge")
 }
-
-

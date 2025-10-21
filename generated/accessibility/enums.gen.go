@@ -14,18 +14,18 @@ type AXChartDescriptorContentDirection uint
 type AXFeatureOverrideSessionOptions uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSession/Options/grayscale
-AXFeatureOverrideSessionOptionsGrayscale AXFeatureOverrideSessionOptions = 0
-//
+	AXFeatureOverrideSessionOptionsGrayscale AXFeatureOverrideSessionOptions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSession/Options/voiceControl
-AXFeatureOverrideSessionOptionsVoiceControl AXFeatureOverrideSessionOptions = 0
-//
+	AXFeatureOverrideSessionOptionsVoiceControl AXFeatureOverrideSessionOptions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSession/Options/voiceOver
-AXFeatureOverrideSessionOptionsVoiceOver AXFeatureOverrideSessionOptions = 0
-//
+	AXFeatureOverrideSessionOptionsVoiceOver AXFeatureOverrideSessionOptions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSession/Options/zoom
-AXFeatureOverrideSessionOptionsZoom AXFeatureOverrideSessionOptions = 0
+	AXFeatureOverrideSessionOptionsZoom AXFeatureOverrideSessionOptions = 0
 )
 
 // AXFeatureOverrideSessionError enum type
@@ -34,9 +34,9 @@ AXFeatureOverrideSessionOptionsZoom AXFeatureOverrideSessionOptions = 0
 type AXFeatureOverrideSessionError uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionError-swift.struct/Code/appNotEntitled
-AXFeatureOverrideSessionErrorAppNotEntitled AXFeatureOverrideSessionError = 0
+	AXFeatureOverrideSessionErrorAppNotEntitled AXFeatureOverrideSessionError = 0
 )
 
 // AXHearingDeviceEar - Constants that represent a hearing device ear.
@@ -55,22 +55,22 @@ type AXNumericDataAxisDescriptorScale uint
 type AXSettingsFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/allowAppsToAddAudioToCalls
-AXSettingsFeatureAllowAppsToAddAudioToCalls AXSettingsFeature = 0
-//
+	AXSettingsFeatureAllowAppsToAddAudioToCalls AXSettingsFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/assistiveTouch
-AXSettingsFeatureAssistiveTouch AXSettingsFeature = 0
-//
+	AXSettingsFeatureAssistiveTouch AXSettingsFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/assistiveTouchDevices
-AXSettingsFeatureAssistiveTouchDevices AXSettingsFeature = 0
-//
+	AXSettingsFeatureAssistiveTouchDevices AXSettingsFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/dwellControl
-AXSettingsFeatureDwellControl AXSettingsFeature = 0
-// AXSettingsFeaturePersonalVoiceAllowAppsToRequestToUse - A constant for opening the Settings app to the setting for Personal Voice > Allow Apps to Request to Use.
-//
+	AXSettingsFeatureDwellControl AXSettingsFeature = 0
+	// AXSettingsFeaturePersonalVoiceAllowAppsToRequestToUse - A constant for opening the Settings app to the setting for Personal Voice > Allow Apps to Request to Use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/personalVoiceAllowAppsToRequestToUse
-AXSettingsFeaturePersonalVoiceAllowAppsToRequestToUse AXSettingsFeature = 0
+	AXSettingsFeaturePersonalVoiceAllowAppsToRequestToUse AXSettingsFeature = 0
 )
 
 

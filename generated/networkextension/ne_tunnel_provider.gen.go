@@ -130,6 +130,7 @@ func (n_ NETunnelProvider) Reasserting() bool {
 func (n_ NETunnelProvider) SetReasserting(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setReasserting:"), value)
 }
+
 // The method by which network traffic is routed to the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/routingMethod

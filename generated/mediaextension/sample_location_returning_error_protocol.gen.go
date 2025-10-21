@@ -15,5 +15,3 @@ var sampleLocationReturningErrorProtocol *objc.Protocol
 func init() {
 	sampleLocationReturningErrorProtocol = objc.GetProtocol("sampleLocationReturningError:")
 }
-
-

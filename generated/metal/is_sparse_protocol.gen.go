@@ -20,5 +20,3 @@ var isSparseProtocol *objc.Protocol
 func init() {
 	isSparseProtocol = objc.GetProtocol("isSparse")
 }
-
-

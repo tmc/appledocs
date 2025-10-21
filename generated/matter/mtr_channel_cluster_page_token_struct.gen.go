@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterPageTokenStruct) After() string {
 func (m_ MTRChannelClusterPageTokenStruct) SetAfter(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAfter:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/before
 func (m_ MTRChannelClusterPageTokenStruct) Before() string {
@@ -104,6 +105,7 @@ func (m_ MTRChannelClusterPageTokenStruct) Before() string {
 func (m_ MTRChannelClusterPageTokenStruct) SetBefore(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBefore:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/limit
 func (m_ MTRChannelClusterPageTokenStruct) Limit() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRChannelClusterPageTokenStruct) Limit() unsafe.Pointer {
 func (m_ MTRChannelClusterPageTokenStruct) SetLimit(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLimit:"), value)
 }
+
 
 

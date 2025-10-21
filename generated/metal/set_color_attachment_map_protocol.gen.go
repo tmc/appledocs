@@ -20,5 +20,3 @@ var setColorAttachmentMapProtocol *objc.Protocol
 func init() {
 	setColorAttachmentMapProtocol = objc.GetProtocol("setColorAttachmentMap:")
 }
-
-

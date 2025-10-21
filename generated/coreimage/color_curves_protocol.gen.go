@@ -12,5 +12,3 @@ var ColorCurvesProtocol *objc.Protocol
 func init() {
 	ColorCurvesProtocol = objc.GetProtocol("CIColorCurves")
 }
-
-

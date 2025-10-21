@@ -15,5 +15,3 @@ var ABPersonPickerDelegateProtocol *objc.Protocol
 func init() {
 	ABPersonPickerDelegateProtocol = objc.GetProtocol("ABPersonPickerDelegate")
 }
-
-

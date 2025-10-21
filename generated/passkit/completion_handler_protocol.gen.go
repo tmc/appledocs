@@ -18,5 +18,3 @@ var completionHandlerProtocol *objc.Protocol
 func init() {
 	completionHandlerProtocol = objc.GetProtocol("completionHandler")
 }
-
-

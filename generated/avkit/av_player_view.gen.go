@@ -133,6 +133,7 @@ func (p_ PlayerView) ActionPopUpButtonMenu() unsafe.Pointer {
 func (p_ PlayerView) SetActionPopUpButtonMenu(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionPopUpButtonMenu:"), value)
 }
+
 // A Boolean value that indicates whether the magnify gesture changes the video’s view magnification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsMagnification
@@ -150,6 +151,7 @@ func (p_ PlayerView) AllowsMagnification() bool {
 func (p_ PlayerView) SetAllowsMagnification(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsMagnification:"), value)
 }
+
 // A Boolean value that determines whether the player view allows Picture in Picture playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsPictureInPicturePlayback
@@ -167,6 +169,7 @@ func (p_ PlayerView) AllowsPictureInPicturePlayback() bool {
 func (p_ PlayerView) SetAllowsPictureInPicturePlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsPictureInPicturePlayback:"), value)
 }
+
 // A Boolean value that indicates whether to perform video frame analysis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsVideoFrameAnalysis
@@ -184,6 +187,7 @@ func (p_ PlayerView) AllowsVideoFrameAnalysis() bool {
 func (p_ PlayerView) SetAllowsVideoFrameAnalysis(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsVideoFrameAnalysis:"), value)
 }
+
 // A Boolean value that indicates whether the player view can begin trimming.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/canBeginTrimming
@@ -217,6 +221,7 @@ func (p_ PlayerView) ControlsStyle() unsafe.Pointer {
 func (p_ PlayerView) SetControlsStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlsStyle:"), value)
 }
+
 // The player view’s delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/delegate
@@ -234,6 +239,7 @@ func (p_ PlayerView) Delegate() objc.ID {
 func (p_ PlayerView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the current player item’s first video frame is ready for display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/isReadyForDisplay
@@ -259,6 +265,7 @@ func (p_ PlayerView) Magnification() float64 {
 func (p_ PlayerView) SetMagnification(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMagnification:"), value)
 }
+
 // The Picture in Picture delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/pictureInPictureDelegate
@@ -276,6 +283,7 @@ func (p_ PlayerView) PictureInPictureDelegate() objc.ID {
 func (p_ PlayerView) SetPictureInPictureDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPictureInPictureDelegate:"), value)
 }
+
 // The player instance that provides the media content for the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
@@ -293,6 +301,7 @@ func (p_ PlayerView) Player() unsafe.Pointer {
 func (p_ PlayerView) SetPlayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
+
 // Describes how High Dynamic Range (HDR) video content renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
@@ -310,6 +319,7 @@ func (p_ PlayerView) PreferredDisplayDynamicRange() unsafe.Pointer {
 func (p_ PlayerView) SetPreferredDisplayDynamicRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredDisplayDynamicRange:"), value)
 }
+
 // The currently selected playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/selectedSpeed
@@ -335,6 +345,7 @@ func (p_ PlayerView) ShowsFrameSteppingButtons() bool {
 func (p_ PlayerView) SetShowsFrameSteppingButtons(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsFrameSteppingButtons:"), value)
 }
+
 // A Boolean value that determines whether the player view displays a full-screen toggle button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFullScreenToggleButton
@@ -352,6 +363,7 @@ func (p_ PlayerView) ShowsFullScreenToggleButton() bool {
 func (p_ PlayerView) SetShowsFullScreenToggleButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsFullScreenToggleButton:"), value)
 }
+
 // A Boolean value that determines whether the player view displays a sharing service button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsSharingServiceButton
@@ -369,6 +381,7 @@ func (p_ PlayerView) ShowsSharingServiceButton() bool {
 func (p_ PlayerView) SetShowsSharingServiceButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsSharingServiceButton:"), value)
 }
+
 // A Boolean value that determines whether the player view displays timecodes, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsTimecodes
@@ -386,6 +399,7 @@ func (p_ PlayerView) ShowsTimecodes() bool {
 func (p_ PlayerView) SetShowsTimecodes(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsTimecodes:"), value)
 }
+
 // A list of user-selectable playback speeds to show in the playback speed control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/speeds
@@ -413,6 +427,7 @@ func (p_ PlayerView) SetSpeeds(value []PlaybackSpeed) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), nsArray)
 }
+
 // A Boolean value that indicates whether the player view controller updates the Now Playing info center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/updatesNowPlayingInfoCenter
@@ -430,6 +445,7 @@ func (p_ PlayerView) UpdatesNowPlayingInfoCenter() bool {
 func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUpdatesNowPlayingInfoCenter:"), value)
 }
+
 // The current size and position of the video image that displays within the player view’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoBounds
@@ -452,6 +468,7 @@ func (p_ PlayerView) VideoFrameAnalysisTypes() unsafe.Pointer {
 func (p_ PlayerView) SetVideoFrameAnalysisTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFrameAnalysisTypes:"), value)
 }
+
 // A value that determines how the player view displays video content within its bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoGravity
@@ -469,5 +486,6 @@ func (p_ PlayerView) VideoGravity() unsafe.Pointer {
 func (p_ PlayerView) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
+
 
 

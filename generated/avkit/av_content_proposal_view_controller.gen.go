@@ -116,6 +116,7 @@ func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() unsafe.Point
 func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
+
 // A layout guide that tracks the size and location of the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerLayoutGuide

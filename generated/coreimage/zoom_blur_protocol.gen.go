@@ -12,5 +12,3 @@ var ZoomBlurProtocol *objc.Protocol
 func init() {
 	ZoomBlurProtocol = objc.GetProtocol("CIZoomBlur")
 }
-
-

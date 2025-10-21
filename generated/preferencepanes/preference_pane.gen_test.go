@@ -10,4 +10,3 @@ import (
 var _ = preferencepanes.NewPreferencePane
 
 
-

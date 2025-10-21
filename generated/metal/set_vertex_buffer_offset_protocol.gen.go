@@ -20,5 +20,3 @@ var setVertexBufferOffsetProtocol *objc.Protocol
 func init() {
 	setVertexBufferOffsetProtocol = objc.GetProtocol("setVertexBufferOffset:")
 }
-
-

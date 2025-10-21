@@ -81,6 +81,8 @@ func NewINSearchForMessagesIntentResponse() INSearchForMessagesIntentResponse {
 }
 
 
+
+
 // Initializes the response object with the specified code and user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/init(code:userActivity:)
@@ -127,4 +129,5 @@ func (i_ INSearchForMessagesIntentResponse) SetMessages(value []INMessage) {
 	}
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMessages:"), nsArray)
 }
+
 

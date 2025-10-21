@@ -9,14 +9,14 @@ package nearbyinteraction
 type NIAlgorithmConvergenceStatus uint
 
 const (
-// NIAlgorithmConvergenceStatusNotConverged - A status that indicates the framework’s Camera Assistance feature requires action from the user.
-//
+	// NIAlgorithmConvergenceStatusNotConverged - A status that indicates the framework’s Camera Assistance feature requires action from the user.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusNotConverged
-NIAlgorithmConvergenceStatusNotConverged NIAlgorithmConvergenceStatus = 0
-// NIAlgorithmConvergenceStatusUnknown - An indication that the framework is unsure of the Camera Assistance status.
-//
+	NIAlgorithmConvergenceStatusNotConverged NIAlgorithmConvergenceStatus = 0
+	// NIAlgorithmConvergenceStatusUnknown - An indication that the framework is unsure of the Camera Assistance status.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusUnknown
-NIAlgorithmConvergenceStatusUnknown NIAlgorithmConvergenceStatus = 0
+	NIAlgorithmConvergenceStatusUnknown NIAlgorithmConvergenceStatus = 0
 )
 
 // NIDLTDOACoordinatesType - The possible coordinate types for Downlink Time-Difference-of-Arrival measurement updates.
@@ -35,10 +35,10 @@ type NIDLTDOAMeasurementType uint
 type NIErrorCode uint
 
 const (
-// NIErrorCodeAccessoryPeerDeviceUnavailable - An error that indicates the peer Bluetooth accessory isn’t connected or paired.
-//
+	// NIErrorCodeAccessoryPeerDeviceUnavailable - An error that indicates the peer Bluetooth accessory isn’t connected or paired.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIError/Code/accessoryPeerDeviceUnavailable
-NIErrorCodeAccessoryPeerDeviceUnavailable NIErrorCode = 0
+	NIErrorCodeAccessoryPeerDeviceUnavailable NIErrorCode = 0
 )
 
 // NINearbyObjectRemovalReason - The reason a session removed a nearby object.
@@ -47,10 +47,10 @@ NIErrorCodeAccessoryPeerDeviceUnavailable NIErrorCode = 0
 type NINearbyObjectRemovalReason uint
 
 const (
-// NINearbyObjectRemovalReasonTimeout - NI timed out the session.
-//
+	// NINearbyObjectRemovalReasonTimeout - NI timed out the session.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/RemovalReason/timeout
-NINearbyObjectRemovalReasonTimeout NINearbyObjectRemovalReason = 0
+	NINearbyObjectRemovalReasonTimeout NINearbyObjectRemovalReason = 0
 )
 
 // NINearbyObjectVerticalDirectionEstimate - Estimations of a nearby object’s vertical position in relation to the user’s device.
@@ -59,10 +59,10 @@ NINearbyObjectRemovalReasonTimeout NINearbyObjectRemovalReason = 0
 type NINearbyObjectVerticalDirectionEstimate uint
 
 const (
-// NINearbyObjectVerticalDirectionEstimateUnknown - An indication that the nearby object resides at an unknown vertical location.
-//
+	// NINearbyObjectVerticalDirectionEstimateUnknown - An indication that the nearby object resides at an unknown vertical location.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/VerticalDirectionEstimate-swift.enum/unknown
-NINearbyObjectVerticalDirectionEstimateUnknown NINearbyObjectVerticalDirectionEstimate = 0
+	NINearbyObjectVerticalDirectionEstimateUnknown NINearbyObjectVerticalDirectionEstimate = 0
 )
 
 

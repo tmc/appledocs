@@ -15,5 +15,3 @@ var METrackReaderProtocol *objc.Protocol
 func init() {
 	METrackReaderProtocol = objc.GetProtocol("METrackReader")
 }
-
-

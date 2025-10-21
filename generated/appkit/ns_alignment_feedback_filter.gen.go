@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AlignmentFeedbackFilter] class.
@@ -80,6 +81,7 @@ func NewAlignmentFeedbackFilter() AlignmentFeedbackFilter {
 	return getAlignmentFeedbackFilterClass().New()
 }
 
+
 // Retrieves the event types the filter accepts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask
@@ -87,7 +89,6 @@ func (ac _AlignmentFeedbackFilterClass) InputEventMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("inputEventMask"))
 	return rv
 }
-
 // Informs the feedback filter about a new event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)
@@ -102,3 +103,6 @@ func (a_ AlignmentFeedbackFilter) InputEventMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputEventMask"))
 	return rv
 }
+
+
+

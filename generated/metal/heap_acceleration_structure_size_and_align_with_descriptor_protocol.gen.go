@@ -20,5 +20,3 @@ var heapAccelerationStructureSizeAndAlignWithDescriptorProtocol *objc.Protocol
 func init() {
 	heapAccelerationStructureSizeAndAlignWithDescriptorProtocol = objc.GetProtocol("heapAccelerationStructureSizeAndAlignWithDescriptor:")
 }
-
-

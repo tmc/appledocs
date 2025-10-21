@@ -108,3 +108,4 @@ func (g_ GramMatrixCalculationNode) SetPropertyCallBack(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPropertyCallBack:"), value)
 }
 
+

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ChangePlaybackRateCommand] class.
@@ -108,5 +109,6 @@ func (c_ ChangePlaybackRateCommand) SetSupportedPlaybackRates(value []foundation
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedPlaybackRates:"), nsArray)
 }
+
 
 

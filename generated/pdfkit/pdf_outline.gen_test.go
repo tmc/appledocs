@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = pdfkit.NewPDFOutline
 
-
 // ExampleNewPDFOutline demonstrates how to create a PDFOutline instance.
 // Initializes a   object.
 func ExampleNewPDFOutline() {
 	_ = pdfkit.NewPDFOutline()
 	// Output:
 }
-
-

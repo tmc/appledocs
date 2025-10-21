@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Menu] class.
@@ -80,6 +81,7 @@ func NewMenu() Menu {
 	return getMenuClass().New()
 }
 
+
 // Creates a palette style menu displaying user-selectable color tags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/paletteMenuWithColors:titles:selectionHandler:
@@ -116,3 +118,6 @@ func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item unsafe.Pointer, loc
 	rv := objc.Send[bool](m_.ID, objc.Sel("popUpMenuPositioningItem:atLocation:inView:"), item, location, view)
 	return rv
 }
+
+
+

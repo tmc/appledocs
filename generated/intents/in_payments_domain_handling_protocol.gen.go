@@ -19,5 +19,3 @@ var INPaymentsDomainHandlingProtocol *objc.Protocol
 func init() {
 	INPaymentsDomainHandlingProtocol = objc.GetProtocol("INPaymentsDomainHandling")
 }
-
-

@@ -17,5 +17,3 @@ var TurnBasedEventHandlerDelegateProtocol *objc.Protocol
 func init() {
 	TurnBasedEventHandlerDelegateProtocol = objc.GetProtocol("GKTurnBasedEventHandlerDelegate")
 }
-
-

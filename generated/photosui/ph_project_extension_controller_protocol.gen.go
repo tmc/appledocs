@@ -15,5 +15,3 @@ var PHProjectExtensionControllerProtocol *objc.Protocol
 func init() {
 	PHProjectExtensionControllerProtocol = objc.GetProtocol("PHProjectExtensionController")
 }
-
-

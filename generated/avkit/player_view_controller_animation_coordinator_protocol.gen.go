@@ -15,5 +15,3 @@ var PlayerViewControllerAnimationCoordinatorProtocol *objc.Protocol
 func init() {
 	PlayerViewControllerAnimationCoordinatorProtocol = objc.GetProtocol("AVPlayerViewControllerAnimationCoordinator")
 }
-
-

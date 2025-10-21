@@ -19,5 +19,3 @@ var CXCallObserverDelegateProtocol *objc.Protocol
 func init() {
 	CXCallObserverDelegateProtocol = objc.GetProtocol("CXCallObserverDelegate")
 }
-
-

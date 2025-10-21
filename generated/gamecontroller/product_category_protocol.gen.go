@@ -20,5 +20,3 @@ var productCategoryProtocol *objc.Protocol
 func init() {
 	productCategoryProtocol = objc.GetProtocol("productCategory")
 }
-
-

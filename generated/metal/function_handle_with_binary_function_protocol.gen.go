@@ -20,5 +20,3 @@ var functionHandleWithBinaryFunctionProtocol *objc.Protocol
 func init() {
 	functionHandleWithBinaryFunctionProtocol = objc.GetProtocol("functionHandleWithBinaryFunction:")
 }
-
-

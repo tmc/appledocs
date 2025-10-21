@@ -132,6 +132,7 @@ func (f_ FXFrameInterpolatorDescriptor) ColorTextureFormat() unsafe.Pointer {
 func (f_ FXFrameInterpolatorDescriptor) SetColorTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorTextureFormat:"), value)
 }
+
 // The pixel format of the input depth texture for the frame interpolator you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/depthTextureFormat
@@ -149,6 +150,7 @@ func (f_ FXFrameInterpolatorDescriptor) DepthTextureFormat() unsafe.Pointer {
 func (f_ FXFrameInterpolatorDescriptor) SetDepthTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDepthTextureFormat:"), value)
 }
+
 // The height, in pixels, of the input motion and depth texture for the frame interpolator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/inputHeight
@@ -166,6 +168,7 @@ func (f_ FXFrameInterpolatorDescriptor) InputHeight() uint {
 func (f_ FXFrameInterpolatorDescriptor) SetInputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputHeight:"), value)
 }
+
 // The width, in pixels, of the input motion and depth texture for the frame interpolator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/inputWidth
@@ -183,6 +186,7 @@ func (f_ FXFrameInterpolatorDescriptor) InputWidth() uint {
 func (f_ FXFrameInterpolatorDescriptor) SetInputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputWidth:"), value)
 }
+
 // The pixel format of the input motion texture for the frame interpolator you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/motionTextureFormat
@@ -200,6 +204,7 @@ func (f_ FXFrameInterpolatorDescriptor) MotionTextureFormat() unsafe.Pointer {
 func (f_ FXFrameInterpolatorDescriptor) SetMotionTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMotionTextureFormat:"), value)
 }
+
 // The height, in pixels, of the output color texture for the frame interpolator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/outputHeight
@@ -217,6 +222,7 @@ func (f_ FXFrameInterpolatorDescriptor) OutputHeight() uint {
 func (f_ FXFrameInterpolatorDescriptor) SetOutputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputHeight:"), value)
 }
+
 // The pixel format of the output color texture for the frame interpolator you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/outputTextureFormat
@@ -234,6 +240,7 @@ func (f_ FXFrameInterpolatorDescriptor) OutputTextureFormat() unsafe.Pointer {
 func (f_ FXFrameInterpolatorDescriptor) SetOutputTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputTextureFormat:"), value)
 }
+
 // The width, in pixels, of the output color texture for the frame interpolator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/outputWidth
@@ -251,6 +258,7 @@ func (f_ FXFrameInterpolatorDescriptor) OutputWidth() uint {
 func (f_ FXFrameInterpolatorDescriptor) SetOutputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputWidth:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/scaler
 func (f_ FXFrameInterpolatorDescriptor) Scaler() objc.ID {
@@ -265,6 +273,7 @@ func (f_ FXFrameInterpolatorDescriptor) Scaler() objc.ID {
 func (f_ FXFrameInterpolatorDescriptor) SetScaler(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setScaler:"), value)
 }
+
 // The pixel format for the frame interpolator of an input texture containing your game’s custom UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/uiTextureFormat
@@ -282,5 +291,6 @@ func (f_ FXFrameInterpolatorDescriptor) UiTextureFormat() unsafe.Pointer {
 func (f_ FXFrameInterpolatorDescriptor) SetUiTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUiTextureFormat:"), value)
 }
+
 
 

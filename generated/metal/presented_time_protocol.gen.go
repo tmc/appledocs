@@ -20,5 +20,3 @@ var presentedTimeProtocol *objc.Protocol
 func init() {
 	presentedTimeProtocol = objc.GetProtocol("presentedTime")
 }
-
-

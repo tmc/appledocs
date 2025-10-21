@@ -83,6 +83,8 @@ func NewColorKernel() ColorKernel {
 }
 
 
+
+
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)

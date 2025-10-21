@@ -15,4 +15,3 @@ var supportedRenderedTexturePixelFormatsProtocol *objc.Protocol
 func init() {
 	supportedRenderedTexturePixelFormatsProtocol = objc.GetProtocol("supportedRenderedTexturePixelFormats")
 }
-

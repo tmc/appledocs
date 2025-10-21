@@ -15,5 +15,3 @@ var playerViewProtocol *objc.Protocol
 func init() {
 	playerViewProtocol = objc.GetProtocol("playerView:")
 }
-
-

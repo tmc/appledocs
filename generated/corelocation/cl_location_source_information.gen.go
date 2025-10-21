@@ -98,6 +98,7 @@ func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
 func (l_ LocationSourceInformation) SetIsProducedByAccessory(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsProducedByAccessory:"), value)
 }
+
 // A Boolean value that indicates whether the system generates the location using on-device software simulation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
@@ -115,5 +116,6 @@ func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
 func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsSimulatedBySoftware:"), value)
 }
+
 
 

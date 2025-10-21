@@ -16,5 +16,3 @@ var linkQualityDidChangeForWiFiInterfaceWithNameProtocol *objc.Protocol
 func init() {
 	linkQualityDidChangeForWiFiInterfaceWithNameProtocol = objc.GetProtocol("linkQualityDidChangeForWiFiInterfaceWithName:")
 }
-
-

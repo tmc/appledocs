@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OpenGLContext] class.
@@ -81,6 +82,7 @@ func NewOpenGLContext() OpenGLContext {
 	return getOpenGLContextClass().New()
 }
 
+
 // Disassociates the OpenGL context from its viewport.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/clearDrawable()
@@ -111,6 +113,7 @@ func (o_ OpenGLContext) CurrentVirtualScreen() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCurrentVirtualScreen sets the value of the currentVirtualScreen property.
 // Returns the current virtual screen for the OpenGL context.
 
@@ -119,3 +122,6 @@ func (o_ OpenGLContext) CurrentVirtualScreen() unsafe.Pointer {
 func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCurrentVirtualScreen:"), value)
 }
+
+
+

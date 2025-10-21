@@ -106,6 +106,7 @@ func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []NSURL
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationOptions:"), nsArray)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/isUserInterfaceEnabled
 func (a_ AuthorizationSingleSignOnRequest) UserInterfaceEnabled() bool {
@@ -120,5 +121,6 @@ func (a_ AuthorizationSingleSignOnRequest) UserInterfaceEnabled() bool {
 func (a_ AuthorizationSingleSignOnRequest) SetUserInterfaceEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInterfaceEnabled:"), value)
 }
+
 
 

@@ -79,6 +79,8 @@ func NewSFAddToHomeScreenInfo() SFAddToHomeScreenInfo {
 }
 
 
+
+
 // Initializes a Home Screen information object with the supplied web app manifest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFAddToHomeScreenInfo/init(manifest:)
@@ -121,4 +123,5 @@ func (s_ SFAddToHomeScreenInfo) SetWebsiteCookies(value []NSHTTPCookie) {
 	}
 	objc.Send[objc.ID](s_.ID, objc.Sel("setWebsiteCookies:"), nsArray)
 }
+
 

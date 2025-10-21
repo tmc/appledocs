@@ -81,6 +81,8 @@ func NewVZLinuxRosettaAbstractSocketCachingOptions() VZLinuxRosettaAbstractSocke
 }
 
 
+
+
 // Initialize options to set on a Rosetta directory share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/initWithName:error:

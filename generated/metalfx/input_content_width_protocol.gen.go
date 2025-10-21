@@ -19,5 +19,3 @@ var inputContentWidthProtocol *objc.Protocol
 func init() {
 	inputContentWidthProtocol = objc.GetProtocol("inputContentWidth")
 }
-
-

@@ -98,6 +98,7 @@ func (m_ MonteCarloStrategist) Budget() uint {
 func (m_ MonteCarloStrategist) SetBudget(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBudget:"), value)
 }
+
 // A value that influences whether the strategist searches more broadly or more deeply for winning game model states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
@@ -115,5 +116,6 @@ func (m_ MonteCarloStrategist) ExplorationParameter() uint {
 func (m_ MonteCarloStrategist) SetExplorationParameter(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExplorationParameter:"), value)
 }
+
 
 

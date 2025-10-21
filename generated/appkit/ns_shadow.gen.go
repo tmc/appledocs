@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Shadow] class.
@@ -80,6 +81,7 @@ func NewShadow() Shadow {
 	return getShadowClass().New()
 }
 
+
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
@@ -87,6 +89,7 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("shadowOffset"))
 	return rv
 }
+
 
 // SetShadowOffset sets the value of the shadowOffset property.
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
@@ -96,3 +99,6 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }
+
+
+

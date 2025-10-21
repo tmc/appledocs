@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = audiotoolbox.NewAutomaticSpatialAudio
 
-
 // ExampleNewAutomaticSpatialAudio demonstrates how to create a AutomaticSpatialAudio instance.
 func ExampleNewAutomaticSpatialAudio() {
 	_ = audiotoolbox.NewAutomaticSpatialAudio()
 	// Output:
 }
-
-

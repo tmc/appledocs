@@ -98,6 +98,7 @@ func (i_ INRideStatus) CompletionStatus() unsafe.Pointer {
 func (i_ INRideStatus) SetCompletionStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCompletionStatus:"), value)
 }
+
 // The driver providing the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/driver
@@ -115,6 +116,7 @@ func (i_ INRideStatus) Driver() unsafe.Pointer {
 func (i_ INRideStatus) SetDriver(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDriver:"), value)
 }
+
 // The current status of the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/phase
@@ -132,6 +134,7 @@ func (i_ INRideStatus) Phase() unsafe.Pointer {
 func (i_ INRideStatus) SetPhase(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPhase:"), value)
 }
+
 // The unique string that you use to identify the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
@@ -149,6 +152,7 @@ func (i_ INRideStatus) RideIdentifier() string {
 func (i_ INRideStatus) SetRideIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), objc.String(value))
 }
+
 // Information about the type of ride that you are offering to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideOption
@@ -166,6 +170,7 @@ func (i_ INRideStatus) RideOption() unsafe.Pointer {
 func (i_ INRideStatus) SetRideOption(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRideOption:"), value)
 }
+
 // A user activity object for canceling the ride request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/userActivityForCancelingInApplication
@@ -183,6 +188,7 @@ func (i_ INRideStatus) UserActivityForCancelingInApplication() unsafe.Pointer {
 func (i_ INRideStatus) SetUserActivityForCancelingInApplication(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivityForCancelingInApplication:"), value)
 }
+
 // The vehicle assigned to pick up the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/vehicle
@@ -200,5 +206,6 @@ func (i_ INRideStatus) Vehicle() unsafe.Pointer {
 func (i_ INRideStatus) SetVehicle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVehicle:"), value)
 }
+
 
 

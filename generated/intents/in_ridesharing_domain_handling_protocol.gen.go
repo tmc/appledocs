@@ -19,5 +19,3 @@ var INRidesharingDomainHandlingProtocol *objc.Protocol
 func init() {
 	INRidesharingDomainHandlingProtocol = objc.GetProtocol("INRidesharingDomainHandling")
 }
-
-

@@ -20,5 +20,3 @@ var messageProtocol *objc.Protocol
 func init() {
 	messageProtocol = objc.GetProtocol("message")
 }
-
-

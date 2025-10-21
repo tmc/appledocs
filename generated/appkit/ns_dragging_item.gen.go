@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DraggingItem] class.
@@ -79,6 +80,9 @@ func NewDraggingItem() DraggingItem {
 	return getDraggingItemClass().New()
 }
 
+
+
+
 // Creates and returns a dragging item using the specified content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/init(pasteboardWriter:)
@@ -89,6 +93,7 @@ func NewDraggingItemWithPasteboardWriter(pasteboardWriter objc.ID) DraggingItem 
 	return rv
 }
 
+
 // An array of blocks that provide the dragging image components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
@@ -96,6 +101,7 @@ func (d_ DraggingItem) ImageComponentsProvider() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](d_.ID, objc.Sel("imageComponentsProvider"))
 	return rv
 }
+
 
 // SetImageComponentsProvider sets the value of the imageComponentsProvider property.
 // An array of blocks that provide the dragging image components.
@@ -115,3 +121,5 @@ func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponentsProvider:"), nsArray)
 }
+
+

@@ -81,6 +81,8 @@ func NewAudioPCMBuffer() AudioPCMBuffer {
 }
 
 
+
+
 // Creates a PCM audio buffer instance without copying samples, for PCM audio data, with a specified buffer list and a deallocator closure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/init(pcmFormat:bufferListNoCopy:deallocator:)
@@ -90,6 +92,8 @@ func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format unsafe.Poi
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a PCM audio buffer instance for PCM audio data.
 //
@@ -135,6 +139,7 @@ func (a_ AudioPCMBuffer) FrameLength() unsafe.Pointer {
 func (a_ AudioPCMBuffer) SetFrameLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameLength:"), value)
 }
+
 // The buffer’s 16-bit integer audio samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/int16ChannelData

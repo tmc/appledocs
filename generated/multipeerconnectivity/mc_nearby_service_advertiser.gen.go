@@ -83,6 +83,8 @@ func NewMCNearbyServiceAdvertiser() MCNearbyServiceAdvertiser {
 }
 
 
+
+
 // Initializes an advertiser object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/init(peer:discoveryInfo:serviceType:)
@@ -125,6 +127,7 @@ func (m_ MCNearbyServiceAdvertiser) Delegate() objc.ID {
 func (m_ MCNearbyServiceAdvertiser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The dictionary passed when this object was initialized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/discoveryInfo

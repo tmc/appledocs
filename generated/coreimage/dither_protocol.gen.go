@@ -12,5 +12,3 @@ var ditherProtocol *objc.Protocol
 func init() {
 	ditherProtocol = objc.GetProtocol("dither")
 }
-
-

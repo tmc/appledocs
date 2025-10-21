@@ -12,5 +12,3 @@ var StripesGeneratorProtocol *objc.Protocol
 func init() {
 	StripesGeneratorProtocol = objc.GetProtocol("CIStripesGenerator")
 }
-
-

@@ -15,5 +15,3 @@ var typeDescriptionDataSourceForCategoryProtocol *objc.Protocol
 func init() {
 	typeDescriptionDataSourceForCategoryProtocol = objc.GetProtocol("typeDescriptionDataSourceForCategory:")
 }
-
-

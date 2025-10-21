@@ -92,6 +92,8 @@ func NewCaptureDevice() CaptureDevice {
 }
 
 
+
+
 // Creates an object that represents a device with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
@@ -265,6 +267,7 @@ func (c_ CaptureDevice) ActiveDepthDataMinFrameDuration() unsafe.Pointer {
 func (c_ CaptureDevice) SetActiveDepthDataMinFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveDepthDataMinFrameDuration:"), value)
 }
+
 // The capture format in use by the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeFormat
@@ -282,6 +285,7 @@ func (c_ CaptureDevice) ActiveFormat() unsafe.Pointer {
 func (c_ CaptureDevice) SetActiveFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
 }
+
 // The currently active input source of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeInputSource
@@ -299,6 +303,7 @@ func (c_ CaptureDevice) ActiveInputSource() unsafe.Pointer {
 func (c_ CaptureDevice) SetActiveInputSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveInputSource:"), value)
 }
+
 // The device’s active microphone mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode
@@ -411,6 +416,7 @@ func (c_ CaptureDevice) ExposureMode() unsafe.Pointer {
 func (c_ CaptureDevice) SetExposureMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureMode:"), value)
 }
+
 // The fallback devices to use when a constituent device with a longer focal length becomes limited by its light sensitivity or minimum focus distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/fallbackPrimaryConstituentDevices
@@ -438,6 +444,7 @@ func (c_ CaptureDevice) SetFallbackPrimaryConstituentDevices(value []CaptureDevi
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFallbackPrimaryConstituentDevices:"), nsArray)
 }
+
 // The capture device’s focus mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/focusMode-swift.property
@@ -455,6 +462,7 @@ func (c_ CaptureDevice) FocusMode() unsafe.Pointer {
 func (c_ CaptureDevice) SetFocusMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusMode:"), value)
 }
+
 // The device’s current focus rectangle of interest, if it has one.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/focusRectOfInterest
@@ -472,6 +480,7 @@ func (c_ CaptureDevice) FocusRectOfInterest() coregraphics.CGRect {
 func (c_ CaptureDevice) SetFocusRectOfInterest(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusRectOfInterest:"), value)
 }
+
 // A Boolean value that indicates whether the capture device performs automatic video frame rate adjustments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled
@@ -489,6 +498,7 @@ func (c_ CaptureDevice) AutoVideoFrameRateEnabled() bool {
 func (c_ CaptureDevice) SetAutoVideoFrameRateEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutoVideoFrameRateEnabled:"), value)
 }
+
 // A class property that indicates whether a person enables the Background Replacement feature for this app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled
@@ -578,6 +588,7 @@ func (c_ CaptureDevice) SubjectAreaChangeMonitoringEnabled() bool {
 func (c_ CaptureDevice) SetSubjectAreaChangeMonitoringEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubjectAreaChangeMonitoringEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the device is in a suspended state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isSuspended
@@ -611,6 +622,7 @@ func (c_ CaptureDevice) VideoHDREnabled() bool {
 func (c_ CaptureDevice) SetVideoHDREnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoHDREnabled:"), value)
 }
+
 // A Boolean value that indicates whether the device consists of two or more physical devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isVirtualDevice
@@ -756,4 +768,5 @@ func (c_ CaptureDevice) UserPreferredCamera() unsafe.Pointer {
 func (c_ CaptureDevice) SetUserPreferredCamera(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserPreferredCamera:"), value)
 }
+
 

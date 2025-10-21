@@ -90,6 +90,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) Completio
 func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationCompletionEvent/pausedTime
 func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) PausedTime() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) PausedTim
 func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetPausedTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationCompletionEvent/totalOperationalTime
 func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) TotalOperationalTime() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) TotalOper
 func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
+
 
 

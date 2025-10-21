@@ -99,6 +99,7 @@ func (c_ CNContactPickerViewController) Delegate() objc.ID {
 func (c_ CNContactPickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The property keys to display in the contact detail card.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/displayedPropertyKeys
@@ -126,6 +127,7 @@ func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string)
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayedPropertyKeys:"), nsArray)
 }
+
 // A predicate to determine the contact selectability in the list of contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
@@ -143,6 +145,7 @@ func (c_ CNContactPickerViewController) PredicateForEnablingContact() unsafe.Poi
 func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForEnablingContact:"), value)
 }
+
 // A predicate to control the return of the selected contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
@@ -160,6 +163,7 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() unsafe.
 func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfContact:"), value)
 }
+
 // A predicate to control the properties of the selected contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
@@ -177,5 +181,6 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() unsafe
 func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfProperty:"), value)
 }
+
 
 

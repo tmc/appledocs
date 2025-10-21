@@ -90,6 +90,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) Duration() u
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/emergencyBoost
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) EmergencyBoost() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) EmergencyBoo
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetEmergencyBoost(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEmergencyBoost:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/oneShot
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) OneShot() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) OneShot() un
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetOneShot(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOneShot:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetPercentage
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetPercentage() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetPercen
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetPercentage(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetPercentage:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetReheat
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetReheat() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetReheat
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetReheat(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetReheat:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/temporarySetpoint
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TemporarySetpoint() unsafe.Pointer {
@@ -160,5 +165,6 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TemporarySet
 func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTemporarySetpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemporarySetpoint:"), value)
 }
+
 
 

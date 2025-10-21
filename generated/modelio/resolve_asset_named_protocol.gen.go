@@ -20,5 +20,3 @@ var resolveAssetNamedProtocol *objc.Protocol
 func init() {
 	resolveAssetNamedProtocol = objc.GetProtocol("resolveAssetNamed:")
 }
-
-

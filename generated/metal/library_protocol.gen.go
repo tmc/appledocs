@@ -19,5 +19,3 @@ var LibraryProtocol *objc.Protocol
 func init() {
 	LibraryProtocol = objc.GetProtocol("MTLLibrary")
 }
-
-

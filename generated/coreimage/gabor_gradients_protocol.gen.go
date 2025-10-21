@@ -12,5 +12,3 @@ var GaborGradientsProtocol *objc.Protocol
 func init() {
 	GaborGradientsProtocol = objc.GetProtocol("CIGaborGradients")
 }
-
-

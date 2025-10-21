@@ -21,5 +21,3 @@ var peripheralManagerDidStartAdvertisingProtocol *objc.Protocol
 func init() {
 	peripheralManagerDidStartAdvertisingProtocol = objc.GetProtocol("peripheralManagerDidStartAdvertising:")
 }
-
-

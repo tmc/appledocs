@@ -106,6 +106,7 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAffectedStores:"), nsArray)
 }
+
 // The type of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType

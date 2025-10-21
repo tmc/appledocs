@@ -21,5 +21,3 @@ var vocabularyIdentifierProtocol *objc.Protocol
 func init() {
 	vocabularyIdentifierProtocol = objc.GetProtocol("vocabularyIdentifier")
 }
-
-

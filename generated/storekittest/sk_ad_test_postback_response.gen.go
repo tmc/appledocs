@@ -96,6 +96,7 @@ func (a_ AdTestPostbackResponse) DidSucceed() bool {
 func (a_ AdTestPostbackResponse) SetDidSucceed(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDidSucceed:"), value)
 }
+
 // An error the test session reports if sending a test postbacks fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/error
@@ -113,6 +114,7 @@ func (a_ AdTestPostbackResponse) Error() unsafe.Pointer {
 func (a_ AdTestPostbackResponse) SetError(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
+
 // The HTTP response from the server receiving the test postback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/httpResponse
@@ -130,5 +132,6 @@ func (a_ AdTestPostbackResponse) HttpResponse() unsafe.Pointer {
 func (a_ AdTestPostbackResponse) SetHttpResponse(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpResponse:"), value)
 }
+
 
 

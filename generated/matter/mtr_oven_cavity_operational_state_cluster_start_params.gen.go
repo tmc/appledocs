@@ -93,6 +93,7 @@ func (m_ MTROvenCavityOperationalStateClusterStartParams) ServerSideProcessingTi
 func (m_ MTROvenCavityOperationalStateClusterStartParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterStartParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTROvenCavityOperationalStateClusterStartParams) TimedInvokeTimeoutMs()
 func (m_ MTROvenCavityOperationalStateClusterStartParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

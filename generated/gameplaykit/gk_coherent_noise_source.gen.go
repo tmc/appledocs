@@ -98,6 +98,7 @@ func (c_ CoherentNoiseSource) Frequency() unsafe.Pointer {
 func (c_ CoherentNoiseSource) SetFrequency(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }
+
 // The rate at which successive octaves of the noise function increase in frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
@@ -115,6 +116,7 @@ func (c_ CoherentNoiseSource) Lacunarity() unsafe.Pointer {
 func (c_ CoherentNoiseSource) SetLacunarity(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLacunarity:"), value)
 }
+
 // The number of octaves of the underlying noise function to use for generating noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/octaveCount
@@ -132,6 +134,7 @@ func (c_ CoherentNoiseSource) OctaveCount() int {
 func (c_ CoherentNoiseSource) SetOctaveCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOctaveCount:"), value)
 }
+
 // The value that determines the specific configuration of noise produced by the noise source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/seed
@@ -149,5 +152,6 @@ func (c_ CoherentNoiseSource) Seed() unsafe.Pointer {
 func (c_ CoherentNoiseSource) SetSeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
+
 
 

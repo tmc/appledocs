@@ -98,3 +98,4 @@ func (m_ MKStandardMapConfiguration) SetPointOfInterestFilter(value unsafe.Point
 }
 
 
+

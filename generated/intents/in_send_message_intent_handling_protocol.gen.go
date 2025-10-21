@@ -20,5 +20,3 @@ var INSendMessageIntentHandlingProtocol *objc.Protocol
 func init() {
 	INSendMessageIntentHandlingProtocol = objc.GetProtocol("INSendMessageIntentHandling")
 }
-
-

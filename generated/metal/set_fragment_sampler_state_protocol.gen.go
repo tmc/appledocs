@@ -19,5 +19,3 @@ var setFragmentSamplerStateProtocol *objc.Protocol
 func init() {
 	setFragmentSamplerStateProtocol = objc.GetProtocol("setFragmentSamplerState:")
 }
-
-

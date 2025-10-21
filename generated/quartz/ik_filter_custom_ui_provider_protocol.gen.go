@@ -15,5 +15,3 @@ var IKFilterCustomUIProviderProtocol *objc.Protocol
 func init() {
 	IKFilterCustomUIProviderProtocol = objc.GetProtocol("IKFilterCustomUIProvider")
 }
-
-

@@ -19,5 +19,3 @@ var detectWebpageLocaleForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	detectWebpageLocaleForWebExtensionContextProtocol = objc.GetProtocol("detectWebpageLocaleForWebExtensionContext:")
 }
-
-

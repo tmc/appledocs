@@ -98,6 +98,7 @@ func (g_ GraphImToColOpDescriptor) DilationRateInX() uint {
 func (g_ GraphImToColOpDescriptor) SetDilationRateInX(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInX:"), value)
 }
+
 // The property that defines the stride in height dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphImToColOpDescriptor/strideInY
@@ -115,5 +116,6 @@ func (g_ GraphImToColOpDescriptor) StrideInY() uint {
 func (g_ GraphImToColOpDescriptor) SetStrideInY(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInY:"), value)
 }
+
 
 

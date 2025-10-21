@@ -12,5 +12,3 @@ var ColorPosterizeProtocol *objc.Protocol
 func init() {
 	ColorPosterizeProtocol = objc.GetProtocol("CIColorPosterize")
 }
-
-

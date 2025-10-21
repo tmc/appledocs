@@ -20,5 +20,3 @@ var livePhotoViewProtocol *objc.Protocol
 func init() {
 	livePhotoViewProtocol = objc.GetProtocol("livePhotoView:")
 }
-
-

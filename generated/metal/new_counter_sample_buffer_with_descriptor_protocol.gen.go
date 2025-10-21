@@ -20,5 +20,3 @@ var newCounterSampleBufferWithDescriptorProtocol *objc.Protocol
 func init() {
 	newCounterSampleBufferWithDescriptorProtocol = objc.GetProtocol("newCounterSampleBufferWithDescriptor:")
 }
-
-

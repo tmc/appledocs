@@ -106,6 +106,7 @@ func (g_ GCControllerButtonInput) TouchedChangedHandler() unsafe.Pointer {
 func (g_ GCControllerButtonInput) SetTouchedChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchedChangedHandler:"), value)
 }
+
 // The block that the element calls when the user changes the level of pressure on the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/valueChangedHandler
@@ -123,5 +124,6 @@ func (g_ GCControllerButtonInput) ValueChangedHandler() unsafe.Pointer {
 func (g_ GCControllerButtonInput) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }
+
 
 

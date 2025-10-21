@@ -19,4 +19,3 @@ var callHostBlockProtocol *objc.Protocol
 func init() {
 	callHostBlockProtocol = objc.GetProtocol("callHostBlock")
 }
-

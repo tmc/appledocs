@@ -12,5 +12,3 @@ var BluetoothDeviceAsyncCallbacksProtocol *objc.Protocol
 func init() {
 	BluetoothDeviceAsyncCallbacksProtocol = objc.GetProtocol("IOBluetoothDeviceAsyncCallbacks")
 }
-
-

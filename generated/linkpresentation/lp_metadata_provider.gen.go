@@ -122,6 +122,7 @@ func (l_ LPMetadataProvider) ShouldFetchSubresources() bool {
 func (l_ LPMetadataProvider) SetShouldFetchSubresources(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldFetchSubresources:"), value)
 }
+
 // The time interval after which the request automatically fails if it hasn’t already completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
@@ -139,4 +140,7 @@ func (l_ LPMetadataProvider) Timeout() TimeInterval {
 func (l_ LPMetadataProvider) SetTimeout(value TimeInterval) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimeout:"), value)
 }
+
+
+
 

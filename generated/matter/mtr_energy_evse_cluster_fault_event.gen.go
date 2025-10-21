@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() unsafe.Pointer
 func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStateCurrentState:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStatePreviousState
 func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() unsafe.Pointe
 func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStatePreviousState:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/sessionID
 func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() unsafe.Pointer {
 func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/state
 func (m_ MTREnergyEVSEClusterFaultEvent) State() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTREnergyEVSEClusterFaultEvent) State() unsafe.Pointer {
 func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
+
 
 

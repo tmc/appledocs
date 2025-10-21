@@ -106,6 +106,7 @@ func (c_ CKFetchRecordZoneChangesConfiguration) SetDesiredKeys(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
+
 // The server change token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/previousServerChangeToken
@@ -123,6 +124,7 @@ func (c_ CKFetchRecordZoneChangesConfiguration) PreviousServerChangeToken() unsa
 func (c_ CKFetchRecordZoneChangesConfiguration) SetPreviousServerChangeToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
+
 // The maximum number of records that CloudKit retrieves when fetching zone changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/resultsLimit
@@ -140,5 +142,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) ResultsLimit() uint {
 func (c_ CKFetchRecordZoneChangesConfiguration) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
+
 
 

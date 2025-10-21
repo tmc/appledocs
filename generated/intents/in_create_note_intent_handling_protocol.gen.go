@@ -19,5 +19,3 @@ var INCreateNoteIntentHandlingProtocol *objc.Protocol
 func init() {
 	INCreateNoteIntentHandlingProtocol = objc.GetProtocol("INCreateNoteIntentHandling")
 }
-
-

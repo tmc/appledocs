@@ -81,6 +81,8 @@ func NewSphereObstacle() SphereObstacle {
 }
 
 
+
+
 // Initializes a spherical obstacle with the specified radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/init(radius:)
@@ -117,6 +119,7 @@ func (s_ SphereObstacle) Position() unsafe.Pointer {
 func (s_ SphereObstacle) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPosition:"), value)
 }
+
 // The radius of the obstacle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
@@ -134,4 +137,5 @@ func (s_ SphereObstacle) Radius() unsafe.Pointer {
 func (s_ SphereObstacle) SetRadius(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRadius:"), value)
 }
+
 

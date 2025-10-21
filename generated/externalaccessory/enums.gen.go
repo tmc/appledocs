@@ -24,18 +24,18 @@ type EAWiFiUnconfiguredAccessoryConfigurationStatus uint
 type EAWiFiUnconfiguredAccessoryProperties uint
 
 const (
-// EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay - The accessory indicates that it supports AirPlay.
-//
+	// EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay - The accessory indicates that it supports AirPlay.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryProperties/propertySupportsAirPlay
-EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay EAWiFiUnconfiguredAccessoryProperties = 0
-// EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint - The accessory indicates that it supports AirPrint.
-//
+	EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay EAWiFiUnconfiguredAccessoryProperties = 0
+	// EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint - The accessory indicates that it supports AirPrint.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryProperties/propertySupportsAirPrint
-EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint EAWiFiUnconfiguredAccessoryProperties = 0
-// EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit - The accessory indicates that it supports HomeKit.
-//
+	EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint EAWiFiUnconfiguredAccessoryProperties = 0
+	// EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit - The accessory indicates that it supports HomeKit.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryProperties/propertySupportsHomeKit
-EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit EAWiFiUnconfiguredAccessoryProperties = 0
+	EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit EAWiFiUnconfiguredAccessoryProperties = 0
 )
 
 

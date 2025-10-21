@@ -21,5 +21,3 @@ var featuresAtIndexProtocol *objc.Protocol
 func init() {
 	featuresAtIndexProtocol = objc.GetProtocol("featuresAtIndex:")
 }
-
-

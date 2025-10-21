@@ -90,6 +90,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeParams) NewMode() unsafe.Pointer
 func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetNewMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeParams) ServerSideProcessingTime
 func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeParams) TimedInvokeTimeoutMs() u
 func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

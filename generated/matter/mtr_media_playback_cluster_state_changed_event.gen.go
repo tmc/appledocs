@@ -90,6 +90,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) AudioAdvanceUnmuted() unsafe.
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetAudioAdvanceUnmuted(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/currentState
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() unsafe.Pointer
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetCurrentState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentState:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/data
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) Data() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) Data() unsafe.Pointer {
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetData(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/duration
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() unsafe.Pointer {
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/playbackSpeed
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() unsafe.Pointe
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetPlaybackSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSpeed:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/sampledPosition
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SampledPosition() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SampledPosition() unsafe.Poin
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSampledPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSampledPosition:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeEnd
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() unsafe.Pointer {
@@ -174,6 +180,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() unsafe.Pointer
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeekRangeEnd:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeStart
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() unsafe.Pointer {
@@ -188,6 +195,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() unsafe.Point
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeStart(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeekRangeStart:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/startTime
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() unsafe.Pointer {
@@ -202,5 +210,6 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() unsafe.Pointer {
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 
 

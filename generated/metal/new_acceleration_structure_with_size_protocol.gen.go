@@ -20,5 +20,3 @@ var newAccelerationStructureWithSizeProtocol *objc.Protocol
 func init() {
 	newAccelerationStructureWithSizeProtocol = objc.GetProtocol("newAccelerationStructureWithSize:")
 }
-
-

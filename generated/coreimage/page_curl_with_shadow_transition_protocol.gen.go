@@ -12,5 +12,3 @@ var PageCurlWithShadowTransitionProtocol *objc.Protocol
 func init() {
 	PageCurlWithShadowTransitionProtocol = objc.GetProtocol("CIPageCurlWithShadowTransition")
 }
-
-

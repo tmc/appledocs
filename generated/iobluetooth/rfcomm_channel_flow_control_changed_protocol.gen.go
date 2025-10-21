@@ -12,5 +12,3 @@ var rfcommChannelFlowControlChangedProtocol *objc.Protocol
 func init() {
 	rfcommChannelFlowControlChangedProtocol = objc.GetProtocol("rfcommChannelFlowControlChanged:")
 }
-
-

@@ -12,5 +12,3 @@ var SwipeTransitionProtocol *objc.Protocol
 func init() {
 	SwipeTransitionProtocol = objc.GetProtocol("CISwipeTransition")
 }
-
-

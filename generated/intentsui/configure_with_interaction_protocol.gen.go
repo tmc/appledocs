@@ -18,5 +18,3 @@ var configureWithInteractionProtocol *objc.Protocol
 func init() {
 	configureWithInteractionProtocol = objc.GetProtocol("configureWithInteraction:")
 }
-
-

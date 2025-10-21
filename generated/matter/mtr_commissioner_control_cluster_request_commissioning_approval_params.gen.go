@@ -90,6 +90,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label(
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ProductID() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Produc
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/requestID
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) RequestID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Reques
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/serverSideProcessingTimeout
@@ -135,6 +138,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Server
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/timedInvokeTimeoutMs
@@ -152,6 +156,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedI
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/vendorID
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) VendorID() unsafe.Pointer {
@@ -166,5 +171,6 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Vendor
 func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
+
 
 

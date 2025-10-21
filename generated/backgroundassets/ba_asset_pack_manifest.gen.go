@@ -83,6 +83,8 @@ func NewBAAssetPackManifest() BAAssetPackManifest {
 }
 
 
+
+
 // Initializes a representation of a manifest in memory from JSON-encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initFromData:applicationGroupIdentifier:error:
@@ -92,6 +94,8 @@ func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data unsafe.P
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a representation of a manifest in memory given a URL to the manifest’s representation as a JSON file on disk.
 //

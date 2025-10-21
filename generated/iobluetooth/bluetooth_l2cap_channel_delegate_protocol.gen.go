@@ -12,5 +12,3 @@ var BluetoothL2CAPChannelDelegateProtocol *objc.Protocol
 func init() {
 	BluetoothL2CAPChannelDelegateProtocol = objc.GetProtocol("IOBluetoothL2CAPChannelDelegate")
 }
-
-

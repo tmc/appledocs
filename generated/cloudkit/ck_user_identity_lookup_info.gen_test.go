@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKUserIdentityLookupInfo
 
-
 // ExampleNewCKUserIdentityLookupInfoWithEmailAddress demonstrates how to create a CKUserIdentityLookupInfo instance using NewCKUserIdentityLookupInfoWithEmailAddress.
 // Creates a lookup info for the specified email address.
 func ExampleNewCKUserIdentityLookupInfoWithEmailAddress() {
@@ -18,7 +17,6 @@ func ExampleNewCKUserIdentityLookupInfoWithEmailAddress() {
 	)
 	// Output:
 }
-
 // ExampleNewCKUserIdentityLookupInfoWithPhoneNumber demonstrates how to create a CKUserIdentityLookupInfo instance using NewCKUserIdentityLookupInfoWithPhoneNumber.
 // Creates a lookup info for the specified phone number.
 func ExampleNewCKUserIdentityLookupInfoWithPhoneNumber() {
@@ -27,6 +25,4 @@ func ExampleNewCKUserIdentityLookupInfoWithPhoneNumber() {
 	)
 	// Output:
 }
-
-
 

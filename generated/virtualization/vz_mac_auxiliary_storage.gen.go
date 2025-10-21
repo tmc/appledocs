@@ -81,15 +81,19 @@ func NewVZMacAuxiliaryStorage() VZMacAuxiliaryStorage {
 }
 
 
-// Initializes an auxiliary storage object with data from the location at the URL you provide.
+
+
+// Creates an initialized Mac auxiliary storage instance that describes a specific hardware model at a URL you specify.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(url:)
-func NewVZMacAuxiliaryStorageWithURL(URL unsafe.Pointer) VZMacAuxiliaryStorage {
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(creatingStorageAt:hardwareModel:options:)
+func NewVZMacAuxiliaryStorageCreatingStorageAtURLHardwareModelOptionsError(URL unsafe.Pointer, hardwareModel unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) VZMacAuxiliaryStorage {
 	instance := getVZMacAuxiliaryStorageClass().Alloc()
-	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initWithURL:"), URL)
+	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initCreatingStorageAtURL:hardwareModel:options:error:"), URL, hardwareModel, options, error_)
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes an auxiliary storage object with data from the location at the URL you provide.
 //
@@ -101,12 +105,14 @@ func NewVZMacAuxiliaryStorageWithContentsOfURL(URL unsafe.Pointer) VZMacAuxiliar
 	return rv
 }
 
-// Creates an initialized Mac auxiliary storage instance that describes a specific hardware model at a URL you specify.
+
+
+// Initializes an auxiliary storage object with data from the location at the URL you provide.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(creatingStorageAt:hardwareModel:options:)
-func NewVZMacAuxiliaryStorageCreatingStorageAtURLHardwareModelOptionsError(URL unsafe.Pointer, hardwareModel unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) VZMacAuxiliaryStorage {
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(url:)
+func NewVZMacAuxiliaryStorageWithURL(URL unsafe.Pointer) VZMacAuxiliaryStorage {
 	instance := getVZMacAuxiliaryStorageClass().Alloc()
-	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initCreatingStorageAtURL:hardwareModel:options:error:"), URL, hardwareModel, options, error_)
+	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
 	return rv
 }

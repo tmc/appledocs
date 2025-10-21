@@ -98,6 +98,7 @@ func (c_ CaptureConnection) VideoMinFrameDuration() unsafe.Pointer {
 func (c_ CaptureConnection) SetVideoMinFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMinFrameDuration:"), value)
 }
+
 // An orientation that tells the connection how to rotate a video flowing through it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureConnection/videoOrientation
@@ -115,5 +116,6 @@ func (c_ CaptureConnection) VideoOrientation() unsafe.Pointer {
 func (c_ CaptureConnection) SetVideoOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoOrientation:"), value)
 }
+
 
 

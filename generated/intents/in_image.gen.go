@@ -83,11 +83,33 @@ func NewINImage() INImage {
 }
 
 
+
+
+// Creates an image object from an image file in the extension’s bundle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
+func NewINImageNamed(name string) INImage {
+	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageNamed:"), objc.String(name))
+	return rv
+}
+
+
+
 // Creates an image object from the specified Core Graphics image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(CGImage:)
 func NewINImageWithCGImage(imageRef CGImageRef) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithCGImage:"), imageRef)
+	return rv
+}
+
+
+
+// Creates an image object from the specified data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(imageData:)
+func NewINImageWithImageData(imageData unsafe.Pointer) INImage {
+	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithImageData:"), imageData)
 	return rv
 }
 
@@ -98,6 +120,8 @@ func NewINImageWithNSImage(image unsafe.Pointer) INImage {
 	return rv
 }
 
+
+
 // Creates an image object from the specified UIKit image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
@@ -106,21 +130,7 @@ func NewINImageWithUIImage(image unsafe.Pointer) INImage {
 	return rv
 }
 
-// Creates an image object from the specified data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(imageData:)
-func NewINImageWithImageData(imageData unsafe.Pointer) INImage {
-	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithImageData:"), imageData)
-	return rv
-}
 
-// Creates an image object from an image file in the extension’s bundle.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
-func NewINImageNamed(name string) INImage {
-	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageNamed:"), objc.String(name))
-	return rv
-}
 
 // Creates an image object from an image file in the local file system.
 //
@@ -129,6 +139,8 @@ func NewINImageWithURL(URL unsafe.Pointer) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:"), URL)
 	return rv
 }
+
+
 
 // Creates an image object, of the specified size, from an image file in the local file system.
 //

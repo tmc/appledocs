@@ -21,5 +21,3 @@ var AXDataAxisDescriptorProtocol *objc.Protocol
 func init() {
 	AXDataAxisDescriptorProtocol = objc.GetProtocol("AXDataAxisDescriptor")
 }
-
-

@@ -20,5 +20,3 @@ var EventProtocol *objc.Protocol
 func init() {
 	EventProtocol = objc.GetProtocol("MTLEvent")
 }
-
-

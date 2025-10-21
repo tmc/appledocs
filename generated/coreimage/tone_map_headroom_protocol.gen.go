@@ -12,5 +12,3 @@ var ToneMapHeadroomProtocol *objc.Protocol
 func init() {
 	ToneMapHeadroomProtocol = objc.GetProtocol("CIToneMapHeadroom")
 }
-
-

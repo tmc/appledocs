@@ -114,6 +114,7 @@ func (p_ PeerPickerController) ConnectionTypesMask() unsafe.Pointer {
 func (p_ PeerPickerController) SetConnectionTypesMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConnectionTypesMask:"), value)
 }
+
 // The delegate of the peer picker controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/delegate
@@ -131,6 +132,7 @@ func (p_ PeerPickerController) Delegate() objc.ID {
 func (p_ PeerPickerController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the picker dialog is visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/isVisible

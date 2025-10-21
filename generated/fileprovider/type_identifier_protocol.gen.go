@@ -17,5 +17,3 @@ var typeIdentifierProtocol *objc.Protocol
 func init() {
 	typeIdentifierProtocol = objc.GetProtocol("typeIdentifier")
 }
-
-

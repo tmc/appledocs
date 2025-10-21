@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Screen] class.
@@ -83,6 +84,7 @@ func NewScreen() Screen {
 	return getScreenClass().New()
 }
 
+
 // Returns a screen object representing the screen that can best represent color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
@@ -90,7 +92,6 @@ func (sc _ScreenClass) DeepestScreen() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deepestScreen"))
 	return rv
 }
-
 // Returns the screen object containing the window with the keyboard focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
@@ -98,7 +99,6 @@ func (sc _ScreenClass) MainScreen() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("mainScreen"))
 	return rv
 }
-
 // Returns an array of screen objects representing all of the screens available on the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
@@ -106,7 +106,6 @@ func (sc _ScreenClass) Screens() []Screen {
 	rv := objc.Send[[]Screen](objc.ID(sc.class), objc.Sel("screens"))
 	return rv
 }
-
 // Returns a Boolean value indicating whether each screen can have its own set of spaces.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screensHaveSeparateSpaces
@@ -114,7 +113,6 @@ func (sc _ScreenClass) ScreensHaveSeparateSpaces() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("screensHaveSeparateSpaces"))
 	return rv
 }
-
 // A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/canRepresent(_:)
@@ -281,3 +279,6 @@ func (s_ Screen) SupportedWindowDepths() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("supportedWindowDepths"))
 	return rv
 }
+
+
+

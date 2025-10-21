@@ -19,5 +19,3 @@ var sampleCountProtocol *objc.Protocol
 func init() {
 	sampleCountProtocol = objc.GetProtocol("sampleCount")
 }
-
-

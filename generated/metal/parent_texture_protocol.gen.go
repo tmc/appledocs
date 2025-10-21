@@ -20,5 +20,3 @@ var parentTextureProtocol *objc.Protocol
 func init() {
 	parentTextureProtocol = objc.GetProtocol("parentTexture")
 }
-
-

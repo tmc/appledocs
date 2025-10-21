@@ -82,6 +82,8 @@ func NewMKUserTrackingButton() MKUserTrackingButton {
 }
 
 
+
+
 // Initializes the button with the map view that it should control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/init(mapView:)
@@ -116,4 +118,5 @@ func (m_ MKUserTrackingButton) MapView() unsafe.Pointer {
 func (m_ MKUserTrackingButton) SetMapView(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapView:"), value)
 }
+
 

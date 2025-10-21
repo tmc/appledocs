@@ -20,5 +20,3 @@ var supportsBCTextureCompressionProtocol *objc.Protocol
 func init() {
 	supportsBCTextureCompressionProtocol = objc.GetProtocol("supportsBCTextureCompression")
 }
-
-

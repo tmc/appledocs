@@ -18,4 +18,3 @@ var RoutingPlaybackParticipantProtocol *objc.Protocol
 func init() {
 	RoutingPlaybackParticipantProtocol = objc.GetProtocol("AVRoutingPlaybackParticipant")
 }
-

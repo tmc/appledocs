@@ -18,4 +18,3 @@ var shareSecureElementPassViewControllerProtocol *objc.Protocol
 func init() {
 	shareSecureElementPassViewControllerProtocol = objc.GetProtocol("shareSecureElementPassViewController:")
 }
-

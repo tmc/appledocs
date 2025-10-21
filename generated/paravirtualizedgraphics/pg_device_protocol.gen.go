@@ -16,5 +16,3 @@ var PGDeviceProtocol *objc.Protocol
 func init() {
 	PGDeviceProtocol = objc.GetProtocol("PGDevice")
 }
-
-

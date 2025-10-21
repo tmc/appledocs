@@ -19,5 +19,3 @@ var providerProtocol *objc.Protocol
 func init() {
 	providerProtocol = objc.GetProtocol("provider:")
 }
-
-

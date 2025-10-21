@@ -19,4 +19,3 @@ var mediaPlayPauseButtonTypeProtocol *objc.Protocol
 func init() {
 	mediaPlayPauseButtonTypeProtocol = objc.GetProtocol("mediaPlayPauseButtonType")
 }
-

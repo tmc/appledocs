@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = audiotoolbox.NewAutomaticAnchoringStrategy
 
-
 // ExampleNewAutomaticAnchoringStrategy demonstrates how to create a AutomaticAnchoringStrategy instance.
 func ExampleNewAutomaticAnchoringStrategy() {
 	_ = audiotoolbox.NewAutomaticAnchoringStrategy()
 	// Output:
 }
-
-

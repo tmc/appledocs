@@ -120,6 +120,7 @@ func (o_ ODModuleEntry) Mappings() unsafe.Pointer {
 func (o_ ODModuleEntry) SetMappings(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setMappings:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/name-swift.property
 func (o_ ODModuleEntry) Name() string {
@@ -134,6 +135,7 @@ func (o_ ODModuleEntry) Name() string {
 func (o_ ODModuleEntry) SetName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/supportedOptions-swift.property
 func (o_ ODModuleEntry) SupportedOptions() unsafe.Pointer {
@@ -155,6 +157,7 @@ func (o_ ODModuleEntry) UuidString() string {
 func (o_ ODModuleEntry) SetUuidString(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/xpcServiceName-swift.property
 func (o_ ODModuleEntry) XpcServiceName() string {
@@ -169,4 +172,5 @@ func (o_ ODModuleEntry) XpcServiceName() string {
 func (o_ ODModuleEntry) SetXpcServiceName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setXpcServiceName:"), objc.String(value))
 }
+
 

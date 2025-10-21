@@ -81,6 +81,8 @@ func NewVZFileHandleNetworkDeviceAttachment() VZFileHandleNetworkDeviceAttachmen
 }
 
 
+
+
 // Creates the attachment from a file handle that contains a connected datagram socket.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment/init(fileHandle:)
@@ -109,4 +111,5 @@ func (v_ VZFileHandleNetworkDeviceAttachment) MaximumTransmissionUnit() int {
 func (v_ VZFileHandleNetworkDeviceAttachment) SetMaximumTransmissionUnit(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaximumTransmissionUnit:"), value)
 }
+
 

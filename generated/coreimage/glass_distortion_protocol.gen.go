@@ -12,5 +12,3 @@ var GlassDistortionProtocol *objc.Protocol
 func init() {
 	GlassDistortionProtocol = objc.GetProtocol("CIGlassDistortion")
 }
-
-

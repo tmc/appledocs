@@ -98,6 +98,7 @@ func (o_ OptimizationHints) ReshapeFrequency() unsafe.Pointer {
 func (o_ OptimizationHints) SetReshapeFrequency(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setReshapeFrequency:"), value)
 }
+
 // Optimization strategy for the model specialization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/specializationStrategy
@@ -115,5 +116,6 @@ func (o_ OptimizationHints) SpecializationStrategy() unsafe.Pointer {
 func (o_ OptimizationHints) SetSpecializationStrategy(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSpecializationStrategy:"), value)
 }
+
 
 

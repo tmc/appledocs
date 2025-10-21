@@ -90,6 +90,7 @@ func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) ExtendedPanID() un
 func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetExtendedPanID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterRemoveNetworkParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) ServerSideProcessi
 func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterRemoveNetworkParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) TimedInvokeTimeout
 func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

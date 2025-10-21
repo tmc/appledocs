@@ -114,6 +114,7 @@ func (m_ MTL4RenderPipelineBinaryFunctionsDescriptor) SetFragmentAdditionalBinar
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentAdditionalBinaryFunctions:"), nsArray)
 }
+
 // Provides an array of binary functions representing additional binary mesh shader functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineBinaryFunctionsDescriptor/meshAdditionalBinaryFunctions
@@ -141,6 +142,7 @@ func (m_ MTL4RenderPipelineBinaryFunctionsDescriptor) SetMeshAdditionalBinaryFun
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshAdditionalBinaryFunctions:"), nsArray)
 }
+
 // Provides an array of binary functions representing additional binary object shader functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineBinaryFunctionsDescriptor/objectAdditionalBinaryFunctions
@@ -168,6 +170,7 @@ func (m_ MTL4RenderPipelineBinaryFunctionsDescriptor) SetObjectAdditionalBinaryF
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectAdditionalBinaryFunctions:"), nsArray)
 }
+
 // Provides an array of binary functions representing additional binary tile shader functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineBinaryFunctionsDescriptor/tileAdditionalBinaryFunctions
@@ -195,6 +198,7 @@ func (m_ MTL4RenderPipelineBinaryFunctionsDescriptor) SetTileAdditionalBinaryFun
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTileAdditionalBinaryFunctions:"), nsArray)
 }
+
 // Provides an array of binary functions representing additional binary vertex shader functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineBinaryFunctionsDescriptor/vertexAdditionalBinaryFunctions
@@ -222,5 +226,6 @@ func (m_ MTL4RenderPipelineBinaryFunctionsDescriptor) SetVertexAdditionalBinaryF
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVertexAdditionalBinaryFunctions:"), nsArray)
 }
+
 
 

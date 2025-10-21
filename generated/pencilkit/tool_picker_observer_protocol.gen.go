@@ -18,5 +18,3 @@ var ToolPickerObserverProtocol *objc.Protocol
 func init() {
 	ToolPickerObserverProtocol = objc.GetProtocol("PKToolPickerObserver")
 }
-
-

@@ -19,5 +19,3 @@ var setFragmentBufferOffsetProtocol *objc.Protocol
 func init() {
 	setFragmentBufferOffsetProtocol = objc.GetProtocol("setFragmentBufferOffset:")
 }
-
-

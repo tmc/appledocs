@@ -15,5 +15,3 @@ var maximumFileSizeInBitsProtocol *objc.Protocol
 func init() {
 	maximumFileSizeInBitsProtocol = objc.GetProtocol("maximumFileSizeInBits")
 }
-
-

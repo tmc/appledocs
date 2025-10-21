@@ -12,5 +12,3 @@ var MaskedVariableBlurProtocol *objc.Protocol
 func init() {
 	MaskedVariableBlurProtocol = objc.GetProtocol("CIMaskedVariableBlur")
 }
-
-

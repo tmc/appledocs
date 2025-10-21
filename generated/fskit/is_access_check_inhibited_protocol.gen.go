@@ -15,5 +15,3 @@ var isAccessCheckInhibitedProtocol *objc.Protocol
 func init() {
 	isAccessCheckInhibitedProtocol = objc.GetProtocol("isAccessCheckInhibited")
 }
-
-

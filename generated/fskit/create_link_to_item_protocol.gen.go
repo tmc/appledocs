@@ -15,5 +15,3 @@ var createLinkToItemProtocol *objc.Protocol
 func init() {
 	createLinkToItemProtocol = objc.GetProtocol("createLinkToItem:")
 }
-
-

@@ -16,5 +16,3 @@ var portProtocol *objc.Protocol
 func init() {
 	portProtocol = objc.GetProtocol("port")
 }
-
-

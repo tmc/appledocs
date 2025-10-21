@@ -112,6 +112,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint 
 func (m_ MTL4TileRenderPipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
 }
+
 // Configures the number of samples per pixel used for multisampling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/rasterSampleCount
@@ -129,6 +130,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) RasterSampleCount() uint {
 func (m_ MTL4TileRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRasterSampleCount:"), value)
 }
+
 // Sets the required number of threads per threadgroup for tile dispatches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
@@ -146,6 +148,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsaf
 func (m_ MTL4TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
+
 // Configures an object that contains information about functions to link to the tile render pipeline when Metal builds it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/staticLinkingDescriptor
@@ -163,6 +166,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) StaticLinkingDescriptor() unsafe.Poin
 func (m_ MTL4TileRenderPipelineDescriptor) SetStaticLinkingDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStaticLinkingDescriptor:"), value)
 }
+
 // Indicates whether the pipeline supports linking binary functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/supportBinaryLinking
@@ -180,6 +184,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) SupportBinaryLinking() bool {
 func (m_ MTL4TileRenderPipelineDescriptor) SetSupportBinaryLinking(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportBinaryLinking:"), value)
 }
+
 // Indicating whether the size of the threadgroup matches the size of a tile in the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/threadgroupSizeMatchesTileSize
@@ -197,6 +202,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) ThreadgroupSizeMatchesTileSize() bool
 func (m_ MTL4TileRenderPipelineDescriptor) SetThreadgroupSizeMatchesTileSize(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadgroupSizeMatchesTileSize:"), value)
 }
+
 // Configures the tile function that the render pipeline executes for each tile in the tile shader stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/tileFunctionDescriptor
@@ -214,5 +220,6 @@ func (m_ MTL4TileRenderPipelineDescriptor) TileFunctionDescriptor() unsafe.Point
 func (m_ MTL4TileRenderPipelineDescriptor) SetTileFunctionDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTileFunctionDescriptor:"), value)
 }
+
 
 

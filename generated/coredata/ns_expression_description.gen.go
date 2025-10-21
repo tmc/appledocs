@@ -98,6 +98,7 @@ func (e_ ExpressionDescription) Expression() unsafe.Pointer {
 func (e_ ExpressionDescription) SetExpression(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
 }
+
 // The attribute type of the expression’s result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
@@ -115,5 +116,6 @@ func (e_ ExpressionDescription) ExpressionResultType() unsafe.Pointer {
 func (e_ ExpressionDescription) SetExpressionResultType(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
 }
+
 
 

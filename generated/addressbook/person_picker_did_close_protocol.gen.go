@@ -15,4 +15,3 @@ var personPickerDidCloseProtocol *objc.Protocol
 func init() {
 	personPickerDidCloseProtocol = objc.GetProtocol("personPickerDidClose:")
 }
-

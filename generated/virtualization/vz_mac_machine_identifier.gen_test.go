@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZMacMachineIdentifier
 
-
-
 // ExampleNewVZMacMachineIdentifier demonstrates how to create a VZMacMachineIdentifier instance.
 // Creates a new unique machine identifier.
 func ExampleNewVZMacMachineIdentifier() {
 	_ = virtualization.NewVZMacMachineIdentifier()
 	// Output:
 }
-
-

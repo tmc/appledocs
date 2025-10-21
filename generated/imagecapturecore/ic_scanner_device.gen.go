@@ -113,6 +113,7 @@ func (i_ ICScannerDevice) DocumentName() string {
 func (i_ ICScannerDevice) SetDocumentName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), objc.String(value))
 }
+
 // The transfer mode for the scanned document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/transferMode
@@ -130,5 +131,6 @@ func (i_ ICScannerDevice) TransferMode() unsafe.Pointer {
 func (i_ ICScannerDevice) SetTransferMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransferMode:"), value)
 }
+
 
 

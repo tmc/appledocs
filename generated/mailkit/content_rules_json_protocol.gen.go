@@ -15,5 +15,3 @@ var contentRulesJSONProtocol *objc.Protocol
 func init() {
 	contentRulesJSONProtocol = objc.GetProtocol("contentRulesJSON")
 }
-
-

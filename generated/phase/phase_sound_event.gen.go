@@ -90,15 +90,7 @@ func NewPHASESoundEvent() PHASESoundEvent {
 }
 
 
-// Creates a sound event node with the given asset and mixer parameters.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)
-func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine unsafe.Pointer, assetIdentifier string, mixerParameters unsafe.Pointer, error_ unsafe.Pointer) PHASESoundEvent {
-	instance := getPHASESoundEventClass().Alloc()
-	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:mixerParameters:error:"), engine, objc.String(assetIdentifier), mixerParameters, error_)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a sound event node with the given asset.
 //
@@ -106,6 +98,18 @@ func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine unsa
 func NewPHASESoundEventWithEngineAssetIdentifierError(engine unsafe.Pointer, assetIdentifier string, error_ unsafe.Pointer) PHASESoundEvent {
 	instance := getPHASESoundEventClass().Alloc()
 	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:error:"), engine, objc.String(assetIdentifier), error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a sound event node with the given asset and mixer parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)
+func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine unsafe.Pointer, assetIdentifier string, mixerParameters unsafe.Pointer, error_ unsafe.Pointer) PHASESoundEvent {
+	instance := getPHASESoundEventClass().Alloc()
+	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:mixerParameters:error:"), engine, objc.String(assetIdentifier), mixerParameters, error_)
 	rv.Autorelease()
 	return rv
 }

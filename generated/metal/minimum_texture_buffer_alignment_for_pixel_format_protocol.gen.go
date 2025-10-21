@@ -20,5 +20,3 @@ var minimumTextureBufferAlignmentForPixelFormatProtocol *objc.Protocol
 func init() {
 	minimumTextureBufferAlignmentForPixelFormatProtocol = objc.GetProtocol("minimumTextureBufferAlignmentForPixelFormat:")
 }
-
-

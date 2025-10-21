@@ -19,5 +19,3 @@ var SACrashDetectionDelegateProtocol *objc.Protocol
 func init() {
 	SACrashDetectionDelegateProtocol = objc.GetProtocol("SACrashDetectionDelegate")
 }
-
-

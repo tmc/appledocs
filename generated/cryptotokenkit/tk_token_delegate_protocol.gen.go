@@ -21,5 +21,3 @@ var TKTokenDelegateProtocol *objc.Protocol
 func init() {
 	TKTokenDelegateProtocol = objc.GetProtocol("TKTokenDelegate")
 }
-
-

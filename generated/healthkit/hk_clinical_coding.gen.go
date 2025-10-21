@@ -81,6 +81,8 @@ func NewHKClinicalCoding() HKClinicalCoding {
 }
 
 
+
+
 // Creates a clinical coding with the specified system, version, and code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/init(system:version:code:)

@@ -20,5 +20,3 @@ var newBufferWithLengthProtocol *objc.Protocol
 func init() {
 	newBufferWithLengthProtocol = objc.GetProtocol("newBufferWithLength:")
 }
-
-

@@ -12,5 +12,3 @@ var selfProtocol *objc.Protocol
 func init() {
 	selfProtocol = objc.GetProtocol("self")
 }
-
-

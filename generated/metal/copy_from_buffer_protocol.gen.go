@@ -19,5 +19,3 @@ var copyFromBufferProtocol *objc.Protocol
 func init() {
 	copyFromBufferProtocol = objc.GetProtocol("copyFromBuffer:")
 }
-
-

@@ -100,3 +100,4 @@ func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
 }
 
 
+

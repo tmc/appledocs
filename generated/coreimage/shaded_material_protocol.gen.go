@@ -12,5 +12,3 @@ var ShadedMaterialProtocol *objc.Protocol
 func init() {
 	ShadedMaterialProtocol = objc.GetProtocol("CIShadedMaterial")
 }
-
-

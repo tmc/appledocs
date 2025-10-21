@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Parameter] class.
@@ -193,6 +194,7 @@ func (p_ Parameter) Value() unsafe.Pointer {
 func (p_ Parameter) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
 }
+
 // The parameter’s localized value strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/valueStrings

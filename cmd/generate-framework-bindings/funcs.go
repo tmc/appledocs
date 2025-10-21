@@ -115,11 +115,12 @@ var templateFuncs = template.FuncMap{
 	"methodGoName": methodGoName,
 
 	// Class-level helpers
-	"getClassImports":       getClassImports,
-	"getInterfaceParent":    getInterfaceParent,
-	"getStructEmbeddedField": getStructEmbeddedField,
-	"getFromConstructorBody": getFromConstructorBody,
-	"getConstructorBody":     getConstructorBody,
+	"getClassImports":         getClassImports,
+	"getSortedClassImports":   getSortedClassImports,
+	"getInterfaceParent":      getInterfaceParent,
+	"getStructEmbeddedField":  getStructEmbeddedField,
+	"getFromConstructorBody":  getFromConstructorBody,
+	"getConstructorBody":      getConstructorBody,
 
 	// Utility functions for template generation
 	"sortedKeys":      sortedKeys,
@@ -270,15 +271,8 @@ func prepareFunctionDocData(fn *occ2go.ParsedFunction, framework string) Functio
 //	CGContextSetFillColor → SetFillColor
 //	CGPathAddRect → AddRect
 func extractMethodName(funcName, framework, typeName string) string {
-	var prefix string
-	switch framework {
-	case "CoreGraphics":
-		prefix = "CG"
-	case "CoreFoundation":
-		prefix = "CF"
-	case "CoreAudio":
-		prefix = "CA"
-	default:
+	prefix := GetFrameworkPrefix(framework)
+	if prefix == "" {
 		return funcName
 	}
 
@@ -374,15 +368,8 @@ func groupFunctionsByType(functions []*occ2go.ParsedFunction, framework string) 
 //	CGColorCreate → Color
 func extractTypeName(funcName, framework string) string {
 	// Handle framework-specific prefixes
-	var prefix string
-	switch framework {
-	case "CoreGraphics":
-		prefix = "CG"
-	case "CoreFoundation":
-		prefix = "CF"
-	case "CoreAudio":
-		prefix = "CA"
-	default:
+	prefix := GetFrameworkPrefix(framework)
+	if prefix == "" {
 		return ""
 	}
 
@@ -796,7 +783,22 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-
+	// Strip self-package qualifications from Swift documentation
+	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
+	// When generating the same framework, we should use unqualified names
+	if framework != "" {
+		// Build package prefix (e.g., "uniformtypeidentifiers." from "UniformTypeIdentifiers")
+		packagePrefix := strings.ToLower(framework) + "."
+		// Check for exact package.Type pattern
+		if strings.HasPrefix(strings.ToLower(objcType), packagePrefix) {
+			// Extract the type name after the dot
+			// E.g., "uniformtypeidentifiers.UTType" -> "UTType"
+			parts := strings.SplitN(objcType, ".", 2)
+			if len(parts) == 2 {
+				objcType = parts[1]
+			}
+		}
+	}
 
 	// Strip __kindof qualifier (e.g., "__kindof NSView *" -> "NSView *")
 	// __kindof is an Objective-C type qualifier meaning "this type or any subclass"
@@ -1415,10 +1417,16 @@ func prepareInitMethodsWithClassName(className string, methods []*occ2go.ParsedM
 		}
 	}
 
-	// Convert map back to slice
+	// Convert map back to slice, sorted by constructor name for stable output
+	constructorNames := make([]string, 0, len(seen))
+	for name := range seen {
+		constructorNames = append(constructorNames, name)
+	}
+	sort.Strings(constructorNames)
+
 	result := make([]*occ2go.ParsedMethod, 0, len(seen))
-	for _, m := range seen {
-		result = append(result, m)
+	for _, name := range constructorNames {
+		result = append(result, seen[name])
 	}
 
 	return result
@@ -1605,31 +1613,8 @@ func getGoTypeImportPath(goType string) string {
 		return ""
 	}
 
-	// Check for framework-prefixed types (e.g., "coregraphics.CGAffineTransform")
-	if strings.Contains(goType, ".") {
-		parts := strings.SplitN(goType, ".", 2)
-		if len(parts) == 2 {
-			packageName := parts[0]
-			// Map package names to import paths
-			switch packageName {
-			case "coregraphics":
-				return "github.com/tmc/appledocs/generated/coregraphics"
-			case "foundation":
-				return "github.com/tmc/appledocs/generated/foundation"
-			case "quartzcore":
-				return "github.com/tmc/appledocs/generated/quartzcore"
-			case "appkit":
-				return "github.com/tmc/appledocs/generated/appkit"
-			case "usernotifications":
-				return "github.com/tmc/appledocs/generated/usernotifications"
-			case "objc":
-				// objc is already imported by default in the template
-				return ""
-			}
-		}
-	}
-
-	return ""
+	// Use registry helper to extract import path from type
+	return GetImportPathFromType(goType)
 }
 
 // ImportInfo holds information about an import for template rendering
@@ -2122,6 +2107,13 @@ func resolveType(framework, typeName string) string {
 		return ""
 	}
 
+	// Strip self-package qualifications (e.g., foundation.NSString in Foundation -> NSString)
+	// This prevents incorrect qualification like foundation.NSOrderedCollectionChange in the foundation package
+	packagePrefix := strings.ToLower(framework) + "."
+	if strings.HasPrefix(typeName, packagePrefix) {
+		return strings.TrimPrefix(typeName, packagePrefix)
+	}
+
 	// Common Foundation base classes that other frameworks inherit from
 	foundationTypes := map[string]bool{
 		"MutableAttributedString": true,
@@ -2306,6 +2298,10 @@ func resolveType(framework, typeName string) string {
 
 	// Check if we know about this type from the cross-framework registry
 	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
+		// Don't qualify types with their own framework name (e.g., foundation.NSString in foundation package)
+		if strings.ToLower(framework) == frameworkPkg {
+			return typeName
+		}
 		return frameworkPkg + "." + typeName
 	}
 
@@ -2487,6 +2483,7 @@ func isInheritedFromNSObject(selector string) bool {
 
 // ClassImports holds the import paths needed for a class
 type ClassImports struct {
+	// Legacy boolean fields for backward compatibility
 	NeedsObjectiveC             bool
 	NeedsFoundation             bool
 	NeedsQuartzCore             bool
@@ -2495,6 +2492,89 @@ type ClassImports struct {
 	NeedsAppKit                 bool
 	NeedsUserNotifications      bool
 	NeedsUniformTypeIdentifiers bool
+
+	// ImportPaths is a dynamic map of all import paths needed (package name -> import path)
+	// This replaces the need for hard-coded boolean fields above
+	ImportPaths map[string]string
+}
+
+// getClassImportPaths analyzes a class and returns a set of import paths needed.
+// This is a registry-based helper that automatically detects all framework dependencies.
+func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule string) map[string]bool {
+	imports := make(map[string]bool)
+
+	if class == nil {
+		return imports
+	}
+
+	// Determine current framework's import path so we don't import ourselves
+	currentFrameworkImportPath := outputModule + "/" + strings.ToLower(framework)
+
+	// Check superclass for import needs
+	if class.SuperClass != "" {
+		superStructName := classToStructName(class.SuperClass)
+		superResolved := resolveType(framework, superStructName)
+
+		// Extract framework from resolved type
+		if importPath := GetImportPathFromType(superResolved); importPath != "" {
+			if importPath != currentFrameworkImportPath {
+				imports[importPath] = true
+			}
+		} else if class.SuperClass == "NSObject" || superStructName == "Object" {
+			// Default to objectivec for NSObject
+			if framework != "ObjectiveC" {
+				objcPath := outputModule + "/objectivec"
+				imports[objcPath] = true
+			}
+		}
+	} else if framework != "ObjectiveC" {
+		// No superclass specified, default to objectivec
+		objcPath := outputModule + "/objectivec"
+		imports[objcPath] = true
+	}
+
+	// Check embedded field
+	embeddedField := getStructEmbeddedField(class, framework)
+	if importPath := GetImportPathFromType(embeddedField); importPath != "" {
+		if importPath != currentFrameworkImportPath {
+			imports[importPath] = true
+		}
+	}
+
+	// Check all method return types and parameters
+	for _, method := range class.Methods {
+		// Check return type
+		if method.ReturnType != "" {
+			goType := mapObjCTypeToGo(method.ReturnType, framework)
+			if importPath := GetImportPathFromType(goType); importPath != "" {
+				if importPath != currentFrameworkImportPath {
+					imports[importPath] = true
+				}
+			}
+		}
+
+		// Check all parameters
+		for _, param := range method.Parameters {
+			goType := mapObjCTypeToGo(param.Type, framework)
+			if importPath := GetImportPathFromType(goType); importPath != "" {
+				if importPath != currentFrameworkImportPath {
+					imports[importPath] = true
+				}
+			}
+		}
+	}
+
+	// Check all properties
+	for _, prop := range class.Properties {
+		goType := mapObjCTypeToGo(prop.Type, framework)
+		if importPath := GetImportPathFromType(goType); importPath != "" {
+			if importPath != currentFrameworkImportPath {
+				imports[importPath] = true
+			}
+		}
+	}
+
+	return imports
 }
 
 // typeReferencesFramework checks if a Go type string contains a reference to a specific framework.
@@ -2508,7 +2588,87 @@ func typeReferencesFramework(goType, framework string) bool {
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
 // This consolidates the complex import detection logic from the template into a single helper function.
 // Returns a ClassImports struct with boolean flags for each potential import.
+// NOTE: This function now uses the registry-based getClassImportPaths and maps the results
+// to both legacy boolean fields (for backward compatibility) and the new dynamic ImportPaths map.
 func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) ClassImports {
+	// Use the new registry-based function
+	importPathsSet := getClassImportPaths(class, framework, outputModule)
+
+	// Initialize struct with dynamic map
+	imports := ClassImports{
+		ImportPaths: make(map[string]string),
+	}
+
+	// Populate both legacy boolean fields and dynamic map
+	for importPath := range importPathsSet {
+		// Extract package name from import path
+		// e.g., "github.com/tmc/appledocs/generated/foundation" -> "foundation"
+		parts := strings.Split(importPath, "/")
+		if len(parts) == 0 {
+			continue
+		}
+		pkgName := parts[len(parts)-1]
+
+		// Add to dynamic map (all frameworks)
+		imports.ImportPaths[pkgName] = importPath
+
+		// Also set legacy boolean fields for backward compatibility
+		// This allows existing templates to work without changes
+		switch pkgName {
+		case "objectivec":
+			imports.NeedsObjectiveC = true
+		case "foundation":
+			imports.NeedsFoundation = true
+		case "quartzcore":
+			imports.NeedsQuartzCore = true
+		case "coregraphics":
+			imports.NeedsCoreGraphics = true
+		case "cloudkit":
+			imports.NeedsCloudKit = true
+		case "appkit":
+			imports.NeedsAppKit = true
+		case "usernotifications":
+			imports.NeedsUserNotifications = true
+		case "uniformtypeidentifiers":
+			imports.NeedsUniformTypeIdentifiers = true
+		}
+	}
+
+	return imports
+}
+
+// getSortedClassImports returns a sorted slice of import paths from ClassImports.
+// This is a template helper that makes it easy to iterate over all imports dynamically.
+// Returns []ImportInfo with PackageName and ImportPath fields.
+func getSortedClassImports(imports ClassImports) []ImportInfo {
+	if imports.ImportPaths == nil || len(imports.ImportPaths) == 0 {
+		return []ImportInfo{}
+	}
+
+	// Convert map to slice of ImportInfo
+	result := make([]ImportInfo, 0, len(imports.ImportPaths))
+	for pkgName, importPath := range imports.ImportPaths {
+		result = append(result, ImportInfo{
+			PackageName: pkgName,
+			ImportPath:  importPath,
+		})
+	}
+
+	// Sort by import path for consistency
+	for i := 0; i < len(result)-1; i++ {
+		for j := i + 1; j < len(result); j++ {
+			if result[i].ImportPath > result[j].ImportPath {
+				result[i], result[j] = result[j], result[i]
+			}
+		}
+	}
+
+	return result
+}
+
+// OLD IMPLEMENTATION - Replaced by registry-based approach above
+// Kept for reference and can be removed in future cleanup
+func getClassImportsOld(class *occ2go.ParsedClass, framework, outputModule string) ClassImports {
 	imports := ClassImports{}
 
 	if class == nil {
@@ -2678,14 +2838,14 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		for _, method := range class.Methods {
 			// Check return type
 			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
-			if strings.Contains(goReturnType, "uniformtypeidentifiers.") {
+			if strings.Contains(goReturnType, "uniformtypeidentifiers.") && framework != "UniformTypeIdentifiers" {
 				imports.NeedsUniformTypeIdentifiers = true
 				break
 			}
 			// Check parameter types
 			for _, param := range method.Parameters {
 				goParamType := mapObjCTypeToGo(param.Type, framework)
-				if strings.Contains(goParamType, "uniformtypeidentifiers.") {
+				if strings.Contains(goParamType, "uniformtypeidentifiers.") && framework != "UniformTypeIdentifiers" {
 					imports.NeedsUniformTypeIdentifiers = true
 					break
 				}
@@ -2700,7 +2860,7 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 	if !imports.NeedsUniformTypeIdentifiers {
 		for _, prop := range class.Properties {
 			goType := mapObjCTypeToGo(prop.Type, framework)
-			if strings.Contains(goType, "uniformtypeidentifiers.") {
+			if strings.Contains(goType, "uniformtypeidentifiers.") && framework != "UniformTypeIdentifiers" {
 				imports.NeedsUniformTypeIdentifiers = true
 				break
 			}
@@ -2985,6 +3145,7 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 	// This prevents other frameworks (accessibility, authenticationservices, etc.) from claiming Foundation types
 	// just because they come first alphabetically
 	foundationCoreTypes := []string{
+		"NSObject", "Object",
 		"NSURL", "URL",
 		"NSNumber", "Number",
 		"NSString", "String",
@@ -2996,6 +3157,14 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 	}
 	for _, typeName := range foundationCoreTypes {
 		crossFrameworkTypeRegistry[typeName] = "foundation"
+	}
+
+	// UniformTypeIdentifiers core types
+	uniformTypeIdentifiersCoreTypes := []string{
+		"UTType",
+	}
+	for _, typeName := range uniformTypeIdentifiersCoreTypes {
+		crossFrameworkTypeRegistry[typeName] = "uniformtypeidentifiers"
 	}
 
 	return nil

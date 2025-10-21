@@ -81,6 +81,8 @@ func NewMKLocalSearchRequest() MKLocalSearchRequest {
 }
 
 
+
+
 // Creates and returns a search request based on the specified search completion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/init(completion:)
@@ -91,6 +93,8 @@ func NewMKLocalSearchRequestWithCompletion(completion unsafe.Pointer) MKLocalSea
 	return rv
 }
 
+
+
 // Initializes and returns a local search request based on the provided string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/init(naturalLanguageQuery:)
@@ -100,6 +104,8 @@ func NewMKLocalSearchRequestWithNaturalLanguageQuery(naturalLanguageQuery string
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns a local search request based on the provided string and region.
 //
@@ -129,6 +135,7 @@ func (m_ MKLocalSearchRequest) AddressFilter() unsafe.Pointer {
 func (m_ MKLocalSearchRequest) SetAddressFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressFilter:"), value)
 }
+
 // A string containing the desired search item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/naturalLanguageQuery
@@ -146,6 +153,7 @@ func (m_ MKLocalSearchRequest) NaturalLanguageQuery() string {
 func (m_ MKLocalSearchRequest) SetNaturalLanguageQuery(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalLanguageQuery:"), objc.String(value))
 }
+
 // A filter that lists point-of-interest categories to include or exclude in search results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/pointOfInterestFilter
@@ -163,6 +171,7 @@ func (m_ MKLocalSearchRequest) PointOfInterestFilter() unsafe.Pointer {
 func (m_ MKLocalSearchRequest) SetPointOfInterestFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
+
 // A map region that provides a hint as to where to search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/region
@@ -180,6 +189,7 @@ func (m_ MKLocalSearchRequest) Region() unsafe.Pointer {
 func (m_ MKLocalSearchRequest) SetRegion(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
+
 // A value that indicates the importance of the configured region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/regionPriority
@@ -197,6 +207,7 @@ func (m_ MKLocalSearchRequest) RegionPriority() unsafe.Pointer {
 func (m_ MKLocalSearchRequest) SetRegionPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegionPriority:"), value)
 }
+
 // The types of items to include in the search results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/resultTypes
@@ -214,4 +225,5 @@ func (m_ MKLocalSearchRequest) ResultTypes() unsafe.Pointer {
 func (m_ MKLocalSearchRequest) SetResultTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResultTypes:"), value)
 }
+
 

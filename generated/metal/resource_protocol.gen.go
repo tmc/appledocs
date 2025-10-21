@@ -19,5 +19,3 @@ var ResourceProtocol *objc.Protocol
 func init() {
 	ResourceProtocol = objc.GetProtocol("MTLResource")
 }
-
-

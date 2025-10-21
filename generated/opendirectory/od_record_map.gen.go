@@ -119,6 +119,7 @@ func (o_ ODRecordMap) Native() string {
 func (o_ ODRecordMap) SetNative(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-swift.property
 func (o_ ODRecordMap) OdPredicate() unsafe.Pointer {
@@ -133,6 +134,7 @@ func (o_ ODRecordMap) OdPredicate() unsafe.Pointer {
 func (o_ ODRecordMap) SetOdPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOdPredicate:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/standardAttributeTypes
 func (o_ ODRecordMap) StandardAttributeTypes() unsafe.Pointer {

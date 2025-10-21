@@ -16,5 +16,3 @@ var IOExtensionProviderSourceProtocol *objc.Protocol
 func init() {
 	IOExtensionProviderSourceProtocol = objc.GetProtocol("CMIOExtensionProviderSource")
 }
-
-

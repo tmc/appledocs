@@ -15,5 +15,3 @@ var MERAWProcessorProtocol *objc.Protocol
 func init() {
 	MERAWProcessorProtocol = objc.GetProtocol("MERAWProcessor")
 }
-
-

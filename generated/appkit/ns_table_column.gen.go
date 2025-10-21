@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TableColumn] class.
@@ -79,6 +80,7 @@ func NewTableColumn() TableColumn {
 	return getTableColumnClass().New()
 }
 
+
 // The cell prototype used by the table column to draw individual cells.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/dataCell
@@ -86,6 +88,7 @@ func (t_ TableColumn) DataCell() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("dataCell"))
 	return rv
 }
+
 
 // SetDataCell sets the value of the dataCell property.
 // The cell prototype used by the table column to draw individual cells.
@@ -104,6 +107,7 @@ func (t_ TableColumn) Editable() bool {
 	return rv
 }
 
+
 // SetEditable sets the value of the editable property.
 // A Boolean that indicates whether a cell-based table’s column cells are user editable.
 
@@ -112,3 +116,6 @@ func (t_ TableColumn) Editable() bool {
 func (t_ TableColumn) SetEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
+
+
+

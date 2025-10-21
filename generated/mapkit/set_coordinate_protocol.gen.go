@@ -20,5 +20,3 @@ var setCoordinateProtocol *objc.Protocol
 func init() {
 	setCoordinateProtocol = objc.GetProtocol("setCoordinate:")
 }
-
-

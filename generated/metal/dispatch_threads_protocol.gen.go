@@ -20,5 +20,3 @@ var dispatchThreadsProtocol *objc.Protocol
 func init() {
 	dispatchThreadsProtocol = objc.GetProtocol("dispatchThreads:")
 }
-
-

@@ -20,5 +20,3 @@ var repeatDurationProtocol *objc.Protocol
 func init() {
 	repeatDurationProtocol = objc.GetProtocol("repeatDuration")
 }
-
-

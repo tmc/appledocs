@@ -12,5 +12,3 @@ var ColorThresholdProtocol *objc.Protocol
 func init() {
 	ColorThresholdProtocol = objc.GetProtocol("CIColorThreshold")
 }
-
-

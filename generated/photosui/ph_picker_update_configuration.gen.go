@@ -98,6 +98,7 @@ func (p_ PHPickerUpdateConfiguration) EdgesWithoutContentMargins() unsafe.Pointe
 func (p_ PHPickerUpdateConfiguration) SetEdgesWithoutContentMargins(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEdgesWithoutContentMargins:"), value)
 }
+
 // The maximum number of selections the user can make.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerUpdateConfiguration/selectionLimit
@@ -115,5 +116,6 @@ func (p_ PHPickerUpdateConfiguration) SelectionLimit() int {
 func (p_ PHPickerUpdateConfiguration) SetSelectionLimit(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionLimit:"), value)
 }
+
 
 

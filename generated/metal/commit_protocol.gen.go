@@ -20,5 +20,3 @@ var commitProtocol *objc.Protocol
 func init() {
 	commitProtocol = objc.GetProtocol("commit")
 }
-
-

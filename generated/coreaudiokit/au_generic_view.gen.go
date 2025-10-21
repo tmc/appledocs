@@ -80,6 +80,8 @@ func NewGenericView() GenericView {
 }
 
 
+
+
 // Creates a generic view for an audio unit, setting all display flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/init(audioUnit:)
@@ -89,6 +91,8 @@ func NewGenericViewWithAudioUnit(au unsafe.Pointer) GenericView {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a generic view for an audio unit, setting specific display flags.
 //
@@ -126,4 +130,5 @@ func (g_ GenericView) ShowsExpertParameters() bool {
 func (g_ GenericView) SetShowsExpertParameters(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShowsExpertParameters:"), value)
 }
+
 

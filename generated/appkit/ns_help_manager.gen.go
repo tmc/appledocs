@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [HelpManager] class.
@@ -87,13 +88,13 @@ func NewHelpManager() HelpManager {
 	return getHelpManagerClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
 func (hc _HelpManagerClass) ContextHelpModeActive() bool {
 	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("contextHelpModeActive"))
 	return rv
 }
-
 // Returns the shared instance, creating it if it does not already exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
@@ -101,7 +102,6 @@ func (hc _HelpManagerClass) SharedHelpManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
 	return rv
 }
-
 // Returns context-sensitive help for an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
@@ -161,6 +161,7 @@ func (h_ HelpManager) ContextHelpModeActive() bool {
 	return rv
 }
 
+
 // SetContextHelpModeActive sets the value of the contextHelpModeActive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
@@ -175,3 +176,6 @@ func (h_ HelpManager) SharedHelpManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sharedHelpManager"))
 	return rv
 }
+
+
+

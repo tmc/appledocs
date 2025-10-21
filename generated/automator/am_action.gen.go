@@ -96,6 +96,8 @@ func NewAMAction() AMAction {
 }
 
 
+
+
 // Loads an Automator action from a file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/init(contentsOf:)
@@ -105,6 +107,8 @@ func NewAMActionWithContentsOfURLError(fileURL unsafe.Pointer, outError unsafe.P
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes the action with the specified definition.
 //
@@ -265,6 +269,7 @@ func (a_ AMAction) Output() objc.ID {
 func (a_ AMAction) SetOutput(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutput:"), value)
 }
+
 // A float value between 0 and 1, which indicates how far along the action is while processing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/progressValue
@@ -282,6 +287,7 @@ func (a_ AMAction) ProgressValue() float64 {
 func (a_ AMAction) SetProgressValue(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressValue:"), value)
 }
+
 // The type of input, in UTI format, of the input received by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
@@ -299,6 +305,7 @@ func (a_ AMAction) SelectedInputType() string {
 func (a_ AMAction) SetSelectedInputType(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), objc.String(value))
 }
+
 // The type of output, in UTI format, of the output to be produced by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
@@ -316,4 +323,5 @@ func (a_ AMAction) SelectedOutputType() string {
 func (a_ AMAction) SetSelectedOutputType(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), objc.String(value))
 }
+
 

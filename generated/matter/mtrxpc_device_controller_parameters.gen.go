@@ -76,6 +76,8 @@ func NewMTRXPCDeviceControllerParameters() MTRXPCDeviceControllerParameters {
 }
 
 
+
+
 // A controller created from this way will connect to a remote instance of an MTRDeviceController loaded in an XPC Service
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpcConnectionBlock:uniqueIdentifier:)

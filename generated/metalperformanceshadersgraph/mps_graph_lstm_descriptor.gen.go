@@ -100,3 +100,4 @@ func (g_ GraphLSTMDescriptor) SetCellGateActivation(value unsafe.Pointer) {
 }
 
 
+

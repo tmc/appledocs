@@ -12,5 +12,3 @@ var DisplacementDistortionProtocol *objc.Protocol
 func init() {
 	DisplacementDistortionProtocol = objc.GetProtocol("CIDisplacementDistortion")
 }
-
-

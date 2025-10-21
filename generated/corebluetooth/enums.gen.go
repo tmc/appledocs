@@ -9,78 +9,78 @@ package corebluetooth
 type CBATTError uint
 
 const (
-// CBATTErrorAttributeNotFound - The attribute wasn’t found within the specified attribute handle range.
-//
+	// CBATTErrorAttributeNotFound - The attribute wasn’t found within the specified attribute handle range.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/attributeNotFound
-CBATTErrorAttributeNotFound CBATTError = 0
-// CBATTErrorAttributeNotLong - The ATT read blob request can’t read or write the attribute.
-//
+	CBATTErrorAttributeNotFound CBATTError = 0
+	// CBATTErrorAttributeNotLong - The ATT read blob request can’t read or write the attribute.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/attributeNotLong
-CBATTErrorAttributeNotLong CBATTError = 0
-// CBATTErrorInsufficientAuthentication - Reading or writing the attribute’s value failed for lack of authentication.
-//
+	CBATTErrorAttributeNotLong CBATTError = 0
+	// CBATTErrorInsufficientAuthentication - Reading or writing the attribute’s value failed for lack of authentication.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/insufficientAuthentication
-CBATTErrorInsufficientAuthentication CBATTError = 0
-// CBATTErrorInsufficientAuthorization - Reading or writing the attribute’s value failed for lack of authorization.
-//
+	CBATTErrorInsufficientAuthentication CBATTError = 0
+	// CBATTErrorInsufficientAuthorization - Reading or writing the attribute’s value failed for lack of authorization.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/insufficientAuthorization
-CBATTErrorInsufficientAuthorization CBATTError = 0
-// CBATTErrorInsufficientEncryption - Reading or writing the attribute’s value failed for lack of encryption.
-//
+	CBATTErrorInsufficientAuthorization CBATTError = 0
+	// CBATTErrorInsufficientEncryption - Reading or writing the attribute’s value failed for lack of encryption.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/insufficientEncryption
-CBATTErrorInsufficientEncryption CBATTError = 0
-// CBATTErrorInsufficientEncryptionKeySize - The encryption key size used for encrypting this link is insufficient.
-//
+	CBATTErrorInsufficientEncryption CBATTError = 0
+	// CBATTErrorInsufficientEncryptionKeySize - The encryption key size used for encrypting this link is insufficient.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/insufficientEncryptionKeySize
-CBATTErrorInsufficientEncryptionKeySize CBATTError = 0
-// CBATTErrorInsufficientResources - Resources are insufficient to complete the ATT request.
-//
+	CBATTErrorInsufficientEncryptionKeySize CBATTError = 0
+	// CBATTErrorInsufficientResources - Resources are insufficient to complete the ATT request.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/insufficientResources
-CBATTErrorInsufficientResources CBATTError = 0
-// CBATTErrorInvalidAttributeValueLength - The length of the attribute’s value is invalid for the intended operation.
-//
+	CBATTErrorInsufficientResources CBATTError = 0
+	// CBATTErrorInvalidAttributeValueLength - The length of the attribute’s value is invalid for the intended operation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/invalidAttributeValueLength
-CBATTErrorInvalidAttributeValueLength CBATTError = 0
-// CBATTErrorInvalidHandle - The attribute handle is invalid on this peripheral.
-//
+	CBATTErrorInvalidAttributeValueLength CBATTError = 0
+	// CBATTErrorInvalidHandle - The attribute handle is invalid on this peripheral.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/invalidHandle
-CBATTErrorInvalidHandle CBATTError = 0
-// CBATTErrorInvalidOffset - The specified offset value was past the end of the attribute’s value.
-//
+	CBATTErrorInvalidHandle CBATTError = 0
+	// CBATTErrorInvalidOffset - The specified offset value was past the end of the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/invalidOffset
-CBATTErrorInvalidOffset CBATTError = 0
-// CBATTErrorInvalidPdu - The attribute Protocol Data Unit (PDU) is invalid.
-//
+	CBATTErrorInvalidOffset CBATTError = 0
+	// CBATTErrorInvalidPdu - The attribute Protocol Data Unit (PDU) is invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/invalidPdu
-CBATTErrorInvalidPdu CBATTError = 0
-// CBATTErrorPrepareQueueFull - The prepare queue is full, as a result of there being too many write requests in the queue.
-//
+	CBATTErrorInvalidPdu CBATTError = 0
+	// CBATTErrorPrepareQueueFull - The prepare queue is full, as a result of there being too many write requests in the queue.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/prepareQueueFull
-CBATTErrorPrepareQueueFull CBATTError = 0
-// CBATTErrorReadNotPermitted - The permissions prohibit reading the attribute’s value.
-//
+	CBATTErrorPrepareQueueFull CBATTError = 0
+	// CBATTErrorReadNotPermitted - The permissions prohibit reading the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/readNotPermitted
-CBATTErrorReadNotPermitted CBATTError = 0
-// CBATTErrorRequestNotSupported - The attribute server doesn’t support the request received from the client.
-//
+	CBATTErrorReadNotPermitted CBATTError = 0
+	// CBATTErrorRequestNotSupported - The attribute server doesn’t support the request received from the client.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/requestNotSupported
-CBATTErrorRequestNotSupported CBATTError = 0
-// CBATTErrorSuccess - The ATT command or request successfully completed.
-//
+	CBATTErrorRequestNotSupported CBATTError = 0
+	// CBATTErrorSuccess - The ATT command or request successfully completed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/success
-CBATTErrorSuccess CBATTError = 0
-// CBATTErrorUnlikelyError - The ATT request encountered an unlikely error and wasn’t completed.
-//
+	CBATTErrorSuccess CBATTError = 0
+	// CBATTErrorUnlikelyError - The ATT request encountered an unlikely error and wasn’t completed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/unlikelyError
-CBATTErrorUnlikelyError CBATTError = 0
-// CBATTErrorUnsupportedGroupType - The attribute type isn’t a supported grouping attribute as defined by a higher-layer specification.
-//
+	CBATTErrorUnlikelyError CBATTError = 0
+	// CBATTErrorUnsupportedGroupType - The attribute type isn’t a supported grouping attribute as defined by a higher-layer specification.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/unsupportedGroupType
-CBATTErrorUnsupportedGroupType CBATTError = 0
-// CBATTErrorWriteNotPermitted - The permissions prohibit writing the attribute’s value.
-//
+	CBATTErrorUnsupportedGroupType CBATTError = 0
+	// CBATTErrorWriteNotPermitted - The permissions prohibit writing the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTError-swift.struct/Code/writeNotPermitted
-CBATTErrorWriteNotPermitted CBATTError = 0
+	CBATTErrorWriteNotPermitted CBATTError = 0
 )
 
 // CBAttributePermissions - Values that represent the read, write, and encryption permissions for a characteristic’s value.
@@ -89,22 +89,22 @@ CBATTErrorWriteNotPermitted CBATTError = 0
 type CBAttributePermissions uint
 
 const (
-// CBAttributePermissionsReadEncryptionRequired - A permission that indicates only trusted devices can read the attribute’s value.
-//
+	// CBAttributePermissionsReadEncryptionRequired - A permission that indicates only trusted devices can read the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttributePermissions/readEncryptionRequired
-CBAttributePermissionsReadEncryptionRequired CBAttributePermissions = 0
-// CBAttributePermissionsReadable - A permission that indicates a peripheral can read the attribute’s value.
-//
+	CBAttributePermissionsReadEncryptionRequired CBAttributePermissions = 0
+	// CBAttributePermissionsReadable - A permission that indicates a peripheral can read the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttributePermissions/readable
-CBAttributePermissionsReadable CBAttributePermissions = 0
-// CBAttributePermissionsWriteEncryptionRequired - A permission that indicates only trusted devices can write the attribute’s value.
-//
+	CBAttributePermissionsReadable CBAttributePermissions = 0
+	// CBAttributePermissionsWriteEncryptionRequired - A permission that indicates only trusted devices can write the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttributePermissions/writeEncryptionRequired
-CBAttributePermissionsWriteEncryptionRequired CBAttributePermissions = 0
-// CBAttributePermissionsWriteable - A permission that indicates a peripheral can write the attribute’s value.
-//
+	CBAttributePermissionsWriteEncryptionRequired CBAttributePermissions = 0
+	// CBAttributePermissionsWriteable - A permission that indicates a peripheral can write the attribute’s value.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttributePermissions/writeable
-CBAttributePermissionsWriteable CBAttributePermissions = 0
+	CBAttributePermissionsWriteable CBAttributePermissions = 0
 )
 
 // CBCentralManagerFeature - An option set of device-specific features.
@@ -113,10 +113,10 @@ CBAttributePermissionsWriteable CBAttributePermissions = 0
 type CBCentralManagerFeature uint
 
 const (
-// CBCentralManagerFeatureExtendedScanAndConnect - The hardware supports extended scans and enhanced connection creation.
-//
+	// CBCentralManagerFeatureExtendedScanAndConnect - The hardware supports extended scans and enhanced connection creation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/Feature/extendedScanAndConnect
-CBCentralManagerFeatureExtendedScanAndConnect CBCentralManagerFeature = 0
+	CBCentralManagerFeatureExtendedScanAndConnect CBCentralManagerFeature = 0
 )
 
 // CBCentralManagerState - Values that represent the current state of a central manager object.
@@ -125,30 +125,30 @@ CBCentralManagerFeatureExtendedScanAndConnect CBCentralManagerFeature = 0
 type CBCentralManagerState uint
 
 const (
-// CBCentralManagerStatePoweredOff - A state that indicates Bluetooth is currently powered off.
-//
+	// CBCentralManagerStatePoweredOff - A state that indicates Bluetooth is currently powered off.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManagerState/poweredOff
-CBCentralManagerStatePoweredOff CBCentralManagerState = 0
-// CBCentralManagerStatePoweredOn - A state that indicates Bluetooth is currently powered on and available to use.
-//
+	CBCentralManagerStatePoweredOff CBCentralManagerState = 0
+	// CBCentralManagerStatePoweredOn - A state that indicates Bluetooth is currently powered on and available to use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManagerState/poweredOn
-CBCentralManagerStatePoweredOn CBCentralManagerState = 0
-// CBCentralManagerStateResetting - A state that indicates the connection with the system service was momentarily lost.
-//
+	CBCentralManagerStatePoweredOn CBCentralManagerState = 0
+	// CBCentralManagerStateResetting - A state that indicates the connection with the system service was momentarily lost.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManagerState/resetting
-CBCentralManagerStateResetting CBCentralManagerState = 0
-// CBCentralManagerStateUnauthorized - A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
-//
+	CBCentralManagerStateResetting CBCentralManagerState = 0
+	// CBCentralManagerStateUnauthorized - A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManagerState/unauthorized
-CBCentralManagerStateUnauthorized CBCentralManagerState = 0
-// CBCentralManagerStateUnknown - The manager’s state is unknown.
-//
+	CBCentralManagerStateUnauthorized CBCentralManagerState = 0
+	// CBCentralManagerStateUnknown - The manager’s state is unknown.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManagerState/unknown
-CBCentralManagerStateUnknown CBCentralManagerState = 0
-// CBCentralManagerStateUnsupported - A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
-//
+	CBCentralManagerStateUnknown CBCentralManagerState = 0
+	// CBCentralManagerStateUnsupported - A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManagerState/unsupported
-CBCentralManagerStateUnsupported CBCentralManagerState = 0
+	CBCentralManagerStateUnsupported CBCentralManagerState = 0
 )
 
 // CBCharacteristicProperties - Values that represent the possible properties of a characteristic.
@@ -162,14 +162,14 @@ type CBCharacteristicProperties uint
 type CBCharacteristicWriteType uint
 
 const (
-// CBCharacteristicWriteWithResponse - Write a characteristic value, with a response from the peripheral to indicate whether the write was successful.
-//
+	// CBCharacteristicWriteWithResponse - Write a characteristic value, with a response from the peripheral to indicate whether the write was successful.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicWriteType/withResponse
-CBCharacteristicWriteWithResponse CBCharacteristicWriteType = 0
-// CBCharacteristicWriteWithoutResponse - Write a characteristic value, without any response from the peripheral to indicate whether the write was successful.
-//
+	CBCharacteristicWriteWithResponse CBCharacteristicWriteType = 0
+	// CBCharacteristicWriteWithoutResponse - Write a characteristic value, without any response from the peripheral to indicate whether the write was successful.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicWriteType/withoutResponse
-CBCharacteristicWriteWithoutResponse CBCharacteristicWriteType = 0
+	CBCharacteristicWriteWithoutResponse CBCharacteristicWriteType = 0
 )
 
 // CBConnectionEvent - A change to the connection state of a peer.
@@ -183,81 +183,81 @@ type CBConnectionEvent uint
 type CBError uint
 
 const (
-// CBErrorUnknownDevice - The device is unknown.
-//
+	// CBErrorUnknownDevice - The device is unknown.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-c.enum/CBErrorUnknownDevice
-CBErrorUnknownDevice CBError = 0
-// CBErrorAlreadyAdvertising - The peripheral is already advertising.
-//
+	CBErrorUnknownDevice CBError = 0
+	// CBErrorAlreadyAdvertising - The peripheral is already advertising.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/alreadyAdvertising
-CBErrorAlreadyAdvertising CBError = 0
-// CBErrorConnectionFailed - The connection failed.
-//
+	CBErrorAlreadyAdvertising CBError = 0
+	// CBErrorConnectionFailed - The connection failed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/connectionFailed
-CBErrorConnectionFailed CBError = 0
-// CBErrorConnectionLimitReached - The device already has the maximum number of connections.
-//
+	CBErrorConnectionFailed CBError = 0
+	// CBErrorConnectionLimitReached - The device already has the maximum number of connections.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/connectionLimitReached
-CBErrorConnectionLimitReached CBError = 0
-// CBErrorConnectionTimeout - The connection timed out.
-//
+	CBErrorConnectionLimitReached CBError = 0
+	// CBErrorConnectionTimeout - The connection timed out.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/connectionTimeout
-CBErrorConnectionTimeout CBError = 0
-//
+	CBErrorConnectionTimeout CBError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/encryptionTimedOut
-CBErrorEncryptionTimedOut CBError = 0
-// CBErrorInvalidHandle - The specified attribute handle is invalid.
-//
+	CBErrorEncryptionTimedOut CBError = 0
+	// CBErrorInvalidHandle - The specified attribute handle is invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/invalidHandle
-CBErrorInvalidHandle CBError = 0
-// CBErrorInvalidParameters - The specified parameters are invalid.
-//
+	CBErrorInvalidHandle CBError = 0
+	// CBErrorInvalidParameters - The specified parameters are invalid.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/invalidParameters
-CBErrorInvalidParameters CBError = 0
-//
+	CBErrorInvalidParameters CBError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/leGattExceededBackgroundNotificationLimit
-CBErrorLeGattExceededBackgroundNotificationLimit CBError = 0
-//
+	CBErrorLeGattExceededBackgroundNotificationLimit CBError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/leGattNearBackgroundNotificationLimit
-CBErrorLeGattNearBackgroundNotificationLimit CBError = 0
-// CBErrorNotConnected - The device isn’t currently connected.
-//
+	CBErrorLeGattNearBackgroundNotificationLimit CBError = 0
+	// CBErrorNotConnected - The device isn’t currently connected.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/notConnected
-CBErrorNotConnected CBError = 0
-// CBErrorOperationCancelled - The error represents a canceled operation.
-//
+	CBErrorNotConnected CBError = 0
+	// CBErrorOperationCancelled - The error represents a canceled operation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/operationCancelled
-CBErrorOperationCancelled CBError = 0
-// CBErrorOperationNotSupported - The operation isn’t supported.
-//
+	CBErrorOperationCancelled CBError = 0
+	// CBErrorOperationNotSupported - The operation isn’t supported.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/operationNotSupported
-CBErrorOperationNotSupported CBError = 0
-// CBErrorOutOfSpace - The device has run out of space to complete the intended operation.
-//
+	CBErrorOperationNotSupported CBError = 0
+	// CBErrorOutOfSpace - The device has run out of space to complete the intended operation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/outOfSpace
-CBErrorOutOfSpace CBError = 0
-//
+	CBErrorOutOfSpace CBError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/peerRemovedPairingInformation
-CBErrorPeerRemovedPairingInformation CBError = 0
-// CBErrorPeripheralDisconnected - The peripheral disconnected.
-//
+	CBErrorPeerRemovedPairingInformation CBError = 0
+	// CBErrorPeripheralDisconnected - The peripheral disconnected.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/peripheralDisconnected
-CBErrorPeripheralDisconnected CBError = 0
-//
+	CBErrorPeripheralDisconnected CBError = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/tooManyLEPairedDevices
-CBErrorTooManyLEPairedDevices CBError = 0
-// CBErrorUnknown - An unknown error occurred.
-//
+	CBErrorTooManyLEPairedDevices CBError = 0
+	// CBErrorUnknown - An unknown error occurred.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/unknown
-CBErrorUnknown CBError = 0
-// CBErrorUnkownDevice - A misspelled version of the unknown device error code.
-//
+	CBErrorUnknown CBError = 0
+	// CBErrorUnkownDevice - A misspelled version of the unknown device error code.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/unkownDevice
-CBErrorUnkownDevice CBError = 0
-// CBErrorUUIDNotAllowed - The specified UUID isn’t permitted.
-//
+	CBErrorUnkownDevice CBError = 0
+	// CBErrorUUIDNotAllowed - The specified UUID isn’t permitted.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBError-swift.struct/Code/uuidNotAllowed
-CBErrorUUIDNotAllowed CBError = 0
+	CBErrorUUIDNotAllowed CBError = 0
 )
 
 // CBManagerAuthorization - The current authorization state of a Core Bluetooth manager.
@@ -266,18 +266,18 @@ CBErrorUUIDNotAllowed CBError = 0
 type CBManagerAuthorization uint
 
 const (
-// CBManagerAuthorizationAllowedAlways - A state that indicates the user has authorized Bluetooth at any time.
-//
+	// CBManagerAuthorizationAllowedAlways - A state that indicates the user has authorized Bluetooth at any time.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerAuthorization/allowedAlways
-CBManagerAuthorizationAllowedAlways CBManagerAuthorization = 0
-// CBManagerAuthorizationDenied - A state that indicates the user explicitly denied Bluetooth access for this app.
-//
+	CBManagerAuthorizationAllowedAlways CBManagerAuthorization = 0
+	// CBManagerAuthorizationDenied - A state that indicates the user explicitly denied Bluetooth access for this app.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerAuthorization/denied
-CBManagerAuthorizationDenied CBManagerAuthorization = 0
-// CBManagerAuthorizationNotDetermined - A state that indicates the user has yet to authorize Bluetooth for this app.
-//
+	CBManagerAuthorizationDenied CBManagerAuthorization = 0
+	// CBManagerAuthorizationNotDetermined - A state that indicates the user has yet to authorize Bluetooth for this app.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerAuthorization/notDetermined
-CBManagerAuthorizationNotDetermined CBManagerAuthorization = 0
+	CBManagerAuthorizationNotDetermined CBManagerAuthorization = 0
 )
 
 // CBManagerState - The possible states of a Core Bluetooth manager.
@@ -286,30 +286,30 @@ CBManagerAuthorizationNotDetermined CBManagerAuthorization = 0
 type CBManagerState uint
 
 const (
-// CBManagerStatePoweredOff - A state that indicates Bluetooth is currently powered off.
-//
+	// CBManagerStatePoweredOff - A state that indicates Bluetooth is currently powered off.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/poweredOff
-CBManagerStatePoweredOff CBManagerState = 0
-// CBManagerStatePoweredOn - A state that indicates Bluetooth is currently powered on and available to use.
-//
+	CBManagerStatePoweredOff CBManagerState = 0
+	// CBManagerStatePoweredOn - A state that indicates Bluetooth is currently powered on and available to use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/poweredOn
-CBManagerStatePoweredOn CBManagerState = 0
-// CBManagerStateResetting - A state that indicates the connection with the system service was momentarily lost.
-//
+	CBManagerStatePoweredOn CBManagerState = 0
+	// CBManagerStateResetting - A state that indicates the connection with the system service was momentarily lost.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/resetting
-CBManagerStateResetting CBManagerState = 0
-// CBManagerStateUnauthorized - A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
-//
+	CBManagerStateResetting CBManagerState = 0
+	// CBManagerStateUnauthorized - A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/unauthorized
-CBManagerStateUnauthorized CBManagerState = 0
-// CBManagerStateUnknown - The manager’s state is unknown.
-//
+	CBManagerStateUnauthorized CBManagerState = 0
+	// CBManagerStateUnknown - The manager’s state is unknown.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/unknown
-CBManagerStateUnknown CBManagerState = 0
-// CBManagerStateUnsupported - A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
-//
+	CBManagerStateUnknown CBManagerState = 0
+	// CBManagerStateUnsupported - A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/unsupported
-CBManagerStateUnsupported CBManagerState = 0
+	CBManagerStateUnsupported CBManagerState = 0
 )
 
 // CBPeripheralManagerAuthorizationStatus - Values representing the current authorization state of the peripheral manager.
@@ -328,30 +328,30 @@ type CBPeripheralManagerConnectionLatency uint
 type CBPeripheralManagerState uint
 
 const (
-// CBPeripheralManagerStatePoweredOff - A manager state that indicates Bluetooth is currently powered off.
-//
+	// CBPeripheralManagerStatePoweredOff - A manager state that indicates Bluetooth is currently powered off.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManagerState/poweredOff
-CBPeripheralManagerStatePoweredOff CBPeripheralManagerState = 0
-// CBPeripheralManagerStatePoweredOn - A manager state that indicates Bluetooth is currently powered on and is available to use.
-//
+	CBPeripheralManagerStatePoweredOff CBPeripheralManagerState = 0
+	// CBPeripheralManagerStatePoweredOn - A manager state that indicates Bluetooth is currently powered on and is available to use.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManagerState/poweredOn
-CBPeripheralManagerStatePoweredOn CBPeripheralManagerState = 0
-// CBPeripheralManagerStateResetting - A manager state that indicates the connection with the system service was momentarily lost.
-//
+	CBPeripheralManagerStatePoweredOn CBPeripheralManagerState = 0
+	// CBPeripheralManagerStateResetting - A manager state that indicates the connection with the system service was momentarily lost.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManagerState/resetting
-CBPeripheralManagerStateResetting CBPeripheralManagerState = 0
-// CBPeripheralManagerStateUnauthorized - A manager state that indicates the app isn’t authorized to use the Bluetooth low energy peripheral/server role.
-//
+	CBPeripheralManagerStateResetting CBPeripheralManagerState = 0
+	// CBPeripheralManagerStateUnauthorized - A manager state that indicates the app isn’t authorized to use the Bluetooth low energy peripheral/server role.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManagerState/unauthorized
-CBPeripheralManagerStateUnauthorized CBPeripheralManagerState = 0
-// CBPeripheralManagerStateUnknown - A manager state that indicates the current state of the peripheral manager is unknown.
-//
+	CBPeripheralManagerStateUnauthorized CBPeripheralManagerState = 0
+	// CBPeripheralManagerStateUnknown - A manager state that indicates the current state of the peripheral manager is unknown.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManagerState/unknown
-CBPeripheralManagerStateUnknown CBPeripheralManagerState = 0
-// CBPeripheralManagerStateUnsupported - A manager state that indicates the platform doesn’t support the Bluetooth low energy peripheral/server role.
-//
+	CBPeripheralManagerStateUnknown CBPeripheralManagerState = 0
+	// CBPeripheralManagerStateUnsupported - A manager state that indicates the platform doesn’t support the Bluetooth low energy peripheral/server role.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManagerState/unsupported
-CBPeripheralManagerStateUnsupported CBPeripheralManagerState = 0
+	CBPeripheralManagerStateUnsupported CBPeripheralManagerState = 0
 )
 
 // CBPeripheralState - Values representing the connection state of a peripheral.

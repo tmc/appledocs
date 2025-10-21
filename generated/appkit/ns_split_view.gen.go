@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SplitView] class.
@@ -93,6 +93,7 @@ func (s_ SplitView) Autorelease() SplitView {
 func NewSplitView() SplitView {
 	return getSplitViewClass().New()
 }
+
 
 // Adds a view as an arranged split pane.
 //
@@ -206,6 +207,7 @@ func (s_ SplitView) ArrangesAllSubviews() bool {
 	return rv
 }
 
+
 // SetArrangesAllSubviews sets the value of the arrangesAllSubviews property.
 // A Boolean value that determines whether the split view arranges all of its subviews as split panes.
 
@@ -223,6 +225,7 @@ func (s_ SplitView) AutosaveName() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAutosaveName sets the value of the autosaveName property.
 // The name to use when the system automatically saves the split view’s divider configuration.
 
@@ -239,6 +242,7 @@ func (s_ SplitView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 // SetDelegate sets the value of the delegate property.
 // The split view’s delegate.
@@ -265,6 +269,7 @@ func (s_ SplitView) DividerStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDividerStyle sets the value of the dividerStyle property.
 // The style of divider between views.
 
@@ -290,6 +295,7 @@ func (s_ SplitView) Vertical() bool {
 	return rv
 }
 
+
 // SetVertical sets the value of the vertical property.
 // A Boolean value that determines the geometric orientation of the split view’s dividers.
 
@@ -298,3 +304,6 @@ func (s_ SplitView) Vertical() bool {
 func (s_ SplitView) SetVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
 }
+
+
+

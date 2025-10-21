@@ -20,5 +20,3 @@ var layerWillDrawProtocol *objc.Protocol
 func init() {
 	layerWillDrawProtocol = objc.GetProtocol("layerWillDraw:")
 }
-
-

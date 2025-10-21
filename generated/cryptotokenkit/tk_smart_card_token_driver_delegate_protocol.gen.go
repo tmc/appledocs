@@ -12,5 +12,3 @@ var TKSmartCardTokenDriverDelegateProtocol *objc.Protocol
 func init() {
 	TKSmartCardTokenDriverDelegateProtocol = objc.GetProtocol("TKSmartCardTokenDriverDelegate")
 }
-
-

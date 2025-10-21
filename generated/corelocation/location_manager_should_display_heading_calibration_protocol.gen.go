@@ -19,5 +19,3 @@ var locationManagerShouldDisplayHeadingCalibrationProtocol *objc.Protocol
 func init() {
 	locationManagerShouldDisplayHeadingCalibrationProtocol = objc.GetProtocol("locationManagerShouldDisplayHeadingCalibration:")
 }
-
-

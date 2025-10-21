@@ -18,5 +18,3 @@ var FileProviderItemDecoratingProtocol *objc.Protocol
 func init() {
 	FileProviderItemDecoratingProtocol = objc.GetProtocol("NSFileProviderItemDecorating")
 }
-
-

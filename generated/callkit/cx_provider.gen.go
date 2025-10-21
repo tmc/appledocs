@@ -89,6 +89,8 @@ func NewCXProvider() CXProvider {
 }
 
 
+
+
 // Initializes a new provider with the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/init(configuration:)
@@ -181,6 +183,7 @@ func (c_ CXProvider) Configuration() unsafe.Pointer {
 func (c_ CXProvider) SetConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
+
 // Incomplete transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingTransactions

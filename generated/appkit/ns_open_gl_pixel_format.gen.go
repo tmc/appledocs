@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OpenGLPixelFormat] class.
@@ -79,6 +80,7 @@ func NewOpenGLPixelFormat() OpenGLPixelFormat {
 	return getOpenGLPixelFormatClass().New()
 }
 
+
 // The low-level, platform-specific Core OpenGL (CGL) pixel format object represented by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/cglPixelFormatObj
@@ -86,3 +88,6 @@ func (o_ OpenGLPixelFormat) CGLPixelFormatObj() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLPixelFormatObj"))
 	return rv
 }
+
+
+

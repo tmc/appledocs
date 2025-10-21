@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterRecordProgramParams) Data() unsafe.Pointer {
 func (m_ MTRChannelClusterRecordProgramParams) SetData(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
 func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
@@ -104,6 +105,7 @@ func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
 func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() uns
 func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/shouldRecordSeries
 func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() unsafe.Pointer {
@@ -135,6 +138,7 @@ func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() unsafe.Point
 func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRecordSeries:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/timedInvokeTimeoutMs
@@ -152,5 +156,6 @@ func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() unsafe.Poi
 func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

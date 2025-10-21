@@ -104,6 +104,7 @@ func (p_ PDFBorder) DashPattern() unsafe.Pointer {
 func (p_ PDFBorder) SetDashPattern(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDashPattern:"), value)
 }
+
 // Sets the line width (in points) for the border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/lineWidth
@@ -121,6 +122,7 @@ func (p_ PDFBorder) LineWidth() float64 {
 func (p_ PDFBorder) SetLineWidth(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLineWidth:"), value)
 }
+
 // Sets the border style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/style
@@ -138,5 +140,6 @@ func (p_ PDFBorder) Style() unsafe.Pointer {
 func (p_ PDFBorder) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
+
 
 

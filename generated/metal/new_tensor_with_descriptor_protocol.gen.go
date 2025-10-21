@@ -20,5 +20,3 @@ var newTensorWithDescriptorProtocol *objc.Protocol
 func init() {
 	newTensorWithDescriptorProtocol = objc.GetProtocol("newTensorWithDescriptor:")
 }
-
-

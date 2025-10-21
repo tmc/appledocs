@@ -78,6 +78,7 @@ func NewPICTImageRep() PICTImageRep {
 	return getPICTImageRepClass().New()
 }
 
+
 // The image representation’s PICT data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/pictRepresentation
@@ -85,3 +86,6 @@ func (p_ PICTImageRep) PICTRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PICTRepresentation"))
 	return rv
 }
+
+
+

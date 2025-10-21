@@ -12,5 +12,3 @@ var AztecCodeGeneratorProtocol *objc.Protocol
 func init() {
 	AztecCodeGeneratorProtocol = objc.GetProtocol("CIAztecCodeGenerator")
 }
-
-

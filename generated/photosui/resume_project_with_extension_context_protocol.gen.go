@@ -15,5 +15,3 @@ var resumeProjectWithExtensionContextProtocol *objc.Protocol
 func init() {
 	resumeProjectWithExtensionContextProtocol = objc.GetProtocol("resumeProjectWithExtensionContext:")
 }
-
-

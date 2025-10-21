@@ -90,6 +90,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() unsafe.Pointer {
 func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/type
 func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() unsafe.Pointer {
 func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
+
 
 

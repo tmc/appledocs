@@ -15,5 +15,3 @@ var shouldConnectExternalDomainWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	shouldConnectExternalDomainWithCompletionHandlerProtocol = objc.GetProtocol("shouldConnectExternalDomainWithCompletionHandler:")
 }
-
-

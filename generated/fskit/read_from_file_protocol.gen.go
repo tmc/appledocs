@@ -15,5 +15,3 @@ var readFromFileProtocol *objc.Protocol
 func init() {
 	readFromFileProtocol = objc.GetProtocol("readFromFile:")
 }
-
-

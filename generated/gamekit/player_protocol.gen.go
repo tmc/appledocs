@@ -21,5 +21,3 @@ var playerProtocol *objc.Protocol
 func init() {
 	playerProtocol = objc.GetProtocol("player:")
 }
-
-

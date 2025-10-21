@@ -12,5 +12,3 @@ var occlusionProtocol *objc.Protocol
 func init() {
 	occlusionProtocol = objc.GetProtocol("occlusion")
 }
-
-

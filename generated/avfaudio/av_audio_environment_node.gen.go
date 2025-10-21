@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioEnvironmentNode] class.
@@ -107,6 +108,7 @@ func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool {
 func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerHeadTrackingEnabled:"), value)
 }
+
 // The listener’s angular orientation in the environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
@@ -124,4 +126,5 @@ func (a_ AudioEnvironmentNode) ListenerAngularOrientation() unsafe.Pointer {
 func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerAngularOrientation:"), value)
 }
+
 

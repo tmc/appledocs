@@ -12,5 +12,3 @@ var customAttributesProtocol *objc.Protocol
 func init() {
 	customAttributesProtocol = objc.GetProtocol("customAttributes")
 }
-
-

@@ -12,5 +12,3 @@ var MorphologyGradientProtocol *objc.Protocol
 func init() {
 	MorphologyGradientProtocol = objc.GetProtocol("CIMorphologyGradient")
 }
-
-

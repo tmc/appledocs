@@ -98,6 +98,7 @@ func (g_ GLKEffectPropertyLight) AmbientColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetAmbientColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAmbientColor:"), value)
 }
+
 // A constant factor applied to the attenuation of a point light or spotlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation
@@ -115,6 +116,7 @@ func (g_ GLKEffectPropertyLight) ConstantAttenuation() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetConstantAttenuation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setConstantAttenuation:"), value)
 }
+
 // The diffuse portion of the light.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/diffuseColor
@@ -132,6 +134,7 @@ func (g_ GLKEffectPropertyLight) DiffuseColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetDiffuseColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDiffuseColor:"), value)
 }
+
 // A Boolean value that indicates whether calculations should be performed on this light.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/enabled
@@ -149,6 +152,7 @@ func (g_ GLKEffectPropertyLight) Enabled() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // A linear factor applied to the attenuation of a point light or spotlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation
@@ -166,6 +170,7 @@ func (g_ GLKEffectPropertyLight) LinearAttenuation() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetLinearAttenuation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLinearAttenuation:"), value)
 }
+
 // The position of the light in world coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/position
@@ -183,6 +188,7 @@ func (g_ GLKEffectPropertyLight) Position() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPosition:"), value)
 }
+
 // A quadratic factor applied to the attenuation of a point light or spotlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation
@@ -200,6 +206,7 @@ func (g_ GLKEffectPropertyLight) QuadraticAttenuation() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetQuadraticAttenuation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setQuadraticAttenuation:"), value)
 }
+
 // The specular portion of the light.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/specularColor
@@ -217,6 +224,7 @@ func (g_ GLKEffectPropertyLight) SpecularColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetSpecularColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpecularColor:"), value)
 }
+
 // The angle in degrees where the spotlight is cut off.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/spotCutoff
@@ -234,6 +242,7 @@ func (g_ GLKEffectPropertyLight) SpotCutoff() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetSpotCutoff(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpotCutoff:"), value)
 }
+
 // A vector indicating the direction the spotlight is projecting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/spotDirection
@@ -251,6 +260,7 @@ func (g_ GLKEffectPropertyLight) SpotDirection() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetSpotDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpotDirection:"), value)
 }
+
 // A value indicating how focused the spotlight is.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/spotExponent
@@ -268,6 +278,7 @@ func (g_ GLKEffectPropertyLight) SpotExponent() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetSpotExponent(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpotExponent:"), value)
 }
+
 // A transform applied to the light’s position and direction before calculating the contribution of the light.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/transform
@@ -285,5 +296,6 @@ func (g_ GLKEffectPropertyLight) Transform() unsafe.Pointer {
 func (g_ GLKEffectPropertyLight) SetTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTransform:"), value)
 }
+
 
 

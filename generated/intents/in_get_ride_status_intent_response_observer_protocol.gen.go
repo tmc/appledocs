@@ -19,5 +19,3 @@ var INGetRideStatusIntentResponseObserverProtocol *objc.Protocol
 func init() {
 	INGetRideStatusIntentResponseObserverProtocol = objc.GetProtocol("INGetRideStatusIntentResponseObserver")
 }
-
-

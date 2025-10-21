@@ -82,6 +82,8 @@ func NewGameCenterViewController() GameCenterViewController {
 }
 
 
+
+
 // Creates a view controller that presents a leaderboard set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(leaderboardSetID:)
@@ -91,6 +93,8 @@ func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) Ga
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a view controller that presents a player’s Game Center profile.
 //

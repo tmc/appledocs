@@ -90,6 +90,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) CheckInNodeID() un
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetCheckInNodeID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/clientType
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) ClientType() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) ClientType() unsaf
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetClientType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientType:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/fabricIndex
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) FabricIndex() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) FabricIndex() unsa
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetFabricIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/monitoredSubject
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) MonitoredSubject() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) MonitoredSubject()
 func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetMonitoredSubject(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMonitoredSubject:"), value)
 }
+
 
 

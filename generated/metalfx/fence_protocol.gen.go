@@ -20,5 +20,3 @@ var fenceProtocol *objc.Protocol
 func init() {
 	fenceProtocol = objc.GetProtocol("fence")
 }
-
-

@@ -19,5 +19,3 @@ var ComputePipelineStateProtocol *objc.Protocol
 func init() {
 	ComputePipelineStateProtocol = objc.GetProtocol("MTLComputePipelineState")
 }
-
-

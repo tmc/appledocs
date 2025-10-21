@@ -5,24 +5,6 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
-
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
-// CFTypeRef is a CoreGraphics opaque type.
-type CFTypeRef unsafe.Pointer
-
-// CGColorSpaceRef is a CoreGraphics opaque type.
-type CGColorSpaceRef unsafe.Pointer
-
 // CVBufferRef is a CoreGraphics opaque type.
 type CVBufferRef unsafe.Pointer
 
@@ -68,9 +50,6 @@ type CVPixelBufferPoolRef unsafe.Pointer
 // CVPixelBufferRef is a CoreGraphics opaque type.
 type CVPixelBufferRef unsafe.Pointer
 
-// IOSurfaceRef is a CoreGraphics opaque type.
-type IOSurfaceRef unsafe.Pointer
-
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
@@ -80,9 +59,21 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type Boolean unsafe.Pointer
 
+type CFAllocatorRef unsafe.Pointer
+
+type CFArrayRef unsafe.Pointer
+
+type CFDictionaryRef unsafe.Pointer
+
 type CFIndex unsafe.Pointer
 
+type CFStringRef unsafe.Pointer
+
 type CFTypeID unsafe.Pointer
+
+type CFTypeRef unsafe.Pointer
+
+type CGColorSpaceRef unsafe.Pointer
 
 type CGDirectDisplayID unsafe.Pointer
 
@@ -129,6 +120,8 @@ type GLint unsafe.Pointer
 type GLsizei unsafe.Pointer
 
 type GLuint unsafe.Pointer
+
+type IOSurfaceRef unsafe.Pointer
 
 type MTLBuffer unsafe.Pointer
 

@@ -20,4 +20,3 @@ var workoutSessionProtocol *objc.Protocol
 func init() {
 	workoutSessionProtocol = objc.GetProtocol("workoutSession:")
 }
-

@@ -9,38 +9,38 @@ package mediaplayer
 type ErrorCode uint
 
 const (
-// ErrorCancelled - An error that indicates the system canceled the requested operation before it completed.
-//
+	// ErrorCancelled - An error that indicates the system canceled the requested operation before it completed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/cancelled
-ErrorCancelled ErrorCode = 0
-// ErrorCloudServiceCapabilityMissing - An error that indicates the operation can’t complete because iCloud services aren’t enabled.
-//
+	ErrorCancelled ErrorCode = 0
+	// ErrorCloudServiceCapabilityMissing - An error that indicates the operation can’t complete because iCloud services aren’t enabled.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/cloudServiceCapabilityMissing
-ErrorCloudServiceCapabilityMissing ErrorCode = 0
-// ErrorNetworkConnectionFailed - An error that indicates the operation failed because the device can’t connect to the network.
-//
+	ErrorCloudServiceCapabilityMissing ErrorCode = 0
+	// ErrorNetworkConnectionFailed - An error that indicates the operation failed because the device can’t connect to the network.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/networkConnectionFailed
-ErrorNetworkConnectionFailed ErrorCode = 0
-// ErrorNotFound - An error that indicates the operation failed because the system can’t find the requested identifier in the current storefront.
-//
+	ErrorNetworkConnectionFailed ErrorCode = 0
+	// ErrorNotFound - An error that indicates the operation failed because the system can’t find the requested identifier in the current storefront.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/notFound
-ErrorNotFound ErrorCode = 0
-// ErrorNotSupported - An error that indicates the requested operation failed because the system doesn’t support it.
-//
+	ErrorNotFound ErrorCode = 0
+	// ErrorNotSupported - An error that indicates the requested operation failed because the system doesn’t support it.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/notSupported
-ErrorNotSupported ErrorCode = 0
-// ErrorPermissionDenied - An error that indicates the operation can’t complete because the user doesn’t have permission to execute the operation.
-//
+	ErrorNotSupported ErrorCode = 0
+	// ErrorPermissionDenied - An error that indicates the operation can’t complete because the user doesn’t have permission to execute the operation.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/permissionDenied
-ErrorPermissionDenied ErrorCode = 0
-// ErrorRequestTimedOut - An error that indicates the requested operation timed out.
-//
+	ErrorPermissionDenied ErrorCode = 0
+	// ErrorRequestTimedOut - An error that indicates the requested operation timed out.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/requestTimedOut
-ErrorRequestTimedOut ErrorCode = 0
-// ErrorUnknown - An error that indicates the requested operation can’t complete due to an unknown error.
-//
+	ErrorRequestTimedOut ErrorCode = 0
+	// ErrorUnknown - An error that indicates the requested operation can’t complete due to an unknown error.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPError/Code/unknown
-ErrorUnknown ErrorCode = 0
+	ErrorUnknown ErrorCode = 0
 )
 
 // MPMediaGrouping - Keys used to configure a media query.
@@ -49,30 +49,30 @@ ErrorUnknown ErrorCode = 0
 type MediaGrouping uint
 
 const (
-// MediaGroupingAlbum - Groups and sorts media item collections by album, and sorts songs within an album by track order.
-//
+	// MediaGroupingAlbum - Groups and sorts media item collections by album, and sorts songs within an album by track order.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaGrouping/album
-MediaGroupingAlbum MediaGrouping = 0
-// MediaGroupingArtist - Groups and sorts media item collections by performing artist.
-//
+	MediaGroupingAlbum MediaGrouping = 0
+	// MediaGroupingArtist - Groups and sorts media item collections by performing artist.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaGrouping/artist
-MediaGroupingArtist MediaGrouping = 0
-// MediaGroupingGenre - Groups and sorts media item collections by musical or film genre.
-//
+	MediaGroupingArtist MediaGrouping = 0
+	// MediaGroupingGenre - Groups and sorts media item collections by musical or film genre.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaGrouping/genre
-MediaGroupingGenre MediaGrouping = 0
-// MediaGroupingPlaylist - Groups and sorts media item collections by playlist.
-//
+	MediaGroupingGenre MediaGrouping = 0
+	// MediaGroupingPlaylist - Groups and sorts media item collections by playlist.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaGrouping/playlist
-MediaGroupingPlaylist MediaGrouping = 0
-// MediaGroupingPodcastTitle - Groups and sorts media item collections by podcast title.
-//
+	MediaGroupingPlaylist MediaGrouping = 0
+	// MediaGroupingPodcastTitle - Groups and sorts media item collections by podcast title.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaGrouping/podcastTitle
-MediaGroupingPodcastTitle MediaGrouping = 0
-// MediaGroupingTitle - Groups and sorts media item collections by title. For songs, for example, the title is the song name. This is the default grouping key.
-//
+	MediaGroupingPodcastTitle MediaGrouping = 0
+	// MediaGroupingTitle - Groups and sorts media item collections by title. For songs, for example, the title is the song name. This is the default grouping key.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaGrouping/title
-MediaGroupingTitle MediaGrouping = 0
+	MediaGroupingTitle MediaGrouping = 0
 )
 
 // MPMediaLibraryAuthorizationStatus - The list of possible states for authorization to access to the user’s media library.
@@ -81,22 +81,22 @@ MediaGroupingTitle MediaGrouping = 0
 type MediaLibraryAuthorizationStatus uint
 
 const (
-// MediaLibraryAuthorizationStatusAuthorized - Your app may access items in the user’s media library.
-//
+	// MediaLibraryAuthorizationStatusAuthorized - Your app may access items in the user’s media library.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibraryAuthorizationStatus/authorized
-MediaLibraryAuthorizationStatusAuthorized MediaLibraryAuthorizationStatus = 0
-// MediaLibraryAuthorizationStatusDenied - The app may not access the items in the user’s media library.
-//
+	MediaLibraryAuthorizationStatusAuthorized MediaLibraryAuthorizationStatus = 0
+	// MediaLibraryAuthorizationStatusDenied - The app may not access the items in the user’s media library.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibraryAuthorizationStatus/denied
-MediaLibraryAuthorizationStatusDenied MediaLibraryAuthorizationStatus = 0
-// MediaLibraryAuthorizationStatusNotDetermined - The user hasn’t determined whether to authorize the use of their media library.
-//
+	MediaLibraryAuthorizationStatusDenied MediaLibraryAuthorizationStatus = 0
+	// MediaLibraryAuthorizationStatusNotDetermined - The user hasn’t determined whether to authorize the use of their media library.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibraryAuthorizationStatus/notDetermined
-MediaLibraryAuthorizationStatusNotDetermined MediaLibraryAuthorizationStatus = 0
-// MediaLibraryAuthorizationStatusRestricted - The app may access some of the content in the user’s media library.
-//
+	MediaLibraryAuthorizationStatusNotDetermined MediaLibraryAuthorizationStatus = 0
+	// MediaLibraryAuthorizationStatusRestricted - The app may access some of the content in the user’s media library.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibraryAuthorizationStatus/restricted
-MediaLibraryAuthorizationStatusRestricted MediaLibraryAuthorizationStatus = 0
+	MediaLibraryAuthorizationStatusRestricted MediaLibraryAuthorizationStatus = 0
 )
 
 // MPMediaPlaylistAttribute - Attributes define the type of playlist.
@@ -110,10 +110,10 @@ type MediaPlaylistAttribute uint
 type MediaPredicateComparison uint
 
 const (
-// MediaPredicateComparisonEqualTo - Matches when a media item’s value for a given property is equal to the value in the media property predicate.
-//
+	// MediaPredicateComparisonEqualTo - Matches when a media item’s value for a given property is equal to the value in the media property predicate.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPredicateComparison/equalTo
-MediaPredicateComparisonEqualTo MediaPredicateComparison = 0
+	MediaPredicateComparisonEqualTo MediaPredicateComparison = 0
 )
 
 // MPMediaType - The properties for defining the type for a media item.
@@ -122,22 +122,22 @@ MediaPredicateComparisonEqualTo MediaPredicateComparison = 0
 type MediaType uint
 
 const (
-// MediaTypeAny - The media item contains an unspecified type of media content.
-//
+	// MediaTypeAny - The media item contains an unspecified type of media content.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaType/any
-MediaTypeAny MediaType = 0
-// MediaTypeAudioBook - The media item contains an audio book.
-//
+	MediaTypeAny MediaType = 0
+	// MediaTypeAudioBook - The media item contains an audio book.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaType/audioBook
-MediaTypeAudioBook MediaType = 0
-// MediaTypeMusic - The media item contains music.
-//
+	MediaTypeAudioBook MediaType = 0
+	// MediaTypeMusic - The media item contains music.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaType/music
-MediaTypeMusic MediaType = 0
-// MediaTypePodcast - The media item contains a podcast.
-//
+	MediaTypeMusic MediaType = 0
+	// MediaTypePodcast - The media item contains a podcast.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaType/podcast
-MediaTypePodcast MediaType = 0
+	MediaTypePodcast MediaType = 0
 )
 
 // MPMovieLoadState - Constants describing the network load state of the movie player.

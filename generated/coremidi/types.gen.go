@@ -5,15 +5,6 @@ import (
 	"unsafe"
 )
 
-// CFDataRef is a CoreGraphics opaque type.
-type CFDataRef unsafe.Pointer
-
-// CFRunLoopRef is a CoreGraphics opaque type.
-type CFRunLoopRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
 // MIDIClientRef is a CoreGraphics opaque type.
 type MIDIClientRef unsafe.Pointer
 
@@ -55,6 +46,12 @@ type Boolean unsafe.Pointer
 type ByteCount unsafe.Pointer
 
 type CFArrayRef unsafe.Pointer
+
+type CFDataRef unsafe.Pointer
+
+type CFRunLoopRef unsafe.Pointer
+
+type CFStringRef unsafe.Pointer
 
 type ItemCount unsafe.Pointer
 

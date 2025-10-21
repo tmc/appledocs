@@ -12,5 +12,3 @@ var rfcommChannelQueueSpaceAvailableProtocol *objc.Protocol
 func init() {
 	rfcommChannelQueueSpaceAvailableProtocol = objc.GetProtocol("rfcommChannelQueueSpaceAvailable:")
 }
-
-

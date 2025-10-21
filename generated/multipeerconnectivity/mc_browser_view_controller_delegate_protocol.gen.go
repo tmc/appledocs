@@ -20,5 +20,3 @@ var MCBrowserViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	MCBrowserViewControllerDelegateProtocol = objc.GetProtocol("MCBrowserViewControllerDelegate")
 }
-
-

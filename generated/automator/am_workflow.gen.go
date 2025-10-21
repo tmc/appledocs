@@ -88,6 +88,8 @@ func NewAMWorkflow() AMWorkflow {
 }
 
 
+
+
 // Creates and initializes a workflow based on the contents of the specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/init(contentsOf:)
@@ -192,6 +194,7 @@ func (a_ AMWorkflow) Input() objc.ID {
 func (a_ AMWorkflow) SetInput(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInput:"), value)
 }
+
 // The output data that is provided by the last action in the workflow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/output

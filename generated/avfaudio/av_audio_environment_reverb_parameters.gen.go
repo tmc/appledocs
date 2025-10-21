@@ -98,6 +98,7 @@ func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnable:"), value)
 }
+
 // A filter that the system applies to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/filterParameters

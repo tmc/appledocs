@@ -15,5 +15,3 @@ var LayoutManagerProtocol *objc.Protocol
 func init() {
 	LayoutManagerProtocol = objc.GetProtocol("CALayoutManager")
 }
-
-

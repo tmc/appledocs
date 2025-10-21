@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = avfaudio.NewAudioMixerNode
 
-
 // ExampleNewAudioMixerNode demonstrates how to create a AudioMixerNode instance.
 // Creates an audio mixer node.
 func ExampleNewAudioMixerNode() {
 	_ = avfaudio.NewAudioMixerNode()
 	// Output:
 }
-
-

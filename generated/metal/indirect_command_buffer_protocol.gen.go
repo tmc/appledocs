@@ -20,5 +20,3 @@ var IndirectCommandBufferProtocol *objc.Protocol
 func init() {
 	IndirectCommandBufferProtocol = objc.GetProtocol("MTLIndirectCommandBuffer")
 }
-
-

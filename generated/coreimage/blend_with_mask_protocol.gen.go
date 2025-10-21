@@ -12,5 +12,3 @@ var BlendWithMaskProtocol *objc.Protocol
 func init() {
 	BlendWithMaskProtocol = objc.GetProtocol("CIBlendWithMask")
 }
-
-

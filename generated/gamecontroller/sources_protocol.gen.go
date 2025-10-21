@@ -20,5 +20,3 @@ var sourcesProtocol *objc.Protocol
 func init() {
 	sourcesProtocol = objc.GetProtocol("sources")
 }
-
-

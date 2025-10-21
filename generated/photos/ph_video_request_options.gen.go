@@ -96,6 +96,7 @@ func (p_ PHVideoRequestOptions) DeliveryMode() unsafe.Pointer {
 func (p_ PHVideoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
+
 // A Boolean value that specifies whether Photos can download the requested video from iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/isNetworkAccessAllowed
@@ -113,6 +114,7 @@ func (p_ PHVideoRequestOptions) NetworkAccessAllowed() bool {
 func (p_ PHVideoRequestOptions) SetNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
 }
+
 // A block Photos calls periodically while downloading the video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/progressHandler
@@ -130,6 +132,7 @@ func (p_ PHVideoRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHVideoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
+
 // The version of the video to request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/version
@@ -147,5 +150,7 @@ func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
 func (p_ PHVideoRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
+
+
 
 

@@ -18,5 +18,3 @@ var CanvasViewDelegateProtocol *objc.Protocol
 func init() {
 	CanvasViewDelegateProtocol = objc.GetProtocol("PKCanvasViewDelegate")
 }
-
-

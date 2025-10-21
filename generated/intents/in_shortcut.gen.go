@@ -79,6 +79,8 @@ func NewINShortcut() INShortcut {
 }
 
 
+
+
 // Creates a shortcut with the specified intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/init(intent:)
@@ -88,6 +90,8 @@ func NewINShortcutWithIntent(intent unsafe.Pointer) INShortcut {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a shortcut with the specified user activity.
 //

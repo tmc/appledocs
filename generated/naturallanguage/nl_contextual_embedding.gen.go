@@ -85,6 +85,18 @@ func NewContextualEmbedding() ContextualEmbedding {
 }
 
 
+
+
+// Creates a contextual embedding from a language.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(language:)
+func NewContextualEmbeddingWithLanguage(language unsafe.Pointer) ContextualEmbedding {
+	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithLanguage:"), language)
+	return rv
+}
+
+
+
 // Creates a contextual embedding from a model identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(modelIdentifier:)
@@ -93,19 +105,13 @@ func NewContextualEmbeddingWithModelIdentifier(modelIdentifier string) Contextua
 	return rv
 }
 
+
+
 // Creates a contextual embedding from a script.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(script:)
 func NewContextualEmbeddingWithScript(script unsafe.Pointer) ContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithScript:"), script)
-	return rv
-}
-
-// Creates a contextual embedding from a language.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(language:)
-func NewContextualEmbeddingWithLanguage(language unsafe.Pointer) ContextualEmbedding {
-	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithLanguage:"), language)
 	return rv
 }
 

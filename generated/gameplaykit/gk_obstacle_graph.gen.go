@@ -92,6 +92,8 @@ func NewObstacleGraph() ObstacleGraph {
 }
 
 
+
+
 // Initializes a graph with the specified list of obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/init(obstacles:bufferRadius:)
@@ -101,6 +103,8 @@ func NewObstacleGraphWithObstaclesBufferRadius(obstacles unsafe.Pointer, bufferR
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a graph with the specified list of obstacles, using the specified node class.
 //

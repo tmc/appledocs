@@ -20,5 +20,3 @@ var areRasterOrderGroupsSupportedProtocol *objc.Protocol
 func init() {
 	areRasterOrderGroupsSupportedProtocol = objc.GetProtocol("areRasterOrderGroupsSupported")
 }
-
-

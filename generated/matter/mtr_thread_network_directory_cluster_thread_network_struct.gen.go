@@ -90,6 +90,7 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() 
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveTimestamp:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/channel
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() unsafe.P
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/extendedPanID
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() un
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() string {
@@ -132,5 +135,6 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() stri
 func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }
+
 
 

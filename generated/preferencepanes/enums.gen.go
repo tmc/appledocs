@@ -9,14 +9,14 @@ package preferencepanes
 type PreferencePaneUnselectReply uint
 
 const (
-// UnselectLater - Delay the deselection until the preference pane invokes  .
-//
+	// UnselectLater - Delay the deselection until the preference pane invokes  .
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePaneUnselectReply/unselectLater
-UnselectLater PreferencePaneUnselectReply = 0
-// UnselectNow - Continue the deselection.
-//
+	UnselectLater PreferencePaneUnselectReply = 0
+	// UnselectNow - Continue the deselection.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePaneUnselectReply/unselectNow
-UnselectNow PreferencePaneUnselectReply = 0
+	UnselectNow PreferencePaneUnselectReply = 0
 )
 
 

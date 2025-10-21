@@ -20,5 +20,3 @@ var elementsProtocol *objc.Protocol
 func init() {
 	elementsProtocol = objc.GetProtocol("elements")
 }
-
-

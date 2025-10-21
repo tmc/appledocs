@@ -20,5 +20,3 @@ var PHPhotoLibraryAvailabilityObserverProtocol *objc.Protocol
 func init() {
 	PHPhotoLibraryAvailabilityObserverProtocol = objc.GetProtocol("PHPhotoLibraryAvailabilityObserver")
 }
-
-

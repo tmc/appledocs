@@ -12,5 +12,3 @@ var LenticularHaloGeneratorProtocol *objc.Protocol
 func init() {
 	LenticularHaloGeneratorProtocol = objc.GetProtocol("CILenticularHaloGenerator")
 }
-
-

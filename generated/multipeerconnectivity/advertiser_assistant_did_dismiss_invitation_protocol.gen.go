@@ -20,5 +20,3 @@ var advertiserAssistantDidDismissInvitationProtocol *objc.Protocol
 func init() {
 	advertiserAssistantDidDismissInvitationProtocol = objc.GetProtocol("advertiserAssistantDidDismissInvitation:")
 }
-
-

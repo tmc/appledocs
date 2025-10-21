@@ -98,3 +98,4 @@ func (c_ CellularPlanProperties) SetSimCapability(value unsafe.Pointer) {
 }
 
 
+

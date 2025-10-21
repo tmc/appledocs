@@ -20,5 +20,3 @@ var FaceObservationAcceptingProtocol *objc.Protocol
 func init() {
 	FaceObservationAcceptingProtocol = objc.GetProtocol("VNFaceObservationAccepting")
 }
-
-

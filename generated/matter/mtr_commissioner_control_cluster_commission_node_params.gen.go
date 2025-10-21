@@ -90,6 +90,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) RequestID() unsafe.P
 func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetRequestID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/responseTimeoutSeconds
 func (m_ MTRCommissionerControlClusterCommissionNodeParams) ResponseTimeoutSeconds() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) ResponseTimeoutSecon
 func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetResponseTimeoutSeconds(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseTimeoutSeconds:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) ServerSideProcessing
 func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/timedInvokeTimeoutMs
@@ -138,5 +141,6 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) TimedInvokeTimeoutMs
 func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

@@ -12,5 +12,3 @@ var DepthOfFieldProtocol *objc.Protocol
 func init() {
 	DepthOfFieldProtocol = objc.GetProtocol("CIDepthOfField")
 }
-
-

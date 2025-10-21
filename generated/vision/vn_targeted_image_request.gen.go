@@ -81,6 +81,8 @@ func NewTargetedImageRequest() TargetedImageRequest {
 }
 
 
+
+
 // Creates a new request targeting an image at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:options:

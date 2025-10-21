@@ -20,5 +20,3 @@ var setVertexVisibleFunctionTableProtocol *objc.Protocol
 func init() {
 	setVertexVisibleFunctionTableProtocol = objc.GetProtocol("setVertexVisibleFunctionTable:")
 }
-
-

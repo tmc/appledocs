@@ -9,8 +9,6 @@ import (
 // Suppress unused import errors
 var _ = eventkit.NewEKStructuredLocation
 
-
-
 // ExampleNewEKStructuredLocationWithTitle demonstrates how to create a EKStructuredLocation instance using NewEKStructuredLocationWithTitle.
 // Creates a new structured location with the specified title.
 func ExampleNewEKStructuredLocationWithTitle() {
@@ -19,5 +17,3 @@ func ExampleNewEKStructuredLocationWithTitle() {
 	)
 	// Output:
 }
-
-

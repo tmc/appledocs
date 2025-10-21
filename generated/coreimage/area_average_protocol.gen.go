@@ -12,5 +12,3 @@ var AreaAverageProtocol *objc.Protocol
 func init() {
 	AreaAverageProtocol = objc.GetProtocol("CIAreaAverage")
 }
-
-

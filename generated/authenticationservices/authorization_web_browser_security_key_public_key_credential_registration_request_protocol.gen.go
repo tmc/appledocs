@@ -18,5 +18,3 @@ var AuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequestProt
 func init() {
 	AuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequestProtocol = objc.GetProtocol("ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest")
 }
-
-

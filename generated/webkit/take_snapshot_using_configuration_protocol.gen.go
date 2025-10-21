@@ -19,5 +19,3 @@ var takeSnapshotUsingConfigurationProtocol *objc.Protocol
 func init() {
 	takeSnapshotUsingConfigurationProtocol = objc.GetProtocol("takeSnapshotUsingConfiguration:")
 }
-
-

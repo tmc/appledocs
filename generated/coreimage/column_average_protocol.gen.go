@@ -12,5 +12,3 @@ var ColumnAverageProtocol *objc.Protocol
 func init() {
 	ColumnAverageProtocol = objc.GetProtocol("CIColumnAverage")
 }
-
-

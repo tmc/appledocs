@@ -20,5 +20,3 @@ var PHLivePhotoViewDelegateProtocol *objc.Protocol
 func init() {
 	PHLivePhotoViewDelegateProtocol = objc.GetProtocol("PHLivePhotoViewDelegate")
 }
-
-

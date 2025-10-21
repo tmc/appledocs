@@ -20,5 +20,3 @@ var ResidencySetProtocol *objc.Protocol
 func init() {
 	ResidencySetProtocol = objc.GetProtocol("MTLResidencySet")
 }
-
-

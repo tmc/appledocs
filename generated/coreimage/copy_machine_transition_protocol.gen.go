@@ -12,5 +12,3 @@ var CopyMachineTransitionProtocol *objc.Protocol
 func init() {
 	CopyMachineTransitionProtocol = objc.GetProtocol("CICopyMachineTransition")
 }
-
-

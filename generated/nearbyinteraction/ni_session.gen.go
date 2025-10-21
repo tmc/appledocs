@@ -152,6 +152,7 @@ func (n_ NISession) Delegate() objc.ID {
 func (n_ NISession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The dispatch queue on which the session invokes delegate callbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/delegateQueue
@@ -169,6 +170,7 @@ func (n_ NISession) DelegateQueue() unsafe.Pointer {
 func (n_ NISession) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegateQueue:"), value)
 }
+
 // An object that communicates the device’s supported framework features.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/deviceCapabilities
@@ -192,6 +194,7 @@ func (n_ NISession) Supported() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("supported"))
 	return rv
 }
+
 
 
 

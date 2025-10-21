@@ -96,6 +96,7 @@ func (a_ AuthorizationOpenIDRequest) Nonce() string {
 func (a_ AuthorizationOpenIDRequest) SetNonce(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), objc.String(value))
 }
+
 // The OpenID authentication operation you want this request to perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
@@ -113,6 +114,7 @@ func (a_ AuthorizationOpenIDRequest) RequestedOperation() unsafe.Pointer {
 func (a_ AuthorizationOpenIDRequest) SetRequestedOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestedOperation:"), value)
 }
+
 // The contact information to be requested from the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes
@@ -140,6 +142,7 @@ func (a_ AuthorizationOpenIDRequest) SetRequestedScopes(value []string) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestedScopes:"), nsArray)
 }
+
 // Data that’s returned to you unmodified in the corresponding credential after a successful authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
@@ -157,5 +160,6 @@ func (a_ AuthorizationOpenIDRequest) State() string {
 func (a_ AuthorizationOpenIDRequest) SetState(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }
+
 
 

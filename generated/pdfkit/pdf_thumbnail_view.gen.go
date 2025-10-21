@@ -98,6 +98,7 @@ func (p_ PDFThumbnailView) AllowsDragging() bool {
 func (p_ PDFThumbnailView) SetAllowsDragging(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsDragging:"), value)
 }
+
 // Returns a Boolean value indicating whether users can select multiple thumbnails in the thumbnail view at one time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/allowsMultipleSelection
@@ -115,6 +116,7 @@ func (p_ PDFThumbnailView) AllowsMultipleSelection() bool {
 func (p_ PDFThumbnailView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
+
 // Returns the color used in the background of the thumbnail view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/backgroundColor
@@ -132,6 +134,7 @@ func (p_ PDFThumbnailView) BackgroundColor() unsafe.Pointer {
 func (p_ PDFThumbnailView) SetBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/contentInset
 func (p_ PDFThumbnailView) ContentInset() unsafe.Pointer {
@@ -146,6 +149,7 @@ func (p_ PDFThumbnailView) ContentInset() unsafe.Pointer {
 func (p_ PDFThumbnailView) SetContentInset(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentInset:"), value)
 }
+
 // Returns the font used to label the thumbnails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/labelFont
@@ -163,6 +167,7 @@ func (p_ PDFThumbnailView) LabelFont() unsafe.Pointer {
 func (p_ PDFThumbnailView) SetLabelFont(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLabelFont:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/layoutMode
 func (p_ PDFThumbnailView) LayoutMode() unsafe.Pointer {
@@ -177,6 +182,7 @@ func (p_ PDFThumbnailView) LayoutMode() unsafe.Pointer {
 func (p_ PDFThumbnailView) SetLayoutMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLayoutMode:"), value)
 }
+
 // Returns the maximum number of columns of thumbnails the thumbnail view can display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/maximumNumberOfColumns
@@ -194,6 +200,7 @@ func (p_ PDFThumbnailView) MaximumNumberOfColumns() uint {
 func (p_ PDFThumbnailView) SetMaximumNumberOfColumns(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaximumNumberOfColumns:"), value)
 }
+
 // Returns the object associated with the thumbnail view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/pdfView
@@ -211,6 +218,7 @@ func (p_ PDFThumbnailView) PDFView() unsafe.Pointer {
 func (p_ PDFThumbnailView) SetPDFView(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPDFView:"), value)
 }
+
 // Returns an array of PDF pages that correspond to the selected thumbnails in the thumbnail view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/selectedPages
@@ -236,5 +244,6 @@ func (p_ PDFThumbnailView) ThumbnailSize() coregraphics.CGSize {
 func (p_ PDFThumbnailView) SetThumbnailSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setThumbnailSize:"), value)
 }
+
 
 

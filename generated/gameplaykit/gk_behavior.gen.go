@@ -88,6 +88,8 @@ func NewBehavior() Behavior {
 }
 
 
+
+
 // Creates a behavior with a single goal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
@@ -95,6 +97,8 @@ func NewBehaviorWithGoalWeight(goal unsafe.Pointer, weight unsafe.Pointer) Behav
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
 	return rv
 }
+
+
 
 // Creates a behavior with the specified goals.
 //
@@ -104,6 +108,8 @@ func NewBehaviorWithGoals(goals unsafe.Pointer) Behavior {
 	return rv
 }
 
+
+
 // Creates a behavior with the specified goals and weights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:andWeights:)
@@ -111,6 +117,8 @@ func NewBehaviorWithGoalsAndWeights(goals unsafe.Pointer, weights unsafe.Pointer
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoals:andWeights:"), goals, weights)
 	return rv
 }
+
+
 
 // Creates a behavior with the specified mapping of goals to their weights.
 //

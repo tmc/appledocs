@@ -20,5 +20,3 @@ var resolveContactsForStartCallProtocol *objc.Protocol
 func init() {
 	resolveContactsForStartCallProtocol = objc.GetProtocol("resolveContactsForStartCall:")
 }
-
-

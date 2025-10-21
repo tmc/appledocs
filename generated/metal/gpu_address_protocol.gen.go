@@ -20,5 +20,3 @@ var gpuAddressProtocol *objc.Protocol
 func init() {
 	gpuAddressProtocol = objc.GetProtocol("gpuAddress")
 }
-
-

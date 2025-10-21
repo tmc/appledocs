@@ -83,6 +83,8 @@ func NewMusicPlayerStoreQueueDescriptor() MusicPlayerStoreQueueDescriptor {
 }
 
 
+
+
 // Creates a new queue descriptor using the designated store identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/init(storeIDs:)
@@ -125,6 +127,7 @@ func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() string {
 func (m_ MusicPlayerStoreQueueDescriptor) SetStartItemID(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemID:"), objc.String(value))
 }
+
 // An array containing the store identifiers found by the query used to create the queue descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/storeIDs
@@ -152,4 +155,5 @@ func (m_ MusicPlayerStoreQueueDescriptor) SetStoreIDs(value []string) {
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStoreIDs:"), nsArray)
 }
+
 

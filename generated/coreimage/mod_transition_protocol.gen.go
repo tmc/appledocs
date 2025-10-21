@@ -12,5 +12,3 @@ var ModTransitionProtocol *objc.Protocol
 func init() {
 	ModTransitionProtocol = objc.GetProtocol("CIModTransition")
 }
-
-

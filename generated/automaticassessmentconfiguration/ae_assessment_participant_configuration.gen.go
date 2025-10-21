@@ -99,6 +99,7 @@ func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool {
 func (a_ AEAssessmentParticipantConfiguration) SetAllowsNetworkAccess(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsNetworkAccess:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/configurationInfo
 func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() unsafe.Pointer {
@@ -113,6 +114,7 @@ func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() unsafe.Pointe
 func (a_ AEAssessmentParticipantConfiguration) SetConfigurationInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationInfo:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/isRequired
 func (a_ AEAssessmentParticipantConfiguration) Required() bool {
@@ -127,4 +129,5 @@ func (a_ AEAssessmentParticipantConfiguration) Required() bool {
 func (a_ AEAssessmentParticipantConfiguration) SetRequired(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequired:"), value)
 }
+
 

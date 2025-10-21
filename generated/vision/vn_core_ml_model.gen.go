@@ -81,6 +81,8 @@ func NewCoreMLModel() CoreMLModel {
 }
 
 
+
+
 // Creates a model container to use with a Core ML request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
@@ -115,6 +117,7 @@ func (c_ CoreMLModel) FeatureProvider() objc.ID {
 func (c_ CoreMLModel) SetFeatureProvider(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureProvider:"), value)
 }
+
 // The name of the feature value that Vision sets from the request handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
@@ -132,4 +135,5 @@ func (c_ CoreMLModel) InputImageFeatureName() string {
 func (c_ CoreMLModel) SetInputImageFeatureName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), objc.String(value))
 }
+
 

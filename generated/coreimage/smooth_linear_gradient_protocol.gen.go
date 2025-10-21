@@ -12,5 +12,3 @@ var SmoothLinearGradientProtocol *objc.Protocol
 func init() {
 	SmoothLinearGradientProtocol = objc.GetProtocol("CISmoothLinearGradient")
 }
-
-

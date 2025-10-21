@@ -82,6 +82,8 @@ func NewMatchmakerViewController() MatchmakerViewController {
 }
 
 
+
+
 // Creates a matchmaker view controller for the local player to start inviting other players.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/init(matchRequest:)
@@ -110,6 +112,7 @@ func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
 func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
 }
+
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/isHosted
@@ -127,6 +130,7 @@ func (m_ MatchmakerViewController) Hosted() bool {
 func (m_ MatchmakerViewController) SetHosted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHosted:"), value)
 }
+
 // The object that handles matchmaker view controller changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/matchmakerDelegate
@@ -144,4 +148,5 @@ func (m_ MatchmakerViewController) MatchmakerDelegate() objc.ID {
 func (m_ MatchmakerViewController) SetMatchmakerDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakerDelegate:"), value)
 }
+
 

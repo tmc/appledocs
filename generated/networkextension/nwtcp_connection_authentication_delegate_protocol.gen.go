@@ -20,4 +20,3 @@ var NWTCPConnectionAuthenticationDelegateProtocol *objc.Protocol
 func init() {
 	NWTCPConnectionAuthenticationDelegateProtocol = objc.GetProtocol("NWTCPConnectionAuthenticationDelegate")
 }
-

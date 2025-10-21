@@ -20,5 +20,3 @@ var addCompletedHandlerProtocol *objc.Protocol
 func init() {
 	addCompletedHandlerProtocol = objc.GetProtocol("addCompletedHandler:")
 }
-
-

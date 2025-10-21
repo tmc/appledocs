@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FilePromiseProvider] class.
@@ -79,6 +80,9 @@ func NewFilePromiseProvider() FilePromiseProvider {
 	return getFilePromiseProviderClass().New()
 }
 
+
+
+
 // Initializes a file promise provider for a certain file type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/init(fileType:delegate:)
@@ -88,3 +92,7 @@ func NewFilePromiseProviderWithFileTypeDelegate(fileType string, delegate objc.I
 	rv.Autorelease()
 	return rv
 }
+
+
+
+

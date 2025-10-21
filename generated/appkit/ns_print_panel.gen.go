@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PrintPanel] class.
@@ -79,6 +80,7 @@ func NewPrintPanel() PrintPanel {
 	return getPrintPanelClass().New()
 }
 
+
 // The type of settings that the print panel displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/jobStyleHint-swift.property
@@ -86,6 +88,7 @@ func (p_ PrintPanel) JobStyleHint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("jobStyleHint"))
 	return rv
 }
+
 
 // SetJobStyleHint sets the value of the jobStyleHint property.
 // The type of settings that the print panel displays.
@@ -103,3 +106,6 @@ func (p_ PrintPanel) PrintInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
+
+
+

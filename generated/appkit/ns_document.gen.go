@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Document] class.
@@ -177,15 +178,8 @@ func NewDocument() Document {
 	return getDocumentClass().New()
 }
 
-// Initializes a document located by a URL of a specified type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
-func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
-	instance := getDocumentClass().Alloc()
-	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
-	rv.Autorelease()
-	return rv
-}
+
+
 
 // Initializes a document with the specified contents, and places the resulting document’s file at the designated location.
 //
@@ -197,6 +191,20 @@ func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil unsafe.Pointer, cont
 	return rv
 }
 
+
+
+// Initializes a document located by a URL of a specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
+func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
+	instance := getDocumentClass().Alloc()
+	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Initializes a document of a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(type:)
@@ -206,6 +214,7 @@ func NewDocumentWithTypeError(typeName string, outError unsafe.Pointer) Document
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns the classes that support secure coding.
 //
@@ -238,7 +247,6 @@ func (dc _DocumentClass) AutosavesDrafts() bool {
 	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("autosavesDrafts"))
 	return rv
 }
-
 // A Boolean value that indicates whether the document subclass supports autosaving in place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesInPlace
@@ -246,7 +254,6 @@ func (dc _DocumentClass) AutosavesInPlace() bool {
 	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("autosavesInPlace"))
 	return rv
 }
-
 // A Boolean value that indicates whether the document subclass supports version management.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/preservesVersions
@@ -254,7 +261,6 @@ func (dc _DocumentClass) PreservesVersions() bool {
 	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("preservesVersions"))
 	return rv
 }
-
 // Returns the types of data the receiver can read natively and any types filterable to that native type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/readableTypes
@@ -262,7 +268,6 @@ func (dc _DocumentClass) ReadableTypes() []string {
 	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("readableTypes"))
 	return rv
 }
-
 // Returns an array of key paths that represent the restorable attributes of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restorableStateKeyPaths
@@ -270,7 +275,6 @@ func (dc _DocumentClass) RestorableStateKeyPaths() []string {
 	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("restorableStateKeyPaths"))
 	return rv
 }
-
 // Returns whether the document object stores its contents in the user’s iCloud document storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/usesUbiquitousStorage
@@ -278,7 +282,6 @@ func (dc _DocumentClass) UsesUbiquitousStorage() bool {
 	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("usesUbiquitousStorage"))
 	return rv
 }
-
 // Returns the types of data the receiver can write natively and any types filterable to that native type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes
@@ -286,7 +289,6 @@ func (dc _DocumentClass) WritableTypes() []string {
 	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("writableTypes"))
 	return rv
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/accommodatePresentedItemDeletion(completionHandler:)
 func (d_ Document) AccommodatePresentedItemDeletionWithCompletionHandler(completionHandler unsafe.Pointer) {
@@ -1007,6 +1009,7 @@ func (d_ Document) AutosavedContentsFileURL() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAutosavedContentsFileURL sets the value of the autosavedContentsFileURL property.
 // The location of the most recently autosaved document contents.
 
@@ -1064,6 +1067,7 @@ func (d_ Document) DisplayName() string {
 	return rv
 }
 
+
 // SetDisplayName sets the value of the displayName property.
 // The name of the document as displayed in the title bars of the document’s windows and in alert dialogs related to the document.
 
@@ -1080,6 +1084,7 @@ func (d_ Document) FileModificationDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileModificationDate"))
 	return rv
 }
+
 
 // SetFileModificationDate sets the value of the fileModificationDate property.
 // The last-known modification date of the document’s on-disk representation.
@@ -1106,6 +1111,7 @@ func (d_ Document) FileType() string {
 	return rv
 }
 
+
 // SetFileType sets the value of the fileType property.
 // The name of the document type, as specified in the app’s information property-list file.
 
@@ -1131,6 +1137,7 @@ func (d_ Document) FileURL() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFileURL sets the value of the fileURL property.
 // The location of the document’s on-disk representation.
 
@@ -1155,6 +1162,7 @@ func (d_ Document) HasUndoManager() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("hasUndoManager"))
 	return rv
 }
+
 
 // SetHasUndoManager sets the value of the hasUndoManager property.
 // A Boolean value that indicates whether the document owns an undo manager object.
@@ -1188,6 +1196,7 @@ func (d_ Document) Draft() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("draft"))
 	return rv
 }
+
 
 // SetDraft sets the value of the draft property.
 // A Boolean value that indicates whether the document is a draft that the user has not yet saved.
@@ -1237,6 +1246,7 @@ func (d_ Document) LastComponentOfFileName() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("lastComponentOfFileName"))
 	return rv
 }
+
 
 // SetLastComponentOfFileName sets the value of the lastComponentOfFileName property.
 // The name of the document seen by the user in AppleScript.
@@ -1292,6 +1302,7 @@ func (d_ Document) PreviewRepresentableActivityItems() []objc.ID {
 	return rv
 }
 
+
 // SetPreviewRepresentableActivityItems sets the value of the previewRepresentableActivityItems property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/previewRepresentableActivityItems
@@ -1316,6 +1327,7 @@ func (d_ Document) PrintInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("printInfo"))
 	return rv
 }
+
 
 // SetPrintInfo sets the value of the printInfo property.
 // The printing information associated with the document.
@@ -1365,6 +1377,7 @@ func (d_ Document) UndoManager() unsafe.Pointer {
 	return rv
 }
 
+
 // SetUndoManager sets the value of the undoManager property.
 // The object that the document uses to support undo/redo operations.
 
@@ -1381,6 +1394,7 @@ func (d_ Document) UserActivity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("userActivity"))
 	return rv
 }
+
 
 // SetUserActivity sets the value of the userActivity property.
 // An object that encapsulates a user activity the document supports.
@@ -1430,3 +1444,5 @@ func (d_ Document) WritableTypes() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("writableTypes"))
 	return rv
 }
+
+

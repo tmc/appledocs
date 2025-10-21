@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = pencilkit.NewToolPicker
 
-
 // ExampleNewToolPicker demonstrates how to create a ToolPicker instance.
 // Creates a new tool picker with a default set of tools.
 func ExampleNewToolPicker() {
 	_ = pencilkit.NewToolPicker()
 	// Output:
 }
-
-
-

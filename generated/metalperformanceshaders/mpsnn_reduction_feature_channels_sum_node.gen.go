@@ -92,3 +92,4 @@ func (r_ ReductionFeatureChannelsSumNode) SetWeight(value unsafe.Pointer) {
 }
 
 
+

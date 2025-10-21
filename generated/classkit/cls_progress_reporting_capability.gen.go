@@ -81,6 +81,8 @@ func NewSProgressReportingCapability() SProgressReportingCapability {
 }
 
 
+
+
 // Creates a new progress reporting capability of the given type with a descriptive string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/init(kind:details:)

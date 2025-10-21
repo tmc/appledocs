@@ -81,6 +81,8 @@ func NewEKVirtualConferenceURLDescriptor() EKVirtualConferenceURLDescriptor {
 }
 
 
+
+
 // Creates a URL descriptor with the given title and URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/init(title:url:)

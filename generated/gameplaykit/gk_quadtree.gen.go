@@ -87,6 +87,8 @@ func NewQuadtree() Quadtree {
 }
 
 
+
+
 // Initializes a quadtree with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/init(boundingQuad:minimumCellSize:)

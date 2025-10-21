@@ -20,5 +20,3 @@ var resolveOutgoingMessageTypeForSendMessageProtocol *objc.Protocol
 func init() {
 	resolveOutgoingMessageTypeForSendMessageProtocol = objc.GetProtocol("resolveOutgoingMessageTypeForSendMessage:")
 }
-
-

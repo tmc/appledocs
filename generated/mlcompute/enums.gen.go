@@ -14,9 +14,9 @@ type CComparisonOperation uint
 type CDataType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDataType/float32
-CDataTypeFloat32 CDataType = 0
+	CDataTypeFloat32 CDataType = 0
 )
 
 // MLCDeviceType - A device type for execution of a neural network.
@@ -40,15 +40,15 @@ type CGraphCompilationOptions uint
 type CPaddingPolicy uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingPolicy-14ba7/MLCPaddingPolicySame
-CPaddingPolicySame CPaddingPolicy = 0
-//
+	CPaddingPolicySame CPaddingPolicy = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingPolicy-14ba7/MLCPaddingPolicyUsePaddingSize
-CPaddingPolicyUsePaddingSize CPaddingPolicy = 0
-//
+	CPaddingPolicyUsePaddingSize CPaddingPolicy = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingPolicy-14ba7/MLCPaddingPolicyValid
-CPaddingPolicyValid CPaddingPolicy = 0
+	CPaddingPolicyValid CPaddingPolicy = 0
 )
 
 // MLCPaddingType - A padding type that you specify for a padding layer.
@@ -62,21 +62,21 @@ type CPaddingType uint
 type CRandomInitializerType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCRandomInitializerType/MLCRandomInitializerTypeCount
-CRandomInitializerTypeCount CRandomInitializerType = 0
-//
+	CRandomInitializerTypeCount CRandomInitializerType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCRandomInitializerType/MLCRandomInitializerTypeInvalid
-CRandomInitializerTypeInvalid CRandomInitializerType = 0
-//
+	CRandomInitializerTypeInvalid CRandomInitializerType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCRandomInitializerType/glorotUniform
-CRandomInitializerTypeGlorotUniform CRandomInitializerType = 0
-//
+	CRandomInitializerTypeGlorotUniform CRandomInitializerType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCRandomInitializerType/uniform
-CRandomInitializerTypeUniform CRandomInitializerType = 0
-//
+	CRandomInitializerTypeUniform CRandomInitializerType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCRandomInitializerType/xavier
-CRandomInitializerTypeXavier CRandomInitializerType = 0
+	CRandomInitializerTypeXavier CRandomInitializerType = 0
 )
 
 // MLCReductionType - Constants that describe a reduction operation type.
@@ -85,14 +85,14 @@ CRandomInitializerTypeXavier CRandomInitializerType = 0
 type CReductionType uint
 
 const (
-// CReductionTypeNone - A reduction operation that applies no reduction.
-//
+	// CReductionTypeNone - A reduction operation that applies no reduction.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCReductionType/none
-CReductionTypeNone CReductionType = 0
-// CReductionTypeSum - A reduction operation that applies to the sum of the dimensions.
-//
+	CReductionTypeNone CReductionType = 0
+	// CReductionTypeSum - A reduction operation that applies to the sum of the dimensions.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCReductionType/sum
-CReductionTypeSum CReductionType = 0
+	CReductionTypeSum CReductionType = 0
 )
 
 // MLCSoftmaxOperation - A softmax operation.
@@ -101,12 +101,12 @@ CReductionTypeSum CReductionType = 0
 type CSoftmaxOperation uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSoftmaxOperation/logSoftmax
-CSoftmaxOperationLogSoftmax CSoftmaxOperation = 0
-//
+	CSoftmaxOperationLogSoftmax CSoftmaxOperation = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSoftmaxOperation/softmax
-CSoftmaxOperationSoftmax CSoftmaxOperation = 0
+	CSoftmaxOperationSoftmax CSoftmaxOperation = 0
 )
 
 

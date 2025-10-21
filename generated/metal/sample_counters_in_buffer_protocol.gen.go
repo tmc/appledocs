@@ -20,5 +20,3 @@ var sampleCountersInBufferProtocol *objc.Protocol
 func init() {
 	sampleCountersInBufferProtocol = objc.GetProtocol("sampleCountersInBuffer:")
 }
-
-

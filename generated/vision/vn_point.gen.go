@@ -81,6 +81,8 @@ func NewPoint() Point {
 }
 
 
+
+
 // Creates a point object from the specified Core Graphics point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/init(location:)
@@ -90,6 +92,8 @@ func NewPointWithLocation(location coregraphics.CGPoint) Point {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a point object with the specified coordinates.
 //

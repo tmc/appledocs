@@ -20,5 +20,3 @@ var setImageblockWidthProtocol *objc.Protocol
 func init() {
 	setImageblockWidthProtocol = objc.GetProtocol("setImageblockWidth:")
 }
-
-

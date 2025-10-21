@@ -12,5 +12,3 @@ var PersonSegmentationProtocol *objc.Protocol
 func init() {
 	PersonSegmentationProtocol = objc.GetProtocol("CIPersonSegmentation")
 }
-
-

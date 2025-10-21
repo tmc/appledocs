@@ -21,5 +21,3 @@ var onCommissioningCompleteProtocol *objc.Protocol
 func init() {
 	onCommissioningCompleteProtocol = objc.GetProtocol("onCommissioningComplete:")
 }
-
-

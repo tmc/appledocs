@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MenuItem] class.
@@ -79,12 +80,14 @@ func NewMenuItem() MenuItem {
 	return getMenuItemClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
 func (m_ MenuItem) Badge() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("badge"))
 	return rv
 }
+
 
 // SetBadge sets the value of the badge property.
 //
@@ -100,3 +103,6 @@ func (m_ MenuItem) HasSubmenu() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasSubmenu"))
 	return rv
 }
+
+
+

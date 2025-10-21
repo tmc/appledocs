@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = phase.NewPHASEGroup
 
-
 // ExampleNewPHASEGroupWithIdentifier demonstrates how to create a PHASEGroup instance using NewPHASEGroupWithIdentifier.
 // Creates a group with a unique name.
 func ExampleNewPHASEGroupWithIdentifier() {
@@ -18,5 +17,3 @@ func ExampleNewPHASEGroupWithIdentifier() {
 	)
 	// Output:
 }
-
-

@@ -12,5 +12,3 @@ var ColorAbsoluteDifferenceProtocol *objc.Protocol
 func init() {
 	ColorAbsoluteDifferenceProtocol = objc.GetProtocol("CIColorAbsoluteDifference")
 }
-
-

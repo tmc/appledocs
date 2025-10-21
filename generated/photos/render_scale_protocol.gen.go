@@ -20,5 +20,3 @@ var renderScaleProtocol *objc.Protocol
 func init() {
 	renderScaleProtocol = objc.GetProtocol("renderScale")
 }
-
-

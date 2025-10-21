@@ -98,6 +98,7 @@ func (v_ VertexAttributeDescriptor) BufferIndex() uint {
 func (v_ VertexAttributeDescriptor) SetBufferIndex(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBufferIndex:"), value)
 }
+
 // The format of the vertex attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor/format
@@ -115,6 +116,7 @@ func (v_ VertexAttributeDescriptor) Format() unsafe.Pointer {
 func (v_ VertexAttributeDescriptor) SetFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFormat:"), value)
 }
+
 // The location of an attribute in vertex data, determined by the byte offset from the start of the vertex data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor/offset
@@ -132,5 +134,6 @@ func (v_ VertexAttributeDescriptor) Offset() uint {
 func (v_ VertexAttributeDescriptor) SetOffset(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOffset:"), value)
 }
+
 
 

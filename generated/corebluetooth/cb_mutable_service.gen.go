@@ -81,6 +81,8 @@ func NewCBMutableService() CBMutableService {
 }
 
 
+
+
 // Creates a newly initialized mutable service specified by UUID and service type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/init(type:primary:)
@@ -119,6 +121,7 @@ func (c_ CBMutableService) SetCharacteristics(value []CBCharacteristic) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCharacteristics:"), nsArray)
 }
+
 // A list of included services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/includedServices
@@ -146,4 +149,5 @@ func (c_ CBMutableService) SetIncludedServices(value []CBService) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedServices:"), nsArray)
 }
+
 

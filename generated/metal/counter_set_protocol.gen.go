@@ -20,5 +20,3 @@ var CounterSetProtocol *objc.Protocol
 func init() {
 	CounterSetProtocol = objc.GetProtocol("MTLCounterSet")
 }
-
-

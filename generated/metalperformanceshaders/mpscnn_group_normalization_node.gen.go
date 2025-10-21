@@ -108,3 +108,4 @@ func (c_ CNNGroupNormalizationNode) SetTrainingStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTrainingStyle:"), value)
 }
 
+

@@ -12,5 +12,3 @@ var SystemMusicPlayerControllerProtocol *objc.Protocol
 func init() {
 	SystemMusicPlayerControllerProtocol = objc.GetProtocol("MPSystemMusicPlayerController")
 }
-
-

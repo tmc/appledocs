@@ -20,5 +20,3 @@ var downloadOfAssetPackProtocol *objc.Protocol
 func init() {
 	downloadOfAssetPackProtocol = objc.GetProtocol("downloadOfAssetPack:")
 }
-
-

@@ -81,6 +81,8 @@ func NewConstantNoiseSource() ConstantNoiseSource {
 }
 
 
+
+
 // Initializes a noise source with the specified constant value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/init(value:)
@@ -117,4 +119,5 @@ func (c_ ConstantNoiseSource) Value() unsafe.Pointer {
 func (c_ ConstantNoiseSource) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
+
 

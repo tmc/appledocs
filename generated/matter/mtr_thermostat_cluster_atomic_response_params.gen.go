@@ -76,6 +76,8 @@ func NewMTRThermostatClusterAtomicResponseParams() MTRThermostatClusterAtomicRes
 }
 
 
+
+
 // Initialize an MTRThermostatClusterAtomicResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRThermostatClusterAtomicResponseParams) AttributeStatus() unsafe.Poin
 func (m_ MTRThermostatClusterAtomicResponseParams) SetAttributeStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/statusCode
 func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() unsafe.Pointer {
@@ -115,6 +118,7 @@ func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() unsafe.Pointer {
 func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/timeout
 func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() unsafe.Pointer {
@@ -129,4 +133,5 @@ func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() unsafe.Pointer {
 func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
+
 

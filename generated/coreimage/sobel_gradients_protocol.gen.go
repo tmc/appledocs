@@ -12,5 +12,3 @@ var SobelGradientsProtocol *objc.Protocol
 func init() {
 	SobelGradientsProtocol = objc.GetProtocol("CISobelGradients")
 }
-
-

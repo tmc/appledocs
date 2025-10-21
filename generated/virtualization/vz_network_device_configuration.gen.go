@@ -98,6 +98,7 @@ func (v_ VZNetworkDeviceConfiguration) Attachment() unsafe.Pointer {
 func (v_ VZNetworkDeviceConfiguration) SetAttachment(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
+
 // The media access control (MAC) address to assign to the network device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/macAddress
@@ -115,5 +116,6 @@ func (v_ VZNetworkDeviceConfiguration) MACAddress() unsafe.Pointer {
 func (v_ VZNetworkDeviceConfiguration) SetMACAddress(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMACAddress:"), value)
 }
+
 
 

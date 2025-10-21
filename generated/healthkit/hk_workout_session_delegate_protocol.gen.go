@@ -19,5 +19,3 @@ var HKWorkoutSessionDelegateProtocol *objc.Protocol
 func init() {
 	HKWorkoutSessionDelegateProtocol = objc.GetProtocol("HKWorkoutSessionDelegate")
 }
-
-

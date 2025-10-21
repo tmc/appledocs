@@ -81,6 +81,8 @@ func NewINFocusStatus() INFocusStatus {
 }
 
 
+
+
 // Creates an object that indicates the user’s ability to receive communication notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatus/initWithIsFocused:

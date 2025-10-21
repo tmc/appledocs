@@ -145,6 +145,7 @@ func (n_ NEVPNManager) Enabled() bool {
 func (n_ NEVPNManager) SetEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // A Boolean used to toggle the Connect On Demand capability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/isOnDemandEnabled
@@ -162,6 +163,7 @@ func (n_ NEVPNManager) OnDemandEnabled() bool {
 func (n_ NEVPNManager) SetOnDemandEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandEnabled:"), value)
 }
+
 // A string containing the display name of the VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
@@ -179,6 +181,7 @@ func (n_ NEVPNManager) LocalizedDescription() string {
 func (n_ NEVPNManager) SetLocalizedDescription(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
+
 // An ordered list of Connect On Demand rules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/onDemandRules
@@ -206,6 +209,7 @@ func (n_ NEVPNManager) SetOnDemandRules(value []NEOnDemandRule) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), nsArray)
 }
+
 // An object containing the configuration settings of the VPN tunneling protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocol
@@ -223,6 +227,7 @@ func (n_ NEVPNManager) Protocol() unsafe.Pointer {
 func (n_ NEVPNManager) SetProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocol:"), value)
 }
+
 // An object containing the configuration settings of the VPN tunneling protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocolConfiguration
@@ -240,5 +245,6 @@ func (n_ NEVPNManager) ProtocolConfiguration() unsafe.Pointer {
 func (n_ NEVPNManager) SetProtocolConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
 }
+
 
 

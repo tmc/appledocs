@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() un
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/forecastID
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSide
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/slotAdjustments
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjustments() unsafe.Pointer {
@@ -135,6 +138,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjust
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetSlotAdjustments(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotAdjustments:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/timedInvokeTimeoutMs
@@ -152,5 +156,6 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvok
 func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

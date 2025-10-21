@@ -180,6 +180,7 @@ func (b_ BAAssetPackManager) Delegate() objc.ID {
 func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The shared asset-pack manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager

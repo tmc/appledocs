@@ -20,5 +20,3 @@ var MCAdvertiserAssistantDelegateProtocol *objc.Protocol
 func init() {
 	MCAdvertiserAssistantDelegateProtocol = objc.GetProtocol("MCAdvertiserAssistantDelegate")
 }
-
-

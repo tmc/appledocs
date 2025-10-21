@@ -92,3 +92,4 @@ func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value unsafe.Poi
 }
 
 
+

@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZMACAddress
 
-
 // ExampleNewVZMACAddressWithString demonstrates how to create a VZMACAddress instance using NewVZMACAddressWithString.
 // Creates a MAC address object from a specially formatted string.
 func ExampleNewVZMACAddressWithString() {
@@ -18,5 +17,3 @@ func ExampleNewVZMACAddressWithString() {
 	)
 	// Output:
 }
-
-

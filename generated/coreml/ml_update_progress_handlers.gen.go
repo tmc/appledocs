@@ -79,6 +79,8 @@ func NewUpdateProgressHandlers() UpdateProgressHandlers {
 }
 
 
+
+
 // Creates the collection of closures an update task uses to notify your app of its progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateProgressHandlers/init(forEvents:progressHandler:completionHandler:)

@@ -90,6 +90,7 @@ func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeClusterModeTagStruct/value
 func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) Value() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) Value() unsafe.Pointer {
 func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

@@ -81,6 +81,8 @@ func NewCircularGeographicCondition() CircularGeographicCondition {
 }
 
 
+
+
 // Creates a new circular geographic condition with the center point and radius you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/initWithCenter:radius:

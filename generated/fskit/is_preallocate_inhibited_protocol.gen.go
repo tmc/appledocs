@@ -15,5 +15,3 @@ var isPreallocateInhibitedProtocol *objc.Protocol
 func init() {
 	isPreallocateInhibitedProtocol = objc.GetProtocol("isPreallocateInhibited")
 }
-
-

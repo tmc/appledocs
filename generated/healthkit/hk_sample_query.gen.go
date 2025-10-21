@@ -81,6 +81,8 @@ func NewHKSampleQuery() HKSampleQuery {
 }
 
 
+
+
 // Creates a query for samples that match any of the query descriptors you provided, sorted by the sort descriptors you provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)

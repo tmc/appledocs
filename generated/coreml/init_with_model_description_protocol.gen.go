@@ -21,5 +21,3 @@ var initWithModelDescriptionProtocol *objc.Protocol
 func init() {
 	initWithModelDescriptionProtocol = objc.GetProtocol("initWithModelDescription:")
 }
-
-

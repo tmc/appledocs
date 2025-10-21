@@ -12,5 +12,3 @@ var HoleDistortionProtocol *objc.Protocol
 func init() {
 	HoleDistortionProtocol = objc.GetProtocol("CIHoleDistortion")
 }
-
-

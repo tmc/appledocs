@@ -16,5 +16,3 @@ var queueProtocol *objc.Protocol
 func init() {
 	queueProtocol = objc.GetProtocol("queue")
 }
-
-

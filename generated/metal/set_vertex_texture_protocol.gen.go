@@ -19,5 +19,3 @@ var setVertexTextureProtocol *objc.Protocol
 func init() {
 	setVertexTextureProtocol = objc.GetProtocol("setVertexTexture:")
 }
-
-

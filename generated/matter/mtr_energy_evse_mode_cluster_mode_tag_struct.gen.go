@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/value
 func (m_ MTREnergyEVSEModeClusterModeTagStruct) Value() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTREnergyEVSEModeClusterModeTagStruct) Value() unsafe.Pointer {
 func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

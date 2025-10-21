@@ -81,6 +81,7 @@ func NewPersistentDocument() PersistentDocument {
 	return getPersistentDocumentClass().New()
 }
 
+
 // Configures the receiver’s persistent store coordinator with the appropriate stores for a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
@@ -88,3 +89,6 @@ func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeMode
 	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, objc.String(fileType), objc.String(configuration), storeOptions, error_)
 	return rv
 }
+
+
+

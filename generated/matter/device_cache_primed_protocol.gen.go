@@ -21,5 +21,3 @@ var deviceCachePrimedProtocol *objc.Protocol
 func init() {
 	deviceCachePrimedProtocol = objc.GetProtocol("deviceCachePrimed:")
 }
-
-

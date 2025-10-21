@@ -9,14 +9,12 @@ import (
 // Suppress unused import errors
 var _ = callkit.NewCXProviderConfiguration
 
-
 // ExampleNewCXProviderConfiguration demonstrates how to create a CXProviderConfiguration instance.
 // Creates the configuration of a provider object.
 func ExampleNewCXProviderConfiguration() {
 	_ = callkit.NewCXProviderConfiguration()
 	// Output:
 }
-
 // ExampleNewCXProviderConfigurationWithLocalizedName demonstrates how to create a CXProviderConfiguration instance using NewCXProviderConfigurationWithLocalizedName.
 // Initializes a configuration with the specified localized name.
 func ExampleNewCXProviderConfigurationWithLocalizedName() {
@@ -25,5 +23,3 @@ func ExampleNewCXProviderConfigurationWithLocalizedName() {
 	)
 	// Output:
 }
-
-

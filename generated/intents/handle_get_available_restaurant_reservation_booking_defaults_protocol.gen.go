@@ -18,5 +18,3 @@ var handleGetAvailableRestaurantReservationBookingDefaultsProtocol *objc.Protoco
 func init() {
 	handleGetAvailableRestaurantReservationBookingDefaultsProtocol = objc.GetProtocol("handleGetAvailableRestaurantReservationBookingDefaults:")
 }
-
-

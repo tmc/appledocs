@@ -108,6 +108,7 @@ func (c_ CKNotificationInfo) SetAlertLocalizationArgs(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationArgs:"), nsArray)
 }
+
 // The names of fields to include in the push notification’s payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/desiredKeys
@@ -135,6 +136,7 @@ func (c_ CKNotificationInfo) SetDesiredKeys(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
+
 // The fields for building a notification’s subtitle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/subtitleLocalizationArgs
@@ -162,6 +164,7 @@ func (c_ CKNotificationInfo) SetSubtitleLocalizationArgs(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationArgs:"), nsArray)
 }
+
 // The fields for building a notification’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/titleLocalizationArgs
@@ -189,6 +192,7 @@ func (c_ CKNotificationInfo) SetTitleLocalizationArgs(value []string) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationArgs:"), nsArray)
 }
+
 // The key that identifies the localized string for the notification’s action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertActionLocalizationKey
@@ -206,6 +210,7 @@ func (c_ CKNotificationInfo) AlertActionLocalizationKey() string {
 func (c_ CKNotificationInfo) SetAlertActionLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertActionLocalizationKey:"), objc.String(value))
 }
+
 // The text for the notification’s alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertBody
@@ -223,6 +228,7 @@ func (c_ CKNotificationInfo) AlertBody() string {
 func (c_ CKNotificationInfo) SetAlertBody(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertBody:"), objc.String(value))
 }
+
 // The filename of an image to use as a launch image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertLaunchImage
@@ -240,6 +246,7 @@ func (c_ CKNotificationInfo) AlertLaunchImage() string {
 func (c_ CKNotificationInfo) SetAlertLaunchImage(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLaunchImage:"), objc.String(value))
 }
+
 // The key that identifies the localized string for the notification’s alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertLocalizationKey
@@ -257,6 +264,7 @@ func (c_ CKNotificationInfo) AlertLocalizationKey() string {
 func (c_ CKNotificationInfo) SetAlertLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationKey:"), objc.String(value))
 }
+
 // The name of the action group that corresponds to this notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/category
@@ -274,6 +282,7 @@ func (c_ CKNotificationInfo) Category() string {
 func (c_ CKNotificationInfo) SetCategory(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCategory:"), objc.String(value))
 }
+
 // A value that the system uses to coalesce unseen push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/collapseIDKey
@@ -291,6 +300,7 @@ func (c_ CKNotificationInfo) CollapseIDKey() string {
 func (c_ CKNotificationInfo) SetCollapseIDKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollapseIDKey:"), objc.String(value))
 }
+
 // A Boolean value that determines whether an app’s icon badge increments its value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/shouldBadge
@@ -308,6 +318,7 @@ func (c_ CKNotificationInfo) ShouldBadge() bool {
 func (c_ CKNotificationInfo) SetShouldBadge(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldBadge:"), value)
 }
+
 // A Boolean value that indicates whether the push notification includes the content available flag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/shouldSendContentAvailable
@@ -325,6 +336,7 @@ func (c_ CKNotificationInfo) ShouldSendContentAvailable() bool {
 func (c_ CKNotificationInfo) SetShouldSendContentAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
 }
+
 // A Boolean value that indicates whether the push notification sets the mutable content flag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/shouldSendMutableContent
@@ -342,6 +354,7 @@ func (c_ CKNotificationInfo) ShouldSendMutableContent() bool {
 func (c_ CKNotificationInfo) SetShouldSendMutableContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendMutableContent:"), value)
 }
+
 // The filename of the sound file to play when a notification arrives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/soundName
@@ -359,6 +372,7 @@ func (c_ CKNotificationInfo) SoundName() string {
 func (c_ CKNotificationInfo) SetSoundName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
+
 // The notification’s subtitle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/subtitle
@@ -376,6 +390,7 @@ func (c_ CKNotificationInfo) Subtitle() string {
 func (c_ CKNotificationInfo) SetSubtitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
+
 // The key that identifies the localized string for the notification’s subtitle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/subtitleLocalizationKey
@@ -393,6 +408,7 @@ func (c_ CKNotificationInfo) SubtitleLocalizationKey() string {
 func (c_ CKNotificationInfo) SetSubtitleLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationKey:"), objc.String(value))
 }
+
 // The notification’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/title
@@ -410,6 +426,7 @@ func (c_ CKNotificationInfo) Title() string {
 func (c_ CKNotificationInfo) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 // The key that identifies the localized string for the notification’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/titleLocalizationKey
@@ -427,5 +444,6 @@ func (c_ CKNotificationInfo) TitleLocalizationKey() string {
 func (c_ CKNotificationInfo) SetTitleLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), objc.String(value))
 }
+
 
 

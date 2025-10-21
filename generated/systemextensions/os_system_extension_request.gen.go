@@ -119,6 +119,7 @@ func (o_ OSSystemExtensionRequest) Delegate() objc.ID {
 func (o_ OSSystemExtensionRequest) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The bundle identifier of the target extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/identifier

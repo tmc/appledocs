@@ -20,5 +20,3 @@ var getTextureAccessCountersProtocol *objc.Protocol
 func init() {
 	getTextureAccessCountersProtocol = objc.GetProtocol("getTextureAccessCounters:")
 }
-
-

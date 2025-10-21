@@ -108,3 +108,4 @@ func (a_ AudioMixerNode) SetOutputVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 
+

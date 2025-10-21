@@ -20,5 +20,3 @@ var supportsFeatureSetProtocol *objc.Protocol
 func init() {
 	supportsFeatureSetProtocol = objc.GetProtocol("supportsFeatureSet:")
 }
-
-

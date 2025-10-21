@@ -76,6 +76,8 @@ func NewMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams() MTRWiFi
 }
 
 
+
+
 // Initialize an MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams) Passphr
 func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams) SetPassphrase(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPassphrase:"), value)
 }
+
 

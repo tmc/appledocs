@@ -20,5 +20,3 @@ var supportsSourceTaggedBuffersProtocol *objc.Protocol
 func init() {
 	supportsSourceTaggedBuffersProtocol = objc.GetProtocol("supportsSourceTaggedBuffers")
 }
-
-

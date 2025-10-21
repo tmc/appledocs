@@ -90,6 +90,7 @@ func (m_ MTRDishwasherModeClusterChangeToModeParams) NewMode() unsafe.Pointer {
 func (m_ MTRDishwasherModeClusterChangeToModeParams) SetNewMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterChangeToModeParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRDishwasherModeClusterChangeToModeParams) ServerSideProcessingTimeout
 func (m_ MTRDishwasherModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterChangeToModeParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRDishwasherModeClusterChangeToModeParams) TimedInvokeTimeoutMs() unsa
 func (m_ MTRDishwasherModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

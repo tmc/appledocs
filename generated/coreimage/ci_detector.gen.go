@@ -83,6 +83,8 @@ func NewDetector() Detector {
 }
 
 
+
+
 // Creates and returns a configured detector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)

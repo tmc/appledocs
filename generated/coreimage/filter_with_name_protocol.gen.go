@@ -19,5 +19,3 @@ var filterWithNameProtocol *objc.Protocol
 func init() {
 	filterWithNameProtocol = objc.GetProtocol("filterWithName:")
 }
-
-

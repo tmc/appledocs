@@ -20,5 +20,3 @@ var float4x4AtTimeProtocol *objc.Protocol
 func init() {
 	float4x4AtTimeProtocol = objc.GetProtocol("float4x4AtTime:")
 }
-
-

@@ -19,5 +19,3 @@ var setBytesProtocol *objc.Protocol
 func init() {
 	setBytesProtocol = objc.GetProtocol("setBytes:")
 }
-
-

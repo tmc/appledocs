@@ -15,5 +15,3 @@ var outputImageProviderFromTextureWithPixelFormatProtocol *objc.Protocol
 func init() {
 	outputImageProviderFromTextureWithPixelFormatProtocol = objc.GetProtocol("outputImageProviderFromTextureWithPixelFormat:")
 }
-
-

@@ -76,6 +76,8 @@ func NewMTRICDManagementClusterStayActiveResponseParams() MTRICDManagementCluste
 }
 
 
+
+
 // Initialize an MTRICDManagementClusterStayActiveResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration
 func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
+
 

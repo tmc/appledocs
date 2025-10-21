@@ -19,5 +19,3 @@ var presentDrawableProtocol *objc.Protocol
 func init() {
 	presentDrawableProtocol = objc.GetProtocol("presentDrawable:")
 }
-
-

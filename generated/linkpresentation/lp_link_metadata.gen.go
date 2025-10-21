@@ -98,6 +98,7 @@ func (l_ LPLinkMetadata) IconProvider() unsafe.Pointer {
 func (l_ LPLinkMetadata) SetIconProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIconProvider:"), value)
 }
+
 // An object that retrieves data corresponding to a representative image for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/imageProvider
@@ -115,6 +116,7 @@ func (l_ LPLinkMetadata) ImageProvider() unsafe.Pointer {
 func (l_ LPLinkMetadata) SetImageProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setImageProvider:"), value)
 }
+
 // The original URL of the metadata request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/originalURL
@@ -132,6 +134,7 @@ func (l_ LPLinkMetadata) OriginalURL() unsafe.Pointer {
 func (l_ LPLinkMetadata) SetOriginalURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOriginalURL:"), value)
 }
+
 // A remote URL corresponding to a representative video for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/remoteVideoURL
@@ -149,6 +152,7 @@ func (l_ LPLinkMetadata) RemoteVideoURL() unsafe.Pointer {
 func (l_ LPLinkMetadata) SetRemoteVideoURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setRemoteVideoURL:"), value)
 }
+
 // A representative title for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
@@ -166,6 +170,7 @@ func (l_ LPLinkMetadata) Title() string {
 func (l_ LPLinkMetadata) SetTitle(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 // The URL that returned the metadata, taking server-side redirects into account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/url
@@ -183,6 +188,7 @@ func (l_ LPLinkMetadata) URL() unsafe.Pointer {
 func (l_ LPLinkMetadata) SetURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setURL:"), value)
 }
+
 // An object that retrieves data corresponding to a representative video for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/videoProvider
@@ -200,5 +206,6 @@ func (l_ LPLinkMetadata) VideoProvider() unsafe.Pointer {
 func (l_ LPLinkMetadata) SetVideoProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVideoProvider:"), value)
 }
+
 
 

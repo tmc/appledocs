@@ -20,4 +20,3 @@ var CNKeyDescriptorProtocol *objc.Protocol
 func init() {
 	CNKeyDescriptorProtocol = objc.GetProtocol("CNKeyDescriptor")
 }
-

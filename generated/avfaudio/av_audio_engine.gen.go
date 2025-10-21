@@ -139,6 +139,7 @@ func (a_ AudioEngine) MusicSequence() unsafe.Pointer {
 func (a_ AudioEngine) SetMusicSequence(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicSequence:"), value)
 }
+
 // The audio engine’s singleton output audio node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/outputNode

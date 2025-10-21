@@ -16,5 +16,3 @@ var minimumTextureUsageProtocol *objc.Protocol
 func init() {
 	minimumTextureUsageProtocol = objc.GetProtocol("minimumTextureUsage")
 }
-
-

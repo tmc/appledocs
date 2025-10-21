@@ -20,5 +20,3 @@ var newIntersectionFunctionWithDescriptorProtocol *objc.Protocol
 func init() {
 	newIntersectionFunctionWithDescriptorProtocol = objc.GetProtocol("newIntersectionFunctionWithDescriptor:")
 }
-
-

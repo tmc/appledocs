@@ -83,6 +83,8 @@ func NewODQuery() ODQuery {
 }
 
 
+
+
 // Creates a query object with provided parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/init(node:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:)
@@ -148,6 +150,7 @@ func (o_ ODQuery) Delegate() objc.ID {
 func (o_ ODQuery) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The queue on which asynchronous results are delivered to the delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/operationQueue
@@ -165,4 +168,5 @@ func (o_ ODQuery) OperationQueue() unsafe.Pointer {
 func (o_ ODQuery) SetOperationQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOperationQueue:"), value)
 }
+
 

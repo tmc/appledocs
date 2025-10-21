@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TableRowView] class.
@@ -86,6 +86,7 @@ func NewTableRowView() TableRowView {
 	return getTableRowViewClass().New()
 }
 
+
 // Draws the background of the row in the rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawBackground(in:)
@@ -130,6 +131,7 @@ func (t_ TableRowView) BackgroundColor() unsafe.Pointer {
 	return rv
 }
 
+
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The background color of the row.
 
@@ -147,6 +149,7 @@ func (t_ TableRowView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDraggingDestinationFeedbackStyle sets the value of the draggingDestinationFeedbackStyle property.
 // Specifies the dragging destination feedback style.
 
@@ -163,6 +166,7 @@ func (t_ TableRowView) IndentationForDropOperation() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("indentationForDropOperation"))
 	return rv
 }
+
 
 // SetIndentationForDropOperation sets the value of the indentationForDropOperation property.
 // Defines the amount the drag target for a row should be indented.
@@ -189,6 +193,7 @@ func (t_ TableRowView) Emphasized() bool {
 	return rv
 }
 
+
 // SetEmphasized sets the value of the emphasized property.
 // Determines whether the row will draw with the alternate or secondary color (unless overridden).
 
@@ -205,6 +210,7 @@ func (t_ TableRowView) Floating() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("floating"))
 	return rv
 }
+
 
 // SetFloating sets the value of the floating property.
 // Specifies whether the row is drawn using the floating style.
@@ -223,6 +229,7 @@ func (t_ TableRowView) GroupRowStyle() bool {
 	return rv
 }
 
+
 // SetGroupRowStyle sets the value of the groupRowStyle property.
 // Specifies whether this row view is a group row.
 
@@ -239,6 +246,7 @@ func (t_ TableRowView) NextRowSelected() bool {
 	return rv
 }
 
+
 // SetNextRowSelected sets the value of the nextRowSelected property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isNextRowSelected
@@ -252,6 +260,7 @@ func (t_ TableRowView) PreviousRowSelected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("previousRowSelected"))
 	return rv
 }
+
 
 // SetPreviousRowSelected sets the value of the previousRowSelected property.
 //
@@ -267,6 +276,7 @@ func (t_ TableRowView) Selected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("selected"))
 	return rv
 }
+
 
 // SetSelected sets the value of the selected property.
 // Determines whether the row is selected.
@@ -284,6 +294,7 @@ func (t_ TableRowView) TargetForDropOperation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("targetForDropOperation"))
 	return rv
 }
+
 
 // SetTargetForDropOperation sets the value of the targetForDropOperation property.
 // Specifies whether this row will draw a drop indicator based on the current dragging feedback style.
@@ -310,6 +321,7 @@ func (t_ TableRowView) SelectionHighlightStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSelectionHighlightStyle sets the value of the selectionHighlightStyle property.
 // Specifies the selection highlight style.
 
@@ -318,3 +330,6 @@ func (t_ TableRowView) SelectionHighlightStyle() unsafe.Pointer {
 func (t_ TableRowView) SetSelectionHighlightStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionHighlightStyle:"), value)
 }
+
+
+

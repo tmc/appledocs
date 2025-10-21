@@ -111,15 +111,7 @@ func NewEKEventStore() EKEventStore {
 }
 
 
-// Creates an event store that contains data for the specified sources.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/init(sources:)
-func NewEKEventStoreWithSources(sources unsafe.Pointer) EKEventStore {
-	instance := getEKEventStoreClass().Alloc()
-	rv := objc.Send[EKEventStore](instance.ID, objc.Sel("initWithSources:"), sources)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Initializes access to the event store with support for the given entity type.
 //
@@ -127,6 +119,18 @@ func NewEKEventStoreWithSources(sources unsafe.Pointer) EKEventStore {
 func NewEKEventStoreWithAccessToEntityTypes(entityTypes unsafe.Pointer) EKEventStore {
 	instance := getEKEventStoreClass().Alloc()
 	rv := objc.Send[EKEventStore](instance.ID, objc.Sel("initWithAccessToEntityTypes:"), entityTypes)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates an event store that contains data for the specified sources.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/init(sources:)
+func NewEKEventStoreWithSources(sources unsafe.Pointer) EKEventStore {
+	instance := getEKEventStoreClass().Alloc()
+	rv := objc.Send[EKEventStore](instance.ID, objc.Sel("initWithSources:"), sources)
 	rv.Autorelease()
 	return rv
 }

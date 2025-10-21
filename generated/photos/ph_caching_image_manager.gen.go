@@ -125,3 +125,4 @@ func (p_ PHCachingImageManager) SetAllowsCachingHighQualityImages(value bool) {
 }
 
 
+

@@ -90,6 +90,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() unsafe.P
 func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTime
 func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/timedInvokeTimeoutMs
@@ -124,6 +126,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() u
 func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/verificationKey
 func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() unsafe.Pointer {
@@ -138,5 +141,6 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() unsafe
 func (m_ MTRICDManagementClusterUnregisterClientParams) SetVerificationKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
 }
+
 
 

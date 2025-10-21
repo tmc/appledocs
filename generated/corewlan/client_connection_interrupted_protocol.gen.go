@@ -16,5 +16,3 @@ var clientConnectionInterruptedProtocol *objc.Protocol
 func init() {
 	clientConnectionInterruptedProtocol = objc.GetProtocol("clientConnectionInterrupted")
 }
-
-

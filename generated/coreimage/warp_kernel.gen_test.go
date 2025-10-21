@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewWarpKernel
 
-
 // ExampleNewWarpKernelWithString demonstrates how to create a WarpKernel instance using NewWarpKernelWithString.
 // Creates a warp kernel object from the specified kernel source code.
 func ExampleNewWarpKernelWithString() {
@@ -18,5 +17,4 @@ func ExampleNewWarpKernelWithString() {
 	)
 	// Output:
 }
-
 

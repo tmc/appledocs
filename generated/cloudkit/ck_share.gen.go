@@ -83,15 +83,7 @@ func NewCKShare() CKShare {
 }
 
 
-// Creates a new share for the specified record and record ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
-func NewCKShareWithRootRecordShareID(rootRecord unsafe.Pointer, shareID unsafe.Pointer) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a share from a serialized instance.
 //
@@ -103,6 +95,8 @@ func NewCKShareWithCoder(aDecoder unsafe.Pointer) CKShare {
 	return rv
 }
 
+
+
 // Creates a new share for the specified record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(recordZoneID:)
@@ -113,12 +107,26 @@ func NewCKShareWithRecordZoneID(recordZoneID unsafe.Pointer) CKShare {
 	return rv
 }
 
+
+
 // Creates a new share for the specified record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:)
 func NewCKShareWithRootRecord(rootRecord unsafe.Pointer) CKShare {
 	instance := getCKShareClass().Alloc()
 	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:"), rootRecord)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a new share for the specified record and record ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
+func NewCKShareWithRootRecordShareID(rootRecord unsafe.Pointer, shareID unsafe.Pointer) CKShare {
+	instance := getCKShareClass().Alloc()
+	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
 	rv.Autorelease()
 	return rv
 }
@@ -155,6 +163,7 @@ func (c_ CKShare) PublicPermission() unsafe.Pointer {
 func (c_ CKShare) SetPublicPermission(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPublicPermission:"), value)
 }
+
 // The URL for inviting participants to the share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/url

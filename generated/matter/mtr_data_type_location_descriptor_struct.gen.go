@@ -90,6 +90,7 @@ func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() unsafe.Pointer {
 func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaType:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/floorNumber
 func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() unsafe.Pointer {
 func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFloorNumber:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
 func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
@@ -118,5 +120,6 @@ func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
 func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), objc.String(value))
 }
+
 
 

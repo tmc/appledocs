@@ -104,6 +104,7 @@ func (i_ ICDeviceBrowser) BrowsedDeviceTypeMask() unsafe.Pointer {
 func (i_ ICDeviceBrowser) SetBrowsedDeviceTypeMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBrowsedDeviceTypeMask:"), value)
 }
+
 // The object that acts as the delegate of the device browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/delegate
@@ -121,5 +122,6 @@ func (i_ ICDeviceBrowser) Delegate() objc.ID {
 func (i_ ICDeviceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
+
 
 

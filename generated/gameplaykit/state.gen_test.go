@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewState
 
-
 // ExampleNewState demonstrates how to create a State instance.
 // Initializes a state object.
 func ExampleNewState() {
 	_ = gameplaykit.NewState()
 	// Output:
 }
-
-

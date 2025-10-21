@@ -81,6 +81,8 @@ func NewVZFileSerialPortAttachment() VZFileSerialPortAttachment {
 }
 
 
+
+
 // Creates a file-based serial port attachment object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/init(url:append:)

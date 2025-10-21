@@ -19,5 +19,3 @@ var currentPlaybackTimeProtocol *objc.Protocol
 func init() {
 	currentPlaybackTimeProtocol = objc.GetProtocol("currentPlaybackTime")
 }
-
-

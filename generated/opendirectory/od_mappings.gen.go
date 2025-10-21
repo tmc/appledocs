@@ -112,6 +112,7 @@ func (o_ ODMappings) Comment() string {
 func (o_ ODMappings) SetComment(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
 func (o_ ODMappings) Function() string {
@@ -126,6 +127,7 @@ func (o_ ODMappings) Function() string {
 func (o_ ODMappings) SetFunction(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/functionAttributes-swift.property
 func (o_ ODMappings) FunctionAttributes() unsafe.Pointer {
@@ -140,6 +142,7 @@ func (o_ ODMappings) FunctionAttributes() unsafe.Pointer {
 func (o_ ODMappings) SetFunctionAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFunctionAttributes:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
 func (o_ ODMappings) Identifier() string {
@@ -154,6 +157,7 @@ func (o_ ODMappings) Identifier() string {
 func (o_ ODMappings) SetIdentifier(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/recordTypes-swift.property
 func (o_ ODMappings) RecordTypes() unsafe.Pointer {
@@ -175,5 +179,6 @@ func (o_ ODMappings) TemplateName() string {
 func (o_ ODMappings) SetTemplateName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
 }
+
 
 

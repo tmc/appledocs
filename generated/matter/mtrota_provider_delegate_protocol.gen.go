@@ -21,5 +21,3 @@ var MTROTAProviderDelegateProtocol *objc.Protocol
 func init() {
 	MTROTAProviderDelegateProtocol = objc.GetProtocol("MTROTAProviderDelegate")
 }
-
-

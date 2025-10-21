@@ -100,3 +100,4 @@ func (g_ GeneratePersonSegmentationRequest) SetOutputPixelFormat(value unsafe.Po
 }
 
 
+

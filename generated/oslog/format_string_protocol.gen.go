@@ -21,5 +21,3 @@ var formatStringProtocol *objc.Protocol
 func init() {
 	formatStringProtocol = objc.GetProtocol("formatString")
 }
-
-

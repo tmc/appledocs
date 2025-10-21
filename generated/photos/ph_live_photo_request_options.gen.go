@@ -98,6 +98,7 @@ func (p_ PHLivePhotoRequestOptions) DeliveryMode() unsafe.Pointer {
 func (p_ PHLivePhotoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
+
 // A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/isNetworkAccessAllowed
@@ -115,6 +116,7 @@ func (p_ PHLivePhotoRequestOptions) NetworkAccessAllowed() bool {
 func (p_ PHLivePhotoRequestOptions) SetNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
 }
+
 // A block that Photos calls periodically while downloading the Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/progressHandler
@@ -132,6 +134,7 @@ func (p_ PHLivePhotoRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHLivePhotoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
+
 // The version of the Live Photo to be requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/version
@@ -149,5 +152,6 @@ func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
 func (p_ PHLivePhotoRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
+
 
 

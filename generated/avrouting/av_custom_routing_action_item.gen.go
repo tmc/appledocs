@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [CustomRoutingActionItem] class.
@@ -99,11 +98,12 @@ func (c_ CustomRoutingActionItem) OverrideTitle() string {
 func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
 }
+
 // A type with an identifier that matches a value in the app’s configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) Type() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](c_.ID, objc.Sel("type"))
+func (c_ CustomRoutingActionItem) Type() UTType {
+	rv := objc.Send[UTType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -113,8 +113,9 @@ func (c_ CustomRoutingActionItem) Type() uniformtypeidentifiers.UTType {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) SetType(value uniformtypeidentifiers.UTType) {
+func (c_ CustomRoutingActionItem) SetType(value UTType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
+
 
 

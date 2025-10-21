@@ -20,5 +20,3 @@ var resolveRecipientsForSendMessageProtocol *objc.Protocol
 func init() {
 	resolveRecipientsForSendMessageProtocol = objc.GetProtocol("resolveRecipientsForSendMessage:")
 }
-
-

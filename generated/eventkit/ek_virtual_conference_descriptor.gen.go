@@ -81,6 +81,8 @@ func NewEKVirtualConferenceDescriptor() EKVirtualConferenceDescriptor {
 }
 
 
+
+
 // Creates an object that describes a virtual conference, including a name and URL to join the conference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/init(title:urlDescriptors:conferenceDetails:)

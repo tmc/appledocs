@@ -15,5 +15,3 @@ var MEVideoDecoderExtensionProtocol *objc.Protocol
 func init() {
 	MEVideoDecoderExtensionProtocol = objc.GetProtocol("MEVideoDecoderExtension")
 }
-
-

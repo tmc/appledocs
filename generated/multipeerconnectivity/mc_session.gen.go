@@ -86,6 +86,8 @@ func NewMCSession() MCSession {
 }
 
 
+
+
 // Creates a Multipeer Connectivity session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/init(peer:)
@@ -95,6 +97,8 @@ func NewMCSessionWithPeer(myPeerID unsafe.Pointer) MCSession {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a Multipeer Connectivity session, providing security information.
 //
@@ -184,6 +188,7 @@ func (m_ MCSession) Delegate() objc.ID {
 func (m_ MCSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A value indicating whether the connection prefers encrypted connections, unencrypted connections, or has no preference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/encryptionPreference

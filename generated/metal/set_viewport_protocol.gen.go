@@ -19,5 +19,3 @@ var setViewportProtocol *objc.Protocol
 func init() {
 	setViewportProtocol = objc.GetProtocol("setViewport:")
 }
-
-

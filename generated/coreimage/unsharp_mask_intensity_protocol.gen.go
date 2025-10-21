@@ -12,5 +12,3 @@ var unsharpMaskIntensityProtocol *objc.Protocol
 func init() {
 	unsharpMaskIntensityProtocol = objc.GetProtocol("unsharpMaskIntensity")
 }
-
-

@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZVirtioNetworkDeviceConfiguration
 
-
 // ExampleNewVZVirtioNetworkDeviceConfiguration demonstrates how to create a VZVirtioNetworkDeviceConfiguration instance.
 // Creates a network device configuration object for you to configure.
 func ExampleNewVZVirtioNetworkDeviceConfiguration() {
 	_ = virtualization.NewVZVirtioNetworkDeviceConfiguration()
 	// Output:
 }
-
-

@@ -19,5 +19,3 @@ var alphaCoefficientsProtocol *objc.Protocol
 func init() {
 	alphaCoefficientsProtocol = objc.GetProtocol("alphaCoefficients")
 }
-
-

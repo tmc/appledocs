@@ -82,6 +82,8 @@ func NewNSPredicateRule() NSPredicateRule {
 }
 
 
+
+
 // Initializes a rule with the specified predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)

@@ -81,6 +81,8 @@ func NewDisplayCriteria() DisplayCriteria {
 }
 
 
+
+
 // Creates a display criteria object with the specified refresh rate and format description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDisplayCriteria/init(refreshRate:formatDescription:)

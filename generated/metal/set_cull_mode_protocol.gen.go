@@ -19,5 +19,3 @@ var setCullModeProtocol *objc.Protocol
 func init() {
 	setCullModeProtocol = objc.GetProtocol("setCullMode:")
 }
-
-

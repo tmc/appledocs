@@ -12,5 +12,3 @@ var isMemberOfClassProtocol *objc.Protocol
 func init() {
 	isMemberOfClassProtocol = objc.GetProtocol("isMemberOfClass:")
 }
-
-

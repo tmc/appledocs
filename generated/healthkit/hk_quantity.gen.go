@@ -84,6 +84,8 @@ func NewHKQuantity() HKQuantity {
 }
 
 
+
+
 // Instantiates and returns a new quantity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)

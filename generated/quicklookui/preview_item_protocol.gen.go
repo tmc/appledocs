@@ -15,5 +15,3 @@ var PreviewItemProtocol *objc.Protocol
 func init() {
 	PreviewItemProtocol = objc.GetProtocol("QLPreviewItem")
 }
-
-

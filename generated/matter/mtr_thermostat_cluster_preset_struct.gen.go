@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterPresetStruct) BuiltIn() unsafe.Pointer {
 func (m_ MTRThermostatClusterPresetStruct) SetBuiltIn(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/coolingSetpoint
 func (m_ MTRThermostatClusterPresetStruct) CoolingSetpoint() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThermostatClusterPresetStruct) CoolingSetpoint() unsafe.Pointer {
 func (m_ MTRThermostatClusterPresetStruct) SetCoolingSetpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolingSetpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/heatingSetpoint
 func (m_ MTRThermostatClusterPresetStruct) HeatingSetpoint() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRThermostatClusterPresetStruct) HeatingSetpoint() unsafe.Pointer {
 func (m_ MTRThermostatClusterPresetStruct) SetHeatingSetpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatingSetpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
 func (m_ MTRThermostatClusterPresetStruct) Name() string {
@@ -132,6 +135,7 @@ func (m_ MTRThermostatClusterPresetStruct) Name() string {
 func (m_ MTRThermostatClusterPresetStruct) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetHandle
 func (m_ MTRThermostatClusterPresetStruct) PresetHandle() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRThermostatClusterPresetStruct) PresetHandle() unsafe.Pointer {
 func (m_ MTRThermostatClusterPresetStruct) SetPresetHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetScenario
 func (m_ MTRThermostatClusterPresetStruct) PresetScenario() unsafe.Pointer {
@@ -160,5 +165,6 @@ func (m_ MTRThermostatClusterPresetStruct) PresetScenario() unsafe.Pointer {
 func (m_ MTRThermostatClusterPresetStruct) SetPresetScenario(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
+
 
 

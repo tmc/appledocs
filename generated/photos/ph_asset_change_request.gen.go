@@ -82,6 +82,8 @@ func NewPHAssetChangeRequest() PHAssetChangeRequest {
 }
 
 
+
+
 // Creates a request for modifying the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/init(for:)
@@ -130,6 +132,7 @@ func (p_ PHAssetChangeRequest) ContentEditingOutput() unsafe.Pointer {
 func (p_ PHAssetChangeRequest) SetContentEditingOutput(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
+
 // A placeholder object for the asset that the change request creates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/placeholderForCreatedAsset

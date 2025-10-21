@@ -81,6 +81,8 @@ func NewPHASEChannelMixerDefinition() PHASEChannelMixerDefinition {
 }
 
 
+
+
 // Creates a channel mixer with the given channel layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEChannelMixerDefinition/init(channelLayout:)
@@ -90,6 +92,8 @@ func NewPHASEChannelMixerDefinitionWithChannelLayout(layout unsafe.Pointer) PHAS
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a named channel mixer with the given channel layout.
 //

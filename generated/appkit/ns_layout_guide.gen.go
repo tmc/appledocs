@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [LayoutGuide] class.
@@ -79,6 +80,7 @@ func NewLayoutGuide() LayoutGuide {
 	return getLayoutGuideClass().New()
 }
 
+
 // A layout anchor representing the bottom edge of the layout guide’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/bottomAnchor
@@ -94,6 +96,7 @@ func (l_ LayoutGuide) Identifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("identifier"))
 	return rv
 }
+
 
 // SetIdentifier sets the value of the identifier property.
 // A string used to identify the layout guide.
@@ -111,3 +114,6 @@ func (l_ LayoutGuide) LeadingAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leadingAnchor"))
 	return rv
 }
+
+
+

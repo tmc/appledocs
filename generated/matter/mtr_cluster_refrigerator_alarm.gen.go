@@ -87,6 +87,8 @@ func NewMTRClusterRefrigeratorAlarm() MTRClusterRefrigeratorAlarm {
 }
 
 
+
+
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/init(device:endpointID:queue:)

@@ -81,15 +81,7 @@ func NewUserScript() UserScript {
 }
 
 
-// Creates a user script object that is scoped to a particular content world.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserScript/init(source:injectionTime:forMainFrameOnly:in:)
-func NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(source string, injectionTime unsafe.Pointer, forMainFrameOnly bool, contentWorld unsafe.Pointer) UserScript {
-	instance := getUserScriptClass().Alloc()
-	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:inContentWorld:"), objc.String(source), injectionTime, forMainFrameOnly, contentWorld)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a user script object that contains the specified source code and attributes.
 //
@@ -97,6 +89,18 @@ func NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(source s
 func NewUserScriptWithSourceInjectionTimeForMainFrameOnly(source string, injectionTime unsafe.Pointer, forMainFrameOnly bool) UserScript {
 	instance := getUserScriptClass().Alloc()
 	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:"), objc.String(source), injectionTime, forMainFrameOnly)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a user script object that is scoped to a particular content world.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserScript/init(source:injectionTime:forMainFrameOnly:in:)
+func NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(source string, injectionTime unsafe.Pointer, forMainFrameOnly bool, contentWorld unsafe.Pointer) UserScript {
+	instance := getUserScriptClass().Alloc()
+	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:inContentWorld:"), objc.String(source), injectionTime, forMainFrameOnly, contentWorld)
 	rv.Autorelease()
 	return rv
 }

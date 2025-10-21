@@ -20,5 +20,3 @@ var PHLivePhotoFrameProtocol *objc.Protocol
 func init() {
 	PHLivePhotoFrameProtocol = objc.GetProtocol("PHLivePhotoFrame")
 }
-
-

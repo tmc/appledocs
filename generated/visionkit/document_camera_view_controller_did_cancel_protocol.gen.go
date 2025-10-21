@@ -18,4 +18,3 @@ var documentCameraViewControllerDidCancelProtocol *objc.Protocol
 func init() {
 	documentCameraViewControllerDidCancelProtocol = objc.GetProtocol("documentCameraViewControllerDidCancel:")
 }
-

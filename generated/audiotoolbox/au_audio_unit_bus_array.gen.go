@@ -86,6 +86,8 @@ func NewAudioUnitBusArray() AudioUnitBusArray {
 }
 
 
+
+
 // Initializes an empty bus array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)
@@ -95,6 +97,8 @@ func NewAudioUnitBusArrayWithAudioUnitBusType(owner unsafe.Pointer, busType unsa
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a bus array by making a copy of the supplied busses.
 //

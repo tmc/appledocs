@@ -18,5 +18,3 @@ var extensionWillTerminateProtocol *objc.Protocol
 func init() {
 	extensionWillTerminateProtocol = objc.GetProtocol("extensionWillTerminate")
 }
-
-

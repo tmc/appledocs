@@ -84,6 +84,8 @@ func NewMIDIPlayer() MIDIPlayer {
 }
 
 
+
+
 // Creates a player to play a MIDI file with the specified soundbank.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(contentsOf:soundBankURL:)
@@ -93,6 +95,8 @@ func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL unsafe.Pointer, bankU
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a player to play MIDI data with the specified soundbank.
 //
@@ -143,6 +147,7 @@ func (m_ MIDIPlayer) CurrentPosition() TimeInterval {
 func (m_ MIDIPlayer) SetCurrentPosition(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentPosition:"), value)
 }
+
 // The duration, in seconds, of the currently loaded file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/duration
@@ -176,4 +181,5 @@ func (m_ MIDIPlayer) Rate() unsafe.Pointer {
 func (m_ MIDIPlayer) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
 }
+
 

@@ -21,4 +21,3 @@ var peripheralManagerIsReadyToUpdateSubscribersProtocol *objc.Protocol
 func init() {
 	peripheralManagerIsReadyToUpdateSubscribersProtocol = objc.GetProtocol("peripheralManagerIsReadyToUpdateSubscribers:")
 }
-

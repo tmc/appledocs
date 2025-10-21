@@ -20,5 +20,3 @@ var maxTotalThreadsPerThreadgroupProtocol *objc.Protocol
 func init() {
 	maxTotalThreadsPerThreadgroupProtocol = objc.GetProtocol("maxTotalThreadsPerThreadgroup")
 }
-
-

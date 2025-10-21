@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [GridView] class.
@@ -97,6 +97,9 @@ func NewGridView() GridView {
 	return getGridViewClass().New()
 }
 
+
+
+
 // Creates a newly allocated grid view object from the coder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
@@ -106,6 +109,8 @@ func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a newly allocated grid view object with the specified frame rectangle.
 //
@@ -117,6 +122,8 @@ func NewGridViewWithFrame(frameRect coregraphics.CGRect) GridView {
 	return rv
 }
 
+
+
 // Creates a newly allocated grid view object with the specified number of columns and rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(numberOfColumns:rows:)
@@ -125,6 +132,8 @@ func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView 
 	return rv
 }
 
+
+
 // Creates a newly allocated grid view object with the specified array of arrays of views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
@@ -132,6 +141,7 @@ func NewGridViewWithViews(rows unsafe.Pointer) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
+
 
 // Creates a newly allocated grid view object with the specified number of columns and rows.
 //
@@ -272,6 +282,7 @@ func (g_ GridView) ColumnSpacing() float64 {
 	return rv
 }
 
+
 // SetColumnSpacing sets the value of the columnSpacing property.
 // The column spacing for the grid view.
 
@@ -305,6 +316,7 @@ func (g_ GridView) RowAlignment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetRowAlignment sets the value of the rowAlignment property.
 // The row alignment for the grid view.
 
@@ -321,6 +333,7 @@ func (g_ GridView) RowSpacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("rowSpacing"))
 	return rv
 }
+
 
 // SetRowSpacing sets the value of the rowSpacing property.
 // The row spacing for the grid view.
@@ -339,6 +352,7 @@ func (g_ GridView) XPlacement() unsafe.Pointer {
 	return rv
 }
 
+
 // SetXPlacement sets the value of the xPlacement property.
 // The placement of the cell within the grid column.
 
@@ -356,6 +370,7 @@ func (g_ GridView) YPlacement() unsafe.Pointer {
 	return rv
 }
 
+
 // SetYPlacement sets the value of the yPlacement property.
 // The placement of the cell within the grid row.
 
@@ -364,3 +379,5 @@ func (g_ GridView) YPlacement() unsafe.Pointer {
 func (g_ GridView) SetYPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYPlacement:"), value)
 }
+
+

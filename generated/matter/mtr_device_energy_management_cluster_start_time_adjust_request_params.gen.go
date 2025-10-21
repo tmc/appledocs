@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Cause() u
 func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetCause(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/requestedStartTime
 func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) RequestedStartTime() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Requested
 func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetRequestedStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestedStartTime:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) ServerSid
 func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/timedInvokeTimeoutMs
@@ -138,5 +141,6 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) TimedInvo
 func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

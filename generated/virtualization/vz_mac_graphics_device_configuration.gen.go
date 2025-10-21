@@ -110,3 +110,4 @@ func (v_ VZMacGraphicsDeviceConfiguration) SetDisplays(value []VZMacGraphicsDisp
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), nsArray)
 }
 
+

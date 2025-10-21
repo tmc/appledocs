@@ -12,5 +12,3 @@ var LanczosScaleTransformProtocol *objc.Protocol
 func init() {
 	LanczosScaleTransformProtocol = objc.GetProtocol("CILanczosScaleTransform")
 }
-
-

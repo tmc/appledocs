@@ -20,5 +20,3 @@ var digestProtocol *objc.Protocol
 func init() {
 	digestProtocol = objc.GetProtocol("digest")
 }
-
-

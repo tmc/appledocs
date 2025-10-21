@@ -20,5 +20,3 @@ var kernelEndTimeProtocol *objc.Protocol
 func init() {
 	kernelEndTimeProtocol = objc.GetProtocol("kernelEndTime")
 }
-
-

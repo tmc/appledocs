@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() un
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/powerAdjustCapability
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjustCapability() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjus
 func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetPowerAdjustCapability(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPowerAdjustCapability:"), value)
 }
+
 
 

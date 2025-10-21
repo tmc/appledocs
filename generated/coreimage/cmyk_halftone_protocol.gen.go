@@ -12,5 +12,3 @@ var CMYKHalftoneProtocol *objc.Protocol
 func init() {
 	CMYKHalftoneProtocol = objc.GetProtocol("CICMYKHalftone")
 }
-
-

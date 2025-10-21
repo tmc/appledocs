@@ -81,6 +81,8 @@ func NewContentFilter() ContentFilter {
 }
 
 
+
+
 // Creates a filter that captures a display, excluding windows of the specified apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter/init(display:excludingApplications:exceptingWindows:)
@@ -90,6 +92,8 @@ func NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(display un
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a filter that captures the contents of a display, excluding the specified windows.
 //
@@ -116,4 +120,5 @@ func (c_ ContentFilter) IncludeMenuBar() bool {
 func (c_ ContentFilter) SetIncludeMenuBar(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludeMenuBar:"), value)
 }
+
 

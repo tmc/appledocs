@@ -82,6 +82,8 @@ func NewAudioTime() AudioTime {
 }
 
 
+
+
 // Creates an audio time object with the specified timestamp and sample rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/init(audioTimeStamp:sampleRate:)
@@ -91,6 +93,8 @@ func NewAudioTimeWithAudioTimeStampSampleRate(ts unsafe.Pointer, sampleRate unsa
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an audio time object with the specified host time.
 //
@@ -102,6 +106,8 @@ func NewAudioTimeWithHostTime(hostTime uint64) AudioTime {
 	return rv
 }
 
+
+
 // Creates an audio time object with the specified host time, sample time, and sample rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/init(hostTime:sampleTime:atRate:)
@@ -111,6 +117,8 @@ func NewAudioTimeWithHostTimeSampleTimeAtRate(hostTime uint64, sampleTime unsafe
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an audio time object with the specified timestamp and sample rate.
 //

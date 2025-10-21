@@ -21,5 +21,3 @@ var OS_sec_identityProtocol *objc.Protocol
 func init() {
 	OS_sec_identityProtocol = objc.GetProtocol("OS_sec_identity")
 }
-
-

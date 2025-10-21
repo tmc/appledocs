@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PHAssetResource] class.
@@ -109,8 +108,8 @@ func (p_ PHAssetResource) AssetLocalIdentifier() string {
 // The type of data associated with this asset resource (the data can be retrieved via PHAssetResourceManager)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/contentType
-func (p_ PHAssetResource) ContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHAssetResource) ContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 

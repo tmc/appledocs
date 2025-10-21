@@ -19,5 +19,3 @@ var widthProtocol *objc.Protocol
 func init() {
 	widthProtocol = objc.GetProtocol("width")
 }
-
-

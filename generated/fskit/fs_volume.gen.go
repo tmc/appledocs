@@ -81,6 +81,8 @@ func NewFSVolume() FSVolume {
 }
 
 
+
+
 // Creates a volume with the given identifier and name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/init(volumeID:volumeName:)
@@ -109,6 +111,7 @@ func (f_ FSVolume) Name() unsafe.Pointer {
 func (f_ FSVolume) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
+
 // An identifier that uniquely identifies the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/volumeID

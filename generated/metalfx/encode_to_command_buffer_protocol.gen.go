@@ -19,5 +19,3 @@ var encodeToCommandBufferProtocol *objc.Protocol
 func init() {
 	encodeToCommandBufferProtocol = objc.GetProtocol("encodeToCommandBuffer:")
 }
-
-

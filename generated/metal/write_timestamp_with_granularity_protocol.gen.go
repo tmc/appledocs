@@ -20,5 +20,3 @@ var writeTimestampWithGranularityProtocol *objc.Protocol
 func init() {
 	writeTimestampWithGranularityProtocol = objc.GetProtocol("writeTimestampWithGranularity:")
 }
-
-

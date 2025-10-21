@@ -17,5 +17,3 @@ var safariViewControllerDidFinishProtocol *objc.Protocol
 func init() {
 	safariViewControllerDidFinishProtocol = objc.GetProtocol("safariViewControllerDidFinish:")
 }
-
-

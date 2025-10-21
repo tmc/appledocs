@@ -99,6 +99,7 @@ func (t_ TextLayer) AlignmentMode() unsafe.Pointer {
 func (t_ TextLayer) SetAlignmentMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignmentMode:"), value)
 }
+
 // Determines whether to allow subpixel quantization for the graphics context used for text rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/allowsFontSubpixelQuantization
@@ -116,6 +117,7 @@ func (t_ TextLayer) AllowsFontSubpixelQuantization() bool {
 func (t_ TextLayer) SetAllowsFontSubpixelQuantization(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsFontSubpixelQuantization:"), value)
 }
+
 // The font used to render the receiver’s text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/font
@@ -133,6 +135,7 @@ func (t_ TextLayer) Font() unsafe.Pointer {
 func (t_ TextLayer) SetFont(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:"), value)
 }
+
 // The font size used to render the receiver’s text. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/fontSize
@@ -150,6 +153,7 @@ func (t_ TextLayer) FontSize() float64 {
 func (t_ TextLayer) SetFontSize(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFontSize:"), value)
 }
+
 // The color used to render the receiver’s text. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/foregroundColor
@@ -167,6 +171,7 @@ func (t_ TextLayer) ForegroundColor() coregraphics.CGColorRef {
 func (t_ TextLayer) SetForegroundColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setForegroundColor:"), value)
 }
+
 // Determines whether the text is wrapped to fit within the receiver’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/isWrapped
@@ -184,6 +189,7 @@ func (t_ TextLayer) Wrapped() bool {
 func (t_ TextLayer) SetWrapped(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWrapped:"), value)
 }
+
 // The text to be rendered by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/string
@@ -201,6 +207,7 @@ func (t_ TextLayer) String() objc.ID {
 func (t_ TextLayer) SetString(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
 }
+
 // Determines how the text is truncated to fit within the receiver’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/truncationMode
@@ -218,5 +225,6 @@ func (t_ TextLayer) TruncationMode() unsafe.Pointer {
 func (t_ TextLayer) SetTruncationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTruncationMode:"), value)
 }
+
 
 

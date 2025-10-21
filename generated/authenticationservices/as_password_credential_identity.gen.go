@@ -79,6 +79,8 @@ func NewPasswordCredentialIdentity() PasswordCredentialIdentity {
 }
 
 
+
+
 // Initializes a password credential identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/init(serviceIdentifier:user:recordIdentifier:)
@@ -115,6 +117,7 @@ func (p_ PasswordCredentialIdentity) Rank() int {
 func (p_ PasswordCredentialIdentity) SetRank(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRank:"), value)
 }
+
 // A string used to correlate this identity to a record in your app’s own database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/recordIdentifier

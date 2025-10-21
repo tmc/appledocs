@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) Cause() unsafe.Poin
 func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetCause(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/duration
 func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) Duration() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) Duration() unsafe.P
 func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/serverSideProcessingTimeout
@@ -121,6 +123,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) ServerSideProcessin
 func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/timedInvokeTimeoutMs
@@ -138,5 +141,6 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) TimedInvokeTimeoutM
 func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

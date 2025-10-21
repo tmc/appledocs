@@ -18,5 +18,3 @@ var OverlayDelegateProtocol *objc.Protocol
 func init() {
 	OverlayDelegateProtocol = objc.GetProtocol("SKOverlayDelegate")
 }
-
-

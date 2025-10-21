@@ -15,5 +15,3 @@ var enumerateDirectoryProtocol *objc.Protocol
 func init() {
 	enumerateDirectoryProtocol = objc.GetProtocol("enumerateDirectory:")
 }
-
-

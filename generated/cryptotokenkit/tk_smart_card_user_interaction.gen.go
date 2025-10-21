@@ -115,6 +115,7 @@ func (t_ TKSmartCardUserInteraction) Delegate() objc.ID {
 func (t_ TKSmartCardUserInteraction) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The timeout, in seconds, for initial interaction. If set to , the reader-defined default timeout is used. by default.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
@@ -132,6 +133,7 @@ func (t_ TKSmartCardUserInteraction) InitialTimeout() TimeInterval {
 func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInitialTimeout:"), value)
 }
+
 // The timeout, in seconds, after the first key stroke. If set to , the reader-defined default timeout is used. by default.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
@@ -149,5 +151,6 @@ func (t_ TKSmartCardUserInteraction) InteractionTimeout() TimeInterval {
 func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInteractionTimeout:"), value)
 }
+
 
 

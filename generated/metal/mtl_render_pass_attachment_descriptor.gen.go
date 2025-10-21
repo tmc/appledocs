@@ -98,6 +98,7 @@ func (r_ RenderPassAttachmentDescriptor) DepthPlane() uint {
 func (r_ RenderPassAttachmentDescriptor) SetDepthPlane(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDepthPlane:"), value)
 }
+
 // The mipmap level of the texture used for rendering to the attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/level
@@ -115,6 +116,7 @@ func (r_ RenderPassAttachmentDescriptor) Level() uint {
 func (r_ RenderPassAttachmentDescriptor) SetLevel(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLevel:"), value)
 }
+
 // The depth plane of the texture used for the multisample resolve action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/resolveDepthPlane
@@ -132,6 +134,7 @@ func (r_ RenderPassAttachmentDescriptor) ResolveDepthPlane() uint {
 func (r_ RenderPassAttachmentDescriptor) SetResolveDepthPlane(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResolveDepthPlane:"), value)
 }
+
 // The mipmap level of the texture used for the multisample resolve action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/resolveLevel
@@ -149,6 +152,7 @@ func (r_ RenderPassAttachmentDescriptor) ResolveLevel() uint {
 func (r_ RenderPassAttachmentDescriptor) SetResolveLevel(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResolveLevel:"), value)
 }
+
 // The slice of the texture used for the multisample resolve action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/resolveSlice
@@ -166,6 +170,7 @@ func (r_ RenderPassAttachmentDescriptor) ResolveSlice() uint {
 func (r_ RenderPassAttachmentDescriptor) SetResolveSlice(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResolveSlice:"), value)
 }
+
 // The destination texture used when resolving multisampled texture data into single sample values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/resolveTexture
@@ -183,6 +188,7 @@ func (r_ RenderPassAttachmentDescriptor) ResolveTexture() objc.ID {
 func (r_ RenderPassAttachmentDescriptor) SetResolveTexture(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResolveTexture:"), value)
 }
+
 // The slice of the texture used for rendering to the attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/slice
@@ -200,6 +206,7 @@ func (r_ RenderPassAttachmentDescriptor) Slice() uint {
 func (r_ RenderPassAttachmentDescriptor) SetSlice(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSlice:"), value)
 }
+
 // The options that modify the store action performed by this attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions
@@ -217,6 +224,7 @@ func (r_ RenderPassAttachmentDescriptor) StoreActionOptions() unsafe.Pointer {
 func (r_ RenderPassAttachmentDescriptor) SetStoreActionOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStoreActionOptions:"), value)
 }
+
 // The texture object associated with this attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/texture
@@ -234,5 +242,6 @@ func (r_ RenderPassAttachmentDescriptor) Texture() objc.ID {
 func (r_ RenderPassAttachmentDescriptor) SetTexture(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTexture:"), value)
 }
+
 
 

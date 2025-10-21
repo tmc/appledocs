@@ -99,6 +99,7 @@ func (a_ AMWorkflowView) Editable() bool {
 func (a_ AMWorkflowView) SetEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditable:"), value)
 }
+
 // The view’s workflow controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
@@ -116,5 +117,6 @@ func (a_ AMWorkflowView) WorkflowController() unsafe.Pointer {
 func (a_ AMWorkflowView) SetWorkflowController(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowController:"), value)
 }
+
 
 

@@ -16,5 +16,3 @@ var serialNumProtocol *objc.Protocol
 func init() {
 	serialNumProtocol = objc.GetProtocol("serialNum")
 }
-
-

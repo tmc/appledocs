@@ -20,5 +20,3 @@ var ProductsRequestDelegateProtocol *objc.Protocol
 func init() {
 	ProductsRequestDelegateProtocol = objc.GetProtocol("SKProductsRequestDelegate")
 }
-
-

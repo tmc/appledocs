@@ -12,5 +12,3 @@ var connectionCompleteProtocol *objc.Protocol
 func init() {
 	connectionCompleteProtocol = objc.GetProtocol("connectionComplete:")
 }
-
-

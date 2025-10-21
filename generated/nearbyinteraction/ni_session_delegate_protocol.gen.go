@@ -18,5 +18,3 @@ var NISessionDelegateProtocol *objc.Protocol
 func init() {
 	NISessionDelegateProtocol = objc.GetProtocol("NISessionDelegate")
 }
-
-

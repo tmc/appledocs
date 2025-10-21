@@ -20,5 +20,3 @@ var dispatchTypeProtocol *objc.Protocol
 func init() {
 	dispatchTypeProtocol = objc.GetProtocol("dispatchType")
 }
-
-

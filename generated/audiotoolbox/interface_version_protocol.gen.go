@@ -12,5 +12,3 @@ var interfaceVersionProtocol *objc.Protocol
 func init() {
 	interfaceVersionProtocol = objc.GetProtocol("interfaceVersion")
 }
-
-

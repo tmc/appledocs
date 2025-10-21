@@ -81,6 +81,8 @@ func NewINStartCallIntentResponse() INStartCallIntentResponse {
 }
 
 
+
+
 // Initializes the response object with the specified code and user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntentResponse/init(code:userActivity:)

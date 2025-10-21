@@ -81,15 +81,7 @@ func NewCKFetchRecordZoneChangesOperation() CKFetchRecordZoneChangesOperation {
 }
 
 
-// Creates an operation for fetching record zone changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/init(recordZoneIDs:optionsByRecordZoneID:)
-func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs unsafe.Pointer, optionsByRecordZoneID unsafe.Pointer) CKFetchRecordZoneChangesOperation {
-	instance := getCKFetchRecordZoneChangesOperationClass().Alloc()
-	rv := objc.Send[CKFetchRecordZoneChangesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:optionsByRecordZoneID:"), recordZoneIDs, optionsByRecordZoneID)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates an operation for fetching record zone changes.
 //
@@ -97,6 +89,18 @@ func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsOptionsByRecordZoneID(
 func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsConfigurationsByRecordZoneID(recordZoneIDs unsafe.Pointer, configurationsByRecordZoneID unsafe.Pointer) CKFetchRecordZoneChangesOperation {
 	instance := getCKFetchRecordZoneChangesOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordZoneChangesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:configurationsByRecordZoneID:"), recordZoneIDs, configurationsByRecordZoneID)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates an operation for fetching record zone changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/init(recordZoneIDs:optionsByRecordZoneID:)
+func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs unsafe.Pointer, optionsByRecordZoneID unsafe.Pointer) CKFetchRecordZoneChangesOperation {
+	instance := getCKFetchRecordZoneChangesOperationClass().Alloc()
+	rv := objc.Send[CKFetchRecordZoneChangesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:optionsByRecordZoneID:"), recordZoneIDs, optionsByRecordZoneID)
 	rv.Autorelease()
 	return rv
 }
@@ -119,6 +123,7 @@ func (c_ CKFetchRecordZoneChangesOperation) ConfigurationsByRecordZoneID() unsaf
 func (c_ CKFetchRecordZoneChangesOperation) SetConfigurationsByRecordZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfigurationsByRecordZoneID:"), value)
 }
+
 // A Boolean value that indicates whether to send repeated requests to the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/fetchAllChanges
@@ -136,6 +141,7 @@ func (c_ CKFetchRecordZoneChangesOperation) FetchAllChanges() bool {
 func (c_ CKFetchRecordZoneChangesOperation) SetFetchAllChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
+
 // Configuration options for each record zone that the operation retrieves.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/optionsByRecordZoneID
@@ -153,6 +159,7 @@ func (c_ CKFetchRecordZoneChangesOperation) OptionsByRecordZoneID() unsafe.Point
 func (c_ CKFetchRecordZoneChangesOperation) SetOptionsByRecordZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptionsByRecordZoneID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordWasChangedBlock-90bon
 func (c_ CKFetchRecordZoneChangesOperation) RecordWasChangedBlock() unsafe.Pointer {
@@ -167,6 +174,7 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordWasChangedBlock() unsafe.Point
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordWasChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordWasChangedBlock:"), value)
 }
+
 // The IDs of the record zones that contain the records to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneIDs
@@ -194,4 +202,5 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneIDs(value []CKRecordZon
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDs:"), nsArray)
 }
+
 

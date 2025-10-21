@@ -19,5 +19,3 @@ var resolveNoteForSendPaymentProtocol *objc.Protocol
 func init() {
 	resolveNoteForSendPaymentProtocol = objc.GetProtocol("resolveNoteForSendPayment:")
 }
-
-

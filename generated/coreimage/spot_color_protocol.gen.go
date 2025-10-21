@@ -12,5 +12,3 @@ var SpotColorProtocol *objc.Protocol
 func init() {
 	SpotColorProtocol = objc.GetProtocol("CISpotColor")
 }
-
-

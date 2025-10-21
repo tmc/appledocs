@@ -12,5 +12,3 @@ var BluetoothDevicePairDelegateProtocol *objc.Protocol
 func init() {
 	BluetoothDevicePairDelegateProtocol = objc.GetProtocol("IOBluetoothDevicePairDelegate")
 }
-
-

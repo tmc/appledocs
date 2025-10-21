@@ -21,5 +21,3 @@ var processProtocol *objc.Protocol
 func init() {
 	processProtocol = objc.GetProtocol("process")
 }
-
-

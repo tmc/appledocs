@@ -81,6 +81,8 @@ func NewArrayBatchProvider() ArrayBatchProvider {
 }
 
 
+
+
 // Creates a batch provider based on feature names and their associated arrays of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)
@@ -90,6 +92,8 @@ func NewArrayBatchProviderWithDictionaryError(dictionary unsafe.Pointer, error_ 
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates the batch provider based on the array of feature providers.
 //

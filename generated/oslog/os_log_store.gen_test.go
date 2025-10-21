@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = oslog.NewOSLogStore
 
-
 // ExampleNewOSLogStore demonstrates how to create a OSLogStore instance.
 func ExampleNewOSLogStore() {
 	_ = oslog.NewOSLogStore()
 	// Output:
 }
-
-
-
 

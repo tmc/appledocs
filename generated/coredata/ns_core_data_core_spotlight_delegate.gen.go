@@ -87,6 +87,8 @@ func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
 }
 
 
+
+
 // Creates a Core Spotlight delegate with the specified store description and coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/init(forStoreWith:coordinator:)
@@ -96,6 +98,8 @@ func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionCoordinator(descript
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a Core Spotlight delegate with the specified store description and managed object model.
 //

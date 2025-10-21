@@ -84,6 +84,7 @@ func NewTextContentStorage() TextContentStorage {
 	return getTextContentStorageClass().New()
 }
 
+
 // Returns the text range, if any, in the backing store that required manual adjustment after editing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)
@@ -124,6 +125,7 @@ func (t_ TextContentStorage) AttributedString() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAttributedString sets the value of the attributedString property.
 // An attributed string that contains the contents of the document.
 
@@ -140,9 +142,13 @@ func (t_ TextContentStorage) IncludesTextListMarkers() bool {
 	return rv
 }
 
+
 // SetIncludesTextListMarkers sets the value of the includesTextListMarkers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
 func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
 }
+
+
+

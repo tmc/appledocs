@@ -88,6 +88,8 @@ func NewBluetoothHandsFree() BluetoothHandsFree {
 }
 
 
+
+
 // Create a new IOBluetoothHandsFree object
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/init(device:delegate:)
@@ -167,6 +169,7 @@ func (b_ BluetoothHandsFree) Delegate() objc.ID {
 func (b_ BluetoothHandsFree) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Return the IOBluetoothDevice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/device
@@ -216,6 +219,7 @@ func (b_ BluetoothHandsFree) InputVolume() unsafe.Pointer {
 func (b_ BluetoothHandsFree) SetInputVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInputVolume:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isConnected
 func (b_ BluetoothHandsFree) Connected() bool {
@@ -240,6 +244,7 @@ func (b_ BluetoothHandsFree) InputMuted() bool {
 func (b_ BluetoothHandsFree) SetInputMuted(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInputMuted:"), value)
 }
+
 // Return the output mute state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isOutputMuted
@@ -257,6 +262,7 @@ func (b_ BluetoothHandsFree) OutputMuted() bool {
 func (b_ BluetoothHandsFree) SetOutputMuted(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOutputMuted:"), value)
 }
+
 // Return YES if the device has SMS enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isSMSEnabled
@@ -282,6 +288,7 @@ func (b_ BluetoothHandsFree) OutputVolume() unsafe.Pointer {
 func (b_ BluetoothHandsFree) SetOutputVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOutputVolume:"), value)
 }
+
 // Return the device’s SMS mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/smsMode
@@ -307,4 +314,5 @@ func (b_ BluetoothHandsFree) SupportedFeatures() unsafe.Pointer {
 func (b_ BluetoothHandsFree) SetSupportedFeatures(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSupportedFeatures:"), value)
 }
+
 

@@ -81,6 +81,8 @@ func NewPHASEPushStreamNodeDefinition() PHASEPushStreamNodeDefinition {
 }
 
 
+
+
 // Creates a node definition for audio streams.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/init(mixerDefinition:format:)
@@ -90,6 +92,8 @@ func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition u
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a named node definition for audio streams.
 //
@@ -127,4 +131,5 @@ func (p_ PHASEPushStreamNodeDefinition) Normalize() bool {
 func (p_ PHASEPushStreamNodeDefinition) SetNormalize(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNormalize:"), value)
 }
+
 

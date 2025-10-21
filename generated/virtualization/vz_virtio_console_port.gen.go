@@ -98,6 +98,7 @@ func (v_ VZVirtioConsolePort) Attachment() unsafe.Pointer {
 func (v_ VZVirtioConsolePort) SetAttachment(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
+
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/name

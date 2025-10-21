@@ -16,5 +16,3 @@ var isHeadlessProtocol *objc.Protocol
 func init() {
 	isHeadlessProtocol = objc.GetProtocol("isHeadless")
 }
-
-

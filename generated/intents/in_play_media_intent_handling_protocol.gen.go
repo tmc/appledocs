@@ -20,5 +20,3 @@ var INPlayMediaIntentHandlingProtocol *objc.Protocol
 func init() {
 	INPlayMediaIntentHandlingProtocol = objc.GetProtocol("INPlayMediaIntentHandling")
 }
-
-

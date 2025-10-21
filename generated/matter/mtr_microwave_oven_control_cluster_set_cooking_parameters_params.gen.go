@@ -90,6 +90,7 @@ func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) CookMode() un
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) SetCookMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCookMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterSetCookingParametersParams/cookTime
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) CookTime() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) CookTime() un
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) SetCookTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCookTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterSetCookingParametersParams/powerSetting
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) PowerSetting() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) PowerSetting(
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) SetPowerSetting(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPowerSetting:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterSetCookingParametersParams/serverSideProcessingTimeout
@@ -135,6 +138,7 @@ func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) ServerSidePro
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterSetCookingParametersParams/startAfterSetting
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) StartAfterSetting() unsafe.Pointer {
@@ -149,6 +153,7 @@ func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) StartAfterSet
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) SetStartAfterSetting(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartAfterSetting:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterSetCookingParametersParams/timedInvokeTimeoutMs
@@ -166,5 +171,6 @@ func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) TimedInvokeTi
 func (m_ MTRMicrowaveOvenControlClusterSetCookingParametersParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

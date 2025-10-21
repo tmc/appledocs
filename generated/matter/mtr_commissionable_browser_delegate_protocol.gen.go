@@ -21,5 +21,3 @@ var MTRCommissionableBrowserDelegateProtocol *objc.Protocol
 func init() {
 	MTRCommissionableBrowserDelegateProtocol = objc.GetProtocol("MTRCommissionableBrowserDelegate")
 }
-
-

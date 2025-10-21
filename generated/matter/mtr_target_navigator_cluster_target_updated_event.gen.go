@@ -90,6 +90,7 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() unsafe.Poi
 func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentTarget:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/data
 func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() unsafe.Pointer {
 func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetData(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/targetList
 func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() unsafe.Pointe
 func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetTargetList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetList:"), value)
 }
+
 
 

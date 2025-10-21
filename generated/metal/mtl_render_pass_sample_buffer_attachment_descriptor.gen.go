@@ -96,6 +96,7 @@ func (r_ RenderPassSampleBufferAttachmentDescriptor) EndOfFragmentSampleIndex() 
 func (r_ RenderPassSampleBufferAttachmentDescriptor) SetEndOfFragmentSampleIndex(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setEndOfFragmentSampleIndex:"), value)
 }
+
 // The index the Metal device object should use to store GPU counters when ending the render pass’s vertex stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor/endOfVertexSampleIndex
@@ -113,6 +114,7 @@ func (r_ RenderPassSampleBufferAttachmentDescriptor) EndOfVertexSampleIndex() ui
 func (r_ RenderPassSampleBufferAttachmentDescriptor) SetEndOfVertexSampleIndex(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setEndOfVertexSampleIndex:"), value)
 }
+
 // A specialized memory buffer that the GPU uses to store its counter data during the render pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor/sampleBuffer
@@ -130,6 +132,7 @@ func (r_ RenderPassSampleBufferAttachmentDescriptor) SampleBuffer() objc.ID {
 func (r_ RenderPassSampleBufferAttachmentDescriptor) SetSampleBuffer(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSampleBuffer:"), value)
 }
+
 // The index the Metal device object should use to store GPU counters when starting the render pass’s fragment stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor/startOfFragmentSampleIndex
@@ -147,6 +150,7 @@ func (r_ RenderPassSampleBufferAttachmentDescriptor) StartOfFragmentSampleIndex(
 func (r_ RenderPassSampleBufferAttachmentDescriptor) SetStartOfFragmentSampleIndex(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartOfFragmentSampleIndex:"), value)
 }
+
 // The index the Metal device object should use to store GPU counters when starting the render pass’s vertex stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor/startOfVertexSampleIndex
@@ -164,5 +168,6 @@ func (r_ RenderPassSampleBufferAttachmentDescriptor) StartOfVertexSampleIndex() 
 func (r_ RenderPassSampleBufferAttachmentDescriptor) SetStartOfVertexSampleIndex(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartOfVertexSampleIndex:"), value)
 }
+
 
 

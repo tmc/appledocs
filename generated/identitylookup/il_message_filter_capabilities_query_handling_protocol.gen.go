@@ -18,5 +18,3 @@ var ILMessageFilterCapabilitiesQueryHandlingProtocol *objc.Protocol
 func init() {
 	ILMessageFilterCapabilitiesQueryHandlingProtocol = objc.GetProtocol("ILMessageFilterCapabilitiesQueryHandling")
 }
-
-

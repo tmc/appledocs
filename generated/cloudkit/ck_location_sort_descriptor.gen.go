@@ -80,6 +80,8 @@ func NewCKLocationSortDescriptor() CKLocationSortDescriptor {
 }
 
 
+
+
 // Creates a location sort descriptor from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(coder:)
@@ -89,6 +91,8 @@ func NewCKLocationSortDescriptorWithCoder(aDecoder unsafe.Pointer) CKLocationSor
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a location sort descriptor using the specified key and relative location.
 //

@@ -12,5 +12,3 @@ var NinePartTiledProtocol *objc.Protocol
 func init() {
 	NinePartTiledProtocol = objc.GetProtocol("CINinePartTiled")
 }
-
-

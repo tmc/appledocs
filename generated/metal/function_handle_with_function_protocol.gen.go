@@ -20,5 +20,3 @@ var functionHandleWithFunctionProtocol *objc.Protocol
 func init() {
 	functionHandleWithFunctionProtocol = objc.GetProtocol("functionHandleWithFunction:")
 }
-
-

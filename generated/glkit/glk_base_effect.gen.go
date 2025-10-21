@@ -106,6 +106,7 @@ func (g_ GLKBaseEffect) ColorMaterialEnabled() unsafe.Pointer {
 func (g_ GLKBaseEffect) SetColorMaterialEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColorMaterialEnabled:"), value)
 }
+
 // A constant color, used when per-vertex color data is not provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/constantColor
@@ -123,6 +124,7 @@ func (g_ GLKBaseEffect) ConstantColor() unsafe.Pointer {
 func (g_ GLKBaseEffect) SetConstantColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setConstantColor:"), value)
 }
+
 // The fog properties to apply to the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/fog
@@ -148,6 +150,7 @@ func (g_ GLKBaseEffect) Label() string {
 func (g_ GLKBaseEffect) SetLabel(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 // The lighting properties for the first light in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light0
@@ -189,6 +192,7 @@ func (g_ GLKBaseEffect) LightModelAmbientColor() unsafe.Pointer {
 func (g_ GLKBaseEffect) SetLightModelAmbientColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelAmbientColor:"), value)
 }
+
 // A Boolean value that indicates whether lighting is calculated for both sides of a primitive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelTwoSided
@@ -206,6 +210,7 @@ func (g_ GLKBaseEffect) LightModelTwoSided() unsafe.Pointer {
 func (g_ GLKBaseEffect) SetLightModelTwoSided(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelTwoSided:"), value)
 }
+
 // The strategy the effect uses to calculate light values at each fragment. See .
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightingType
@@ -223,6 +228,7 @@ func (g_ GLKBaseEffect) LightingType() unsafe.Pointer {
 func (g_ GLKBaseEffect) SetLightingType(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightingType:"), value)
 }
+
 // The material properties used when calculating the light values for a rendered primitive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/material
@@ -274,6 +280,7 @@ func (g_ GLKBaseEffect) SetTextureOrder(value []GLKEffectPropertyTexture) {
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTextureOrder:"), nsArray)
 }
+
 // The modelview, projection and texture transformations applied to the vertex data when the effect is bound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/transform
@@ -299,5 +306,6 @@ func (g_ GLKBaseEffect) UseConstantColor() unsafe.Pointer {
 func (g_ GLKBaseEffect) SetUseConstantColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUseConstantColor:"), value)
 }
+
 
 

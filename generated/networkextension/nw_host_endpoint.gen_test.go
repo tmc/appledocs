@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = networkextension.NewNWHostEndpoint
 
-
 // ExampleNewNWHostEndpointWithHostnamePort demonstrates how to create a NWHostEndpoint instance using NewNWHostEndpointWithHostnamePort.
 // Create a host endpoint with a hostname and port.
 func ExampleNewNWHostEndpointWithHostnamePort() {
@@ -19,5 +18,3 @@ func ExampleNewNWHostEndpointWithHostnamePort() {
 	)
 	// Output:
 }
-
-

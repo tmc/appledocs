@@ -12,5 +12,3 @@ var roundedMarkersProtocol *objc.Protocol
 func init() {
 	roundedMarkersProtocol = objc.GetProtocol("roundedMarkers")
 }
-
-

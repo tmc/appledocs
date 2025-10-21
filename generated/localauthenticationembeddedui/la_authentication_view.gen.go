@@ -82,6 +82,8 @@ func NewAuthenticationView() AuthenticationView {
 }
 
 
+
+
 // Creates a new authentication icon that reflects the current authentication state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:)
@@ -91,6 +93,8 @@ func NewAuthenticationViewWithContext(context unsafe.Pointer) AuthenticationView
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new authentication icon that reflects the current authentication state, using a specified size.
 //

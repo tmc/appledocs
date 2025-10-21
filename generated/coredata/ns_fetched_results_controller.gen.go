@@ -86,6 +86,8 @@ func NewFetchedResultsController() FetchedResultsController {
 }
 
 
+
+
 // Returns a fetch request controller initialized using the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/init(fetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)
@@ -169,6 +171,7 @@ func (f_ FetchedResultsController) Delegate() objc.ID {
 func (f_ FetchedResultsController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The fetch request used to do the fetching.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/fetchRequest

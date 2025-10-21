@@ -12,5 +12,3 @@ var isEqualProtocol *objc.Protocol
 func init() {
 	isEqualProtocol = objc.GetProtocol("isEqual:")
 }
-
-

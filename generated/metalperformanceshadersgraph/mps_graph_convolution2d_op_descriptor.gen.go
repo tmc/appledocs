@@ -81,6 +81,8 @@ func NewGraphConvolution2DOpDescriptor() GraphConvolution2DOpDescriptor {
 }
 
 
+
+
 // Creates a convolution descriptor with given values for parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution2DOpDescriptor/init(strideInX:strideInY:dilationRateInX:dilationRateInY:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:)
@@ -115,4 +117,5 @@ func (g_ GraphConvolution2DOpDescriptor) DilationRateInY() uint {
 func (g_ GraphConvolution2DOpDescriptor) SetDilationRateInY(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInY:"), value)
 }
+
 

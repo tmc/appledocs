@@ -76,6 +76,8 @@ func NewMTRServiceAreaClusterSelectAreasResponseParams() MTRServiceAreaClusterSe
 }
 
 
+
+
 // Initialize an MTRServiceAreaClusterSelectAreasResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRServiceAreaClusterSelectAreasResponseParams) Status() unsafe.Pointer
 func (m_ MTRServiceAreaClusterSelectAreasResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/statusText
 func (m_ MTRServiceAreaClusterSelectAreasResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTRServiceAreaClusterSelectAreasResponseParams) StatusText() string {
 func (m_ MTRServiceAreaClusterSelectAreasResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

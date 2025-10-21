@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKShareRequestAccessOperation
 
-
 // ExampleNewCKShareRequestAccessOperation demonstrates how to create a CKShareRequestAccessOperation instance.
 // Creates a new, empty share request access operation.
 func ExampleNewCKShareRequestAccessOperation() {
 	_ = cloudkit.NewCKShareRequestAccessOperation()
 	// Output:
 }
-
-
-

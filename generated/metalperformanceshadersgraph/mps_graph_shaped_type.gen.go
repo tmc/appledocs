@@ -79,6 +79,8 @@ func NewGraphShapedType() GraphShapedType {
 }
 
 
+
+
 // Initializes a shaped type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/init(shape:dataType:)
@@ -115,6 +117,7 @@ func (g_ GraphShapedType) DataType() unsafe.Pointer {
 func (g_ GraphShapedType) SetDataType(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }
+
 // The Shape of the shaped type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/shape
@@ -132,4 +135,5 @@ func (g_ GraphShapedType) Shape() unsafe.Pointer {
 func (g_ GraphShapedType) SetShape(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }
+
 

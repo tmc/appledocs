@@ -21,5 +21,3 @@ var downloadLogOfTypeProtocol *objc.Protocol
 func init() {
 	downloadLogOfTypeProtocol = objc.GetProtocol("downloadLogOfType:")
 }
-
-

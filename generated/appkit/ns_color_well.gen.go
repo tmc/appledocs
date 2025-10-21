@@ -81,6 +81,7 @@ func NewColorWell() ColorWell {
 	return getColorWellClass().New()
 }
 
+
 // Changes the currently selected color to the color of the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/takeColorFrom(_:)
@@ -95,6 +96,7 @@ func (c_ ColorWell) ColorWellStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorWellStyle"))
 	return rv
 }
+
 
 // SetColorWellStyle sets the value of the colorWellStyle property.
 // The appearance and interaction style to apply to the color well.
@@ -113,6 +115,7 @@ func (c_ ColorWell) Bordered() bool {
 	return rv
 }
 
+
 // SetBordered sets the value of the bordered property.
 // A Boolean value that determines whether the color well has a border.
 
@@ -129,6 +132,7 @@ func (c_ ColorWell) PulldownTarget() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("pulldownTarget"))
 	return rv
 }
+
 
 // SetPulldownTarget sets the value of the pulldownTarget property.
 // The target object that defines the action you want to perform when someone interacts with the color well.
@@ -147,6 +151,7 @@ func (c_ ColorWell) SupportsAlpha() bool {
 	return rv
 }
 
+
 // SetSupportsAlpha sets the value of the supportsAlpha property.
 // A Boolean value that determines whether the color picker supports alpha values.
 
@@ -155,3 +160,6 @@ func (c_ ColorWell) SupportsAlpha() bool {
 func (c_ ColorWell) SetSupportsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
 }
+
+
+

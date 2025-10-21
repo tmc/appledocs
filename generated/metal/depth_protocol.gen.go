@@ -19,5 +19,3 @@ var depthProtocol *objc.Protocol
 func init() {
 	depthProtocol = objc.GetProtocol("depth")
 }
-
-

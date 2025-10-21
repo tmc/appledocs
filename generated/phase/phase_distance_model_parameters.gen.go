@@ -100,3 +100,4 @@ func (p_ PHASEDistanceModelParameters) SetFadeOutParameters(value unsafe.Pointer
 }
 
 
+

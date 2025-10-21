@@ -20,5 +20,3 @@ var setStageInRegionProtocol *objc.Protocol
 func init() {
 	setStageInRegionProtocol = objc.GetProtocol("setStageInRegion:")
 }
-
-

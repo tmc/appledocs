@@ -18,5 +18,3 @@ var PreviewingControllerProtocol *objc.Protocol
 func init() {
 	PreviewingControllerProtocol = objc.GetProtocol("QLPreviewingController")
 }
-
-

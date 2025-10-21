@@ -81,6 +81,8 @@ func NewMediaPlaylistCreationMetadata() MediaPlaylistCreationMetadata {
 }
 
 
+
+
 // Creates a new playlist metadata object with the designated name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/init(name:)
@@ -109,6 +111,7 @@ func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() string {
 func (m_ MediaPlaylistCreationMetadata) SetAuthorDisplayName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthorDisplayName:"), objc.String(value))
 }
+
 // The descriptive text for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
@@ -126,6 +129,7 @@ func (m_ MediaPlaylistCreationMetadata) DescriptionText() string {
 func (m_ MediaPlaylistCreationMetadata) SetDescriptionText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionText:"), objc.String(value))
 }
+
 // The playlist’s displayed name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/name

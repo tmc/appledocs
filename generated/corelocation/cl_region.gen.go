@@ -82,6 +82,8 @@ func NewRegion() Region {
 }
 
 
+
+
 // Initializes and returns a region object defining a circular area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
@@ -134,6 +136,7 @@ func (r_ Region) NotifyOnEntry() bool {
 func (r_ Region) SetNotifyOnEntry(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnEntry:"), value)
 }
+
 // A Boolean indicating that notifications are generated upon exit from the region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
@@ -151,6 +154,7 @@ func (r_ Region) NotifyOnExit() bool {
 func (r_ Region) SetNotifyOnExit(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnExit:"), value)
 }
+
 // The radius (measured in meters) that defines the region’s outer boundary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/radius

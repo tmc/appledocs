@@ -20,5 +20,3 @@ var supportsTextureSampleCountProtocol *objc.Protocol
 func init() {
 	supportsTextureSampleCountProtocol = objc.GetProtocol("supportsTextureSampleCount:")
 }
-
-

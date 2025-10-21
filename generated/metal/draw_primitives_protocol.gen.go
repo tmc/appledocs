@@ -20,5 +20,3 @@ var drawPrimitivesProtocol *objc.Protocol
 func init() {
 	drawPrimitivesProtocol = objc.GetProtocol("drawPrimitives:")
 }
-
-

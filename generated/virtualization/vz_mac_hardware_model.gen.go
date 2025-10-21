@@ -81,6 +81,8 @@ func NewVZMacHardwareModel() VZMacHardwareModel {
 }
 
 
+
+
 // Creates an instance of the hardware model described by the specified data representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/init(dataRepresentation:)

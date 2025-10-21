@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = networkextension.NewNETunnelNetworkSettings
 
-
 // ExampleNewNETunnelNetworkSettingsWithTunnelRemoteAddress demonstrates how to create a NETunnelNetworkSettings instance using NewNETunnelNetworkSettingsWithTunnelRemoteAddress.
 // Initialize a   object.
 func ExampleNewNETunnelNetworkSettingsWithTunnelRemoteAddress() {
@@ -18,5 +17,3 @@ func ExampleNewNETunnelNetworkSettingsWithTunnelRemoteAddress() {
 	)
 	// Output:
 }
-
-

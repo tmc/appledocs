@@ -12,5 +12,3 @@ var devicePairingPINCodeRequestProtocol *objc.Protocol
 func init() {
 	devicePairingPINCodeRequestProtocol = objc.GetProtocol("devicePairingPINCodeRequest:")
 }
-
-

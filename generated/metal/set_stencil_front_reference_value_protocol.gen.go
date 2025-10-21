@@ -20,5 +20,3 @@ var setStencilFrontReferenceValueProtocol *objc.Protocol
 func init() {
 	setStencilFrontReferenceValueProtocol = objc.GetProtocol("setStencilFrontReferenceValue:")
 }
-
-

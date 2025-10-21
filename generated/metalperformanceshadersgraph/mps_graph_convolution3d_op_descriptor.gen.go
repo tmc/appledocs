@@ -81,6 +81,8 @@ func NewGraphConvolution3DOpDescriptor() GraphConvolution3DOpDescriptor {
 }
 
 
+
+
 // Creates a convolution descriptor with given values for parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/init(strideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:)
@@ -115,6 +117,7 @@ func (g_ GraphConvolution3DOpDescriptor) DataLayout() unsafe.Pointer {
 func (g_ GraphConvolution3DOpDescriptor) SetDataLayout(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
 }
+
 // The amount by which weights tensor expands in the -direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/dilationRateInX
@@ -132,6 +135,7 @@ func (g_ GraphConvolution3DOpDescriptor) DilationRateInX() uint {
 func (g_ GraphConvolution3DOpDescriptor) SetDilationRateInX(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInX:"), value)
 }
+
 // The number of zeros added at the back of the source tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/paddingBack
@@ -149,6 +153,7 @@ func (g_ GraphConvolution3DOpDescriptor) PaddingBack() uint {
 func (g_ GraphConvolution3DOpDescriptor) SetPaddingBack(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingBack:"), value)
 }
+
 // The number of zeros added at the front of the source tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/paddingFront
@@ -166,4 +171,5 @@ func (g_ GraphConvolution3DOpDescriptor) PaddingFront() uint {
 func (g_ GraphConvolution3DOpDescriptor) SetPaddingFront(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingFront:"), value)
 }
+
 

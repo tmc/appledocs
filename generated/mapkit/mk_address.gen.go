@@ -79,6 +79,8 @@ func NewMKAddress() MKAddress {
 }
 
 
+
+
 // Initializes a new address with a location’s full address using a string and a short address that provides an abbreviated form of the address such as a street address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAddress/init(fullAddress:shortAddress:)

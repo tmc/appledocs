@@ -18,5 +18,3 @@ var mostRecentEditorNameComponentsProtocol *objc.Protocol
 func init() {
 	mostRecentEditorNameComponentsProtocol = objc.GetProtocol("mostRecentEditorNameComponents")
 }
-
-

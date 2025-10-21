@@ -20,5 +20,3 @@ var visitUpdateContactEventProtocol *objc.Protocol
 func init() {
 	visitUpdateContactEventProtocol = objc.GetProtocol("visitUpdateContactEvent:")
 }
-
-

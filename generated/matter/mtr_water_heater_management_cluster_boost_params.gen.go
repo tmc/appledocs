@@ -90,6 +90,7 @@ func (m_ MTRWaterHeaterManagementClusterBoostParams) BoostInfo() unsafe.Pointer 
 func (m_ MTRWaterHeaterManagementClusterBoostParams) SetBoostInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoostInfo:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRWaterHeaterManagementClusterBoostParams) ServerSideProcessingTimeout
 func (m_ MTRWaterHeaterManagementClusterBoostParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRWaterHeaterManagementClusterBoostParams) TimedInvokeTimeoutMs() unsa
 func (m_ MTRWaterHeaterManagementClusterBoostParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

@@ -84,6 +84,8 @@ func NewMKMapSnapshotter() MKMapSnapshotter {
 }
 
 
+
+
 // Creates and returns a snapshotter object based on the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/init(options:)

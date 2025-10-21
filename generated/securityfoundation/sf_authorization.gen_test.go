@@ -9,12 +9,10 @@ import (
 // Suppress unused import errors
 var _ = securityfoundation.NewSFAuthorization
 
-
 // ExampleNewSFAuthorization demonstrates how to create a SFAuthorization instance.
 // Initializes an authorization object with default environment, flags, and rights.
 func ExampleNewSFAuthorization() {
 	_ = securityfoundation.NewSFAuthorization()
 	// Output:
 }
-
 

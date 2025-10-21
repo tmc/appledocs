@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = executionpolicy.NewEPExecutionPolicy
 
-
 // ExampleNewEPExecutionPolicy demonstrates how to create a EPExecutionPolicy instance.
 func ExampleNewEPExecutionPolicy() {
 	_ = executionpolicy.NewEPExecutionPolicy()

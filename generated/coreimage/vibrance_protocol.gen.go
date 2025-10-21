@@ -12,5 +12,3 @@ var VibranceProtocol *objc.Protocol
 func init() {
 	VibranceProtocol = objc.GetProtocol("CIVibrance")
 }
-
-

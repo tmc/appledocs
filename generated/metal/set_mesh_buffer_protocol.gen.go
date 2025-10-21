@@ -20,5 +20,3 @@ var setMeshBufferProtocol *objc.Protocol
 func init() {
 	setMeshBufferProtocol = objc.GetProtocol("setMeshBuffer:")
 }
-
-

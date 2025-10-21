@@ -82,6 +82,8 @@ func NewLPLinkView() LPLinkView {
 }
 
 
+
+
 // Initializes a link view with specified metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(metadata:)
@@ -91,6 +93,8 @@ func NewLPLinkViewWithMetadata(metadata unsafe.Pointer) LPLinkView {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a placeholder link view without metadata for a given URL.
 //
@@ -120,4 +124,5 @@ func (l_ LPLinkView) Metadata() unsafe.Pointer {
 func (l_ LPLinkView) SetMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMetadata:"), value)
 }
+
 

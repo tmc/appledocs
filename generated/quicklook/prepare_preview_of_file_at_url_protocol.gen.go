@@ -18,5 +18,3 @@ var preparePreviewOfFileAtURLProtocol *objc.Protocol
 func init() {
 	preparePreviewOfFileAtURLProtocol = objc.GetProtocol("preparePreviewOfFileAtURL:")
 }
-
-

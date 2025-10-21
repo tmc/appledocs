@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = audiotoolbox.NewFrontAnchoringStrategy
 
-
 // ExampleNewFrontAnchoringStrategy demonstrates how to create a FrontAnchoringStrategy instance.
 func ExampleNewFrontAnchoringStrategy() {
 	_ = audiotoolbox.NewFrontAnchoringStrategy()
 	// Output:
 }
-
-

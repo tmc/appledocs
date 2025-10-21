@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Window] class.
@@ -217,23 +217,8 @@ func NewWindow() Window {
 	return getWindowClass().New()
 }
 
-// Creates a titled window that contains the specified content view controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
-func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
-	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
-	return rv
-}
 
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Initializes the window with the specified values.
 //
@@ -245,6 +230,8 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRe
 	return rv
 }
 
+
+
 // Initializes an allocated window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
@@ -254,6 +241,29 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 	rv.Autorelease()
 	return rv
 }
+
+
+
+// Creates a titled window that contains the specified content view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
+func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
+	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
+	return rv
+}
+
+
+
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
+
 
 // Returns the content rectangle used by a window with a given frame rectangle and window style.
 //
@@ -332,7 +342,6 @@ func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("allowsAutomaticWindowTabbing"))
 	return rv
 }
-
 // Returns the default depth limit for instances of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
@@ -340,7 +349,6 @@ func (wc _WindowClass) DefaultDepthLimit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
 	return rv
 }
-
 // A value that indicates the user’s preference for window tabbing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
@@ -348,7 +356,6 @@ func (wc _WindowClass) UserTabbingPreference() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
 	return rv
 }
-
 // Adds a given window as a child window of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addChildWindow(_:ordered:)
@@ -1342,6 +1349,7 @@ func (w_ Window) AcceptsMouseMovedEvents() bool {
 	return rv
 }
 
+
 // SetAcceptsMouseMovedEvents sets the value of the acceptsMouseMovedEvents property.
 // A Boolean value that indicates whether the window accepts mouse-moved events.
 
@@ -1358,6 +1366,7 @@ func (w_ Window) AllowsAutomaticWindowTabbing() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsAutomaticWindowTabbing"))
 	return rv
 }
+
 
 // SetAllowsAutomaticWindowTabbing sets the value of the allowsAutomaticWindowTabbing property.
 // A Boolean value that indicates whether the app can automatically organize windows into tabs.
@@ -1376,6 +1385,7 @@ func (w_ Window) AllowsConcurrentViewDrawing() bool {
 	return rv
 }
 
+
 // SetAllowsConcurrentViewDrawing sets the value of the allowsConcurrentViewDrawing property.
 // A Boolean value that indicates whether the window allows multithreaded view drawing.
 
@@ -1392,6 +1402,7 @@ func (w_ Window) AllowsToolTipsWhenApplicationIsInactive() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsToolTipsWhenApplicationIsInactive"))
 	return rv
 }
+
 
 // SetAllowsToolTipsWhenApplicationIsInactive sets the value of the allowsToolTipsWhenApplicationIsInactive property.
 // A Boolean value that indicates whether the window can display tooltips even when the application is in the background.
@@ -1410,6 +1421,7 @@ func (w_ Window) AlphaValue() float64 {
 	return rv
 }
 
+
 // SetAlphaValue sets the value of the alphaValue property.
 // The window’s alpha value.
 
@@ -1427,6 +1439,7 @@ func (w_ Window) AnimationBehavior() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAnimationBehavior sets the value of the animationBehavior property.
 // The window’s automatic animation behavior.
 
@@ -1443,6 +1456,7 @@ func (w_ Window) AppearanceSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("appearanceSource"))
 	return rv
 }
+
 
 // SetAppearanceSource sets the value of the appearanceSource property.
 // An object that the window inherits its appearance from.
@@ -1469,6 +1483,7 @@ func (w_ Window) AspectRatio() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetAspectRatio sets the value of the aspectRatio property.
 // The window’s aspect ratio, which constrains the size of its frame rectangle to integral multiples of this ratio when the user resizes it.
 
@@ -1494,6 +1509,7 @@ func (w_ Window) AutorecalculatesKeyViewLoop() bool {
 	return rv
 }
 
+
 // SetAutorecalculatesKeyViewLoop sets the value of the autorecalculatesKeyViewLoop property.
 // A Boolean value that indicates whether the window automatically recalculates the key view loop when views are added.
 
@@ -1510,6 +1526,7 @@ func (w_ Window) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
+
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color of the window’s background.
@@ -1544,6 +1561,7 @@ func (w_ Window) BackingType() BackingStoreType {
 	return rv
 }
 
+
 // SetBackingType sets the value of the backingType property.
 // The window’s backing store type.
 
@@ -1577,6 +1595,7 @@ func (w_ Window) CanBecomeVisibleWithoutLogin() bool {
 	return rv
 }
 
+
 // SetCanBecomeVisibleWithoutLogin sets the value of the canBecomeVisibleWithoutLogin property.
 // A Boolean value that indicates whether the window can be displayed at the login window.
 
@@ -1593,6 +1612,7 @@ func (w_ Window) CanHide() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canHide"))
 	return rv
 }
+
 
 // SetCanHide sets the value of the canHide property.
 // A Boolean value that indicates whether the window can hide when its application becomes hidden.
@@ -1626,6 +1646,7 @@ func (w_ Window) CollectionBehavior() unsafe.Pointer {
 	return rv
 }
 
+
 // SetCollectionBehavior sets the value of the collectionBehavior property.
 // A value that identifies the window’s behavior in window collections.
 
@@ -1643,6 +1664,7 @@ func (w_ Window) ColorSpace() unsafe.Pointer {
 	return rv
 }
 
+
 // SetColorSpace sets the value of the colorSpace property.
 // The window’s color space.
 
@@ -1659,6 +1681,7 @@ func (w_ Window) ContentAspectRatio() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentAspectRatio"))
 	return rv
 }
+
 
 // SetContentAspectRatio sets the value of the contentAspectRatio property.
 // The window’s content aspect ratio.
@@ -1693,6 +1716,7 @@ func (w_ Window) ContentMaxSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetContentMaxSize sets the value of the contentMaxSize property.
 // The maximum size of the window’s content view in the window’s base coordinate system.
 
@@ -1709,6 +1733,7 @@ func (w_ Window) ContentMinSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentMinSize"))
 	return rv
 }
+
 
 // SetContentMinSize sets the value of the contentMinSize property.
 // The minimum size of the window’s content view in the window’s base coordinate system.
@@ -1727,6 +1752,7 @@ func (w_ Window) ContentResizeIncrements() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetContentResizeIncrements sets the value of the contentResizeIncrements property.
 // The window’s content-view resizing increments.
 
@@ -1744,6 +1770,7 @@ func (w_ Window) ContentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentView sets the value of the contentView property.
 // The window’s content view, the highest accessible view object in the window’s view hierarchy.
 
@@ -1760,6 +1787,7 @@ func (w_ Window) ContentViewController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("contentViewController"))
 	return rv
 }
+
 
 // SetContentViewController sets the value of the contentViewController property.
 // The main content view controller for the window.
@@ -1794,6 +1822,7 @@ func (w_ Window) DefaultButtonCell() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDefaultButtonCell sets the value of the defaultButtonCell property.
 // The button cell that performs as if clicked when the window receives a Return (or Enter) key event.
 
@@ -1819,6 +1848,7 @@ func (w_ Window) Delegate() objc.ID {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The window’s delegate.
 
@@ -1835,6 +1865,7 @@ func (w_ Window) DepthLimit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("depthLimit"))
 	return rv
 }
+
 
 // SetDepthLimit sets the value of the depthLimit property.
 // The depth limit of the window.
@@ -1860,6 +1891,7 @@ func (w_ Window) DisplaysWhenScreenProfileChanges() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("displaysWhenScreenProfileChanges"))
 	return rv
 }
+
 
 // SetDisplaysWhenScreenProfileChanges sets the value of the displaysWhenScreenProfileChanges property.
 // A Boolean value that indicates whether the window context should be updated when the screen profile changes or when the window moves to a different screen.
@@ -1957,6 +1989,7 @@ func (w_ Window) HasShadow() bool {
 	return rv
 }
 
+
 // SetHasShadow sets the value of the hasShadow property.
 // A Boolean value that indicates whether the window has a shadow.
 
@@ -1982,6 +2015,7 @@ func (w_ Window) HidesOnDeactivate() bool {
 	return rv
 }
 
+
 // SetHidesOnDeactivate sets the value of the hidesOnDeactivate property.
 // A Boolean value that indicates whether the window is removed from the screen when its application becomes inactive.
 
@@ -1998,6 +2032,7 @@ func (w_ Window) IgnoresMouseEvents() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("ignoresMouseEvents"))
 	return rv
 }
+
 
 // SetIgnoresMouseEvents sets the value of the ignoresMouseEvents property.
 // A Boolean value that indicates whether the window is transparent to mouse events.
@@ -2024,6 +2059,7 @@ func (w_ Window) InitialFirstResponder() unsafe.Pointer {
 	return rv
 }
 
+
 // SetInitialFirstResponder sets the value of the initialFirstResponder property.
 // The view that’s made first responder (also called the key view) the first time the window is placed onscreen.
 
@@ -2040,6 +2076,7 @@ func (w_ Window) Autodisplay() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("autodisplay"))
 	return rv
 }
+
 
 // SetAutodisplay sets the value of the autodisplay property.
 // A Boolean value that indicates whether the window automatically displays views that need to be displayed.
@@ -2058,6 +2095,7 @@ func (w_ Window) DocumentEdited() bool {
 	return rv
 }
 
+
 // SetDocumentEdited sets the value of the documentEdited property.
 // A Boolean value that indicates whether the window’s document has been edited.
 
@@ -2074,6 +2112,7 @@ func (w_ Window) ExcludedFromWindowsMenu() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("excludedFromWindowsMenu"))
 	return rv
 }
+
 
 // SetExcludedFromWindowsMenu sets the value of the excludedFromWindowsMenu property.
 // A Boolean value that indicates whether the window is excluded from the application’s Windows menu.
@@ -2148,6 +2187,7 @@ func (w_ Window) Movable() bool {
 	return rv
 }
 
+
 // SetMovable sets the value of the movable property.
 // A Boolean value that indicates whether the window can be dragged by clicking in its title bar or background.
 
@@ -2164,6 +2204,7 @@ func (w_ Window) MovableByWindowBackground() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("movableByWindowBackground"))
 	return rv
 }
+
 
 // SetMovableByWindowBackground sets the value of the movableByWindowBackground property.
 // A Boolean value that indicates whether the window is movable by clicking and dragging anywhere in its background.
@@ -2190,6 +2231,7 @@ func (w_ Window) OneShot() bool {
 	return rv
 }
 
+
 // SetOneShot sets the value of the oneShot property.
 // A Boolean value that indicates whether the window device the window manages is freed when it’s removed from the screen list.
 
@@ -2207,6 +2249,7 @@ func (w_ Window) Opaque() bool {
 	return rv
 }
 
+
 // SetOpaque sets the value of the opaque property.
 // A Boolean value that indicates whether the window is opaque.
 
@@ -2223,6 +2266,7 @@ func (w_ Window) ReleasedWhenClosed() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("releasedWhenClosed"))
 	return rv
 }
+
 
 // SetReleasedWhenClosed sets the value of the releasedWhenClosed property.
 // A Boolean value that indicates whether the window is released when it receives the message.
@@ -2248,6 +2292,7 @@ func (w_ Window) Restorable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("restorable"))
 	return rv
 }
+
 
 // SetRestorable sets the value of the restorable property.
 // A Boolean value indicating whether the window configuration is preserved between application launches.
@@ -2306,6 +2351,7 @@ func (w_ Window) Level() WindowLevel {
 	return rv
 }
 
+
 // SetLevel sets the value of the level property.
 // The window level of the window.
 
@@ -2322,6 +2368,7 @@ func (w_ Window) MaxFullScreenContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("maxFullScreenContentSize"))
 	return rv
 }
+
 
 // SetMaxFullScreenContentSize sets the value of the maxFullScreenContentSize property.
 // A maximum size that is used to determine if a window can fit when it is in full screen in a tile.
@@ -2340,6 +2387,7 @@ func (w_ Window) MaxSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetMaxSize sets the value of the maxSize property.
 // The maximum size to which the window’s frame (including its title bar) can be sized.
 
@@ -2356,6 +2404,7 @@ func (w_ Window) MinFullScreenContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("minFullScreenContentSize"))
 	return rv
 }
+
 
 // SetMinFullScreenContentSize sets the value of the minFullScreenContentSize property.
 // A minimum size that is used to determine if a window can fit when it is in full screen in a tile.
@@ -2374,6 +2423,7 @@ func (w_ Window) MinSize() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetMinSize sets the value of the minSize property.
 // The minimum size to which the window’s frame (including its title bar) can be sized.
 
@@ -2391,6 +2441,7 @@ func (w_ Window) MiniwindowImage() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMiniwindowImage sets the value of the miniwindowImage property.
 // The custom miniaturized window image of the window.
 
@@ -2407,6 +2458,7 @@ func (w_ Window) MiniwindowTitle() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("miniwindowTitle"))
 	return rv
 }
+
 
 // SetMiniwindowTitle sets the value of the miniwindowTitle property.
 // The title displayed in the window’s minimized window.
@@ -2441,6 +2493,7 @@ func (w_ Window) OrderedIndex() int {
 	return rv
 }
 
+
 // SetOrderedIndex sets the value of the orderedIndex property.
 // The zero-based position of the window, based on its order from front to back among all visible application windows.
 
@@ -2457,6 +2510,7 @@ func (w_ Window) ParentWindow() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("parentWindow"))
 	return rv
 }
+
 
 // SetParentWindow sets the value of the parentWindow property.
 // The parent window to which the window is attached as a child.
@@ -2475,6 +2529,7 @@ func (w_ Window) PreferredBackingLocation() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPreferredBackingLocation sets the value of the preferredBackingLocation property.
 // A Boolean value that indicates the preferred location for the window’s backing store.
 
@@ -2491,6 +2546,7 @@ func (w_ Window) PreservesContentDuringLiveResize() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("preservesContentDuringLiveResize"))
 	return rv
 }
+
 
 // SetPreservesContentDuringLiveResize sets the value of the preservesContentDuringLiveResize property.
 // A Boolean value that indicates whether the window tries to optimize user-initiated resize operations by preserving the content of views that have not changed.
@@ -2509,6 +2565,7 @@ func (w_ Window) PreventsApplicationTerminationWhenModal() bool {
 	return rv
 }
 
+
 // SetPreventsApplicationTerminationWhenModal sets the value of the preventsApplicationTerminationWhenModal property.
 // A Boolean value that indicates whether the window prevents application termination when modal.
 
@@ -2526,6 +2583,7 @@ func (w_ Window) RepresentedFilename() string {
 	return rv
 }
 
+
 // SetRepresentedFilename sets the value of the representedFilename property.
 // The path to the file of the window’s represented file.
 
@@ -2542,6 +2600,7 @@ func (w_ Window) RepresentedURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("representedURL"))
 	return rv
 }
+
 
 // SetRepresentedURL sets the value of the representedURL property.
 // The URL of the file the window represents.
@@ -2568,6 +2627,7 @@ func (w_ Window) ResizeIncrements() coregraphics.CGSize {
 	return rv
 }
 
+
 // SetResizeIncrements sets the value of the resizeIncrements property.
 // The window’s resizing increments.
 
@@ -2584,6 +2644,7 @@ func (w_ Window) RestorationClass() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("restorationClass"))
 	return rv
 }
+
 
 // SetRestorationClass sets the value of the restorationClass property.
 // The restoration class associated with the window.
@@ -2609,6 +2670,7 @@ func (w_ Window) SharingType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sharingType"))
 	return rv
 }
+
 
 // SetSharingType sets the value of the sharingType property.
 // A Boolean value that indicates the level of access other processes have to the window’s content.
@@ -2643,6 +2705,7 @@ func (w_ Window) ShowsResizeIndicator() bool {
 	return rv
 }
 
+
 // SetShowsResizeIndicator sets the value of the showsResizeIndicator property.
 // A Boolean value that indicates whether the window’s resize indicator is visible.
 
@@ -2659,6 +2722,7 @@ func (w_ Window) ShowsToolbarButton() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("showsToolbarButton"))
 	return rv
 }
+
 
 // SetShowsToolbarButton sets the value of the showsToolbarButton property.
 // A Boolean value that indicates whether the toolbar control button is currently displayed.
@@ -2677,6 +2741,7 @@ func (w_ Window) StyleMask() WindowStyleMask {
 	return rv
 }
 
+
 // SetStyleMask sets the value of the styleMask property.
 // Flags that describe the window’s current style, such as if it’s resizable or in full-screen mode.
 
@@ -2693,6 +2758,7 @@ func (w_ Window) Subtitle() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("subtitle"))
 	return rv
 }
+
 
 // SetSubtitle sets the value of the subtitle property.
 // A secondary line of text that appears in the title bar of the window.
@@ -2735,6 +2801,7 @@ func (w_ Window) TabbingIdentifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTabbingIdentifier sets the value of the tabbingIdentifier property.
 // A value that allows a group of related windows.
 
@@ -2751,6 +2818,7 @@ func (w_ Window) TabbingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingMode"))
 	return rv
 }
+
 
 // SetTabbingMode sets the value of the tabbingMode property.
 // A value that indicates when a window displays tabs.
@@ -2769,6 +2837,7 @@ func (w_ Window) Title() string {
 	return rv
 }
 
+
 // SetTitle sets the value of the title property.
 // The string that appears in the title bar of the window or the path to the represented file.
 
@@ -2786,6 +2855,7 @@ func (w_ Window) TitleVisibility() unsafe.Pointer {
 	return rv
 }
 
+
 // SetTitleVisibility sets the value of the titleVisibility property.
 // A value that indicates the visibility of the window’s title and title bar buttons.
 
@@ -2802,6 +2872,7 @@ func (w_ Window) TitlebarAccessoryViewControllers() []TitlebarAccessoryViewContr
 	rv := objc.Send[[]TitlebarAccessoryViewController](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
 	return rv
 }
+
 
 // SetTitlebarAccessoryViewControllers sets the value of the titlebarAccessoryViewControllers property.
 // An array of title bar accessory view controllers that are currently added to the window.
@@ -2830,6 +2901,7 @@ func (w_ Window) TitlebarAppearsTransparent() bool {
 	return rv
 }
 
+
 // SetTitlebarAppearsTransparent sets the value of the titlebarAppearsTransparent property.
 // A Boolean value that indicates whether the title bar draws its background.
 
@@ -2846,6 +2918,7 @@ func (w_ Window) TitlebarSeparatorStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
+
 
 // SetTitlebarSeparatorStyle sets the value of the titlebarSeparatorStyle property.
 // The type of separator that the app displays between the title bar and content of a window.
@@ -2864,6 +2937,7 @@ func (w_ Window) Toolbar() unsafe.Pointer {
 	return rv
 }
 
+
 // SetToolbar sets the value of the toolbar property.
 // The window’s toolbar.
 
@@ -2880,6 +2954,7 @@ func (w_ Window) ToolbarStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolbarStyle"))
 	return rv
 }
+
 
 // SetToolbarStyle sets the value of the toolbarStyle property.
 // The style that determines the appearance and location of the toolbar in relation to the title bar.
@@ -2906,6 +2981,7 @@ func (w_ Window) ViewsNeedDisplay() bool {
 	return rv
 }
 
+
 // SetViewsNeedDisplay sets the value of the viewsNeedDisplay property.
 // A Boolean value that indicates whether any of the window’s views need to be displayed.
 
@@ -2922,6 +2998,7 @@ func (w_ Window) WindowController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowController"))
 	return rv
 }
+
 
 // SetWindowController sets the value of the windowController property.
 // The window’s window controller.
@@ -2955,3 +3032,5 @@ func (w_ Window) WorksWhenModal() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
+
+

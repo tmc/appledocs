@@ -19,5 +19,3 @@ var mipmapLevelCountProtocol *objc.Protocol
 func init() {
 	mipmapLevelCountProtocol = objc.GetProtocol("mipmapLevelCount")
 }
-
-

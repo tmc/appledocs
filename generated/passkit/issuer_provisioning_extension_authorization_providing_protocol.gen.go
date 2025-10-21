@@ -18,5 +18,3 @@ var IssuerProvisioningExtensionAuthorizationProvidingProtocol *objc.Protocol
 func init() {
 	IssuerProvisioningExtensionAuthorizationProvidingProtocol = objc.GetProtocol("PKIssuerProvisioningExtensionAuthorizationProviding")
 }
-
-

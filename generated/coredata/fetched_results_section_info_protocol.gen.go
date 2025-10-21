@@ -12,5 +12,3 @@ var FetchedResultsSectionInfoProtocol *objc.Protocol
 func init() {
 	FetchedResultsSectionInfoProtocol = objc.GetProtocol("NSFetchedResultsSectionInfo")
 }
-
-

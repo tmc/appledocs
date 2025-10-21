@@ -19,5 +19,3 @@ var handleGetRideStatusProtocol *objc.Protocol
 func init() {
 	handleGetRideStatusProtocol = objc.GetProtocol("handleGetRideStatus:")
 }
-
-

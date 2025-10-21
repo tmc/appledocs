@@ -79,6 +79,8 @@ func NewPGDisplayMode() PGDisplayMode {
 }
 
 
+
+
 // Creates a new display mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode/init(sizeInPixels:refreshRateInHz:)

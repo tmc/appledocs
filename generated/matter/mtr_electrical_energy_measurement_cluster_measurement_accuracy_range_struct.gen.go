@@ -90,6 +90,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Fi
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMax(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMax:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedMin
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedMin() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Fi
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMin(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMin:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedTypical
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedTypical() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Fi
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedTypical(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedTypical:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentMax
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentMax() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Pe
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMax(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMax:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentMin
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentMin() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Pe
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMin(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMin:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentTypical
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentTypical() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Pe
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentTypical(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentTypical:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/rangeMax
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) RangeMax() unsafe.Pointer {
@@ -174,6 +180,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Ra
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMax(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMax:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/rangeMin
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) RangeMin() unsafe.Pointer {
@@ -188,5 +195,6 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Ra
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMin(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMin:"), value)
 }
+
 
 

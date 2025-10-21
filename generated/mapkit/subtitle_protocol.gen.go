@@ -12,5 +12,3 @@ var subtitleProtocol *objc.Protocol
 func init() {
 	subtitleProtocol = objc.GetProtocol("subtitle")
 }
-
-

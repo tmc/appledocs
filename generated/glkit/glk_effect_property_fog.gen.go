@@ -98,6 +98,7 @@ func (g_ GLKEffectPropertyFog) Color() unsafe.Pointer {
 func (g_ GLKEffectPropertyFog) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
+
 // The rate at which the fog exponent increases.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/density
@@ -115,6 +116,7 @@ func (g_ GLKEffectPropertyFog) Density() unsafe.Pointer {
 func (g_ GLKEffectPropertyFog) SetDensity(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDensity:"), value)
 }
+
 // A Boolean value that indicates whether fog is applied to the fragment color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/enabled
@@ -132,6 +134,7 @@ func (g_ GLKEffectPropertyFog) Enabled() unsafe.Pointer {
 func (g_ GLKEffectPropertyFog) SetEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // The distance in eye coordinates where fog completely covers the color fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/end
@@ -149,6 +152,7 @@ func (g_ GLKEffectPropertyFog) End() unsafe.Pointer {
 func (g_ GLKEffectPropertyFog) SetEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnd:"), value)
 }
+
 // The algorithm used to compute the density of the fog applied to the fragment color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/mode
@@ -166,6 +170,7 @@ func (g_ GLKEffectPropertyFog) Mode() unsafe.Pointer {
 func (g_ GLKEffectPropertyFog) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMode:"), value)
 }
+
 // The minimum distance in eye coordinates before fog is applied to the fragment color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/start
@@ -183,5 +188,6 @@ func (g_ GLKEffectPropertyFog) Start() unsafe.Pointer {
 func (g_ GLKEffectPropertyFog) SetStart(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStart:"), value)
 }
+
 
 

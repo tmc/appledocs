@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [LayoutAnchor] class.
@@ -79,6 +80,7 @@ func NewLayoutAnchor() LayoutAnchor {
 	return getLayoutAnchorClass().New()
 }
 
+
 // A Boolean value indicating whether the constraints impacting the anchor specify its location ambiguously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout
@@ -86,3 +88,6 @@ func (l_ LayoutAnchor) HasAmbiguousLayout() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("hasAmbiguousLayout"))
 	return rv
 }
+
+
+

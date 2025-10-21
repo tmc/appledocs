@@ -88,6 +88,8 @@ func NewFilterShape() FilterShape {
 }
 
 
+
+
 // Initializes a filter shape object with a rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/init(rect:)

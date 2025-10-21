@@ -96,6 +96,7 @@ func (r_ RPBroadcastConfiguration) ClipDuration() TimeInterval {
 func (r_ RPBroadcastConfiguration) SetClipDuration(value TimeInterval) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setClipDuration:"), value)
 }
+
 // The compression properties for encoding movie clips that are to be overwritten.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/videoCompressionProperties
@@ -113,5 +114,6 @@ func (r_ RPBroadcastConfiguration) VideoCompressionProperties() unsafe.Pointer {
 func (r_ RPBroadcastConfiguration) SetVideoCompressionProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVideoCompressionProperties:"), value)
 }
+
 
 

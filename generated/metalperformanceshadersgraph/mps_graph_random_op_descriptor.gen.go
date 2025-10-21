@@ -96,6 +96,7 @@ func (g_ GraphRandomOpDescriptor) DataType() unsafe.Pointer {
 func (g_ GraphRandomOpDescriptor) SetDataType(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }
+
 // The type of distribution to draw samples from. See MPSGraphRandomDistribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRandomOpDescriptor/distribution
@@ -113,5 +114,6 @@ func (g_ GraphRandomOpDescriptor) Distribution() unsafe.Pointer {
 func (g_ GraphRandomOpDescriptor) SetDistribution(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDistribution:"), value)
 }
+
 
 

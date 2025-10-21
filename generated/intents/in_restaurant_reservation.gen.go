@@ -79,6 +79,8 @@ func NewINRestaurantReservation() INRestaurantReservation {
 }
 
 
+
+
 // Creates a new restaurant reservation with the provided information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:

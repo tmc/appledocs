@@ -12,5 +12,3 @@ var l2capChannelReconfiguredProtocol *objc.Protocol
 func init() {
 	l2capChannelReconfiguredProtocol = objc.GetProtocol("l2capChannelReconfigured:")
 }
-
-

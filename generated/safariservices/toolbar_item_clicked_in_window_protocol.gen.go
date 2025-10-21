@@ -15,5 +15,3 @@ var toolbarItemClickedInWindowProtocol *objc.Protocol
 func init() {
 	toolbarItemClickedInWindowProtocol = objc.GetProtocol("toolbarItemClickedInWindow:")
 }
-
-

@@ -20,5 +20,3 @@ var gameModelUpdatesForPlayerProtocol *objc.Protocol
 func init() {
 	gameModelUpdatesForPlayerProtocol = objc.GetProtocol("gameModelUpdatesForPlayer:")
 }
-
-

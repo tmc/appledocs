@@ -79,6 +79,8 @@ func NewAudioUnitViewConfiguration() AudioUnitViewConfiguration {
 }
 
 
+
+
 // Creates a new configuration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/init(width:height:hostHasController:)

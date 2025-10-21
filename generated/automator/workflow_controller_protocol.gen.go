@@ -16,5 +16,3 @@ var workflowControllerProtocol *objc.Protocol
 func init() {
 	workflowControllerProtocol = objc.GetProtocol("workflowController:")
 }
-
-

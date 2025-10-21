@@ -79,6 +79,8 @@ func NewMTRDeviceType() MTRDeviceType {
 }
 
 
+
+
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)

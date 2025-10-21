@@ -96,6 +96,7 @@ func (n_ NEPacketTunnelNetworkSettings) IPv4Settings() unsafe.Pointer {
 func (n_ NEPacketTunnelNetworkSettings) SetIPv4Settings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIPv4Settings:"), value)
 }
+
 // The tunnel IP version 6 settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings
@@ -113,6 +114,7 @@ func (n_ NEPacketTunnelNetworkSettings) IPv6Settings() unsafe.Pointer {
 func (n_ NEPacketTunnelNetworkSettings) SetIPv6Settings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIPv6Settings:"), value)
 }
+
 // The size of the maximum trasnmission unit, in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/mtu
@@ -130,6 +132,7 @@ func (n_ NEPacketTunnelNetworkSettings) MTU() unsafe.Pointer {
 func (n_ NEPacketTunnelNetworkSettings) SetMTU(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMTU:"), value)
 }
+
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/tunnelOverheadBytes
@@ -147,5 +150,6 @@ func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() unsafe.Pointer {
 func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
 }
+
 
 

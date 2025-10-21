@@ -18,5 +18,3 @@ var configureViewForParametersProtocol *objc.Protocol
 func init() {
 	configureViewForParametersProtocol = objc.GetProtocol("configureViewForParameters:")
 }
-
-

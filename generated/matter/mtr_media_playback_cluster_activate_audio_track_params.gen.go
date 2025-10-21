@@ -90,6 +90,7 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) AudioOutputIndex() uns
 func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetAudioOutputIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioOutputIndex:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) ServerSideProcessingTi
 func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/timedInvokeTimeoutMs
@@ -124,6 +126,7 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TimedInvokeTimeoutMs()
 func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/trackID
 func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() string {
@@ -138,5 +141,6 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() string {
 func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTrackID(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), objc.String(value))
 }
+
 
 

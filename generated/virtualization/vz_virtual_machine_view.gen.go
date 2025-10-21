@@ -99,6 +99,7 @@ func (v_ VZVirtualMachineView) AutomaticallyReconfiguresDisplay() bool {
 func (v_ VZVirtualMachineView) SetAutomaticallyReconfiguresDisplay(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAutomaticallyReconfiguresDisplay:"), value)
 }
+
 // A Boolean value that determines whether the system should send certain system keyboard shortcuts to the guest instead of the host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/capturesSystemKeys
@@ -116,6 +117,7 @@ func (v_ VZVirtualMachineView) CapturesSystemKeys() bool {
 func (v_ VZVirtualMachineView) SetCapturesSystemKeys(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCapturesSystemKeys:"), value)
 }
+
 // The VM to display in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/virtualMachine
@@ -133,5 +135,6 @@ func (v_ VZVirtualMachineView) VirtualMachine() unsafe.Pointer {
 func (v_ VZVirtualMachineView) SetVirtualMachine(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVirtualMachine:"), value)
 }
+
 
 

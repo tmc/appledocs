@@ -9,14 +9,9 @@ import (
 // Suppress unused import errors
 var _ = corebluetooth.NewCBPeripheralManager
 
-
 // ExampleNewCBPeripheralManager demonstrates how to create a CBPeripheralManager instance.
 // Initializes the peripheral manager without a delegate.
 func ExampleNewCBPeripheralManager() {
 	_ = corebluetooth.NewCBPeripheralManager()
 	// Output:
 }
-
-
-
-

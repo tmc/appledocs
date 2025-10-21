@@ -12,5 +12,3 @@ var MinimumComponentProtocol *objc.Protocol
 func init() {
 	MinimumComponentProtocol = objc.GetProtocol("CIMinimumComponent")
 }
-
-

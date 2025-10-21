@@ -12,5 +12,3 @@ var CrystallizeProtocol *objc.Protocol
 func init() {
 	CrystallizeProtocol = objc.GetProtocol("CICrystallize")
 }
-
-

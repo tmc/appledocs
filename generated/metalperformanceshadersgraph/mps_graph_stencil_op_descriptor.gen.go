@@ -98,6 +98,7 @@ func (g_ GraphStencilOpDescriptor) BoundaryMode() unsafe.Pointer {
 func (g_ GraphStencilOpDescriptor) SetBoundaryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBoundaryMode:"), value)
 }
+
 // The padding value for .
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingConstant
@@ -115,6 +116,7 @@ func (g_ GraphStencilOpDescriptor) PaddingConstant() unsafe.Pointer {
 func (g_ GraphStencilOpDescriptor) SetPaddingConstant(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingConstant:"), value)
 }
+
 // The property that defines strides for spatial dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/strides
@@ -132,5 +134,6 @@ func (g_ GraphStencilOpDescriptor) Strides() unsafe.Pointer {
 func (g_ GraphStencilOpDescriptor) SetStrides(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
 }
+
 
 

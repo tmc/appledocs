@@ -90,6 +90,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Cluster() unsafe.P
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetCluster(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/endpoint
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Endpoint() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Endpoint() unsafe.
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetEndpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/fabricIndex
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) FabricIndex() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) FabricIndex() unsa
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetFabricIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/restrictions
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Restrictions() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Restrictions() uns
 func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetRestrictions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictions:"), value)
 }
+
 
 

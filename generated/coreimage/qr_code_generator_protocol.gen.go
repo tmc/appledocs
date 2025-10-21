@@ -12,5 +12,3 @@ var QRCodeGeneratorProtocol *objc.Protocol
 func init() {
 	QRCodeGeneratorProtocol = objc.GetProtocol("CIQRCodeGenerator")
 }
-
-

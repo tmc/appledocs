@@ -15,5 +15,3 @@ var loadFileInfoWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	loadFileInfoWithCompletionHandlerProtocol = objc.GetProtocol("loadFileInfoWithCompletionHandler:")
 }
-
-

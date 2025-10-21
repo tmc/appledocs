@@ -81,15 +81,7 @@ func NewInkingTool() InkingTool {
 }
 
 
-// Create an inking tool with the specified ink and width.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(ink:width:)
-func NewInkingToolWithInkWidth(ink unsafe.Pointer, width float64) InkingTool {
-	instance := getInkingToolClass().Alloc()
-	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInk:width:"), ink, width)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates an ink tool object with the default line width and the specified color.
 //
@@ -100,6 +92,8 @@ func NewInkingToolWithInkTypeColor(type_ unsafe.Pointer, color unsafe.Pointer) I
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates an ink tool object with the specified color and line width values.
 //
@@ -116,6 +110,18 @@ func NewInkingToolWithInkTypeColorWidth(type_ unsafe.Pointer, color unsafe.Point
 func NewInkingToolWithInkTypeColorWidthAzimuth(type_ unsafe.Pointer, color unsafe.Pointer, width float64, angle float64) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:"), type_, color, width, angle)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Create an inking tool with the specified ink and width.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(ink:width:)
+func NewInkingToolWithInkWidth(ink unsafe.Pointer, width float64) InkingTool {
+	instance := getInkingToolClass().Alloc()
+	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInk:width:"), ink, width)
 	rv.Autorelease()
 	return rv
 }

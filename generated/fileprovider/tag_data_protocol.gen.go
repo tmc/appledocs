@@ -18,5 +18,3 @@ var tagDataProtocol *objc.Protocol
 func init() {
 	tagDataProtocol = objc.GetProtocol("tagData")
 }
-
-

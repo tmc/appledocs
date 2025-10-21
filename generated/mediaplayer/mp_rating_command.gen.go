@@ -96,6 +96,7 @@ func (r_ RatingCommand) MaximumRating() unsafe.Pointer {
 func (r_ RatingCommand) SetMaximumRating(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaximumRating:"), value)
 }
+
 // The minimum rating for a command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/minimumRating
@@ -113,5 +114,6 @@ func (r_ RatingCommand) MinimumRating() unsafe.Pointer {
 func (r_ RatingCommand) SetMinimumRating(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinimumRating:"), value)
 }
+
 
 

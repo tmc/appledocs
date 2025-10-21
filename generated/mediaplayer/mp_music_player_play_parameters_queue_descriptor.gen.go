@@ -83,6 +83,8 @@ func NewMusicPlayerPlayParametersQueueDescriptor() MusicPlayerPlayParametersQueu
 }
 
 
+
+
 // Creates a new queue descriptor using the designated queue of play parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/init(playParametersQueue:)
@@ -135,6 +137,7 @@ func (m_ MusicPlayerPlayParametersQueueDescriptor) SetPlayParametersQueue(value 
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayParametersQueue:"), nsArray)
 }
+
 // The item identified by the play parameters to play first.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/startItemPlayParameters
@@ -152,4 +155,5 @@ func (m_ MusicPlayerPlayParametersQueueDescriptor) StartItemPlayParameters() uns
 func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartItemPlayParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemPlayParameters:"), value)
 }
+
 

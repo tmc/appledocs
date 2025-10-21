@@ -20,5 +20,3 @@ var createAudioUnitWithComponentDescriptionProtocol *objc.Protocol
 func init() {
 	createAudioUnitWithComponentDescriptionProtocol = objc.GetProtocol("createAudioUnitWithComponentDescription:")
 }
-
-

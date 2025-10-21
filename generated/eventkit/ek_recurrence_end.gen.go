@@ -81,6 +81,8 @@ func NewEKRecurrenceEnd() EKRecurrenceEnd {
 }
 
 
+
+
 // Initializes and returns a date-based recurrence end with a given end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
@@ -88,6 +90,8 @@ func NewEKRecurrenceEndWithEndDate(endDate unsafe.Pointer) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
+
+
 
 // Initializes and returns a count-based recurrence end with a given maximum occurrence count.
 //

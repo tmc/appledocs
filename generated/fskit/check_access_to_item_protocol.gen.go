@@ -15,5 +15,3 @@ var checkAccessToItemProtocol *objc.Protocol
 func init() {
 	checkAccessToItemProtocol = objc.GetProtocol("checkAccessToItem:")
 }
-
-

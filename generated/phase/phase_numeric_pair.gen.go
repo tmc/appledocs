@@ -81,6 +81,8 @@ func NewPHASENumericPair() PHASENumericPair {
 }
 
 
+
+
 // Creates a pair of numbers with the given values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/init(firstValue:secondValue:)
@@ -109,6 +111,7 @@ func (p_ PHASENumericPair) First() unsafe.Pointer {
 func (p_ PHASENumericPair) SetFirst(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFirst:"), value)
 }
+
 // The second value in the pair.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/second
@@ -126,4 +129,5 @@ func (p_ PHASENumericPair) Second() unsafe.Pointer {
 func (p_ PHASENumericPair) SetSecond(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSecond:"), value)
 }
+
 

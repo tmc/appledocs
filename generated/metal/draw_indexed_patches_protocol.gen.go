@@ -20,5 +20,3 @@ var drawIndexedPatchesProtocol *objc.Protocol
 func init() {
 	drawIndexedPatchesProtocol = objc.GetProtocol("drawIndexedPatches:")
 }
-
-

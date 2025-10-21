@@ -12,5 +12,3 @@ var ICDeviceBrowserDelegateProtocol *objc.Protocol
 func init() {
 	ICDeviceBrowserDelegateProtocol = objc.GetProtocol("ICDeviceBrowserDelegate")
 }
-
-

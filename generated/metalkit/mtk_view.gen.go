@@ -83,6 +83,8 @@ func NewView() View {
 }
 
 
+
+
 // Initializes a view from data in a given unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
@@ -92,6 +94,8 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a view with the specified frame rectangle and Metal device.
 //
@@ -135,6 +139,7 @@ func (v_ View) AutoResizeDrawable() bool {
 func (v_ View) SetAutoResizeDrawable(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAutoResizeDrawable:"), value)
 }
+
 // The color to use to clear the color target when creating a render pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearColor
@@ -152,6 +157,7 @@ func (v_ View) ClearColor() unsafe.Pointer {
 func (v_ View) SetClearColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClearColor:"), value)
 }
+
 // The depth value to use to clear the depth target when creating a render pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearDepth
@@ -169,6 +175,7 @@ func (v_ View) ClearDepth() unsafe.Pointer {
 func (v_ View) SetClearDepth(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClearDepth:"), value)
 }
+
 // The stencil value to use to clear the stencil target when creating a render pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearStencil
@@ -186,6 +193,7 @@ func (v_ View) ClearStencil() unsafe.Pointer {
 func (v_ View) SetClearStencil(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClearStencil:"), value)
 }
+
 // The color pixel format for the current drawable’s texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/colorPixelFormat
@@ -203,6 +211,7 @@ func (v_ View) ColorPixelFormat() unsafe.Pointer {
 func (v_ View) SetColorPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setColorPixelFormat:"), value)
 }
+
 // The color space of the rendered content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/colorspace
@@ -220,6 +229,7 @@ func (v_ View) Colorspace() coregraphics.CGColorSpaceRef {
 func (v_ View) SetColorspace(value coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setColorspace:"), value)
 }
+
 // The drawable to use for the current frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/currentDrawable
@@ -260,6 +270,7 @@ func (v_ View) Delegate() objc.ID {
 func (v_ View) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The texture usage characteristics that the view uses when creating the depth and stencil textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/depthStencilAttachmentTextureUsage
@@ -277,6 +288,7 @@ func (v_ View) DepthStencilAttachmentTextureUsage() unsafe.Pointer {
 func (v_ View) SetDepthStencilAttachmentTextureUsage(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDepthStencilAttachmentTextureUsage:"), value)
 }
+
 // The format used to generate the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/depthStencilPixelFormat
@@ -294,6 +306,7 @@ func (v_ View) DepthStencilPixelFormat() unsafe.Pointer {
 func (v_ View) SetDepthStencilPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDepthStencilPixelFormat:"), value)
 }
+
 // The storage mode that the packed depth and stencil texture use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/depthStencilStorageMode
@@ -311,6 +324,7 @@ func (v_ View) DepthStencilStorageMode() unsafe.Pointer {
 func (v_ View) SetDepthStencilStorageMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDepthStencilStorageMode:"), value)
 }
+
 // A packed depth and stencil texture associated with the current drawable object’s texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/depthStencilTexture
@@ -336,6 +350,7 @@ func (v_ View) Device() objc.ID {
 func (v_ View) SetDevice(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDevice:"), value)
 }
+
 // The current size of drawable textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/drawableSize
@@ -353,6 +368,7 @@ func (v_ View) DrawableSize() coregraphics.CGSize {
 func (v_ View) SetDrawableSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDrawableSize:"), value)
 }
+
 // A Boolean value that indicates whether the view responds to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/enableSetNeedsDisplay
@@ -370,6 +386,7 @@ func (v_ View) EnableSetNeedsDisplay() bool {
 func (v_ View) SetEnableSetNeedsDisplay(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEnableSetNeedsDisplay:"), value)
 }
+
 // A Boolean value that determines whether the drawable’s textures are used only for rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/framebufferOnly
@@ -387,6 +404,7 @@ func (v_ View) FramebufferOnly() bool {
 func (v_ View) SetFramebufferOnly(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFramebufferOnly:"), value)
 }
+
 // A Boolean value that indicates whether the draw loop is paused.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/isPaused
@@ -404,6 +422,7 @@ func (v_ View) Paused() bool {
 func (v_ View) SetPaused(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPaused:"), value)
 }
+
 // The texture usage characteristics that the view uses when creating multisample textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/multisampleColorAttachmentTextureUsage
@@ -421,6 +440,7 @@ func (v_ View) MultisampleColorAttachmentTextureUsage() unsafe.Pointer {
 func (v_ View) SetMultisampleColorAttachmentTextureUsage(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMultisampleColorAttachmentTextureUsage:"), value)
 }
+
 // The multisample color sample texture to render into.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/multisampleColorTexture
@@ -462,6 +482,7 @@ func (v_ View) PreferredFramesPerSecond() int {
 func (v_ View) SetPreferredFramesPerSecond(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredFramesPerSecond:"), value)
 }
+
 // A Boolean value that determines whether the view presents its content using a Core Animation transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/presentsWithTransaction
@@ -479,6 +500,7 @@ func (v_ View) PresentsWithTransaction() bool {
 func (v_ View) SetPresentsWithTransaction(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPresentsWithTransaction:"), value)
 }
+
 // The sample count used to generate the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/sampleCount
@@ -496,4 +518,5 @@ func (v_ View) SampleCount() uint {
 func (v_ View) SetSampleCount(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSampleCount:"), value)
 }
+
 

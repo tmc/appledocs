@@ -20,5 +20,3 @@ var bufferBytesPerRowProtocol *objc.Protocol
 func init() {
 	bufferBytesPerRowProtocol = objc.GetProtocol("bufferBytesPerRow")
 }
-
-

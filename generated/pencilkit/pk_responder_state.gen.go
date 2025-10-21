@@ -98,6 +98,7 @@ func (r_ ResponderState) ActiveToolPicker() unsafe.Pointer {
 func (r_ ResponderState) SetActiveToolPicker(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveToolPicker:"), value)
 }
+
 // The visibility state of the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/toolPickerVisibility-7hikj
@@ -115,5 +116,6 @@ func (r_ ResponderState) ToolPickerVisibility() unsafe.Pointer {
 func (r_ ResponderState) SetToolPickerVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setToolPickerVisibility:"), value)
 }
+
 
 

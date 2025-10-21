@@ -77,3 +77,7 @@ func (m_ MenuItemCell) Autorelease() MenuItemCell {
 func NewMenuItemCell() MenuItemCell {
 	return getMenuItemCellClass().New()
 }
+
+
+
+

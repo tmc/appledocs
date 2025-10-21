@@ -12,5 +12,3 @@ var OpTileProtocol *objc.Protocol
 func init() {
 	OpTileProtocol = objc.GetProtocol("CIOpTile")
 }
-
-

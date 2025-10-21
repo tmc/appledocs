@@ -16,5 +16,3 @@ var newPINConfirmationRequestedInUserInteractionProtocol *objc.Protocol
 func init() {
 	newPINConfirmationRequestedInUserInteractionProtocol = objc.GetProtocol("newPINConfirmationRequestedInUserInteraction:")
 }
-
-

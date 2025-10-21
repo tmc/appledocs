@@ -12,5 +12,3 @@ var PalettizeProtocol *objc.Protocol
 func init() {
 	PalettizeProtocol = objc.GetProtocol("CIPalettize")
 }
-
-

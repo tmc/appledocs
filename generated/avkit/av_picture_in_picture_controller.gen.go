@@ -84,6 +84,8 @@ func NewPictureInPictureController() PictureInPictureController {
 }
 
 
+
+
 // Creates a Picture in Picture controller with a content source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/init(contentSource:)
@@ -93,6 +95,8 @@ func NewPictureInPictureControllerWithContentSource(contentSource unsafe.Pointer
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a Picture in Picture controller with a player layer.
 //
@@ -181,6 +185,7 @@ func (p_ PictureInPictureController) CanStartPictureInPictureAutomaticallyFromIn
 func (p_ PictureInPictureController) SetCanStartPictureInPictureAutomaticallyFromInline(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanStartPictureInPictureAutomaticallyFromInline:"), value)
 }
+
 // A Boolean value that indicates whether Picture in Picture is active and is able to stop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/canStopPictureInPicture
@@ -206,6 +211,7 @@ func (p_ PictureInPictureController) ContentSource() unsafe.Pointer {
 func (p_ PictureInPictureController) SetContentSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSource:"), value)
 }
+
 // A delegate object for a Picture in Picture controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/delegate
@@ -223,6 +229,7 @@ func (p_ PictureInPictureController) Delegate() objc.ID {
 func (p_ PictureInPictureController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the Picture in Picture window is onscreen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/isPictureInPictureActive
@@ -288,4 +295,5 @@ func (p_ PictureInPictureController) RequiresLinearPlayback() bool {
 func (p_ PictureInPictureController) SetRequiresLinearPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRequiresLinearPlayback:"), value)
 }
+
 

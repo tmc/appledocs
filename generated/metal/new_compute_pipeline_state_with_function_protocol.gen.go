@@ -19,5 +19,3 @@ var newComputePipelineStateWithFunctionProtocol *objc.Protocol
 func init() {
 	newComputePipelineStateWithFunctionProtocol = objc.GetProtocol("newComputePipelineStateWithFunction:")
 }
-
-

@@ -20,5 +20,3 @@ var newCommandBufferProtocol *objc.Protocol
 func init() {
 	newCommandBufferProtocol = objc.GetProtocol("newCommandBuffer")
 }
-
-

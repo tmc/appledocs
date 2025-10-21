@@ -87,6 +87,8 @@ func NewManagedObject() ManagedObject {
 }
 
 
+
+
 // Initializes a managed object from an entity description and inserts it into the specified managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/init(entity:insertInto:)

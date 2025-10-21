@@ -21,5 +21,3 @@ var OS_nw_path_monitorProtocol *objc.Protocol
 func init() {
 	OS_nw_path_monitorProtocol = objc.GetProtocol("OS_nw_path_monitor")
 }
-
-

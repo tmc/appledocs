@@ -108,3 +108,4 @@ func (c_ CapturePhotoOutput) SetConstantColorEnabled(value bool) {
 }
 
 
+

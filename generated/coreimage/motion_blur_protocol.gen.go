@@ -12,5 +12,3 @@ var MotionBlurProtocol *objc.Protocol
 func init() {
 	MotionBlurProtocol = objc.GetProtocol("CIMotionBlur")
 }
-
-

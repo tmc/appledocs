@@ -15,5 +15,3 @@ var QCPlugInOutputImageProviderProtocol *objc.Protocol
 func init() {
 	QCPlugInOutputImageProviderProtocol = objc.GetProtocol("QCPlugInOutputImageProvider")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) NewMode() unsafe.Pointer {
 func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetNewMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) ServerSideProcessingTimeout
 func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) TimedInvokeTimeoutMs() unsa
 func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

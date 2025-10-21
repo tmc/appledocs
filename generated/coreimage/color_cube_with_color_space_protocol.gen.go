@@ -12,5 +12,3 @@ var ColorCubeWithColorSpaceProtocol *objc.Protocol
 func init() {
 	ColorCubeWithColorSpaceProtocol = objc.GetProtocol("CIColorCubeWithColorSpace")
 }
-
-

@@ -132,6 +132,7 @@ func (n_ NETunnelProviderManager) SetAppRules(value []NEAppRule) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAppRules:"), nsArray)
 }
+
 // The domains that the system routes network traffic through for a per-app VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/associatedDomains
@@ -159,6 +160,7 @@ func (n_ NETunnelProviderManager) SetAssociatedDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAssociatedDomains:"), nsArray)
 }
+
 // The calendar servers that the system routes connections from the Calendar app through for a per-app VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/calendarDomains
@@ -186,6 +188,7 @@ func (n_ NETunnelProviderManager) SetCalendarDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCalendarDomains:"), nsArray)
 }
+
 // The contacts servers that the system routes connections from the Contacts app through for a per-app VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/contactsDomains
@@ -213,6 +216,7 @@ func (n_ NETunnelProviderManager) SetContactsDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setContactsDomains:"), nsArray)
 }
+
 // The domains that the system excludes from a per-app VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/excludedDomains
@@ -240,6 +244,7 @@ func (n_ NETunnelProviderManager) SetExcludedDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedDomains:"), nsArray)
 }
+
 // The mail servers that the system routes connections from the Mail app through for a per-app VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/mailDomains
@@ -267,6 +272,7 @@ func (n_ NETunnelProviderManager) SetMailDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMailDomains:"), nsArray)
 }
+
 // The method that the system uses to route network traffic to the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/routingMethod
@@ -302,5 +308,6 @@ func (n_ NETunnelProviderManager) SetSafariDomains(value []string) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSafariDomains:"), nsArray)
 }
+
 
 

@@ -19,5 +19,3 @@ var setFragmentTexturesProtocol *objc.Protocol
 func init() {
 	setFragmentTexturesProtocol = objc.GetProtocol("setFragmentTextures:")
 }
-
-

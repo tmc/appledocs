@@ -12,5 +12,3 @@ var PerspectiveCorrectionProtocol *objc.Protocol
 func init() {
 	PerspectiveCorrectionProtocol = objc.GetProtocol("CIPerspectiveCorrection")
 }
-
-

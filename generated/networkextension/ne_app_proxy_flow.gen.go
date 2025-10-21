@@ -153,6 +153,7 @@ func (n_ NEAppProxyFlow) NetworkInterface() unsafe.Pointer {
 func (n_ NEAppProxyFlow) SetNetworkInterface(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkInterface:"), value)
 }
+
 // The remote host name for flows created from a hostname.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/remoteHostname

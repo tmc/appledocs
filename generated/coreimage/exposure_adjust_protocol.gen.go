@@ -12,5 +12,3 @@ var ExposureAdjustProtocol *objc.Protocol
 func init() {
 	ExposureAdjustProtocol = objc.GetProtocol("CIExposureAdjust")
 }
-
-

@@ -19,5 +19,3 @@ var fieldOfViewProtocol *objc.Protocol
 func init() {
 	fieldOfViewProtocol = objc.GetProtocol("fieldOfView")
 }
-
-

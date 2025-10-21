@@ -98,6 +98,7 @@ func (p_ PHASEGeneratorNodeDefinition) GainMetaParameterDefinition() unsafe.Poin
 func (p_ PHASEGeneratorNodeDefinition) SetGainMetaParameterDefinition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameterDefinition:"), value)
 }
+
 // A playback speed for the node’s audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rate
@@ -115,6 +116,7 @@ func (p_ PHASEGeneratorNodeDefinition) Rate() unsafe.Pointer {
 func (p_ PHASEGeneratorNodeDefinition) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
+
 // A meta parameter that dynamically changes the audio’s rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rateMetaParameterDefinition
@@ -132,5 +134,6 @@ func (p_ PHASEGeneratorNodeDefinition) RateMetaParameterDefinition() unsafe.Poin
 func (p_ PHASEGeneratorNodeDefinition) SetRateMetaParameterDefinition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRateMetaParameterDefinition:"), value)
 }
+
 
 

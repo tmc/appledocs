@@ -100,3 +100,4 @@ func (r_ ResidencySetDescriptor) SetLabel(value string) {
 }
 
 
+

@@ -16,5 +16,3 @@ var cursorGlyphHandlerProtocol *objc.Protocol
 func init() {
 	cursorGlyphHandlerProtocol = objc.GetProtocol("cursorGlyphHandler")
 }
-
-

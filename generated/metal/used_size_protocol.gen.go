@@ -20,5 +20,3 @@ var usedSizeProtocol *objc.Protocol
 func init() {
 	usedSizeProtocol = objc.GetProtocol("usedSize")
 }
-
-

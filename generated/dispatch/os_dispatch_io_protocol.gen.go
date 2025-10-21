@@ -12,5 +12,3 @@ var OS_dispatch_ioProtocol *objc.Protocol
 func init() {
 	OS_dispatch_ioProtocol = objc.GetProtocol("OS_dispatch_io")
 }
-
-

@@ -19,5 +19,3 @@ var setDepthStencilStateProtocol *objc.Protocol
 func init() {
 	setDepthStencilStateProtocol = objc.GetProtocol("setDepthStencilState:")
 }
-
-

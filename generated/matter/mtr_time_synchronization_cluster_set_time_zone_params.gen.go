@@ -93,6 +93,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTim
 func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timeZone
 func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() unsafe.Pointer {
@@ -107,6 +108,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() unsafe.Point
 func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() 
 func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

@@ -20,5 +20,3 @@ var mapViewDidFinishRenderingMapProtocol *objc.Protocol
 func init() {
 	mapViewDidFinishRenderingMapProtocol = objc.GetProtocol("mapViewDidFinishRenderingMap:")
 }
-
-

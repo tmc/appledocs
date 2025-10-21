@@ -12,5 +12,3 @@ var TriangleKaleidoscopeProtocol *objc.Protocol
 func init() {
 	TriangleKaleidoscopeProtocol = objc.GetProtocol("CITriangleKaleidoscope")
 }
-
-

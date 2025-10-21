@@ -20,5 +20,3 @@ var MDLTransformOpProtocol *objc.Protocol
 func init() {
 	MDLTransformOpProtocol = objc.GetProtocol("MDLTransformOp")
 }
-
-

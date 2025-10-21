@@ -18,5 +18,3 @@ var documentCameraViewControllerProtocol *objc.Protocol
 func init() {
 	documentCameraViewControllerProtocol = objc.GetProtocol("documentCameraViewController:")
 }
-
-

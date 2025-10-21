@@ -20,5 +20,3 @@ var supportsShaderBarycentricCoordinatesProtocol *objc.Protocol
 func init() {
 	supportsShaderBarycentricCoordinatesProtocol = objc.GetProtocol("supportsShaderBarycentricCoordinates")
 }
-
-

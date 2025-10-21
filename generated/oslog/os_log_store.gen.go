@@ -93,6 +93,8 @@ func NewOSLogStoreWithScopeError(scope unsafe.Pointer, error_ unsafe.Pointer) OS
 	return rv
 }
 
+
+
 // Creates a log store based on a log archive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(url:)

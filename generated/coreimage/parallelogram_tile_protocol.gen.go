@@ -12,5 +12,3 @@ var ParallelogramTileProtocol *objc.Protocol
 func init() {
 	ParallelogramTileProtocol = objc.GetProtocol("CIParallelogramTile")
 }
-
-

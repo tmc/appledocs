@@ -20,4 +20,3 @@ var shouldDownloadAssetPackProtocol *objc.Protocol
 func init() {
 	shouldDownloadAssetPackProtocol = objc.GetProtocol("shouldDownloadAssetPack:")
 }
-

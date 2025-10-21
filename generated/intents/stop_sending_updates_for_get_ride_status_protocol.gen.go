@@ -19,5 +19,3 @@ var stopSendingUpdatesForGetRideStatusProtocol *objc.Protocol
 func init() {
 	stopSendingUpdatesForGetRideStatusProtocol = objc.GetProtocol("stopSendingUpdatesForGetRideStatus:")
 }
-
-

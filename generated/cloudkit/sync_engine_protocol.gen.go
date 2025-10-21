@@ -21,4 +21,3 @@ var syncEngineProtocol *objc.Protocol
 func init() {
 	syncEngineProtocol = objc.GetProtocol("syncEngine:")
 }
-

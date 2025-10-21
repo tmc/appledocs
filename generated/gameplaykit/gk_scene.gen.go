@@ -85,6 +85,8 @@ func NewScene() Scene {
 }
 
 
+
+
 // Loads the specified SpriteKit scene file, creating a object containing the SpriteKit scene and associated GameplayKit objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
@@ -176,4 +178,5 @@ func (s_ Scene) RootNode() objc.ID {
 func (s_ Scene) SetRootNode(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRootNode:"), value)
 }
+
 

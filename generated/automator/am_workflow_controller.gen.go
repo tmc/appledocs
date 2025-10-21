@@ -145,6 +145,7 @@ func (a_ AMWorkflowController) Delegate() objc.ID {
 func (a_ AMWorkflowController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the controller’s workflow is currently paused.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/isPaused
@@ -178,6 +179,7 @@ func (a_ AMWorkflowController) Workflow() unsafe.Pointer {
 func (a_ AMWorkflowController) SetWorkflow(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflow:"), value)
 }
+
 // The controller’s workflow view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
@@ -195,5 +197,6 @@ func (a_ AMWorkflowController) WorkflowView() unsafe.Pointer {
 func (a_ AMWorkflowController) SetWorkflowView(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
 }
+
 
 

@@ -19,5 +19,3 @@ var getBytesProtocol *objc.Protocol
 func init() {
 	getBytesProtocol = objc.GetProtocol("getBytes:")
 }
-
-

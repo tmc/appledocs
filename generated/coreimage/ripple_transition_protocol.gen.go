@@ -12,5 +12,3 @@ var RippleTransitionProtocol *objc.Protocol
 func init() {
 	RippleTransitionProtocol = objc.GetProtocol("CIRippleTransition")
 }
-
-

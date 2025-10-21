@@ -97,6 +97,7 @@ func (c_ CanvasView) AllowsFingerDrawing() bool {
 func (c_ CanvasView) SetAllowsFingerDrawing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsFingerDrawing:"), value)
 }
+
 // The object you use to respond to changes in the drawn content or with the selected tool.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/delegate
@@ -114,6 +115,7 @@ func (c_ CanvasView) Delegate() objc.ID {
 func (c_ CanvasView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The data object that the canvas uses to store drawn content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawing
@@ -131,6 +133,7 @@ func (c_ CanvasView) Drawing() unsafe.Pointer {
 func (c_ CanvasView) SetDrawing(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawing:"), value)
 }
+
 // The gesture recognizer that the canvas uses to track touch events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer
@@ -156,6 +159,7 @@ func (c_ CanvasView) DrawingPolicy() unsafe.Pointer {
 func (c_ CanvasView) SetDrawingPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingPolicy:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/isDrawingEnabled
 func (c_ CanvasView) DrawingEnabled() bool {
@@ -170,6 +174,7 @@ func (c_ CanvasView) DrawingEnabled() bool {
 func (c_ CanvasView) SetDrawingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingEnabled:"), value)
 }
+
 // A Boolean value that indicates whether a ruler view is visible on the canvas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/isRulerActive
@@ -187,6 +192,7 @@ func (c_ CanvasView) RulerActive() bool {
 func (c_ CanvasView) SetRulerActive(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRulerActive:"), value)
 }
+
 // The maximum version of PencilKit to support.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion
@@ -204,6 +210,7 @@ func (c_ CanvasView) MaximumSupportedContentVersion() unsafe.Pointer {
 func (c_ CanvasView) SetMaximumSupportedContentVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumSupportedContentVersion:"), value)
 }
+
 // The currently selected tool used for drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/tool-6str6
@@ -221,5 +228,6 @@ func (c_ CanvasView) Tool() unsafe.Pointer {
 func (c_ CanvasView) SetTool(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTool:"), value)
 }
+
 
 

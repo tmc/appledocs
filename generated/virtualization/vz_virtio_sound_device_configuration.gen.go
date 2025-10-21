@@ -110,3 +110,4 @@ func (v_ VZVirtioSoundDeviceConfiguration) SetStreams(value []VZVirtioSoundDevic
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStreams:"), nsArray)
 }
 
+

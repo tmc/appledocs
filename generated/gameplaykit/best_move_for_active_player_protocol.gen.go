@@ -20,5 +20,3 @@ var bestMoveForActivePlayerProtocol *objc.Protocol
 func init() {
 	bestMoveForActivePlayerProtocol = objc.GetProtocol("bestMoveForActivePlayer")
 }
-
-

@@ -18,5 +18,3 @@ var supportsCameraAssistanceProtocol *objc.Protocol
 func init() {
 	supportsCameraAssistanceProtocol = objc.GetProtocol("supportsCameraAssistance")
 }
-
-

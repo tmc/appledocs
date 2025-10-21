@@ -20,5 +20,3 @@ var pointSourceInHeadModeProtocol *objc.Protocol
 func init() {
 	pointSourceInHeadModeProtocol = objc.GetProtocol("pointSourceInHeadMode")
 }
-
-

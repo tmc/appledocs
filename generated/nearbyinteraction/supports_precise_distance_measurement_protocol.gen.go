@@ -18,5 +18,3 @@ var supportsPreciseDistanceMeasurementProtocol *objc.Protocol
 func init() {
 	supportsPreciseDistanceMeasurementProtocol = objc.GetProtocol("supportsPreciseDistanceMeasurement")
 }
-
-

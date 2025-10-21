@@ -116,6 +116,7 @@ func (m_ MIDINetworkSession) Enabled() bool {
 func (m_ MIDINetworkSession) SetEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // The session’s UDP port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/networkPort

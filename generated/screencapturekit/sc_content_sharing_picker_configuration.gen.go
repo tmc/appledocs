@@ -96,6 +96,7 @@ func (c_ ContentSharingPickerConfiguration) AllowedPickerModes() unsafe.Pointer 
 func (c_ ContentSharingPickerConfiguration) SetAllowedPickerModes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedPickerModes:"), value)
 }
+
 // A list of bundle IDs to exclude from the sharing picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedBundleIDs
@@ -123,5 +124,6 @@ func (c_ ContentSharingPickerConfiguration) SetExcludedBundleIDs(value []string)
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedBundleIDs:"), nsArray)
 }
+
 
 

@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKRecordZoneID
 
-
 // ExampleNewCKRecordZoneIDWithZoneNameOwnerName demonstrates how to create a CKRecordZoneID instance using NewCKRecordZoneIDWithZoneNameOwnerName.
 // Creates a record zone ID with the specified name and owner.
 func ExampleNewCKRecordZoneIDWithZoneNameOwnerName() {
@@ -19,5 +18,3 @@ func ExampleNewCKRecordZoneIDWithZoneNameOwnerName() {
 	)
 	// Output:
 }
-
-

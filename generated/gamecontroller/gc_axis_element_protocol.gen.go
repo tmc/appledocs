@@ -20,5 +20,3 @@ var GCAxisElementProtocol *objc.Protocol
 func init() {
 	GCAxisElementProtocol = objc.GetProtocol("GCAxisElement")
 }
-
-

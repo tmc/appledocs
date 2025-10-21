@@ -90,6 +90,8 @@ func NewAudioPlayer() AudioPlayer {
 }
 
 
+
+
 // Creates a player to play audio from a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:)
@@ -99,6 +101,8 @@ func NewAudioPlayerWithContentsOfURLError(url unsafe.Pointer, outError unsafe.Po
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a player to play audio from a file of a particular type.
 //
@@ -110,6 +114,8 @@ func NewAudioPlayerWithContentsOfURLFileTypeHintError(url unsafe.Pointer, utiStr
 	return rv
 }
 
+
+
 // Creates a player to play in-memory audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(data:)
@@ -119,6 +125,8 @@ func NewAudioPlayerWithDataError(data unsafe.Pointer, outError unsafe.Pointer) A
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a player to play in-memory audio data of a particular type.
 //
@@ -226,6 +234,7 @@ func (a_ AudioPlayer) SetChannelAssignments(value []AVAudioSessionChannelDescrip
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), nsArray)
 }
+
 // The unique identifier of the current audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
@@ -243,6 +252,7 @@ func (a_ AudioPlayer) CurrentDevice() string {
 func (a_ AudioPlayer) SetCurrentDevice(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), objc.String(value))
 }
+
 // The current playback time, in seconds, within the audio timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentTime
@@ -260,6 +270,7 @@ func (a_ AudioPlayer) CurrentTime() TimeInterval {
 func (a_ AudioPlayer) SetCurrentTime(value TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentTime:"), value)
 }
+
 // The audio data associated with the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/data
@@ -285,6 +296,7 @@ func (a_ AudioPlayer) Delegate() objc.ID {
 func (a_ AudioPlayer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The time value, in seconds, of the audio output device’s clock.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/deviceCurrentTime
@@ -318,6 +330,7 @@ func (a_ AudioPlayer) EnableRate() bool {
 func (a_ AudioPlayer) SetEnableRate(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnableRate:"), value)
 }
+
 // The format of the player’s audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/format
@@ -340,6 +353,7 @@ func (a_ AudioPlayer) IntendedSpatialExperience() unsafe.Pointer {
 func (a_ AudioPlayer) SetIntendedSpatialExperience(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }
+
 // A Boolean value that indicates whether the player is able to generate audio-level metering data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/isMeteringEnabled
@@ -357,6 +371,7 @@ func (a_ AudioPlayer) MeteringEnabled() bool {
 func (a_ AudioPlayer) SetMeteringEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMeteringEnabled:"), value)
 }
+
 // A Boolean value that indicates whether the player is currently playing audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/isPlaying
@@ -390,6 +405,7 @@ func (a_ AudioPlayer) NumberOfLoops() int {
 func (a_ AudioPlayer) SetNumberOfLoops(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfLoops:"), value)
 }
+
 // The audio player’s stereo pan position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/pan
@@ -407,6 +423,7 @@ func (a_ AudioPlayer) Pan() unsafe.Pointer {
 func (a_ AudioPlayer) SetPan(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPan:"), value)
 }
+
 // The audio player’s playback rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/rate
@@ -424,6 +441,7 @@ func (a_ AudioPlayer) Rate() unsafe.Pointer {
 func (a_ AudioPlayer) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRate:"), value)
 }
+
 // A dictionary that provides information about the player’s audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/settings
@@ -457,4 +475,5 @@ func (a_ AudioPlayer) Volume() unsafe.Pointer {
 func (a_ AudioPlayer) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:"), value)
 }
+
 

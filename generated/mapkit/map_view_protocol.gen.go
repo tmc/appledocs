@@ -20,5 +20,3 @@ var mapViewProtocol *objc.Protocol
 func init() {
 	mapViewProtocol = objc.GetProtocol("mapView:")
 }
-
-

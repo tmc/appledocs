@@ -81,6 +81,8 @@ func NewConstraint() Constraint {
 }
 
 
+
+
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:)
@@ -89,6 +91,8 @@ func NewConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId st
 	return rv
 }
 
+
+
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:offset:)
@@ -96,6 +100,8 @@ func NewConstraintWithAttributeRelativeToAttributeOffset(attr unsafe.Pointer, sr
 	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, objc.String(srcId), srcAttr, c)
 	return rv
 }
+
+
 
 // Returns an object with the specified parameters. Designated initializer.
 //

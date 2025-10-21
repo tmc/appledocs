@@ -19,5 +19,3 @@ var parallelRenderCommandEncoderWithDescriptorProtocol *objc.Protocol
 func init() {
 	parallelRenderCommandEncoderWithDescriptorProtocol = objc.GetProtocol("parallelRenderCommandEncoderWithDescriptor:")
 }
-
-

@@ -9,15 +9,15 @@ package quicklook
 type PreviewItemEditingMode uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode/createCopy
-PreviewItemEditingModeCreateCopy PreviewItemEditingMode = 0
-//
+	PreviewItemEditingModeCreateCopy PreviewItemEditingMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode/disabled
-PreviewItemEditingModeDisabled PreviewItemEditingMode = 0
-//
+	PreviewItemEditingModeDisabled PreviewItemEditingMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode/updateContents
-PreviewItemEditingModeUpdateContents PreviewItemEditingMode = 0
+	PreviewItemEditingModeUpdateContents PreviewItemEditingMode = 0
 )
 
 

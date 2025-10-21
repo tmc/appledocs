@@ -20,5 +20,3 @@ var handleStartCallProtocol *objc.Protocol
 func init() {
 	handleStartCallProtocol = objc.GetProtocol("handleStartCall:")
 }
-
-

@@ -91,6 +91,20 @@ func NewCKRecord() CKRecord {
 }
 
 
+
+
+// Creates a new record of the specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:
+func NewCKRecordWithRecordType(recordType unsafe.Pointer) CKRecord {
+	instance := getCKRecordClass().Alloc()
+	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:"), recordType)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Creates a record using an ID that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:recordID:
@@ -101,22 +115,14 @@ func NewCKRecordWithRecordTypeRecordID(recordType unsafe.Pointer, recordID unsaf
 	return rv
 }
 
+
+
 // Creates a record in the specified zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:zoneID:
 func NewCKRecordWithRecordTypeZoneID(recordType unsafe.Pointer, zoneID unsafe.Pointer) CKRecord {
 	instance := getCKRecordClass().Alloc()
 	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:zoneID:"), recordType, zoneID)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a new record of the specified type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:
-func NewCKRecordWithRecordType(recordType unsafe.Pointer) CKRecord {
-	instance := getCKRecordClass().Alloc()
-	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:"), recordType)
 	rv.Autorelease()
 	return rv
 }
@@ -254,6 +260,7 @@ func (c_ CKRecord) Parent() unsafe.Pointer {
 func (c_ CKRecord) SetParent(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
 }
+
 // The server change token for the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordChangeTag

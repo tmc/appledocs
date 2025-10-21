@@ -15,5 +15,3 @@ var skipToPreviousItemForPlayerViewControllerProtocol *objc.Protocol
 func init() {
 	skipToPreviousItemForPlayerViewControllerProtocol = objc.GetProtocol("skipToPreviousItemForPlayerViewController:")
 }
-
-

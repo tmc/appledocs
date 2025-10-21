@@ -18,5 +18,3 @@ var isMaximumSizeReachedProtocol *objc.Protocol
 func init() {
 	isMaximumSizeReachedProtocol = objc.GetProtocol("isMaximumSizeReached")
 }
-
-

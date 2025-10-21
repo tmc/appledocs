@@ -15,5 +15,3 @@ var unmountWithReplyHandlerProtocol *objc.Protocol
 func init() {
 	unmountWithReplyHandlerProtocol = objc.GetProtocol("unmountWithReplyHandler:")
 }
-
-

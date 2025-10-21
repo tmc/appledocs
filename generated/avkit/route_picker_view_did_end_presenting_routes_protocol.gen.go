@@ -19,5 +19,3 @@ var routePickerViewDidEndPresentingRoutesProtocol *objc.Protocol
 func init() {
 	routePickerViewDidEndPresentingRoutesProtocol = objc.GetProtocol("routePickerViewDidEndPresentingRoutes:")
 }
-
-

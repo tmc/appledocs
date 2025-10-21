@@ -90,6 +90,7 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() unsa
 func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFutureMessagesPreference:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/messageID
 func (m_ MTRMessagesClusterMessageCompleteEvent) MessageID() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) MessageID() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
 func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() string {
@@ -118,6 +120,7 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() string {
 func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
 func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageCompleteEvent) SetResponseID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseID:"), value)
 }
+
 
 

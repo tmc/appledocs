@@ -92,6 +92,8 @@ func NewMTRClusterLaundryWasherControls() MTRClusterLaundryWasherControls {
 }
 
 
+
+
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/init(device:endpointID:queue:)

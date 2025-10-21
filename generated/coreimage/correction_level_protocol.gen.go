@@ -12,5 +12,3 @@ var correctionLevelProtocol *objc.Protocol
 func init() {
 	correctionLevelProtocol = objc.GetProtocol("correctionLevel")
 }
-
-

@@ -20,5 +20,3 @@ var newCounterHeapWithDescriptorProtocol *objc.Protocol
 func init() {
 	newCounterHeapWithDescriptorProtocol = objc.GetProtocol("newCounterHeapWithDescriptor:")
 }
-
-

@@ -15,5 +15,3 @@ var beginProjectWithExtensionContextProtocol *objc.Protocol
 func init() {
 	beginProjectWithExtensionContextProtocol = objc.GetProtocol("beginProjectWithExtensionContext:")
 }
-
-

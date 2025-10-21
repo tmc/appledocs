@@ -98,6 +98,7 @@ func (m_ MutablePayment) ApplicationUsername() string {
 func (m_ MutablePayment) SetApplicationUsername(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), objc.String(value))
 }
+
 // The details of the discount offer to apply to the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/paymentDiscount
@@ -115,6 +116,7 @@ func (m_ MutablePayment) PaymentDiscount() unsafe.Pointer {
 func (m_ MutablePayment) SetPaymentDiscount(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaymentDiscount:"), value)
 }
+
 // A string that identifies a product that can be purchased from within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
@@ -132,6 +134,7 @@ func (m_ MutablePayment) ProductIdentifier() string {
 func (m_ MutablePayment) SetProductIdentifier(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
 }
+
 // The number of items the user wants to purchase.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/quantity
@@ -149,6 +152,7 @@ func (m_ MutablePayment) Quantity() int {
 func (m_ MutablePayment) SetQuantity(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQuantity:"), value)
 }
+
 // Reserved for future use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/requestData
@@ -166,6 +170,7 @@ func (m_ MutablePayment) RequestData() unsafe.Pointer {
 func (m_ MutablePayment) SetRequestData(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestData:"), value)
 }
+
 // A Boolean value that produces an “ask to buy” flow for this payment in the sandbox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/simulatesAskToBuyInSandbox
@@ -183,5 +188,6 @@ func (m_ MutablePayment) SimulatesAskToBuyInSandbox() bool {
 func (m_ MutablePayment) SetSimulatesAskToBuyInSandbox(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSimulatesAskToBuyInSandbox:"), value)
 }
+
 
 

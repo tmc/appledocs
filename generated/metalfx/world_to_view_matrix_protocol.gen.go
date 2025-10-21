@@ -19,5 +19,3 @@ var worldToViewMatrixProtocol *objc.Protocol
 func init() {
 	worldToViewMatrixProtocol = objc.GetProtocol("worldToViewMatrix")
 }
-
-

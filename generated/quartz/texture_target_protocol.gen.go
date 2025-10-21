@@ -15,5 +15,3 @@ var textureTargetProtocol *objc.Protocol
 func init() {
 	textureTargetProtocol = objc.GetProtocol("textureTarget")
 }
-
-

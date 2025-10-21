@@ -19,5 +19,3 @@ var newCommandQueueWithMaxCommandBufferCountProtocol *objc.Protocol
 func init() {
 	newCommandQueueWithMaxCommandBufferCountProtocol = objc.GetProtocol("newCommandQueueWithMaxCommandBufferCount:")
 }
-
-

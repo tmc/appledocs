@@ -12,4 +12,3 @@ var OS_hv_vm_configProtocol *objc.Protocol
 func init() {
 	OS_hv_vm_configProtocol = objc.GetProtocol("OS_hv_vm_config")
 }
-

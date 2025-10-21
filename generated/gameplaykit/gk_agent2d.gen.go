@@ -106,6 +106,7 @@ func (a_ Agent2D) Position() unsafe.Pointer {
 func (a_ Agent2D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPosition:"), value)
 }
+
 // The rotation of the agent around the z-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
@@ -123,6 +124,7 @@ func (a_ Agent2D) Rotation() unsafe.Pointer {
 func (a_ Agent2D) SetRotation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
+
 // The current velocity of the agent in 2D space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/velocity

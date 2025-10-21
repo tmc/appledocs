@@ -87,6 +87,8 @@ func NewMeshGraph() MeshGraph {
 }
 
 
+
+
 // Initializes a graph to cover the specified area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/init(bufferRadius:minCoordinate:maxCoordinate:)
@@ -96,6 +98,8 @@ func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius unsafe.
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a graph to cover the specified area, using the specified node class.
 //
@@ -208,4 +212,5 @@ func (m_ MeshGraph) TriangulationMode() unsafe.Pointer {
 func (m_ MeshGraph) SetTriangulationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTriangulationMode:"), value)
 }
+
 

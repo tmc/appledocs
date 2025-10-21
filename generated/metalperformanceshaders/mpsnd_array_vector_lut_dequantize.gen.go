@@ -101,3 +101,4 @@ func (n_ NDArrayVectorLUTDequantize) SetVectorAxis(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setVectorAxis:"), value)
 }
 
+

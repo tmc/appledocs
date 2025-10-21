@@ -81,6 +81,8 @@ func NewCNContactFetchRequest() CNContactFetchRequest {
 }
 
 
+
+
 // Creates a fetch request for the specified keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/init(keysToFetch:)
@@ -119,6 +121,7 @@ func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeysToFetch:"), nsArray)
 }
+
 // A Boolean value that indicates whether to return mutable contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
@@ -136,6 +139,7 @@ func (c_ CNContactFetchRequest) MutableObjects() bool {
 func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
+
 // The predicate to match contacts against.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
@@ -153,6 +157,7 @@ func (c_ CNContactFetchRequest) Predicate() unsafe.Pointer {
 func (c_ CNContactFetchRequest) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
+
 // The sort order for contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
@@ -170,6 +175,7 @@ func (c_ CNContactFetchRequest) SortOrder() unsafe.Pointer {
 func (c_ CNContactFetchRequest) SetSortOrder(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortOrder:"), value)
 }
+
 // A Boolean value that indicates whether to return linked contacts as unified contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
@@ -187,4 +193,5 @@ func (c_ CNContactFetchRequest) UnifyResults() bool {
 func (c_ CNContactFetchRequest) SetUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnifyResults:"), value)
 }
+
 

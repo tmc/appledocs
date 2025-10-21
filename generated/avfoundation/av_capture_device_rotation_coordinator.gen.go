@@ -81,6 +81,8 @@ func NewCaptureDeviceRotationCoordinator() CaptureDeviceRotationCoordinator {
 }
 
 
+
+
 // Creates a coordinator that provides separate compensation angles for content your app takes with a capture device, and for your app’s camera preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/init(device:previewLayer:)

@@ -84,6 +84,8 @@ func NewNowPlayingSession() NowPlayingSession {
 }
 
 
+
+
 // Creates a Now Playing session object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/init(players:)
@@ -133,6 +135,7 @@ func (n_ NowPlayingSession) AutomaticallyPublishesNowPlayingInfo() bool {
 func (n_ NowPlayingSession) SetAutomaticallyPublishesNowPlayingInfo(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAutomaticallyPublishesNowPlayingInfo:"), value)
 }
+
 // A Boolean value that indicates whether the session can become the app’s active Now Playing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/canBecomeActive
@@ -158,6 +161,7 @@ func (n_ NowPlayingSession) Delegate() objc.ID {
 func (n_ NowPlayingSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the session is the app’s active Now Playing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/isActive

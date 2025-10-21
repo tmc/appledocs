@@ -15,5 +15,3 @@ var widgetListPerformAddActionProtocol *objc.Protocol
 func init() {
 	widgetListPerformAddActionProtocol = objc.GetProtocol("widgetListPerformAddAction:")
 }
-
-

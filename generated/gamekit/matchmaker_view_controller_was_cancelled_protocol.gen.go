@@ -20,5 +20,3 @@ var matchmakerViewControllerWasCancelledProtocol *objc.Protocol
 func init() {
 	matchmakerViewControllerWasCancelledProtocol = objc.GetProtocol("matchmakerViewControllerWasCancelled:")
 }
-
-

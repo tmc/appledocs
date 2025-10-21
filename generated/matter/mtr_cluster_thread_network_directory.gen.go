@@ -92,6 +92,8 @@ func NewMTRClusterThreadNetworkDirectory() MTRClusterThreadNetworkDirectory {
 }
 
 
+
+
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/init(device:endpointID:queue:)

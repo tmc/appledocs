@@ -19,5 +19,3 @@ var cpuCacheModeProtocol *objc.Protocol
 func init() {
 	cpuCacheModeProtocol = objc.GetProtocol("cpuCacheMode")
 }
-
-

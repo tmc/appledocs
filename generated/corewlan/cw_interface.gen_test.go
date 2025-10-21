@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = corewlan.NewCWInterface
 
-
 // ExampleNewCWInterfaceWithInterfaceName demonstrates how to create a CWInterface instance using NewCWInterfaceWithInterfaceName.
 // Convenience method for getting an CWInterface object with the specified name.
 func ExampleNewCWInterfaceWithInterfaceName() {
@@ -18,7 +17,6 @@ func ExampleNewCWInterfaceWithInterfaceName() {
 	)
 	// Output:
 }
-
 // ExampleNewCWInterfaceWithName demonstrates how to create a CWInterface instance using NewCWInterfaceWithName.
 // An instance method for obtaining an CWInterface object.
 func ExampleNewCWInterfaceWithName() {
@@ -27,5 +25,3 @@ func ExampleNewCWInterfaceWithName() {
 	)
 	// Output:
 }
-
-

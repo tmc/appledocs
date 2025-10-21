@@ -15,5 +15,3 @@ var consoleDeviceProtocol *objc.Protocol
 func init() {
 	consoleDeviceProtocol = objc.GetProtocol("consoleDevice:")
 }
-
-

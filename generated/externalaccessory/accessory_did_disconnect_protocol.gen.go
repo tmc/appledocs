@@ -20,5 +20,3 @@ var accessoryDidDisconnectProtocol *objc.Protocol
 func init() {
 	accessoryDidDisconnectProtocol = objc.GetProtocol("accessoryDidDisconnect:")
 }
-
-

@@ -80,6 +80,7 @@ func NewBackgroundExtensionView() BackgroundExtensionView {
 	return getBackgroundExtensionViewClass().New()
 }
 
+
 // Controls the automatic safe area placement of the within the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
@@ -87,6 +88,7 @@ func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("automaticallyPlacesContentView"))
 	return rv
 }
+
 
 // SetAutomaticallyPlacesContentView sets the value of the automaticallyPlacesContentView property.
 // Controls the automatic safe area placement of the within the container.
@@ -105,6 +107,7 @@ func (b_ BackgroundExtensionView) ContentView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetContentView sets the value of the contentView property.
 // The content view to extend to fill the .
 
@@ -113,3 +116,6 @@ func (b_ BackgroundExtensionView) ContentView() unsafe.Pointer {
 func (b_ BackgroundExtensionView) SetContentView(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentView:"), value)
 }
+
+
+

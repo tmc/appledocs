@@ -79,6 +79,8 @@ func NewAXNumericDataAxisDescriptor() AXNumericDataAxisDescriptor {
 }
 
 
+
+
 // Creates a numeric data axis with the specified attributed title, lower bound value, upper bound value, gridline positions, and value description provider block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:
@@ -88,6 +90,8 @@ func NewAXNumericDataAxisDescriptorWithAttributedTitleLowerBoundUpperBoundGridli
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a numeric data axis with the specified title, lower bound value, upper bound value, gridline positions, and value description provider block.
 //
@@ -127,6 +131,7 @@ func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []NSNumber) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGridlinePositions:"), nsArray)
 }
+
 // The minimum displayable value for the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/lowerBound
@@ -144,6 +149,7 @@ func (a_ AXNumericDataAxisDescriptor) LowerBound() unsafe.Pointer {
 func (a_ AXNumericDataAxisDescriptor) SetLowerBound(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLowerBound:"), value)
 }
+
 // The scale for the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/scaleType-swift.property
@@ -161,6 +167,7 @@ func (a_ AXNumericDataAxisDescriptor) ScaleType() unsafe.Pointer {
 func (a_ AXNumericDataAxisDescriptor) SetScaleType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setScaleType:"), value)
 }
+
 // The maximum displayable value for the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/upperBound
@@ -178,6 +185,7 @@ func (a_ AXNumericDataAxisDescriptor) UpperBound() unsafe.Pointer {
 func (a_ AXNumericDataAxisDescriptor) SetUpperBound(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUpperBound:"), value)
 }
+
 // A description to speak for a particular data value on the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/valueDescriptionProvider
@@ -195,4 +203,5 @@ func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() string {
 func (a_ AXNumericDataAxisDescriptor) SetValueDescriptionProvider(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueDescriptionProvider:"), objc.String(value))
 }
+
 

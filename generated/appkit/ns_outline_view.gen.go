@@ -80,6 +80,7 @@ func NewOutlineView() OutlineView {
 	return getOutlineViewClass().New()
 }
 
+
 // The per-level indentation, measured in points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationPerLevel
@@ -87,6 +88,7 @@ func (o_ OutlineView) IndentationPerLevel() float64 {
 	rv := objc.Send[float64](o_.ID, objc.Sel("indentationPerLevel"))
 	return rv
 }
+
 
 // SetIndentationPerLevel sets the value of the indentationPerLevel property.
 // The per-level indentation, measured in points.
@@ -96,3 +98,6 @@ func (o_ OutlineView) IndentationPerLevel() float64 {
 func (o_ OutlineView) SetIndentationPerLevel(value float64) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationPerLevel:"), value)
 }
+
+
+

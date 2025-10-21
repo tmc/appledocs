@@ -80,6 +80,7 @@ func NewTextView() TextView {
 	return getTextViewClass().New()
 }
 
+
 // The layout manager that lays out text for the receiver’s text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/layoutManager
@@ -95,6 +96,7 @@ func (t_ TextView) TextContainer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textContainer"))
 	return rv
 }
+
 
 // SetTextContainer sets the value of the textContainer property.
 // The receiver’s text container.
@@ -112,3 +114,6 @@ func (t_ TextView) TextStorage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textStorage"))
 	return rv
 }
+
+
+

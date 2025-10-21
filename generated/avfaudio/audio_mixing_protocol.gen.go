@@ -21,5 +21,3 @@ var AudioMixingProtocol *objc.Protocol
 func init() {
 	AudioMixingProtocol = objc.GetProtocol("AVAudioMixing")
 }
-
-

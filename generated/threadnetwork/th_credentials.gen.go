@@ -114,6 +114,7 @@ func (t_ THCredentials) Channel() unsafe.Pointer {
 func (t_ THCredentials) SetChannel(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChannel:"), value)
 }
+
 // The date and time that the framework stored the credential in the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/creationDate
@@ -169,5 +170,7 @@ func (t_ THCredentials) PSKC() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("PSKC"))
 	return rv
 }
+
+
 
 

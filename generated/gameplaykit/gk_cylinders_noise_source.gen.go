@@ -81,6 +81,8 @@ func NewCylindersNoiseSource() CylindersNoiseSource {
 }
 
 
+
+
 // Initializes a cylinder noise source with the specified frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/init(frequency:)
@@ -117,4 +119,5 @@ func (c_ CylindersNoiseSource) Frequency() unsafe.Pointer {
 func (c_ CylindersNoiseSource) SetFrequency(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }
+
 

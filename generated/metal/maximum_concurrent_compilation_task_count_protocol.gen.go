@@ -18,5 +18,3 @@ var maximumConcurrentCompilationTaskCountProtocol *objc.Protocol
 func init() {
 	maximumConcurrentCompilationTaskCountProtocol = objc.GetProtocol("maximumConcurrentCompilationTaskCount")
 }
-
-

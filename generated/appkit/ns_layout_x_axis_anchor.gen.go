@@ -82,6 +82,7 @@ func NewLayoutXAxisAnchor() LayoutXAxisAnchor {
 	return getLayoutXAxisAnchorClass().New()
 }
 
+
 // Returns a constraint that defines the minimum amount by which the current anchor trails the specified anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(greaterThanOrEqualToSystemSpacingAfter:multiplier:)
@@ -97,3 +98,6 @@ func (l_ LayoutXAxisAnchor) ConstraintLessThanOrEqualToSystemSpacingAfterAnchorM
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
+
+
+

@@ -19,5 +19,3 @@ var INGetRideStatusIntentHandlingProtocol *objc.Protocol
 func init() {
 	INGetRideStatusIntentHandlingProtocol = objc.GetProtocol("INGetRideStatusIntentHandling")
 }
-
-

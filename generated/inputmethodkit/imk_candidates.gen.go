@@ -114,6 +114,8 @@ func NewIMKCandidates() IMKCandidates {
 }
 
 
+
+
 // Returns the initialized object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)

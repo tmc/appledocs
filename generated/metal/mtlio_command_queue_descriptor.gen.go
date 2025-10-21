@@ -98,6 +98,7 @@ func (c_ IOCommandQueueDescriptor) MaxCommandBufferCount() uint {
 func (c_ IOCommandQueueDescriptor) SetMaxCommandBufferCount(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCommandBufferCount:"), value)
 }
+
 // Sets the largest number of individual commands that an input/output command queue can run at a time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/maxCommandsInFlight
@@ -115,6 +116,7 @@ func (c_ IOCommandQueueDescriptor) MaxCommandsInFlight() uint {
 func (c_ IOCommandQueueDescriptor) SetMaxCommandsInFlight(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCommandsInFlight:"), value)
 }
+
 // Configures the priority for a new input/output command queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/priority
@@ -132,6 +134,7 @@ func (c_ IOCommandQueueDescriptor) Priority() unsafe.Pointer {
 func (c_ IOCommandQueueDescriptor) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPriority:"), value)
 }
+
 // An optional memory allocator that you implement to manage the scratch memory that an input/output command queue requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/scratchBufferAllocator
@@ -149,6 +152,7 @@ func (c_ IOCommandQueueDescriptor) ScratchBufferAllocator() objc.ID {
 func (c_ IOCommandQueueDescriptor) SetScratchBufferAllocator(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScratchBufferAllocator:"), value)
 }
+
 // Configures the queue type for a new input/output command queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/type
@@ -166,5 +170,6 @@ func (c_ IOCommandQueueDescriptor) Type() unsafe.Pointer {
 func (c_ IOCommandQueueDescriptor) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
+
 
 

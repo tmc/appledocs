@@ -93,6 +93,7 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTim
 func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/stayActiveDuration
 func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() unsafe.Pointer {
@@ -107,6 +108,7 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() un
 func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStayActiveDuration:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() 
 func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

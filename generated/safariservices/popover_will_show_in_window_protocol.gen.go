@@ -15,5 +15,3 @@ var popoverWillShowInWindowProtocol *objc.Protocol
 func init() {
 	popoverWillShowInWindowProtocol = objc.GetProtocol("popoverWillShowInWindow:")
 }
-
-

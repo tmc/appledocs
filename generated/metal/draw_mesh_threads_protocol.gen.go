@@ -20,5 +20,3 @@ var drawMeshThreadsProtocol *objc.Protocol
 func init() {
 	drawMeshThreadsProtocol = objc.GetProtocol("drawMeshThreads:")
 }
-
-

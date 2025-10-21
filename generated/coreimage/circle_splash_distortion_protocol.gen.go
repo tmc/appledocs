@@ -12,5 +12,3 @@ var CircleSplashDistortionProtocol *objc.Protocol
 func init() {
 	CircleSplashDistortionProtocol = objc.GetProtocol("CICircleSplashDistortion")
 }
-
-

@@ -20,5 +20,3 @@ var typeProtocol *objc.Protocol
 func init() {
 	typeProtocol = objc.GetProtocol("type")
 }
-
-

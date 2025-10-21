@@ -138,6 +138,7 @@ func (a_ AssetExportSession) AllowsParallelizedExport() bool {
 func (a_ AssetExportSession) SetAllowsParallelizedExport(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsParallelizedExport:"), value)
 }
+
 // A Boolean value that indicates whether the export session can perform multiple passes over the source media to achieve better results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/canPerformMultiplePassesOverSourceMediaData
@@ -155,6 +156,7 @@ func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool 
 func (a_ AssetExportSession) SetCanPerformMultiplePassesOverSourceMediaData(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformMultiplePassesOverSourceMediaData:"), value)
 }
+
 // A directory suitable to store temporary files that the export process generates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/directoryForTemporaryFiles
@@ -172,6 +174,7 @@ func (a_ AssetExportSession) DirectoryForTemporaryFiles() unsafe.Pointer {
 func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
+
 // The file length that the output of the session must not exceed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/fileLengthLimit
@@ -189,6 +192,7 @@ func (a_ AssetExportSession) FileLengthLimit() unsafe.Pointer {
 func (a_ AssetExportSession) SetFileLengthLimit(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFileLengthLimit:"), value)
 }
+
 // The file type of the output an asset export session writes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputFileType
@@ -206,6 +210,7 @@ func (a_ AssetExportSession) OutputFileType() unsafe.Pointer {
 func (a_ AssetExportSession) SetOutputFileType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileType:"), value)
 }
+
 // A URL where an asset export session writes its output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputURL
@@ -223,6 +228,7 @@ func (a_ AssetExportSession) OutputURL() unsafe.Pointer {
 func (a_ AssetExportSession) SetOutputURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputURL:"), value)
 }
+
 // A Boolean value that indicates whether to optimize the movie for network use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/shouldOptimizeForNetworkUse
@@ -240,6 +246,7 @@ func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool {
 func (a_ AssetExportSession) SetShouldOptimizeForNetworkUse(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
 }
+
 // An array containing the types of files the session can write.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/supportedFileTypes
@@ -265,5 +272,6 @@ func (a_ AssetExportSession) TimeRange() unsafe.Pointer {
 func (a_ AssetExportSession) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }
+
 
 

@@ -81,6 +81,8 @@ func NewToolPickerEraserItem() ToolPickerEraserItem {
 }
 
 
+
+
 // Creates a new eraser item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:
@@ -90,6 +92,8 @@ func NewToolPickerEraserItemWithEraserType(eraserType unsafe.Pointer) ToolPicker
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new eraser item with the specified width.
 //

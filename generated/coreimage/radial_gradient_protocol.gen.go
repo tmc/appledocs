@@ -12,5 +12,3 @@ var RadialGradientProtocol *objc.Protocol
 func init() {
 	RadialGradientProtocol = objc.GetProtocol("CIRadialGradient")
 }
-
-

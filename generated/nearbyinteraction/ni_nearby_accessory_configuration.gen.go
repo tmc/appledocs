@@ -81,6 +81,8 @@ func NewNINearbyAccessoryConfiguration() NINearbyAccessoryConfiguration {
 }
 
 
+
+
 // Creates a configuration for an accessory with the given Bluetooth peer identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/init(accessoryData:bluetoothPeerIdentifier:)
@@ -90,6 +92,8 @@ func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierEr
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a configuration for interaction between iPhone and third-party accessories.
 //
@@ -127,4 +131,5 @@ func (n_ NINearbyAccessoryConfiguration) CameraAssistanceEnabled() bool {
 func (n_ NINearbyAccessoryConfiguration) SetCameraAssistanceEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCameraAssistanceEnabled:"), value)
 }
+
 

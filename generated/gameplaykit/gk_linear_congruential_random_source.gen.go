@@ -81,6 +81,8 @@ func NewLinearCongruentialRandomSource() LinearCongruentialRandomSource {
 }
 
 
+
+
 // Initializes a random source with the specified seed value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/init(seed:)
@@ -109,4 +111,5 @@ func (l_ LinearCongruentialRandomSource) Seed() uint64 {
 func (l_ LinearCongruentialRandomSource) SetSeed(value uint64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSeed:"), value)
 }
+
 

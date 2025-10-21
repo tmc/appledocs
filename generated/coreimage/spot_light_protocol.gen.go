@@ -12,5 +12,3 @@ var SpotLightProtocol *objc.Protocol
 func init() {
 	SpotLightProtocol = objc.GetProtocol("CISpotLight")
 }
-
-

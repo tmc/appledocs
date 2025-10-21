@@ -18,5 +18,3 @@ var DocumentCameraViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	DocumentCameraViewControllerDelegateProtocol = objc.GetProtocol("VNDocumentCameraViewControllerDelegate")
 }
-
-

@@ -15,5 +15,3 @@ var copyRenderedTextureForCGLContextProtocol *objc.Protocol
 func init() {
 	copyRenderedTextureForCGLContextProtocol = objc.GetProtocol("copyRenderedTextureForCGLContext:")
 }
-
-

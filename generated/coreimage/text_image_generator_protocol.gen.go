@@ -12,5 +12,3 @@ var TextImageGeneratorProtocol *objc.Protocol
 func init() {
 	TextImageGeneratorProtocol = objc.GetProtocol("CITextImageGenerator")
 }
-
-

@@ -98,6 +98,8 @@ func NewOBEXFileTransferServices() OBEXFileTransferServices {
 }
 
 
+
+
 // Create a new OBEXFileTransferServices object
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/init(obexSession:)
@@ -267,4 +269,5 @@ func (o_ OBEXFileTransferServices) Delegate() objc.ID {
 func (o_ OBEXFileTransferServices) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
 }
+
 

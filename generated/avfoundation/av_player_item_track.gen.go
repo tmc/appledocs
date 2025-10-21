@@ -104,6 +104,7 @@ func (p_ PlayerItemTrack) Enabled() bool {
 func (p_ PlayerItemTrack) SetEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEnabled:"), value)
 }
+
 // A mode that specifies the handling of video frames that contain multiple fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
@@ -121,5 +122,6 @@ func (p_ PlayerItemTrack) VideoFieldMode() string {
 func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
+
 
 

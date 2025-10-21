@@ -18,5 +18,3 @@ var FileProviderItemProtocol *objc.Protocol
 func init() {
 	FileProviderItemProtocol = objc.GetProtocol("NSFileProviderItem")
 }
-
-

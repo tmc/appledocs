@@ -20,5 +20,3 @@ var newTextureViewWithPixelFormatProtocol *objc.Protocol
 func init() {
 	newTextureViewWithPixelFormatProtocol = objc.GetProtocol("newTextureViewWithPixelFormat:")
 }
-
-

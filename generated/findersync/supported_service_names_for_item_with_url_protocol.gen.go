@@ -15,5 +15,3 @@ var supportedServiceNamesForItemWithURLProtocol *objc.Protocol
 func init() {
 	supportedServiceNamesForItemWithURLProtocol = objc.GetProtocol("supportedServiceNamesForItemWithURL:")
 }
-
-

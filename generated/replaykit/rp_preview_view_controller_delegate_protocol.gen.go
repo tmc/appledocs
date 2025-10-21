@@ -20,5 +20,3 @@ var RPPreviewViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	RPPreviewViewControllerDelegateProtocol = objc.GetProtocol("RPPreviewViewControllerDelegate")
 }
-
-

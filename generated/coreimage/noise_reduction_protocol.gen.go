@@ -12,5 +12,3 @@ var NoiseReductionProtocol *objc.Protocol
 func init() {
 	NoiseReductionProtocol = objc.GetProtocol("CINoiseReduction")
 }
-
-

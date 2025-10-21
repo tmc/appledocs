@@ -12,5 +12,3 @@ var MixProtocol *objc.Protocol
 func init() {
 	MixProtocol = objc.GetProtocol("CIMix")
 }
-
-

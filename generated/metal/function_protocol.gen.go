@@ -19,5 +19,3 @@ var FunctionProtocol *objc.Protocol
 func init() {
 	FunctionProtocol = objc.GetProtocol("MTLFunction")
 }
-
-

@@ -99,6 +99,7 @@ func (g_ GradientLayer) Colors() unsafe.Pointer {
 func (g_ GradientLayer) SetColors(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColors:"), value)
 }
+
 // The end point of the gradient when drawn in the layer’s coordinate space. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/endPoint
@@ -116,6 +117,7 @@ func (g_ GradientLayer) EndPoint() coregraphics.CGPoint {
 func (g_ GradientLayer) SetEndPoint(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEndPoint:"), value)
 }
+
 // An optional array of NSNumber objects defining the location of each gradient stop. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/locations
@@ -143,6 +145,7 @@ func (g_ GradientLayer) SetLocations(value []NSNumber) {
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLocations:"), nsArray)
 }
+
 // The start point of the gradient when drawn in the layer’s coordinate space. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/startPoint
@@ -160,6 +163,7 @@ func (g_ GradientLayer) StartPoint() coregraphics.CGPoint {
 func (g_ GradientLayer) SetStartPoint(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStartPoint:"), value)
 }
+
 // Style of gradient drawn by the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/type
@@ -177,5 +181,6 @@ func (g_ GradientLayer) Type() unsafe.Pointer {
 func (g_ GradientLayer) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setType:"), value)
 }
+
 
 

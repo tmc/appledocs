@@ -85,6 +85,8 @@ func NewRandomDistribution() RandomDistribution {
 }
 
 
+
+
 // Creates a random distribution equivalent to a die with the specified number of sides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(forDieWithSideCount:)
@@ -93,6 +95,8 @@ func NewRandomDistributionForDieWithSideCount(sideCount int) RandomDistribution 
 	return rv
 }
 
+
+
 // Creates a random distribution with the specified lower and upper bounds, using the Arc4 randomizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(lowestValue:highestValue:)
@@ -100,6 +104,8 @@ func NewRandomDistributionWithLowestValueHighestValue(lowestInclusive int, highe
 	rv := objc.Send[RandomDistribution](objc.ID(getRandomDistributionClass().class), objc.Sel("distributionWithLowestValue:highestValue:"), lowestInclusive, highestInclusive)
 	return rv
 }
+
+
 
 // Initializes a uniform random distribution with the specified lower and upper bounds, using the specified source randomizer.
 //

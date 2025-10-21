@@ -12,5 +12,3 @@ var CircularWrapProtocol *objc.Protocol
 func init() {
 	CircularWrapProtocol = objc.GetProtocol("CICircularWrap")
 }
-
-

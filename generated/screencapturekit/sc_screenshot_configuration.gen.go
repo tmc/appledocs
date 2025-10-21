@@ -10,7 +10,6 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [ScreenshotConfiguration] class.
@@ -80,8 +79,8 @@ func NewScreenshotConfiguration() ScreenshotConfiguration {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/supportedContentTypes
-func (sc _ScreenshotConfigurationClass) SupportedContentTypes() []uniformtypeidentifiers.UTType {
-	rv := objc.Send[[]uniformtypeidentifiers.UTType](objc.ID(sc.class), objc.Sel("supportedContentTypes"))
+func (sc _ScreenshotConfigurationClass) SupportedContentTypes() []UTType {
+	rv := objc.Send[[]UTType](objc.ID(sc.class), objc.Sel("supportedContentTypes"))
 	return rv
 }
 //
@@ -98,6 +97,7 @@ func (s_ ScreenshotConfiguration) DestinationRect() coregraphics.CGRect {
 func (s_ ScreenshotConfiguration) SetDestinationRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDestinationRect:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/sourceRect
 func (s_ ScreenshotConfiguration) SourceRect() coregraphics.CGRect {
@@ -112,10 +112,11 @@ func (s_ ScreenshotConfiguration) SourceRect() coregraphics.CGRect {
 func (s_ ScreenshotConfiguration) SetSourceRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSourceRect:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/supportedContentTypes
-func (s_ ScreenshotConfiguration) SupportedContentTypes() []uniformtypeidentifiers.UTType {
-	rv := objc.Send[[]uniformtypeidentifiers.UTType](s_.ID, objc.Sel("supportedContentTypes"))
+func (s_ ScreenshotConfiguration) SupportedContentTypes() []UTType {
+	rv := objc.Send[[]UTType](s_.ID, objc.Sel("supportedContentTypes"))
 	return rv
 }
 

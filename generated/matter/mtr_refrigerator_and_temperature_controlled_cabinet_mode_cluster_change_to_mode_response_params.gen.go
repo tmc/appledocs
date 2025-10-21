@@ -76,6 +76,8 @@ func NewMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeRes
 }
 
 
+
+
 // Initialize an MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeRe
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams/statusText
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeRe
 func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

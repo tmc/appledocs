@@ -81,6 +81,8 @@ func NewContentItem() ContentItem {
 }
 
 
+
+
 // Sets the identifier for a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/init(identifier:)
@@ -109,6 +111,7 @@ func (c_ ContentItem) Artwork() unsafe.Pointer {
 func (c_ ContentItem) SetArtwork(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setArtwork:"), value)
 }
+
 // The unique identifier for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/identifier
@@ -134,6 +137,7 @@ func (c_ ContentItem) Container() bool {
 func (c_ ContentItem) SetContainer(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
+
 // A Boolean value that indicates whether the media item contains explicit content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isExplicitContent
@@ -151,6 +155,7 @@ func (c_ ContentItem) ExplicitContent() bool {
 func (c_ ContentItem) SetExplicitContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExplicitContent:"), value)
 }
+
 // A Boolean value that indicates whether a media item is able to be played.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isPlayable
@@ -168,6 +173,7 @@ func (c_ ContentItem) Playable() bool {
 func (c_ ContentItem) SetPlayable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlayable:"), value)
 }
+
 // A Boolean value that indicates whether the content item is streaming content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isStreamingContent
@@ -185,6 +191,7 @@ func (c_ ContentItem) StreamingContent() bool {
 func (c_ ContentItem) SetStreamingContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStreamingContent:"), value)
 }
+
 // The amount of content played for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/playbackProgress
@@ -202,6 +209,7 @@ func (c_ ContentItem) PlaybackProgress() unsafe.Pointer {
 func (c_ ContentItem) SetPlaybackProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlaybackProgress:"), value)
 }
+
 // A secondary designator for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
@@ -219,6 +227,7 @@ func (c_ ContentItem) Subtitle() string {
 func (c_ ContentItem) SetSubtitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
+
 // The public name of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
@@ -236,4 +245,5 @@ func (c_ ContentItem) Title() string {
 func (c_ ContentItem) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 

@@ -20,5 +20,3 @@ var arrayForCommandBufferProtocol *objc.Protocol
 func init() {
 	arrayForCommandBufferProtocol = objc.GetProtocol("arrayForCommandBuffer:")
 }
-
-

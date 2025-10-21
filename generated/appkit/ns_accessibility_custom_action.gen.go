@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AccessibilityCustomAction] class.
@@ -78,3 +79,7 @@ func (a_ AccessibilityCustomAction) Autorelease() AccessibilityCustomAction {
 func NewAccessibilityCustomAction() AccessibilityCustomAction {
 	return getAccessibilityCustomActionClass().New()
 }
+
+
+
+

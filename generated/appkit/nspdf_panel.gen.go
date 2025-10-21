@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFPanel] class.
@@ -79,6 +80,7 @@ func NewPDFPanel() PDFPanel {
 	return getPDFPanelClass().New()
 }
 
+
 // Returns a new object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/panel
@@ -86,3 +88,6 @@ func (pc _PDFPanelClass) Panel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("panel"))
 	return rv
 }
+
+
+

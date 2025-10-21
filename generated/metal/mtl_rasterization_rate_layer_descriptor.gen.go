@@ -81,6 +81,8 @@ func NewRasterizationRateLayerDescriptor() RasterizationRateLayerDescriptor {
 }
 
 
+
+
 // Initializes the layer map with an empty grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(sampleCount:)
@@ -90,6 +92,8 @@ func NewRasterizationRateLayerDescriptorWithSampleCount(sampleCount unsafe.Point
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes the layer map with the provided grid size and rasterization rates.
 //

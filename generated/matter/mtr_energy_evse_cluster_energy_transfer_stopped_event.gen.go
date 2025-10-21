@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) EnergyTransferred() uns
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetEnergyTransferred(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyTransferred:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/reason
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) Reason() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) Reason() unsafe.Pointer
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetReason(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReason:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/sessionID
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SessionID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SessionID() unsafe.Poin
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetSessionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/state
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) State() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) State() unsafe.Pointer 
 func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
+
 
 

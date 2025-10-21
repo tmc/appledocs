@@ -90,6 +90,7 @@ func (m_ MTRChannelClusterSeriesInfoStruct) Episode() string {
 func (m_ MTRChannelClusterSeriesInfoStruct) SetEpisode(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpisode:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/season
 func (m_ MTRChannelClusterSeriesInfoStruct) Season() string {
@@ -104,5 +105,6 @@ func (m_ MTRChannelClusterSeriesInfoStruct) Season() string {
 func (m_ MTRChannelClusterSeriesInfoStruct) SetSeason(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeason:"), objc.String(value))
 }
+
 
 

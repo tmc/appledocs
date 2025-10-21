@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZVirtioSoundDeviceOutputStreamConfiguration
 
-
 // ExampleNewVZVirtioSoundDeviceOutputStreamConfiguration demonstrates how to create a VZVirtioSoundDeviceOutputStreamConfiguration instance.
 // Creates a new sounds device output stream configuration.
 func ExampleNewVZVirtioSoundDeviceOutputStreamConfiguration() {
 	_ = virtualization.NewVZVirtioSoundDeviceOutputStreamConfiguration()
 	// Output:
 }
-
-

@@ -15,5 +15,3 @@ var QCPlugInContextProtocol *objc.Protocol
 func init() {
 	QCPlugInContextProtocol = objc.GetProtocol("QCPlugInContext")
 }
-
-

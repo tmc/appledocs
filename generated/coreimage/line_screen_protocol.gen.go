@@ -12,5 +12,3 @@ var LineScreenProtocol *objc.Protocol
 func init() {
 	LineScreenProtocol = objc.GetProtocol("CILineScreen")
 }
-
-

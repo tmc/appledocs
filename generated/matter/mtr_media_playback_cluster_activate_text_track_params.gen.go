@@ -93,6 +93,7 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) ServerSideProcessingTim
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/timedInvokeTimeoutMs
@@ -110,6 +111,7 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TimedInvokeTimeoutMs() 
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() string {
@@ -124,5 +126,6 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() string {
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTrackID(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), objc.String(value))
 }
+
 
 

@@ -81,6 +81,8 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptor() AuthorizationSec
 }
 
 
+
+
 // Creates the object with the credential ID and the array of transports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/init(credentialID:transports:)
@@ -119,4 +121,5 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialDescriptor) SetTransports(va
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransports:"), nsArray)
 }
+
 

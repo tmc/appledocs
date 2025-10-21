@@ -144,6 +144,7 @@ func (h_ HeadphoneMotionManager) Delegate() objc.ID {
 func (h_ HeadphoneMotionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The latest device-motion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/deviceMotion

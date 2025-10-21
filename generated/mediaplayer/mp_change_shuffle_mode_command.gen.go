@@ -98,3 +98,4 @@ func (c_ ChangeShuffleModeCommand) SetCurrentShuffleType(value unsafe.Pointer) {
 }
 
 
+

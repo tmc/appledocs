@@ -19,4 +19,3 @@ var searchableItemsDidUpdateProtocol *objc.Protocol
 func init() {
 	searchableItemsDidUpdateProtocol = objc.GetProtocol("searchableItemsDidUpdate:")
 }
-

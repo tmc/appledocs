@@ -79,6 +79,8 @@ func NewNEAppRule() NEAppRule {
 }
 
 
+
+
 // Create an app rule that matches an app with a given signing identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:)
@@ -88,6 +90,8 @@ func NewNEAppRuleWithSigningIdentifier(signingIdentifier string) NEAppRule {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Create an app rule that matches an app with a given signing identifier and a given designated requirement.
 //
@@ -125,6 +129,7 @@ func (n_ NEAppRule) MatchDomains() unsafe.Pointer {
 func (n_ NEAppRule) SetMatchDomains(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
 }
+
 // The file system path of the app that matches the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchPath
@@ -142,6 +147,7 @@ func (n_ NEAppRule) MatchPath() string {
 func (n_ NEAppRule) SetMatchPath(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPath:"), objc.String(value))
 }
+
 // The signing identifier of the app that matches the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchSigningIdentifier
@@ -177,4 +183,5 @@ func (n_ NEAppRule) SetMatchTools(value []NEAppRule) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchTools:"), nsArray)
 }
+
 

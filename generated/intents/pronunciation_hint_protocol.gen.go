@@ -21,5 +21,3 @@ var pronunciationHintProtocol *objc.Protocol
 func init() {
 	pronunciationHintProtocol = objc.GetProtocol("pronunciationHint")
 }
-
-

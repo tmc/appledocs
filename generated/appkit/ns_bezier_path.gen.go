@@ -6,9 +6,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [BezierPath] class.
@@ -81,6 +82,7 @@ func NewBezierPath() BezierPath {
 	return getBezierPathClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/relativeCurve(to:controlPoint:)
 func (b_ BezierPath) RelativeCurveToPointControlPoint(endPoint coregraphics.CGPoint, controlPoint coregraphics.CGPoint) {
@@ -95,6 +97,7 @@ func (b_ BezierPath) Flatness() float64 {
 	return rv
 }
 
+
 // SetFlatness sets the value of the flatness property.
 // The accuracy with which curves are rendered.
 
@@ -103,3 +106,6 @@ func (b_ BezierPath) Flatness() float64 {
 func (b_ BezierPath) SetFlatness(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFlatness:"), value)
 }
+
+
+

@@ -84,13 +84,7 @@ func NewKernel() Kernel {
 }
 
 
-// Creates a single kernel object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
-func NewKernelWithString(string_ string) Kernel {
-	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
-	return rv
-}
+
 
 // Creates a single kernel object using a Metal Shading Language (MSL) kernel function.
 //
@@ -100,11 +94,23 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe
 	return rv
 }
 
+
+
 // Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
 func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data unsafe.Pointer, format unsafe.Pointer, error_ unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error_)
+	return rv
+}
+
+
+
+// Creates a single kernel object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
+func NewKernelWithString(string_ string) Kernel {
+	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 

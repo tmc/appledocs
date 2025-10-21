@@ -20,5 +20,3 @@ var setObjectSamplerStateProtocol *objc.Protocol
 func init() {
 	setObjectSamplerStateProtocol = objc.GetProtocol("setObjectSamplerState:")
 }
-
-

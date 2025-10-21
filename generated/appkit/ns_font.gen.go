@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Font] class.
@@ -80,6 +81,7 @@ func NewFont() Font {
 	return getFontClass().New()
 }
 
+
 // Returns the font used for menu bar items, in the specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/menuBarFont(ofSize:)
@@ -118,3 +120,6 @@ func (f_ Font) PrinterFont() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("printerFont"))
 	return rv
 }
+
+
+

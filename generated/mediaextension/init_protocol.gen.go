@@ -15,5 +15,3 @@ var initProtocol *objc.Protocol
 func init() {
 	initProtocol = objc.GetProtocol("init")
 }
-
-

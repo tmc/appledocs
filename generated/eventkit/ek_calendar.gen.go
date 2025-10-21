@@ -81,19 +81,23 @@ func NewEKCalendar() EKCalendar {
 }
 
 
-// Creates and returns a calendar belonging to a specified event store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
-func NewEKCalendarWithEventStore(eventStore unsafe.Pointer) EKCalendar {
-	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
-	return rv
-}
+
 
 // Creates a new calendar that can contain the given entity type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
 func NewEKCalendarForEntityTypeEventStore(entityType unsafe.Pointer, eventStore unsafe.Pointer) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
+	return rv
+}
+
+
+
+// Creates and returns a calendar belonging to a specified event store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
+func NewEKCalendarWithEventStore(eventStore unsafe.Pointer) EKCalendar {
+	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
 	return rv
 }
 
@@ -155,6 +159,7 @@ func (e_ EKCalendar) CGColor() CGColorRef {
 func (e_ EKCalendar) SetCGColor(value CGColorRef) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCGColor:"), value)
 }
+
 // The calendar’s color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
@@ -172,6 +177,7 @@ func (e_ EKCalendar) Color() unsafe.Pointer {
 func (e_ EKCalendar) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setColor:"), value)
 }
+
 // A Boolean value indicating whether the calendar’s properties can be edited or deleted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isImmutable
@@ -205,6 +211,7 @@ func (e_ EKCalendar) Source() unsafe.Pointer {
 func (e_ EKCalendar) SetSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSource:"), value)
 }
+
 // The event availability settings supported by this calendar, as indicated by a bitmask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/supportedEventAvailabilities
@@ -230,6 +237,7 @@ func (e_ EKCalendar) Title() string {
 func (e_ EKCalendar) SetTitle(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 // The calendar’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/type

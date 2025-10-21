@@ -20,5 +20,3 @@ var errorOptionsProtocol *objc.Protocol
 func init() {
 	errorOptionsProtocol = objc.GetProtocol("errorOptions")
 }
-
-

@@ -12,5 +12,3 @@ var l2capChannelQueueSpaceAvailableProtocol *objc.Protocol
 func init() {
 	l2capChannelQueueSpaceAvailableProtocol = objc.GetProtocol("l2capChannelQueueSpaceAvailable:")
 }
-
-

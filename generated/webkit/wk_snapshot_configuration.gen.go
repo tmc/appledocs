@@ -101,3 +101,4 @@ func (s_ SnapshotConfiguration) SetRect(value coregraphics.CGRect) {
 }
 
 
+

@@ -12,5 +12,3 @@ var PhotoEffectProtocol *objc.Protocol
 func init() {
 	PhotoEffectProtocol = objc.GetProtocol("CIPhotoEffect")
 }
-
-

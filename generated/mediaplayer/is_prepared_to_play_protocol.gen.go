@@ -19,5 +19,3 @@ var isPreparedToPlayProtocol *objc.Protocol
 func init() {
 	isPreparedToPlayProtocol = objc.GetProtocol("isPreparedToPlay")
 }
-
-

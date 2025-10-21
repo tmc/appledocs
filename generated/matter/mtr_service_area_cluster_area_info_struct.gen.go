@@ -90,6 +90,7 @@ func (m_ MTRServiceAreaClusterAreaInfoStruct) LandmarkInfo() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLandmarkInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkInfo:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/locationInfo
 func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLocationInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationInfo:"), value)
 }
+
 
 

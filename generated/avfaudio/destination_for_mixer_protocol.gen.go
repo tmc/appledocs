@@ -21,5 +21,3 @@ var destinationForMixerProtocol *objc.Protocol
 func init() {
 	destinationForMixerProtocol = objc.GetProtocol("destinationForMixer:")
 }
-
-

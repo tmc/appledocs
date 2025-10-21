@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WindowTabGroup] class.
@@ -82,6 +83,7 @@ func NewWindowTabGroup() WindowTabGroup {
 	return getWindowTabGroupClass().New()
 }
 
+
 // Adds a window to the tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/addWindow(_:)
@@ -119,6 +121,7 @@ func (w_ WindowTabGroup) OverviewVisible() bool {
 	return rv
 }
 
+
 // SetOverviewVisible sets the value of the overviewVisible property.
 // A Boolean value indicating if the tab overview is currently displayed.
 
@@ -144,6 +147,7 @@ func (w_ WindowTabGroup) SelectedWindow() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSelectedWindow sets the value of the selectedWindow property.
 // The selected, or frontmost, window in the tab group.
 
@@ -160,3 +164,6 @@ func (w_ WindowTabGroup) Windows() []Window {
 	rv := objc.Send[[]Window](w_.ID, objc.Sel("windows"))
 	return rv
 }
+
+
+

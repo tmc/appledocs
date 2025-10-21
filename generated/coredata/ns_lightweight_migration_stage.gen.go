@@ -81,6 +81,8 @@ func NewLightweightMigrationStage() LightweightMigrationStage {
 }
 
 
+
+
 // Creates a lightweight migration stage with the specified version checksums.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage/initWithVersionChecksums:

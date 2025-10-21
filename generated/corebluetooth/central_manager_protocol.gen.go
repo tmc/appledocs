@@ -21,5 +21,3 @@ var centralManagerProtocol *objc.Protocol
 func init() {
 	centralManagerProtocol = objc.GetProtocol("centralManager:")
 }
-
-

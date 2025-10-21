@@ -19,5 +19,3 @@ var pixelFormatProtocol *objc.Protocol
 func init() {
 	pixelFormatProtocol = objc.GetProtocol("pixelFormat")
 }
-
-

@@ -19,5 +19,3 @@ var webViewProtocol *objc.Protocol
 func init() {
 	webViewProtocol = objc.GetProtocol("webView:")
 }
-
-

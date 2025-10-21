@@ -98,3 +98,4 @@ func (c_ CaptureDescriptor) SetCaptureObject(value objc.ID) {
 }
 
 
+

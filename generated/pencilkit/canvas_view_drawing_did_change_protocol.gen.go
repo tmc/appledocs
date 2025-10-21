@@ -18,5 +18,3 @@ var canvasViewDrawingDidChangeProtocol *objc.Protocol
 func init() {
 	canvasViewDrawingDidChangeProtocol = objc.GetProtocol("canvasViewDrawingDidChange:")
 }
-
-

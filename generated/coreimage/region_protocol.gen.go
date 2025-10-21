@@ -20,5 +20,3 @@ var regionProtocol *objc.Protocol
 func init() {
 	regionProtocol = objc.GetProtocol("region")
 }
-
-

@@ -79,6 +79,8 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 }
 
 
+
+
 // Creates a batch-update request for a managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
@@ -88,6 +90,8 @@ func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a batch-update request for a named managed entity.
 //
@@ -141,6 +145,7 @@ func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
+
 // A predicate that identifies the objects to update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
@@ -158,6 +163,7 @@ func (b_ BatchUpdateRequest) Predicate() unsafe.Pointer {
 func (b_ BatchUpdateRequest) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPredicate:"), value)
 }
+
 // A dictionary of property description pairs that describe the updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/propertiesToUpdate
@@ -175,6 +181,7 @@ func (b_ BatchUpdateRequest) PropertiesToUpdate() unsafe.Pointer {
 func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPropertiesToUpdate:"), value)
 }
+
 // The type of result that Core Data returns from the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/resultType
@@ -192,4 +199,5 @@ func (b_ BatchUpdateRequest) ResultType() unsafe.Pointer {
 func (b_ BatchUpdateRequest) SetResultType(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
+
 

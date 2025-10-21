@@ -90,6 +90,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
 func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
@@ -104,5 +105,6 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
 }
+
 
 

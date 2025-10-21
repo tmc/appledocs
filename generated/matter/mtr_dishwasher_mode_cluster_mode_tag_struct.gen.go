@@ -90,6 +90,7 @@ func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/value
 func (m_ MTRDishwasherModeClusterModeTagStruct) Value() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRDishwasherModeClusterModeTagStruct) Value() unsafe.Pointer {
 func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

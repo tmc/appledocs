@@ -81,6 +81,8 @@ func NewCKUserIdentityLookupInfo() CKUserIdentityLookupInfo {
 }
 
 
+
+
 // Creates a lookup info for the specified email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(emailAddress:)
@@ -91,6 +93,8 @@ func NewCKUserIdentityLookupInfoWithEmailAddress(emailAddress string) CKUserIden
 	return rv
 }
 
+
+
 // Creates a lookup info for the specified phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(phoneNumber:)
@@ -100,6 +104,8 @@ func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber string) CKUserIdenti
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a lookup info for the specified user record ID.
 //

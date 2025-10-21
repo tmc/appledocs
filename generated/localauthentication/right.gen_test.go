@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = localauthentication.NewRight
 
-
-
 // ExampleNewRight demonstrates how to create a Right instance.
 // Creates a right using the default authorization requirements.
 func ExampleNewRight() {
 	_ = localauthentication.NewRight()
 	// Output:
 }
-
-

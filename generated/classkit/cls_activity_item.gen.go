@@ -108,3 +108,4 @@ func (s_ SActivityItem) SetTitle(value string) {
 }
 
 
+

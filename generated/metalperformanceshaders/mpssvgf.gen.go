@@ -92,3 +92,4 @@ func (s_ SVGF) SetVariancePrefilterRadius(value uint) {
 }
 
 
+

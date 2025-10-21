@@ -81,6 +81,8 @@ func NewInputPickerInteraction() InputPickerInteraction {
 }
 
 
+
+
 // Creates a new instance of AVInputPickerInteraction using a specific .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/init(audioSession:)
@@ -123,6 +125,7 @@ func (i_ InputPickerInteraction) AudioSession() unsafe.Pointer {
 func (i_ InputPickerInteraction) SetAudioSession(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSession:"), value)
 }
+
 // The input picker view’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/delegate-swift.property
@@ -140,6 +143,7 @@ func (i_ InputPickerInteraction) Delegate() objc.ID {
 func (i_ InputPickerInteraction) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the picker is currently visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/isPresented

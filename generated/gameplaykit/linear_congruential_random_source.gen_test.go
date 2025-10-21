@@ -9,14 +9,12 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewLinearCongruentialRandomSource
 
-
 // ExampleNewLinearCongruentialRandomSource demonstrates how to create a LinearCongruentialRandomSource instance.
 // Initializes a random source from a nondeterministic seed.
 func ExampleNewLinearCongruentialRandomSource() {
 	_ = gameplaykit.NewLinearCongruentialRandomSource()
 	// Output:
 }
-
 // ExampleNewLinearCongruentialRandomSourceWithSeed demonstrates how to create a LinearCongruentialRandomSource instance using NewLinearCongruentialRandomSourceWithSeed.
 // Initializes a random source with the specified seed value.
 func ExampleNewLinearCongruentialRandomSourceWithSeed() {
@@ -25,5 +23,3 @@ func ExampleNewLinearCongruentialRandomSourceWithSeed() {
 	)
 	// Output:
 }
-
-

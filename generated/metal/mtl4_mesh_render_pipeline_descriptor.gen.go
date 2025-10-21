@@ -106,6 +106,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) AlphaToCoverageState() unsafe.Pointer
 func (m_ MTL4MeshRenderPipelineDescriptor) SetAlphaToCoverageState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaToCoverageState:"), value)
 }
+
 // Indicates whether the pipeline forces alpha channel values of color attachments to the largest representable value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/alphaToOneState
@@ -123,6 +124,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) AlphaToOneState() unsafe.Pointer {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetAlphaToOneState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaToOneState:"), value)
 }
+
 // Sets the logical-to-physical rendering remap state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/colorAttachmentMappingState
@@ -140,6 +142,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) ColorAttachmentMappingState() unsafe.
 func (m_ MTL4MeshRenderPipelineDescriptor) SetColorAttachmentMappingState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorAttachmentMappingState:"), value)
 }
+
 // Accesses an array containing descriptions of the color attachments this pipeline writes to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/colorAttachments
@@ -165,6 +168,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) FragmentFunctionDescriptor() unsafe.P
 func (m_ MTL4MeshRenderPipelineDescriptor) SetFragmentFunctionDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentFunctionDescriptor:"), value)
 }
+
 // Provides static linking information for the fragment stage of the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/fragmentStaticLinkingDescriptor
@@ -182,6 +186,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) FragmentStaticLinkingDescriptor() uns
 func (m_ MTL4MeshRenderPipelineDescriptor) SetFragmentStaticLinkingDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentStaticLinkingDescriptor:"), value)
 }
+
 // Determines whether the pipeline rasterizes primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/isRasterizationEnabled
@@ -199,6 +204,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) RasterizationEnabled() bool {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetRasterizationEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRasterizationEnabled:"), value)
 }
+
 // Controls the largest number of threads the pipeline state can execute when the object stage of a mesh render pipeline you create from this descriptor dispatches its mesh stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/maxTotalThreadgroupsPerMeshGrid
@@ -216,6 +222,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MaxTotalThreadgroupsPerMeshGrid() uin
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMaxTotalThreadgroupsPerMeshGrid(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadgroupsPerMeshGrid:"), value)
 }
+
 // Controls the largest number of threads the pipeline state can execute in a single mesh shader threadgroup dispatch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/maxTotalThreadsPerMeshThreadgroup
@@ -233,6 +240,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MaxTotalThreadsPerMeshThreadgroup() u
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMaxTotalThreadsPerMeshThreadgroup(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerMeshThreadgroup:"), value)
 }
+
 // Controls the largest number of threads the pipeline state can execute in a single object shader threadgroup dispatch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/maxTotalThreadsPerObjectThreadgroup
@@ -250,6 +258,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MaxTotalThreadsPerObjectThreadgroup()
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMaxTotalThreadsPerObjectThreadgroup(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerObjectThreadgroup:"), value)
 }
+
 // Determines the maximum value that can you can pass as the pipeline’s amplification count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/maxVertexAmplificationCount
@@ -267,6 +276,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MaxVertexAmplificationCount() uint {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMaxVertexAmplificationCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxVertexAmplificationCount:"), value)
 }
+
 // Assigns a function descriptor representing the function this pipeline executes for each primitive in the mesh shader stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/meshFunctionDescriptor
@@ -284,6 +294,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MeshFunctionDescriptor() unsafe.Point
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMeshFunctionDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshFunctionDescriptor:"), value)
 }
+
 // Provides static linking information for the mesh stage of the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/meshStaticLinkingDescriptor
@@ -301,6 +312,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MeshStaticLinkingDescriptor() unsafe.
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMeshStaticLinkingDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshStaticLinkingDescriptor:"), value)
 }
+
 // Provides a guarantee to Metal regarding the number of threadgroup threads for the mesh stage of a pipeline you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/meshThreadgroupSizeIsMultipleOfThreadExecutionWidth
@@ -318,6 +330,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) MeshThreadgroupSizeIsMultipleOfThread
 func (m_ MTL4MeshRenderPipelineDescriptor) SetMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:"), value)
 }
+
 // Assigns a function descriptor representing the function this pipeline executes for each in the object shader stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/objectFunctionDescriptor
@@ -335,6 +348,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) ObjectFunctionDescriptor() unsafe.Poi
 func (m_ MTL4MeshRenderPipelineDescriptor) SetObjectFunctionDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectFunctionDescriptor:"), value)
 }
+
 // Provides static linking information for the object stage of the render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/objectStaticLinkingDescriptor
@@ -352,6 +366,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) ObjectStaticLinkingDescriptor() unsaf
 func (m_ MTL4MeshRenderPipelineDescriptor) SetObjectStaticLinkingDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectStaticLinkingDescriptor:"), value)
 }
+
 // Provides a guarantee to Metal regarding the number of threadgroup threads for the object stage of a pipeline you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/objectThreadgroupSizeIsMultipleOfThreadExecutionWidth
@@ -369,6 +384,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) ObjectThreadgroupSizeIsMultipleOfThre
 func (m_ MTL4MeshRenderPipelineDescriptor) SetObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:"), value)
 }
+
 // Reserves storage for the object-to-mesh stage payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/payloadMemoryLength
@@ -386,6 +402,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) PayloadMemoryLength() uint {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetPayloadMemoryLength(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayloadMemoryLength:"), value)
 }
+
 // Sets number of samples this pipeline applies for each fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/rasterSampleCount
@@ -403,6 +420,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) RasterSampleCount() uint {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRasterSampleCount:"), value)
 }
+
 // Controls the required number of mesh threads-per-threadgroup when drawing with a mesh shader pipeline you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/requiredThreadsPerMeshThreadgroup
@@ -420,6 +438,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() u
 func (m_ MTL4MeshRenderPipelineDescriptor) SetRequiredThreadsPerMeshThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerMeshThreadgroup:"), value)
 }
+
 // Controls the required number of object threads-per-threadgroup when drawing with a mesh shader pipeline you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/requiredThreadsPerObjectThreadgroup
@@ -437,6 +456,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup()
 func (m_ MTL4MeshRenderPipelineDescriptor) SetRequiredThreadsPerObjectThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerObjectThreadgroup:"), value)
 }
+
 // Indicates whether you can use the render pipeline to create new pipelines by adding binary functions to the fragment shader function’s callable functions list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/supportFragmentBinaryLinking
@@ -454,6 +474,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SupportFragmentBinaryLinking() bool {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetSupportFragmentBinaryLinking(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportFragmentBinaryLinking:"), value)
 }
+
 // Indicates whether the pipeline supports indirect command buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/supportIndirectCommandBuffers
@@ -471,6 +492,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SupportIndirectCommandBuffers() unsaf
 func (m_ MTL4MeshRenderPipelineDescriptor) SetSupportIndirectCommandBuffers(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportIndirectCommandBuffers:"), value)
 }
+
 // Indicates whether you can use the render pipeline to create new pipelines by adding binary functions to the mesh shader function’s callable functions list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/supportMeshBinaryLinking
@@ -488,6 +510,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SupportMeshBinaryLinking() bool {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetSupportMeshBinaryLinking(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportMeshBinaryLinking:"), value)
 }
+
 // Indicates whether you can use the render pipeline to create new pipelines by adding binary functions to the object shader function’s callable functions list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/supportObjectBinaryLinking
@@ -505,5 +528,6 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SupportObjectBinaryLinking() bool {
 func (m_ MTL4MeshRenderPipelineDescriptor) SetSupportObjectBinaryLinking(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportObjectBinaryLinking:"), value)
 }
+
 
 

@@ -122,6 +122,7 @@ func (m_ MKUserLocation) Subtitle() string {
 func (m_ MKUserLocation) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
+
 // The title to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
@@ -139,5 +140,6 @@ func (m_ MKUserLocation) Title() string {
 func (m_ MKUserLocation) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 
 

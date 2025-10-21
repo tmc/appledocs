@@ -76,6 +76,8 @@ func NewMTRWaterHeaterModeClusterChangeToModeResponseParams() MTRWaterHeaterMode
 }
 
 
+
+
 // Initialize an MTRWaterHeaterModeClusterChangeToModeResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) Status() unsafe.Po
 func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeResponseParams/statusText
 func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) StatusText() strin
 func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

@@ -90,6 +90,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) CoolingSetpoint() unsafe.
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SetCoolingSetpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolingSetpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/dayOfWeek
 func (m_ MTRThermostatClusterScheduleTransitionStruct) DayOfWeek() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) DayOfWeek() unsafe.Pointe
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SetDayOfWeek(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeek:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/heatingSetpoint
 func (m_ MTRThermostatClusterScheduleTransitionStruct) HeatingSetpoint() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) HeatingSetpoint() unsafe.
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SetHeatingSetpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatingSetpoint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/presetHandle
 func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() unsafe.Poi
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SetPresetHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/systemMode
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SystemMode() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) SystemMode() unsafe.Point
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SetSystemMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/transitionTime
 func (m_ MTRThermostatClusterScheduleTransitionStruct) TransitionTime() unsafe.Pointer {
@@ -160,5 +165,6 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) TransitionTime() unsafe.P
 func (m_ MTRThermostatClusterScheduleTransitionStruct) SetTransitionTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
+
 
 

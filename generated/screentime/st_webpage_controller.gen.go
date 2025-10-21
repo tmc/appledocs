@@ -97,6 +97,7 @@ func (s_ STWebpageController) URL() unsafe.Pointer {
 func (s_ STWebpageController) SetURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setURL:"), value)
 }
+
 // A Boolean that indicates whether a parent or guardian has blocked the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsBlocked
@@ -104,5 +105,7 @@ func (s_ STWebpageController) URLIsBlocked() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsBlocked"))
 	return rv
 }
+
+
 
 

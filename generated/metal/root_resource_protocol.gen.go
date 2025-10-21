@@ -19,5 +19,3 @@ var rootResourceProtocol *objc.Protocol
 func init() {
 	rootResourceProtocol = objc.GetProtocol("rootResource")
 }
-
-

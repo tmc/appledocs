@@ -81,6 +81,8 @@ func NewCXProviderConfiguration() CXProviderConfiguration {
 }
 
 
+
+
 // Initializes a configuration with the specified localized name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/init(localizedName:)
@@ -109,6 +111,7 @@ func (c_ CXProviderConfiguration) IconTemplateImageData() unsafe.Pointer {
 func (c_ CXProviderConfiguration) SetIconTemplateImageData(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIconTemplateImageData:"), value)
 }
+
 // A Boolean value that indicates whether the provider includes a call in the system’s Recents list after the call ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/includesCallsInRecents
@@ -126,6 +129,7 @@ func (c_ CXProviderConfiguration) IncludesCallsInRecents() bool {
 func (c_ CXProviderConfiguration) SetIncludesCallsInRecents(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludesCallsInRecents:"), value)
 }
+
 // The localized name of the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/localizedName
@@ -151,6 +155,7 @@ func (c_ CXProviderConfiguration) MaximumCallGroups() uint {
 func (c_ CXProviderConfiguration) SetMaximumCallGroups(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumCallGroups:"), value)
 }
+
 // The maximum number of calls per call group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/maximumCallsPerCallGroup
@@ -168,6 +173,7 @@ func (c_ CXProviderConfiguration) MaximumCallsPerCallGroup() uint {
 func (c_ CXProviderConfiguration) SetMaximumCallsPerCallGroup(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumCallsPerCallGroup:"), value)
 }
+
 // The name of the sound resource in the app bundle to be used for the provider ringtone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/ringtoneSound
@@ -185,6 +191,7 @@ func (c_ CXProviderConfiguration) RingtoneSound() string {
 func (c_ CXProviderConfiguration) SetRingtoneSound(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRingtoneSound:"), objc.String(value))
 }
+
 // The supported handle types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportedHandleTypes-995uh
@@ -202,6 +209,7 @@ func (c_ CXProviderConfiguration) SupportedHandleTypes() unsafe.Pointer {
 func (c_ CXProviderConfiguration) SetSupportedHandleTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedHandleTypes:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportsAudioTranslation
 func (c_ CXProviderConfiguration) SupportsAudioTranslation() bool {
@@ -216,6 +224,7 @@ func (c_ CXProviderConfiguration) SupportsAudioTranslation() bool {
 func (c_ CXProviderConfiguration) SetSupportsAudioTranslation(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAudioTranslation:"), value)
 }
+
 // A Boolean value that indicates whether the provider supports video in addition to audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportsVideo
@@ -233,4 +242,5 @@ func (c_ CXProviderConfiguration) SupportsVideo() bool {
 func (c_ CXProviderConfiguration) SetSupportsVideo(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsVideo:"), value)
 }
+
 

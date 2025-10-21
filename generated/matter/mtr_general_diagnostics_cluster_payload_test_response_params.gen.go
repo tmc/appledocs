@@ -76,6 +76,8 @@ func NewMTRGeneralDiagnosticsClusterPayloadTestResponseParams() MTRGeneralDiagno
 }
 
 
+
+
 // Initialize an MTRGeneralDiagnosticsClusterPayloadTestResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams/init(responseValue:)
@@ -101,4 +103,5 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) Payload() unsafe
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) SetPayload(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayload:"), value)
 }
+
 

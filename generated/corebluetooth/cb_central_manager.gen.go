@@ -88,15 +88,7 @@ func NewCBCentralManager() CBCentralManager {
 }
 
 
-// Initializes the central manager with specified delegate, dispatch queue, and initialization options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/init(delegate:queue:options:)
-func NewCBCentralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsafe.Pointer, options unsafe.Pointer) CBCentralManager {
-	instance := getCBCentralManagerClass().Alloc()
-	rv := objc.Send[CBCentralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Initializes the central manager with a specified delegate and dispatch queue.
 //
@@ -104,6 +96,18 @@ func NewCBCentralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsafe.
 func NewCBCentralManagerWithDelegateQueue(delegate objc.ID, queue unsafe.Pointer) CBCentralManager {
 	instance := getCBCentralManagerClass().Alloc()
 	rv := objc.Send[CBCentralManager](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Initializes the central manager with specified delegate, dispatch queue, and initialization options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/init(delegate:queue:options:)
+func NewCBCentralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsafe.Pointer, options unsafe.Pointer) CBCentralManager {
+	instance := getCBCentralManagerClass().Alloc()
+	rv := objc.Send[CBCentralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
 	rv.Autorelease()
 	return rv
 }
@@ -185,6 +189,7 @@ func (c_ CBCentralManager) Delegate() objc.ID {
 func (c_ CBCentralManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates whether the central is currently scanning.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/isScanning

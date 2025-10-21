@@ -20,5 +20,3 @@ var useHeapsProtocol *objc.Protocol
 func init() {
 	useHeapsProtocol = objc.GetProtocol("useHeaps:")
 }
-
-

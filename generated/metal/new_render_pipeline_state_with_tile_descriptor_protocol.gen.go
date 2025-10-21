@@ -20,5 +20,3 @@ var newRenderPipelineStateWithTileDescriptorProtocol *objc.Protocol
 func init() {
 	newRenderPipelineStateWithTileDescriptorProtocol = objc.GetProtocol("newRenderPipelineStateWithTileDescriptor:")
 }
-
-

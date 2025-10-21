@@ -108,3 +108,4 @@ func (v_ VZVirtioGraphicsDeviceConfiguration) SetScanouts(value []VZVirtioGraphi
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), nsArray)
 }
 
+

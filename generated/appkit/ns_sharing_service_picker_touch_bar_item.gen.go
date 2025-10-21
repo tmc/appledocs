@@ -78,12 +78,14 @@ func NewSharingServicePickerTouchBarItem() SharingServicePickerTouchBarItem {
 	return getSharingServicePickerTouchBarItemClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
 func (s_ SharingServicePickerTouchBarItem) ActivityItemsConfiguration() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
+
 
 // SetActivityItemsConfiguration sets the value of the activityItemsConfiguration property.
 //
@@ -100,6 +102,7 @@ func (s_ SharingServicePickerTouchBarItem) Enabled() bool {
 	return rv
 }
 
+
 // SetEnabled sets the value of the enabled property.
 // A Boolean value that specifies whether the sharing service picker item is enabled.
 
@@ -108,3 +111,6 @@ func (s_ SharingServicePickerTouchBarItem) Enabled() bool {
 func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
+
+
+

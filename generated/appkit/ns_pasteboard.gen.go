@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Pasteboard] class.
@@ -88,6 +89,7 @@ func (p_ Pasteboard) Autorelease() Pasteboard {
 func NewPasteboard() Pasteboard {
 	return getPasteboardClass().New()
 }
+
 
 // Clears the existing contents of the pasteboard.
 //
@@ -182,3 +184,6 @@ func (p_ Pasteboard) PasteboardItems() []PasteboardItem {
 	rv := objc.Send[[]PasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
 	return rv
 }
+
+
+

@@ -12,5 +12,3 @@ var FalseColorProtocol *objc.Protocol
 func init() {
 	FalseColorProtocol = objc.GetProtocol("CIFalseColor")
 }
-
-

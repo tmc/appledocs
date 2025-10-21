@@ -12,5 +12,3 @@ var DrosteProtocol *objc.Protocol
 func init() {
 	DrosteProtocol = objc.GetProtocol("CIDroste")
 }
-
-

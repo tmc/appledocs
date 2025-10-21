@@ -187,3 +187,4 @@ func (c_ CNContactFormatter) SetStyle(value unsafe.Pointer) {
 }
 
 
+

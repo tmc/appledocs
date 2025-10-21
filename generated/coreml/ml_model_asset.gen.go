@@ -84,13 +84,7 @@ func NewModelAsset() ModelAsset {
 }
 
 
-// Creates a model asset from an in-memory model specification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:)
-func NewModelAssetWithSpecificationDataError(specificationData unsafe.Pointer, error_ unsafe.Pointer) ModelAsset {
-	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:error:"), specificationData, error_)
-	return rv
-}
+
 
 // Construct a model asset from an ML Program specification by replacing blob file references with corresponding in-memory blobs.
 //
@@ -99,6 +93,18 @@ func NewModelAssetWithSpecificationDataBlobMappingError(specificationData unsafe
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:blobMapping:error:"), specificationData, blobMapping, error_)
 	return rv
 }
+
+
+
+// Creates a model asset from an in-memory model specification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:)
+func NewModelAssetWithSpecificationDataError(specificationData unsafe.Pointer, error_ unsafe.Pointer) ModelAsset {
+	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:error:"), specificationData, error_)
+	return rv
+}
+
+
 
 // Constructs a ModelAsset from a compiled model URL.
 //

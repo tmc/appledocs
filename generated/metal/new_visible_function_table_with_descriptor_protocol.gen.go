@@ -20,5 +20,3 @@ var newVisibleFunctionTableWithDescriptorProtocol *objc.Protocol
 func init() {
 	newVisibleFunctionTableWithDescriptorProtocol = objc.GetProtocol("newVisibleFunctionTableWithDescriptor:")
 }
-
-

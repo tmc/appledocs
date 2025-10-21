@@ -115,6 +115,7 @@ func (r_ RecognizeTextRequest) AutomaticallyDetectsLanguage() bool {
 func (r_ RecognizeTextRequest) SetAutomaticallyDetectsLanguage(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAutomaticallyDetectsLanguage:"), value)
 }
+
 // An array of strings to supplement the recognized languages at the word-recognition stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/customWords
@@ -142,6 +143,7 @@ func (r_ RecognizeTextRequest) SetCustomWords(value []string) {
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomWords:"), nsArray)
 }
+
 // An array of languages to detect, in priority order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/recognitionLanguages
@@ -169,6 +171,7 @@ func (r_ RecognizeTextRequest) SetRecognitionLanguages(value []string) {
 	}
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRecognitionLanguages:"), nsArray)
 }
+
 // A value that determines whether the request prioritizes accuracy or speed in text recognition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/recognitionLevel
@@ -186,6 +189,7 @@ func (r_ RecognizeTextRequest) RecognitionLevel() unsafe.Pointer {
 func (r_ RecognizeTextRequest) SetRecognitionLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRecognitionLevel:"), value)
 }
+
 // The results of the text recognition request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/results
@@ -211,5 +215,6 @@ func (r_ RecognizeTextRequest) UsesLanguageCorrection() bool {
 func (r_ RecognizeTextRequest) SetUsesLanguageCorrection(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUsesLanguageCorrection:"), value)
 }
+
 
 

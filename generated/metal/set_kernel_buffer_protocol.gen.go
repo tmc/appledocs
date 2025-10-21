@@ -20,5 +20,3 @@ var setKernelBufferProtocol *objc.Protocol
 func init() {
 	setKernelBufferProtocol = objc.GetProtocol("setKernelBuffer:")
 }
-
-

@@ -108,6 +108,7 @@ func (c_ CNChangeHistoryFetchRequest) SetAdditionalContactKeyDescriptors(value [
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAdditionalContactKeyDescriptors:"), nsArray)
 }
+
 // An array of strings that identify transaction authors to exclude from the fetch results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/excludedTransactionAuthors
@@ -135,6 +136,7 @@ func (c_ CNChangeHistoryFetchRequest) SetExcludedTransactionAuthors(value []stri
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedTransactionAuthors:"), nsArray)
 }
+
 // A Boolean value that indicates whether the fetch should also return group changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/includeGroupChanges
@@ -152,6 +154,7 @@ func (c_ CNChangeHistoryFetchRequest) IncludeGroupChanges() bool {
 func (c_ CNChangeHistoryFetchRequest) SetIncludeGroupChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludeGroupChanges:"), value)
 }
+
 // A Boolean value that indicates whether the fetch should return mutable contacts and groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/mutableObjects
@@ -169,6 +172,7 @@ func (c_ CNChangeHistoryFetchRequest) MutableObjects() bool {
 func (c_ CNChangeHistoryFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
+
 // A Boolean value that indicates whether the fetch should return contact changes as unified contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/shouldUnifyResults
@@ -186,6 +190,7 @@ func (c_ CNChangeHistoryFetchRequest) ShouldUnifyResults() bool {
 func (c_ CNChangeHistoryFetchRequest) SetShouldUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldUnifyResults:"), value)
 }
+
 // An opaque token that indicates a point in history in the user’s Contacts database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
@@ -203,5 +208,6 @@ func (c_ CNChangeHistoryFetchRequest) StartingToken() unsafe.Pointer {
 func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStartingToken:"), value)
 }
+
 
 

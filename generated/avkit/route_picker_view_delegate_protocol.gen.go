@@ -19,5 +19,3 @@ var RoutePickerViewDelegateProtocol *objc.Protocol
 func init() {
 	RoutePickerViewDelegateProtocol = objc.GetProtocol("AVRoutePickerViewDelegate")
 }
-
-

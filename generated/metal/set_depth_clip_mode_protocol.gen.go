@@ -20,5 +20,3 @@ var setDepthClipModeProtocol *objc.Protocol
 func init() {
 	setDepthClipModeProtocol = objc.GetProtocol("setDepthClipMode:")
 }
-
-

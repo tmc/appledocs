@@ -9,18 +9,18 @@ package matter
 type MTRAccessControlAccessRestrictionType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlAccessRestrictionType/attributeAccessForbidden
-MTRAccessControlAccessRestrictionTypeAttributeAccessForbidden MTRAccessControlAccessRestrictionType = 0
-//
+	MTRAccessControlAccessRestrictionTypeAttributeAccessForbidden MTRAccessControlAccessRestrictionType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlAccessRestrictionType/attributeWriteForbidden
-MTRAccessControlAccessRestrictionTypeAttributeWriteForbidden MTRAccessControlAccessRestrictionType = 0
-//
+	MTRAccessControlAccessRestrictionTypeAttributeWriteForbidden MTRAccessControlAccessRestrictionType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlAccessRestrictionType/commandForbidden
-MTRAccessControlAccessRestrictionTypeCommandForbidden MTRAccessControlAccessRestrictionType = 0
-//
+	MTRAccessControlAccessRestrictionTypeCommandForbidden MTRAccessControlAccessRestrictionType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlAccessRestrictionType/eventForbidden
-MTRAccessControlAccessRestrictionTypeEventForbidden MTRAccessControlAccessRestrictionType = 0
+	MTRAccessControlAccessRestrictionTypeEventForbidden MTRAccessControlAccessRestrictionType = 0
 )
 
 // MTRAccessControlAuthMode enum type
@@ -49,12 +49,12 @@ type MTRAccessControlEntryPrivilege uint
 type MTRAccessControlFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlFeature/extension
-MTRAccessControlFeatureExtension MTRAccessControlFeature = 0
-//
+	MTRAccessControlFeatureExtension MTRAccessControlFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlFeature/managedDevice
-MTRAccessControlFeatureManagedDevice MTRAccessControlFeature = 0
+	MTRAccessControlFeatureManagedDevice MTRAccessControlFeature = 0
 )
 
 // MTRAccessControlPrivilege enum type
@@ -198,9 +198,9 @@ type MTRBridgedDeviceBasicInformationColor uint
 type MTRBridgedDeviceBasicInformationFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationFeature/bridgedICDSupport
-MTRBridgedDeviceBasicInformationFeatureBridgedICDSupport MTRBridgedDeviceBasicInformationFeature = 0
+	MTRBridgedDeviceBasicInformationFeatureBridgedICDSupport MTRBridgedDeviceBasicInformationFeature = 0
 )
 
 // MTRBridgedDeviceBasicInformationProductFinish enum type
@@ -264,15 +264,15 @@ type MTRChannelLineupInfoType uint
 type MTRChannelRecordingFlagBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelRecordingFlagBitmap/recordSeries
-MTRChannelRecordingFlagBitmapRecordSeries MTRChannelRecordingFlagBitmap = 0
-//
+	MTRChannelRecordingFlagBitmapRecordSeries MTRChannelRecordingFlagBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelRecordingFlagBitmap/recorded
-MTRChannelRecordingFlagBitmapRecorded MTRChannelRecordingFlagBitmap = 0
-//
+	MTRChannelRecordingFlagBitmapRecorded MTRChannelRecordingFlagBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelRecordingFlagBitmap/scheduled
-MTRChannelRecordingFlagBitmapScheduled MTRChannelRecordingFlagBitmap = 0
+	MTRChannelRecordingFlagBitmapScheduled MTRChannelRecordingFlagBitmap = 0
 )
 
 // MTRChannelStatus enum type
@@ -286,18 +286,18 @@ type MTRChannelStatus uint
 type MTRChannelType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelType/OTT
-MTRChannelTypeOTT MTRChannelType = 0
-//
+	MTRChannelTypeOTT MTRChannelType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelType/cable
-MTRChannelTypeCable MTRChannelType = 0
-//
+	MTRChannelTypeCable MTRChannelType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelType/satellite
-MTRChannelTypeSatellite MTRChannelType = 0
-//
+	MTRChannelTypeSatellite MTRChannelType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelType/terrestrial
-MTRChannelTypeTerrestrial MTRChannelType = 0
+	MTRChannelTypeTerrestrial MTRChannelType = 0
 )
 
 // MTRClusterIDType enum type
@@ -316,21 +316,21 @@ type MTRColorControlColorCapabilities uint
 type MTRColorControlColorCapabilitiesBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlColorCapabilitiesBitmap/XY
-MTRColorControlColorCapabilitiesBitmapXY MTRColorControlColorCapabilitiesBitmap = 0
-//
+	MTRColorControlColorCapabilitiesBitmapXY MTRColorControlColorCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlColorCapabilitiesBitmap/colorLoop
-MTRColorControlColorCapabilitiesBitmapColorLoop MTRColorControlColorCapabilitiesBitmap = 0
-//
+	MTRColorControlColorCapabilitiesBitmapColorLoop MTRColorControlColorCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlColorCapabilitiesBitmap/colorTemperature
-MTRColorControlColorCapabilitiesBitmapColorTemperature MTRColorControlColorCapabilitiesBitmap = 0
-//
+	MTRColorControlColorCapabilitiesBitmapColorTemperature MTRColorControlColorCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlColorCapabilitiesBitmap/enhancedHue
-MTRColorControlColorCapabilitiesBitmapEnhancedHue MTRColorControlColorCapabilitiesBitmap = 0
-//
+	MTRColorControlColorCapabilitiesBitmapEnhancedHue MTRColorControlColorCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlColorCapabilitiesBitmap/hueSaturation
-MTRColorControlColorCapabilitiesBitmapHueSaturation MTRColorControlColorCapabilitiesBitmap = 0
+	MTRColorControlColorCapabilitiesBitmapHueSaturation MTRColorControlColorCapabilitiesBitmap = 0
 )
 
 // MTRColorControlColorLoopAction enum type
@@ -359,18 +359,18 @@ type MTRColorControlColorMode uint
 type MTRColorControlDirection uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDirection/down
-MTRColorControlDirectionDown MTRColorControlDirection = 0
-//
+	MTRColorControlDirectionDown MTRColorControlDirection = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDirection/longest
-MTRColorControlDirectionLongest MTRColorControlDirection = 0
-//
+	MTRColorControlDirectionLongest MTRColorControlDirection = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDirection/shortest
-MTRColorControlDirectionShortest MTRColorControlDirection = 0
-//
+	MTRColorControlDirectionShortest MTRColorControlDirection = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDirection/up
-MTRColorControlDirectionUp MTRColorControlDirection = 0
+	MTRColorControlDirectionUp MTRColorControlDirection = 0
 )
 
 // MTRColorControlDriftCompensation enum type
@@ -379,21 +379,21 @@ MTRColorControlDirectionUp MTRColorControlDirection = 0
 type MTRColorControlDriftCompensation uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDriftCompensation/none
-MTRColorControlDriftCompensationNone MTRColorControlDriftCompensation = 0
-//
+	MTRColorControlDriftCompensationNone MTRColorControlDriftCompensation = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDriftCompensation/opticalColorMonitoringAndFeedback
-MTRColorControlDriftCompensationOpticalColorMonitoringAndFeedback MTRColorControlDriftCompensation = 0
-//
+	MTRColorControlDriftCompensationOpticalColorMonitoringAndFeedback MTRColorControlDriftCompensation = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDriftCompensation/opticalLuminanceMonitoringAndFeedback
-MTRColorControlDriftCompensationOpticalLuminanceMonitoringAndFeedback MTRColorControlDriftCompensation = 0
-//
+	MTRColorControlDriftCompensationOpticalLuminanceMonitoringAndFeedback MTRColorControlDriftCompensation = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDriftCompensation/otherOrUnknown
-MTRColorControlDriftCompensationOtherOrUnknown MTRColorControlDriftCompensation = 0
-//
+	MTRColorControlDriftCompensationOtherOrUnknown MTRColorControlDriftCompensation = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlDriftCompensation/temperatureMonitoring
-MTRColorControlDriftCompensationTemperatureMonitoring MTRColorControlDriftCompensation = 0
+	MTRColorControlDriftCompensationTemperatureMonitoring MTRColorControlDriftCompensation = 0
 )
 
 // MTRColorControlEnhancedColorMode enum type
@@ -402,18 +402,18 @@ MTRColorControlDriftCompensationTemperatureMonitoring MTRColorControlDriftCompen
 type MTRColorControlEnhancedColorMode uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlEnhancedColorMode/colorTemperatureMireds
-MTRColorControlEnhancedColorModeColorTemperatureMireds MTRColorControlEnhancedColorMode = 0
-//
+	MTRColorControlEnhancedColorModeColorTemperatureMireds MTRColorControlEnhancedColorMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlEnhancedColorMode/currentHueAndCurrentSaturation
-MTRColorControlEnhancedColorModeCurrentHueAndCurrentSaturation MTRColorControlEnhancedColorMode = 0
-//
+	MTRColorControlEnhancedColorModeCurrentHueAndCurrentSaturation MTRColorControlEnhancedColorMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlEnhancedColorMode/currentXAndCurrentY
-MTRColorControlEnhancedColorModeCurrentXAndCurrentY MTRColorControlEnhancedColorMode = 0
-//
+	MTRColorControlEnhancedColorModeCurrentXAndCurrentY MTRColorControlEnhancedColorMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlEnhancedColorMode/enhancedCurrentHueAndCurrentSaturation
-MTRColorControlEnhancedColorModeEnhancedCurrentHueAndCurrentSaturation MTRColorControlEnhancedColorMode = 0
+	MTRColorControlEnhancedColorModeEnhancedCurrentHueAndCurrentSaturation MTRColorControlEnhancedColorMode = 0
 )
 
 // MTRColorControlFeature enum type
@@ -442,15 +442,15 @@ type MTRColorControlHueStepMode uint
 type MTRColorControlMoveMode uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlMoveMode/down
-MTRColorControlMoveModeDown MTRColorControlMoveMode = 0
-//
+	MTRColorControlMoveModeDown MTRColorControlMoveMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlMoveMode/stop
-MTRColorControlMoveModeStop MTRColorControlMoveMode = 0
-//
+	MTRColorControlMoveModeStop MTRColorControlMoveMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlMoveMode/up
-MTRColorControlMoveModeUp MTRColorControlMoveMode = 0
+	MTRColorControlMoveModeUp MTRColorControlMoveMode = 0
 )
 
 // MTRColorControlOptionsBitmap enum type
@@ -459,9 +459,9 @@ MTRColorControlMoveModeUp MTRColorControlMoveMode = 0
 type MTRColorControlOptionsBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlOptionsBitmap/executeIfOff
-MTRColorControlOptionsBitmapExecuteIfOff MTRColorControlOptionsBitmap = 0
+	MTRColorControlOptionsBitmapExecuteIfOff MTRColorControlOptionsBitmap = 0
 )
 
 // MTRColorControlSaturationMoveMode enum type
@@ -480,12 +480,12 @@ type MTRColorControlSaturationStepMode uint
 type MTRColorControlStepMode uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlStepMode/down
-MTRColorControlStepModeDown MTRColorControlStepMode = 0
-//
+	MTRColorControlStepModeDown MTRColorControlStepMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlStepMode/up
-MTRColorControlStepModeUp MTRColorControlStepMode = 0
+	MTRColorControlStepModeUp MTRColorControlStepMode = 0
 )
 
 // MTRColorControlUpdateFlagsBitmap enum type
@@ -494,18 +494,18 @@ MTRColorControlStepModeUp MTRColorControlStepMode = 0
 type MTRColorControlUpdateFlagsBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlUpdateFlagsBitmap/updateAction
-MTRColorControlUpdateFlagsBitmapUpdateAction MTRColorControlUpdateFlagsBitmap = 0
-//
+	MTRColorControlUpdateFlagsBitmapUpdateAction MTRColorControlUpdateFlagsBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlUpdateFlagsBitmap/updateDirection
-MTRColorControlUpdateFlagsBitmapUpdateDirection MTRColorControlUpdateFlagsBitmap = 0
-//
+	MTRColorControlUpdateFlagsBitmapUpdateDirection MTRColorControlUpdateFlagsBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlUpdateFlagsBitmap/updateStartHue
-MTRColorControlUpdateFlagsBitmapUpdateStartHue MTRColorControlUpdateFlagsBitmap = 0
-//
+	MTRColorControlUpdateFlagsBitmapUpdateStartHue MTRColorControlUpdateFlagsBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlUpdateFlagsBitmap/updateTime
-MTRColorControlUpdateFlagsBitmapUpdateTime MTRColorControlUpdateFlagsBitmap = 0
+	MTRColorControlUpdateFlagsBitmapUpdateTime MTRColorControlUpdateFlagsBitmap = 0
 )
 
 // MTRCommandIDType enum type
@@ -519,9 +519,9 @@ type MTRCommandIDType uint
 type MTRCommissionerControlSupportedDeviceCategoryBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlSupportedDeviceCategoryBitmap/fabricSynchronization
-MTRCommissionerControlSupportedDeviceCategoryBitmapFabricSynchronization MTRCommissionerControlSupportedDeviceCategoryBitmap = 0
+	MTRCommissionerControlSupportedDeviceCategoryBitmapFabricSynchronization MTRCommissionerControlSupportedDeviceCategoryBitmap = 0
 )
 
 // MTRCommissioningFlow enum type
@@ -540,12 +540,12 @@ type MTRCommissioningStatus uint
 type MTRContentAppObserverStatus uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverStatus/success
-MTRContentAppObserverStatusSuccess MTRContentAppObserverStatus = 0
-//
+	MTRContentAppObserverStatusSuccess MTRContentAppObserverStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverStatus/unexpectedData
-MTRContentAppObserverStatusUnexpectedData MTRContentAppObserverStatus = 0
+	MTRContentAppObserverStatusUnexpectedData MTRContentAppObserverStatus = 0
 )
 
 // MTRContentLauncherContentLaunchStatus enum type
@@ -569,57 +569,57 @@ type MTRContentLauncherMetricType uint
 type MTRContentLauncherParameter uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/actor
-MTRContentLauncherParameterActor MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterActor MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/any
-MTRContentLauncherParameterAny MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterAny MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/channel
-MTRContentLauncherParameterChannel MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterChannel MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/character
-MTRContentLauncherParameterCharacter MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterCharacter MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/director
-MTRContentLauncherParameterDirector MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterDirector MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/episode
-MTRContentLauncherParameterEpisode MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterEpisode MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/event
-MTRContentLauncherParameterEvent MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterEvent MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/franchise
-MTRContentLauncherParameterFranchise MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterFranchise MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/genre
-MTRContentLauncherParameterGenre MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterGenre MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/league
-MTRContentLauncherParameterLeague MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterLeague MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/popularity
-MTRContentLauncherParameterPopularity MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterPopularity MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/provider
-MTRContentLauncherParameterProvider MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterProvider MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/season
-MTRContentLauncherParameterSeason MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterSeason MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/sport
-MTRContentLauncherParameterSport MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterSport MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/sportsTeam
-MTRContentLauncherParameterSportsTeam MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterSportsTeam MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/type
-MTRContentLauncherParameterType MTRContentLauncherParameter = 0
-//
+	MTRContentLauncherParameterType MTRContentLauncherParameter = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/video
-MTRContentLauncherParameterVideo MTRContentLauncherParameter = 0
+	MTRContentLauncherParameterVideo MTRContentLauncherParameter = 0
 )
 
 // MTRContentLauncherStatus enum type
@@ -643,15 +643,15 @@ type MTRContentLauncherSupportedStreamingProtocol uint
 type MTRDataTypeAtomicRequestTypeEnum uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicRequestTypeEnum/beginWrite
-MTRDataTypeAtomicRequestTypeEnumBeginWrite MTRDataTypeAtomicRequestTypeEnum = 0
-//
+	MTRDataTypeAtomicRequestTypeEnumBeginWrite MTRDataTypeAtomicRequestTypeEnum = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicRequestTypeEnum/commitWrite
-MTRDataTypeAtomicRequestTypeEnumCommitWrite MTRDataTypeAtomicRequestTypeEnum = 0
-//
+	MTRDataTypeAtomicRequestTypeEnumCommitWrite MTRDataTypeAtomicRequestTypeEnum = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicRequestTypeEnum/rollbackWrite
-MTRDataTypeAtomicRequestTypeEnumRollbackWrite MTRDataTypeAtomicRequestTypeEnum = 0
+	MTRDataTypeAtomicRequestTypeEnumRollbackWrite MTRDataTypeAtomicRequestTypeEnum = 0
 )
 
 // MTRDataTypeLandmarkTag enum type
@@ -660,159 +660,159 @@ MTRDataTypeAtomicRequestTypeEnumRollbackWrite MTRDataTypeAtomicRequestTypeEnum =
 type MTRDataTypeLandmarkTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/airConditioner
-MTRDataTypeLandmarkTagAirConditioner MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagAirConditioner MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/airPurifier
-MTRDataTypeLandmarkTagAirPurifier MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagAirPurifier MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/backDoor
-MTRDataTypeLandmarkTagBackDoor MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagBackDoor MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/barStool
-MTRDataTypeLandmarkTagBarStool MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagBarStool MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/bathMat
-MTRDataTypeLandmarkTagBathMat MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagBathMat MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/bathtub
-MTRDataTypeLandmarkTagBathtub MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagBathtub MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/bed
-MTRDataTypeLandmarkTagBed MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagBed MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/bookshelf
-MTRDataTypeLandmarkTagBookshelf MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagBookshelf MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/chair
-MTRDataTypeLandmarkTagChair MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagChair MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/christmasTree
-MTRDataTypeLandmarkTagChristmasTree MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagChristmasTree MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/coatRack
-MTRDataTypeLandmarkTagCoatRack MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCoatRack MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/coffeeTable
-MTRDataTypeLandmarkTagCoffeeTable MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCoffeeTable MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/cookingRange
-MTRDataTypeLandmarkTagCookingRange MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCookingRange MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/couch
-MTRDataTypeLandmarkTagCouch MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCouch MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/countertop
-MTRDataTypeLandmarkTagCountertop MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCountertop MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/cradle
-MTRDataTypeLandmarkTagCradle MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCradle MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/crib
-MTRDataTypeLandmarkTagCrib MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagCrib MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/desk
-MTRDataTypeLandmarkTagDesk MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagDesk MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/diningTable
-MTRDataTypeLandmarkTagDiningTable MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagDiningTable MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/dishwasher
-MTRDataTypeLandmarkTagDishwasher MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagDishwasher MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/door
-MTRDataTypeLandmarkTagDoor MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagDoor MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/dresser
-MTRDataTypeLandmarkTagDresser MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagDresser MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/fan
-MTRDataTypeLandmarkTagFan MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagFan MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/fireplace
-MTRDataTypeLandmarkTagFireplace MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagFireplace MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/freezer
-MTRDataTypeLandmarkTagFreezer MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagFreezer MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/frontDoor
-MTRDataTypeLandmarkTagFrontDoor MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagFrontDoor MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/highChair
-MTRDataTypeLandmarkTagHighChair MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagHighChair MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/kitchenIsland
-MTRDataTypeLandmarkTagKitchenIsland MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagKitchenIsland MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/lamp
-MTRDataTypeLandmarkTagLamp MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagLamp MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/laundryDryer
-MTRDataTypeLandmarkTagLaundryDryer MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagLaundryDryer MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/laundryWasher
-MTRDataTypeLandmarkTagLaundryWasher MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagLaundryWasher MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/litterBox
-MTRDataTypeLandmarkTagLitterBox MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagLitterBox MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/mirror
-MTRDataTypeLandmarkTagMirror MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagMirror MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/nightstand
-MTRDataTypeLandmarkTagNightstand MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagNightstand MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/oven
-MTRDataTypeLandmarkTagOven MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagOven MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/petBed
-MTRDataTypeLandmarkTagPetBed MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagPetBed MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/petBowl
-MTRDataTypeLandmarkTagPetBowl MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagPetBowl MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/petCrate
-MTRDataTypeLandmarkTagPetCrate MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagPetCrate MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/refrigerator
-MTRDataTypeLandmarkTagRefrigerator MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagRefrigerator MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/scratchingPost
-MTRDataTypeLandmarkTagScratchingPost MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagScratchingPost MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/shoeRack
-MTRDataTypeLandmarkTagShoeRack MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagShoeRack MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/shower
-MTRDataTypeLandmarkTagShower MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagShower MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/sideDoor
-MTRDataTypeLandmarkTagSideDoor MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagSideDoor MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/sink
-MTRDataTypeLandmarkTagSink MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagSink MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/sofa
-MTRDataTypeLandmarkTagSofa MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagSofa MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/stove
-MTRDataTypeLandmarkTagStove MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagStove MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/table
-MTRDataTypeLandmarkTagTable MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagTable MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/toilet
-MTRDataTypeLandmarkTagToilet MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagToilet MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/trashCan
-MTRDataTypeLandmarkTagTrashCan MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagTrashCan MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/window
-MTRDataTypeLandmarkTagWindow MTRDataTypeLandmarkTag = 0
-//
+	MTRDataTypeLandmarkTagWindow MTRDataTypeLandmarkTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLandmarkTag/wineCooler
-MTRDataTypeLandmarkTagWineCooler MTRDataTypeLandmarkTag = 0
+	MTRDataTypeLandmarkTagWineCooler MTRDataTypeLandmarkTag = 0
 )
 
 // MTRDataTypePositionTag enum type
@@ -821,27 +821,27 @@ MTRDataTypeLandmarkTagWineCooler MTRDataTypeLandmarkTag = 0
 type MTRDataTypePositionTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/bottom
-MTRDataTypePositionTagBottom MTRDataTypePositionTag = 0
-//
+	MTRDataTypePositionTagBottom MTRDataTypePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/column
-MTRDataTypePositionTagColumn MTRDataTypePositionTag = 0
-//
+	MTRDataTypePositionTagColumn MTRDataTypePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/left
-MTRDataTypePositionTagLeft MTRDataTypePositionTag = 0
-//
+	MTRDataTypePositionTagLeft MTRDataTypePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/middle
-MTRDataTypePositionTagMiddle MTRDataTypePositionTag = 0
-//
+	MTRDataTypePositionTagMiddle MTRDataTypePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/right
-MTRDataTypePositionTagRight MTRDataTypePositionTag = 0
-//
+	MTRDataTypePositionTagRight MTRDataTypePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/row
-MTRDataTypePositionTagRow MTRDataTypePositionTag = 0
-//
+	MTRDataTypePositionTagRow MTRDataTypePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypePositionTag/top
-MTRDataTypePositionTagTop MTRDataTypePositionTag = 0
+	MTRDataTypePositionTagTop MTRDataTypePositionTag = 0
 )
 
 // MTRDataTypeRelativePositionTag enum type
@@ -850,27 +850,27 @@ MTRDataTypePositionTagTop MTRDataTypePositionTag = 0
 type MTRDataTypeRelativePositionTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/above
-MTRDataTypeRelativePositionTagAbove MTRDataTypeRelativePositionTag = 0
-//
+	MTRDataTypeRelativePositionTagAbove MTRDataTypeRelativePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/around
-MTRDataTypeRelativePositionTagAround MTRDataTypeRelativePositionTag = 0
-//
+	MTRDataTypeRelativePositionTagAround MTRDataTypeRelativePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/behind
-MTRDataTypeRelativePositionTagBehind MTRDataTypeRelativePositionTag = 0
-//
+	MTRDataTypeRelativePositionTagBehind MTRDataTypeRelativePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/frontOf
-MTRDataTypeRelativePositionTagFrontOf MTRDataTypeRelativePositionTag = 0
-//
+	MTRDataTypeRelativePositionTagFrontOf MTRDataTypeRelativePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/nextTo
-MTRDataTypeRelativePositionTagNextTo MTRDataTypeRelativePositionTag = 0
-//
+	MTRDataTypeRelativePositionTagNextTo MTRDataTypeRelativePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/on
-MTRDataTypeRelativePositionTagOn MTRDataTypeRelativePositionTag = 0
-//
+	MTRDataTypeRelativePositionTagOn MTRDataTypeRelativePositionTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeRelativePositionTag/under
-MTRDataTypeRelativePositionTagUnder MTRDataTypeRelativePositionTag = 0
+	MTRDataTypeRelativePositionTagUnder MTRDataTypeRelativePositionTag = 0
 )
 
 // MTRDeviceEnergyManagementAdjustmentCause enum type
@@ -879,12 +879,12 @@ MTRDataTypeRelativePositionTagUnder MTRDataTypeRelativePositionTag = 0
 type MTRDeviceEnergyManagementAdjustmentCause uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementAdjustmentCause/gridOptimization
-MTRDeviceEnergyManagementAdjustmentCauseGridOptimization MTRDeviceEnergyManagementAdjustmentCause = 0
-//
+	MTRDeviceEnergyManagementAdjustmentCauseGridOptimization MTRDeviceEnergyManagementAdjustmentCause = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementAdjustmentCause/localOptimization
-MTRDeviceEnergyManagementAdjustmentCauseLocalOptimization MTRDeviceEnergyManagementAdjustmentCause = 0
+	MTRDeviceEnergyManagementAdjustmentCauseLocalOptimization MTRDeviceEnergyManagementAdjustmentCause = 0
 )
 
 // MTRDeviceEnergyManagementCause enum type
@@ -893,21 +893,21 @@ MTRDeviceEnergyManagementAdjustmentCauseLocalOptimization MTRDeviceEnergyManagem
 type MTRDeviceEnergyManagementCause uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCause/cancelled
-MTRDeviceEnergyManagementCauseCancelled MTRDeviceEnergyManagementCause = 0
-//
+	MTRDeviceEnergyManagementCauseCancelled MTRDeviceEnergyManagementCause = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCause/fault
-MTRDeviceEnergyManagementCauseFault MTRDeviceEnergyManagementCause = 0
-//
+	MTRDeviceEnergyManagementCauseFault MTRDeviceEnergyManagementCause = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCause/normalCompletion
-MTRDeviceEnergyManagementCauseNormalCompletion MTRDeviceEnergyManagementCause = 0
-//
+	MTRDeviceEnergyManagementCauseNormalCompletion MTRDeviceEnergyManagementCause = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCause/offline
-MTRDeviceEnergyManagementCauseOffline MTRDeviceEnergyManagementCause = 0
-//
+	MTRDeviceEnergyManagementCauseOffline MTRDeviceEnergyManagementCause = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCause/userOptOut
-MTRDeviceEnergyManagementCauseUserOptOut MTRDeviceEnergyManagementCause = 0
+	MTRDeviceEnergyManagementCauseUserOptOut MTRDeviceEnergyManagementCause = 0
 )
 
 // MTRDeviceEnergyManagementCostType enum type
@@ -916,18 +916,18 @@ MTRDeviceEnergyManagementCauseUserOptOut MTRDeviceEnergyManagementCause = 0
 type MTRDeviceEnergyManagementCostType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCostType/comfort
-MTRDeviceEnergyManagementCostTypeComfort MTRDeviceEnergyManagementCostType = 0
-//
+	MTRDeviceEnergyManagementCostTypeComfort MTRDeviceEnergyManagementCostType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCostType/financial
-MTRDeviceEnergyManagementCostTypeFinancial MTRDeviceEnergyManagementCostType = 0
-//
+	MTRDeviceEnergyManagementCostTypeFinancial MTRDeviceEnergyManagementCostType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCostType/ghgEmissions
-MTRDeviceEnergyManagementCostTypeGHGEmissions MTRDeviceEnergyManagementCostType = 0
-//
+	MTRDeviceEnergyManagementCostTypeGHGEmissions MTRDeviceEnergyManagementCostType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementCostType/temperature
-MTRDeviceEnergyManagementCostTypeTemperature MTRDeviceEnergyManagementCostType = 0
+	MTRDeviceEnergyManagementCostTypeTemperature MTRDeviceEnergyManagementCostType = 0
 )
 
 // MTRDeviceEnergyManagementESAState enum type
@@ -936,21 +936,21 @@ MTRDeviceEnergyManagementCostTypeTemperature MTRDeviceEnergyManagementCostType =
 type MTRDeviceEnergyManagementESAState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAState/fault
-MTRDeviceEnergyManagementESAStateFault MTRDeviceEnergyManagementESAState = 0
-//
+	MTRDeviceEnergyManagementESAStateFault MTRDeviceEnergyManagementESAState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAState/offline
-MTRDeviceEnergyManagementESAStateOffline MTRDeviceEnergyManagementESAState = 0
-//
+	MTRDeviceEnergyManagementESAStateOffline MTRDeviceEnergyManagementESAState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAState/online
-MTRDeviceEnergyManagementESAStateOnline MTRDeviceEnergyManagementESAState = 0
-//
+	MTRDeviceEnergyManagementESAStateOnline MTRDeviceEnergyManagementESAState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAState/paused
-MTRDeviceEnergyManagementESAStatePaused MTRDeviceEnergyManagementESAState = 0
-//
+	MTRDeviceEnergyManagementESAStatePaused MTRDeviceEnergyManagementESAState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAState/powerAdjustActive
-MTRDeviceEnergyManagementESAStatePowerAdjustActive MTRDeviceEnergyManagementESAState = 0
+	MTRDeviceEnergyManagementESAStatePowerAdjustActive MTRDeviceEnergyManagementESAState = 0
 )
 
 // MTRDeviceEnergyManagementESAType enum type
@@ -959,51 +959,51 @@ MTRDeviceEnergyManagementESAStatePowerAdjustActive MTRDeviceEnergyManagementESAS
 type MTRDeviceEnergyManagementESAType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/EVSE
-MTRDeviceEnergyManagementESATypeEVSE MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeEVSE MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/batteryStorage
-MTRDeviceEnergyManagementESATypeBatteryStorage MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeBatteryStorage MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/cooking
-MTRDeviceEnergyManagementESATypeCooking MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeCooking MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/dishwasher
-MTRDeviceEnergyManagementESATypeDishwasher MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeDishwasher MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/fridgeFreezer
-MTRDeviceEnergyManagementESATypeFridgeFreezer MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeFridgeFreezer MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/homeWaterPump
-MTRDeviceEnergyManagementESATypeHomeWaterPump MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeHomeWaterPump MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/irrigationWaterPump
-MTRDeviceEnergyManagementESATypeIrrigationWaterPump MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeIrrigationWaterPump MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/other
-MTRDeviceEnergyManagementESATypeOther MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeOther MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/poolPump
-MTRDeviceEnergyManagementESATypePoolPump MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypePoolPump MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/solarPV
-MTRDeviceEnergyManagementESATypeSolarPV MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeSolarPV MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/spaceCooling
-MTRDeviceEnergyManagementESATypeSpaceCooling MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeSpaceCooling MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/spaceHeating
-MTRDeviceEnergyManagementESATypeSpaceHeating MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeSpaceHeating MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/spaceHeatingCooling
-MTRDeviceEnergyManagementESATypeSpaceHeatingCooling MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeSpaceHeatingCooling MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/washingMachine
-MTRDeviceEnergyManagementESATypeWashingMachine MTRDeviceEnergyManagementESAType = 0
-//
+	MTRDeviceEnergyManagementESATypeWashingMachine MTRDeviceEnergyManagementESAType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementESAType/waterHeating
-MTRDeviceEnergyManagementESATypeWaterHeating MTRDeviceEnergyManagementESAType = 0
+	MTRDeviceEnergyManagementESATypeWaterHeating MTRDeviceEnergyManagementESAType = 0
 )
 
 // MTRDeviceEnergyManagementFeature enum type
@@ -1012,27 +1012,27 @@ MTRDeviceEnergyManagementESATypeWaterHeating MTRDeviceEnergyManagementESAType = 
 type MTRDeviceEnergyManagementFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/constraintBasedAdjustment
-MTRDeviceEnergyManagementFeatureConstraintBasedAdjustment MTRDeviceEnergyManagementFeature = 0
-//
+	MTRDeviceEnergyManagementFeatureConstraintBasedAdjustment MTRDeviceEnergyManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/forecastAdjustment
-MTRDeviceEnergyManagementFeatureForecastAdjustment MTRDeviceEnergyManagementFeature = 0
-//
+	MTRDeviceEnergyManagementFeatureForecastAdjustment MTRDeviceEnergyManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/pausable
-MTRDeviceEnergyManagementFeaturePausable MTRDeviceEnergyManagementFeature = 0
-//
+	MTRDeviceEnergyManagementFeaturePausable MTRDeviceEnergyManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/powerAdjustment
-MTRDeviceEnergyManagementFeaturePowerAdjustment MTRDeviceEnergyManagementFeature = 0
-//
+	MTRDeviceEnergyManagementFeaturePowerAdjustment MTRDeviceEnergyManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/powerForecastReporting
-MTRDeviceEnergyManagementFeaturePowerForecastReporting MTRDeviceEnergyManagementFeature = 0
-//
+	MTRDeviceEnergyManagementFeaturePowerForecastReporting MTRDeviceEnergyManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/startTimeAdjustment
-MTRDeviceEnergyManagementFeatureStartTimeAdjustment MTRDeviceEnergyManagementFeature = 0
-//
+	MTRDeviceEnergyManagementFeatureStartTimeAdjustment MTRDeviceEnergyManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementFeature/stateForecastReporting
-MTRDeviceEnergyManagementFeatureStateForecastReporting MTRDeviceEnergyManagementFeature = 0
+	MTRDeviceEnergyManagementFeatureStateForecastReporting MTRDeviceEnergyManagementFeature = 0
 )
 
 // MTRDeviceEnergyManagementForecastUpdateReason enum type
@@ -1041,15 +1041,15 @@ MTRDeviceEnergyManagementFeatureStateForecastReporting MTRDeviceEnergyManagement
 type MTRDeviceEnergyManagementForecastUpdateReason uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementForecastUpdateReason/gridOptimization
-MTRDeviceEnergyManagementForecastUpdateReasonGridOptimization MTRDeviceEnergyManagementForecastUpdateReason = 0
-//
+	MTRDeviceEnergyManagementForecastUpdateReasonGridOptimization MTRDeviceEnergyManagementForecastUpdateReason = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementForecastUpdateReason/internalOptimization
-MTRDeviceEnergyManagementForecastUpdateReasonInternalOptimization MTRDeviceEnergyManagementForecastUpdateReason = 0
-//
+	MTRDeviceEnergyManagementForecastUpdateReasonInternalOptimization MTRDeviceEnergyManagementForecastUpdateReason = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementForecastUpdateReason/localOptimization
-MTRDeviceEnergyManagementForecastUpdateReasonLocalOptimization MTRDeviceEnergyManagementForecastUpdateReason = 0
+	MTRDeviceEnergyManagementForecastUpdateReasonLocalOptimization MTRDeviceEnergyManagementForecastUpdateReason = 0
 )
 
 // MTRDeviceEnergyManagementModeModeTag enum type
@@ -1058,48 +1058,48 @@ MTRDeviceEnergyManagementForecastUpdateReasonLocalOptimization MTRDeviceEnergyMa
 type MTRDeviceEnergyManagementModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/auto
-MTRDeviceEnergyManagementModeModeTagAuto MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagAuto MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/day
-MTRDeviceEnergyManagementModeModeTagDay MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagDay MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/deviceOptimization
-MTRDeviceEnergyManagementModeModeTagDeviceOptimization MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagDeviceOptimization MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/gridOptimization
-MTRDeviceEnergyManagementModeModeTagGridOptimization MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagGridOptimization MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/localOptimization
-MTRDeviceEnergyManagementModeModeTagLocalOptimization MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagLocalOptimization MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/lowEnergy
-MTRDeviceEnergyManagementModeModeTagLowEnergy MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagLowEnergy MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/lowNoise
-MTRDeviceEnergyManagementModeModeTagLowNoise MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagLowNoise MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/max
-MTRDeviceEnergyManagementModeModeTagMax MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagMax MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/min
-MTRDeviceEnergyManagementModeModeTagMin MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagMin MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/night
-MTRDeviceEnergyManagementModeModeTagNight MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagNight MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/noOptimization
-MTRDeviceEnergyManagementModeModeTagNoOptimization MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagNoOptimization MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/quick
-MTRDeviceEnergyManagementModeModeTagQuick MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagQuick MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/quiet
-MTRDeviceEnergyManagementModeModeTagQuiet MTRDeviceEnergyManagementModeModeTag = 0
-//
+	MTRDeviceEnergyManagementModeModeTagQuiet MTRDeviceEnergyManagementModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeModeTag/vacation
-MTRDeviceEnergyManagementModeModeTagVacation MTRDeviceEnergyManagementModeModeTag = 0
+	MTRDeviceEnergyManagementModeModeTagVacation MTRDeviceEnergyManagementModeModeTag = 0
 )
 
 // MTRDeviceEnergyManagementOptOutState enum type
@@ -1108,18 +1108,18 @@ MTRDeviceEnergyManagementModeModeTagVacation MTRDeviceEnergyManagementModeModeTa
 type MTRDeviceEnergyManagementOptOutState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementOptOutState/gridOptOut
-MTRDeviceEnergyManagementOptOutStateGridOptOut MTRDeviceEnergyManagementOptOutState = 0
-//
+	MTRDeviceEnergyManagementOptOutStateGridOptOut MTRDeviceEnergyManagementOptOutState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementOptOutState/localOptOut
-MTRDeviceEnergyManagementOptOutStateLocalOptOut MTRDeviceEnergyManagementOptOutState = 0
-//
+	MTRDeviceEnergyManagementOptOutStateLocalOptOut MTRDeviceEnergyManagementOptOutState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementOptOutState/noOptOut
-MTRDeviceEnergyManagementOptOutStateNoOptOut MTRDeviceEnergyManagementOptOutState = 0
-//
+	MTRDeviceEnergyManagementOptOutStateNoOptOut MTRDeviceEnergyManagementOptOutState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementOptOutState/optOut
-MTRDeviceEnergyManagementOptOutStateOptOut MTRDeviceEnergyManagementOptOutState = 0
+	MTRDeviceEnergyManagementOptOutStateOptOut MTRDeviceEnergyManagementOptOutState = 0
 )
 
 // MTRDeviceEnergyManagementPowerAdjustReason enum type
@@ -1128,15 +1128,15 @@ MTRDeviceEnergyManagementOptOutStateOptOut MTRDeviceEnergyManagementOptOutState 
 type MTRDeviceEnergyManagementPowerAdjustReason uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementPowerAdjustReason/gridOptimizationAdjustment
-MTRDeviceEnergyManagementPowerAdjustReasonGridOptimizationAdjustment MTRDeviceEnergyManagementPowerAdjustReason = 0
-//
+	MTRDeviceEnergyManagementPowerAdjustReasonGridOptimizationAdjustment MTRDeviceEnergyManagementPowerAdjustReason = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementPowerAdjustReason/localOptimizationAdjustment
-MTRDeviceEnergyManagementPowerAdjustReasonLocalOptimizationAdjustment MTRDeviceEnergyManagementPowerAdjustReason = 0
-//
+	MTRDeviceEnergyManagementPowerAdjustReasonLocalOptimizationAdjustment MTRDeviceEnergyManagementPowerAdjustReason = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementPowerAdjustReason/noAdjustment
-MTRDeviceEnergyManagementPowerAdjustReasonNoAdjustment MTRDeviceEnergyManagementPowerAdjustReason = 0
+	MTRDeviceEnergyManagementPowerAdjustReasonNoAdjustment MTRDeviceEnergyManagementPowerAdjustReason = 0
 )
 
 // MTRDeviceState enum type
@@ -1150,213 +1150,213 @@ type MTRDeviceState uint
 type MTRDeviceTypeIDType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/EVSEID
-MTRDeviceTypeIDTypeEVSEID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeEVSEID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/aggregatorID
-MTRDeviceTypeIDTypeAggregatorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeAggregatorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/airPurifierID
-MTRDeviceTypeIDTypeAirPurifierID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeAirPurifierID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/airQualitySensorID
-MTRDeviceTypeIDTypeAirQualitySensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeAirQualitySensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/basicVideoPlayerID
-MTRDeviceTypeIDTypeBasicVideoPlayerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeBasicVideoPlayerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/batteryStorageID
-MTRDeviceTypeIDTypeBatteryStorageID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeBatteryStorageID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/bridgedNodeID
-MTRDeviceTypeIDTypeBridgedNodeID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeBridgedNodeID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/castingVideoClientID
-MTRDeviceTypeIDTypeCastingVideoClientID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeCastingVideoClientID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/castingVideoPlayerID
-MTRDeviceTypeIDTypeCastingVideoPlayerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeCastingVideoPlayerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/colorDimmerSwitchID
-MTRDeviceTypeIDTypeColorDimmerSwitchID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeColorDimmerSwitchID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/colorTemperatureLightID
-MTRDeviceTypeIDTypeColorTemperatureLightID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeColorTemperatureLightID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/contactSensorID
-MTRDeviceTypeIDTypeContactSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeContactSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/contentAppID
-MTRDeviceTypeIDTypeContentAppID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeContentAppID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/controlBridgeID
-MTRDeviceTypeIDTypeControlBridgeID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeControlBridgeID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/cookSurfaceID
-MTRDeviceTypeIDTypeCookSurfaceID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeCookSurfaceID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/cooktopID
-MTRDeviceTypeIDTypeCooktopID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeCooktopID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/deviceEnergyManagementID
-MTRDeviceTypeIDTypeDeviceEnergyManagementID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDeviceEnergyManagementID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/dimmableLightID
-MTRDeviceTypeIDTypeDimmableLightID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDimmableLightID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/dimmablePlugInUnitID
-MTRDeviceTypeIDTypeDimmablePlugInUnitID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDimmablePlugInUnitID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/dimmerSwitchID
-MTRDeviceTypeIDTypeDimmerSwitchID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDimmerSwitchID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/dishwasherID
-MTRDeviceTypeIDTypeDishwasherID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDishwasherID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/doorLockControllerID
-MTRDeviceTypeIDTypeDoorLockControllerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDoorLockControllerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/doorLockID
-MTRDeviceTypeIDTypeDoorLockID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeDoorLockID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/electricalSensorID
-MTRDeviceTypeIDTypeElectricalSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeElectricalSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/extendedColorLightID
-MTRDeviceTypeIDTypeExtendedColorLightID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeExtendedColorLightID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/extractorHoodID
-MTRDeviceTypeIDTypeExtractorHoodID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeExtractorHoodID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/fanID
-MTRDeviceTypeIDTypeFanID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeFanID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/flowSensorID
-MTRDeviceTypeIDTypeFlowSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeFlowSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/genericSwitchID
-MTRDeviceTypeIDTypeGenericSwitchID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeGenericSwitchID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/heatPumpID
-MTRDeviceTypeIDTypeHeatPumpID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeHeatPumpID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/humiditySensorID
-MTRDeviceTypeIDTypeHumiditySensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeHumiditySensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/laundryDryerID
-MTRDeviceTypeIDTypeLaundryDryerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeLaundryDryerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/laundryWasherID
-MTRDeviceTypeIDTypeLaundryWasherID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeLaundryWasherID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/lightSensorID
-MTRDeviceTypeIDTypeLightSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeLightSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/microwaveOvenID
-MTRDeviceTypeIDTypeMicrowaveOvenID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeMicrowaveOvenID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/modeSelectID
-MTRDeviceTypeIDTypeModeSelectID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeModeSelectID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/networkInfrastructureManagerID
-MTRDeviceTypeIDTypeNetworkInfrastructureManagerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeNetworkInfrastructureManagerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/occupancySensorID
-MTRDeviceTypeIDTypeOccupancySensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOccupancySensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/onOffLightID
-MTRDeviceTypeIDTypeOnOffLightID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOnOffLightID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/onOffLightSwitchID
-MTRDeviceTypeIDTypeOnOffLightSwitchID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOnOffLightSwitchID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/onOffPlugInUnitID
-MTRDeviceTypeIDTypeOnOffPlugInUnitID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOnOffPlugInUnitID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/onOffSensorID
-MTRDeviceTypeIDTypeOnOffSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOnOffSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/otaProviderID
-MTRDeviceTypeIDTypeOTAProviderID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOTAProviderID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/otaRequestorID
-MTRDeviceTypeIDTypeOTARequestorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOTARequestorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/ovenID
-MTRDeviceTypeIDTypeOvenID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeOvenID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/powerSourceID
-MTRDeviceTypeIDTypePowerSourceID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypePowerSourceID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/pressureSensorID
-MTRDeviceTypeIDTypePressureSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypePressureSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/pumpControllerID
-MTRDeviceTypeIDTypePumpControllerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypePumpControllerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/pumpID
-MTRDeviceTypeIDTypePumpID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypePumpID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/rainSensorID
-MTRDeviceTypeIDTypeRainSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeRainSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/refrigeratorID
-MTRDeviceTypeIDTypeRefrigeratorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeRefrigeratorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/roboticVacuumCleanerID
-MTRDeviceTypeIDTypeRoboticVacuumCleanerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeRoboticVacuumCleanerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/roomAirConditionerID
-MTRDeviceTypeIDTypeRoomAirConditionerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeRoomAirConditionerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/rootNodeID
-MTRDeviceTypeIDTypeRootNodeID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeRootNodeID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/secondaryNetworkInterfaceID
-MTRDeviceTypeIDTypeSecondaryNetworkInterfaceID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeSecondaryNetworkInterfaceID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/smokeCOAlarmID
-MTRDeviceTypeIDTypeSmokeCOAlarmID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeSmokeCOAlarmID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/solarPowerID
-MTRDeviceTypeIDTypeSolarPowerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeSolarPowerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/speakerID
-MTRDeviceTypeIDTypeSpeakerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeSpeakerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/temperatureControlledCabinetID
-MTRDeviceTypeIDTypeTemperatureControlledCabinetID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeTemperatureControlledCabinetID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/temperatureSensorID
-MTRDeviceTypeIDTypeTemperatureSensorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeTemperatureSensorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/thermostatID
-MTRDeviceTypeIDTypeThermostatID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeThermostatID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/threadBorderRouterID
-MTRDeviceTypeIDTypeThreadBorderRouterID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeThreadBorderRouterID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/videoRemoteControlID
-MTRDeviceTypeIDTypeVideoRemoteControlID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeVideoRemoteControlID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/waterFreezeDetectorID
-MTRDeviceTypeIDTypeWaterFreezeDetectorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeWaterFreezeDetectorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/waterHeaterID
-MTRDeviceTypeIDTypeWaterHeaterID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeWaterHeaterID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/waterLeakDetectorID
-MTRDeviceTypeIDTypeWaterLeakDetectorID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeWaterLeakDetectorID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/waterValveID
-MTRDeviceTypeIDTypeWaterValveID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeWaterValveID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/windowCoveringControllerID
-MTRDeviceTypeIDTypeWindowCoveringControllerID MTRDeviceTypeIDType = 0
-//
+	MTRDeviceTypeIDTypeWindowCoveringControllerID MTRDeviceTypeIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeIDType/windowCoveringID
-MTRDeviceTypeIDTypeWindowCoveringID MTRDeviceTypeIDType = 0
+	MTRDeviceTypeIDTypeWindowCoveringID MTRDeviceTypeIDType = 0
 )
 
 // MTRDiagnosticLogType enum type
@@ -1405,9 +1405,9 @@ type MTRDiscoveryCapabilities uint
 type MTRDishwasherAlarmAlarmBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmAlarmBitmap/doorError
-MTRDishwasherAlarmAlarmBitmapDoorError MTRDishwasherAlarmAlarmBitmap = 0
+	MTRDishwasherAlarmAlarmBitmapDoorError MTRDishwasherAlarmAlarmBitmap = 0
 )
 
 // MTRDishwasherAlarmFeature enum type
@@ -1416,9 +1416,9 @@ MTRDishwasherAlarmAlarmBitmapDoorError MTRDishwasherAlarmAlarmBitmap = 0
 type MTRDishwasherAlarmFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmFeature/reset
-MTRDishwasherAlarmFeatureReset MTRDishwasherAlarmFeature = 0
+	MTRDishwasherAlarmFeatureReset MTRDishwasherAlarmFeature = 0
 )
 
 // MTRDishwasherModeModeTag enum type
@@ -1427,45 +1427,45 @@ MTRDishwasherAlarmFeatureReset MTRDishwasherAlarmFeature = 0
 type MTRDishwasherModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/auto
-MTRDishwasherModeModeTagAuto MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagAuto MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/day
-MTRDishwasherModeModeTagDay MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagDay MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/heavy
-MTRDishwasherModeModeTagHeavy MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagHeavy MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/light
-MTRDishwasherModeModeTagLight MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagLight MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/lowEnergy
-MTRDishwasherModeModeTagLowEnergy MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagLowEnergy MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/lowNoise
-MTRDishwasherModeModeTagLowNoise MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagLowNoise MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/max
-MTRDishwasherModeModeTagMax MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagMax MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/min
-MTRDishwasherModeModeTagMin MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagMin MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/night
-MTRDishwasherModeModeTagNight MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagNight MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/normal
-MTRDishwasherModeModeTagNormal MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagNormal MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/quick
-MTRDishwasherModeModeTagQuick MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagQuick MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/quiet
-MTRDishwasherModeModeTagQuiet MTRDishwasherModeModeTag = 0
-//
+	MTRDishwasherModeModeTagQuiet MTRDishwasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeModeTag/vacation
-MTRDishwasherModeModeTagVacation MTRDishwasherModeModeTag = 0
+	MTRDishwasherModeModeTagVacation MTRDishwasherModeModeTag = 0
 )
 
 // MTRDoorLockAlarmCode enum type
@@ -1709,51 +1709,51 @@ type MTRElectricalEnergyMeasurementFeature uint
 type MTRElectricalEnergyMeasurementMeasurementType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/activeCurrent
-MTRElectricalEnergyMeasurementMeasurementTypeActiveCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeActiveCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/activePower
-MTRElectricalEnergyMeasurementMeasurementTypeActivePower MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeActivePower MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/apparentCurrent
-MTRElectricalEnergyMeasurementMeasurementTypeApparentCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeApparentCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/apparentPower
-MTRElectricalEnergyMeasurementMeasurementTypeApparentPower MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeApparentPower MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/electricalEnergy
-MTRElectricalEnergyMeasurementMeasurementTypeElectricalEnergy MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeElectricalEnergy MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/frequency
-MTRElectricalEnergyMeasurementMeasurementTypeFrequency MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeFrequency MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/neutralCurrent
-MTRElectricalEnergyMeasurementMeasurementTypeNeutralCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeNeutralCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/powerFactor
-MTRElectricalEnergyMeasurementMeasurementTypePowerFactor MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypePowerFactor MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/reactiveCurrent
-MTRElectricalEnergyMeasurementMeasurementTypeReactiveCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeReactiveCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/reactivePower
-MTRElectricalEnergyMeasurementMeasurementTypeReactivePower MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeReactivePower MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/rmsCurrent
-MTRElectricalEnergyMeasurementMeasurementTypeRMSCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeRMSCurrent MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/rmsPower
-MTRElectricalEnergyMeasurementMeasurementTypeRMSPower MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeRMSPower MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/rmsVoltage
-MTRElectricalEnergyMeasurementMeasurementTypeRMSVoltage MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeRMSVoltage MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/unspecified
-MTRElectricalEnergyMeasurementMeasurementTypeUnspecified MTRElectricalEnergyMeasurementMeasurementType = 0
-//
+	MTRElectricalEnergyMeasurementMeasurementTypeUnspecified MTRElectricalEnergyMeasurementMeasurementType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementMeasurementType/voltage
-MTRElectricalEnergyMeasurementMeasurementTypeVoltage MTRElectricalEnergyMeasurementMeasurementType = 0
+	MTRElectricalEnergyMeasurementMeasurementTypeVoltage MTRElectricalEnergyMeasurementMeasurementType = 0
 )
 
 // MTRElectricalPowerMeasurementFeature enum type
@@ -1777,15 +1777,15 @@ type MTRElectricalPowerMeasurementPowerMode uint
 type MTREnergyEVSEEnergyTransferStoppedReason uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEEnergyTransferStoppedReason/evStopped
-MTREnergyEVSEEnergyTransferStoppedReasonEVStopped MTREnergyEVSEEnergyTransferStoppedReason = 0
-//
+	MTREnergyEVSEEnergyTransferStoppedReasonEVStopped MTREnergyEVSEEnergyTransferStoppedReason = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEEnergyTransferStoppedReason/evseStopped
-MTREnergyEVSEEnergyTransferStoppedReasonEVSEStopped MTREnergyEVSEEnergyTransferStoppedReason = 0
-//
+	MTREnergyEVSEEnergyTransferStoppedReasonEVSEStopped MTREnergyEVSEEnergyTransferStoppedReason = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEEnergyTransferStoppedReason/other
-MTREnergyEVSEEnergyTransferStoppedReasonOther MTREnergyEVSEEnergyTransferStoppedReason = 0
+	MTREnergyEVSEEnergyTransferStoppedReasonOther MTREnergyEVSEEnergyTransferStoppedReason = 0
 )
 
 // MTREnergyEVSEFaultState enum type
@@ -1794,57 +1794,57 @@ MTREnergyEVSEEnergyTransferStoppedReasonOther MTREnergyEVSEEnergyTransferStopped
 type MTREnergyEVSEFaultState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/contactDryFailure
-MTREnergyEVSEFaultStateContactDryFailure MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateContactDryFailure MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/contactWetFailure
-MTREnergyEVSEFaultStateContactWetFailure MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateContactWetFailure MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/emergencyStop
-MTREnergyEVSEFaultStateEmergencyStop MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateEmergencyStop MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/evDisconnected
-MTREnergyEVSEFaultStateEVDisconnected MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateEVDisconnected MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/groundFault
-MTREnergyEVSEFaultStateGroundFault MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateGroundFault MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/liveNeutralSwap
-MTREnergyEVSEFaultStateLiveNeutralSwap MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateLiveNeutralSwap MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/meterFailure
-MTREnergyEVSEFaultStateMeterFailure MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateMeterFailure MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/noError
-MTREnergyEVSEFaultStateNoError MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateNoError MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/other
-MTREnergyEVSEFaultStateOther MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateOther MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/overCurrent
-MTREnergyEVSEFaultStateOverCurrent MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateOverCurrent MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/overTemperature
-MTREnergyEVSEFaultStateOverTemperature MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateOverTemperature MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/overVoltage
-MTREnergyEVSEFaultStateOverVoltage MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateOverVoltage MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/pilotShortCircuit
-MTREnergyEVSEFaultStatePilotShortCircuit MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStatePilotShortCircuit MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/powerLoss
-MTREnergyEVSEFaultStatePowerLoss MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStatePowerLoss MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/powerQuality
-MTREnergyEVSEFaultStatePowerQuality MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStatePowerQuality MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/underVoltage
-MTREnergyEVSEFaultStateUnderVoltage MTREnergyEVSEFaultState = 0
-//
+	MTREnergyEVSEFaultStateUnderVoltage MTREnergyEVSEFaultState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFaultState/wrongPowerSupply
-MTREnergyEVSEFaultStateWrongPowerSupply MTREnergyEVSEFaultState = 0
+	MTREnergyEVSEFaultStateWrongPowerSupply MTREnergyEVSEFaultState = 0
 )
 
 // MTREnergyEVSEFeature enum type
@@ -1853,12 +1853,12 @@ MTREnergyEVSEFaultStateWrongPowerSupply MTREnergyEVSEFaultState = 0
 type MTREnergyEVSEFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFeature/RFID
-MTREnergyEVSEFeatureRFID MTREnergyEVSEFeature = 0
-//
+	MTREnergyEVSEFeatureRFID MTREnergyEVSEFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEFeature/chargingPreferences
-MTREnergyEVSEFeatureChargingPreferences MTREnergyEVSEFeature = 0
+	MTREnergyEVSEFeatureChargingPreferences MTREnergyEVSEFeature = 0
 )
 
 // MTREnergyEVSEModeModeTag enum type
@@ -1867,48 +1867,48 @@ MTREnergyEVSEFeatureChargingPreferences MTREnergyEVSEFeature = 0
 type MTREnergyEVSEModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/V2X
-MTREnergyEVSEModeModeTagV2X MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagV2X MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/auto
-MTREnergyEVSEModeModeTagAuto MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagAuto MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/day
-MTREnergyEVSEModeModeTagDay MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagDay MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/lowEnergy
-MTREnergyEVSEModeModeTagLowEnergy MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagLowEnergy MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/lowNoise
-MTREnergyEVSEModeModeTagLowNoise MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagLowNoise MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/manual
-MTREnergyEVSEModeModeTagManual MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagManual MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/max
-MTREnergyEVSEModeModeTagMax MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagMax MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/min
-MTREnergyEVSEModeModeTagMin MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagMin MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/night
-MTREnergyEVSEModeModeTagNight MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagNight MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/quick
-MTREnergyEVSEModeModeTagQuick MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagQuick MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/quiet
-MTREnergyEVSEModeModeTagQuiet MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagQuiet MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/solarCharging
-MTREnergyEVSEModeModeTagSolarCharging MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagSolarCharging MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/timeOfUse
-MTREnergyEVSEModeModeTagTimeOfUse MTREnergyEVSEModeModeTag = 0
-//
+	MTREnergyEVSEModeModeTagTimeOfUse MTREnergyEVSEModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeModeTag/vacation
-MTREnergyEVSEModeModeTagVacation MTREnergyEVSEModeModeTag = 0
+	MTREnergyEVSEModeModeTagVacation MTREnergyEVSEModeModeTag = 0
 )
 
 // MTREnergyEVSEState enum type
@@ -1917,24 +1917,24 @@ MTREnergyEVSEModeModeTagVacation MTREnergyEVSEModeModeTag = 0
 type MTREnergyEVSEState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEState/fault
-MTREnergyEVSEStateFault MTREnergyEVSEState = 0
-//
+	MTREnergyEVSEStateFault MTREnergyEVSEState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEState/notPluggedIn
-MTREnergyEVSEStateNotPluggedIn MTREnergyEVSEState = 0
-//
+	MTREnergyEVSEStateNotPluggedIn MTREnergyEVSEState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEState/pluggedInCharging
-MTREnergyEVSEStatePluggedInCharging MTREnergyEVSEState = 0
-//
+	MTREnergyEVSEStatePluggedInCharging MTREnergyEVSEState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEState/pluggedInDemand
-MTREnergyEVSEStatePluggedInDemand MTREnergyEVSEState = 0
-//
+	MTREnergyEVSEStatePluggedInDemand MTREnergyEVSEState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEState/pluggedInNoDemand
-MTREnergyEVSEStatePluggedInNoDemand MTREnergyEVSEState = 0
-//
+	MTREnergyEVSEStatePluggedInNoDemand MTREnergyEVSEState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEState/sessionEnding
-MTREnergyEVSEStateSessionEnding MTREnergyEVSEState = 0
+	MTREnergyEVSEStateSessionEnding MTREnergyEVSEState = 0
 )
 
 // MTREnergyEVSESupplyState enum type
@@ -1943,18 +1943,18 @@ MTREnergyEVSEStateSessionEnding MTREnergyEVSEState = 0
 type MTREnergyEVSESupplyState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSESupplyState/chargingEnabled
-MTREnergyEVSESupplyStateChargingEnabled MTREnergyEVSESupplyState = 0
-//
+	MTREnergyEVSESupplyStateChargingEnabled MTREnergyEVSESupplyState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSESupplyState/disabled
-MTREnergyEVSESupplyStateDisabled MTREnergyEVSESupplyState = 0
-//
+	MTREnergyEVSESupplyStateDisabled MTREnergyEVSESupplyState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSESupplyState/disabledDiagnostics
-MTREnergyEVSESupplyStateDisabledDiagnostics MTREnergyEVSESupplyState = 0
-//
+	MTREnergyEVSESupplyStateDisabledDiagnostics MTREnergyEVSESupplyState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSESupplyState/disabledError
-MTREnergyEVSESupplyStateDisabledError MTREnergyEVSESupplyState = 0
+	MTREnergyEVSESupplyStateDisabledError MTREnergyEVSESupplyState = 0
 )
 
 // MTREnergyEVSETargetDayOfWeekBitmap enum type
@@ -1963,27 +1963,27 @@ MTREnergyEVSESupplyStateDisabledError MTREnergyEVSESupplyState = 0
 type MTREnergyEVSETargetDayOfWeekBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/friday
-MTREnergyEVSETargetDayOfWeekBitmapFriday MTREnergyEVSETargetDayOfWeekBitmap = 0
-//
+	MTREnergyEVSETargetDayOfWeekBitmapFriday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/monday
-MTREnergyEVSETargetDayOfWeekBitmapMonday MTREnergyEVSETargetDayOfWeekBitmap = 0
-//
+	MTREnergyEVSETargetDayOfWeekBitmapMonday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/saturday
-MTREnergyEVSETargetDayOfWeekBitmapSaturday MTREnergyEVSETargetDayOfWeekBitmap = 0
-//
+	MTREnergyEVSETargetDayOfWeekBitmapSaturday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/sunday
-MTREnergyEVSETargetDayOfWeekBitmapSunday MTREnergyEVSETargetDayOfWeekBitmap = 0
-//
+	MTREnergyEVSETargetDayOfWeekBitmapSunday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/thursday
-MTREnergyEVSETargetDayOfWeekBitmapThursday MTREnergyEVSETargetDayOfWeekBitmap = 0
-//
+	MTREnergyEVSETargetDayOfWeekBitmapThursday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/tuesday
-MTREnergyEVSETargetDayOfWeekBitmapTuesday MTREnergyEVSETargetDayOfWeekBitmap = 0
-//
+	MTREnergyEVSETargetDayOfWeekBitmapTuesday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSETargetDayOfWeekBitmap/wednesday
-MTREnergyEVSETargetDayOfWeekBitmapWednesday MTREnergyEVSETargetDayOfWeekBitmap = 0
+	MTREnergyEVSETargetDayOfWeekBitmapWednesday MTREnergyEVSETargetDayOfWeekBitmap = 0
 )
 
 // MTRErrorCode enum type
@@ -1992,66 +1992,66 @@ MTREnergyEVSETargetDayOfWeekBitmapWednesday MTREnergyEVSETargetDayOfWeekBitmap =
 type MTRErrorCode uint
 
 const (
-// MTRErrorCodeAccessDenied - Access to some resource was denied.
-//
+	// MTRErrorCodeAccessDenied - Access to some resource was denied.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/accessDenied
-MTRErrorCodeAccessDenied MTRErrorCode = 0
-//
+	MTRErrorCodeAccessDenied MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/bufferTooSmall
-MTRErrorCodeBufferTooSmall MTRErrorCode = 0
-// MTRErrorCodeBusy - A request was made to some entity, and that entity cannot handle the   request right now, but might be able to at a different point in time.
-//
+	MTRErrorCodeBufferTooSmall MTRErrorCode = 0
+	// MTRErrorCodeBusy - A request was made to some entity, and that entity cannot handle the   request right now, but might be able to at a different point in time.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/busy
-MTRErrorCodeBusy MTRErrorCode = 0
-//
+	MTRErrorCodeBusy MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/cancelled
-MTRErrorCodeCancelled MTRErrorCode = 0
-//
+	MTRErrorCodeCancelled MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/dnssdUnauthorized
-MTRErrorCodeDNSSDUnauthorized MTRErrorCode = 0
-//
+	MTRErrorCodeDNSSDUnauthorized MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/fabricExists
-MTRErrorCodeFabricExists MTRErrorCode = 0
-//
+	MTRErrorCodeFabricExists MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/generalError
-MTRErrorCodeGeneralError MTRErrorCode = 0
-//
+	MTRErrorCodeGeneralError MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/integrityCheckFailed
-MTRErrorCodeIntegrityCheckFailed MTRErrorCode = 0
-//
+	MTRErrorCodeIntegrityCheckFailed MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidArgument
-MTRErrorCodeInvalidArgument MTRErrorCode = 0
-//
+	MTRErrorCodeInvalidArgument MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidIntegerValue
-MTRErrorCodeInvalidIntegerValue MTRErrorCode = 0
-//
+	MTRErrorCodeInvalidIntegerValue MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidMessageLength
-MTRErrorCodeInvalidMessageLength MTRErrorCode = 0
-//
+	MTRErrorCodeInvalidMessageLength MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidState
-MTRErrorCodeInvalidState MTRErrorCode = 0
-//
+	MTRErrorCodeInvalidState MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidStringLength
-MTRErrorCodeInvalidStringLength MTRErrorCode = 0
-// MTRErrorCodeNotFound - Something was requested that could not be located.
-//
+	MTRErrorCodeInvalidStringLength MTRErrorCode = 0
+	// MTRErrorCodeNotFound - Something was requested that could not be located.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/notFound
-MTRErrorCodeNotFound MTRErrorCode = 0
-//
+	MTRErrorCodeNotFound MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/schemaMismatch
-MTRErrorCodeSchemaMismatch MTRErrorCode = 0
-//
+	MTRErrorCodeSchemaMismatch MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/timeout
-MTRErrorCodeTimeout MTRErrorCode = 0
-//
+	MTRErrorCodeTimeout MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/tlvDecodeFailed
-MTRErrorCodeTLVDecodeFailed MTRErrorCode = 0
-//
+	MTRErrorCodeTLVDecodeFailed MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/unknownSchema
-MTRErrorCodeUnknownSchema MTRErrorCode = 0
-//
+	MTRErrorCodeUnknownSchema MTRErrorCode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/wrongAddressType
-MTRErrorCodeWrongAddressType MTRErrorCode = 0
+	MTRErrorCodeWrongAddressType MTRErrorCode = 0
 )
 
 // MTREthernetNetworkDiagnosticsFeature enum type
@@ -2075,129 +2075,129 @@ type MTREthernetNetworkDiagnosticsPHYRateType uint
 type MTREventIDType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterAccessControlEventAccessControlEntryChangedID
-MTRClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
-//
+	MTRClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterBasicEventLeaveID
-MTRClusterBasicEventLeaveID MTREventIDType = 0
-//
+	MTRClusterBasicEventLeaveID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterBasicEventStartUpID
-MTRClusterBasicEventStartUpID MTREventIDType = 0
-//
+	MTRClusterBasicEventStartUpID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterDoorLockEventLockOperationErrorID
-MTRClusterDoorLockEventLockOperationErrorID MTREventIDType = 0
-//
+	MTRClusterDoorLockEventLockOperationErrorID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterDoorLockEventLockOperationID
-MTRClusterDoorLockEventLockOperationID MTREventIDType = 0
-//
+	MTRClusterDoorLockEventLockOperationID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventDryRunningID
-MTRClusterPumpConfigurationAndControlEventDryRunningID MTREventIDType = 0
-//
+	MTRClusterPumpConfigurationAndControlEventDryRunningID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventElectronicTemperatureHighID
-MTRClusterPumpConfigurationAndControlEventElectronicTemperatureHighID MTREventIDType = 0
-//
+	MTRClusterPumpConfigurationAndControlEventElectronicTemperatureHighID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventMotorTemperatureHighID
-MTRClusterPumpConfigurationAndControlEventMotorTemperatureHighID MTREventIDType = 0
-//
+	MTRClusterPumpConfigurationAndControlEventMotorTemperatureHighID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventSensorFailureID
-MTRClusterPumpConfigurationAndControlEventSensorFailureID MTREventIDType = 0
-//
+	MTRClusterPumpConfigurationAndControlEventSensorFailureID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventSupplyVoltageLowID
-MTRClusterPumpConfigurationAndControlEventSupplyVoltageLowID MTREventIDType = 0
-//
+	MTRClusterPumpConfigurationAndControlEventSupplyVoltageLowID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventSystemPressureHighID
-MTRClusterPumpConfigurationAndControlEventSystemPressureHighID MTREventIDType = 0
-//
+	MTRClusterPumpConfigurationAndControlEventSystemPressureHighID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterSwitchEventMultiPressOngoingID
-MTRClusterSwitchEventMultiPressOngoingID MTREventIDType = 0
-//
+	MTRClusterSwitchEventMultiPressOngoingID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterThreadNetworkDiagnosticsEventConnectionStatusID
-MTRClusterThreadNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
-//
+	MTRClusterThreadNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterAccessControlEventAccessControlEntryChangedID
-MTREventIDTypeClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
-//
+	MTREventIDTypeClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterActionsEventStateChangedID
-MTREventIDTypeClusterActionsEventStateChangedID MTREventIDType = 0
-//
+	MTREventIDTypeClusterActionsEventStateChangedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBasicInformationEventReachableChangedID
-MTREventIDTypeClusterBasicInformationEventReachableChangedID MTREventIDType = 0
-//
+	MTREventIDTypeClusterBasicInformationEventReachableChangedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBooleanStateConfigurationEventSensorFaultID
-MTREventIDTypeClusterBooleanStateConfigurationEventSensorFaultID MTREventIDType = 0
-//
+	MTREventIDTypeClusterBooleanStateConfigurationEventSensorFaultID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBridgedDeviceBasicInformationEventActiveChangedID
-MTREventIDTypeClusterBridgedDeviceBasicInformationEventActiveChangedID MTREventIDType = 0
-//
+	MTREventIDTypeClusterBridgedDeviceBasicInformationEventActiveChangedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBridgedDeviceBasicInformationEventLeaveID
-MTREventIDTypeClusterBridgedDeviceBasicInformationEventLeaveID MTREventIDType = 0
-//
+	MTREventIDTypeClusterBridgedDeviceBasicInformationEventLeaveID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBridgedDeviceBasicInformationEventShutDownID
-MTREventIDTypeClusterBridgedDeviceBasicInformationEventShutDownID MTREventIDType = 0
-//
+	MTREventIDTypeClusterBridgedDeviceBasicInformationEventShutDownID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterDeviceEnergyManagementEventPowerAdjustStartID
-MTREventIDTypeClusterDeviceEnergyManagementEventPowerAdjustStartID MTREventIDType = 0
-//
+	MTREventIDTypeClusterDeviceEnergyManagementEventPowerAdjustStartID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterDoorLockEventLockOperationErrorID
-MTREventIDTypeClusterDoorLockEventLockOperationErrorID MTREventIDType = 0
-//
+	MTREventIDTypeClusterDoorLockEventLockOperationErrorID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterDoorLockEventLockOperationID
-MTREventIDTypeClusterDoorLockEventLockOperationID MTREventIDType = 0
-//
+	MTREventIDTypeClusterDoorLockEventLockOperationID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterElectricalEnergyMeasurementEventPeriodicEnergyMeasuredID
-MTREventIDTypeClusterElectricalEnergyMeasurementEventPeriodicEnergyMeasuredID MTREventIDType = 0
-//
+	MTREventIDTypeClusterElectricalEnergyMeasurementEventPeriodicEnergyMeasuredID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterGeneralDiagnosticsEventBootReasonID
-MTREventIDTypeClusterGeneralDiagnosticsEventBootReasonID MTREventIDType = 0
-//
+	MTREventIDTypeClusterGeneralDiagnosticsEventBootReasonID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterOTASoftwareUpdateRequestorEventDownloadErrorID
-MTREventIDTypeClusterOTASoftwareUpdateRequestorEventDownloadErrorID MTREventIDType = 0
-//
+	MTREventIDTypeClusterOTASoftwareUpdateRequestorEventDownloadErrorID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterOvenCavityOperationalStateEventOperationCompletionID
-MTREventIDTypeClusterOvenCavityOperationalStateEventOperationCompletionID MTREventIDType = 0
-//
+	MTREventIDTypeClusterOvenCavityOperationalStateEventOperationCompletionID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPowerSourceEventBatFaultChangeID
-MTREventIDTypeClusterPowerSourceEventBatFaultChangeID MTREventIDType = 0
-//
+	MTREventIDTypeClusterPowerSourceEventBatFaultChangeID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventAirDetectionID
-MTREventIDTypeClusterPumpConfigurationAndControlEventAirDetectionID MTREventIDType = 0
-//
+	MTREventIDTypeClusterPumpConfigurationAndControlEventAirDetectionID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventDryRunningID
-MTREventIDTypeClusterPumpConfigurationAndControlEventDryRunningID MTREventIDType = 0
-//
+	MTREventIDTypeClusterPumpConfigurationAndControlEventDryRunningID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventSupplyVoltageLowID
-MTREventIDTypeClusterPumpConfigurationAndControlEventSupplyVoltageLowID MTREventIDType = 0
-//
+	MTREventIDTypeClusterPumpConfigurationAndControlEventSupplyVoltageLowID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventSystemPressureHighID
-MTREventIDTypeClusterPumpConfigurationAndControlEventSystemPressureHighID MTREventIDType = 0
-//
+	MTREventIDTypeClusterPumpConfigurationAndControlEventSystemPressureHighID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterRVCOperationalStateEventOperationalErrorID
-MTREventIDTypeClusterRVCOperationalStateEventOperationalErrorID MTREventIDType = 0
-//
+	MTREventIDTypeClusterRVCOperationalStateEventOperationalErrorID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSmokeCOAlarmEventCOAlarmID
-MTREventIDTypeClusterSmokeCOAlarmEventCOAlarmID MTREventIDType = 0
-//
+	MTREventIDTypeClusterSmokeCOAlarmEventCOAlarmID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSoftwareDiagnosticsEventSoftwareFaultID
-MTREventIDTypeClusterSoftwareDiagnosticsEventSoftwareFaultID MTREventIDType = 0
-//
+	MTREventIDTypeClusterSoftwareDiagnosticsEventSoftwareFaultID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSwitchEventLongReleaseID
-MTREventIDTypeClusterSwitchEventLongReleaseID MTREventIDType = 0
-//
+	MTREventIDTypeClusterSwitchEventLongReleaseID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSwitchEventShortReleaseID
-MTREventIDTypeClusterSwitchEventShortReleaseID MTREventIDType = 0
-//
+	MTREventIDTypeClusterSwitchEventShortReleaseID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterTargetNavigatorEventTargetUpdatedID
-MTREventIDTypeClusterTargetNavigatorEventTargetUpdatedID MTREventIDType = 0
-//
+	MTREventIDTypeClusterTargetNavigatorEventTargetUpdatedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterThreadNetworkDiagnosticsEventConnectionStatusID
-MTREventIDTypeClusterThreadNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
-//
+	MTREventIDTypeClusterThreadNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterWiFiNetworkDiagnosticsEventAssociationFailureID
-MTREventIDTypeClusterWiFiNetworkDiagnosticsEventAssociationFailureID MTREventIDType = 0
-//
+	MTREventIDTypeClusterWiFiNetworkDiagnosticsEventAssociationFailureID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterWiFiNetworkDiagnosticsEventConnectionStatusID
-MTREventIDTypeClusterWiFiNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
+	MTREventIDTypeClusterWiFiNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
 )
 
 // MTREventPriority enum type
@@ -2316,9 +2316,9 @@ type MTRGeneralDiagnosticsBootReasonType uint
 type MTRGeneralDiagnosticsFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsFeature/dataModelTest
-MTRGeneralDiagnosticsFeatureDataModelTest MTRGeneralDiagnosticsFeature = 0
+	MTRGeneralDiagnosticsFeatureDataModelTest MTRGeneralDiagnosticsFeature = 0
 )
 
 // MTRGeneralDiagnosticsHardwareFault enum type
@@ -2402,12 +2402,12 @@ type MTRHEPAFilterMonitoringProductIdentifierType uint
 type MTRICDManagementClientType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClientType/ephemeral
-MTRICDManagementClientTypeEphemeral MTRICDManagementClientType = 0
-//
+	MTRICDManagementClientTypeEphemeral MTRICDManagementClientType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClientType/permanent
-MTRICDManagementClientTypePermanent MTRICDManagementClientType = 0
+	MTRICDManagementClientTypePermanent MTRICDManagementClientType = 0
 )
 
 // MTRICDManagementFeature enum type
@@ -2416,18 +2416,18 @@ MTRICDManagementClientTypePermanent MTRICDManagementClientType = 0
 type MTRICDManagementFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementFeature/checkInProtocolSupport
-MTRICDManagementFeatureCheckInProtocolSupport MTRICDManagementFeature = 0
-//
+	MTRICDManagementFeatureCheckInProtocolSupport MTRICDManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementFeature/dynamicSitLitSupport
-MTRICDManagementFeatureDynamicSitLitSupport MTRICDManagementFeature = 0
-//
+	MTRICDManagementFeatureDynamicSitLitSupport MTRICDManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementFeature/longIdleTimeSupport
-MTRICDManagementFeatureLongIdleTimeSupport MTRICDManagementFeature = 0
-//
+	MTRICDManagementFeatureLongIdleTimeSupport MTRICDManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementFeature/userActiveModeTrigger
-MTRICDManagementFeatureUserActiveModeTrigger MTRICDManagementFeature = 0
+	MTRICDManagementFeatureUserActiveModeTrigger MTRICDManagementFeature = 0
 )
 
 // MTRICDManagementOperatingMode enum type
@@ -2436,12 +2436,12 @@ MTRICDManagementFeatureUserActiveModeTrigger MTRICDManagementFeature = 0
 type MTRICDManagementOperatingMode uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementOperatingMode/LIT
-MTRICDManagementOperatingModeLIT MTRICDManagementOperatingMode = 0
-//
+	MTRICDManagementOperatingModeLIT MTRICDManagementOperatingMode = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementOperatingMode/SIT
-MTRICDManagementOperatingModeSIT MTRICDManagementOperatingMode = 0
+	MTRICDManagementOperatingModeSIT MTRICDManagementOperatingMode = 0
 )
 
 // MTRICDManagementUserActiveModeTriggerBitmap enum type
@@ -2450,57 +2450,57 @@ MTRICDManagementOperatingModeSIT MTRICDManagementOperatingMode = 0
 type MTRICDManagementUserActiveModeTriggerBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/actuateSensor
-MTRICDManagementUserActiveModeTriggerBitmapActuateSensor MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapActuateSensor MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/actuateSensorLightsBlink
-MTRICDManagementUserActiveModeTriggerBitmapActuateSensorLightsBlink MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapActuateSensorLightsBlink MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/actuateSensorSeconds
-MTRICDManagementUserActiveModeTriggerBitmapActuateSensorSeconds MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapActuateSensorSeconds MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/actuateSensorTimes
-MTRICDManagementUserActiveModeTriggerBitmapActuateSensorTimes MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapActuateSensorTimes MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/appDefinedButton
-MTRICDManagementUserActiveModeTriggerBitmapAppDefinedButton MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapAppDefinedButton MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/customInstruction
-MTRICDManagementUserActiveModeTriggerBitmapCustomInstruction MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapCustomInstruction MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/deviceManual
-MTRICDManagementUserActiveModeTriggerBitmapDeviceManual MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapDeviceManual MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/powerCycle
-MTRICDManagementUserActiveModeTriggerBitmapPowerCycle MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapPowerCycle MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/resetButton
-MTRICDManagementUserActiveModeTriggerBitmapResetButton MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapResetButton MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/resetButtonLightsBlink
-MTRICDManagementUserActiveModeTriggerBitmapResetButtonLightsBlink MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapResetButtonLightsBlink MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/resetButtonSeconds
-MTRICDManagementUserActiveModeTriggerBitmapResetButtonSeconds MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapResetButtonSeconds MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/resetButtonTimes
-MTRICDManagementUserActiveModeTriggerBitmapResetButtonTimes MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapResetButtonTimes MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/settingsMenu
-MTRICDManagementUserActiveModeTriggerBitmapSettingsMenu MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapSettingsMenu MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/setupButton
-MTRICDManagementUserActiveModeTriggerBitmapSetupButton MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapSetupButton MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/setupButtonLightsBlink
-MTRICDManagementUserActiveModeTriggerBitmapSetupButtonLightsBlink MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapSetupButtonLightsBlink MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/setupButtonSeconds
-MTRICDManagementUserActiveModeTriggerBitmapSetupButtonSeconds MTRICDManagementUserActiveModeTriggerBitmap = 0
-//
+	MTRICDManagementUserActiveModeTriggerBitmapSetupButtonSeconds MTRICDManagementUserActiveModeTriggerBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementUserActiveModeTriggerBitmap/setupButtonTimes
-MTRICDManagementUserActiveModeTriggerBitmapSetupButtonTimes MTRICDManagementUserActiveModeTriggerBitmap = 0
+	MTRICDManagementUserActiveModeTriggerBitmapSetupButtonTimes MTRICDManagementUserActiveModeTriggerBitmap = 0
 )
 
 // MTRIdentifyEffectIdentifier enum type
@@ -2554,18 +2554,18 @@ type MTRKeypadInputStatus uint
 type MTRLaundryDryerControlsDrynessLevel uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryDryerControlsDrynessLevel/extra
-MTRLaundryDryerControlsDrynessLevelExtra MTRLaundryDryerControlsDrynessLevel = 0
-//
+	MTRLaundryDryerControlsDrynessLevelExtra MTRLaundryDryerControlsDrynessLevel = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryDryerControlsDrynessLevel/low
-MTRLaundryDryerControlsDrynessLevelLow MTRLaundryDryerControlsDrynessLevel = 0
-//
+	MTRLaundryDryerControlsDrynessLevelLow MTRLaundryDryerControlsDrynessLevel = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryDryerControlsDrynessLevel/max
-MTRLaundryDryerControlsDrynessLevelMax MTRLaundryDryerControlsDrynessLevel = 0
-//
+	MTRLaundryDryerControlsDrynessLevelMax MTRLaundryDryerControlsDrynessLevel = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryDryerControlsDrynessLevel/normal
-MTRLaundryDryerControlsDrynessLevelNormal MTRLaundryDryerControlsDrynessLevel = 0
+	MTRLaundryDryerControlsDrynessLevelNormal MTRLaundryDryerControlsDrynessLevel = 0
 )
 
 // MTRLaundryWasherControlsFeature enum type
@@ -2574,12 +2574,12 @@ MTRLaundryDryerControlsDrynessLevelNormal MTRLaundryDryerControlsDrynessLevel = 
 type MTRLaundryWasherControlsFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherControlsFeature/rinse
-MTRLaundryWasherControlsFeatureRinse MTRLaundryWasherControlsFeature = 0
-//
+	MTRLaundryWasherControlsFeatureRinse MTRLaundryWasherControlsFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherControlsFeature/spin
-MTRLaundryWasherControlsFeatureSpin MTRLaundryWasherControlsFeature = 0
+	MTRLaundryWasherControlsFeatureSpin MTRLaundryWasherControlsFeature = 0
 )
 
 // MTRLaundryWasherControlsNumberOfRinses enum type
@@ -2588,18 +2588,18 @@ MTRLaundryWasherControlsFeatureSpin MTRLaundryWasherControlsFeature = 0
 type MTRLaundryWasherControlsNumberOfRinses uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherControlsNumberOfRinses/extra
-MTRLaundryWasherControlsNumberOfRinsesExtra MTRLaundryWasherControlsNumberOfRinses = 0
-//
+	MTRLaundryWasherControlsNumberOfRinsesExtra MTRLaundryWasherControlsNumberOfRinses = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherControlsNumberOfRinses/max
-MTRLaundryWasherControlsNumberOfRinsesMax MTRLaundryWasherControlsNumberOfRinses = 0
-//
+	MTRLaundryWasherControlsNumberOfRinsesMax MTRLaundryWasherControlsNumberOfRinses = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherControlsNumberOfRinses/none
-MTRLaundryWasherControlsNumberOfRinsesNone MTRLaundryWasherControlsNumberOfRinses = 0
-//
+	MTRLaundryWasherControlsNumberOfRinsesNone MTRLaundryWasherControlsNumberOfRinses = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherControlsNumberOfRinses/normal
-MTRLaundryWasherControlsNumberOfRinsesNormal MTRLaundryWasherControlsNumberOfRinses = 0
+	MTRLaundryWasherControlsNumberOfRinsesNormal MTRLaundryWasherControlsNumberOfRinses = 0
 )
 
 // MTRLaundryWasherModeModeTag enum type
@@ -2608,48 +2608,48 @@ MTRLaundryWasherControlsNumberOfRinsesNormal MTRLaundryWasherControlsNumberOfRin
 type MTRLaundryWasherModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/auto
-MTRLaundryWasherModeModeTagAuto MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagAuto MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/day
-MTRLaundryWasherModeModeTagDay MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagDay MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/delicate
-MTRLaundryWasherModeModeTagDelicate MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagDelicate MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/heavy
-MTRLaundryWasherModeModeTagHeavy MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagHeavy MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/lowEnergy
-MTRLaundryWasherModeModeTagLowEnergy MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagLowEnergy MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/lowNoise
-MTRLaundryWasherModeModeTagLowNoise MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagLowNoise MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/max
-MTRLaundryWasherModeModeTagMax MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagMax MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/min
-MTRLaundryWasherModeModeTagMin MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagMin MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/night
-MTRLaundryWasherModeModeTagNight MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagNight MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/normal
-MTRLaundryWasherModeModeTagNormal MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagNormal MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/quick
-MTRLaundryWasherModeModeTagQuick MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagQuick MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/quiet
-MTRLaundryWasherModeModeTagQuiet MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagQuiet MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/vacation
-MTRLaundryWasherModeModeTagVacation MTRLaundryWasherModeModeTag = 0
-//
+	MTRLaundryWasherModeModeTagVacation MTRLaundryWasherModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeModeTag/whites
-MTRLaundryWasherModeModeTagWhites MTRLaundryWasherModeModeTag = 0
+	MTRLaundryWasherModeModeTagWhites MTRLaundryWasherModeModeTag = 0
 )
 
 // MTRLevelControlFeature enum type
@@ -2698,60 +2698,60 @@ type MTRMediaInputInputType uint
 type MTRMediaPlaybackCharacteristic uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/alternate
-MTRMediaPlaybackCharacteristicAlternate MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicAlternate MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/caption
-MTRMediaPlaybackCharacteristicCaption MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicCaption MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/commentary
-MTRMediaPlaybackCharacteristicCommentary MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicCommentary MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/describesVideo
-MTRMediaPlaybackCharacteristicDescribesVideo MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicDescribesVideo MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/description
-MTRMediaPlaybackCharacteristicDescription MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicDescription MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/dubbedTranslation
-MTRMediaPlaybackCharacteristicDubbedTranslation MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicDubbedTranslation MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/easyToRead
-MTRMediaPlaybackCharacteristicEasyToRead MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicEasyToRead MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/emergency
-MTRMediaPlaybackCharacteristicEmergency MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicEmergency MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/enhancedAudioIntelligibility
-MTRMediaPlaybackCharacteristicEnhancedAudioIntelligibility MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicEnhancedAudioIntelligibility MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/forcedSubtitles
-MTRMediaPlaybackCharacteristicForcedSubtitles MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicForcedSubtitles MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/frameBased
-MTRMediaPlaybackCharacteristicFrameBased MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicFrameBased MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/karaoke
-MTRMediaPlaybackCharacteristicKaraoke MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicKaraoke MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/mainProgram
-MTRMediaPlaybackCharacteristicMainProgram MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicMainProgram MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/metadata
-MTRMediaPlaybackCharacteristicMetadata MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicMetadata MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/originalContent
-MTRMediaPlaybackCharacteristicOriginalContent MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicOriginalContent MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/subtitle
-MTRMediaPlaybackCharacteristicSubtitle MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicSubtitle MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/supplementary
-MTRMediaPlaybackCharacteristicSupplementary MTRMediaPlaybackCharacteristic = 0
-//
+	MTRMediaPlaybackCharacteristicSupplementary MTRMediaPlaybackCharacteristic = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackCharacteristic/voiceOverTranslation
-MTRMediaPlaybackCharacteristicVoiceOverTranslation MTRMediaPlaybackCharacteristic = 0
+	MTRMediaPlaybackCharacteristicVoiceOverTranslation MTRMediaPlaybackCharacteristic = 0
 )
 
 // MTRMediaPlaybackFeature enum type
@@ -2775,18 +2775,18 @@ type MTRMediaPlaybackStatus uint
 type MTRMessagesFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFeature/confirmationReply
-MTRMessagesFeatureConfirmationReply MTRMessagesFeature = 0
-//
+	MTRMessagesFeatureConfirmationReply MTRMessagesFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFeature/confirmationResponse
-MTRMessagesFeatureConfirmationResponse MTRMessagesFeature = 0
-//
+	MTRMessagesFeatureConfirmationResponse MTRMessagesFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFeature/protectedMessages
-MTRMessagesFeatureProtectedMessages MTRMessagesFeature = 0
-//
+	MTRMessagesFeatureProtectedMessages MTRMessagesFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFeature/receivedConfirmation
-MTRMessagesFeatureReceivedConfirmation MTRMessagesFeature = 0
+	MTRMessagesFeatureReceivedConfirmation MTRMessagesFeature = 0
 )
 
 // MTRMessagesFutureMessagePreference enum type
@@ -2795,21 +2795,21 @@ MTRMessagesFeatureReceivedConfirmation MTRMessagesFeature = 0
 type MTRMessagesFutureMessagePreference uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFutureMessagePreference/allowed
-MTRMessagesFutureMessagePreferenceAllowed MTRMessagesFutureMessagePreference = 0
-//
+	MTRMessagesFutureMessagePreferenceAllowed MTRMessagesFutureMessagePreference = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFutureMessagePreference/banned
-MTRMessagesFutureMessagePreferenceBanned MTRMessagesFutureMessagePreference = 0
-//
+	MTRMessagesFutureMessagePreferenceBanned MTRMessagesFutureMessagePreference = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFutureMessagePreference/disallowed
-MTRMessagesFutureMessagePreferenceDisallowed MTRMessagesFutureMessagePreference = 0
-//
+	MTRMessagesFutureMessagePreferenceDisallowed MTRMessagesFutureMessagePreference = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFutureMessagePreference/increased
-MTRMessagesFutureMessagePreferenceIncreased MTRMessagesFutureMessagePreference = 0
-//
+	MTRMessagesFutureMessagePreferenceIncreased MTRMessagesFutureMessagePreference = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesFutureMessagePreference/reduced
-MTRMessagesFutureMessagePreferenceReduced MTRMessagesFutureMessagePreference = 0
+	MTRMessagesFutureMessagePreferenceReduced MTRMessagesFutureMessagePreference = 0
 )
 
 // MTRMessagesMessageControlBitmap enum type
@@ -2818,21 +2818,21 @@ MTRMessagesFutureMessagePreferenceReduced MTRMessagesFutureMessagePreference = 0
 type MTRMessagesMessageControlBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessageControlBitmap/confirmationRequired
-MTRMessagesMessageControlBitmapConfirmationRequired MTRMessagesMessageControlBitmap = 0
-//
+	MTRMessagesMessageControlBitmapConfirmationRequired MTRMessagesMessageControlBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessageControlBitmap/messageConfirmed
-MTRMessagesMessageControlBitmapMessageConfirmed MTRMessagesMessageControlBitmap = 0
-//
+	MTRMessagesMessageControlBitmapMessageConfirmed MTRMessagesMessageControlBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessageControlBitmap/messageProtected
-MTRMessagesMessageControlBitmapMessageProtected MTRMessagesMessageControlBitmap = 0
-//
+	MTRMessagesMessageControlBitmapMessageProtected MTRMessagesMessageControlBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessageControlBitmap/replyMessage
-MTRMessagesMessageControlBitmapReplyMessage MTRMessagesMessageControlBitmap = 0
-//
+	MTRMessagesMessageControlBitmapReplyMessage MTRMessagesMessageControlBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessageControlBitmap/responseRequired
-MTRMessagesMessageControlBitmapResponseRequired MTRMessagesMessageControlBitmap = 0
+	MTRMessagesMessageControlBitmapResponseRequired MTRMessagesMessageControlBitmap = 0
 )
 
 // MTRMessagesMessagePriority enum type
@@ -2841,18 +2841,18 @@ MTRMessagesMessageControlBitmapResponseRequired MTRMessagesMessageControlBitmap 
 type MTRMessagesMessagePriority uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessagePriority/critical
-MTRMessagesMessagePriorityCritical MTRMessagesMessagePriority = 0
-//
+	MTRMessagesMessagePriorityCritical MTRMessagesMessagePriority = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessagePriority/high
-MTRMessagesMessagePriorityHigh MTRMessagesMessagePriority = 0
-//
+	MTRMessagesMessagePriorityHigh MTRMessagesMessagePriority = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessagePriority/low
-MTRMessagesMessagePriorityLow MTRMessagesMessagePriority = 0
-//
+	MTRMessagesMessagePriorityLow MTRMessagesMessagePriority = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesMessagePriority/medium
-MTRMessagesMessagePriorityMedium MTRMessagesMessagePriority = 0
+	MTRMessagesMessagePriorityMedium MTRMessagesMessagePriority = 0
 )
 
 // MTRMicrowaveOvenControlFeature enum type
@@ -2861,12 +2861,12 @@ MTRMessagesMessagePriorityMedium MTRMessagesMessagePriority = 0
 type MTRMicrowaveOvenControlFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlFeature/powerAsNumber
-MTRMicrowaveOvenControlFeaturePowerAsNumber MTRMicrowaveOvenControlFeature = 0
-//
+	MTRMicrowaveOvenControlFeaturePowerAsNumber MTRMicrowaveOvenControlFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlFeature/powerNumberLimits
-MTRMicrowaveOvenControlFeaturePowerNumberLimits MTRMicrowaveOvenControlFeature = 0
+	MTRMicrowaveOvenControlFeaturePowerNumberLimits MTRMicrowaveOvenControlFeature = 0
 )
 
 // MTRMicrowaveOvenModeModeTag enum type
@@ -2875,42 +2875,42 @@ MTRMicrowaveOvenControlFeaturePowerNumberLimits MTRMicrowaveOvenControlFeature =
 type MTRMicrowaveOvenModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/auto
-MTRMicrowaveOvenModeModeTagAuto MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagAuto MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/day
-MTRMicrowaveOvenModeModeTagDay MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagDay MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/defrost
-MTRMicrowaveOvenModeModeTagDefrost MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagDefrost MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/lowEnergy
-MTRMicrowaveOvenModeModeTagLowEnergy MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagLowEnergy MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/lowNoise
-MTRMicrowaveOvenModeModeTagLowNoise MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagLowNoise MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/max
-MTRMicrowaveOvenModeModeTagMax MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagMax MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/min
-MTRMicrowaveOvenModeModeTagMin MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagMin MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/night
-MTRMicrowaveOvenModeModeTagNight MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagNight MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/normal
-MTRMicrowaveOvenModeModeTagNormal MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagNormal MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/quick
-MTRMicrowaveOvenModeModeTagQuick MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagQuick MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/quiet
-MTRMicrowaveOvenModeModeTagQuiet MTRMicrowaveOvenModeModeTag = 0
-//
+	MTRMicrowaveOvenModeModeTagQuiet MTRMicrowaveOvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeModeTag/vacation
-MTRMicrowaveOvenModeModeTagVacation MTRMicrowaveOvenModeModeTag = 0
+	MTRMicrowaveOvenModeModeTagVacation MTRMicrowaveOvenModeModeTag = 0
 )
 
 // MTRModeSelectFeature enum type
@@ -2934,21 +2934,21 @@ type MTRNetworkCommissioningStatus uint
 type MTRNetworkCommissioningThreadCapabilitiesBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningThreadCapabilitiesBitmap/isBorderRouterCapable
-MTRNetworkCommissioningThreadCapabilitiesBitmapIsBorderRouterCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
-//
+	MTRNetworkCommissioningThreadCapabilitiesBitmapIsBorderRouterCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningThreadCapabilitiesBitmap/isFullThreadDevice
-MTRNetworkCommissioningThreadCapabilitiesBitmapIsFullThreadDevice MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
-//
+	MTRNetworkCommissioningThreadCapabilitiesBitmapIsFullThreadDevice MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningThreadCapabilitiesBitmap/isRouterCapable
-MTRNetworkCommissioningThreadCapabilitiesBitmapIsRouterCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
-//
+	MTRNetworkCommissioningThreadCapabilitiesBitmapIsRouterCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningThreadCapabilitiesBitmap/isSleepyEndDeviceCapable
-MTRNetworkCommissioningThreadCapabilitiesBitmapIsSleepyEndDeviceCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
-//
+	MTRNetworkCommissioningThreadCapabilitiesBitmapIsSleepyEndDeviceCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningThreadCapabilitiesBitmap/isSynchronizedSleepyEndDeviceCapable
-MTRNetworkCommissioningThreadCapabilitiesBitmapIsSynchronizedSleepyEndDeviceCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
+	MTRNetworkCommissioningThreadCapabilitiesBitmapIsSynchronizedSleepyEndDeviceCapable MTRNetworkCommissioningThreadCapabilitiesBitmap = 0
 )
 
 // MTRNetworkCommissioningWiFiBand enum type
@@ -3057,30 +3057,30 @@ type MTROTASoftwareUpdateRequestorUpdateState uint
 type MTROccupancySensingFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/activeInfrared
-MTROccupancySensingFeatureActiveInfrared MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeatureActiveInfrared MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/other
-MTROccupancySensingFeatureOther MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeatureOther MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/passiveInfrared
-MTROccupancySensingFeaturePassiveInfrared MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeaturePassiveInfrared MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/physicalContact
-MTROccupancySensingFeaturePhysicalContact MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeaturePhysicalContact MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/radar
-MTROccupancySensingFeatureRadar MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeatureRadar MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/rfSensing
-MTROccupancySensingFeatureRFSensing MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeatureRFSensing MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/ultrasonic
-MTROccupancySensingFeatureUltrasonic MTROccupancySensingFeature = 0
-//
+	MTROccupancySensingFeatureUltrasonic MTROccupancySensingFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingFeature/vision
-MTROccupancySensingFeatureVision MTROccupancySensingFeature = 0
+	MTROccupancySensingFeatureVision MTROccupancySensingFeature = 0
 )
 
 // MTROccupancySensingOccupancyBitmap enum type
@@ -3204,18 +3204,18 @@ type MTROtaSoftwareUpdateRequestorOTAUpdateState uint
 type MTROvenCavityOperationalStateErrorState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateErrorState/commandInvalidInState
-MTROvenCavityOperationalStateErrorStateCommandInvalidInState MTROvenCavityOperationalStateErrorState = 0
-//
+	MTROvenCavityOperationalStateErrorStateCommandInvalidInState MTROvenCavityOperationalStateErrorState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateErrorState/noError
-MTROvenCavityOperationalStateErrorStateNoError MTROvenCavityOperationalStateErrorState = 0
-//
+	MTROvenCavityOperationalStateErrorStateNoError MTROvenCavityOperationalStateErrorState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateErrorState/unableToCompleteOperation
-MTROvenCavityOperationalStateErrorStateUnableToCompleteOperation MTROvenCavityOperationalStateErrorState = 0
-//
+	MTROvenCavityOperationalStateErrorStateUnableToCompleteOperation MTROvenCavityOperationalStateErrorState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateErrorState/unableToStartOrResume
-MTROvenCavityOperationalStateErrorStateUnableToStartOrResume MTROvenCavityOperationalStateErrorState = 0
+	MTROvenCavityOperationalStateErrorStateUnableToStartOrResume MTROvenCavityOperationalStateErrorState = 0
 )
 
 // MTROvenCavityOperationalStateOperationalState enum type
@@ -3224,18 +3224,18 @@ MTROvenCavityOperationalStateErrorStateUnableToStartOrResume MTROvenCavityOperat
 type MTROvenCavityOperationalStateOperationalState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateOperationalState/error
-MTROvenCavityOperationalStateOperationalStateError MTROvenCavityOperationalStateOperationalState = 0
-//
+	MTROvenCavityOperationalStateOperationalStateError MTROvenCavityOperationalStateOperationalState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateOperationalState/paused
-MTROvenCavityOperationalStateOperationalStatePaused MTROvenCavityOperationalStateOperationalState = 0
-//
+	MTROvenCavityOperationalStateOperationalStatePaused MTROvenCavityOperationalStateOperationalState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateOperationalState/running
-MTROvenCavityOperationalStateOperationalStateRunning MTROvenCavityOperationalStateOperationalState = 0
-//
+	MTROvenCavityOperationalStateOperationalStateRunning MTROvenCavityOperationalStateOperationalState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateOperationalState/stopped
-MTROvenCavityOperationalStateOperationalStateStopped MTROvenCavityOperationalStateOperationalState = 0
+	MTROvenCavityOperationalStateOperationalStateStopped MTROvenCavityOperationalStateOperationalState = 0
 )
 
 // MTROvenModeModeTag enum type
@@ -3244,63 +3244,63 @@ MTROvenCavityOperationalStateOperationalStateStopped MTROvenCavityOperationalSta
 type MTROvenModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/auto
-MTROvenModeModeTagAuto MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagAuto MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/bake
-MTROvenModeModeTagBake MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagBake MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/clean
-MTROvenModeModeTagClean MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagClean MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/convection
-MTROvenModeModeTagConvection MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagConvection MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/convectionBake
-MTROvenModeModeTagConvectionBake MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagConvectionBake MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/convectionRoast
-MTROvenModeModeTagConvectionRoast MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagConvectionRoast MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/day
-MTROvenModeModeTagDay MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagDay MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/grill
-MTROvenModeModeTagGrill MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagGrill MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/lowEnergy
-MTROvenModeModeTagLowEnergy MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagLowEnergy MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/lowNoise
-MTROvenModeModeTagLowNoise MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagLowNoise MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/max
-MTROvenModeModeTagMax MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagMax MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/min
-MTROvenModeModeTagMin MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagMin MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/night
-MTROvenModeModeTagNight MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagNight MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/proofing
-MTROvenModeModeTagProofing MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagProofing MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/quick
-MTROvenModeModeTagQuick MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagQuick MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/quiet
-MTROvenModeModeTagQuiet MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagQuiet MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/roast
-MTROvenModeModeTagRoast MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagRoast MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/vacation
-MTROvenModeModeTagVacation MTROvenModeModeTag = 0
-//
+	MTROvenModeModeTagVacation MTROvenModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeModeTag/warming
-MTROvenModeModeTagWarming MTROvenModeModeTag = 0
+	MTROvenModeModeTagWarming MTROvenModeModeTag = 0
 )
 
 // MTROzoneConcentrationMeasurementFeature enum type
@@ -3364,30 +3364,30 @@ type MTRPM1ConcentrationMeasurementMeasurementMedium uint
 type MTRPM1ConcentrationMeasurementMeasurementUnit uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/BQM3
-MTRPM1ConcentrationMeasurementMeasurementUnitBQM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitBQM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/MGM3
-MTRPM1ConcentrationMeasurementMeasurementUnitMGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitMGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/NGM3
-MTRPM1ConcentrationMeasurementMeasurementUnitNGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitNGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PM3
-MTRPM1ConcentrationMeasurementMeasurementUnitPM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitPM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PPB
-MTRPM1ConcentrationMeasurementMeasurementUnitPPB MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitPPB MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PPM
-MTRPM1ConcentrationMeasurementMeasurementUnitPPM MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitPPM MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PPT
-MTRPM1ConcentrationMeasurementMeasurementUnitPPT MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-//
+	MTRPM1ConcentrationMeasurementMeasurementUnitPPT MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/UGM3
-MTRPM1ConcentrationMeasurementMeasurementUnitUGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
+	MTRPM1ConcentrationMeasurementMeasurementUnitUGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
 )
 
 // MTRPM25ConcentrationMeasurementFeature enum type
@@ -3476,18 +3476,18 @@ type MTRPowerSourceWiredFault uint
 type MTRPowerTopologyFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerTopologyFeature/dynamicPowerFlow
-MTRPowerTopologyFeatureDynamicPowerFlow MTRPowerTopologyFeature = 0
-//
+	MTRPowerTopologyFeatureDynamicPowerFlow MTRPowerTopologyFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerTopologyFeature/nodeTopology
-MTRPowerTopologyFeatureNodeTopology MTRPowerTopologyFeature = 0
-//
+	MTRPowerTopologyFeatureNodeTopology MTRPowerTopologyFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerTopologyFeature/setTopology
-MTRPowerTopologyFeatureSetTopology MTRPowerTopologyFeature = 0
-//
+	MTRPowerTopologyFeatureSetTopology MTRPowerTopologyFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerTopologyFeature/treeTopology
-MTRPowerTopologyFeatureTreeTopology MTRPowerTopologyFeature = 0
+	MTRPowerTopologyFeatureTreeTopology MTRPowerTopologyFeature = 0
 )
 
 // MTRPressureMeasurementFeature enum type
@@ -3606,9 +3606,9 @@ type MTRRadonConcentrationMeasurementMeasurementUnit uint
 type MTRRefrigeratorAlarmAlarmBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmAlarmBitmap/doorOpen
-MTRRefrigeratorAlarmAlarmBitmapDoorOpen MTRRefrigeratorAlarmAlarmBitmap = 0
+	MTRRefrigeratorAlarmAlarmBitmapDoorOpen MTRRefrigeratorAlarmAlarmBitmap = 0
 )
 
 // MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag enum type
@@ -3617,42 +3617,42 @@ MTRRefrigeratorAlarmAlarmBitmapDoorOpen MTRRefrigeratorAlarmAlarmBitmap = 0
 type MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/auto
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagAuto MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagAuto MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/day
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagDay MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagDay MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/lowEnergy
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagLowEnergy MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagLowEnergy MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/lowNoise
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagLowNoise MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagLowNoise MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/max
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagMax MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagMax MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/min
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagMin MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagMin MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/night
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagNight MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagNight MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/quick
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagQuick MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagQuick MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/quiet
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagQuiet MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagQuiet MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/rapidCool
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagRapidCool MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagRapidCool MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/rapidFreeze
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagRapidFreeze MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
-//
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagRapidFreeze MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag/vacation
-MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagVacation MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
+	MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagVacation MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag = 0
 )
 
 // MTRServiceAreaFeature enum type
@@ -3661,15 +3661,15 @@ MTRRefrigeratorAndTemperatureControlledCabinetModeModeTagVacation MTRRefrigerato
 type MTRServiceAreaFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaFeature/maps
-MTRServiceAreaFeatureMaps MTRServiceAreaFeature = 0
-//
+	MTRServiceAreaFeatureMaps MTRServiceAreaFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaFeature/progressReporting
-MTRServiceAreaFeatureProgressReporting MTRServiceAreaFeature = 0
-//
+	MTRServiceAreaFeatureProgressReporting MTRServiceAreaFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaFeature/selectWhileRunning
-MTRServiceAreaFeatureSelectWhileRunning MTRServiceAreaFeature = 0
+	MTRServiceAreaFeatureSelectWhileRunning MTRServiceAreaFeature = 0
 )
 
 // MTRServiceAreaOperationalStatus enum type
@@ -3678,18 +3678,18 @@ MTRServiceAreaFeatureSelectWhileRunning MTRServiceAreaFeature = 0
 type MTRServiceAreaOperationalStatus uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaOperationalStatus/completed
-MTRServiceAreaOperationalStatusCompleted MTRServiceAreaOperationalStatus = 0
-//
+	MTRServiceAreaOperationalStatusCompleted MTRServiceAreaOperationalStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaOperationalStatus/operating
-MTRServiceAreaOperationalStatusOperating MTRServiceAreaOperationalStatus = 0
-//
+	MTRServiceAreaOperationalStatusOperating MTRServiceAreaOperationalStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaOperationalStatus/pending
-MTRServiceAreaOperationalStatusPending MTRServiceAreaOperationalStatus = 0
-//
+	MTRServiceAreaOperationalStatusPending MTRServiceAreaOperationalStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaOperationalStatus/skipped
-MTRServiceAreaOperationalStatusSkipped MTRServiceAreaOperationalStatus = 0
+	MTRServiceAreaOperationalStatusSkipped MTRServiceAreaOperationalStatus = 0
 )
 
 // MTRServiceAreaSelectAreasStatus enum type
@@ -3698,18 +3698,18 @@ MTRServiceAreaOperationalStatusSkipped MTRServiceAreaOperationalStatus = 0
 type MTRServiceAreaSelectAreasStatus uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSelectAreasStatus/invalidInMode
-MTRServiceAreaSelectAreasStatusInvalidInMode MTRServiceAreaSelectAreasStatus = 0
-//
+	MTRServiceAreaSelectAreasStatusInvalidInMode MTRServiceAreaSelectAreasStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSelectAreasStatus/invalidSet
-MTRServiceAreaSelectAreasStatusInvalidSet MTRServiceAreaSelectAreasStatus = 0
-//
+	MTRServiceAreaSelectAreasStatusInvalidSet MTRServiceAreaSelectAreasStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSelectAreasStatus/success
-MTRServiceAreaSelectAreasStatusSuccess MTRServiceAreaSelectAreasStatus = 0
-//
+	MTRServiceAreaSelectAreasStatusSuccess MTRServiceAreaSelectAreasStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSelectAreasStatus/unsupportedArea
-MTRServiceAreaSelectAreasStatusUnsupportedArea MTRServiceAreaSelectAreasStatus = 0
+	MTRServiceAreaSelectAreasStatusUnsupportedArea MTRServiceAreaSelectAreasStatus = 0
 )
 
 // MTRServiceAreaSkipAreaStatus enum type
@@ -3718,18 +3718,18 @@ MTRServiceAreaSelectAreasStatusUnsupportedArea MTRServiceAreaSelectAreasStatus =
 type MTRServiceAreaSkipAreaStatus uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSkipAreaStatus/invalidAreaList
-MTRServiceAreaSkipAreaStatusInvalidAreaList MTRServiceAreaSkipAreaStatus = 0
-//
+	MTRServiceAreaSkipAreaStatusInvalidAreaList MTRServiceAreaSkipAreaStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSkipAreaStatus/invalidInMode
-MTRServiceAreaSkipAreaStatusInvalidInMode MTRServiceAreaSkipAreaStatus = 0
-//
+	MTRServiceAreaSkipAreaStatusInvalidInMode MTRServiceAreaSkipAreaStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSkipAreaStatus/invalidSkippedArea
-MTRServiceAreaSkipAreaStatusInvalidSkippedArea MTRServiceAreaSkipAreaStatus = 0
-//
+	MTRServiceAreaSkipAreaStatusInvalidSkippedArea MTRServiceAreaSkipAreaStatus = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaSkipAreaStatus/success
-MTRServiceAreaSkipAreaStatusSuccess MTRServiceAreaSkipAreaStatus = 0
+	MTRServiceAreaSkipAreaStatusSuccess MTRServiceAreaSkipAreaStatus = 0
 )
 
 // MTRSmokeCOAlarmAlarmState enum type
@@ -3798,15 +3798,15 @@ type MTRTargetNavigatorStatus uint
 type MTRTemperatureControlFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlFeature/temperatureLevel
-MTRTemperatureControlFeatureTemperatureLevel MTRTemperatureControlFeature = 0
-//
+	MTRTemperatureControlFeatureTemperatureLevel MTRTemperatureControlFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlFeature/temperatureNumber
-MTRTemperatureControlFeatureTemperatureNumber MTRTemperatureControlFeature = 0
-//
+	MTRTemperatureControlFeatureTemperatureNumber MTRTemperatureControlFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlFeature/temperatureStep
-MTRTemperatureControlFeatureTemperatureStep MTRTemperatureControlFeature = 0
+	MTRTemperatureControlFeatureTemperatureStep MTRTemperatureControlFeature = 0
 )
 
 // MTRTestClusterBitmap16MaskMap enum type
@@ -3845,9 +3845,9 @@ type MTRTestClusterSimpleBitmap uint
 type MTRThermostatACCapacityFormat uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACCapacityFormat/btUh
-MTRThermostatACCapacityFormatBTUh MTRThermostatACCapacityFormat = 0
+	MTRThermostatACCapacityFormatBTUh MTRThermostatACCapacityFormat = 0
 )
 
 // MTRThermostatACCompressorType enum type
@@ -3856,18 +3856,18 @@ MTRThermostatACCapacityFormatBTUh MTRThermostatACCapacityFormat = 0
 type MTRThermostatACCompressorType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACCompressorType/T1
-MTRThermostatACCompressorTypeT1 MTRThermostatACCompressorType = 0
-//
+	MTRThermostatACCompressorTypeT1 MTRThermostatACCompressorType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACCompressorType/T2
-MTRThermostatACCompressorTypeT2 MTRThermostatACCompressorType = 0
-//
+	MTRThermostatACCompressorTypeT2 MTRThermostatACCompressorType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACCompressorType/T3
-MTRThermostatACCompressorTypeT3 MTRThermostatACCompressorType = 0
-//
+	MTRThermostatACCompressorTypeT3 MTRThermostatACCompressorType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACCompressorType/unknown
-MTRThermostatACCompressorTypeUnknown MTRThermostatACCompressorType = 0
+	MTRThermostatACCompressorTypeUnknown MTRThermostatACCompressorType = 0
 )
 
 // MTRThermostatACErrorCodeBitmap enum type
@@ -3876,21 +3876,21 @@ MTRThermostatACCompressorTypeUnknown MTRThermostatACCompressorType = 0
 type MTRThermostatACErrorCodeBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACErrorCodeBitmap/coilSensorFail
-MTRThermostatACErrorCodeBitmapCoilSensorFail MTRThermostatACErrorCodeBitmap = 0
-//
+	MTRThermostatACErrorCodeBitmapCoilSensorFail MTRThermostatACErrorCodeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACErrorCodeBitmap/compressorFail
-MTRThermostatACErrorCodeBitmapCompressorFail MTRThermostatACErrorCodeBitmap = 0
-//
+	MTRThermostatACErrorCodeBitmapCompressorFail MTRThermostatACErrorCodeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACErrorCodeBitmap/fanFail
-MTRThermostatACErrorCodeBitmapFanFail MTRThermostatACErrorCodeBitmap = 0
-//
+	MTRThermostatACErrorCodeBitmapFanFail MTRThermostatACErrorCodeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACErrorCodeBitmap/outdoorSensorFail
-MTRThermostatACErrorCodeBitmapOutdoorSensorFail MTRThermostatACErrorCodeBitmap = 0
-//
+	MTRThermostatACErrorCodeBitmapOutdoorSensorFail MTRThermostatACErrorCodeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACErrorCodeBitmap/roomSensorFail
-MTRThermostatACErrorCodeBitmapRoomSensorFail MTRThermostatACErrorCodeBitmap = 0
+	MTRThermostatACErrorCodeBitmapRoomSensorFail MTRThermostatACErrorCodeBitmap = 0
 )
 
 // MTRThermostatACLouverPosition enum type
@@ -3899,21 +3899,21 @@ MTRThermostatACErrorCodeBitmapRoomSensorFail MTRThermostatACErrorCodeBitmap = 0
 type MTRThermostatACLouverPosition uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACLouverPosition/closed
-MTRThermostatACLouverPositionClosed MTRThermostatACLouverPosition = 0
-//
+	MTRThermostatACLouverPositionClosed MTRThermostatACLouverPosition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACLouverPosition/half
-MTRThermostatACLouverPositionHalf MTRThermostatACLouverPosition = 0
-//
+	MTRThermostatACLouverPositionHalf MTRThermostatACLouverPosition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACLouverPosition/open
-MTRThermostatACLouverPositionOpen MTRThermostatACLouverPosition = 0
-//
+	MTRThermostatACLouverPositionOpen MTRThermostatACLouverPosition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACLouverPosition/quarter
-MTRThermostatACLouverPositionQuarter MTRThermostatACLouverPosition = 0
-//
+	MTRThermostatACLouverPositionQuarter MTRThermostatACLouverPosition = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACLouverPosition/threeQuarters
-MTRThermostatACLouverPositionThreeQuarters MTRThermostatACLouverPosition = 0
+	MTRThermostatACLouverPositionThreeQuarters MTRThermostatACLouverPosition = 0
 )
 
 // MTRThermostatACRefrigerantType enum type
@@ -3922,18 +3922,18 @@ MTRThermostatACLouverPositionThreeQuarters MTRThermostatACLouverPosition = 0
 type MTRThermostatACRefrigerantType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACRefrigerantType/R22
-MTRThermostatACRefrigerantTypeR22 MTRThermostatACRefrigerantType = 0
-//
+	MTRThermostatACRefrigerantTypeR22 MTRThermostatACRefrigerantType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACRefrigerantType/r407c
-MTRThermostatACRefrigerantTypeR407c MTRThermostatACRefrigerantType = 0
-//
+	MTRThermostatACRefrigerantTypeR407c MTRThermostatACRefrigerantType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACRefrigerantType/r410a
-MTRThermostatACRefrigerantTypeR410a MTRThermostatACRefrigerantType = 0
-//
+	MTRThermostatACRefrigerantTypeR410a MTRThermostatACRefrigerantType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACRefrigerantType/unknown
-MTRThermostatACRefrigerantTypeUnknown MTRThermostatACRefrigerantType = 0
+	MTRThermostatACRefrigerantTypeUnknown MTRThermostatACRefrigerantType = 0
 )
 
 // MTRThermostatACType enum type
@@ -3942,21 +3942,21 @@ MTRThermostatACRefrigerantTypeUnknown MTRThermostatACRefrigerantType = 0
 type MTRThermostatACType uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACType/coolingFixed
-MTRThermostatACTypeCoolingFixed MTRThermostatACType = 0
-//
+	MTRThermostatACTypeCoolingFixed MTRThermostatACType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACType/coolingInverter
-MTRThermostatACTypeCoolingInverter MTRThermostatACType = 0
-//
+	MTRThermostatACTypeCoolingInverter MTRThermostatACType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACType/heatPumpFixed
-MTRThermostatACTypeHeatPumpFixed MTRThermostatACType = 0
-//
+	MTRThermostatACTypeHeatPumpFixed MTRThermostatACType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACType/heatPumpInverter
-MTRThermostatACTypeHeatPumpInverter MTRThermostatACType = 0
-//
+	MTRThermostatACTypeHeatPumpInverter MTRThermostatACType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatACType/unknown
-MTRThermostatACTypeUnknown MTRThermostatACType = 0
+	MTRThermostatACTypeUnknown MTRThermostatACType = 0
 )
 
 // MTRThermostatControlSequence enum type
@@ -3985,18 +3985,18 @@ type MTRThermostatFeature uint
 type MTRThermostatHVACSystemTypeBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatHVACSystemTypeBitmap/coolingStage
-MTRThermostatHVACSystemTypeBitmapCoolingStage MTRThermostatHVACSystemTypeBitmap = 0
-//
+	MTRThermostatHVACSystemTypeBitmapCoolingStage MTRThermostatHVACSystemTypeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatHVACSystemTypeBitmap/heatingIsHeatPump
-MTRThermostatHVACSystemTypeBitmapHeatingIsHeatPump MTRThermostatHVACSystemTypeBitmap = 0
-//
+	MTRThermostatHVACSystemTypeBitmapHeatingIsHeatPump MTRThermostatHVACSystemTypeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatHVACSystemTypeBitmap/heatingStage
-MTRThermostatHVACSystemTypeBitmapHeatingStage MTRThermostatHVACSystemTypeBitmap = 0
-//
+	MTRThermostatHVACSystemTypeBitmapHeatingStage MTRThermostatHVACSystemTypeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatHVACSystemTypeBitmap/heatingUsesFuel
-MTRThermostatHVACSystemTypeBitmapHeatingUsesFuel MTRThermostatHVACSystemTypeBitmap = 0
+	MTRThermostatHVACSystemTypeBitmapHeatingUsesFuel MTRThermostatHVACSystemTypeBitmap = 0
 )
 
 // MTRThermostatModeForSequence enum type
@@ -4010,9 +4010,9 @@ type MTRThermostatModeForSequence uint
 type MTRThermostatOccupancyBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatOccupancyBitmap/occupied
-MTRThermostatOccupancyBitmapOccupied MTRThermostatOccupancyBitmap = 0
+	MTRThermostatOccupancyBitmapOccupied MTRThermostatOccupancyBitmap = 0
 )
 
 // MTRThermostatPresetScenario enum type
@@ -4021,27 +4021,27 @@ MTRThermostatOccupancyBitmapOccupied MTRThermostatOccupancyBitmap = 0
 type MTRThermostatPresetScenario uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/goingToSleep
-MTRThermostatPresetScenarioGoingToSleep MTRThermostatPresetScenario = 0
-//
+	MTRThermostatPresetScenarioGoingToSleep MTRThermostatPresetScenario = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/occupied
-MTRThermostatPresetScenarioOccupied MTRThermostatPresetScenario = 0
-//
+	MTRThermostatPresetScenarioOccupied MTRThermostatPresetScenario = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/sleep
-MTRThermostatPresetScenarioSleep MTRThermostatPresetScenario = 0
-//
+	MTRThermostatPresetScenarioSleep MTRThermostatPresetScenario = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/unoccupied
-MTRThermostatPresetScenarioUnoccupied MTRThermostatPresetScenario = 0
-//
+	MTRThermostatPresetScenarioUnoccupied MTRThermostatPresetScenario = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/userDefined
-MTRThermostatPresetScenarioUserDefined MTRThermostatPresetScenario = 0
-//
+	MTRThermostatPresetScenarioUserDefined MTRThermostatPresetScenario = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/vacation
-MTRThermostatPresetScenarioVacation MTRThermostatPresetScenario = 0
-//
+	MTRThermostatPresetScenarioVacation MTRThermostatPresetScenario = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetScenario/wake
-MTRThermostatPresetScenarioWake MTRThermostatPresetScenario = 0
+	MTRThermostatPresetScenarioWake MTRThermostatPresetScenario = 0
 )
 
 // MTRThermostatPresetTypeFeaturesBitmap enum type
@@ -4050,12 +4050,12 @@ MTRThermostatPresetScenarioWake MTRThermostatPresetScenario = 0
 type MTRThermostatPresetTypeFeaturesBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetTypeFeaturesBitmap/automatic
-MTRThermostatPresetTypeFeaturesBitmapAutomatic MTRThermostatPresetTypeFeaturesBitmap = 0
-//
+	MTRThermostatPresetTypeFeaturesBitmapAutomatic MTRThermostatPresetTypeFeaturesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatPresetTypeFeaturesBitmap/supportsNames
-MTRThermostatPresetTypeFeaturesBitmapSupportsNames MTRThermostatPresetTypeFeaturesBitmap = 0
+	MTRThermostatPresetTypeFeaturesBitmapSupportsNames MTRThermostatPresetTypeFeaturesBitmap = 0
 )
 
 // MTRThermostatProgrammingOperationModeBitmap enum type
@@ -4064,15 +4064,15 @@ MTRThermostatPresetTypeFeaturesBitmapSupportsNames MTRThermostatPresetTypeFeatur
 type MTRThermostatProgrammingOperationModeBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatProgrammingOperationModeBitmap/autoRecovery
-MTRThermostatProgrammingOperationModeBitmapAutoRecovery MTRThermostatProgrammingOperationModeBitmap = 0
-//
+	MTRThermostatProgrammingOperationModeBitmapAutoRecovery MTRThermostatProgrammingOperationModeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatProgrammingOperationModeBitmap/economy
-MTRThermostatProgrammingOperationModeBitmapEconomy MTRThermostatProgrammingOperationModeBitmap = 0
-//
+	MTRThermostatProgrammingOperationModeBitmapEconomy MTRThermostatProgrammingOperationModeBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatProgrammingOperationModeBitmap/scheduleActive
-MTRThermostatProgrammingOperationModeBitmapScheduleActive MTRThermostatProgrammingOperationModeBitmap = 0
+	MTRThermostatProgrammingOperationModeBitmapScheduleActive MTRThermostatProgrammingOperationModeBitmap = 0
 )
 
 // MTRThermostatRelayStateBitmap enum type
@@ -4081,27 +4081,27 @@ MTRThermostatProgrammingOperationModeBitmapScheduleActive MTRThermostatProgrammi
 type MTRThermostatRelayStateBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/cool
-MTRThermostatRelayStateBitmapCool MTRThermostatRelayStateBitmap = 0
-//
+	MTRThermostatRelayStateBitmapCool MTRThermostatRelayStateBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/coolStage2
-MTRThermostatRelayStateBitmapCoolStage2 MTRThermostatRelayStateBitmap = 0
-//
+	MTRThermostatRelayStateBitmapCoolStage2 MTRThermostatRelayStateBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/fan
-MTRThermostatRelayStateBitmapFan MTRThermostatRelayStateBitmap = 0
-//
+	MTRThermostatRelayStateBitmapFan MTRThermostatRelayStateBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/fanStage2
-MTRThermostatRelayStateBitmapFanStage2 MTRThermostatRelayStateBitmap = 0
-//
+	MTRThermostatRelayStateBitmapFanStage2 MTRThermostatRelayStateBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/fanStage3
-MTRThermostatRelayStateBitmapFanStage3 MTRThermostatRelayStateBitmap = 0
-//
+	MTRThermostatRelayStateBitmapFanStage3 MTRThermostatRelayStateBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/heat
-MTRThermostatRelayStateBitmapHeat MTRThermostatRelayStateBitmap = 0
-//
+	MTRThermostatRelayStateBitmapHeat MTRThermostatRelayStateBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRelayStateBitmap/heatStage2
-MTRThermostatRelayStateBitmapHeatStage2 MTRThermostatRelayStateBitmap = 0
+	MTRThermostatRelayStateBitmapHeatStage2 MTRThermostatRelayStateBitmap = 0
 )
 
 // MTRThermostatRemoteSensingBitmap enum type
@@ -4110,15 +4110,15 @@ MTRThermostatRelayStateBitmapHeatStage2 MTRThermostatRelayStateBitmap = 0
 type MTRThermostatRemoteSensingBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRemoteSensingBitmap/localTemperature
-MTRThermostatRemoteSensingBitmapLocalTemperature MTRThermostatRemoteSensingBitmap = 0
-//
+	MTRThermostatRemoteSensingBitmapLocalTemperature MTRThermostatRemoteSensingBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRemoteSensingBitmap/occupancy
-MTRThermostatRemoteSensingBitmapOccupancy MTRThermostatRemoteSensingBitmap = 0
-//
+	MTRThermostatRemoteSensingBitmapOccupancy MTRThermostatRemoteSensingBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatRemoteSensingBitmap/outdoorTemperature
-MTRThermostatRemoteSensingBitmapOutdoorTemperature MTRThermostatRemoteSensingBitmap = 0
+	MTRThermostatRemoteSensingBitmapOutdoorTemperature MTRThermostatRemoteSensingBitmap = 0
 )
 
 // MTRThermostatRunningMode enum type
@@ -4142,18 +4142,18 @@ type MTRThermostatScheduleModeBitmap uint
 type MTRThermostatScheduleTypeFeaturesBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatScheduleTypeFeaturesBitmap/supportsNames
-MTRThermostatScheduleTypeFeaturesBitmapSupportsNames MTRThermostatScheduleTypeFeaturesBitmap = 0
-//
+	MTRThermostatScheduleTypeFeaturesBitmapSupportsNames MTRThermostatScheduleTypeFeaturesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatScheduleTypeFeaturesBitmap/supportsOff
-MTRThermostatScheduleTypeFeaturesBitmapSupportsOff MTRThermostatScheduleTypeFeaturesBitmap = 0
-//
+	MTRThermostatScheduleTypeFeaturesBitmapSupportsOff MTRThermostatScheduleTypeFeaturesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatScheduleTypeFeaturesBitmap/supportsPresets
-MTRThermostatScheduleTypeFeaturesBitmapSupportsPresets MTRThermostatScheduleTypeFeaturesBitmap = 0
-//
+	MTRThermostatScheduleTypeFeaturesBitmapSupportsPresets MTRThermostatScheduleTypeFeaturesBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatScheduleTypeFeaturesBitmap/supportsSetpoints
-MTRThermostatScheduleTypeFeaturesBitmapSupportsSetpoints MTRThermostatScheduleTypeFeaturesBitmap = 0
+	MTRThermostatScheduleTypeFeaturesBitmapSupportsSetpoints MTRThermostatScheduleTypeFeaturesBitmap = 0
 )
 
 // MTRThermostatSetpointAdjustMode enum type
@@ -4167,15 +4167,15 @@ type MTRThermostatSetpointAdjustMode uint
 type MTRThermostatSetpointChangeSource uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatSetpointChangeSource/external
-MTRThermostatSetpointChangeSourceExternal MTRThermostatSetpointChangeSource = 0
-//
+	MTRThermostatSetpointChangeSourceExternal MTRThermostatSetpointChangeSource = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatSetpointChangeSource/manual
-MTRThermostatSetpointChangeSourceManual MTRThermostatSetpointChangeSource = 0
-//
+	MTRThermostatSetpointChangeSourceManual MTRThermostatSetpointChangeSource = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatSetpointChangeSource/schedule
-MTRThermostatSetpointChangeSourceSchedule MTRThermostatSetpointChangeSource = 0
+	MTRThermostatSetpointChangeSourceSchedule MTRThermostatSetpointChangeSource = 0
 )
 
 // MTRThermostatSetpointRaiseLowerMode enum type
@@ -4189,27 +4189,27 @@ type MTRThermostatSetpointRaiseLowerMode uint
 type MTRThermostatStartOfWeek uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/friday
-MTRThermostatStartOfWeekFriday MTRThermostatStartOfWeek = 0
-//
+	MTRThermostatStartOfWeekFriday MTRThermostatStartOfWeek = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/monday
-MTRThermostatStartOfWeekMonday MTRThermostatStartOfWeek = 0
-//
+	MTRThermostatStartOfWeekMonday MTRThermostatStartOfWeek = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/saturday
-MTRThermostatStartOfWeekSaturday MTRThermostatStartOfWeek = 0
-//
+	MTRThermostatStartOfWeekSaturday MTRThermostatStartOfWeek = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/sunday
-MTRThermostatStartOfWeekSunday MTRThermostatStartOfWeek = 0
-//
+	MTRThermostatStartOfWeekSunday MTRThermostatStartOfWeek = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/thursday
-MTRThermostatStartOfWeekThursday MTRThermostatStartOfWeek = 0
-//
+	MTRThermostatStartOfWeekThursday MTRThermostatStartOfWeek = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/tuesday
-MTRThermostatStartOfWeekTuesday MTRThermostatStartOfWeek = 0
-//
+	MTRThermostatStartOfWeekTuesday MTRThermostatStartOfWeek = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatStartOfWeek/wednesday
-MTRThermostatStartOfWeekWednesday MTRThermostatStartOfWeek = 0
+	MTRThermostatStartOfWeekWednesday MTRThermostatStartOfWeek = 0
 )
 
 // MTRThermostatSystemMode enum type
@@ -4223,12 +4223,12 @@ type MTRThermostatSystemMode uint
 type MTRThermostatTemperatureSetpointHold uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatTemperatureSetpointHold/setpointHoldOff
-MTRThermostatTemperatureSetpointHoldSetpointHoldOff MTRThermostatTemperatureSetpointHold = 0
-//
+	MTRThermostatTemperatureSetpointHoldSetpointHoldOff MTRThermostatTemperatureSetpointHold = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatTemperatureSetpointHold/setpointHoldOn
-MTRThermostatTemperatureSetpointHoldSetpointHoldOn MTRThermostatTemperatureSetpointHold = 0
+	MTRThermostatTemperatureSetpointHoldSetpointHoldOn MTRThermostatTemperatureSetpointHold = 0
 )
 
 // MTRThermostatUserInterfaceConfigurationKeypadLockout enum type
@@ -4252,9 +4252,9 @@ type MTRThermostatUserInterfaceConfigurationTemperatureDisplayMode uint
 type MTRThreadBorderRouterManagementFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementFeature/panChange
-MTRThreadBorderRouterManagementFeaturePANChange MTRThreadBorderRouterManagementFeature = 0
+	MTRThreadBorderRouterManagementFeaturePANChange MTRThreadBorderRouterManagementFeature = 0
 )
 
 // MTRThreadNetworkDiagnosticsConnectionStatus enum type
@@ -4303,18 +4303,18 @@ type MTRTimeFormatLocalizationHourFormat uint
 type MTRTimeSynchronizationFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationFeature/ntpClient
-MTRTimeSynchronizationFeatureNTPClient MTRTimeSynchronizationFeature = 0
-//
+	MTRTimeSynchronizationFeatureNTPClient MTRTimeSynchronizationFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationFeature/ntpServer
-MTRTimeSynchronizationFeatureNTPServer MTRTimeSynchronizationFeature = 0
-//
+	MTRTimeSynchronizationFeatureNTPServer MTRTimeSynchronizationFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationFeature/timeSyncClient
-MTRTimeSynchronizationFeatureTimeSyncClient MTRTimeSynchronizationFeature = 0
-//
+	MTRTimeSynchronizationFeatureTimeSyncClient MTRTimeSynchronizationFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationFeature/timeZone
-MTRTimeSynchronizationFeatureTimeZone MTRTimeSynchronizationFeature = 0
+	MTRTimeSynchronizationFeatureTimeZone MTRTimeSynchronizationFeature = 0
 )
 
 // MTRTimeSynchronizationGranularity enum type
@@ -4328,9 +4328,9 @@ type MTRTimeSynchronizationGranularity uint
 type MTRTimeSynchronizationStatusCode uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationStatusCode/timeNotAccepted
-MTRTimeSynchronizationStatusCodeTimeNotAccepted MTRTimeSynchronizationStatusCode = 0
+	MTRTimeSynchronizationStatusCodeTimeNotAccepted MTRTimeSynchronizationStatusCode = 0
 )
 
 // MTRTimeSynchronizationTimeSource enum type
@@ -4344,15 +4344,15 @@ type MTRTimeSynchronizationTimeSource uint
 type MTRTimeSynchronizationTimeZoneDatabase uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationTimeZoneDatabase/full
-MTRTimeSynchronizationTimeZoneDatabaseFull MTRTimeSynchronizationTimeZoneDatabase = 0
-//
+	MTRTimeSynchronizationTimeZoneDatabaseFull MTRTimeSynchronizationTimeZoneDatabase = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationTimeZoneDatabase/none
-MTRTimeSynchronizationTimeZoneDatabaseNone MTRTimeSynchronizationTimeZoneDatabase = 0
-//
+	MTRTimeSynchronizationTimeZoneDatabaseNone MTRTimeSynchronizationTimeZoneDatabase = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationTimeZoneDatabase/partial
-MTRTimeSynchronizationTimeZoneDatabasePartial MTRTimeSynchronizationTimeZoneDatabase = 0
+	MTRTimeSynchronizationTimeZoneDatabasePartial MTRTimeSynchronizationTimeZoneDatabase = 0
 )
 
 // MTRTotalVolatileOrganicCompoundsConcentrationMeasurementFeature enum type
@@ -4446,12 +4446,12 @@ type MTRValveConfigurationAndControlValveState uint
 type MTRWaterHeaterManagementBoostState uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementBoostState/active
-MTRWaterHeaterManagementBoostStateActive MTRWaterHeaterManagementBoostState = 0
-//
+	MTRWaterHeaterManagementBoostStateActive MTRWaterHeaterManagementBoostState = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementBoostState/inactive
-MTRWaterHeaterManagementBoostStateInactive MTRWaterHeaterManagementBoostState = 0
+	MTRWaterHeaterManagementBoostStateInactive MTRWaterHeaterManagementBoostState = 0
 )
 
 // MTRWaterHeaterManagementFeature enum type
@@ -4460,12 +4460,12 @@ MTRWaterHeaterManagementBoostStateInactive MTRWaterHeaterManagementBoostState = 
 type MTRWaterHeaterManagementFeature uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementFeature/energyManagement
-MTRWaterHeaterManagementFeatureEnergyManagement MTRWaterHeaterManagementFeature = 0
-//
+	MTRWaterHeaterManagementFeatureEnergyManagement MTRWaterHeaterManagementFeature = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementFeature/tankPercent
-MTRWaterHeaterManagementFeatureTankPercent MTRWaterHeaterManagementFeature = 0
+	MTRWaterHeaterManagementFeatureTankPercent MTRWaterHeaterManagementFeature = 0
 )
 
 // MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap enum type
@@ -4474,21 +4474,21 @@ MTRWaterHeaterManagementFeatureTankPercent MTRWaterHeaterManagementFeature = 0
 type MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap/boiler
-MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapBoiler MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
-//
+	MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapBoiler MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap/heatPump
-MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapHeatPump MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
-//
+	MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapHeatPump MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap/immersionElement1
-MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapImmersionElement1 MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
-//
+	MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapImmersionElement1 MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap/immersionElement2
-MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapImmersionElement2 MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
-//
+	MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapImmersionElement2 MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap/other
-MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapOther MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
+	MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapOther MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap = 0
 )
 
 // MTRWaterHeaterModeModeTag enum type
@@ -4497,45 +4497,45 @@ MTRWaterHeaterManagementWaterHeaterHeatSourceBitmapOther MTRWaterHeaterManagemen
 type MTRWaterHeaterModeModeTag uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/auto
-MTRWaterHeaterModeModeTagAuto MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagAuto MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/day
-MTRWaterHeaterModeModeTagDay MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagDay MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/lowEnergy
-MTRWaterHeaterModeModeTagLowEnergy MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagLowEnergy MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/lowNoise
-MTRWaterHeaterModeModeTagLowNoise MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagLowNoise MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/manual
-MTRWaterHeaterModeModeTagManual MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagManual MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/max
-MTRWaterHeaterModeModeTagMax MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagMax MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/min
-MTRWaterHeaterModeModeTagMin MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagMin MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/night
-MTRWaterHeaterModeModeTagNight MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagNight MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/off
-MTRWaterHeaterModeModeTagOff MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagOff MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/quick
-MTRWaterHeaterModeModeTagQuick MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagQuick MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/quiet
-MTRWaterHeaterModeModeTagQuiet MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagQuiet MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/timed
-MTRWaterHeaterModeModeTagTimed MTRWaterHeaterModeModeTag = 0
-//
+	MTRWaterHeaterModeModeTagTimed MTRWaterHeaterModeModeTag = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeModeTag/vacation
-MTRWaterHeaterModeModeTagVacation MTRWaterHeaterModeModeTag = 0
+	MTRWaterHeaterModeModeTagVacation MTRWaterHeaterModeModeTag = 0
 )
 
 // MTRWiFiNetworkDiagnosticsAssociationFailureCause enum type

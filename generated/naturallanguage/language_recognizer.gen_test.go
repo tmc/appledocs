@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = naturallanguage.NewLanguageRecognizer
 
-
 // ExampleNewLanguageRecognizer demonstrates how to create a LanguageRecognizer instance.
 // Creates a recognizer that you can customize.
 func ExampleNewLanguageRecognizer() {
 	_ = naturallanguage.NewLanguageRecognizer()
 	// Output:
 }
-
-

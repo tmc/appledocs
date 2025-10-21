@@ -12,5 +12,3 @@ var ColorInvertProtocol *objc.Protocol
 func init() {
 	ColorInvertProtocol = objc.GetProtocol("CIColorInvert")
 }
-
-

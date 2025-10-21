@@ -12,5 +12,3 @@ var BluetoothRFCOMMChannelDelegateProtocol *objc.Protocol
 func init() {
 	BluetoothRFCOMMChannelDelegateProtocol = objc.GetProtocol("IOBluetoothRFCOMMChannelDelegate")
 }
-
-

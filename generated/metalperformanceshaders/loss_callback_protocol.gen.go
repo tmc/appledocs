@@ -12,5 +12,3 @@ var LossCallbackProtocol *objc.Protocol
 func init() {
 	LossCallbackProtocol = objc.GetProtocol("MPSNNLossCallback")
 }
-
-

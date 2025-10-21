@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextContentManager] class.
@@ -79,6 +80,7 @@ func NewTextContentManager() TextContentManager {
 	return getTextContentManagerClass().New()
 }
 
+
 // Performs an editing transaction and invokes a block upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/performEditingTransaction(_:)
@@ -100,6 +102,7 @@ func (t_ TextContentManager) AutomaticallySynchronizesTextLayoutManagers() bool 
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallySynchronizesTextLayoutManagers"))
 	return rv
 }
+
 
 // SetAutomaticallySynchronizesTextLayoutManagers sets the value of the automaticallySynchronizesTextLayoutManagers property.
 // Determines if the framework should automatically synchronize all text layout managers when exiting an editing transaction.
@@ -125,3 +128,6 @@ func (t_ TextContentManager) TextLayoutManagers() []TextLayoutManager {
 	rv := objc.Send[[]TextLayoutManager](t_.ID, objc.Sel("textLayoutManagers"))
 	return rv
 }
+
+
+

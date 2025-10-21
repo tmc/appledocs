@@ -82,6 +82,8 @@ func NewPolygonObstacle() PolygonObstacle {
 }
 
 
+
+
 // Initializes a polygon obstacle with the specified list of vertices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/initWithPoints:count:

@@ -106,6 +106,7 @@ func (m_ MTRCommandWithRequiredResponse) CommandFields() unsafe.Pointer {
 func (m_ MTRCommandWithRequiredResponse) SetCommandFields(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandFields:"), value)
 }
+
 // The path of the command being invoked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/path
@@ -123,6 +124,7 @@ func (m_ MTRCommandWithRequiredResponse) Path() unsafe.Pointer {
 func (m_ MTRCommandWithRequiredResponse) SetPath(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
+
 // The response that represents this command succeeding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/requiredResponse
@@ -140,4 +142,5 @@ func (m_ MTRCommandWithRequiredResponse) RequiredResponse() unsafe.Pointer {
 func (m_ MTRCommandWithRequiredResponse) SetRequiredResponse(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredResponse:"), value)
 }
+
 

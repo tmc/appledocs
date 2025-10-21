@@ -20,5 +20,3 @@ var imageblockMemoryLengthForDimensionsProtocol *objc.Protocol
 func init() {
 	imageblockMemoryLengthForDimensionsProtocol = objc.GetProtocol("imageblockMemoryLengthForDimensions:")
 }
-
-

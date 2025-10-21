@@ -15,4 +15,3 @@ var videoDecoderWithCodecTypeProtocol *objc.Protocol
 func init() {
 	videoDecoderWithCodecTypeProtocol = objc.GetProtocol("videoDecoderWithCodecType:")
 }
-

@@ -20,5 +20,3 @@ var newIOHandleWithURLProtocol *objc.Protocol
 func init() {
 	newIOHandleWithURLProtocol = objc.GetProtocol("newIOHandleWithURL:")
 }
-
-

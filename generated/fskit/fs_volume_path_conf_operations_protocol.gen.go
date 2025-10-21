@@ -15,5 +15,3 @@ var FSVolumePathConfOperationsProtocol *objc.Protocol
 func init() {
 	FSVolumePathConfOperationsProtocol = objc.GetProtocol("FSVolumePathConfOperations")
 }
-
-

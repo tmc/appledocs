@@ -12,5 +12,3 @@ var FilterConstructorProtocol *objc.Protocol
 func init() {
 	FilterConstructorProtocol = objc.GetProtocol("CIFilterConstructor")
 }
-
-

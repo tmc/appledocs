@@ -20,5 +20,3 @@ var setTileBytesProtocol *objc.Protocol
 func init() {
 	setTileBytesProtocol = objc.GetProtocol("setTileBytes:")
 }
-
-

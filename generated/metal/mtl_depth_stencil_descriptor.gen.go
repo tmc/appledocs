@@ -98,6 +98,7 @@ func (d_ DepthStencilDescriptor) BackFaceStencil() unsafe.Pointer {
 func (d_ DepthStencilDescriptor) SetBackFaceStencil(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBackFaceStencil:"), value)
 }
+
 // The comparison that is performed between a fragment’s depth value and the depth value in the attachment, which determines whether to discard the fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/depthCompareFunction
@@ -115,6 +116,7 @@ func (d_ DepthStencilDescriptor) DepthCompareFunction() unsafe.Pointer {
 func (d_ DepthStencilDescriptor) SetDepthCompareFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthCompareFunction:"), value)
 }
+
 // The stencil descriptor for front-facing primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/frontFaceStencil
@@ -132,6 +134,7 @@ func (d_ DepthStencilDescriptor) FrontFaceStencil() unsafe.Pointer {
 func (d_ DepthStencilDescriptor) SetFrontFaceStencil(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrontFaceStencil:"), value)
 }
+
 // A Boolean value that indicates whether depth values can be written to the depth attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/isDepthWriteEnabled
@@ -149,6 +152,7 @@ func (d_ DepthStencilDescriptor) DepthWriteEnabled() bool {
 func (d_ DepthStencilDescriptor) SetDepthWriteEnabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthWriteEnabled:"), value)
 }
+
 // A string that identifies this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
@@ -166,5 +170,6 @@ func (d_ DepthStencilDescriptor) Label() string {
 func (d_ DepthStencilDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 
 

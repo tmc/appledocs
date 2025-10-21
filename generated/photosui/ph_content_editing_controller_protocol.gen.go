@@ -19,5 +19,3 @@ var PHContentEditingControllerProtocol *objc.Protocol
 func init() {
 	PHContentEditingControllerProtocol = objc.GetProtocol("PHContentEditingController")
 }
-
-

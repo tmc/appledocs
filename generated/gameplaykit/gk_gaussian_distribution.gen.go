@@ -81,6 +81,8 @@ func NewGaussianDistribution() GaussianDistribution {
 }
 
 
+
+
 // Initializes a Gaussian random distribution with the specified lower and upper bounds, using the specified source randomizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:lowestValue:highestValue:)
@@ -90,6 +92,8 @@ func NewGaussianDistributionWithRandomSourceLowestValueHighestValue(source objc.
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a Gaussian random distribution with the specified mean and deviation, using the specified source randomizer.
 //

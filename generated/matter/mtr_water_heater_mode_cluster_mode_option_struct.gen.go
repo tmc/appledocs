@@ -90,6 +90,7 @@ func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Label() string {
 func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/mode
 func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Mode() unsafe.Pointer {
 func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/modeTags
 func (m_ MTRWaterHeaterModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRWaterHeaterModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

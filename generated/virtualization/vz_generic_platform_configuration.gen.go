@@ -104,6 +104,7 @@ func (v_ VZGenericPlatformConfiguration) NestedVirtualizationEnabled() bool {
 func (v_ VZGenericPlatformConfiguration) SetNestedVirtualizationEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNestedVirtualizationEnabled:"), value)
 }
+
 // A Boolean value that describes whether the platform configuration supports nested virtualization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/isNestedVirtualizationSupported
@@ -129,4 +130,5 @@ func (v_ VZGenericPlatformConfiguration) MachineIdentifier() unsafe.Pointer {
 func (v_ VZGenericPlatformConfiguration) SetMachineIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
+
 

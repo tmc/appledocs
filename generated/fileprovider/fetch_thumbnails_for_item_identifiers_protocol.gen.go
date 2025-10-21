@@ -18,5 +18,3 @@ var fetchThumbnailsForItemIdentifiersProtocol *objc.Protocol
 func init() {
 	fetchThumbnailsForItemIdentifiersProtocol = objc.GetProtocol("fetchThumbnailsForItemIdentifiers:")
 }
-
-

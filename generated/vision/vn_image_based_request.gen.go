@@ -101,3 +101,4 @@ func (i_ ImageBasedRequest) SetRegionOfInterest(value coregraphics.CGRect) {
 }
 
 
+

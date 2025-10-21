@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = accessibility.NewAXBrailleTable
 
-
 // ExampleNewAXBrailleTableWithIdentifier demonstrates how to create a AXBrailleTable instance using NewAXBrailleTableWithIdentifier.
 // Returns nil if there is no table with the given identifier.
 func ExampleNewAXBrailleTableWithIdentifier() {
@@ -18,5 +17,3 @@ func ExampleNewAXBrailleTableWithIdentifier() {
 	)
 	// Output:
 }
-
-

@@ -18,5 +18,3 @@ var displaysMessageProtocol *objc.Protocol
 func init() {
 	displaysMessageProtocol = objc.GetProtocol("displaysMessage")
 }
-
-

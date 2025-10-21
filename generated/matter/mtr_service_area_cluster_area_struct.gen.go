@@ -90,6 +90,7 @@ func (m_ MTRServiceAreaClusterAreaStruct) AreaID() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaInfo
 func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterAreaStruct) SetAreaInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaInfo:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/mapID
 func (m_ MTRServiceAreaClusterAreaStruct) MapID() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRServiceAreaClusterAreaStruct) MapID() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
+
 
 

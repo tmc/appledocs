@@ -81,6 +81,8 @@ func NewEKAlarm() EKAlarm {
 }
 
 
+
+
 // Creates and returns an alarm with an absolute date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(absoluteDate:)
@@ -88,6 +90,8 @@ func NewEKAlarmWithAbsoluteDate(date unsafe.Pointer) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(getEKAlarmClass().class), objc.Sel("alarmWithAbsoluteDate:"), date)
 	return rv
 }
+
+
 
 // Creates and returns an alarm with a relative offset.
 //
@@ -131,6 +135,7 @@ func (e_ EKAlarm) AbsoluteDate() unsafe.Pointer {
 func (e_ EKAlarm) SetAbsoluteDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAbsoluteDate:"), value)
 }
+
 // The recipient of an email to send when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
@@ -148,6 +153,7 @@ func (e_ EKAlarm) EmailAddress() string {
 func (e_ EKAlarm) SetEmailAddress(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), objc.String(value))
 }
+
 // A value indicating how a location-based alarm is triggered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/proximity
@@ -165,6 +171,7 @@ func (e_ EKAlarm) Proximity() unsafe.Pointer {
 func (e_ EKAlarm) SetProximity(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setProximity:"), value)
 }
+
 // The offset from the start of an event, at which the alarm fires.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
@@ -182,6 +189,7 @@ func (e_ EKAlarm) RelativeOffset() TimeInterval {
 func (e_ EKAlarm) SetRelativeOffset(value TimeInterval) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRelativeOffset:"), value)
 }
+
 // The name of the sound to play when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
@@ -199,6 +207,7 @@ func (e_ EKAlarm) SoundName() string {
 func (e_ EKAlarm) SetSoundName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
+
 // The location to trigger an alarm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/structuredLocation
@@ -216,6 +225,7 @@ func (e_ EKAlarm) StructuredLocation() unsafe.Pointer {
 func (e_ EKAlarm) SetStructuredLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
 }
+
 // The type of action to trigger when the alarm fires.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/type
@@ -241,4 +251,5 @@ func (e_ EKAlarm) Url() unsafe.Pointer {
 func (e_ EKAlarm) SetUrl(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUrl:"), value)
 }
+
 

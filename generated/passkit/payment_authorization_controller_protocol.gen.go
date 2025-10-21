@@ -20,5 +20,3 @@ var paymentAuthorizationControllerProtocol *objc.Protocol
 func init() {
 	paymentAuthorizationControllerProtocol = objc.GetProtocol("paymentAuthorizationController:")
 }
-
-

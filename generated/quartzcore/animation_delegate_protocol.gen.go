@@ -20,5 +20,3 @@ var AnimationDelegateProtocol *objc.Protocol
 func init() {
 	AnimationDelegateProtocol = objc.GetProtocol("CAAnimationDelegate")
 }
-
-

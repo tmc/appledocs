@@ -94,6 +94,7 @@ func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() unsafe.Pointer {
 func (i_ InterAppAudioTransportView) SetCurrentTimeLabelFont(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentTimeLabelFont:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/isConnected
 func (i_ InterAppAudioTransportView) Connected() bool {
@@ -115,6 +116,7 @@ func (i_ InterAppAudioTransportView) Enabled() bool {
 func (i_ InterAppAudioTransportView) SetEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/isPlaying
 func (i_ InterAppAudioTransportView) Playing() bool {
@@ -136,6 +138,7 @@ func (i_ InterAppAudioTransportView) LabelColor() unsafe.Pointer {
 func (i_ InterAppAudioTransportView) SetLabelColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLabelColor:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/recordButtonColor
 func (i_ InterAppAudioTransportView) RecordButtonColor() unsafe.Pointer {
@@ -150,5 +153,6 @@ func (i_ InterAppAudioTransportView) RecordButtonColor() unsafe.Pointer {
 func (i_ InterAppAudioTransportView) SetRecordButtonColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecordButtonColor:"), value)
 }
+
 
 

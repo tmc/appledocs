@@ -100,3 +100,4 @@ func (g_ GramMatrixCalculationGradient) SetAlpha(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
 }
 
+

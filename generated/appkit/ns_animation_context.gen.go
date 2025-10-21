@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AnimationContext] class.
@@ -79,6 +80,7 @@ func NewAnimationContext() AnimationContext {
 	return getAnimationContextClass().New()
 }
 
+
 // Ends the current animation grouping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/endGrouping()
@@ -100,7 +102,6 @@ func (ac _AnimationContextClass) CurrentContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("currentContext"))
 	return rv
 }
-
 // Returns the current animation context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
@@ -108,3 +109,6 @@ func (a_ AnimationContext) CurrentContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentContext"))
 	return rv
 }
+
+
+

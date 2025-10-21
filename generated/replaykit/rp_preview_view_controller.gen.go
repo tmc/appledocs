@@ -99,6 +99,7 @@ func (r_ RPPreviewViewController) Mode() unsafe.Pointer {
 func (r_ RPPreviewViewController) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMode:"), value)
 }
+
 // The preview view controller’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/previewControllerDelegate
@@ -116,5 +117,6 @@ func (r_ RPPreviewViewController) PreviewControllerDelegate() objc.ID {
 func (r_ RPPreviewViewController) SetPreviewControllerDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreviewControllerDelegate:"), value)
 }
+
 
 

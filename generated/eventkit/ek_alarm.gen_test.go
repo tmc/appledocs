@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = eventkit.NewEKAlarm
 
-
 // ExampleNewEKAlarmWithRelativeOffset demonstrates how to create a EKAlarm instance using NewEKAlarmWithRelativeOffset.
 // Creates and returns an alarm with a relative offset.
 func ExampleNewEKAlarmWithRelativeOffset() {
@@ -18,6 +17,3 @@ func ExampleNewEKAlarmWithRelativeOffset() {
 	)
 	// Output:
 }
-
-
-

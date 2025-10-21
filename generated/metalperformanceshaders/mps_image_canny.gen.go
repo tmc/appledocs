@@ -99,3 +99,4 @@ func (i_ ImageCanny) SetUseFastMode(value bool) {
 }
 
 
+

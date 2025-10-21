@@ -19,5 +19,3 @@ var searchableIndexProtocol *objc.Protocol
 func init() {
 	searchableIndexProtocol = objc.GetProtocol("searchableIndex:")
 }
-
-

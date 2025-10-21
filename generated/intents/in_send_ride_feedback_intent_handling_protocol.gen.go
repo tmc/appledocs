@@ -18,5 +18,3 @@ var INSendRideFeedbackIntentHandlingProtocol *objc.Protocol
 func init() {
 	INSendRideFeedbackIntentHandlingProtocol = objc.GetProtocol("INSendRideFeedbackIntentHandling")
 }
-
-

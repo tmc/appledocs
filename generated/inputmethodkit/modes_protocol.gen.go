@@ -15,5 +15,3 @@ var modesProtocol *objc.Protocol
 func init() {
 	modesProtocol = objc.GetProtocol("modes:")
 }
-
-

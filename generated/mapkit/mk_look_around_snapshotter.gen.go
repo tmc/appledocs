@@ -79,6 +79,8 @@ func NewMKLookAroundSnapshotter() MKLookAroundSnapshotter {
 }
 
 
+
+
 // Create a new snapshotter object with the scene and options you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLookAroundSnapshotter/init(scene:options:)

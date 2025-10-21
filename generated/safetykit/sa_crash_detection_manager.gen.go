@@ -121,6 +121,7 @@ func (s_ SACrashDetectionManager) Delegate() objc.ID {
 func (s_ SACrashDetectionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that indicates if Crash Detection is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/isAvailable

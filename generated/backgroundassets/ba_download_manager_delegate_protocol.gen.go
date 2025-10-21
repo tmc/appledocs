@@ -20,5 +20,3 @@ var BADownloadManagerDelegateProtocol *objc.Protocol
 func init() {
 	BADownloadManagerDelegateProtocol = objc.GetProtocol("BADownloadManagerDelegate")
 }
-
-

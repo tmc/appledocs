@@ -79,6 +79,8 @@ func NewAXDataSeriesDescriptor() AXDataSeriesDescriptor {
 }
 
 
+
+
 // Creates a data series with the specified attributed name, a Boolean value that indicates whether the series is continuous, and data points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/init(attributedName:isContinuous:dataPoints:)
@@ -88,6 +90,8 @@ func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attribute
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a data series with the specified name, a Boolean value that indicates whether the series is continuous, and data points.
 //
@@ -117,6 +121,7 @@ func (a_ AXDataSeriesDescriptor) AttributedName() unsafe.Pointer {
 func (a_ AXDataSeriesDescriptor) SetAttributedName(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedName:"), value)
 }
+
 // The data points that the series contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/dataPoints
@@ -144,6 +149,7 @@ func (a_ AXDataSeriesDescriptor) SetDataPoints(value []AXDataPoint) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataPoints:"), nsArray)
 }
+
 // A Boolean value that determines whether the data series is continuous.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/isContinuous
@@ -161,6 +167,7 @@ func (a_ AXDataSeriesDescriptor) IsContinuous() bool {
 func (a_ AXDataSeriesDescriptor) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsContinuous:"), value)
 }
+
 // The name of the data series.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
@@ -178,4 +185,5 @@ func (a_ AXDataSeriesDescriptor) Name() string {
 func (a_ AXDataSeriesDescriptor) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 

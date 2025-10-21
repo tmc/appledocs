@@ -15,5 +15,3 @@ var maximumNameLengthProtocol *objc.Protocol
 func init() {
 	maximumNameLengthProtocol = objc.GetProtocol("maximumNameLength")
 }
-
-

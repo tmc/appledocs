@@ -16,4 +16,3 @@ var serviceExtensionWillTerminateProtocol *objc.Protocol
 func init() {
 	serviceExtensionWillTerminateProtocol = objc.GetProtocol("serviceExtensionWillTerminate")
 }
-

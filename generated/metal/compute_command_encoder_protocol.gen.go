@@ -19,5 +19,3 @@ var ComputeCommandEncoderProtocol *objc.Protocol
 func init() {
 	ComputeCommandEncoderProtocol = objc.GetProtocol("MTLComputeCommandEncoder")
 }
-
-

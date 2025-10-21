@@ -90,6 +90,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) Duration() unsafe.Point
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageControl
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageControl() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageControl() unsafe
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageControl(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageID
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageID() unsafe.Poin
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageText
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() string {
@@ -132,6 +135,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() string {
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/priority
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) Priority() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) Priority() unsafe.Point
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/responses
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) Responses() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) Responses() unsafe.Poin
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetResponses(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponses:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/serverSideProcessingTimeout
@@ -177,6 +183,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) ServerSideProcessingTim
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/startTime
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) StartTime() unsafe.Pointer {
@@ -191,6 +198,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) StartTime() unsafe.Poin
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/timedInvokeTimeoutMs
@@ -208,5 +216,6 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) TimedInvokeTimeoutMs() 
 func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

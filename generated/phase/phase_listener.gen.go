@@ -81,6 +81,8 @@ func NewPHASEListener() PHASEListener {
 }
 
 
+
+
 // Creates a listener with the given engine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/init(engine:)
@@ -106,6 +108,7 @@ func (p_ PHASEListener) AutomaticHeadTrackingFlags() unsafe.Pointer {
 func (p_ PHASEListener) SetAutomaticHeadTrackingFlags(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticHeadTrackingFlags:"), value)
 }
+
 // Modifies the volume of all audio playback for the listener’s mixers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/gain
@@ -123,4 +126,5 @@ func (p_ PHASEListener) Gain() unsafe.Pointer {
 func (p_ PHASEListener) SetGain(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
+
 

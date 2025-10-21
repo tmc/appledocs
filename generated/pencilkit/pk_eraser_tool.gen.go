@@ -81,6 +81,8 @@ func NewEraserTool() EraserTool {
 }
 
 
+
+
 // Creates an eraser tool object that removes objects wholly or partially from a canvas view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/init(eraserType:)

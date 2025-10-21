@@ -20,5 +20,3 @@ var nextIntWithUpperBoundProtocol *objc.Protocol
 func init() {
 	nextIntWithUpperBoundProtocol = objc.GetProtocol("nextIntWithUpperBound:")
 }
-
-

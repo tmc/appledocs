@@ -18,5 +18,3 @@ var FileProviderTestingDeletionProtocol *objc.Protocol
 func init() {
 	FileProviderTestingDeletionProtocol = objc.GetProtocol("NSFileProviderTestingDeletion")
 }
-
-

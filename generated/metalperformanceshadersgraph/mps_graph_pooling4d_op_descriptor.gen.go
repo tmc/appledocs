@@ -98,6 +98,7 @@ func (g_ GraphPooling4DOpDescriptor) CeilMode() bool {
 func (g_ GraphPooling4DOpDescriptor) SetCeilMode(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCeilMode:"), value)
 }
+
 // Defines what kind of padding graph applies to the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/paddingStyle
@@ -115,5 +116,6 @@ func (g_ GraphPooling4DOpDescriptor) PaddingStyle() unsafe.Pointer {
 func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
+
 
 

@@ -83,6 +83,8 @@ func NewMKMapItem() MKMapItem {
 }
 
 
+
+
 // Creates and returns a map item object using the specified location and address objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/init(location:address:)
@@ -92,6 +94,8 @@ func NewMKMapItemWithLocationAddress(location unsafe.Pointer, address unsafe.Poi
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates and returns a map item object using the specified placemark object.
 //
@@ -197,6 +201,7 @@ func (m_ MKMapItem) Name() string {
 func (m_ MKMapItem) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The phone number associated with a business at the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/phoneNumber
@@ -214,6 +219,7 @@ func (m_ MKMapItem) PhoneNumber() string {
 func (m_ MKMapItem) SetPhoneNumber(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
 }
+
 // The placemark object containing the location information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/placemark
@@ -239,6 +245,7 @@ func (m_ MKMapItem) PointOfInterestCategory() unsafe.Pointer {
 func (m_ MKMapItem) SetPointOfInterestCategory(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
 }
+
 // The time zone of the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/timeZone
@@ -256,6 +263,7 @@ func (m_ MKMapItem) TimeZone() unsafe.Pointer {
 func (m_ MKMapItem) SetTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
 }
+
 // The URL associated with the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/url
@@ -273,4 +281,5 @@ func (m_ MKMapItem) Url() unsafe.Pointer {
 func (m_ MKMapItem) SetUrl(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
+
 

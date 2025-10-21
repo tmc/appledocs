@@ -90,6 +90,7 @@ func (m_ MTRServiceAreaClusterSelectAreasParams) NewAreas() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterSelectAreasParams) SetNewAreas(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewAreas:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRServiceAreaClusterSelectAreasParams) ServerSideProcessingTimeout() u
 func (m_ MTRServiceAreaClusterSelectAreasParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRServiceAreaClusterSelectAreasParams) TimedInvokeTimeoutMs() unsafe.P
 func (m_ MTRServiceAreaClusterSelectAreasParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

@@ -21,5 +21,3 @@ var OS_nw_resolution_reportProtocol *objc.Protocol
 func init() {
 	OS_nw_resolution_reportProtocol = objc.GetProtocol("OS_nw_resolution_report")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() string {
 func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/messageResponseID
 func (m_ MTRMessagesClusterMessageResponseOptionStruct) MessageResponseID() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRMessagesClusterMessageResponseOptionStruct) MessageResponseID() unsa
 func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetMessageResponseID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageResponseID:"), value)
 }
+
 
 

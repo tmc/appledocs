@@ -96,6 +96,7 @@ func (m_ MEDecodeFrameOptions) DoNotOutputFrame() bool {
 func (m_ MEDecodeFrameOptions) SetDoNotOutputFrame(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoNotOutputFrame:"), value)
 }
+
 // A Boolean value that hints to the decoder to use a low-power mode that can’t decode faster than 1x real-time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEDecodeFrameOptions/realTimePlayback
@@ -113,5 +114,6 @@ func (m_ MEDecodeFrameOptions) RealTimePlayback() bool {
 func (m_ MEDecodeFrameOptions) SetRealTimePlayback(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRealTimePlayback:"), value)
 }
+
 
 

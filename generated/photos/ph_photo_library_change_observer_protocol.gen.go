@@ -20,5 +20,3 @@ var PHPhotoLibraryChangeObserverProtocol *objc.Protocol
 func init() {
 	PHPhotoLibraryChangeObserverProtocol = objc.GetProtocol("PHPhotoLibraryChangeObserver")
 }
-
-

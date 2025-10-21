@@ -98,6 +98,7 @@ func (t_ Transition) EndProgress() unsafe.Pointer {
 func (t_ Transition) SetEndProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEndProgress:"), value)
 }
+
 // An optional Core Image filter object that provides the transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/filter
@@ -115,6 +116,7 @@ func (t_ Transition) Filter() objc.ID {
 func (t_ Transition) SetFilter(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFilter:"), value)
 }
+
 // Indicates the start point of the receiver as a fraction of the entire transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/startProgress
@@ -132,6 +134,7 @@ func (t_ Transition) StartProgress() unsafe.Pointer {
 func (t_ Transition) SetStartProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStartProgress:"), value)
 }
+
 // Specifies an optional subtype that indicates the direction for the predefined motion-based transitions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/subtype
@@ -149,6 +152,7 @@ func (t_ Transition) Subtype() unsafe.Pointer {
 func (t_ Transition) SetSubtype(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSubtype:"), value)
 }
+
 // Specifies the predefined transition type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/type
@@ -166,5 +170,6 @@ func (t_ Transition) Type() unsafe.Pointer {
 func (t_ Transition) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }
+
 
 

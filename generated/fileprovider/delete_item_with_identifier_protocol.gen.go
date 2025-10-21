@@ -18,5 +18,3 @@ var deleteItemWithIdentifierProtocol *objc.Protocol
 func init() {
 	deleteItemWithIdentifierProtocol = objc.GetProtocol("deleteItemWithIdentifier:")
 }
-
-

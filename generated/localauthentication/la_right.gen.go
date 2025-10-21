@@ -85,6 +85,8 @@ func NewRight() Right {
 }
 
 
+
+
 // Creates a right with the authentication requirements you supply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/init(requirement:)
@@ -149,4 +151,5 @@ func (r_ Right) Tag() int {
 func (r_ Right) SetTag(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTag:"), value)
 }
+
 

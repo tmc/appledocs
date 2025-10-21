@@ -99,6 +99,7 @@ func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() unsafe.Pointer {
 func (v_ VZMacPlatformConfiguration) SetAuxiliaryStorage(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
 }
+
 // The Mac hardware model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel
@@ -116,6 +117,7 @@ func (v_ VZMacPlatformConfiguration) HardwareModel() unsafe.Pointer {
 func (v_ VZMacPlatformConfiguration) SetHardwareModel(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
 }
+
 // The Mac machine identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier
@@ -133,4 +135,5 @@ func (v_ VZMacPlatformConfiguration) MachineIdentifier() unsafe.Pointer {
 func (v_ VZMacPlatformConfiguration) SetMachineIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
+
 

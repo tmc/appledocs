@@ -81,6 +81,8 @@ func NewAdTestPostback() AdTestPostback {
 }
 
 
+
+
 // Creates a test postback for an in-app ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/init(version:adNetworkIdentifier:adCampaignIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:conversionValue:fidelityType:isRedownload:didWin:postbackURL:)
@@ -90,6 +92,8 @@ func NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStore
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a test postback for a web ad or an in-app ad.
 //
@@ -175,6 +179,7 @@ func (a_ AdTestPostback) FidelityType() int {
 func (a_ AdTestPostback) SetFidelityType(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFidelityType:"), value)
 }
+
 // The specific conversion value of an ad postback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/fineConversionValue

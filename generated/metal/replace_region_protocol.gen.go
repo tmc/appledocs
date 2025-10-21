@@ -19,5 +19,3 @@ var replaceRegionProtocol *objc.Protocol
 func init() {
 	replaceRegionProtocol = objc.GetProtocol("replaceRegion:")
 }
-
-

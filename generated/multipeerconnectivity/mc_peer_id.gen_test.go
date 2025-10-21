@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = multipeerconnectivity.NewMCPeerID
 
-
 // ExampleNewMCPeerIDWithDisplayName demonstrates how to create a MCPeerID instance using NewMCPeerIDWithDisplayName.
 // Initializes a peer.
 func ExampleNewMCPeerIDWithDisplayName() {
@@ -18,5 +17,3 @@ func ExampleNewMCPeerIDWithDisplayName() {
 	)
 	// Output:
 }
-
-

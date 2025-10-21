@@ -132,6 +132,7 @@ func (p_ PHLivePhotoView) AudioVolume() unsafe.Pointer {
 func (p_ PHLivePhotoView) SetAudioVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioVolume:"), value)
 }
+
 // The mode in which the view displays its content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentMode
@@ -149,6 +150,7 @@ func (p_ PHLivePhotoView) ContentMode() unsafe.Pointer {
 func (p_ PHLivePhotoView) SetContentMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentsRect
 func (p_ PHLivePhotoView) ContentsRect() coregraphics.CGRect {
@@ -163,6 +165,7 @@ func (p_ PHLivePhotoView) ContentsRect() coregraphics.CGRect {
 func (p_ PHLivePhotoView) SetContentsRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentsRect:"), value)
 }
+
 // An object to be notified when Live Photo playback begins or ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/delegate
@@ -180,6 +183,7 @@ func (p_ PHLivePhotoView) Delegate() objc.ID {
 func (p_ PHLivePhotoView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value that determines whether the view plays the audio content of its Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/isMuted
@@ -197,6 +201,7 @@ func (p_ PHLivePhotoView) Muted() bool {
 func (p_ PHLivePhotoView) SetMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMuted:"), value)
 }
+
 // The Live Photo displayed in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhoto
@@ -214,6 +219,7 @@ func (p_ PHLivePhotoView) LivePhoto() unsafe.Pointer {
 func (p_ PHLivePhotoView) SetLivePhoto(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
 }
+
 // A view for displaying Live Photo status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhotoBadgeView

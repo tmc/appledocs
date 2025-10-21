@@ -19,5 +19,3 @@ var cancelContentEditingProtocol *objc.Protocol
 func init() {
 	cancelContentEditingProtocol = objc.GetProtocol("cancelContentEditing")
 }
-
-

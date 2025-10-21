@@ -19,5 +19,3 @@ var RPBroadcastActivityViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	RPBroadcastActivityViewControllerDelegateProtocol = objc.GetProtocol("RPBroadcastActivityViewControllerDelegate")
 }
-
-

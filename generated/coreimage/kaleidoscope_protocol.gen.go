@@ -12,5 +12,3 @@ var KaleidoscopeProtocol *objc.Protocol
 func init() {
 	KaleidoscopeProtocol = objc.GetProtocol("CIKaleidoscope")
 }
-
-

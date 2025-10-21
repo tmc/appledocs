@@ -20,5 +20,3 @@ var handleShareFocusStatusProtocol *objc.Protocol
 func init() {
 	handleShareFocusStatusProtocol = objc.GetProtocol("handleShareFocusStatus:")
 }
-
-

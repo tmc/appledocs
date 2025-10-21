@@ -20,5 +20,3 @@ var MDLMeshBufferZoneProtocol *objc.Protocol
 func init() {
 	MDLMeshBufferZoneProtocol = objc.GetProtocol("MDLMeshBufferZone")
 }
-
-

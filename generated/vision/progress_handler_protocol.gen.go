@@ -20,5 +20,3 @@ var progressHandlerProtocol *objc.Protocol
 func init() {
 	progressHandlerProtocol = objc.GetProtocol("progressHandler")
 }
-
-

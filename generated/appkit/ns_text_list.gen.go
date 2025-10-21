@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextList] class.
@@ -78,3 +79,7 @@ func (t_ TextList) Autorelease() TextList {
 func NewTextList() TextList {
 	return getTextListClass().New()
 }
+
+
+
+

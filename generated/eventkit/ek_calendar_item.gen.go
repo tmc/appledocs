@@ -140,6 +140,7 @@ func (e_ EKCalendarItem) SetAlarms(value []EKAlarm) {
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAlarms:"), nsArray)
 }
+
 // The attendees associated with the calendar item, as an array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/attendees
@@ -165,6 +166,7 @@ func (e_ EKCalendarItem) Calendar() unsafe.Pointer {
 func (e_ EKCalendarItem) SetCalendar(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCalendar:"), value)
 }
+
 // The calendar item’s external identifier as provided by the calendar server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemExternalIdentifier
@@ -246,6 +248,7 @@ func (e_ EKCalendarItem) Location() string {
 func (e_ EKCalendarItem) SetLocation(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), objc.String(value))
 }
+
 // The notes associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
@@ -263,6 +266,7 @@ func (e_ EKCalendarItem) Notes() string {
 func (e_ EKCalendarItem) SetNotes(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), objc.String(value))
 }
+
 // The recurrence rules for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/recurrenceRules
@@ -290,6 +294,7 @@ func (e_ EKCalendarItem) SetRecurrenceRules(value []EKRecurrenceRule) {
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRecurrenceRules:"), nsArray)
 }
+
 // The time zone for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/timeZone
@@ -307,6 +312,7 @@ func (e_ EKCalendarItem) TimeZone() unsafe.Pointer {
 func (e_ EKCalendarItem) SetTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTimeZone:"), value)
 }
+
 // The title for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
@@ -324,6 +330,7 @@ func (e_ EKCalendarItem) Title() string {
 func (e_ EKCalendarItem) SetTitle(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 // The URL for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
@@ -341,6 +348,7 @@ func (e_ EKCalendarItem) URL() unsafe.Pointer {
 func (e_ EKCalendarItem) SetURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setURL:"), value)
 }
+
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/uuid

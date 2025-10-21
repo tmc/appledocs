@@ -98,3 +98,4 @@ func (m_ MKHybridMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
+

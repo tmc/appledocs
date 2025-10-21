@@ -98,6 +98,7 @@ func (g_ GLKEffectPropertyMaterial) AmbientColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyMaterial) SetAmbientColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAmbientColor:"), value)
 }
+
 // The diffuse color of the material.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/diffuseColor
@@ -115,6 +116,7 @@ func (g_ GLKEffectPropertyMaterial) DiffuseColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyMaterial) SetDiffuseColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDiffuseColor:"), value)
 }
+
 // The emissive color of the material.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/emissiveColor
@@ -132,6 +134,7 @@ func (g_ GLKEffectPropertyMaterial) EmissiveColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyMaterial) SetEmissiveColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEmissiveColor:"), value)
 }
+
 // The shininess of the material, used when calculating specular lighting effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/shininess
@@ -149,6 +152,7 @@ func (g_ GLKEffectPropertyMaterial) Shininess() unsafe.Pointer {
 func (g_ GLKEffectPropertyMaterial) SetShininess(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShininess:"), value)
 }
+
 // The specular color of the material.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/specularColor
@@ -166,5 +170,6 @@ func (g_ GLKEffectPropertyMaterial) SpecularColor() unsafe.Pointer {
 func (g_ GLKEffectPropertyMaterial) SetSpecularColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpecularColor:"), value)
 }
+
 
 

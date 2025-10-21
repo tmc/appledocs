@@ -19,5 +19,3 @@ var startContentEditingWithInputProtocol *objc.Protocol
 func init() {
 	startContentEditingWithInputProtocol = objc.GetProtocol("startContentEditingWithInput:")
 }
-
-

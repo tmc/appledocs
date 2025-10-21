@@ -81,6 +81,8 @@ func NewINStartCallIntent() INStartCallIntent {
 }
 
 
+
+
 // Creates a start call intent object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(audioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:)
@@ -90,6 +92,8 @@ func NewINStartCallIntentWithAudioRouteDestinationTypeContactsRecordTypeForRedia
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a start call intent object with the specified parameters.
 //

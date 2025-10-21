@@ -90,6 +90,7 @@ func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ExtendedPa
 func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetExtendedPanID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ServerSide
 func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) TimedInvok
 func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

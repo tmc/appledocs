@@ -20,5 +20,3 @@ var GPUEndTimeProtocol *objc.Protocol
 func init() {
 	GPUEndTimeProtocol = objc.GetProtocol("GPUEndTime")
 }
-
-

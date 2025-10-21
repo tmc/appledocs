@@ -101,6 +101,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) AlphaBlendOperation() unsa
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetAlphaBlendOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaBlendOperation:"), value)
 }
+
 // Configure the blend state for color attachments the pipeline state uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/blendingState
@@ -118,6 +119,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) BlendingState() unsafe.Poi
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetBlendingState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBlendingState:"), value)
 }
+
 // Configures the destination-alpha blend factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/destinationAlphaBlendFactor
@@ -135,6 +137,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) DestinationAlphaBlendFacto
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetDestinationAlphaBlendFactor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationAlphaBlendFactor:"), value)
 }
+
 // Configures the destination RGB blend factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/destinationRGBBlendFactor
@@ -152,6 +155,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) DestinationRGBBlendFactor(
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetDestinationRGBBlendFactor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationRGBBlendFactor:"), value)
 }
+
 // Configures the pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/pixelFormat
@@ -169,6 +173,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) PixelFormat() unsafe.Point
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPixelFormat:"), value)
 }
+
 // Configures the RGB blend operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/rgbBlendOperation
@@ -186,6 +191,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) RgbBlendOperation() unsafe
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetRgbBlendOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRgbBlendOperation:"), value)
 }
+
 // Configures the source-alpha blend factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/sourceAlphaBlendFactor
@@ -203,6 +209,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SourceAlphaBlendFactor() u
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetSourceAlphaBlendFactor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceAlphaBlendFactor:"), value)
 }
+
 // Configures the source RGB blend factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/sourceRGBBlendFactor
@@ -220,6 +227,7 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SourceRGBBlendFactor() uns
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetSourceRGBBlendFactor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceRGBBlendFactor:"), value)
 }
+
 // Configures the color write mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/writeMask
@@ -237,5 +245,6 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) WriteMask() unsafe.Pointer
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetWriteMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWriteMask:"), value)
 }
+
 
 

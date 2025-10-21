@@ -20,4 +20,3 @@ var photoLibraryDidChangeProtocol *objc.Protocol
 func init() {
 	photoLibraryDidChangeProtocol = objc.GetProtocol("photoLibraryDidChange:")
 }
-

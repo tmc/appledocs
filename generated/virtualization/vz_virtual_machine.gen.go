@@ -89,6 +89,8 @@ func NewVZVirtualMachine() VZVirtualMachine {
 }
 
 
+
+
 // Creates the VM and configures it with the specified data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/init(configuration:)
@@ -98,6 +100,8 @@ func NewVZVirtualMachineWithConfiguration(configuration unsafe.Pointer) VZVirtua
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates and configures the VM with the specified data and dispatch queue.
 //
@@ -239,6 +243,7 @@ func (v_ VZVirtualMachine) Delegate() objc.ID {
 func (v_ VZVirtualMachine) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The list of configured directory-sharing devices on the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/directorySharingDevices

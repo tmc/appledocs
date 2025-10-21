@@ -21,5 +21,3 @@ var volumeProtocol *objc.Protocol
 func init() {
 	volumeProtocol = objc.GetProtocol("volume")
 }
-
-

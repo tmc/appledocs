@@ -19,5 +19,3 @@ var ExternalSyncDeviceDelegateProtocol *objc.Protocol
 func init() {
 	ExternalSyncDeviceDelegateProtocol = objc.GetProtocol("AVExternalSyncDeviceDelegate")
 }
-
-

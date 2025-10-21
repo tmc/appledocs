@@ -12,5 +12,3 @@ var PerspectiveTransformWithExtentProtocol *objc.Protocol
 func init() {
 	PerspectiveTransformWithExtentProtocol = objc.GetProtocol("CIPerspectiveTransformWithExtent")
 }
-
-

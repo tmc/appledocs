@@ -12,5 +12,3 @@ var SharpenLuminanceProtocol *objc.Protocol
 func init() {
 	SharpenLuminanceProtocol = objc.GetProtocol("CISharpenLuminance")
 }
-
-

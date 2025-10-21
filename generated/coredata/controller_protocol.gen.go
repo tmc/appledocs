@@ -20,5 +20,3 @@ var controllerProtocol *objc.Protocol
 func init() {
 	controllerProtocol = objc.GetProtocol("controller:")
 }
-
-

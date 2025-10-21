@@ -15,5 +15,3 @@ var valueForOutputKeyProtocol *objc.Protocol
 func init() {
 	valueForOutputKeyProtocol = objc.GetProtocol("valueForOutputKey:")
 }
-
-

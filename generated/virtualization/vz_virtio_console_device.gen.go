@@ -96,6 +96,7 @@ func (v_ VZVirtioConsoleDevice) Delegate() objc.ID {
 func (v_ VZVirtioConsoleDevice) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The array of console ports that a specific device uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDevice/ports

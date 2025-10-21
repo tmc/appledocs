@@ -90,6 +90,8 @@ func NewPreferencePane() PreferencePane {
 }
 
 
+
+
 // Initializes a preference pane with the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/init(bundle:)
@@ -198,6 +200,7 @@ func (p_ PreferencePane) FirstKeyView() unsafe.Pointer {
 func (p_ PreferencePane) SetFirstKeyView(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFirstKeyView:"), value)
 }
+
 // The view that should have keyboard focus when the pane is selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/initialKeyView
@@ -215,6 +218,7 @@ func (p_ PreferencePane) InitialKeyView() unsafe.Pointer {
 func (p_ PreferencePane) SetInitialKeyView(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInitialKeyView:"), value)
 }
+
 // A Boolean value that indicates whether the preference pane is currently selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/isSelected
@@ -240,6 +244,7 @@ func (p_ PreferencePane) LastKeyView() unsafe.Pointer {
 func (p_ PreferencePane) SetLastKeyView(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLastKeyView:"), value)
 }
+
 // The name of the preference pane’s nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/mainNibName
@@ -265,6 +270,7 @@ func (p_ PreferencePane) MainView() unsafe.Pointer {
 func (p_ PreferencePane) SetMainView(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMainView:"), value)
 }
+
 // A Boolean value that indicates whether the preference pane is able to be deselected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/shouldUnselect

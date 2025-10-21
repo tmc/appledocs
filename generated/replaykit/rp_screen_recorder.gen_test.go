@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = replaykit.NewRPScreenRecorder
 
-
 // ExampleNewRPScreenRecorder demonstrates how to create a RPScreenRecorder instance.
 func ExampleNewRPScreenRecorder() {
 	_ = replaykit.NewRPScreenRecorder()
 	// Output:
 }
-
-

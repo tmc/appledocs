@@ -12,5 +12,3 @@ var LightTunnelProtocol *objc.Protocol
 func init() {
 	LightTunnelProtocol = objc.GetProtocol("CILightTunnel")
 }
-
-

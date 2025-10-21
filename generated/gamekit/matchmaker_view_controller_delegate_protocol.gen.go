@@ -20,5 +20,3 @@ var MatchmakerViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	MatchmakerViewControllerDelegateProtocol = objc.GetProtocol("GKMatchmakerViewControllerDelegate")
 }
-
-

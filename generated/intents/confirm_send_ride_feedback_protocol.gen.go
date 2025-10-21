@@ -18,5 +18,3 @@ var confirmSendRideFeedbackProtocol *objc.Protocol
 func init() {
 	confirmSendRideFeedbackProtocol = objc.GetProtocol("confirmSendRideFeedback:")
 }
-
-

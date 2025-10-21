@@ -20,5 +20,3 @@ var kernelStartTimeProtocol *objc.Protocol
 func init() {
 	kernelStartTimeProtocol = objc.GetProtocol("kernelStartTime")
 }
-
-

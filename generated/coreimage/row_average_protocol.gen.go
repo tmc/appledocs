@@ -12,5 +12,3 @@ var RowAverageProtocol *objc.Protocol
 func init() {
 	RowAverageProtocol = objc.GetProtocol("CIRowAverage")
 }
-
-

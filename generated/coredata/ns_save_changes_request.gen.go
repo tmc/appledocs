@@ -79,6 +79,8 @@ func NewSaveChangesRequest() SaveChangesRequest {
 }
 
 
+
+
 // Initializes a save changes request with collections of given changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/init(inserted:updated:deleted:locked:)

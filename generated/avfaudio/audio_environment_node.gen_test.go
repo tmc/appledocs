@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = avfaudio.NewAudioEnvironmentNode
 
-
 // ExampleNewAudioEnvironmentNode demonstrates how to create a AudioEnvironmentNode instance.
 // Creates a new environment node object.
 func ExampleNewAudioEnvironmentNode() {
 	_ = avfaudio.NewAudioEnvironmentNode()
 	// Output:
 }
-
-

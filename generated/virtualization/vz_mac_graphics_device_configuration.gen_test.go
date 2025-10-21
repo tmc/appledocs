@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZMacGraphicsDeviceConfiguration
 
-
 // ExampleNewVZMacGraphicsDeviceConfiguration demonstrates how to create a VZMacGraphicsDeviceConfiguration instance.
 // Creates a new Mac graphics device configuration.
 func ExampleNewVZMacGraphicsDeviceConfiguration() {
 	_ = virtualization.NewVZMacGraphicsDeviceConfiguration()
 	// Output:
 }
-
-

@@ -79,6 +79,8 @@ func NewVZEFIVariableStore() VZEFIVariableStore {
 }
 
 
+
+
 // Creates a new EFI variable store at specified the URL on the filesystem, initialization options, and error-return variable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(creatingVariableStoreAt:options:)
@@ -88,6 +90,8 @@ func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initialize the variable store from the URL of an existing file.
 //

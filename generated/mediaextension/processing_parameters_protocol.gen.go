@@ -15,5 +15,3 @@ var processingParametersProtocol *objc.Protocol
 func init() {
 	processingParametersProtocol = objc.GetProtocol("processingParameters")
 }
-
-

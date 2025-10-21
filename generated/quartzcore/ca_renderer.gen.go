@@ -89,6 +89,8 @@ func NewRenderer() Renderer {
 }
 
 
+
+
 // Creates and returns a instance with the render target specified by the Core OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(cglContext:options:)
@@ -96,6 +98,8 @@ func NewRendererWithCGLContextOptions(ctx unsafe.Pointer, dict objc.ID) Renderer
 	rv := objc.Send[Renderer](objc.ID(getRendererClass().class), objc.Sel("rendererWithCGLContext:options:"), ctx, dict)
 	return rv
 }
+
+
 
 // Creates a layer renderer from a Metal texture.
 //
@@ -189,6 +193,7 @@ func (r_ Renderer) Bounds() coregraphics.CGRect {
 func (r_ Renderer) SetBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBounds:"), value)
 }
+
 // The root layer of the layer-tree the receiver should render.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/layer
@@ -206,4 +211,5 @@ func (r_ Renderer) Layer() unsafe.Pointer {
 func (r_ Renderer) SetLayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:"), value)
 }
+
 

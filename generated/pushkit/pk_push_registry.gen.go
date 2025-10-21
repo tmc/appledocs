@@ -82,6 +82,8 @@ func NewPushRegistry() PushRegistry {
 }
 
 
+
+
 // Creates a push registry with the specified dispatch queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushRegistry/init(queue:)
@@ -118,6 +120,7 @@ func (p_ PushRegistry) Delegate() objc.ID {
 func (p_ PushRegistry) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Registers the push types for this push registry object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushRegistry/desiredPushTypes
@@ -135,4 +138,5 @@ func (p_ PushRegistry) DesiredPushTypes() unsafe.Pointer {
 func (p_ PushRegistry) SetDesiredPushTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDesiredPushTypes:"), value)
 }
+
 

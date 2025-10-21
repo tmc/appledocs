@@ -21,5 +21,3 @@ var AXCustomContentProviderProtocol *objc.Protocol
 func init() {
 	AXCustomContentProviderProtocol = objc.GetProtocol("AXCustomContentProvider")
 }
-
-

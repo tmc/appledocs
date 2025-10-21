@@ -9,12 +9,9 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZVirtioGraphicsDeviceConfiguration
 
-
 // ExampleNewVZVirtioGraphicsDeviceConfiguration demonstrates how to create a VZVirtioGraphicsDeviceConfiguration instance.
 // Creates a new Virtio graphics device.
 func ExampleNewVZVirtioGraphicsDeviceConfiguration() {
 	_ = virtualization.NewVZVirtioGraphicsDeviceConfiguration()
 	// Output:
 }
-
-

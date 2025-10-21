@@ -90,6 +90,7 @@ func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkTag:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/relativePositionTag
 func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() unsafe.P
 func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRelativePositionTag:"), value)
 }
+
 
 

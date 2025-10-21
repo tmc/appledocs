@@ -15,5 +15,3 @@ var chunkDetailsReturningErrorProtocol *objc.Protocol
 func init() {
 	chunkDetailsReturningErrorProtocol = objc.GetProtocol("chunkDetailsReturningError:")
 }
-
-

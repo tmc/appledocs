@@ -99,6 +99,7 @@ func (v_ VZVirtioConsolePortConfiguration) IsConsole() bool {
 func (v_ VZVirtioConsolePortConfiguration) SetIsConsole(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsConsole:"), value)
 }
+
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
@@ -116,4 +117,5 @@ func (v_ VZVirtioConsolePortConfiguration) Name() string {
 func (v_ VZVirtioConsolePortConfiguration) SetName(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 

@@ -18,5 +18,3 @@ var previewItemURLProtocol *objc.Protocol
 func init() {
 	previewItemURLProtocol = objc.GetProtocol("previewItemURL")
 }
-
-

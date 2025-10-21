@@ -106,6 +106,7 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() objc.
 func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
 }
+
 // The participant that has priority to play audio when it’s not possible to play multiple audio sources concurrently.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForNonMixableAudioRoutes
@@ -123,5 +124,7 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForNonMixableAudioRoutes() 
 func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForNonMixableAudioRoutes:"), value)
 }
+
+
 
 

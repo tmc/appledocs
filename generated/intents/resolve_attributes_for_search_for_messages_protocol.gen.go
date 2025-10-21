@@ -19,5 +19,3 @@ var resolveAttributesForSearchForMessagesProtocol *objc.Protocol
 func init() {
 	resolveAttributesForSearchForMessagesProtocol = objc.GetProtocol("resolveAttributesForSearchForMessages:")
 }
-
-

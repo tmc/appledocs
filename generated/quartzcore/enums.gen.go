@@ -9,34 +9,34 @@ package quartzcore
 type AutoresizingMask uint
 
 const (
-// kCALayerNotSizable - The receiver cannot be resized.
-//
+	// kCALayerNotSizable - The receiver cannot be resized.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/kCALayerNotSizable
-kCALayerNotSizable AutoresizingMask = 0
-// kCALayerHeightSizable - The receiver’s height is flexible.
-//
+	kCALayerNotSizable AutoresizingMask = 0
+	// kCALayerHeightSizable - The receiver’s height is flexible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/layerHeightSizable
-kCALayerHeightSizable AutoresizingMask = 0
-// kCALayerMaxXMargin - The right margin between the receiver and its superview is flexible.
-//
+	kCALayerHeightSizable AutoresizingMask = 0
+	// kCALayerMaxXMargin - The right margin between the receiver and its superview is flexible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/layerMaxXMargin
-kCALayerMaxXMargin AutoresizingMask = 0
-// kCALayerMaxYMargin - The top margin between the receiver and its superview is flexible.
-//
+	kCALayerMaxXMargin AutoresizingMask = 0
+	// kCALayerMaxYMargin - The top margin between the receiver and its superview is flexible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/layerMaxYMargin
-kCALayerMaxYMargin AutoresizingMask = 0
-// kCALayerMinXMargin - The left margin between the receiver and its superview is flexible.
-//
+	kCALayerMaxYMargin AutoresizingMask = 0
+	// kCALayerMinXMargin - The left margin between the receiver and its superview is flexible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/layerMinXMargin
-kCALayerMinXMargin AutoresizingMask = 0
-// kCALayerMinYMargin - The bottom margin between the receiver and its superview is flexible.
-//
+	kCALayerMinXMargin AutoresizingMask = 0
+	// kCALayerMinYMargin - The bottom margin between the receiver and its superview is flexible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/layerMinYMargin
-kCALayerMinYMargin AutoresizingMask = 0
-// kCALayerWidthSizable - The receiver’s width is flexible.
-//
+	kCALayerMinYMargin AutoresizingMask = 0
+	// kCALayerWidthSizable - The receiver’s width is flexible.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask/layerWidthSizable
-kCALayerWidthSizable AutoresizingMask = 0
+	kCALayerWidthSizable AutoresizingMask = 0
 )
 
 // CAConstraintAttribute - The constraint attribute type.
@@ -45,38 +45,38 @@ kCALayerWidthSizable AutoresizingMask = 0
 type ConstraintAttribute uint
 
 const (
-// kCAConstraintHeight - The height of a layer.
-//
+	// kCAConstraintHeight - The height of a layer.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/height
-kCAConstraintHeight ConstraintAttribute = 0
-// kCAConstraintMaxX - The right edge of a layer’s frame.
-//
+	kCAConstraintHeight ConstraintAttribute = 0
+	// kCAConstraintMaxX - The right edge of a layer’s frame.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/maxX
-kCAConstraintMaxX ConstraintAttribute = 0
-// kCAConstraintMaxY - The top edge of a layer’s frame.
-//
+	kCAConstraintMaxX ConstraintAttribute = 0
+	// kCAConstraintMaxY - The top edge of a layer’s frame.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/maxY
-kCAConstraintMaxY ConstraintAttribute = 0
-// kCAConstraintMidX - The horizontal location of the center of a layer’s frame.
-//
+	kCAConstraintMaxY ConstraintAttribute = 0
+	// kCAConstraintMidX - The horizontal location of the center of a layer’s frame.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/midX
-kCAConstraintMidX ConstraintAttribute = 0
-// kCAConstraintMidY - The vertical location of the center of a layer’s frame.
-//
+	kCAConstraintMidX ConstraintAttribute = 0
+	// kCAConstraintMidY - The vertical location of the center of a layer’s frame.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/midY
-kCAConstraintMidY ConstraintAttribute = 0
-// kCAConstraintMinX - The left edge of a layer’s frame.
-//
+	kCAConstraintMidY ConstraintAttribute = 0
+	// kCAConstraintMinX - The left edge of a layer’s frame.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/minX
-kCAConstraintMinX ConstraintAttribute = 0
-// kCAConstraintMinY - The bottom edge of a layer’s frame.
-//
+	kCAConstraintMinX ConstraintAttribute = 0
+	// kCAConstraintMinY - The bottom edge of a layer’s frame.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/minY
-kCAConstraintMinY ConstraintAttribute = 0
-// kCAConstraintWidth - The width of a layer.
-//
+	kCAConstraintMinY ConstraintAttribute = 0
+	// kCAConstraintWidth - The width of a layer.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/width
-kCAConstraintWidth ConstraintAttribute = 0
+	kCAConstraintWidth ConstraintAttribute = 0
 )
 
 // CACornerMask enum type
@@ -85,18 +85,18 @@ kCAConstraintWidth ConstraintAttribute = 0
 type CornerMask uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACornerMask/layerMaxXMaxYCorner
-kCALayerMaxXMaxYCorner CornerMask = 0
-//
+	kCALayerMaxXMaxYCorner CornerMask = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACornerMask/layerMaxXMinYCorner
-kCALayerMaxXMinYCorner CornerMask = 0
-//
+	kCALayerMaxXMinYCorner CornerMask = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACornerMask/layerMinXMaxYCorner
-kCALayerMinXMaxYCorner CornerMask = 0
-//
+	kCALayerMinXMaxYCorner CornerMask = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACornerMask/layerMinXMinYCorner
-kCALayerMinXMinYCorner CornerMask = 0
+	kCALayerMinXMinYCorner CornerMask = 0
 )
 
 // CAEdgeAntialiasingMask - This mask is used by the 
@@ -105,18 +105,18 @@ kCALayerMinXMinYCorner CornerMask = 0
 type EdgeAntialiasingMask uint
 
 const (
-//
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEdgeAntialiasingMask/layerBottomEdge
-kCALayerBottomEdge EdgeAntialiasingMask = 0
-//
+	kCALayerBottomEdge EdgeAntialiasingMask = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEdgeAntialiasingMask/layerLeftEdge
-kCALayerLeftEdge EdgeAntialiasingMask = 0
-//
+	kCALayerLeftEdge EdgeAntialiasingMask = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEdgeAntialiasingMask/layerRightEdge
-kCALayerRightEdge EdgeAntialiasingMask = 0
-//
+	kCALayerRightEdge EdgeAntialiasingMask = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEdgeAntialiasingMask/layerTopEdge
-kCALayerTopEdge EdgeAntialiasingMask = 0
+	kCALayerTopEdge EdgeAntialiasingMask = 0
 )
 
 

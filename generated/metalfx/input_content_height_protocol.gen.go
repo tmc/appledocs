@@ -19,5 +19,3 @@ var inputContentHeightProtocol *objc.Protocol
 func init() {
 	inputContentHeightProtocol = objc.GetProtocol("inputContentHeight")
 }
-
-

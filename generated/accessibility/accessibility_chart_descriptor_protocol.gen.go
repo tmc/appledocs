@@ -21,5 +21,3 @@ var accessibilityChartDescriptorProtocol *objc.Protocol
 func init() {
 	accessibilityChartDescriptorProtocol = objc.GetProtocol("accessibilityChartDescriptor")
 }
-
-

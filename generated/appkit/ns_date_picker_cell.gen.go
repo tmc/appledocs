@@ -78,6 +78,7 @@ func NewDatePickerCell() DatePickerCell {
 	return getDatePickerCellClass().New()
 }
 
+
 // The maximum date that the picker allows as input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
@@ -85,6 +86,7 @@ func (d_ DatePickerCell) MaxDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("maxDate"))
 	return rv
 }
+
 
 // SetMaxDate sets the value of the maxDate property.
 // The maximum date that the picker allows as input.
@@ -94,3 +96,6 @@ func (d_ DatePickerCell) MaxDate() unsafe.Pointer {
 func (d_ DatePickerCell) SetMaxDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
+
+
+

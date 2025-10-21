@@ -20,5 +20,3 @@ var browserViewControllerWasCancelledProtocol *objc.Protocol
 func init() {
 	browserViewControllerWasCancelledProtocol = objc.GetProtocol("browserViewControllerWasCancelled:")
 }
-
-

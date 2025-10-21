@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) Costs() unsafe.Pointer {
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetCosts(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCosts:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/defaultDuration
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) DefaultDuration() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) DefaultDuration() unsafe.Po
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetDefaultDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/elapsedSlotTime
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) ElapsedSlotTime() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) ElapsedSlotTime() unsafe.Po
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetElapsedSlotTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElapsedSlotTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/manufacturerESAState
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) ManufacturerESAState() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) ManufacturerESAState() unsa
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetManufacturerESAState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerESAState:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxDuration
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxDuration() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxDuration() unsafe.Pointe
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxDurationAdjustment
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxDurationAdjustment() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxDurationAdjustment() uns
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxDurationAdjustment(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDurationAdjustment:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxPauseDuration
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPauseDuration() unsafe.Pointer {
@@ -174,6 +180,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPauseDuration() unsafe.P
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPauseDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPauseDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxPower
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPower() unsafe.Pointer {
@@ -188,6 +195,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPower() unsafe.Pointer {
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPower(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPower:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxPowerAdjustment
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPowerAdjustment() unsafe.Pointer {
@@ -202,6 +210,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPowerAdjustment() unsafe
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPowerAdjustment(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPowerAdjustment:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minDuration
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinDuration() unsafe.Pointer {
@@ -216,6 +225,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinDuration() unsafe.Pointe
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minDurationAdjustment
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinDurationAdjustment() unsafe.Pointer {
@@ -230,6 +240,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinDurationAdjustment() uns
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinDurationAdjustment(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDurationAdjustment:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minPauseDuration
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPauseDuration() unsafe.Pointer {
@@ -244,6 +255,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPauseDuration() unsafe.P
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPauseDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPauseDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minPower
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPower() unsafe.Pointer {
@@ -258,6 +270,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPower() unsafe.Pointer {
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPower(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPower:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minPowerAdjustment
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPowerAdjustment() unsafe.Pointer {
@@ -272,6 +285,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPowerAdjustment() unsafe
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPowerAdjustment(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPowerAdjustment:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/nominalEnergy
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) NominalEnergy() unsafe.Pointer {
@@ -286,6 +300,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) NominalEnergy() unsafe.Poin
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetNominalEnergy(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalEnergy:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/nominalPower
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) NominalPower() unsafe.Pointer {
@@ -300,6 +315,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) NominalPower() unsafe.Point
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetNominalPower(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/remainingSlotTime
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) RemainingSlotTime() unsafe.Pointer {
@@ -314,6 +330,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) RemainingSlotTime() unsafe.
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetRemainingSlotTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRemainingSlotTime:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/slotIsPausable
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SlotIsPausable() unsafe.Pointer {
@@ -328,5 +345,6 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SlotIsPausable() unsafe.Poi
 func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetSlotIsPausable(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotIsPausable:"), value)
 }
+
 
 

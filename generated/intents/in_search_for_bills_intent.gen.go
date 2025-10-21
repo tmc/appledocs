@@ -81,6 +81,8 @@ func NewINSearchForBillsIntent() INSearchForBillsIntent {
 }
 
 
+
+
 // Initializes an intent object that describes a search for bill details with the specified search parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/init(billPayee:paymentDateRange:billType:status:dueDateRange:)

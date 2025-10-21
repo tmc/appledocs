@@ -82,6 +82,8 @@ func NewPHASEBlendNodeDefinition() PHASEBlendNodeDefinition {
 }
 
 
+
+
 // Creates a blend node with a maxiumum blend range value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:)
@@ -91,6 +93,8 @@ func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition(blendMetaParame
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a named blend node with a maxiumum blend range value.
 //

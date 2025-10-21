@@ -122,6 +122,7 @@ func (t_ TextureDescriptor) AllowGPUOptimizedContents() bool {
 func (t_ TextureDescriptor) SetAllowGPUOptimizedContents(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowGPUOptimizedContents:"), value)
 }
+
 // The number of array elements for this texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/arrayLength
@@ -139,6 +140,7 @@ func (t_ TextureDescriptor) ArrayLength() uint {
 func (t_ TextureDescriptor) SetArrayLength(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setArrayLength:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/compressionType
 func (t_ TextureDescriptor) CompressionType() unsafe.Pointer {
@@ -153,6 +155,7 @@ func (t_ TextureDescriptor) CompressionType() unsafe.Pointer {
 func (t_ TextureDescriptor) SetCompressionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompressionType:"), value)
 }
+
 // The CPU cache mode used for the CPU mapping of the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/cpuCacheMode
@@ -170,6 +173,7 @@ func (t_ TextureDescriptor) CpuCacheMode() unsafe.Pointer {
 func (t_ TextureDescriptor) SetCpuCacheMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCpuCacheMode:"), value)
 }
+
 // The depth of the texture image for the base level mipmap, in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/depth
@@ -187,6 +191,7 @@ func (t_ TextureDescriptor) Depth() uint {
 func (t_ TextureDescriptor) SetDepth(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDepth:"), value)
 }
+
 // The texture’s hazard tracking mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode
@@ -204,6 +209,7 @@ func (t_ TextureDescriptor) HazardTrackingMode() unsafe.Pointer {
 func (t_ TextureDescriptor) SetHazardTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHazardTrackingMode:"), value)
 }
+
 // The height of the texture image for the base level mipmap, in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/height
@@ -221,6 +227,7 @@ func (t_ TextureDescriptor) Height() uint {
 func (t_ TextureDescriptor) SetHeight(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeight:"), value)
 }
+
 // The number of mipmap levels for this texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount
@@ -238,6 +245,7 @@ func (t_ TextureDescriptor) MipmapLevelCount() uint {
 func (t_ TextureDescriptor) SetMipmapLevelCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMipmapLevelCount:"), value)
 }
+
 // The size and bit layout of all pixels in the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/pixelFormat
@@ -255,6 +263,7 @@ func (t_ TextureDescriptor) PixelFormat() unsafe.Pointer {
 func (t_ TextureDescriptor) SetPixelFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPixelFormat:"), value)
 }
+
 // Determines the page size for a placement sparse texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/placementSparsePageSize
@@ -272,6 +281,7 @@ func (t_ TextureDescriptor) PlacementSparsePageSize() unsafe.Pointer {
 func (t_ TextureDescriptor) SetPlacementSparsePageSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlacementSparsePageSize:"), value)
 }
+
 // The behavior of a new memory allocation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/resourceOptions
@@ -289,6 +299,7 @@ func (t_ TextureDescriptor) ResourceOptions() unsafe.Pointer {
 func (t_ TextureDescriptor) SetResourceOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResourceOptions:"), value)
 }
+
 // The number of samples in each fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/sampleCount
@@ -306,6 +317,7 @@ func (t_ TextureDescriptor) SampleCount() uint {
 func (t_ TextureDescriptor) SetSampleCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSampleCount:"), value)
 }
+
 // The location and access permissions of the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/storageMode
@@ -323,6 +335,7 @@ func (t_ TextureDescriptor) StorageMode() unsafe.Pointer {
 func (t_ TextureDescriptor) SetStorageMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStorageMode:"), value)
 }
+
 // The pattern you want the GPU to apply to pixels when you read or sample pixels from the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/swizzle
@@ -340,6 +353,7 @@ func (t_ TextureDescriptor) Swizzle() unsafe.Pointer {
 func (t_ TextureDescriptor) SetSwizzle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSwizzle:"), value)
 }
+
 // The dimension and arrangement of texture image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/textureType
@@ -357,6 +371,7 @@ func (t_ TextureDescriptor) TextureType() unsafe.Pointer {
 func (t_ TextureDescriptor) SetTextureType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextureType:"), value)
 }
+
 // Options that determine how you can use the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/usage
@@ -374,6 +389,7 @@ func (t_ TextureDescriptor) Usage() unsafe.Pointer {
 func (t_ TextureDescriptor) SetUsage(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsage:"), value)
 }
+
 // The width of the texture image for the base level mipmap, in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/width
@@ -391,5 +407,6 @@ func (t_ TextureDescriptor) Width() uint {
 func (t_ TextureDescriptor) SetWidth(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
 }
+
 
 

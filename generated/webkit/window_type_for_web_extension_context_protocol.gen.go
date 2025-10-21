@@ -19,5 +19,3 @@ var windowTypeForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	windowTypeForWebExtensionContextProtocol = objc.GetProtocol("windowTypeForWebExtensionContext:")
 }
-
-

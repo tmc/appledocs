@@ -12,5 +12,3 @@ var scaleProtocol *objc.Protocol
 func init() {
 	scaleProtocol = objc.GetProtocol("scale")
 }
-
-

@@ -123,6 +123,7 @@ func (p_ PDFView) Delegate() objc.ID {
 func (p_ PDFView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Returns the document associated with a object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/document
@@ -140,6 +141,7 @@ func (p_ PDFView) Document() unsafe.Pointer {
 func (p_ PDFView) SetDocument(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDocument:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/findInteraction
 func (p_ PDFView) FindInteraction() unsafe.Pointer {
@@ -161,6 +163,7 @@ func (p_ PDFView) FindInteractionEnabled() bool {
 func (p_ PDFView) SetFindInteractionEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFindInteractionEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/isInMarkupMode
 func (p_ PDFView) InMarkupMode() bool {
@@ -175,6 +178,7 @@ func (p_ PDFView) InMarkupMode() bool {
 func (p_ PDFView) SetInMarkupMode(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInMarkupMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/pageOverlayViewProvider
 func (p_ PDFView) PageOverlayViewProvider() objc.ID {
@@ -189,6 +193,7 @@ func (p_ PDFView) PageOverlayViewProvider() objc.ID {
 func (p_ PDFView) SetPageOverlayViewProvider(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageOverlayViewProvider:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/pageShadowsEnabled
 func (p_ PDFView) PageShadowsEnabled() bool {
@@ -203,6 +208,7 @@ func (p_ PDFView) PageShadowsEnabled() bool {
 func (p_ PDFView) SetPageShadowsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageShadowsEnabled:"), value)
 }
+
 // Returns an array of objects that represent the currently visible pages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/visiblePages
@@ -210,6 +216,7 @@ func (p_ PDFView) VisiblePages() []PDFPage {
 	rv := objc.Send[[]PDFPage](p_.ID, objc.Sel("visiblePages"))
 	return rv
 }
+
 
 
 

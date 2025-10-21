@@ -88,6 +88,8 @@ func NewMultiArray() MultiArray {
 }
 
 
+
+
 // Merges an array of multiarrays into one multiarray along an axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
@@ -95,6 +97,8 @@ func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe
 	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
+
+
 
 // Creates a multiarray from a data pointer.
 //
@@ -106,6 +110,8 @@ func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointe
 	return rv
 }
 
+
+
 // Creates a multiarray sharing the surface of a pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(pixelBuffer:shape:)
@@ -116,6 +122,8 @@ func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape unsafe.
 	return rv
 }
 
+
+
 // Creates a multidimensional array with a shape and type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(shape:dataType:)
@@ -125,6 +133,8 @@ func NewMultiArrayWithShapeDataTypeError(shape unsafe.Pointer, dataType unsafe.P
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates the object with specified strides.
 //

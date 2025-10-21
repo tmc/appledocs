@@ -12,5 +12,3 @@ var rfcommChannelOpenCompleteProtocol *objc.Protocol
 func init() {
 	rfcommChannelOpenCompleteProtocol = objc.GetProtocol("rfcommChannelOpenComplete:")
 }
-
-

@@ -12,5 +12,3 @@ var RoundedQRCodeGeneratorProtocol *objc.Protocol
 func init() {
 	RoundedQRCodeGeneratorProtocol = objc.GetProtocol("CIRoundedQRCodeGenerator")
 }
-
-

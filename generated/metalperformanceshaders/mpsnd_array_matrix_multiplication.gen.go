@@ -90,6 +90,7 @@ func (n_ NDArrayMatrixMultiplication) Alpha() unsafe.Pointer {
 func (n_ NDArrayMatrixMultiplication) SetAlpha(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAlpha:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
 func (n_ NDArrayMatrixMultiplication) Beta() unsafe.Pointer {
@@ -104,5 +105,6 @@ func (n_ NDArrayMatrixMultiplication) Beta() unsafe.Pointer {
 func (n_ NDArrayMatrixMultiplication) SetBeta(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setBeta:"), value)
 }
+
 
 

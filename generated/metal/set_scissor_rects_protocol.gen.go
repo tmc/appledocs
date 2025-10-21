@@ -20,5 +20,3 @@ var setScissorRectsProtocol *objc.Protocol
 func init() {
 	setScissorRectsProtocol = objc.GetProtocol("setScissorRects:")
 }
-
-

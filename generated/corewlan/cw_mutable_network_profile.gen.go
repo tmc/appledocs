@@ -98,6 +98,7 @@ func (c_ CWMutableNetworkProfile) Security() unsafe.Pointer {
 func (c_ CWMutableNetworkProfile) SetSecurity(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurity:"), value)
 }
+
 // The service set identifier (SSID).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
@@ -115,5 +116,6 @@ func (c_ CWMutableNetworkProfile) SsidData() unsafe.Pointer {
 func (c_ CWMutableNetworkProfile) SetSsidData(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
+
 
 

@@ -81,6 +81,8 @@ func NewCoreMLRequest() CoreMLRequest {
 }
 
 
+
+
 // Creates a model container to use with an image analysis request based on the model you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/init(model:)
@@ -90,6 +92,8 @@ func NewCoreMLRequestWithModel(model unsafe.Pointer) CoreMLRequest {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a model container to use with an image analysis request based on the model you provide, with an optional completion handler.
 //
@@ -119,6 +123,7 @@ func (c_ CoreMLRequest) ImageCropAndScaleOption() unsafe.Pointer {
 func (c_ CoreMLRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
+
 // The model to base the image analysis request on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/model

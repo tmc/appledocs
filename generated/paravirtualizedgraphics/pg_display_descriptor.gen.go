@@ -96,6 +96,7 @@ func (p_ PGDisplayDescriptor) CursorGlyphHandler() unsafe.Pointer {
 func (p_ PGDisplayDescriptor) SetCursorGlyphHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCursorGlyphHandler:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/cursorMoveHandler
 func (p_ PGDisplayDescriptor) CursorMoveHandler() unsafe.Pointer {
@@ -110,6 +111,7 @@ func (p_ PGDisplayDescriptor) CursorMoveHandler() unsafe.Pointer {
 func (p_ PGDisplayDescriptor) SetCursorMoveHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCursorMoveHandler:"), value)
 }
+
 // A handler that the framework calls to change the cursor’s visibility.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/cursorShowHandler
@@ -127,6 +129,7 @@ func (p_ PGDisplayDescriptor) CursorShowHandler() unsafe.Pointer {
 func (p_ PGDisplayDescriptor) SetCursorShowHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCursorShowHandler:"), value)
 }
+
 // A handler that the framework calls to change the virtual display’s graphics mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/modeChangeHandler
@@ -144,6 +147,7 @@ func (p_ PGDisplayDescriptor) ModeChangeHandler() unsafe.Pointer {
 func (p_ PGDisplayDescriptor) SetModeChangeHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModeChangeHandler:"), value)
 }
+
 // The display’s name as seen in the guest operating environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
@@ -161,6 +165,7 @@ func (p_ PGDisplayDescriptor) Name() string {
 func (p_ PGDisplayDescriptor) SetName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // A handler that the framework calls when the guest environment has a new frame to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/newFrameEventHandler
@@ -178,6 +183,7 @@ func (p_ PGDisplayDescriptor) NewFrameEventHandler() unsafe.Pointer {
 func (p_ PGDisplayDescriptor) SetNewFrameEventHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNewFrameEventHandler:"), value)
 }
+
 // The queue that the framework uses when dispatching messages to any of the display’s registered handlers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/queue
@@ -195,6 +201,7 @@ func (p_ PGDisplayDescriptor) Queue() unsafe.Pointer {
 func (p_ PGDisplayDescriptor) SetQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setQueue:"), value)
 }
+
 // The size in millimeters of the virtual display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/sizeInMillimeters
@@ -212,5 +219,6 @@ func (p_ PGDisplayDescriptor) SizeInMillimeters() foundation.Size {
 func (p_ PGDisplayDescriptor) SetSizeInMillimeters(value foundation.Size) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSizeInMillimeters:"), value)
 }
+
 
 

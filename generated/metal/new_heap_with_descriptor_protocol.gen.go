@@ -20,5 +20,3 @@ var newHeapWithDescriptorProtocol *objc.Protocol
 func init() {
 	newHeapWithDescriptorProtocol = objc.GetProtocol("newHeapWithDescriptor:")
 }
-
-

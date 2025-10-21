@@ -91,6 +91,8 @@ func NewPDFSelection() PDFSelection {
 }
 
 
+
+
 // Returns an empty object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/init(document:)
@@ -205,6 +207,7 @@ func (p_ PDFSelection) Color() unsafe.Pointer {
 func (p_ PDFSelection) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
+
 // Returns the array of pages contained in the selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/pages

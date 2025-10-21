@@ -116,6 +116,7 @@ func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) 
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), nsArray)
 }
+
 // A delegate that provides a display context in which the system can present an authorization interface to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
@@ -133,5 +134,6 @@ func (a_ AuthorizationController) PresentationContextProvider() objc.ID {
 func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
+
 
 

@@ -87,6 +87,8 @@ func NewBluetoothDevicePair() BluetoothDevicePair {
 }
 
 
+
+
 // Creates an autorelease IOBluetoothDevicePair object with a device as the pairing target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/init(device:)
@@ -162,4 +164,5 @@ func (b_ BluetoothDevicePair) Delegate() objc.ID {
 func (b_ BluetoothDevicePair) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+
 

@@ -20,5 +20,3 @@ var notifyListenerProtocol *objc.Protocol
 func init() {
 	notifyListenerProtocol = objc.GetProtocol("notifyListener:")
 }
-
-

@@ -100,3 +100,4 @@ func (v_ VZConsolePortConfiguration) SetAttachment(value unsafe.Pointer) {
 }
 
 
+

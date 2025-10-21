@@ -12,5 +12,3 @@ var devicePairingUserPasskeyNotificationProtocol *objc.Protocol
 func init() {
 	devicePairingUserPasskeyNotificationProtocol = objc.GetProtocol("devicePairingUserPasskeyNotification:")
 }
-
-

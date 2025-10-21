@@ -81,6 +81,8 @@ func NewMergeConflict() MergeConflict {
 }
 
 
+
+
 // Initializes a merge conflict.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/init(source:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)

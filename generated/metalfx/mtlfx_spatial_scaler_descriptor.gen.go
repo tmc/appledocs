@@ -130,6 +130,7 @@ func (f_ FXSpatialScalerDescriptor) ColorProcessingMode() unsafe.Pointer {
 func (f_ FXSpatialScalerDescriptor) SetColorProcessingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorProcessingMode:"), value)
 }
+
 // The pixel format of the input color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorTextureFormat
@@ -147,6 +148,7 @@ func (f_ FXSpatialScalerDescriptor) ColorTextureFormat() unsafe.Pointer {
 func (f_ FXSpatialScalerDescriptor) SetColorTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorTextureFormat:"), value)
 }
+
 // The height of the input color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/inputHeight
@@ -164,6 +166,7 @@ func (f_ FXSpatialScalerDescriptor) InputHeight() uint {
 func (f_ FXSpatialScalerDescriptor) SetInputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputHeight:"), value)
 }
+
 // The width of the input color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/inputWidth
@@ -181,6 +184,7 @@ func (f_ FXSpatialScalerDescriptor) InputWidth() uint {
 func (f_ FXSpatialScalerDescriptor) SetInputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputWidth:"), value)
 }
+
 // The height of the output color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputHeight
@@ -198,6 +202,7 @@ func (f_ FXSpatialScalerDescriptor) OutputHeight() uint {
 func (f_ FXSpatialScalerDescriptor) SetOutputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputHeight:"), value)
 }
+
 // The pixel format of the output color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputTextureFormat
@@ -215,6 +220,7 @@ func (f_ FXSpatialScalerDescriptor) OutputTextureFormat() unsafe.Pointer {
 func (f_ FXSpatialScalerDescriptor) SetOutputTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputTextureFormat:"), value)
 }
+
 // The width of the output color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputWidth
@@ -232,5 +238,6 @@ func (f_ FXSpatialScalerDescriptor) OutputWidth() uint {
 func (f_ FXSpatialScalerDescriptor) SetOutputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputWidth:"), value)
 }
+
 
 

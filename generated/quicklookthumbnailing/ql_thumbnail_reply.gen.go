@@ -80,6 +80,8 @@ func NewThumbnailReply() ThumbnailReply {
 }
 
 
+
+
 // Creates a new thumbnail for a custom file type in the current context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:currentContextDrawing:)
@@ -87,6 +89,8 @@ func NewThumbnailReplyWithContextSizeCurrentContextDrawingBlock(contextSize core
 	rv := objc.Send[ThumbnailReply](objc.ID(getThumbnailReplyClass().class), objc.Sel("replyWithContextSize:currentContextDrawingBlock:"), contextSize, drawingBlock)
 	return rv
 }
+
+
 
 // Creates a new thumbnail for a custom file type in the given context.
 //
@@ -130,4 +134,5 @@ func (t_ ThumbnailReply) ExtensionBadge() string {
 func (t_ ThumbnailReply) SetExtensionBadge(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), objc.String(value))
 }
+
 

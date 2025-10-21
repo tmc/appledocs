@@ -96,6 +96,7 @@ func (v_ VertexBufferLayoutDescriptor) StepFunction() unsafe.Pointer {
 func (v_ VertexBufferLayoutDescriptor) SetStepFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStepFunction:"), value)
 }
+
 // The interval at which the vertex and its attributes are presented to the vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor/stepRate
@@ -113,6 +114,7 @@ func (v_ VertexBufferLayoutDescriptor) StepRate() uint {
 func (v_ VertexBufferLayoutDescriptor) SetStepRate(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStepRate:"), value)
 }
+
 // The number of bytes between the first byte of two consecutive vertices in a buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor/stride
@@ -130,5 +132,6 @@ func (v_ VertexBufferLayoutDescriptor) Stride() uint {
 func (v_ VertexBufferLayoutDescriptor) SetStride(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStride:"), value)
 }
+
 
 

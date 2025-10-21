@@ -12,5 +12,3 @@ var Audio3DMixingProtocol *objc.Protocol
 func init() {
 	Audio3DMixingProtocol = objc.GetProtocol("AVAudio3DMixing")
 }
-
-

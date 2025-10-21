@@ -19,5 +19,3 @@ var addScheduledHandlerProtocol *objc.Protocol
 func init() {
 	addScheduledHandlerProtocol = objc.GetProtocol("addScheduledHandler:")
 }
-
-

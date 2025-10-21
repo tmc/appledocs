@@ -15,5 +15,3 @@ var FSUnaryFileSystemOperationsProtocol *objc.Protocol
 func init() {
 	FSUnaryFileSystemOperationsProtocol = objc.GetProtocol("FSUnaryFileSystemOperations")
 }
-
-

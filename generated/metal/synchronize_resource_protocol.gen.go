@@ -16,5 +16,3 @@ var synchronizeResourceProtocol *objc.Protocol
 func init() {
 	synchronizeResourceProtocol = objc.GetProtocol("synchronizeResource:")
 }
-
-

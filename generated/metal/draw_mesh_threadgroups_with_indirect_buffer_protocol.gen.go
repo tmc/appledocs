@@ -20,5 +20,3 @@ var drawMeshThreadgroupsWithIndirectBufferProtocol *objc.Protocol
 func init() {
 	drawMeshThreadgroupsWithIndirectBufferProtocol = objc.GetProtocol("drawMeshThreadgroupsWithIndirectBuffer:")
 }
-
-

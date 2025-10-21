@@ -101,6 +101,8 @@ func NewAudioUnit() AudioUnit {
 }
 
 
+
+
 // Synchronously initializes a new audio unit object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/init(componentDescription:)
@@ -110,6 +112,8 @@ func NewAudioUnitWithComponentDescriptionError(componentDescription unsafe.Point
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Synchronously initializes a new audio unit object.
 //
@@ -368,6 +372,7 @@ func (a_ AudioUnit) SetChannelMap(value []foundation.NSNumber) {
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelMap:"), nsArray)
 }
+
 // The component found in the component description with which the audio unit was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/component
@@ -417,6 +422,7 @@ func (a_ AudioUnit) ContextName() string {
 func (a_ AudioUnit) SetContextName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContextName:"), objc.String(value))
 }
+
 // The audio unit’s last-selected preset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/currentPreset
@@ -434,6 +440,7 @@ func (a_ AudioUnit) CurrentPreset() unsafe.Pointer {
 func (a_ AudioUnit) SetCurrentPreset(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPreset:"), value)
 }
+
 // Gets the I/O hardware device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/deviceID
@@ -483,6 +490,7 @@ func (a_ AudioUnit) FullState() unsafe.Pointer {
 func (a_ AudioUnit) SetFullState(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), value)
 }
+
 // A persistable snapshot of the audio unit’s properties and parameters, suitable for saving in a user’s document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument
@@ -500,6 +508,7 @@ func (a_ AudioUnit) FullStateForDocument() unsafe.Pointer {
 func (a_ AudioUnit) SetFullStateForDocument(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/hostMIDIProtocol
 func (a_ AudioUnit) HostMIDIProtocol() unsafe.Pointer {
@@ -514,6 +523,7 @@ func (a_ AudioUnit) HostMIDIProtocol() unsafe.Pointer {
 func (a_ AudioUnit) SetHostMIDIProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHostMIDIProtocol:"), value)
 }
+
 // An array containing the audio unit’s input connection points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/inputBusses
@@ -539,6 +549,7 @@ func (a_ AudioUnit) InputHandler() unsafe.Pointer {
 func (a_ AudioUnit) SetInputHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputHandler:"), value)
 }
+
 // The AUAudioUnit’s intended spatial experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/intendedSpatialExperience-1dvhd
@@ -556,6 +567,7 @@ func (a_ AudioUnit) IntendedSpatialExperience() unsafe.Pointer {
 func (a_ AudioUnit) SetIntendedSpatialExperience(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }
+
 // The block which you must provide, via a getter, in order to implement rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/internalRenderBlock
@@ -581,6 +593,7 @@ func (a_ AudioUnit) InputEnabled() bool {
 func (a_ AudioUnit) SetInputEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputEnabled:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isLoadedInProcess
 func (a_ AudioUnit) IsLoadedInProcess() bool {
@@ -613,6 +626,7 @@ func (a_ AudioUnit) OutputEnabled() bool {
 func (a_ AudioUnit) SetOutputEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputEnabled:"), value)
 }
+
 // Communicates to an audio unit that it is rendering offline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isRenderingOffline
@@ -630,6 +644,7 @@ func (a_ AudioUnit) RenderingOffline() bool {
 func (a_ AudioUnit) SetRenderingOffline(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRenderingOffline:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isRunning
 func (a_ AudioUnit) Running() bool {
@@ -670,6 +685,7 @@ func (a_ AudioUnit) MaximumFramesToRender() unsafe.Pointer {
 func (a_ AudioUnit) SetMaximumFramesToRender(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumFramesToRender:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputBufferSizeHint
 func (a_ AudioUnit) MIDIOutputBufferSizeHint() int {
@@ -684,6 +700,7 @@ func (a_ AudioUnit) MIDIOutputBufferSizeHint() int {
 func (a_ AudioUnit) SetMIDIOutputBufferSizeHint(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMIDIOutputBufferSizeHint:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock
 func (a_ AudioUnit) MIDIOutputEventBlock() unsafe.Pointer {
@@ -698,6 +715,7 @@ func (a_ AudioUnit) MIDIOutputEventBlock() unsafe.Pointer {
 func (a_ AudioUnit) SetMIDIOutputEventBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMIDIOutputEventBlock:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputEventListBlock
 func (a_ AudioUnit) MIDIOutputEventListBlock() unsafe.Pointer {
@@ -712,6 +730,7 @@ func (a_ AudioUnit) MIDIOutputEventListBlock() unsafe.Pointer {
 func (a_ AudioUnit) SetMIDIOutputEventListBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMIDIOutputEventListBlock:"), value)
 }
+
 // The names of the MIDI outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputNames
@@ -744,6 +763,7 @@ func (a_ AudioUnit) MusicalContextBlock() unsafe.Pointer {
 func (a_ AudioUnit) SetMusicalContextBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicalContextBlock:"), value)
 }
+
 // The workgroup associated with the audio device underlying this Audio Unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/osWorkgroup
@@ -777,6 +797,7 @@ func (a_ AudioUnit) OutputProvider() unsafe.Pointer {
 func (a_ AudioUnit) SetOutputProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputProvider:"), value)
 }
+
 // An audio unit’s parameters, organized in a tree hierarchy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/parameterTree
@@ -794,6 +815,7 @@ func (a_ AudioUnit) ParameterTree() unsafe.Pointer {
 func (a_ AudioUnit) SetParameterTree(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameterTree:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/profileChangedBlock
 func (a_ AudioUnit) ProfileChangedBlock() unsafe.Pointer {
@@ -808,6 +830,7 @@ func (a_ AudioUnit) ProfileChangedBlock() unsafe.Pointer {
 func (a_ AudioUnit) SetProfileChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProfileChangedBlock:"), value)
 }
+
 // A Boolean that indicates whether the audio unit provides a user interface, normally in the form of a view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/providesUserInterface
@@ -849,6 +872,7 @@ func (a_ AudioUnit) RenderQuality() int {
 func (a_ AudioUnit) SetRenderQuality(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRenderQuality:"), value)
 }
+
 // Determines whether the audio unit has allocated render resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/renderResourcesAllocated
@@ -897,6 +921,7 @@ func (a_ AudioUnit) ShouldBypassEffect() bool {
 func (a_ AudioUnit) SetShouldBypassEffect(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldBypassEffect:"), value)
 }
+
 // A Boolean value that indicates whether the audio unit supports multi-dimensional polyphonic expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/supportsMPE
@@ -937,6 +962,7 @@ func (a_ AudioUnit) TransportStateBlock() unsafe.Pointer {
 func (a_ AudioUnit) SetTransportStateBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransportStateBlock:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/userPresets
 func (a_ AudioUnit) UserPresets() []AudioUnitPreset {

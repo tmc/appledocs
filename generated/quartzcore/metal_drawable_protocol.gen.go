@@ -12,5 +12,3 @@ var MetalDrawableProtocol *objc.Protocol
 func init() {
 	MetalDrawableProtocol = objc.GetProtocol("CAMetalDrawable")
 }
-
-

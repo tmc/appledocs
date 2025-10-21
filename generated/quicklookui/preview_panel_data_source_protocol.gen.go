@@ -15,5 +15,3 @@ var PreviewPanelDataSourceProtocol *objc.Protocol
 func init() {
 	PreviewPanelDataSourceProtocol = objc.GetProtocol("QLPreviewPanelDataSource")
 }
-
-

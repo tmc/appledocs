@@ -12,5 +12,3 @@ var KeystoneCorrectionHorizontalProtocol *objc.Protocol
 func init() {
 	KeystoneCorrectionHorizontalProtocol = objc.GetProtocol("CIKeystoneCorrectionHorizontal")
 }
-
-

@@ -12,5 +12,3 @@ var ConvolutionProtocol *objc.Protocol
 func init() {
 	ConvolutionProtocol = objc.GetProtocol("CIConvolution")
 }
-
-

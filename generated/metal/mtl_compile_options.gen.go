@@ -95,6 +95,7 @@ func (c_ CompileOptions) AllowReferencingUndefinedSymbols() bool {
 func (c_ CompileOptions) SetAllowReferencingUndefinedSymbols(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowReferencingUndefinedSymbols:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/compileSymbolVisibility
 func (c_ CompileOptions) CompileSymbolVisibility() unsafe.Pointer {
@@ -109,6 +110,7 @@ func (c_ CompileOptions) CompileSymbolVisibility() unsafe.Pointer {
 func (c_ CompileOptions) SetCompileSymbolVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompileSymbolVisibility:"), value)
 }
+
 // A Boolean value that enables shader logging.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/enableLogging
@@ -126,6 +128,7 @@ func (c_ CompileOptions) EnableLogging() bool {
 func (c_ CompileOptions) SetEnableLogging(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnableLogging:"), value)
 }
+
 // A Boolean value that indicates whether the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/fastMathEnabled
@@ -143,6 +146,7 @@ func (c_ CompileOptions) FastMathEnabled() bool {
 func (c_ CompileOptions) SetFastMathEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFastMathEnabled:"), value)
 }
+
 // For a dynamic library, the name to use when installing the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
@@ -160,6 +164,7 @@ func (c_ CompileOptions) InstallName() string {
 func (c_ CompileOptions) SetInstallName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), objc.String(value))
 }
+
 // The language version for interpreting the library source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/languageVersion
@@ -177,6 +182,7 @@ func (c_ CompileOptions) LanguageVersion() unsafe.Pointer {
 func (c_ CompileOptions) SetLanguageVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageVersion:"), value)
 }
+
 // An array of dynamic libraries the Metal compiler links against.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/libraries
@@ -204,6 +210,7 @@ func (c_ CompileOptions) SetLibraries(value []objc.ID) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLibraries:"), nsArray)
 }
+
 // The kind of library to create.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/libraryType
@@ -221,6 +228,7 @@ func (c_ CompileOptions) LibraryType() unsafe.Pointer {
 func (c_ CompileOptions) SetLibraryType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLibraryType:"), value)
 }
+
 // The FP32 math functions Metal uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/mathFloatingPointFunctions
@@ -238,6 +246,7 @@ func (c_ CompileOptions) MathFloatingPointFunctions() unsafe.Pointer {
 func (c_ CompileOptions) SetMathFloatingPointFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMathFloatingPointFunctions:"), value)
 }
+
 // An indication of whether the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/mathMode
@@ -255,6 +264,7 @@ func (c_ CompileOptions) MathMode() unsafe.Pointer {
 func (c_ CompileOptions) SetMathMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMathMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/maxTotalThreadsPerThreadgroup
 func (c_ CompileOptions) MaxTotalThreadsPerThreadgroup() uint {
@@ -269,6 +279,7 @@ func (c_ CompileOptions) MaxTotalThreadsPerThreadgroup() uint {
 func (c_ CompileOptions) SetMaxTotalThreadsPerThreadgroup(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
 }
+
 // An option that tells the compiler what to prioritize when it compiles Metal shader code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/optimizationLevel
@@ -286,6 +297,7 @@ func (c_ CompileOptions) OptimizationLevel() unsafe.Pointer {
 func (c_ CompileOptions) SetOptimizationLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizationLevel:"), value)
 }
+
 // A list of preprocessor macros to apply when compiling the library source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/preprocessorMacros
@@ -303,6 +315,7 @@ func (c_ CompileOptions) PreprocessorMacros() unsafe.Pointer {
 func (c_ CompileOptions) SetPreprocessorMacros(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreprocessorMacros:"), value)
 }
+
 // A Boolean value that indicates whether the compiler compiles vertex shaders conservatively to generate consistent position calculations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/preserveInvariance
@@ -320,6 +333,7 @@ func (c_ CompileOptions) PreserveInvariance() bool {
 func (c_ CompileOptions) SetPreserveInvariance(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreserveInvariance:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/requiredThreadsPerThreadgroup
 func (c_ CompileOptions) RequiredThreadsPerThreadgroup() unsafe.Pointer {
@@ -334,5 +348,6 @@ func (c_ CompileOptions) RequiredThreadsPerThreadgroup() unsafe.Pointer {
 func (c_ CompileOptions) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
+
 
 

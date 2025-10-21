@@ -12,5 +12,3 @@ var DocumentEnhancerProtocol *objc.Protocol
 func init() {
 	DocumentEnhancerProtocol = objc.GetProtocol("CIDocumentEnhancer")
 }
-
-

@@ -18,5 +18,3 @@ var AuthorizationWebBrowserSecurityKeyPublicKeyCredentialProviderProtocol *objc.
 func init() {
 	AuthorizationWebBrowserSecurityKeyPublicKeyCredentialProviderProtocol = objc.GetProtocol("ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider")
 }
-
-

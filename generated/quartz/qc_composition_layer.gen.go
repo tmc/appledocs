@@ -83,6 +83,8 @@ func NewQCCompositionLayer() QCCompositionLayer {
 }
 
 
+
+
 // Initializes and returns a composition layer using the provided Quartz Composer composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionLayer/init(composition:)
@@ -92,6 +94,8 @@ func NewQCCompositionLayerWithComposition(composition unsafe.Pointer) QCComposit
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes and returns a composition layer using the Quartz Composer composition in the specified file.
 //

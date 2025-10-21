@@ -81,6 +81,8 @@ func NewPropertyAnimation() PropertyAnimation {
 }
 
 
+
+
 // Creates and returns an instance for the specified key path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
@@ -115,6 +117,7 @@ func (p_ PropertyAnimation) Additive() bool {
 func (p_ PropertyAnimation) SetAdditive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdditive:"), value)
 }
+
 // Determines if the value of the property is the value at the end of the previous repeat cycle, plus the value of the current repeat cycle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/isCumulative
@@ -132,6 +135,7 @@ func (p_ PropertyAnimation) Cumulative() bool {
 func (p_ PropertyAnimation) SetCumulative(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCumulative:"), value)
 }
+
 // Specifies the key path the receiver animates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/keyPath
@@ -149,6 +153,7 @@ func (p_ PropertyAnimation) KeyPath() string {
 func (p_ PropertyAnimation) SetKeyPath(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setKeyPath:"), objc.String(value))
 }
+
 // An optional value function that is applied to interpolated values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/valueFunction
@@ -166,5 +171,6 @@ func (p_ PropertyAnimation) ValueFunction() unsafe.Pointer {
 func (p_ PropertyAnimation) SetValueFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueFunction:"), value)
 }
+
 
 

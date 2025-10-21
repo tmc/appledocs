@@ -12,5 +12,3 @@ var retainCountProtocol *objc.Protocol
 func init() {
 	retainCountProtocol = objc.GetProtocol("retainCount")
 }
-
-

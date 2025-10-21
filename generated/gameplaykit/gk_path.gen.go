@@ -84,15 +84,7 @@ func NewPath() Path {
 }
 
 
-// Initializes a path using the positions of the specified graph nodes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/init(graphNodes:radius:)
-func NewPathWithGraphNodesRadius(graphNodes unsafe.Pointer, radius unsafe.Pointer) Path {
-	instance := getPathClass().Alloc()
-	rv := objc.Send[Path](instance.ID, objc.Sel("initWithGraphNodes:radius:"), graphNodes, radius)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Initializes a path with the specified array of 3D points.
 //
@@ -103,6 +95,20 @@ func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count uns
 	rv.Autorelease()
 	return rv
 }
+
+
+
+// Initializes a path using the positions of the specified graph nodes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/init(graphNodes:radius:)
+func NewPathWithGraphNodesRadius(graphNodes unsafe.Pointer, radius unsafe.Pointer) Path {
+	instance := getPathClass().Alloc()
+	rv := objc.Send[Path](instance.ID, objc.Sel("initWithGraphNodes:radius:"), graphNodes, radius)
+	rv.Autorelease()
+	return rv
+}
+
+
 
 // Initializes a path with the specified array of 2D points.
 //
@@ -180,6 +186,7 @@ func (p_ Path) Cyclical() bool {
 func (p_ Path) SetCyclical(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCyclical:"), value)
 }
+
 // The number of vertices in the path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/numPoints
@@ -205,4 +212,5 @@ func (p_ Path) Radius() unsafe.Pointer {
 func (p_ Path) SetRadius(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRadius:"), value)
 }
+
 

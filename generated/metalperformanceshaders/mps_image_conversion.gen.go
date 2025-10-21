@@ -81,6 +81,8 @@ func NewImageConversion() ImageConversion {
 }
 
 
+
+
 // Initializes a filter that can convert texture color space, alpha, and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/init(device:srcAlpha:destAlpha:backgroundColor:conversionInfo:)

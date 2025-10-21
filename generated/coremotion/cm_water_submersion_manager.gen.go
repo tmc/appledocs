@@ -120,6 +120,7 @@ func (w_ WaterSubmersionManager) Delegate() objc.ID {
 func (w_ WaterSubmersionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The maximum depth supported by the water submersion manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/maximumDepth

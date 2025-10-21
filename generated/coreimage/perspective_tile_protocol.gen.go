@@ -12,5 +12,3 @@ var PerspectiveTileProtocol *objc.Protocol
 func init() {
 	PerspectiveTileProtocol = objc.GetProtocol("CIPerspectiveTile")
 }
-
-

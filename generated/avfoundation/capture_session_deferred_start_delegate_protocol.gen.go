@@ -19,5 +19,3 @@ var CaptureSessionDeferredStartDelegateProtocol *objc.Protocol
 func init() {
 	CaptureSessionDeferredStartDelegateProtocol = objc.GetProtocol("AVCaptureSessionDeferredStartDelegate")
 }
-
-

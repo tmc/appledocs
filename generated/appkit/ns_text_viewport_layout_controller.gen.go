@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextViewportLayoutController] class.
@@ -78,3 +79,7 @@ func (t_ TextViewportLayoutController) Autorelease() TextViewportLayoutControlle
 func NewTextViewportLayoutController() TextViewportLayoutController {
 	return getTextViewportLayoutControllerClass().New()
 }
+
+
+
+

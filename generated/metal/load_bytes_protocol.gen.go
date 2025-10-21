@@ -20,5 +20,3 @@ var loadBytesProtocol *objc.Protocol
 func init() {
 	loadBytesProtocol = objc.GetProtocol("loadBytes:")
 }
-
-

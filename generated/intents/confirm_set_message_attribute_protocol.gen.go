@@ -18,5 +18,3 @@ var confirmSetMessageAttributeProtocol *objc.Protocol
 func init() {
 	confirmSetMessageAttributeProtocol = objc.GetProtocol("confirmSetMessageAttribute:")
 }
-
-

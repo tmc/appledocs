@@ -19,5 +19,3 @@ var headphoneMotionManagerDidDisconnectProtocol *objc.Protocol
 func init() {
 	headphoneMotionManagerDidDisconnectProtocol = objc.GetProtocol("headphoneMotionManagerDidDisconnect:")
 }
-
-

@@ -90,6 +90,7 @@ func (m_ MTRDishwasherModeClusterModeOptionStruct) Label() string {
 func (m_ MTRDishwasherModeClusterModeOptionStruct) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeOptionStruct/mode
 func (m_ MTRDishwasherModeClusterModeOptionStruct) Mode() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDishwasherModeClusterModeOptionStruct) Mode() unsafe.Pointer {
 func (m_ MTRDishwasherModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeOptionStruct/modeTags
 func (m_ MTRDishwasherModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
@@ -118,5 +120,6 @@ func (m_ MTRDishwasherModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 func (m_ MTRDishwasherModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
+
 
 

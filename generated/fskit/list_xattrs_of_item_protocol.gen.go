@@ -15,5 +15,3 @@ var listXattrsOfItemProtocol *objc.Protocol
 func init() {
 	listXattrsOfItemProtocol = objc.GetProtocol("listXattrsOfItem:")
 }
-
-

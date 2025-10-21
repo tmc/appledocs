@@ -20,5 +20,3 @@ var PushRegistryDelegateProtocol *objc.Protocol
 func init() {
 	PushRegistryDelegateProtocol = objc.GetProtocol("PKPushRegistryDelegate")
 }
-
-

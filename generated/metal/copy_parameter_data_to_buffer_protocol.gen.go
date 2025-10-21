@@ -20,5 +20,3 @@ var copyParameterDataToBufferProtocol *objc.Protocol
 func init() {
 	copyParameterDataToBufferProtocol = objc.GetProtocol("copyParameterDataToBuffer:")
 }
-
-

@@ -114,6 +114,7 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilitySpeech() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsAccessibilitySpeech(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilitySpeech:"), value)
 }
+
 // A Boolean value that indicates whether to allow accessibility typing feedback during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilityTypingFeedback
@@ -131,6 +132,7 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilityTypingFeedback() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityTypingFeedback(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityTypingFeedback:"), value)
 }
+
 // A Boolean value that indicates whether to allow Handoff during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation
@@ -148,6 +150,7 @@ func (a_ AEAssessmentConfiguration) AllowsActivityContinuation() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsActivityContinuation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsActivityContinuation:"), value)
 }
+
 // A Boolean value that indicates whether to allow Slide to Type to operate during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard
@@ -165,6 +168,7 @@ func (a_ AEAssessmentConfiguration) AllowsContinuousPathKeyboard() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsContinuousPathKeyboard(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsContinuousPathKeyboard:"), value)
 }
+
 // A Boolean value that indicates whether to allow the use of dictation during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation
@@ -182,6 +186,7 @@ func (a_ AEAssessmentConfiguration) AllowsDictation() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsDictation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsDictation:"), value)
 }
+
 // A Boolean value that indicates whether to allow keyboard shortcuts during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts
@@ -199,6 +204,7 @@ func (a_ AEAssessmentConfiguration) AllowsKeyboardShortcuts() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsKeyboardShortcuts(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsKeyboardShortcuts:"), value)
 }
+
 // A Boolean value that indicates whether to allow password autofill during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill
@@ -216,6 +222,7 @@ func (a_ AEAssessmentConfiguration) AllowsPasswordAutoFill() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsPasswordAutoFill(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsPasswordAutoFill:"), value)
 }
+
 // A Boolean value that indicates whether to enable the predictive keyboard during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard
@@ -233,6 +240,7 @@ func (a_ AEAssessmentConfiguration) AllowsPredictiveKeyboard() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsPredictiveKeyboard(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsPredictiveKeyboard:"), value)
 }
+
 // A Boolean value that indicates whether to allow screenshots copied to the clipboard during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsScreenshots
@@ -250,6 +258,7 @@ func (a_ AEAssessmentConfiguration) AllowsScreenshots() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsScreenshots(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsScreenshots:"), value)
 }
+
 // A Boolean value that indicates whether to allow spell check during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck
@@ -267,6 +276,7 @@ func (a_ AEAssessmentConfiguration) AllowsSpellCheck() bool {
 func (a_ AEAssessmentConfiguration) SetAllowsSpellCheck(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsSpellCheck:"), value)
 }
+
 // A Boolean value that indicates whether to allow Autocorrect during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property
@@ -284,6 +294,7 @@ func (a_ AEAssessmentConfiguration) AutocorrectMode() unsafe.Pointer {
 func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutocorrectMode:"), value)
 }
+
 // The collection of apps available during an assessment, along with their associated configurations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication

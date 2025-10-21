@@ -18,5 +18,3 @@ var refreshIntervalProtocol *objc.Protocol
 func init() {
 	refreshIntervalProtocol = objc.GetProtocol("refreshInterval")
 }
-
-

@@ -12,5 +12,3 @@ var deviceSimplePairingCompleteProtocol *objc.Protocol
 func init() {
 	deviceSimplePairingCompleteProtocol = objc.GetProtocol("deviceSimplePairingComplete:")
 }
-
-

@@ -12,5 +12,3 @@ var CoreMLModelProtocol *objc.Protocol
 func init() {
 	CoreMLModelProtocol = objc.GetProtocol("CICoreMLModel")
 }
-
-

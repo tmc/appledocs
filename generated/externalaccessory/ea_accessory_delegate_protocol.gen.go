@@ -20,5 +20,3 @@ var EAAccessoryDelegateProtocol *objc.Protocol
 func init() {
 	EAAccessoryDelegateProtocol = objc.GetProtocol("EAAccessoryDelegate")
 }
-
-

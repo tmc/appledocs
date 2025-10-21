@@ -98,6 +98,7 @@ func (n_ NEVPNProtocol) DisconnectOnSleep() bool {
 func (n_ NEVPNProtocol) SetDisconnectOnSleep(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDisconnectOnSleep:"), value)
 }
+
 // A Boolean value that indicates whether route rules for the tunnel take precedence over any locally defined routes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/enforceRoutes
@@ -115,6 +116,7 @@ func (n_ NEVPNProtocol) EnforceRoutes() bool {
 func (n_ NEVPNProtocol) SetEnforceRoutes(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEnforceRoutes:"), value)
 }
+
 // A Boolean value that indicates whether the system excludes all APNs network traffic from the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/excludeAPNs
@@ -132,6 +134,7 @@ func (n_ NEVPNProtocol) ExcludeAPNs() bool {
 func (n_ NEVPNProtocol) SetExcludeAPNs(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludeAPNs:"), value)
 }
+
 // A Boolean value that indicates whether the system excludes all cellular services network traffic from the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/excludeCellularServices
@@ -149,6 +152,7 @@ func (n_ NEVPNProtocol) ExcludeCellularServices() bool {
 func (n_ NEVPNProtocol) SetExcludeCellularServices(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludeCellularServices:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/excludeDeviceCommunication
 func (n_ NEVPNProtocol) ExcludeDeviceCommunication() bool {
@@ -163,6 +167,7 @@ func (n_ NEVPNProtocol) ExcludeDeviceCommunication() bool {
 func (n_ NEVPNProtocol) SetExcludeDeviceCommunication(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludeDeviceCommunication:"), value)
 }
+
 // A Boolean value that indicates whether the system excludes all traffic destined for local networks from the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/excludeLocalNetworks
@@ -180,6 +185,7 @@ func (n_ NEVPNProtocol) ExcludeLocalNetworks() bool {
 func (n_ NEVPNProtocol) SetExcludeLocalNetworks(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludeLocalNetworks:"), value)
 }
+
 // The certificate and private key components of the tunneling protocol authentication credential, in PKCS12 format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityData
@@ -197,6 +203,7 @@ func (n_ NEVPNProtocol) IdentityData() unsafe.Pointer {
 func (n_ NEVPNProtocol) SetIdentityData(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityData:"), value)
 }
+
 // The password for the PKCS12 tunneling protocol authentication credentials.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityDataPassword
@@ -214,6 +221,7 @@ func (n_ NEVPNProtocol) IdentityDataPassword() string {
 func (n_ NEVPNProtocol) SetIdentityDataPassword(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), objc.String(value))
 }
+
 // A persistent keychain reference to a keychain item containing the certificate and private key components of the tunneling protocol authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityReference
@@ -231,6 +239,7 @@ func (n_ NEVPNProtocol) IdentityReference() unsafe.Pointer {
 func (n_ NEVPNProtocol) SetIdentityReference(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityReference:"), value)
 }
+
 // A Boolean value that indicates whether the system sends most network traffic over the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks
@@ -248,6 +257,7 @@ func (n_ NEVPNProtocol) IncludeAllNetworks() bool {
 func (n_ NEVPNProtocol) SetIncludeAllNetworks(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludeAllNetworks:"), value)
 }
+
 // A persistent keychain reference to a keychain item containing the password component of the tunneling protocol authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/passwordReference
@@ -265,6 +275,7 @@ func (n_ NEVPNProtocol) PasswordReference() unsafe.Pointer {
 func (n_ NEVPNProtocol) SetPasswordReference(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPasswordReference:"), value)
 }
+
 // The proxy settings to use for HTTP and HTTPS connections that route through the VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/proxySettings
@@ -282,6 +293,7 @@ func (n_ NEVPNProtocol) ProxySettings() unsafe.Pointer {
 func (n_ NEVPNProtocol) SetProxySettings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProxySettings:"), value)
 }
+
 // The address of the VPN server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/serverAddress
@@ -299,6 +311,7 @@ func (n_ NEVPNProtocol) ServerAddress() string {
 func (n_ NEVPNProtocol) SetServerAddress(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/sliceUUID
 func (n_ NEVPNProtocol) SliceUUID() string {
@@ -313,6 +326,7 @@ func (n_ NEVPNProtocol) SliceUUID() string {
 func (n_ NEVPNProtocol) SetSliceUUID(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSliceUUID:"), objc.String(value))
 }
+
 // The user name component of the tunneling protocol authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/username
@@ -330,5 +344,6 @@ func (n_ NEVPNProtocol) Username() string {
 func (n_ NEVPNProtocol) SetUsername(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
+
 
 

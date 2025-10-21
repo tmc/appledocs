@@ -20,5 +20,3 @@ var compressionTypeProtocol *objc.Protocol
 func init() {
 	compressionTypeProtocol = objc.GetProtocol("compressionType")
 }
-
-

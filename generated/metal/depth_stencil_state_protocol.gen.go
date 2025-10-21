@@ -19,5 +19,3 @@ var DepthStencilStateProtocol *objc.Protocol
 func init() {
 	DepthStencilStateProtocol = objc.GetProtocol("MTLDepthStencilState")
 }
-
-

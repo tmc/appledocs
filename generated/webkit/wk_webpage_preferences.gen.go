@@ -98,6 +98,7 @@ func (w_ WebpagePreferences) AllowsContentJavaScript() bool {
 func (w_ WebpagePreferences) SetAllowsContentJavaScript(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsContentJavaScript:"), value)
 }
+
 // A Boolean value that indicates whether to use Lockdown Mode in the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/isLockdownModeEnabled
@@ -115,6 +116,7 @@ func (w_ WebpagePreferences) LockdownModeEnabled() bool {
 func (w_ WebpagePreferences) SetLockdownModeEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setLockdownModeEnabled:"), value)
 }
+
 // The content mode for the web view to use when it loads and renders a webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredContentMode
@@ -132,6 +134,7 @@ func (w_ WebpagePreferences) PreferredContentMode() unsafe.Pointer {
 func (w_ WebpagePreferences) SetPreferredContentMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredContentMode:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredHTTPSNavigationPolicy
 func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() unsafe.Pointer {
@@ -146,5 +149,6 @@ func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() unsafe.Pointer {
 func (w_ WebpagePreferences) SetPreferredHTTPSNavigationPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredHTTPSNavigationPolicy:"), value)
 }
+
 
 

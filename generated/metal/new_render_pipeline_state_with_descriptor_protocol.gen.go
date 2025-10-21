@@ -19,5 +19,3 @@ var newRenderPipelineStateWithDescriptorProtocol *objc.Protocol
 func init() {
 	newRenderPipelineStateWithDescriptorProtocol = objc.GetProtocol("newRenderPipelineStateWithDescriptor:")
 }
-
-

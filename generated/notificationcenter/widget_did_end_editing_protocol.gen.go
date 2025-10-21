@@ -15,5 +15,3 @@ var widgetDidEndEditingProtocol *objc.Protocol
 func init() {
 	widgetDidEndEditingProtocol = objc.GetProtocol("widgetDidEndEditing")
 }
-
-

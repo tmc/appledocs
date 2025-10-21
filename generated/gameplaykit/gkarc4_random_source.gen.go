@@ -82,6 +82,8 @@ func NewARC4RandomSource() ARC4RandomSource {
 }
 
 
+
+
 // Initializes a random source with the specified seed data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/init(seed:)
@@ -117,4 +119,5 @@ func (c_ ARC4RandomSource) Seed() unsafe.Pointer {
 func (c_ ARC4RandomSource) SetSeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
+
 

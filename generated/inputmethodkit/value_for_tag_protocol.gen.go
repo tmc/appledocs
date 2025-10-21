@@ -15,4 +15,3 @@ var valueForTagProtocol *objc.Protocol
 func init() {
 	valueForTagProtocol = objc.GetProtocol("valueForTag:")
 }
-

@@ -12,5 +12,3 @@ var AdaptiveImageProvidingProtocol *objc.Protocol
 func init() {
 	AdaptiveImageProvidingProtocol = objc.GetProtocol("CTAdaptiveImageProviding")
 }
-
-

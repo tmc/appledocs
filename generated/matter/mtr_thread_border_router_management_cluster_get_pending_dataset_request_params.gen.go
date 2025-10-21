@@ -93,6 +93,7 @@ func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) S
 func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams/timedInvokeTimeoutMs
@@ -110,5 +111,6 @@ func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) T
 func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

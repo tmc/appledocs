@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = audiotoolbox.NewBypassedSpatialAudio
 
-
 // ExampleNewBypassedSpatialAudio demonstrates how to create a BypassedSpatialAudio instance.
 func ExampleNewBypassedSpatialAudio() {
 	_ = audiotoolbox.NewBypassedSpatialAudio()
 	// Output:
 }
-
-

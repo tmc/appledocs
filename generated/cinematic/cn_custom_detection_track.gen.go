@@ -79,6 +79,8 @@ func NewCNCustomDetectionTrack() CNCustomDetectionTrack {
 }
 
 
+
+
 // Initializes a custom detection track with an array of detections, optionally applying smoothing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/initWithDetections:smooth:

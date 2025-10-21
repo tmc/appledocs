@@ -90,6 +90,7 @@ func (m_ MTRDishwasherAlarmClusterResetParams) Alarms() unsafe.Pointer {
 func (m_ MTRDishwasherAlarmClusterResetParams) SetAlarms(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarms:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/serverSideProcessingTimeout
@@ -107,6 +108,7 @@ func (m_ MTRDishwasherAlarmClusterResetParams) ServerSideProcessingTimeout() uns
 func (m_ MTRDishwasherAlarmClusterResetParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/timedInvokeTimeoutMs
@@ -124,5 +126,6 @@ func (m_ MTRDishwasherAlarmClusterResetParams) TimedInvokeTimeoutMs() unsafe.Poi
 func (m_ MTRDishwasherAlarmClusterResetParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

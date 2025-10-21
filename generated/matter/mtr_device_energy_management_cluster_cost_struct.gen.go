@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() unsafe.Pointer {
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCostType:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/currency
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() unsafe.Pointer {
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrency:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/decimalPoints
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() unsafe.Poin
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDecimalPoints:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/value
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() unsafe.Pointer {
 func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

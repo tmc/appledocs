@@ -15,5 +15,3 @@ var beginObservingDirectoryAtURLProtocol *objc.Protocol
 func init() {
 	beginObservingDirectoryAtURLProtocol = objc.GetProtocol("beginObservingDirectoryAtURL:")
 }
-
-

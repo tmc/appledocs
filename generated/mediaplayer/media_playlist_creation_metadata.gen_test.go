@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = mediaplayer.NewMediaPlaylistCreationMetadata
 
-
 // ExampleNewMediaPlaylistCreationMetadataWithName demonstrates how to create a MediaPlaylistCreationMetadata instance using NewMediaPlaylistCreationMetadataWithName.
 // Creates a new playlist metadata object with the designated name.
 func ExampleNewMediaPlaylistCreationMetadataWithName() {
@@ -18,5 +17,3 @@ func ExampleNewMediaPlaylistCreationMetadataWithName() {
 	)
 	// Output:
 }
-
-

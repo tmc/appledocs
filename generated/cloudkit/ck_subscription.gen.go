@@ -98,6 +98,7 @@ func (c_ CKSubscription) NotificationInfo() unsafe.Pointer {
 func (c_ CKSubscription) SetNotificationInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
+
 // The behavior that a subscription provides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionType-swift.property

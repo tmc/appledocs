@@ -20,5 +20,3 @@ var animationDidStopProtocol *objc.Protocol
 func init() {
 	animationDidStopProtocol = objc.GetProtocol("animationDidStop:")
 }
-
-

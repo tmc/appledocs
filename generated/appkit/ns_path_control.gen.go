@@ -79,3 +79,7 @@ func (p_ PathControl) Autorelease() PathControl {
 func NewPathControl() PathControl {
 	return getPathControlClass().New()
 }
+
+
+
+

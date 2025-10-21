@@ -81,6 +81,8 @@ func NewCKQuery() CKQuery {
 }
 
 
+
+
 // Creates an operation group from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/init(coder:)
@@ -90,6 +92,8 @@ func NewCKQueryWithCoder(aDecoder unsafe.Pointer) CKQuery {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a query with the specified record type and predicate.
 //
@@ -145,4 +149,5 @@ func (c_ CKQuery) SetSortDescriptors(value []NSSortDescriptor) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
+
 

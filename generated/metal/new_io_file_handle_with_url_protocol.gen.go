@@ -20,5 +20,3 @@ var newIOFileHandleWithURLProtocol *objc.Protocol
 func init() {
 	newIOFileHandleWithURLProtocol = objc.GetProtocol("newIOFileHandleWithURL:")
 }
-
-

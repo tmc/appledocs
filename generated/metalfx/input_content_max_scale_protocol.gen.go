@@ -19,5 +19,3 @@ var inputContentMaxScaleProtocol *objc.Protocol
 func init() {
 	inputContentMaxScaleProtocol = objc.GetProtocol("inputContentMaxScale")
 }
-
-

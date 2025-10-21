@@ -84,6 +84,8 @@ func NewGridGraph() GridGraph {
 }
 
 
+
+
 // Initializes a graph that describes an integer grid with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/init(fromGridStartingAt:width:height:diagonalsAllowed:)
@@ -93,6 +95,8 @@ func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.P
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a graph that describes an integer grid with the specified dimensions, using the specified node class.
 //

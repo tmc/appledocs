@@ -76,6 +76,8 @@ func NewMTRLaundryWasherModeClusterChangeToModeResponseParams() MTRLaundryWasher
 }
 
 
+
+
 // Initialize an MTRLaundryWasherModeClusterChangeToModeResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) Status() unsafe.
 func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeResponseParams/statusText
 func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) StatusText() str
 func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

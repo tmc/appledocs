@@ -80,6 +80,7 @@ func NewRuleEditor() RuleEditor {
 	return getRuleEditorClass().New()
 }
 
+
 // The key path for the subrows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowsKeyPath
@@ -87,6 +88,7 @@ func (r_ RuleEditor) SubrowsKeyPath() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("subrowsKeyPath"))
 	return rv
 }
+
 
 // SetSubrowsKeyPath sets the value of the subrowsKeyPath property.
 // The key path for the subrows.
@@ -96,3 +98,6 @@ func (r_ RuleEditor) SubrowsKeyPath() string {
 func (r_ RuleEditor) SetSubrowsKeyPath(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), objc.String(value))
 }
+
+
+

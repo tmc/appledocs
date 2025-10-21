@@ -83,6 +83,8 @@ func NewMusicPlayerMediaItemQueueDescriptor() MusicPlayerMediaItemQueueDescripto
 }
 
 
+
+
 // Creates a new queue descriptor using the designated collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/init(itemCollection:)
@@ -92,6 +94,8 @@ func NewMusicPlayerMediaItemQueueDescriptorWithItemCollection(itemCollection uns
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a new queue descriptor using the designated query.
 //
@@ -151,4 +155,5 @@ func (m_ MusicPlayerMediaItemQueueDescriptor) StartItem() unsafe.Pointer {
 func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItem:"), value)
 }
+
 

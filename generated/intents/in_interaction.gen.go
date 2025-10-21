@@ -122,6 +122,7 @@ func (i_ INInteraction) GroupIdentifier() string {
 func (i_ INInteraction) SetGroupIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
+
 // The unique identifier of the interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
@@ -139,6 +140,7 @@ func (i_ INInteraction) Identifier() string {
 func (i_ INInteraction) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
+
 // The current state of the interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/intentHandlingStatus

@@ -87,6 +87,8 @@ func NewSFAuthorization() SFAuthorization {
 }
 
 
+
+
 // Initializes an authorization object with the specified flags, rights, and environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/init(flags:rights:environment:)

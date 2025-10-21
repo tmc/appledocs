@@ -18,5 +18,3 @@ var fileSystemFlagsProtocol *objc.Protocol
 func init() {
 	fileSystemFlagsProtocol = objc.GetProtocol("fileSystemFlags")
 }
-
-

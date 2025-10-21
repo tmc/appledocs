@@ -12,5 +12,3 @@ var StarShineGeneratorProtocol *objc.Protocol
 func init() {
 	StarShineGeneratorProtocol = objc.GetProtocol("CIStarShineGenerator")
 }
-
-

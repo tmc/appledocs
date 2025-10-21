@@ -81,6 +81,20 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 }
 
 
+
+
+// Creates a new beacon identity condition with the identifier you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
+func NewBeaconIdentityConditionWithUUID(uuid unsafe.Pointer) BeaconIdentityCondition {
+	instance := getBeaconIdentityConditionClass().Alloc()
+	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Creates a new beacon identity condition with the identifier and major value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
@@ -91,22 +105,14 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid unsafe.Pointer, major unsafe.P
 	return rv
 }
 
+
+
 // Creates a new beacon identity condition with the identifier, and major and minor values you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
 func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid unsafe.Pointer, major unsafe.Pointer, minor unsafe.Pointer) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:minor:"), uuid, major, minor)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a new beacon identity condition with the identifier you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
-func NewBeaconIdentityConditionWithUUID(uuid unsafe.Pointer) BeaconIdentityCondition {
-	instance := getBeaconIdentityConditionClass().Alloc()
-	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
 	rv.Autorelease()
 	return rv
 }

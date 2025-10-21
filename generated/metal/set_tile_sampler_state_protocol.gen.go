@@ -20,5 +20,3 @@ var setTileSamplerStateProtocol *objc.Protocol
 func init() {
 	setTileSamplerStateProtocol = objc.GetProtocol("setTileSamplerState:")
 }
-
-

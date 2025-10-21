@@ -19,5 +19,3 @@ var INPauseWorkoutIntentHandlingProtocol *objc.Protocol
 func init() {
 	INPauseWorkoutIntentHandlingProtocol = objc.GetProtocol("INPauseWorkoutIntentHandling")
 }
-
-

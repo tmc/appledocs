@@ -108,3 +108,6 @@ func (h_ HKActivityRingView) SetActivitySummary(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivitySummary:"), value)
 }
 
+
+
+

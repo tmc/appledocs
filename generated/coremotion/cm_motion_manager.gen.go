@@ -226,6 +226,7 @@ func (m_ MotionManager) AccelerometerUpdateInterval() TimeInterval {
 func (m_ MotionManager) SetAccelerometerUpdateInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccelerometerUpdateInterval:"), value)
 }
+
 // Returns either the reference frame currently being used or the default attitude reference frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/attitudeReferenceFrame
@@ -259,6 +260,7 @@ func (m_ MotionManager) DeviceMotionUpdateInterval() TimeInterval {
 func (m_ MotionManager) SetDeviceMotionUpdateInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceMotionUpdateInterval:"), value)
 }
+
 // The latest sample of gyroscope data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/gyroData
@@ -284,6 +286,7 @@ func (m_ MotionManager) GyroUpdateInterval() TimeInterval {
 func (m_ MotionManager) SetGyroUpdateInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGyroUpdateInterval:"), value)
 }
+
 // A Boolean value that indicates whether accelerometer updates are currently happening.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isAccelerometerActive
@@ -373,6 +376,7 @@ func (m_ MotionManager) MagnetometerUpdateInterval() TimeInterval {
 func (m_ MotionManager) SetMagnetometerUpdateInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnetometerUpdateInterval:"), value)
 }
+
 // Controls whether the device-movement display is shown.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/showsDeviceMovementDisplay
@@ -390,5 +394,6 @@ func (m_ MotionManager) ShowsDeviceMovementDisplay() bool {
 func (m_ MotionManager) SetShowsDeviceMovementDisplay(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsDeviceMovementDisplay:"), value)
 }
+
 
 

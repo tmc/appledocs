@@ -90,6 +90,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) ClientNod
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetClientNodeID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientNodeID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/fabricIndex
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) FabricIndex() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) FabricInd
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetFabricIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/requestID
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) RequestID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) RequestID
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetRequestID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/statusCode
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) StatusCode() unsafe.Pointer {
@@ -132,5 +135,6 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) StatusCod
 func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetStatusCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
+
 
 

@@ -81,9 +81,13 @@ func NewSearchToolbarItem() SearchToolbarItem {
 	return getSearchToolbarItemClass().New()
 }
 
+
 // Starts a search interaction and moves the keyboard focus to the search field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchToolbarItem/beginSearchInteraction()
 func (s_ SearchToolbarItem) BeginSearchInteraction() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSearchInteraction"))
 }
+
+
+

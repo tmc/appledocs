@@ -19,5 +19,3 @@ var INSearchForMessagesIntentHandlingProtocol *objc.Protocol
 func init() {
 	INSearchForMessagesIntentHandlingProtocol = objc.GetProtocol("INSearchForMessagesIntentHandling")
 }
-
-

@@ -98,6 +98,7 @@ func (n_ NEVPNProtocolIKEv2) AllowPostQuantumKeyExchangeFallback() bool {
 func (n_ NEVPNProtocolIKEv2) SetAllowPostQuantumKeyExchangeFallback(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAllowPostQuantumKeyExchangeFallback:"), value)
 }
+
 // The type of the certificate in the identity configured in or .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/certificateType
@@ -115,6 +116,7 @@ func (n_ NEVPNProtocolIKEv2) CertificateType() unsafe.Pointer {
 func (n_ NEVPNProtocolIKEv2) SetCertificateType(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCertificateType:"), value)
 }
+
 // An object containing the parameters for the child IPSec security associations to be negotiated for each IKEv2 policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/childSecurityAssociationParameters
@@ -140,6 +142,7 @@ func (n_ NEVPNProtocolIKEv2) DeadPeerDetectionRate() unsafe.Pointer {
 func (n_ NEVPNProtocolIKEv2) SetDeadPeerDetectionRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDeadPeerDetectionRate:"), value)
 }
+
 // A Boolean indicating whether or not MOBIKE should be disabled for the IKEv2 sessions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/disableMOBIKE
@@ -157,6 +160,7 @@ func (n_ NEVPNProtocolIKEv2) DisableMOBIKE() bool {
 func (n_ NEVPNProtocolIKEv2) SetDisableMOBIKE(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDisableMOBIKE:"), value)
 }
+
 // A Boolean indicating whether or not IKEv2 server redirects are disabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/disableRedirect
@@ -174,6 +178,7 @@ func (n_ NEVPNProtocolIKEv2) DisableRedirect() bool {
 func (n_ NEVPNProtocolIKEv2) SetDisableRedirect(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDisableRedirect:"), value)
 }
+
 // A property to enable the use of cellular data when Wi-Fi connectivity is poor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/enableFallback
@@ -191,6 +196,7 @@ func (n_ NEVPNProtocolIKEv2) EnableFallback() bool {
 func (n_ NEVPNProtocolIKEv2) SetEnableFallback(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEnableFallback:"), value)
 }
+
 // A Boolean indicating whether or not Perfect Forward Secrecy is enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/enablePFS
@@ -208,6 +214,7 @@ func (n_ NEVPNProtocolIKEv2) EnablePFS() bool {
 func (n_ NEVPNProtocolIKEv2) SetEnablePFS(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEnablePFS:"), value)
 }
+
 // Enable revocation checking of the IKEv2 server certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/enableRevocationCheck
@@ -225,6 +232,7 @@ func (n_ NEVPNProtocolIKEv2) EnableRevocationCheck() bool {
 func (n_ NEVPNProtocolIKEv2) SetEnableRevocationCheck(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEnableRevocationCheck:"), value)
 }
+
 // An object containing the parameters for the initial IKE security association to be negotiated with the IKEv2 server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/ikeSecurityAssociationParameters
@@ -250,6 +258,7 @@ func (n_ NEVPNProtocolIKEv2) MaximumTLSVersion() unsafe.Pointer {
 func (n_ NEVPNProtocolIKEv2) SetMaximumTLSVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumTLSVersion:"), value)
 }
+
 // The minimum TLS version to allow for EAP-TLS authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/minimumTLSVersion
@@ -267,6 +276,7 @@ func (n_ NEVPNProtocolIKEv2) MinimumTLSVersion() unsafe.Pointer {
 func (n_ NEVPNProtocolIKEv2) SetMinimumTLSVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumTLSVersion:"), value)
 }
+
 // The Maximum Transmission Unit (MTU) size in bytes to assign to the tunnel interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/mtu
@@ -284,6 +294,7 @@ func (n_ NEVPNProtocolIKEv2) Mtu() uint {
 func (n_ NEVPNProtocolIKEv2) SetMtu(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMtu:"), value)
 }
+
 // The configuration for a post-quantum pre-shared key (PPK).
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/ppkConfiguration
@@ -301,6 +312,7 @@ func (n_ NEVPNProtocolIKEv2) PpkConfiguration() unsafe.Pointer {
 func (n_ NEVPNProtocolIKEv2) SetPpkConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPpkConfiguration:"), value)
 }
+
 // A string containing the value of the Subject Common Name field of the IKEv2 server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateCommonName
@@ -318,6 +330,7 @@ func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() string {
 func (n_ NEVPNProtocolIKEv2) SetServerCertificateCommonName(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateCommonName:"), objc.String(value))
 }
+
 // A string containing the value of the Subject Common Name field of the Certificate Authority certificate that issued the IKEv2 server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateIssuerCommonName
@@ -335,6 +348,7 @@ func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() string {
 func (n_ NEVPNProtocolIKEv2) SetServerCertificateIssuerCommonName(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateIssuerCommonName:"), objc.String(value))
 }
+
 // Require a “not revoked” result when checking if the certificate identifying the server is revoked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/strictRevocationCheck
@@ -352,6 +366,7 @@ func (n_ NEVPNProtocolIKEv2) StrictRevocationCheck() bool {
 func (n_ NEVPNProtocolIKEv2) SetStrictRevocationCheck(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setStrictRevocationCheck:"), value)
 }
+
 // A Boolean indicating whether or not the IKEv2 client should use the INTERNAL_IP4_SUBNET and/or INTERNAL_IP6_SUBNET attributes sent by the IKEv2 server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/useConfigurationAttributeInternalIPSubnet
@@ -369,5 +384,6 @@ func (n_ NEVPNProtocolIKEv2) UseConfigurationAttributeInternalIPSubnet() bool {
 func (n_ NEVPNProtocolIKEv2) SetUseConfigurationAttributeInternalIPSubnet(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUseConfigurationAttributeInternalIPSubnet:"), value)
 }
+
 
 

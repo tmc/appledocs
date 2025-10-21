@@ -81,6 +81,8 @@ func NewPayment() Payment {
 }
 
 
+
+
 // Returns a new payment for the specified product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/init(product:)

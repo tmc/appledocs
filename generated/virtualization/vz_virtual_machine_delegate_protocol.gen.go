@@ -15,5 +15,3 @@ var VZVirtualMachineDelegateProtocol *objc.Protocol
 func init() {
 	VZVirtualMachineDelegateProtocol = objc.GetProtocol("VZVirtualMachineDelegate")
 }
-
-

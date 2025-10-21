@@ -20,5 +20,3 @@ var valueProtocol *objc.Protocol
 func init() {
 	valueProtocol = objc.GetProtocol("value")
 }
-
-

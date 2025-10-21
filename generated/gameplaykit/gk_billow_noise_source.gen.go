@@ -81,6 +81,8 @@ func NewBillowNoiseSource() BillowNoiseSource {
 }
 
 
+
+
 // Creates a billow noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/init(frequency:octaveCount:persistence:lacunarity:seed:)
@@ -117,4 +119,5 @@ func (b_ BillowNoiseSource) Persistence() unsafe.Pointer {
 func (b_ BillowNoiseSource) SetPersistence(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPersistence:"), value)
 }
+
 

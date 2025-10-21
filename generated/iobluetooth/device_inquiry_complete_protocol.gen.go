@@ -12,5 +12,3 @@ var deviceInquiryCompleteProtocol *objc.Protocol
 func init() {
 	deviceInquiryCompleteProtocol = objc.GetProtocol("deviceInquiryComplete:")
 }
-
-

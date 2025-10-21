@@ -20,5 +20,3 @@ var reflectionProtocol *objc.Protocol
 func init() {
 	reflectionProtocol = objc.GetProtocol("reflection")
 }
-
-

@@ -12,5 +12,3 @@ var DiscBlurProtocol *objc.Protocol
 func init() {
 	DiscBlurProtocol = objc.GetProtocol("CIDiscBlur")
 }
-
-

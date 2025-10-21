@@ -19,5 +19,3 @@ var renderingAlgorithmProtocol *objc.Protocol
 func init() {
 	renderingAlgorithmProtocol = objc.GetProtocol("renderingAlgorithm")
 }
-
-

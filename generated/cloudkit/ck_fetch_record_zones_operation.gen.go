@@ -81,6 +81,8 @@ func NewCKFetchRecordZonesOperation() CKFetchRecordZonesOperation {
 }
 
 
+
+
 // Creates an operation for fetching the specified record zones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/init(recordZoneIDs:)
@@ -114,6 +116,7 @@ func (c_ CKFetchRecordZonesOperation) PerRecordZoneCompletionBlock() unsafe.Poin
 func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneCompletionBlock:"), value)
 }
+
 // The IDs of the record zones to retrieve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/recordZoneIDs
@@ -141,4 +144,5 @@ func (c_ CKFetchRecordZonesOperation) SetRecordZoneIDs(value []CKRecordZoneID) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDs:"), nsArray)
 }
+
 

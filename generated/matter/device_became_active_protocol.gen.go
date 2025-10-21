@@ -21,5 +21,3 @@ var deviceBecameActiveProtocol *objc.Protocol
 func init() {
 	deviceBecameActiveProtocol = objc.GetProtocol("deviceBecameActive:")
 }
-
-

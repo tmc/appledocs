@@ -81,6 +81,7 @@ func NewUserDefaultsController() UserDefaultsController {
 	return getUserDefaultsControllerClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/init(coder:)
 func NewUserDefaultsControllerWithCoder(coder unsafe.Pointer) UserDefaultsController {
@@ -89,6 +90,7 @@ func NewUserDefaultsControllerWithCoder(coder unsafe.Pointer) UserDefaultsContro
 	rv.Autorelease()
 	return rv
 }
+
 
 // Causes the receiver to discard any unsaved changes to bound user default properties, restoring their previous values.
 //
@@ -104,3 +106,5 @@ func (u_ UserDefaultsController) Values() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("values"))
 	return rv
 }
+
+

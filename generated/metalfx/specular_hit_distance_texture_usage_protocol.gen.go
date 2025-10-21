@@ -19,5 +19,3 @@ var specularHitDistanceTextureUsageProtocol *objc.Protocol
 func init() {
 	specularHitDistanceTextureUsageProtocol = objc.GetProtocol("specularHitDistanceTextureUsage")
 }
-
-

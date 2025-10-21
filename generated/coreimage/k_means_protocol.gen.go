@@ -12,5 +12,3 @@ var KMeansProtocol *objc.Protocol
 func init() {
 	KMeansProtocol = objc.GetProtocol("CIKMeans")
 }
-
-

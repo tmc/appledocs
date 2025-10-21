@@ -90,6 +90,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() unsafe
 func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingEnabledUntil:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/maximumChargeCurrent
 func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() unsafe
 func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumChargeCurrent:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/minimumChargeCurrent
 func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() unsafe
 func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumChargeCurrent:"), value)
 }
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/serverSideProcessingTimeout
@@ -135,6 +138,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout()
 func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/timedInvokeTimeoutMs
@@ -152,5 +156,6 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() unsafe
 func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
+
 
 

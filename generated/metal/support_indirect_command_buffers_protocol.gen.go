@@ -20,5 +20,3 @@ var supportIndirectCommandBuffersProtocol *objc.Protocol
 func init() {
 	supportIndirectCommandBuffersProtocol = objc.GetProtocol("supportIndirectCommandBuffers")
 }
-
-

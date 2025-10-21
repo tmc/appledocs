@@ -19,5 +19,3 @@ var shouldShowCancelConfirmationProtocol *objc.Protocol
 func init() {
 	shouldShowCancelConfirmationProtocol = objc.GetProtocol("shouldShowCancelConfirmation")
 }
-
-

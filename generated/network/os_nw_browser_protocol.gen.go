@@ -21,5 +21,3 @@ var OS_nw_browserProtocol *objc.Protocol
 func init() {
 	OS_nw_browserProtocol = objc.GetProtocol("OS_nw_browser")
 }
-
-

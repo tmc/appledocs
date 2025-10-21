@@ -20,5 +20,3 @@ var matchmakerViewControllerProtocol *objc.Protocol
 func init() {
 	matchmakerViewControllerProtocol = objc.GetProtocol("matchmakerViewController:")
 }
-
-

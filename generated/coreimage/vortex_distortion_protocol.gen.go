@@ -12,5 +12,3 @@ var VortexDistortionProtocol *objc.Protocol
 func init() {
 	VortexDistortionProtocol = objc.GetProtocol("CIVortexDistortion")
 }
-
-

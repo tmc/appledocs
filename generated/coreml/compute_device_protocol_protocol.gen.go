@@ -21,5 +21,3 @@ var ComputeDeviceProtocolProtocol *objc.Protocol
 func init() {
 	ComputeDeviceProtocolProtocol = objc.GetProtocol("MLComputeDeviceProtocol")
 }
-
-

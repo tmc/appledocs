@@ -10,5 +10,3 @@ import (
 var _ = quartzcore.NewValueFunction
 
 
-
-

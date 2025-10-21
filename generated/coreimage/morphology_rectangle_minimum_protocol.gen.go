@@ -12,5 +12,3 @@ var MorphologyRectangleMinimumProtocol *objc.Protocol
 func init() {
 	MorphologyRectangleMinimumProtocol = objc.GetProtocol("CIMorphologyRectangleMinimum")
 }
-
-

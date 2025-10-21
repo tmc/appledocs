@@ -121,15 +121,7 @@ func NewWebView() WebView {
 }
 
 
-// Creates a web view and initializes it with the specified frame and configuration data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(frame:configuration:)
-func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration unsafe.Pointer) WebView {
-	instance := getWebViewClass().Alloc()
-	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithFrame:configuration:"), frame, configuration)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Returns an object initialized from data in the specified coder object.
 //
@@ -137,6 +129,18 @@ func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration u
 func NewWebViewWithCoder(coder unsafe.Pointer) WebView {
 	instance := getWebViewClass().Alloc()
 	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a web view and initializes it with the specified frame and configuration data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(frame:configuration:)
+func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration unsafe.Pointer) WebView {
+	instance := getWebViewClass().Alloc()
+	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithFrame:configuration:"), frame, configuration)
 	rv.Autorelease()
 	return rv
 }
@@ -442,6 +446,7 @@ func (w_ WebView) AllowsBackForwardNavigationGestures() bool {
 func (w_ WebView) SetAllowsBackForwardNavigationGestures(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsBackForwardNavigationGestures:"), value)
 }
+
 // A Boolean value that determines whether pressing a link displays a preview of the destination for the link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/allowsLinkPreview
@@ -459,6 +464,7 @@ func (w_ WebView) AllowsLinkPreview() bool {
 func (w_ WebView) SetAllowsLinkPreview(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsLinkPreview:"), value)
 }
+
 // A Boolean value that indicates whether magnify gestures change the web view’s magnification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/allowsMagnification
@@ -476,6 +482,7 @@ func (w_ WebView) AllowsMagnification() bool {
 func (w_ WebView) SetAllowsMagnification(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsMagnification:"), value)
 }
+
 // The web view’s back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/backForwardList
@@ -541,6 +548,7 @@ func (w_ WebView) CustomUserAgent() string {
 func (w_ WebView) SetCustomUserAgent(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), objc.String(value))
 }
+
 // An estimate of what fraction of the current navigation has been loaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/estimatedProgress
@@ -588,6 +596,7 @@ func (w_ WebView) InteractionState() objc.ID {
 func (w_ WebView) SetInteractionState(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setInteractionState:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/isBlockedByScreenTime
 func (w_ WebView) IsBlockedByScreenTime() bool {
@@ -609,6 +618,7 @@ func (w_ WebView) FindInteractionEnabled() bool {
 func (w_ WebView) SetFindInteractionEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFindInteractionEnabled:"), value)
 }
+
 // A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/isInspectable
@@ -626,6 +636,7 @@ func (w_ WebView) Inspectable() bool {
 func (w_ WebView) SetInspectable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setInspectable:"), value)
 }
+
 // A Boolean value that indicates whether the view is currently loading content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/isLoading
@@ -658,6 +669,7 @@ func (w_ WebView) Magnification() float64 {
 func (w_ WebView) SetMagnification(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMagnification:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/maximumViewportInset
 func (w_ WebView) MaximumViewportInset() unsafe.Pointer {
@@ -682,6 +694,7 @@ func (w_ WebView) MediaType() string {
 func (w_ WebView) SetMediaType(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), objc.String(value))
 }
+
 // An enumeration case that indicates whether the webpage is using the microphone to capture audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/microphoneCaptureState
@@ -714,6 +727,7 @@ func (w_ WebView) NavigationDelegate() objc.ID {
 func (w_ WebView) SetNavigationDelegate(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setNavigationDelegate:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/obscuredContentInsets
 func (w_ WebView) ObscuredContentInsets() unsafe.Pointer {
@@ -728,6 +742,7 @@ func (w_ WebView) ObscuredContentInsets() unsafe.Pointer {
 func (w_ WebView) SetObscuredContentInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setObscuredContentInsets:"), value)
 }
+
 // The scale factor by which the web view scales content relative to its bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/pageZoom
@@ -745,6 +760,7 @@ func (w_ WebView) PageZoom() float64 {
 func (w_ WebView) SetPageZoom(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPageZoom:"), value)
 }
+
 // The scroll view associated with the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/scrollView
@@ -794,6 +810,7 @@ func (w_ WebView) UIDelegate() objc.ID {
 func (w_ WebView) SetUIDelegate(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setUIDelegate:"), value)
 }
+
 // The color the web view displays behind the active page, visible when the user scrolls beyond the bounds of the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/underPageBackgroundColor
@@ -811,6 +828,7 @@ func (w_ WebView) UnderPageBackgroundColor() unsafe.Pointer {
 func (w_ WebView) SetUnderPageBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setUnderPageBackgroundColor:"), value)
 }
+
 // The URL for the current webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/url

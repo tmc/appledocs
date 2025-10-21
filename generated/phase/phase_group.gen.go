@@ -89,6 +89,8 @@ func NewPHASEGroup() PHASEGroup {
 }
 
 
+
+
 // Creates a group with a unique name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/init(identifier:)
@@ -173,6 +175,7 @@ func (p_ PHASEGroup) Gain() unsafe.Pointer {
 func (p_ PHASEGroup) SetGain(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
+
 // A unique name for the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/identifier
@@ -214,4 +217,5 @@ func (p_ PHASEGroup) Rate() unsafe.Pointer {
 func (p_ PHASEGroup) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
+
 

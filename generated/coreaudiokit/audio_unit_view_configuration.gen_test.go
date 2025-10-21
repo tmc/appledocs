@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = coreaudiokit.NewAudioUnitViewConfiguration
 
-
 // ExampleNewAudioUnitViewConfigurationWithWidthHeightHostHasController demonstrates how to create a AudioUnitViewConfiguration instance using NewAudioUnitViewConfigurationWithWidthHeightHostHasController.
 // Creates a new configuration object.
 func ExampleNewAudioUnitViewConfigurationWithWidthHeightHostHasController() {
@@ -20,5 +19,3 @@ func ExampleNewAudioUnitViewConfigurationWithWidthHeightHostHasController() {
 	)
 	// Output:
 }
-
-

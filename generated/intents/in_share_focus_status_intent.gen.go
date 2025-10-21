@@ -79,6 +79,8 @@ func NewINShareFocusStatusIntent() INShareFocusStatusIntent {
 }
 
 
+
+
 // Creates an intent with the specified focus status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/init(focusStatus:)

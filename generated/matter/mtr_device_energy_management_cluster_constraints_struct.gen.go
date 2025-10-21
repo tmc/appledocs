@@ -90,6 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() unsafe.Po
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/loadControl
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() unsafe
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLoadControl:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/maximumEnergy
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() unsa
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumEnergy:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/nominalPower
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() unsafe.Pointer {
@@ -132,6 +135,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() unsaf
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/startTime
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() unsafe.Pointer {
@@ -146,5 +150,6 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() unsafe.P
 func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 
 

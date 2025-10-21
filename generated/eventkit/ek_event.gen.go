@@ -83,6 +83,8 @@ func NewEKEvent() EKEvent {
 }
 
 
+
+
 // Creates and returns a new event belonging to a specified event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/init(eventStore:)
@@ -133,6 +135,7 @@ func (e_ EKEvent) Availability() unsafe.Pointer {
 func (e_ EKEvent) SetAvailability(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAvailability:"), value)
 }
+
 // The contact identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayContactIdentifier
@@ -174,6 +177,7 @@ func (e_ EKEvent) EndDate() unsafe.Pointer {
 func (e_ EKEvent) SetEndDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEndDate:"), value)
 }
+
 // A unique identifier for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/eventIdentifier
@@ -199,6 +203,7 @@ func (e_ EKEvent) AllDay() bool {
 func (e_ EKEvent) SetAllDay(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAllDay:"), value)
 }
+
 // A Boolean value that indicates whether an event is a detached instance of a repeating event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/isDetached
@@ -240,6 +245,7 @@ func (e_ EKEvent) StartDate() unsafe.Pointer {
 func (e_ EKEvent) SetStartDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDate:"), value)
 }
+
 // The status of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/status
@@ -265,4 +271,5 @@ func (e_ EKEvent) StructuredLocation() unsafe.Pointer {
 func (e_ EKEvent) SetStructuredLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
 }
+
 

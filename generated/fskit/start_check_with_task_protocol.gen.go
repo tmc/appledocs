@@ -15,5 +15,3 @@ var startCheckWithTaskProtocol *objc.Protocol
 func init() {
 	startCheckWithTaskProtocol = objc.GetProtocol("startCheckWithTask:")
 }
-
-

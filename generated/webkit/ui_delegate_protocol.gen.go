@@ -12,5 +12,3 @@ var UIDelegateProtocol *objc.Protocol
 func init() {
 	UIDelegateProtocol = objc.GetProtocol("WKUIDelegate")
 }
-
-

@@ -81,6 +81,8 @@ func NewINStartWorkoutIntent() INStartWorkoutIntent {
 }
 
 
+
+
 // Initializes an intent object with the specified workout information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:

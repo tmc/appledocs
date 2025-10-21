@@ -12,5 +12,3 @@ var hashProtocol *objc.Protocol
 func init() {
 	hashProtocol = objc.GetProtocol("hash")
 }
-
-

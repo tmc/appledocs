@@ -98,6 +98,7 @@ func (n_ NINearbyPeerConfiguration) CameraAssistanceEnabled() bool {
 func (n_ NINearbyPeerConfiguration) SetCameraAssistanceEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCameraAssistanceEnabled:"), value)
 }
+
 // A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled
@@ -115,6 +116,7 @@ func (n_ NINearbyPeerConfiguration) ExtendedDistanceMeasurementEnabled() bool {
 func (n_ NINearbyPeerConfiguration) SetExtendedDistanceMeasurementEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExtendedDistanceMeasurementEnabled:"), value)
 }
+
 // A value that uniquely identifies the other peer in the interaction session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken

@@ -12,5 +12,3 @@ var FourfoldTranslatedTileProtocol *objc.Protocol
 func init() {
 	FourfoldTranslatedTileProtocol = objc.GetProtocol("CIFourfoldTranslatedTile")
 }
-
-

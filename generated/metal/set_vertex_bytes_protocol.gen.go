@@ -19,5 +19,3 @@ var setVertexBytesProtocol *objc.Protocol
 func init() {
 	setVertexBytesProtocol = objc.GetProtocol("setVertexBytes:")
 }
-
-

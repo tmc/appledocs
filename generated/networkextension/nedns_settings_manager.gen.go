@@ -130,6 +130,7 @@ func (n_ NEDNSSettingsManager) DnsSettings() unsafe.Pointer {
 func (n_ NEDNSSettingsManager) SetDnsSettings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsSettings:"), value)
 }
+
 // A Boolean you use to query the enabled state of the DNS settings configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/isEnabled
@@ -155,6 +156,7 @@ func (n_ NEDNSSettingsManager) LocalizedDescription() string {
 func (n_ NEDNSSettingsManager) SetLocalizedDescription(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
+
 // A list of ordered rules that defines the networks on which the DNS settings will apply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/onDemandRules
@@ -182,5 +184,6 @@ func (n_ NEDNSSettingsManager) SetOnDemandRules(value []NEOnDemandRule) {
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), nsArray)
 }
+
 
 

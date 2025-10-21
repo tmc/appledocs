@@ -12,5 +12,3 @@ var AccordionFoldTransitionProtocol *objc.Protocol
 func init() {
 	AccordionFoldTransitionProtocol = objc.GetProtocol("CIAccordionFoldTransition")
 }
-
-

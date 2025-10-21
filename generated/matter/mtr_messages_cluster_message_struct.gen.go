@@ -90,6 +90,7 @@ func (m_ MTRMessagesClusterMessageStruct) Duration() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageStruct) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
 func (m_ MTRMessagesClusterMessageStruct) MessageControl() unsafe.Pointer {
@@ -104,6 +105,7 @@ func (m_ MTRMessagesClusterMessageStruct) MessageControl() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
 func (m_ MTRMessagesClusterMessageStruct) MessageID() unsafe.Pointer {
@@ -118,6 +120,7 @@ func (m_ MTRMessagesClusterMessageStruct) MessageID() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
 func (m_ MTRMessagesClusterMessageStruct) MessageText() string {
@@ -132,6 +135,7 @@ func (m_ MTRMessagesClusterMessageStruct) MessageText() string {
 func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
 func (m_ MTRMessagesClusterMessageStruct) Priority() unsafe.Pointer {
@@ -146,6 +150,7 @@ func (m_ MTRMessagesClusterMessageStruct) Priority() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageStruct) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
 func (m_ MTRMessagesClusterMessageStruct) Responses() unsafe.Pointer {
@@ -160,6 +165,7 @@ func (m_ MTRMessagesClusterMessageStruct) Responses() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageStruct) SetResponses(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponses:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
 func (m_ MTRMessagesClusterMessageStruct) StartTime() unsafe.Pointer {
@@ -174,5 +180,6 @@ func (m_ MTRMessagesClusterMessageStruct) StartTime() unsafe.Pointer {
 func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
+
 
 

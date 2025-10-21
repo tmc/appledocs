@@ -85,6 +85,8 @@ func NewCSUserQuery() CSUserQuery {
 }
 
 
+
+
 // Creates a new user query that searches for the specified term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/init(userQueryString:userQueryContext:)

@@ -15,5 +15,3 @@ var MEMessageActionHandlerProtocol *objc.Protocol
 func init() {
 	MEMessageActionHandlerProtocol = objc.GetProtocol("MEMessageActionHandler")
 }
-
-

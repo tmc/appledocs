@@ -83,6 +83,8 @@ func NewGCVirtualController() GCVirtualController {
 }
 
 
+
+
 // Creates a new virtual controller using the configuration you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)

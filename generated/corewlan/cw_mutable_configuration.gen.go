@@ -98,6 +98,7 @@ func (c_ CWMutableConfiguration) NetworkProfiles() unsafe.Pointer {
 func (c_ CWMutableConfiguration) SetNetworkProfiles(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }
+
 // A Boolean value that determines whether to remember all joined Wi-Fi networks unless the user specifies otherwise when joining a particular Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
@@ -115,6 +116,7 @@ func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool {
 func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRememberJoinedNetworks:"), value)
 }
+
 // A Boolean value that determines whether to require an administrator password to change networks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
@@ -132,6 +134,7 @@ func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool {
 func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForAssociation:"), value)
 }
+
 // A Boolean value that determines whether to require an administrator password to create a computer-to-computer network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
@@ -149,6 +152,7 @@ func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool {
 func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForIBSSMode:"), value)
 }
+
 // A Boolean value that determines whether to require an administrator password to change the interface power state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
@@ -166,5 +170,6 @@ func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool {
 func (c_ CWMutableConfiguration) SetRequireAdministratorForPower(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForPower:"), value)
 }
+
 
 

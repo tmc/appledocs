@@ -12,5 +12,3 @@ var centerSpaceSizeProtocol *objc.Protocol
 func init() {
 	centerSpaceSizeProtocol = objc.GetProtocol("centerSpaceSize")
 }
-
-

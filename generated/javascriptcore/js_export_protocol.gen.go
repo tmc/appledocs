@@ -20,4 +20,3 @@ var JSExportProtocol *objc.Protocol
 func init() {
 	JSExportProtocol = objc.GetProtocol("JSExport")
 }
-

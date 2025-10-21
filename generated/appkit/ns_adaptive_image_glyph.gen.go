@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AdaptiveImageGlyph] class.
@@ -78,3 +79,7 @@ func (a_ AdaptiveImageGlyph) Autorelease() AdaptiveImageGlyph {
 func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 	return getAdaptiveImageGlyphClass().New()
 }
+
+
+
+

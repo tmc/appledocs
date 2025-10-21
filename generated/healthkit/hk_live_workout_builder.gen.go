@@ -106,6 +106,7 @@ func (h_ HKLiveWorkoutBuilder) DataSource() unsafe.Pointer {
 func (h_ HKLiveWorkoutBuilder) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDataSource:"), value)
 }
+
 // The live builder’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/delegate
@@ -123,6 +124,7 @@ func (h_ HKLiveWorkoutBuilder) Delegate() objc.ID {
 func (h_ HKLiveWorkoutBuilder) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The elapsed time for the workout based on the builder’s current contents, including pauses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/elapsedTime
@@ -148,6 +150,7 @@ func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool {
 func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setShouldCollectWorkoutEvents:"), value)
 }
+
 // The workout session created by the data source and associated with this builder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/workoutSession

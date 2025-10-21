@@ -12,5 +12,3 @@ var ColorCubesMixedWithMaskProtocol *objc.Protocol
 func init() {
 	ColorCubesMixedWithMaskProtocol = objc.GetProtocol("CIColorCubesMixedWithMask")
 }
-
-

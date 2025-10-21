@@ -12,5 +12,3 @@ var TorusLensDistortionProtocol *objc.Protocol
 func init() {
 	TorusLensDistortionProtocol = objc.GetProtocol("CITorusLensDistortion")
 }
-
-

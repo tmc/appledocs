@@ -9,26 +9,26 @@ package linkpresentation
 type LPErrorCode uint
 
 const (
-// LPErrorMetadataFetchCancelled - An error indicating that the metadata fetch was canceled by the client.
-//
+	// LPErrorMetadataFetchCancelled - An error indicating that the metadata fetch was canceled by the client.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPError/Code/metadataFetchCancelled
-LPErrorMetadataFetchCancelled LPErrorCode = 0
-// LPErrorMetadataFetchFailed - An error indicating that a metadata fetch failed.
-//
+	LPErrorMetadataFetchCancelled LPErrorCode = 0
+	// LPErrorMetadataFetchFailed - An error indicating that a metadata fetch failed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPError/Code/metadataFetchFailed
-LPErrorMetadataFetchFailed LPErrorCode = 0
-// LPErrorMetadataFetchNotAllowed - An error indicating that the metadata fetch was not allowed due to system policies.
-//
+	LPErrorMetadataFetchFailed LPErrorCode = 0
+	// LPErrorMetadataFetchNotAllowed - An error indicating that the metadata fetch was not allowed due to system policies.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPError/Code/metadataFetchNotAllowed
-LPErrorMetadataFetchNotAllowed LPErrorCode = 0
-// LPErrorMetadataFetchTimedOut - An error indicating that the metadata fetch took longer than allowed.
-//
+	LPErrorMetadataFetchNotAllowed LPErrorCode = 0
+	// LPErrorMetadataFetchTimedOut - An error indicating that the metadata fetch took longer than allowed.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPError/Code/metadataFetchTimedOut
-LPErrorMetadataFetchTimedOut LPErrorCode = 0
-// LPErrorUnknown - An unknown error.
-//
+	LPErrorMetadataFetchTimedOut LPErrorCode = 0
+	// LPErrorUnknown - An unknown error.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPError/Code/unknown
-LPErrorUnknown LPErrorCode = 0
+	LPErrorUnknown LPErrorCode = 0
 )
 
 

@@ -79,6 +79,8 @@ func NewGCColor() GCColor {
 }
 
 
+
+
 // Creates a color with the specified red, green, and blue values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/init(red:green:blue:)

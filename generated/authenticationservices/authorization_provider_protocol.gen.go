@@ -21,5 +21,3 @@ var AuthorizationProviderProtocol *objc.Protocol
 func init() {
 	AuthorizationProviderProtocol = objc.GetProtocol("ASAuthorizationProvider")
 }
-
-

@@ -9,13 +9,9 @@ import (
 // Suppress unused import errors
 var _ = avkit.NewInputPickerInteraction
 
-
 // ExampleNewInputPickerInteraction demonstrates how to create a InputPickerInteraction instance.
 // Creates a new instance of AVInputPickerController using a default sharedInstance from  .
 func ExampleNewInputPickerInteraction() {
 	_ = avkit.NewInputPickerInteraction()
 	// Output:
 }
-
-
-

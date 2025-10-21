@@ -5,18 +5,6 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
-
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
 // CMBlockBufferRef is a CoreGraphics opaque type.
 type CMBlockBufferRef unsafe.Pointer
 
@@ -56,9 +44,6 @@ type CMTimebaseRef unsafe.Pointer
 // CMVideoFormatDescriptionRef is a CoreGraphics opaque type.
 type CMVideoFormatDescriptionRef unsafe.Pointer
 
-// CVImageBufferRef is a CoreGraphics opaque type.
-type CVImageBufferRef unsafe.Pointer
-
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
@@ -76,7 +61,13 @@ type Boolean unsafe.Pointer
 
 type CFAllocator unsafe.Pointer
 
+type CFAllocatorRef unsafe.Pointer
+
+type CFArrayRef unsafe.Pointer
+
 type CFDictionary unsafe.Pointer
+
+type CFDictionaryRef unsafe.Pointer
 
 type CFIndex unsafe.Pointer
 
@@ -87,6 +78,8 @@ type CFRunLoop unsafe.Pointer
 type CFRunLoopTimer unsafe.Pointer
 
 type CFString unsafe.Pointer
+
+type CFStringRef unsafe.Pointer
 
 type CFTypeID unsafe.Pointer
 
@@ -159,6 +152,8 @@ type CMTimeScale unsafe.Pointer
 type CMTimebase unsafe.Pointer
 
 type CMVideoFormatDescription unsafe.Pointer
+
+type CVImageBufferRef unsafe.Pointer
 
 type Float64 unsafe.Pointer
 

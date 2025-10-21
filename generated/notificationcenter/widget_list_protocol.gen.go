@@ -15,5 +15,3 @@ var widgetListProtocol *objc.Protocol
 func init() {
 	widgetListProtocol = objc.GetProtocol("widgetList:")
 }
-
-

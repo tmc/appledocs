@@ -15,5 +15,3 @@ var xattrOperationsInhibitedProtocol *objc.Protocol
 func init() {
 	xattrOperationsInhibitedProtocol = objc.GetProtocol("xattrOperationsInhibited")
 }
-
-

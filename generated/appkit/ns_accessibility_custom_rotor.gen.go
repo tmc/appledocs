@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AccessibilityCustomRotor] class.
@@ -78,3 +79,7 @@ func (a_ AccessibilityCustomRotor) Autorelease() AccessibilityCustomRotor {
 func NewAccessibilityCustomRotor() AccessibilityCustomRotor {
 	return getAccessibilityCustomRotorClass().New()
 }
+
+
+
+

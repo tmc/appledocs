@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = opendirectory.NewODModuleEntry
 
-
 // ExampleNewODModuleEntryWithNameXpcServiceName demonstrates how to create a ODModuleEntry instance using NewODModuleEntryWithNameXpcServiceName.
 func ExampleNewODModuleEntryWithNameXpcServiceName() {
 	_ = opendirectory.NewODModuleEntryWithNameXpcServiceName(
@@ -18,5 +17,3 @@ func ExampleNewODModuleEntryWithNameXpcServiceName() {
 	)
 	// Output:
 }
-
-

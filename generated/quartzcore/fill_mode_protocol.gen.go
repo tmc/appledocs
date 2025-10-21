@@ -20,5 +20,3 @@ var fillModeProtocol *objc.Protocol
 func init() {
 	fillModeProtocol = objc.GetProtocol("fillMode")
 }
-
-

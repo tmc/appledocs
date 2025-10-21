@@ -12,5 +12,3 @@ var MKAnnotationProtocol *objc.Protocol
 func init() {
 	MKAnnotationProtocol = objc.GetProtocol("MKAnnotation")
 }
-
-

@@ -81,6 +81,8 @@ func NewVZLinuxRosettaDirectoryShare() VZLinuxRosettaDirectoryShare {
 }
 
 
+
+
 // Creates a new Rosetta directory share, or returns an error if Rosetta isn’t installed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/init()
@@ -131,4 +133,5 @@ func (v_ VZLinuxRosettaDirectoryShare) Options() unsafe.Pointer {
 func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOptions:"), value)
 }
+
 

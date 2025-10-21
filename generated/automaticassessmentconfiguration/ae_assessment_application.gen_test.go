@@ -9,7 +9,14 @@ import (
 // Suppress unused import errors
 var _ = automaticassessmentconfiguration.NewAEAssessmentApplication
 
-
+// ExampleNewAEAssessmentApplicationWithBundleIdentifier demonstrates how to create a AEAssessmentApplication instance using NewAEAssessmentApplicationWithBundleIdentifier.
+// Creates a representation of an app using its bundle identifier.
+func ExampleNewAEAssessmentApplicationWithBundleIdentifier() {
+	_ = automaticassessmentconfiguration.NewAEAssessmentApplicationWithBundleIdentifier(
+		"bundleIdentifier", // bundleIdentifier string
+	)
+	// Output:
+}
 // ExampleNewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier demonstrates how to create a AEAssessmentApplication instance using NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier.
 // Creates a representation of an app using its bundle and team identifiers.
 func ExampleNewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier() {
@@ -19,14 +26,3 @@ func ExampleNewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier() {
 	)
 	// Output:
 }
-
-// ExampleNewAEAssessmentApplicationWithBundleIdentifier demonstrates how to create a AEAssessmentApplication instance using NewAEAssessmentApplicationWithBundleIdentifier.
-// Creates a representation of an app using its bundle identifier.
-func ExampleNewAEAssessmentApplicationWithBundleIdentifier() {
-	_ = automaticassessmentconfiguration.NewAEAssessmentApplicationWithBundleIdentifier(
-		"bundleIdentifier", // bundleIdentifier string
-	)
-	// Output:
-}
-
-

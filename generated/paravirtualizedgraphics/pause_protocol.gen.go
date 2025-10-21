@@ -16,5 +16,3 @@ var pauseProtocol *objc.Protocol
 func init() {
 	pauseProtocol = objc.GetProtocol("pause")
 }
-
-

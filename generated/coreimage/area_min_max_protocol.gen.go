@@ -12,5 +12,3 @@ var AreaMinMaxProtocol *objc.Protocol
 func init() {
 	AreaMinMaxProtocol = objc.GetProtocol("CIAreaMinMax")
 }
-
-

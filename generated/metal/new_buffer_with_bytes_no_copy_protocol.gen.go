@@ -19,5 +19,3 @@ var newBufferWithBytesNoCopyProtocol *objc.Protocol
 func init() {
 	newBufferWithBytesNoCopyProtocol = objc.GetProtocol("newBufferWithBytesNoCopy:")
 }
-
-

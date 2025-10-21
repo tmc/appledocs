@@ -21,5 +21,3 @@ var peripheralIsReadyToSendWriteWithoutResponseProtocol *objc.Protocol
 func init() {
 	peripheralIsReadyToSendWriteWithoutResponseProtocol = objc.GetProtocol("peripheralIsReadyToSendWriteWithoutResponse:")
 }
-
-

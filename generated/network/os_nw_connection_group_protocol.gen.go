@@ -21,5 +21,3 @@ var OS_nw_connection_groupProtocol *objc.Protocol
 func init() {
 	OS_nw_connection_groupProtocol = objc.GetProtocol("OS_nw_connection_group")
 }
-
-

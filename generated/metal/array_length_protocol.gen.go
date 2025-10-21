@@ -19,5 +19,3 @@ var arrayLengthProtocol *objc.Protocol
 func init() {
 	arrayLengthProtocol = objc.GetProtocol("arrayLength")
 }
-
-

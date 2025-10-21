@@ -20,5 +20,3 @@ var surfaceProtocol *objc.Protocol
 func init() {
 	surfaceProtocol = objc.GetProtocol("surface")
 }
-
-

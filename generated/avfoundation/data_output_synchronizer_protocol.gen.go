@@ -18,5 +18,3 @@ var dataOutputSynchronizerProtocol *objc.Protocol
 func init() {
 	dataOutputSynchronizerProtocol = objc.GetProtocol("dataOutputSynchronizer:")
 }
-
-

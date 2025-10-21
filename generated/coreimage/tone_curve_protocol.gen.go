@@ -12,5 +12,3 @@ var ToneCurveProtocol *objc.Protocol
 func init() {
 	ToneCurveProtocol = objc.GetProtocol("CIToneCurve")
 }
-
-

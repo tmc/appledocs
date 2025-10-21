@@ -76,6 +76,8 @@ func NewMTRServiceAreaClusterSkipAreaResponseParams() MTRServiceAreaClusterSkipA
 }
 
 
+
+
 // Initialize an MTRServiceAreaClusterSkipAreaResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaResponseParams/init(responseValue:)
@@ -101,6 +103,7 @@ func (m_ MTRServiceAreaClusterSkipAreaResponseParams) Status() unsafe.Pointer {
 func (m_ MTRServiceAreaClusterSkipAreaResponseParams) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaResponseParams/statusText
 func (m_ MTRServiceAreaClusterSkipAreaResponseParams) StatusText() string {
@@ -115,4 +118,5 @@ func (m_ MTRServiceAreaClusterSkipAreaResponseParams) StatusText() string {
 func (m_ MTRServiceAreaClusterSkipAreaResponseParams) SetStatusText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
+
 

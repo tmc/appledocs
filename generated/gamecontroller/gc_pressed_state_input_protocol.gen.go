@@ -20,5 +20,3 @@ var GCPressedStateInputProtocol *objc.Protocol
 func init() {
 	GCPressedStateInputProtocol = objc.GetProtocol("GCPressedStateInput")
 }
-
-

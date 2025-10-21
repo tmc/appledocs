@@ -20,5 +20,3 @@ var maximumTimeProtocol *objc.Protocol
 func init() {
 	maximumTimeProtocol = objc.GetProtocol("maximumTime")
 }
-
-

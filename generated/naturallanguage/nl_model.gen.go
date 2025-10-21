@@ -85,6 +85,8 @@ func NewModel() Model {
 }
 
 
+
+
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
@@ -92,6 +94,8 @@ func NewModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) M
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
+
+
 
 // Creates a new natural language model based on the given Core ML model instance.
 //

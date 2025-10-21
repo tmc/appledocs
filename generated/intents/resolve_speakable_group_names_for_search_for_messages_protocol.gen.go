@@ -19,5 +19,3 @@ var resolveSpeakableGroupNamesForSearchForMessagesProtocol *objc.Protocol
 func init() {
 	resolveSpeakableGroupNamesForSearchForMessagesProtocol = objc.GetProtocol("resolveSpeakableGroupNamesForSearchForMessages:")
 }
-
-

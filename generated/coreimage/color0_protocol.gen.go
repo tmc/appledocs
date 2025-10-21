@@ -19,5 +19,3 @@ var color0Protocol *objc.Protocol
 func init() {
 	color0Protocol = objc.GetProtocol("color0")
 }
-
-

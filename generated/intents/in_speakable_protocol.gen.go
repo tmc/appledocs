@@ -21,5 +21,3 @@ var INSpeakableProtocol *objc.Protocol
 func init() {
 	INSpeakableProtocol = objc.GetProtocol("INSpeakable")
 }
-
-

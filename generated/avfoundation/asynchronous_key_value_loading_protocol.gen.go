@@ -12,5 +12,3 @@ var AsynchronousKeyValueLoadingProtocol *objc.Protocol
 func init() {
 	AsynchronousKeyValueLoadingProtocol = objc.GetProtocol("AVAsynchronousKeyValueLoading")
 }
-
-

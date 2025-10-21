@@ -20,5 +20,3 @@ var pdfViewProtocol *objc.Protocol
 func init() {
 	pdfViewProtocol = objc.GetProtocol("pdfView:")
 }
-
-

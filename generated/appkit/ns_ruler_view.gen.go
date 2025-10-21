@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [RulerView] class.
@@ -88,6 +88,7 @@ func NewRulerView() RulerView {
 	return getRulerViewClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
 func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
@@ -96,6 +97,8 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Initializes a newly allocated NSRulerView to have ( or ) within .
 //
@@ -106,6 +109,7 @@ func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientatio
 	rv.Autorelease()
 	return rv
 }
+
 
 // Registers a new unit of measurement with the NSRulerView class, making it available to all instances of NSRulerView.
 //
@@ -172,6 +176,7 @@ func (r_ RulerView) AccessoryView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAccessoryView sets the value of the accessoryView property.
 // The receiver’s accessory view to .
 
@@ -197,6 +202,7 @@ func (r_ RulerView) ClientView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetClientView sets the value of the clientView property.
 // The receiver’s client view, if it has one.
 
@@ -221,6 +227,7 @@ func (r_ RulerView) Markers() []RulerMarker {
 	rv := objc.Send[[]RulerMarker](r_.ID, objc.Sel("markers"))
 	return rv
 }
+
 
 // SetMarkers sets the value of the markers property.
 // The receiver’s ruler markers to , removing any existing ruler markers and not consulting with the client view about the new markers.
@@ -249,6 +256,7 @@ func (r_ RulerView) MeasurementUnits() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMeasurementUnits sets the value of the measurementUnits property.
 // The measurement units used by the ruler to .
 
@@ -266,6 +274,7 @@ func (r_ RulerView) Orientation() unsafe.Pointer {
 	return rv
 }
 
+
 // SetOrientation sets the value of the orientation property.
 // The orientation of the receiver to .
 
@@ -282,6 +291,7 @@ func (r_ RulerView) OriginOffset() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("originOffset"))
 	return rv
 }
+
 
 // SetOriginOffset sets the value of the originOffset property.
 // The distance to the zero hash mark from the bounds origin of the NSScrollView’s document view (not of the receiver’s client view), in the document view’s coordinate system.
@@ -308,6 +318,7 @@ func (r_ RulerView) ReservedThicknessForAccessoryView() float64 {
 	return rv
 }
 
+
 // SetReservedThicknessForAccessoryView sets the value of the reservedThicknessForAccessoryView property.
 // The room available for the receiver’s accessory view to .
 
@@ -324,6 +335,7 @@ func (r_ RulerView) ReservedThicknessForMarkers() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("reservedThicknessForMarkers"))
 	return rv
 }
+
 
 // SetReservedThicknessForMarkers sets the value of the reservedThicknessForMarkers property.
 // The room available for ruler markers to .
@@ -342,6 +354,7 @@ func (r_ RulerView) RuleThickness() float64 {
 	return rv
 }
 
+
 // SetRuleThickness sets the value of the ruleThickness property.
 // The thickness of the area where ruler hash marks and labels are drawn.
 
@@ -359,6 +372,7 @@ func (r_ RulerView) ScrollView() unsafe.Pointer {
 	return rv
 }
 
+
 // SetScrollView sets the value of the scrollView property.
 // The NSScrollView that owns the receiver to , without retaining it.
 
@@ -367,3 +381,5 @@ func (r_ RulerView) ScrollView() unsafe.Pointer {
 func (r_ RulerView) SetScrollView(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScrollView:"), value)
 }
+
+

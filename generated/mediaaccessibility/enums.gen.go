@@ -9,14 +9,14 @@ package mediaaccessibility
 type MACaptionAppearanceFontStyle uint
 
 const (
-// kMACaptionAppearanceFontStyleCasual - The font style preferred for the casual font style.
-//
+	// kMACaptionAppearanceFontStyleCasual - The font style preferred for the casual font style.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MACaptionAppearanceFontStyle/casual
-kMACaptionAppearanceFontStyleCasual MACaptionAppearanceFontStyle = 0
-// kMACaptionAppearanceFontStyleDefault - The default font style for all caption text.
-//
+	kMACaptionAppearanceFontStyleCasual MACaptionAppearanceFontStyle = 0
+	// kMACaptionAppearanceFontStyleDefault - The default font style for all caption text.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MACaptionAppearanceFontStyle/default
-kMACaptionAppearanceFontStyleDefault MACaptionAppearanceFontStyle = 0
+	kMACaptionAppearanceFontStyleDefault MACaptionAppearanceFontStyle = 0
 )
 
 // MACaptionAppearanceTextEdgeStyle - A value that specifies a style for the outside of the text.

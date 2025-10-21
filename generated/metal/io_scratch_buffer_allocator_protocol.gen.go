@@ -20,5 +20,3 @@ var IOScratchBufferAllocatorProtocol *objc.Protocol
 func init() {
 	IOScratchBufferAllocatorProtocol = objc.GetProtocol("MTLIOScratchBufferAllocator")
 }
-
-

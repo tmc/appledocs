@@ -81,6 +81,8 @@ func NewHKQuantitySample() HKQuantitySample {
 }
 
 
+
+
 // Returns a sample containing a numeric measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:)
@@ -89,6 +91,8 @@ func NewHKQuantitySampleWithTypeQuantityStartDateEndDate(quantityType unsafe.Poi
 	return rv
 }
 
+
+
 // Returns a sample containing a numeric measurement with the provided device and metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:device:metadata:)
@@ -96,6 +100,8 @@ func NewHKQuantitySampleWithTypeQuantityStartDateEndDateDeviceMetadata(quantityT
 	rv := objc.Send[HKQuantitySample](objc.ID(getHKQuantitySampleClass().class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:device:metadata:"), quantityType, quantity, startDate, endDate, device, metadata)
 	return rv
 }
+
+
 
 // Returns a sample containing a numeric measurement with the provided metadata.
 //

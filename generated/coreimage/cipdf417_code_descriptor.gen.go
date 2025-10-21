@@ -81,6 +81,8 @@ func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 }
 
 
+
+
 // Initializes an PDF417 code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/init(payload:isCompact:rowCount:columnCount:)

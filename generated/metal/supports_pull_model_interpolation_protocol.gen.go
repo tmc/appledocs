@@ -20,5 +20,3 @@ var supportsPullModelInterpolationProtocol *objc.Protocol
 func init() {
 	supportsPullModelInterpolationProtocol = objc.GetProtocol("supportsPullModelInterpolation")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MenuItemBadge] class.
@@ -79,6 +80,7 @@ func NewMenuItemBadge() MenuItemBadge {
 	return getMenuItemBadgeClass().New()
 }
 
+
 // The type of items the badge displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/type
@@ -86,3 +88,6 @@ func (m_ MenuItemBadge) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
 	return rv
 }
+
+
+

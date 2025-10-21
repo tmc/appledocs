@@ -99,6 +99,8 @@ func NewPDFPage() PDFPage {
 }
 
 
+
+
 // Creates a new object and initializes it with the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/init(image:)
@@ -286,6 +288,7 @@ func (p_ PDFPage) DisplaysAnnotations() bool {
 func (p_ PDFPage) SetDisplaysAnnotations(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplaysAnnotations:"), value)
 }
+
 // Returns the object with which the page is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/document
@@ -334,6 +337,7 @@ func (p_ PDFPage) Rotation() int {
 func (p_ PDFPage) SetRotation(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRotation:"), value)
 }
+
 // Returns an object representing the text on the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/string

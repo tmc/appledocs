@@ -18,5 +18,3 @@ var contentModificationDateProtocol *objc.Protocol
 func init() {
 	contentModificationDateProtocol = objc.GetProtocol("contentModificationDate")
 }
-
-

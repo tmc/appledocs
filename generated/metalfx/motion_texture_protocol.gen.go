@@ -19,5 +19,3 @@ var motionTextureProtocol *objc.Protocol
 func init() {
 	motionTextureProtocol = objc.GetProtocol("motionTexture")
 }
-
-

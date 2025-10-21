@@ -15,5 +15,3 @@ var NCWidgetSearchViewDelegateProtocol *objc.Protocol
 func init() {
 	NCWidgetSearchViewDelegateProtocol = objc.GetProtocol("NCWidgetSearchViewDelegate")
 }
-
-

@@ -12,5 +12,3 @@ var rotationProtocol *objc.Protocol
 func init() {
 	rotationProtocol = objc.GetProtocol("rotation")
 }
-
-

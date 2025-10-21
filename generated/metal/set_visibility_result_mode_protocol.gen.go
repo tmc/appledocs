@@ -19,5 +19,3 @@ var setVisibilityResultModeProtocol *objc.Protocol
 func init() {
 	setVisibilityResultModeProtocol = objc.GetProtocol("setVisibilityResultMode:")
 }
-
-

@@ -15,5 +15,3 @@ var createItemNamedProtocol *objc.Protocol
 func init() {
 	createItemNamedProtocol = objc.GetProtocol("createItemNamed:")
 }
-
-

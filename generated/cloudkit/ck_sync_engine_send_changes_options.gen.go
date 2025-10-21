@@ -106,6 +106,7 @@ func (c_ CKSyncEngineSendChangesOptions) OperationGroup() unsafe.Pointer {
 func (c_ CKSyncEngineSendChangesOptions) SetOperationGroup(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOperationGroup:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions/scope
 func (c_ CKSyncEngineSendChangesOptions) Scope() unsafe.Pointer {
@@ -120,4 +121,5 @@ func (c_ CKSyncEngineSendChangesOptions) Scope() unsafe.Pointer {
 func (c_ CKSyncEngineSendChangesOptions) SetScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScope:"), value)
 }
+
 

@@ -20,4 +20,3 @@ var environmentProtocol *objc.Protocol
 func init() {
 	environmentProtocol = objc.GetProtocol("environment:")
 }
-

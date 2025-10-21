@@ -81,6 +81,8 @@ func NewInterstitialTimeRange() InterstitialTimeRange {
 }
 
 
+
+
 // Initializes an interstitial time range object with the specified time range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/init(timeRange:)

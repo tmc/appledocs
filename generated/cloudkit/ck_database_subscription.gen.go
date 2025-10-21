@@ -81,6 +81,8 @@ func NewCKDatabaseSubscription() CKDatabaseSubscription {
 }
 
 
+
+
 // Creates a database subscription from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/init(coder:)
@@ -90,6 +92,8 @@ func NewCKDatabaseSubscriptionWithCoder(aDecoder unsafe.Pointer) CKDatabaseSubsc
 	rv.Autorelease()
 	return rv
 }
+
+
 
 // Creates a named subscription for all records in a database.
 //
@@ -119,4 +123,5 @@ func (c_ CKDatabaseSubscription) RecordType() unsafe.Pointer {
 func (c_ CKDatabaseSubscription) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
+
 

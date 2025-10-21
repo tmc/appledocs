@@ -15,5 +15,3 @@ var MEContentBlockerProtocol *objc.Protocol
 func init() {
 	MEContentBlockerProtocol = objc.GetProtocol("MEContentBlocker")
 }
-
-

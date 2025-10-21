@@ -98,6 +98,7 @@ func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() bool {
 func (p_ PHContentEditingInputRequestOptions) SetCanHandleAdjustmentData(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanHandleAdjustmentData:"), value)
 }
+
 // A Boolean value that specifies whether Photos can download the asset from iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/isNetworkAccessAllowed
@@ -115,5 +116,6 @@ func (p_ PHContentEditingInputRequestOptions) NetworkAccessAllowed() bool {
 func (p_ PHContentEditingInputRequestOptions) SetNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
 }
+
 
 

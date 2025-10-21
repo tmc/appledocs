@@ -81,6 +81,8 @@ func NewAztecCodeDescriptor() AztecCodeDescriptor {
 }
 
 
+
+
 // Initializes an Aztec code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/init(payload:isCompact:layerCount:dataCodewordCount:)

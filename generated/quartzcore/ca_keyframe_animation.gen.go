@@ -109,6 +109,7 @@ func (k_ KeyframeAnimation) SetBiasValues(value []NSNumber) {
 	}
 	objc.Send[objc.ID](k_.ID, objc.Sel("setBiasValues:"), nsArray)
 }
+
 // Specifies how intermediate keyframe values are calculated by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/calculationMode
@@ -126,6 +127,7 @@ func (k_ KeyframeAnimation) CalculationMode() unsafe.Pointer {
 func (k_ KeyframeAnimation) SetCalculationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setCalculationMode:"), value)
 }
+
 // An array of numbers that define the sharpness of the timing curve’s corners.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/continuityValues
@@ -153,6 +155,7 @@ func (k_ KeyframeAnimation) SetContinuityValues(value []NSNumber) {
 	}
 	objc.Send[objc.ID](k_.ID, objc.Sel("setContinuityValues:"), nsArray)
 }
+
 // An optional array of objects that define the time at which to apply a given keyframe segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/keyTimes
@@ -180,6 +183,7 @@ func (k_ KeyframeAnimation) SetKeyTimes(value []NSNumber) {
 	}
 	objc.Send[objc.ID](k_.ID, objc.Sel("setKeyTimes:"), nsArray)
 }
+
 // The path for a point-based property to follow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/path
@@ -197,6 +201,7 @@ func (k_ KeyframeAnimation) Path() coregraphics.CGPathRef {
 func (k_ KeyframeAnimation) SetPath(value coregraphics.CGPathRef) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setPath:"), value)
 }
+
 // Determines whether objects animating along the path rotate to match the path tangent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/rotationMode
@@ -214,6 +219,7 @@ func (k_ KeyframeAnimation) RotationMode() unsafe.Pointer {
 func (k_ KeyframeAnimation) SetRotationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRotationMode:"), value)
 }
+
 // An array of numbers that define the tightness of the curve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/tensionValues
@@ -241,6 +247,7 @@ func (k_ KeyframeAnimation) SetTensionValues(value []NSNumber) {
 	}
 	objc.Send[objc.ID](k_.ID, objc.Sel("setTensionValues:"), nsArray)
 }
+
 // An optional array of objects that define the pacing for each keyframe segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions
@@ -268,6 +275,7 @@ func (k_ KeyframeAnimation) SetTimingFunctions(value []MediaTimingFunction) {
 	}
 	objc.Send[objc.ID](k_.ID, objc.Sel("setTimingFunctions:"), nsArray)
 }
+
 // An array of objects that specify the keyframe values to use for the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/values
@@ -285,5 +293,6 @@ func (k_ KeyframeAnimation) Values() unsafe.Pointer {
 func (k_ KeyframeAnimation) SetValues(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setValues:"), value)
 }
+
 
 

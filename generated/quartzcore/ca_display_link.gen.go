@@ -84,6 +84,8 @@ func NewDisplayLink() DisplayLink {
 }
 
 
+
+
 // Creates a display link for a target that calls its selector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/init(target:selector:)
@@ -147,6 +149,7 @@ func (d_ DisplayLink) FrameInterval() int {
 func (d_ DisplayLink) SetFrameInterval(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrameInterval:"), value)
 }
+
 // A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/isPaused
@@ -164,6 +167,7 @@ func (d_ DisplayLink) Paused() bool {
 func (d_ DisplayLink) SetPaused(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPaused:"), value)
 }
+
 // A range of frequencies your app allows for frame updates, affecting how often the system invokes your delegate’s callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/preferredFrameRateRange
@@ -181,6 +185,7 @@ func (d_ DisplayLink) PreferredFrameRateRange() unsafe.Pointer {
 func (d_ DisplayLink) SetPreferredFrameRateRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredFrameRateRange:"), value)
 }
+
 // A frequency your app prefers for frame updates, affecting how often the system invokes your delegate’s callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond
@@ -198,6 +203,7 @@ func (d_ DisplayLink) PreferredFramesPerSecond() int {
 func (d_ DisplayLink) SetPreferredFramesPerSecond(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredFramesPerSecond:"), value)
 }
+
 // The time interval that represents when the next frame displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/targetTimestamp

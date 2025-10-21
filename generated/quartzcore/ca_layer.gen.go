@@ -125,13 +125,7 @@ func NewLayer() Layer {
 }
 
 
-// Initializes a layer with a remote client ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
-	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
-	return rv
-}
+
 
 // Override to copy or initialize custom fields of the specified layer.
 //
@@ -140,6 +134,16 @@ func NewLayerWithLayer(layer objc.ID) Layer {
 	instance := getLayerClass().Alloc()
 	rv := objc.Send[Layer](instance.ID, objc.Sel("initWithLayer:"), layer)
 	rv.Autorelease()
+	return rv
+}
+
+
+
+// Initializes a layer with a remote client ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
+func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
 
@@ -528,6 +532,7 @@ func (l_ Layer) Actions() unsafe.Pointer {
 func (l_ Layer) SetActions(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActions:"), value)
 }
+
 // A Boolean indicating whether the layer is allowed to perform edge antialiasing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/allowsEdgeAntialiasing
@@ -545,6 +550,7 @@ func (l_ Layer) AllowsEdgeAntialiasing() bool {
 func (l_ Layer) SetAllowsEdgeAntialiasing(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAllowsEdgeAntialiasing:"), value)
 }
+
 // A Boolean indicating whether the layer is allowed to composite itself as a group separate from its parent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/allowsGroupOpacity
@@ -562,6 +568,7 @@ func (l_ Layer) AllowsGroupOpacity() bool {
 func (l_ Layer) SetAllowsGroupOpacity(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAllowsGroupOpacity:"), value)
 }
+
 // Defines the anchor point of the layer’s bounds rectangle. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/anchorPoint
@@ -579,6 +586,7 @@ func (l_ Layer) AnchorPoint() coregraphics.CGPoint {
 func (l_ Layer) SetAnchorPoint(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAnchorPoint:"), value)
 }
+
 // The anchor point for the layer’s position along the z axis. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/anchorPointZ
@@ -596,6 +604,7 @@ func (l_ Layer) AnchorPointZ() float64 {
 func (l_ Layer) SetAnchorPointZ(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAnchorPointZ:"), value)
 }
+
 // A bitmask defining how the layer is resized when the bounds of its superlayer changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/autoresizingMask
@@ -613,6 +622,7 @@ func (l_ Layer) AutoresizingMask() unsafe.Pointer {
 func (l_ Layer) SetAutoresizingMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAutoresizingMask:"), value)
 }
+
 // The background color of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/backgroundColor
@@ -630,6 +640,7 @@ func (l_ Layer) BackgroundColor() coregraphics.CGColorRef {
 func (l_ Layer) SetBackgroundColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBackgroundColor:"), value)
 }
+
 // An array of Core Image filters to apply to the content immediately behind the layer. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/backgroundFilters
@@ -647,6 +658,7 @@ func (l_ Layer) BackgroundFilters() unsafe.Pointer {
 func (l_ Layer) SetBackgroundFilters(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBackgroundFilters:"), value)
 }
+
 // The color of the layer’s border. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/borderColor
@@ -664,6 +676,7 @@ func (l_ Layer) BorderColor() coregraphics.CGColorRef {
 func (l_ Layer) SetBorderColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBorderColor:"), value)
 }
+
 // The width of the layer’s border. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/borderWidth
@@ -681,6 +694,7 @@ func (l_ Layer) BorderWidth() float64 {
 func (l_ Layer) SetBorderWidth(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBorderWidth:"), value)
 }
+
 // The layer’s bounds rectangle. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/bounds
@@ -698,6 +712,7 @@ func (l_ Layer) Bounds() coregraphics.CGRect {
 func (l_ Layer) SetBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBounds:"), value)
 }
+
 // A CoreImage filter used to composite the layer and the content behind it. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/compositingFilter
@@ -715,6 +730,7 @@ func (l_ Layer) CompositingFilter() objc.ID {
 func (l_ Layer) SetCompositingFilter(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCompositingFilter:"), value)
 }
+
 // The constraints used to position current layer’s sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/constraints
@@ -742,6 +758,7 @@ func (l_ Layer) SetConstraints(value []Constraint) {
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setConstraints:"), nsArray)
 }
+
 // An object that provides the contents of the layer. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
@@ -759,6 +776,7 @@ func (l_ Layer) Contents() objc.ID {
 func (l_ Layer) SetContents(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContents:"), value)
 }
+
 // The rectangle that defines how the layer contents are scaled if the layer’s contents are resized. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsCenter
@@ -776,6 +794,7 @@ func (l_ Layer) ContentsCenter() coregraphics.CGRect {
 func (l_ Layer) SetContentsCenter(value coregraphics.CGRect) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsCenter:"), value)
 }
+
 // A hint for the desired storage format of the layer contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsFormat
@@ -793,6 +812,7 @@ func (l_ Layer) ContentsFormat() unsafe.Pointer {
 func (l_ Layer) SetContentsFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsFormat:"), value)
 }
+
 // A constant that specifies how the layer’s contents are positioned or scaled within its bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
@@ -810,6 +830,7 @@ func (l_ Layer) ContentsGravity() unsafe.Pointer {
 func (l_ Layer) SetContentsGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsGravity:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsHeadroom
 func (l_ Layer) ContentsHeadroom() float64 {
@@ -824,6 +845,7 @@ func (l_ Layer) ContentsHeadroom() float64 {
 func (l_ Layer) SetContentsHeadroom(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsHeadroom:"), value)
 }
+
 // The rectangle, in the unit coordinate space, that defines the portion of the layer’s contents that should be used. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsRect
@@ -841,6 +863,7 @@ func (l_ Layer) ContentsRect() coregraphics.CGRect {
 func (l_ Layer) SetContentsRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsRect:"), value)
 }
+
 // The scale factor applied to the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsScale
@@ -858,6 +881,7 @@ func (l_ Layer) ContentsScale() float64 {
 func (l_ Layer) SetContentsScale(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsScale:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/cornerCurve
 func (l_ Layer) CornerCurve() unsafe.Pointer {
@@ -872,6 +896,7 @@ func (l_ Layer) CornerCurve() unsafe.Pointer {
 func (l_ Layer) SetCornerCurve(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCornerCurve:"), value)
 }
+
 // The radius to use when drawing rounded corners for the layer’s background. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/cornerRadius
@@ -889,6 +914,7 @@ func (l_ Layer) CornerRadius() float64 {
 func (l_ Layer) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCornerRadius:"), value)
 }
+
 // The layer’s delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/delegate
@@ -906,6 +932,7 @@ func (l_ Layer) Delegate() objc.ID {
 func (l_ Layer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean indicating whether drawing commands are deferred and processed asynchronously in a background thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/drawsAsynchronously
@@ -923,6 +950,7 @@ func (l_ Layer) DrawsAsynchronously() bool {
 func (l_ Layer) SetDrawsAsynchronously(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDrawsAsynchronously:"), value)
 }
+
 // A bitmask defining how the edges of the receiver are rasterized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/edgeAntialiasingMask
@@ -940,6 +968,7 @@ func (l_ Layer) EdgeAntialiasingMask() unsafe.Pointer {
 func (l_ Layer) SetEdgeAntialiasingMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setEdgeAntialiasingMask:"), value)
 }
+
 // An array of Core Image filters to apply to the contents of the layer and its sublayers. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/filters
@@ -957,6 +986,7 @@ func (l_ Layer) Filters() unsafe.Pointer {
 func (l_ Layer) SetFilters(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFilters:"), value)
 }
+
 // The layer’s frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/frame
@@ -974,6 +1004,7 @@ func (l_ Layer) Frame() coregraphics.CGRect {
 func (l_ Layer) SetFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFrame:"), value)
 }
+
 // A Boolean indicating whether the layer displays its content when facing away from the viewer. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/isDoubleSided
@@ -991,6 +1022,7 @@ func (l_ Layer) DoubleSided() bool {
 func (l_ Layer) SetDoubleSided(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDoubleSided:"), value)
 }
+
 // A Boolean that indicates whether the geometry of the layer and its sublayers is flipped vertically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/isGeometryFlipped
@@ -1008,6 +1040,7 @@ func (l_ Layer) GeometryFlipped() bool {
 func (l_ Layer) SetGeometryFlipped(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setGeometryFlipped:"), value)
 }
+
 // A Boolean indicating whether the layer is displayed. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/isHidden
@@ -1025,6 +1058,7 @@ func (l_ Layer) Hidden() bool {
 func (l_ Layer) SetHidden(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHidden:"), value)
 }
+
 // A Boolean value indicating whether the layer contains completely opaque content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/isOpaque
@@ -1042,6 +1076,7 @@ func (l_ Layer) Opaque() bool {
 func (l_ Layer) SetOpaque(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOpaque:"), value)
 }
+
 // The object responsible for laying out the layer’s sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/layoutManager
@@ -1059,6 +1094,7 @@ func (l_ Layer) LayoutManager() objc.ID {
 func (l_ Layer) SetLayoutManager(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLayoutManager:"), value)
 }
+
 // The filter used when increasing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/magnificationFilter
@@ -1076,6 +1112,7 @@ func (l_ Layer) MagnificationFilter() unsafe.Pointer {
 func (l_ Layer) SetMagnificationFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMagnificationFilter:"), value)
 }
+
 // An optional layer whose alpha channel is used to mask the layer’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/mask
@@ -1093,6 +1130,7 @@ func (l_ Layer) Mask() unsafe.Pointer {
 func (l_ Layer) SetMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMask:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/maskedCorners
 func (l_ Layer) MaskedCorners() unsafe.Pointer {
@@ -1107,6 +1145,7 @@ func (l_ Layer) MaskedCorners() unsafe.Pointer {
 func (l_ Layer) SetMaskedCorners(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMaskedCorners:"), value)
 }
+
 // A Boolean indicating whether sublayers are clipped to the layer’s bounds. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/masksToBounds
@@ -1124,6 +1163,7 @@ func (l_ Layer) MasksToBounds() bool {
 func (l_ Layer) SetMasksToBounds(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMasksToBounds:"), value)
 }
+
 // The filter used when reducing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilter
@@ -1141,6 +1181,7 @@ func (l_ Layer) MinificationFilter() unsafe.Pointer {
 func (l_ Layer) SetMinificationFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinificationFilter:"), value)
 }
+
 // The bias factor used by the minification filter to determine the levels of detail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilterBias
@@ -1158,6 +1199,7 @@ func (l_ Layer) MinificationFilterBias() unsafe.Pointer {
 func (l_ Layer) SetMinificationFilterBias(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinificationFilterBias:"), value)
 }
+
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
@@ -1175,6 +1217,7 @@ func (l_ Layer) Name() string {
 func (l_ Layer) SetName(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // A Boolean indicating whether the layer contents must be updated when its bounds rectangle changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/needsDisplayOnBoundsChange
@@ -1192,6 +1235,7 @@ func (l_ Layer) NeedsDisplayOnBoundsChange() bool {
 func (l_ Layer) SetNeedsDisplayOnBoundsChange(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNeedsDisplayOnBoundsChange:"), value)
 }
+
 // The opacity of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
@@ -1209,6 +1253,7 @@ func (l_ Layer) Opacity() unsafe.Pointer {
 func (l_ Layer) SetOpacity(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOpacity:"), value)
 }
+
 // The layer’s position in its superlayer’s coordinate space. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/position
@@ -1226,6 +1271,7 @@ func (l_ Layer) Position() coregraphics.CGPoint {
 func (l_ Layer) SetPosition(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPosition:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/preferredDynamicRange
 func (l_ Layer) PreferredDynamicRange() unsafe.Pointer {
@@ -1240,6 +1286,7 @@ func (l_ Layer) PreferredDynamicRange() unsafe.Pointer {
 func (l_ Layer) SetPreferredDynamicRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPreferredDynamicRange:"), value)
 }
+
 // The scale at which to rasterize content, relative to the coordinate space of the layer. Animatable
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/rasterizationScale
@@ -1257,6 +1304,7 @@ func (l_ Layer) RasterizationScale() float64 {
 func (l_ Layer) SetRasterizationScale(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setRasterizationScale:"), value)
 }
+
 // The color of the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowColor
@@ -1274,6 +1322,7 @@ func (l_ Layer) ShadowColor() coregraphics.CGColorRef {
 func (l_ Layer) SetShadowColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowColor:"), value)
 }
+
 // The offset (in points) of the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowOffset
@@ -1291,6 +1340,7 @@ func (l_ Layer) ShadowOffset() coregraphics.CGSize {
 func (l_ Layer) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowOffset:"), value)
 }
+
 // The opacity of the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowOpacity
@@ -1308,6 +1358,7 @@ func (l_ Layer) ShadowOpacity() unsafe.Pointer {
 func (l_ Layer) SetShadowOpacity(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowOpacity:"), value)
 }
+
 // The shape of the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowPath
@@ -1325,6 +1376,7 @@ func (l_ Layer) ShadowPath() coregraphics.CGPathRef {
 func (l_ Layer) SetShadowPath(value coregraphics.CGPathRef) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowPath:"), value)
 }
+
 // The blur radius (in points) used to render the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowRadius
@@ -1342,6 +1394,7 @@ func (l_ Layer) ShadowRadius() float64 {
 func (l_ Layer) SetShadowRadius(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowRadius:"), value)
 }
+
 // A Boolean that indicates whether the layer is rendered as a bitmap before compositing. Animatable
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shouldRasterize
@@ -1359,6 +1412,7 @@ func (l_ Layer) ShouldRasterize() bool {
 func (l_ Layer) SetShouldRasterize(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldRasterize:"), value)
 }
+
 // An optional dictionary used to store property values that aren’t explicitly defined by the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/style
@@ -1376,6 +1430,7 @@ func (l_ Layer) Style() unsafe.Pointer {
 func (l_ Layer) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setStyle:"), value)
 }
+
 // Specifies the transform to apply to sublayers when rendering. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/sublayerTransform
@@ -1393,6 +1448,7 @@ func (l_ Layer) SublayerTransform() unsafe.Pointer {
 func (l_ Layer) SetSublayerTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSublayerTransform:"), value)
 }
+
 // An array containing the layer’s sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/sublayers
@@ -1420,6 +1476,7 @@ func (l_ Layer) SetSublayers(value []Layer) {
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSublayers:"), nsArray)
 }
+
 // The superlayer of the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/superlayer
@@ -1442,6 +1499,7 @@ func (l_ Layer) ToneMapMode() unsafe.Pointer {
 func (l_ Layer) SetToneMapMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setToneMapMode:"), value)
 }
+
 // The transform applied to the layer’s contents. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/transform
@@ -1459,6 +1517,7 @@ func (l_ Layer) Transform() unsafe.Pointer {
 func (l_ Layer) SetTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTransform:"), value)
 }
+
 // The visible region of the layer in its own coordinate space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/visibleRect
@@ -1481,6 +1540,7 @@ func (l_ Layer) WantsDynamicContentScaling() bool {
 func (l_ Layer) SetWantsDynamicContentScaling(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWantsDynamicContentScaling:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/wantsExtendedDynamicRangeContent
 func (l_ Layer) WantsExtendedDynamicRangeContent() bool {
@@ -1495,6 +1555,7 @@ func (l_ Layer) WantsExtendedDynamicRangeContent() bool {
 func (l_ Layer) SetWantsExtendedDynamicRangeContent(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWantsExtendedDynamicRangeContent:"), value)
 }
+
 // The layer’s position on the z axis. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/zPosition
@@ -1512,4 +1573,5 @@ func (l_ Layer) ZPosition() float64 {
 func (l_ Layer) SetZPosition(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setZPosition:"), value)
 }
+
 

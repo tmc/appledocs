@@ -96,6 +96,7 @@ func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
 func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDispatchQueue:"), value)
 }
+
 // The optimization profile for the graph optimization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
@@ -113,5 +114,6 @@ func (g_ GraphCompilationDescriptor) OptimizationProfile() unsafe.Pointer {
 func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationProfile:"), value)
 }
+
 
 

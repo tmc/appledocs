@@ -20,5 +20,3 @@ var setStencilStoreActionOptionsProtocol *objc.Protocol
 func init() {
 	setStencilStoreActionOptionsProtocol = objc.GetProtocol("setStencilStoreActionOptions:")
 }
-
-

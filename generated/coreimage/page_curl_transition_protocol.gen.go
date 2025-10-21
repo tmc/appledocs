@@ -12,5 +12,3 @@ var PageCurlTransitionProtocol *objc.Protocol
 func init() {
 	PageCurlTransitionProtocol = objc.GetProtocol("CIPageCurlTransition")
 }
-
-

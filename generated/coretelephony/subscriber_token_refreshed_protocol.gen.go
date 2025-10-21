@@ -16,4 +16,3 @@ var subscriberTokenRefreshedProtocol *objc.Protocol
 func init() {
 	subscriberTokenRefreshedProtocol = objc.GetProtocol("subscriberTokenRefreshed:")
 }
-

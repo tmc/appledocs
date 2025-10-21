@@ -20,5 +20,3 @@ var LogContainerProtocol *objc.Protocol
 func init() {
 	LogContainerProtocol = objc.GetProtocol("MTLLogContainer")
 }
-
-

@@ -83,14 +83,7 @@ func NewDecisionTree() DecisionTree {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) DecisionTree {
-	instance := getDecisionTreeClass().Alloc()
-	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
-	rv.Autorelease()
-	return rv
-}
+
 
 // Creates a decision tree starting with the specified initial attribute to test.
 //
@@ -102,12 +95,23 @@ func NewDecisionTreeWithAttribute(attribute objc.ID) DecisionTree {
 	return rv
 }
 
+
+
 // Creates an automatically learned decision tree using the specified attributes, example items, and actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
 func NewDecisionTreeWithExamplesActionsAttributes(examples unsafe.Pointer, actions unsafe.Pointer, attributes unsafe.Pointer) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
+func NewDecisionTreeWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) DecisionTree {
+	instance := getDecisionTreeClass().Alloc()
+	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -145,6 +149,7 @@ func (d_ DecisionTree) RandomSource() unsafe.Pointer {
 func (d_ DecisionTree) SetRandomSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRandomSource:"), value)
 }
+
 // The decision node at the root of the decision tree, representing the first attribute to test.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/rootNode

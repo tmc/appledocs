@@ -20,5 +20,3 @@ var allocatorProtocol *objc.Protocol
 func init() {
 	allocatorProtocol = objc.GetProtocol("allocator")
 }
-
-

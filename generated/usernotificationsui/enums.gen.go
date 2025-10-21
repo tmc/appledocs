@@ -9,18 +9,18 @@ package usernotificationsui
 type UNNotificationContentExtensionMediaPlayPauseButtonType uint
 
 const (
-// UNNotificationContentExtensionMediaPlayPauseButtonTypeDefault - A standard play/pause button.
-//
+	// UNNotificationContentExtensionMediaPlayPauseButtonTypeDefault - A standard play/pause button.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionMediaPlayPauseButtonType/default
-UNNotificationContentExtensionMediaPlayPauseButtonTypeDefault UNNotificationContentExtensionMediaPlayPauseButtonType = 0
-// UNNotificationContentExtensionMediaPlayPauseButtonTypeNone - No media button.
-//
+	UNNotificationContentExtensionMediaPlayPauseButtonTypeDefault UNNotificationContentExtensionMediaPlayPauseButtonType = 0
+	// UNNotificationContentExtensionMediaPlayPauseButtonTypeNone - No media button.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionMediaPlayPauseButtonType/none
-UNNotificationContentExtensionMediaPlayPauseButtonTypeNone UNNotificationContentExtensionMediaPlayPauseButtonType = 0
-// UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay - A partially transparent play/pause button that is layered on top of your   media content.
-//
+	UNNotificationContentExtensionMediaPlayPauseButtonTypeNone UNNotificationContentExtensionMediaPlayPauseButtonType = 0
+	// UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay - A partially transparent play/pause button that is layered on top of your   media content.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionMediaPlayPauseButtonType/overlay
-UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay UNNotificationContentExtensionMediaPlayPauseButtonType = 0
+	UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay UNNotificationContentExtensionMediaPlayPauseButtonType = 0
 )
 
 // UNNotificationContentExtensionResponseOption - Constants indicating the preferred response to a notification.
@@ -29,18 +29,18 @@ UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay UNNotificationCont
 type UNNotificationContentExtensionResponseOption uint
 
 const (
-// UNNotificationContentExtensionResponseOptionDismiss - Dismiss the notification interface.
-//
+	// UNNotificationContentExtensionResponseOptionDismiss - Dismiss the notification interface.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionResponseOption/dismiss
-UNNotificationContentExtensionResponseOptionDismiss UNNotificationContentExtensionResponseOption = 0
-// UNNotificationContentExtensionResponseOptionDismissAndForwardAction - Dismiss the notification interface and forward the notification to the app.
-//
+	UNNotificationContentExtensionResponseOptionDismiss UNNotificationContentExtensionResponseOption = 0
+	// UNNotificationContentExtensionResponseOptionDismissAndForwardAction - Dismiss the notification interface and forward the notification to the app.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionResponseOption/dismissAndForwardAction
-UNNotificationContentExtensionResponseOptionDismissAndForwardAction UNNotificationContentExtensionResponseOption = 0
-// UNNotificationContentExtensionResponseOptionDoNotDismiss - Don’t dismiss the notification interface.
-//
+	UNNotificationContentExtensionResponseOptionDismissAndForwardAction UNNotificationContentExtensionResponseOption = 0
+	// UNNotificationContentExtensionResponseOptionDoNotDismiss - Don’t dismiss the notification interface.
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionResponseOption/doNotDismiss
-UNNotificationContentExtensionResponseOptionDoNotDismiss UNNotificationContentExtensionResponseOption = 0
+	UNNotificationContentExtensionResponseOptionDoNotDismiss UNNotificationContentExtensionResponseOption = 0
 )
 
 

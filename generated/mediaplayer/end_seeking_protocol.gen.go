@@ -19,5 +19,3 @@ var endSeekingProtocol *objc.Protocol
 func init() {
 	endSeekingProtocol = objc.GetProtocol("endSeeking")
 }
-
-

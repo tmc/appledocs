@@ -15,5 +15,3 @@ var VZGraphicsDisplayObserverProtocol *objc.Protocol
 func init() {
 	VZGraphicsDisplayObserverProtocol = objc.GetProtocol("VZGraphicsDisplayObserver")
 }
-
-

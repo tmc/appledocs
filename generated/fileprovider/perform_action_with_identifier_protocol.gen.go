@@ -18,5 +18,3 @@ var performActionWithIdentifierProtocol *objc.Protocol
 func init() {
 	performActionWithIdentifierProtocol = objc.GetProtocol("performActionWithIdentifier:")
 }
-
-
