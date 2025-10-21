@@ -100,16 +100,6 @@ func NewSet() Set {
 }
 
 
-// Initializes a newly allocated set and adds to it objects from another given set.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:)-1xovx
-func NewSetWithSet(set unsafe.Pointer) Set {
-	instance := getSetClass().Alloc()
-	rv := objc.Send[Set](instance.ID, objc.Sel("initWithSet:"), set)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(array:)
@@ -151,6 +141,16 @@ func NewSetWithObject(object unsafe.Pointer) Set {
 	return rv
 }
 
+// Initializes a newly allocated set with members taken from the specified list of objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/initWithObjects:
+func NewSetWithObjects(firstObj unsafe.Pointer) Set {
+	instance := getSetClass().Alloc()
+	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:"), firstObj)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly allocated set with a specified number of objects from a given C array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(objects:count:)-7kift
@@ -161,22 +161,22 @@ func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint) Set {
 	return rv
 }
 
+// Initializes a newly allocated set and adds to it objects from another given set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:)-1xovx
+func NewSetWithSet(set unsafe.Pointer) Set {
+	instance := getSetClass().Alloc()
+	rv := objc.Send[Set](instance.ID, objc.Sel("initWithSet:"), set)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly allocated set and adds to it members of another given set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:copyItems:)
 func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithSet:copyItems:"), set, flag)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a newly allocated set with members taken from the specified list of objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/initWithObjects:
-func NewSetWithObjects(firstObj unsafe.Pointer) Set {
-	instance := getSetClass().Alloc()
-	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
 }

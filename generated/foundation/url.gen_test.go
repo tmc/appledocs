@@ -11,26 +11,6 @@ var _ = foundation.NewURL
 
 
 
-// ExampleNewURLWithSchemeHostPath demonstrates how to create a URL instance using NewURLWithSchemeHostPath.
-// Initializes a newly created NSURL with a specified scheme, host, and path.
-func ExampleNewURLWithSchemeHostPath() {
-	_ = foundation.NewURLWithSchemeHostPath(
-		"scheme", // scheme string
-		"host", // host string
-		"/tmp/test", // path string
-	)
-	// Output:
-}
-
-// ExampleNewURLWithStringEncodingInvalidCharacters demonstrates how to create a URL instance using NewURLWithStringEncodingInvalidCharacters.
-// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
-func ExampleNewURLWithStringEncodingInvalidCharacters() {
-	_ = foundation.NewURLWithStringEncodingInvalidCharacters(
-		"https://example.com", // URLString string
-		false, // encodingInvalidCharacters bool
-	)
-	// Output:
-}
 
 
 
@@ -55,6 +35,19 @@ func ExampleNewURLFileURLWithPathIsDirectory() {
 
 
 
+
+
+// ExampleNewURLWithSchemeHostPath demonstrates how to create a URL instance using NewURLWithSchemeHostPath.
+// Initializes a newly created NSURL with a specified scheme, host, and path.
+func ExampleNewURLWithSchemeHostPath() {
+	_ = foundation.NewURLWithSchemeHostPath(
+		"scheme", // scheme string
+		"host", // host string
+		"/tmp/test", // path string
+	)
+	// Output:
+}
+
 // ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
 // Initializes an NSURL object with a provided URL string.
 func ExampleNewURLWithString() {
@@ -64,8 +57,15 @@ func ExampleNewURLWithString() {
 	// Output:
 }
 
-
-
+// ExampleNewURLWithStringEncodingInvalidCharacters demonstrates how to create a URL instance using NewURLWithStringEncodingInvalidCharacters.
+// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
+func ExampleNewURLWithStringEncodingInvalidCharacters() {
+	_ = foundation.NewURLWithStringEncodingInvalidCharacters(
+		"https://example.com", // URLString string
+		false, // encodingInvalidCharacters bool
+	)
+	// Output:
+}
 
 
 

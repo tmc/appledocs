@@ -84,6 +84,22 @@ func NewPredicate() Predicate {
 }
 
 
+// Creates a predicate with a metadata query string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
+func NewPredicateFromMetadataQueryString(queryString string) Predicate {
+	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
+	return rv
+}
+
+// Creates a predicate that evaluates using a specified block object and bindings dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
+func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
+	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
+	return rv
+}
+
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
@@ -100,27 +116,11 @@ func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Poin
 	return rv
 }
 
-// Creates a predicate with a metadata query string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
-func NewPredicateFromMetadataQueryString(queryString string) Predicate {
-	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
-	return rv
-}
-
 // Creates and returns a predicate that always evaluates to a specified Boolean value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
 func NewPredicateWithValue(value bool) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithValue:"), value)
-	return rv
-}
-
-// Creates a predicate that evaluates using a specified block object and bindings dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
-func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
-	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
 

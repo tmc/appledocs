@@ -108,19 +108,19 @@ func NewURLSession() URLSession {
 }
 
 
-// Creates a session with the specified session configuration, delegate, and operation queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
-func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Pointer, delegate objc.ID, queue unsafe.Pointer) URLSession {
-	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
-	return rv
-}
-
 // Creates a session with the specified session configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
 func NewURLSessionWithConfiguration(configuration unsafe.Pointer) URLSession {
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:"), configuration)
+	return rv
+}
+
+// Creates a session with the specified session configuration, delegate, and operation queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
+func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Pointer, delegate objc.ID, queue unsafe.Pointer) URLSession {
+	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
 }
 

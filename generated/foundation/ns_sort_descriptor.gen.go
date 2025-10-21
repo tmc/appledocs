@@ -81,16 +81,6 @@ func NewSortDescriptor() SortDescriptor {
 }
 
 
-// Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:selector:)
-func NewSortDescriptorWithKeyAscendingSelector(key string, ascending bool, selector objc.SEL) SortDescriptor {
-	instance := getSortDescriptorClass().Alloc()
-	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:selector:"), objc.String(key), ascending, selector)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a sort descriptor by decoding from the coder you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(coder:)
@@ -117,6 +107,16 @@ func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescripto
 func NewSortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmptr unsafe.Pointer) SortDescriptor {
 	instance := getSortDescriptorClass().Alloc()
 	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:comparator:"), objc.String(key), ascending, cmptr)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:selector:)
+func NewSortDescriptorWithKeyAscendingSelector(key string, ascending bool, selector objc.SEL) SortDescriptor {
+	instance := getSortDescriptorClass().Alloc()
+	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:selector:"), objc.String(key), ascending, selector)
 	rv.Autorelease()
 	return rv
 }
