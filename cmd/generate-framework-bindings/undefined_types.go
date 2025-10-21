@@ -120,6 +120,13 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		defined["I"+proto.Name] = true
 	}
 
+	// Add enum types
+	for _, enum := range g.Enums {
+		defined[enum.Name] = true
+		// Also add the stripped version (e.g., "SMAppServiceStatus" becomes "AppServiceStatus")
+		defined[stripObjCPrefix(enum.Name)] = true
+	}
+
 	// Add ref types
 	for _, ref := range g.refTypes {
 		defined[ref] = true

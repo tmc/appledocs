@@ -472,6 +472,7 @@ func stripObjCPrefix(className string) string {
 		// 2-letter prefixes (most common)
 		"NS", "CG", "CF", "CA", "CI", "CL", "CM", "CV", "CT", "SC", "AV", "UI", "WK", "SK",
 		"PK", "AR", "ML", "VN", "NL", "AS", "LA", "MP", "HC", "HM", "GK", "QL", "AU", "IO",
+		"SM", // ServiceManagement framework
 	}
 
 	// Try each known prefix

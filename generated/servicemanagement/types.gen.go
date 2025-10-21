@@ -36,7 +36,5 @@ type NSString unsafe.Pointer
 
 type NSURL unsafe.Pointer
 
-type SMAppServiceStatus unsafe.Pointer
-
 
 
