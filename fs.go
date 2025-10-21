@@ -48,18 +48,28 @@ func (f *FS) ReadFile(name string) ([]byte, error) {
 		return io.ReadAll(file)
 	}
 
-	// If the path ends with .json and doesn't exist, try with .json.language%3Dobjc suffix
-	// This handles files that were cached with their language parameter
+	// If the path ends with .json and doesn't exist, try language-specific variants
+	// This handles files that were cached with their language parameter.
+	// Try .json.language%3Dobjc and .json.language%3Dswift as fallbacks.
 	if strings.HasSuffix(name, ".json") {
+		// Try Objective-C variant first (more relevant for ObjC bindings)
 		langPath := name + ".language%3Dobjc"
 		file, langErr := f.fsys.Open(langPath)
 		if langErr == nil {
 			defer file.Close()
 			return io.ReadAll(file)
 		}
+
+		// Try Swift variant as second fallback
+		langPath = name + ".language%3Dswift"
+		file, langErr = f.fsys.Open(langPath)
+		if langErr == nil {
+			defer file.Close()
+			return io.ReadAll(file)
+		}
 	}
 
-	// Return the original error if neither worked
+	// Return the original error if none worked
 	return nil, err
 }
 
@@ -164,7 +174,7 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 		return nil, fmt.Errorf("list symbols for %s: %w", framework, err)
 	}
 
-	// Use a map to deduplicate symbols (in case both .json and .json.language%3Dobjc exist)
+	// Use a map to deduplicate symbols (in case both .json and language variants exist)
 	symbolsMap := make(map[string]bool)
 	err := fs.WalkDir(fsys, framework, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
@@ -173,11 +183,15 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 		if d.IsDir() {
 			return nil
 		}
-		// Match both .json files and .json.language%3Dobjc files (URL-encoded .json.language=objc)
-		if strings.HasSuffix(path, ".json") || strings.HasSuffix(path, ".json.language%3Dobjc") {
+		// Match .json files and language-specific variants
+		// (URL-encoded: .json.language%3Dobjc = .json.language=objc, .json.language%3Dswift = .json.language=swift)
+		if strings.HasSuffix(path, ".json") ||
+		   strings.HasSuffix(path, ".json.language%3Dobjc") ||
+		   strings.HasSuffix(path, ".json.language%3Dswift") {
 			// Remove framework prefix
 			symbol := strings.TrimPrefix(path, framework+string(filepath.Separator))
 			// Remove .json suffix and any language suffix
+			symbol = strings.TrimSuffix(symbol, ".json.language%3Dswift")
 			symbol = strings.TrimSuffix(symbol, ".json.language%3Dobjc")
 			symbol = strings.TrimSuffix(symbol, ".json")
 			symbolsMap[symbol] = true
