@@ -1196,8 +1196,8 @@ func ParseEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
 	}
 
 	if i >= len(tokens) {
-		// Try Swift enum syntax: struct NSWindowStyleMask : OptionSet
-		return parseSwiftEnumDeclaration(tokens)
+		// Not an Objective-C enum (no typedef keyword found)
+		return nil
 	}
 
 	i++ // Skip typedef

@@ -793,6 +793,14 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				}
 			}
 		} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@") {
+			// Skip Swift enum files (they contain -swift.enum or -swift.struct in the path)
+			if strings.Contains(path, "-swift.enum") || strings.Contains(path, "-swift.struct") {
+				if verbose {
+					fmt.Fprintf(os.Stderr, "Skipping Swift enum file: %s\n", path)
+				}
+				continue
+			}
+
 			// This is an enum type or enum case
 			// Try parsing as enum type first (enum type has only 3 parts: c:@E@EnumName)
 			parts := strings.Split(doc.Metadata.ExternalID, "@")
