@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FPUIActionExtensionContext] class.
@@ -29,7 +28,7 @@ type _FPUIActionExtensionContextClass struct {
 
 // An interface definition for the [FPUIActionExtensionContext] class.
 type IFPUIActionExtensionContext interface {
-	foundation.IExtensionContext
+	IExtensionContext
 	CancelRequestWithError(error_ unsafe.Pointer)
 	CompleteRequest()
 }
@@ -38,7 +37,7 @@ type IFPUIActionExtensionContext interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext
 type FPUIActionExtensionContext struct {
-	foundation.ExtensionContext
+	ExtensionContext
 }
 
 // FPUIActionExtensionContextFrom constructs a [FPUIActionExtensionContext] from an unsafe.Pointer.
@@ -46,7 +45,7 @@ type FPUIActionExtensionContext struct {
 // An extension context provided to File Provider UI extensions.
 func FPUIActionExtensionContextFrom(ptr unsafe.Pointer) FPUIActionExtensionContext {
 	return FPUIActionExtensionContext{
-		ExtensionContext: foundation.ExtensionContextFrom(ptr),
+		ExtensionContext: ExtensionContextFrom(ptr),
 	}
 }
 

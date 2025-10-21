@@ -102,8 +102,8 @@ func NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePosition
 // The positions of the gridlines along the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/gridlinePositions-9z10e
-func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("gridlinePositions"))
+func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []NSNumber {
+	rv := objc.Send[[]NSNumber](a_.ID, objc.Sel("gridlinePositions"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []accessibility.NSNumb
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/gridlinePositions-9z10e
-func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []accessibility.NSNumber) {
+func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

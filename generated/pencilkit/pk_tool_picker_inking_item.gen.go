@@ -81,26 +81,6 @@ func NewToolPickerInkingItem() ToolPickerInkingItem {
 }
 
 
-// Creates a new inking item with the specified ink type, color, width, and identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color unsafe.Pointer, width float64, identifier string) ToolPickerInkingItem {
-	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-// Create a new tool picker item with a .
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:width:
-func NewToolPickerInkingItemWithInkTypeWidth(inkType unsafe.Pointer, width float64) ToolPickerInkingItem {
-	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:width:"), inkType, width)
-	rv.Autorelease()
-	return rv
-}
-
 // Create a new tool picker item with a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:
@@ -135,6 +115,26 @@ func NewToolPickerInkingItemWithInkTypeColorWidth(inkType unsafe.Pointer, color 
 func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsafe.Pointer, color unsafe.Pointer, width float64, azimuth float64, identifier string) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, objc.String(identifier))
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new inking item with the specified ink type, color, width, and identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:identifier:
+func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color unsafe.Pointer, width float64, identifier string) ToolPickerInkingItem {
+	instance := getToolPickerInkingItemClass().Alloc()
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, objc.String(identifier))
+	rv.Autorelease()
+	return rv
+}
+
+// Create a new tool picker item with a .
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:width:
+func NewToolPickerInkingItemWithInkTypeWidth(inkType unsafe.Pointer, width float64) ToolPickerInkingItem {
+	instance := getToolPickerInkingItemClass().Alloc()
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:width:"), inkType, width)
 	rv.Autorelease()
 	return rv
 }

@@ -110,11 +110,43 @@ func NewMutableDictionary() MutableDictionary {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
+func NewMutableDictionaryWithOBEXHeadersData(inHeadersData unsafe.Pointer) MutableDictionary {
+	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
+func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe.Pointer, inDataSize unsafe.Pointer) MutableDictionary {
+	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
+	return rv
+}
+
+// Initializes a newly allocated mutable dictionary, allocating enough memory to hold entries.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(capacity:)
+func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
+	instance := getMutableDictionaryClass().Alloc()
+	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCapacity:"), numItems)
+	rv.Autorelease()
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
 func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates a mutable dictionary which is optimized for dealing with a known set of keys.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
+func NewMutableDictionaryWithSharedKeySet(keyset objc.ID) MutableDictionary {
+	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
 
@@ -133,38 +165,6 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
 	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
-func NewMutableDictionaryWithOBEXHeadersData(inHeadersData unsafe.Pointer) MutableDictionary {
-	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
-	return rv
-}
-
-// Initializes a newly allocated mutable dictionary, allocating enough memory to hold entries.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(capacity:)
-func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
-	instance := getMutableDictionaryClass().Alloc()
-	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCapacity:"), numItems)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a mutable dictionary which is optimized for dealing with a known set of keys.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
-func NewMutableDictionaryWithSharedKeySet(keyset objc.ID) MutableDictionary {
-	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
-func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe.Pointer, inDataSize unsafe.Pointer) MutableDictionary {
-	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
 	return rv
 }
 

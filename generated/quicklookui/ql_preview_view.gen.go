@@ -81,22 +81,22 @@ func NewPreviewView() PreviewView {
 }
 
 
-// Creates a preview view with the provided frame and style.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:style:)
-func NewPreviewViewWithFrameStyle(frame Rect, style unsafe.Pointer) PreviewView {
-	instance := getPreviewViewClass().Alloc()
-	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:style:"), frame, style)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a preview view with the provided frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:)
 func NewPreviewViewWithFrame(frame Rect) PreviewView {
 	instance := getPreviewViewClass().Alloc()
 	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:"), frame)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a preview view with the provided frame and style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:style:)
+func NewPreviewViewWithFrameStyle(frame Rect, style unsafe.Pointer) PreviewView {
+	instance := getPreviewViewClass().Alloc()
+	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:style:"), frame, style)
 	rv.Autorelease()
 	return rv
 }

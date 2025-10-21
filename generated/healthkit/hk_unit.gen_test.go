@@ -12,6 +12,7 @@ var _ = healthkit.NewHKUnit
 
 
 
+
 // ExampleNewHKUnitFromString demonstrates how to create a HKUnit instance using NewHKUnitFromString.
 // Returns the unit instance described by the provided string.
 func ExampleNewHKUnitFromString() {
@@ -20,6 +21,5 @@ func ExampleNewHKUnitFromString() {
 	)
 	// Output:
 }
-
 
 

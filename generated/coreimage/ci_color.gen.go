@@ -81,25 +81,6 @@ func NewColor() Color {
 }
 
 
-// Create a Core Image color object with a Core Graphics color object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
-func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
-	instance := getColorClass().Alloc()
-	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
-func NewColorWithColor(color unsafe.Pointer) Color {
-	instance := getColorClass().Alloc()
-	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
-	rv.Autorelease()
-	return rv
-}
-
 // Initialize a Core Image color object in the sRGB color space with the specified red, green, and blue component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/initWithRed:green:blue:
@@ -145,6 +126,25 @@ func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
 func NewColorWithString(representation string) Color {
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
+	return rv
+}
+
+// Create a Core Image color object with a Core Graphics color object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
+func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
+	instance := getColorClass().Alloc()
+	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
+func NewColorWithColor(color unsafe.Pointer) Color {
+	instance := getColorClass().Alloc()
+	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
+	rv.Autorelease()
 	return rv
 }
 

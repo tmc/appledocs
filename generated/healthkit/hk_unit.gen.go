@@ -85,6 +85,14 @@ func NewHKUnit() HKUnit {
 }
 
 
+// Returns the unit instance described by the provided string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-9qont
+func NewHKUnitFromString(string_ string) HKUnit {
+	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromString:"), objc.String(string_))
+	return rv
+}
+
 // Converts an energy formatter enumeration value into a corresponding HealthKit unit object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-1j1pq
@@ -106,14 +114,6 @@ func NewHKUnitFromLengthFormatterUnit(lengthFormatterUnit unsafe.Pointer) HKUnit
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-7h2li
 func NewHKUnitFromMassFormatterUnit(massFormatterUnit unsafe.Pointer) HKUnit {
 	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromMassFormatterUnit:"), massFormatterUnit)
-	return rv
-}
-
-// Returns the unit instance described by the provided string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-9qont
-func NewHKUnitFromString(string_ string) HKUnit {
-	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromString:"), objc.String(string_))
 	return rv
 }
 

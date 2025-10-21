@@ -90,22 +90,22 @@ func NewCSSearchableIndex() CSSearchableIndex {
 }
 
 
-// Returns an on-device index with the specified name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
-func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
-	instance := getCSSearchableIndexClass().Alloc()
-	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), objc.String(name))
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an on-device index with the specified name and data protection class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)
 func NewCSSearchableIndexWithNameProtectionClass(name string, protectionClass unsafe.Pointer) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
 	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), objc.String(name), protectionClass)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an on-device index with the specified name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
+func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
+	instance := getCSSearchableIndexClass().Alloc()
+	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }

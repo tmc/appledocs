@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXCallDirectoryExtensionContext] class.
@@ -29,7 +28,7 @@ type _CXCallDirectoryExtensionContextClass struct {
 
 // An interface definition for the [CXCallDirectoryExtensionContext] class.
 type ICXCallDirectoryExtensionContext interface {
-	foundation.IExtensionContext
+	IExtensionContext
 	AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber unsafe.Pointer)
 	AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber unsafe.Pointer, label string)
 	CompleteRequestWithCompletionHandler(completion unsafe.Pointer)
@@ -45,7 +44,7 @@ type ICXCallDirectoryExtensionContext interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext
 type CXCallDirectoryExtensionContext struct {
-	foundation.ExtensionContext
+	ExtensionContext
 }
 
 // CXCallDirectoryExtensionContextFrom constructs a [CXCallDirectoryExtensionContext] from an unsafe.Pointer.
@@ -53,7 +52,7 @@ type CXCallDirectoryExtensionContext struct {
 // A programmatic interface for adding identification and blocking entries to a Call Directory app extension.
 func CXCallDirectoryExtensionContextFrom(ptr unsafe.Pointer) CXCallDirectoryExtensionContext {
 	return CXCallDirectoryExtensionContext{
-		ExtensionContext: foundation.ExtensionContextFrom(ptr),
+		ExtensionContext: ExtensionContextFrom(ptr),
 	}
 }
 

@@ -80,22 +80,22 @@ func NewPHASEShape() PHASEShape {
 }
 
 
-// Creates an object that the given geometric data shapes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:)
-func NewPHASEShapeWithEngineMesh(engine unsafe.Pointer, mesh unsafe.Pointer) PHASEShape {
-	instance := getPHASEShapeClass().Alloc()
-	rv := objc.Send[PHASEShape](instance.ID, objc.Sel("initWithEngine:mesh:"), engine, mesh)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates an object of a specific material that the given geometric data shapes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:materials:)
 func NewPHASEShapeWithEngineMeshMaterials(engine unsafe.Pointer, mesh unsafe.Pointer, materials unsafe.Pointer) PHASEShape {
 	instance := getPHASEShapeClass().Alloc()
 	rv := objc.Send[PHASEShape](instance.ID, objc.Sel("initWithEngine:mesh:materials:"), engine, mesh, materials)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates an object that the given geometric data shapes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:)
+func NewPHASEShapeWithEngineMesh(engine unsafe.Pointer, mesh unsafe.Pointer) PHASEShape {
+	instance := getPHASEShapeClass().Alloc()
+	rv := objc.Send[PHASEShape](instance.ID, objc.Sel("initWithEngine:mesh:"), engine, mesh)
 	rv.Autorelease()
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHProjectExtensionContext] class.
@@ -29,7 +28,7 @@ type _PHProjectExtensionContextClass struct {
 
 // An interface definition for the [PHProjectExtensionContext] class.
 type IPHProjectExtensionContext interface {
-	foundation.IExtensionContext
+	IExtensionContext
 	ShowEditorForAsset(asset unsafe.Pointer)
 	UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo unsafe.Pointer, completion unsafe.Pointer) unsafe.Pointer
 }
@@ -40,7 +39,7 @@ type IPHProjectExtensionContext interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext
 type PHProjectExtensionContext struct {
-	foundation.ExtensionContext
+	ExtensionContext
 }
 
 // PHProjectExtensionContextFrom constructs a [PHProjectExtensionContext] from an unsafe.Pointer.
@@ -48,7 +47,7 @@ type PHProjectExtensionContext struct {
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
 func PHProjectExtensionContextFrom(ptr unsafe.Pointer) PHProjectExtensionContext {
 	return PHProjectExtensionContext{
-		ExtensionContext: foundation.ExtensionContextFrom(ptr),
+		ExtensionContext: ExtensionContextFrom(ptr),
 	}
 }
 

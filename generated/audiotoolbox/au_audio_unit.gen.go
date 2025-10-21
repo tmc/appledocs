@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioUnit] class.
@@ -36,7 +37,7 @@ type IAudioUnit interface {
 	DisableProfileCableOnChannelError(profile unsafe.Pointer, cable unsafe.Pointer, channel unsafe.Pointer, outError unsafe.Pointer) bool
 	EnableProfileCableOnChannelError(profile unsafe.Pointer, cable unsafe.Pointer, channel unsafe.Pointer, outError unsafe.Pointer) bool
 	MessageChannelFor(channelName string) objc.ID
-	ParametersForOverviewWithCount(count int) []accessibility.NSNumber
+	ParametersForOverviewWithCount(count int) []foundation.NSNumber
 	PresetStateForError(userPreset unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer
 	ProfileStateForCableChannel(cable unsafe.Pointer, channel unsafe.Pointer) unsafe.Pointer
 	RemoveRenderObserver(token int)
@@ -182,8 +183,8 @@ func (a_ AudioUnit) MessageChannelFor(channelName string) objc.ID {
 // Returns the audio unit’s most important parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/parametersForOverview(withCount:)
-func (a_ AudioUnit) ParametersForOverviewWithCount(count int) []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("parametersForOverviewWithCount:"), count)
+func (a_ AudioUnit) ParametersForOverviewWithCount(count int) []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("parametersForOverviewWithCount:"), count)
 	return rv
 }
 
@@ -338,15 +339,15 @@ func (a_ AudioUnit) CanProcessInPlace() bool {
 // Expresses valid combinations of input and output channels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelCapabilities
-func (a_ AudioUnit) ChannelCapabilities() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("channelCapabilities"))
+func (a_ AudioUnit) ChannelCapabilities() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("channelCapabilities"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelMap
-func (a_ AudioUnit) ChannelMap() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("channelMap"))
+func (a_ AudioUnit) ChannelMap() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("channelMap"))
 	return rv
 }
 
@@ -354,7 +355,7 @@ func (a_ AudioUnit) ChannelMap() []accessibility.NSNumber {
 // SetChannelMap sets the value of the channelMap property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelMap
-func (a_ AudioUnit) SetChannelMap(value []accessibility.NSNumber) {
+func (a_ AudioUnit) SetChannelMap(value []foundation.NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

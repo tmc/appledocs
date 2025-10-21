@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MTL4MachineLearningPipelineDescriptor] class.
@@ -29,21 +28,23 @@ type _MTL4MachineLearningPipelineDescriptorClass struct {
 
 // An interface definition for the [MTL4MachineLearningPipelineDescriptor] class.
 type IMTL4MachineLearningPipelineDescriptor interface {
-	objectivec.IObject
+	IMTL4PipelineDescriptor
 }
 
 // Description for a machine learning pipeline state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MachineLearningPipelineDescriptor
 type MTL4MachineLearningPipelineDescriptor struct {
-	objectivec.Object
+	MTL4PipelineDescriptor
 }
 
 // MTL4MachineLearningPipelineDescriptorFrom constructs a [MTL4MachineLearningPipelineDescriptor] from an unsafe.Pointer.
 //
 // Description for a machine learning pipeline state.
 func MTL4MachineLearningPipelineDescriptorFrom(ptr unsafe.Pointer) MTL4MachineLearningPipelineDescriptor {
-	return MTL4MachineLearningPipelineDescriptor{objectivec.Object{objc.ID(ptr)}}
+	return MTL4MachineLearningPipelineDescriptor{
+		MTL4PipelineDescriptor: MTL4PipelineDescriptorFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

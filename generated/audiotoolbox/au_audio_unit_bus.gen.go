@@ -215,8 +215,8 @@ func (a_ AudioUnitBus) SetShouldAllocateBuffer(value bool) {
 // An array of numbers indicating the supported number of channels for this bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelCounts
-func (a_ AudioUnitBus) SupportedChannelCounts() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("supportedChannelCounts"))
+func (a_ AudioUnitBus) SupportedChannelCounts() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("supportedChannelCounts"))
 	return rv
 }
 
@@ -226,7 +226,7 @@ func (a_ AudioUnitBus) SupportedChannelCounts() []accessibility.NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelCounts
-func (a_ AudioUnitBus) SetSupportedChannelCounts(value []accessibility.NSNumber) {
+func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -242,8 +242,8 @@ func (a_ AudioUnitBus) SetSupportedChannelCounts(value []accessibility.NSNumber)
 // An array of audio channel layout tags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelLayoutTags
-func (a_ AudioUnitBus) SupportedChannelLayoutTags() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("supportedChannelLayoutTags"))
+func (a_ AudioUnitBus) SupportedChannelLayoutTags() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("supportedChannelLayoutTags"))
 	return rv
 }
 

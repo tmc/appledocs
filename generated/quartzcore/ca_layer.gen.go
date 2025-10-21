@@ -124,14 +124,6 @@ func NewLayer() Layer {
 }
 
 
-// Initializes a layer with a remote client ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
-	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
-	return rv
-}
-
 // Override to copy or initialize custom fields of the specified layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(layer:)
@@ -139,6 +131,14 @@ func NewLayerWithLayer(layer objc.ID) Layer {
 	instance := getLayerClass().Alloc()
 	rv := objc.Send[Layer](instance.ID, objc.Sel("initWithLayer:"), layer)
 	rv.Autorelease()
+	return rv
+}
+
+// Initializes a layer with a remote client ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
+func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
 

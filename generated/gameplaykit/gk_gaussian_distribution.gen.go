@@ -81,22 +81,22 @@ func NewGaussianDistribution() GaussianDistribution {
 }
 
 
-// Initializes a Gaussian random distribution with the specified mean and deviation, using the specified source randomizer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:mean:deviation:)
-func NewGaussianDistributionWithRandomSourceMeanDeviation(source objc.ID, mean unsafe.Pointer, deviation unsafe.Pointer) GaussianDistribution {
-	instance := getGaussianDistributionClass().Alloc()
-	rv := objc.Send[GaussianDistribution](instance.ID, objc.Sel("initWithRandomSource:mean:deviation:"), source, mean, deviation)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a Gaussian random distribution with the specified lower and upper bounds, using the specified source randomizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:lowestValue:highestValue:)
 func NewGaussianDistributionWithRandomSourceLowestValueHighestValue(source objc.ID, lowestInclusive int, highestInclusive int) GaussianDistribution {
 	instance := getGaussianDistributionClass().Alloc()
 	rv := objc.Send[GaussianDistribution](instance.ID, objc.Sel("initWithRandomSource:lowestValue:highestValue:"), source, lowestInclusive, highestInclusive)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a Gaussian random distribution with the specified mean and deviation, using the specified source randomizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:mean:deviation:)
+func NewGaussianDistributionWithRandomSourceMeanDeviation(source objc.ID, mean unsafe.Pointer, deviation unsafe.Pointer) GaussianDistribution {
+	instance := getGaussianDistributionClass().Alloc()
+	rv := objc.Send[GaussianDistribution](instance.ID, objc.Sel("initWithRandomSource:mean:deviation:"), source, mean, deviation)
 	rv.Autorelease()
 	return rv
 }

@@ -10,22 +10,6 @@ import (
 var _ = mlcompute.NewCTensor
 
 
-// ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSize demonstrates how to create a CTensor instance using NewCTensorWithSequenceLengthFeatureChannelCountBatchSize.
-// Creates a tensor without data, with the sequence length, number of feature channels, and batch size you specify.
-func ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSize() {
-	_ = mlcompute.NewCTensorWithSequenceLengthFeatureChannelCountBatchSize(
-		0, // sequenceLength uint
-		0, // featureChannelCount uint
-		0, // batchSize uint
-	)
-	// Output:
-}
-
-
-
-
-
-
 
 
 // ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSize demonstrates how to create a CTensor instance using NewCTensorWithWidthHeightFeatureChannelCountBatchSize.
@@ -40,6 +24,22 @@ func ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSize() {
 	// Output:
 }
 
+
+
+
+
+
+
+// ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSize demonstrates how to create a CTensor instance using NewCTensorWithSequenceLengthFeatureChannelCountBatchSize.
+// Creates a tensor without data, with the sequence length, number of feature channels, and batch size you specify.
+func ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSize() {
+	_ = mlcompute.NewCTensorWithSequenceLengthFeatureChannelCountBatchSize(
+		0, // sequenceLength uint
+		0, // featureChannelCount uint
+		0, // batchSize uint
+	)
+	// Output:
+}
 
 
 

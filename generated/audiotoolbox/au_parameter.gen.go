@@ -131,8 +131,8 @@ func (p_ Parameter) Address() unsafe.Pointer {
 // Any other parameter’s whose values may change as a side effect of this parameter’s value changing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/dependentParameters
-func (p_ Parameter) DependentParameters() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](p_.ID, objc.Sel("dependentParameters"))
+func (p_ Parameter) DependentParameters() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](p_.ID, objc.Sel("dependentParameters"))
 	return rv
 }
 

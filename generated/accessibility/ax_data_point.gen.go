@@ -78,16 +78,6 @@ func NewAXDataPoint() AXDataPoint {
 }
 
 
-// Creates a data point with the specified x-value, y-value, additional values, and label.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:label:
-func NewAXDataPointWithXYAdditionalValuesLabel(xValue unsafe.Pointer, yValue unsafe.Pointer, additionalValues unsafe.Pointer, label string) AXDataPoint {
-	instance := getAXDataPointClass().Alloc()
-	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:label:"), xValue, yValue, additionalValues, objc.String(label))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a data point with the specified x- and y-values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:
@@ -104,6 +94,16 @@ func NewAXDataPointWithXY(xValue unsafe.Pointer, yValue unsafe.Pointer) AXDataPo
 func NewAXDataPointWithXYAdditionalValues(xValue unsafe.Pointer, yValue unsafe.Pointer, additionalValues unsafe.Pointer) AXDataPoint {
 	instance := getAXDataPointClass().Alloc()
 	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:"), xValue, yValue, additionalValues)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a data point with the specified x-value, y-value, additional values, and label.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:label:
+func NewAXDataPointWithXYAdditionalValuesLabel(xValue unsafe.Pointer, yValue unsafe.Pointer, additionalValues unsafe.Pointer, label string) AXDataPoint {
+	instance := getAXDataPointClass().Alloc()
+	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:label:"), xValue, yValue, additionalValues, objc.String(label))
 	rv.Autorelease()
 	return rv
 }

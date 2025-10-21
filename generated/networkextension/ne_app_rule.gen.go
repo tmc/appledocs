@@ -78,22 +78,22 @@ func NewNEAppRule() NEAppRule {
 }
 
 
-// Create an app rule that matches an app with a given signing identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:)
-func NewNEAppRuleWithSigningIdentifier(signingIdentifier string) NEAppRule {
-	instance := getNEAppRuleClass().Alloc()
-	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:"), objc.String(signingIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
 // Create an app rule that matches an app with a given signing identifier and a given designated requirement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:designatedRequirement:)
 func NewNEAppRuleWithSigningIdentifierDesignatedRequirement(signingIdentifier string, designatedRequirement string) NEAppRule {
 	instance := getNEAppRuleClass().Alloc()
 	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:designatedRequirement:"), objc.String(signingIdentifier), objc.String(designatedRequirement))
+	rv.Autorelease()
+	return rv
+}
+
+// Create an app rule that matches an app with a given signing identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:)
+func NewNEAppRuleWithSigningIdentifier(signingIdentifier string) NEAppRule {
+	instance := getNEAppRuleClass().Alloc()
+	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:"), objc.String(signingIdentifier))
 	rv.Autorelease()
 	return rv
 }

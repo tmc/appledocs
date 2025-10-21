@@ -185,8 +185,8 @@ func (n_ NERelay) SetIdentityDataPassword(value unsafe.Pointer) {
 // An array of TLS raw public keys that the relay server can present during the TLS handshake.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/rawPublicKeys
-func (n_ NERelay) RawPublicKeys() []addressbook.NSData {
-	rv := objc.Send[[]addressbook.NSData](n_.ID, objc.Sel("rawPublicKeys"))
+func (n_ NERelay) RawPublicKeys() []foundation.NSData {
+	rv := objc.Send[[]foundation.NSData](n_.ID, objc.Sel("rawPublicKeys"))
 	return rv
 }
 
@@ -196,7 +196,7 @@ func (n_ NERelay) RawPublicKeys() []addressbook.NSData {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/rawPublicKeys
-func (n_ NERelay) SetRawPublicKeys(value []addressbook.NSData) {
+func (n_ NERelay) SetRawPublicKeys(value []foundation.NSData) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

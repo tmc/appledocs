@@ -10,12 +10,12 @@ import (
 var _ = appkit.NewResponder
 
 
-
 // ExampleNewResponder demonstrates how to create a Responder instance.
 // Creates a new responder object.
 func ExampleNewResponder() {
 	_ = appkit.NewResponder()
 	// Output:
 }
+
 
 

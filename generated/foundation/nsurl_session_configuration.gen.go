@@ -114,8 +114,8 @@ func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() unsafe.P
 // An array of proxy configuration objects containing information about the proxies to use within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) ProxyConfigurations() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](u_.ID, objc.Sel("proxyConfigurations"))
+func (u_ URLSessionConfiguration) ProxyConfigurations() []appkit.NSObject {
+	rv := objc.Send[[]appkit.NSObject](u_.ID, objc.Sel("proxyConfigurations"))
 	return rv
 }
 
@@ -125,7 +125,7 @@ func (u_ URLSessionConfiguration) ProxyConfigurations() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) SetProxyConfigurations(value []unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetProxyConfigurations(value []appkit.NSObject) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

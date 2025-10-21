@@ -82,14 +82,6 @@ func NewConstraint() Constraint {
 
 // Creates and returns an object with the specified parameters.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:)
-func NewConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer) Constraint {
-	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:"), attr, objc.String(srcId), srcAttr)
-	return rv
-}
-
-// Creates and returns an object with the specified parameters.
-//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:offset:)
 func NewConstraintWithAttributeRelativeToAttributeOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, c float64) Constraint {
 	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, objc.String(srcId), srcAttr, c)
@@ -103,6 +95,14 @@ func NewConstraintWithAttributeRelativeToAttributeScaleOffset(attr unsafe.Pointe
 	instance := getConstraintClass().Alloc()
 	rv := objc.Send[Constraint](instance.ID, objc.Sel("initWithAttribute:relativeTo:attribute:scale:offset:"), attr, objc.String(srcId), srcAttr, m, c)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates and returns an object with the specified parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:)
+func NewConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer) Constraint {
+	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:"), attr, objc.String(srcId), srcAttr)
 	return rv
 }
 

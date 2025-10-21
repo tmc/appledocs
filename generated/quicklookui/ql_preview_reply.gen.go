@@ -82,6 +82,16 @@ func NewPreviewReply() PreviewReply {
 }
 
 
+// Creates a preview reply from an existing file URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/init(fileURL:)
+func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
+	instance := getPreviewReplyClass().Alloc()
+	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
+	rv.Autorelease()
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/initForPDFWithPageSize:documentCreationBlock:
 func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize coregraphics.CGSize, documentCreationBlock unsafe.Pointer) PreviewReply {
@@ -105,16 +115,6 @@ func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics
 func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType uniformtypeidentifiers.UTType, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a preview reply from an existing file URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
-	instance := getPreviewReplyClass().Alloc()
-	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()
 	return rv
 }

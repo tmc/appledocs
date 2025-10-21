@@ -10,12 +10,12 @@ import (
 var _ = cloudkit.NewCKFetchShareParticipantsOperation
 
 
-
 // ExampleNewCKFetchShareParticipantsOperation demonstrates how to create a CKFetchShareParticipantsOperation instance.
 // Creates an empty operation.
 func ExampleNewCKFetchShareParticipantsOperation() {
 	_ = cloudkit.NewCKFetchShareParticipantsOperation()
 	// Output:
 }
+
 
 

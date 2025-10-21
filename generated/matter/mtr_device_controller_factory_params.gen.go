@@ -77,8 +77,8 @@ func NewMTRDeviceControllerFactoryParams() MTRDeviceControllerFactoryParams {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []addressbook.NSData {
-	rv := objc.Send[[]addressbook.NSData](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
+func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []foundation.NSData {
+	rv := objc.Send[[]foundation.NSData](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
 	return rv
 }
 
@@ -86,7 +86,7 @@ func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificat
 // SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []addressbook.NSData) {
+func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []foundation.NSData) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

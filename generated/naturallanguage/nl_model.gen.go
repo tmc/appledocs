@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Model] class.
@@ -32,7 +33,7 @@ type IModel interface {
 	objectivec.IObject
 	PredictedLabelForString(string_ string) unsafe.Pointer
 	PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer
-	PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []unsafe.Pointer
+	PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []foundation.NSDictionary
 	PredictedLabelsForTokens(tokens unsafe.Pointer) []string
 }
 
@@ -136,8 +137,8 @@ func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ string, ma
 // Predicts multiple possible labels for each string in the given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
+func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []foundation.NSDictionary {
+	rv := objc.Send[[]foundation.NSDictionary](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
 	return rv
 }
 

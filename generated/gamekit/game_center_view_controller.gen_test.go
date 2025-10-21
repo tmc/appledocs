@@ -10,6 +10,7 @@ import (
 var _ = gamekit.NewGameCenterViewController
 
 
+
 // ExampleNewGameCenterViewControllerWithLeaderboardSetID demonstrates how to create a GameCenterViewController instance using NewGameCenterViewControllerWithLeaderboardSetID.
 // Creates a view controller that presents a leaderboard set.
 func ExampleNewGameCenterViewControllerWithLeaderboardSetID() {
@@ -18,6 +19,5 @@ func ExampleNewGameCenterViewControllerWithLeaderboardSetID() {
 	)
 	// Output:
 }
-
 
 

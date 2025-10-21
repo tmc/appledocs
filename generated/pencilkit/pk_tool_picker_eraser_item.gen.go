@@ -81,22 +81,22 @@ func NewToolPickerEraserItem() ToolPickerEraserItem {
 }
 
 
-// Creates a new eraser item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:
-func NewToolPickerEraserItemWithEraserType(eraserType unsafe.Pointer) ToolPickerEraserItem {
-	instance := getToolPickerEraserItemClass().Alloc()
-	rv := objc.Send[ToolPickerEraserItem](instance.ID, objc.Sel("initWithEraserType:"), eraserType)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new eraser item with the specified width.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:width:
 func NewToolPickerEraserItemWithEraserTypeWidth(eraserType unsafe.Pointer, width float64) ToolPickerEraserItem {
 	instance := getToolPickerEraserItemClass().Alloc()
 	rv := objc.Send[ToolPickerEraserItem](instance.ID, objc.Sel("initWithEraserType:width:"), eraserType, width)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new eraser item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:
+func NewToolPickerEraserItemWithEraserType(eraserType unsafe.Pointer) ToolPickerEraserItem {
+	instance := getToolPickerEraserItemClass().Alloc()
+	rv := objc.Send[ToolPickerEraserItem](instance.ID, objc.Sel("initWithEraserType:"), eraserType)
 	rv.Autorelease()
 	return rv
 }

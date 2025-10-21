@@ -80,22 +80,22 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 }
 
 
-// Creates a representation of an app using its bundle identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEAssessmentApplication {
-	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(bundleIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a representation of an app using its bundle and team identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
 func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
 	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a representation of an app using its bundle identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
+func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEAssessmentApplication {
+	instance := getAEAssessmentApplicationClass().Alloc()
+	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(bundleIdentifier))
 	rv.Autorelease()
 	return rv
 }

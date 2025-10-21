@@ -82,6 +82,16 @@ func NewBeaconRegion() BeaconRegion {
 }
 
 
+// Creates and returns a region object that targets beacons with the specified UUID and major value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(uuid:major:identifier:)
+func NewBeaconRegionWithUUIDMajorIdentifier(uuid unsafe.Pointer, major unsafe.Pointer, identifier string) BeaconRegion {
+	instance := getBeaconRegionClass().Alloc()
+	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithUUID:major:identifier:"), uuid, major, objc.String(identifier))
+	rv.Autorelease()
+	return rv
+}
+
 // Creates and returns a region object that targets beacons with the specified UUID, and major and minor values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(uuid:major:minor:identifier:)
@@ -138,16 +148,6 @@ func NewBeaconRegionWithProximityUUIDMajorMinorIdentifier(proximityUUID unsafe.P
 func NewBeaconRegionWithUUIDIdentifier(uuid unsafe.Pointer, identifier string) BeaconRegion {
 	instance := getBeaconRegionClass().Alloc()
 	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithUUID:identifier:"), uuid, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-// Creates and returns a region object that targets beacons with the specified UUID and major value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(uuid:major:identifier:)
-func NewBeaconRegionWithUUIDMajorIdentifier(uuid unsafe.Pointer, major unsafe.Pointer, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithUUID:major:identifier:"), uuid, major, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

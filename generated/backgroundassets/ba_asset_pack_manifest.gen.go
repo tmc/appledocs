@@ -82,22 +82,22 @@ func NewBAAssetPackManifest() BAAssetPackManifest {
 }
 
 
-// Initializes a representation of a manifest in memory from JSON-encoded data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initFromData:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data unsafe.Pointer, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
-	instance := getBAAssetPackManifestClass().Alloc()
-	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initFromData:applicationGroupIdentifier:error:"), data, objc.String(applicationGroupIdentifier), error_)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a representation of a manifest in memory given a URL to the manifest’s representation as a JSON file on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initWithContentsOfURL:applicationGroupIdentifier:error:
 func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL unsafe.Pointer, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
 	instance := getBAAssetPackManifestClass().Alloc()
 	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initWithContentsOfURL:applicationGroupIdentifier:error:"), URL, objc.String(applicationGroupIdentifier), error_)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a representation of a manifest in memory from JSON-encoded data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initFromData:applicationGroupIdentifier:error:
+func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data unsafe.Pointer, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
+	instance := getBAAssetPackManifestClass().Alloc()
+	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initFromData:applicationGroupIdentifier:error:"), data, objc.String(applicationGroupIdentifier), error_)
 	rv.Autorelease()
 	return rv
 }

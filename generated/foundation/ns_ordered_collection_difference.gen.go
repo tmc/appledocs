@@ -81,22 +81,22 @@ func NewOrderedCollectionDifference() OrderedCollectionDifference {
 }
 
 
-// Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:additionalChanges:)
-func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjectsAdditionalChanges(inserts unsafe.Pointer, insertedObjects unsafe.Pointer, removes unsafe.Pointer, removedObjects unsafe.Pointer, changes unsafe.Pointer) OrderedCollectionDifference {
-	instance := getOrderedCollectionDifferenceClass().Alloc()
-	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:"), inserts, insertedObjects, removes, removedObjects, changes)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:)
 func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjects(inserts unsafe.Pointer, insertedObjects unsafe.Pointer, removes unsafe.Pointer, removedObjects unsafe.Pointer) OrderedCollectionDifference {
 	instance := getOrderedCollectionDifferenceClass().Alloc()
 	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:"), inserts, insertedObjects, removes, removedObjects)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:additionalChanges:)
+func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjectsAdditionalChanges(inserts unsafe.Pointer, insertedObjects unsafe.Pointer, removes unsafe.Pointer, removedObjects unsafe.Pointer, changes unsafe.Pointer) OrderedCollectionDifference {
+	instance := getOrderedCollectionDifferenceClass().Alloc()
+	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:"), inserts, insertedObjects, removes, removedObjects, changes)
 	rv.Autorelease()
 	return rv
 }
@@ -121,8 +121,8 @@ func (o_ OrderedCollectionDifference) HasChanges() bool {
 // A collection of removal change objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/removals
-func (o_ OrderedCollectionDifference) Removals() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("removals"))
+func (o_ OrderedCollectionDifference) Removals() []foundation.NSOrderedCollectionChange {
+	rv := objc.Send[[]foundation.NSOrderedCollectionChange](o_.ID, objc.Sel("removals"))
 	return rv
 }
 

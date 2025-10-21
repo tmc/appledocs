@@ -82,22 +82,22 @@ func NewURLDownload() URLDownload {
 }
 
 
-// Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
-func NewURLDownloadWithResumeDataDelegatePath(resumeData unsafe.Pointer, delegate objc.ID, path string) URLDownload {
-	instance := getURLDownloadClass().Alloc()
-	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
 func NewURLDownloadWithRequestDelegate(request unsafe.Pointer, delegate objc.ID) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
+func NewURLDownloadWithResumeDataDelegatePath(resumeData unsafe.Pointer, delegate objc.ID, path string) URLDownload {
+	instance := getURLDownloadClass().Alloc()
+	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
 	rv.Autorelease()
 	return rv
 }

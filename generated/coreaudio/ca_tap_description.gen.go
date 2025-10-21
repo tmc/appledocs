@@ -76,15 +76,6 @@ func NewTapDescription() TapDescription {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initExcludingProcesses:andDeviceUID:withStream:
-func NewTapDescriptionExcludingProcessesAndDeviceUIDWithStream(processesObjectIDsToExcludeFromTap unsafe.Pointer, deviceUID string, stream int) TapDescription {
-	instance := getTapDescriptionClass().Alloc()
-	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initExcludingProcesses:andDeviceUID:withStream:"), processesObjectIDsToExcludeFromTap, objc.String(deviceUID), stream)
-	rv.Autorelease()
-	return rv
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initMonoGlobalTapButExcludeProcesses:
 func NewTapDescriptionMonoGlobalTapButExcludeProcesses(processesObjectIDsToExcludeFromTap unsafe.Pointer) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
@@ -125,6 +116,15 @@ func NewTapDescriptionStereoMixdownOfProcesses(processesObjectIDsToIncludeInTap 
 func NewTapDescriptionWithProcessesAndDeviceUIDWithStream(processesObjectIDsToIncludeInTap unsafe.Pointer, deviceUID string, stream int) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initWithProcesses:andDeviceUID:withStream:"), processesObjectIDsToIncludeInTap, objc.String(deviceUID), stream)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initExcludingProcesses:andDeviceUID:withStream:
+func NewTapDescriptionExcludingProcessesAndDeviceUIDWithStream(processesObjectIDsToExcludeFromTap unsafe.Pointer, deviceUID string, stream int) TapDescription {
+	instance := getTapDescriptionClass().Alloc()
+	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initExcludingProcesses:andDeviceUID:withStream:"), processesObjectIDsToExcludeFromTap, objc.String(deviceUID), stream)
 	rv.Autorelease()
 	return rv
 }
@@ -268,8 +268,8 @@ func (t_ TapDescription) SetName(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/processes-3cdzw
-func (t_ TapDescription) Processes() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](t_.ID, objc.Sel("processes"))
+func (t_ TapDescription) Processes() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](t_.ID, objc.Sel("processes"))
 	return rv
 }
 
@@ -277,7 +277,7 @@ func (t_ TapDescription) Processes() []accessibility.NSNumber {
 // SetProcesses sets the value of the processes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/processes-3cdzw
-func (t_ TapDescription) SetProcesses(value []accessibility.NSNumber) {
+func (t_ TapDescription) SetProcesses(value []foundation.NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

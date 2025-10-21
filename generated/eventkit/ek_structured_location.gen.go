@@ -81,19 +81,19 @@ func NewEKStructuredLocation() EKStructuredLocation {
 }
 
 
-// Creates a new structured location with the specified map item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
-func NewEKStructuredLocationWithMapItem(mapItem unsafe.Pointer) EKStructuredLocation {
-	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithMapItem:"), mapItem)
-	return rv
-}
-
 // Creates a new structured location with the specified title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
 func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithTitle:"), objc.String(title))
+	return rv
+}
+
+// Creates a new structured location with the specified map item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
+func NewEKStructuredLocationWithMapItem(mapItem unsafe.Pointer) EKStructuredLocation {
+	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithMapItem:"), mapItem)
 	return rv
 }
 

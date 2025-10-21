@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MTL4ComputePipelineDescriptor] class.
@@ -29,21 +28,23 @@ type _MTL4ComputePipelineDescriptorClass struct {
 
 // An interface definition for the [MTL4ComputePipelineDescriptor] class.
 type IMTL4ComputePipelineDescriptor interface {
-	objectivec.IObject
+	IMTL4PipelineDescriptor
 }
 
 // Describes a compute pipeline state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4ComputePipelineDescriptor
 type MTL4ComputePipelineDescriptor struct {
-	objectivec.Object
+	MTL4PipelineDescriptor
 }
 
 // MTL4ComputePipelineDescriptorFrom constructs a [MTL4ComputePipelineDescriptor] from an unsafe.Pointer.
 //
 // Describes a compute pipeline state.
 func MTL4ComputePipelineDescriptorFrom(ptr unsafe.Pointer) MTL4ComputePipelineDescriptor {
-	return MTL4ComputePipelineDescriptor{objectivec.Object{objc.ID(ptr)}}
+	return MTL4ComputePipelineDescriptor{
+		MTL4PipelineDescriptor: MTL4PipelineDescriptorFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

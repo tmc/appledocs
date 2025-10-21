@@ -98,21 +98,21 @@ func NewPDFPage() PDFPage {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/init(image:options:)
-func NewPDFPageWithImageOptions(image unsafe.Pointer, options unsafe.Pointer) PDFPage {
-	instance := getPDFPageClass().Alloc()
-	rv := objc.Send[PDFPage](instance.ID, objc.Sel("initWithImage:options:"), image, options)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new object and initializes it with the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/init(image:)
 func NewPDFPageWithImage(image unsafe.Pointer) PDFPage {
 	instance := getPDFPageClass().Alloc()
 	rv := objc.Send[PDFPage](instance.ID, objc.Sel("initWithImage:"), image)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/init(image:options:)
+func NewPDFPageWithImageOptions(image unsafe.Pointer, options unsafe.Pointer) PDFPage {
+	instance := getPDFPageClass().Alloc()
+	rv := objc.Send[PDFPage](instance.ID, objc.Sel("initWithImage:options:"), image, options)
 	rv.Autorelease()
 	return rv
 }

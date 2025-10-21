@@ -90,20 +90,20 @@ func NewGLKTextureLoader() GLKTextureLoader {
 
 // Initializes a new texture loader object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(share:)
-func NewGLKTextureLoaderWithShareContext(context unsafe.Pointer) GLKTextureLoader {
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(sharegroup:)
+func NewGLKTextureLoaderWithSharegroup(sharegroup unsafe.Pointer) GLKTextureLoader {
 	instance := getGLKTextureLoaderClass().Alloc()
-	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithShareContext:"), context)
+	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithSharegroup:"), sharegroup)
 	rv.Autorelease()
 	return rv
 }
 
 // Initializes a new texture loader object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(sharegroup:)
-func NewGLKTextureLoaderWithSharegroup(sharegroup unsafe.Pointer) GLKTextureLoader {
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(share:)
+func NewGLKTextureLoaderWithShareContext(context unsafe.Pointer) GLKTextureLoader {
 	instance := getGLKTextureLoaderClass().Alloc()
-	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithSharegroup:"), sharegroup)
+	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithShareContext:"), context)
 	rv.Autorelease()
 	return rv
 }

@@ -87,14 +87,6 @@ func NewBluetoothSDPUUID() BluetoothSDPUUID {
 }
 
 
-// Creates a new IOBluetoothSDPUUID object with the given bytes of the given length.
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(bytes:length:)
-func NewBluetoothSDPUUIDUuidWithBytesLength(bytes unsafe.Pointer, length unsafe.Pointer) BluetoothSDPUUID {
-	rv := objc.Send[BluetoothSDPUUID](objc.ID(getBluetoothSDPUUIDClass().class), objc.Sel("uuidWithBytes:length:"), bytes, length)
-	return rv
-}
-
 // Creates a new IOBluetoothSDPUUID object from the given NSData.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(data:)
@@ -120,6 +112,14 @@ func NewBluetoothSDPUUIDWithUUID32(uuid32 unsafe.Pointer) BluetoothSDPUUID {
 	instance := getBluetoothSDPUUIDClass().Alloc()
 	rv := objc.Send[BluetoothSDPUUID](instance.ID, objc.Sel("initWithUUID32:"), uuid32)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates a new IOBluetoothSDPUUID object with the given bytes of the given length.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(bytes:length:)
+func NewBluetoothSDPUUIDUuidWithBytesLength(bytes unsafe.Pointer, length unsafe.Pointer) BluetoothSDPUUID {
+	rv := objc.Send[BluetoothSDPUUID](objc.ID(getBluetoothSDPUUIDClass().class), objc.Sel("uuidWithBytes:length:"), bytes, length)
 	return rv
 }
 

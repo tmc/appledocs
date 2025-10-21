@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKOperation] class.
@@ -29,7 +28,7 @@ type _CKOperationClass struct {
 
 // An interface definition for the [CKOperation] class.
 type ICKOperation interface {
-	foundation.IOperation
+	IOperation
 }
 
 // The abstract base class for all operations that execute in a database.
@@ -38,7 +37,7 @@ type ICKOperation interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation
 type CKOperation struct {
-	foundation.Operation
+	Operation
 }
 
 // CKOperationFrom constructs a [CKOperation] from an unsafe.Pointer.
@@ -46,7 +45,7 @@ type CKOperation struct {
 // The abstract base class for all operations that execute in a database.
 func CKOperationFrom(ptr unsafe.Pointer) CKOperation {
 	return CKOperation{
-		Operation: foundation.OperationFrom(ptr),
+		Operation: OperationFrom(ptr),
 	}
 }
 

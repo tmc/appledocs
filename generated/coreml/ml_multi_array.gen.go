@@ -87,16 +87,6 @@ func NewMultiArray() MultiArray {
 }
 
 
-// Creates a multiarray from a data pointer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(dataPointer:shape:dataType:strides:deallocator:)
-func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape unsafe.Pointer, dataType unsafe.Pointer, strides unsafe.Pointer, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
-	instance := getMultiArrayClass().Alloc()
-	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithDataPointer:shape:dataType:strides:deallocator:error:"), dataPointer, shape, dataType, strides, deallocator, error_)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a multiarray sharing the surface of a pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(pixelBuffer:shape:)
@@ -132,6 +122,16 @@ func NewMultiArrayWithShapeDataTypeStrides(shape unsafe.Pointer, dataType unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
 func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) MultiArray {
 	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
+	return rv
+}
+
+// Creates a multiarray from a data pointer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(dataPointer:shape:dataType:strides:deallocator:)
+func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape unsafe.Pointer, dataType unsafe.Pointer, strides unsafe.Pointer, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
+	instance := getMultiArrayClass().Alloc()
+	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithDataPointer:shape:dataType:strides:deallocator:error:"), dataPointer, shape, dataType, strides, deallocator, error_)
+	rv.Autorelease()
 	return rv
 }
 
@@ -222,16 +222,16 @@ func (m_ MultiArray) PixelBuffer() unsafe.Pointer {
 // The multiarray’s multidimensional shape as a number array in which each element’s value is the size of the corresponding dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/shape
-func (m_ MultiArray) Shape() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](m_.ID, objc.Sel("shape"))
+func (m_ MultiArray) Shape() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](m_.ID, objc.Sel("shape"))
 	return rv
 }
 
 // A number array in which each element is the number of memory locations that span the length of the corresponding dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/strides
-func (m_ MultiArray) Strides() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](m_.ID, objc.Sel("strides"))
+func (m_ MultiArray) Strides() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](m_.ID, objc.Sel("strides"))
 	return rv
 }
 

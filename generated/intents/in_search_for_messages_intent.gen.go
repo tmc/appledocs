@@ -81,16 +81,6 @@ func NewINSearchForMessagesIntent() INSearchForMessagesIntent {
 }
 
 
-// Creates a intent object with the specified search criteria.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/init(recipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:)
-func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateTimeRangeIdentifiersNotificationIdentifiersSpeakableGroupNames(recipients unsafe.Pointer, senders unsafe.Pointer, searchTerms unsafe.Pointer, attributes unsafe.Pointer, dateTimeRange unsafe.Pointer, identifiers unsafe.Pointer, notificationIdentifiers unsafe.Pointer, speakableGroupNames unsafe.Pointer) INSearchForMessagesIntent {
-	instance := getINSearchForMessagesIntentClass().Alloc()
-	rv := objc.Send[INSearchForMessagesIntent](instance.ID, objc.Sel("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:"), recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a search messages intent object with the specified search criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/init(recipients:senders:searchTerms:attributes:dateTime:identifiers:notificationIdentifiers:speakableGroupNames:conversationIdentifiers:)
@@ -107,6 +97,16 @@ func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateT
 func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateTimeRangeIdentifiersNotificationIdentifiersGroupNames(recipients unsafe.Pointer, senders unsafe.Pointer, searchTerms unsafe.Pointer, attributes unsafe.Pointer, dateTimeRange unsafe.Pointer, identifiers unsafe.Pointer, notificationIdentifiers unsafe.Pointer, groupNames unsafe.Pointer) INSearchForMessagesIntent {
 	instance := getINSearchForMessagesIntentClass().Alloc()
 	rv := objc.Send[INSearchForMessagesIntent](instance.ID, objc.Sel("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:"), recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, groupNames)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a intent object with the specified search criteria.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/init(recipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:)
+func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateTimeRangeIdentifiersNotificationIdentifiersSpeakableGroupNames(recipients unsafe.Pointer, senders unsafe.Pointer, searchTerms unsafe.Pointer, attributes unsafe.Pointer, dateTimeRange unsafe.Pointer, identifiers unsafe.Pointer, notificationIdentifiers unsafe.Pointer, speakableGroupNames unsafe.Pointer) INSearchForMessagesIntent {
+	instance := getINSearchForMessagesIntentClass().Alloc()
+	rv := objc.Send[INSearchForMessagesIntent](instance.ID, objc.Sel("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:"), recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames)
 	rv.Autorelease()
 	return rv
 }

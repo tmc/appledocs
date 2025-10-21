@@ -41,7 +41,7 @@ type IEmbedding interface {
 	NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ string, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string
 	NeighborsForVectorMaximumCountDistanceType(vector unsafe.Pointer, maxCount uint, distanceType unsafe.Pointer) []string
 	NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector unsafe.Pointer, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string
-	VectorForString(string_ string) []accessibility.NSNumber
+	VectorForString(string_ string) []NSNumber
 }
 
 // A map of strings to vectors, which locates neighboring, similar strings.
@@ -268,8 +268,8 @@ func (e_ Embedding) NeighborsForVectorMaximumCountMaximumDistanceDistanceType(ve
 // Requests the vector for the given term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/vectorForString:
-func (e_ Embedding) VectorForString(string_ string) []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](e_.ID, objc.Sel("vectorForString:"), objc.String(string_))
+func (e_ Embedding) VectorForString(string_ string) []NSNumber {
+	rv := objc.Send[[]NSNumber](e_.ID, objc.Sel("vectorForString:"), objc.String(string_))
 	return rv
 }
 

@@ -80,6 +80,16 @@ func NewNEHotspotConfiguration() NEHotspotConfiguration {
 }
 
 
+// Creates a new hotspot configuration, identified by an SSID, for a WPA/WPA2 enterprise Wi-Fi network with EAP settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:eapSettings:)
+func NewNEHotspotConfigurationWithSSIDEapSettings(SSID string, eapSettings unsafe.Pointer) NEHotspotConfiguration {
+	instance := getNEHotspotConfigurationClass().Alloc()
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:eapSettings:"), objc.String(SSID), eapSettings)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a new hotspot configuration, identified by an SSID, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:passphrase:isWEP:)
@@ -126,16 +136,6 @@ func NewNEHotspotConfigurationWithHS20SettingsEapSettings(hs20Settings unsafe.Po
 func NewNEHotspotConfigurationWithSSID(SSID string) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
 	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:"), objc.String(SSID))
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a new hotspot configuration, identified by an SSID, for a WPA/WPA2 enterprise Wi-Fi network with EAP settings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:eapSettings:)
-func NewNEHotspotConfigurationWithSSIDEapSettings(SSID string, eapSettings unsafe.Pointer) NEHotspotConfiguration {
-	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:eapSettings:"), objc.String(SSID), eapSettings)
 	rv.Autorelease()
 	return rv
 }

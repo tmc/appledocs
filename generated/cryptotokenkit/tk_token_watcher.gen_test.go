@@ -10,12 +10,12 @@ import (
 var _ = cryptotokenkit.NewTKTokenWatcher
 
 
-
 // ExampleNewTKTokenWatcher demonstrates how to create a TKTokenWatcher instance.
 // Initializes a token watcher.
 func ExampleNewTKTokenWatcher() {
 	_ = cryptotokenkit.NewTKTokenWatcher()
 	// Output:
 }
+
 
 

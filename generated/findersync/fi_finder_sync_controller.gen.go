@@ -31,7 +31,7 @@ type _FIFinderSyncControllerClass struct {
 type IFIFinderSyncController interface {
 	foundation.IExtensionContext
 	LastUsedDateForItemWithURL(itemURL unsafe.Pointer) unsafe.Pointer
-	SelectedItemURLs() []appkit.NSURL
+	SelectedItemURLs() []foundation.NSURL
 	SetBadgeIdentifierForURL(badgeID string, url unsafe.Pointer)
 	SetBadgeImageLabelForBadgeIdentifier(image unsafe.Pointer, label string, badgeID string)
 	SetLastUsedDateForItemWithURLCompletion(lastUsedDate unsafe.Pointer, itemURL unsafe.Pointer, completion unsafe.Pointer)
@@ -120,8 +120,8 @@ func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL unsafe.Point
 // Returns an array of selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/selectedItemURLs()
-func (f_ FIFinderSyncController) SelectedItemURLs() []appkit.NSURL {
-	rv := objc.Send[[]appkit.NSURL](f_.ID, objc.Sel("selectedItemURLs"))
+func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.NSURL {
+	rv := objc.Send[[]foundation.NSURL](f_.ID, objc.Sel("selectedItemURLs"))
 	return rv
 }
 

@@ -31,7 +31,7 @@ type _ContextualEmbeddingResultClass struct {
 type IContextualEmbeddingResult interface {
 	objectivec.IObject
 	EnumerateTokenVectorsInRangeUsingBlock(range_ Range, block unsafe.Pointer)
-	TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []accessibility.NSNumber
+	TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []NSNumber
 }
 
 // An object that represents the embedding vector result from applying a contextual embedding to a string.
@@ -90,8 +90,8 @@ func (c_ ContextualEmbeddingResult) EnumerateTokenVectorsInRangeUsingBlock(range
 // Gets a token vector at the index you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/tokenVectorAtIndex:tokenRange:
-func (c_ ContextualEmbeddingResult) TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](c_.ID, objc.Sel("tokenVectorAtIndex:tokenRange:"), characterIndex, tokenRange)
+func (c_ ContextualEmbeddingResult) TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []NSNumber {
+	rv := objc.Send[[]NSNumber](c_.ID, objc.Sel("tokenVectorAtIndex:tokenRange:"), characterIndex, tokenRange)
 	return rv
 }
 

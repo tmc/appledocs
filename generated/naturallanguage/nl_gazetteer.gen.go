@@ -81,16 +81,6 @@ func NewGazetteer() Gazetteer {
 }
 
 
-// Creates a Natural Language gazetteer from a model created with the Create ML framework.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
-func NewGazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
-	instance := getGazetteerClass().Alloc()
-	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a gazetteer from a data instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(data:)
@@ -107,6 +97,16 @@ func NewGazetteerWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) Gazet
 func NewGazetteerWithDictionaryLanguageError(dictionary unsafe.Pointer, language unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
 	instance := getGazetteerClass().Alloc()
 	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithDictionary:language:error:"), dictionary, language, error_)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a Natural Language gazetteer from a model created with the Create ML framework.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
+func NewGazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
+	instance := getGazetteerClass().Alloc()
+	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
 }

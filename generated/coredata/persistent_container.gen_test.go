@@ -10,6 +10,7 @@ import (
 var _ = coredata.NewPersistentContainer
 
 
+
 // ExampleNewPersistentContainerWithName demonstrates how to create a PersistentContainer instance using NewPersistentContainerWithName.
 // Creates a container with the specified name.
 func ExampleNewPersistentContainerWithName() {
@@ -18,6 +19,5 @@ func ExampleNewPersistentContainerWithName() {
 	)
 	// Output:
 }
-
 
 

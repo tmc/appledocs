@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MTL4TileRenderPipelineDescriptor] class.
@@ -29,7 +28,7 @@ type _MTL4TileRenderPipelineDescriptorClass struct {
 
 // An interface definition for the [MTL4TileRenderPipelineDescriptor] class.
 type IMTL4TileRenderPipelineDescriptor interface {
-	objectivec.IObject
+	IMTL4PipelineDescriptor
 	Reset()
 }
 
@@ -37,14 +36,16 @@ type IMTL4TileRenderPipelineDescriptor interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor
 type MTL4TileRenderPipelineDescriptor struct {
-	objectivec.Object
+	MTL4PipelineDescriptor
 }
 
 // MTL4TileRenderPipelineDescriptorFrom constructs a [MTL4TileRenderPipelineDescriptor] from an unsafe.Pointer.
 //
 // Groups together properties you use to create a tile render pipeline state object.
 func MTL4TileRenderPipelineDescriptorFrom(ptr unsafe.Pointer) MTL4TileRenderPipelineDescriptor {
-	return MTL4TileRenderPipelineDescriptor{objectivec.Object{objc.ID(ptr)}}
+	return MTL4TileRenderPipelineDescriptor{
+		MTL4PipelineDescriptor: MTL4PipelineDescriptorFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

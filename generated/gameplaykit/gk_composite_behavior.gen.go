@@ -88,19 +88,19 @@ func NewCompositeBehavior() CompositeBehavior {
 }
 
 
-// Creates a behavior with the specified behaviors and weights.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:andWeights:)
-func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors unsafe.Pointer, weights unsafe.Pointer) CompositeBehavior {
-	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:andWeights:"), behaviors, weights)
-	return rv
-}
-
 // Creates a composite behavior from the specified individual behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:)
 func NewCompositeBehaviorWithBehaviors(behaviors unsafe.Pointer) CompositeBehavior {
 	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:"), behaviors)
+	return rv
+}
+
+// Creates a behavior with the specified behaviors and weights.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:andWeights:)
+func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors unsafe.Pointer, weights unsafe.Pointer) CompositeBehavior {
+	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:andWeights:"), behaviors, weights)
 	return rv
 }
 

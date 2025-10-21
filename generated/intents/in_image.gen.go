@@ -82,6 +82,22 @@ func NewINImage() INImage {
 }
 
 
+// Creates an image object from an image file in the local file system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
+func NewINImageWithURL(URL unsafe.Pointer) INImage {
+	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:"), URL)
+	return rv
+}
+
+// Creates an image object, of the specified size, from an image file in the local file system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
+func NewINImageWithURLWidthHeight(URL unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer) INImage {
+	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
+	return rv
+}
+
 // Creates an image object from the specified Core Graphics image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(CGImage:)
@@ -118,22 +134,6 @@ func NewINImageWithImageData(imageData unsafe.Pointer) INImage {
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
 func NewINImageNamed(name string) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageNamed:"), objc.String(name))
-	return rv
-}
-
-// Creates an image object from an image file in the local file system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
-func NewINImageWithURL(URL unsafe.Pointer) INImage {
-	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:"), URL)
-	return rv
-}
-
-// Creates an image object, of the specified size, from an image file in the local file system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
-func NewINImageWithURLWidthHeight(URL unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer) INImage {
-	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
 	return rv
 }
 

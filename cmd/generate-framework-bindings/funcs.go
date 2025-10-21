@@ -793,7 +793,6 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 //   NSRect -> foundation.Rect
 //   NSWindowStyleMask -> WindowStyleMask
 func mapObjCTypeToGo(objcType, framework string) string {
-	originalType := objcType
 	objcType = strings.TrimSpace(objcType)
 
 
@@ -2244,7 +2243,35 @@ func resolveType(framework, typeName string) string {
 
 	// If we're in AppKit (or other frameworks that embed NSObject), Foundation types are also local
 	// since NSObject/Foundation is embedded in the object hierarchy
-	if (framework == "AppKit" || framework == "QuartzCore" || framework == "CoreData") && foundationTypes[typeName] {
+	// This includes most UI/system frameworks that depend on Foundation
+	if (framework == "AppKit" || framework == "QuartzCore" || framework == "CoreData" ||
+		framework == "Accessibility" || framework == "Accounts" || framework == "AddressBook" ||
+		framework == "AdServices" || framework == "AdSupport" || framework == "Automator" ||
+		framework == "CallKit" || framework == "ClassKit" || framework == "CloudKit" ||
+		framework == "Collaboration" || framework == "Contacts" || framework == "ContactsUI" ||
+		framework == "CoreLocationUI" || framework == "CryptoKit" || framework == "Darwin" ||
+		framework == "DeviceCheck" || framework == "DocumentPickerUI" || framework == "EventKit" ||
+		framework == "EventKitUI" || framework == "ExtensionKit" || framework == "FileProvider" ||
+		framework == "FileProviderUI" || framework == "GameController" || framework == "GameKit" ||
+		framework == "GLKit" || framework == "HealthKit" || framework == "HealthKitUI" ||
+		framework == "HomeKit" || framework == "IOSurface" || framework == "LocalAuthentication" ||
+		framework == "MapKit" || framework == "MediaAccessibility" || framework == "MediaKit" ||
+		framework == "MessageUI" || framework == "Messages" || framework == "Metal" ||
+		framework == "MetalKit" || framework == "MetalPerformanceShaders" || framework == "ModelIO" ||
+		framework == "MultipeerConnectivity" || framework == "NaturalLanguage" || framework == "Network" ||
+		framework == "NotificationCenter" || framework == "PDFKit" || framework == "PencilKit" ||
+		framework == "Photos" || framework == "PhotosUI" || framework == "PlaygroundSupport" ||
+		framework == "PushKit" || framework == "QuickLook" || framework == "RealityKit" ||
+		framework == "SafariServices" || framework == "SceneKit" || framework == "ScreenTime" ||
+		framework == "Security" || framework == "SensorKit" || framework == "ServiceManagement" ||
+		framework == "SharedWithYou" || framework == "SharedWithYouCore" || framework == "ShazamKit" ||
+		framework == "SiriKit" || framework == "Social" || framework == "SoundAnalysis" ||
+		framework == "Speech" || framework == "SpriteKit" || framework == "StoreKit" ||
+		framework == "SwiftUI" || framework == "SystemConfiguration" || framework == "ThreadNetwork" ||
+		framework == "UserNotifications" || framework == "UserNotificationsUI" || framework == "VideoSubscriberAccount" ||
+		framework == "VideoToolbox" || framework == "Vision" || framework == "VisionKit" ||
+		framework == "WatchConnectivity" || framework == "WatchKit" || framework == "WebKit" ||
+		framework == "WidgetKit") && foundationTypes[typeName] {
 		return typeName
 	}
 

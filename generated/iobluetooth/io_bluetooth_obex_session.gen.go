@@ -90,6 +90,16 @@ func NewBluetoothOBEXSession() BluetoothOBEXSession {
 }
 
 
+// Initializes a Bluetooth-based OBEX Session using an SDP service record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(sdpServiceRecord:)
+func NewBluetoothOBEXSessionWithSDPServiceRecord(inSDPServiceRecord unsafe.Pointer) BluetoothOBEXSession {
+	instance := getBluetoothOBEXSessionClass().Alloc()
+	rv := objc.Send[BluetoothOBEXSession](instance.ID, objc.Sel("initWithSDPServiceRecord:"), inSDPServiceRecord)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a Bluetooth-based OBEX Session using a Bluetooth device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(device:channelID:)
@@ -106,16 +116,6 @@ func NewBluetoothOBEXSessionWithDeviceChannelID(inDevice unsafe.Pointer, inChann
 func NewBluetoothOBEXSessionWithIncomingRFCOMMChannelEventSelectorSelectorTargetRefCon(inChannel unsafe.Pointer, inEventSelector objc.SEL, inEventSelectorTarget objc.ID, inUserRefCon unsafe.Pointer) BluetoothOBEXSession {
 	instance := getBluetoothOBEXSessionClass().Alloc()
 	rv := objc.Send[BluetoothOBEXSession](instance.ID, objc.Sel("initWithIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:"), inChannel, inEventSelector, inEventSelectorTarget, inUserRefCon)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a Bluetooth-based OBEX Session using an SDP service record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(sdpServiceRecord:)
-func NewBluetoothOBEXSessionWithSDPServiceRecord(inSDPServiceRecord unsafe.Pointer) BluetoothOBEXSession {
-	instance := getBluetoothOBEXSessionClass().Alloc()
-	rv := objc.Send[BluetoothOBEXSession](instance.ID, objc.Sel("initWithSDPServiceRecord:"), inSDPServiceRecord)
 	rv.Autorelease()
 	return rv
 }

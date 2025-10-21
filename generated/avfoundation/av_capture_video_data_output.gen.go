@@ -171,8 +171,8 @@ func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimension
 // The video pixel formats the output supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCVPixelFormatTypes
-func (c_ CaptureVideoDataOutput) AvailableVideoCVPixelFormatTypes() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](c_.ID, objc.Sel("availableVideoCVPixelFormatTypes"))
+func (c_ CaptureVideoDataOutput) AvailableVideoCVPixelFormatTypes() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](c_.ID, objc.Sel("availableVideoCVPixelFormatTypes"))
 	return rv
 }
 

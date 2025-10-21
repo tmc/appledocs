@@ -85,8 +85,8 @@ func NewKeyframeAnimation() KeyframeAnimation {
 // An array of numbers that define the position of the curve relative to a control point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/biasValues
-func (k_ KeyframeAnimation) BiasValues() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](k_.ID, objc.Sel("biasValues"))
+func (k_ KeyframeAnimation) BiasValues() []NSNumber {
+	rv := objc.Send[[]NSNumber](k_.ID, objc.Sel("biasValues"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (k_ KeyframeAnimation) BiasValues() []accessibility.NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/biasValues
-func (k_ KeyframeAnimation) SetBiasValues(value []accessibility.NSNumber) {
+func (k_ KeyframeAnimation) SetBiasValues(value []NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -129,8 +129,8 @@ func (k_ KeyframeAnimation) SetCalculationMode(value unsafe.Pointer) {
 // An array of numbers that define the sharpness of the timing curve’s corners.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/continuityValues
-func (k_ KeyframeAnimation) ContinuityValues() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](k_.ID, objc.Sel("continuityValues"))
+func (k_ KeyframeAnimation) ContinuityValues() []NSNumber {
+	rv := objc.Send[[]NSNumber](k_.ID, objc.Sel("continuityValues"))
 	return rv
 }
 
@@ -140,7 +140,7 @@ func (k_ KeyframeAnimation) ContinuityValues() []accessibility.NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/continuityValues
-func (k_ KeyframeAnimation) SetContinuityValues(value []accessibility.NSNumber) {
+func (k_ KeyframeAnimation) SetContinuityValues(value []NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -156,8 +156,8 @@ func (k_ KeyframeAnimation) SetContinuityValues(value []accessibility.NSNumber) 
 // An optional array of objects that define the time at which to apply a given keyframe segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/keyTimes
-func (k_ KeyframeAnimation) KeyTimes() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](k_.ID, objc.Sel("keyTimes"))
+func (k_ KeyframeAnimation) KeyTimes() []NSNumber {
+	rv := objc.Send[[]NSNumber](k_.ID, objc.Sel("keyTimes"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (k_ KeyframeAnimation) KeyTimes() []accessibility.NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/keyTimes
-func (k_ KeyframeAnimation) SetKeyTimes(value []accessibility.NSNumber) {
+func (k_ KeyframeAnimation) SetKeyTimes(value []NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -217,8 +217,8 @@ func (k_ KeyframeAnimation) SetRotationMode(value unsafe.Pointer) {
 // An array of numbers that define the tightness of the curve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/tensionValues
-func (k_ KeyframeAnimation) TensionValues() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](k_.ID, objc.Sel("tensionValues"))
+func (k_ KeyframeAnimation) TensionValues() []NSNumber {
+	rv := objc.Send[[]NSNumber](k_.ID, objc.Sel("tensionValues"))
 	return rv
 }
 
@@ -228,7 +228,7 @@ func (k_ KeyframeAnimation) TensionValues() []accessibility.NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/tensionValues
-func (k_ KeyframeAnimation) SetTensionValues(value []accessibility.NSNumber) {
+func (k_ KeyframeAnimation) SetTensionValues(value []NSNumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

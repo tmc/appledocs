@@ -86,20 +86,20 @@ func NewCSSearchableItemAttributeSet() CSSearchableItemAttributeSet {
 
 // Creates an attribute set for the specified content type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(contentType:)
-func NewCSSearchableItemAttributeSetWithContentType(contentType uniformtypeidentifiers.UTType) CSSearchableItemAttributeSet {
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(itemContentType:)
+func NewCSSearchableItemAttributeSetWithItemContentType(itemContentType string) CSSearchableItemAttributeSet {
 	instance := getCSSearchableItemAttributeSetClass().Alloc()
-	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithContentType:"), contentType)
+	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithItemContentType:"), objc.String(itemContentType))
 	rv.Autorelease()
 	return rv
 }
 
 // Creates an attribute set for the specified content type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(itemContentType:)
-func NewCSSearchableItemAttributeSetWithItemContentType(itemContentType string) CSSearchableItemAttributeSet {
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(contentType:)
+func NewCSSearchableItemAttributeSetWithContentType(contentType uniformtypeidentifiers.UTType) CSSearchableItemAttributeSet {
 	instance := getCSSearchableItemAttributeSetClass().Alloc()
-	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithItemContentType:"), objc.String(itemContentType))
+	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithContentType:"), contentType)
 	rv.Autorelease()
 	return rv
 }
@@ -1934,8 +1934,8 @@ func (c_ CSSearchableItemAttributeSet) SetImageDirection(value unsafe.Pointer) {
 // An array of important dates associated with the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/importantDates
-func (c_ CSSearchableItemAttributeSet) ImportantDates() []accounts.NSDate {
-	rv := objc.Send[[]accounts.NSDate](c_.ID, objc.Sel("importantDates"))
+func (c_ CSSearchableItemAttributeSet) ImportantDates() []foundation.NSDate {
+	rv := objc.Send[[]foundation.NSDate](c_.ID, objc.Sel("importantDates"))
 	return rv
 }
 
@@ -1945,7 +1945,7 @@ func (c_ CSSearchableItemAttributeSet) ImportantDates() []accounts.NSDate {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/importantDates
-func (c_ CSSearchableItemAttributeSet) SetImportantDates(value []accounts.NSDate) {
+func (c_ CSSearchableItemAttributeSet) SetImportantDates(value []foundation.NSDate) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -91,22 +91,22 @@ func NewCBPeripheralManager() CBPeripheralManager {
 }
 
 
-// Initializes the peripheral manager with a specified delegate, dispatch queue, and initialization options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)
-func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsafe.Pointer, options unsafe.Pointer) CBPeripheralManager {
-	instance := getCBPeripheralManagerClass().Alloc()
-	rv := objc.Send[CBPeripheralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes the peripheral manager with a specified delegate and dispatch queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)
 func NewCBPeripheralManagerWithDelegateQueue(delegate objc.ID, queue unsafe.Pointer) CBPeripheralManager {
 	instance := getCBPeripheralManagerClass().Alloc()
 	rv := objc.Send[CBPeripheralManager](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes the peripheral manager with a specified delegate, dispatch queue, and initialization options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)
+func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsafe.Pointer, options unsafe.Pointer) CBPeripheralManager {
+	instance := getCBPeripheralManagerClass().Alloc()
+	rv := objc.Send[CBPeripheralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
 	rv.Autorelease()
 	return rv
 }

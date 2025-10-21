@@ -81,19 +81,19 @@ func NewEKCalendar() EKCalendar {
 }
 
 
-// Creates and returns a calendar belonging to a specified event store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
-func NewEKCalendarWithEventStore(eventStore unsafe.Pointer) EKCalendar {
-	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
-	return rv
-}
-
 // Creates a new calendar that can contain the given entity type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
 func NewEKCalendarForEntityTypeEventStore(entityType unsafe.Pointer, eventStore unsafe.Pointer) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
+	return rv
+}
+
+// Creates and returns a calendar belonging to a specified event store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
+func NewEKCalendarWithEventStore(eventStore unsafe.Pointer) EKCalendar {
+	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
 	return rv
 }
 

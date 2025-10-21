@@ -85,18 +85,18 @@ func NewOSLogStore() OSLogStore {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(scope:)
+func NewOSLogStoreWithScopeError(scope unsafe.Pointer, error_ unsafe.Pointer) OSLogStore {
+	rv := objc.Send[OSLogStore](objc.ID(getOSLogStoreClass().class), objc.Sel("storeWithScope:error:"), scope, error_)
+	return rv
+}
+
 // Creates a log store based on a log archive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(url:)
 func NewOSLogStoreWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) OSLogStore {
 	rv := objc.Send[OSLogStore](objc.ID(getOSLogStoreClass().class), objc.Sel("storeWithURL:error:"), url, error_)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(scope:)
-func NewOSLogStoreWithScopeError(scope unsafe.Pointer, error_ unsafe.Pointer) OSLogStore {
-	rv := objc.Send[OSLogStore](objc.ID(getOSLogStoreClass().class), objc.Sel("storeWithScope:error:"), scope, error_)
 	return rv
 }
 

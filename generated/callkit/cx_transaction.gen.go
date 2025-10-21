@@ -79,22 +79,22 @@ func NewCXTransaction() CXTransaction {
 }
 
 
-// Initializes a new transaction with the specified action.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(action:)
-func NewCXTransactionWithAction(action unsafe.Pointer) CXTransaction {
-	instance := getCXTransactionClass().Alloc()
-	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithAction:"), action)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a new transaction with the specified actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(actions:)
 func NewCXTransactionWithActions(actions unsafe.Pointer) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithActions:"), actions)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a new transaction with the specified action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(action:)
+func NewCXTransactionWithAction(action unsafe.Pointer) CXTransaction {
+	instance := getCXTransactionClass().Alloc()
+	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithAction:"), action)
 	rv.Autorelease()
 	return rv
 }

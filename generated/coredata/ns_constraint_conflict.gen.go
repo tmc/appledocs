@@ -102,8 +102,8 @@ func (c_ ConstraintConflict) ConflictingObjects() []ManagedObject {
 // The original property values of objects in violation of the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/conflictingSnapshots
-func (c_ ConstraintConflict) ConflictingSnapshots() []accounts.NSDictionary {
-	rv := objc.Send[[]accounts.NSDictionary](c_.ID, objc.Sel("conflictingSnapshots"))
+func (c_ ConstraintConflict) ConflictingSnapshots() []foundation.NSDictionary {
+	rv := objc.Send[[]foundation.NSDictionary](c_.ID, objc.Sel("conflictingSnapshots"))
 	return rv
 }
 

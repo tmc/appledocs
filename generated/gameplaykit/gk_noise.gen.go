@@ -97,16 +97,6 @@ func NewNoise() Noise {
 }
 
 
-// Initializes a noise object with the specified noise source, with colors for later use in generating noise textures.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(_:gradientColors:)
-func NewNoiseWithNoiseSourceGradientColors(noiseSource unsafe.Pointer, gradientColors unsafe.Pointer) Noise {
-	instance := getNoiseClass().Alloc()
-	rv := objc.Send[Noise](instance.ID, objc.Sel("initWithNoiseSource:gradientColors:"), noiseSource, gradientColors)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a noise object by combining the specified noise objects, using another noise object to select which regions of the output correspond to which input noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(componentNoises:selectionNoise:)
@@ -129,6 +119,16 @@ func NewNoiseWithComponentNoisesSelectionNoiseComponentBoundariesBoundaryBlendDi
 func NewNoiseWithNoiseSource(noiseSource unsafe.Pointer) Noise {
 	instance := getNoiseClass().Alloc()
 	rv := objc.Send[Noise](instance.ID, objc.Sel("initWithNoiseSource:"), noiseSource)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a noise object with the specified noise source, with colors for later use in generating noise textures.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(_:gradientColors:)
+func NewNoiseWithNoiseSourceGradientColors(noiseSource unsafe.Pointer, gradientColors unsafe.Pointer) Noise {
+	instance := getNoiseClass().Alloc()
+	rv := objc.Send[Noise](instance.ID, objc.Sel("initWithNoiseSource:gradientColors:"), noiseSource, gradientColors)
 	rv.Autorelease()
 	return rv
 }

@@ -64,8 +64,6 @@ type NSEntityMappingType unsafe.Pointer
 
 type NSError unsafe.Pointer
 
-type NSExpression unsafe.Pointer
-
 type NSFetchRequestResultType unsafe.Pointer
 
 type NSIndexPath unsafe.Pointer

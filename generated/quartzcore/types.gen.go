@@ -85,8 +85,6 @@ type CGColorSpaceRef unsafe.Pointer
 
 type CGContextRef unsafe.Pointer
 
-type CGFloat unsafe.Pointer
-
 type CGLContextObj unsafe.Pointer
 
 type CGLPixelFormatObj unsafe.Pointer

@@ -83,20 +83,20 @@ func NewINStartCallIntent() INStartCallIntent {
 
 // Creates a start call intent object with the specified parameters.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(audioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:)
-func NewINStartCallIntentWithAudioRouteDestinationTypeContactsRecordTypeForRedialingCallCapability(audioRoute unsafe.Pointer, destinationType unsafe.Pointer, contacts unsafe.Pointer, recordTypeForRedialing unsafe.Pointer, callCapability unsafe.Pointer) INStartCallIntent {
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(callRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:)
+func NewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability(callRecordFilter unsafe.Pointer, callRecordToCallBack unsafe.Pointer, audioRoute unsafe.Pointer, destinationType unsafe.Pointer, contacts unsafe.Pointer, callCapability unsafe.Pointer) INStartCallIntent {
 	instance := getINStartCallIntentClass().Alloc()
-	rv := objc.Send[INStartCallIntent](instance.ID, objc.Sel("initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:"), audioRoute, destinationType, contacts, recordTypeForRedialing, callCapability)
+	rv := objc.Send[INStartCallIntent](instance.ID, objc.Sel("initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:"), callRecordFilter, callRecordToCallBack, audioRoute, destinationType, contacts, callCapability)
 	rv.Autorelease()
 	return rv
 }
 
 // Creates a start call intent object with the specified parameters.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(callRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:)
-func NewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability(callRecordFilter unsafe.Pointer, callRecordToCallBack unsafe.Pointer, audioRoute unsafe.Pointer, destinationType unsafe.Pointer, contacts unsafe.Pointer, callCapability unsafe.Pointer) INStartCallIntent {
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(audioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:)
+func NewINStartCallIntentWithAudioRouteDestinationTypeContactsRecordTypeForRedialingCallCapability(audioRoute unsafe.Pointer, destinationType unsafe.Pointer, contacts unsafe.Pointer, recordTypeForRedialing unsafe.Pointer, callCapability unsafe.Pointer) INStartCallIntent {
 	instance := getINStartCallIntentClass().Alloc()
-	rv := objc.Send[INStartCallIntent](instance.ID, objc.Sel("initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:"), callRecordFilter, callRecordToCallBack, audioRoute, destinationType, contacts, callCapability)
+	rv := objc.Send[INStartCallIntent](instance.ID, objc.Sel("initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:"), audioRoute, destinationType, contacts, recordTypeForRedialing, callCapability)
 	rv.Autorelease()
 	return rv
 }

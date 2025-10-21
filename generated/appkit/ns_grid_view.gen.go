@@ -98,14 +98,6 @@ func NewGridView() GridView {
 }
 
 
-// Creates a newly allocated grid view object with the specified array of arrays of views.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func NewGridViewWithViews(rows unsafe.Pointer) GridView {
-	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
-	return rv
-}
-
 // Creates a newly allocated grid view object from the coder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
@@ -131,6 +123,14 @@ func NewGridViewWithFrame(frameRect coregraphics.CGRect) GridView {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(numberOfColumns:rows:)
 func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithNumberOfColumns:rows:"), columnCount, rowCount)
+	return rv
+}
+
+// Creates a newly allocated grid view object with the specified array of arrays of views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
+func NewGridViewWithViews(rows unsafe.Pointer) GridView {
+	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
 

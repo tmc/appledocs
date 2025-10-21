@@ -81,6 +81,21 @@ func NewCBIdentity() CBIdentity {
 }
 
 
+// Returns the identity object matching the persistent reference data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(persistentReference:)
+func NewCBIdentityWithPersistentReference(data unsafe.Pointer) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithPersistentReference:"), data)
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)
+func NewCBIdentityWithUniqueIdentifierAuthority(uuid unsafe.Pointer, authority unsafe.Pointer) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUniqueIdentifier:authority:"), uuid, authority)
+	return rv
+}
+
 // Returns the identity object with the given UUID from the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uuidString:authority:)
@@ -94,21 +109,6 @@ func NewCBIdentityWithUUIDStringAuthority(uuid string, authority unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
 func NewCBIdentityWithNameAuthority(name string, authority unsafe.Pointer) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
-	return rv
-}
-
-// Returns the identity object matching the persistent reference data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(persistentReference:)
-func NewCBIdentityWithPersistentReference(data unsafe.Pointer) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithPersistentReference:"), data)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)
-func NewCBIdentityWithUniqueIdentifierAuthority(uuid unsafe.Pointer, authority unsafe.Pointer) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUniqueIdentifier:authority:"), uuid, authority)
 	return rv
 }
 

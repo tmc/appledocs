@@ -81,6 +81,16 @@ func NewCKRecordZoneSubscription() CKRecordZoneSubscription {
 }
 
 
+// Creates a named subscription for all records in the specified record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/initWithZoneID:subscriptionID:
+func NewCKRecordZoneSubscriptionWithZoneIDSubscriptionID(zoneID unsafe.Pointer, subscriptionID unsafe.Pointer) CKRecordZoneSubscription {
+	instance := getCKRecordZoneSubscriptionClass().Alloc()
+	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithZoneID:subscriptionID:"), zoneID, subscriptionID)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a zone-based subscription from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/init(coder:)
@@ -97,16 +107,6 @@ func NewCKRecordZoneSubscriptionWithCoder(aDecoder unsafe.Pointer) CKRecordZoneS
 func NewCKRecordZoneSubscriptionWithZoneID(zoneID unsafe.Pointer) CKRecordZoneSubscription {
 	instance := getCKRecordZoneSubscriptionClass().Alloc()
 	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithZoneID:"), zoneID)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a named subscription for all records in the specified record zone.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/initWithZoneID:subscriptionID:
-func NewCKRecordZoneSubscriptionWithZoneIDSubscriptionID(zoneID unsafe.Pointer, subscriptionID unsafe.Pointer) CKRecordZoneSubscription {
-	instance := getCKRecordZoneSubscriptionClass().Alloc()
-	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithZoneID:subscriptionID:"), zoneID, subscriptionID)
 	rv.Autorelease()
 	return rv
 }

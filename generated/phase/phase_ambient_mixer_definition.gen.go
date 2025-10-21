@@ -81,22 +81,22 @@ func NewPHASEAmbientMixerDefinition() PHASEAmbientMixerDefinition {
 }
 
 
-// Creates a named ambient mixer with the given channel layout and orientation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)
-func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientationIdentifier(layout unsafe.Pointer, orientation unsafe.Pointer, identifier string) PHASEAmbientMixerDefinition {
-	instance := getPHASEAmbientMixerDefinitionClass().Alloc()
-	rv := objc.Send[PHASEAmbientMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:orientation:identifier:"), layout, orientation, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates an ambient mixer with the given channel layout and orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)
 func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientation(layout unsafe.Pointer, orientation unsafe.Pointer) PHASEAmbientMixerDefinition {
 	instance := getPHASEAmbientMixerDefinitionClass().Alloc()
 	rv := objc.Send[PHASEAmbientMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:orientation:"), layout, orientation)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a named ambient mixer with the given channel layout and orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)
+func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientationIdentifier(layout unsafe.Pointer, orientation unsafe.Pointer, identifier string) PHASEAmbientMixerDefinition {
+	instance := getPHASEAmbientMixerDefinitionClass().Alloc()
+	rv := objc.Send[PHASEAmbientMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:orientation:identifier:"), layout, orientation, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

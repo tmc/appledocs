@@ -83,22 +83,22 @@ func NewView() View {
 }
 
 
-// Initializes a view from data in a given unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
-func NewViewWithCoder(coder unsafe.Pointer) View {
-	instance := getViewClass().Alloc()
-	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a view with the specified frame rectangle and Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(frame:device:)
 func NewViewWithFrameDevice(frameRect coregraphics.CGRect, device objc.ID) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:device:"), frameRect, device)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a view from data in a given unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
+func NewViewWithCoder(coder unsafe.Pointer) View {
+	instance := getViewClass().Alloc()
+	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

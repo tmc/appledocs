@@ -102,8 +102,8 @@ func (m_ MTREndpointInfo) EndpointID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/partsList
-func (m_ MTREndpointInfo) PartsList() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](m_.ID, objc.Sel("partsList"))
+func (m_ MTREndpointInfo) PartsList() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](m_.ID, objc.Sel("partsList"))
 	return rv
 }
 

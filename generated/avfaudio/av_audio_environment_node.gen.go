@@ -85,8 +85,8 @@ func NewAudioEnvironmentNode() AudioEnvironmentNode {
 // An array of rendering algorithms applicable to the environment node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/applicableRenderingAlgorithms
-func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("applicableRenderingAlgorithms"))
+func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() []foundation.NSNumber {
+	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("applicableRenderingAlgorithms"))
 	return rv
 }
 

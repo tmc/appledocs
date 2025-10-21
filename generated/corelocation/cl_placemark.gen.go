@@ -80,6 +80,13 @@ func NewPlacemark() Placemark {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
+func NewPlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name string, postalAddress unsafe.Pointer) Placemark {
+	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
+	return rv
+}
+
 // Initializes and returns a placemark object from another placemark object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(placemark:)
@@ -87,13 +94,6 @@ func NewPlacemarkWithPlacemark(placemark unsafe.Pointer) Placemark {
 	instance := getPlacemarkClass().Alloc()
 	rv := objc.Send[Placemark](instance.ID, objc.Sel("initWithPlacemark:"), placemark)
 	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func NewPlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name string, postalAddress unsafe.Pointer) Placemark {
-	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
 	return rv
 }
 

@@ -124,8 +124,8 @@ func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(val
 // The URLs of the shares to request access to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) ShareURLs() []appkit.NSURL {
-	rv := objc.Send[[]appkit.NSURL](c_.ID, objc.Sel("shareURLs"))
+func (c_ CKShareRequestAccessOperation) ShareURLs() []NSURL {
+	rv := objc.Send[[]NSURL](c_.ID, objc.Sel("shareURLs"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (c_ CKShareRequestAccessOperation) ShareURLs() []appkit.NSURL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) SetShareURLs(value []appkit.NSURL) {
+func (c_ CKShareRequestAccessOperation) SetShareURLs(value []NSURL) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

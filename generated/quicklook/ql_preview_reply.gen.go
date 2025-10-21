@@ -78,24 +78,6 @@ func NewPreviewReply() PreviewReply {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithContextSize:isBitmap:drawingBlock:
-func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics.CGSize, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
-	instance := getPreviewReplyClass().Alloc()
-	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithContextSize:isBitmap:drawingBlock:"), contextSize, isBitmap, drawingBlock)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
-func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType uniformtypeidentifiers.UTType, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
-	instance := getPreviewReplyClass().Alloc()
-	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
-	rv.Autorelease()
-	return rv
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/init(fileURL:)
 func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
@@ -109,6 +91,24 @@ func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
 func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize coregraphics.CGSize, documentCreationBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initForPDFWithPageSize:documentCreationBlock:"), defaultPageSize, documentCreationBlock)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithContextSize:isBitmap:drawingBlock:
+func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics.CGSize, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
+	instance := getPreviewReplyClass().Alloc()
+	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithContextSize:isBitmap:drawingBlock:"), contextSize, isBitmap, drawingBlock)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
+func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType uniformtypeidentifiers.UTType, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
+	instance := getPreviewReplyClass().Alloc()
+	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
 	rv.Autorelease()
 	return rv
 }

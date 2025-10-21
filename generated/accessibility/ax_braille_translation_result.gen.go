@@ -81,8 +81,8 @@ func NewAXBrailleTranslationResult() AXBrailleTranslationResult {
 // An array of integers that has the same length as the resultString. locationMap[i]-th character in the input string corresponds to resultString[i].
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/locationMap
-func (a_ AXBrailleTranslationResult) LocationMap() []accessibility.NSNumber {
-	rv := objc.Send[[]accessibility.NSNumber](a_.ID, objc.Sel("locationMap"))
+func (a_ AXBrailleTranslationResult) LocationMap() []NSNumber {
+	rv := objc.Send[[]NSNumber](a_.ID, objc.Sel("locationMap"))
 	return rv
 }
 

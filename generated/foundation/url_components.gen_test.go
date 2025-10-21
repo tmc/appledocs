@@ -10,17 +10,6 @@ import (
 var _ = foundation.NewURLComponents
 
 
-// ExampleNewURLComponentsWithStringEncodingInvalidCharacters demonstrates how to create a URLComponents instance using NewURLComponentsWithStringEncodingInvalidCharacters.
-// Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
-func ExampleNewURLComponentsWithStringEncodingInvalidCharacters() {
-	_ = foundation.NewURLComponentsWithStringEncodingInvalidCharacters(
-		"https://example.com", // URLString string
-		false, // encodingInvalidCharacters bool
-	)
-	// Output:
-}
-
-
 // ExampleNewURLComponents demonstrates how to create a URLComponents instance.
 // Creates a URL components object with all components left undefined.
 func ExampleNewURLComponents() {
@@ -36,5 +25,16 @@ func ExampleNewURLComponentsWithString() {
 	)
 	// Output:
 }
+
+// ExampleNewURLComponentsWithStringEncodingInvalidCharacters demonstrates how to create a URLComponents instance using NewURLComponentsWithStringEncodingInvalidCharacters.
+// Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
+func ExampleNewURLComponentsWithStringEncodingInvalidCharacters() {
+	_ = foundation.NewURLComponentsWithStringEncodingInvalidCharacters(
+		"https://example.com", // URLString string
+		false, // encodingInvalidCharacters bool
+	)
+	// Output:
+}
+
 
 
