@@ -1,6 +1,6 @@
 # Apple Framework Go Bindings Generator - Design Document
 
-**Version:** 2.1
+**Version:** 2.2
 **Status:** Production
 **Last Updated:** 2025-10-21
 **Author:** tmc
@@ -18,6 +18,33 @@ The `generate-framework-bindings` tool automatically generates comprehensive, ty
 - **Zero CGO requirement** - pure Go implementation
 - **~3ns selector caching** vs ~150ns uncached
 - **Enum values** extracted from macOS SDK headers for accuracy
+
+## Recent Changes (v2.2)
+
+### Code Refactoring (October 2025)
+
+The generator codebase has undergone a major refactoring to improve maintainability and clarity:
+
+- **Modular Architecture**: The monolithic `funcs.go` (2900+ lines) has been split into 10 focused modules
+- **Clear Separation**: Each module handles a specific aspect of code generation:
+  - `funcs_core.go` - String utilities and basic template helpers
+  - `funcs_naming.go` - ObjC to Go name conversion logic
+  - `funcs_types.go` - Type mapping and resolution
+  - `funcs_methods.go` - Method signature processing
+  - `funcs_imports.go` - Import path resolution
+  - `funcs_properties.go` - Property accessor generation
+  - `funcs_templates.go` - Template data preparation
+  - `funcs_class_helpers.go` - Class-level utilities
+  - `funcs_registry.go` - Type registry management
+  - `funcs_unused.go` - Deprecated functionality
+- **Bug Fixes**: Implemented previously stubbed string utility functions that were causing template execution failures
+- **Better Documentation**: Each module has clear responsibilities and focused functionality
+
+### Bug Fixes
+
+- **Template Function Stubs**: Fixed `strContains`, `hasPrefix`, `join`, `lower`, `trimSpace`, `trimRight`, and `trimPrefix` functions that were causing generation failures
+- **Block Type Detection**: Proper detection of Objective-C block types using `^` character in typedef base types
+- **Array Type Checking**: Correct handling of Go array/slice type prefixes in template conditionals
 
 ## Table of Contents
 
@@ -89,16 +116,30 @@ graph TB
 |-----------|---------------|-----------|
 | **Framework Discovery** | Scan and identify available frameworks | `main.go:discoverFrameworks()` |
 | **Document Parser** | Extract symbols from Apple docs | `occ2go/parser.go` |
-| **Type Resolver** | Map Objective-C types to Go | `typemapping.go`, `funcs.go` |
+| **Type Resolver** | Map Objective-C types to Go | `typemapping.go`, `funcs_types.go` |
+| **Name Converter** | Convert ObjC names to Go conventions | `funcs_naming.go` |
+| **Method Processor** | Format method signatures and parameters | `funcs_methods.go` |
+| **Import Manager** | Resolve cross-framework dependencies | `funcs_imports.go` |
+| **Property Generator** | Generate property accessors | `funcs_properties.go` |
+| **Template Engine** | Prepare data and render templates | `funcs_templates.go`, `templates.txtar` |
 | **Generator Engine** | Orchestrate generation pipeline | `main.go:Generator` |
-| **Template System** | Render Go source code | `templates.txtar` |
 
 ### Directory Structure
 
 ```
 cmd/generate-framework-bindings/
 ├── main.go                    # Entry point and orchestration
-├── funcs.go                   # Template helper functions
+├── funcs.go                   # Template function registration
+├── funcs_core.go              # Core string utilities and template helpers
+├── funcs_naming.go            # Name conversion (ObjC to Go conventions)
+├── funcs_types.go             # Type mapping and resolution
+├── funcs_methods.go           # Method processing and formatting
+├── funcs_imports.go           # Import resolution and management
+├── funcs_properties.go        # Property accessor generation
+├── funcs_templates.go         # Template data preparation
+├── funcs_class_helpers.go     # Class-level helper functions
+├── funcs_registry.go          # Type registry management
+├── funcs_unused.go            # Deprecated/unused functions
 ├── typemapping.go             # Objective-C to Go type mappings
 ├── templates.txtar            # Base code generation templates
 ├── templates_*.txtar          # Template variants (darwinkit, etc.)
@@ -467,17 +508,20 @@ templates.txtar
 
 ### Template Functions
 
-Key template functions in `funcs.go`:
+Key template functions across the modular files:
 
-| Function | Purpose | Example |
-|----------|---------|---------|
-| `mapObjCTypeToGo` | Type conversion | `NSString* → string` |
-| `classToStructName` | Name conversion | `NSWindow → Window` |
-| `classToVarName` | Variable naming | `NSButton → buttonClass` |
-| `formatMethodParams` | Parameter formatting | `(rect Rect, flag bool)` |
-| `initMethodToConstructorName` | Constructor naming | `initWithFrame: → NewWindowWithFrame` |
-| `getRequiredImports` | Import resolution | Determines package imports |
-| `resolveType` | Cross-framework types | `NSView → appkit.View` |
+| Function | Purpose | Module | Example |
+|----------|---------|--------|---------|
+| `mapObjCTypeToGo` | Type conversion | `funcs_types.go` | `NSString* → string` |
+| `classToStructName` | Name conversion | `funcs_naming.go` | `NSWindow → Window` |
+| `classToVarName` | Variable naming | `funcs_naming.go` | `NSButton → buttonClass` |
+| `formatMethodParams` | Parameter formatting | `funcs_methods.go` | `(rect Rect, flag bool)` |
+| `initMethodToConstructorName` | Constructor naming | `funcs_naming.go` | `initWithFrame: → NewWindowWithFrame` |
+| `getRequiredImports` | Import resolution | `funcs_imports.go` | Determines package imports |
+| `resolveType` | Cross-framework types | `funcs_types.go` | `NSView → appkit.View` |
+| `propertyToGoName` | Property naming | `funcs_properties.go` | `isEnabled → IsEnabled` |
+| `strContains` | String checking | `funcs_core.go` | Template conditionals |
+| `hasPrefix` | Prefix checking | `funcs_core.go` | Type prefix detection |
 
 ### Variant System
 

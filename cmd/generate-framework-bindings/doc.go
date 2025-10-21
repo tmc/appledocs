@@ -83,11 +83,24 @@
 //
 // Key components:
 //
-//	main.go          - Entry point and pipeline orchestration
-//	funcs.go         - Template helper functions
-//	typemapping.go   - Objective-C to Go type mappings
-//	templates.txtar  - Code generation templates
-//	occ2go/          - Documentation parser library
+//	main.go                - Entry point and pipeline orchestration
+//	funcs.go               - Template function registration
+//	funcs_core.go          - Core string utilities and template helpers
+//	funcs_naming.go        - Name conversion (ObjC to Go conventions)
+//	funcs_types.go         - Type mapping and resolution
+//	funcs_methods.go       - Method processing and formatting
+//	funcs_imports.go       - Import resolution and management
+//	funcs_properties.go    - Property accessor generation
+//	funcs_templates.go     - Template data preparation
+//	funcs_class_helpers.go - Class-level helper functions
+//	funcs_registry.go      - Type registry management
+//	typemapping.go         - Objective-C to Go type mappings
+//	templates.txtar        - Code generation templates
+//	occ2go/                - Documentation parser library
+//
+// The funcs.go file has been refactored into focused modules for better
+// maintainability and clarity. Each module handles a specific aspect of
+// the code generation process.
 //
 // For detailed design documentation, see README.md.
 package main

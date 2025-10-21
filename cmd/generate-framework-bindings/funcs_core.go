@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"text/template"
 )
 
@@ -188,30 +189,29 @@ func isGoKeyword(name string) bool {
 
 // String wrapper functions for template compatibility
 func joinStrings(sep string, a []string) string {
-	// This is actually strings.Join, but we need it for template registration
-	panic("not implemented - use strings.Join directly")
+	return strings.Join(a, sep)
 }
 
 func lowerString(s string) string {
-	panic("not implemented - use strings.ToLower directly")
+	return strings.ToLower(s)
 }
 
 func trimSpaceString(s string) string {
-	panic("not implemented - use strings.TrimSpace directly")
+	return strings.TrimSpace(s)
 }
 
 func trimRightString(s, cutset string) string {
-	panic("not implemented - use strings.TrimRight directly")
+	return strings.TrimRight(s, cutset)
 }
 
 func trimPrefixString(s, prefix string) string {
-	panic("not implemented - use strings.TrimPrefix directly")
+	return strings.TrimPrefix(s, prefix)
 }
 
 func hasPrefixString(s, prefix string) bool {
-	panic("not implemented - use strings.HasPrefix directly")
+	return strings.HasPrefix(s, prefix)
 }
 
 func stringsContains(s, substr string) bool {
-	panic("not implemented - use strings.Contains directly")
+	return strings.Contains(s, substr)
 }
