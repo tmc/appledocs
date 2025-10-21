@@ -177,6 +177,7 @@ func TestResolveTypeWithRegistry(t *testing.T) {
 
 	appkitClasses := []*occ2go.ParsedClass{
 		{Name: "NSWindow"},
+		{Name: "NSColor"},
 	}
 	appkitEnums := []*occ2go.ParsedEnum{
 		{Name: "NSImageScaling"},
@@ -229,6 +230,13 @@ func TestResolveTypeWithRegistry(t *testing.T) {
 			typeName:   "Window",
 			want:       "appkit.Window",
 			wantReason: "Window not in hardcoded maps, uses registry",
+		},
+		{
+			name:       "TextField.TextColor should resolve to Color (issue: appledocs-437)",
+			framework:  "AppKit",
+			typeName:   "Color",
+			want:       "Color",
+			wantReason: "Color is in AppKit, return unqualified",
 		},
 	}
 

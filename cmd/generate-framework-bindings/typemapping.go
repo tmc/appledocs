@@ -122,11 +122,6 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGPoint", GoType: "coregraphics.CGPoint", Framework: "ScreenSaver"},
 	{ObjCType: "Point", GoType: "coregraphics.CGPoint", Framework: "ScreenSaver"},
 
-	// ==== AppKit types used in ScreenSaver framework ====
-	// ScreenSaver uses AppKit's BackingStoreType enum
-	{ObjCType: "NSBackingStoreType", GoType: "appkit.BackingStoreType", Framework: "ScreenSaver"},
-	{ObjCType: "BackingStoreType", GoType: "appkit.BackingStoreType", Framework: "ScreenSaver"},
-
 	// ==== AVFoundation types ====
 	{ObjCType: "CGImageRef", GoType: "coregraphics.CGImageRef", Framework: "AVFoundation"},
 
@@ -146,9 +141,20 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGColorRef", GoType: "coregraphics.CGColorRef", Framework: "CoreImage"},
 	{ObjCType: "CGContextRef", GoType: "coregraphics.CGContextRef", Framework: "CoreImage"},
 
-	// AppKit window and view types (enums)
+	// ==== AppKit types ====
+	// AppKit class types
+	{ObjCType: "NSImage", GoType: "Image", Framework: "AppKit"},
+	{ObjCType: "NSImage *", GoType: "Image", Framework: "AppKit"},
+	{ObjCType: "NSImageSymbolConfiguration", GoType: "ImageSymbolConfiguration", Framework: "AppKit"},
+	{ObjCType: "NSImageSymbolConfiguration *", GoType: "ImageSymbolConfiguration", Framework: "AppKit"},
+
+	// AppKit enum types
+	{ObjCType: "NSCellImagePosition", GoType: "CellImagePosition", Framework: "AppKit"},
+	{ObjCType: "NSImageScaling", GoType: "ImageScaling", Framework: "AppKit"},
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
+	{ObjCType: "WindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},      // Go name
 	{ObjCType: "NSBackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"},
+	{ObjCType: "BackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"},    // Go name
 	{ObjCType: "NSWindowOrderingMode", GoType: "WindowOrderingMode", Framework: "AppKit"},
 	{ObjCType: "NSWindowLevel", GoType: "WindowLevel", Framework: "AppKit"},
 
@@ -321,6 +327,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// (geometry types from Foundation are used in AppKit, etc.)
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType {
+			// If the type is from a different framework, qualify it
+			if mapping.Framework != "" && mapping.Framework != framework {
+				return strings.ToLower(mapping.Framework) + "." + mapping.GoType, true
+			}
 			return mapping.GoType, true
 		}
 	}
@@ -345,8 +355,33 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		// Then try any matching type
 		for _, mapping := range typeRegistry {
 			if mapping.ObjCType == objcTypeNoPtr {
+				// If the type is from a different framework, qualify it
+				if mapping.Framework != "" && mapping.Framework != framework {
+					return strings.ToLower(mapping.Framework) + "." + mapping.GoType, true
+				}
 				return mapping.GoType, true
 			}
+		}
+	}
+
+	// Check cross-framework type registry (auto-discovered types)
+	// Try with both ObjC names (NSColor, NSImageScaling) and Go names (Color, ImageScaling)
+	if frameworkPkg, found := crossFrameworkTypeRegistry[objcType]; found {
+		// Don't qualify types with their own framework name
+		if strings.ToLower(framework) == frameworkPkg {
+			return objcType, true
+		}
+		return frameworkPkg + "." + objcType, true
+	}
+
+	// Try without pointer suffix in cross-framework registry
+	if objcTypeNoPtr != objcType {
+		if frameworkPkg, found := crossFrameworkTypeRegistry[objcTypeNoPtr]; found {
+			// Don't qualify types with their own framework name
+			if strings.ToLower(framework) == frameworkPkg {
+				return objcTypeNoPtr, true
+			}
+			return frameworkPkg + "." + objcTypeNoPtr, true
 		}
 	}
 
