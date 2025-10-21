@@ -21,5 +21,3 @@ func init() {
 	netServiceDidStopProtocol = objc.GetProtocol("netServiceDidStop:")
 }
 
-
-

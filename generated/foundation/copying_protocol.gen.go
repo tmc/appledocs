@@ -22,5 +22,3 @@ func init() {
 	CopyingProtocol = objc.GetProtocol("NSCopying")
 }
 
-
-

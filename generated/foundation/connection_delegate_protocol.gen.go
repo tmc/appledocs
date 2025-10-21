@@ -17,5 +17,3 @@ func init() {
 	ConnectionDelegateProtocol = objc.GetProtocol("NSConnectionDelegate")
 }
 
-
-

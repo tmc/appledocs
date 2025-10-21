@@ -22,5 +22,3 @@ func init() {
 	presentedItemDidChangeProtocol = objc.GetProtocol("presentedItemDidChange")
 }
 
-
-

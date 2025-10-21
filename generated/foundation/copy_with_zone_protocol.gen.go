@@ -22,5 +22,3 @@ func init() {
 	copyWithZoneProtocol = objc.GetProtocol("copyWithZone:")
 }
 
-
-

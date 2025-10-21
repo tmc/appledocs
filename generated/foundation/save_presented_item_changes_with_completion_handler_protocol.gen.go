@@ -22,5 +22,3 @@ func init() {
 	savePresentedItemChangesWithCompletionHandlerProtocol = objc.GetProtocol("savePresentedItemChangesWithCompletionHandler:")
 }
 
-
-

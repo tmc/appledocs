@@ -22,5 +22,3 @@ func init() {
 	SecureCodingProtocol = objc.GetProtocol("NSSecureCoding")
 }
 
-
-

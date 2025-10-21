@@ -22,5 +22,3 @@ func init() {
 	progressProtocol = objc.GetProtocol("progress")
 }
 
-
-

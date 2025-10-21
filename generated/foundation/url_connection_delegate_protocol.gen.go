@@ -22,5 +22,3 @@ func init() {
 	URLConnectionDelegateProtocol = objc.GetProtocol("NSURLConnectionDelegate")
 }
 
-
-

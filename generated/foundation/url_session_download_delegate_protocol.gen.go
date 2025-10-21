@@ -22,5 +22,3 @@ func init() {
 	URLSessionDownloadDelegateProtocol = objc.GetProtocol("NSURLSessionDownloadDelegate")
 }
 
-
-

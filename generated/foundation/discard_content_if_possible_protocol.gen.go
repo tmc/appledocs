@@ -22,5 +22,3 @@ func init() {
 	discardContentIfPossibleProtocol = objc.GetProtocol("discardContentIfPossible")
 }
 
-
-

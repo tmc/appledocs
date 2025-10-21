@@ -22,5 +22,3 @@ func init() {
 	relinquishPresentedItemToReaderProtocol = objc.GetProtocol("relinquishPresentedItemToReader:")
 }
 
-
-

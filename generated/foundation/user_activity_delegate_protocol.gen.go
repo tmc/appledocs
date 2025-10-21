@@ -22,5 +22,3 @@ func init() {
 	UserActivityDelegateProtocol = objc.GetProtocol("NSUserActivityDelegate")
 }
 
-
-

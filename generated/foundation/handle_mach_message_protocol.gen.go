@@ -22,5 +22,3 @@ func init() {
 	handleMachMessageProtocol = objc.GetProtocol("handleMachMessage:")
 }
 
-
-

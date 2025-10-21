@@ -22,5 +22,3 @@ func init() {
 	itemProviderVisibilityForRepresentationWithTypeIdentifierProtocol = objc.GetProtocol("itemProviderVisibilityForRepresentationWithTypeIdentifier:")
 }
 
-
-

@@ -22,5 +22,3 @@ func init() {
 	ProgressReportingProtocol = objc.GetProtocol("NSProgressReporting")
 }
 
-
-

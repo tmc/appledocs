@@ -22,5 +22,3 @@ func init() {
 	presentedItemDidResolveConflictVersionProtocol = objc.GetProtocol("presentedItemDidResolveConflictVersion:")
 }
 
-
-

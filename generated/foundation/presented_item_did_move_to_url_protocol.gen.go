@@ -22,5 +22,3 @@ func init() {
 	presentedItemDidMoveToURLProtocol = objc.GetProtocol("presentedItemDidMoveToURL:")
 }
 
-
-

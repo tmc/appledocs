@@ -22,5 +22,3 @@ func init() {
 	synchronousRemoteObjectProxyWithErrorHandlerProtocol = objc.GetProtocol("synchronousRemoteObjectProxyWithErrorHandler:")
 }
 
-
-

@@ -22,5 +22,3 @@ func init() {
 	presentedItemURLProtocol = objc.GetProtocol("presentedItemURL")
 }
 
-
-

@@ -21,5 +21,3 @@ func init() {
 	netServiceProtocol = objc.GetProtocol("netService:")
 }
 
-
-

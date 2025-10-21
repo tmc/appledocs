@@ -22,5 +22,3 @@ func init() {
 	MachPortDelegateProtocol = objc.GetProtocol("NSMachPortDelegate")
 }
 
-
-

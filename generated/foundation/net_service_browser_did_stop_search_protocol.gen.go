@@ -21,5 +21,3 @@ func init() {
 	netServiceBrowserDidStopSearchProtocol = objc.GetProtocol("netServiceBrowserDidStopSearch:")
 }
 
-
-

@@ -22,5 +22,3 @@ func init() {
 	URLSessionDidFinishEventsForBackgroundURLSessionProtocol = objc.GetProtocol("URLSessionDidFinishEventsForBackgroundURLSession:")
 }
 
-
-

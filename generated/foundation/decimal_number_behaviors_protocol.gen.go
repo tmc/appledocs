@@ -22,5 +22,3 @@ func init() {
 	DecimalNumberBehaviorsProtocol = objc.GetProtocol("NSDecimalNumberBehaviors")
 }
 
-
-

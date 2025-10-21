@@ -22,5 +22,3 @@ func init() {
 	writableTypeIdentifiersForItemProviderProtocol = objc.GetProtocol("writableTypeIdentifiersForItemProvider")
 }
 
-
-

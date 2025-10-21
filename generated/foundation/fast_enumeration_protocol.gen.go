@@ -22,5 +22,3 @@ func init() {
 	FastEnumerationProtocol = objc.GetProtocol("NSFastEnumeration")
 }
 
-
-

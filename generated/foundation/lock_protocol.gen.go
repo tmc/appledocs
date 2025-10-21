@@ -22,5 +22,3 @@ func init() {
 	lockProtocol = objc.GetProtocol("lock")
 }
 
-
-

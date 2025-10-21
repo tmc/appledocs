@@ -22,5 +22,3 @@ func init() {
 	URLSessionWebSocketDelegateProtocol = objc.GetProtocol("NSURLSessionWebSocketDelegate")
 }
 
-
-

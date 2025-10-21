@@ -22,5 +22,3 @@ func init() {
 	relinquishPresentedItemToWriterProtocol = objc.GetProtocol("relinquishPresentedItemToWriter:")
 }
 
-
-

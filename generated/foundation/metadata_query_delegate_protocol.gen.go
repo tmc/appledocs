@@ -22,5 +22,3 @@ func init() {
 	MetadataQueryDelegateProtocol = objc.GetProtocol("NSMetadataQueryDelegate")
 }
 
-
-

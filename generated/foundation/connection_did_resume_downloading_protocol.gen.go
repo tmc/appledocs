@@ -22,5 +22,3 @@ func init() {
 	connectionDidResumeDownloadingProtocol = objc.GetProtocol("connectionDidResumeDownloading:")
 }
 
-
-

@@ -22,5 +22,3 @@ func init() {
 	objectWithItemProviderDataProtocol = objc.GetProtocol("objectWithItemProviderData:")
 }
 
-
-

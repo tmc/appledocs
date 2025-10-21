@@ -22,5 +22,3 @@ func init() {
 	continueWithoutCredentialForAuthenticationChallengeProtocol = objc.GetProtocol("continueWithoutCredentialForAuthenticationChallenge:")
 }
 
-
-

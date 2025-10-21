@@ -22,5 +22,3 @@ func init() {
 	accommodatePresentedItemDeletionWithCompletionHandlerProtocol = objc.GetProtocol("accommodatePresentedItemDeletionWithCompletionHandler:")
 }
 
-
-

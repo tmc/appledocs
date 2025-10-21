@@ -22,5 +22,3 @@ func init() {
 	URLAuthenticationChallengeSenderProtocol = objc.GetProtocol("NSURLAuthenticationChallengeSender")
 }
 
-
-

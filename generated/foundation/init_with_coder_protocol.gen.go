@@ -22,5 +22,3 @@ func init() {
 	initWithCoderProtocol = objc.GetProtocol("initWithCoder:")
 }
 
-
-

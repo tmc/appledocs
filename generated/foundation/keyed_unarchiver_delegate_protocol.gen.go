@@ -22,5 +22,3 @@ func init() {
 	KeyedUnarchiverDelegateProtocol = objc.GetProtocol("NSKeyedUnarchiverDelegate")
 }
 
-
-

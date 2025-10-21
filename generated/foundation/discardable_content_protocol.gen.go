@@ -22,5 +22,3 @@ func init() {
 	DiscardableContentProtocol = objc.GetProtocol("NSDiscardableContent")
 }
 
-
-

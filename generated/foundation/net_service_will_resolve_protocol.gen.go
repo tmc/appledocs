@@ -21,5 +21,3 @@ func init() {
 	netServiceWillResolveProtocol = objc.GetProtocol("netServiceWillResolve:")
 }
 
-
-

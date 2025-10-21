@@ -22,5 +22,3 @@ func init() {
 	presentedItemOperationQueueProtocol = objc.GetProtocol("presentedItemOperationQueue")
 }
 
-
-

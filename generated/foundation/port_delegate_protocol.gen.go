@@ -22,5 +22,3 @@ func init() {
 	PortDelegateProtocol = objc.GetProtocol("NSPortDelegate")
 }
 
-
-

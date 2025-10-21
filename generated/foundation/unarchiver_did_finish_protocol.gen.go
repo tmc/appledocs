@@ -22,5 +22,3 @@ func init() {
 	unarchiverDidFinishProtocol = objc.GetProtocol("unarchiverDidFinish:")
 }
 
-
-

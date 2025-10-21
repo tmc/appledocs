@@ -22,5 +22,3 @@ func init() {
 	useCredentialProtocol = objc.GetProtocol("useCredential:")
 }
 
-
-

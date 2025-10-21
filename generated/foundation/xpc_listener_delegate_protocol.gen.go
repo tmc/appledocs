@@ -22,5 +22,3 @@ func init() {
 	XPCListenerDelegateProtocol = objc.GetProtocol("NSXPCListenerDelegate")
 }
 
-
-

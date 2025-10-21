@@ -22,5 +22,3 @@ func init() {
 	FileManagerDelegateProtocol = objc.GetProtocol("NSFileManagerDelegate")
 }
 
-
-

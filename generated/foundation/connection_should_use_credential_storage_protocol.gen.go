@@ -22,5 +22,3 @@ func init() {
 	connectionShouldUseCredentialStorageProtocol = objc.GetProtocol("connectionShouldUseCredentialStorage:")
 }
 
-
-

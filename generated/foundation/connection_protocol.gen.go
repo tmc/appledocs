@@ -22,5 +22,3 @@ func init() {
 	connectionProtocol = objc.GetProtocol("connection:")
 }
 
-
-

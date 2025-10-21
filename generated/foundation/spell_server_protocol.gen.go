@@ -17,5 +17,3 @@ func init() {
 	spellServerProtocol = objc.GetProtocol("spellServer:")
 }
 
-
-

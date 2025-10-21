@@ -22,5 +22,3 @@ func init() {
 	userActivityWillSaveProtocol = objc.GetProtocol("userActivityWillSave:")
 }
 
-
-

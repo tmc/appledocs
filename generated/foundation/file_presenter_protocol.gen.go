@@ -22,5 +22,3 @@ func init() {
 	FilePresenterProtocol = objc.GetProtocol("NSFilePresenter")
 }
 
-
-

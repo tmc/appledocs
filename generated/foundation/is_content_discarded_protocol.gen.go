@@ -22,5 +22,3 @@ func init() {
 	isContentDiscardedProtocol = objc.GetProtocol("isContentDiscarded")
 }
 
-
-

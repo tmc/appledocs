@@ -16,5 +16,3 @@ func init() {
 	downloadProtocol = objc.GetProtocol("download:")
 }
 
-
-

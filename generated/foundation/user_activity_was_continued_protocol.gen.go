@@ -22,5 +22,3 @@ func init() {
 	userActivityWasContinuedProtocol = objc.GetProtocol("userActivityWasContinued:")
 }
 
-
-

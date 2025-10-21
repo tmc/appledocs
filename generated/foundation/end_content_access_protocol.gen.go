@@ -22,5 +22,3 @@ func init() {
 	endContentAccessProtocol = objc.GetProtocol("endContentAccess")
 }
 
-
-

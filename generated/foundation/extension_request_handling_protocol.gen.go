@@ -22,5 +22,3 @@ func init() {
 	ExtensionRequestHandlingProtocol = objc.GetProtocol("NSExtensionRequestHandling")
 }
 
-
-
