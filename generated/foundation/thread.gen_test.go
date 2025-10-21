@@ -10,12 +10,12 @@ import (
 var _ = foundation.NewThread
 
 
-
 // ExampleNewThread demonstrates how to create a Thread instance.
 // Returns an initialized   object.
 func ExampleNewThread() {
 	_ = foundation.NewThread()
 	// Output:
 }
+
 
 

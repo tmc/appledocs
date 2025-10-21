@@ -10,6 +10,15 @@ import (
 var _ = foundation.NewBundle
 
 
+// ExampleNewBundleWithPath demonstrates how to create a Bundle instance using NewBundleWithPath.
+// Returns an   object initialized to correspond to the specified directory.
+func ExampleNewBundleWithPath() {
+	_ = foundation.NewBundleWithPath(
+		"/tmp/test", // path string
+	)
+	// Output:
+}
+
 
 
 // ExampleNewBundleWithIdentifier demonstrates how to create a Bundle instance using NewBundleWithIdentifier.
@@ -17,15 +26,6 @@ var _ = foundation.NewBundle
 func ExampleNewBundleWithIdentifier() {
 	_ = foundation.NewBundleWithIdentifier(
 		"identifier", // identifier string
-	)
-	// Output:
-}
-
-// ExampleNewBundleWithPath demonstrates how to create a Bundle instance using NewBundleWithPath.
-// Returns an   object initialized to correspond to the specified directory.
-func ExampleNewBundleWithPath() {
-	_ = foundation.NewBundleWithPath(
-		"/tmp/test", // path string
 	)
 	// Output:
 }

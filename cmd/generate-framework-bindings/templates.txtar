@@ -233,6 +233,45 @@ type EventModifierFlags int
 type CGFloat = float64
 
 {{end -}}
+{{if gt .EnumCount 0 -}}
+// Enum types and constants
+{{range .Enums -}}
+{{if .Abstract -}}
+// {{.Name}} - {{.Abstract}}
+{{else -}}
+// {{.Name}} enum type
+{{end -}}
+{{if .DocURL -}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+type {{stripObjCPrefix .Name}} {{if .IsOptions}}uint{{else}}int{{end}}
+
+{{if gt (len .Cases) 0 -}}
+const (
+{{range $i, $case := .Cases -}}
+{{if $case.Abstract -}}
+	// {{stripObjCPrefix $case.Name}} - {{$case.Abstract}}
+{{end -}}
+{{if $case.DocURL -}}
+	//
+	// [Full Topic]: {{convertDocURL $case.DocURL}}
+{{end -}}
+{{if $.IsOptions -}}
+	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $.Name}} = 1 << {{$i}}
+{{else -}}
+{{if eq $i 0 -}}
+	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $.Name}} = iota
+{{else -}}
+	{{stripObjCPrefix $case.Name}}
+{{end -}}
+{{end -}}
+{{end -}}
+)
+
+{{end -}}
+{{end -}}
+{{end -}}
 {{if gt (len $undefinedTypes) 0}}
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.

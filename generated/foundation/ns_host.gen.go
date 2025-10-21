@@ -80,19 +80,19 @@ func NewHost() Host {
 }
 
 
-// Returns a host with a specific name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func NewHostWithName(name string) Host {
-	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), objc.String(name))
-	return rv
-}
-
 // Returns the with the Internet address .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
 func NewHostWithAddress(address string) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), objc.String(address))
+	return rv
+}
+
+// Returns a host with a specific name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
+func NewHostWithName(name string) Host {
+	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
 }
 

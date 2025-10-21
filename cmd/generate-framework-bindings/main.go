@@ -59,6 +59,7 @@ type Generator struct {
 	Functions []*occ2go.ParsedFunction
 	Classes   []*occ2go.ParsedClass
 	Protocols []*occ2go.ParsedProtocol
+	Enums     []*occ2go.ParsedEnum
 
 	// Computed/cached data
 	frameworkAbstract string
@@ -241,6 +242,11 @@ func (g *Generator) ClassCount() int {
 // ProtocolCount returns the number of protocols
 func (g *Generator) ProtocolCount() int {
 	return len(g.Protocols)
+}
+
+// EnumCount returns the number of enums
+func (g *Generator) EnumCount() int {
+	return len(g.Enums)
 }
 
 // MinVersion returns the minimum macOS version
@@ -722,6 +728,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	var functions []*occ2go.ParsedFunction
 	var classes []*occ2go.ParsedClass
 	var protocols []*occ2go.ParsedProtocol
+	var enums []*occ2go.ParsedEnum
 
 	processedFiles := 0
 	parseErrors := 0
@@ -733,6 +740,9 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
 	// Track seen property names per class to prevent duplicates from documentation
 	classSeenProperties := make(map[string]map[string]bool)
+
+	// Keep track of enums and their cases
+	enumCasesMap := make(map[string][]*occ2go.ParsedEnumCase)
 
 	// Process regular symbols
 	for path, doc := range appledocs.Symbols(fsys, framework) {
@@ -782,6 +792,38 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					}
 				}
 			}
+		} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@") {
+			// This is an enum type or enum case
+			// Try parsing as enum type first (enum type has only 3 parts: c:@E@EnumName)
+			parts := strings.Split(doc.Metadata.ExternalID, "@")
+			if len(parts) == 3 {
+				// This is an enum type declaration
+				// Extract tokens from primary content sections
+				tokens := []appledocs.Token{}
+				for _, section := range doc.PrimaryContentSections {
+					if section.Kind == "declarations" && len(section.Declarations) > 0 {
+						tokens = section.Declarations[0].Tokens
+						break
+					}
+				}
+				if enum := occ2go.ParseEnumDeclaration(tokens); enum != nil {
+					enum.Name = parts[2]
+					enum.DocURL = doc.Identifier.URL
+					if len(doc.Abstract) > 0 {
+						enum.Abstract = doc.Abstract[0].Text
+					}
+					enums = append(enums, enum)
+				}
+			} else if len(parts) >= 4 {
+				// This is an enum case (c:@E@EnumName@CaseName)
+				enumCase, enumCaseErr := occ2go.ParseEnumCase(doc)
+				if enumCaseErr == nil && enumCase != nil {
+					enumName := parts[2]
+					enumCasesMap[enumName] = append(enumCasesMap[enumName], enumCase)
+				} else if verbose {
+					fmt.Fprintf(os.Stderr, "Warning: failed to parse enum case %s: %v\n", path, enumCaseErr)
+				}
+			}
 		} else {
 			parseErrors++
 			if verbose {
@@ -819,7 +861,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	if verbose {
 		fmt.Fprintf(os.Stderr, "Processed %d files (%d parse errors)\n", processedFiles, parseErrors)
-		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols\n", len(functions), len(classes), len(protocols))
+		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols, %d enums\n", len(functions), len(classes), len(protocols), len(enums))
 	}
 
 	// Populate currentFrameworkClasses map for cross-framework type detection
@@ -903,6 +945,20 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		}
 	}
 
+	// Attach enum cases to enums
+	if len(enums) > 0 {
+		caseCount := 0
+		for i := range enums {
+			if cases, ok := enumCasesMap[enums[i].Name]; ok {
+				enums[i].Cases = cases
+				caseCount += len(cases)
+			}
+		}
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Found %d enum cases for %d enums\n", caseCount, len(enums))
+		}
+	}
+
 	// Fail if no symbols were found and no filter was applied
 	if len(functions) == 0 && len(classes) == 0 && len(protocols) == 0 && filterRegexp == "" && processedFiles == 0 {
 		return fmt.Errorf("no symbols found for framework %s", framework)
@@ -983,11 +1039,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Generate bindings
 	if txtarOutput {
-		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 	} else {
-		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 		fmt.Printf("Generated %s bindings in %s\n", framework, outDir)
@@ -1075,7 +1131,7 @@ func main() {
 }
 
 // generateFiles generates all files to disk
-func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, withRefMethods, generateTests, generateExamples bool, variant string) error {
+func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
 	outputModule := "github.com/tmc/appledocs/generated"
 
@@ -1084,6 +1140,7 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Functions = functions
 	gen.Classes = classes
 	gen.Protocols = protocols
+	gen.Enums = enums
 
 	// Apply property overrides for undocumented properties
 	for _, cls := range gen.Classes {
@@ -1280,7 +1337,7 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 }
 
 // generateTxtar generates all files as txtar format
-func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, withRefMethods, generateTests, generateExamples bool, variant string) error {
+func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
 	outputModule := "github.com/tmc/appledocs/generated"
 
@@ -1289,6 +1346,7 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 	gen.Functions = functions
 	gen.Classes = classes
 	gen.Protocols = protocols
+	gen.Enums = enums
 
 	// Try to use the module template if it exists
 	if _, err := getTemplateVariant("module", variant); err == nil {
@@ -1350,7 +1408,8 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 	fmt.Fprintf(w, "# Package: %s\n#\n", packageName)
 	fmt.Fprintf(w, "# Functions: %d\n", len(functions))
 	fmt.Fprintf(w, "# Classes: %d\n", len(classes))
-	fmt.Fprintf(w, "# Protocols: %d\n\n", len(protocols))
+	fmt.Fprintf(w, "# Protocols: %d\n", len(protocols))
+	fmt.Fprintf(w, "# Enums: %d\n\n", len(enums))
 
 	fileNames := make([]string, 0, len(files))
 	for name := range files {

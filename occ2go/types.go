@@ -79,6 +79,28 @@ type ParsedProtocol struct {
 	Abstract     string
 }
 
+// ParsedEnum represents an Objective-C enum type declaration.
+type ParsedEnum struct {
+	Name         string
+	BaseType     string // Underlying type (e.g., "NSUInteger", "NSInteger")
+	Cases        []*ParsedEnumCase
+	Comment      string
+	Availability Availability
+	DocURL       string
+	Abstract     string
+	IsOptions    bool // true for NS_OPTIONS (bitfield), false for NS_ENUM
+}
+
+// ParsedEnumCase represents a single enum constant/case.
+type ParsedEnumCase struct {
+	Name         string
+	Value        string // The numeric value or expression
+	Comment      string
+	Availability Availability
+	DocURL       string
+	Abstract     string
+}
+
 // Parameter represents a function parameter.
 type Parameter struct {
 	Name string

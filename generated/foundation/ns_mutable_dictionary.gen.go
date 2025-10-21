@@ -142,20 +142,20 @@ func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
 	return rv
 }
 
-// Creates a mutable dictionary which is optimized for dealing with a known set of keys.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
-func NewMutableDictionaryWithSharedKeySet(keyset objc.ID) MutableDictionary {
-	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
 func NewMutableDictionaryWithContentsOfURL(url unsafe.Pointer) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates a mutable dictionary which is optimized for dealing with a known set of keys.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
+func NewMutableDictionaryWithSharedKeySet(keyset objc.ID) MutableDictionary {
+	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
 

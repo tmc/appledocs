@@ -112,16 +112,6 @@ func NewBundle() Bundle {
 }
 
 
-// Returns an object initialized to correspond to the specified directory.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(path:)
-func NewBundleWithPath(path string) Bundle {
-	instance := getBundleClass().Alloc()
-	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an object initialized to correspond to the specified file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(url:)
@@ -145,6 +135,16 @@ func NewBundleForClass(aClass objc.Class) Bundle {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
 func NewBundleWithIdentifier(identifier string) Bundle {
 	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
+	return rv
+}
+
+// Returns an object initialized to correspond to the specified directory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(path:)
+func NewBundleWithPath(path string) Bundle {
+	instance := getBundleClass().Alloc()
+	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
+	rv.Autorelease()
 	return rv
 }
 

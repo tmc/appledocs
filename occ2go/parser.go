@@ -92,15 +92,26 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		proto.Abstract = abstract
 		return nil, nil, proto, nil
 
-	case strings.HasPrefix(externalID, "c:@E@"),
-		strings.HasPrefix(externalID, "c:@T@"),
+	case strings.HasPrefix(externalID, "c:@E@"):
+		// Objective-C enum type (c:@E@NSWindowStyleMask)
+		// Note: Individual enum cases have different external IDs (c:@NSTitledWindowMask)
+		// and should be handled by ParseEnumCase instead
+		enum := ParseEnumDeclaration(tokens)
+		if enum == nil {
+			return nil, nil, nil, fmt.Errorf("failed to parse enum declaration")
+		}
+		enum.Availability = availability
+		enum.DocURL = docURL
+		enum.Abstract = abstract
+		return nil, nil, nil, fmt.Errorf("enum type parsed (use ParseEnum): %s", externalID)
+
+	case strings.HasPrefix(externalID, "c:@T@"),
 		strings.HasPrefix(externalID, "c:@SA@"),
 		strings.HasPrefix(externalID, "c:@UA@"),
 		strings.HasPrefix(externalID, "c:objc(cy)"),
 		strings.HasPrefix(externalID, "s:"),
 		strings.HasPrefix(externalID, "doc:"):
 		// Known but unsupported types:
-		// c:@E@ = enums
 		// c:@T@ = typedefs
 		// c:@SA@ = struct
 		// c:@UA@ = union
@@ -1165,4 +1176,256 @@ func ParsePropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error)
 	}
 
 	return property, nil
+}
+
+// ParseEnumDeclaration parses an Objective-C enum type declaration from tokens.
+// Enum type syntax: typedef NS_ENUM(NSUInteger, NSWindowStyleMask) { ... }
+//                   typedef NS_OPTIONS(NSUInteger, NSEventModifierFlags) { ... }
+// Note: This parses the enum type definition, not individual enum cases.
+// Individual cases are parsed by ParseEnumCase.
+func ParseEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
+	enum := &ParsedEnum{
+		Cases: []*ParsedEnumCase{},
+	}
+
+	i := 0
+
+	// Look for typedef keyword
+	for i < len(tokens) && !(tokens[i].Kind == "keyword" && tokens[i].Text == "typedef") {
+		i++
+	}
+
+	if i >= len(tokens) {
+		// Try Swift enum syntax: struct NSWindowStyleMask : OptionSet
+		return parseSwiftEnumDeclaration(tokens)
+	}
+
+	i++ // Skip typedef
+
+	// Skip whitespace
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	// Look for NS_ENUM or NS_OPTIONS
+	isOptions := false
+	if i < len(tokens) && tokens[i].Kind == "identifier" {
+		if tokens[i].Text == "NS_OPTIONS" {
+			isOptions = true
+		} else if tokens[i].Text != "NS_ENUM" {
+			// Not a recognized enum macro
+			return nil
+		}
+		enum.IsOptions = isOptions
+		i++
+	} else {
+		return nil
+	}
+
+	// Parse base type and enum name from parentheses: (NSUInteger, NSWindowStyleMask)
+	for i < len(tokens) && !strings.Contains(tokens[i].Text, "(") {
+		i++
+	}
+
+	if i >= len(tokens) {
+		return nil
+	}
+
+	i++ // Skip opening paren
+
+	// Get base type (e.g., NSUInteger, NSInteger)
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	if i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "identifier") {
+		enum.BaseType = tokens[i].Text
+		i++
+	}
+
+	// Skip comma and whitespace
+	for i < len(tokens) && (tokens[i].Text == "," || (tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "")) {
+		i++
+	}
+
+	// Get enum name
+	if i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "identifier") {
+		enum.Name = tokens[i].Text
+	}
+
+	if enum.Name == "" {
+		return nil
+	}
+
+	return enum
+}
+
+// parseSwiftEnumDeclaration parses a Swift enum/struct declaration.
+// Swift option set syntax: struct NSWindowStyleMask : OptionSet
+func parseSwiftEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
+	enum := &ParsedEnum{
+		Cases:    []*ParsedEnumCase{},
+		BaseType: "UInt", // Swift default for OptionSet
+	}
+
+	i := 0
+
+	// Look for struct keyword
+	for i < len(tokens) && !(tokens[i].Kind == "keyword" && tokens[i].Text == "struct") {
+		i++
+	}
+
+	if i >= len(tokens) {
+		return nil
+	}
+
+	i++ // Skip struct
+
+	// Skip whitespace
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	// Get enum name
+	if i < len(tokens) && tokens[i].Kind == "identifier" {
+		enum.Name = tokens[i].Text
+		i++
+	} else {
+		return nil
+	}
+
+	// Check for : OptionSet to determine if it's a bitfield
+	for i < len(tokens) {
+		if tokens[i].Text == ":" {
+			i++
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+			if i < len(tokens) && tokens[i].Kind == "typeIdentifier" && tokens[i].Text == "OptionSet" {
+				enum.IsOptions = true
+			}
+			break
+		}
+		i++
+	}
+
+	return enum
+}
+
+// ParseEnumCase parses an individual enum constant/case from a document.
+// External ID format: c:@NSTitledWindowMask (without c:@E@ prefix)
+// Token pattern: static const NSWindowStyleMask NSTitledWindowMask;
+//           or: static var titled: NSWindow.StyleMask { get }
+func ParseEnumCase(doc *appledocs.Document) (*ParsedEnumCase, error) {
+	if doc == nil {
+		return nil, fmt.Errorf("document is nil")
+	}
+
+	externalID := doc.Metadata.ExternalID
+	availability := ExtractAvailability(doc.Metadata.Platforms)
+	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
+	abstract := ExtractAbstract(doc.Abstract)
+
+	// Enum cases have external IDs like c:@NSTitledWindowMask (no c:@E@ prefix)
+	// Skip if this is an enum type definition (has c:@E@ prefix)
+	if strings.HasPrefix(externalID, "c:@E@") {
+		return nil, fmt.Errorf("enum type, not case: %s", externalID)
+	}
+
+	// Get Objective-C variant tokens
+	tokens := GetObjectiveCVariant(doc)
+	if tokens == nil {
+		// Fall back to primary declarations
+		for _, section := range doc.PrimaryContentSections {
+			if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
+				tokens = section.Declarations[0].Tokens
+				break
+			}
+		}
+	}
+
+	if tokens == nil || len(tokens) == 0 {
+		return nil, fmt.Errorf("no declaration found for %s", externalID)
+	}
+
+	enumCase, err := ParseEnumCaseDeclaration(tokens)
+	if err != nil {
+		return nil, err
+	}
+
+	enumCase.Availability = availability
+	enumCase.DocURL = docURL
+	enumCase.Abstract = abstract
+
+	return enumCase, nil
+}
+
+// ParseEnumCaseDeclaration parses an enum constant declaration from tokens.
+// Objective-C: static const NSWindowStyleMask NSTitledWindowMask;
+// Swift: static var titled: NSWindow.StyleMask { get }
+func ParseEnumCaseDeclaration(tokens []appledocs.Token) (*ParsedEnumCase, error) {
+	enumCase := &ParsedEnumCase{}
+
+	i := 0
+
+	// Skip static keyword if present
+	if i < len(tokens) && tokens[i].Kind == "keyword" && tokens[i].Text == "static" {
+		i++
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+	}
+
+	// Check for const (Objective-C) or var (Swift)
+	if i < len(tokens) && tokens[i].Kind == "keyword" {
+		if tokens[i].Text == "const" {
+			// Objective-C: static const TypeName CaseName;
+			i++
+
+			// Skip whitespace
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+
+			// Skip type name
+			if i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "identifier") {
+				i++
+			}
+
+			// Skip whitespace
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+
+			// Get case name
+			if i < len(tokens) && tokens[i].Kind == "identifier" {
+				enumCase.Name = tokens[i].Text
+			}
+
+		} else if tokens[i].Text == "var" {
+			// Swift: static var caseName: TypeName { get }
+			i++
+
+			// Skip whitespace
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+
+			// Get case name
+			if i < len(tokens) && tokens[i].Kind == "identifier" {
+				enumCase.Name = tokens[i].Text
+			}
+		}
+	}
+
+	// Note: We don't try to extract the numeric value from tokens because:
+	// 1. Apple docs often don't include the actual value in the declaration
+	// 2. Values are better extracted from documentation or inferred
+	// The generator will handle value assignment based on order and context
+
+	if enumCase.Name == "" {
+		return nil, fmt.Errorf("failed to parse enum case name")
+	}
+
+	return enumCase, nil
 }

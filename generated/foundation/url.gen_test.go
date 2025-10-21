@@ -10,25 +10,12 @@ import (
 var _ = foundation.NewURL
 
 
+
 // ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
 // Initializes a newly created NSURL referencing the local file or directory at  .
 func ExampleNewURLFileURLWithPath() {
 	_ = foundation.NewURLFileURLWithPath(
 		"/tmp/test", // path string
-	)
-	// Output:
-}
-
-
-
-
-
-// ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
-// Initializes a newly created NSURL referencing the local file or directory at  .
-func ExampleNewURLFileURLWithPathIsDirectory() {
-	_ = foundation.NewURLFileURLWithPathIsDirectory(
-		"/tmp/test", // path string
-		false, // isDir bool
 	)
 	// Output:
 }
@@ -63,6 +50,19 @@ func ExampleNewURLWithStringEncodingInvalidCharacters() {
 	)
 	// Output:
 }
+
+// ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
+// Initializes a newly created NSURL referencing the local file or directory at  .
+func ExampleNewURLFileURLWithPathIsDirectory() {
+	_ = foundation.NewURLFileURLWithPathIsDirectory(
+		"/tmp/test", // path string
+		false, // isDir bool
+	)
+	// Output:
+}
+
+
+
 
 
 
