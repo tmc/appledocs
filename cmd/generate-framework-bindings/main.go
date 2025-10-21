@@ -459,7 +459,15 @@ func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verb
 
 		// Process references to create synthetic documents for symbols
 		if doc.References != nil {
-			for identifier, ref := range doc.References {
+			// Sort reference keys for stable output
+			var refKeys []string
+			for identifier := range doc.References {
+				refKeys = append(refKeys, identifier)
+			}
+			sort.Strings(refKeys)
+
+			for _, identifier := range refKeys {
+				ref := doc.References[identifier]
 				// Only process function symbols (role: "symbol", kind: "symbol")
 				if ref.Role != "symbol" || ref.Kind != "symbol" {
 					continue
@@ -647,7 +655,15 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 			continue
 		}
 
-		for _, ref := range doc.References {
+		// Sort reference keys for stable output
+		var refKeys []string
+		for refKey := range doc.References {
+			refKeys = append(refKeys, refKey)
+		}
+		sort.Strings(refKeys)
+
+		for _, refKey := range refKeys {
+			ref := doc.References[refKey]
 			// Only process symbol references with fragments
 			if ref.Role != "symbol" || ref.Kind != "symbol" || len(ref.Fragments) == 0 {
 				continue
@@ -697,7 +713,8 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 				case "identifier":
 					// First identifier after 'var'/'let' is the property name
 					if name == "" {
-						name = frag.Text
+						// Strip backticks from property names (Apple's docs use backticks for keywords)
+						name = strings.Trim(frag.Text, "`")
 					}
 				case "typeIdentifier":
 					// Type identifier after ": " is the property type
