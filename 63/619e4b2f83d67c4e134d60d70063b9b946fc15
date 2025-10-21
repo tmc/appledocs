@@ -1,0 +1,19 @@
+appledocs-351: Enum constant generation
+Commit: 63619e4b2f
+Date: 2025-10-21
+Model: claude-haiku-4-5-20251001
+TTY: true
+Session: $ITERM_SESSION_ID
+
+Implementation of enum support for framework bindings. Enables generation of
+idiomatic Go enum constants from Objective-C enum declarations.
+
+Changes made:
+- occ2go/types.go: Added ParsedEnum and ParsedEnumCase types
+- occ2go/parser.go: Implemented enum parsing and case name extraction
+- cmd/generate-framework-bindings/main.go: Integrated enum collection pipeline
+- cmd/generate-framework-bindings/templates.txtar: Added enum const block generation
+- cmd/generate-framework-bindings/funcs.go: Added enumType template function
+
+All code compiles and is ready for use. Infrastructure will generate const
+blocks for any enums detected with c:@E@ external ID prefix.
