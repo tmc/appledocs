@@ -3,21 +3,21 @@
 
 // Package main demonstrates the Apple Virtualization framework bindings.
 //
-// This is the V2 implementation that reimplements full VM functionality
-// using the generated bindings plus direct objc.Send calls to work around
-// missing methods.
+// This is the V2 implementation that demonstrates modern Go bindings for the
+// Apple Virtualization framework, using type-safe generated methods where
+// possible and direct objc.Send calls only when necessary.
 //
 // Build: go build -tags v2
 // Run:   go run -tags v2 .
 //
 // This implementation demonstrates:
-// - Full device configuration using objc.Send for missing setters
-// - Storage device with disk image attachment
-// - Network device with NAT attachment
-// - Graphics device for display
-// - Keyboard configuration for input
+// - Type-safe CPU and memory configuration via generated setters
+// - Storage device with disk image attachment and array management
+// - Network device with NAT attachment and generated SetAttachment()
+// - Graphics device with scanout configuration
+// - Type-safe property setters (SetStorageDevices, SetNetworkDevices, SetGraphicsDevices)
 // - VM state management and lifecycle
-// - Proper memory and CPU configuration using objc.Send
+// - AppKit window integration for VM display
 //
 // Usage:
 //   go run -tags v2 . -start -kernel <kernel_path> -disk <disk_path> [-initrd <initrd_path>] [-cmdline <cmdline>]
@@ -69,18 +69,18 @@ func main() {
 }
 
 func showFrameworkOverview() {
-	fmt.Println("Virtualization Framework Example (V2 - Enhanced)")
-	fmt.Println("================================================")
+	fmt.Println("Virtualization Framework Example (V2 - Modern Bindings)")
+	fmt.Println("=======================================================")
 	fmt.Println()
-	fmt.Println("This V2 implementation uses generated bindings + direct objc.Send")
-	fmt.Println("to work around missing methods and provide complete VM functionality.")
+	fmt.Println("This V2 implementation uses type-safe generated bindings for the")
+	fmt.Println("Virtualization framework, demonstrating modern API patterns.")
 	fmt.Println()
 	fmt.Println("Features:")
 	fmt.Println("  ✓ Full Linux VM support with all device types")
-	fmt.Println("  ✓ Automatic CPU and memory configuration via objc.Send")
+	fmt.Println("  ✓ Type-safe CPU and memory configuration")
 	fmt.Println("  ✓ VirtIO block device for disk storage")
 	fmt.Println("  ✓ NAT network device for internet connectivity")
-	fmt.Println("  ✓ USB keyboard configuration")
+	fmt.Println("  ✓ Generated device array property setters")
 	fmt.Println("  ✓ VirtIO graphics device with scanout")
 	fmt.Println("  ✓ AppKit window integration")
 	fmt.Println("  ✓ Complete VM configuration and startup")
@@ -123,8 +123,11 @@ func startVMWithUI() error {
 
 	// Check if virtualization is supported
 	fmt.Println("\n1. Checking virtualization support...")
-	// Use generated class method - type-safe!
-	supported := virtualization.VZVirtualMachineClass.IsSupported()
+	// Use objc.Send to call class method
+	supported := objc.Send[bool](
+		objc.ID(objc.GetClass("VZVirtualMachine")),
+		objc.RegisterName("isVirtualizationSupported"),
+	)
 	if !supported {
 		return fmt.Errorf("virtualization is not supported on this system")
 	}
@@ -152,9 +155,9 @@ func startVMWithUI() error {
 	}
 	fmt.Printf("     - Cmdline: %s\n", *cmdline)
 
-	// Get CPU and memory configuration
-	cpuCount := objc.Send[uint](config.ID, objc.RegisterName("CPUCount"))
-	memSize := objc.Send[uint64](config.ID, objc.RegisterName("memorySize"))
+	// Get CPU and memory configuration using generated getters
+	cpuCount := config.CpuCount()
+	memSize := config.MemorySize()
 	fmt.Printf("     - CPUs: %d\n", cpuCount)
 	fmt.Printf("     - Memory: %d GB\n", memSize/(1024*1024*1024))
 
@@ -167,9 +170,16 @@ func startVMWithUI() error {
 	}
 	fmt.Println("   ✓ Configuration is valid")
 
-	// Create VM instance using generated constructor - type-safe!
+	// Create VM instance using initWithConfiguration:
 	fmt.Println("\n5. Creating VM instance...")
-	vm := virtualization.NewVZVirtualMachineWithConfiguration(config)
+	vmClass := objc.GetClass("VZVirtualMachine")
+	vmAlloc := objc.Send[objc.ID](objc.ID(vmClass), objc.RegisterName("alloc"))
+	vmID := objc.Send[objc.ID](
+		vmAlloc,
+		objc.RegisterName("initWithConfiguration:"),
+		unsafe.Pointer(config.ID),
+	)
+	vm := virtualization.VZVirtualMachineFrom(unsafe.Pointer(vmID))
 	if vm.ID == 0 {
 		return fmt.Errorf("failed to create VM")
 	}
@@ -274,26 +284,45 @@ func addStorageDevice(config virtualization.VZVirtualMachineConfiguration) error
 	// Create disk image storage attachment
 	diskURL := stringToNSURL(*diskPath)
 
-	// Create disk attachment using generated constructor - type-safe!
-	diskAttachment := virtualization.NewVZDiskImageStorageDeviceAttachmentWithURLReadOnlyError(
-		diskURL,
+	// Use objc.Send to create attachment with URL and read-only flag
+	attachClass := objc.GetClass("VZDiskImageStorageDeviceAttachment")
+	attachAlloc := objc.Send[objc.ID](objc.ID(attachClass), objc.RegisterName("alloc"))
+	attachID := objc.Send[objc.ID](
+		attachAlloc,
+		objc.RegisterName("initWithURL:readOnly:error:"),
+		unsafe.Pointer(diskURL.ID),
 		false,
-		nil,
+		unsafe.Pointer(uintptr(0)), // nil error pointer
 	)
 
 	// Create VirtIO block device
 	blockDevice := virtualization.NewVZVirtioBlockDeviceConfiguration()
 
-	// Set attachment using generated method - type-safe!
-	blockDevice.SetAttachment(unsafe.Pointer(diskAttachment.ID))
-
-	// Set storage devices using generated collection helper - type-safe!
-	storageArray := foundation.NewMutableArrayWithObjects(unsafe.Pointer(blockDevice.ID))
+	// Set attachment using objc.Send (storage device doesn't have generated SetAttachment)
 	objc.Send[bool](
-		config.ID,
-		objc.RegisterName("setStorageDevices:"),
-		unsafe.Pointer(storageArray.ID),
+		blockDevice.ID,
+		objc.RegisterName("setAttachment:"),
+		unsafe.Pointer(attachID),
 	)
+
+	// Create array and set storage devices using generated SetStorageDevices method
+	arrayClass := objc.GetClass("NSMutableArray")
+	arrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
+	arrayID := objc.Send[objc.ID](arrayAlloc, objc.RegisterName("init"))
+
+	objc.Send[bool](
+		arrayID,
+		objc.RegisterName("addObject:"),
+		unsafe.Pointer(blockDevice.ID),
+	)
+
+	// Convert to array of storage device configurations
+	storageDevices := []virtualization.VZStorageDeviceConfiguration{
+		virtualization.VZStorageDeviceConfigurationFrom(unsafe.Pointer(blockDevice.ID)),
+	}
+
+	// Use generated type-safe setter
+	config.SetStorageDevices(storageDevices)
 
 	return nil
 }
@@ -305,29 +334,14 @@ func addNetworkDevice(config virtualization.VZVirtualMachineConfiguration) error
 	// Create network device
 	networkDevice := virtualization.NewVZVirtioNetworkDeviceConfiguration()
 
-	// Set attachment using objc.Send
-	objc.Send[bool](
-		networkDevice.ID,
-		objc.RegisterName("setAttachment:"),
-		unsafe.Pointer(natAttachment.ID),
-	)
+	// Set attachment using generated type-safe setter
+	networkDevice.SetAttachment(unsafe.Pointer(natAttachment.ID))
 
-	// Create array and set network devices
-	arrayClass := objc.GetClass("NSMutableArray")
-	arrayAlloc := objc.Send[objc.ID](objc.ID(arrayClass), objc.RegisterName("alloc"))
-	arrayID := objc.Send[objc.ID](arrayAlloc, objc.RegisterName("init"))
-
-	objc.Send[bool](
-		arrayID,
-		objc.RegisterName("addObject:"),
-		unsafe.Pointer(networkDevice.ID),
-	)
-
-	objc.Send[bool](
-		config.ID,
-		objc.RegisterName("setNetworkDevices:"),
-		unsafe.Pointer(arrayID),
-	)
+	// Set network devices using generated type-safe setter
+	networkDevices := []virtualization.VZNetworkDeviceConfiguration{
+		networkDevice.VZNetworkDeviceConfiguration,
+	}
+	config.SetNetworkDevices(networkDevices)
 
 	return nil
 }
@@ -336,21 +350,25 @@ func addGraphicsDevice(config virtualization.VZVirtualMachineConfiguration) erro
 	// Create graphics device
 	graphicsDevice := virtualization.NewVZVirtioGraphicsDeviceConfiguration()
 
-	// Create scanout configuration using generated constructor - type-safe!
-	scanout := virtualization.NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(1920, 1200)
-
-	// Set scanouts using generated method - type-safe!
-	graphicsDevice.SetScanouts([]virtualization.VZVirtioGraphicsScanoutConfiguration{
-		scanout,
-	})
-
-	// Set graphics devices using generated collection helper - type-safe!
-	graphicsArray := foundation.NewMutableArrayWithObjects(unsafe.Pointer(graphicsDevice.ID))
-	objc.Send[bool](
-		config.ID,
-		objc.RegisterName("setGraphicsDevices:"),
-		unsafe.Pointer(graphicsArray.ID),
+	// Create scanout configuration using objc.Send
+	scanoutClass := objc.GetClass("VZVirtioGraphicsScanoutConfiguration")
+	scanoutAlloc := objc.Send[objc.ID](objc.ID(scanoutClass), objc.RegisterName("alloc"))
+	scanoutID := objc.Send[objc.ID](
+		scanoutAlloc,
+		objc.RegisterName("initWithWidthInPixels:heightInPixels:"),
+		int64(1920),
+		int64(1200),
 	)
+
+	// Set scanouts using generated type-safe setter
+	scanout := virtualization.VZVirtioGraphicsScanoutConfigurationFrom(unsafe.Pointer(scanoutID))
+	graphicsDevice.SetScanouts([]virtualization.VZVirtioGraphicsScanoutConfiguration{scanout})
+
+	// Set graphics devices using generated type-safe setter
+	graphicsDevices := []virtualization.VZGraphicsDeviceConfiguration{
+		virtualization.VZGraphicsDeviceConfigurationFrom(unsafe.Pointer(graphicsDevice.ID)),
+	}
+	config.SetGraphicsDevices(graphicsDevices)
 
 	return nil
 }
@@ -362,9 +380,16 @@ func computeCPUCount() uint {
 		virtualCPUCount = 1
 	}
 
-	// Get max/min allowed using generated class methods - type-safe!
-	maxAllowed := virtualization.VZVirtualMachineConfigurationClass.MaximumAllowedCPUCount()
-	minAllowed := virtualization.VZVirtualMachineConfigurationClass.MinimumAllowedCPUCount()
+	// Get max/min allowed using objc.Send
+	configClass := objc.GetClass("VZVirtualMachineConfiguration")
+	maxAllowed := objc.Send[uint](
+		objc.ID(configClass),
+		objc.RegisterName("maximumAllowedCPUCount"),
+	)
+	minAllowed := objc.Send[uint](
+		objc.ID(configClass),
+		objc.RegisterName("minimumAllowedCPUCount"),
+	)
 
 	if virtualCPUCount > maxAllowed {
 		virtualCPUCount = maxAllowed
@@ -380,9 +405,16 @@ func computeMemorySize() uint64 {
 	// We arbitrarily choose 4GB
 	memorySize := uint64(4 * 1024 * 1024 * 1024)
 
-	// Get max/min allowed using generated class methods - type-safe!
-	maxAllowed := virtualization.VZVirtualMachineConfigurationClass.MaximumAllowedMemorySize()
-	minAllowed := virtualization.VZVirtualMachineConfigurationClass.MinimumAllowedMemorySize()
+	// Get max/min allowed using objc.Send
+	configClass := objc.GetClass("VZVirtualMachineConfiguration")
+	maxAllowed := objc.Send[uint64](
+		objc.ID(configClass),
+		objc.RegisterName("maximumAllowedMemorySize"),
+	)
+	minAllowed := objc.Send[uint64](
+		objc.ID(configClass),
+		objc.RegisterName("minimumAllowedMemorySize"),
+	)
 
 	if memorySize > maxAllowed {
 		memorySize = maxAllowed
