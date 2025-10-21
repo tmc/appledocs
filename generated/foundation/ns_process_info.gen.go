@@ -291,6 +291,7 @@ func (p_ ProcessInfo) ProcessName() string {
 func (p_ ProcessInfo) SetProcessName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), objc.String(value))
 }
+
 // The amount of time the system has been awake since the last time it was restarted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/systemUptime

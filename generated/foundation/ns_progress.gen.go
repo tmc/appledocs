@@ -207,6 +207,7 @@ func (p_ Progress) EstimatedTimeRemaining() unsafe.Pointer {
 func (p_ Progress) SetEstimatedTimeRemaining(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEstimatedTimeRemaining:"), value)
 }
+
 // The number of completed files for a file progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileCompletedCount
@@ -224,6 +225,7 @@ func (p_ Progress) FileCompletedCount() unsafe.Pointer {
 func (p_ Progress) SetFileCompletedCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileCompletedCount:"), value)
 }
+
 // The total number of files for a file progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileTotalCount
@@ -241,6 +243,7 @@ func (p_ Progress) FileTotalCount() unsafe.Pointer {
 func (p_ Progress) SetFileTotalCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileTotalCount:"), value)
 }
+
 // The number of completed units of work for the current job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/completedUnitCount
@@ -258,6 +261,7 @@ func (p_ Progress) CompletedUnitCount() unsafe.Pointer {
 func (p_ Progress) SetCompletedUnitCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCompletedUnitCount:"), value)
 }
+
 // The kind of file operation for the progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
@@ -275,6 +279,7 @@ func (p_ Progress) FileOperationKind() unsafe.Pointer {
 func (p_ Progress) SetFileOperationKind(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileOperationKind:"), value)
 }
+
 // A URL that represents the file for the current progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileURL
@@ -292,6 +297,7 @@ func (p_ Progress) FileURL() unsafe.Pointer {
 func (p_ Progress) SetFileURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileURL:"), value)
 }
+
 // The fraction of the overall work that the progress object completes, including work from its suboperations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fractionCompleted
@@ -317,6 +323,7 @@ func (p_ Progress) Cancellable() bool {
 func (p_ Progress) SetCancellable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCancellable:"), value)
 }
+
 // A Boolean value that Indicates whether the receiver is tracking canceled work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancelled
@@ -358,6 +365,7 @@ func (p_ Progress) Pausable() bool {
 func (p_ Progress) SetPausable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPausable:"), value)
 }
+
 // A Boolean value that indicates whether the receiver is tracking paused work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPaused
@@ -383,6 +391,7 @@ func (p_ Progress) Kind() unsafe.Pointer {
 func (p_ Progress) SetKind(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setKind:"), value)
 }
+
 // A more specific localized description of tracked progress for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
@@ -400,6 +409,7 @@ func (p_ Progress) LocalizedAdditionalDescription() string {
 func (p_ Progress) SetLocalizedAdditionalDescription(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), objc.String(value))
 }
+
 // A localized description of tracked progress for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
@@ -417,6 +427,7 @@ func (p_ Progress) LocalizedDescription() string {
 func (p_ Progress) SetLocalizedDescription(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
+
 // The total number of tracked units of work for the current progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/totalUnitCount
@@ -434,4 +445,5 @@ func (p_ Progress) TotalUnitCount() unsafe.Pointer {
 func (p_ Progress) SetTotalUnitCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTotalUnitCount:"), value)
 }
+
 

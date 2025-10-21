@@ -231,6 +231,7 @@ func (e_ ExtensionContext) SetNotificationActions(value []objc.ID) {
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setNotificationActions:"), nsArray)
 }
+
 // The active display mode of the widget.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetActiveDisplayMode
@@ -256,5 +257,6 @@ func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() unsafe.Pointer {
 func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setWidgetLargestAvailableDisplayMode:"), value)
 }
+
 
 

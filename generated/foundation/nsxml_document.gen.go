@@ -170,6 +170,7 @@ func (x_ XMLDocument) MIMEType() string {
 func (x_ XMLDocument) SetMIMEType(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
 }
+
 // Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/xmlData

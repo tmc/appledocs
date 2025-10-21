@@ -106,6 +106,7 @@ func (m_ MutableURLRequest) CachePolicy() unsafe.Pointer {
 func (m_ MutableURLRequest) SetCachePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCachePolicy:"), value)
 }
+
 // The HTTP request method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
@@ -123,6 +124,7 @@ func (m_ MutableURLRequest) HTTPMethod() string {
 func (m_ MutableURLRequest) SetHTTPMethod(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPMethod:"), objc.String(value))
 }
+
 // The URL being requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/url
@@ -140,5 +142,6 @@ func (m_ MutableURLRequest) URL() unsafe.Pointer {
 func (m_ MutableURLRequest) SetURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setURL:"), value)
 }
+
 
 

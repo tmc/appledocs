@@ -167,6 +167,7 @@ func (u_ URLComponents) PercentEncodedHost() string {
 func (u_ URLComponents) SetPercentEncodedHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
 }
+
 // A URL derived from the components object, in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string

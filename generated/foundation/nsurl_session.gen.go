@@ -409,6 +409,7 @@ func (u_ URLSession) SessionDescription() string {
 func (u_ URLSession) SetSessionDescription(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), objc.String(value))
 }
+
 // The shared singleton session object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/shared

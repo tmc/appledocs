@@ -135,6 +135,7 @@ func (d_ DateFormatter) Calendar() unsafe.Pointer {
 func (d_ DateFormatter) SetCalendar(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
+
 // The date format string used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
@@ -152,6 +153,7 @@ func (d_ DateFormatter) DateFormat() string {
 func (d_ DateFormatter) SetDateFormat(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), objc.String(value))
 }
+
 // The date style of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateStyle
@@ -169,6 +171,7 @@ func (d_ DateFormatter) DateStyle() unsafe.Pointer {
 func (d_ DateFormatter) SetDateStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
 }
+
 // Returns the default formatting behavior for instances of the class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/defaultFormatterBehavior
@@ -186,6 +189,7 @@ func (d_ DateFormatter) DefaultFormatterBehavior() unsafe.Pointer {
 func (d_ DateFormatter) SetDefaultFormatterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultFormatterBehavior:"), value)
 }
+
 // The era symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/eraSymbols
@@ -213,6 +217,7 @@ func (d_ DateFormatter) SetEraSymbols(value []string) {
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEraSymbols:"), nsArray)
 }
+
 // The formatter behavior for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formatterBehavior
@@ -230,6 +235,7 @@ func (d_ DateFormatter) FormatterBehavior() unsafe.Pointer {
 func (d_ DateFormatter) SetFormatterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormatterBehavior:"), value)
 }
+
 // The capitalization formatting context used when formatting a date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
@@ -247,6 +253,7 @@ func (d_ DateFormatter) FormattingContext() unsafe.Pointer {
 func (d_ DateFormatter) SetFormattingContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
+
 // The start date of the Gregorian calendar for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/gregorianStartDate
@@ -264,6 +271,7 @@ func (d_ DateFormatter) GregorianStartDate() unsafe.Pointer {
 func (d_ DateFormatter) SetGregorianStartDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setGregorianStartDate:"), value)
 }
+
 // The locale for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/locale
@@ -281,6 +289,7 @@ func (d_ DateFormatter) Locale() unsafe.Pointer {
 func (d_ DateFormatter) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
 }
+
 // The quarter symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/quarterSymbols
@@ -308,6 +317,7 @@ func (d_ DateFormatter) SetQuarterSymbols(value []string) {
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setQuarterSymbols:"), nsArray)
 }
+
 // The array of standalone weekday symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneWeekdaySymbols
@@ -335,6 +345,7 @@ func (d_ DateFormatter) SetStandaloneWeekdaySymbols(value []string) {
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneWeekdaySymbols:"), nsArray)
 }
+
 // The time style of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeStyle
@@ -352,6 +363,7 @@ func (d_ DateFormatter) TimeStyle() unsafe.Pointer {
 func (d_ DateFormatter) SetTimeStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
 }
+
 // The time zone for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeZone
@@ -369,6 +381,7 @@ func (d_ DateFormatter) TimeZone() unsafe.Pointer {
 func (d_ DateFormatter) SetTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
+
 // The very short month symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortMonthSymbols
@@ -396,4 +409,5 @@ func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string) {
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortMonthSymbols:"), nsArray)
 }
+
 

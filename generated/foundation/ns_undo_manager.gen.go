@@ -211,6 +211,7 @@ func (u_ UndoManager) GroupsByEvent() bool {
 func (u_ UndoManager) SetGroupsByEvent(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setGroupsByEvent:"), value)
 }
+
 // The number of times you can invoke redo before there are no actions left to redo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoCount
@@ -254,6 +255,7 @@ func (u_ UndoManager) SetRunLoopModes(value []string) {
 	}
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), nsArray)
 }
+
 // The name identifying the undo action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName

@@ -745,6 +745,7 @@ func (f_ FileManager) Delegate() objc.ID {
 func (f_ FileManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The home directory for the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/homeDirectoryForCurrentUser

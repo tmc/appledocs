@@ -122,6 +122,7 @@ func (u_ URLSessionTask) CountOfBytesClientExpectsToReceive() unsafe.Pointer {
 func (u_ URLSessionTask) SetCountOfBytesClientExpectsToReceive(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesClientExpectsToReceive:"), value)
 }
+
 // A best-guess upper bound on the number of bytes the client expects to send.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesClientExpectsToSend
@@ -139,6 +140,7 @@ func (u_ URLSessionTask) CountOfBytesClientExpectsToSend() unsafe.Pointer {
 func (u_ URLSessionTask) SetCountOfBytesClientExpectsToSend(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesClientExpectsToSend:"), value)
 }
+
 // The number of bytes that the task expects to receive in the response body.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesExpectedToReceive
@@ -196,6 +198,7 @@ func (u_ URLSessionTask) Delegate() objc.ID {
 func (u_ URLSessionTask) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The earliest date at which the network load should begin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/earliestBeginDate
@@ -213,6 +216,7 @@ func (u_ URLSessionTask) EarliestBeginDate() unsafe.Pointer {
 func (u_ URLSessionTask) SetEarliestBeginDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEarliestBeginDate:"), value)
 }
+
 // An error object that indicates why the task failed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/error
@@ -246,6 +250,7 @@ func (u_ URLSessionTask) PrefersIncrementalDelivery() bool {
 func (u_ URLSessionTask) SetPrefersIncrementalDelivery(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPrefersIncrementalDelivery:"), value)
 }
+
 // The relative priority at which you’d like a host to handle the task, specified as a floating point value between (lowest priority) and (highest priority).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
@@ -263,6 +268,7 @@ func (u_ URLSessionTask) Priority() unsafe.Pointer {
 func (u_ URLSessionTask) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPriority:"), value)
 }
+
 // A representation of the overall task progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/progress
@@ -304,6 +310,7 @@ func (u_ URLSessionTask) TaskDescription() string {
 func (u_ URLSessionTask) SetTaskDescription(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), objc.String(value))
 }
+
 // An identifier uniquely identifying the task within a given session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskIdentifier

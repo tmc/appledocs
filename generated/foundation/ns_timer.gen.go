@@ -216,6 +216,7 @@ func (t_ Timer) FireDate() unsafe.Pointer {
 func (t_ Timer) SetFireDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFireDate:"), value)
 }
+
 // A Boolean value that indicates whether the timer is currently valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/isValid
@@ -249,6 +250,7 @@ func (t_ Timer) Tolerance() TimeInterval {
 func (t_ Timer) SetTolerance(value TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTolerance:"), value)
 }
+
 // The receiver’s object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/userInfo

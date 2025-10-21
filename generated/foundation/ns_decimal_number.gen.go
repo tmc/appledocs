@@ -364,6 +364,7 @@ func (d_ DecimalNumber) DefaultBehavior() objc.ID {
 func (d_ DecimalNumber) SetDefaultBehavior(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultBehavior:"), value)
 }
+
 // The decimal number’s closest approximate value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/doubleValue

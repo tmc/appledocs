@@ -97,6 +97,7 @@ func (u_ UserNotification) ActionButtonTitle() string {
 func (u_ UserNotification) SetActionButtonTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), objc.String(value))
 }
+
 // Specifies what caused a user notification to occur.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/activationType-swift.property
@@ -132,6 +133,7 @@ func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) 
 	}
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), nsArray)
 }
+
 // An additional action selected by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActivationAction
@@ -157,6 +159,7 @@ func (u_ UserNotification) ContentImage() unsafe.Pointer {
 func (u_ UserNotification) SetContentImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setContentImage:"), value)
 }
+
 // Specifies when the notification should be delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryDate
@@ -174,6 +177,7 @@ func (u_ UserNotification) DeliveryDate() unsafe.Pointer {
 func (u_ UserNotification) SetDeliveryDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
 }
+
 // The body text of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
@@ -191,6 +195,7 @@ func (u_ UserNotification) InformativeText() string {
 func (u_ UserNotification) SetInformativeText(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), objc.String(value))
 }
+
 // Specifies whether the user notification has been presented.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/isPresented
@@ -224,6 +229,7 @@ func (u_ UserNotification) OtherButtonTitle() string {
 func (u_ UserNotification) SetOtherButtonTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), objc.String(value))
 }
+
 // The response with which the user responded to a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/response
@@ -249,5 +255,6 @@ func (u_ UserNotification) Title() string {
 func (u_ UserNotification) SetTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 
 

@@ -116,3 +116,4 @@ func (x_ XPCCoder) SetUserInfo(value objc.ID) {
 }
 
 
+

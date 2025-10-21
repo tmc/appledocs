@@ -127,6 +127,7 @@ func (p_ PortMessage) Msgid() unsafe.Pointer {
 func (p_ PortMessage) SetMsgid(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
+
 // For an outgoing message, returns the port on which replies to the receiver will arrive. For an incoming message, returns the port the receiver did arrive on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort

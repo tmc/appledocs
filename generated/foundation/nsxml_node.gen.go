@@ -284,6 +284,7 @@ func (x_ XMLNode) Name() string {
 func (x_ XMLNode) SetName(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // Returns the object value of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
@@ -301,6 +302,7 @@ func (x_ XMLNode) ObjectValue() objc.ID {
 func (x_ XMLNode) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
 }
+
 // Returns the parent node of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
@@ -326,6 +328,7 @@ func (x_ XMLNode) StringValue() string {
 func (x_ XMLNode) SetStringValue(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
+
 // Returns the URI associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
@@ -343,4 +346,5 @@ func (x_ XMLNode) URI() string {
 func (x_ XMLNode) SetURI(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
 }
+
 

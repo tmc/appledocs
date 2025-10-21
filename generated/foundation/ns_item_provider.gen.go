@@ -171,6 +171,7 @@ func (i_ ItemProvider) PreferredPresentationStyle() unsafe.Pointer {
 func (i_ ItemProvider) SetPreferredPresentationStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
 }
+
 // The rectangle that the item occupies in the host app’s source window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/sourceFrame

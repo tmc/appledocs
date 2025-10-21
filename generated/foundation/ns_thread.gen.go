@@ -284,6 +284,7 @@ func (t_ Thread) Name() string {
 func (t_ Thread) SetName(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
 func (t_ Thread) QualityOfService() unsafe.Pointer {
@@ -298,6 +299,7 @@ func (t_ Thread) QualityOfService() unsafe.Pointer {
 func (t_ Thread) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
+
 // The stack size of the receiver, in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/stackSize
@@ -315,6 +317,7 @@ func (t_ Thread) StackSize() uint {
 func (t_ Thread) SetStackSize(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStackSize:"), value)
 }
+
 // The receiver’s priority
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
@@ -332,4 +335,5 @@ func (t_ Thread) ThreadPriority() unsafe.Pointer {
 func (t_ Thread) SetThreadPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadPriority:"), value)
 }
+
 

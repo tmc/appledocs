@@ -245,6 +245,7 @@ func (n_ NetService) Delegate() objc.ID {
 func (n_ NetService) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A string containing the domain for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
@@ -278,6 +279,7 @@ func (n_ NetService) IncludesPeerToPeer() bool {
 func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
+
 // A string containing the name of this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name

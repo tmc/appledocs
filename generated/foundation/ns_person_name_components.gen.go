@@ -97,6 +97,7 @@ func (p_ PersonNameComponents) FamilyName() string {
 func (p_ PersonNameComponents) SetFamilyName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFamilyName:"), objc.String(value))
 }
+
 // Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
@@ -114,6 +115,7 @@ func (p_ PersonNameComponents) GivenName() string {
 func (p_ PersonNameComponents) SetGivenName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGivenName:"), objc.String(value))
 }
+
 // Secondary name bestowed upon an individual to differentiate them from others that have the same given name .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
@@ -131,6 +133,7 @@ func (p_ PersonNameComponents) MiddleName() string {
 func (p_ PersonNameComponents) SetMiddleName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMiddleName:"), objc.String(value))
 }
+
 // The portion of a name’s full form of address that precedes the name itself .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
@@ -148,6 +151,7 @@ func (p_ PersonNameComponents) NamePrefix() string {
 func (p_ PersonNameComponents) SetNamePrefix(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNamePrefix:"), objc.String(value))
 }
+
 // The portion of a name’s full form of address that follows the name itself .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
@@ -165,6 +169,7 @@ func (p_ PersonNameComponents) NameSuffix() string {
 func (p_ PersonNameComponents) SetNameSuffix(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNameSuffix:"), objc.String(value))
 }
+
 // Name substituted for the purposes of familiarity .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
@@ -182,6 +187,7 @@ func (p_ PersonNameComponents) Nickname() string {
 func (p_ PersonNameComponents) SetNickname(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNickname:"), objc.String(value))
 }
+
 // The phonetic representation name components of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/phoneticRepresentation
@@ -199,5 +205,6 @@ func (p_ PersonNameComponents) PhoneticRepresentation() unsafe.Pointer {
 func (p_ PersonNameComponents) SetPhoneticRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPhoneticRepresentation:"), value)
 }
+
 
 

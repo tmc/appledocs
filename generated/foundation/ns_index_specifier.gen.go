@@ -112,3 +112,4 @@ func (i_ IndexSpecifier) SetIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:"), value)
 }
 
+

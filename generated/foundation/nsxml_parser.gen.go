@@ -128,6 +128,7 @@ func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
 func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAllowedExternalEntityURLs:"), value)
 }
+
 // The line number of the XML document being processed by the parser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/lineNumber
@@ -169,4 +170,5 @@ func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
 func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
 }
+
 

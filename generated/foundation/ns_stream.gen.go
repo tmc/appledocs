@@ -160,6 +160,7 @@ func (s_ Stream) Delegate() objc.ID {
 func (s_ Stream) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Returns an object representing the stream error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamError

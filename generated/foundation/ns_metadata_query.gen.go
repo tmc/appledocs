@@ -114,6 +114,7 @@ func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
 func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotificationBatchingInterval:"), value)
 }
+
 // The queue on which query result notifications are posted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
@@ -131,6 +132,7 @@ func (m_ MetadataQuery) OperationQueue() unsafe.Pointer {
 func (m_ MetadataQuery) SetOperationQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationQueue:"), value)
 }
+
 // The predicate used to filter query results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
@@ -148,6 +150,7 @@ func (m_ MetadataQuery) Predicate() unsafe.Pointer {
 func (m_ MetadataQuery) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPredicate:"), value)
 }
+
 // An array containing the query’s results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/results
@@ -173,5 +176,6 @@ func (m_ MetadataQuery) SearchScopes() unsafe.Pointer {
 func (m_ MetadataQuery) SetSearchScopes(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchScopes:"), value)
 }
+
 
 

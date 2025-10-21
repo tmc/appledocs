@@ -146,6 +146,7 @@ func (n_ NetServiceBrowser) Delegate() objc.ID {
 func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
@@ -163,4 +164,5 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
+
 

@@ -239,6 +239,7 @@ func (x_ XPCConnection) ExportedInterface() unsafe.Pointer {
 func (x_ XPCConnection) SetExportedInterface(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedInterface:"), value)
 }
+
 // An exported object for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedObject
@@ -256,6 +257,7 @@ func (x_ XPCConnection) ExportedObject() objc.ID {
 func (x_ XPCConnection) SetExportedObject(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedObject:"), value)
 }
+
 // The process ID (PID) of the connecting process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/processIdentifier
@@ -281,6 +283,7 @@ func (x_ XPCConnection) RemoteObjectInterface() unsafe.Pointer {
 func (x_ XPCConnection) SetRemoteObjectInterface(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRemoteObjectInterface:"), value)
 }
+
 // Returns a proxy for the remote object (that is, the from the other side of this connection).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxy

@@ -224,6 +224,7 @@ func (x_ XMLDTD) PublicID() string {
 func (x_ XMLDTD) SetPublicID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), objc.String(value))
 }
+
 // Returns the receiver’s system identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
@@ -241,4 +242,5 @@ func (x_ XMLDTD) SystemID() string {
 func (x_ XMLDTD) SetSystemID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
+
 

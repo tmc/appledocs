@@ -216,6 +216,7 @@ func (t_ TimeZone) AbbreviationDictionary() unsafe.Pointer {
 func (t_ TimeZone) SetAbbreviationDictionary(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviationDictionary:"), value)
 }
+
 // The data that stores the information used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/data
@@ -241,6 +242,7 @@ func (t_ TimeZone) DefaultTimeZone() unsafe.Pointer {
 func (t_ TimeZone) SetDefaultTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultTimeZone:"), value)
 }
+
 // A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/description

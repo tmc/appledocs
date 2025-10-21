@@ -133,6 +133,7 @@ func (f_ FileWrapper) Filename() string {
 func (f_ FileWrapper) SetFilename(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
+
 // The contents of the file wrapper as an opaque data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation

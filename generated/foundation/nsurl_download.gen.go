@@ -146,6 +146,7 @@ func (u_ URLDownload) DeletesFileUponFailure() bool {
 func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
+
 // Returns the request that initiated the receiver’s download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request

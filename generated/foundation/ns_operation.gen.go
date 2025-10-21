@@ -201,6 +201,7 @@ func (o_ Operation) Name() string {
 func (o_ Operation) SetName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
+
 // The relative amount of importance for granting system resources to the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
@@ -218,6 +219,7 @@ func (o_ Operation) QualityOfService() unsafe.Pointer {
 func (o_ Operation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
+
 // The execution priority of the operation in an operation queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
@@ -235,6 +237,7 @@ func (o_ Operation) QueuePriority() unsafe.Pointer {
 func (o_ Operation) SetQueuePriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
+
 // The thread priority to use when executing the operation
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/threadPriority
@@ -252,5 +255,6 @@ func (o_ Operation) ThreadPriority() unsafe.Pointer {
 func (o_ Operation) SetThreadPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setThreadPriority:"), value)
 }
+
 
 

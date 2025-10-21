@@ -106,6 +106,7 @@ func (u_ UserUnixTask) StandardError() unsafe.Pointer {
 func (u_ UserUnixTask) SetStandardError(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardError:"), value)
 }
+
 // The standard input stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
@@ -123,6 +124,7 @@ func (u_ UserUnixTask) StandardInput() unsafe.Pointer {
 func (u_ UserUnixTask) SetStandardInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardInput:"), value)
 }
+
 // The standard output stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
@@ -140,5 +142,6 @@ func (u_ UserUnixTask) StandardOutput() unsafe.Pointer {
 func (u_ UserUnixTask) SetStandardOutput(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardOutput:"), value)
 }
+
 
 

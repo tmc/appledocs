@@ -158,3 +158,4 @@ func (x_ XPCInterface) SetProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setProtocol:"), value)
 }
 
+

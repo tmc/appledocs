@@ -247,6 +247,7 @@ func (c_ Calendar) FirstWeekday() uint {
 func (c_ Calendar) SetFirstWeekday(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFirstWeekday:"), value)
 }
+
 // The locale of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
@@ -264,6 +265,7 @@ func (c_ Calendar) Locale() unsafe.Pointer {
 func (c_ Calendar) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocale:"), value)
 }
+
 // A list of short standalone quarter symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortStandaloneQuarterSymbols
@@ -297,4 +299,5 @@ func (c_ Calendar) TimeZone() unsafe.Pointer {
 func (c_ Calendar) SetTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeZone:"), value)
 }
+
 
