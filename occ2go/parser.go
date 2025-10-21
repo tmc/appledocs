@@ -1035,8 +1035,13 @@ func parseSwiftPropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, e
 
 	// Parse property type (typeIdentifier or keyword)
 	typeParts := []string{}
+	var preciseID string
 	for i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "keyword") {
 		typeParts = append(typeParts, tokens[i].Text)
+		// Capture preciseIdentifier from first typeIdentifier token
+		if preciseID == "" && tokens[i].Kind == "typeIdentifier" && tokens[i].PreciseIdentifier != "" {
+			preciseID = tokens[i].PreciseIdentifier
+		}
 		i++
 		// Skip whitespace between type parts
 		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
@@ -1049,6 +1054,44 @@ func parseSwiftPropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, e
 	}
 
 	property.Type = strings.Join(typeParts, " ")
+
+	// Map Swift types to ObjC types for proper code generation
+	objcType := property.Type
+
+	// Check if this is an ObjC class type using preciseIdentifier
+	if preciseID != "" && strings.HasPrefix(preciseID, "c:objc(cs)") {
+		// Extract ObjC class name: c:objc(cs)NSAttributedString -> NSAttributedString *
+		className := strings.TrimPrefix(preciseID, "c:objc(cs)")
+		objcType = className + " *"
+	} else {
+		// Map Swift primitive types to ObjC types
+		switch property.Type {
+		case "Bool":
+			objcType = "BOOL"
+		case "String":
+			objcType = "NSString *"
+		case "Int":
+			objcType = "NSInteger"
+		case "UInt":
+			objcType = "NSUInteger"
+		case "Double":
+			objcType = "double"
+		case "Float":
+			objcType = "float"
+		case "CGFloat":
+			objcType = "CGFloat"
+		// For other types, keep the Swift type - the type mapper will handle it
+		}
+	}
+	property.ObjCType = objcType
+
+	// Debug output for property type mapping
+	if os.Getenv("DEBUG_PARSER") == "1" {
+		fmt.Fprintf(os.Stderr, "DEBUG parseSwiftPropertyDeclaration: %s\n", property.Name)
+		fmt.Fprintf(os.Stderr, "  Swift Type: %s\n", property.Type)
+		fmt.Fprintf(os.Stderr, "  ObjC Type: %s\n", property.ObjCType)
+		fmt.Fprintf(os.Stderr, "  PreciseID: %s\n", preciseID)
+	}
 
 	// Check for { get } or { get set } to determine readonly
 	// Look for opening brace

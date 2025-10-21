@@ -169,9 +169,10 @@ type Declaration struct {
 
 // Token represents a syntax token in a declaration.
 type Token struct {
-	Kind       string `json:"kind"`
-	Text       string `json:"text"`
-	Identifier string `json:"identifier,omitempty"`
+	Kind              string `json:"kind"`
+	Text              string `json:"text"`
+	Identifier        string `json:"identifier,omitempty"`
+	PreciseIdentifier string `json:"preciseIdentifier,omitempty"`
 }
 
 // RelationshipsSection describes a type of relationship (inheritance, protocol conformance, etc).

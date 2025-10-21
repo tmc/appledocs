@@ -976,26 +976,8 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	// Track seen property names per class to prevent duplicates from documentation
 	classSeenProperties := make(map[string]map[string]bool)
 
-	// Initialize with properties extracted from references
-	// Sort class names for stable output
-	var refPropertyClasses []string
-	for className := range refProperties {
-		refPropertyClasses = append(refPropertyClasses, className)
-	}
-	sort.Strings(refPropertyClasses)
-
-	for _, className := range refPropertyClasses {
-		props := refProperties[className]
-		if classSeenProperties[className] == nil {
-			classSeenProperties[className] = make(map[string]bool)
-		}
-		for _, prop := range props {
-			if !classSeenProperties[className][prop.Name] {
-				classPropertiesMap[className] = append(classPropertiesMap[className], prop)
-				classSeenProperties[className][prop.Name] = true
-			}
-		}
-	}
+	// Note: We'll add reference-based properties AFTER parsing separate files
+	// to prefer the detailed property information from dedicated files
 
 	// Keep track of enums and their cases
 	enumCasesMap := make(map[string][]*occ2go.ParsedEnumCase)
@@ -1021,6 +1003,9 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		} else if strings.Contains(err.Error(), "property (use ParseProperty)") {
 			// This is a property file, parse it as a property
+			if verbose && strings.Contains(path, "attributedTitle") {
+				fmt.Fprintf(os.Stderr, "DEBUG: Parsing property file: %s\n", path)
+			}
 			property, propErr := occ2go.ParseProperty(doc)
 			if propErr != nil {
 				parseErrors++
@@ -1209,6 +1194,29 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				}
 			}
 		}
+
+	// Now add properties from references (for properties without separate files)
+	// This runs AFTER parsing separate property files, so detailed property info is preferred
+	var refPropertyClasses []string
+	for className := range refProperties {
+		refPropertyClasses = append(refPropertyClasses, className)
+	}
+	sort.Strings(refPropertyClasses)
+
+	for _, className := range refPropertyClasses {
+		props := refProperties[className]
+		if classSeenProperties[className] == nil {
+			classSeenProperties[className] = make(map[string]bool)
+		}
+		for _, prop := range props {
+			// Only add if we haven't seen this property name before
+			// Properties from separate files (added earlier) take precedence
+			if !classSeenProperties[className][prop.Name] {
+				classPropertiesMap[className] = append(classPropertiesMap[className], prop)
+				classSeenProperties[className][prop.Name] = true
+			}
+		}
+	}
 
 		// Attach methods and properties to classes
 		propertyCount := 0

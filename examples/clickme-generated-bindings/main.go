@@ -9,9 +9,9 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
-	localObjc "github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	localobjc "github.com/tmc/appledocs/generated/objc"
 )
 
 var (
@@ -33,9 +33,13 @@ func main() {
 	}
 
 	// Create application using the class method
-	app := appkit.ApplicationFrom(appkit.ApplicationClass.SharedApplication())
+	nsAppClass := localobjc.GetClass("NSApplication")
+	sharedApp := localobjc.ID(nsAppClass).Send(localobjc.Sel("sharedApplication"))
+	app := appkit.ApplicationFrom(unsafe.Pointer(sharedApp))
+
+	// Set activation policy to regular (appears in dock)
 	// NSApplicationActivationPolicyRegular = 0
-	app.SetActivationPolicy(unsafe.Pointer(uintptr(0)))
+	sharedApp.Send(localobjc.Sel("setActivationPolicy:"), 0)
 
 	// Create window with proper constructor
 	contentRect := coregraphics.CGRect{
@@ -56,25 +60,26 @@ func main() {
 	)
 
 	// Set window title using the generated helper
-	titleStr := localObjc.String("Hello from Generated Bindings!")
-	window.SetTitle(unsafe.Pointer(titleStr))
+	window.SetTitle("Hello from Generated Bindings!")
 
-	// Create counter label
+	// Create counter label with frame (like purego example)
 	labelRect := coregraphics.CGRect{
 		Origin: coregraphics.CGPoint{X: 100, Y: 200},
 		Size:   coregraphics.CGSize{Width: 200, Height: 40},
 	}
-	counterLabel = appkit.NewTextField()
-	counterLabel.ID.Send(objc.RegisterName("setFrame:"), labelRect)
+	// Use low-level objc calls like purego does
+	nsTextFieldClass := localobjc.GetClass("NSTextField")
+	counterLabelID := localobjc.ID(nsTextFieldClass).Send(localobjc.Sel("alloc"))
+	counterLabel = appkit.TextFieldFrom(unsafe.Pointer(counterLabelID))
+	counterLabel.ID = counterLabel.ID.Send(localobjc.Sel("initWithFrame:"), labelRect)
 
 	// Set label properties using generated helper
-	clicksStr := localObjc.String("Clicks: 0")
-	counterLabel.SetStringValue(unsafe.Pointer(clicksStr))
+	counterLabel.SetStringValue("Clicks: 0")
 	counterLabel.SetEditable(false)
-	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setDrawsBackground:"), false)
+	counterLabel.SetBezeled(false)
+	counterLabel.SetDrawsBackground(false)
 	// NSTextAlignmentCenter = 2
-	counterLabel.ID.Send(objc.RegisterName("setAlignment:"), 2)
+	appkit.ControlFrom(unsafe.Pointer(counterLabel.ID)).SetAlignment(unsafe.Pointer(uintptr(2)))
 
 	// Add label to window's content view
 	contentView := window.ContentView()
@@ -83,32 +88,34 @@ func main() {
 	// Create button handler
 	buttonHandler := createButtonHandler()
 
-	// Create button
+	// Create button with frame (like purego example)
 	buttonRect := coregraphics.CGRect{
 		Origin: coregraphics.CGPoint{X: 150, Y: 120},
 		Size:   coregraphics.CGSize{Width: 100, Height: 40},
 	}
-	button := appkit.NewButton()
-	button.ID.Send(objc.RegisterName("setFrame:"), buttonRect)
+	// Use low-level objc calls like purego does
+	nsButtonClass := localobjc.GetClass("NSButton")
+	buttonID := localobjc.ID(nsButtonClass).Send(localobjc.Sel("alloc"))
+	button := appkit.ButtonFrom(unsafe.Pointer(buttonID))
+	button.ID = button.ID.Send(localobjc.Sel("initWithFrame:"), buttonRect)
 
-	// Set button title - Button doesn't have SetTitle in generated code, use objc.Send
-	buttonTitle := localObjc.String("Click Me!")
-	button.ID.Send(objc.RegisterName("setTitle:"), buttonTitle)
+	// Set button title (Button doesn't have SetTitle, use low-level call)
+	button.ID.Send(localobjc.Sel("setTitle:"), localobjc.String("Click Me!"))
 
-	button.SetTarget(localObjc.ID(buttonHandler))
-	button.SetAction(objc.RegisterName("buttonClicked:"))
+	button.SetTarget(localobjc.ID(buttonHandler))
+	button.SetAction(localobjc.Sel("buttonClicked:"))
 
 	// Add button to window's content view
 	appkit.ViewFrom(contentView).AddSubview(unsafe.Pointer(button.ID))
 
 	// Make window key and bring to front
-	window.MakeKeyAndOrderFront(objc.ID(0))
+	window.MakeKeyAndOrderFront(localobjc.ID(0))
 
 	// Activate ignoring other apps
 	app.ActivateIgnoringOtherApps(true)
 
-	// Run the application event loop
-	app.Run()
+	// Run the application event loop (call via Send like purego does)
+	app.ID.Send(localobjc.Sel("run"))
 }
 
 // runE2ETest runs automated end-to-end test with small delays for visibility
@@ -138,8 +145,7 @@ func runE2ETest() {
 		false,
 	)
 
-	titleStr := localObjc.String("E2E Test Window")
-	window.SetTitle(unsafe.Pointer(titleStr))
+	window.SetTitle("E2E Test Window")
 	fmt.Println("✓ Created window with title")
 	time.Sleep(100 * time.Millisecond)
 
@@ -148,20 +154,23 @@ func runE2ETest() {
 	fmt.Println("✓ Got content view")
 	time.Sleep(100 * time.Millisecond)
 
-	// Create counter label
+	// Create counter label with frame (like purego example)
 	labelRect := coregraphics.CGRect{
 		Origin: coregraphics.CGPoint{X: 100, Y: 200},
 		Size:   coregraphics.CGSize{Width: 200, Height: 40},
 	}
-	counterLabel = appkit.NewTextField()
-	counterLabel.ID.Send(objc.RegisterName("setFrame:"), labelRect)
+	// Use low-level objc calls like purego does
+	nsTextFieldClass := localobjc.GetClass("NSTextField")
+	counterLabelID := localobjc.ID(nsTextFieldClass).Send(localobjc.Sel("alloc"))
+	counterLabel = appkit.TextFieldFrom(unsafe.Pointer(counterLabelID))
+	counterLabel.ID = counterLabel.ID.Send(localobjc.Sel("initWithFrame:"), labelRect)
 
-	clicksStr := localObjc.String("Clicks: 0")
-	counterLabel.SetStringValue(unsafe.Pointer(clicksStr))
+	counterLabel.SetStringValue("Clicks: 0")
 	counterLabel.SetEditable(false)
-	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setDrawsBackground:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setAlignment:"), 2)
+	counterLabel.SetBezeled(false)
+	counterLabel.SetDrawsBackground(false)
+	// NSTextAlignmentCenter = 2
+	appkit.ControlFrom(unsafe.Pointer(counterLabel.ID)).SetAlignment(unsafe.Pointer(uintptr(2)))
 	appkit.ViewFrom(contentView).AddSubview(unsafe.Pointer(counterLabel.ID))
 	fmt.Println("✓ Created counter label")
 	time.Sleep(100 * time.Millisecond)
@@ -171,18 +180,21 @@ func runE2ETest() {
 	fmt.Println("✓ Created button handler")
 	time.Sleep(100 * time.Millisecond)
 
-	// Create button
+	// Create button with frame (like purego example)
 	buttonRect := coregraphics.CGRect{
 		Origin: coregraphics.CGPoint{X: 150, Y: 120},
 		Size:   coregraphics.CGSize{Width: 100, Height: 40},
 	}
-	button := appkit.NewButton()
-	button.ID.Send(objc.RegisterName("setFrame:"), buttonRect)
+	// Use low-level objc calls like purego does
+	nsButtonClass := localobjc.GetClass("NSButton")
+	buttonID := localobjc.ID(nsButtonClass).Send(localobjc.Sel("alloc"))
+	button := appkit.ButtonFrom(unsafe.Pointer(buttonID))
+	button.ID = button.ID.Send(localobjc.Sel("initWithFrame:"), buttonRect)
 
-	buttonTitle := localObjc.String("Click Me!")
-	button.ID.Send(objc.RegisterName("setTitle:"), buttonTitle)
-	button.SetTarget(localObjc.ID(buttonHandler))
-	button.SetAction(objc.RegisterName("buttonClicked:"))
+	// Set button title (Button doesn't have SetTitle, use low-level call)
+	button.ID.Send(localobjc.Sel("setTitle:"), localobjc.String("Click Me!"))
+	button.SetTarget(localobjc.ID(buttonHandler))
+	button.SetAction(localobjc.Sel("buttonClicked:"))
 	appkit.ViewFrom(contentView).AddSubview(unsafe.Pointer(button.ID))
 	fmt.Println("✓ Created and configured button")
 	time.Sleep(100 * time.Millisecond)
@@ -197,7 +209,7 @@ func runE2ETest() {
 
 	// Verify label string values
 	labelValue := counterLabel.StringValue()
-	if labelValue == nil {
+	if labelValue == "" {
 		fmt.Println("✗ FAIL: Label value not set")
 		os.Exit(1)
 	}
@@ -205,7 +217,7 @@ func runE2ETest() {
 	time.Sleep(100 * time.Millisecond)
 
 	// Show window briefly
-	window.MakeKeyAndOrderFront(objc.ID(0))
+	window.MakeKeyAndOrderFront(localobjc.ID(0))
 	fmt.Println("✓ Window displayed")
 	time.Sleep(200 * time.Millisecond)
 
@@ -218,21 +230,20 @@ func runE2ETest() {
 }
 
 // createButtonHandler creates an NSObject subclass that handles button clicks
-func createButtonHandler() objc.ID {
+func createButtonHandler() localobjc.ID {
 	className := "ButtonHandler"
-	class := objc.GetClass(className)
+	class := localobjc.GetClass(className)
 	if class == 0 {
-		superClass := objc.GetClass("NSObject")
-		buttonClicked := func(self objc.ID, _cmd objc.SEL, sender objc.ID) {
+		superClass := localobjc.GetClass("NSObject")
+		buttonClicked := func(self localobjc.ID, _cmd localobjc.SEL, sender localobjc.ID) {
 			clickCount++
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
 
-			labelText := localObjc.String(fmt.Sprintf("Clicks: %d", clickCount))
-			counterLabel.SetStringValue(unsafe.Pointer(labelText))
+			counterLabel.SetStringValue(fmt.Sprintf("Clicks: %d", clickCount))
 		}
 		class, _ = objc.RegisterClass(className, superClass, []*objc.Protocol{}, []objc.FieldDef{},
-			[]objc.MethodDef{{Cmd: objc.RegisterName("buttonClicked:"), Fn: buttonClicked}})
+			[]objc.MethodDef{{Cmd: localobjc.Sel("buttonClicked:"), Fn: buttonClicked}})
 	}
-	handler := objc.ID(class).Send(objc.RegisterName("alloc"))
-	return handler.Send(objc.RegisterName("init"))
+	handler := localobjc.ID(class).Send(localobjc.Sel("alloc"))
+	return handler.Send(localobjc.Sel("init"))
 }
