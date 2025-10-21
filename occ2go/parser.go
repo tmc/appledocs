@@ -1190,71 +1190,61 @@ func ParseEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
 
 	i := 0
 
-	// Look for typedef keyword
-	for i < len(tokens) && !(tokens[i].Kind == "keyword" && tokens[i].Text == "typedef") {
+	// Try modern syntax first: enum NSBackingStoreType : NSUInteger
+	// Look for "enum" keyword
+	for i < len(tokens) && !(tokens[i].Kind == "keyword" && tokens[i].Text == "enum") {
 		i++
 	}
 
 	if i >= len(tokens) {
-		// Not an Objective-C enum (no typedef keyword found)
+		// No enum keyword found
 		return nil
 	}
 
-	i++ // Skip typedef
+	i++ // Skip "enum"
 
 	// Skip whitespace
 	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
 		i++
 	}
 
-	// Look for NS_ENUM or NS_OPTIONS
-	isOptions := false
-	if i < len(tokens) && tokens[i].Kind == "identifier" {
-		if tokens[i].Text == "NS_OPTIONS" {
-			isOptions = true
-		} else if tokens[i].Text != "NS_ENUM" {
-			// Not a recognized enum macro
-			return nil
-		}
-		enum.IsOptions = isOptions
+	// Get enum name (e.g., NSBackingStoreType)
+	if i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "identifier") {
+		enum.Name = tokens[i].Text
 		i++
 	} else {
 		return nil
 	}
 
-	// Parse base type and enum name from parentheses: (NSUInteger, NSWindowStyleMask)
-	for i < len(tokens) && !strings.Contains(tokens[i].Text, "(") {
-		i++
-	}
-
-	if i >= len(tokens) {
-		return nil
-	}
-
-	i++ // Skip opening paren
-
-	// Get base type (e.g., NSUInteger, NSInteger)
+	// Skip whitespace
 	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
 		i++
 	}
 
+	// Look for colon
+	if i < len(tokens) && strings.Contains(tokens[i].Text, ":") {
+		i++ // Skip colon
+	} else {
+		// No colon found - might be a simple enum without base type
+		return enum
+	}
+
+	// Skip whitespace
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	// Get base type (e.g., NSUInteger, NSInteger, UInt)
 	if i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "identifier") {
 		enum.BaseType = tokens[i].Text
-		i++
-	}
 
-	// Skip comma and whitespace
-	for i < len(tokens) && (tokens[i].Text == "," || (tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "")) {
-		i++
-	}
-
-	// Get enum name
-	if i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "identifier") {
-		enum.Name = tokens[i].Text
-	}
-
-	if enum.Name == "" {
-		return nil
+		// Determine if this is an options-style (bitfield) enum
+		// NSUInteger typically indicates NS_OPTIONS, NSInteger typically indicates NS_ENUM
+		// For now, we'll infer based on enum name patterns (contains "Options", "Mask", etc.)
+		lowerName := strings.ToLower(enum.Name)
+		if strings.Contains(lowerName, "options") || strings.Contains(lowerName, "mask") {
+			enum.IsOptions = true
+		}
 	}
 
 	return enum
@@ -1326,10 +1316,16 @@ func ParseEnumCase(doc *appledocs.Document) (*ParsedEnumCase, error) {
 	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
 	abstract := ExtractAbstract(doc.Abstract)
 
-	// Enum cases have external IDs like c:@NSTitledWindowMask (no c:@E@ prefix)
-	// Skip if this is an enum type definition (has c:@E@ prefix)
+	// Modern enum cases have external IDs like: c:@E@NSWindowCollectionBehavior@NSWindowCollectionBehaviorDefault
+	// Enum type definitions have 3 parts: c:@E@EnumName
+	// Enum cases have 4+ parts: c:@E@EnumName@CaseName
 	if strings.HasPrefix(externalID, "c:@E@") {
-		return nil, fmt.Errorf("enum type, not case: %s", externalID)
+		parts := strings.Split(externalID, "@")
+		if len(parts) == 3 {
+			// This is an enum type, not a case
+			return nil, fmt.Errorf("enum type, not case: %s", externalID)
+		}
+		// If len(parts) >= 4, this is an enum case, continue parsing
 	}
 
 	// Get Objective-C variant tokens
