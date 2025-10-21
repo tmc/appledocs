@@ -94,7 +94,8 @@ type ParsedEnum struct {
 // ParsedEnumCase represents a single enum constant/case.
 type ParsedEnumCase struct {
 	Name         string
-	Value        string // The numeric value or expression
+	Value        string // The numeric value or expression (can be int literal or expression)
+	IntValue     int    // The resolved integer value (populated by extract-enum-values tool)
 	Comment      string
 	Availability Availability
 	DocURL       string

@@ -1305,15 +1305,7 @@ const (
 	//
 	// [Full Topic]: {{convertDocURL $case.DocURL}}
 {{end -}}
-{{if $enum.IsOptions -}}
-	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = 1 << {{$i}}
-{{else -}}
-{{if eq $i 0 -}}
-	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = iota
-{{else -}}
-	{{stripObjCPrefix $case.Name}}
-{{end -}}
-{{end -}}
+	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = {{$case.IntValue}}
 {{end -}}
 )
 

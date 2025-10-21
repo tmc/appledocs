@@ -19,6 +19,7 @@ import (
 	"io"
 	"io/fs"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"sort"
@@ -964,6 +965,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		}
 		if verbose {
 			fmt.Fprintf(os.Stderr, "Found %d enum cases for %d enums\n", caseCount, len(enums))
+		}
+
+		// Enrich enum values from macOS SDK headers using extract-enum-values tool
+		if err := enrichEnumValues(framework, enums, verbose); err != nil && verbose {
+			fmt.Fprintf(os.Stderr, "Warning: failed to enrich enum values: %v\n", err)
 		}
 	}
 
@@ -1915,6 +1921,89 @@ func generateObjcRuntimePackage(outputDir string) error {
 		if verbose {
 			fmt.Fprintf(os.Stderr, "Generated %s\n", filePath)
 		}
+	}
+
+	return nil
+}
+
+// enrichEnumValues calls the extract-enum-values tool to get actual enum values from macOS SDK headers.
+// It populates the IntValue field of each ParsedEnumCase with the resolved integer value.
+func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool) error {
+	// Find the extract-enum-values tool
+	extractToolPath := filepath.Join("cmd", "extract-enum-values", "extract-enum-values")
+
+	// Check if tool exists, if not try to build it
+	if _, err := os.Stat(extractToolPath); os.IsNotExist(err) {
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Building extract-enum-values tool...\n")
+		}
+		cmd := exec.Command("go", "build", "-o", extractToolPath, "./cmd/extract-enum-values")
+		if output, err := cmd.CombinedOutput(); err != nil {
+			return fmt.Errorf("failed to build extract-enum-values tool: %w\nOutput: %s", err, output)
+		}
+	}
+
+	enrichedCount := 0
+	failedCount := 0
+
+	// Process each enum
+	for _, enum := range enums {
+		if len(enum.Cases) == 0 {
+			continue
+		}
+
+		// Call extract-enum-values to get actual values
+		cmd := exec.Command(extractToolPath, framework, enum.Name)
+		output, err := cmd.Output()
+		if err != nil {
+			failedCount++
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to extract values for enum %s: %v\n", enum.Name, err)
+			}
+			continue
+		}
+
+		// Parse JSON output
+		var result struct {
+			Name   string `json:"name"`
+			Values []struct {
+				Name  string `json:"name"`
+				Value int    `json:"value"`
+			} `json:"values"`
+		}
+		if err := json.Unmarshal(output, &result); err != nil {
+			failedCount++
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse JSON for enum %s: %v\n", enum.Name, err)
+			}
+			continue
+		}
+
+		// Build a map of case names to values
+		valueMap := make(map[string]int)
+		for _, v := range result.Values {
+			valueMap[v.Name] = v.Value
+		}
+
+		// Populate IntValue field for each case
+		matchedCases := 0
+		for _, enumCase := range enum.Cases {
+			if val, ok := valueMap[enumCase.Name]; ok {
+				enumCase.IntValue = val
+				matchedCases++
+			}
+		}
+
+		if matchedCases > 0 {
+			enrichedCount++
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Enriched %d/%d values for enum %s\n", matchedCases, len(enum.Cases), enum.Name)
+			}
+		}
+	}
+
+	if verbose && enrichedCount > 0 {
+		fmt.Fprintf(os.Stderr, "Successfully enriched %d enums (failed: %d)\n", enrichedCount, failedCount)
 	}
 
 	return nil
