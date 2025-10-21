@@ -54,8 +54,6 @@ type ExtAudioFileRef unsafe.Pointer
 type MIDIEndpointRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -236,8 +234,6 @@ type AudioUnitPropertyListenerProc unsafe.Pointer
 
 type AudioUnitScope unsafe.Pointer
 
-type BOOL unsafe.Pointer
-
 type Boolean unsafe.Pointer
 
 type CABarBeatTime unsafe.Pointer
@@ -316,27 +312,13 @@ type MusicTimeStamp unsafe.Pointer
 
 type MusicTrack unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
 type NSError unsafe.Pointer
 
 type NSIndexSet unsafe.Pointer
 
-type NSInteger unsafe.Pointer
-
 type NSKeyValueObservingOptions unsafe.Pointer
 
-type NSNumber unsafe.Pointer
-
-type NSObject unsafe.Pointer
-
-type NSString unsafe.Pointer
-
 type NSTimeInterval unsafe.Pointer
-
-type NSUInteger unsafe.Pointer
 
 type NoteInstanceID unsafe.Pointer
 

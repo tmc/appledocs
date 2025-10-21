@@ -2151,6 +2151,9 @@ func resolveType(framework, typeName string) string {
 		"Coder":                   true, // NSCoder - base class for archiving
 		"KeyedArchiver":           true, // NSKeyedArchiver
 		"KeyedUnarchiver":         true, // NSKeyedUnarchiver - used by MetalPerformanceShaders
+		"TimeInterval":            true, // NSTimeInterval - type alias for float64 used by many frameworks
+		"Error":                   true, // NSError - error handling across all frameworks
+		"NSError":                 true, // Include NS-prefixed version
 	}
 
 	// QuartzCore types used by other frameworks

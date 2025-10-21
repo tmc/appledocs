@@ -15,14 +15,10 @@ type IOBluetoothDeviceSelectorControllerRef unsafe.Pointer
 type IOBluetoothPairingControllerRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type IOBluetoothDevice unsafe.Pointer
 
 type IOBluetoothDeviceSearchAttributes unsafe.Pointer
@@ -35,11 +31,7 @@ type IOBluetoothServiceBrowserControllerOptions unsafe.Pointer
 
 type IOReturn unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
 type NSImage unsafe.Pointer
-
-type NSString unsafe.Pointer
 
 type NSWindow unsafe.Pointer
 

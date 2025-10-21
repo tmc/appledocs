@@ -33,14 +33,10 @@ type MIDISetupRef unsafe.Pointer
 type MIDIThruConnectionRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type Boolean unsafe.Pointer
 
 type ByteCount unsafe.Pointer
@@ -95,15 +91,7 @@ type MIDIUMPGroupNumber unsafe.Pointer
 
 type MIDIUniqueID unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
 type NSError unsafe.Pointer
-
-type NSNumber unsafe.Pointer
-
-type NSString unsafe.Pointer
-
-type NSUInteger unsafe.Pointer
 
 type OSStatus unsafe.Pointer
 

@@ -24,8 +24,6 @@ type vImageConstCVImageFormatRef unsafe.Pointer
 type vImageConverterRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -61,8 +59,6 @@ type BNNSShuffleType unsafe.Pointer
 type BNNSSparsityParameters unsafe.Pointer
 
 type BNNSTensor unsafe.Pointer
-
-type CGFloat unsafe.Pointer
 
 type DSPComplex unsafe.Pointer
 

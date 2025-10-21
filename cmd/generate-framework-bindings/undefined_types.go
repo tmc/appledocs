@@ -153,6 +153,10 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 	for typeName, pkgName := range crossFrameworkTypeRegistry {
 		if pkgName != currentFrameworkPkg {
 			defined[typeName] = true
+			// Also add the NS-prefixed version (e.g., if registry has "Error", also mark "NSError" as defined)
+			// This handles cases where docs reference "NSError" but Foundation generates "Error"
+			objcName := "NS" + typeName
+			defined[objcName] = true
 		}
 	}
 

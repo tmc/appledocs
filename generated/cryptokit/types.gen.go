@@ -2,6 +2,4 @@
 
 package cryptokit
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 

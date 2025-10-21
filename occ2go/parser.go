@@ -1250,9 +1250,9 @@ func ParseEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
 	return enum
 }
 
-// parseSwiftEnumDeclaration parses a Swift enum/struct declaration.
+// ParseSwiftEnumDeclaration parses a Swift enum/struct declaration.
 // Swift option set syntax: struct NSWindowStyleMask : OptionSet
-func parseSwiftEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
+func ParseSwiftEnumDeclaration(tokens []appledocs.Token) *ParsedEnum {
 	enum := &ParsedEnum{
 		Cases:    []*ParsedEnumCase{},
 		BaseType: "UInt", // Swift default for OptionSet

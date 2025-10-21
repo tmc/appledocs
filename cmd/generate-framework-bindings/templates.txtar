@@ -175,8 +175,8 @@ type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
 {{end -}}
 
-{{if eq .Framework "Foundation" -}}
-// Foundation-specific type alias for NSTimeInterval
+{{if or (eq .Framework "Foundation") (eq .Framework "ObjectiveC") -}}
+// Type alias for NSTimeInterval
 type TimeInterval = float64  // NSTimeInterval
 
 {{end -}}

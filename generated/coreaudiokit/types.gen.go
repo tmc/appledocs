@@ -6,8 +6,6 @@ import (
 )
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -15,10 +13,6 @@ type TimeInterval = float64  // NSTimeInterval
 type AUAudioUnit unsafe.Pointer
 
 type AudioUnit unsafe.Pointer
-
-type BOOL unsafe.Pointer
-
-type CGFloat unsafe.Pointer
 
 type UIColor unsafe.Pointer
 

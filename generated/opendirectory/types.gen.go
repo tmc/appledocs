@@ -39,35 +39,21 @@ type ODRecordRef unsafe.Pointer
 type ODSessionRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type CFErrorRef unsafe.Pointer
 
 type CFIndex unsafe.Pointer
 
 type CFTypeID unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
-type NSData unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
 type NSError unsafe.Pointer
-
-type NSInteger unsafe.Pointer
 
 type NSOperationQueue unsafe.Pointer
 
 type NSRunLoop unsafe.Pointer
-
-type NSString unsafe.Pointer
 
 type ODAttributeType unsafe.Pointer
 

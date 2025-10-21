@@ -39,8 +39,6 @@ type JSStringRef unsafe.Pointer
 type JSValueRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -60,10 +58,6 @@ type JSType unsafe.Pointer
 type JSTypedArrayBytesDeallocator unsafe.Pointer
 
 type JSTypedArrayType unsafe.Pointer
-
-type NSString unsafe.Pointer
-
-type NSURL unsafe.Pointer
 
 
 

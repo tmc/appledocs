@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,16 +83,16 @@ func NewRenderInfo() RenderInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelCompileTime
-func (r_ RenderInfo) KernelCompileTime() TimeInterval {
-	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
+func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
 	return rv
 }
 
 // The amount of time a render spent executing kernels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelExecutionTime
-func (r_ RenderInfo) KernelExecutionTime() TimeInterval {
-	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
+func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
 	return rv
 }
 

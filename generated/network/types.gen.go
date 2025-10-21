@@ -9,6 +9,4 @@ import (
 type CFErrorRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 

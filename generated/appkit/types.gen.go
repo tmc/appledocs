@@ -6,8 +6,6 @@ import (
 )
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 // AppKit-specific type aliases
 // WindowLevel represents a window's position in the z-axis
 type WindowLevel = int  // NSWindowLevel
@@ -16,8 +14,6 @@ type WindowLevel = int  // NSWindowLevel
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type CADisplayLink unsafe.Pointer
 
 type CALayer unsafe.Pointer
@@ -30,17 +26,11 @@ type CGDirectDisplayID unsafe.Pointer
 
 type CGEventRef unsafe.Pointer
 
-type CGFloat unsafe.Pointer
-
 type CGImageRef unsafe.Pointer
 
 type CGLContextObj unsafe.Pointer
 
 type CGLPixelFormatObj unsafe.Pointer
-
-type CGPoint unsafe.Pointer
-
-type CGRect unsafe.Pointer
 
 type CIContext unsafe.Pointer
 
@@ -72,8 +62,6 @@ type NSAppearanceName unsafe.Pointer
 
 type NSApplicationDelegateReply unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
 type NSAttributedString unsafe.Pointer
 
 type NSAttributedStringKey unsafe.Pointer
@@ -103,12 +91,6 @@ type NSComparisonResult unsafe.Pointer
 type NSControlBorderShape unsafe.Pointer
 
 type NSControlStateValue unsafe.Pointer
-
-type NSData unsafe.Pointer
-
-type NSDate unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
 
 type NSEdgeInsets unsafe.Pointer
 
@@ -152,8 +134,6 @@ type NSIndexPath unsafe.Pointer
 
 type NSIndexSet unsafe.Pointer
 
-type NSInteger unsafe.Pointer
-
 type NSInterfaceStyle unsafe.Pointer
 
 type NSItemProvider unsafe.Pointer
@@ -175,10 +155,6 @@ type NSNibName unsafe.Pointer
 type NSNotification unsafe.Pointer
 
 type NSNotificationCenter unsafe.Pointer
-
-type NSNumber unsafe.Pointer
-
-type NSObject unsafe.Pointer
 
 type NSOperationQueue unsafe.Pointer
 
@@ -228,8 +204,6 @@ type NSSearchFieldRecentsAutosaveName unsafe.Pointer
 
 type NSServiceProviderName unsafe.Pointer
 
-type NSSet unsafe.Pointer
-
 type NSSharingServiceName unsafe.Pointer
 
 type NSSize unsafe.Pointer
@@ -245,8 +219,6 @@ type NSStoryboardControllerCreator unsafe.Pointer
 type NSStoryboardSceneIdentifier unsafe.Pointer
 
 type NSStoryboardSegueIdentifier unsafe.Pointer
-
-type NSString unsafe.Pointer
 
 type NSSymbolEffect unsafe.Pointer
 
@@ -283,10 +255,6 @@ type NSTouchPhase unsafe.Pointer
 type NSTrackingRectTag unsafe.Pointer
 
 type NSTypesetterBehavior unsafe.Pointer
-
-type NSUInteger unsafe.Pointer
-
-type NSURL unsafe.Pointer
 
 type NSUUID unsafe.Pointer
 
@@ -327,8 +295,6 @@ type UIBarButtonItem unsafe.Pointer
 type UIImage unsafe.Pointer
 
 type UIMenuElement unsafe.Pointer
-
-type UTType unsafe.Pointer
 
 
 

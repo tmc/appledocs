@@ -6,8 +6,6 @@ import (
 )
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 // QuartzCore needs CGFloat for its functions
 type CGFloat = float64
 
@@ -15,8 +13,6 @@ type CGFloat = float64
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type CAAnimationCalculationMode unsafe.Pointer
 
 type CAAnimationRotationMode unsafe.Pointer
@@ -69,8 +65,6 @@ type CFTimeInterval unsafe.Pointer
 
 type CFTypeRef unsafe.Pointer
 
-type CGAffineTransform unsafe.Pointer
-
 type CGColorRef unsafe.Pointer
 
 type CGColorSpaceRef unsafe.Pointer
@@ -83,12 +77,6 @@ type CGLPixelFormatObj unsafe.Pointer
 
 type CGPathRef unsafe.Pointer
 
-type CGPoint unsafe.Pointer
-
-type CGRect unsafe.Pointer
-
-type CGSize unsafe.Pointer
-
 type CVTimeStamp unsafe.Pointer
 
 type MTLDevice unsafe.Pointer
@@ -99,23 +87,9 @@ type MTLResidencySet unsafe.Pointer
 
 type MTLTexture unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
-type NSData unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
-type NSInteger unsafe.Pointer
-
-type NSNumber unsafe.Pointer
-
 type NSRunLoop unsafe.Pointer
 
 type NSRunLoopMode unsafe.Pointer
-
-type NSString unsafe.Pointer
-
-type NSUInteger unsafe.Pointer
 
 type SCNAnimation unsafe.Pointer
 

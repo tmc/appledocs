@@ -21,19 +21,13 @@ type CGColorRef unsafe.Pointer
 type CTFontDescriptorRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type CFAbsoluteTime unsafe.Pointer
 
 type CFErrorRef unsafe.Pointer
-
-type CGFloat unsafe.Pointer
 
 type IOSurfaceRef unsafe.Pointer
 
@@ -44,10 +38,6 @@ type MACaptionAppearanceDisplayType unsafe.Pointer
 type MACaptionAppearanceDomain unsafe.Pointer
 
 type NSCopying unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
-type NSString unsafe.Pointer
 
 
 

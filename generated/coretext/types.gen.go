@@ -48,8 +48,6 @@ type CTTextTabRef unsafe.Pointer
 type CTTypesetterRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -94,11 +92,7 @@ type CFTypeRef unsafe.Pointer
 
 type CFURLRef unsafe.Pointer
 
-type CGAffineTransform unsafe.Pointer
-
 type CGContextRef unsafe.Pointer
-
-type CGFloat unsafe.Pointer
 
 type CGFontIndex unsafe.Pointer
 
@@ -107,12 +101,6 @@ type CGFontRef unsafe.Pointer
 type CGGlyph unsafe.Pointer
 
 type CGPathRef unsafe.Pointer
-
-type CGPoint unsafe.Pointer
-
-type CGRect unsafe.Pointer
-
-type CGSize unsafe.Pointer
 
 type CTFontCollectionSortDescriptorsCallback unsafe.Pointer
 

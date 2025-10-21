@@ -48,8 +48,6 @@ type CFTypeRef unsafe.Pointer
 type EventTargetRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -84,8 +82,6 @@ type ABSearchComparison unsafe.Pointer
 
 type ABSearchConjunction unsafe.Pointer
 
-type BOOL unsafe.Pointer
-
 type CFComparisonResult unsafe.Pointer
 
 type CFErrorRef unsafe.Pointer
@@ -94,25 +90,13 @@ type CFIndex unsafe.Pointer
 
 type HIRect unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
 type NSAttributedString unsafe.Pointer
 
-type NSData unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
 type NSError unsafe.Pointer
-
-type NSInteger unsafe.Pointer
 
 type NSRect unsafe.Pointer
 
 type NSRectEdge unsafe.Pointer
-
-type NSString unsafe.Pointer
-
-type NSUInteger unsafe.Pointer
 
 type NSView unsafe.Pointer
 

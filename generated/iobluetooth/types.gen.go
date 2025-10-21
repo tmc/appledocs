@@ -39,14 +39,10 @@ type IOBluetoothUserNotificationRef unsafe.Pointer
 type OBEXSessionRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type BOOL unsafe.Pointer
-
 type BluetoothClassOfDevice unsafe.Pointer
 
 type BluetoothClockOffset unsafe.Pointer
@@ -121,21 +117,7 @@ type IOBluetoothUserNotificationCallback unsafe.Pointer
 
 type IOReturn unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
 type NSCoder unsafe.Pointer
-
-type NSData unsafe.Pointer
-
-type NSDate unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
-type NSNumber unsafe.Pointer
-
-type NSObject unsafe.Pointer
-
-type NSString unsafe.Pointer
 
 type NSTimeInterval unsafe.Pointer
 

@@ -6,29 +6,17 @@ import (
 )
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
 type AVDepthData unsafe.Pointer
 
-type BOOL unsafe.Pointer
-
-type CGAffineTransform unsafe.Pointer
-
-type CGFloat unsafe.Pointer
-
 type CGImagePropertyOrientation unsafe.Pointer
 
 type CGImageRef unsafe.Pointer
 
 type CGPathRef unsafe.Pointer
-
-type CGPoint unsafe.Pointer
-
-type CGRect unsafe.Pointer
 
 type CIBarcodeDescriptor unsafe.Pointer
 
@@ -48,27 +36,11 @@ type MLModel unsafe.Pointer
 
 type MLMultiArray unsafe.Pointer
 
-type NSArray unsafe.Pointer
-
-type NSData unsafe.Pointer
-
-type NSDictionary unsafe.Pointer
-
 type NSError unsafe.Pointer
 
 type NSIndexPath unsafe.Pointer
 
 type NSIndexSet unsafe.Pointer
-
-type NSInteger unsafe.Pointer
-
-type NSNumber unsafe.Pointer
-
-type NSString unsafe.Pointer
-
-type NSUInteger unsafe.Pointer
-
-type NSURL unsafe.Pointer
 
 type NSUUID unsafe.Pointer
 

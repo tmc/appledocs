@@ -6,7 +6,7 @@ import (
 )
 
 
-// Foundation-specific type alias for NSTimeInterval
+// Type alias for NSTimeInterval
 type TimeInterval = float64  // NSTimeInterval
 
 // Foundation-specific types
