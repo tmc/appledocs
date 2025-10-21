@@ -302,6 +302,7 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 
 			// Parse property name and type from fragments
 			// Expected pattern: keyword(" "), identifier(name), text(": "), typeIdentifier(type)
+			// For nested types like NSImage.SymbolConfiguration, we need the last typeIdentifier
 			var name, propType, preciseID string
 			for i := 0; i < len(ref.Fragments); i++ {
 				frag := ref.Fragments[i]
@@ -313,10 +314,14 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 						name = strings.Trim(frag.Text, "`")
 					}
 				case "typeIdentifier":
-					// Type identifier after ": " is the property type
-					if propType == "" {
+					// For nested types (e.g., NSImage.SymbolConfiguration), keep updating
+					// until we find the last typeIdentifier with a preciseIdentifier
+					if frag.PreciseIdentifier != "" {
 						propType = frag.Text
 						preciseID = frag.PreciseIdentifier
+					} else if propType == "" {
+						// Fallback: use first typeIdentifier if no preciseIdentifier found
+						propType = frag.Text
 					}
 				}
 			}
