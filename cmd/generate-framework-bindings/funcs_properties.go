@@ -65,3 +65,61 @@ func isPropertySetter(method MethodInfo) bool {
 
 	return false
 }
+
+// typeToInterfaceType converts a concrete type to its interface type for setter parameters.
+// For example: "Image" becomes "IImage", "Window" becomes "IWindow".
+// Types that don't have interfaces (primitives, slices, enums, typedefs, etc.) are returned unchanged.
+func typeToInterfaceType(goType string) string {
+	// Don't convert primitives, slices, pointers, or special types
+	if strings.HasPrefix(goType, "[]") ||
+		strings.HasPrefix(goType, "*") ||
+		strings.HasPrefix(goType, "map[") ||
+		strings.Contains(goType, ".") || // qualified types like "objc.ID"
+		goType == "string" ||
+		goType == "int" ||
+		goType == "int64" ||
+		goType == "uint" ||
+		goType == "uint64" ||
+		goType == "float32" ||
+		goType == "float64" ||
+		goType == "bool" ||
+		goType == "unsafe.Pointer" ||
+		strings.HasPrefix(goType, "CG") || // CoreGraphics types (structs and refs)
+		strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
+		return goType
+	}
+
+	// Don't convert enum-like types (these are typically uint-based type aliases)
+	// Common patterns for enums: *Position, *Scaling, *Flags, *Options, *Mask, *State, *Style, *Type, *Mode
+	enumSuffixes := []string{
+		"Position", "Scaling", "Flags", "Options", "Mask", "State", "Style",
+		"Type", "Mode", "Direction", "Alignment", "Format", "Status", "Kind",
+		"Level", "Priority", "Policy", "Strategy", "Behavior", "Attribute",
+		"Orientation", "Gamut",
+	}
+	for _, suffix := range enumSuffixes {
+		if strings.HasSuffix(goType, suffix) {
+			return goType
+		}
+	}
+
+	// If it already starts with I and next char is uppercase, it's already an interface
+	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
+		return goType
+	}
+
+	// Convert to interface type: "Image" -> "IImage"
+	// This works for class types like Image, Window, View, etc.
+	// If the type still has an ObjC prefix (NS, CG, CA), strip it first
+	// so we get "IAccessibilityElement" not "INSAccessibilityElement"
+	interfaceType := goType
+	if strings.HasPrefix(goType, "NS") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		interfaceType = goType[2:]
+	} else if strings.HasPrefix(goType, "CG") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		interfaceType = goType[2:]
+	} else if strings.HasPrefix(goType, "CA") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		interfaceType = goType[2:]
+	}
+
+	return "I" + interfaceType
+}
