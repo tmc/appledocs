@@ -10,10 +10,10 @@ import (
 // TestDetermineRequiredImports tests that we correctly identify required imports
 func TestDetermineRequiredImports(t *testing.T) {
 	tests := []struct {
-		name         string
-		methods      []MethodInfo
-		framework    string
-		wantImports  []string
+		name            string
+		methods         []MethodInfo
+		framework       string
+		wantImports     []string
 		dontWantImports []string
 	}{
 		{

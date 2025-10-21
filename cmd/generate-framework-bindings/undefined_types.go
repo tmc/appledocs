@@ -166,7 +166,7 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 			continue
 		}
 
-			// Skip if this match is a typedef
+		// Skip if this match is a typedef
 		if typedefNames != nil && typedefNames[match] {
 			continue
 		}

@@ -771,7 +771,7 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 					objcType = "float"
 				case "CGFloat":
 					objcType = "CGFloat"
-				// For other types, keep the Swift type - the type mapper will handle it
+					// For other types, keep the Swift type - the type mapper will handle it
 				}
 			}
 			property.ObjCType = objcType
@@ -998,7 +998,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		if verbose && strings.Contains(path, "attributedTitle") {
 			fmt.Fprintf(os.Stderr, "DEBUG: ParseDocument result - err: %v\n", err)
 		}
-		if err == nil{
+		if err == nil {
 			if fn != nil {
 				functions = append(functions, fn)
 			}
@@ -1207,28 +1207,28 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		}
 
-	// Now add properties from references (for properties without separate files)
-	// This runs AFTER parsing separate property files, so detailed property info is preferred
-	var refPropertyClasses []string
-	for className := range refProperties {
-		refPropertyClasses = append(refPropertyClasses, className)
-	}
-	sort.Strings(refPropertyClasses)
-
-	for _, className := range refPropertyClasses {
-		props := refProperties[className]
-		if classSeenProperties[className] == nil {
-			classSeenProperties[className] = make(map[string]bool)
+		// Now add properties from references (for properties without separate files)
+		// This runs AFTER parsing separate property files, so detailed property info is preferred
+		var refPropertyClasses []string
+		for className := range refProperties {
+			refPropertyClasses = append(refPropertyClasses, className)
 		}
-		for _, prop := range props {
-			// Only add if we haven't seen this property name before
-			// Properties from separate files (added earlier) take precedence
-			if !classSeenProperties[className][prop.Name] {
-				classPropertiesMap[className] = append(classPropertiesMap[className], prop)
-				classSeenProperties[className][prop.Name] = true
+		sort.Strings(refPropertyClasses)
+
+		for _, className := range refPropertyClasses {
+			props := refProperties[className]
+			if classSeenProperties[className] == nil {
+				classSeenProperties[className] = make(map[string]bool)
+			}
+			for _, prop := range props {
+				// Only add if we haven't seen this property name before
+				// Properties from separate files (added earlier) take precedence
+				if !classSeenProperties[className][prop.Name] {
+					classPropertiesMap[className] = append(classPropertiesMap[className], prop)
+					classSeenProperties[className][prop.Name] = true
+				}
 			}
 		}
-	}
 
 		// Attach methods and properties to classes
 		propertyCount := 0
@@ -1239,6 +1239,16 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			if properties, ok := classPropertiesMap[classes[i].Name]; ok {
 				classes[i].Properties = properties
 				propertyCount += len(properties)
+
+				// Debug: check Button properties
+				if classes[i].Name == "NSButton" {
+					for _, prop := range properties {
+						if prop.Name == "attributedTitle" {
+							fmt.Fprintf(os.Stderr, "DEBUG: Button.attributedTitle - Type=%s ObjCType=%s\n",
+								prop.Type, prop.ObjCType)
+						}
+					}
+				}
 			}
 		}
 
@@ -1539,7 +1549,9 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 		generators = append(generators, struct {
 			filename string
 			generate func(io.Writer) error
-		}{"methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, typedefs, variant) }})
+		}{"methods.gen.go", func(w io.Writer) error {
+			return generateMethods(w, framework, packageName, functions, typedefs, variant)
+		}})
 	}
 
 	if len(classes) > 0 {
@@ -1708,7 +1720,9 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 		return err
 	}
 	if withRefMethods {
-		if err := genFile("methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, typedefs, variant) }); err != nil {
+		if err := genFile("methods.gen.go", func(w io.Writer) error {
+			return generateMethods(w, framework, packageName, functions, typedefs, variant)
+		}); err != nil {
 			return err
 		}
 	}

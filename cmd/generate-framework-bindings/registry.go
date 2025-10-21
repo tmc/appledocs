@@ -78,12 +78,15 @@ func (r *FrameworkRegistry) GetByPackage(pkgName string) (*FrameworkInfo, bool) 
 
 // GetImportPath returns the import path for a framework name.
 // Returns empty string if framework not found.
+// UNUSED: Commented out as unreachable code
+/*
 func (r *FrameworkRegistry) GetImportPath(name string) string {
 	if info, ok := r.Get(name); ok {
 		return info.ImportPath
 	}
 	return ""
 }
+*/
 
 // GetImportPathByPackage returns the import path for a package name.
 // Returns empty string if package not found.
@@ -176,48 +179,48 @@ func (r *FrameworkRegistry) DiscoverFromDirectory(generatedDir string) error {
 func packageNameToFrameworkName(pkgName string) string {
 	// Special cases for known frameworks
 	knownFrameworks := map[string]string{
-		"appkit":             "AppKit",
-		"foundation":         "Foundation",
-		"coregraphics":       "CoreGraphics",
-		"corefoundation":     "CoreFoundation",
-		"coreaudio":          "CoreAudio",
-		"coredata":           "CoreData",
-		"coreimage":          "CoreImage",
-		"corevideo":          "CoreVideo",
-		"coretext":           "CoreText",
-		"coremedia":          "CoreMedia",
-		"coremidi":           "CoreMIDI",
-		"corebluetooth":      "CoreBluetooth",
-		"corelocation":       "CoreLocation",
-		"coremotion":         "CoreMotion",
-		"coreanimation":      "CoreAnimation",
-		"quartzcore":         "QuartzCore",
-		"quartz":             "Quartz",
-		"iokit":              "IOKit",
-		"metalkit":           "MetalKit",
-		"metal":              "Metal",
-		"scenekit":           "SceneKit",
-		"spritekit":          "SpriteKit",
-		"gamekit":            "GameKit",
-		"mapkit":             "MapKit",
-		"cloudkit":           "CloudKit",
-		"avfoundation":       "AVFoundation",
-		"avkit":              "AVKit",
-		"webkit":             "WebKit",
-		"usernotifications":  "UserNotifications",
+		"appkit":                 "AppKit",
+		"foundation":             "Foundation",
+		"coregraphics":           "CoreGraphics",
+		"corefoundation":         "CoreFoundation",
+		"coreaudio":              "CoreAudio",
+		"coredata":               "CoreData",
+		"coreimage":              "CoreImage",
+		"corevideo":              "CoreVideo",
+		"coretext":               "CoreText",
+		"coremedia":              "CoreMedia",
+		"coremidi":               "CoreMIDI",
+		"corebluetooth":          "CoreBluetooth",
+		"corelocation":           "CoreLocation",
+		"coremotion":             "CoreMotion",
+		"coreanimation":          "CoreAnimation",
+		"quartzcore":             "QuartzCore",
+		"quartz":                 "Quartz",
+		"iokit":                  "IOKit",
+		"metalkit":               "MetalKit",
+		"metal":                  "Metal",
+		"scenekit":               "SceneKit",
+		"spritekit":              "SpriteKit",
+		"gamekit":                "GameKit",
+		"mapkit":                 "MapKit",
+		"cloudkit":               "CloudKit",
+		"avfoundation":           "AVFoundation",
+		"avkit":                  "AVKit",
+		"webkit":                 "WebKit",
+		"usernotifications":      "UserNotifications",
 		"uniformtypeidentifiers": "UniformTypeIdentifiers",
-		"naturallanguage":    "NaturalLanguage",
-		"vision":             "Vision",
-		"coreml":             "CoreML",
-		"createml":           "CreateML",
-		"accessibility":      "Accessibility",
-		"accounts":           "Accounts",
-		"addressbook":        "AddressBook",
-		"adservices":         "AdServices",
-		"adsupport":          "AdSupport",
-		"appintents":         "AppIntents",
-		"screencapturekit":   "ScreenCaptureKit",
-		"objectivec":         "ObjectiveC",
+		"naturallanguage":        "NaturalLanguage",
+		"vision":                 "Vision",
+		"coreml":                 "CoreML",
+		"createml":               "CreateML",
+		"accessibility":          "Accessibility",
+		"accounts":               "Accounts",
+		"addressbook":            "AddressBook",
+		"adservices":             "AdServices",
+		"adsupport":              "AdSupport",
+		"appintents":             "AppIntents",
+		"screencapturekit":       "ScreenCaptureKit",
+		"objectivec":             "ObjectiveC",
 	}
 
 	if framework, ok := knownFrameworks[pkgName]; ok {
@@ -302,20 +305,26 @@ func initializeFrameworkRegistry(baseModule, generatedDir string) error {
 }
 
 // GetFrameworkInfo returns framework info from the global registry.
+// UNUSED: Commented out as unreachable code
+/*
 func GetFrameworkInfo(name string) (*FrameworkInfo, bool) {
 	if globalRegistry == nil {
 		return nil, false
 	}
 	return globalRegistry.Get(name)
 }
+*/
 
 // GetFrameworkImportPath returns the import path for a framework.
+// UNUSED: Commented out as unreachable code
+/*
 func GetFrameworkImportPath(name string) string {
 	if globalRegistry == nil {
 		return ""
 	}
 	return globalRegistry.GetImportPath(name)
 }
+*/
 
 // GetFrameworkPrefix returns the prefix for a framework.
 func GetFrameworkPrefix(name string) string {
@@ -327,10 +336,11 @@ func GetFrameworkPrefix(name string) string {
 
 // ExtractFrameworkFromType extracts the framework package name from a Go type string.
 // Examples:
-//   "coregraphics.CGRect" -> "coregraphics"
-//   "foundation.String" -> "foundation"
-//   "int" -> ""
-//   "[]appkit.Window" -> "appkit"
+//
+//	"coregraphics.CGRect" -> "coregraphics"
+//	"foundation.String" -> "foundation"
+//	"int" -> ""
+//	"[]appkit.Window" -> "appkit"
 func ExtractFrameworkFromType(goType string) string {
 	// Strip array/slice/pointer prefixes
 	goType = strings.TrimLeft(goType, "*[]")
@@ -346,9 +356,10 @@ func ExtractFrameworkFromType(goType string) string {
 // GetImportPathFromType extracts the import path from a Go type string.
 // Returns empty string if the type doesn't require an import.
 // Examples:
-//   "coregraphics.CGRect" -> "github.com/tmc/appledocs/generated/coregraphics"
-//   "foundation.String" -> "github.com/tmc/appledocs/generated/foundation"
-//   "int" -> ""
+//
+//	"coregraphics.CGRect" -> "github.com/tmc/appledocs/generated/coregraphics"
+//	"foundation.String" -> "github.com/tmc/appledocs/generated/foundation"
+//	"int" -> ""
 func GetImportPathFromType(goType string) string {
 	pkgName := ExtractFrameworkFromType(goType)
 	if pkgName == "" {

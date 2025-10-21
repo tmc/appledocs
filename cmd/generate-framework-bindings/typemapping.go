@@ -388,10 +388,13 @@ func getAllAppKitEnumTypes() []string {
 
 // debugLogTypeMapping logs the actual type strings being looked up (for debugging)
 // This helper is used during generation to understand what metadata types arrive
+// UNUSED: Commented out as unreachable code
+/*
 func debugLogTypeMapping(objcType, framework string, result string) {
 	// This would normally log to stderr or a debug file
 	// Enable with environment variable DEBUG_TYPE_MAPPING=1
 }
+*/
 
 // getAllMappedTypes returns all ObjC types in the registry for debugging
 func getAllMappedTypes() []TypeMapping {

@@ -346,8 +346,8 @@ func TestIsPropertySetter(t *testing.T) {
 			expected:   false,
 		},
 		{
-			name:       "not a setter - too many parameters",
-			selector:   "setTitle:subtitle:",
+			name:     "not a setter - too many parameters",
+			selector: "setTitle:subtitle:",
 			params: []occ2go.Parameter{
 				{Name: "title", Type: "NSString *"},
 				{Name: "subtitle", Type: "NSString *"},

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"reflect"
 	"regexp"
 	"sort"
 	"strings"
@@ -60,39 +59,39 @@ var templateFuncs = template.FuncMap{
 	"isPropertySetter":        isPropertySetter,
 
 	// DarwinKit class generation helpers
-	"classFileName":            classFileName,
-	"classTestFileName":        classTestFileName,
-	"protocolFileName":         protocolFileName,
-	"receiverName":             receiverName,
-	"selectorToGoName":         selectorToGoName,
-	"mapObjCTypeToGo":          mapObjCTypeToGo,
-	"formatMethodParams":       formatMethodParams,
-	"formatMethodParamNames":   formatMethodParamNames,
+	"classFileName":                       classFileName,
+	"classTestFileName":                   classTestFileName,
+	"protocolFileName":                    protocolFileName,
+	"receiverName":                        receiverName,
+	"selectorToGoName":                    selectorToGoName,
+	"mapObjCTypeToGo":                     mapObjCTypeToGo,
+	"formatMethodParams":                  formatMethodParams,
+	"formatMethodParamNames":              formatMethodParamNames,
 	"formatMethodParamNamesWithFramework": formatMethodParamNamesWithFramework,
-	"isConstructor":            isConstructor,
-	"stripNSPrefix":            stripNSPrefix,
-	"needsFoundationImport":    needsFoundationImport,
-	"needsQuartzCoreImport":    needsQuartzCoreImport,
-	"needsCustomImports":       needsCustomImports,
-	"getRequiredImports":       getRequiredImports,
-	"getFunctionRequiredImports": getFunctionRequiredImports,
-	"sortedImportPaths":        sortedImportPaths,
-	"prepareClassMethods":         prepareClassMethods,
-	"prepareInstanceMethods":      prepareInstanceMethods,
-	"filterPropertyMethods":       filterPropertyMethods,
-	"prepareInitMethods":          prepareInitMethods,
-	"initMethodToConstructorName":       initMethodToConstructorName,
-	"prepareInitMethodsWithClassName":   prepareInitMethodsWithClassName,
-	"classHasInit":                      classHasInit,
-	"shouldExcludeTestExample":          shouldExcludeTestExample,
-	"shouldExcludeTestMethod":           shouldExcludeTestMethod,
-	"sortMethodsByName":              sortMethodsByName,
-	"generateTestValue":              generateTestValue,
-	"generateTestValueWithPackage":   generateTestValueWithPackage,
-	"canGenerateTestValue":           canGenerateTestValue,
-	"wrapObjCReturn":                 wrapObjCReturn,
-	"isEssentialSelector":         isEssentialSelector,
-	"convertDocURL":               convertDocURL,
+	"isConstructor":                       isConstructor,
+	"stripNSPrefix":                       stripNSPrefix,
+	"needsFoundationImport":               needsFoundationImport,
+	"needsQuartzCoreImport":               needsQuartzCoreImport,
+	"needsCustomImports":                  needsCustomImports,
+	"getRequiredImports":                  getRequiredImports,
+	"getFunctionRequiredImports":          getFunctionRequiredImports,
+	"sortedImportPaths":                   sortedImportPaths,
+	"prepareClassMethods":                 prepareClassMethods,
+	"prepareInstanceMethods":              prepareInstanceMethods,
+	"filterPropertyMethods":               filterPropertyMethods,
+	"prepareInitMethods":                  prepareInitMethods,
+	"initMethodToConstructorName":         initMethodToConstructorName,
+	"prepareInitMethodsWithClassName":     prepareInitMethodsWithClassName,
+	"classHasInit":                        classHasInit,
+	"shouldExcludeTestExample":            shouldExcludeTestExample,
+	"shouldExcludeTestMethod":             shouldExcludeTestMethod,
+	"sortMethodsByName":                   sortMethodsByName,
+	"generateTestValue":                   generateTestValue,
+	"generateTestValueWithPackage":        generateTestValueWithPackage,
+	"canGenerateTestValue":                canGenerateTestValue,
+	"wrapObjCReturn":                      wrapObjCReturn,
+	"isEssentialSelector":                 isEssentialSelector,
+	"convertDocURL":                       convertDocURL,
 
 	// Property generation helpers
 	"propertyToGoName":            propertyToGoName,
@@ -116,18 +115,18 @@ var templateFuncs = template.FuncMap{
 	"methodGoName": methodGoName,
 
 	// Class-level helpers
-	"getClassImports":         getClassImports,
-	"getSortedClassImports":   getSortedClassImports,
-	"getInterfaceParent":      getInterfaceParent,
-	"getStructEmbeddedField":  getStructEmbeddedField,
-	"getFromConstructorBody":  getFromConstructorBody,
-	"getConstructorBody":      getConstructorBody,
+	"getClassImports":        getClassImports,
+	"getSortedClassImports":  getSortedClassImports,
+	"getInterfaceParent":     getInterfaceParent,
+	"getStructEmbeddedField": getStructEmbeddedField,
+	"getFromConstructorBody": getFromConstructorBody,
+	"getConstructorBody":     getConstructorBody,
 
 	// Utility functions for template generation
-	"sortedKeys":         sortedKeys,
-	"stripObjCPrefix":    stripObjCPrefix,
-	"cleanConstantName":  cleanConstantName,
-	"strContains":        strings.Contains,
+	"sortedKeys":        sortedKeys,
+	"stripObjCPrefix":   stripObjCPrefix,
+	"cleanConstantName": cleanConstantName,
+	"strContains":       strings.Contains,
 }
 
 // FunctionData represents data for function template rendering.
@@ -661,9 +660,10 @@ func isPropertySetter(method MethodInfo) bool {
 // classFileName converts a class name to a file name (snake_case).
 // Uses the FULL class name including ObjC prefix to prevent duplicate files.
 // Examples:
-//   NSButton -> ns_button.gen.go
-//   NSTableView -> ns_table_view.gen.go
-//   ICCameraDevice -> ic_camera_device.gen.go
+//
+//	NSButton -> ns_button.gen.go
+//	NSTableView -> ns_table_view.gen.go
+//	ICCameraDevice -> ic_camera_device.gen.go
 func classFileName(className string) string {
 	// Use the full class name (e.g., ICCameraDevice -> ic_camera_device.gen.go)
 	// NOT stripped prefix (CameraDevice -> camera_device.gen.go)
@@ -673,8 +673,9 @@ func classFileName(className string) string {
 
 // protocolFileName converts a protocol name to a file name (snake_case).
 // Examples:
-//   NSCopying -> copying_protocol.gen.go
-//   NSTableViewDataSource -> table_view_data_source_protocol.gen.go
+//
+//	NSCopying -> copying_protocol.gen.go
+//	NSTableViewDataSource -> table_view_data_source_protocol.gen.go
 func protocolFileName(protocolName string) string {
 	name := stripObjCPrefix(protocolName)
 	return toSnakeCase(name) + "_protocol.gen.go"
@@ -682,9 +683,10 @@ func protocolFileName(protocolName string) string {
 
 // classTestFileName converts a class name to a test file name (snake_case).
 // Examples:
-//   NSButton -> button.gen_test.go
-//   NSTableView -> table_view.gen_test.go
-//   NSURLRequest -> url_request.gen_test.go
+//
+//	NSButton -> button.gen_test.go
+//	NSTableView -> table_view.gen_test.go
+//	NSURLRequest -> url_request.gen_test.go
 func classTestFileName(className string) string {
 	name := stripObjCPrefix(className)
 	return toSnakeCase(name) + ".gen_test.go"
@@ -712,8 +714,9 @@ func toSnakeCase(s string) string {
 
 // receiverName generates a short receiver name for methods.
 // Examples:
-//   Button, false -> b_
-//   Button, true -> bc
+//
+//	Button, false -> b_
+//	Button, true -> bc
 func receiverName(className string, isClass bool) string {
 	name := stripObjCPrefix(className)
 	if len(name) == 0 {
@@ -735,9 +738,10 @@ func selectorToGoName(selector string) string {
 // disambiguateMethodName generates a unique Go method name for an Objective-C method
 // by appending parameter labels from the selector. This matches Swift's approach.
 // Examples:
-//   imageByInsertingIntermediate -> ImageByInsertingIntermediate (no params, no change)
-//   imageByInsertingIntermediate: -> ImageByInsertingIntermediateWithCache (1 param named "cache")
-//   setTitle:forState: -> SetTitleForState (already unique from selector parts)
+//
+//	imageByInsertingIntermediate -> ImageByInsertingIntermediate (no params, no change)
+//	imageByInsertingIntermediate: -> ImageByInsertingIntermediateWithCache (1 param named "cache")
+//	setTitle:forState: -> SetTitleForState (already unique from selector parts)
 func disambiguateMethodName(method *occ2go.ParsedMethod) string {
 	selector := method.Selector
 
@@ -789,13 +793,18 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 
 // mapObjCTypeToGo maps Objective-C types to Go types for darwinkit style.
 // Examples:
-//   NSString * -> string
-//   id -> objc.Object
-//   NSButton * -> Button (interface type in parameters)
-//   NSRect -> foundation.Rect
-//   NSWindowStyleMask -> WindowStyleMask
+//
+//	NSString * -> string
+//	id -> objc.Object
+//	NSButton * -> Button (interface type in parameters)
+//	NSRect -> foundation.Rect
+//	NSWindowStyleMask -> WindowStyleMask
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
+
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
+		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%q\n", objcType, framework)
+	}
 
 	// Strip self-package qualifications from Swift documentation
 	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
@@ -997,7 +1006,11 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	}
 
 	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
-	goType = resolveType(framework, goType)
+	resolvedType := resolveType(framework, goType)
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
+		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: before resolve goType=%s, after resolve=%s\n", goType, resolvedType)
+	}
+	goType = resolvedType
 
 	return goType
 }
@@ -1096,15 +1109,15 @@ func needsFoundationImport(methods []*occ2go.ParsedMethod) bool {
 	for _, m := range methods {
 		// Check return type
 		if strings.Contains(m.ReturnType, "NS") &&
-		   !strings.Contains(m.ReturnType, "NSInteger") &&
-		   !strings.Contains(m.ReturnType, "NSUInteger") {
+			!strings.Contains(m.ReturnType, "NSInteger") &&
+			!strings.Contains(m.ReturnType, "NSUInteger") {
 			return true
 		}
 		// Check parameters
 		for _, p := range m.Parameters {
 			if strings.Contains(p.Type, "NS") &&
-			   !strings.Contains(p.Type, "NSInteger") &&
-			   !strings.Contains(p.Type, "NSUInteger") {
+				!strings.Contains(p.Type, "NSInteger") &&
+				!strings.Contains(p.Type, "NSUInteger") {
 				return true
 			}
 		}
@@ -1313,8 +1326,9 @@ func filterPropertyMethods(class *occ2go.ParsedClass) []*occ2go.ParsedMethod {
 
 // prepareInitMethods filters methods to return only init methods (for constructor generation), deduplicated by constructor name.
 // Includes both:
-//  - Instance methods with selectors starting with "init" (traditional init methods)
-//  - Class methods marked as initializers in documentation (factory methods like buttonWithTitle:target:action:)
+//   - Instance methods with selectors starting with "init" (traditional init methods)
+//   - Class methods marked as initializers in documentation (factory methods like buttonWithTitle:target:action:)
+//
 // When multiple methods would generate the same constructor name (e.g., initWithContentsOfURL: and arrayWithContentsOfURL:),
 // the instance method is preferred.
 func prepareInitMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
@@ -1377,10 +1391,11 @@ func prepareInitMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 // initMethodToConstructorName converts an init method selector to a constructor function name.
 // Handles both traditional init methods and class factory methods.
 // Examples:
-//   "init" -> "NewButton"
-//   "initWithFrame:" -> "NewButtonWithFrame"
-//   "buttonWithTitle:target:action:" -> "NewButtonWithTitleTargetAction"
-//   "checkboxWithTitle:target:action:" -> "NewCheckboxWithTitleTargetAction"
+//
+//	"init" -> "NewButton"
+//	"initWithFrame:" -> "NewButtonWithFrame"
+//	"buttonWithTitle:target:action:" -> "NewButtonWithTitleTargetAction"
+//	"checkboxWithTitle:target:action:" -> "NewCheckboxWithTitleTargetAction"
 func initMethodToConstructorName(className, selector string) string {
 	structName := classToStructName(className)
 
@@ -1517,9 +1532,10 @@ func sortMethodsByName(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 // wrapObjCReturn generates the return statement for converting objc.ID to Go types.
 // It handles special cases like bool conversion and objc.Object mapping.
 // Examples:
-//   wrapObjCReturn("bool") -> "ret != 0"
-//   wrapObjCReturn("objc.Object") -> "objc.ID(ret)"
-//   wrapObjCReturn("int") -> "int(ret)"
+//
+//	wrapObjCReturn("bool") -> "ret != 0"
+//	wrapObjCReturn("objc.Object") -> "objc.ID(ret)"
+//	wrapObjCReturn("int") -> "int(ret)"
 func wrapObjCReturn(goType string) string {
 	switch goType {
 	case "bool":
@@ -1553,9 +1569,10 @@ func dict(values ...interface{}) (map[string]interface{}, error) {
 
 // propertyToGoName converts an Objective-C property name to a Go method name.
 // Examples:
-//   title -> Title
-//   isEnabled -> IsEnabled
-//   backgroundColor -> BackgroundColor
+//
+//	title -> Title
+//	isEnabled -> IsEnabled
+//	backgroundColor -> BackgroundColor
 func propertyToGoName(propName string) string {
 	if propName == "" {
 		return ""
@@ -1582,10 +1599,11 @@ func sliceContainsString(slice []string, str string) bool {
 // capitalizeFirst capitalizes the first letter of a string for exported identifiers.
 // Capitalizing makes any Go keyword a valid exported identifier.
 // Examples:
-//   title -> Title
-//   backgroundColor -> BackgroundColor
-//   false -> False (valid once capitalized)
-//   type -> Type (valid once capitalized)
+//
+//	title -> Title
+//	backgroundColor -> BackgroundColor
+//	false -> False (valid once capitalized)
+//	type -> Type (valid once capitalized)
 func capitalizeFirst(s string) string {
 	if s == "" {
 		return ""
@@ -1642,11 +1660,12 @@ func getRequiredImports(methods []*occ2go.ParsedMethod, framework string) map[st
 // getGoTypeImportPath takes a Go type string (after mapping from Objective-C) and returns
 // the import path if it requires one, or empty string if it doesn't.
 // Examples:
-//   "coregraphics.CGAffineTransform" -> "github.com/tmc/appledocs/generated/coregraphics"
-//   "foundation.Rect" -> "github.com/tmc/appledocs/generated/foundation"
-//   "unsafe.Pointer" -> ""
-//   "int" -> ""
-//   "bool" -> ""
+//
+//	"coregraphics.CGAffineTransform" -> "github.com/tmc/appledocs/generated/coregraphics"
+//	"foundation.Rect" -> "github.com/tmc/appledocs/generated/foundation"
+//	"unsafe.Pointer" -> ""
+//	"int" -> ""
+//	"bool" -> ""
 func getGoTypeImportPath(goType string) string {
 	// Built-in types and types from std library don't need custom imports
 	if goType == "" || goType == "unsafe.Pointer" {
@@ -1708,73 +1727,7 @@ func extractPackageNameFromImportPath(importPath string) string {
 	return importPath
 }
 
-// getClassRequiredImports returns a sorted slice of all required imports for a class (including both methods and properties).
-// This is a convenience function for templates to get all imports at once.
-func getClassRequiredImports(class interface{}, framework string) []string {
-	imports := make(map[string]bool)
-	currentFrameworkImportPath := "github.com/tmc/appledocs/generated/" + strings.ToLower(framework)
-
-	// Try to extract class data using reflection
-	classVal := reflect.ValueOf(class)
-	if classVal.Kind() == reflect.Ptr {
-		classVal = classVal.Elem()
-	}
-
-	// Try to access Methods field
-	if classVal.Kind() == reflect.Struct {
-		methodsField := classVal.FieldByName("Methods")
-		if methodsField.IsValid() && methodsField.Kind() == reflect.Slice {
-			for i := 0; i < methodsField.Len(); i++ {
-				method := methodsField.Index(i).Interface()
-				if parsedMethod, ok := method.(*occ2go.ParsedMethod); ok {
-					// Check return type
-					if parsedMethod.ReturnType != "" {
-						goType := mapObjCTypeToGo(parsedMethod.ReturnType, framework)
-						if importPath := getGoTypeImportPath(goType); importPath != "" {
-							if importPath != currentFrameworkImportPath {
-								imports[importPath] = true
-							}
-						}
-					}
-
-					// Check parameters
-					for _, param := range parsedMethod.Parameters {
-						goType := mapObjCTypeToGo(param.Type, framework)
-						if importPath := getGoTypeImportPath(goType); importPath != "" {
-							if importPath != currentFrameworkImportPath {
-								imports[importPath] = true
-							}
-						}
-					}
-				}
-			}
-		}
-
-		// Try to access Properties field
-		propertiesField := classVal.FieldByName("Properties")
-		if propertiesField.IsValid() && propertiesField.Kind() == reflect.Slice {
-			for i := 0; i < propertiesField.Len(); i++ {
-				property := propertiesField.Index(i).Interface()
-				if parsedProp, ok := property.(*occ2go.ParsedProperty); ok {
-					goType := mapObjCTypeToGo(parsedProp.Type, framework)
-					if importPath := getGoTypeImportPath(goType); importPath != "" {
-						if importPath != currentFrameworkImportPath {
-							imports[importPath] = true
-						}
-					}
-				}
-			}
-		}
-	}
-
-	// Convert map to sorted slice
-	result := make([]string, 0, len(imports))
-	for imp := range imports {
-		result = append(result, imp)
-	}
-	sort.Strings(result)
-	return result
-}
+// getClassRequiredImports was moved to funcs_unused.go - see that file for the implementation
 
 // getFunctionRequiredImports analyzes standalone functions to collect required import paths.
 // It examines each function's return type and parameters, applying type mappings and extracting
@@ -1877,8 +1830,9 @@ func isEssentialSelector(selector string) bool {
 // convertDocURL converts Apple's doc:// scheme URLs to https:// URLs.
 // If the URL doesn't start with "doc://", it returns it unchanged.
 // Examples:
-//   doc://com.apple.foundation/documentation/Foundation/NSString -> https://developer.apple.com/documentation/foundation/nsstring
-//   https://developer.apple.com/... -> https://developer.apple.com/... (unchanged)
+//
+//	doc://com.apple.foundation/documentation/Foundation/NSString -> https://developer.apple.com/documentation/foundation/nsstring
+//	https://developer.apple.com/... -> https://developer.apple.com/... (unchanged)
 func convertDocURL(url string) string {
 	if url == "" {
 		return ""
@@ -1906,8 +1860,8 @@ func convertDocURL(url string) string {
 // classHasInit checks if a class has any init methods (including factory initializers).
 // This is used to determine if a test file should be generated.
 // Returns true if the class has:
-//  - Any instance init method (selector starting with "init")
-//  - Any class method marked as an initializer in docs (IsInitializer = true)
+//   - Any instance init method (selector starting with "init")
+//   - Any class method marked as an initializer in docs (IsInitializer = true)
 func classHasInit(methods []*occ2go.ParsedMethod) bool {
 	for _, m := range methods {
 		// Instance init methods
@@ -2139,9 +2093,10 @@ func canGenerateTestValue(args ...string) bool {
 // This helper is used in templates to properly reference types that may come from other frameworks.
 //
 // Examples:
-//   resolveType("AppKit", "Button") -> "Button" (same framework)
-//   resolveType("AppKit", "MutableAttributedString") -> "foundation.MutableAttributedString" (cross-framework)
-//   resolveType("Foundation", "Array") -> "Array" (same framework)
+//
+//	resolveType("AppKit", "Button") -> "Button" (same framework)
+//	resolveType("AppKit", "MutableAttributedString") -> "foundation.MutableAttributedString" (cross-framework)
+//	resolveType("Foundation", "Array") -> "Array" (same framework)
 func resolveType(framework, typeName string) string {
 	if typeName == "" {
 		return ""
@@ -2231,23 +2186,23 @@ func resolveType(framework, typeName string) string {
 		"CGVector":          true,
 		"CGFloat":           true,
 		// Opaque ref types
-		"CGColorRef":         true,
-		"CGColorSpaceRef":    true,
-		"CGContextRef":       true,
-		"CGImageRef":         true,
-		"CGImageSourceRef":   true,
+		"CGColorRef":            true,
+		"CGColorSpaceRef":       true,
+		"CGContextRef":          true,
+		"CGImageRef":            true,
+		"CGImageSourceRef":      true,
 		"CGImageDestinationRef": true,
-		"CGPathRef":          true,
-		"CGLayerRef":         true,
-		"CGFontRef":          true,
-		"CGDataProviderRef":  true,
-		"CGDataConsumerRef":  true,
-		"CGFunctionRef":      true,
-		"CGShadingRef":       true,
-		"CGGradientRef":      true,
-		"CGPatternRef":       true,
-		"CGPDFDocumentRef":   true,
-		"CGPDFPageRef":       true,
+		"CGPathRef":             true,
+		"CGLayerRef":            true,
+		"CGFontRef":             true,
+		"CGDataProviderRef":     true,
+		"CGDataConsumerRef":     true,
+		"CGFunctionRef":         true,
+		"CGShadingRef":          true,
+		"CGGradientRef":         true,
+		"CGPatternRef":          true,
+		"CGPDFDocumentRef":      true,
+		"CGPDFPageRef":          true,
 	}
 
 	// Check if the type exists in current framework FIRST before adding qualifications
@@ -2356,23 +2311,23 @@ func resolveType(framework, typeName string) string {
 	if framework != "" {
 		// Check common framework prefixes
 		frameworkPrefixes := map[string][]string{
-			"AppKit":        {"NS", "AK"},
-			"Foundation":    {"NS", "CF"},
-			"CoreGraphics":  {"CG"},
-			"QuartzCore":    {"CA"},
-			"CoreImage":     {"CI"},
-			"CoreData":      {"NS", "CD"},
-			"AVFoundation":  {"AV"},
-			"Metal":         {"MTL"},
-			"MetalKit":      {"MTK"},
-			"SpriteKit":     {"SK"},
-			"SceneKit":      {"SCN"},
-			"CoreML":        {"ML"},
-			"Vision":        {"VN"},
-			"CoreLocation":  {"CL"},
-			"MapKit":        {"MK"},
-			"PhotoKit":      {"PH"},
-			"Photos":        {"PH"},
+			"AppKit":           {"NS", "AK"},
+			"Foundation":       {"NS", "CF"},
+			"CoreGraphics":     {"CG"},
+			"QuartzCore":       {"CA"},
+			"CoreImage":        {"CI"},
+			"CoreData":         {"NS", "CD"},
+			"AVFoundation":     {"AV"},
+			"Metal":            {"MTL"},
+			"MetalKit":         {"MTK"},
+			"SpriteKit":        {"SK"},
+			"SceneKit":         {"SCN"},
+			"CoreML":           {"ML"},
+			"Vision":           {"VN"},
+			"CoreLocation":     {"CL"},
+			"MapKit":           {"MK"},
+			"PhotoKit":         {"PH"},
+			"Photos":           {"PH"},
 			"ScreenCaptureKit": {"SC"},
 		}
 
@@ -2397,8 +2352,9 @@ func resolveType(framework, typeName string) string {
 // methods in the same category (instance or class) to detect collisions.
 //
 // Examples:
-//   imageByInsertingIntermediate -> ImageByInsertingIntermediate (no collision)
-//   imageByInsertingIntermediate: (when there's also imageByInsertingIntermediate) -> ImageByInsertingIntermediateWithCache
+//
+//	imageByInsertingIntermediate -> ImageByInsertingIntermediate (no collision)
+//	imageByInsertingIntermediate: (when there's also imageByInsertingIntermediate) -> ImageByInsertingIntermediateWithCache
 func methodGoName(method *occ2go.ParsedMethod, allMethods []*occ2go.ParsedMethod) string {
 	// Generate the standard Go name
 	goName := selectorToGoName(method.Selector)
@@ -2427,10 +2383,10 @@ func isInheritedFromNSObject(selector string) bool {
 	// Common NSObject instance methods that should not be redeclared
 	nsobjectMethods := map[string]bool{
 		// Memory management
-		"retain":              true,
-		"release":             true,
-		"autorelease":         true,
-		"retainCount":         true,
+		"retain":      true,
+		"release":     true,
+		"autorelease": true,
+		"retainCount": true,
 
 		// Object identity and comparison
 		"isEqual:":            true,
@@ -2442,10 +2398,10 @@ func isInheritedFromNSObject(selector string) bool {
 		"respondsToSelector:": true,
 
 		// Description and debugging
-		"description":         true,
-		"debugDescription":    true,
-		"className":           true,
-		"superclass":          true,
+		"description":      true,
+		"debugDescription": true,
+		"className":        true,
+		"superclass":       true,
 
 		// KVC (Key-Value Coding)
 		"valueForKey:":                    true,
@@ -2461,63 +2417,63 @@ func isInheritedFromNSObject(selector string) bool {
 		"takeValuesFromDictionary:":       true,
 
 		// KVO (Key-Value Observing)
-		"addObserver:forKeyPath:options:context:":                          true,
-		"removeObserver:forKeyPath:":                                        true,
-		"removeObserver:forKeyPath:context:":                                true,
-		"willChangeValueForKey:":                                            true,
-		"didChangeValueForKey:":                                             true,
-		"willChange:valuesAtIndexes:forKey:":                                true,
-		"didChange:valuesAtIndexes:forKey:":                                 true,
-		"willChangeValueForKey:withSetMutation:usingObjects:":               true,
-		"didChangeValueForKey:withSetMutation:usingObjects:":                true,
-		"observationInfo":                                                   true,
-		"setObservationInfo:":                                               true,
-		"observeValueForKeyPath:ofObject:change:context:":                   true,
-		"keyPathsForValuesAffectingValueForKey:":                            true,
-		"automaticallyNotifiesObserversForKey:":                             true,
+		"addObserver:forKeyPath:options:context:":             true,
+		"removeObserver:forKeyPath:":                          true,
+		"removeObserver:forKeyPath:context:":                  true,
+		"willChangeValueForKey:":                              true,
+		"didChangeValueForKey:":                               true,
+		"willChange:valuesAtIndexes:forKey:":                  true,
+		"didChange:valuesAtIndexes:forKey:":                   true,
+		"willChangeValueForKey:withSetMutation:usingObjects:": true,
+		"didChangeValueForKey:withSetMutation:usingObjects:":  true,
+		"observationInfo":                                     true,
+		"setObservationInfo:":                                 true,
+		"observeValueForKeyPath:ofObject:change:context:":     true,
+		"keyPathsForValuesAffectingValueForKey:":              true,
+		"automaticallyNotifiesObserversForKey:":               true,
 
 		// Notifications
-		"postNotification:":                       true,
-		"postNotificationName:object:":            true,
-		"postNotificationName:object:userInfo:":   true,
+		"postNotification:":                     true,
+		"postNotificationName:object:":          true,
+		"postNotificationName:object:userInfo:": true,
 
 		// Copying
-		"copy":                true,
-		"mutableCopy":         true,
-		"copyWithZone:":       true,
+		"copy":                 true,
+		"mutableCopy":          true,
+		"copyWithZone:":        true,
 		"mutableCopyWithZone:": true,
 
 		// Archiving
-		"classForCoder":       true,
+		"classForCoder":              true,
 		"replacementObjectForCoder:": true,
 		"awakeAfterUsingCoder:":      true,
 
 		// Forwarding
-		"forwardInvocation:":  true,
+		"forwardInvocation:":           true,
 		"forwardingTargetForSelector:": true,
 		"methodSignatureForSelector:":  true,
 		"doesNotRecognizeSelector:":    true,
 
 		// Scripting
-		"scriptingIsEqualTo:":         true,
-		"scriptingIsLessThanOrEqualTo:": true,
-		"scriptingIsLessThan:":        true,
+		"scriptingIsEqualTo:":              true,
+		"scriptingIsLessThanOrEqualTo:":    true,
+		"scriptingIsLessThan:":             true,
 		"scriptingIsGreaterThanOrEqualTo:": true,
-		"scriptingIsGreaterThan:":     true,
-		"scriptingBeginsWith:":        true,
-		"scriptingEndsWith:":          true,
-		"scriptingContains:":          true,
+		"scriptingIsGreaterThan:":          true,
+		"scriptingBeginsWith:":             true,
+		"scriptingEndsWith:":               true,
+		"scriptingContains:":               true,
 
 		// Performance
-		"performSelector:":                    true,
-		"performSelector:withObject:":         true,
-		"performSelector:withObject:withObject:": true,
-		"performSelectorOnMainThread:withObject:waitUntilDone:": true,
-		"performSelector:onThread:withObject:waitUntilDone:":    true,
-		"performSelectorInBackground:withObject:":               true,
-		"performSelector:withObject:afterDelay:":                true,
-		"performSelector:withObject:afterDelay:inModes:":        true,
-		"cancelPreviousPerformRequestsWithTarget:":              true,
+		"performSelector:":                                         true,
+		"performSelector:withObject:":                              true,
+		"performSelector:withObject:withObject:":                   true,
+		"performSelectorOnMainThread:withObject:waitUntilDone:":    true,
+		"performSelector:onThread:withObject:waitUntilDone:":       true,
+		"performSelectorInBackground:withObject:":                  true,
+		"performSelector:withObject:afterDelay:":                   true,
+		"performSelector:withObject:afterDelay:inModes:":           true,
+		"cancelPreviousPerformRequestsWithTarget:":                 true,
 		"cancelPreviousPerformRequestsWithTarget:selector:object:": true,
 	}
 
@@ -2602,19 +2558,13 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 	return imports
 }
 
-// typeReferencesFramework checks if a Go type string contains a reference to a specific framework.
-// It handles container types like []pkg.Type, map[string]pkg.Type, etc. by checking if the
-// framework package name appears with a dot (pkg.) anywhere in the type string.
-func typeReferencesFramework(goType, framework string) bool {
-	// Check for "framework." pattern which indicates the framework is used as a package qualifier
-	return strings.Contains(goType, framework+".")
-}
+// typeReferencesFramework was moved to funcs_unused.go - see that file for the implementation
 
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
 // This uses the registry-based system to automatically detect all framework dependencies.
 // Returns a ClassImports struct with:
-//  - ImportPaths: Dynamic map of all imports (package name -> import path) - RECOMMENDED
-//  - Boolean fields: Deprecated legacy fields for backward compatibility - will be removed
+//   - ImportPaths: Dynamic map of all imports (package name -> import path) - RECOMMENDED
+//   - Boolean fields: Deprecated legacy fields for backward compatibility - will be removed
 func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) ClassImports {
 	// Use the registry-based function to detect all imports automatically
 	importPathsSet := getClassImportPaths(class, framework, outputModule)
@@ -2681,209 +2631,7 @@ func getSortedClassImports(imports ClassImports) []ImportInfo {
 	return result
 }
 
-// OLD IMPLEMENTATION - Replaced by registry-based approach above
-// Kept for reference and can be removed in future cleanup
-func getClassImportsOld(class *occ2go.ParsedClass, framework, outputModule string) ClassImports {
-	imports := ClassImports{}
-
-	if class == nil {
-		return imports
-	}
-
-	// Determine struct name for self-referential check
-	structName := classToStructName(class.Name)
-
-	// Check struct embedding for import needs by using getStructEmbeddedField
-	// This ensures we catch all cases where objectivec.Object is embedded
-	// Don't import a framework into itself
-	embeddedField := getStructEmbeddedField(class, framework)
-	if strings.HasPrefix(embeddedField, "objectivec.") {
-		imports.NeedsObjectiveC = true
-	} else if strings.HasPrefix(embeddedField, "foundation.") && framework != "Foundation" {
-		imports.NeedsFoundation = true
-	} else if strings.HasPrefix(embeddedField, "quartzcore.") && framework != "QuartzCore" {
-		imports.NeedsQuartzCore = true
-	} else if strings.HasPrefix(embeddedField, "appkit.") && framework != "AppKit" {
-		imports.NeedsAppKit = true
-	}
-
-	// Also check superclass for import needs (for interface embedding)
-	if framework != "ObjectiveC" && class.SuperClass != "" {
-		superStructName := classToStructName(class.SuperClass)
-		superResolved := resolveType(framework, superStructName)
-		isSelfReferential := (superStructName == structName)
-
-		// If superclass has a framework prefix, we need that import
-		// Don't import a framework into itself
-		if strings.HasPrefix(superResolved, "foundation.") && framework != "Foundation" {
-			imports.NeedsFoundation = true
-		} else if strings.HasPrefix(superResolved, "quartzcore.") && framework != "QuartzCore" {
-			imports.NeedsQuartzCore = true
-		} else if strings.HasPrefix(superResolved, "appkit.") && framework != "AppKit" {
-			imports.NeedsAppKit = true
-		} else if strings.HasPrefix(superResolved, "objectivec.") {
-			imports.NeedsObjectiveC = true
-		} else if class.SuperClass == "NSObject" || superStructName == "Object" || isSelfReferential {
-			imports.NeedsObjectiveC = true
-		}
-	} else if framework != "ObjectiveC" {
-		// No superclass specified, default to objectivec
-		imports.NeedsObjectiveC = true
-	}
-
-	// Check methods for CoreGraphics dependencies
-	if classDependsOnCoreGraphics(class.Methods, framework) {
-		imports.NeedsCoreGraphics = true
-	}
-
-	// Check properties for CoreGraphics dependencies
-	if !imports.NeedsCoreGraphics {
-		for _, prop := range class.Properties {
-			goType := mapObjCTypeToGo(prop.Type, framework)
-			if strings.HasPrefix(goType, "coregraphics.") {
-				imports.NeedsCoreGraphics = true
-				break
-			}
-		}
-	}
-
-	// Check method parameters and return types for AppKit, QuartzCore, and CloudKit dependencies
-	for _, method := range class.Methods {
-		// Check return type
-		if method.ReturnType != "" {
-			goType := mapObjCTypeToGo(method.ReturnType, framework)
-			// Don't import a framework into itself
-			if typeReferencesFramework(goType, "appkit") && framework != "AppKit" {
-				imports.NeedsAppKit = true
-			} else if typeReferencesFramework(goType, "quartzcore") && framework != "QuartzCore" {
-				imports.NeedsQuartzCore = true
-			} else if typeReferencesFramework(goType, "cloudkit") && framework != "CloudKit" {
-				imports.NeedsCloudKit = true
-			}
-		}
-		// Check parameters
-		for _, param := range method.Parameters {
-			goType := mapObjCTypeToGo(param.Type, framework)
-			// Don't import a framework into itself
-			if typeReferencesFramework(goType, "foundation") && framework != "Foundation" {
-				imports.NeedsFoundation = true
-			} else if typeReferencesFramework(goType, "appkit") && framework != "AppKit" {
-				imports.NeedsAppKit = true
-			} else if typeReferencesFramework(goType, "quartzcore") && framework != "QuartzCore" {
-				imports.NeedsQuartzCore = true
-			} else if typeReferencesFramework(goType, "cloudkit") && framework != "CloudKit" {
-				imports.NeedsCloudKit = true
-			}
-		}
-		if imports.NeedsFoundation || imports.NeedsAppKit || imports.NeedsQuartzCore || imports.NeedsCloudKit {
-			break
-		}
-	}
-
-	// Check method parameters and return types for Foundation dependencies
-	if !imports.NeedsFoundation {
-		for _, method := range class.Methods {
-			// Check return type
-			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
-			if typeReferencesFramework(goReturnType, "foundation") {
-				imports.NeedsFoundation = true
-				break
-			}
-			// Check parameter types
-			for _, param := range method.Parameters {
-				goParamType := mapObjCTypeToGo(param.Type, framework)
-				if typeReferencesFramework(goParamType, "foundation") {
-					imports.NeedsFoundation = true
-					break
-				}
-			}
-			if imports.NeedsFoundation {
-				break
-			}
-		}
-	}
-
-	// Check properties for Foundation dependencies
-	if !imports.NeedsFoundation {
-		for _, prop := range class.Properties {
-			goType := mapObjCTypeToGo(prop.Type, framework)
-			if strings.HasPrefix(goType, "foundation.") {
-				imports.NeedsFoundation = true
-				break
-			}
-		}
-	}
-
-	// Check method parameters and return types for UserNotifications dependencies
-	if !imports.NeedsUserNotifications {
-		for _, method := range class.Methods {
-			// Check return type (use Contains to handle slices like []usernotifications.NotificationAction)
-			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
-			if strings.Contains(goReturnType, "usernotifications.") {
-				imports.NeedsUserNotifications = true
-				break
-			}
-			// Check parameter types
-			for _, param := range method.Parameters {
-				goParamType := mapObjCTypeToGo(param.Type, framework)
-				if strings.Contains(goParamType, "usernotifications.") {
-					imports.NeedsUserNotifications = true
-					break
-				}
-			}
-			if imports.NeedsUserNotifications {
-				break
-			}
-		}
-	}
-
-	// Check properties for UserNotifications dependencies
-	if !imports.NeedsUserNotifications {
-		for _, prop := range class.Properties {
-			goType := mapObjCTypeToGo(prop.Type, framework)
-			if strings.Contains(goType, "usernotifications.") {
-				imports.NeedsUserNotifications = true
-				break
-			}
-		}
-	}
-
-	// Check method parameters and return types for UniformTypeIdentifiers dependencies
-	if !imports.NeedsUniformTypeIdentifiers {
-		for _, method := range class.Methods {
-			// Check return type
-			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
-			if strings.Contains(goReturnType, "uniformtypeidentifiers.") && framework != "UniformTypeIdentifiers" {
-				imports.NeedsUniformTypeIdentifiers = true
-				break
-			}
-			// Check parameter types
-			for _, param := range method.Parameters {
-				goParamType := mapObjCTypeToGo(param.Type, framework)
-				if strings.Contains(goParamType, "uniformtypeidentifiers.") && framework != "UniformTypeIdentifiers" {
-					imports.NeedsUniformTypeIdentifiers = true
-					break
-				}
-			}
-			if imports.NeedsUniformTypeIdentifiers {
-				break
-			}
-		}
-	}
-
-	// Check properties for UniformTypeIdentifiers dependencies
-	if !imports.NeedsUniformTypeIdentifiers {
-		for _, prop := range class.Properties {
-			goType := mapObjCTypeToGo(prop.Type, framework)
-			if strings.Contains(goType, "uniformtypeidentifiers.") && framework != "UniformTypeIdentifiers" {
-				imports.NeedsUniformTypeIdentifiers = true
-				break
-			}
-		}
-	}
-
-	return imports
-}
+// getClassImportsOld was moved to funcs_unused.go - see that file for the implementation
 
 // getInterfaceParent determines the parent interface for a class interface definition.
 // This consolidates the complex interface hierarchy resolution logic from the template.
@@ -3104,9 +2852,10 @@ func getConstructorBody(method *occ2go.ParsedMethod, structName, paramNames stri
 // building a map of type name -> framework package name.
 //
 // Example registry entries:
-//   "Window" -> "appkit"
-//   "String" -> "foundation"
-//   "Layer" -> "quartzcore"
+//
+//	"Window" -> "appkit"
+//	"String" -> "foundation"
+//	"Layer" -> "quartzcore"
 func buildCrossFrameworkTypeRegistry(outputDir string) error {
 	// Check if output directory exists
 	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
@@ -3212,51 +2961,43 @@ func sortedKeys(m map[string]bool) []string {
 
 // cleanConstantName converts Apple constant names to Go-style names.
 // Examples:
-//   kCIFormatARGB8 -> FormatARGB8
-//   kCIFormatBGRA8 -> FormatBGRA8
-//   NSWindowStyleMaskBorderless -> WindowStyleMaskBorderless
+//
+//	kCIFormatARGB8 -> FormatARGB8
+//	kCIFormatBGRA8 -> FormatBGRA8
+//	NSWindowStyleMaskBorderless -> WindowStyleMaskBorderless
 func cleanConstantName(name string) string {
 	// Remove common constant prefixes
 	prefixes := []string{"kCI", "kCG", "kCA", "kCF", "kNS", "k"}
-	
+
 	for _, prefix := range prefixes {
 		if strings.HasPrefix(name, prefix) {
 			name = strings.TrimPrefix(name, prefix)
 			break
 		}
 	}
-	
+
 	// Also strip framework-specific object prefixes from the result
 	name = stripObjCPrefix(name)
-	
+
 	// Ensure first letter is uppercase for exported Go identifier
 	if len(name) > 0 && name[0] >= 'a' && name[0] <= 'z' {
 		name = strings.ToUpper(name[:1]) + name[1:]
 	}
-	
+
 	return name
 }
 
-// isTypedefConstant checks if a constant's type matches a known typedef
-func isTypedefConstant(g *Generator) func(constType string) bool {
-	return func(constType string) bool {
-		for _, typedef := range g.Typedefs {
-			if typedef.Name == constType {
-				return true
-			}
-		}
-		return false
-	}
-}
+// isTypedefConstant was moved to funcs_unused.go - see that file for the implementation
 
 // propertyConflictsWithParent checks if a property accessor would conflict with an embedded parent field.
 // For example, NSCollectionViewFlowLayout embeds CollectionViewLayout, so a property named
 // "collectionViewLayout" would create a method CollectionViewLayout() that conflicts with the field.
 //
 // Parameters:
-//   className: The Objective-C class name (e.g., "NSCollectionViewFlowLayout")
-//   superClass: The Objective-C superclass name (e.g., "NSCollectionViewLayout")
-//   propertyName: The property name (e.g., "collectionViewLayout")
+//
+//	className: The Objective-C class name (e.g., "NSCollectionViewFlowLayout")
+//	superClass: The Objective-C superclass name (e.g., "NSCollectionViewLayout")
+//	propertyName: The property name (e.g., "collectionViewLayout")
 //
 // Returns true if the capitalized property name would match the Go struct name of the superclass.
 func propertyConflictsWithParent(className, superClass, propertyName string) bool {

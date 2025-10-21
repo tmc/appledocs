@@ -14,10 +14,10 @@ type Config struct {
 
 // FrameworkConfig represents configuration for a specific framework.
 type FrameworkConfig struct {
-	ExcludeTestExamples        []string `yaml:"exclude_test_examples"`         // Class names to exclude (deprecated, use exclude_test_patterns)
-	ExcludeTestPatterns        []string `yaml:"exclude_test_patterns"`         // Regex patterns for test method names to exclude
-	Deprecated                 bool     `yaml:"deprecated"`
-	DeprecationReason          string   `yaml:"deprecation_reason"`
+	ExcludeTestExamples         []string         `yaml:"exclude_test_examples"` // Class names to exclude (deprecated, use exclude_test_patterns)
+	ExcludeTestPatterns         []string         `yaml:"exclude_test_patterns"` // Regex patterns for test method names to exclude
+	Deprecated                  bool             `yaml:"deprecated"`
+	DeprecationReason           string           `yaml:"deprecation_reason"`
 	excludeTestPatternsCompiled []*regexp.Regexp // Compiled regex patterns (not in YAML)
 }
 
@@ -60,6 +60,8 @@ func loadConfig() error {
 }
 
 // isFrameworkDeprecated checks if a framework is marked as deprecated.
+// UNUSED: Commented out as unreachable code
+/*
 func isFrameworkDeprecated(framework string) bool {
 	if config == nil {
 		return false
@@ -72,6 +74,7 @@ func isFrameworkDeprecated(framework string) bool {
 
 	return frameworkConfig.Deprecated
 }
+*/
 
 // shouldExcludeTestExample checks if a class should be excluded from test example generation.
 // This function is deprecated in favor of shouldExcludeTestMethod which allows more precise filtering.
