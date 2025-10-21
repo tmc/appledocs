@@ -80,24 +80,6 @@ func NewURLCredential() URLCredential {
 }
 
 
-// Creates a URL credential instance for server trust authentication with a given accepted trust.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(forTrust:)
-func NewURLCredentialForTrust(trust unsafe.Pointer) URLCredential {
-	rv := objc.Send[URLCredential](objc.ID(getURLCredentialClass().class), objc.Sel("credentialForTrust:"), trust)
-	return rv
-}
-
-// Creates a URL credential instance for resolving a client certificate authentication challenge.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(identity:certificates:persistence:)
-func NewURLCredentialWithIdentityCertificatesPersistence(identity unsafe.Pointer, certArray objc.ID, persistence unsafe.Pointer) URLCredential {
-	instance := getURLCredentialClass().Alloc()
-	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithIdentity:certificates:persistence:"), identity, certArray, persistence)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a URL credential instance for server trust authentication, initialized with a accepted trust.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(trust:)
@@ -114,6 +96,24 @@ func NewURLCredentialWithTrust(trust unsafe.Pointer) URLCredential {
 func NewURLCredentialWithUserPasswordPersistence(user string, password string, persistence unsafe.Pointer) URLCredential {
 	instance := getURLCredentialClass().Alloc()
 	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithUser:password:persistence:"), objc.String(user), objc.String(password), persistence)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a URL credential instance for server trust authentication with a given accepted trust.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(forTrust:)
+func NewURLCredentialForTrust(trust unsafe.Pointer) URLCredential {
+	rv := objc.Send[URLCredential](objc.ID(getURLCredentialClass().class), objc.Sel("credentialForTrust:"), trust)
+	return rv
+}
+
+// Creates a URL credential instance for resolving a client certificate authentication challenge.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(identity:certificates:persistence:)
+func NewURLCredentialWithIdentityCertificatesPersistence(identity unsafe.Pointer, certArray objc.ID, persistence unsafe.Pointer) URLCredential {
+	instance := getURLCredentialClass().Alloc()
+	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithIdentity:certificates:persistence:"), identity, certArray, persistence)
 	rv.Autorelease()
 	return rv
 }

@@ -10,16 +10,16 @@ import (
 var _ = foundation.NewMutableDictionary
 
 
-
-
-
-
 // ExampleNewMutableDictionary demonstrates how to create a MutableDictionary instance.
 // Initializes a newly allocated mutable dictionary.
 func ExampleNewMutableDictionary() {
 	_ = foundation.NewMutableDictionary()
 	// Output:
 }
+
+
+
+
 
 // ExampleNewMutableDictionaryWithCapacity demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithCapacity.
 // Initializes a newly allocated mutable dictionary, allocating enough memory to hold   entries.

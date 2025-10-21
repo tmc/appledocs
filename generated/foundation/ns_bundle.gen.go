@@ -112,6 +112,22 @@ func NewBundle() Bundle {
 }
 
 
+// Returns the object with which the specified class is associated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
+func NewBundleForClass(aClass objc.Class) Bundle {
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
+	return rv
+}
+
+// Returns the instance that has the specified bundle identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
+func NewBundleWithIdentifier(identifier string) Bundle {
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
+	return rv
+}
+
 // Returns an object initialized to correspond to the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(path:)
@@ -129,22 +145,6 @@ func NewBundleWithURL(url unsafe.Pointer) Bundle {
 	instance := getBundleClass().Alloc()
 	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
-	return rv
-}
-
-// Returns the object with which the specified class is associated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
-func NewBundleForClass(aClass objc.Class) Bundle {
-	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
-	return rv
-}
-
-// Returns the instance that has the specified bundle identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
-func NewBundleWithIdentifier(identifier string) Bundle {
-	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 

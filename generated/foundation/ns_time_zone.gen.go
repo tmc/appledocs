@@ -83,16 +83,6 @@ func NewTimeZone() TimeZone {
 }
 
 
-// Returns a time zone initialized with a given identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(name:)
-func NewTimeZoneWithName(tzName string) TimeZone {
-	instance := getTimeZoneClass().Alloc()
-	rv := objc.Send[TimeZone](instance.ID, objc.Sel("initWithName:"), objc.String(tzName))
-	rv.Autorelease()
-	return rv
-}
-
 // Returns the time zone object identified by a given abbreviation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
@@ -106,6 +96,16 @@ func NewTimeZoneWithAbbreviation(abbreviation string) TimeZone {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(forSecondsFromGMT:)
 func NewTimeZoneForSecondsFromGMT(seconds int) TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneForSecondsFromGMT:"), seconds)
+	return rv
+}
+
+// Returns a time zone initialized with a given identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(name:)
+func NewTimeZoneWithName(tzName string) TimeZone {
+	instance := getTimeZoneClass().Alloc()
+	rv := objc.Send[TimeZone](instance.ID, objc.Sel("initWithName:"), objc.String(tzName))
+	rv.Autorelease()
 	return rv
 }
 
